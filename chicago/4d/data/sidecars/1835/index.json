@@ -2091,8 +2091,8 @@
           108
         ],
         [
-          829,
-          400
+          833.31,
+          1029.71
         ]
       ],
       "corridor_width_m": 24.384,
@@ -2784,8 +2784,8 @@
           395
         ],
         [
-          1180,
-          389
+          1270.53,
+          388.26
         ]
       ],
       "corridor_width_m": 24.384,
@@ -4602,6 +4602,1381 @@
       "surface_confidence": "inferred",
       "wear_confidence": "inferred",
       "note": "The 11th tier of the School Section's grid. Read off Wright's 1834 survey as a ruled line of the School Section's grid (Section 16, T39N R14E) and anchored on the section's own mile square; the measured line is at local N -2077.6 m and the anchor moves it +57.5 m. THE STATUS IS THE OWNER'S READING OF THE SHEET, 2026-09-05: 'no alleys and no street names but still a grid that should have some wilderness trees'. So the corridor is platted and the ground inside it is not: `track_width_m` is 0 because no wagon track is drawn or attested here, `alleys` is false because the sheet rules none inside these blocks, and the flora belts are not cut for it. What a visitor should see is a survey line over prairie, not a road.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "illinois_north",
+      "name_1835": "Illinois Street",
+      "name_2026": "E Illinois Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          829.57,
+          483.0
+        ],
+        [
+          1271.15,
+          479.37
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 91.12 m from one east-west corridor to the next (sd 1.07 m over 12 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `michigan_north`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "indiana_north",
+      "name_1835": "Indiana Street",
+      "name_2026": null,
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          830.19,
+          574.12
+        ],
+        [
+          1271.78,
+          570.49
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 91.12 m from one east-west corridor to the next (sd 1.07 m over 12 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `michigan_north`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ohio_north",
+      "name_1835": "Ohio Street",
+      "name_2026": "E Ohio Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          830.82,
+          665.24
+        ],
+        [
+          1272.4,
+          661.61
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 91.12 m from one east-west corridor to the next (sd 1.07 m over 12 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `michigan_north`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ontario_north",
+      "name_1835": "Ontario Street",
+      "name_2026": null,
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          831.44,
+          756.36
+        ],
+        [
+          1273.03,
+          752.73
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 91.12 m from one east-west corridor to the next (sd 1.07 m over 12 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `michigan_north`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "erie_north",
+      "name_1835": "Erie Street",
+      "name_2026": null,
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          832.06,
+          847.48
+        ],
+        [
+          1273.65,
+          843.85
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 91.12 m from one east-west corridor to the next (sd 1.07 m over 12 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `michigan_north`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "huron_north",
+      "name_1835": "Huron Street",
+      "name_2026": null,
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          832.69,
+          938.59
+        ],
+        [
+          1274.27,
+          934.96
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 91.12 m from one east-west corridor to the next (sd 1.07 m over 12 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `michigan_north`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "superior_north",
+      "name_1835": "Superior Street",
+      "name_2026": null,
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          833.31,
+          1029.71
+        ],
+        [
+          1164.5,
+          1026.99
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 91.12 m from one east-west corridor to the next (sd 1.07 m over 12 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `michigan_north`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cass",
+      "name_1835": "Cass Street",
+      "name_2026": "N Wabash Avenue",
+      "name_changed": true,
+      "path_local_enu_m": [
+        [
+          939.34,
+          390.98
+        ],
+        [
+          943.71,
+          1028.8
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 110.4 m from one north-south corridor to the next (sd 0.48 m over 7 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `wolcott`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rush",
+      "name_1835": "Rush Street",
+      "name_2026": "N Rush Street",
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          1049.74,
+          390.07
+        ],
+        [
+          1054.11,
+          1027.9
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 110.4 m from one north-south corridor to the next (sd 0.48 m over 7 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `wolcott`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pine",
+      "name_1835": "Pine Street",
+      "name_2026": null,
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          1160.13,
+          389.16
+        ],
+        [
+          1164.5,
+          1026.99
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 110.4 m from one north-south corridor to the next (sd 0.48 m over 7 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `wolcott`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sand",
+      "name_1835": "Sand Street",
+      "name_2026": null,
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          1270.53,
+          388.26
+        ],
+        [
+          1274.27,
+          934.96
+        ]
+      ],
+      "corridor_width_m": 21.9,
+      "track_width_m": 0,
+      "opened": false,
+      "status_1835": "platted, unopened, unworn",
+      "alleys": false,
+      "surface": "unworn_prairie",
+      "traffic": "none",
+      "geometry_confidence": "inferred",
+      "surface_confidence": "inferred",
+      "wear_confidence": "inferred",
+      "note": "Kinzie's Addition, surveyed 1833 and drawn complete on J. S. Wright's 1834 survey. GEOMETRY: the plat's module is measured off the sheet by tools/read_kinzie_addition_streets.py and recorded in data/traces/kinzie_addition_street_grid.json — 110.4 m from one north-south corridor to the next (sd 0.48 m over 7 spacings), read as ink projected onto one axis, not picked by eye. The line itself is that module laid off `wolcott`, parallel to it, because the sheet's own fit puts Wright's Michigan Street 19.8 m south of `michigan_north`, which is the same street: the sheet measures the ladder and the committed grid holds it. CORRIDOR: 21.9 m. That is not the raw read. The method reads the Original Town's platted 80 ft corridors on the same sheet at 83.6 ft (three readings, sd 5.2), and the Addition's corridors at 75.1 ft (24 readings, sd 4.9); the Addition's are 0.898 of the Original Town's, which against a platted 80 ft is 71.9 ft. So Wright's drafting does say the Addition's streets are narrower than the town's, by about a tenth — and it does not resolve onto a round platted figure: 66 ft is outside the reading and so is 80 ft. The deed of the Addition would settle it and is not in the corpus. STATUS follows `madison`'s: platted ground, not road. In 1835 this tract is a survey over prairie — `track_width_m` is 0 because no wagon track is drawn or attested on it, `alleys` is false because the sheet rules none inside these blocks, and the confidences say `inferred` for the same reason `madison` does: the line is read off Wright's sheet as a ruled line and anchored on committed control, not traced from a plat this project holds. EXTENT is the reading's, and it stops where the reading stops: Wright carries these streets east of Sand Street over the shore-cut blocks to the lake, and that reach waits on the shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water lots wait on T-1063. T-1060, piece 1 of T-0789.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",

@@ -410,8 +410,8 @@
       "census_line": "(not an enumerated class)",
       "census_count": null,
       "compared": true,
-      "town_records_in_town": 81,
-      "town_records_at_scene_date": 75,
+      "town_records_in_town": 78,
+      "town_records_at_scene_date": 72,
       "town_records_outside_town": 1,
       "business_ids": [
         "business_a_clybourn_s_market_on_the_market_square",
@@ -453,7 +453,6 @@
         "business_lathrop_johnson_co_livery",
         "business_marsh_simons",
         "business_matthias_mason_co",
-        "business_matthias_nason_co",
         "business_montgomery_auction_and_commission_house",
         "business_mrs_h_sherman",
         "business_mrs_herman",
@@ -487,11 +486,9 @@
         "business_w_g_blanchard",
         "business_w_montgomery",
         "business_w_montgomery_auction_and_commission_house",
-        "business_w_montgomery_boot_and_shoe_maker",
         "business_w_reed",
         "business_whitehead_co",
         "business_william_clay",
-        "business_wm_g_branchaud",
         "business_wm_h_kennicott",
         "business_wm_h_kennicott_surgeon_dentist",
         "business_wm_h_taylor"
@@ -522,11 +519,11 @@
     }
   ],
   "totals": {
-    "businesses_in_register": 199,
-    "in_town": 196,
+    "businesses_in_register": 196,
+    "in_town": 193,
     "outside_town": 3,
-    "at_scene_date": 183,
-    "carrying_no_enumerated_class": 76,
+    "at_scene_date": 180,
+    "carrying_no_enumerated_class": 73,
     "not_stated": 5,
     "census_enumerated_total": 118,
     "town_enumerated_total_at_scene_date": 118
@@ -1934,18 +1931,6 @@
       "built_at_scene_date": true
     },
     {
-      "business_id": "business_matthias_nason_co",
-      "name": "Matthias Nason & Co.",
-      "trade": "blacksmiths",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a smith's shop (B2)",
-      "built_at_scene_date": true
-    },
-    {
       "business_id": "business_miss_bayne_s_boarding_and_day_school",
       "name": "Miss Bayne's Boarding and Day School",
       "trade": "boarding and day school for young ladies",
@@ -2817,18 +2802,6 @@
       "built_at_scene_date": true
     },
     {
-      "business_id": "business_w_montgomery_boot_and_shoe_maker",
-      "name": "W. Montgomery, boot and shoe maker",
-      "trade": "boot and shoe making",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a making trade the enumeration counts nowhere (B2)",
-      "built_at_scene_date": true
-    },
-    {
       "business_id": "business_w_reed",
       "name": "W. Reed",
       "trade": "cabinet making",
@@ -2875,18 +2848,6 @@
       "scope": "in_town",
       "ruled_by": "trade",
       "basis": "groceries, one of the census's own three lines",
-      "built_at_scene_date": true
-    },
-    {
-      "business_id": "business_wm_g_branchaud",
-      "name": "Wm. G. Branchaud",
-      "trade": "house and land agent",
-      "classes": [
-        "other"
-      ],
-      "scope": "in_town",
-      "ruled_by": "trade",
-      "basis": "a service the enumeration counts nowhere (B2)",
       "built_at_scene_date": true
     },
     {

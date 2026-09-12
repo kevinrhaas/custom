@@ -107,7 +107,6 @@
 
 
 
-T-1040 — Two readings the newspapers gazetteer gives a Chicago person belong to somebody else: 'Col. Samuel Miller, Michigan City' is Carver's Indiana agent and sits on a Chicago resident card, and person_w_montgomery carries Loton W.'s shoemaking beside the auctioneer's own trade
 T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
@@ -141,17 +140,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
 # --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
 T-0887 — A well layer, drawn renderer-side: the fort's well is measured to a coordinate and this project has no way to draw one
-T-0403 — The Democrat's office keeps its 1834 corner through a merge, and the paper moved along South Water Street before the scene date
-T-0408 — Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
-T-1042 — A firm style's surnames are read as one name, so 'H. Doty & Co.' stands on Lake Street as a man called Co
-T-0396 — Newberry & Dole's partner is read as Oliver Newberry in 1834 and Walter L. Newberry in 1835, and the corpus cannot say which stood in the firm
-T-0391 — Are 'Eagle Hotel' and 'the Eagle Hotel (Steele's)' one house, and no issue prints both
-T-0407 — The same blacksmith notice is read as 'Matthias Nason & Co.' in one impression, and the partner-surname guard can never merge it
-T-0404 — 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
-T-0405 — Adding one signboard repaints every board alphabetically after it, and some lose a line
-T-0230 — Two named South Water frontages carry a reconstructed trade, so neither a signboard nor a hitching post will ever stand at them
-T-0449 — Four South Water frontage entries declare lots their runs never reach, and each hides its block's headroom
-T-0834 — The 665 schedule sizes a block's principal room in party-line units and the generator places by whole lots, and on a business front the two disagree
 
 # --- ==========================================================================
 # --- 4. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
@@ -161,14 +149,12 @@ T-0834 — The 665 schedule sizes a block's principal room in party-line units a
 # --- height, T-0939 stops it running to the horizon, T-0940 makes its surface sand; T-0799 runs
 # --- first if any two are picked up. Then the additions Wright draws whole and the town lacks,
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
-T-0799 — Trace the whole east edge off the full sheet: both piers, the cut, the sand bar to its tip, the old channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no window
-T-0800 — The mouth as built: the piers as phased structures at their 1835 length, the bar's height argued, the reservation's blue edge and the lighthouse checked, and the epoch re-baked closed
-T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
-T-0940 — The sand bar renders as mesic-prairie green with scrub on it, though z08_lakeshore and z09_sand_prairie cover it and declare sand at 55 and 18 per cent bare soil
-T-0789 — Kinzie's Addition is on the sheet whole — 54 numbered blocks, 13 named streets, the Kinzie Block and the river-front water lots — and the North Division carries four streets
-T-0790 — Wabansia, surveyed 1831, is drawn whole north of Kinzie Street — eight streets, some 79 blocks and a water-lot tract on the North Branch — and the town has none of it
-T-0794 — The two branches run to the sheet's edges and the town's traces stop at the box: the South Branch through the School Section and the North Branch through Wabansia, off Wright
-T-0796 — The small tract north of Kinzie Street lettered Michigan St — small parcels and an alley where every neighbour is whole blocks, and a road curving north through it — is unidentified: which survey, which legend swatch, and what the sources call it
+
+
+T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
+T-1075 — The Michigan St tract named and seated: who platted it and what the sources call it, and its street, alley, parcels and the curved road north into the town's data
+T-1078 — The North Branch's east bank is short of Wright's ink on two stretches, one of them the splice row: 81 rows of 932 by more than 10 m, up to 33.8 m
+T-1070 — Wabansia seated: its streets into data/streets/1835.json on the committed Kinzie line, its tract polygon, and whoever the sources put on that ground before 1 July 1835
 T-0768 — West Water Street north of Lake: the 1839 directory attests the reach, and a bank offset there runs through the Wolf Point cluster
 T-0827 — The committed market line is fitted to N Wacker Drive and stands 9.1 m off the Thompson plat's own module
 T-0770 — south_branch_raft_bridge glosses West Water Street as 'now Canal Street', and the committed canal stands a plat module west of it
@@ -333,3 +319,10 @@ T-1029 — Three derived artefacts are stale on dev and nothing re-derives them:
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
 T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
+T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
+T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
+T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph moved sauganash_range_m 1066.3 to 1001.2 and the Chappel baseline was never re-banked

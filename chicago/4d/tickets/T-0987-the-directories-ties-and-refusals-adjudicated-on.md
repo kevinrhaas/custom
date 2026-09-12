@@ -818,3 +818,29 @@ whether those two are one printing is the question this volume's fold has to ans
 successor ticket is filed: `tickets/README.md` puts the succession on the run that CLOSES
 the programme, and the owner's filing rule of 2026-09-10 asks for fewer tickets. This
 ticket stays open and is its own cursor.
+
+---
+
+**LAPPED ONTO `dev` 2026-09-12, and the lap moved one of this stretch's two placements.**
+Stretch 7's PR (#1167) was pushed, gated green and never merged — the run that opened it
+ended at the merge — so twelve `dev` merges landed under it before this one picked it up.
+The lap is not bookkeeping only, and the difference is recorded here rather than left in a
+diff:
+
+- **T-1049 (#1175) withdrew `hh_smith_d_a`.** The card was minted on a press notice printed
+  against `Courtland, Alabama`; T-1048's resolved place vocabulary refuses that as a Chicago
+  appearance, the ladder then reaches nothing for the identity, and the container goes with
+  it. So `Doctor D. S. Smith … residence La Salle street` — the residence clause
+  `split_home()` uncovered, and the headline placement of this stretch — has no person of
+  1835 left to reach. The clause and the reading stand; the FACE does not. Recorded, not
+  claimed.
+- **L223 therefore restates 13 → 12**, not 14: `harmon_charles_l` still comes off Dearborn
+  Street under the R4 qualifier, and `smith_d_a` cannot replace him. The twelve are six on
+  Fergus 1843 and six on Norris 1844; the pass adjudicates 60 with 48 refusals. The
+  changelog entry was corrected in the same commit — it had promised a visitor a house on
+  La Salle Street that this tree does not place.
+- The derived layer was rebuilt with `rederive.mjs --run` and both back-projections
+  re-written, twice to convergence, exactly as the note above predicted.
+
+Nothing about the `printed_twice` fold changed on the lap: 78 of 106 notices still fold and
+the six 1843 listings still land. The pool table above is re-derived and unchanged.

@@ -1,7 +1,8 @@
 # The lake shore, the harbour reach and the sand bar — how they were traced
 
-**Traced:** 2026-08-10 · **Epoch:** `e1834_harbor_cut` · **Extent:** local E +314 … +1570,
-N −589 … +505 · **Tool:** `tools/trace_shoreline.py` · **Output:**
+**Traced:** 2026-08-10 · **Re-traced whole:** 2026-09-12 (T-0799) · **Epoch:**
+`e1834_harbor_cut` · **Extent:** local E +314 … +1583, N −2122 … +1121 · **Tool:**
+`tools/trace_shoreline.py` · **Output:**
 `data/terrain/epochs/e1834_harbor_cut/shoreline.geojson`
 
 This is ROADMAP **S2e parcel (a)** — the vectors the eastern terrain extension needs. It
@@ -60,11 +61,11 @@ parameters, which is the part that was worth checking.
 
 ## What is deliberately not in the file
 
-- **The lake east of the traced shore.** Two boundary runs were found, reported and dropped:
-  the outer edge of the lake wash in the north-east (272 m) and a second in the south-east
-  behind the bar (823 m). Neither is a shore — they are where the draughtsman stopped washing.
-  Nothing in this file describes the lake beyond the traced edge, and the water polygon's
-  eastern boundary is the window, not a coast.
+- **The lake east of the traced shore.** One boundary run is found, reported and dropped:
+  3,936 m of it, the whole east side of the water body, with no drawn line anywhere under it.
+  It is not a shore — it is where the draughtsman stopped washing. Nothing in this file
+  describes the lake beyond the traced edge. Since T-0799 the water polygon's eastern
+  boundary is Wright's brush rather than this program's window.
 - **Any elevation for the bar.** A sand bar is a surface that a couple of feet of lake stage
   moves, no source gives its height, and inventing one to make it render would be exactly the
   kind of quiet gap-filling `AGENTS.md` forbids. Elevations are argued for in
@@ -73,9 +74,15 @@ parameters, which is the part that was worth checking.
   between them the traced boundary is the pier's inner face as drafted — not a natural shore.
   The feature says so in its own `note`. Piers are structures with phases (`docs/EPOCHS.md`),
   so their alignment is not a terrain claim and they are not modelled here.
-- **South of about N −580.** The trace leaves the window there. The old southward channel and
-  the shore continue; they are not traced, and the geometry stops rather than being extended
-  by eye.
+- ~~**South of about N −580.** The trace leaves the window there.~~ **Closed by T-0799,
+  2026-09-12.** The shore now runs unbroken to the foot of Wright's drawing at about
+  N −2122 — 3.8 km of it against the 2.3 km published before — and the old southward
+  channel closes inside that run rather than leaving it: behind the bar the wash narrows to
+  the arrow Wright draws and its west bank runs on into the lake shore, so the channel and
+  the shore are one line there and the trace does not pretend to divide them. The last 200 m
+  along the foot of the wash carries the sheet's dark bottom edge rather than a clean pen
+  line and is the weakest part of the run; `ink_distance_p90_m` on the feature is the number
+  to read before using it.
 
 ## What this settles for the terrain extension
 
@@ -86,7 +93,7 @@ Measured, rather than estimated:
 | current terrain box east edge | +320 |
 | mainland shore, at its most eastward (the fort reservation) | **+1257** |
 | sand bar, east edge | **+1497** |
-| traced window east limit | +1570 |
+| traced window east limit | +2043 (the wash stops at +1583, well inside it) |
 
 So ROADMAP S2e's proposed **E +1500** box is confirmed as the right order of magnitude but is
 about 3 m from clipping the bar. **+1560** is the number to use — it takes the whole bar and
@@ -113,3 +120,57 @@ python3 tools/trace_shoreline.py --debug    # + a PNG overlay of water, island a
 Like the forks trace and the datum re-derivation, it is **not** in `tools/check.sh`: it needs
 the network and three libraries the gate deliberately does not require. The IIIF region's
 sha256 is recorded in the output, so the input is pinned even though the fetch is not.
+
+## T-0799 — the east edge in one run, and how the window stopped deciding anything
+
+*2026-09-12, on the owner's ask: "both piers, the cut, the sand bar to its tip, the old
+channel to where Wright closes it, and the shore to the sheet's bottom margin — one run, no
+window."*
+
+The 2026-08-10 trace worked in an 1802 × 1500 px box around the harbour, and three of the four
+things that box did were damage. Its east edge fell **inside** the lake wash, so the traced
+water ended on a straight line of window and the harbour polygon published that line as its own
+eastern boundary; its south edge cut the shore off at local N −589, a kilometre short of where
+Wright draws it; its north edge cut it off again above the harbour. The box was doing the one
+job a window must never do — deciding where a shore ends.
+
+The window is now the whole sheet east of the forks box: `REGION = (1878, 150, 2222, 4800)`,
+margin to margin. The wash band closes on itself inside it, so the whole east edge arrives as
+**one ring with no window edge in it at all**, and the only window edge the trace still carries
+is the deliberate junction with `tools/trace_river.py` at local E +314.
+
+That leaves the trace with a question the window used to answer for it: which half of that ring
+is a shore? It is answered on the drawing. **Wright draws a shore and does not draw the far side
+of a wash** — so a boundary vertex belongs to a shore when there is a drawn line under it, and
+the rest is dropped. "A drawn line" had to be sharpened once: a luminance threshold alone calls
+the pigment a brush pools at the edge it dries against "ink", and along the bottom third of the
+east edge that pooled band comes within a few units of it. A pen line is a **ridge** — darker
+than what lies on either side of it, so a grey closing fills it in and the black top-hat is
+large. A wash edge is a **step**, and a closing leaves a step where it found it. Measured on
+this sheet: the inked south shore reads 138–142, the pooled east edge 40–64, open lake 12.
+
+The result, both published runs: **a median 1.42 m from the drawn line** (p90 5.7 m north,
+7.4 m south), against a dropped east edge whose nearest ink is hundreds of metres away.
+
+### The blast radius, and why the committed walk still stands
+
+Opening the window moves the background percentile the wash test measures against, so the
+segmentation shifts by a pixel or two *everywhere* — a median 0.8 m on the south shore, 1.3 m on
+the north, against a declared uncertainty of ±20 m. None of that is a better reading, and the
+ground is carved from this file: republishing a kilometre of re-simplified vertices would have
+moved the committed heightfield under every consumer of it for no gain, while destroying the one
+thing a change like this has to be able to show — that only the east edge moved. It is the same
+argument `splice_lettering` already makes for one lettering box, at the scale of the whole file.
+
+So the trace **splices**. The committed walk stands wherever the fresh one agrees with it inside
+`SPLICE_TOL_M`; the fresh walk is spliced onto the ends that used to run along a window edge, and
+onto the reaches the window cut off. The tolerance is measured rather than chosen: the **sand bar
+is the control** — a closed island wholly inside the old window, which nothing in this ticket
+touches — and its worst committed vertex stands 6.32 m from the fresh walk (median 0.63 m, p95
+2.21 m). Seven metres is set just clear of that. At it the bar stands whole, 43 of 43 vertices,
+which is the assertion that matters; the north shore keeps 43 of 57 and the south 68 of 92, and
+the 14 and 24 that go are exactly the vertices that used to lie along a window edge.
+
+The terrain re-bake is **T-0800**, not this: nothing here moves the ground, and
+`tools/measure_no_build_ground.py --gate` still reports zero cells of modelled land outside the
+refused polygons. `--retrace-all` publishes the fresh walk everywhere for the day that changes.

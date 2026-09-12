@@ -1903,12 +1903,18 @@ Randolph took 1.
   advertisement's street is where the door is and a gable end reaching a street is not a doorway.
   **Widening the reading would reach 24 more**, and `--report` prints both readings side by side so
   the number an owner ruling would change is one number, not a rewrite.
-- **Three Lake Street roofs are probably one house.** Wm. G. Branchaud, W. G. Blanchard, G.
-  Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
-  spellings, and the gazetteer's identity layer has judged none of them. The duplicate refusal here
-  matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
-  one of the four and left three roofs standing. Filed as **T-0408**, with the page images named as
-  the remedy.
+- **Two Lake Street roofs are probably one house, and the corpus cannot say so.** Wm. G. Branchaud,
+  W. G. Blanchard, G. Blanshard and F. G. Blanshard advertised one trade at one door within five
+  months under four transcribed spellings; T-0413 joined the two Blanshards and **T-0408** read the
+  whole run behind the other two and joined them, so the group takes two roofs now instead of four.
+  'Branchaud' turned out to be a supply made from the only two columns of that card the
+  transcription flags as Tesseract fallbacks — the impressions of 1834-07-16 and 1834-09-17, whose
+  columns are independent Vision readings, set BLANCHARD — so the reading was repaired and an
+  `identity.json` firm merge joined 'Wm. G. Blanchard' to 'W. G. Blanchard'. The LAST join is
+  refused and the refusal is declared: 'W. G. Blanchard' and 'G. Blanshard' stand in the same
+  doorway opposite Dr. Temple's, in consecutive cards that never ran in the same weeks, and **no
+  printing in the corpus sets both spellings** — so `refused_firm_merges` holds them apart as
+  `not_joined` and says what would settle it. Very probably one man; the papers do not say it.
 - **The 84 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
   reach them and this policy does not extend it; some are outside the plat entirely.
 - **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage
@@ -2340,8 +2346,26 @@ distinct ways. Each is now a guard with a self-test on the case that forced it.
    invention gets laundered into the documented layer. `Kinzie Hall` had matched
    `recon_1835_north_i2_015` on the word "hall".
 
+5. **A word in the record is not a surname in the record** (T-1042). The pools these guards back
+   are word SETS, so any capitalised word in a building's prose could satisfy a required surname:
+   `S. Dewey`, a joiner, matched Dr Elijah **Dewey** Harmon's log cabin on a middle name. Where the
+   paper prints a forename for the surname, the record must now print that surname AS a surname.
+   The same reading had been losing a match the other way — a generational tag reads as a
+   capitalised word, so `John Bates Jr.` left `bates` in no surname position at all and `J. Bates,
+   jr.` read as a man whose forename was Jr. Both of the auction-store notices now reach
+   `bates_auction_room`.
+
 Every surviving `enrich_existing` carries the tier it matched on and the exact text it matched
 against, so T-0263 can argue with a proposal without re-running anything.
+
+**The reading itself has ONE home** (T-1042). `compile_gazetteer.surname_words()` answers "which
+words of this proprietor string are surnames", and `firm_surnames()`, `adopt_street_faces.surnames()`
+and `replace_invented_residents.street_face_stands()` all read it instead of each taking a string's
+last word. The two outside this file used to invent a man — `H. Doty & Co.` and the five printings
+of `J. L. Wilson & Co.` each yielded `co`, and the street-face table stood somebody called Co on
+three streets — and to lose one, since `Clark, Filer & Co.` yielded `clark` alone. Eighteen of the
+198 register businesses read differently for it; no adoption moved, and the table now carries its
+own `surnames` rather than leaving the household pass to guess at them a third time.
 
 ### A name is not always one building, and the anchor path used to pretend it was
 

@@ -3350,19 +3350,19 @@
     },
     "terrain__e1834_harbor_cut.glb": {
       "baked_ao": false,
-      "bytes": 6527264,
+      "bytes": 6572368,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "82b69c098cd7707beacc14f94abf802ca982937aab09d9fde3b48c53ac0c219e",
+      "inputs_sha256": "0f716445c9d2758c3c3d72d3220eae2e4d0d5cb2a7882cd20fa6b196063e3078",
       "kind": "generated",
       "layer": "ground",
       "mesh_vs_heightfield": {
-        "max_m": 0.0036,
+        "max_m": 0.0029,
         "misses": 0,
-        "rms_m": 0.00026,
+        "rms_m": 0.00024,
         "samples": 28890
       },
       "terrain_epoch": "e1834_harbor_cut",
-      "triangles": 250646
+      "triangles": 252146
     },
     "thomas_church_store__frame_1834.glb": {
       "archetype": "frame_storefront",
@@ -3395,7 +3395,7 @@
       "baked_ao": false,
       "bytes": 1380,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "82b69c098cd7707beacc14f94abf802ca982937aab09d9fde3b48c53ac0c219e",
+      "inputs_sha256": "0f716445c9d2758c3c3d72d3220eae2e4d0d5cb2a7882cd20fa6b196063e3078",
       "kind": "generated",
       "layer": "water",
       "terrain_epoch": "e1834_harbor_cut",
@@ -3467,5 +3467,5 @@
   },
   "blender": "4.5.3",
   "inputs_scheme": "resolved-params-v3",
-  "terrain_inputs_scheme": "resolved-spec-v3"
+  "terrain_inputs_scheme": "resolved-spec-v4"
 }

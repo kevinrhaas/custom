@@ -572,6 +572,9 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
             "name_words": [set(words(n)) for n in names if words(n)],
             "aka_head_words": [set(words(head_of(n))) for n in names[1:] if words(head_of(n))],
             "occupant_words": set(words(occ)),
+            # The same line with NOTHING struck out, so `match_occupant` can tell a
+            # building this firm was never in from one it has LEFT (T-0403).
+            "occupant_words_all": set(words(occ_prose)),
             "occupant_text": occ,
             "aka_texts": [head_of(n) for n in names[1:]],
             "identity_text": " ; ".join([d.get("name") or "", occ_prose]
@@ -738,15 +741,26 @@ def scene_date_occupants(text, scene_year=SCENE_DATE.year):
 FORENAME_RUN = r"((?:[A-Z][A-Za-z]*\.?\s+){0,3})"
 
 
+#: A generational tag standing AFTER the family name — 'John Bates Jr.'. It reads as a
+#: capitalised word, so the scan below took it for the surname and left Bates inside the
+#: forename run, and 'bates' was then printed by this record in no surname position at
+#: all. The tag is not a name and is taken off before the scan (T-1042).
+GENERATIONAL = re.compile(r",?\s+\b(?:Jr|Jun|Junr|Sr|Senr|Esq|Esqr|2d|3d)\b\.?", re.I)
+
+
 def forenames_before(text, sn):
     """Every forename run this text prints before the surname `sn`, as word tuples.
 
     'John H. Kinzie, forwarding merchant' → [('john', 'h')]. An empty run — the surname
     printed bare, as 'Jones, grocer' — yields the empty tuple, which is compatible with
     anything: a record that does not print a forename cannot contradict one.
+
+    NO RUN AT ALL is a different answer and the guard below acts on it: it means this
+    record prints the word somewhere OTHER than in surname position, as 'Dr Elijah Dewey
+    Harmon' prints Dewey for a middle name.
     """
     out = []
-    for m in re.finditer(FORENAME_RUN + r"\b([A-Z][a-z]+)\b", text or ""):
+    for m in re.finditer(FORENAME_RUN + r"\b([A-Z][a-z]+)\b", GENERATIONAL.sub("", text or "")):
         if slug(m.group(2)) != sn:
             continue
         out.append(tuple(w.strip(".").lower() for w in m.group(1).split()))
@@ -754,8 +768,13 @@ def forenames_before(text, sn):
 
 
 def forenames_of(name):
-    """The forename words of a printed name, in order. 'R. A. Kinzie' → ('r', 'a')."""
-    name = unmarked(name or "").strip()
+    """The forename words of a printed name, in order. 'R. A. Kinzie' → ('r', 'a').
+
+    The generational tag comes off first, comma and all. It is not a forename, and while
+    it stayed on, 'J. Bates, jr.' read as a man whose forename was Jr — which disagreed
+    with the John the record prints and refused a match this reading should make (T-1042).
+    """
+    name = GENERATIONAL.sub("", unmarked(name or "")).strip()
     fore = name.split(",", 1)[1] if "," in name else " ".join(name.split()[:-1])
     return tuple(w.lower() for w in re.findall(r"[^\W\d_]+", fore, re.UNICODE))
 
@@ -797,6 +816,14 @@ def initials_compatible(text, require, proprietors):
             mine = forenames_of(who)
             if not mine:
                 continue
+            # THE WORD IS IN THE RECORD; IS IT THERE AS A FAMILY NAME? (T-1042). The
+            # pools this guard backs are word sets, so any capitalised word in the
+            # record's prose can satisfy a required surname — and 'S. Dewey', a joiner,
+            # matched Dr Elijah DEWEY Harmon's log cabin on a middle name. Where the
+            # paper prints a forename for the surname, the record must print that surname
+            # as a surname; printing the word in some other position is not the same man.
+            if not forenames_before(text, sn):
+                return False
             runs = [r for r in forenames_before(text, sn) if r]
             if not runs:
                 continue
@@ -826,13 +853,46 @@ def match_occupant(town, require, business_occupation, proprietors):
     quietly matching a firm into one would launder an invention into the documented
     layer. Putting a documented business into an anonymous roof is a decision T-0263
     makes deliberately, with the adoption written down.
+
+    AND A NAME OUTLIVES A TENANCY, SO AN UNDATED ONE MAY NOT PUT BACK A TENANT THE DATED
+    LINE HAS JUST TAKEN OUT (T-0403). `occupants` is the only statement a committed
+    record makes about who is inside that this register READS FOR A DATE —
+    `scene_date_occupants` strikes the clauses whose years do not cover the scene. The
+    `name` and `aka` tiers below are undated by nature: a building is called what it was
+    called, and it goes on being called that after the tenant it was named for has gone.
+    So a record that says "John Calhoun's Chicago Democrat printing office 1833-1834"
+    and is also `aka` "John Calhoun's printing office" had the firm struck out of its
+    occupants line by the date and handed straight back by its own alternate name, one
+    tier down — which is the dated statement silently overruled by the undated one, and
+    it is worse than never having asked, because the register then prints `match_tier:
+    aka` as if a judgement had been made.
+
+    The Chicago Democrat's office is the case. The paper's own colophon moves it off the
+    corner of South Water and Clark between 1834-01-07 and 1835-05-20 (identity.json
+    `anchor_changes`), so on the scene date the printing office is not in the building at
+    that corner — but the building is still named for it, and still `aka` "John Calhoun's
+    printing office", because that is what it was. The rule is general and not about this
+    house: where a structure's UNDATED occupants line carries the firm and its scene-dated
+    one does not, that structure is out of the `name` and `aka` tiers as well. The record
+    has spoken about this firm, with a date, and the answer was no.
     """
     if not require:
         return None, None, None
+    # The records whose own occupants line dates this firm away from the scene. Asked
+    # with the same initials guard the tiers use, so a namesake the record never claimed
+    # cannot silence a match: `identity_text` is built from the UNDATED prose, which is
+    # what this question is about.
+    departed = {s["id"] for s in town["structures"]
+                if not s["anonymous"]
+                and require <= s["occupant_words_all"]
+                and not require <= s["occupant_words"]
+                and initials_compatible(s["identity_text"], require, proprietors)}
     for tier in ("occupants", "name", "aka"):
         hits = []
         for s in town["structures"]:
             if s["anonymous"]:
+                continue
+            if tier != "occupants" and s["id"] in departed:
                 continue
             if tier == "occupants":
                 pools, text = [s["occupant_words"]], s["occupant_text"]
@@ -1821,6 +1881,7 @@ def self_test():
             {"id": "dole_warehouse_south", "name": "Dole's Warehouse",
              "name_words": [{"dole", "warehouse"}], "aka_head_words": [], "aka_texts": [],
              "occupant_words": {"dole", "forwarder"},
+             "occupant_words_all": {"dole", "forwarder"},
              "occupant_text": "George W. Dole, forwarder", "function": "warehouse",
              "identity_text": "Dole's Warehouse ; George W. Dole, forwarder",
              "occupation": None, "anonymous": False},
@@ -1828,6 +1889,7 @@ def self_test():
              "name_words": [{"wolf", "point", "tavern"}, {"taylor", "tavern"}],
              "aka_head_words": [{"taylor", "tavern"}], "aka_texts": ["Taylor's tavern"],
              "occupant_words": {"william", "walters", "landlord"},
+             "occupant_words_all": {"william", "walters", "landlord"},
              "occupant_text": "William Walters, landlord", "function": "tavern_inn",
              "identity_text": "Wolf Point Tavern ; William Walters, landlord ; Taylor's tavern",
              "occupation": "tavern_keeper", "anonymous": False},
@@ -1838,12 +1900,14 @@ def self_test():
             {"id": "wright_building_to_let_a", "name": "John Wright's Building to Let",
              "name_words": [{"john", "wright", "building", "let"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_words_all": set(),
              "occupant_text": "", "function": "dwelling_to_let",
              "identity_text": "John Wright's Building to Let",
              "occupation": None, "anonymous": False},
             {"id": "wright_building_to_let_b", "name": "John Wright's Building to Let",
              "name_words": [{"john", "wright", "building", "let"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_words_all": set(),
              "occupant_text": "", "function": "dwelling_to_let",
              "identity_text": "John Wright's Building to Let",
              "occupation": None, "anonymous": False},
@@ -1853,12 +1917,47 @@ def self_test():
             {"id": "tremont_house_1", "name": "Tremont House (the first)",
              "name_words": [{"tremont", "house", "first"}, {"tremont", "house"}],
              "aka_head_words": [{"tremont", "house"}], "aka_texts": ["Tremont House"],
-             "occupant_words": set(), "occupant_text": "", "function": "tavern_inn",
+             "occupant_words": set(), "occupant_words_all": set(),
+             "occupant_text": "", "function": "tavern_inn",
              "identity_text": "Tremont House (the first) ; Tremont House",
+             "occupation": None, "anonymous": False},
+            # T-0403's own shape: a building whose occupants line DATES its namesake
+            # tenant away from the scene, and whose name and aka go on carrying him.
+            {"id": "democrat_office_fixture", "name": "The Chicago Democrat Office",
+             "name_words": [{"chicago", "democrat", "office"},
+                            {"john", "calhoun", "printing", "office"}],
+             "aka_head_words": [{"john", "calhoun", "printing", "office"}],
+             "aka_texts": ["John Calhoun's printing office"],
+             "occupant_words": set(),
+             "occupant_words_all": {"john", "calhoun", "chicago", "democrat",
+                                    "printing", "office"},
+             "occupant_text": "", "function": "printing_office_and_store",
+             "identity_text": "The Chicago Democrat Office ; John Calhoun's Chicago "
+                              "Democrat printing office 1833-1834 ; John Calhoun's "
+                              "printing office",
+             "occupation": "printer", "anonymous": False},
+            # T-1042's two records, and the whole of the difference between them: one
+            # prints the required surname as a MIDDLE name and the other prints it as a
+            # family name with a generational tag after it. A word-set pool cannot tell
+            # them apart, so `initials_compatible` has to.
+            {"id": "harmon_log_cabin", "name": "Harmon's Log Cabin",
+             "name_words": [{"harmon", "log", "cabin"}],
+             "aka_head_words": [], "aka_texts": [],
+             "occupant_words": {"dr", "elijah", "dewey", "harmon"}, "occupant_words_all": {"dr", "elijah", "dewey", "harmon"},
+             "occupant_text": "Dr Elijah Dewey Harmon", "function": "dwelling",
+             "identity_text": "Harmon's Log Cabin ; Dr Elijah Dewey Harmon",
+             "occupation": None, "anonymous": False},
+            {"id": "bates_auction_room", "name": "Bates's Auction Room",
+             "name_words": [{"bates", "auction", "room"}],
+             "aka_head_words": [], "aka_texts": [],
+             "occupant_words": {"john", "bates", "auctioneer"}, "occupant_words_all": {"john", "bates", "auctioneer"},
+             "occupant_text": "John Bates Jr.; auctioneer", "function": "store",
+             "identity_text": "Bates's Auction Room ; John Bates Jr.; auctioneer",
              "occupation": None, "anonymous": False},
             {"id": "recon_1835_north_i2_015", "name": "Reconstructed meeting hall #015",
              "name_words": [{"reconstructed", "meeting", "hall", "015"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_words_all": set(),
              "occupant_text": "", "function": "meeting hall",
              "identity_text": "Reconstructed meeting hall #015",
              "occupation": None, "anonymous": True},
@@ -2026,6 +2125,22 @@ def self_test():
          gaz([biz("b1", proprietors=["George W. Dole"], street="South Water Street")]),
          lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
                             and d["businesses"][0]["action_target"] == "dole_warehouse_south")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    # T-1042, both halves. The reading of the proprietor string is what put these two
+    # businesses in front of the guard at all — before it, 'Dewey, S.' carried an invented
+    # surname 's' that missed the cabin by accident, and 'J. Bates, jr.' carried 'jr'
+    # instead of 'bates' and missed the auction room for good.
+    case("a record printing the surname as a MIDDLE name is not this man",
+         gaz([biz("b1", proprietors=["Dewey, S."], trade="cabinet making")]),
+         lambda d: True if (d["businesses"][0]["action"] == "unplaceable"
+                            and d["businesses"][0]["action_target"] is None)
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    case("a generational tag after the family name does not hide the family name",
+         gaz([biz("b1", proprietors=["J. Bates, jr."], trade="auctioneer")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "bates_auction_room")
          else "action=%r target=%r" % (d["businesses"][0]["action"],
                                        d["businesses"][0]["action_target"]))
     case("a corner of two platted streets takes new_building",
@@ -2362,6 +2477,33 @@ def self_test():
          "Eliza Chappel and her infant school")
     unit("a year range is one span, not two loose years",
          year_spans("1833-34 and 1836"), [(1833, 1834), (1836, 1836)])
+
+    # 4d. T-0403 — a name outlives a tenancy, and the undated tiers may not put back a
+    # tenant the dated occupants line has just struck out. The fixture record is named
+    # and `aka`'d for John Calhoun and dates his office to 1833-1834, so at the scene
+    # date the firm is not in it; before this rule the occupants tier said no and the aka
+    # tier said yes one line later, and the register printed `match_tier: aka`.
+    case("a firm its own record dates away is not handed back by the building's aka",
+         gaz([biz("b1", name="Chicago Democrat printing office",
+                  proprietors=["John Calhoun"], trade="newspaper and job printing",
+                  street="South Water Street",
+                  placement={"class": "relative",
+                             "anchor": "Messrs. Jones & King's hardware store",
+                             "street": "South Water Street"})]),
+         lambda d: True if (d["businesses"][0]["action"] == "street_only"
+                            and d["businesses"][0]["match_tier"] is None)
+         else "action=%r tier=%r target=%r" % (d["businesses"][0]["action"],
+                                               d["businesses"][0]["match_tier"],
+                                               d["businesses"][0]["action_target"]))
+    # And the other half, which is what keeps the rule from being a blanket refusal: the
+    # SAME record, asked about the tenant its occupants line does not date away.
+    case("a firm the same record does not date away still matches on the occupants line",
+         gaz([biz("b1", proprietors=["William Walters"], trade="tavern",
+                  street="Lake Street")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "wolf_point_tavern")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
 
     # Then the guard the fault generalises to: the firm's own record says where it is.
     case("a distance in miles refuses every match into the committed town",

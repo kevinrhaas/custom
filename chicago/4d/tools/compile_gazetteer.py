@@ -773,6 +773,20 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                     "placement_readings": [],
                 })
                 b["mentions"].append(key)
+                # A STREET THE FIRST IMPRESSION WITHHELD IS NOT A STREET THE HOUSE LACKS
+                # (T-1046). The dict above is a `setdefault`, so `street` was taken from
+                # whichever claim happened to mint the key — sorted filename order, which
+                # is issue order and nothing more. Where one impression of a standing
+                # advertisement names the street and another leaves it null on purpose
+                # (a placement recorded `relative` to an anchor, the street deliberately
+                # not collapsed out of the chain), the house's street then depended on
+                # which impression came first. `firm_merges` below has always taken the
+                # first non-empty of the two it joins; within one key the same rule was
+                # missing. A printing that is SILENT about the street does not contradict
+                # one that prints it, and a disagreement between two printed streets is
+                # caught by the firm-merge guard, not created here.
+                if not b.get("street") and biz.get("street"):
+                    b["street"] = biz.get("street")
                 if sold:
                     # The notice, kept where the judgement can be read back off the
                     # record it was made about. Nothing downstream places on this.
@@ -1137,6 +1151,33 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         # other's reading stands; where both speak, the merge keeps the one that can put
         # more of the firm on the ground, and every trade either side printed is kept in
         # `trade_variants` so the merge cannot quietly narrow what the papers said.
+        #
+        # AND THE CHOICE BELOW IS PROVISIONAL, NOT A JUDGEMENT ABOUT A MOVE (T-0403).
+        # `placement_rank` reads the CLASS and is blind to the date, deliberately: it
+        # measures how much ground a reading can put a storefront on, which is a property
+        # of the sentence and not of the week it was set. So this line can hand the
+        # surviving record an address the firm had already left — the Chicago Democrat's
+        # printing office is the case, merged from a colophon that reads "over Messrs.
+        # Jones & King['s] Hard[ware store]" on 1835-05-20 into one that reads the corner
+        # of South Water and Clark streets on 1834-01-07, and the corner wins here because
+        # a corner outranks a relative offset.
+        #
+        # THAT IS NOT A DEFECT IN THIS LINE AND IT IS NOT FIXED HERE. Making the rank
+        # date-aware would put the merge in the business of deciding that a house MOVED,
+        # which is the one judgement this project reserves for an authored, guarded and
+        # dated declaration: `anchor_changes`, below, which runs after every merge and
+        # overwrites what this decides. A merge that preferred the later reading would
+        # make that declaration silently, for all 40 firm merges at once, out of nothing
+        # but the order two printings happen to sit in — and it would be wrong wherever a
+        # standing advertisement simply stopped repeating an address it had already given,
+        # which is the population T-0440 exists for.
+        #
+        # WHAT MAKES THE DEFERRAL SAFE is that `absorb_reading` above has already carried
+        # EVERY reading of both sides onto the survivor (T-0345). The merge therefore
+        # narrows nothing: whichever placement this line picks, the other is still in
+        # `placement_readings` with its own dates and claims, which is precisely what an
+        # `anchor_changes` rule needs in order to be writable at all. The choice here is
+        # a default standing until somebody reads the printings, not an answer.
         dst["street"] = dst.get("street") or src.get("street")
         if placement_rank(src.get("placement")) > placement_rank(dst.get("placement")):
             dst["placement"] = src.get("placement")
@@ -2451,22 +2492,129 @@ def firm_style(name):
     return re.split(r",\s+(?=[a-z])", name, maxsplit=1)[0].strip().rstrip(",")
 
 
+# A generational or courtesy tag printed AFTER the family name. It is not a surname and
+# it is not a partner: 'John Bates, Jr.' is one man, and reading 'Jr' out of him both
+# invented a surname and lost Bates (T-1042).
+NAME_SUFFIXES = {"jr", "jun", "junr", "junior", "sr", "sen", "senr", "senior",
+                 "esq", "esqr", "2d", "3d", "2nd", "3rd"}
+
+
+#: A word as the papers print it, with the abbreviating point kept — the point is the
+#: tell this reading turns on, so the tokenizer may not throw it away.
+NAME_TOKEN = re.compile(r"[A-Za-z][A-Za-z\u2019']*\.?")
+
+
+def _forename_token(word):
+    """Is this word a FORENAME as printed, rather than a family name?
+
+    Two forms and the papers print both: the bare initial 'J.', and the abbreviation
+    'Wm.' for William, 'Jno.' for John, 'Chas.' for Charles. The abbreviating point is
+    what says so — a family name is set whole and carries none — and it is why the
+    tokenizer above keeps the point instead of stripping it with the rest.
+    """
+    return word.endswith(".") or len(re.sub(r"[^A-Za-z]", "", word)) <= 1
+
+
+def _segment_surname(seg):
+    """The one word a partner SEGMENT names as a surname, or '' where it names none.
+
+    Three kinds of word are not the family name and are dropped before the last one is
+    taken: a firm suffix ('& Co.'), a generational tag ('Jr.') and a forename, whether an
+    initial or an abbreviation. A segment of forenames alone names NOBODY and says so:
+    'C. & I. Harmon' is two men of one family, not a partner called C.
+    """
+    kept = [w for w in NAME_TOKEN.findall(seg)
+            if slug(w) not in FIRM_SUFFIXES
+            and slug(w) not in NAME_SUFFIXES
+            and not _forename_token(w)]
+    return kept[-1].rstrip(".") if kept else ""
+
+
+PARTNERSHIP = re.compile(r"&|\band\b")
+
+
+def _partners(style):
+    """A firm style cut into one segment per partner, reversals folded back together.
+
+    '&' and 'and' separate partners and a COMMA does not, on its own. The corpus prints
+    three different things with one, and getting them apart is the whole of T-1042:
+
+      * ', ' then a LOWER-CASE word begins a trade description — `firm_style()` has
+        already cut that off before this runs.
+      * ', ' in a name that states NO partnership reverses one man for alphabetising
+        ('Taylor, Wm. H.', 'Holsman, George') or tags him ('John Bates, Jr.'). A
+        partnership is printed with '&' or 'and'; a reversal is a filing device for a
+        single name, so a style with no partnership conjunction names one man and the
+        comma cannot be separating two.
+      * ', ' INSIDE a partnership separates partners — 'Clark, Filer & Co.',
+        'Harmon, Loomis & Co.' — which is how both of their men are kept. A piece that is
+        forenames or a generational tag is still a tail there and folds back into the
+        partner in front of it.
+    """
+    if not PARTNERSHIP.search(style):
+        head = style.split(",")[0].strip()
+        return [head or style.strip()]
+    out = []
+    for run in PARTNERSHIP.split(style):
+        for piece in (piece.strip() for piece in run.split(",")):
+            words = NAME_TOKEN.findall(piece)
+            tail = bool(out) and bool(words) and all(
+                _forename_token(w) or slug(w) in NAME_SUFFIXES for w in words)
+            if tail:
+                out[-1] = "%s %s" % (out[-1], piece)
+            elif piece:
+                out.append(piece)
+    return out
+
+
+def surname_words(name):
+    """EVERY word a proprietor string names as a surname, markup off, as printed.
+
+    THE ONE DERIVATION (T-1042). Three passes each guessed at this and each guessed
+    differently: `firm_surnames()` here, `adopt_street_faces.surnames()` and
+    `replace_invented_residents.street_face_stands()`. The two outside this file took the
+    LAST word of the whole string, which is right on a person and a guess on a firm's own
+    trading style — and the corpus showed it going wrong both ways. It INVENTED a man:
+    'H. Doty & Co.' and the five printings of 'J. L. Wilson & Co.' each yielded the
+    surname 'co', so the adoption table stood somebody called Co on Lake Street and
+    refusal 5 could fire on him. And it LOST one: 'Clark, Filer & Co.' yielded 'clark'
+    alone, 'Harmon, Loomis & Co.' lost Loomis, 'Fullerton & Botsford' lost Fullerton.
+
+    'J. L. Wilson & Co.' → ('Wilson',) · 'Clark, Filer & Co.' → ('Clark', 'Filer') ·
+    'Taylor, Wm. H.' → ('Taylor',) · 'C. & I. Harmon' → ('Harmon',).
+
+    The words come back AS PRINTED, in the order the string names them, and are NOT
+    normalised, so that each caller keeps the spelling its own keys are already built on.
+    This settles WHICH words are surnames — the question all three answered differently —
+    and deliberately does not reach into how a pass spells one.
+
+    Three commas, three meanings, and the printing tells them apart (see `_partners()`):
+      * ', ' then a LOWER-CASE word begins the trade description — `firm_style()` cuts it.
+      * ', ' then forenames or a generational tag is the SAME man, reversed for
+        alphabetising ('Taylor, Wm. H.') or tagged ('John Bates, Jr.').
+      * ', ' then a family name is a partner separator, which is how 'Clark, Filer & Co.'
+        keeps both of its men.
+
+    A DECLARED sign-name is NOT visible here and must be taken off first —
+    `partner_surnames()` below is that reading.
+    """
+    out = []
+    for seg in _partners(firm_style(unmarked(name or ""))):
+        word = _segment_surname(seg)
+        if word and word not in out:
+            out.append(word)
+    return tuple(out)
+
+
 def firm_surnames(name):
-    """The set of partner surnames a firm style carries.
+    """The set of partner surnames a firm style carries, slugged.
 
     'J. L. Wilson & Co.' → {'wilson'} · 'Clark, Filer & Co.' → {'clark', 'filer'}.
 
-    Split the style on the separators a partnership uses — '&', ',' and 'and' — and take
-    the LAST word of each partner, which is the surname whether the forename was printed
-    whole ('Giles Spring'), abbreviated ('Jno. L. Wilson') or dropped ('L. Wilson').
+    The identity policy's spelling of `surname_words()` above, which is where the reading
+    itself lives (T-1042).
     """
-    out = set()
-    for seg in re.split(r"\s*(?:&|,|\band\b)\s*", firm_style(name)):
-        words = [w for w in re.findall(r"[A-Za-z][A-Za-z\u2019']*", seg)
-                 if slug(w) not in FIRM_SUFFIXES]
-        if words:
-            out.add(slug(words[-1]))
-    return out
+    return {slug(w) for w in surname_words(name)}
 
 
 def sign_name_index(identity):
@@ -2654,7 +2802,16 @@ def record_reading(business, placement, issue_date, key):
 
 
 def placement_rank(placement):
-    """How much of the ground a placement can actually put a storefront on."""
+    """How much of the ground a placement can actually put a storefront on.
+
+    A PROPERTY OF THE SENTENCE, NEVER OF ITS DATE (T-0403, settled). It is asked in five
+    places and none of them wants to know which printing is the later one; making it
+    date-aware would mean the firm merge, the T-0440 silence pass and
+    `measure_placement_silence.py` all started deciding that houses MOVED, silently and
+    in bulk. The one thing in this project that may order two printed addresses in time
+    is an authored `anchor_changes` declaration, which runs after all of them and
+    overwrites what they decide. See the merge's own note above for the case that asked.
+    """
     order = list(reversed(PLACEMENT_CLASSES))          # none < street_only < relative < corner
     cls = (placement or {}).get("class")
     return order.index(cls) if cls in order else -1
@@ -4884,6 +5041,41 @@ def self_test():
     if got["firm_styles"] != ["Russell & Clift"]:
         failures.append("the house's own style is not named as one: %r"
                         % (got["firm_styles"],))
+
+    # T-1042. THE ONE READING OF A PROPRIETOR STRING, case by case. Each line is a form
+    # the corpus actually prints, and the two failures the ticket was filed on are the
+    # first two: a suffix read as a man, and a partner dropped off a style.
+    cases.append("every surname a proprietor string names, and no surname it does not")
+    for printed, want in [
+        ("H. Doty & Co.", ("Doty",)),            # invented a man called Co
+        ("J. L. Wilson & Co.", ("Wilson",)),
+        ("Clark, Filer & Co.", ("Clark", "Filer")),   # lost Filer
+        ("Harmon, Loomis & Co.", ("Harmon", "Loomis")),
+        ("Fullerton & Botsford", ("Fullerton", "Botsford")),
+        ("Cooley and Halsman", ("Cooley", "Halsman")),
+        ("C. & I. Harmon", ("Harmon",)),         # two men of one family, not a Mr C.
+        ("Taylor, Wm. H.", ("Taylor",)),         # reversed for alphabetising
+        ("Holsman, George", ("Holsman",)),       # reversed, forename printed whole
+        ("John Bates, Jr.", ("Bates",)),         # tagged, not a partner called Jr
+        ("J. Bates jr.", ("Bates",)),
+        ("Collins & Caton, attorneys and counsellors at law", ("Collins", "Caton")),
+        ("J. H. Collins & J. D. C[aton]", ("Collins", "Caton")),   # markup off first
+        ("[uncertain: Noble & Wesencaft]", ("Noble", "Wesencaft")),
+        ("Wm. Hogue & Co.", ("Hogue",)),
+    ]:
+        got = surname_words(printed)
+        if got != want:
+            failures.append("surname_words(%r) is %r, wanted %r" % (printed, got, want))
+
+    cases.append("a declared sign-name states no partner this pass can invent")
+    signs = {"Chicago Wholesale and Retail Book & Stationary Store": "",
+             "Russell & Clift, Chicago Book and Stationary Store": "Russell & Clift"}
+    if partner_surnames("Russell & Clift, Chicago Book and Stationary Store",
+                        signs) != {"russell", "clift"}:
+        failures.append("a declared sign-name lost the partners it declares")
+    if partner_surnames("Chicago Wholesale and Retail Book & Stationary Store",
+                        signs) != set():
+        failures.append("a style that is ALL sign-name named a partner anyway")
 
     cases.append("a house the papers only ever signed with its style")
     got = styled_house(["H. Doty & Co."])

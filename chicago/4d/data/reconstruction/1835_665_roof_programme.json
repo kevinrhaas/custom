@@ -15,6 +15,7 @@
  "method": {
   "roof_not_record": "A structure record is not a roof. Bridges, piers, palisades, parade grounds, yards and a building the chronology puts outside July 1835 contribute nothing; the physical-roof reconciliation decides, record by record.",
   "capacity": "3 principal roofs per platted lot plus ancillary at the programme's own 158:510 ratio (T-0079, the core density standard). The frontage rule is measured at the worst case: the smallest lot on the committed grid carries 23.56 m, the plat module keeps 1.5 m clear of a side line at each end of a run, and the eighteen committed party-line units average 6.072 m wide — so three fit on the meanest lot in the town and the fourth does not. It replaces one roof per lot, which five of the twelve core blocks already stood above. Capacity is a ceiling; `block_rooms` carries the restraint.",
+  "lot_ceiling": "T-0834. `principal_room` is party-line units counted against whole lots, and the generator places by lots: an ordinary principal roof stands ON a free lot, one to a lot, and only a frontage run the recipe NAMES carries 3 of them. So every open unit states both numbers — `lot_ceiling_principal`, what it holds with no run on it (its free lots, less the one it keeps open), and `row_lots_required`, the fewest lots of frontage a run must be dealt for the principal roofs it WAS dealt to stand at all. Where the second is above zero the sizing is conditional and says so, instead of leaving the difference to be absorbed into the district balance unremarked; tools/generate_block_infill.py refuses a parcel that does not meet it.",
   "overrun": "Where evidence has put more roofs into a family than the target allows, the excess is reported and the remainder is reduced in the families with the most slack. A documented roof is never removed to protect a family cap.",
   "family_mix": "An apportionment of the district's remainder across its schedule units, not a claim about any block. Hamilton's method throughout, so every marginal closes exactly.",
   "business_front": {
@@ -38,7 +39,20 @@
      "share": 0.697
     }
    },
-   "moved": [],
+   "moved": [
+    {
+     "district": "south",
+     "blocks": 4,
+     "trade_roofs": 5,
+     "blocks_redealt": 4,
+     "quota": {
+      "blk_south_water_franklin": 1,
+      "blk_south_water_wells": 0,
+      "blk_south_water_dearborn": 0,
+      "blk_south_water_market": 4
+     }
+    }
+   ],
    "ticket": "T-0213"
   },
   "waterside": {
@@ -48,7 +62,15 @@
     "F3": "Landing apron and cargo-door arrangement must follow site access and cannot extend into water or duplicate a counted pier.",
     "W5": "A crane/derrick is rare and must not become a default; river access requires validated dry-bank terrain contact."
    },
-   "swapped": [],
+   "swapped": [
+    {
+     "family": "F3",
+     "from": "blk_south_water_market",
+     "to": "south_plat_beyond_committed_control",
+     "for": "C2",
+     "same_trade": true
+    }
+   ],
    "held": [],
    "ticket": "T-0316"
   },
@@ -301,9 +323,9 @@
   }
  },
  "coverage": {
-  "schedulable_on_committed_ground": 0,
-  "gated_on_coverage": 297,
-  "statement": "0 of the 297 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 297 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 668-roof programme is coverage, not recipes.",
+  "schedulable_on_committed_ground": 12,
+  "gated_on_coverage": 285,
+  "statement": "12 of the 297 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 285 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 668-roof programme is coverage, not recipes.",
   "platted_lots": 144,
   "blocks_named": 21,
   "southern_ground": {
@@ -331,15 +353,24 @@
    "lots": 8,
    "capacity_roofs": 31,
    "standing_roofs": 15,
-   "free_lots": 1,
-   "principal_room": 0,
-   "ancillary_room": 0,
-   "headroom": 0,
-   "state": "at_capacity",
-   "roofs": 0,
-   "families": {},
-   "principal": 0,
-   "ancillary": 0
+   "free_lots": 2,
+   "principal_room": 3,
+   "ancillary_room": 1,
+   "headroom": 4,
+   "state": "open",
+   "roofs": 4,
+   "families": {
+    "A3": 1,
+    "C2": 1,
+    "D3": 1,
+    "D4": 1
+   },
+   "principal": 3,
+   "ancillary": 1,
+   "frontage_weight": 0.5758,
+   "trade_roofs": 1,
+   "lot_ceiling_principal": 1,
+   "row_lots_required": 1
   },
   {
    "id": "blk_south_water_wells",
@@ -354,15 +385,24 @@
    "lots": 8,
    "capacity_roofs": 31,
    "standing_roofs": 12,
-   "free_lots": 1,
-   "principal_room": 0,
-   "ancillary_room": 0,
-   "headroom": 0,
-   "state": "at_capacity",
-   "roofs": 0,
-   "families": {},
-   "principal": 0,
-   "ancillary": 0
+   "free_lots": 2,
+   "principal_room": 3,
+   "ancillary_room": 1,
+   "headroom": 4,
+   "state": "open",
+   "roofs": 4,
+   "families": {
+    "A4": 1,
+    "D1": 1,
+    "D2": 1,
+    "D5": 1
+   },
+   "principal": 3,
+   "ancillary": 1,
+   "frontage_weight": 0.5758,
+   "trade_roofs": 0,
+   "lot_ceiling_principal": 1,
+   "row_lots_required": 1
   },
   {
    "id": "blk_south_water_lasalle",
@@ -385,7 +425,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_south_water_clark",
@@ -408,7 +450,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_south_water_dearborn",
@@ -423,15 +467,24 @@
    "lots": 8,
    "capacity_roofs": 31,
    "standing_roofs": 14,
-   "free_lots": 1,
-   "principal_room": 0,
-   "ancillary_room": 0,
-   "headroom": 0,
-   "state": "at_capacity",
-   "roofs": 0,
-   "families": {},
-   "principal": 0,
-   "ancillary": 0
+   "free_lots": 2,
+   "principal_room": 3,
+   "ancillary_room": 1,
+   "headroom": 4,
+   "state": "open",
+   "roofs": 4,
+   "families": {
+    "A1": 1,
+    "D6": 1,
+    "D7": 1,
+    "H1": 1
+   },
+   "principal": 3,
+   "ancillary": 1,
+   "frontage_weight": 0.4735,
+   "trade_roofs": 0,
+   "lot_ceiling_principal": 1,
+   "row_lots_required": 1
   },
   {
    "id": "blk_lake_clinton",
@@ -454,7 +507,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_lake_market",
@@ -477,7 +532,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_lake_franklin",
@@ -500,7 +557,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_lake_wells",
@@ -523,7 +582,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_lake_lasalle",
@@ -546,7 +607,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_lake_clark",
@@ -569,7 +632,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_lake_dearborn",
@@ -592,7 +657,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_randolph_clinton",
@@ -615,7 +682,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_randolph_market",
@@ -638,7 +707,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_randolph_franklin",
@@ -661,7 +732,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_randolph_wells",
@@ -684,7 +757,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_randolph_lasalle",
@@ -719,7 +794,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_randolph_clark",
@@ -742,7 +819,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_randolph_dearborn",
@@ -765,7 +844,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "blk_south_water_market",
@@ -790,8 +871,8 @@
    "roofs": 27,
    "families": {
     "A1": 1,
-    "A2": 1,
-    "A3": 2,
+    "A2": 2,
+    "A3": 1,
     "A4": 1,
     "A5": 1,
     "C2": 1,
@@ -801,18 +882,20 @@
     "D2": 1,
     "D3": 3,
     "D4": 3,
-    "D5": 3,
+    "D5": 2,
     "D6": 1,
     "D7": 1,
     "F2": 1,
     "H1": 1,
     "H2": 2,
-    "H3": 1
+    "H3": 2
    },
    "principal": 21,
    "ancillary": 6,
+   "frontage_weight": 0.6364,
    "trade_roofs": 4,
-   "frontage_weight": 0.6364
+   "lot_ceiling_principal": 7,
+   "row_lots_required": 7
   },
   {
    "id": "blk_south_water_clinton",
@@ -836,7 +919,9 @@
    "roofs": 0,
    "families": {},
    "principal": 0,
-   "ancillary": 0
+   "ancillary": 0,
+   "lot_ceiling_principal": 0,
+   "row_lots_required": 0
   },
   {
    "id": "west_wolf_point_outer",
@@ -872,38 +957,38 @@
    "id": "south_plat_beyond_committed_control",
    "kind": "district_balance",
    "district": "south",
-   "capacity_roofs": 116,
+   "capacity_roofs": 104,
    "standing_roofs": 0,
-   "headroom": 116,
+   "headroom": 104,
    "state": "gated",
    "waiting_on": "TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled heightfield ends at local N -400.0 m, which falls inside Washington Street's own platted corridor — 0.33 ha of that street's south half lies off the field. South of the corridor the field holds 0.0819 ha of land above the water surface and 0.0000 ha of it is in the South Division: the rest is the West Division bank, across the South Branch. Madison Street, the plat's south boundary, is 125.2 m further south again, so the plat's last tier — 6 blocks and 48 lots between Market and State, 6.28 ha — is not modelled ground at all. Every north-south column of the south plat has its committed centreline cut at the field's own south edge, so carrying street control further south would emit blocks whose every placement tools/generate_block_infill.py refuses for standing outside the modelled terrain. Ground east of State is not coming at any date — it is the United States Reservation (T-E2). Measured by tools/measure_southern_ground.py.",
-   "roofs": 116,
+   "roofs": 104,
    "families": {
-    "A1": 7,
-    "A2": 7,
+    "A1": 6,
+    "A2": 6,
     "A3": 7,
-    "A4": 8,
+    "A4": 7,
     "A5": 4,
-    "C2": 2,
+    "C2": 1,
     "C3": 3,
     "C4": 2,
-    "D1": 5,
-    "D2": 6,
-    "D3": 10,
-    "D4": 11,
+    "D1": 4,
+    "D2": 5,
+    "D3": 9,
+    "D4": 10,
     "D5": 10,
-    "D6": 6,
-    "D7": 5,
+    "D6": 5,
+    "D7": 4,
     "F2": 2,
     "F3": 2,
     "F4": 1,
-    "H1": 6,
+    "H1": 5,
     "H2": 6,
-    "H3": 5,
+    "H3": 4,
     "W2": 1
    },
-   "principal": 83,
-   "ancillary": 33
+   "principal": 74,
+   "ancillary": 30
   },
   {
    "id": "west_division_beyond_committed_control",

@@ -4581,6 +4581,21 @@ for (const [label, viewport, touch] of [
       // stands on this platted lot" to the building that does and how far back
       // it stands. WALKS and CROSSINGS do not move: this rule reads lots, and a
       // walk is laid off the block face.
+      // T-1053 took a privy off blk_south_water_franklin lot 4 — it had been
+      // standing in the yard of a lot its own household's cottage is not on, a
+      // lot to the west of the row it serves — and re-lotted it behind that
+      // cottage on lot 6. Lot 6 was already improved and already had its street
+      // wall, so nothing arrives; lot 4 stops being improved at all, and an
+      // unimproved lot is open prairie that takes no street fence. FENCES 32 to
+      // 31 and REFUSED 85 to 86, and the two move together and only together,
+      // which is the check that this is one lot changing class and not the rule
+      // changing its mind: the retiring fence and the arriving refusal name the
+      // same wall (`blk_south_water_franklin north face, lot 4`, "no committed
+      // building stands on this platted lot"). WALKS, CROSSINGS AND POSTS DO NOT
+      // MOVE — the face's walk was laid for its whole length either way, the
+      // privy carries no trade the hitching rule accepts, and the two other
+      // privies this ticket re-lotted moved between lots that are improved on
+      // both sides of the move.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
         // T-0626 takes it back to NINETEEN, and it is the first time this count
@@ -4595,8 +4610,8 @@ for (const [label, viewport, touch] of [
         // the same man's name over the same door. Walks, crossings, fences and
         // refusals do not move: the building is still there and still the street
         // wall on that face.
-        && frontage.census?.posts === 19 && frontage.census?.fences === 32
-        && frontage.census?.refused === 85
+        && frontage.census?.posts === 19 && frontage.census?.fences === 31
+        && frontage.census?.refused === 86
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -5227,8 +5242,13 @@ for (const [label, viewport, touch] of [
       // frontage line IS the street wall. The exact count is asserted above in
       // the frontage census (32), so this stays a floor rather than becoming a
       // second place to keep the same number.
+      // T-1053 LOWERS IT AGAIN, 32 to 31, for the same kind of reason and with
+      // the same warrant: a privy left blk_south_water_franklin lot 4 for the
+      // lot its household's cottage is on, so lot 4 stops being improved and its
+      // street fence is refused as open prairie. Laid ground does not move —
+      // faces, metres and decks are all where they were.
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 32
+        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 31
         && edge.decks >= 232,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `

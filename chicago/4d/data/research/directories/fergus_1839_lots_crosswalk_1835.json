@@ -19,7 +19,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1370
+   "n": 1292
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -29,7 +29,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2597
+   "n": 2596
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -40,10 +40,10 @@
  "counts": {
   "bidders": 96,
   "bidders_with_a_usable_surname": 96,
-  "residents_matched_one_bidder": 17,
+  "residents_matched_one_bidder": 18,
   "residents_ambiguous": 1,
-  "residents_contested": 11,
-  "residents_surname_only_refused": 84,
+  "residents_contested": 9,
+  "residents_surname_only_refused": 82,
   "voters_matched_one_bidder": 20,
   "voters_ambiguous": 1,
   "voters_surname_only_refused": 43,
@@ -745,6 +745,40 @@
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
    },
    {
+    "name": "Jeremiah Smith",
+    "rule": "Surname 'Smith' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "J. M. Smith",
+      "lots_bid": 1,
+      "amount_read_usd": 435,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0154",
+        "block": 9,
+        "block_carried": true,
+        "lot": 13,
+        "amount_usd": 435,
+        "as_printed": {
+         "block": null,
+         "lot": "13",
+         "bidder": "J. M. Smith,",
+         "amount": "435"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false,
+        "bidder_braced": false
+       }
+      ]
+     }
+    ],
+    "person_id": "smith_jeremiah",
+    "household_id": "hh_smith_jeremiah",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago between the 10th and the 24th of June 1839 and bid at the Fort Dearborn Addition sale. It is written as 1839 evidence with describes_date 1839-06, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a land sale four years after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. THE LOT IS NOT A LOCATION FOR 1835: the Fort Dearborn Addition is the Beaubien, or Reservation, lands, which in July 1835 were the garrison's ground and were not platted into lots at all. It places no house, no shop and no household in the town this project builds."
+   },
+   {
     "name": "John Calhoun",
     "rule": "Surname 'Calhoun' folds to the same string as the bidder's, and the given name of both begins J.",
     "bids_1839": [
@@ -1292,78 +1326,6 @@
     ]
    },
    {
-    "name": "James Smith",
-    "rule": "Surname 'Smith' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. M. Smith",
-      "lots_bid": 1,
-      "amount_read_usd": 435,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0154",
-        "block": 9,
-        "block_carried": true,
-        "lot": 13,
-        "amount_usd": 435,
-        "as_printed": {
-         "block": null,
-         "lot": "13",
-         "bidder": "J. M. Smith,",
-         "amount": "435"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false,
-        "bidder_braced": false
-       }
-      ]
-     }
-    ],
-    "person_id": "smith_james",
-    "household_id": "hh_smith_james",
-    "grade_1835": "attested",
-    "contested_with": [
-     "Jeremiah Smith"
-    ]
-   },
-   {
-    "name": "Jeremiah Smith",
-    "rule": "Surname 'Smith' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
-    "bids_1839": [
-     {
-      "bidder_as_printed": "J. M. Smith",
-      "lots_bid": 1,
-      "amount_read_usd": 435,
-      "lots_whose_price_the_scan_destroyed": 0,
-      "lots": [
-       {
-        "claim": "f1839_lot0154",
-        "block": 9,
-        "block_carried": true,
-        "lot": 13,
-        "amount_usd": 435,
-        "as_printed": {
-         "block": null,
-         "lot": "13",
-         "bidder": "J. M. Smith,",
-         "amount": "435"
-        },
-        "printed_page": 48,
-        "bidder_ditto": false,
-        "bidder_braced": false
-       }
-      ]
-     }
-    ],
-    "person_id": "smith_jeremiah",
-    "household_id": "hh_smith_jeremiah",
-    "grade_1835": "attested",
-    "contested_with": [
-     "James Smith"
-    ]
-   },
-   {
     "name": "John Harris Kinzie",
     "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
@@ -1786,11 +1748,6 @@
     "rule": "The surname 'Bristol' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'C' of 'Charles L Bristol'. A surname-only agreement is a refusal."
    },
    {
-    "name": "D A Smith",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Smith' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'D' of 'D A Smith'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "D H Butterfield",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Butterfield' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'D' of 'D H Butterfield'. A surname-only agreement is a refusal."
@@ -1839,11 +1796,6 @@
     "name": "George H Walker",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Walker' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'G' of 'George H Walker'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "George Reed",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Reed' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'G' of 'George Reed'. A surname-only agreement is a refusal."
    },
    {
     "name": "Gholson Kercheval",

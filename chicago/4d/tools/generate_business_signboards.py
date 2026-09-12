@@ -24,6 +24,16 @@ mark them as such."* So this record now carries, for every board:
     combinations the trade actually used, assigned so that no two boards within
     `NEIGHBOUR_M` of each other share a mounting, a style or a ground colour.
 
+THAT LAST PROMISE IS LOCAL, AND SINCE T-0405 SO IS THE RULE THAT KEEPS IT. Both the
+mounting and the style now enter their tables at a point derived from the board's OWN
+structure id, and the only thing that can move a board off that point is a board within
+`NEIGHBOUR_M` of it. It used to be the frontage's position in its trade class, dealt out
+as the walk went down the town in id order, so admitting one frontage in the middle of
+the alphabet re-dealt every frontage after it — eleven boards, the furthest 904 m off,
+four of them changing what they SAID, when `frederick_thomas_shop` was admitted (T-0263).
+The promise is now asserted rather than assumed (`_neighbours_differ`, every build) and
+the locality is provable (`--prove-locality`, which withholds each board in turn).
+
 `docs/LIBERTIES.md` **L159** is the claim for the mounting and the style, and **L169**
 for the wording.
 
@@ -81,7 +91,26 @@ sign iff
   7. and, for the works and warehouse class only, its name carries a PROPRIETOR — a
      possessive or an ampersand. A works painted whose it was. A building this project
      names by a later nickname ("The Old Bank Building") has no proprietor to paint,
-     and painting the nickname would put a twentieth-century label on an 1835 wall.
+     and painting the nickname would put a twentieth-century label on an 1835 wall;
+  8. and the name this board would letter is a name the corpus still puts INSIDE the
+     building on the scene date. A LABEL MAY OUTLIVE A TENANCY AND A SIGN MAY NOT, and
+     that is one sentence's difference between two objects this file already keeps
+     apart. A record's `name` is a modern caption — it is how a reader finds the
+     building, and it goes on carrying the trade the building was known by long after
+     that trade has moved, exactly as a town goes on calling a corner by the shop that
+     used to be on it. A BOARD IS AN ASSERTION IN THE PRESENT TENSE: it stands in the
+     scene at 1 July 1835, a walker reads it as a statement about what is behind that
+     wall today, and if the register no longer agrees with it the board is simply
+     wrong. So where a record's name belongs to a tenancy this project has followed
+     OUT of the building, there is no name left to letter, and this rule refuses
+     rather than substituting one — the same refusal clause 1 makes for an anonymous
+     slot and clause 7 for a works with no proprietor, reached from the other side.
+     The substitute is the trap: a frontage whose departed trade is the only name the
+     corpus offers invites a replacement lettered off whatever else is in the file,
+     and a for-sale notice or an advertisement from a year before the scene date does
+     NOT attest who kept a counter on the day. Where the corpus cannot name who traded
+     there on the scene date, THE WALL IS LEFT BLANK, in writing, in `refused`. See
+     docs/PROVENANCE.md § A label may outlive a tenancy; a sign may not.
 
 WHERE THE SIGN GOES is then DERIVED, not placed. `docs/GLB-CONTRACT.md` fixes the frame:
 polygon `u` → +X, polygon `v` → −Z, and `rotation_deg` is the FACADE BEARING, so the
@@ -405,22 +434,13 @@ SIGN_WORDING = {
             "paper. Reconstructed."
         ),
     },
-    "chicago_democrat_office": {
-        "name": "CHICAGO DEMOCRAT", "trade": "Printing Office",
-        "place": "South Water & Clark Streets", "identity": "Chicago Democrat",
-        "grade": "inferred", "sources": ["chicago_democrat_1833_11_26"],
-        "why": (
-            "THE PAPER'S OWN IMPRINT, in a source this repository already holds and whose "
-            "page images are committed: \"THE DEMOCRAT, Is published every Tuesday, in the "
-            "village of Chicago, Cook co. Ill. in the building on the corner of South Water "
-            "and Clark-streets.\" That is the office naming itself and its junction, which "
-            "is what a board carries. Note precisely what it does NOT settle and the board "
-            "does not claim: WHICH of the four corners, which the record argues separately "
-            "and which the pencilled \"S. W.\" in that page's margin is a later reader's "
-            "gloss on rather than evidence for. Graded `inferred` rather than `attested` "
-            "because the imprint is a masthead and not a description of a signboard."
-        ),
-    },
+    # chicago_democrat_office HAD AN ENTRY HERE AND IT IS GONE (T-1064). The board read
+    # CHICAGO DEMOCRAT / Printing Office / South Water & Clark Streets off the paper's own
+    # imprint, which is a good citation for where the Democrat was PRINTED IN 1833 and not
+    # for what stood on that wall on 1 July 1835 — the press had left the corner by then
+    # (T-0403), so clause 8 refuses the frontage and VACATED_NAMES carries the whole
+    # argument. The wording is deleted rather than left standing unused, because a fully
+    # lettered entry sitting here is an invitation to re-select the frontage and paint it.
     "clybourn_slaughterhouse": {
         "name": "A. CLYBOURNE", "trade": "Slaughtering & Packing",
         "identity": "Clybourne", "grade": "reconstructed",
@@ -898,6 +918,39 @@ POST_BOARD_IDS = {
     ),
 }
 
+# Clause 8, added 2026-09-12 with ticket T-1064. A frontage whose record is NAMED for a
+# trade the corpus has followed OUT of the building before 1 July 1835. The name stays on
+# the card — it is how the building is found, and a town goes on calling a corner by the
+# shop that used to be on it — but a board is read in the present tense by somebody
+# standing in front of it, so it is refused and the wall is left blank. The reason each
+# one is here is written out, because the substitute is the trap: the replacement a
+# frontage like this invites is lettered off a notice from a year before the scene date,
+# and a notice that OFFERS a store for sale does not attest who kept it on the day.
+VACATED_NAMES = {
+    "chicago_democrat_office": (
+        "the name on this record belongs to a tenancy that had LEFT before the scene "
+        "date, so there is nothing here to letter. The Chicago Democrat's colophon "
+        "gives this corner on 1833-11-26, 1834-01-07, 1834-08-27, 1834-09-17 and "
+        "1834-12-03 and then prints the office 'over Messrs. Jones & King['s] "
+        "Hard[ware store]' in South Water street on 1835-05-20 and again on 1835-08-05 "
+        "(T-0403), so the press was gone seven weeks at the latest before 1 July 1835 "
+        "and CHICAGO DEMOCRAT / Printing Office painted on this front asserted a trade "
+        "the paper itself had printed its way out of. The RECORD KEEPS THE NAME — a "
+        "label is a caption and not a claim about who is inside on a day — and this "
+        "record's `function` has narrowed to `store`, which is the half of it the "
+        "corpus does not follow out of the door. NOTHING IS LETTERED IN ITS PLACE, "
+        "deliberately. The only name the corpus offers for what traded here afterwards "
+        "is W. Kimball's, and it comes out of chicago_democrat_1834_10_08 c005, which "
+        "OFFERS 'the store now occupied by W. Kimball, and as the office of the "
+        "Democrat' for sale with possession in November 1834 — a landlord clearing the "
+        "building, not a report of who kept the counter eight months later. Painting "
+        "W. KIMBALL here would assert at the scene date the very tenancy that source "
+        "declines to report, which is worse than the board it replaced. The wall is "
+        "left blank until something says who stood behind it."
+    ),
+}
+
+
 # HOW A SIGN IS DRAWN, and why these numbers are here rather than in a renderer. The
 # bracket board's arm, drop and hangers are still the wolf sign's own geometry, copied
 # from generators/archetypes/log_dwelling.py::_sign, so the town has one convention for
@@ -1002,6 +1055,149 @@ DOOR_BOARD_PROUD_M = 0.06    # clear of the leaf and its battens, not of the wal
 # itself is drawn at, which is the only way the two can agree.
 DEFAULT_WALL_M = {1: 2.5, None: 2.5}
 DEFAULT_WALL_MULTI_M = 4.6
+
+
+def _separation(signs: list) -> list:
+    """Every pair of boards within `NEIGHBOUR_M` that shares a mounting, a style or a
+    ground colour — the promise at the head of this file, MEASURED (T-0405).
+
+    It used to be assumed. The de-confliction loop below walks a cycle and takes the
+    first mounting a neighbour has not taken, and there are two ways that can still
+    land on a repeat: a class whose cycle is ONE mounting long (a works paints its
+    front and hangs nothing, so two works on one corner must both be painted), and a
+    cycle whose every entry a wall refused, where the loop's last step is taken anyway.
+    The first is the rule working; the second is the rule failing. Returning the pairs
+    rather than a bare true/false is what lets `_neighbours_differ` tell them apart and
+    the record carry the permitted ones by name.
+    """
+    pairs = []
+    for i, a in enumerate(signs):
+        for b in signs[i + 1:]:
+            gap = math.hypot(a["anchor_local_enu_m"][0] - b["anchor_local_enu_m"][0],
+                             a["anchor_local_enu_m"][1] - b["anchor_local_enu_m"][1])
+            if gap > NEIGHBOUR_M:
+                continue
+            shares = []
+            if a["mounting"] == b["mounting"]:
+                shares.append(("mounting", a["mounting"]))
+            if a["style"]["id"] == b["style"]["id"]:
+                shares.append(("style", a["style"]["id"]))
+            if a["style"]["ground"] == b["style"]["ground"]:
+                shares.append(("ground", a["style"]["ground"]))
+            for what, value in shares:
+                only = min(len(MOUNTING_CYCLE[a["trade_class"]]),
+                           len(MOUNTING_CYCLE[b["trade_class"]]))
+                pairs.append({
+                    "a": a["structure_id"], "b": b["structure_id"],
+                    "gap_m": _round(gap, 1), "share": what, "value": value,
+                    "allowed": what == "mounting" and only == 1,
+                    "why": ("one of these two trades is a %s, and the %s cycle is a "
+                            "single mounting — a works paints its front and hangs "
+                            "nothing at all, so two of them inside "
+                            "%.0f m cannot differ and this project would rather say so "
+                            "than hang a plank on a works to make a rule come out."
+                            % (min((a, b), key=lambda s: len(MOUNTING_CYCLE[s["trade_class"]]))["trade_class"],
+                               min((a, b), key=lambda s: len(MOUNTING_CYCLE[s["trade_class"]]))["trade_class"],
+                               NEIGHBOUR_M)
+                           if what == "mounting" and only == 1 else
+                           "NOT ALLOWED — the cycle had somewhere else to go."),
+                })
+    return sorted(pairs, key=lambda p: (p["a"], p["b"], p["share"]))
+
+
+def _wordings_differ(signs: list) -> None:
+    """NO TWO BOARDS IN THE TOWN MAY LETTER THE SAME THING (T-0405).
+
+    The mounting decides how many lines a board has room for, so a board's TEXT is a
+    tier of its SIGN_WORDING entry rather than the whole of it — and a re-deal that
+    drops a line can therefore erase a distinction the table argued for. T-0130 is the
+    case: Philo Carpenter's log shop is worded "Drugs and Medicines" and his South
+    Water store "Wholesale & Retail Druggist" precisely so a walker can tell the two
+    shops of one druggist apart, and both entries shorten to "Druggist". At two lines
+    each, the two boards would read `PHILO CARPENTER / Druggist` and `PHILO CARPENTER /
+    Druggist`, and the argument would be gone with nothing in the record saying it had
+    been. The wording tiers are a decision of the table; the deal must not be able to
+    undo one in silence, so it is refused here instead.
+    """
+    seen: dict[str, str] = {}
+    for s in sorted(signs, key=lambda s: s["structure_id"]):
+        first = seen.get(s["sign_text"])
+        if first is not None:
+            raise SystemExit(
+                "SIGN WORDING COLLAPSED: %s and %s both letter %r. The mounting each "
+                "was dealt has room for fewer lines than its SIGN_WORDING entry "
+                "carries, and the tier they fall back to is the same one — so two "
+                "boards the table deliberately words apart would read alike. Word the "
+                "shorter tiers apart, or argue in the entry's own `why` why these two "
+                "trades may say the same thing."
+                % (first, s["structure_id"], s["sign_text"]))
+        seen[s["sign_text"]] = s["structure_id"]
+
+
+def _neighbours_differ(signs: list) -> list:
+    """Assert the separation, and hand the permitted exceptions back for the record."""
+    pairs = _separation(signs)
+    broken = [p for p in pairs if not p["allowed"]]
+    if broken:
+        raise SystemExit(
+            "SIGN SEPARATION: the rule at the head of this file promises that no two "
+            "boards within %.0f m share a mounting, a style or a ground colour, and "
+            "%d pair(s) do:\n%s"
+            % (NEIGHBOUR_M, len(broken),
+               "\n".join("  %s / %s at %.1f m share a %s (%s)"
+                          % (p["a"], p["b"], p["gap_m"], p["share"], p["value"])
+                          for p in broken)))
+    return pairs
+
+
+def _prove_locality() -> int:
+    """ADMITTING ONE FRONTAGE MUST REACH ONLY ITS NEIGHBOURS (T-0405).
+
+    The claim this file makes since T-0405 is that a board's deal is a function of its
+    own id and of the boards it can SEE, so admitting a frontage in the middle of the
+    town changes that frontage and any board whose `NEIGHBOUR_M` separation actually
+    required a different deal — and no others. This proves it the only way a claim like
+    that can be proved: every board in turn is withheld, the town is re-derived without
+    it, and every difference is held against the distance from the board that was
+    withheld. A difference further off than `NEIGHBOUR_M` is the defect T-0405 records.
+
+    It was measured before the fix on the insertion the ticket names: admitting
+    `frederick_thomas_shop` re-dealt eleven other boards, the furthest 904.4 m away,
+    and four of them changed what they said.
+    """
+    base = build_record()[0]
+    by_id = {s["structure_id"]: s for s in base}
+    original = _candidates
+    far = 0
+    print("locality: withholding each of the %d boards in turn" % len(base))
+    for sid in sorted(by_id):
+        globals()["_candidates"] = lambda: (
+            [c for c in original()[0] if c["sid"] != sid], original()[1])
+        try:
+            without = {s["structure_id"]: s for s in build_record()[0]}
+        finally:
+            globals()["_candidates"] = original
+        anchor = by_id[sid]["anchor_local_enu_m"]
+        for other, was in sorted(without.items()):
+            now = by_id.get(other)
+            if now is None:
+                continue
+            if (now["mounting"], now["sign_text"], now["style"]["id"]) == \
+                    (was["mounting"], was["sign_text"], was["style"]["id"]):
+                continue
+            gap = math.hypot(now["anchor_local_enu_m"][0] - anchor[0],
+                             now["anchor_local_enu_m"][1] - anchor[1])
+            mark = "  " if gap <= NEIGHBOUR_M else "FAR"
+            if gap > NEIGHBOUR_M:
+                far += 1
+            print("  %s %-30s reaches %-30s at %8.1f m%s"
+                  % (mark, sid, other, gap,
+                     "" if gap <= NEIGHBOUR_M else "  <-- OUTSIDE %.0f m" % NEIGHBOUR_M))
+    if far:
+        print("LOCALITY FAILED: %d reach(es) outside %.0f m" % (far, NEIGHBOUR_M))
+        return 1
+    print("locality: every reach is inside %.0f m" % NEIGHBOUR_M)
+    return 0
 
 
 def _load(path: Path) -> dict:
@@ -1466,6 +1662,11 @@ def _candidates() -> tuple[list, list]:
                 "reconstructed would be an invention resting on an invention.")})
             continue                                            # clause 3
 
+        if sid in VACATED_NAMES:
+            refused.append({"structure_id": sid, "trade": trade,
+                            "why": VACATED_NAMES[sid]})
+            continue                                            # clause 8
+
         if sid in POST_BOARD_IDS:
             refused.append({"structure_id": sid, "trade": trade,
                             "why": POST_BOARD_IDS[sid]})
@@ -1548,17 +1749,31 @@ def _reach(mounting: str, w: float, geom: dict) -> float:
     return math.hypot(out, along) + 0.12
 
 
-def build_record() -> tuple[list, list]:
+def build_record() -> tuple[list, list, list]:
     picked, refused = _candidates()
     streets = _streets()
     walled = _frontage_walled()
 
-    # Clause 2's cycle index: a frontage's rank inside its own trade class, in id
-    # order, so the cycle advances down a class rather than down the town.
-    class_rank: dict[str, int] = {}
+    # WHERE A FRONTAGE ENTERS ITS CLASS'S CYCLE, and it is the frontage's OWN id that
+    # decides (T-0405). It used to be the frontage's POSITION in the class — a counter
+    # dealt out as the walk went down the town in id order — and a counter dealt down a
+    # list has the property that inserting one frontage in the middle of it advances
+    # every frontage after it by one. Measured on T-0263's diff: admitting
+    # `frederick_thomas_shop` re-dealt ELEVEN other boards, the furthest 904 m away,
+    # and four of them changed what they SAID, because the mounting decides how many
+    # lines a board has room for. The rule this file states is LOCAL — no two boards
+    # within `NEIGHBOUR_M` hang alike — and a local rule must not renumber the town to
+    # admit one frontage in the middle of the alphabet.
+    #
+    # `_rank` is the same stable per-id device the style preference order already uses:
+    # a board's entry point is a function of its own id and nothing else, so a board's
+    # deal can only move when a board it can actually SEE moves. The de-confliction
+    # below is what still separates neighbours, and it is the only thing that should:
+    # it reads `signs`, so an insertion reaches a board when — and only when — the new
+    # board lands within `NEIGHBOUR_M` of it. `_insertion_is_local` asserts exactly
+    # that, and `_neighbours_differ` asserts the separation still holds.
     for cand in picked:
-        cand["rank"] = class_rank.get(cand["cls"], 0)
-        class_rank[cand["cls"]] = cand["rank"] + 1
+        cand["rank"] = _rank(cand["sid"], len(MOUNTING_CYCLE[cand["cls"]]))
 
     signs: list[dict] = []
     for cand in picked:
@@ -1848,7 +2063,14 @@ def build_record() -> tuple[list, list]:
             sign["sign_device"] = word["device"]
         signs.append(sign)
 
-    return signs, refused
+    # THE PROMISE, CHECKED (T-0405). The head of this file says no two boards within
+    # `NEIGHBOUR_M` hang alike; the loop above only ever TRIES to make that true, and
+    # until now nothing read back whether it had. This refuses to build when it has not,
+    # and hands the permitted exceptions on so the record can carry them by name.
+    separation = _neighbours_differ(signs)
+    _wordings_differ(signs)
+
+    return signs, refused, separation
 
 
 def _opening_sweep(signs: list) -> dict:
@@ -1895,7 +2117,7 @@ def _opening_sweep(signs: list) -> dict:
     }
 
 
-def record(signs: list, refused: list) -> dict:
+def record(signs: list, refused: list, separation: list) -> dict:
     mounts: dict[str, int] = {}
     tiers: dict[str, int] = {}
     for s in signs:
@@ -2047,6 +2269,33 @@ def record(signs: list, refused: list) -> dict:
             "lines_by_mounting": LINES_BY_MOUNTING,
             "styles": [s["id"] for s in STYLES],
             "neighbour_m": NEIGHBOUR_M,
+            "cycle_entry": (
+                "WHERE A FRONTAGE ENTERS ITS CLASS'S CYCLE is a function of its own "
+                "structure id — `_rank`, the same stable per-id device the style "
+                "preference order uses — and of nothing else (T-0405). It used to be "
+                "the frontage's POSITION in its class, a counter dealt out as the walk "
+                "went down the town in id order, and a counter dealt down a list has "
+                "the property that admitting one frontage in the middle of it advances "
+                "every frontage after it by one: admitting `frederick_thomas_shop` "
+                "re-dealt eleven other boards, the furthest 904 m away, and four of "
+                "them changed what they SAID, because the mounting decides how many "
+                "lines a board has room for. The rule this layer states is LOCAL, so "
+                "its deal is local: a board's mounting can only move when a board it "
+                "can SEE moves. `--prove-locality` withholds each board in turn and "
+                "holds every consequence against the distance from it."),
+            "separation": {
+                "note": (
+                    "The promise above, MEASURED rather than assumed, every build: "
+                    "every pair of boards within "
+                    f"{NEIGHBOUR_M:.0f} m that shares a mounting, a style or a ground "
+                    "colour. The generator REFUSES TO BUILD on any pair not listed "
+                    "here as allowed. A mounting may be shared only where one of the "
+                    "two trades belongs to a class whose cycle is a single mounting — "
+                    "a works paints its front and hangs nothing at all, so two works "
+                    "on one corner cannot differ, and this project would rather say so "
+                    "than hang a plank on a works to make a rule come out."),
+                "pairs_within_neighbour_m_sharing_something": separation,
+            },
             "wording_note": (
                 "WHAT A BOARD MAY SAY, and it is a rule rather than a list somebody "
                 "liked. Every board is worded from SIGN_WORDING in "
@@ -2132,9 +2381,15 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="re-derive and diff, write nothing")
+    ap.add_argument("--prove-locality", action="store_true",
+                    help="withhold each board in turn and prove that admitting one "
+                         "frontage reaches no board further off than NEIGHBOUR_M")
     args = ap.parse_args()
-    signs, refused = build_record()
-    text = json.dumps(record(signs, refused), indent=2, ensure_ascii=False) + "\n"
+    if args.prove_locality:
+        return _prove_locality()
+    signs, refused, separation = build_record()
+    text = json.dumps(record(signs, refused, separation), indent=2,
+                      ensure_ascii=False) + "\n"
     if args.check:
         if not OUT.exists():
             print(f"SIGNBOARD DRIFT\n  - {OUT.relative_to(ROOT)} is missing")

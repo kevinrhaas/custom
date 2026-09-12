@@ -6,12 +6,12 @@
   "civic": 16,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 497,
+  "church": 505,
   "books": 222,
-  "directories": 7251,
+  "directories": 7305,
   "newberry_index": 4914,
-  "land_sales": 867,
-  "old_settlers": 443
+  "land_sales": 868,
+  "old_settlers": 460
  },
  "witness": {
   "civic": {
@@ -27,8 +27,8 @@
    "spent": 819
   },
   "church": {
-   "read": 1752,
-   "spent": 1255
+   "read": 1743,
+   "spent": 1238
   },
   "books": {
    "read": 302,
@@ -36,7 +36,7 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 1021
+   "spent": 953
   },
   "newberry_index": {
    "read": 7005,
@@ -44,11 +44,11 @@
   },
   "land_sales": {
    "read": 1572,
-   "spent": 705
+   "spent": 704
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 651
+   "spent": 634
   }
  },
  "raised": [
@@ -512,6 +512,54 @@
    "to": 869,
    "date": "2026-09-11",
    "why": "T-1032 harvested Cook County's 619 sectionless town-lot sales and T-1033 (this PR) read them into the deposit, taking land_sales from 953 rows to 1,572. The read is the whole point of the ticket: the 619 are the town's own plat changing hands in the fortnight of June 1836, they were invisible to every by-section pass this project had made, and holding them out of the reading was what T-1032 did for one day and what T-1033 was filed to end. NOT ONE of them is spent, deliberately: the crosswalk's new proposals carry `ruling: null`, no resident is minted or regraded, and adjudicating 69 new purchaser matches is more than one run's demonstration. T-1034 is filed directly under this ticket to rule on them in cohorts as T-0990 did for the by-section rows, and this number comes down when that lands. It may not drift up."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 497,
+   "to": 505,
+   "date": "2026-09-12",
+   "why": "T-1049 refused 122 newspaper readings the resolved place vocabulary puts outside the town, and the 78 civic-minted containers that stood on nothing else went with them. The rulings this domain had already spent onto those cards are unspent again — not because the reading ran ahead of the adjudication, but because the card the adjudication was written onto is gone. Nothing here is owed a fresh reading; the count is the same corpus measured against a smaller town."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7251,
+   "to": 7285,
+   "date": "2026-09-12",
+   "why": "T-1049 refused 122 newspaper readings the resolved place vocabulary puts outside the town, and the 78 civic-minted containers that stood on nothing else went with them. The rulings this domain had already spent onto those cards are unspent again — not because the reading ran ahead of the adjudication, but because the card the adjudication was written onto is gone. Nothing here is owed a fresh reading; the count is the same corpus measured against a smaller town."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 867,
+   "to": 868,
+   "date": "2026-09-12",
+   "why": "T-1049 refused 122 newspaper readings the resolved place vocabulary puts outside the town, and the 78 civic-minted containers that stood on nothing else went with them. The rulings this domain had already spent onto those cards are unspent again — not because the reading ran ahead of the adjudication, but because the card the adjudication was written onto is gone. Nothing here is owed a fresh reading; the count is the same corpus measured against a smaller town."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 443,
+   "to": 460,
+   "date": "2026-09-12",
+   "why": "T-1049 refused 122 newspaper readings the resolved place vocabulary puts outside the town, and the 78 civic-minted containers that stood on nothing else went with them. The rulings this domain had already spent onto those cards are unspent again — not because the reading ran ahead of the adjudication, but because the card the adjudication was written onto is gone. Nothing here is owed a fresh reading; the count is the same corpus measured against a smaller town."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 0,
+   "to": 1,
+   "date": "2026-09-12",
+   "why": "T-1049 refused 122 newspaper readings the resolved place vocabulary puts outside the town, and the 78 civic-minted containers that stood on nothing else went with them. The rulings this domain had already spent onto those cards are unspent again — not because the reading ran ahead of the adjudication, but because the card the adjudication was written onto is gone. Nothing here is owed a fresh reading; the count is the same corpus measured against a smaller town. Same cause, one hop later: a directory ruling that reached a person whose card this pass un-minted now reaches no card to write onto."
+  },
+  {
+   "domain": "directories",
+   "hop": "read",
+   "from": 7285,
+   "to": 7305,
+   "date": "2026-09-12",
+   "why": "T-1049, second pass of the same cause: the re-derivation of the directory crosswalks against the smaller town released 20 more rulings that had been spent onto cards the place refusal un-minted. Same corpus, same reading, fewer cards to land on."
   }
  ],
  "lowered": [
@@ -582,7 +630,7 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 0,
+  "directories": 1,
   "land_sales": 0,
   "old_settlers": 0,
   "church": 0

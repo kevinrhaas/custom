@@ -208,6 +208,41 @@ general**: the same printings that agree on the lot number set the advertisement
 four different ways, so the digit that was decidable and the digit that was not stood two
 lines apart in one column.
 
+**A BRACKETED SUPPLY MAY NOT OUTRANK A LETTER THE IMPRESSION SETS WHOLE (T-0407).** A
+supply in `normalized` is a reading of a letter the page does not deliver; it is not a
+licence to replace one the page delivers plainly. The blacksmith is the case. One printing
+of Matthias Mason & Co.'s standing notice, 1834-02-18 c010, was read as `MATTHIAS [N]ASON &
+CO.` and minted a business called `Matthias Nason & Co.` — and line 2823 of that
+transcription sets `MATTHIAS MASON & CO.` whole, on its own line, with no uncertainty
+marker on it and with the claim's interleaving beginning two lines below. So there was no
+unread letter for the bracket to stand in. The tally is one-sided: nineteen impressions of
+the notice carry the surname's first letter and every one is an M — fifteen set `MASON`
+whole, two wreck the S and keep the M (`MAJON`, `MADON`), two break off at `MATTHIAS MA` —
+and the post office prints the man `Mason, Matthias` in two letter lists, independently of
+his own advertisement. Withdrawing the supply is not amending a printing to agree with
+another printing; the quote was never touched and always read `MASON`.
+
+**The route matters as much as the answer.** The defect was a CLAIM's, so it was repaired
+in the claim, and `firm_merges`' partner-surname guard — *the two styles must carry the same
+set of partner surnames* — was left exactly as it stood. `Nason` against `Mason` is an
+ordinary surname difference and the guard is right to refuse it; the escape would have had
+to be "unless the surname resembles the other one", which is the one thing a partnership
+rule may never say. `compile_gazetteer.py --self-test` already asserts the refusal on a
+clean fixture (*a merge that would change who the partners are*, and five more under the
+sign-name cases), and none of those assertions moved.
+
+**AND THERE IS NO MECHANICAL GATE FOR THIS, WHICH IS WORTH KNOWING BEFORE SOMEBODY WRITES
+ONE.** Two candidate checks were measured against all 86 extractions before this was
+repaired by hand. *A supply that contradicts a letter the quote carries* fires on several
+hundred claims and every one is legitimate — correcting `ITREET` to `[S]TREET` is precisely
+what `normalized` is for, so the shape of the fault is not local to the claim. *A
+single-letter supply inside a business name that no other printing corroborates* is
+narrower: it flags twelve names in the corpus, and the twelve include `MA[T]HIAS` — the
+supply `firm_merges` cites as the GOOD one, because there the transcription brackets the
+very letter at issue. Nine of the twelve are the only printing their notice ever got, so
+there is no tally to run against them at all. The instrument is the tally above and a
+reader willing to run it; the twelve are the candidate list if anyone wants to.
+
 **AND COUNT THE PRINTINGS BY THE NOTICE'S BODY TEXT, NOT BY ITS ADVERTISER (T-0350).** The
 sentence above used to say "the same FIVE printings", and five was wrong: D. Weaver's notice
 ran SEVEN times, from Vol. I No. 50 of 1834-11-12 to Vol. II No. 4. Two reading passes and

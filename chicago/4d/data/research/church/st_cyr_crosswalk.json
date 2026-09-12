@@ -5,13 +5,13 @@
   "source_id": "st_cyr_register_ichr_v4",
   "pass": "T-0573",
   "target": "data/residents/households/*.json — every named person, at every grade",
-  "targets_examined": 1373,
+  "targets_examined": 1295,
   "rule": "Surnames must fold equal after case and punctuation are dropped, AND the forenames must agree initial for initial in one direction or the other. A surname-only agreement is always a refusal. A row the page prints without a forename is reported no_forename, carried and never matched.",
   "counts": {
     "candidate": 39,
     "no_forename": 4,
-    "refusal": 99,
-    "unmatched": 384,
+    "refusal": 97,
+    "unmatched": 386,
     "ruled_no_town_change": 5
   },
   "merges_proposed": 1,
@@ -584,11 +584,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "miller_fred",
-          "name": "Fred Miller",
-          "grade": "attested"
-        },
-        {
           "person_id": "miller_george",
           "name": "George Miller",
           "grade": "inferred"
@@ -601,10 +596,10 @@
         {
           "person_id": "miller_samuel",
           "name": "Samuel Miller",
-          "grade": "attested"
+          "grade": "inferred"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Jacob Miller' against 'Fred Miller', 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-04-04 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Jacob Miller' against 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-04-04 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_011_2",
@@ -911,17 +906,12 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "jackson_j_y",
-          "name": "J Y Jackson",
-          "grade": "attested"
-        },
-        {
           "person_id": "jackson_samuel",
           "name": "Samuel Jackson",
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Gideon M. Jackson' against 'J Y Jackson', 'Samuel Jackson'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-09-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Gideon M. Jackson' against 'Samuel Jackson'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-09-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_017_2",
@@ -1271,11 +1261,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "miller_fred",
-          "name": "Fred Miller",
-          "grade": "attested"
-        },
-        {
           "person_id": "miller_george",
           "name": "George Miller",
           "grade": "inferred"
@@ -1288,10 +1273,10 @@
         {
           "person_id": "miller_samuel",
           "name": "Samuel Miller",
-          "grade": "attested"
+          "grade": "inferred"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Daniel Miller' against 'Fred Miller', 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-01-24 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Daniel Miller' against 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-01-24 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_023_2",
@@ -1732,11 +1717,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "smith_d_a",
-          "name": "D A Smith",
-          "grade": "attested"
-        },
-        {
           "person_id": "smith_e_kirby",
           "name": "E Kirby Smith",
           "grade": "attested"
@@ -1749,11 +1729,6 @@
         {
           "person_id": "smith_george",
           "name": "George Smith",
-          "grade": "attested"
-        },
-        {
-          "person_id": "smith_james",
-          "name": "James Smith",
           "grade": "attested"
         },
         {
@@ -1787,7 +1762,7 @@
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Barme Smith' against 'D A Smith', 'E Kirby Smith', 'Elded Smith', 'George Smith', 'James Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-05-25 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Barme Smith' against 'E Kirby Smith', 'Elded Smith', 'George Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-05-25 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_031_4",
@@ -2448,11 +2423,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "miller_fred",
-          "name": "Fred Miller",
-          "grade": "attested"
-        },
-        {
           "person_id": "miller_george",
           "name": "George Miller",
           "grade": "inferred"
@@ -2465,10 +2435,10 @@
         {
           "person_id": "miller_samuel",
           "name": "Samuel Miller",
-          "grade": "attested"
+          "grade": "inferred"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Daniel Miller' against 'Fred Miller', 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-08-24 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Daniel Miller' against 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-08-24 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_044_4",
@@ -3323,15 +3293,9 @@
       "role": "witness",
       "describes_date": "1837-11-14",
       "scene_year": false,
-      "outcome": "refusal",
-      "residents": [
-        {
-          "person_id": "woodward_g_w",
-          "name": "G W Woodward",
-          "grade": "attested"
-        }
-      ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Jane Woodward' against 'G W Woodward'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-11-14 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "outcome": "unmatched",
+      "residents": [],
+      "rule": "No person in data/residents/ carries a surname folding to 'woodward'. NOT THE SCENE YEAR: this reading is dated 1837-11-14 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_061_5",
@@ -3598,17 +3562,12 @@
           "grade": "attested"
         },
         {
-          "person_id": "murray_james_h",
-          "name": "James H Murray",
-          "grade": "attested"
-        },
-        {
           "person_id": "murray_patrick",
           "name": "Patrick Murray",
           "grade": "inferred"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'John Murray' against 'Alonzo Murray', 'James H Murray', 'Patrick Murray'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-12-01 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'John Murray' against 'Alonzo Murray', 'Patrick Murray'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-12-01 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_066_4",
@@ -4283,11 +4242,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "miller_fred",
-          "name": "Fred Miller",
-          "grade": "attested"
-        },
-        {
           "person_id": "miller_george",
           "name": "George Miller",
           "grade": "inferred"
@@ -4300,10 +4254,10 @@
         {
           "person_id": "miller_samuel",
           "name": "Samuel Miller",
-          "grade": "attested"
+          "grade": "inferred"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Jonathan Miller' against 'Fred Miller', 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-17 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Jonathan Miller' against 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-17 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_080_4",
@@ -4491,20 +4445,9 @@
       "role": "witness",
       "describes_date": "1838-05-31",
       "scene_year": false,
-      "outcome": "refusal",
-      "residents": [
-        {
-          "person_id": "wentworth_elijah",
-          "name": "Elijah Wentworth",
-          "grade": "attested"
-        },
-        {
-          "person_id": "wentworth_h_e",
-          "name": "H E Wentworth",
-          "grade": "attested"
-        }
-      ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'John Wentworth' against 'Elijah Wentworth', 'H E Wentworth'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-31 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "outcome": "unmatched",
+      "residents": [],
+      "rule": "No person in data/residents/ carries a surname folding to 'wentworth'. NOT THE SCENE YEAR: this reading is dated 1838-05-31 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_083_1",
@@ -4665,11 +4608,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "smith_d_a",
-          "name": "D A Smith",
-          "grade": "attested"
-        },
-        {
           "person_id": "smith_e_kirby",
           "name": "E Kirby Smith",
           "grade": "attested"
@@ -4682,11 +4620,6 @@
         {
           "person_id": "smith_george",
           "name": "George Smith",
-          "grade": "attested"
-        },
-        {
-          "person_id": "smith_james",
-          "name": "James Smith",
           "grade": "attested"
         },
         {
@@ -4720,7 +4653,7 @@
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Michael Smith' against 'D A Smith', 'E Kirby Smith', 'Elded Smith', 'George Smith', 'James Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-06-04 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Michael Smith' against 'E Kirby Smith', 'Elded Smith', 'George Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-06-04 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_086_2",
@@ -5578,11 +5511,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "smith_d_a",
-          "name": "D A Smith",
-          "grade": "attested"
-        },
-        {
           "person_id": "smith_e_kirby",
           "name": "E Kirby Smith",
           "grade": "attested"
@@ -5595,11 +5523,6 @@
         {
           "person_id": "smith_george",
           "name": "George Smith",
-          "grade": "attested"
-        },
-        {
-          "person_id": "smith_james",
-          "name": "James Smith",
           "grade": "attested"
         },
         {
@@ -5633,7 +5556,7 @@
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Christopher Smith' against 'D A Smith', 'E Kirby Smith', 'Elded Smith', 'George Smith', 'James Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-08-03 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Christopher Smith' against 'E Kirby Smith', 'Elded Smith', 'George Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-08-03 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_104_2",
@@ -5656,11 +5579,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "smith_d_a",
-          "name": "D A Smith",
-          "grade": "attested"
-        },
-        {
           "person_id": "smith_e_kirby",
           "name": "E Kirby Smith",
           "grade": "attested"
@@ -5673,11 +5591,6 @@
         {
           "person_id": "smith_george",
           "name": "George Smith",
-          "grade": "attested"
-        },
-        {
-          "person_id": "smith_james",
-          "name": "James Smith",
           "grade": "attested"
         },
         {
@@ -5711,7 +5624,7 @@
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Bernard Smith' against 'D A Smith', 'E Kirby Smith', 'Elded Smith', 'George Smith', 'James Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-08-03 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Bernard Smith' against 'E Kirby Smith', 'Elded Smith', 'George Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-08-03 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_104_4",
@@ -6363,17 +6276,12 @@
           "grade": "attested"
         },
         {
-          "person_id": "murray_james_h",
-          "name": "James H Murray",
-          "grade": "attested"
-        },
-        {
           "person_id": "murray_patrick",
           "name": "Patrick Murray",
           "grade": "inferred"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Denis Murray' against 'Alonzo Murray', 'James H Murray', 'Patrick Murray'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1839-06-12 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Denis Murray' against 'Alonzo Murray', 'Patrick Murray'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1839-06-12 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_117_4",
@@ -6390,17 +6298,12 @@
           "grade": "attested"
         },
         {
-          "person_id": "murray_james_h",
-          "name": "James H Murray",
-          "grade": "attested"
-        },
-        {
           "person_id": "murray_patrick",
           "name": "Patrick Murray",
           "grade": "inferred"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Margaret Murray' against 'Alonzo Murray', 'James H Murray', 'Patrick Murray'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1839-06-12 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Margaret Murray' against 'Alonzo Murray', 'Patrick Murray'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1839-06-12 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_118_1",
@@ -6506,11 +6409,6 @@
       "outcome": "refusal",
       "residents": [
         {
-          "person_id": "smith_d_a",
-          "name": "D A Smith",
-          "grade": "attested"
-        },
-        {
           "person_id": "smith_e_kirby",
           "name": "E Kirby Smith",
           "grade": "attested"
@@ -6523,11 +6421,6 @@
         {
           "person_id": "smith_george",
           "name": "George Smith",
-          "grade": "attested"
-        },
-        {
-          "person_id": "smith_james",
-          "name": "James Smith",
           "grade": "attested"
         },
         {
@@ -6561,7 +6454,7 @@
           "grade": "attested"
         }
       ],
-      "rule": "The surname folds equal but no forename agrees initial for initial: 'Peter Smith' against 'D A Smith', 'E Kirby Smith', 'Elded Smith', 'George Smith', 'James Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1839-08-14 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Peter Smith' against 'E Kirby Smith', 'Elded Smith', 'George Smith', 'Jeremiah Smith', 'L W Smith', 'Lawrence Smith', 'Matthias Smith', 'William Smith', 'William V Smith'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1839-08-14 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_120_2",

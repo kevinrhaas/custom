@@ -220,15 +220,27 @@
         {
           "as_printed": "Calvin Britain Oeq.",
           "normalized": "Calvin Britain",
-          "role": "Carver's agent at St. Joseph, Michigan"
+          "role": "Carver's agent at St. Joseph, Michigan",
+          "occupations": [
+            "agent"
+          ],
+          "associated_places": [
+            "St. Joseph"
+          ]
         },
         {
           "as_printed": "Col Sumsel Miller",
           "normalized": "Col. Samuel Miller",
-          "role": "Carver's agent at Michigan City"
+          "role": "Carver's agent at Michigan City",
+          "occupations": [
+            "agent"
+          ],
+          "associated_places": [
+            "Michigan City"
+          ]
         }
       ],
-      "notes": "WHERE THE TOWN'S BUILDING MATERIAL COMES FROM, said plainly and dated. Carver will have LATH, SHINGLES, RED CEDAR POSTS 'and all articles in the lumber line' as soon as the ice is clear from the Lake, and he has CHARTERED THE SCHOONER POST BOY FOR THE TWO FIRST TRIPS to be sure of being first. Every one of those three named items is a component this reconstruction draws: lath under plaster, shingles on roofs, red cedar posts in the fences and enclosures the model already builds. That they arrive BY WATER FROM MICHIGAN — his agents are at St. Joseph and Michigan City — is the supply chain behind the town's frame buildings, and it says the building season is bounded at its front end by the ice. Carver is the same man advertising tracts of Military and District land in 1834-02-04 and 1834-02-11; the lumber business is dated 25 February 1834 and is new. THE STORE HAS NO ADDRESS: 'at his Store' is all the notice gives, so the placement is `street_only` with no street named — the honest value, not an absence."
+      "notes": "WHERE THE TOWN'S BUILDING MATERIAL COMES FROM, said plainly and dated. Carver will have LATH, SHINGLES, RED CEDAR POSTS 'and all articles in the lumber line' as soon as the ice is clear from the Lake, and he has CHARTERED THE SCHOONER POST BOY FOR THE TWO FIRST TRIPS to be sure of being first. Every one of those three named items is a component this reconstruction draws: lath under plaster, shingles on roofs, red cedar posts in the fences and enclosures the model already builds. That they arrive BY WATER FROM MICHIGAN — his agents are at St. Joseph and Michigan City — is the supply chain behind the town's frame buildings, and it says the building season is bounded at its front end by the ice. Carver is the same man advertising tracts of Military and District land in 1834-02-04 and 1834-02-11; the lumber business is dated 25 February 1834 and is new. THE STORE HAS NO ADDRESS: 'at his Store' is all the notice gives, so the placement is `street_only` with no street named — the honest value, not an absence. THE TWO AGENTS ARE PLACED WHERE THE NOTICE PLACES THEM (T-1040), which this reading recorded in prose and withheld from the record. The closing sentence reads 'Calvin Britain [Es]q. at St. [Jo]seph, and Col[.] Sam[u]el Miller, Michiga[n] [Ci]ty, are his [agents]': Britain is at St. Joseph and Miller at Michigan City, Indiana, and neither is a Chicago man. The entities carried a `role` naming those towns and no `occupations` and no `associated_places`, so every pass that reads a person — and the mints read `associated_places` to refuse a man this project cannot put in the town — saw two placeless names beside a Chicago lumber merchant. That is T-0694's finding at the person level rather than the firm's, and its remedy is the same one: put the place on the entity. The 4 March impression of this same advertisement (chicago_democrat_1834_03_04 c006) had already done it, which is how the omission was visible at all."
     },
     {
       "id": "c004",
@@ -374,7 +386,7 @@
         }
       },
       "entities": [],
-      "notes": "THE FULLEST PLACEMENT IN THE MONTH: the shop is 'back on MAIN-STREET, nearly opposite Graves' Tavern'. Three readings at once — a street, an anchor, and the word BACK, which says the forge does not front the principal way but stands behind it, exactly where a town puts a fire and an anvil. Set against 1834-02-18 c011, where the same advertisement lost its preposition and read only 've[s]' Tavern', this impression is the one the anchor should be taken from. THE READING IS NOT NEW, AND THAT IS ITS SECOND VALUE. T-0310 read the same advertisement at 1834-01-07 (c008 there): 'on Main-[s]treet, n[early] [o]pposite Grave[s]' Tavern'. The same firm gives the same placement in January and in February, so the 18 February setting that lost the preposition is the odd impression rather than the evidence. WHAT CHANGES LATER IS THE ANCHOR, NOT THE STREET: by 1834-09-10 (c013 there) Mason & Co. are still 'on Main-stro[e]t' but now 'oppo[sit]e the Tremont House'. Either Graves' Tavern was renamed the Tremont House between February and September 1834, or a second house went up opposite the same forge; this pass does not choose, and T-0324 carries the question. MAIN-STREET IS STILL NOT IDENTIFIED WITH ANY PLATTED STREET. The corpus now has it three times across nine months, and the September read already recorded that the plat has no Main Street; that it was Chicago usage is established, which line it names is not. The firm prints MASON here and NASON on 18 February; both stand."
+      "notes": "THE FULLEST PLACEMENT IN THE MONTH: the shop is 'back on MAIN-STREET, nearly opposite Graves' Tavern'. Three readings at once — a street, an anchor, and the word BACK, which says the forge does not front the principal way but stands behind it, exactly where a town puts a fire and an anvil. Set against 1834-02-18 c010, where the same advertisement lost its preposition and read only 've[s]' Tavern', this impression is the one the anchor should be taken from. THE READING IS NOT NEW, AND THAT IS ITS SECOND VALUE. T-0310 read the same advertisement at 1834-01-07 (c008 there): 'on Main-[s]treet, n[early] [o]pposite Grave[s]' Tavern'. The same firm gives the same placement in January and in February, so the 18 February setting that lost the preposition is the odd impression rather than the evidence. WHAT CHANGES LATER IS THE ANCHOR, NOT THE STREET: by 1834-09-10 (c013 there) Mason & Co. are still 'on Main-stro[e]t' but now 'oppo[sit]e the Tremont House'. Either Graves' Tavern was renamed the Tremont House between February and September 1834, or a second house went up opposite the same forge; this pass does not choose, and T-0324 carries the question. MAIN-STREET IS STILL NOT IDENTIFIED WITH ANY PLATTED STREET. The corpus now has it three times across nine months, and the September read already recorded that the plat has no Main Street; that it was Chicago usage is established, which line it names is not. THE 'NASON' THIS NOTE ONCE SET AGAINST IT IS WITHDRAWN (T-0407). Neither half of that sentence held: this impression does not print MASON either \u2014 its heading is the wreck 'MATTHIAS       Ww de at' and the surname is a bracketed supply here \u2014 and the 18 February setting does not print NASON, because its own line 2823 reads MATTHIAS MASON & CO. whole with no marker on it. Nineteen impressions carry the surname's first letter and every one is an M. The name stands as Mason at both."
     },
     {
       "id": "c007",

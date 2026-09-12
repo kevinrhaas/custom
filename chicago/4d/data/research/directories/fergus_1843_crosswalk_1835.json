@@ -10,22 +10,22 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1371,
-  "matched_one_1843_entry": 125,
-  "matched_more_than_one_ambiguous": 31,
+  "residents_considered": 1293,
+  "matched_one_1843_entry": 120,
+  "matched_more_than_one_ambiguous": 27,
   "one_1843_entry_contested_by_two_residents": 17,
-  "surname_present_initial_absent_refused": 349,
+  "surname_present_initial_absent_refused": 323,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
-  "initial_agreed_forenames_disagreed_refused": 90,
+  "initial_agreed_forenames_disagreed_refused": 83,
   "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_1843_entry_by_that_refusal": 42,
   "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 1,
   "of_those_ambiguous": 2,
-  "could_carry_occupation": 74,
-  "could_carry_address": 89,
-  "could_carry_death_note": 86,
+  "could_carry_occupation": 69,
+  "could_carry_address": 85,
+  "could_carry_death_note": 84,
   "business_directory_notices_with_a_surname": 106,
   "notices_folded_onto_their_own_roll_entry": 78,
   "notices_standing_as_their_own_candidate": 28,
@@ -1459,35 +1459,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "Alvin Hayward",
-   "person_id": "hayward_alvin",
-   "household_id": "hh_hayward_alvin",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hayward' folds to the same string as the 1843 entry's, and the given name of both begins A.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1239",
-     "as_printed": "Hayward, Alvin. fanning-mill maker. Lake, near Sauganash Hotel",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "fanning-mill maker. Lake",
-     "address_1843": "near Sauganash Hotel",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
    "resident": "Amos Foster",
    "person_id": "foster_amos",
    "household_id": "hh_foster_amos",
@@ -2658,36 +2629,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "Henry Loomis",
-   "person_id": "loomis_henry",
-   "household_id": "hh_loomis_henry",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Loomis' folds to the same string as the 1843 entry's, and the given name of both begins H.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1610",
-     "as_printed": "74.] Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged 68.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "lumber merchant",
-     "address_1843": "cor West Water and Randolph",
-     "death_note_1843": "died, Burlington, Vt., December 18, 1886, aged 68."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
    "resident": "Henry Tucker",
    "person_id": "tucker_henry",
    "household_id": "hh_tucker_henry",
@@ -3130,35 +3071,6 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "James H Murray",
-   "person_id": "murray_james_h",
-   "household_id": "hh_murray_james_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Murray' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1867",
-     "as_printed": "Murray, James (M. & Brand), bds City Hotel",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(M. & Brand)",
-     "address_1843": "bds City Hotel",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
    "resident": "James H. Woodworth",
    "person_id": "woodworth_james_h",
    "household_id": "hh_woodworth_james_h",
@@ -3522,35 +3434,6 @@
      "occupation_1843": "soap and candle maker, South Branch, 3 miles south",
      "address_1843": null,
      "death_note_1843": "died January 24, 1872, aged 78."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "John Marshall Cary",
-   "person_id": "cary_john_marshall",
-   "household_id": "hh_cary_john_marshall",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Cary' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0560",
-     "as_printed": "Cary, John Marshall, teamster [died May 17, 1895, aged 76.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "teamster",
-     "address_1843": null,
-     "death_note_1843": "died May 17, 1895, aged 76."
     }
    ],
    "could_carry": [
@@ -4224,35 +4107,6 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": true
-  },
-  {
-   "resident": "Samuel Mills",
-   "person_id": "mills_samuel",
-   "household_id": "hh_mills_samuel",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Mills' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1804",
-     "as_printed": "Mills, Samuel, grocer, res Clark",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "grocer",
-     "address_1843": "res Clark",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
   },
   {
    "resident": "Sanford Johnson",
@@ -6059,63 +5913,6 @@
    }
   },
   {
-   "resident": "D A Smith",
-   "person_id": "smith_d_a",
-   "household_id": "hh_smith_d_a",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins D.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0140",
-     "as_printed": "DOCTOR D. S. SMITH, office on Clark Street, two doors south of Lake, over J. B. F. Russell's land-agency office; residence, LaSalle Street, opposite the First Baptist Church.",
-     "page": "fergus_1843_page_001",
-     "section": "business directory",
-     "trade_heading": "PHYSICIANS",
-     "occupation_1843": "office on Clark Street, two doors south of Lake",
-     "address_1843": "over J. B. F. Russell's land-agency office; residence, LaSalle Street, opposite the First Baptist Church",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e2289",
-     "as_printed": "Smith, David Sheppard, homoeopathist, office Clark, res 118 LaSalle [died April 29, 1891, aged 75-0-9.]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "homoeopathist, office Clark",
-     "address_1843": "res 118 LaSalle",
-     "death_note_1843": "died April 29, 1891, aged 75-0-9."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0140",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e2289",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
    "resident": "D E Jones",
    "person_id": "jones_d_e",
    "household_id": "hh_jones_d_e",
@@ -6504,120 +6301,6 @@
    }
   },
   {
-   "resident": "J Ellis",
-   "person_id": "ellis_j",
-   "household_id": "hh_ellis_j",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Ellis' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0902",
-     "as_printed": "Ellis, James, laborer, Gurdon S. Hubbard [died March 4, 1884, a. 75]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "laborer, Gurdon S. Hubbard",
-     "address_1843": null,
-     "death_note_1843": "died March 4, 1884, a. 75"
-    },
-    {
-     "claim": "f1843_e0903",
-     "as_printed": "Ellis, Joel, butcher, Clark Street Market, bds Farmers' Hotel [died. Jefferson, Cook Co,, Ill, Oct. 30. 1886, aged 69]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "butcher, Clark Street Market",
-     "address_1843": "bds Farmers' Hotel",
-     "death_note_1843": "died. Jefferson, Cook Co,, Ill, Oct. 30. 1886, aged 69"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0902",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e0903",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "J Y Jackson",
-   "person_id": "jackson_j_y",
-   "household_id": "hh_jackson_j_y",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Jackson' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1373",
-     "as_printed": "Jackson, John J., sailor, res Indiana, bet Pine and St. Clair",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "sailor",
-     "address_1843": "res Indiana, bet Pine and St. Clair",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1374",
-     "as_printed": "Jackson, John Wm., teamster, res Morgan, bet Madison and Monroe [died March 8, 1892, aged 82-5-13.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "teamster",
-     "address_1843": "res Morgan, bet Madison and Monroe",
-     "death_note_1843": "died March 8, 1892, aged 82-5-13."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e1373",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e1374",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
    "resident": "J. Curtiss",
    "person_id": "curtiss_j",
    "household_id": "hh_curtiss_j",
@@ -6798,63 +6481,6 @@
      },
      {
       "key": "f1843_e0536",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "James Smith",
-   "person_id": "smith_james",
-   "household_id": "hh_smith_james",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Smith' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2295",
-     "as_printed": "Smith, James, shoemaker, David Jay",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "shoemaker, David Jay",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e2296",
-     "as_printed": "Smith, James Ayer, clerk, L, P. Sanger & Co,, res Lake [died July 22, 1875, aged 68]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "clerk, L, P. Sanger & Co",
-     "address_1843": "res Lake",
-     "death_note_1843": "died July 22, 1875, aged 68"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e2295",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e2296",
       "agrees": false,
       "why": "no trade on one side"
      }
@@ -7777,27 +7403,6 @@
  ],
  "refusals": [
   {
-   "resident": "A B Field",
-   "person_id": "field_a_b",
-   "surname_in_1843": "Field",
-   "candidates": 3,
-   "rule": "The surname 'Field' is in Fergus 1843 and no entry under it carries the initial 'A' of 'A B Field'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "A J Mead",
-   "person_id": "mead_a_j",
-   "surname_in_1843": "Mead",
-   "candidates": 1,
-   "rule": "The surname 'Mead' is in Fergus 1843 and no entry under it carries the initial 'A' of 'A J Mead'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "A Townsend",
-   "person_id": "townsend_a",
-   "surname_in_1843": "Townsend",
-   "candidates": 1,
-   "rule": "The surname 'Townsend' is in Fergus 1843 and no entry under it carries the initial 'A' of 'A Townsend'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "A. Shepherd",
    "person_id": "shepherd_a",
    "surname_in_1843": "Shepherd",
@@ -7831,13 +7436,6 @@
    "surname_in_1843": "Davis",
    "candidates": 6,
    "rule": "The surname 'Davis' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Abissinia Davis'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Al Barber",
-   "person_id": "barber_al",
-   "surname_in_1843": "Barber",
-   "candidates": 1,
-   "rule": "The surname 'Barber' is in Fergus 1843 and no entry under it carries the initial 'A' of 'Al Barber'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Alanson Sweet",
@@ -8022,13 +7620,6 @@
    "rule": "The surname 'Beaubien' is in Fergus 1843 and no entry under it carries the initial 'B' of 'B Beaubien'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "B Hubbard",
-   "person_id": "hubbard_b",
-   "surname_in_1843": "Hubbard",
-   "candidates": 4,
-   "rule": "The surname 'Hubbard' is in Fergus 1843 and no entry under it carries the initial 'B' of 'B Hubbard'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "B S Knapp",
    "person_id": "knapp_b_s",
    "surname_in_1843": "Knapp",
@@ -8125,13 +7716,6 @@
    "surname_in_1843": "Bennett",
    "candidates": 4,
    "rule": "The surname 'Bennett' is in Fergus 1843 and no entry under it carries the initial 'C' of 'C H Bennett'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "C Harrington",
-   "person_id": "harrington_c",
-   "surname_in_1843": "Harrington",
-   "candidates": 3,
-   "rule": "The surname 'Harrington' is in Fergus 1843 and no entry under it carries the initial 'C' of 'C Harrington'. A surname-only agreement is a refusal."
   },
   {
    "resident": "C. E. Townsend",
@@ -8386,13 +7970,6 @@
    "rule": "The surname 'Skinner' is in Fergus 1843 and no entry under it carries the initial 'E' of 'E F Skinner'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "E G Quick",
-   "person_id": "quick_e_g",
-   "surname_in_1843": "Quick",
-   "candidates": 1,
-   "rule": "The surname 'Quick' is in Fergus 1843 and no entry under it carries the initial 'E' of 'E G Quick'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "E. B. Bostwick",
    "person_id": "bostwick_e_b",
    "surname_in_1843": "Bostwick",
@@ -8526,13 +8103,6 @@
    "rule": "The surname 'Hubbard' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Elijah Kent Hubbard'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Elijah Wentworth",
-   "person_id": "wentworth_elijah",
-   "surname_in_1843": "Wentworth",
-   "candidates": 2,
-   "rule": "The surname 'Wentworth' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Elijah Wentworth'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Elisha S. Page",
    "person_id": "page_elisha_s",
    "surname_in_1843": "Page",
@@ -8624,13 +8194,6 @@
    "rule": "The surname 'Brewster' is in Fergus 1843 and no entry under it carries the initial 'F' of 'Franklin Brewster'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Fred Miller",
-   "person_id": "miller_fred",
-   "surname_in_1843": "Miller",
-   "candidates": 6,
-   "rule": "The surname 'Miller' is in Fergus 1843 and no entry under it carries the initial 'F' of 'Fred Miller'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Frederick Thomas",
    "person_id": "thomas_frederick",
    "surname_in_1843": "Thomas",
@@ -8715,25 +8278,11 @@
    "rule": "The surname 'Brooks' is in Fergus 1843 and no entry under it carries the initial 'G' of 'George M Brooks'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "George Mcwilliams",
-   "person_id": "mcwilliams_george",
-   "surname_in_1843": "Mcwilliams",
-   "candidates": 1,
-   "rule": "The surname 'Mcwilliams' is in Fergus 1843 and no entry under it carries the initial 'G' of 'George Mcwilliams'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "George Miller",
    "person_id": "miller_george",
    "surname_in_1843": "Miller",
    "candidates": 6,
    "rule": "The surname 'Miller' is in Fergus 1843 and no entry under it carries the initial 'G' of 'George Miller'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "George Reed",
-   "person_id": "reed_george",
-   "surname_in_1843": "Reed",
-   "candidates": 4,
-   "rule": "The surname 'Reed' is in Fergus 1843 and no entry under it carries the initial 'G' of 'George Reed'. A surname-only agreement is a refusal."
   },
   {
    "resident": "George Wells",
@@ -8755,20 +8304,6 @@
    "surname_in_1843": "Legg",
    "candidates": 1,
    "rule": "The surname 'Legg' is in Fergus 1843 and no entry under it carries the initial 'G' of 'Gregory E. Legg'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "H C Swift",
-   "person_id": "swift_h_c",
-   "surname_in_1843": "Swift",
-   "candidates": 2,
-   "rule": "The surname 'Swift' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H C Swift'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "H E Wentworth",
-   "person_id": "wentworth_h_e",
-   "surname_in_1843": "Wentworth",
-   "candidates": 2,
-   "rule": "The surname 'Wentworth' is in Fergus 1843 and no entry under it carries the initial 'H' of 'H E Wentworth'. A surname-only agreement is a refusal."
   },
   {
    "resident": "H. B. Hoffman",
@@ -8925,13 +8460,6 @@
    "rule": "The surname 'Pearson' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Hiram Pearson'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Hugh Robinson",
-   "person_id": "robinson_hugh",
-   "surname_in_1843": "Robinson",
-   "candidates": 6,
-   "rule": "The surname 'Robinson' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Hugh Robinson'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Hugh Todd",
    "person_id": "todd_hugh",
    "surname_in_1843": "Todd",
@@ -8972,13 +8500,6 @@
    "surname_in_1843": "Hill",
    "candidates": 3,
    "rule": "The surname 'Hill' is in Fergus 1843 and no entry under it carries the initial 'I' of 'Isaac L. Hill'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Isaiah Townsend",
-   "person_id": "townsend_isaiah",
-   "surname_in_1843": "Townsend",
-   "candidates": 1,
-   "rule": "The surname 'Townsend' is in Fergus 1843 and no entry under it carries the initial 'I' of 'Isaiah Townsend'. A surname-only agreement is a refusal."
   },
   {
    "resident": "J Ambrose Wight",
@@ -9070,13 +8591,6 @@
    "surname_in_1843": "Phelps",
    "candidates": 1,
    "rule": "The surname 'Phelps' is in Fergus 1843 and no entry under it carries the initial 'J' of 'James H. Phelps'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "James Sheldon",
-   "person_id": "sheldon_james",
-   "surname_in_1843": "Sheldon",
-   "candidates": 2,
-   "rule": "The surname 'Sheldon' is in Fergus 1843 and no entry under it carries the initial 'J' of 'James Sheldon'. A surname-only agreement is a refusal."
   },
   {
    "resident": "James Stewart",
@@ -9198,13 +8712,6 @@
    "rule": "The surname 'Nelson' is in Fergus 1843 and no entry under it carries the initial 'J' of 'John M. Nelson'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "John Mann",
-   "person_id": "mann_john",
-   "surname_in_1843": "Mann",
-   "candidates": 2,
-   "rule": "The surname 'Mann' is in Fergus 1843 and no entry under it carries the initial 'J' of 'John Mann'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "John Noble",
    "person_id": "noble_john",
    "surname_in_1843": "Noble",
@@ -9275,32 +8782,11 @@
    "rule": "The surname 'Andrews' is in Fergus 1843 and no entry under it carries the initial 'J' of 'Julian Andrews'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "K Henry",
-   "person_id": "henry_k",
-   "surname_in_1843": "Henry",
-   "candidates": 1,
-   "rule": "The surname 'Henry' is in Fergus 1843 and no entry under it carries the initial 'K' of 'K Henry'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "K Willis",
-   "person_id": "willis_k",
-   "surname_in_1843": "Willis",
-   "candidates": 2,
-   "rule": "The surname 'Willis' is in Fergus 1843 and no entry under it carries the initial 'K' of 'K Willis'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "L B Cobb",
    "person_id": "cobb_l_b",
    "surname_in_1843": "Cobb",
    "candidates": 2,
    "rule": "The surname 'Cobb' is in Fergus 1843 and no entry under it carries the initial 'L' of 'L B Cobb'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "L Baldwin",
-   "person_id": "baldwin_l",
-   "surname_in_1843": "Baldwin",
-   "candidates": 2,
-   "rule": "The surname 'Baldwin' is in Fergus 1843 and no entry under it carries the initial 'L' of 'L Baldwin'. A surname-only agreement is a refusal."
   },
   {
    "resident": "L G Curtiss",
@@ -9490,13 +8976,6 @@
    "surname_in_1843": "Stephens",
    "candidates": 1,
    "rule": "The surname 'Stephens' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Mrs. S. Stephens'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "N Bird",
-   "person_id": "bird_n",
-   "surname_in_1843": "Bird",
-   "candidates": 1,
-   "rule": "The surname 'Bird' is in Fergus 1843 and no entry under it carries the initial 'N' of 'N Bird'. A surname-only agreement is a refusal."
   },
   {
    "resident": "N Leonard",
@@ -9702,13 +9181,6 @@
    "rule": "The surname 'Morris' is in Fergus 1843 and no entry under it carries the initial 'P' of 'Potily Morris'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "R Cochrane",
-   "person_id": "cochrane_r",
-   "surname_in_1843": "Cochrane",
-   "candidates": 1,
-   "rule": "The surname 'Cochrane' is in Fergus 1843 and no entry under it carries the initial 'R' of 'R Cochrane'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "R. Stewart",
    "person_id": "stewart_r",
    "surname_in_1843": "Stewart",
@@ -9721,13 +9193,6 @@
    "surname_in_1843": "Stowell",
    "candidates": 1,
    "rule": "The surname 'Stowell' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Ralph Stowell'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Ralph Wadhams",
-   "person_id": "wadhams_ralph",
-   "surname_in_1843": "Wadhams",
-   "candidates": 1,
-   "rule": "The surname 'Wadhams' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Ralph Wadhams'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Reuben Farnsworth",
@@ -9814,13 +9279,6 @@
    "rule": "The surname 'Moody' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Robert Moody'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Robert Townsend",
-   "person_id": "townsend_robert",
-   "surname_in_1843": "Townsend",
-   "candidates": 1,
-   "rule": "The surname 'Townsend' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Robert Townsend'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Rowland I!. Cook",
    "person_id": "cook_rowland_i",
    "surname_in_1843": "Cook",
@@ -9884,13 +9342,6 @@
    "rule": "The surname 'Stuart' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Samuel Stuart'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Samuel Townsend",
-   "person_id": "townsend_samuel",
-   "surname_in_1843": "Townsend",
-   "candidates": 1,
-   "rule": "The surname 'Townsend' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Samuel Townsend'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Sciota Evans",
    "person_id": "evans_sciota",
    "surname_in_1843": "Evans",
@@ -9931,13 +9382,6 @@
    "surname_in_1843": "Foote",
    "candidates": 1,
    "rule": "The surname 'Foote' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Star Foote'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Stephen E Dow",
-   "person_id": "dow_stephen_e",
-   "surname_in_1843": "Dow",
-   "candidates": 2,
-   "rule": "The surname 'Dow' is in Fergus 1843 and no entry under it carries the initial 'S' of 'Stephen E Dow'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Stephen Forbes",
@@ -10596,25 +10040,6 @@
    }
   },
   {
-   "resident": "Henry Loomis",
-   "person_id": "loomis_henry",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e1611",
-    "as_printed": "Loomis, Horatio Gates, at C. L. Harmon's, res s.-w. cor State and Wash",
-    "page": "fergus_1843_page_003",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "at C. L. Harmon's",
-    "address_1843": "res s.-w. cor State and Wash",
-    "death_note_1843": null,
-    "forename_1835": "Henry",
-    "forename_printed": "Horatio",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'Henry' against 'Horatio'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
    "resident": "James B Campbell",
    "person_id": "campbell_james_b",
    "grade_1835": "attested",
@@ -10672,25 +10097,6 @@
    }
   },
   {
-   "resident": "James H Murray",
-   "person_id": "murray_james_h",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e1868",
-    "as_printed": "Murray, John, laborer, res West Water, bet Canal and Clinton",
-    "page": "fergus_1843_page_003",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "laborer",
-    "address_1843": "res West Water, bet Canal and Clinton",
-    "death_note_1843": null,
-    "forename_1835": "James",
-    "forename_printed": "John",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
    "resident": "James Kinzie",
    "person_id": "kinzie_james",
    "grade_1835": "attested",
@@ -10726,101 +10132,6 @@
     "forename_printed": "John",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "James Smith",
-   "person_id": "smith_james",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e2297",
-    "as_printed": "Smith, John E,, clerk, Benjamin F. Sherman",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "clerk, Benjamin F. Sherman",
-    "address_1843": null,
-    "death_note_1843": null,
-    "forename_1835": "James",
-    "forename_printed": "John",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "James Smith",
-   "person_id": "smith_james",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e2298",
-    "as_printed": "Smith, John L,, clerk, Humphreys & Winslow",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "clerk, Humphreys & Winslow",
-    "address_1843": null,
-    "death_note_1843": null,
-    "forename_1835": "James",
-    "forename_printed": "John",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "James Smith",
-   "person_id": "smith_james",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e2299",
-    "as_printed": "Smith, John M., hatter, L, P, Sanger & Co,, res Clark",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "hatter, L, P, Sanger & Co",
-    "address_1843": "res Clark",
-    "death_note_1843": null,
-    "forename_1835": "James",
-    "forename_printed": "John",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "James Smith",
-   "person_id": "smith_james",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e2300",
-    "as_printed": "Smith, John T,, auctioneer, John Bates, jr., bds same",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "auctioneer, John Bates, jr",
-    "address_1843": "bds same",
-    "death_note_1843": null,
-    "forename_1835": "James",
-    "forename_printed": "John",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'James' against 'John'. An initial standing against a full name is a match; two full names that differ are not."
-   }
-  },
-  {
-   "resident": "James Smith",
-   "person_id": "smith_james",
-   "grade_1835": "attested",
-   "entry_1843": {
-    "claim": "f1843_e2301",
-    "as_printed": "Smith, Joseph Flint (Skinner & S,), Mansion House",
-    "page": "fergus_1843_page_004",
-    "section": "alphabetical directory",
-    "trade_heading": null,
-    "occupation_1843": "(Skinner & S,), Mansion House",
-    "address_1843": null,
-    "death_note_1843": null,
-    "forename_1835": "James",
-    "forename_printed": "Joseph",
-    "garbled_reading": false,
-    "rule": "Both readings print a full forename and the two disagree: 'James' against 'Joseph'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {
