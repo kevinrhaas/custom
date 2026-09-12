@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'West Water Street reaches past Wolf Point and stops at a house', kind: 'change', ts: '',
+  { v: 791, title: 'West Water Street reaches past Wolf Point and stops at a house', kind: 'change', ts: '2026-09-12T17:55:29.143Z', date: 'Sep 12, 2026, 12:55 PM CT',
     items: [
       'The West Division\u2019s riverfront street was seated a week ago off the committed 1834 waterline, and it ended where the bank turns west into the pool at Wolf Point, because a street carried past the turn runs through the buildings there. True \u2014 but nobody had measured how far past the turn it gets FIRST. It gets 39.55 m, and the town has been short that frontage for no reason.',
       'Two numbers say why it mattered. West Lake Street\u2019s north kerb stands at local north \u2212 97.41 where the two streets meet; the old end of West Water stood at \u2212 104.20. The street did not merely stop short \u2014 it terminated INSIDE the Lake Street crossing. So the one address the 1839 directory prints for this reach, \u201cW. Water st north of West Lake st\u201d, had nothing at all to stand on: zero metres of street north of Lake.',
