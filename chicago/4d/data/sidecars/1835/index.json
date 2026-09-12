@@ -6575,6 +6575,264 @@
           ]
         }
       ]
+    },
+    {
+      "id": "michigan_st_tract_road",
+      "name_1835": "The road to the Michigan St tract",
+      "name_2026": null,
+      "name_changed": false,
+      "path_local_enu_m": [
+        [
+          170.9,
+          397.32
+        ],
+        [
+          168.47,
+          391.83
+        ],
+        [
+          164.82,
+          383.59
+        ],
+        [
+          157.93,
+          375.21
+        ],
+        [
+          153.64,
+          366.95
+        ],
+        [
+          150.36,
+          358.73
+        ],
+        [
+          147.13,
+          350.51
+        ],
+        [
+          144.44,
+          342.32
+        ],
+        [
+          143.09,
+          334.19
+        ],
+        [
+          141.49,
+          326.04
+        ],
+        [
+          140.54,
+          317.93
+        ],
+        [
+          138.64,
+          309.77
+        ],
+        [
+          137.65,
+          301.66
+        ],
+        [
+          137.75,
+          293.59
+        ],
+        [
+          137.89,
+          285.53
+        ],
+        [
+          137.68,
+          277.45
+        ],
+        [
+          137.89,
+          269.39
+        ],
+        [
+          139.34,
+          261.38
+        ],
+        [
+          141.43,
+          253.95
+        ],
+        [
+          142.8,
+          248.11
+        ],
+        [
+          144.69,
+          242.28
+        ],
+        [
+          146.96,
+          236.47
+        ],
+        [
+          150.37,
+          230.7
+        ],
+        [
+          154.17,
+          224.94
+        ],
+        [
+          159.72,
+          219.23
+        ],
+        [
+          163.83,
+          213.48
+        ],
+        [
+          167.16,
+          207.71
+        ],
+        [
+          172.4,
+          201.99
+        ],
+        [
+          176.43,
+          196.24
+        ],
+        [
+          180.09,
+          190.47
+        ],
+        [
+          184.1,
+          184.72
+        ],
+        [
+          187.56,
+          178.95
+        ],
+        [
+          190.17,
+          173.15
+        ],
+        [
+          191.53,
+          167.31
+        ],
+        [
+          192.22,
+          161.44
+        ],
+        [
+          192.95,
+          157.5
+        ]
+      ],
+      "corridor_width_m": 12.22,
+      "track_width_m": 6.0,
+      "surface": "light_worn_earth",
+      "traffic": "light",
+      "geometry_confidence": "reconstructed",
+      "surface_confidence": "reconstructed",
+      "wear_confidence": "reconstructed",
+      "note": "THE ONE ROAD WRIGHT DRAWS NORTH OF THE RIVER, and it is drawn, not reconstructed. On the 1834 Wright sheet a single curved DOUBLE LINE leaves the north bank of the Main Branch a little east of Market Street, crosses North Water Street and Kinzie Street, bulges west, and ends at the Michigan St tract's Michigan Street. Apart from the fort's road on the reservation it is the only line on that sheet that is a road rather than a platted street, and what tells it from a street is that it CURVES and cuts diagonally across platted blocks and lot lines. Traced by tools/read_michigan_st_tract_road.py and committed in data/traces/michigan_st_tract_road.json, where every parameter of the trace is stated and `--check-sheet` re-runs it against the raster. IT ENDS AT MICHIGAN STREET and does not run north through the tract: both strokes stop inside that street's corridor and the tract's north tier is ruled across with no road in it. T-1075 was filed on the opposite premise and the sheet refuses it. GEOMETRY is `reconstructed` and not `attested` because the seating is the invention, not the line. The road spans two regimes of this sheet's fit: south of Kinzie the fit is good here — the drawn rule carrying Kinzie's south kerb falls 8.17 m from the committed kerb, inside the registration's own 16.19 m RMS — while north of Kinzie it lies inside the Michigan St tract, which T-1079 seats 38 m north of where this sheet draws it. So the correction applied is ZERO at the Kinzie crossing and grows linearly, in the sheet's own northing, to [-14.0, 36.45] m at Michigan Street, which is the tract's own committed seating offset re-derived at this road's north end. All of Wright's compression is put where the project already says it is and none of it is spread over ground the sheet gets right. THE TWO ENDS are carried onto the committed lines the road meets: 6.0 m north onto `michigan_north_tract`, because the drawn strokes stop inside that street's corridor; and 8.3 m back at the foot onto `north_water`, because the drawn junction with the river bank falls that far south of the committed street. CORRIDOR 12.22 m is the mean gap between the two drawn stroke centres over 36 rows (sd 2.66 m, 7.08-18.59 m). A hand-drawn double line on a manuscript sheet carries no platted width and none is taken from it; the figure is reported because the sheet measures it, not because the road was built to it. TRACK WIDTH, SURFACE AND WEAR ARE INVENTED, and `reconstructed` is the weakest grade this table carries: no source describes this road's surface or its wear, and the values simply follow `north_water`'s, the street the road ends on, because a road that ends on it carried no more traffic than it did. Recorded in docs/LIBERTIES.md. THE NAME IS REFUSED. No source in this repository names this road, and none names the tract it ends in — Wolcott's Addition, the one candidate the corpus raises, is refused twice over in docs/RESEARCH/michigan_st_tract.md: on size, and on date, because Moses & Kirkland put its platting AFTER the canal commissioners' June 1836 addition, two years past this survey. `name_1835` is DESCRIPTIVE, not a proper name. T-1080, piece 2 of T-1075.",
+      "citations": [
+        {
+          "source_id": "chicago_dpw_1891_streets",
+          "citation": "Chicago Department of Public Works. Fifteenth Annual Report of the Department of Public Works to the Mayor and City Council of the City of Chicago, for the Fiscal Year Ending December 31, 1890. Chicago, 1891.",
+          "url": "https://archive.org/details/258unkngoog",
+          "archived_url": "https://archive.org/stream/258unkngoog/258unkngoog_djvu.txt",
+          "tier": 3,
+          "tier_label": "compiled secondary (Andreas)",
+          "what_it_supplies": [
+            "the official chronology of early Chicago street grading and turnpiking",
+            "South Water Street's 1833-34 pitching and drainage-grading orders",
+            "South Water and Lake Streets as the two principal early improved thoroughfares",
+            "the later dates that rule out plank, limestone block, macadam, and cobblestone surfaces on 1 July 1835",
+            "the fall 1836 date for turnpiking Canal Street, Lake Street west to Desplaines, and Randolph Street"
+          ],
+          "what_it_does_not_supply": [
+            "a measured carriageway width, crown, rut spacing, soil colour, or cut-and-fill profile",
+            "proof that Hubbard's La Salle Street work was complete by 1 July 1835",
+            "a license to render every platted street as improved or equally travelled",
+            "street centreline geometry"
+          ]
+        },
+        {
+          "source_id": "hathaway_1834",
+          "citation": "Hathaway, Joshua. Chicago with the School Section, Wabansia, and Kinzie's Addition. 1834.",
+          "url": "https://www.loc.gov/item/2008621683/",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "platted extent"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "osm_streets_2026",
+          "citation": "OpenStreetMap contributors. Street centerline intersection nodes for downtown Chicago, retrieved via the Overpass API, 2026-08-09.",
+          "url": "https://www.openstreetmap.org/",
+          "archived_url": "https://overpass-api.de/",
+          "tier": 4,
+          "tier_label": "later scholarship"
+        },
+        {
+          "source_id": "thompson_plat_1830",
+          "citation": "Thompson, James. Plat of the Town of Chicago. Illinois and Michigan Canal Commissioners, completed 4 August 1830.",
+          "url": "https://commons.wikimedia.org/wiki/File:Thompson_plat_of_Chicago_1830.png",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness"
+        },
+        {
+          "source_id": "wright_1834",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey. New York: P. A. Mesier's Lith., 1834.",
+          "url": "https://collections.leventhalmap.org/search/commonwealth:js9577436",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations"
+          ]
+        },
+        {
+          "source_id": "wright_1834_nara_hup",
+          "citation": "Wright, J. S. Chicago, drawn by J. S. Wright according to survey, 1834. Manuscript survey, National Archives, Washington, D.C. Facsimile reproduction, Historic Urban Plans, Ithaca, New York.",
+          "url": "",
+          "archived_url": "",
+          "tier": 1,
+          "tier_label": "period/eyewitness",
+          "what_it_supplies": [
+            "block numerals of the Original Town, legible at 600 dpi",
+            "street geometry",
+            "block and lot subdivision",
+            "shoreline",
+            "river channel and the 1834 cut",
+            "survey-date colouring",
+            "the sheet's scale of feet"
+          ],
+          "what_it_does_not_supply": [
+            "building footprints",
+            "building locations",
+            "anything inside the two boxed lacunae",
+            "an independent survey — it is the same drawing as wright_1834 and is never a second witness to it"
+          ]
+        }
+      ]
     }
   ],
   "structures": [

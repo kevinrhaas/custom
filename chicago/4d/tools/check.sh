@@ -314,6 +314,15 @@ step "the Michigan St tract's reading re-derives from its own pixels" \
 step "the Michigan St tract is still seated on the two committed lines it was hung from" \
   python3 tools/seat_michigan_st_tract.py --check
 
+# ...and the ROAD that ends in it (T-1080), which is the only line on Wright's sheet north
+# of the river that is a road and not a platted street. Its seating is the sharper version
+# of the temptation above: the road spans both regimes of this sheet's fit, so the
+# correction applied to it is zero at the Kinzie crossing and the tract's own 36 m offset at
+# Michigan Street. Move either datum street, re-seat the tract, or hand-nudge a vertex, and
+# this stops re-deriving. The raster half is `--check-sheet` and the PR runs it.
+step "the Michigan St tract's road re-derives from its traced pixels" \
+  python3 tools/read_michigan_st_tract_road.py --check
+
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed
 # lot polygons, so a hand-nudged building would show up here as drift rather than as a
