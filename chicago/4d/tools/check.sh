@@ -2437,6 +2437,23 @@ step "every business carries a census class, and the December 1835 count re-deri
 selftest "…and its own assertions still fire when broken" \
   python3 tools/trade_census_1835.py --self-test
 
+# T-1048 (of T-1047, of T-1040). `in_town_places()` resolves a place string against the bare
+# town, the committed 1835 streets and the committed structure names — and 193 of the
+# gazetteer's 2,665 persons carry nothing that resolves. The list is NOT 193 out-of-town men:
+# `Fort Dearborn`, `Water Street`, `the Mansion House` and `the corner of Water and Franklin
+# streets, Chicago` are all in the town and all fail it. So the vocabulary is resolved once
+# per printed string in data/research/newspapers/place_vocabulary.json — derived against the
+# committed dataset where it can be, ruled with its reasoning where it cannot — and this holds
+# that resolution to both ends: A STRING THE PAPERS PRINT AND NOBODY HAS RESOLVED, which is
+# what a newly extracted notice brings next week, and A DERIVATION THE DATASET NO LONGER
+# MAKES, which is what renaming a street or a building does to it. It also restates every
+# count in the file, so the measurement T-1049 argues from cannot go stale unnoticed.
+step "every place the newspapers print is resolved inside the town, outside it, or undecided" \
+  python3 tools/resolve_place_vocabulary.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/resolve_place_vocabulary.py --self-test
+
 # T-1007 (of T-0988). The other half: SPENDING the gap T-1006 measured. The business
 # register is compiled from printed NOTICES, so its four physician records were four
 # physician advertisements — and five more doctors sat on resident cards off Andreas and
