@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The last tier of the Original Town, numbered', kind: 'change', ts: '',
+  { v: 805, title: 'The last tier of the Original Town, numbered', kind: 'change', ts: '2026-09-12T23:54:11.889Z', date: 'Sep 12, 2026, 6:54 PM CT',
     items: [
       'Wright writes a number across the middle of every block of the Original Town, and this project reads them one way only \u2014 it asks the georeference for a crop cut from that block\u2019s own committed street lines and reports the numeral that falls inside it. Madison Street landed yesterday, which closes the plat\u2019s southernmost tier, so the tier between Washington Street and Madison Street was cut and read: 52 53 54 55 56 57 58, west to east.',
       'That run RISES eastward, which is the one thing here that could be predicted before it was read. The three tiers above it fall, rise and fall \u2014 the numbering turns at the end of each row like a plough \u2014 so a fourth tier has to rise. It does. Nothing was arranged: the numerals were read block by block off their own crops, and 52 came out at the river end.',
