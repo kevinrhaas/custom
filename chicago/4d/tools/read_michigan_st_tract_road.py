@@ -76,6 +76,14 @@ STEPS_NORTH = 24
 PY_NORTH_INK = 1987.0          # the northernmost row both strokes are separable on
 PY_SOUTH_INK = 2272.0          # the node where the road meets the drawn river bank
 PY_SAMPLE = 8                  # the trace is reported every 8 px of northing
+# The committed centreline is the traced one thinned. At 8 px of northing the trace
+# stations every ~6 m, which is SHORTER than the ribbon's own half-width, and the
+# renderer's mitre cannot cover a joint whose neighbours stand closer than that — T-0184's
+# wedge check caught exactly one such joint on the dense line. Thinning is a RENDERING
+# decision and not a claim, so it is bounded twice and the cost is reported: Douglas-Peucker
+# at 1.0 m, then no station closer than 15 m to the last one kept.
+SIMPLIFY_TOLERANCE_M = 1.0
+MIN_SEGMENT_M = 14.0
 
 # --- the sheet's own lines this reading is hung on (all from T-1076's reading) -------
 PY_KINZIE_SOUTH_RULE = 2121.0  # the block tier's north edge = Kinzie Street's south side
@@ -278,6 +286,7 @@ def derive(rows):
     seated_ext = [north_pt] + body + [south_pt]
     kinzie_kerb_residual = round(n_kinzie[1] - (kinzie_n(n_kinzie[0]) - corridor / 2), 2)
 
+    simple, dev = _simplify(seated_ext, MIN_SEGMENT_M)
     length = sum(math.dist(p, q) for p, q in zip(seated_ext, seated_ext[1:]))
     mean_w = sum(widths) / len(widths)
     sd_w = (sum((w - mean_w) ** 2 for w in widths) / len(widths)) ** 0.5
@@ -285,6 +294,8 @@ def derive(rows):
         "centre_px": centre_px,
         "centre_sheet_local_enu_m": [[round(x, 2), round(y, 2)] for x, y in centre_sheet],
         "seated_local_enu_m": seated_ext,
+        "committed_local_enu_m": simple,
+        "committed_max_departure_m": round(dev, 2),
         "corridor_m": {"mean": round(mean_w, 2), "sd": round(sd_w, 2),
                        "min": round(min(widths), 2), "max": round(max(widths), 2)},
         "seating": {
@@ -300,6 +311,40 @@ def derive(rows):
         "length_m": round(length, 1),
         "m_per_px": round(m_per_px, 5),
     }
+
+
+def _dp(pts, tol):
+    if len(pts) < 3:
+        return list(pts)
+    a, b = pts[0], pts[-1]
+    i, dm = max(((i, _seg_dist(p, a, b)) for i, p in enumerate(pts[1:-1], 1)), key=lambda x: x[1])
+    if dm <= tol:
+        return [a, b]
+    return _dp(pts[:i + 1], tol)[:-1] + _dp(pts[i:], tol)
+
+
+def _simplify(poly, min_seg):
+    """Thin a polyline to stations at least `min_seg` apart; report the worst departure."""
+    thinned = _dp(poly, SIMPLIFY_TOLERANCE_M)
+    keep = [thinned[0]]
+    for pt in thinned[1:-1]:
+        if math.dist(keep[-1], pt) >= min_seg:
+            keep.append(pt)
+    if math.dist(keep[-1], thinned[-1]) < min_seg and len(keep) > 1:
+        keep.pop()
+    keep.append(thinned[-1])
+    worst = 0.0
+    for pt in poly:
+        d = min(_seg_dist(pt, a, b) for a, b in zip(keep, keep[1:]))
+        worst = max(worst, d)
+    return keep, worst
+
+
+def _seg_dist(p, a, b):
+    vx, vy = b[0] - a[0], b[1] - a[1]
+    L2 = vx * vx + vy * vy
+    t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((p[0] - a[0]) * vx + (p[1] - a[1]) * vy) / L2))
+    return math.dist(p, (a[0] + t * vx, a[1] + t * vy))
 
 
 def _interp_x(rows, py):
@@ -333,7 +378,8 @@ def main():
     if args.check:
         have = json.loads(OUT.read_text())
         bad = []
-        for k in ("seated_local_enu_m", "centre_sheet_local_enu_m", "length_m", "corridor_m"):
+        for k in ("seated_local_enu_m", "committed_local_enu_m", "committed_max_departure_m",
+                  "centre_sheet_local_enu_m", "length_m", "corridor_m"):
             if json.dumps(have[k], sort_keys=True) != json.dumps(got[k], sort_keys=True):
                 bad.append(k)
         print("--check:", "re-derives" if not bad else f"DISAGREES on {bad}")

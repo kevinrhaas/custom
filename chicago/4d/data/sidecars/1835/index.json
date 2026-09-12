@@ -6587,140 +6587,32 @@
           397.32
         ],
         [
-          168.47,
-          391.83
-        ],
-        [
           164.82,
           383.59
-        ],
-        [
-          157.93,
-          375.21
         ],
         [
           153.64,
           366.95
         ],
         [
-          150.36,
-          358.73
-        ],
-        [
-          147.13,
-          350.51
-        ],
-        [
           144.44,
           342.32
-        ],
-        [
-          143.09,
-          334.19
-        ],
-        [
-          141.49,
-          326.04
-        ],
-        [
-          140.54,
-          317.93
-        ],
-        [
-          138.64,
-          309.77
         ],
         [
           137.65,
           301.66
         ],
         [
-          137.75,
-          293.59
-        ],
-        [
-          137.89,
-          285.53
-        ],
-        [
-          137.68,
-          277.45
-        ],
-        [
           137.89,
           269.39
-        ],
-        [
-          139.34,
-          261.38
-        ],
-        [
-          141.43,
-          253.95
-        ],
-        [
-          142.8,
-          248.11
-        ],
-        [
-          144.69,
-          242.28
         ],
         [
           146.96,
           236.47
         ],
         [
-          150.37,
-          230.7
-        ],
-        [
-          154.17,
-          224.94
-        ],
-        [
-          159.72,
-          219.23
-        ],
-        [
-          163.83,
-          213.48
-        ],
-        [
-          167.16,
-          207.71
-        ],
-        [
-          172.4,
-          201.99
-        ],
-        [
-          176.43,
-          196.24
-        ],
-        [
-          180.09,
-          190.47
-        ],
-        [
-          184.1,
-          184.72
-        ],
-        [
           187.56,
           178.95
-        ],
-        [
-          190.17,
-          173.15
-        ],
-        [
-          191.53,
-          167.31
-        ],
-        [
-          192.22,
-          161.44
         ],
         [
           192.95,
@@ -6734,7 +6626,7 @@
       "geometry_confidence": "reconstructed",
       "surface_confidence": "reconstructed",
       "wear_confidence": "reconstructed",
-      "note": "THE ONE ROAD WRIGHT DRAWS NORTH OF THE RIVER, and it is drawn, not reconstructed. On the 1834 Wright sheet a single curved DOUBLE LINE leaves the north bank of the Main Branch a little east of Market Street, crosses North Water Street and Kinzie Street, bulges west, and ends at the Michigan St tract's Michigan Street. Apart from the fort's road on the reservation it is the only line on that sheet that is a road rather than a platted street, and what tells it from a street is that it CURVES and cuts diagonally across platted blocks and lot lines. Traced by tools/read_michigan_st_tract_road.py and committed in data/traces/michigan_st_tract_road.json, where every parameter of the trace is stated and `--check-sheet` re-runs it against the raster. IT ENDS AT MICHIGAN STREET and does not run north through the tract: both strokes stop inside that street's corridor and the tract's north tier is ruled across with no road in it. T-1075 was filed on the opposite premise and the sheet refuses it. GEOMETRY is `reconstructed` and not `attested` because the seating is the invention, not the line. The road spans two regimes of this sheet's fit: south of Kinzie the fit is good here — the drawn rule carrying Kinzie's south kerb falls 8.17 m from the committed kerb, inside the registration's own 16.19 m RMS — while north of Kinzie it lies inside the Michigan St tract, which T-1079 seats 38 m north of where this sheet draws it. So the correction applied is ZERO at the Kinzie crossing and grows linearly, in the sheet's own northing, to [-14.0, 36.45] m at Michigan Street, which is the tract's own committed seating offset re-derived at this road's north end. All of Wright's compression is put where the project already says it is and none of it is spread over ground the sheet gets right. THE TWO ENDS are carried onto the committed lines the road meets: 6.0 m north onto `michigan_north_tract`, because the drawn strokes stop inside that street's corridor; and 8.3 m back at the foot onto `north_water`, because the drawn junction with the river bank falls that far south of the committed street. CORRIDOR 12.22 m is the mean gap between the two drawn stroke centres over 36 rows (sd 2.66 m, 7.08-18.59 m). A hand-drawn double line on a manuscript sheet carries no platted width and none is taken from it; the figure is reported because the sheet measures it, not because the road was built to it. TRACK WIDTH, SURFACE AND WEAR ARE INVENTED, and `reconstructed` is the weakest grade this table carries: no source describes this road's surface or its wear, and the values simply follow `north_water`'s, the street the road ends on, because a road that ends on it carried no more traffic than it did. Recorded in docs/LIBERTIES.md. THE NAME IS REFUSED. No source in this repository names this road, and none names the tract it ends in — Wolcott's Addition, the one candidate the corpus raises, is refused twice over in docs/RESEARCH/michigan_st_tract.md: on size, and on date, because Moses & Kirkland put its platting AFTER the canal commissioners' June 1836 addition, two years past this survey. `name_1835` is DESCRIPTIVE, not a proper name. T-1080, piece 2 of T-1075.",
+      "note": "THE ONE ROAD WRIGHT DRAWS NORTH OF THE RIVER, and it is drawn, not reconstructed. On the 1834 Wright sheet a single curved DOUBLE LINE leaves the north bank of the Main Branch a little east of Market Street, crosses North Water Street and Kinzie Street, bulges west, and ends at the Michigan St tract's Michigan Street. Apart from the fort's road on the reservation it is the only line on that sheet that is a road rather than a platted street, and what tells it from a street is that it CURVES and cuts diagonally across platted blocks and lot lines. Traced by tools/read_michigan_st_tract_road.py and committed in data/traces/michigan_st_tract_road.json, where every parameter of the trace is stated and `--check-sheet` re-runs it against the raster. IT ENDS AT MICHIGAN STREET and does not run north through the tract: both strokes stop inside that street's corridor and the tract's north tier is ruled across with no road in it. T-1075 was filed on the opposite premise and the sheet refuses it. GEOMETRY is `reconstructed` and not `attested` because the seating is the invention, not the line. The road spans two regimes of this sheet's fit: south of Kinzie the fit is good here — the drawn rule carrying Kinzie's south kerb falls 8.17 m from the committed kerb, inside the registration's own 16.19 m RMS — while north of Kinzie it lies inside the Michigan St tract, which T-1079 seats 38 m north of where this sheet draws it. So the correction applied is ZERO at the Kinzie crossing and grows linearly, in the sheet's own northing, to [-14.0, 36.45] m at Michigan Street, which is the tract's own committed seating offset re-derived at this road's north end. All of Wright's compression is put where the project already says it is and none of it is spread over ground the sheet gets right. THE TWO ENDS are carried onto the committed lines the road meets: 6.0 m north onto `michigan_north_tract`, because the drawn strokes stop inside that street's corridor; and 8.3 m back at the foot onto `north_water`, because the drawn junction with the river bank falls that far south of the committed street. THE COMMITTED CENTRELINE IS THE TRACE THINNED, and that is a rendering decision rather than a claim: the trace stations every ~6 m, which is shorter than this ribbon's own half-width, and a joint whose neighbours stand that close cannot be mitred. Thinned to 9 stations (Douglas-Peucker at 1.0 m, then no station within 14 m of the last), the committed line departs from the full trace by at most 1.12 m — against this registration's own 16.19 m RMS. The full 36-station line is in the trace file. CORRIDOR 12.22 m is the mean gap between the two drawn stroke centres over 36 rows (sd 2.66 m, 7.08-18.59 m). A hand-drawn double line on a manuscript sheet carries no platted width and none is taken from it; the figure is reported because the sheet measures it, not because the road was built to it. TRACK WIDTH, SURFACE AND WEAR ARE INVENTED, and `reconstructed` is the weakest grade this table carries: no source describes this road's surface or its wear, and the values simply follow `north_water`'s, the street the road ends on, because a road that ends on it carried no more traffic than it did. Recorded in docs/LIBERTIES.md. THE NAME IS REFUSED. No source in this repository names this road, and none names the tract it ends in — Wolcott's Addition, the one candidate the corpus raises, is refused twice over in docs/RESEARCH/michigan_st_tract.md: on size, and on date, because Moses & Kirkland put its platting AFTER the canal commissioners' June 1836 addition, two years past this survey. `name_1835` is DESCRIPTIVE, not a proper name. T-1080, piece 2 of T-1075.",
       "citations": [
         {
           "source_id": "chicago_dpw_1891_streets",
