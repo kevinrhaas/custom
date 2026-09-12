@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The little plat north of Kinzie is seated on the town\u2019s grid', kind: 'feat', ts: '',
+  { v: 786, title: 'The little plat north of Kinzie is seated on the town\u2019s grid', kind: 'feat', ts: '2026-09-12T15:22:15.740Z', date: 'Sep 12, 2026, 10:22 AM CT',
     items: [
       'Yesterday the small tract north of Kinzie Street \u2014 two columns of blocks, an alley down the middle of every one, a street lettered Michigan St \u2014 was read off Wright\u2019s 1834 survey and found to be platted on the town\u2019s own grid. Reading it is not the same as knowing where it is: its lines existed as pixel positions and as a warp of that sheet onto modern ground, and the town\u2019s streets do not come from that warp. It is seated now \u2014 four lines and a polygon committed, and the gate re-derives both every run.',
       'Its two streets are committed as what the reading says they are \u2014 Michigan Street and Market Street \u2014 on the exact lines this project already draws them on, carried west and north on their own bearings. They are separate records rather than longer ones, and that is the honest shape: Wright leaves 236 m of blank, unsurveyed paper between this tract and Kinzie\u2019s Addition, and a line drawn across ground no sheet plats would be an invention.',
