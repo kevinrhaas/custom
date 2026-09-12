@@ -24,20 +24,20 @@
   },
   "corners_local_enu_m": {
     "nw": [
-      14.24,
-      478.36
+      9.93,
+      478.24
     ],
     "ne": [
-      214.19,
-      476.77
+      209.87,
+      477.05
     ],
     "sw": [
-      12.95,
-      320.96
+      8.64,
+      320.84
     ],
     "se": [
-      212.89,
-      319.38
+      208.58,
+      319.65
     ]
   },
   "blocks": {
@@ -58,17 +58,17 @@
     "note": "Two block columns either side of Market Street, two tiers either side of Michigan Street, each block ruled through by a mid-block alley. The lot LINES are read and committed in the reading; they are not seated here because a lot line is a division of a block and the block's own borders are what this file places."
   },
   "detached_reaches_m": {
-    "blank_ground_east_to_kinzies_addition": 236.5,
+    "blank_ground_east_to_kinzies_addition": 240.8,
     "blank_ground_south_to_the_north_division": 60.5,
     "note": "Wright leaves both spans unsurveyed and unruled. Michigan Street and Market Street are each committed as two records for that reason."
   },
   "cost_of_seating_m": {
     "tract_south_border_north_of_kinzie_seated": 60.51,
-    "tract_south_border_north_of_kinzie_on_the_sheets_fit": 21.98,
-    "disagreement": 38.53,
+    "tract_south_border_north_of_kinzie_on_the_sheets_fit": 21.94,
+    "disagreement": 38.57,
     "kinzie_to_michigan_committed_m": 138.11,
-    "kinzie_to_michigan_on_the_sheets_fit_m": 99.93,
-    "note": "The seating is preferred and the disagreement is Wright's. Measured north of the committed Kinzie line in the one frame both answers are already in, the committed grid puts Michigan Street 138.11 m away and this sheet's fit puts it 99.93 m away. Thompson's plat draws exactly ONE tier of North Division blocks in that span, fronting Kinzie on the south and Michigan on the north, so the span has to hold a block plus an 80 ft street: 453 ft does and 328 ft does not. Hanging the ladder on `kinzie` instead would have kept the drawn frontage and committed a second Michigan Street 38 m south of the first, which is exactly what the reading's identification refuses."
+    "kinzie_to_michigan_on_the_sheets_fit_m": 99.89,
+    "note": "The seating is preferred and the disagreement is Wright's. Measured north of the committed Kinzie line in the one frame both answers are already in, the committed grid puts Michigan Street 138.11 m away and this sheet's fit puts it 99.89 m away. Thompson's plat draws exactly ONE tier of North Division blocks in that span, fronting Kinzie on the south and Michigan on the north, so the span has to hold a block plus an 80 ft street: 453 ft does and 328 ft does not. Hanging the ladder on `kinzie` instead would have kept the drawn frontage and committed a second Michigan Street 38 m south of the first, which is exactly what the reading's identification refuses."
   },
   "open": [
     "T-1080 — the tract's NAME and who platted it: not settled. `Wolcott's Addition` is the one candidate the corpus raises and the corpus also refuses it on size. See docs/RESEARCH/michigan_st_tract.md.",
