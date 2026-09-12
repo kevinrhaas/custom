@@ -11015,26 +11015,34 @@ would misdescribe a paid trade as a public utility · no waterman, no team, no p
 leathern hose (**L1**) · and no worn cart track, because a track is terrain and the committed
 heightfield is derived and gated, and cutting ruts into it to illustrate a sentence would put
 an invention inside a surface whose whole value is that it is not invented.
-**And the model contradicts the source about the water itself, which is recorded here rather
-than resolved:** Andreas says *the lake*, and on this project's committed 1834 surfaces the
-water at the foot of Randolph is not the lake — land runs to east 1224, water from there to
-about 1305, the **sand bar** stands dry at about +1.23 m from 1320 to 1470, and the open lake
-begins only beyond east 1478, 254 m further out. So the cart stands at the old southward
-channel behind the bar: the river-fed water the same sentence has the settlers turning away
-from. Three readings are open — that *"the lake"* is loose for the water at the end of
-Randolph, that the old channel was closed or fordable by July 1835 (Wright draws it
-narrowing and nothing in this repository dates it), or that the carts crossed the bar and the
-street name marks where they left the town. The record picks none.
-**How to resolve:** a dated account of the old southward channel's state in 1835 settles the
-water. A city or county record of licensed watermen, or a newspaper advertisement for one,
-would give the trade a count, a name and possibly a stand — and would turn the cart from
-`reconstructed` into something argued.
+**And the model contradicts the source about the water itself, which T-0886 ruled on without
+moving the cart:** Andreas says *the lake*, and on this project's committed 1834 surfaces the
+water at the foot of Randolph is not the lake — land runs to east 1223.8, water from there to
+1305.5, the **sand bar** stands dry to +1.24 m from 1305.8 to 1469.5, and the open lake begins
+only beyond east 1469.8, 246 m further out. So the cart stands at the old southward channel
+behind the bar: the river-fed water the same sentence has the settlers turning away from.
+**The reading adopted is that his phrase names a stretch of bank and the stretch reaches the
+lake** — *"generally at the foot of Randolph Street"* — because the traced bar has a drawn
+south tip at north -436.0, and along the committed shore that tip is a **167.0 m** walk from
+the cart, against 245.5 m of channel and bar to cross on the transect. The other two readings
+are refused for want of anything behind them: nothing in this repository dates the channel
+(the hydrology dossier grades its 1835 state `conjectural`), and a ford of 81.5 m at 1.18 m is
+not a crossing a trade makes daily. **The cart does not move to the tip**, which is ground no
+source names and ground this epoch does not model — the box stops at north -400 — so standing
+it there would trade the one place Andreas names for one the model chose. The weighing is
+`docs/RESEARCH/wells.md` § 5 and `tools/measure_watering_place.py --gate` holds every number
+in it against the committed surfaces.
+**How to resolve:** a dated account of the old southward channel's state in 1835 would still
+be worth having — it would replace an argued reading with a documented one. A city or county
+record of licensed watermen, or a newspaper advertisement for one, would give the trade a
+count, a name and possibly a stand — and would turn the cart from `reconstructed` into
+something argued.
 Related: **L146** (the boats: the same grade for the same shape of claim, an attested class
 with unknowable individuals) · **L162** (the town's sixty-eight unhitched vehicles, whose
 cart this one reuses) · **L131** (the yard layer's barrels and the no-mark rule) · **L1** (no
 figure and no animal is drawn) · tickets **T-0759** (this), **T-0592** (the reading that
-found the trade and left it undrawn).
-**Recorded:** 2026-09-06 (T-0759).
+found the trade and left it undrawn), **T-0886** (the water ruled on).
+**Recorded:** 2026-09-06 (T-0759) · **amended:** 2026-09-11 (T-0886, the water).
 
 ### L228 — A plural label, two drawn blocks, and everything above the ground invented
 **Decision:** `fort_dearborn_out_building_a` and `fort_dearborn_out_building_b` stand about
