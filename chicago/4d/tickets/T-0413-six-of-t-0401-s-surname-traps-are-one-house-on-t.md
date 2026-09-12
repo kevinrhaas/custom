@@ -1,7 +1,7 @@
 ---
 id: T-0413
 title: Six of T-0401's surname traps are one house on the printings, and the merge is unwritten
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-11
+pr: 1163
 claimed_by: run 9/11/2026, 7:54:00 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T01:43:31.524Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34663007218
 ---
 
