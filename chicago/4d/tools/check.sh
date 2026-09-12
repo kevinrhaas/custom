@@ -86,6 +86,13 @@ step "the traced forks still carry what their generator writes" \
 step "the traced South Branch still carries what its generator writes" \
   python3 tools/trace_south_branch.py --check-properties
 
+# ...and for the North Branch north of it (T-1072). Two tools write one
+# branches.geojson through tools/branches_file.py, and each of these two steps
+# also holds the collection's shared fields and its declared feature order, so
+# a writer that dropped the other's reach is caught by BOTH of them.
+step "the traced North Branch still carries what its generator writes" \
+  python3 tools/trace_north_branch.py --check-properties
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
