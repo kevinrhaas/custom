@@ -145,8 +145,22 @@ NOT_1835 = {
 }
 
 # A word that introduces a residence rather than a place of business. `res` and
-# `bds` are the directories' own abbreviations for residence and boards-at.
-RESIDENCE_PREFIX = re.compile(r"^\s*(res\.?|bds\.?|boards)\b", re.I)
+# `bds` are the Fergus volumes' own abbreviations for residence and boards-at.
+#
+# NORRIS SETS THE SAME THING IN HIS OWN SHORTHAND, and until T-0987 stretch 6 this
+# pattern had never been asked about it: that volume's parse was refused entire, so no
+# `h` or `house` address ever reached clause 2 to be tested. The moment the refusal
+# became per-entry, `house N Water st (See card` — Silvester Marsh's HOME, printed
+# `house` in Norris's preface's own abbreviation for it — was placed as a business face
+# on North Water Street by the very clause written to refuse it. So the four words the
+# four volumes actually print are all here: `res`/`bds` (Fergus), `residence`/`house`
+# spelled out (Fergus 1843), and `h`/`r` (Norris, declared in his preface). The single
+# letters require a following space, so no street name beginning with one can match.
+#
+# `hou\S{0,2}e` is the archive.org reading of `house` with a mis-set character inside
+# it — `hou.«e` is in the corpus — and is the same word.
+RESIDENCE_PREFIX = re.compile(
+    r"^\s*(residence|res\.?|boards|bds\.?|house|hou\S{0,2}e|[hr](?=\s))\b", re.I)
 
 # The qualifiers that set a door against a second street, in two kinds. A
 # CORNER word claims the corner itself; an ANCHOR word ("near Dearborn", "north
@@ -323,8 +337,9 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
     # Clause 2, second half — a residence address is a different claim.
     if RESIDENCE_PREFIX.match(printed):
         row.update(outcome="refused", clause="2",
-                   reason="The directory prints this as a RESIDENCE — its own `res` or "
-                          "`bds` — and this pass positions businesses. Reading a home "
+                   reason="The directory prints this as a RESIDENCE — its own `res`, "
+                          "`bds`, `house` or Norris's `h` — and this pass positions "
+                          "businesses. Reading a home "
                           "address as a shop door would be the pass answering a question "
                           "nobody asked it. The residence half is T-0669.")
         return row
@@ -628,6 +643,22 @@ def self_test() -> int:
     # Clause 2: a residence is not a shop.
     want("res is a residence", one("res 15 Lake", "attorney", None), "refused", "2")
     want("bds is a residence", one("bds Tremont House", "merchant", None), "refused", "2")
+    # ...and Norris's own shorthand for the same word, which until T-0987 stretch 6 this
+    # clause had never been shown, because that volume's parse never reached it. The
+    # instance: `house N Water st` was PLACED as a business face on the one street in
+    # the town no other rule can seat a shop on.
+    want("house is a residence", one("house N Water st", "merchant", None), "refused", "2")
+    want("Norris's h is a residence", one("h Clark st. b Mad. & Mon", "attorney", None),
+         "refused", "2")
+    want("Norris's r is a residence", one("r Ind, b Cass & Rush", "grocer", None),
+         "refused", "2")
+    want("a mis-set house is still a house",
+         one("hou.\u00abe Randolph st. 1st ward", "carpenter", None), "refused", "2")
+    # And the letters are not street names: a street beginning with one still places.
+    want("Randolph is not Norris's r", one("Randolph st", "grocer", None),
+         "placed", "3 and 4", "face")
+    want("Lake is not Norris's h", one("Lake st", "grocer", None),
+         "placed", "3 and 4", "face")
     # Clause 3: the street has to be 1835's, under that name, in that place.
     want("Michigan ave is not Michigan Street",
          one("Michigan ave", "brickmaker", None), "refused", "3")

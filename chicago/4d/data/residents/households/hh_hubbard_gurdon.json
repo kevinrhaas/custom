@@ -241,7 +241,42 @@
   ],
   "people": [
    {
-    "person_id": "hubbard_gurdon"
+    "person_id": "hubbard_gurdon",
+    "address_later": {
+     "value": "h Indiana, b Cass and Rush (See card)",
+     "confidence": "attested",
+     "describes_date": 1844,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
+    "back_projection": {
+     "outcome": "already_better_placed",
+     "clause": "2",
+     "value": null,
+     "describes_date": 1844,
+     "read_back_years": 9,
+     "placement": null,
+     "position_local_enu_m": null,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Norris's Chicago directory of 1844 prints an address against this name in 1844, and it is left where it is. An 1835 placement already stands: this household works at `old_bank_building`, and clause 2 says an attested 1835 placement always beats a door printed 9 years later. The later address stays on the record as 1844's evidence and moves nothing."
+    },
+    "residence_back_projection": {
+     "outcome": "refused",
+     "clause": "R4",
+     "kind": "resides",
+     "value": null,
+     "describes_date": 1844,
+     "read_back_years": 9,
+     "placement": null,
+     "sources": [
+      "norris_directory_1844"
+     ],
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Norris's Chicago directory of 1844 prints where this man lived in 1844 and this pass will not carry it back to 1835. Indiana Street is a north-side name the 1835 street layer does not carry. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
+    }
    }
   ]
  }
