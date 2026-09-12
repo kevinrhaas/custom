@@ -1,5 +1,5 @@
 {
-  "_doc": "Read the thirteen streets of Kinzie's Addition off Wright's 1834 survey.\n\n    tools/read_kinzie_addition_streets.py           print the reading\n    tools/read_kinzie_addition_streets.py --write   write data/traces/kinzie_addition_street_grid.json\n    tools/read_kinzie_addition_streets.py --check   re-read the sheet and compare with the committed file\n\nWHY A TOOL AND NOT A TABLE OF NUMBERS. A street on a manuscript plat is two ruled\nlines with nothing between them, and where those lines fall is a fact about the\nraster that anyone can re-measure. Picking them by eye off a crop is a reading\nonly the picker can defend; projecting the ink of a window onto one axis and\ntaking the peaks is a reading the next person can re-run and disagree with by a\nnumber. Every corridor edge in the committed file came out of `_rules()` below,\nand `--check` re-derives all of them.\n\nTHE SHEET is the National Archives / Historic Urban Plans facsimile registered as\n`wright_1834_nara_hup` (5050 x 6628 px at 600 dpi), because at that resolution the\nAddition's ruled lines separate cleanly; the BPL master this project traces is\n4204 x 5166. Readings are carried to local ENU through the NA sheet's OWN affine \u2014\nnot through the scan-to-scan transform, which would spend 8.5 px of residual to\nreach a frame this reading does not need. The two routes were compared while this\nwas written and differ by under 0.2 m across the whole Addition.\n\nWHAT THE READING IS AND IS NOT. It gives the plat's MODULE \u2014 the tier pitch, the\ncolumn pitch, the corridor widths, the order and extent of the streets \u2014 to a\nfraction of a metre, because those are differences measured inside one corner of\none sheet. It does NOT give the Addition's SEATING on modern ground: the sheet's\nown fit carries 16.2 m of RMS residual and its drawn grid runs about 1.2 deg off\nthe bearing the committed town grid takes from modern control over a 1,420 m\nbaseline. So `data/streets/1835.json` seats the module on the two committed lines\nthe Addition shares with the town it adjoins \u2014 Michigan Street (`michigan_north`)\nand Wolcott Street (`wolcott`) \u2014 and this file records what that seating cost.",
+  "_doc": "Read the thirteen streets of Kinzie's Addition off Wright's 1834 survey.\n\n    tools/read_kinzie_addition_streets.py           print the reading\n    tools/read_kinzie_addition_streets.py --write   write data/traces/kinzie_addition_street_grid.json\n    tools/read_kinzie_addition_streets.py --check   re-read the sheet and compare with the committed file\n\nWHY A TOOL AND NOT A TABLE OF NUMBERS. A street on a manuscript plat is two ruled\nlines with nothing between them, and where those lines fall is a fact about the\nraster that anyone can re-measure. Picking them by eye off a crop is a reading\nonly the picker can defend; projecting the ink of a window onto one axis and\ntaking the peaks is a reading the next person can re-run and disagree with by a\nnumber. Every corridor edge in the committed file came out of `_rules()` below,\nand `--check` re-derives all of them.\n\nTHE SHEET is the National Archives / Historic Urban Plans facsimile registered as\n`wright_1834_nara_hup` (5050 x 6628 px at 600 dpi), because at that resolution the\nAddition's ruled lines separate cleanly; the BPL master this project traces is\n4204 x 5166. Readings are carried to local ENU through the NA sheet's OWN affine —\nnot through the scan-to-scan transform, which would spend 8.5 px of residual to\nreach a frame this reading does not need. The two routes were compared while this\nwas written and differ by under 0.2 m across the whole Addition.\n\nWHAT THE READING IS AND IS NOT. It gives the plat's MODULE — the tier pitch, the\ncolumn pitch, the corridor widths, the order and extent of the streets — to a\nfraction of a metre, because those are differences measured inside one corner of\none sheet. It does NOT give the Addition's SEATING on modern ground: the sheet's\nown fit carries 16.2 m of RMS residual and its drawn grid runs about 1.2 deg off\nthe bearing the committed town grid takes from modern control over a 1,420 m\nbaseline. So `data/streets/1835.json` seats the module on the two committed lines\nthe Addition shares with the town it adjoins — Michigan Street (`michigan_north`)\nand Wolcott Street (`wolcott`) — and this file records what that seating cost.",
   "ticket": "T-1060 (piece 1 of T-0789)",
   "raster": {
     "working_copy": "chicago/pre_fire_v1/maps/images/1834-wright-map.jpg",
@@ -10,7 +10,7 @@
     "source_id": "wright_1834_nara_hup"
   },
   "registration": "data/traces/gcp/wright_1834_nara_hup_gcps.json, `fit` (NA pixel -> EPSG:26916, RMS 16.19 m on eight control points)",
-  "method": "tools/read_kinzie_addition_streets.py \u2014 ink projected onto one axis over the windows below, sharp narrow peaks taken as ruled lines, a street's corridor taken as the pair of rules bracketing its slot. `--check` re-derives every pixel here from the raster.",
+  "method": "tools/read_kinzie_addition_streets.py — ink projected onto one axis over the windows below, sharp narrow peaks taken as ruled lines, a street's corridor taken as the pair of rules bracketing its slot. `--check` re-derives every pixel here from the raster.",
   "windows": [
     {
       "id": "col_west",
@@ -22,7 +22,7 @@
         2060
       ],
       "shear": 0.0176,
-      "through": "blocks 48, 39, 36, 27, 24 \u2014 the column immediately east of Wolcott Street"
+      "through": "blocks 48, 39, 36, 27, 24 — the column immediately east of Wolcott Street"
     },
     {
       "id": "col_east",
@@ -34,7 +34,7 @@
         2060
       ],
       "shear": 0.0176,
-      "through": "blocks 45, 42, 33, 30, 21 \u2014 the column immediately east of Pine Street"
+      "through": "blocks 45, 42, 33, 30, 21 — the column immediately east of Pine Street"
     },
     {
       "id": "row_superior",
@@ -460,7 +460,7 @@
         92.1,
         89.3
       ],
-      "note": "centre to centre of consecutive east-west corridors \u2014 the north-south module of the plat"
+      "note": "centre to centre of consecutive east-west corridors — the north-south module of the plat"
     },
     "column_pitch_m": {
       "mean": 110.4,
@@ -526,14 +526,14 @@
     "addition_over_original_town": 0.898,
     "addition_corridor_ft": 71.9,
     "addition_corridor_m": 21.9,
-    "reading": "The Addition's corridors are not measured against a ruler, they are measured against the Original Town's on the same sheet by the same method \u2014 which is the only comparison the sheet can settle. The method reads a platted 80 ft corridor wide, so the Addition's raw read is scaled by the ratio rather than taken at face value."
+    "reading": "The Addition's corridors are not measured against a ruler, they are measured against the Original Town's on the same sheet by the same method — which is the only comparison the sheet can settle. The method reads a platted 80 ft corridor wide, so the Addition's raw read is scaled by the ratio rather than taken at face value."
   },
   "extent": {
     "_doc": "Which streets reach where, from the rules the windows found and did not find. A street absent from a window is absent from the sheet there: the detector that found Pine at every tier found no Sand above Huron, and that is the evidence for Sand's north end.",
     "sand": "present at the Michigan-Illinois, Illinois-Indiana, Ontario-Erie and Erie-Huron tiers; ABSENT at the Huron-Superior tier. Sand Street ends on Huron Street, which is what the sheet draws: block 44 above it is cut by the shore.",
     "pine": "present at every tier read, including Huron-Superior. Pine runs the full height of the Addition.",
     "east_of_sand": "Wright carries the east-west streets east of Sand Street to the lake shore, across the shore-cut blocks 20, 31, 32, 43, 44, 45 and 54. That reach is NOT committed here: where a street meets the shore is the shore trace's question (T-0799, T-0800), and a street line may not claim ground this reading has not measured.",
-    "south_of_michigan": "The river tier \u2014 blocks 1-7 and the numbered water lots on the north bank \u2014 is T-1063's. The north-south streets are committed from Michigan Street northward only.",
+    "south_of_michigan": "The river tier — blocks 1-7 and the numbered water lots on the north bank — is T-1063's. The north-south streets are committed from Michigan Street northward only.",
     "west_of_wolcott": "A narrow tier of blocks stands west of Wolcott Street between it and the Addition's west boundary rule (NA pixel x 2918 at the Ontario-Ohio tier), about 17 m wide. It is a block question, not a street one, and it is T-1061's."
   },
   "seating": {

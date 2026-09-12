@@ -30,6 +30,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import sys
 from pathlib import Path
 
@@ -98,6 +99,40 @@ NOTE = (
     "shore trace (T-0799, T-0800); the river tier south of Michigan Street and its water "
     "lots wait on T-1063. T-1060, piece 1 of T-0789."
 )
+
+
+def _render(entry, indent=4):
+    """One street object, in the style the file is already written in: one key per
+    line, and any array that holds no object on a single line."""
+    text = json.dumps(entry, indent=2, ensure_ascii=False)
+    def collapse(m):
+        return re.sub(r"\s*\n\s*", " ", m.group(0)).replace("[ ", "[").replace(" ]", "]")
+    prev = None
+    while prev != text:
+        prev = text
+        text = re.sub(r"\[[^\[\]{}]*\]", collapse, text)
+    pad = " " * indent
+    return "\n".join(pad + ln for ln in text.split("\n"))
+
+
+def _splice(text, entries, edits):
+    """Put the new streets at the end of the array and re-point the two carried ends,
+    WITHOUT re-serialising the file.
+
+    data/streets/1835.json is 40 hand-tended entries whose notes run to three
+    thousand characters, and a writer that re-emits the whole document changes a
+    thousand lines of escaping and indentation to add eleven streets. A reader
+    cannot see the change in that, and a reviewer should not have to."""
+    for ident, path in edits:
+        pat = re.compile(r'("id": "' + ident + r'",.*?"path_local_enu_m": )(\[\[.*?\]\])', re.S)
+        if not pat.search(text):
+            raise SystemExit(f"{ident} has no inline path_local_enu_m to carry")
+        text = pat.sub(lambda m: m.group(1) + json.dumps(path), text, count=1)
+    tail = re.compile(r'\n  \]\n\}\s*$')
+    if not tail.search(text):
+        raise SystemExit("data/streets/1835.json does not end in the shape this tool expects")
+    body = ",\n".join(_render(e) for e in entries)
+    return tail.sub(",\n" + body + "\n  ]\n}\n", text)
 
 
 def _unit(a, b):
@@ -188,37 +223,62 @@ def _entry(sid, n1835, n2026, why, path, corridor, pitch, trace, fam, datum):
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--check", action="store_true",
+                    help="the committed street lines still re-derive from the reading's module")
     a = ap.parse_args()
     doc, by, out, P, Q = build()
-    ids = {s["id"] for s in out}
-    doc["streets"] = [s for s in doc["streets"] if s["id"] not in ids] + out
-    # The two committed streets the Addition shares run only as far as the town
-    # needed them. They are two of its thirteen and they are carried to its edge.
-    order = {s["id"]: i for i, s in enumerate(doc["streets"])}
-    ns = {s["id"]: s for s in doc["streets"]}
-    mich, wol = ns["michigan_north"], ns["wolcott"]
+    if a.check:
+        bad = []
+        for s in out:
+            have = by.get(s["id"])
+            if have is None:
+                bad.append(f"{s['id']} is not in data/streets/1835.json")
+                continue
+            # The line is checked to the centimetre, not to the byte: `michigan_north`
+            # and `wolcott` are carried to the Addition's edge in the same write, so the
+            # datum this re-derivation reads is a longer segment of the same line and the
+            # unit vector comes back a float epsilon different.
+            for a0, b0 in zip(have.get("path_local_enu_m", []), s["path_local_enu_m"]):
+                if max(abs(a0[0] - b0[0]), abs(a0[1] - b0[1])) > 0.02:
+                    bad.append(f"{s['id']}: committed {have['path_local_enu_m']}, "
+                               f"re-derived {s['path_local_enu_m']}")
+                    break
+            for k in ("corridor_width_m", "name_1835", "name_2026", "status_1835",
+                      "sources", "track_width_m", "surface", "traffic"):
+                if have.get(k) != s[k]:
+                    bad.append(f"{s['id']}.{k}: committed {have.get(k)}, re-derived {s[k]}")
+        for line in bad:
+            print("RED  " + line)
+        print(f"kinzie addition streets: {len(out)} line(s) re-derive from the module in "
+              f"data/traces/kinzie_addition_street_grid.json"
+              if not bad else f"{len(bad)} disagreement(s)")
+        return 1 if bad else 0
+
+    ns = {s["id"]: s for s in out}
+    mich, wol = by["michigan_north"], by["wolcott"]
+    edits = []
     sand_e = ns["sand"]["path_local_enu_m"][0][0]
     u = _unit(mich["path_local_enu_m"][0], mich["path_local_enu_m"][-1])
     if mich["path_local_enu_m"][-1][0] < sand_e:
         p = mich["path_local_enu_m"][0]
         t = (sand_e - p[0]) / u[0]
-        mich["path_local_enu_m"][-1] = [round(p[0] + t * u[0], 2), round(p[1] + t * u[1], 2)]
+        edits.append(("michigan_north", [p, [round(p[0] + t * u[0], 2),
+                                             round(p[1] + t * u[1], 2)]]))
     sup_n = ns["superior_north"]["path_local_enu_m"][0][1]
     v = _unit(wol["path_local_enu_m"][0], wol["path_local_enu_m"][-1])
     if wol["path_local_enu_m"][-1][1] < sup_n:
         p = wol["path_local_enu_m"][0]
         t = (sup_n - p[1]) / v[1]
-        wol["path_local_enu_m"][-1] = [round(p[0] + t * v[0], 2), round(p[1] + t * v[1], 2)]
-    doc["streets"].sort(key=lambda s: order[s["id"]])
-    if "wright_1834_nara_hup" not in doc["sources"]:
-        doc["sources"].append("wright_1834_nara_hup")
+        edits.append(("wolcott", [p, [round(p[0] + t * v[0], 2),
+                                      round(p[1] + t * v[1], 2)]]))
     for s in out:
         print(f'{s["id"]:16s} {s["name_1835"]:18s} {s["path_local_enu_m"]}')
-    print(f'michigan_north  -> {mich["path_local_enu_m"]}')
-    print(f'wolcott         -> {wol["path_local_enu_m"]}')
-    print(f'tier pitch {P:.2f} m   column pitch {Q:.2f} m')
+    for ident, path in edits:
+        print(f"{ident:16s} carried to {path[-1]}")
+    print(f"tier pitch {P:.2f} m   column pitch {Q:.2f} m")
     if a.write:
-        STREETS.write_text(json.dumps(doc, indent=2) + "\n")
+        fresh = [s for s in out if s["id"] not in by]
+        STREETS.write_text(_splice(STREETS.read_text(), fresh, edits))
         print(f"wrote {STREETS.relative_to(ROOT)}")
     return 0
 

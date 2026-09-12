@@ -382,13 +382,67 @@ SEATING = {
 }
 
 
+def _check_derived() -> int:
+    """The cheap half of the gate: everything committed in metres re-derives from
+    what is committed in pixels, through the committed affine. It does not open
+    the raster — `--check-sheet` does that, and it costs half a minute, which is
+    why the per-commit gate runs this half and the PR runs the other (the same
+    division tools/trace_river.py makes for the same reason)."""
+    have = json.loads(OUT.read_text())
+    to_local = _frame()
+    bad = []
+    for fam, key, horiz in (("east_west", "rule_px_y", True),
+                            ("north_south", "rule_px_x", False)):
+        for name, rows in have["readings"][fam].items():
+            for r in rows:
+                ref = r["ref_px_x"] if horiz else r["ref_px_y"]
+                w, c = _span(to_local, r[key][0], r[key][1], horiz, ref)
+                if abs(w - r["corridor_m"]) > 0.02:
+                    bad.append(f"{fam}/{name}/{r['window']}: corridor {r['corridor_m']} m "
+                               f"does not re-derive ({w:.2f})")
+                if abs(w / FT - r["corridor_ft"]) > 0.1:
+                    bad.append(f"{fam}/{name}/{r['window']}: corridor {r['corridor_ft']} ft "
+                               f"does not re-derive ({w / FT:.1f})")
+                for i, got in enumerate(c):
+                    if abs(got - r["centre_local_enu_m"][i]) > 0.06:
+                        bad.append(f"{fam}/{name}/{r['window']}: centre "
+                                   f"{r['centre_local_enu_m']} does not re-derive "
+                                   f"({round(c[0], 1)}, {round(c[1], 1)})")
+    fresh = _module({"east_west": have["readings"]["east_west"],
+                     "north_south": have["readings"]["north_south"]})
+    for block in ("tier_pitch_m", "column_pitch_m", "corridor_read_ft"):
+        for field in ("mean", "sd", "n"):
+            if fresh[block][field] != have["module"][block][field]:
+                bad.append(f"module {block}.{field}: committed {have['module'][block][field]}, "
+                           f"re-derived {fresh[block][field]}")
+    cs = _control_summary({"module": fresh, "control": have["control"]})
+    for field in ("addition_over_original_town", "addition_corridor_ft", "addition_corridor_m"):
+        if cs[field] != have["control_summary"][field]:
+            bad.append(f"control_summary {field}: committed "
+                       f"{have['control_summary'][field]}, re-derived {cs[field]}")
+    for line in bad:
+        print("RED  " + line)
+    n = sum(len(v) for f in ("east_west", "north_south") for v in have["readings"][f].values())
+    print(f"kinzie addition street grid: {n} corridor reading(s), the module and the "
+          f"Original Town control all re-derive from the committed pixels"
+          if not bad else f"{len(bad)} disagreement(s)")
+    return 1 if bad else 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
-    ap.add_argument("--check", action="store_true")
+    ap.add_argument("--check", action="store_true",
+                    help="re-derive every committed metre from the committed pixels "
+                         "(milliseconds, no raster)")
+    ap.add_argument("--check-sheet", action="store_true", dest="check_sheet",
+                    help="re-read the raster itself and compare the pixels (needs Pillow "
+                         "and the registered scan; ~30 s, so not the per-commit gate)")
     a = ap.parse_args()
-    doc = read()
     if a.check:
+        return _check_derived()
+    doc = read()
+    if a.check_sheet:
         have = json.loads(OUT.read_text())
         bad = []
         for fam in ("east_west", "north_south"):
@@ -410,7 +464,7 @@ def main() -> int:
               + ("re-derives from the sheet" if not bad else f"{len(bad)} disagreement(s)"))
         return 1 if bad else 0
     if a.write:
-        OUT.write_text(json.dumps(_document(doc), indent=2) + "\n")
+        OUT.write_text(json.dumps(_document(doc), indent=2, ensure_ascii=False) + "\n")
         print(f"wrote {OUT.relative_to(ROOT)}")
     else:
         print(json.dumps(_document(doc), indent=2))
