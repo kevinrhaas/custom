@@ -86,6 +86,13 @@ step "the traced forks still carry what their generator writes" \
 step "the traced South Branch still carries what its generator writes" \
   python3 tools/trace_south_branch.py --check-properties
 
+# ...and for the North Branch north of it (T-1072). Two tools write one
+# branches.geojson through tools/branches_file.py, and each of these two steps
+# also holds the collection's shared fields and its declared feature order, so
+# a writer that dropped the other's reach is caught by BOTH of them.
+step "the traced North Branch still carries what its generator writes" \
+  python3 tools/trace_north_branch.py --check-properties
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
@@ -252,6 +259,22 @@ step "Wabansia's block numerals re-derive from the reading and the run" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_wabansia_block_numerals.py --self-test
+
+# AND THE STRIP BETWEEN THAT GRID AND THE WATER (T-1077). The water-lot tract is a wedge,
+# not a grid: its lot rules run with the river and its west boundary runs north-south, so
+# a rank exists only south of the y where the two have drawn far enough apart for one.
+# This re-derives that — every rank's north tip is solved for from the committed rules
+# rather than typed — along with the run 1-22 the sheet closes, the two-figure gap it does
+# NOT close, the lot module measured independently in three ranks, and the two named
+# corridors that cross the strip rather than front the river. A figure guessed into the
+# obliterated corner, a rank rule taken off a lot line, a refused figure quietly placed or
+# a pinched figure upgraded to `documented` all fail here. The raster half is
+# `--check-sheet` and the PR runs it.
+step "Wabansia's water-lot strip re-derives from its rules and the run" \
+  python3 tools/read_wabansia_water_lots.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wabansia_water_lots.py --self-test
 
 # THE KINZIE BLOCK, split the same way and for the same reason. The cheap half
 # re-derives the block's ground from the four committed streets, the lot-rule
@@ -441,6 +464,17 @@ step "the planted poplar rows re-derive from the rule that chose their greens" \
 # this frontage" (ROADMAP K5 (b), T-0039).
 step "the business signboards re-derive from the rule that chose their frontages" \
   python3 tools/generate_business_signboards.py --check
+
+# ...AND THE RULE IS LOCAL (T-0405). "Re-derives" only says the committed file matches the
+# rule; it says nothing about how far one frontage reaches. Until T-0405 the mounting was
+# dealt from a counter walked down the town in id order, so admitting one frontage in the
+# middle of the alphabet re-dealt every frontage after it — 103 of 109 consequences landed
+# outside the 40 m the rule is about, the furthest 1,163 m off, and because the mounting
+# decides how many lines a board has room for, some of them changed what the board SAID.
+# This withholds each board in turn, re-derives the town without it, and holds every
+# consequence against the distance from the board withheld. ~4 s.
+step "admitting one signboard reaches no board further off than the rule's own 40 m" \
+  python3 tools/generate_business_signboards.py --prove-locality
 
 # The yard goods are the third record of this shape and the first whose evidence is an
 # ORDINANCE: the village corporation legislated in November 1833 about timber, stone,

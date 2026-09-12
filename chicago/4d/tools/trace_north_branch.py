@@ -1,72 +1,67 @@
 #!/usr/bin/env python3
-"""Trace the South Branch south of the forks window, off Wright 1834.
+"""Trace the North Branch north of the forks window, off Wright 1834.
 
-The southern companion to `tools/trace_river.py` (the forks) and
-`tools/trace_shoreline.py` (the harbour and the lake). Those two leave a gap
-this one fills: Wright draws the South Branch on past the forks box, out of the
-Original Town, across Madison Street and down through the School Section's
-blocks 70, 71, 78 and 83-88 to the section's south line, and the project's
-committed water stopped at the forks window's own edge.
+The northern companion to `tools/trace_south_branch.py`, and the last of the
+three windows the river needs on this sheet. `tools/trace_river.py` stops at the
+forks box; Wright draws the North Branch on past it, out of the Original Town,
+across Kinzie Street and up the length of Wabansia — past the water lots of
+Kain's and Hight's subdivision and the blocks lettered Right and Owen — to the
+line he ruled across the top of his survey.
 
-    python3 tools/trace_south_branch.py            re-trace and write the GeoJSON
-    python3 tools/trace_south_branch.py --check    re-trace and diff against committed
-    python3 tools/trace_south_branch.py --debug    also write a PNG overlay
-    python3 tools/trace_south_branch.py --check-properties
+    python3 tools/trace_north_branch.py            re-trace and write the GeoJSON
+    python3 tools/trace_north_branch.py --check    re-trace and diff against committed
+    python3 tools/trace_north_branch.py --debug    also write a PNG overlay
+    python3 tools/trace_north_branch.py --check-properties
                                                    hold the committed file to this
                                                    file's literals: no numpy, no
                                                    network. This one IS in check.sh.
 
-Why a third window rather than a bigger second one
---------------------------------------------------
-`trace_river.py` says it in its own docstring and it is still true: the forks
-work at a LOCAL block percentile, which is what lets a 70 m channel be found in
-a town of coloured ward washes. Widening that window instead of adding one would
-move every vertex the forks trace has already committed, because the morphology
-that finds the channel is computed over the whole window — and the ground is
-carved from those vertices. So this is a separate window whose NORTH edge is the
-forks window's SOUTH edge (map row 2372), which makes the splice a declared line
-rather than a tolerance: `river.geojson` is not touched by this tool at all, and
-the two polygons abut on a row of the scan both of them name.
+A fourth window, spliced on a declared row
+------------------------------------------
+Same reasoning as the South Branch, mirrored: the forks work at a LOCAL block
+percentile, so widening that window would move every vertex the forks trace has
+already committed and the ground is carved from those vertices. This is a
+separate window whose SOUTH edge is the forks window's NORTH edge (map row
+1252 — `trace_river`'s REGION starts there), which makes the splice a declared
+line rather than a tolerance. `river.geojson` is not read and not rewritten.
 
-The one setting that had to change, and what it cost to find out
----------------------------------------------------------------
-The hue reference. `wash_mask` separates Wright's grey bank wash from his
-coloured ward washes by asking whether a pixel departs in hue from THE LOCAL
-PAPER, and it estimates the local paper's hue as a percentile over a block of
-`hue_block` pixels. At the forks, 280 px at the 40th percentile is paper. Here
-it is not: from map row 3580 to row 3985 the channel runs right alongside the
-yellow wash of the School Section's reserved blocks 87 and 88, a 280 px block
-straddles the two, and the 40th percentile of it is the YELLOW. Measured over
-that reach the grey bank wash then departs from its own reference by 27 units
-against a tolerance of 11, so it was thrown away as a coloured wash: 400 px of
-river — 285 m, the whole stretch between the two bridge symbols — simply did not
-exist for the segmentation, and the channel came out as two disconnected pieces.
-The fix is to read the paper off the LEAST tinted part of a SMALLER block
-(`hue_block` 160, `hue_pct` 15) so the reference is paper even where paper is the
-minority of the neighbourhood. The reach then comes out whole, from one seed,
-with no hand-placed waypoints along it.
+The hue tolerance, and the wash that made it move
+-------------------------------------------------
+The forks settings carry north unchanged except for one: `hue_tol`, 11 -> 7.
 
-`open_r` also goes from 9 to 12, which is not a threshold so much as a knife: a
-4,000 px patch of stained paper in the West Division, near block 51, hangs off
-the channel by a neck the 9 px opening leaves standing. Widening the opening
-severs it and changes the channel's own width at no station on the reach — that
-is asserted below, not assumed.
+`wash_mask` separates Wright's grey bank wash from his coloured ward washes by
+how far a pixel's hue departs from the local paper's. On Wabansia's river front
+that separation is the narrowest it is anywhere on the sheet. Medians over a
+13-row band at map row 745, across the west bank: the green wash on the
+river-front lots reads R-B 27, G-B 31; the grey bank wash beside it reads R-B 32,
+G-B 19; the paper of the channel between the banks reads R-B 40, G-B 26. Green
+and grey differ by one channel and by thirteen units of it, and at a tolerance of
+11 the green passes as bank. It is not a small error: at `hue_tol` 8 the traced west
+bank steps 131 px — 93 m — into the lots at row 800, and the polygon published
+as river would have covered ground Wright drew as platted lots with lot lines
+across it.
 
-The tear, and where it is not
------------------------------
-T-0794 asked this trace to say where the manuscript's missing portion falls,
-because the Historic Urban Plans reproduction of the NARA original carries the
-caption "Two portions are missing, the larger being near the lower center ...
-the manuscript was mounted on cloth to repair this tear", and the lower centre
-of the sheet is exactly blocks 87 and 88. It is not on THIS scan. The BPL master
-this project traces carries the reach whole: both banks are drawn unbroken past
-the reserved blocks, the two bridge symbols on it are intact, and the only thing
-the region does carry is the yellow reservation wash described above — which is
-what made the reach look absent to the machine and is a fact about the
-reference, not about the paper. So nothing here is graded down for the tear and
-no gap is boxed. See docs/RESEARCH/south_branch_school_section.md.
+7 is the value the argument lands on and 6 is the other one that works; at 5 the
+upper reach's own bank wash starts going out with the colours and the trace
+breaks at row 764. The whole usable band is two wide, which is why this is
+argued from the pixels above rather than tuned. It is paid for on the east bank,
+which sits a median 1.4 m inside Wright's ink but is short of it by more than
+10 m on 81 of the reach's 932 rows — rows 728-779, and the last 30 rows at the
+splice. docs/RESEARCH/north_branch_wabansia.md § 5 states the trade and the
+measurement, and T-1078 carries the repair; it is filed rather than hidden.
 
-Needs numpy, scipy, Pillow and the network. Like the other two traces the full
+North of the survey there is no river
+-------------------------------------
+Wright ruled a line across the top of the sheet and washed the river up to it,
+so the channel's north end is where he stopped drawing, not where the river
+stopped running: the North Branch ran on to the Skokie marshes for miles past
+anything on this plat. The terminal stretch is dropped for exactly the reason
+`trace_south_branch.py` drops its southern one — publishing it would assert a
+river end this sheet never drew — and it cannot be told by the ink, because at
+this terminus there IS a line: the survey's own north boundary, drawn across the
+channel.
+
+Needs numpy, scipy, Pillow and the network. Like the other three traces the full
 re-run is a deliberate, occasional one and is not part of tools/check.sh; it
 degrades to a clear skip when the dependencies are missing. `--check-properties`
 is the half that costs nothing, and check.sh runs it.
@@ -92,78 +87,72 @@ OUT = bfile.PATH
 IIIF = tr.IIIF
 
 # The region of the BPL master scan (resource space, 4204 x 5166) this trace
-# works in. Its top edge is the forks window's bottom edge — trace_river's
-# REGION is (868, 1252, 1120, 1120), so that row is 1252 + 1120 = 2372 — which is
-# what makes the splice a line and not a tolerance. Its other three edges stand
-# clear of the water: the traced channel's own extent is checked against them
-# below, so a re-run that ever reached one would fail rather than publish a bank
-# that is really a window.
-SPLICE_ROW = 2372
-REGION = (1150, SPLICE_ROW, 800, 2578)
+# works in. Its bottom edge is the forks window's top edge — trace_river's
+# REGION starts at row 1252 — which is what makes the splice a line and not a
+# tolerance. Its other three edges stand clear of the water: the traced channel's
+# own extent is checked against them below, so a re-run that ever reached one
+# would fail rather than publish a bank that is really a window.
+SPLICE_ROW = 1252
+REGION = (640, 0, 780, SPLICE_ROW)
 
-# How near the reach's last drawn row a boundary vertex may come and still be
-# published as a bank. Wright's wash runs straight into the School Section's
-# south boundary line and stops on it: the survey ends there, the river does not.
-# That terminal stretch is dropped for the same reason trace_shoreline.py drops
-# the east edge of the lake wash — it is where the draughtsman lifted the brush,
-# and publishing it would assert a river end this sheet never drew. It cannot be
-# told by the ink, because at this terminus there IS a line: the section's own
-# boundary, drawn across the channel.
+# How near the reach's first drawn row a boundary vertex may come and still be
+# published as a bank. See "North of the survey there is no river" above.
 LIMIT_MARGIN_PX = 6
 
-# One seed, in resource pixels, in open channel two hundred rows below the
-# splice. It is the only hand-placed number in this trace: the reach comes out of
-# it in one connected piece, so there are no waypoints down the length.
-SEEDS = {"south_branch": (1403, 2600)}
+# One seed, in resource pixels, in open channel seven rows above the splice, so
+# that the piece the seed selects is by construction the piece that joins the
+# committed forks trace. It is the only hand-placed number in this trace: the
+# reach comes out of it in one connected piece, so there are no waypoints up the
+# length.
+SEEDS = {"north_branch": (1185, 1245)}
 
-# The forks settings, with the two changes the docstring argues for.
-PARAMS = dict(tr.PARAMS, hue_block=160, hue_pct=15, open_r=12)
+# The forks settings, with the one change the docstring argues for.
+PARAMS = dict(tr.PARAMS, hue_tol=7)
 
-# The collection's own fields describe every reach in it, so they are not this
-# tool's to state: `branches.geojson` has had a second writer since T-1072 and
-# tools/branches_file.py owns what the two of them agree on.
 NAME = bfile.NAME
 CRS = bfile.CRS
 DOC = bfile.DOC
 
-WATER_ID = "south_branch_school_section"
+WATER_ID = "north_branch_wabansia"
 WATER_PROPS = {
     "kind": "water",
-    "name": "Chicago River, South Branch — Original Town to the School Section's south line",
-    "reaches": ["south_branch"],
+    "name": "Chicago River, North Branch — the forks to the north line of Wright's survey",
+    "reaches": ["north_branch"],
     "water_surface_ft_above_datum": 0.0,
     "confidence": "inferred",
-    "note": "Planform traced from the Wright 1834 survey, in a window whose north edge is "
-            "the forks window's south edge, so this polygon abuts river.geojson on map row "
-            "2372 of the BPL master and moves no vertex of it. The water surface is flat at "
+    "note": "Planform traced from the Wright 1834 survey, in a window whose south edge is "
+            "the forks window's north edge, so this polygon abuts river.geojson on map row "
+            "1252 of the BPL master and moves no vertex of it. The water surface is flat at "
             "the datum for the same reason the forks are: the pre-reversal river had a "
             "near-zero surface gradient and stood at lake level through this reach. NO BED "
             "DEPTH IS CLAIMED HERE AT ALL. A cadastral plat gives planform and not "
             "soundings, and a traced bank must not be allowed to promote a bed — see "
-            "docs/RESEARCH/south_branch_school_section.md. The polygon's southern edge is "
-            "the LIMIT OF THE SURVEY and not a river end: Wright's wash runs into the School "
-            "Section's south boundary line and stops on it, and the two bank lines are cut "
-            "short of that stretch rather than carried across it. The manuscript tear the NARA "
-            "reproduction's caption reports near the sheet's lower centre is not present on "
-            "this scan: the BPL master draws both banks unbroken past reserved blocks 87 and "
-            "88, so no reach of this trace is graded down for it and no gap is boxed.",
+            "docs/RESEARCH/north_branch_wabansia.md. The polygon's northern edge is the "
+            "NORTH LINE OF THE SURVEY and not a river end: Wright washed the channel up to "
+            "the line he ruled across the top of the sheet and stopped, while the North "
+            "Branch itself ran on north for miles, and the two bank lines are cut short of "
+            "that stretch rather than carried across it. The hue tolerance is tighter here "
+            "than at the forks because the green wash on Wabansia's river-front lots would "
+            "otherwise be read as bank wash; the reading is in the tool's docstring.",
     "sources": ["wright_1834"],
 }
 
 BANK_LABELS = {
-    "south_branch_west_bank": "West bank of the South Branch: the Original Town west of "
-                              "Market Street, and the School Section's blocks 69-71 and 78",
-    "south_branch_east_bank": "East bank of the South Branch: the Original Town west of "
-                              "Wells Street, and the School Section's blocks 83-88",
+    "north_branch_west_bank": "West bank of the North Branch: Wabansia's river front — the "
+                              "water lots of Kain's and Hight's subdivision and the blocks "
+                              "west of them",
+    "north_branch_east_bank": "East bank of the North Branch: the unplatted ground east of "
+                              "the river, between Kinzie's Addition and the north line of "
+                              "the survey",
 }
 BANK_PROPS = {
     "kind": "bank",
     "crest_ft_above_datum": None,
     "confidence": "inferred",
     "note": "Bank line is the water polygon's boundary where it is neither the splice row "
-            "this window's north edge stands on nor the survey limit its south end stops on. "
-            "Crest heights are not carried here: south of the "
-            "modelled terrain box there is no heightfield for them to belong to yet.",
+            "this window's south edge stands on nor the survey's north line its other end "
+            "stops on. Crest heights are not carried here: north of the modelled terrain "
+            "box there is no heightfield for them to belong to yet.",
     "sources": ["wright_1834"],
 }
 
@@ -172,11 +161,11 @@ PROV_STATIC = {
     "method": "grey bank-wash segmentation of the BPL master scan, closed across the "
               "unshaded mid-channel; boundary traced and simplified; pixels transformed "
               "to EPSG:26916 by the least-squares affine refit from "
-              "data/traces/gcp/wright_1834_gcps.json. The hue reference is read off a "
-              "smaller block at a lower percentile than the forks trace uses, so that the "
-              "School Section's yellow reservation wash cannot stand in for paper",
-    "tool": "tools/trace_south_branch.py",
-    "splices_onto": "data/terrain/epochs/e1834_harbor_cut/river.geojson at BPL master row 2372",
+              "data/traces/gcp/wright_1834_gcps.json. The hue tolerance is tighter than the "
+              "forks trace's, so that the green wash on Wabansia's river-front lots cannot "
+              "be read as the grey wash of the bank beside it",
+    "tool": "tools/trace_north_branch.py",
+    "splices_onto": "data/terrain/epochs/e1834_harbor_cut/river.geojson at BPL master row 1252",
     "uncertainty_m": 20,
     "uncertainty_note": tr.PROV_STATIC["uncertainty_note"],
 }
@@ -189,10 +178,10 @@ def split_bank_runs(ring_px, limit_row):
 
     `tools/trace_river.py`'s own `split_runs` drops the stretches that lie on the
     traced window's edge, and that is one of the two things to drop here: this
-    window's north edge is the splice row, where the polygon meets the committed
-    forks trace rather than a shore. The other is the reach's south end, which is
-    not an edge of the window — the channel stops 161 px clear of it — but the
-    edge of the SURVEY. Both are reported, in map pixels, on every run.
+    window's south edge is the splice row, where the polygon meets the committed
+    forks trace rather than a shore. The other is the reach's north end, which is
+    not an edge of the window — the channel stops well clear of it — but the edge
+    of the SURVEY. Both are reported, in map pixels, on every run.
     """
     w, h = REGION[2], REGION[3]
     m = len(ring_px)
@@ -200,7 +189,7 @@ def split_bank_runs(ring_px, limit_row):
     for px, py in ring_px:
         if px <= 3 or py <= 3 or px >= w - 4 or py >= h - 4:
             reason.append("window")
-        elif py >= limit_row - LIMIT_MARGIN_PX:
+        elif py <= limit_row + LIMIT_MARGIN_PX:
             reason.append("survey limit")
         else:
             reason.append(None)
@@ -251,8 +240,9 @@ def check_properties() -> int:
     reg = prov.get("iiif_region") or {}
     eq("iiif_region", [reg.get("image"), reg.get("x"), reg.get("y"), reg.get("w"), reg.get("h")],
        [IIIF, REGION[0], REGION[1], REGION[2], REGION[3]])
-    if reg.get("y") != SPLICE_ROW:
-        bad.append(f"iiif_region.y {reg.get('y')} is not the splice row {SPLICE_ROW}")
+    if reg.get("y", -1) + reg.get("h", -1) != SPLICE_ROW:
+        bad.append(f"iiif_region bottom row {reg.get('y')} + {reg.get('h')} is not the splice "
+                   f"row {SPLICE_ROW}")
 
     for bid, label in BANK_LABELS.items():
         b = feats.get(bid, {}).get("properties", {})
@@ -263,7 +253,7 @@ def check_properties() -> int:
     for line in bad:
         print("FAIL", line)
     if not bad:
-        print(f"OK   {OUT.relative_to(ROOT)} matches tools/trace_south_branch.py literals "
+        print(f"OK   {OUT.relative_to(ROOT)} matches tools/trace_north_branch.py literals "
               f"({len(feats)} features, splice row {SPLICE_ROW})")
     return 1 if bad else 0
 
@@ -276,7 +266,7 @@ def main() -> int:
                     help="hold the committed GeoJSON to this file's literals — no numpy, "
                          "no network; this is the half tools/check.sh runs")
     ap.add_argument("--debug", action="store_true", help="write a PNG overlay of the trace")
-    ap.add_argument("--cache", default=str(Path("/tmp") / "wright_1834_south_branch_region.jpg"))
+    ap.add_argument("--cache", default=str(Path("/tmp") / "wright_1834_north_branch_region.jpg"))
     args = ap.parse_args()
 
     if args.check_properties:
@@ -288,16 +278,16 @@ def main() -> int:
         from scipy import ndimage as ndi
     except ImportError as e:
         tr.die(f"SKIP: {e.name} not installed (pip install numpy scipy pillow); "
-               "south branch trace not run", 0)
+               "north branch trace not run", 0)
 
     # The shared segmentation reads its window and its settings off trace_river's
     # module globals. Point them at this window for the life of this process — it
     # is one process per trace, and the alternative is a second copy of 300 lines
     # of morphology that would then drift from the one this project has argued
     # about. The forks window is asserted first, so a change there is caught here.
-    if (tr.REGION[1] + tr.REGION[3]) != SPLICE_ROW:
-        tr.die(f"the forks window's south edge is row {tr.REGION[1] + tr.REGION[3]}, not "
-               f"{SPLICE_ROW}: this trace's splice line moved with it and must be re-argued")
+    if tr.REGION[1] != SPLICE_ROW:
+        tr.die(f"the forks window's north edge is row {tr.REGION[1]}, not {SPLICE_ROW}: this "
+               "trace's splice line moved with it and must be re-argued")
     tr.REGION = REGION
     tr.SEEDS = SEEDS
     tr.PARAMS.clear()
@@ -326,11 +316,10 @@ def main() -> int:
     y0, y1, x0, x1 = int(ys.min()), int(ys.max()), int(xs.min()), int(xs.max())
     print(f"channel extent in resource px: y {y0 + REGION[1]}..{y1 + REGION[1]}, "
           f"x {x0 + REGION[0]}..{x1 + REGION[0]}")
-    if y0 > 2:
-        tr.die(f"the channel starts {y0} px below the splice row — it must reach the window's "
-               "north edge or it does not join river.geojson")
-    for label, clear_px in (("south", REGION[3] - 1 - y1), ("west", x0),
-                            ("east", REGION[2] - 1 - x1)):
+    if REGION[3] - 1 - y1 > 2:
+        tr.die(f"the channel stops {REGION[3] - 1 - y1} px above the splice row — it must "
+               "reach the window's south edge or it does not join river.geojson")
+    for label, clear_px in (("north", y0), ("west", x0), ("east", REGION[2] - 1 - x1)):
         if clear_px <= 2:
             tr.die(f"the channel stands {clear_px} px off the window's {label} edge: that edge "
                    "would be published as a bank, and it is not one. Widen REGION and "
@@ -350,13 +339,13 @@ def main() -> int:
 
     ring_px = tr.simplify_ring(tr.trace_outer(water, np), PARAMS["simplify_px"])
     ring_local = px_to_local(ring_px)
-    runs = [[ring_local[i] for i in idx] for idx in split_bank_runs(ring_px, y1)]
+    runs = [[ring_local[i] for i in idx] for idx in split_bank_runs(ring_px, y0)]
     runs.sort(key=lambda r: -sum(math.dist(r[i], r[i + 1]) for i in range(len(r) - 1)))
     print(f"water ring {len(ring_local)} vertices; bank runs {[len(r) for r in runs]}")
     if len(runs) != 2:
         tr.die(f"expected exactly two bank runs (one per side of one reach), got {len(runs)}")
     runs.sort(key=lambda r: sum(p[0] for p in r) / len(r))
-    named = list(zip(("south_branch_west_bank", "south_branch_east_bank"), runs))
+    named = list(zip(("north_branch_west_bank", "north_branch_east_bank"), runs))
 
     prov = {
         **PROV_STATIC,
@@ -414,7 +403,7 @@ def main() -> int:
         edge = water ^ ndi.binary_erosion(water, tr.disk(2, np))
         over[water] = (0.6 * over[water] + np.array([0, 90, 240]) * 0.4).astype(np.uint8)
         over[edge] = (255, 0, 0)
-        p = Path("/tmp") / "south_branch_trace_debug.png"
+        p = Path("/tmp") / "north_branch_trace_debug.png"
         Image.fromarray(over).save(p)
         print("debug overlay", p)
     return 0
