@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 296,
+      "takenAt": "2026-09-12T01:42:44.260Z",
+      "ref": "steward/t-0413-surname-trap-merges",
+      "commit": "7a473d059665",
+      "devCommit": "10ba6131e993",
+      "treeHash": "sha256:77d129fc1b259fa8",
+      "treeDirty": false,
+      "changelogHash": "sha256:b686b12216e21d52",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          3.2,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "12",
       "parts": [
         12
@@ -1404,39 +1435,6 @@
         ]
       },
       "source": "/tmp/smoke_d1.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12-13",
-      "parts": [
-        3,
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 239,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 373,
-      "takenAt": "2026-09-11T13:28:07.524Z",
-      "ref": "HEAD",
-      "commit": "e801b7c10caf",
-      "devCommit": "e5822fc20a98",
-      "treeHash": "sha256:b8a09f23802acdf3",
-      "treeDirty": false,
-      "changelogHash": "sha256:f946a86e8e75c48b",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.5,
-          2.7,
-          2.8
-        ]
-      },
-      "source": "/tmp/smoke_m.log"
     },
     {
       "viewport": "desktop",
