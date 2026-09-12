@@ -1,7 +1,7 @@
 ---
 id: T-1072
 title: The North Branch traced off Wright from the forks window's north edge through Wabansia to the sheet's top margin
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0794
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1196
 claimed_by: run 9/12/2026, 8:18:38 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-12T14:00:11.860Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34695910217
 ---
 

@@ -153,7 +153,6 @@ T-0405 — Adding one signboard repaints every board alphabetically after it, an
 
 T-0939 — The 1.55 km terrain skirt carries the sand bar's 80 m cross-section south at a dead-constant +1.21 m, so the bar never ends and Wright's hook never forms
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
-T-1072 — The North Branch traced off Wright from the forks window's north edge through Wabansia to the sheet's top margin
 T-1077 — The North Branch's east bank is short of Wright's ink on two stretches, one of them the splice row: 81 rows of 932 by more than 10 m, up to 33.8 m
 T-1069 — Wabansia's blocks numbered and its river-front water lots recorded as a lot strip, off Wright's sheet
 T-1070 — Wabansia seated: its streets into data/streets/1835.json on the committed Kinzie line, its tract polygon, and whoever the sources put on that ground before 1 July 1835
