@@ -48,9 +48,14 @@ rather than promised. It is also, by a distance, the largest refusal: **39 of th
 carrying a real `works_at` is left exactly where it is and the later address moves
 nothing. A newspaper's *"three doors north of the Tremont House"* wins the same way,
 through `docs/CORNER-ORDINAL.md`, because it is a reading of the scene year. And a
-directory's **residence** address — its own `res` or `bds` — is not this pass's claim at
-all: positioning a home from a later door is the same mechanism aimed at a different
-question, and it is **T-0669**.
+directory's **residence** address — its own `res` or `bds`, or `house`, `h` and `r`,
+which is Norris's shorthand for the same word — is not this pass's claim at all:
+positioning a home from a later door is the same mechanism aimed at a different question,
+and it is **T-0669**. The pattern that reads those words is shared with that pass rather
+than copied, and T-0987 stretch 6 is why it now names six of them: until Norris's parse
+was let across one line at a time, no `house` address had ever reached this clause, and
+the first that did — `house N Water st`, Silvester Marsh's home — was placed here as a
+shop.
 
 **3. The address has to resolve onto the 1835 street grid** — the street existed under
 that name, in that place, on the scene date. `data/streets/1835.json` is that record and

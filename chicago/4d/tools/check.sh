@@ -1962,9 +1962,10 @@ selftest "…and no back-projected face has grown a grade, a roof or an 1835 lin
   python3 tools/back_project_addresses.py --self-test
 
 # T-0669, the residence half of the same grammar: docs/RESIDENCE-BACK-PROJECTION.md, which
-# reads a street the volume prints as a HOME — its own `res` or `bds` — and carries it as
-# the household's street FACE and never as a point. All 48 residence addresses are
-# adjudicated and the 41 refusals are committed beside the 7 placements, for the same
+# reads a street the volume prints as a HOME — its own `res` or `bds`, or Norris's `house`,
+# `h` and `r` — and carries it as the household's street FACE and never as a point. All 61
+# residence addresses are adjudicated and the 47 refusals are committed beside the 14
+# placements, for the same
 # reason the business pass's are: a refusal that disappears from the record reads to the
 # next run as an address nobody looked at. The self-test additionally holds the invariant
 # the two policies share — no printed address is PLACED by both of them.
