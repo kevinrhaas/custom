@@ -220,15 +220,27 @@
         {
           "as_printed": "Calvin Britain Oeq.",
           "normalized": "Calvin Britain",
-          "role": "Carver's agent at St. Joseph, Michigan"
+          "role": "Carver's agent at St. Joseph, Michigan",
+          "occupations": [
+            "agent"
+          ],
+          "associated_places": [
+            "St. Joseph"
+          ]
         },
         {
           "as_printed": "Col Sumsel Miller",
           "normalized": "Col. Samuel Miller",
-          "role": "Carver's agent at Michigan City"
+          "role": "Carver's agent at Michigan City",
+          "occupations": [
+            "agent"
+          ],
+          "associated_places": [
+            "Michigan City"
+          ]
         }
       ],
-      "notes": "WHERE THE TOWN'S BUILDING MATERIAL COMES FROM, said plainly and dated. Carver will have LATH, SHINGLES, RED CEDAR POSTS 'and all articles in the lumber line' as soon as the ice is clear from the Lake, and he has CHARTERED THE SCHOONER POST BOY FOR THE TWO FIRST TRIPS to be sure of being first. Every one of those three named items is a component this reconstruction draws: lath under plaster, shingles on roofs, red cedar posts in the fences and enclosures the model already builds. That they arrive BY WATER FROM MICHIGAN — his agents are at St. Joseph and Michigan City — is the supply chain behind the town's frame buildings, and it says the building season is bounded at its front end by the ice. Carver is the same man advertising tracts of Military and District land in 1834-02-04 and 1834-02-11; the lumber business is dated 25 February 1834 and is new. THE STORE HAS NO ADDRESS: 'at his Store' is all the notice gives, so the placement is `street_only` with no street named — the honest value, not an absence."
+      "notes": "WHERE THE TOWN'S BUILDING MATERIAL COMES FROM, said plainly and dated. Carver will have LATH, SHINGLES, RED CEDAR POSTS 'and all articles in the lumber line' as soon as the ice is clear from the Lake, and he has CHARTERED THE SCHOONER POST BOY FOR THE TWO FIRST TRIPS to be sure of being first. Every one of those three named items is a component this reconstruction draws: lath under plaster, shingles on roofs, red cedar posts in the fences and enclosures the model already builds. That they arrive BY WATER FROM MICHIGAN — his agents are at St. Joseph and Michigan City — is the supply chain behind the town's frame buildings, and it says the building season is bounded at its front end by the ice. Carver is the same man advertising tracts of Military and District land in 1834-02-04 and 1834-02-11; the lumber business is dated 25 February 1834 and is new. THE STORE HAS NO ADDRESS: 'at his Store' is all the notice gives, so the placement is `street_only` with no street named — the honest value, not an absence. THE TWO AGENTS ARE PLACED WHERE THE NOTICE PLACES THEM (T-1040), which this reading recorded in prose and withheld from the record. The closing sentence reads 'Calvin Britain [Es]q. at St. [Jo]seph, and Col[.] Sam[u]el Miller, Michiga[n] [Ci]ty, are his [agents]': Britain is at St. Joseph and Miller at Michigan City, Indiana, and neither is a Chicago man. The entities carried a `role` naming those towns and no `occupations` and no `associated_places`, so every pass that reads a person — and the mints read `associated_places` to refuse a man this project cannot put in the town — saw two placeless names beside a Chicago lumber merchant. That is T-0694's finding at the person level rather than the firm's, and its remedy is the same one: put the place on the entity. The 4 March impression of this same advertisement (chicago_democrat_1834_03_04 c006) had already done it, which is how the omission was visible at all."
     },
     {
       "id": "c004",

@@ -824,7 +824,7 @@
       "entities": [
         {
           "as_printed": "W. MONTGOMERY.",
-          "normalized": "W. Montgomery",
+          "normalized": "L. W. Montgomery",
           "role": "proprietor",
           "occupations": [
             "boot and shoe maker"
@@ -832,9 +832,9 @@
         }
       ],
       "business": {
-        "name": "W. Montgomery, boot and shoe maker",
+        "name": "L. W. Montgomery, boot and shoe maker",
         "proprietors": [
-          "W. Montgomery"
+          "L. W. Montgomery"
         ],
         "trade": "boot and shoe making",
         "goods": [
@@ -854,7 +854,7 @@
         "verbatim": "‘on ahi . ee eee W. MONTGOMERY. Chia go, Dee 18, 1835. 4",
         "iso": "1833-12-18"
       },
-      "notes": "A THIRD DOCUMENTED STOREFRONT ON THE SAME BLOCK, given against the second. Montgomery's boot and shoe shop is 'next door to P. Cohen's Store', and Cohen's store is at the east end of South Water Street by its own standing head (1834-01-07, claim c009) — so the chain places Montgomery there too, at one remove. The reading records the anchor and does NOT collapse the chain: the business's street is left null and the placement is `relative` on Cohen's store, because 'next door to a shop that advertises itself at the east end of a street' is one inference away from an address and this project keeps that distinction. The date '1835' in the print is read 1833 from the issue it stands in."
+      "notes": "A THIRD DOCUMENTED STOREFRONT ON THE SAME BLOCK, given against the second. Montgomery's boot and shoe shop is 'next door to P. Cohen's Store', and Cohen's store is at the east end of South Water Street by its own standing head (1834-01-07, claim c009) — so the chain places Montgomery there too, at one remove. The reading records the anchor and does NOT collapse the chain: the business's street is left null and the placement is `relative` on Cohen's store, because 'next door to a shop that advertises itself at the east end of a street' is one inference away from an address and this project keeps that distinction. The date '1835' in the print is read 1833 from the issue it stands in. THE SIGNATURE IS LOTON W. MONTGOMERY'S, AND THE SHOEMAKING IS NOT THE AUCTIONEER'S (T-1040). This is ONE standing advertisement — 'Boot & Shoe Making. The subscriber having recently commenced the above business, next door to P. Cohen's Store …', the same setting word for word under a dateline of Chicago, December 1833 — and the Democrat runs it from 17 December 1833 through at least 8 April 1834. Four impressions bear on the signature and three of them carry an L: it is set WHOLE as 'L. W. MONTGOMERY' at 1833-12-17 c003 and at 1834-04-08 c007, and the damaged 1834-03-04 c028 preserves the initial itself — its column reads 'L.      Mo}' where the name stood. Those impressions stand on both sides of the two that read 'W. MONTGOMERY' (1834-01-28 c008, and 1834-03-25 c009, whose initial its own note says was READ FROM the January printing rather than off its own page). So the reading is L. W. Montgomery throughout, and `as_printed` is left exactly as each column sets it. WHAT THIS IS NOT: it is not a merge of 'W. Montgomery' with 'L. W. Montgomery'. This corpus carries a real W. Montgomery — the auctioneer and commission merchant of South Water Street, signing 'W. MONTGOMERY' and 'W. MONTGOMERY, Auc'r.' across the summer of 1835 — and the identity policy's families rule rightly refuses to join two Montgomerys on a differing initial. The discriminator here is not the initial; it is that the shoemaking notice and the auction notices are two different advertisements, and this one is the shoemaker's. Before this ruling `person_w_montgomery` carried 'boot and shoe maker' beside 'auctioneer', 'commission merchant', 'land agent' and 'newspaper agent' — one record holding two men's trades on two signatures separated on the page. Loton W. Montgomery is in this reconstruction under his own name (hh_montgomery_l_w), on the polls of 1834 and 1835 and in Fergus 1843 and Norris 1844, a shoemaker in each."
     },
     {
       "id": "c009",

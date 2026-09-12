@@ -773,6 +773,20 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                     "placement_readings": [],
                 })
                 b["mentions"].append(key)
+                # A STREET THE FIRST IMPRESSION WITHHELD IS NOT A STREET THE HOUSE LACKS
+                # (T-1046). The dict above is a `setdefault`, so `street` was taken from
+                # whichever claim happened to mint the key — sorted filename order, which
+                # is issue order and nothing more. Where one impression of a standing
+                # advertisement names the street and another leaves it null on purpose
+                # (a placement recorded `relative` to an anchor, the street deliberately
+                # not collapsed out of the chain), the house's street then depended on
+                # which impression came first. `firm_merges` below has always taken the
+                # first non-empty of the two it joins; within one key the same rule was
+                # missing. A printing that is SILENT about the street does not contradict
+                # one that prints it, and a disagreement between two printed streets is
+                # caught by the firm-merge guard, not created here.
+                if not b.get("street") and biz.get("street"):
+                    b["street"] = biz.get("street")
                 if sold:
                     # The notice, kept where the judgement can be read back off the
                     # record it was made about. Nothing downstream places on this.
