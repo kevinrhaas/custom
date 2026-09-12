@@ -1,7 +1,7 @@
 ---
 id: T-1053
 title: The three over-declared South Water entries cannot be narrowed without re-lotting a yard building, because frontage.lots is also the block's declared business front
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-0449
 opened: 2026-09-12
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1181
+claimed_by: run 9/12/2026, 2:29:20 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T08:29:21.843Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34680626097
 ---
 
 The three over-declared South Water entries cannot be narrowed without re-lotting a yard building, because frontage.lots is also the block's declared business front.

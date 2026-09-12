@@ -280,6 +280,14 @@ FLORA_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "zones[].extent.include_polygons": ("mesh", "rec.extent ?? entry.extent"),
     "zones[].extent.priority": ("mesh", "entry.priority ?? 0"),
     "zones[].priority": ("mesh", "entry.priority ?? 0"),
+    # T-1055. The ground mesh paints a zone with box extent its own recorded
+    # colour: terrain.js `substrateZones()` takes these two copies off the
+    # manifest and `zoneGlsl()` multiplies the prairie tile's luminance
+    # through them, so the mean albedo inside the zone is the recorded
+    # triple. They were banked unread for as long as the mesh was one
+    # material, which is why the beach and the sand bar were drawn green.
+    "zones[].ground_rgb": ("mesh", "z.ground_rgb"),
+    "zones[].ground_wet_rgb": ("mesh", "z.ground_wet_rgb"),
     # Read once at boot, to report a published shape this renderer has no
     # archetype for. Nothing is drawn from the list itself.
     "vocabulary.inflorescence_shapes": ("probe", "index.vocabulary?.inflorescence_shapes"),

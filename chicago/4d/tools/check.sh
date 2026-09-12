@@ -199,6 +199,19 @@ step "North Division initial parcel matches its reviewed recipe" \
 step "West Division approaches parcel matches its recipe" \
   python3 tools/generate_west_infill.py --check
 
+# KINZIE'S ADDITION'S STREET GRID, in two halves for the reason tools/trace_river.py
+# is in two halves: the reading's own re-read opens a 5050 x 6628 raster and costs
+# about half a minute, which a per-commit gate may not spend. What runs here is the
+# cheap half — every metre committed in the trace re-derives from the pixels
+# committed beside it, through the committed affine, and the eleven street lines
+# re-derive from the module that trace measures. The raster half is
+# `--check-sheet` and the PR runs it.
+step "Kinzie's Addition's street reading re-derives from its own pixels" \
+  python3 tools/read_kinzie_addition_streets.py --check
+
+step "Kinzie's Addition's street lines re-derive from the module they are seated on" \
+  python3 tools/seat_kinzie_addition_streets.py --check
+
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed
 # lot polygons, so a hand-nudged building would show up here as drift rather than as a
@@ -1137,6 +1150,17 @@ check_js() {
   return $bad
 }
 step "renderer modules parse" check_js
+
+# T-1055. The ground mesh paints the two flora zones with box extents their own
+# recorded `ground.rgb`, by multiplying the July tile's luminance through the
+# record after dividing it by the tile's own mean. That construction is what
+# makes the mean albedo inside a zone the recorded triple EXACTLY rather than
+# approximately, and it is quiet when it breaks: retune the tile, or record a
+# brighter triple that clips against the albedo ceiling, and the ground drifts
+# off the record with nothing to say so. This runs the shader's arithmetic over
+# the same deterministic pixels and holds all four triples to one sRGB unit.
+step "the ground averages the colour each flora zone records" \
+  node tools/measure_ground_albedo.mjs --gate
 
 # The ground the town is ANCHORED to and the ground it is DRAWN as, compared on
 # the committed bytes. `generators/terrain_gen.py` refuses to export a mesh more

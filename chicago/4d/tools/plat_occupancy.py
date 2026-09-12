@@ -466,6 +466,26 @@ def business_fronts() -> dict[str, list[dict]]:
     return fronts
 
 
+def declared_front(frontage: dict) -> list[int]:
+    """The lots of this face the entry declares to be the block's BUSINESS FRONT.
+
+    T-1053. `frontage["lots"]` is the ground the run measurably stands across, and that
+    is a smaller thing than the face the owner's 2026-08-27 clause is about: he ruled
+    that a platted BUSINESS-FRONT LOT may carry a documented store at the street and an
+    anonymous dwelling behind it, and a lot does not stop being on the business front
+    because this parcel's row happened to stop one lot short of it. The two questions
+    shared one list until T-0449 measured three entries whose run reached less ground
+    than they declared, and narrowing those lists to the truth would have withdrawn the
+    owner's ruling from three lots as a side effect of a bookkeeping repair.
+
+    So an entry MAY name `business_front` beside `lots`. Where it does not, the run's
+    own ground is the front — which is what every entry meant before this field existed,
+    so the default keeps the town's occupancy map exactly where it was.
+    """
+    front = frontage.get("business_front")
+    return [int(index) for index in (frontage["lots"] if front is None else front)]
+
+
 def shared_business_fronts(grid: dict, datum: dict,
                            exclude: set[str] | frozenset[str] = frozenset(),
                            held: dict[str, dict[int, list[str]]] | None = None
@@ -502,7 +522,7 @@ def shared_business_fronts(grid: dict, datum: dict,
         for frontage in fronts.get(block_id, []):
             frame = face_frame(blocks[block_id], frontage["face"])
             reach = float(frontage["setback_m"]) + LOT_MARGIN_M
-            dealt = {int(index) for index in frontage["lots"]}
+            dealt = set(declared_front(frontage))
             for index, holders in lots.items():
                 claimants = [h for h in holders if h not in transparent]
                 if index not in dealt or len(claimants) != 1:

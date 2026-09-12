@@ -128,13 +128,13 @@
     "businesses_naming_it": 16,
     "adopted": 6,
     "roofs_lot_front": 0,
-    "roofs_corner_side": 18,
-    "roofs_on_the_adopted_face": 18,
+    "roofs_corner_side": 17,
+    "roofs_on_the_adopted_face": 17,
     "roofs_free": 6,
     "roofs_home": 7,
     "roofs_home_named": 0,
     "roofs_home_inferred": 7,
-    "roofs_yard": 5,
+    "roofs_yard": 4,
     "roofs_in_centreline_band_declined": 0
    },
    "lake": {
@@ -1690,7 +1690,7 @@
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+   "detail": "17 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 4 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
@@ -1698,7 +1698,7 @@
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+   "detail": "17 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 4 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_cooley_and_hol_b_man",
@@ -1706,7 +1706,7 @@
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+   "detail": "17 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 4 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_elmira_fowler",
@@ -1714,7 +1714,7 @@
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+   "detail": "17 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 4 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_george_holsman",
@@ -1722,7 +1722,7 @@
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+   "detail": "17 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 4 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_j_curtiss_attorney_and_counsellor_at_law",
@@ -1738,7 +1738,7 @@
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+   "detail": "17 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 4 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
@@ -1746,7 +1746,7 @@
    "street_id": "dearborn",
    "street_name": "Dearborn Street",
    "refusal": "every roof on the face is spoken for",
-   "detail": "18 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 5 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
+   "detail": "17 roof(s) stand on this street: 7 are a household's dwelling under one layer or the other, 4 are yard buildings the parcels dealt behind a lot, and 6 are already adopted by a better-evidenced business."
   },
   {
    "business_id": "business_unnamed_new_store_la_salle_street",

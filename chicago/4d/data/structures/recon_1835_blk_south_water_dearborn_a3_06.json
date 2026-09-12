@@ -12,8 +12,8 @@
         "note": "Anonymous count-unit toward the July 1835 665-roof programme. No evidence establishes that this particular building existed, and no source names an occupant of this lot."
       },
       "position": {
-        "utm_e": 447802.145,
-        "utm_n": 4637350.811,
+        "utm_e": 447853.984,
+        "utm_n": 4637349.871,
         "rotation_deg": 180.36,
         "symbolic_location": "Anonymous reconstructed roof in the South Division block bounded by South Water, State, Lake and Dearborn; a yard building off the block alley behind the South_Water Street frontage",
         "confidence": "reconstructed",
@@ -138,7 +138,7 @@
     "programme_phase": "phase3_platted_block_south_water_dearborn",
     "source_id": "owner_chicago_1835_reconstruction_spec_2026",
     "block_id": "blk_south_water_dearborn",
-    "lot_index": 0,
+    "lot_index": 4,
     "stands_on": "alley",
     "fronts": "south_water",
     "sequence": 6,
