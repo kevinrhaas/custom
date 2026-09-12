@@ -562,9 +562,9 @@
     {
       "structure_id": "chicago_democrat_office",
       "name": "The Chicago Democrat Office",
-      "trade": "printing_office_and_store",
+      "trade": "store",
       "trade_confidence": "inferred",
-      "why_goods": "an office that sold over a counter, and paper travels in cases",
+      "why_goods": "a counter whose stock arrives in boxes and barrels off a lake schooner",
       "confidence": "reconstructed",
       "facade_bearing_deg": 0.0,
       "frontage_m": 12.19,

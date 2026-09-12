@@ -81,7 +81,26 @@ sign iff
   7. and, for the works and warehouse class only, its name carries a PROPRIETOR — a
      possessive or an ampersand. A works painted whose it was. A building this project
      names by a later nickname ("The Old Bank Building") has no proprietor to paint,
-     and painting the nickname would put a twentieth-century label on an 1835 wall.
+     and painting the nickname would put a twentieth-century label on an 1835 wall;
+  8. and the name this board would letter is a name the corpus still puts INSIDE the
+     building on the scene date. A LABEL MAY OUTLIVE A TENANCY AND A SIGN MAY NOT, and
+     that is one sentence's difference between two objects this file already keeps
+     apart. A record's `name` is a modern caption — it is how a reader finds the
+     building, and it goes on carrying the trade the building was known by long after
+     that trade has moved, exactly as a town goes on calling a corner by the shop that
+     used to be on it. A BOARD IS AN ASSERTION IN THE PRESENT TENSE: it stands in the
+     scene at 1 July 1835, a walker reads it as a statement about what is behind that
+     wall today, and if the register no longer agrees with it the board is simply
+     wrong. So where a record's name belongs to a tenancy this project has followed
+     OUT of the building, there is no name left to letter, and this rule refuses
+     rather than substituting one — the same refusal clause 1 makes for an anonymous
+     slot and clause 7 for a works with no proprietor, reached from the other side.
+     The substitute is the trap: a frontage whose departed trade is the only name the
+     corpus offers invites a replacement lettered off whatever else is in the file,
+     and a for-sale notice or an advertisement from a year before the scene date does
+     NOT attest who kept a counter on the day. Where the corpus cannot name who traded
+     there on the scene date, THE WALL IS LEFT BLANK, in writing, in `refused`. See
+     docs/PROVENANCE.md § A label may outlive a tenancy; a sign may not.
 
 WHERE THE SIGN GOES is then DERIVED, not placed. `docs/GLB-CONTRACT.md` fixes the frame:
 polygon `u` → +X, polygon `v` → −Z, and `rotation_deg` is the FACADE BEARING, so the
@@ -405,22 +424,13 @@ SIGN_WORDING = {
             "paper. Reconstructed."
         ),
     },
-    "chicago_democrat_office": {
-        "name": "CHICAGO DEMOCRAT", "trade": "Printing Office",
-        "place": "South Water & Clark Streets", "identity": "Chicago Democrat",
-        "grade": "inferred", "sources": ["chicago_democrat_1833_11_26"],
-        "why": (
-            "THE PAPER'S OWN IMPRINT, in a source this repository already holds and whose "
-            "page images are committed: \"THE DEMOCRAT, Is published every Tuesday, in the "
-            "village of Chicago, Cook co. Ill. in the building on the corner of South Water "
-            "and Clark-streets.\" That is the office naming itself and its junction, which "
-            "is what a board carries. Note precisely what it does NOT settle and the board "
-            "does not claim: WHICH of the four corners, which the record argues separately "
-            "and which the pencilled \"S. W.\" in that page's margin is a later reader's "
-            "gloss on rather than evidence for. Graded `inferred` rather than `attested` "
-            "because the imprint is a masthead and not a description of a signboard."
-        ),
-    },
+    # chicago_democrat_office HAD AN ENTRY HERE AND IT IS GONE (T-1064). The board read
+    # CHICAGO DEMOCRAT / Printing Office / South Water & Clark Streets off the paper's own
+    # imprint, which is a good citation for where the Democrat was PRINTED IN 1833 and not
+    # for what stood on that wall on 1 July 1835 — the press had left the corner by then
+    # (T-0403), so clause 8 refuses the frontage and VACATED_NAMES carries the whole
+    # argument. The wording is deleted rather than left standing unused, because a fully
+    # lettered entry sitting here is an invitation to re-select the frontage and paint it.
     "clybourn_slaughterhouse": {
         "name": "A. CLYBOURNE", "trade": "Slaughtering & Packing",
         "identity": "Clybourne", "grade": "reconstructed",
@@ -897,6 +907,39 @@ POST_BOARD_IDS = {
         "here would be this layer drawing the same claim a second time."
     ),
 }
+
+# Clause 8, added 2026-09-12 with ticket T-1064. A frontage whose record is NAMED for a
+# trade the corpus has followed OUT of the building before 1 July 1835. The name stays on
+# the card — it is how the building is found, and a town goes on calling a corner by the
+# shop that used to be on it — but a board is read in the present tense by somebody
+# standing in front of it, so it is refused and the wall is left blank. The reason each
+# one is here is written out, because the substitute is the trap: the replacement a
+# frontage like this invites is lettered off a notice from a year before the scene date,
+# and a notice that OFFERS a store for sale does not attest who kept it on the day.
+VACATED_NAMES = {
+    "chicago_democrat_office": (
+        "the name on this record belongs to a tenancy that had LEFT before the scene "
+        "date, so there is nothing here to letter. The Chicago Democrat's colophon "
+        "gives this corner on 1833-11-26, 1834-01-07, 1834-08-27, 1834-09-17 and "
+        "1834-12-03 and then prints the office 'over Messrs. Jones & King['s] "
+        "Hard[ware store]' in South Water street on 1835-05-20 and again on 1835-08-05 "
+        "(T-0403), so the press was gone seven weeks at the latest before 1 July 1835 "
+        "and CHICAGO DEMOCRAT / Printing Office painted on this front asserted a trade "
+        "the paper itself had printed its way out of. The RECORD KEEPS THE NAME — a "
+        "label is a caption and not a claim about who is inside on a day — and this "
+        "record's `function` has narrowed to `store`, which is the half of it the "
+        "corpus does not follow out of the door. NOTHING IS LETTERED IN ITS PLACE, "
+        "deliberately. The only name the corpus offers for what traded here afterwards "
+        "is W. Kimball's, and it comes out of chicago_democrat_1834_10_08 c005, which "
+        "OFFERS 'the store now occupied by W. Kimball, and as the office of the "
+        "Democrat' for sale with possession in November 1834 — a landlord clearing the "
+        "building, not a report of who kept the counter eight months later. Painting "
+        "W. KIMBALL here would assert at the scene date the very tenancy that source "
+        "declines to report, which is worse than the board it replaced. The wall is "
+        "left blank until something says who stood behind it."
+    ),
+}
+
 
 # HOW A SIGN IS DRAWN, and why these numbers are here rather than in a renderer. The
 # bracket board's arm, drop and hangers are still the wolf sign's own geometry, copied
@@ -1465,6 +1508,11 @@ def _candidates() -> tuple[list, list]:
                 f"the trade itself is {grade}. A sign for a business this project "
                 "reconstructed would be an invention resting on an invention.")})
             continue                                            # clause 3
+
+        if sid in VACATED_NAMES:
+            refused.append({"structure_id": sid, "trade": trade,
+                            "why": VACATED_NAMES[sid]})
+            continue                                            # clause 8
 
         if sid in POST_BOARD_IDS:
             refused.append({"structure_id": sid, "trade": trade,
