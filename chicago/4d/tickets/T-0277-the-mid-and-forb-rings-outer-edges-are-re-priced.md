@@ -1,7 +1,7 @@
 ---
 id: T-0277
 title: The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
-state: open
+state: claimed
 epic: FLORA
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 3:22:52 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34747356985
 ---
 
 The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is
