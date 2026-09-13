@@ -134,7 +134,7 @@ BLOCKS = [(0, "des_plaines", "jefferson", 10),
 # tickets. The boustrophedon assertion runs across these, so a numeral read here
 # that does not continue the run already committed breaks the gate.
 BAND_TAIL = {0: [7, 6, 5, 4, 3, 2, 1],
-             1: [],
+             1: [14, 15],
              2: [],
              3: [28, 29],
              4: [45, 44, 43],

@@ -78,6 +78,34 @@
 }
 .pop-flag strong { font-weight: 620; }
 
+/* The standing constraint, and the only flag on this card that is not a statement
+   about how well a building is known. The other four qualify a reconstruction; this
+   one says the project has stopped short of a claim on purpose, so it is set apart
+   rather than filed in the same column of hairlines — a heavier rule, the card's own
+   ink instead of the accent, and a tinted ground so it reads as a note from the
+   project rather than another confidence caveat. --accent is the flag colour and is
+   gold on both themes; borrowing it here would have made the one flag that outranks
+   the rest look like the rest. */
+.pop-flag-held {
+  padding: 7px 9px 8px;
+  border-left-width: 3px;
+  border-left-color: var(--ink-dim);
+  border-radius: 0 6px 6px 0;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  color: var(--ink);
+}
+/* The record's own sentence for holding it. Italic and one step down, because it is
+   a quotation from the dossier sitting under the project's standing text, and the
+   two must not read as one voice. */
+.pop-held-why {
+  display: block;
+  margin-top: 5px;
+  color: var(--ink-dim);
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
 /* ------------------------------------------------------------- the lead --- */
 
 .pop-lead {

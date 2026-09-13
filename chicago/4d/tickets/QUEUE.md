@@ -107,7 +107,6 @@
 
 
 
-T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
 # --- the end of band 1." The three directories are transcribed in full; what remains is not
@@ -155,30 +154,14 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 
 
-T-1103 — Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
-T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
-T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
-T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
-T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 
 # --- ==========================================================================
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
-T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
-T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
-T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
-T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
-T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
-T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
-T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
-T-0268 — A building held under the standing constraint says so nowhere a visitor can see
-T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
-T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
 
 # --- ==========================================================================
@@ -210,9 +193,7 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- Ordering rule 4 in the other direction: nothing here outranks the bands above. The
 # --- triangle-and-draw-call tickets are here now rather than gating the roofs, because every
 # --- tier is inside its ceiling; they are measurement until a breach is measured again.
-T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
-T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 T-0833 — Make a drain lap a tool: tools/drain.mjs, which refuses on any conflict outside the build products
 T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
@@ -319,8 +300,6 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' and the HUD has read 'walk · 3.2 mph' since T-0823, so mobile part 3 has been red on dev for a week
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1093 — The Settings speed readout now reads 'walk · 3.2 mph' and the mobile part-7 assertion wants '3.2 mph', so dev is red on a prefix nobody meant to assert against

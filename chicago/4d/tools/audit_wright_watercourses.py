@@ -252,12 +252,15 @@ def findings(rec: dict) -> list[str]:
         f"{r['median_departure_m']} m median and {r['max_departure_m']} m at worst, inside "
         f"a fit whose own RMS is 16.02 m. The BPL window reading and the whole NA sheet "
         f"agree about this watercourse to under two metres.",
-        f"THE SAME INK IS BEING READ TWICE. T-1080 traces a ROAD — "
-        f"`michigan_st_tract_road`, 262 m, North Water Street to Michigan Street — down "
-        f"the same strokes, and its PR is held because the ribbon it paints comes out "
-        f"wet. It comes out wet because this project already carves that line as a "
-        f"watercourse. The two readings are not near each other, they are the same "
-        f"feature, and the finding is recorded on T-1080 rather than decided here.",
+        f"THE SAME INK WAS BEING READ TWICE, AND T-1080 SETTLED IT. That ticket traced a "
+        f"ROAD down these same strokes, and the ribbon it painted came out wet — because "
+        f"this project already carves that line as a watercourse. The road record is "
+        f"WITHDRAWN: the two readings were never near each other, they were one feature. "
+        f"What survives is kept under this feature's own name, as the only independent "
+        f"cross-check `north_side_slough` has — off the NA sheet under a different "
+        f"registration, agreeing to 1.54 m median and 17.91 m at worst: "
+        f"`data/traces/north_side_slough_na_reread.json`, "
+        f"`tools/read_north_side_slough_na.py`. Nothing is regraded by it.",
         f"WHERE THE FEATURE MEETS THE RIVER IT IS DRAWN AS A CONFLUENCE. At NA px "
         f"(2033, 2270) the west stroke becomes the river's north bank running south-west "
         f"and the east stroke becomes the same bank running east: the tributary's two "
