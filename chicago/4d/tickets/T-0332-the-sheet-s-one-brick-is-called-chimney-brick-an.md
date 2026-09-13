@@ -1,7 +1,7 @@
 ---
 id: T-0332
 title: The sheet's one brick is called chimney_brick, and a wall now reads it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1242
 claimed_by: run 9/13/2026, 3:22:36 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-13T09:34:41.841Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34747315083
 ---
 
