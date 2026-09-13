@@ -7,35 +7,24 @@ widen the eligible ground southward and let `tools/reconcile_665.py` re-apportio
 remainder onto it. Its own acceptance names the condition: a roof may stand only where
 the ground is **covered by the heightfield AND historically plausible**.
 
-MEASURED AGAINST THE COMMITTED HEIGHTFIELD, THE PREMISE DOES NOT SURVIVE. The modelled
-box ends at local **N -400 m**, and that line falls INSIDE Washington Street's own 80 ft
-corridor. So there is no southern ground to widen onto: south of the platted corridor
-that carries the town's southernmost committed street, the field holds a sliver of land
-on the far bank of the South Branch and nothing whatever in the South Division.
+MEASURED AGAINST THE COMMITTED HEIGHTFIELD, THE PREMISE DID NOT SURVIVE — AND THEN THE
+GROUND CAME. What this command reported from 2026-08-24 to 2026-09-13 is kept here
+because it is what the schedule was built on: the modelled box ended at local **N -400
+m**, that line fell INSIDE Washington Street's own 80 ft corridor, the field held 0.08 ha
+of land south of it and none of it in the South Division, Madison Street stood 125 m
+further south, and the plat's last tier of blocks was 100 % unmodelled — 0 of its 24
+block-boundary points on the field. So the blocker the 665-roof programme named for the
+South was the wrong one: it said street control, and street control stopped where the
+ground did.
 
-The three figures that settle it, all re-derived by this command:
-
-1. **Land south of Washington's platted corridor: 0.08 ha, and none of it in the South
-   Division.** Every cell of the committed field above the datum water surface, south of
-   the corridor's south edge, lies west of local E -10 — the West Division bank, across
-   the South Branch from the town.
-2. **Madison Street — the plat's south boundary — is 125 m south of the field's south
-   edge.** Its line is not traced: it is resolved the way T-E2 resolved the reservation's
-   south boundary, from the PLSS section corner at State & Madison (`G1`, the town plat's
-   SE corner) carried on the plat's own east-west bearing, which Lake, Randolph and
-   Washington agree on to the sixth decimal.
-3. **The plat's last tier of blocks is 100 % unmodelled.** Built by the plat module's own
-   `build_block`, the six blocks between Market and State that Washington and Madison
-   bound cover 5.6 ha of block ground, and the field covers none of it.
-
-**So the blocker the 665-roof programme names for the South was the wrong one.** It said
-street control: *"no block south of Washington has four committed centrelines"*. True, and
-downstream — every north-south street in the south plat has its committed line cut at
-exactly N -400, the field's own south edge, and the modern control that would carry them
-further is already committed (G1 is an OpenStreetMap node with an id). Street control
-stops where the ground does. Widening the eligible ground south is a TERRAIN parcel, not a
-rule the programme can relax, and `tools/generate_block_infill.py` would refuse every
-placement on it today with "falls outside the modelled terrain".
+**T-0219 carried the field to N -530 and the tier is on it, at 24 of 24.** The three
+figures now read 14.55 ha of land south of Washington's corridor with 9.90 ha of it in
+the South Division, Washington's corridor fully on the field, and Madison 4.8 m NORTH of
+the field's edge instead of 125 m south of it. `reconcile_665.py` branches on the last of
+those and the South's `waiting_on` names STREET CONTROL — the plat's seven north-south
+columns are still cut at N -400, the field's OLD south edge, and carrying them to Madison
+is now street work on ground that is under them. Ground east of State is still not coming
+at any date; it is the United States Reservation (T-E2).
 
     tools/measure_southern_ground.py             the report
     tools/measure_southern_ground.py --gate      the two assertions

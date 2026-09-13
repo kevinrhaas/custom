@@ -307,6 +307,13 @@ def terrain_inputs_sha(ep_dir: Path) -> str:
     one id table before it calls `build_field`, and those four features are the
     planform of the harbour, the lake shore and the sand bar. They move vertices.
 
+    `branches.geojson` IS hashed too, and for the same reason one commit later:
+    T-0219 carried the box south to Madison Street and the spec now resolves
+    `south_branch_school_section`, `south_branch_west_bank` and
+    `south_branch_east_bank` by id. The rule this list is actually keeping is
+    simple — a vector file joins it the moment the spec names a feature in it,
+    not the moment somebody remembers.
+
     WHAT THE OMISSION COST, because it is the argument for the denylist upstairs:
     T-0799 re-traced the whole east edge off the full Wright sheet — both pier
     lines, the cut, the bar to its tip, the old channel — and rewrote every one of
