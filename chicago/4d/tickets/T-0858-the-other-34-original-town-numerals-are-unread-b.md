@@ -1,7 +1,7 @@
 ---
 id: T-0858
 title: The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-12
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 3:50:06 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T20:55:02.757Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34718095604
 ---
 
 The other 34 Original Town numerals are unread because the street grid stops: Wright's Washington-Madison tier, the North Division and the West Division past Clinton.

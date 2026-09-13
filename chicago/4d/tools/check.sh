@@ -46,6 +46,22 @@ step "publish the mirror the gate measures (site/chicago/4d/ is generated, T-093
 # with the roll-up `check_summary` prints at the end. This holds both to it, and scans
 # check.sh for a self-test that has drifted back onto plain `step`, where it would print
 # untagged again.
+# T-1083. WHAT THIS RUN CAN ACTUALLY ASK, declared before it asks anything.
+#
+# Thirteen steps below re-read a committed raster, and each degrades politely to a
+# banked reading when the image and array libraries are absent — prints its skip and
+# exits 0. Right for a tool; wrong for a gate, which then counts the skip as a pass.
+# The dev gate installed jsonschema/pyproj/openpyxl/pypdf and had therefore never
+# re-read a sheet, which is how `sauganash_range_m` sat 65.1 m out against a 1.0 m
+# tolerance and green. CI now installs the readers and sets
+# C4D_GATE_REQUIRE_READERS=1, which makes their absence RED here rather than silent.
+# A sandbox without them gets the same enumeration as a warning and carries on.
+step "the gate can ask what it claims to ask (raster readers present)" \
+  python3 tools/check_gate_readers.py
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_gate_readers.py --self-test
+
 step "the gate's own output tells a fired assertion from a failure" \
   bash tools/test_check_harness.sh
 
@@ -103,6 +119,38 @@ step "the traced North Branch still carries what its generator writes" \
 # they are spliced on, which is what independently says the repair is right.
 step "the North Branch's repaired east bank has not leaked the west one" \
   python3 tools/measure_north_branch_banks.py --check-properties
+
+# T-0862. The NARA/Historic Urban Plans registration is the enabler the whole Wright
+# band stands on — at 600 dpi it resolves the Original Town's block numerals where the
+# BPL scan does not — and until now `grep -i nara` over this gate returned nothing but
+# unrelated Playwright comments. A hand edit to a coefficient, a residual or the
+# checksum would have passed every gate this project has, silently moving every reading
+# taken through the fit. This is the offline half, the same split trace_river.py makes:
+# each control point's residual, the RMS, the axis scales, the rotation, the scan-to-scan
+# departures, the scale bar's px-per-foot and each lacuna's ground extent, all re-derived
+# from the coefficients and the eight picked points. It re-picks nothing; re-locating the
+# correspondences off the raster stays the deliberate second tier.
+step "the Wright NARA registration still re-derives from its own control points" \
+  python3 tools/check_wright_nara_registration.py --check-properties
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_wright_nara_registration.py --self-test
+
+# T-0792 piece 1. The nine coloured chips of Wright's legend are the only place any
+# sheet in this project says who surveyed what ground and when, and three open tickets
+# ask to read a wash "against the legend's swatches". This holds the reading offline:
+# every pairwise chip distance re-derives from the committed medians, the grouping into
+# separable colours re-derives at the committed threshold, each band's local metres
+# re-derive through the committed affine, and the one chip-to-ground claim — that every
+# committed side of section 16 falls inside chip 5's band — re-derives from the blocks
+# file's own anchor. The REFUSAL is gated too: if a future edit ever made the nine chips
+# look separable, the step says so, because the two ambiguous swatches are refused on
+# exactly that arithmetic.
+step "Wright's legend chips still refuse what they cannot separate" \
+  python3 tools/read_wright_legend_swatches.py --check-properties
+
+selftest "…and that reading's assertions still fire when broken" \
+  python3 tools/read_wright_legend_swatches.py --self-test
 
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
@@ -243,6 +291,27 @@ step "Kinzie's Addition's block numerals re-derive from the reading and the run"
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_kinzie_addition_numerals.py --self-test
+
+# THE NORTH DIVISION'S SEVEN BLOCK NUMERALS (T-1088). The reading lives in
+# data/traces/thompson_block_numbering.json; what is gated here is the CITATION — every
+# crop region it cites is re-cut from the committed street lines by the same rule, so a
+# street that moves invalidates the crop rather than silently outliving it.
+step "the North Division numeral crops re-cut from the committed street lines" \
+  python3 tools/read_north_division_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_north_division_numerals.py --self-test
+
+# THE WASHINGTON-MADISON TIER'S SEVEN BLOCK NUMERALS (T-1094), gated for the same reason.
+# Three of each box's four sides are a committed line; the fourth pair is the flanking
+# north-south lines continued south along their own bearing, because they stop at y = -400.
+# The gate re-cuts every box and also checks that each read window still lies inside the box
+# it is cited under — block 52's declared overhang included.
+step "the Washington-Madison numeral crops re-cut from the committed street lines" \
+  python3 tools/read_washington_madison_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_washington_madison_numerals.py --self-test
 
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
@@ -456,6 +525,14 @@ step "the School Section's block numerals re-derive from the reading and the sch
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_school_section_numerals.py --self-test
+
+# The grid those numerals sit on had no gate at all, which is how its writer came to be
+# silently destructive for weeks: `splice()` rewrote each target file from its own first
+# record to the end, so re-running it deleted the twenty-two streets appended after its own.
+# T-0877 and T-0959 found that independently the same morning and T-0877's fix is the one in
+# force. Nothing NOTICED it because nothing re-ran the generator. This does (T-0959).
+step "the School Section's block grid, streets and reservations re-derive" \
+  python3 tools/generate_school_section_grid.py --check
 
 # The dooryard garden pickets are the first record on the enclosure layer whose evidence
 # is a TREATMENT and not a place — the Kinzie-view plate shows picket-fenced garden plots
@@ -1263,6 +1340,20 @@ step "both lines out of the Sauganash's drawn apex are still ridges, not rakes" 
 # hand-edited number. Skips (exit 0) when pyproj is not installed.
 step "datum re-derivation" \
   python3 tools/rederive_datum.py
+
+# T-0878. The verdict on the NA Wright sheet's registration is a MEASUREMENT — four
+# models scored on eleven control points, a leave-one-out for each, and a table of how
+# far every committed reading off that sheet would move under each. A verdict of that
+# shape rots the moment its inputs move, and three of its inputs are files other
+# tickets edit: the eight control points, the three section corners, and T-0797's
+# measured line table. So it is re-derived here rather than quoted. Pure Python by
+# design — numpy is not installed in the agent sandbox and a step that needs it SKIPS
+# (T-1083), which is not a gate.
+step "the NA Wright registration's adjudication still matches its own measurement" \
+  python3 tools/adjudicate_wright_na_fit.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/adjudicate_wright_na_fit.py --self-test
 
 # The liberties the walkthrough shows must still be the ones the markdown
 # states. LIBERTIES.md is append-only and is the source of truth; data/

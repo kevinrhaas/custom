@@ -56,8 +56,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_0",
+        "east": "school_section_line_1"
       },
       "where": "the corner of Madison Street and the section's west line",
       "reserved_for": "unstated",
@@ -82,8 +82,8 @@
       "bounded_by": {
         "north": "madison",
         "south": "monroe",
-        "west_sheet_name": null,
-        "east_sheet_name": null
+        "west": "school_section_line_12",
+        "east": "state_school_section"
       },
       "where": "the corner of Madison Street and State Street",
       "reserved_for": "unstated",
@@ -106,10 +106,10 @@
       "block_number": 87,
       "spans": [87, 88],
       "bounded_by": {
-        "north": "school_section_tier_7",
-        "south": "school_section_tier_8",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "north": "school_section_tier_7_south_of_madison",
+        "south": "school_section_tier_8_south_of_madison",
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "where": "on the east bank of the South Branch, spanning blocks 87 and 88",
       "reserved_for": "unstated",
@@ -132,10 +132,10 @@
       "block_number": 88,
       "spans": [87, 88],
       "bounded_by": {
-        "north": "school_section_tier_6",
-        "south": "school_section_tier_7",
-        "west_sheet_name": null,
-        "east_sheet_name": "Wells"
+        "north": "school_section_tier_6_south_of_madison",
+        "south": "school_section_tier_7_south_of_madison",
+        "west": "school_section_line_8",
+        "east": "wells_school_section"
       },
       "where": "on the east bank of the South Branch, spanning blocks 87 and 88",
       "reserved_for": "unstated",

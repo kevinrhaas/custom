@@ -38,11 +38,20 @@ jobs:
         with:
           node-version: '22'
 
+      # T-1083. numpy, scipy and Pillow are NOT optional extras here. Thirteen gate
+      # steps re-read a committed raster and each degrades to a banked reading
+      # without them — printing its skip and exiting 0, which this gate counted as a
+      # pass. It had therefore never re-read a sheet, and `sauganash_range_m` stood
+      # 65.1 m out against a 1.0 m tolerance, green, from T-1065 (#1189) onwards.
+      # tools/check_gate_readers.py holds the list; C4D_GATE_REQUIRE_READERS makes a
+      # missing one red instead of a warning, so this can never quietly regress.
       - name: Install validator dependencies
-        run: pip install --quiet jsonschema pyproj openpyxl pypdf
+        run: pip install --quiet jsonschema pyproj openpyxl pypdf numpy scipy Pillow
 
       - name: Run the gate
         working-directory: chicago/4d
+        env:
+          C4D_GATE_REQUIRE_READERS: '1'
         run: ./tools/check.sh
 
       # T-0409 — deliberately NOT inside check.sh. The nightly bake regenerates

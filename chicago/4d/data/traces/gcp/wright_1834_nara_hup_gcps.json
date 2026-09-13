@@ -21,9 +21,9 @@
     "imprint": "Reproduced by HISTORIC URBAN PLANS, Ithaca, New York"
   },
   "relation_to_wright_1834": "Same drawing, different scan, different pixel space. The BPL/Leventhal copy (commonwealth:js957744g, 4204 x 5166) remains the master for every trace already committed; this sheet is registered beside it so that readings made at 600 dpi can be cited. Neither is a second witness to the other: they are two photographs of one manuscript.",
-  "control_choice": "BOTH, and the ticket asked which and why (T-0787). The eight control crossings are the SAME eight the BPL set uses, so the two fits are directly comparable — that is the first block below. A scan-to-scan affine is fitted as well, because the readings this sheet exists for (block numerals) have to be carried back to traces already keyed to BPL pixels — that is the second block.",
-  "method": "Each control point was located by normalised cross-correlation of a 400 x 400 px patch cut from the BPL scan at that GCP against the NA sheet, over a scale sweep of 0.97-1.03, in a window centred on the prediction of a five-point affine. Because the patch is centred on the BPL pick, the match centre is the SAME point of the drawing, whatever picking convention the BPL set used — the correspondence does not depend on re-deciding what 'the crossing' means. Seven of the eight matched within 13 px of the affine and are taken as picked. G4 did not: its correlation peak ran to the edge of the search window, and a wider search found a peak 172 px away, which the block grid's ~145 px pitch makes an aliasing candidate. G4 was therefore picked by hand off a 20 px grid at 4x on both scans, from the same two ruled lines (block 38's west border and the Public Square block's south border), and carries a larger uncertainty. Estimated picking precision: +/- 5 px on the seven, +/- 8 px on G4.",
-  "control_source": "Modern control from OpenStreetMap via the Overpass API, fetched 2026-08-09. Multi-node crossings averaged (max spread 6.4 m). OSM data is (c) OpenStreetMap contributors, ODbL — see data/sources/osm_streets_2026.json.",
+  "control_choice": "BOTH, and the ticket asked which and why (T-0787). The eight control crossings are the SAME eight the BPL set uses, so the two fits are directly comparable \u2014 that is the first block below. A scan-to-scan affine is fitted as well, because the readings this sheet exists for (block numerals) have to be carried back to traces already keyed to BPL pixels \u2014 that is the second block.",
+  "method": "Each control point was located by normalised cross-correlation of a 400 x 400 px patch cut from the BPL scan at that GCP against the NA sheet, over a scale sweep of 0.97-1.03, in a window centred on the prediction of a five-point affine. Because the patch is centred on the BPL pick, the match centre is the SAME point of the drawing, whatever picking convention the BPL set used \u2014 the correspondence does not depend on re-deciding what 'the crossing' means. Seven of the eight matched within 13 px of the affine and are taken as picked. G4 did not: its correlation peak ran to the edge of the search window, and a wider search found a peak 172 px away, which the block grid's ~145 px pitch makes an aliasing candidate. G4 was therefore picked by hand off a 20 px grid at 4x on both scans, from the same two ruled lines (block 38's west border and the Public Square block's south border), and carries a larger uncertainty. Estimated picking precision: +/- 5 px on the seven, +/- 8 px on G4.",
+  "control_source": "Modern control from OpenStreetMap via the Overpass API, fetched 2026-08-09. Multi-node crossings averaged (max spread 6.4 m). OSM data is (c) OpenStreetMap contributors, ODbL \u2014 see data/sources/osm_streets_2026.json.",
   "gcps": [
     {
       "id": "G1",
@@ -115,7 +115,7 @@
     {
       "id": "G4",
       "map_feature": "Clark St & Washington St",
-      "feature_note": "SE corner of the Public Square block. Sits in a visibly warped region of the sheet — the expected outlier.",
+      "feature_note": "SE corner of the Public Square block. Sits in a visibly warped region of the sheet \u2014 the expected outlier.",
       "pixel": [
         2604.0,
         2993.0
@@ -279,7 +279,9 @@
       "bpl_rms_m": 17.5,
       "bpl_rotation_deg": 1.18,
       "finding": "THE X SCALES AGREE AND THE Y SCALES DO NOT, which is what a different mounting of the same paper should look like. Across the sheet the two fits differ by 0.03% in x (0.6985 against 0.6983 m/px) and by 1.5% in y (0.7358 against 0.7246). The NA sheet's own x/y anisotropy is 5.2% where the BPL sheet's is 3.7%; the extra stretch is in the long axis, along which the manuscript was torn and backed. Fit quality is marginally better on the new scan (RMS 16.2 m against 17.5 m) on identical control, so nothing about this sheet argues for demoting it; the two fits' rotations are 1.894 deg here against 1.183 deg on the BPL sheet, a difference of 0.71 deg."
-    }
+    },
+    "adjudicated_by": "data/traces/gcp/wright_1834_nara_hup_fit_adjudication.json",
+    "adjudication": "T-0878. THIS FIT IS FITTED OVER THE TOP HALF OF THE SHEET AND EXTRAPOLATED OVER THE REST, and the 5.2 per cent anisotropy above is about three per cent too much on the y axis where it is extrapolated. All eight control points lie between y=1631 and y=3225 px of a 6628 px sheet; the School Section, whose outer lines are a statute mile square drawn on the same paper, occupies y=3169-5495 px and measures 1658.65 m north-south through this fit. Measured on the section's own square the sheet is 0.70055 m/px in x and 0.71397 m/px in y \u2014 a real 1.92 per cent anisotropy, against this fit's 5.2. The adjudication tested a y-scale correction and a second-order term and rejected both (the first costs 11.7 m of RMS on the control it had; the second doubles the leave-one-out error), and adopted instead an eleven-point refit that adds the section's other three corners as control at the sheet's foot: leave-one-out 23.29 -> 20.17 m. THIS BLOCK IS STILL THE FIT IN FORCE \u2014 T-1091 is the ticket that swaps it, because nine committed traces move by up to 84 m when it does. Until then, a reading taken south of Madison Street off this sheet carries about three per cent of y error, and the safe pattern is T-0797's: anchor on a length that is known on the ground, not on the paper."
   },
   "scan_to_scan": {
     "type": "affine, least squares, BPL pixel -> NA pixel, all eight points",
@@ -300,7 +302,7 @@
     "warning": "Applying this to carry a reading between the scans costs the residual above; it is not a lossless change of coordinates."
   },
   "scale_bar": {
-    "drawn": "Scale of feet — 1200 / 600 / 300, subdivided 200 / 100 / 50 at the right end, at the foot of the sheet",
+    "drawn": "Scale of feet \u2014 1200 / 600 / 300, subdivided 200 / 100 / 50 at the right end, at the foot of the sheet",
     "method": "tick columns found as darkness maxima of the column profile across the bar's ruled band, then a least-squares fit of pixel against feet",
     "nara_hup": {
       "band_y": [
@@ -328,11 +330,11 @@
       "fit_px_per_foot": 0.44181,
       "m_per_px": 0.6899
     },
-    "finding": "THE BAR CORROBORATES THE HORIZONTAL FIT ON BOTH SHEETS AND SAYS NOTHING ABOUT THE VERTICAL, which is where the disagreement actually is. The bar is drawn horizontally, so it can only be compared with the fits' x scale: 0.6924 against 0.6985 m/px here (0.87%) and 0.6899 against 0.6983 on the BPL sheet (1.2%). Carried across the ~1750 px width of the plat that is 11 m and 12 m — inside each fit's own RMS (16.2 m and 17.5 m), so under this ticket's test it is a rounding and not a finding. The 5.2% and 3.7% x/y anisotropies are larger than either, and the bar cannot adjudicate them."
+    "finding": "THE BAR CORROBORATES THE HORIZONTAL FIT ON BOTH SHEETS AND SAYS NOTHING ABOUT THE VERTICAL, which is where the disagreement actually is. The bar is drawn horizontally, so it can only be compared with the fits' x scale: 0.6924 against 0.6985 m/px here (0.87%) and 0.6899 against 0.6983 on the BPL sheet (1.2%). Carried across the ~1750 px width of the plat that is 11 m and 12 m \u2014 inside each fit's own RMS (16.2 m and 17.5 m), so under this ticket's test it is a rounding and not a finding. The 5.2% and 3.7% x/y anisotropies are larger than either, and the bar cannot adjudicate them."
   },
   "lacunae": {
     "_doc": "Paper the sheet has lost. Anything inside these boxes is cloth backing, not Wright, and no reading may be taken from them. Boxes are NA pixel space, [x_min, y_min, x_max, y_max].",
-    "method": "Whole-sheet sweep inside the neat line for connected regions brighter than 200/255 with saturation below 0.14 — the cloth's tone, which no part of the aged paper reaches — then the bounding box of each region re-measured at full resolution. Two were found, which is the number the printed caption gives.",
+    "method": "Whole-sheet sweep inside the neat line for connected regions brighter than 200/255 with saturation below 0.14 \u2014 the cloth's tone, which no part of the aged paper reaches \u2014 then the bounding box of each region re-measured at full resolution. Two were found, which is the number the printed caption gives.",
     "found": [
       {
         "id": "L1",

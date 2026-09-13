@@ -1,7 +1,7 @@
 ---
 id: T-0862
 title: The Wright NARA registration that every Wright-band ticket is built on has no gate: nothing verifies its raster, its checksum or its fit
-state: open
+state: done
 epic: PAPERS
 requested_by: steward
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1215
+claimed_by: run 9/12/2026, 5:36:52 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T22:53:33.418Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34723073050
 ---
 
 The Wright NARA registration that every Wright-band ticket is built on has no gate: nothing verifies its raster, its checksum or its fit.
