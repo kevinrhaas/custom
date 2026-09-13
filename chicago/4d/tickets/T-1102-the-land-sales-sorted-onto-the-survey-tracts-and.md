@@ -1,7 +1,7 @@
 ---
 id: T-1102
 title: The land sales sorted onto the survey tracts, and the generators reading the tract layer
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1097
 opened: 2026-09-12
-closed: null
+closed: 2026-09-13
 pr: null
 claimed_by: run 9/13/2026, 12:08:50 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T05:19:54.990Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34739061978
 ---
 

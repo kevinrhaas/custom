@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Every land-sale row this project can put on the ground, sorted onto a survey tract (T-1102).
+"""Every land-sale row this project can put on the ground, sorted onto a survey tract (T-1104).
 
     tools/sort_land_sales_onto_tracts.py --build      re-derive the sort, rewrite the record
     tools/sort_land_sales_onto_tracts.py --check      the gate: re-derive every share and
@@ -477,7 +477,7 @@ def assemble(tracts_doc, ground_doc, entries_doc, polys, grades, sorted_rows, re
         ),
         "id": "land_sales_by_survey_tract_1835",
         "target_date": SCENE_DATE,
-        "ticket": "T-1102 (piece 2 of T-1097, itself piece 2 of T-0792)",
+        "ticket": "T-1104 (piece 1 of T-1102, itself piece 2 of T-1097 and piece 2 of T-0792)",
         "tool": "tools/sort_land_sales_onto_tracts.py",
         "reads": [
             "data/reconstruction/1835_survey_tracts.json",

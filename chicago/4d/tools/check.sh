@@ -182,7 +182,7 @@ step "the nine survey tracts still stand where their committed ground puts them"
 selftest "…and the tract layer's assertions still fire when broken" \
   python3 tools/build_survey_tracts.py --self-test
 
-# T-1102. The tract layer names who surveyed the ground; the register names who bought it,
+# T-1104. The tract layer names who surveyed the ground; the register names who bought it,
 # and since T-0609 it has been on the ground. This joins them, and the join is where two
 # committed files can quietly stop agreeing: a section corner that drifts, a seating that is
 # re-fitted or a school-section block that moves changes which polygon a parcel falls in

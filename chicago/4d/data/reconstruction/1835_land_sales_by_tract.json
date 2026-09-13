@@ -2,7 +2,7 @@
   "$schema_note": "DERIVED, and it authors no coordinate. Every share below is re-computed by tools/sort_land_sales_onto_tracts.py --check from the committed tract polygons and the committed parcel rings; the gate refuses any drift. Nothing here is a new boundary, a new parcel or a new owner — it is a join between two files that already stood on their own gates.",
   "id": "land_sales_by_survey_tract_1835",
   "target_date": "1835-07-01",
-  "ticket": "T-1102 (piece 2 of T-1097, itself piece 2 of T-0792)",
+  "ticket": "T-1104 (piece 1 of T-1102, itself piece 2 of T-1097 and piece 2 of T-0792)",
   "tool": "tools/sort_land_sales_onto_tracts.py",
   "reads": [
     "data/reconstruction/1835_survey_tracts.json",
