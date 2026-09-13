@@ -182,6 +182,11 @@ WIDTH_TEST_REFUSED = {
 def _frame():
     g = json.loads(GCP.read_text())
     d = json.loads((ROOT / "data/datum.json").read_text())
+    # T-1092 re-seated this trace onto the ELEVEN-POINT registration T-1091 adopted,
+    # and re-baked what stands on the ground that moved. `fit` IS that registration;
+    # the eight-point fit it superseded is kept beside it as `retained_fit` for the
+    # adjudication that compares the two. Reading `retained_fit` here would seat the
+    # ground on a fit this project no longer holds.
     c = g["fit"]["coefficients"]
 
     def to_local(px, py):
@@ -254,6 +259,11 @@ def _cross_check(doc):
     (e0, n0), (e1, n1) = path[0], path[-1]
     committed_n = n0 + (n1 - n0) * (e - e0) / (e1 - e0)
     gap = abs(committed_n - n)
+    # The RMS of the registration this reading is carried through, READ from it rather
+    # than written down here: T-1091 changed the fit and T-1092 re-seated this reading
+    # onto it, and a figure typed into a tool does not follow.
+    rms = json.loads(GCP.read_text())["fit"]["rms_m"]
+    inside = gap <= rms
     return {
         "street": "kinzie",
         "sheet_centre_local_enu_m": [e, n],
@@ -261,14 +271,25 @@ def _cross_check(doc):
         "committed_n_at_same_e_m": round(committed_n, 1),
         "extrapolated_west_of_committed_end_m": round(e0 - e, 1),
         "gap_m": round(gap, 1),
-        "sheet_registration_rms_m": 16.19,
+        "sheet_registration_rms_m": rms,
+        "gap_inside_registration_rms": inside,
         "reading": "The sheet puts Kinzie Street "
                    f"{round(gap, 1)} m south of where the committed line runs at the same "
-                   "easting, against a registration that admits 16.19 m RMS. The two "
-                   "readings agree: Wabansia's south line and the town's Kinzie Street "
-                   "are the same street. Note the committed line is extrapolated "
-                   f"{round(e0 - e, 1)} m west of its own west end to meet this tract, so "
-                   "the gap is a consistency check and not a control point.",
+                   f"easting, against a registration that admits {rms} m RMS — "
+                   + ("inside it. " if inside else
+                      "OUTSIDE it, by "
+                      f"{round(gap - rms, 1)} m. Under the eight-point fit T-1091 "
+                      "superseded the same gap was 8.8 m and inside; the eleven-point "
+                      "fit that replaced it is the better registration over the sheet as "
+                      "a whole and the worse one here, which is what a fit refitted at "
+                      "the sheet's foot does to its north-west corner. ") +
+                   "THE IDENTIFICATION DOES NOT REST ON THIS GAP: Wright letters "
+                   "`Kinzie` inside this corridor, which is why Wabansia's south line "
+                   "and the town's Kinzie Street are read as the same street. The gap "
+                   "measures how well the registration carries that reading onto the "
+                   "committed line, and nothing else. Note the committed line is "
+                   f"extrapolated {round(e0 - e, 1)} m west of its own west end to meet "
+                   "this tract, so it is a consistency check and not a control point.",
     }
 
 
@@ -326,8 +347,12 @@ def _wrap(doc):
         "ticket": "T-0790",
         "raster": {k: g["raster"][k] for k in
                    ("working_copy", "width", "height", "dpi", "sha256", "source_id")},
+        # The RMS of the fit THIS READING IS CARRIED THROUGH — the eleven-point one in
+        # force since T-1091, onto which T-1092 re-seated this reading. See _frame above.
         "registration": {"gcp_file": "data/traces/gcp/wright_1834_nara_hup_gcps.json",
-                         "rms_m": g["fit"].get("rms_m", g["fit"].get("residual_rms_m"))},
+                         "fit": "fit — the eleven-point registration in force (T-1091), "
+                                "re-seated onto it by T-1092",
+                         "rms_m": g["fit"].get("rms_m")},
         "method": {"shear_ew": SHEAR_EW, "windows": WINDOWS,
                    "discrimination": "the corridor is the rule pair bracketing Wright's "
                                      "own lettering; see § width_test_refused"},

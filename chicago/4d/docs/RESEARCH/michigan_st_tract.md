@@ -1,6 +1,8 @@
 # The Michigan St tract north of Kinzie Street
 
 T-0796 · T-1076 (the reading) · T-1079 (the seating, and this note) · T-1080 (the name, and the road)
+· T-1092 (re-seated on the eleven-point registration T-1091 adopted; every measured figure below
+is that re-seating's, and the section at the foot says what moved)
 
 Wright's 1834 survey draws, immediately north of Kinzie Street and east of the North
 Branch, a small platted square unlike anything around it: two block columns, two block
@@ -47,7 +49,7 @@ Arthur Bronson (line 13225), and once at line 93807 on the price of the land it 
 out upon. **None of the three gives a boundary.**
 
 And the size refuses it. Wolcott's Addition is **eighty acres**. This tract, seated, is
-200.0 m by 157.4 m — **31,486 m², or 7.78 acres**, a tenth of that. Wright draws no
+202.1 m by 154.3 m — **31,182 m², or 7.71 acres**, a tenth of that. Wright draws no
 platted ground adjoining it to make up the difference: north and east of it the sheet is
 blank, unsurveyed, and carries the sheet's own title. So either this square is one corner
 of a larger Wolcott's Addition that Wright drew only part of, or it is not Wolcott's
@@ -76,12 +78,37 @@ no trace and no polygon in this project carries the name Wolcott.
 The tract is seated on the committed grid rather than pasted from the sheet's fit,
 because at this tract the fit is badly local. Measured north of the committed Kinzie
 line, the committed grid puts Michigan Street **138.1 m** away and Wright's fit puts it
-**99.9 m** away. Thompson's 1830 plat draws exactly one tier of North Division blocks in
+**91.9 m** away. Thompson's 1830 plat draws exactly one tier of North Division blocks in
 that span, fronting Kinzie on the south and Michigan on the north, so the span has to
-hold a block plus an 80 ft street: 453 ft does and 328 ft does not.
+hold a block plus an 80 ft street: 453 ft does and 301 ft does not.
 
-The cost is stated rather than hidden. Seated, the tract's south border stands **60.5 m**
-north of Kinzie Street where the sheet draws **22.0 m** — a 38.5 m disagreement, all of
+The cost is stated rather than hidden. Seated, the tract's south border stands **62.0 m**
+north of Kinzie Street where the sheet draws **15.0 m** — a 47.0 m disagreement, all of
 it Wright's compression in y at his sheet's western margin. The alternative, hanging the
 ladder on `kinzie`, would have kept the drawn frontage and committed a **second** Michigan
 Street 38 m south of the committed one, which is the one thing the reading refuses.
+
+## The re-seating of 2026-09-13 (T-1092)
+
+T-1091 put the eleven-point registration of the NA sheet in force and deliberately left
+the four SEATED grids — this one, the School Section, Kinzie's Addition and Wabansia's
+streets — reading the eight-point fit it superseded, because moving them moves ground.
+T-1092 moved them. This tract's reading was re-run by `tools/read_michigan_st_tract.py`
+and re-seated by `tools/seat_michigan_st_tract.py`, both now on `fit` rather than
+`retained_fit`, and every figure in this note is from that run.
+
+WHAT MOVED, AND WHAT DID NOT. The tract is still seated on `michigan_north` and
+`market_north`, so its position on the ground is unchanged in kind: the corners move
+about a metre, the extent by two metres one way and three the other, and the alley
+spacing off Michigan Street by under a metre. **What moves is the sheet's side of the
+comparison.** Wright's drawn Kinzie-to-Michigan span reads 91.9 m through the new fit
+where it read 99.9 m through the old, so the disagreement this seating pays for grows
+from 38.5 m to 47.0 m. That is the same statement T-1091 made about the whole sheet —
+the eleven-point fit is the better registration over the paper and a worse one in this
+north-west corner, because its y scale is no longer fitted over the top quarter alone —
+and it does not change which answer the project takes. Thompson's one block tier plus an
+80 ft street still needs 453 ft, and 301 ft is further from holding it than 328 ft was.
+
+THE NAME IS UNTOUCHED BY ANY OF THIS. It was refused on arithmetic and it stays refused
+on arithmetic: 7.71 acres against Wolcott's Addition's eighty is the same refusal 7.78
+was.

@@ -152,6 +152,53 @@ step "Wright's legend chips still refuse what they cannot separate" \
 selftest "…and that reading's assertions still fire when broken" \
   python3 tools/read_wright_legend_swatches.py --self-test
 
+# T-0795. The whole-sheet watercourse count, and what it costs to be wrong about it:
+# the audit's headline is that Wright draws ONE watercourse that is not the river, so
+# every number it rests on has to stay re-derivable or the count becomes an assertion.
+# Offline half — the two bank re-entrant picks carried through the committed affine and
+# checked against the E-ranges the traced 1834 waterline gives for the La Salle and
+# State Street mouths, the station count against the committed centreline, the scale
+# against the fit's axes, and every id the audit names against the terrain that holds
+# it. The raster half is `--check-sheet` and needs Pillow and numpy, which this gate
+# does not have.
+step "Wright's whole sheet still counts one watercourse that is not the river" \
+  python3 tools/audit_wright_watercourses.py --check-properties
+
+selftest "…and that audit's assertions still fire when broken" \
+  python3 tools/audit_wright_watercourses.py --self-test
+# T-1101. The nine chips, put on the ground. Seven of the nine tracts are polygons now —
+# every one of them re-derived here from geometry this project already committed, never
+# traced off a wash — and the two that name no tract are REFUSED, with the number that
+# would change the refusal attached. This step rebuilds all seven rings from their own
+# inputs and re-takes all 116 band verdicts from the band centroids the record carries,
+# so a street line that moves, a section corner that drifts, a seating that is re-fitted
+# or a grade quietly upgraded is a failure here rather than a claim nobody re-checked.
+# The REFUSALS are gated too, for the same reason the swatch step gates its own: if a
+# later edit gave Wabansia colour evidence it does not have, or handed one of the unnamed
+# chips a polygon, the prose would still read correctly and only this would notice.
+step "the nine survey tracts still stand where their committed ground puts them" \
+  python3 tools/build_survey_tracts.py --check-properties
+
+selftest "…and the tract layer's assertions still fire when broken" \
+  python3 tools/build_survey_tracts.py --self-test
+
+# T-1082. The swatch reading above is of the NA/HUP facsimile; the North Branch's
+# disputed bank wash is on the BPL master, and the same nine chips are not the same
+# nine colours on the two sheets. This holds the master-side reading offline: the
+# chips' pairwise separations and their grouping re-derive from the committed
+# medians, each stretch's dilution rays re-derive from its band and paper colours,
+# each verdict re-derives from the stated rule, and the stretches themselves are
+# read from the bank baseline rather than re-declared. BOTH REFUSALS ARE GATED —
+# if a future edit ever made the two sheets' chips agree, or put a facsimile band
+# on this reach, or identified the east stretch's colour, the step says so, because
+# those are exactly the three things docs/RESEARCH/north_branch_wabansia.md § 5
+# refuses on.
+step "the North Branch's bank wash is still a colour the legend cannot name" \
+  python3 tools/read_north_branch_bank_wash.py --check-properties
+
+selftest "…and that reading's assertions still fire when broken" \
+  python3 tools/read_north_branch_bank_wash.py --self-test
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
@@ -312,6 +359,22 @@ step "the Washington-Madison numeral crops re-cut from the committed street line
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_washington_madison_numerals.py --self-test
+
+# THE WEST DIVISION'S EIGHTEEN BLOCK NUMERALS (T-1098, out of T-1095), the last eighteen
+# of the fifty-eight and the ones that had no control at all. Four boxes are flanked by
+# two committed lines; the six tier lines are committed but clipped at east -320 m and are
+# continued WEST along their own bearings; and the two flanks Jefferson and Des Plaines
+# would give are `clinton` stepped one and two modules west, because both streets are
+# REFUSED for standing wholly west of the modelled ground. The gate re-cuts every box,
+# checks every read window still lies inside the box it is cited under, re-measures the
+# three agreements that licence the step, and asserts the boustrophedon ACROSS the blocks
+# other tickets already read — so a numeral misread here breaks against T-0788's 28 29 and
+# T-1094's 52 rather than quietly standing alone.
+step "the West Division numeral crops re-cut from the committed street lines" \
+  python3 tools/read_west_division_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_west_division_numerals.py --self-test
 
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed

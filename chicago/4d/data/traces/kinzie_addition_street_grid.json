@@ -83,11 +83,11 @@
             1111.9,
             1142.5
           ],
-          "corridor_m": 22.52,
-          "corridor_ft": 73.9,
+          "corridor_m": 22.07,
+          "corridor_ft": 72.4,
           "centre_local_enu_m": [
-            841.5,
-            1009.9
+            836.1,
+            994.3
           ]
         }
       ],
@@ -99,11 +99,11 @@
             1236.4,
             1266.1
           ],
-          "corridor_m": 21.85,
-          "corridor_ft": 71.7,
+          "corridor_m": 21.42,
+          "corridor_ft": 70.3,
           "centre_local_enu_m": [
-            841.8,
-            918.6
+            837.0,
+            904.8
           ]
         },
         {
@@ -113,11 +113,11 @@
             1245.9,
             1275.8
           ],
-          "corridor_m": 22.0,
-          "corridor_ft": 72.2,
+          "corridor_m": 21.57,
+          "corridor_ft": 70.8,
           "centre_local_enu_m": [
-            1190.8,
-            923.1
+            1189.7,
+            911.7
           ]
         }
       ],
@@ -129,11 +129,11 @@
             1358.4,
             1388.4
           ],
-          "corridor_m": 22.07,
-          "corridor_ft": 72.4,
+          "corridor_m": 21.64,
+          "corridor_ft": 71.0,
           "centre_local_enu_m": [
-            842.0,
-            828.7
+            837.9,
+            816.7
           ]
         },
         {
@@ -143,11 +143,11 @@
             1367.5,
             1396.7
           ],
-          "corridor_m": 21.48,
-          "corridor_ft": 70.5,
+          "corridor_m": 21.06,
+          "corridor_ft": 69.1,
           "centre_local_enu_m": [
-            1191.1,
-            833.8
+            1190.6,
+            824.2
           ]
         }
       ],
@@ -159,11 +159,11 @@
             1481.6,
             1516.5
           ],
-          "corridor_m": 25.68,
-          "corridor_ft": 84.2,
+          "corridor_m": 25.17,
+          "corridor_ft": 82.6,
           "centre_local_enu_m": [
-            842.2,
-            736.3
+            838.9,
+            726.1
           ]
         },
         {
@@ -173,11 +173,11 @@
             1491.9,
             1522.7
           ],
-          "corridor_m": 22.66,
-          "corridor_ft": 74.4,
+          "corridor_m": 22.21,
+          "corridor_ft": 72.9,
           "centre_local_enu_m": [
-            1191.3,
-            741.7
+            1191.6,
+            733.9
           ]
         }
       ],
@@ -189,11 +189,11 @@
             1608.9,
             1639.9
           ],
-          "corridor_m": 22.81,
-          "corridor_ft": 74.8,
+          "corridor_m": 22.36,
+          "corridor_ft": 73.4,
           "centre_local_enu_m": [
-            842.4,
-            644.0
+            839.8,
+            635.7
           ]
         },
         {
@@ -203,11 +203,11 @@
             1617.9,
             1646.0
           ],
-          "corridor_m": 20.68,
-          "corridor_ft": 67.8,
+          "corridor_m": 20.27,
+          "corridor_ft": 66.5,
           "centre_local_enu_m": [
-            1191.5,
-            650.0
+            1192.5,
+            644.0
           ]
         }
       ],
@@ -219,11 +219,11 @@
             1729.2,
             1764.5
           ],
-          "corridor_m": 25.97,
-          "corridor_ft": 85.2,
+          "corridor_m": 25.46,
+          "corridor_ft": 83.5,
           "centre_local_enu_m": [
-            842.7,
-            553.9
+            840.7,
+            547.4
           ]
         },
         {
@@ -233,11 +233,11 @@
             1738.0,
             1771.4
           ],
-          "corridor_m": 24.58,
-          "corridor_ft": 80.6,
+          "corridor_m": 24.09,
+          "corridor_ft": 79.0,
           "centre_local_enu_m": [
-            1191.7,
-            559.7
+            1193.4,
+            555.5
           ]
         }
       ],
@@ -249,11 +249,11 @@
             1855.3,
             1887.0
           ],
-          "corridor_m": 23.32,
-          "corridor_ft": 76.5,
+          "corridor_m": 22.86,
+          "corridor_ft": 75.0,
           "centre_local_enu_m": [
-            842.9,
-            462.5
+            841.6,
+            457.7
           ]
         },
         {
@@ -263,11 +263,11 @@
             1864.5,
             1895.6
           ],
-          "corridor_m": 22.88,
-          "corridor_ft": 75.1,
+          "corridor_m": 22.43,
+          "corridor_ft": 73.6,
           "centre_local_enu_m": [
-            1192.0,
-            467.5
+            1194.3,
+            465.1
           ]
         }
       ],
@@ -279,11 +279,11 @@
             1978.6,
             2009.5
           ],
-          "corridor_m": 22.74,
-          "corridor_ft": 74.6,
+          "corridor_m": 22.29,
+          "corridor_ft": 73.1,
           "centre_local_enu_m": [
-            843.1,
-            372.0
+            842.6,
+            369.1
           ]
         }
       ]
@@ -297,11 +297,11 @@
             2943.0,
             2972.7
           ],
-          "corridor_m": 20.74,
-          "corridor_ft": 68.1,
+          "corridor_m": 20.96,
+          "corridor_ft": 68.8,
           "centre_local_enu_m": [
-            836.6,
-            992.9
+            831.2,
+            977.6
           ]
         }
       ],
@@ -313,11 +313,11 @@
             3100.0,
             3130.2
           ],
-          "corridor_m": 21.09,
-          "corridor_ft": 69.2,
+          "corridor_m": 21.32,
+          "corridor_ft": 69.9,
           "centre_local_enu_m": [
-            946.4,
-            996.5
+            942.1,
+            982.0
           ]
         },
         {
@@ -327,11 +327,11 @@
             3097.6,
             3131.0
           ],
-          "corridor_m": 23.33,
-          "corridor_ft": 76.5,
+          "corridor_m": 23.57,
+          "corridor_ft": 77.3,
           "centre_local_enu_m": [
-            946.5,
-            720.6
+            944.4,
+            711.5
           ]
         },
         {
@@ -341,11 +341,11 @@
             3096.3,
             3129.0
           ],
-          "corridor_m": 22.84,
-          "corridor_ft": 74.9,
+          "corridor_m": 23.08,
+          "corridor_ft": 75.7,
           "centre_local_enu_m": [
-            945.6,
-            628.6
+            944.1,
+            621.3
           ]
         }
       ],
@@ -357,11 +357,11 @@
             3257.7,
             3290.0
           ],
-          "corridor_m": 22.56,
-          "corridor_ft": 74.0,
+          "corridor_m": 22.8,
+          "corridor_ft": 74.8,
           "centre_local_enu_m": [
-            1057.2,
-            1000.2
+            1054.1,
+            986.4
           ]
         },
         {
@@ -371,11 +371,11 @@
             3254.5,
             3286.7
           ],
-          "corridor_m": 22.49,
-          "corridor_ft": 73.8,
+          "corridor_m": 22.73,
+          "corridor_ft": 74.6,
           "centre_local_enu_m": [
-            1055.8,
-            632.2
+            1055.5,
+            625.7
           ]
         }
       ],
@@ -387,11 +387,11 @@
             3412.7,
             3450.0
           ],
-          "corridor_m": 26.05,
-          "corridor_ft": 85.5,
+          "corridor_m": 26.33,
+          "corridor_ft": 86.4,
           "centre_local_enu_m": [
-            1167.1,
-            1003.8
+            1165.2,
+            990.7
           ]
         },
         {
@@ -401,11 +401,11 @@
             3414.0,
             3445.4
           ],
-          "corridor_m": 21.93,
-          "corridor_ft": 72.0,
+          "corridor_m": 22.16,
+          "corridor_ft": 72.7,
           "centre_local_enu_m": [
-            1166.9,
-            635.9
+            1167.7,
+            630.1
           ]
         }
       ],
@@ -417,11 +417,11 @@
             3571.1,
             3605.7
           ],
-          "corridor_m": 24.17,
-          "corridor_ft": 79.3,
+          "corridor_m": 24.42,
+          "corridor_ft": 80.1,
           "centre_local_enu_m": [
-            1277.5,
-            731.6
+            1278.7,
+            724.6
           ]
         },
         {
@@ -431,11 +431,11 @@
             3572.0,
             3604.5
           ],
-          "corridor_m": 22.7,
-          "corridor_ft": 74.5,
+          "corridor_m": 22.94,
+          "corridor_ft": 75.3,
           "centre_local_enu_m": [
-            1277.6,
-            639.6
+            1279.6,
+            634.4
           ]
         }
       ]
@@ -443,42 +443,42 @@
   },
   "module": {
     "tier_pitch_m": {
-      "mean": 91.12,
+      "mean": 89.32,
       "sd": 1.07,
       "n": 12,
       "samples": [
-        90.5,
-        91.4,
-        90.1,
-        92.3,
-        92.4,
+        88.6,
+        89.7,
+        88.3,
+        90.4,
+        90.6,
+        88.1,
+        89.5,
+        90.4,
+        88.5,
         89.9,
-        91.3,
-        92.2,
         90.3,
-        91.7,
-        92.1,
-        89.3
+        87.5
       ],
       "note": "centre to centre of consecutive east-west corridors — the north-south module of the plat"
     },
     "column_pitch_m": {
-      "mean": 110.4,
+      "mean": 111.56,
       "sd": 0.48,
       "n": 7,
       "samples": [
-        109.8,
-        110.8,
-        109.9,
-        110.33,
-        110.2,
+        110.9,
+        112.0,
         111.1,
-        110.7
+        111.43,
+        111.4,
+        112.2,
+        111.9
       ],
       "note": "centre to centre of consecutive north-south corridors"
     },
     "corridor_read_ft": {
-      "mean": 75.1,
+      "mean": 74.5,
       "sd": 4.9,
       "n": 24
     }
@@ -490,8 +490,8 @@
         2621.3,
         2658.2
       ],
-      "corridor_m": 27.15,
-      "corridor_ft": 89.1,
+      "corridor_m": 26.61,
+      "corridor_ft": 87.3,
       "platted_ft": 80.0
     },
     "randolph": {
@@ -500,8 +500,8 @@
         2811.9,
         2844.5
       ],
-      "corridor_m": 23.99,
-      "corridor_ft": 78.7,
+      "corridor_m": 23.51,
+      "corridor_ft": 77.1,
       "platted_ft": 80.0
     },
     "washington": {
@@ -510,22 +510,22 @@
         3004.3,
         3038.7
       ],
-      "corridor_m": 25.31,
-      "corridor_ft": 83.0,
+      "corridor_m": 24.81,
+      "corridor_ft": 81.4,
       "platted_ft": 80.0
     }
   },
   "control_summary": {
     "original_town_platted_ft": 80.0,
     "original_town_read_ft": {
-      "mean": 83.6,
-      "sd": 5.2,
+      "mean": 81.9,
+      "sd": 5.1,
       "n": 3
     },
-    "method_over_read": 1.045,
-    "addition_over_original_town": 0.898,
-    "addition_corridor_ft": 71.9,
-    "addition_corridor_m": 21.9,
+    "method_over_read": 1.024,
+    "addition_over_original_town": 0.909,
+    "addition_corridor_ft": 72.7,
+    "addition_corridor_m": 22.17,
     "reading": "The Addition's corridors are not measured against a ruler, they are measured against the Original Town's on the same sheet by the same method — which is the only comparison the sheet can settle. The method reads a platted 80 ft corridor wide, so the Addition's raw read is scaled by the ratio rather than taken at face value."
   },
   "extent": {

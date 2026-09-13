@@ -278,6 +278,11 @@ def _single(rules, slot, tol):
 def _frame():
     g = json.loads(GCP.read_text())
     d = json.loads((ROOT / "data/datum.json").read_text())
+    # T-1092 re-seated this trace onto the ELEVEN-POINT registration T-1091 adopted,
+    # and re-baked what stands on the ground that moved. `fit` IS that registration;
+    # the eight-point fit it superseded is kept beside it as `retained_fit` for the
+    # adjudication that compares the two. Reading `retained_fit` here would seat the
+    # ground on a fit this project no longer holds.
     c = g["fit"]["coefficients"]
 
     def to_local(px, py):
