@@ -749,7 +749,11 @@ step "no stack in the town is painted the colour of the roof it passes through" 
 # anything above a roof line. Every stack in the town already clears it; this is the ratchet
 # that stops one dropping back under. It does NOT decide which buildings the by-law reaches:
 # section 22's corporation limits are T-0334's and are not drawn yet, and nothing here is
-# conformed to a rule that may not bind it, because nothing has to move.
+# conformed to a rule that may not bind it, because nothing has to move. SINCE T-0436 it
+# also REPORTS the reach: the corporate boundary is committed, eight of the chimneyed
+# buildings stand outside it, and section 18 never bound one of them. (The line is the
+# Trustees' own of 7 November 1833 — NOT section 22, which draws the narrower
+# hay-stacking boundary and is T-0334's.)
 step "every stack is carried eighteen inches above its roof, as the by-law of 5 August 1835 requires" \
   python3 tools/measure_stack_ordinance.py --gate --quiet
 
@@ -878,6 +882,21 @@ step "nothing unpermitted stands on reserved ground" \
 # are resolved from the traces, so a terrain extension that outruns them fails here.
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
+
+# T-0436. The other kind of line over the same ground: not who could build on it, but
+# whose by-laws reached it. The Trustees walked the corporate boundary on 7 November 1833
+# and printed it three weeks later (chicago_democrat_1833_11_26#c024, tier 1); the legs
+# are authored and the ring is RESOLVED from the committed streets and the committed
+# shoreline, so a re-traced shore or a moved street must re-derive it or fail here. This
+# never fails because a building stands outside the limits — twenty-four do, and that is
+# a fact about 1835. It fails when the boundary stops being readable, or when a leg
+# carried past the end of its own committed centreline comes near enough to a drawn
+# building that the EXTENSION, rather than the ordinance, decides its side of the line.
+step "the corporate boundary of 7 November 1833 still re-derives, and decides nobody by extrapolation" \
+  python3 tools/measure_corporation_limits.py --gate --quiet
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_corporation_limits.py --self-test
 
 # T-0134. The plate the Dearborn reach was built from draws warehouses on BOTH banks and
 # only the north one stands. The south side was refused on a single spot reading taken by

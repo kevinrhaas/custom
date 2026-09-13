@@ -49,15 +49,31 @@ every other. So the clause is recorded and binds nothing that is drawn.
 
 ## The corporation limits, and why this gate is a ratchet rather than an enforcement
 
-Section 18 binds *"within the limits of the Corporation"*, and section 22 of the same
-sitting walks those limits street by street — the only documented statement in this
-corpus of where the built town was held to end in the scene year. **This project does not
-draw that boundary yet; T-0334 owns it.** So this gate deliberately does not decide which
-buildings the by-law reaches. It does not conform anything: every stack in the town
-already clears eighteen inches, on both sides of a line nobody has drawn, and what the
-gate holds is that none may drop back under it. The day a record legitimately stands a
-shorter stack outside the limits, T-0334's boundary is what scopes this gate, and the
-failure message says so rather than leaving the next reader to work it out.
+Section 18 binds *"within the limits of the Corporation"*, and until T-0436 this file
+said that section 22 of the same sitting walks those limits. **IT DOES NOT.** Section 22
+draws the hay-stacking boundary, which is a DIFFERENT and narrower line and is T-0334's
+— committed since that ticket landed, at `data/reconstruction/1835_hay_limits.json`, and
+199 acres against this boundary's 532. Reading section 22 as the corporate limits is a
+mistake this docstring made and this paragraph retracts. The corporation's limits are the ones the Trustees walked on 7 November 1833
+and printed three weeks later in the first number of the Chicago Democrat
+(`chicago_democrat_1833_11_26#c024`, tier 1) — and since T-0436 they are committed, at
+`data/reconstruction/1835_corporation_limits.json`, resolved by
+`tools/measure_corporation_limits.py` from the committed streets and the committed
+shoreline.
+
+So this gate now knows which buildings the by-law reached, and says so: **twenty-four
+drawn structures stand outside the limits, eight of them carrying twelve chimneys between
+them, and section 18 never bound one of them.** All twenty-four are on the United States Reservation or the
+harbour beyond it — ground the 1833 boundary walks around and the extension of February
+1835 withheld again.
+
+It still gates every stack in the town, and that is deliberate. Every stack already
+clears eighteen inches on both sides of the line, so the ratchet costs nothing and keeps
+one from dropping back under; and the twelve stacks beyond the line are held to the figure
+by their archetypes rather than by the by-law. What has changed is that the reach is now REPORTED instead of
+assumed, so nothing can be quietly conformed to a rule that never bound it. The day a
+record legitimately stands a shorter stack outside the limits, that is the boundary to
+scope on, and the failure message says which side of it the building is on.
 
     python3 tools/measure_stack_ordinance.py            the census
     python3 tools/measure_stack_ordinance.py --gate --quiet    check.sh's line
@@ -75,6 +91,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from measure_glbs import read_glb                       # noqa: E402
 from measure_stack_fabric import chimney_count, material_tops   # noqa: E402
+from measure_corporation_limits import split as corporation_split   # noqa: E402
 
 #: Eighteen inches, stated converted per data/datum.json's units rule.
 MINIMUM_M = 18 * 0.0254
@@ -124,6 +141,8 @@ def offenders(rows):
 
 def report(rows, quiet=False):
     bad = offenders(rows)
+    _inside, outside = corporation_split()
+    beyond = [r for r in rows if r["id"] in set(outside)]
     if not quiet:
         width = max((len(r["id"]) for r in rows), default=10)
         print(f"{'structure':<{width}}  {'archetype':<18} {'stacks':>6} "
@@ -145,6 +164,20 @@ def report(rows, quiet=False):
                   f"least {min(v):.3f} m ({min(v) / 0.0254:.1f} in)  "
                   f"most {max(v):.3f} m ({max(v) / 0.0254:.1f} in)")
 
+        print(f"\nwhich of them the by-law actually reached — the limits of the "
+              f"Corporation as the Trustees\nwalked them on 7 November 1833 "
+              f"(chicago_democrat_1833_11_26#c024, resolved by\n"
+              f"tools/measure_corporation_limits.py):")
+        print(f"  inside the limits  {len(rows) - len(beyond):>4} building(s), "
+              f"{sum(r['stacks'] for r in rows if r not in beyond):>4} stack(s) — "
+              f"section 18 bound these")
+        print(f"  outside them       {len(beyond):>4} building(s), "
+              f"{sum(r['stacks'] for r in beyond):>4} stack(s) — it bound none of "
+              f"these, and they are gated anyway")
+        for r in beyond:
+            print(f"      {r['id']:<34} {r['above']:.3f} m "
+                  f"({r['above'] / 0.0254:.1f} in)")
+
     stacks = sum(r["stacks"] for r in rows)
     if bad:
         n = sum(r["stacks"] for r in bad)
@@ -154,9 +187,12 @@ def report(rows, quiet=False):
               f"(chicago_democrat_1835_08_19#c005): "
               f"{', '.join('%s %.3f m' % (r['id'], r['above']) for r in bad)}. "
               f"Raise the stack, or — if the building stands OUTSIDE the limits of the "
-              f"Corporation, which this project does not draw yet — scope this gate on "
-              f"T-0334's boundary and say in the record which side of it the building "
-              f"is on. Do not weaken the eighteen inches: it is a documented figure.")
+              f"Corporation — scope this gate on the boundary of 7 November 1833 "
+              f"(data/reconstruction/1835_corporation_limits.json; "
+              f"tools/measure_corporation_limits.py names the "
+              f"{len(outside)} structure(s) that are outside it today) and say in the "
+              f"record which side of it the building is on. Do not weaken the eighteen "
+              f"inches: it is a documented figure.")
         return 1
     if not quiet:
         least = min(rows, key=lambda r: r["above"])
