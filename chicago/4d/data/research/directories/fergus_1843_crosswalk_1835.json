@@ -11,23 +11,23 @@
  },
  "counts": {
   "residents_considered": 1293,
-  "matched_one_1843_entry": 115,
-  "matched_more_than_one_ambiguous": 26,
-  "one_1843_entry_contested_by_two_residents": 15,
+  "matched_one_1843_entry": 118,
+  "matched_more_than_one_ambiguous": 27,
+  "one_1843_entry_contested_by_two_residents": 13,
   "surname_present_initial_absent_refused": 323,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 12,
   "residents_that_further_initial_refusal_reaches": 11,
-  "initial_agreed_forenames_disagreed_refused": 80,
+  "initial_agreed_forenames_disagreed_refused": 81,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1843_entry_by_that_refusal": 42,
-  "ties_narrowed_by_a_trade": 3,
+  "residents_left_with_no_1843_entry_by_that_refusal": 41,
+  "ties_narrowed_by_a_trade": 4,
   "of_those_contested": 1,
-  "of_those_ambiguous": 2,
-  "could_carry_occupation": 64,
-  "could_carry_address": 81,
-  "could_carry_death_note": 80,
+  "of_those_ambiguous": 3,
+  "could_carry_occupation": 67,
+  "could_carry_address": 83,
+  "could_carry_death_note": 81,
   "business_directory_notices_with_a_surname": 106,
   "notices_folded_onto_their_own_roll_entry": 82,
   "notices_standing_as_their_own_candidate": 24,
@@ -2655,6 +2655,35 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Ira Herrick",
+   "person_id": "herrick_ira",
+   "household_id": "hh_herrick_ira",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Herrick' folds to the same string as the 1843 entry's, and the given name of both begins I.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1256",
+     "as_printed": "Herrick. Ira N.. contractor. [d. Park Manor, Ill., Jan. 17, 1890, a. 68.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "contractor",
+     "address_1843": null,
+     "death_note_1843": "d. Park Manor, Ill., Jan. 17, 1890, a. 68."
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Issac Stevens",
    "person_id": "stevens_issac",
    "household_id": "hh_stevens_issac",
@@ -3180,6 +3209,35 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "John Cook",
+   "person_id": "cook_john",
+   "household_id": "hh_cook_john",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0695",
+     "as_printed": "Cook, John, tailor, res Jefferson, bet W. Randolph and Washington",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "tailor",
+     "address_1843": "res Jefferson, bet W. Randolph and Washington",
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "John Davis",
    "person_id": "davis_john",
    "household_id": "hh_davis_john",
@@ -3474,6 +3532,35 @@
     }
    ],
    "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Josiah P Cook",
+   "person_id": "cook_josiah_p",
+   "household_id": "hh_cook_josiah_p",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0696",
+     "as_printed": "Cook. Josiah P., baker, res Michigan ave",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "baker",
+     "address_1843": "res Michigan ave",
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
@@ -4596,6 +4683,38 @@
   },
   {
    "tie": "ambiguous",
+   "resident": "J. B. Cook",
+   "person_id": "cook_j_b",
+   "entries": 2,
+   "named": "Cook. Josiah P., baker, res Michigan ave",
+   "claim": "f1843_e0696",
+   "discriminator": {
+    "kind": "trade",
+    "named": "f1843_e0696",
+    "confidence": "reconstructed",
+    "occupation_1835": "baker",
+    "occupation_1835_confidence": "attested",
+    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
+    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
+    "sides": [
+     {
+      "key": "f1843_e0695",
+      "agrees": false,
+      "why": "two trades that do not agree",
+      "outcome": "refused_by_discriminator",
+      "refusal": "The trade printed against this name agrees with 'f1843_e0696' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
+     },
+     {
+      "key": "f1843_e0696",
+      "agrees": true,
+      "why": "the same trade word",
+      "outcome": "named_by_discriminator"
+     }
+    ]
+   }
+  },
+  {
+   "tie": "ambiguous",
    "resident": "J. Curtiss",
    "person_id": "curtiss_j",
    "entries": 2,
@@ -4809,103 +4928,6 @@
       "key": "wright_john_s",
       "agrees": false,
       "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "J. B. Cook",
-   "person_id": "cook_j_b",
-   "household_id": "hh_cook_j_b",
-   "grade_1835": "attested",
-   "occupation_1835": "baker",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0695",
-     "as_printed": "Cook, John, tailor, res Jefferson, bet W. Randolph and Washington",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "tailor",
-     "address_1843": "res Jefferson, bet W. Randolph and Washington",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "John Cook"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "cook_j_b",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "cook_john",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John Cook",
-   "person_id": "cook_john",
-   "household_id": "hh_cook_john",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0695",
-     "as_printed": "Cook, John, tailor, res Jefferson, bet W. Randolph and Washington",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "tailor",
-     "address_1843": "res Jefferson, bet W. Randolph and Washington",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "J. B. Cook"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "cook_j_b",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "cook_john",
-      "agrees": false,
-      "why": "no trade on one side"
      }
     ]
    }
@@ -5927,6 +5949,69 @@
       "key": "f1843_e0710",
       "agrees": false,
       "why": "two trades that do not agree"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "J. B. Cook",
+   "person_id": "cook_j_b",
+   "household_id": "hh_cook_j_b",
+   "grade_1835": "attested",
+   "occupation_1835": "baker",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0695",
+     "as_printed": "Cook, John, tailor, res Jefferson, bet W. Randolph and Washington",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "tailor",
+     "address_1843": "res Jefferson, bet W. Randolph and Washington",
+     "death_note_1843": null
+    },
+    {
+     "claim": "f1843_e0696",
+     "as_printed": "Cook. Josiah P., baker, res Michigan ave",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "baker",
+     "address_1843": "res Michigan ave",
+     "death_note_1843": null
+    }
+   ],
+   "further_initials_declined": "A further initial refuses 1 of the 2 printings under this name, and the one left standing prints fewer initials than the 1835 reading does — it is silent where the refused rival spoke. Promoting a silence to a match on the strength of a rival's refusal would decide this tie on the weaker of the two readings, so nothing is refused and the tie stands.",
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true,
+   "discriminator": {
+    "kind": "trade",
+    "named": "f1843_e0696",
+    "confidence": "reconstructed",
+    "occupation_1835": "baker",
+    "occupation_1835_confidence": "attested",
+    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
+    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
+    "sides": [
+     {
+      "key": "f1843_e0695",
+      "agrees": false,
+      "why": "two trades that do not agree",
+      "outcome": "refused_by_discriminator",
+      "refusal": "The trade printed against this name agrees with 'f1843_e0696' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
+     },
+     {
+      "key": "f1843_e0696",
+      "agrees": true,
+      "why": "the same trade word",
+      "outcome": "named_by_discriminator"
      }
     ]
    }
@@ -7625,7 +7710,7 @@
    "resident": "E. M. Fish",
    "person_id": "fish_e_m",
    "surname_in_1843": "Fish",
-   "candidates": 2,
+   "candidates": 3,
    "rule": "The surname 'Fish' is in Fergus 1843 and no entry under it carries the initial 'E' of 'E. M. Fish'. A surname-only agreement is a refusal."
   },
   {
@@ -7695,7 +7780,7 @@
    "resident": "Edward V Cooley",
    "person_id": "cooley_edward_v",
    "surname_in_1843": "Cooley",
-   "candidates": 1,
+   "candidates": 2,
    "rule": "The surname 'Cooley' is in Fergus 1843 and no entry under it carries the initial 'E' of 'Edward V Cooley'. A surname-only agreement is a refusal."
   },
   {
@@ -8117,13 +8202,6 @@
    "surname_in_1843": "King",
    "candidates": 8,
    "rule": "The surname 'King' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Hyram King'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "Ira Herrick",
-   "person_id": "herrick_ira",
-   "surname_in_1843": "Herrick",
-   "candidates": 1,
-   "rule": "The surname 'Herrick' is in Fergus 1843 and no entry under it carries the initial 'I' of 'Ira Herrick'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Ira Kimberly",
@@ -8651,6 +8729,13 @@
    "rule": "The surname 'Carpenter' is in Fergus 1843 and no entry under it carries the initial 'N' of 'Nathaniel Carpenter'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Nehemiah Case",
+   "person_id": "case_nehemiah",
+   "surname_in_1843": "Case",
+   "candidates": 1,
+   "rule": "The surname 'Case' is in Fergus 1843 and no entry under it carries the initial 'N' of 'Nehemiah Case'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Nehemiah Myrick",
    "person_id": "myrick_nehemiah",
    "surname_in_1843": "Myrick",
@@ -8927,7 +9012,7 @@
    "resident": "Rowland I!. Cook",
    "person_id": "cook_rowland_i",
    "surname_in_1843": "Cook",
-   "candidates": 5,
+   "candidates": 7,
    "rule": "The surname 'Cook' is in Fergus 1843 and no entry under it carries the initial 'R' of 'Rowland I!. Cook'. A surname-only agreement is a refusal."
   },
   {
@@ -10357,6 +10442,25 @@
     "forename_printed": "Jonas",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'John' against 'Jonas'. An initial standing against a full name is a match; two full names that differ are not."
+   }
+  },
+  {
+   "resident": "John Cook",
+   "person_id": "cook_john",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0696",
+    "as_printed": "Cook. Josiah P., baker, res Michigan ave",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "baker",
+    "address_1843": "res Michigan ave",
+    "death_note_1843": null,
+    "forename_1835": "John",
+    "forename_printed": "Josiah",
+    "garbled_reading": false,
+    "rule": "Both readings print a full forename and the two disagree: 'John' against 'Josiah'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {
