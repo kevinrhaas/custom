@@ -1,7 +1,7 @@
 ---
 id: T-1023
 title: Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1282
 claimed_by: run 9/13/2026, 4:47:27 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T22:56:15.144Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34784722475
 ---
 
