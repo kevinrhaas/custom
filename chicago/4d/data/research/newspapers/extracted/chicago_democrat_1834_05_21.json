@@ -184,6 +184,51 @@
         "iso": "1833-12-15"
       },
       "notes": "WATERPROOF BOOTS, MADE IN CHICAGO, ADVERTISED CONTINUOUSLY FROM DECEMBER 1833. Montgomery is a bespoke bootmaker keeping ready-made work on hand as well — the frontier compromise — and the standing copy date makes him one of the fixed trades of the town rather than a spring arrival. 'Water proof' is not decoration in a town built on a wet prairie: it is what the ground in this reconstruction actually did to footwear, said by a tradesman selling against it. No address is printed and none is guessed."
+    },
+    {
+      "id": "c005",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "PG. BDRATCULATD,\nMeuse and Land\nOTS purchased and Sold, or by cor\nsion,\nBD Building Lots for sale, in the tow:\na te! section,\nousns t t. E sf\nke at. opposite Dr. Tem tO\n‘s.",
+      "normalized": "[…] [Ho]use and Land [Agent.] [L]OTS purchased and Sold, or by co[mmis]sion. […] Building Lots for sale, in the tow[n and] [School] section. [H]ous[e]s t[o Le]t. E[nquire at the Office on] [La]ke [s]t. opposite Dr. Tem[ple]'s.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 5,
+        "lines": [
+          2758,
+          2766
+        ],
+        "lines_of_claim": [
+          2758,
+          2759,
+          2760,
+          2761,
+          2762,
+          2763,
+          2764,
+          2765,
+          2766
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's",
+          "offset_text": "ke at. opposite Dr. Tem tO\n's.",
+          "offset_normalized": "[La]ke [s]t. opposite Dr. Tem[ple]'s.",
+          "street": "Lake Street"
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. This is the SECOND impression and the first that sets a display line at all: line 2758 reads 'PG. BDRATCULATD,' in a column the transcription itself flags as a Tesseract fallback (line 2757). Nothing is read off it — it is a third mangled setting beside c008's 'Wo. @ WRAWCUA' and 1834-06-04's '@s DRANCRAID,' — and no forename is supplied from it. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. The lot count is illegible here ('BD Building Lots'), so it is left unread rather than carried over from the neighbouring weeks."
     }
   ]
 }

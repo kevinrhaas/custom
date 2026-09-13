@@ -512,6 +512,50 @@
       "reading": "transcription_mediated",
       "id": "c008",
       "quote": "CHICAGO PRICES CURRENT\nReported for the Democrut by P. r. Pesi\nCORRECTED WERR:Y.\n[uncertain: on vorte]\nSalt,\n[uncertain: COur anoeA]\n$ 9 3e a\nWabash S. 60e\n[uncertain: Buekwheat four]\nSt. Joseph\n5 G0\nsa cau be\nIndien mea)\n[uncertain: reID u]\nbusb\n50 .\n[uncertain: Corl]\n[uncertain: bush]\ngond En\n[uncertain: Provieione-]\n[uncertain: Wheat]\n[uncertain: anu aleady]\n[uncertain: :E=]\n[uncertain: SCaLIOn 8t]\n[uncertain: Bne or]\n[uncertain: •US.a]\nelling with\n[uncertain: henen]\nHame green\n[uncertain: venian]\n[uncertain: ---]\n[uncertain: DUISE.]\n[uncertain: White fab o]\n[uncertain: TMAN.]\n[uncertain: Ler, 19]\nWhite beoe\n[uncertain: Potatoe]\nHideo,\nf Septem-\nCandies, box tellew\ns, will be\n[uncertain: Groceriee-]\nIea, imperia\nyoung hysen\n• Agent.\n[uncertain: Suga, lump]\n[uncertain: Souchong]\n[uncertain: i E. P.]\nbrown Hav.\n[uncertain: Dix Cr01d]\n[uncertain: 11 •]\n[uncertain: Beacon k]\nthe same.\n[uncertain: PISS9]\nWhiskey, bb\n[uncertain: sost'd]\nOil, aperm\nsettle the\n[uncertain: Done Bame Phoringe]\n[uncertain: Blesel Shirtinge]\n[uncertain: Calicoes, assorte]\nIron. Sei\nSteel\n[uncertain: pede sesorted]\n[uncertain: offered]\nwell oe.\nNaila, wro't\nđo\nGermen\n[uncertain: DV BRORO-]\n[uncertain: of Muskat shine]\n[uncertain: a wel C]\n[uncertain: Raccoon]\nALEB.\n[uncertain: Sut dingostaria.-]\n[uncertain: Shingles]\nLumber, poplar sea'd 1000\nordere at\ner be con\n[uncertain: Briare timber, lengib]\nICON.\n[uncertain: Der inHI]\nperch"
+    },
+    {
+      "id": "c009",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "house and land dg\nRD.\nOTS purchased and Sold, or by\n12\n[uncertain: Sou ago ur sale, in the t]\n[uncertain: 0 and]\n[uncertain: Latest hope tore i hire at 25e]\nHouses to Let.",
+      "normalized": "[H]ouse and [L]and [A]g[ent.] […] [L]OTS purchased and Sold, or by [commission.] 12 [Building Lots for sale, in the t][own and] […] […] Houses to Let.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3230,
+          3237
+        ],
+        "lines_of_claim": [
+          3230,
+          3231,
+          3232,
+          3233,
+          3234,
+          3235,
+          3236,
+          3237
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. THE MOST SHREDDED IMPRESSION IN THE RUN. Only the trade line (3230), the purchase line (3232) and 'Houses to Let.' (3237) read clean; 3234, 3235 and 3236 are transcribed inside uncertainty marks and 3236 — '[uncertain: Latest hope tore i hire at 25e]' — is where the address stands and cannot be read, so this printing is recorded as silent about placement. Line 3231 reads 'RD.' and line 3233 reads '12'. 'RD.' is consistent with the tail of the display line and is NOT read as one: the column interleaves and a two-letter fragment cannot say which advertisement it fell out of. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. "
     }
   ]
 }

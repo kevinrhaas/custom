@@ -282,6 +282,28 @@ selftest "the QUEUE.md merge driver still does what .gitattributes promises" \
 step "the owner's queue ranking has not gone backwards" \
   node tools/check_queue_order.mjs
 
+# THE CHANGELOG-ENTRY GATE ANSWERS THE RIGHT QUESTION ABOUT THE RIGHT FILES, and
+# until 2026-09-13 nothing tested that it did. `check-changelog-entry.mjs` runs
+# only from the PR workflow (its own header says why: the nightly bake regenerates
+# data/ and a gate inside check.sh would fail every bake), so its behaviour was
+# never exercised anywhere — and it was the commonest cause of a red PR that day.
+# Not for being strict about the town: `tools/dev-smoke-state.json` is T-0216's
+# register of smoke RESULTS and sits under the watched `tools/` prefix, so a run
+# that filed its readings — which AGENTS.md REQUIRES — drew a red gate for obeying
+# the contract. #1264 and #1269 were red with that file as the only watched path
+# they touched, and the same hand-written `Changelog: none` trailer had been added
+# to #1090, #1108, #1126 and #1247 two days earlier. #1255 is NOT that shape and
+# stays red correctly — it changed smoke_renderer.mjs too — which is the case the
+# test's last two assertions pin.
+#
+# The exemption fixes it once; this keeps it fixed, and holds the gate's other
+# answers while it is there — an exemption list is exactly the kind of edit that
+# quietly widens. It asserts the gate STILL BITES on a real change with no entry,
+# that the opt-out still needs a reason, and that a moved BASELINE beside the smoke
+# register is NOT exempt, because a baseline is a claim about the town.
+step "the changelog-entry gate exempts a smoke reading and still bites on a change" \
+  node tools/test_changelog_entry_gate.mjs
+
 selftest "…and its own assertions still fire when broken" \
   node tools/check_queue_order-selftest.mjs
 
