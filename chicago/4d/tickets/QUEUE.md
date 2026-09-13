@@ -150,10 +150,15 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
 
 
+
+
+
+
+
 T-1103 — Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
 T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
 T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
-T-1102 — The land sales sorted onto the survey tracts, and the generators reading the tract layer
+T-1105 — The generators reading the tract layer: the plat module's street width and block module, and the reserved-ground record citing the reservation polygon
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
 T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
@@ -320,4 +325,3 @@ T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' an
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1093 — The Settings speed readout now reads 'walk · 3.2 mph' and the mobile part-7 assertion wants '3.2 mph', so dev is red on a prefix nobody meant to assert against
-
