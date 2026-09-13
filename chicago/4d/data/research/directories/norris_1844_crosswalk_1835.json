@@ -26,7 +26,7 @@
   "of_those_contested": 0,
   "of_those_ambiguous": 3,
   "could_carry_occupation": 59,
-  "could_carry_address": 81
+  "could_carry_address": 78
  },
  "matches": [
   {
@@ -44,13 +44,13 @@
      "claim": "n1844_e1039",
      "as_printed": "Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts",
      "printed_page": 43,
-     "occupation_1844": "grocery and provisions, South Water st",
-     "address_1844": "b Dearborn and State sts"
+     "occupation_1844": "grocery and provisions",
+     "place_of_business_1844": "South Water st. b Dearborn and State sts",
+     "address_1844": null
     }
    ],
    "could_carry": [
-    "occupation",
-    "address"
+    "occupation"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": true
@@ -70,13 +70,13 @@
      "claim": "n1844_e0718",
      "as_printed": "Gould, Ambrose B. sailor, Indiana st. b Pine and Sand sts",
      "printed_page": 37,
-     "occupation_1844": "sailor, Indiana st",
-     "address_1844": "b Pine and Sand sts"
+     "occupation_1844": "sailor",
+     "place_of_business_1844": "Indiana st. b Pine and Sand sts",
+     "address_1844": null
     }
    ],
    "could_carry": [
-    "occupation",
-    "address"
+    "occupation"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": true
@@ -97,6 +97,7 @@
      "as_printed": "Garrett, Augustus, of G. & Seaman, res Sauganash Hotel",
      "printed_page": 36,
      "occupation_1844": "of G. & Seaman",
+     "place_of_business_1844": null,
      "address_1844": "res Sauganash Hotel"
     }
    ],
@@ -122,6 +123,7 @@
      "as_printed": "Perry, A. S. barber, house reservation",
      "printed_page": 51,
      "occupation_1844": "barber",
+     "place_of_business_1844": null,
      "address_1844": "house reservation"
     }
    ],
@@ -148,6 +150,7 @@
      "as_printed": "Funk, Absalom, butcher, Fulton and Boston markets, res Wells st. b Wash, and Rand, st",
      "printed_page": 35,
      "occupation_1844": "butcher, Fulton and Boston markets",
+     "place_of_business_1844": null,
      "address_1844": "res Wells st. b Wash, and Rand, st"
     }
    ],
@@ -174,6 +177,7 @@
      "as_printed": "Hubbard, A. book-keeper at G. S. Hubbard's, r Ind, b Cass & Rush",
      "printed_page": 41,
      "occupation_1844": "book-keeper at G. S. Hubbard's",
+     "place_of_business_1844": null,
      "address_1844": "r Ind, b Cass & Rush"
     }
    ],
@@ -200,6 +204,7 @@
      "as_printed": "Lloyd, Alexander, builder, of L. Blakesly & Co. res Wells b Lake and Randolph sts",
      "printed_page": 45,
      "occupation_1844": "builder, of L. Blakesly & Co",
+     "place_of_business_1844": null,
      "address_1844": "res Wells b Lake and Randolph sts"
     }
    ],
@@ -226,6 +231,7 @@
      "as_printed": "Fullerton, A. N. attorney at law, h Dearborn st",
      "printed_page": 35,
      "occupation_1844": "attorney at law",
+     "place_of_business_1844": null,
      "address_1844": "h Dearborn st"
     }
    ],
@@ -251,6 +257,7 @@
      "as_printed": "Calhoun, Alvin, carpenter, hou.«e Randolph st. 1st ward",
      "printed_page": 27,
      "occupation_1844": "carpenter, hou.«e Randolph st. 1st ward",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -276,6 +283,7 @@
      "as_printed": "Foster, A. H. of Jennings A: F. res American Temperance House",
      "printed_page": 35,
      "occupation_1844": "of Jennings A: F",
+     "place_of_business_1844": null,
      "address_1844": "res American Temperance House"
     }
    ],
@@ -301,8 +309,9 @@
      "claim": "n1844_e1435",
      "as_printed": "Pierce. Asahel, blacksmith. S. Water st. b Lake and Randolph sts house Lake st. 4th ward",
      "printed_page": 51,
-     "occupation_1844": "blacksmith. S. Water st",
-     "address_1844": "b Lake and Randolph sts house Lake st. 4th ward"
+     "occupation_1844": "blacksmith. S. Water st. b Lake and Randolph sts",
+     "place_of_business_1844": null,
+     "address_1844": "house Lake st. 4th ward"
     }
    ],
    "could_carry": [
@@ -327,6 +336,7 @@
      "as_printed": "Taylor, A. D. builder, house Michigan ave. b Lake and Randolph",
      "printed_page": 58,
      "occupation_1844": "builder",
+     "place_of_business_1844": null,
      "address_1844": "house Michigan ave. b Lake and Randolph"
     }
    ],
@@ -351,7 +361,8 @@
      "claim": "n1844_e1306",
      "as_printed": "Morris, B. S. attorney at law, Clark st. opposite City Hotel, h In diana st. b Cuss and Rush sts (See card)",
      "printed_page": 49,
-     "occupation_1844": "attorney at law, Clark st. opposite City Hotel",
+     "occupation_1844": "attorney at law",
+     "place_of_business_1844": "Clark st. opposite City Hotel",
      "address_1844": "h In diana st. b Cuss and Rush sts (See card)"
     }
    ],
@@ -378,6 +389,7 @@
      "as_printed": "Jones, Benjamin, of B. J. & Co. house Rand, b Clark aud Dearb",
      "printed_page": 42,
      "occupation_1844": "of B. J. & Co",
+     "place_of_business_1844": null,
      "address_1844": "house Rand, b Clark aud Dearb"
     }
    ],
@@ -402,7 +414,8 @@
      "claim": "n1844_e0054",
      "as_printed": "Bailey, Bennett, carpenter, Dearborn street, residence J. Gray's",
      "printed_page": 22,
-     "occupation_1844": "carpenter, Dearborn street",
+     "occupation_1844": "carpenter",
+     "place_of_business_1844": "Dearborn street",
      "address_1844": "residence J. Gray's"
     }
    ],
@@ -428,7 +441,8 @@
      "claim": "n1844_e0795",
      "as_printed": "Harmon Charles L. dry goods and groceries, cor Clark and South Water sts. res Dearborn st. b Wash and Mad sts (.See card)",
      "printed_page": 38,
-     "occupation_1844": "dry goods and groceries, cor Clark and South Water sts",
+     "occupation_1844": "dry goods and groceries",
+     "place_of_business_1844": "cor Clark and South Water sts",
      "address_1844": "res Dearborn st. b Wash and Mad sts (.See card)"
     }
    ],
@@ -454,6 +468,7 @@
      "as_printed": "Wesencraft, C!;as. carpenter and wagon maker, c Clin and Monroe",
      "printed_page": 60,
      "occupation_1844": "carpenter and wagon maker, c Clin and Monroe",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -479,6 +494,7 @@
      "as_printed": "Chapman, Chas. H. res Wells st. b Randolph and Washington st",
      "printed_page": 28,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "res Wells st. b Randolph and Washington st"
     }
    ],
@@ -504,6 +520,7 @@
      "as_printed": "Elston, Daniel, patent press brickmaker, res N. Branch Mile End",
      "printed_page": 34,
      "occupation_1844": "patent press brickmaker",
+     "place_of_business_1844": null,
      "address_1844": "res N. Branch Mile End"
     }
    ],
@@ -528,7 +545,8 @@
      "claim": "n1844_e1019",
      "as_printed": "Kimberly Ed. S. physician, 101 Lake st. house State st",
      "printed_page": 43,
-     "occupation_1844": "physician, 101 Lake st",
+     "occupation_1844": "physician",
+     "place_of_business_1844": "101 Lake st",
      "address_1844": "house State st"
     }
    ],
@@ -553,7 +571,8 @@
      "claim": "n1844_e1247",
      "as_printed": "Maxwell, Philip, physician, cor of Clark and Lake sts house Clark",
      "printed_page": 48,
-     "occupation_1844": "physician, cor of Clark and Lake sts",
+     "occupation_1844": "physician",
+     "place_of_business_1844": "cor of Clark and Lake sts",
      "address_1844": "house Clark"
     }
    ],
@@ -577,6 +596,7 @@
      "as_printed": "Egan, Wm. B. physician, recorder, c Clark and Rand st. res Clark",
      "printed_page": 33,
      "occupation_1844": "physician, recorder, c Clark and Rand st",
+     "place_of_business_1844": null,
      "address_1844": "res Clark"
     }
    ],
@@ -602,6 +622,7 @@
      "as_printed": "Smith, Elijah, of H. & E. Smith, h Ohio jst. b Dear and Wolcott",
      "printed_page": 56,
      "occupation_1844": "of H. & E. Smith",
+     "place_of_business_1844": null,
      "address_1844": "h Ohio jst. b Dear and Wolcott"
     }
    ],
@@ -628,6 +649,7 @@
      "as_printed": "Thrall, E. L. clerk, at C. Walker & Co.'s",
      "printed_page": 58,
      "occupation_1844": "clerk, at C. Walker & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -650,7 +672,8 @@
      "claim": "n1844_e1750",
      "as_printed": "Taylor, E. coft'ee house, South Water st. 2d ward",
      "printed_page": 58,
-     "occupation_1844": "coft'ee house, South Water st. 2d ward",
+     "occupation_1844": "coft'ee house",
+     "place_of_business_1844": "South Water st. 2d ward",
      "address_1844": null
     }
    ],
@@ -676,6 +699,7 @@
      "as_printed": "Burton, Edward, tailor, 1G2 Lake st. res same",
      "printed_page": 27,
      "occupation_1844": "tailor, 1G2 Lake st",
+     "place_of_business_1844": null,
      "address_1844": "res same"
     }
    ],
@@ -702,6 +726,7 @@
      "as_printed": "Parsons, Edward, of Clark, Haines, & Co. res D. B. Heartt's",
      "printed_page": 51,
      "occupation_1844": "of Clark, Haines, & Co",
+     "place_of_business_1844": null,
      "address_1844": "res D. B. Heartt's"
     }
    ],
@@ -728,6 +753,7 @@
      "as_printed": "Williams, Eli B. h Washington, b State and Dearborn sts",
      "printed_page": 61,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "h Washington, b State and Dearborn sts"
     }
    ],
@@ -752,7 +778,8 @@
      "claim": "n1844_e0666",
      "as_printed": "Gage, E. D. daguerreotype, 90 Lake st",
      "printed_page": 36,
-     "occupation_1844": "daguerreotype, 90 Lake st",
+     "occupation_1844": "daguerreotype",
+     "place_of_business_1844": "90 Lake st",
      "address_1844": null
     }
    ],
@@ -777,7 +804,8 @@
      "claim": "n1844_e1404",
      "as_printed": "Peacock, E. watchmaker, 195 Lake st. h Madison st. b Lasalle and Wells sts",
      "printed_page": 51,
-     "occupation_1844": "watchmaker, 195 Lake st",
+     "occupation_1844": "watchmaker",
+     "place_of_business_1844": "195 Lake st",
      "address_1844": "h Madison st. b Lasalle and Wells sts"
     }
    ],
@@ -804,6 +832,7 @@
      "as_printed": "Bowen, Erastus, of B. & Cole, house Michigan avenue",
      "printed_page": 25,
      "occupation_1844": "of B. & Cole",
+     "place_of_business_1844": null,
      "address_1844": "house Michigan avenue"
     }
    ],
@@ -829,7 +858,8 @@
      "claim": "n1844_e0349",
      "as_printed": "Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's",
      "printed_page": 29,
-     "occupation_1844": "dry goods and groceries, 154 Lake st",
+     "occupation_1844": "dry goods and groceries",
+     "place_of_business_1844": "154 Lake st",
      "address_1844": "residence Hum phrey Clark's"
     }
    ],
@@ -856,6 +886,7 @@
      "as_printed": "Blanchard, Francis G. residence Wells st, b Lake and Randolph",
      "printed_page": 24,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "residence Wells st, b Lake and Randolph"
     }
    ],
@@ -881,6 +912,7 @@
      "as_printed": "Myers, Frederick F. laborer, h N. Water, b Clark and Wells sts",
      "printed_page": 49,
      "occupation_1844": "laborer",
+     "place_of_business_1844": null,
      "address_1844": "h N. Water, b Clark and Wells sts"
     }
    ],
@@ -906,6 +938,7 @@
      "as_printed": "Davis, George, clerk county commissioners' court, office 107 Lake st. res Canal st. near Washington st",
      "printed_page": 31,
      "occupation_1844": "clerk county commissioners' court, office 107 Lake st",
+     "place_of_business_1844": null,
      "address_1844": "res Canal st. near Washington st"
     }
    ],
@@ -932,6 +965,7 @@
      "as_printed": "Smith, George, of'G. S. & Co. res City Hotel",
      "printed_page": 56,
      "occupation_1844": "of'G. S. & Co",
+     "place_of_business_1844": null,
      "address_1844": "res City Hotel"
     }
    ],
@@ -956,7 +990,8 @@
      "claim": "n1844_e1264",
      "as_printed": "Merrill, George, provision store, corner of Lake and Lasalle sts",
      "printed_page": 48,
-     "occupation_1844": "provision store, corner of Lake and Lasalle sts",
+     "occupation_1844": "provision store",
+     "place_of_business_1844": "corner of Lake and Lasalle sts",
      "address_1844": null
     }
    ],
@@ -981,7 +1016,8 @@
      "claim": "n1844_e1671",
      "as_printed": "Snow, G. W. lumber merchant, South Water st. h State st",
      "printed_page": 56,
-     "occupation_1844": "lumber merchant, South Water st",
+     "occupation_1844": "lumber merchant",
+     "place_of_business_1844": "South Water st",
      "address_1844": "h State st"
     }
    ],
@@ -1007,6 +1043,7 @@
      "as_printed": "Dole, Geo. W. of Newberry & D. house Michigan st. b Rush & Pine",
      "printed_page": 32,
      "occupation_1844": "of Newberry & D",
+     "place_of_business_1844": null,
      "address_1844": "house Michigan st. b Rush & Pine"
     }
    ],
@@ -1032,6 +1069,7 @@
      "as_printed": "Spring, Giles, of S. & Goodrich, h Adams st. b State and Clark sts",
      "printed_page": 56,
      "occupation_1844": "of S. & Goodrich",
+     "place_of_business_1844": null,
      "address_1844": "h Adams st. b State and Clark sts"
     }
    ],
@@ -1056,7 +1094,8 @@
      "claim": "n1844_e0915",
      "as_printed": "Hubbard, G. S. forwarding and commission merchant, S. Water near Clark, h Indiana, b Cass and Rush (See card)",
      "printed_page": 41,
-     "occupation_1844": "forwarding and commission merchant, S. Water near Clark",
+     "occupation_1844": "forwarding and commission merchant",
+     "place_of_business_1844": "S. Water near Clark",
      "address_1844": "h Indiana, b Cass and Rush (See card)"
     }
    ],
@@ -1082,6 +1121,7 @@
      "as_printed": "Clarke, H. B. farmer, lake shore, below Michigan avenue",
      "printed_page": 29,
      "occupation_1844": "farmer, lake shore, below Michigan avenue",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -1105,6 +1145,7 @@
      "as_printed": "Blakesley, H. A. of Loyd, B. & Co. residence Mrs. Boyer's",
      "printed_page": 24,
      "occupation_1844": "of Loyd, B. & Co",
+     "place_of_business_1844": null,
      "address_1844": "residence Mrs. Boyer's"
     }
    ],
@@ -1131,6 +1172,7 @@
      "as_printed": "Hubbard, H. G. at clerk's office, h Lasalle, b Wash and Madison",
      "printed_page": 41,
      "occupation_1844": "at clerk's office",
+     "place_of_business_1844": null,
      "address_1844": "h Lasalle, b Wash and Madison"
     }
    ],
@@ -1157,6 +1199,7 @@
      "as_printed": "Porter, Hibbard, of Bristol & Porter, house'cor Clark and Adams",
      "printed_page": 52,
      "occupation_1844": "of Bristol & Porter, house'cor Clark and Adams",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -1182,6 +1225,7 @@
      "as_printed": "Pearsons, Hiram, res Treinont House",
      "printed_page": 51,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "res Treinont House"
     }
    ],
@@ -1206,7 +1250,8 @@
      "claim": "n1844_e0415",
      "as_printed": "Couch, Iia, proprietor of the Tremont House, corner of Lake and Dearborn sts",
      "printed_page": 30,
-     "occupation_1844": "proprietor of the Tremont House, corner of Lake and Dearborn sts",
+     "occupation_1844": "proprietor of the Tremont House",
+     "place_of_business_1844": "corner of Lake and Dearborn sts",
      "address_1844": null
     }
    ],
@@ -1230,6 +1275,7 @@
      "as_printed": "v Wight, J. Ambrose, ast. editor Prairie Fanner, res Mrs. Wright's",
      "printed_page": 61,
      "occupation_1844": "ast. editor Prairie Fanner",
+     "place_of_business_1844": null,
      "address_1844": "res Mrs. Wright's"
     }
    ],
@@ -1256,6 +1302,7 @@
      "as_printed": "Marshall, James A. auctioneer, at Parker & Dodge's",
      "printed_page": 47,
      "occupation_1844": "auctioneer, at Parker & Dodge's",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -1278,7 +1325,8 @@
      "claim": "n1844_e0141",
      "as_printed": "Bishop, James E. dry goods, groceries, and hardv/are, 131 Lake st, residence Theophilus G. Greenwood (See card)",
      "printed_page": 24,
-     "occupation_1844": "dry goods, groceries, and hardv/are, 131 Lake st",
+     "occupation_1844": "dry goods, groceries, and hardv/are",
+     "place_of_business_1844": "131 Lake st",
      "address_1844": "residence Theophilus G. Greenwood (See card)"
     }
    ],
@@ -1305,6 +1353,7 @@
      "as_printed": "Collins, James H. of Butterfield & C. res Lake st. near Wabash st",
      "printed_page": 30,
      "occupation_1844": "of Butterfield & C",
+     "place_of_business_1844": null,
      "address_1844": "res Lake st. near Wabash st"
     }
    ],
@@ -1329,7 +1378,8 @@
      "claim": "n1844_e0164",
      "as_printed": "Botsford, J. K. of B. & Beers, 109 Lake st. house Wabash street",
      "printed_page": 25,
-     "occupation_1844": "of B. & Beers, 109 Lake st",
+     "occupation_1844": "of B. & Beers",
+     "place_of_business_1844": "109 Lake st",
      "address_1844": "house Wabash street"
     }
    ],
@@ -1354,13 +1404,13 @@
      "claim": "n1844_e1054",
      "as_printed": "Lacey, John, baker, North Water st. b Dearborn and Wolcott sis",
      "printed_page": 44,
-     "occupation_1844": "baker, North Water st",
-     "address_1844": "b Dearborn and Wolcott sis"
+     "occupation_1844": "baker",
+     "place_of_business_1844": "North Water st. b Dearborn and Wolcott sis",
+     "address_1844": null
     }
    ],
    "could_carry": [
-    "occupation",
-    "address"
+    "occupation"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": true
@@ -1381,6 +1431,7 @@
      "as_printed": "Curtis, Jacob S. water borer res M. McDonald's",
      "printed_page": 31,
      "occupation_1844": "water borer",
+     "place_of_business_1844": null,
      "address_1844": "res M. McDonald's"
     }
    ],
@@ -1407,6 +1458,7 @@
      "as_printed": "Couch, James, res Tremont House",
      "printed_page": 30,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "res Tremont House"
     }
    ],
@@ -1430,6 +1482,7 @@
      "as_printed": "Dean, James, saddler and harness m;iker, at Paine's",
      "printed_page": 32,
      "occupation_1844": "saddler and harness m;iker, at Paine's",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -1455,6 +1508,7 @@
      "as_printed": "Morrison, James M. carpenter, house Clark st. near Madison st",
      "printed_page": 49,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "house Clark st. near Madison st"
     }
    ],
@@ -1481,6 +1535,7 @@
      "as_printed": "Price, Jeremiah, house S. Water st, b Lasallc and Wells",
      "printed_page": 64,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "house S. Water st, b Lasallc and Wells"
     }
    ],
@@ -1506,6 +1561,7 @@
      "as_printed": "•Rue, John C. carpenter, h Clark, b Madison and Monroe",
      "printed_page": 53,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "h Clark, b Madison and Monroe"
     }
    ],
@@ -1532,6 +1588,7 @@
      "as_printed": "Cook, John, tailor, res Jefferson st. b Randolph and \\Vashington sts",
      "printed_page": 30,
      "occupation_1844": "tailor",
+     "place_of_business_1844": null,
      "address_1844": "res Jefferson st. b Randolph and \\Vashington sts"
     }
    ],
@@ -1557,8 +1614,9 @@
      "claim": "n1844_e0471",
      "as_printed": "Davis, John, sailor, North Water st. b Wolcott and Kinzie sts",
      "printed_page": 32,
-     "occupation_1844": "sailor, North Water st",
-     "address_1844": "b Wolcott and Kinzie sts"
+     "occupation_1844": "sailor",
+     "place_of_business_1844": "North Water st. b Wolcott and Kinzie sts",
+     "address_1844": null
     }
    ],
    "could_carry": [],
@@ -1581,6 +1639,7 @@
      "as_printed": "Caton, John, laborer, residence Lake st •",
      "printed_page": 28,
      "occupation_1844": "laborer",
+     "place_of_business_1844": null,
      "address_1844": "residence Lake st •"
     }
    ],
@@ -1606,6 +1665,7 @@
      "as_printed": "Goodrich, J. W. clerk, at T. B. Carter & Co.'s, res S. Johnson's",
      "printed_page": 36,
      "occupation_1844": "clerk, at T. B. Carter & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": "res S. Johnson's"
     }
    ],
@@ -1631,7 +1691,8 @@
      "claim": "n1844_e1031",
      "as_printed": "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass",
      "printed_page": 43,
-     "occupation_1844": "register land office, 82 Lake st",
+     "occupation_1844": "register land office",
+     "place_of_business_1844": "82 Lake st",
      "address_1844": "h c Mich dc Cass"
     }
    ],
@@ -1657,6 +1718,7 @@
      "as_printed": "Williams, John C.",
      "printed_page": 61,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -1680,6 +1742,7 @@
      "as_printed": "King, J. carpenter, res S. Jackson's",
      "printed_page": 43,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "res S. Jackson's"
     }
    ],
@@ -1706,6 +1769,7 @@
      "as_printed": "Simpson. John, mason, house Canal st. b Adams and Jackson sts",
      "printed_page": 55,
      "occupation_1844": "mason",
+     "place_of_business_1844": null,
      "address_1844": "house Canal st. b Adams and Jackson sts"
     }
    ],
@@ -1732,6 +1796,7 @@
      "as_printed": "Rice, John P. house State street",
      "printed_page": 64,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "house State street"
     }
    ],
@@ -1757,6 +1822,7 @@
      "as_printed": "Scott, John, carpenter, house Canal st. 3d ward",
      "printed_page": 54,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "house Canal st. 3d ward"
     }
    ],
@@ -1783,6 +1849,7 @@
      "as_printed": "Eldredge, John W. physician, res Randolph st. east of Clark st",
      "printed_page": 33,
      "occupation_1844": "physician",
+     "place_of_business_1844": null,
      "address_1844": "res Randolph st. east of Clark st"
     }
    ],
@@ -1809,6 +1876,7 @@
      "as_printed": "Bradley, Joseph, clerk, at W. H. Adams & Co.'s",
      "printed_page": 25,
      "occupation_1844": "clerk, at W. H. Adams & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -1834,6 +1902,7 @@
      "as_printed": "Chandler, Joseph, residence P'ort Dearborn",
      "printed_page": 28,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "residence P'ort Dearborn"
     }
    ],
@@ -1859,6 +1928,7 @@
      "as_printed": "Meeker, Joseph, carpenter, res Clark st",
      "printed_page": 48,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "res Clark st"
     }
    ],
@@ -1884,6 +1954,7 @@
      "as_printed": "Cook, Josiah P. baker, res Michigan avenue",
      "printed_page": 30,
      "occupation_1844": "baker",
+     "place_of_business_1844": null,
      "address_1844": "res Michigan avenue"
     }
    ],
@@ -1910,6 +1981,7 @@
      "as_printed": "Montgomery, L. W. shoemaker, at Beecher's house Market st",
      "printed_page": 48,
      "occupation_1844": "shoemaker, at Beecher's",
+     "place_of_business_1844": null,
      "address_1844": "house Market st"
     }
    ],
@@ -1935,6 +2007,7 @@
      "as_printed": "Johnson, Lathrop, cigar, maker at Wheeler's",
      "printed_page": 42,
      "occupation_1844": "cigar, maker at Wheeler's",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -1960,6 +2033,7 @@
      "as_printed": "Hugunin. L. C. at United States Hotel",
      "printed_page": 41,
      "occupation_1844": "at United States Hotel",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -1985,6 +2059,7 @@
      "as_printed": "Thompson, Joseph, caulker, house Adams st. b Clark and Lasalle",
      "printed_page": 58,
      "occupation_1844": "caulker",
+     "place_of_business_1844": null,
      "address_1844": "house Adams st. b Clark and Lasalle"
     }
    ],
@@ -2011,6 +2086,7 @@
      "as_printed": "Christy, Nathan, laborer, house Canal st. b Lake and N. Water sts",
      "printed_page": 28,
      "occupation_1844": "laborer",
+     "place_of_business_1844": null,
      "address_1844": "house Canal st. b Lake and N. Water sts"
     }
    ],
@@ -2037,6 +2113,7 @@
      "as_printed": "King, N. clerk, at T. King's, house 12 Lake st",
      "printed_page": 43,
      "occupation_1844": "clerk, at T. King's",
+     "place_of_business_1844": null,
      "address_1844": "house 12 Lake st"
     }
    ],
@@ -2063,6 +2140,7 @@
      "as_printed": "Cole, Parker M. of Bowen & C. Lake st. near State, res E. Uowen's",
      "printed_page": 30,
      "occupation_1844": "of Bowen & C. Lake st. near State",
+     "place_of_business_1844": null,
      "address_1844": "res E. Uowen's"
     }
    ],
@@ -2089,6 +2167,7 @@
      "as_printed": "Peck, P. F. W. house corner of Clark and Jackson sts",
      "printed_page": 51,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "house corner of Clark and Jackson sts"
     }
    ],
@@ -2112,6 +2191,7 @@
      "as_printed": "Carpenter, Philo, residence Randolph st. Carpenter's addition",
      "printed_page": 28,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "residence Randolph st. Carpenter's addition"
     }
    ],
@@ -2137,6 +2217,7 @@
      "as_printed": "Bristol, R. C. of B. & Porter, residence on Reservation",
      "printed_page": 26,
      "occupation_1844": "of B. & Porter",
+     "place_of_business_1844": null,
      "address_1844": "residence on Reservation"
     }
    ],
@@ -2163,6 +2244,7 @@
      "as_printed": "Sherman, R. D. agent, B. F. Sherman, h Clark st. b Mad. & Mon",
      "printed_page": 55,
      "occupation_1844": "agent, B. F. Sherman",
+     "place_of_business_1844": null,
      "address_1844": "h Clark st. b Mad. & Mon"
     }
    ],
@@ -2189,6 +2271,7 @@
      "as_printed": "Hamilton, R. J. of H. & Chamberlaine, h Mich b Cass <fe Hush",
      "printed_page": 38,
      "occupation_1844": "of H. & Chamberlaine",
+     "place_of_business_1844": null,
      "address_1844": "h Mich b Cass <fe Hush"
     }
    ],
@@ -2211,7 +2294,8 @@
      "claim": "n1844_e0621",
      "as_printed": "Foot, S. teamster, corner of Clark and Monroe sts",
      "printed_page": 35,
-     "occupation_1844": "teamster, corner of Clark and Monroe sts",
+     "occupation_1844": "teamster",
+     "place_of_business_1844": "corner of Clark and Monroe sts",
      "address_1844": null
     }
    ],
@@ -2234,7 +2318,8 @@
      "claim": "n1844_e0966",
      "as_printed": "Johnson, Sanford, carpenter, Dearborn st, res J. Gray's",
      "printed_page": 42,
-     "occupation_1844": "carpenter, Dearborn st",
+     "occupation_1844": "carpenter",
+     "place_of_business_1844": "Dearborn st",
      "address_1844": "res J. Gray's"
     }
    ],
@@ -2261,6 +2346,7 @@
      "as_printed": "Johnson, Seth, deputy collector and inspector of Port of Chicago, house cor Washington and Lasalle sts",
      "printed_page": 42,
      "occupation_1844": "deputy collector and inspector of Port of Chicago",
+     "place_of_business_1844": null,
      "address_1844": "house cor Washington and Lasalle sts"
     }
    ],
@@ -2286,7 +2372,8 @@
      "claim": "n1844_e0377",
      "as_printed": "Cobb, Silas B. saddler and harness maker, 171 Lake st. res Michi gan avenue",
      "printed_page": 29,
-     "occupation_1844": "saddler and harness maker, 171 Lake st",
+     "occupation_1844": "saddler and harness maker",
+     "place_of_business_1844": "171 Lake st",
      "address_1844": "res Michi gan avenue"
     }
    ],
@@ -2311,7 +2398,8 @@
      "claim": "n1844_e1232",
      "as_printed": "Marsh, Sylvester, 98 Lake st. packing house N Water st (See card",
      "printed_page": 47,
-     "occupation_1844": "98 Lake st. packing",
+     "occupation_1844": null,
+     "place_of_business_1844": "98 Lake st. packing",
      "address_1844": "house N Water st (See card"
     }
    ],
@@ -2337,6 +2425,7 @@
      "as_printed": "v Gale, Stephen F. of S. F. & Co. h c of Wabash and Dearborn sts",
      "printed_page": 36,
      "occupation_1844": "of S. F. & Co",
+     "place_of_business_1844": null,
      "address_1844": "h c of Wabash and Dearborn sts"
     }
    ],
@@ -2361,7 +2450,8 @@
      "claim": "n1844_e0340",
      "as_printed": "Church, Thos. dry goods and groceries, 109 Lake st. res 55 Lake street",
      "printed_page": 29,
-     "occupation_1844": "dry goods and groceries, 109 Lake st",
+     "occupation_1844": "dry goods and groceries",
+     "place_of_business_1844": "109 Lake st",
      "address_1844": "res 55 Lake street"
     }
    ],
@@ -2386,7 +2476,8 @@
      "claim": "n1844_e0407",
      "as_printed": "Cook, Thomas, teamster, Desplaines st",
      "printed_page": 30,
-     "occupation_1844": "teamster, Desplaines st",
+     "occupation_1844": "teamster",
+     "place_of_business_1844": "Desplaines st",
      "address_1844": null
     }
    ],
@@ -2412,6 +2503,7 @@
      "as_printed": "Fitzgerald, Thomas, laborer, res West Water st. b Lake and North Water sts",
      "printed_page": 34,
      "occupation_1844": "laborer",
+     "place_of_business_1844": null,
      "address_1844": "res West Water st. b Lake and North Water sts"
     }
    ],
@@ -2437,7 +2529,8 @@
      "claim": "n1844_e1024",
      "as_printed": "King. Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st",
      "printed_page": 43,
-     "occupation_1844": "clothing, dry goods, &c., 115 Lake st",
+     "occupation_1844": "clothing, dry goods, &c",
+     "place_of_business_1844": "115 Lake st",
      "address_1844": "h Clark st"
     }
    ],
@@ -2464,6 +2557,7 @@
      "as_printed": "Ogden, Wm. B. of O. & Jones, res Ontario st. b Cnss and Rushv",
      "printed_page": 50,
      "occupation_1844": "of O. & Jones",
+     "place_of_business_1844": null,
      "address_1844": "res Ontario st. b Cnss and Rushv"
     }
    ],
@@ -2490,6 +2584,7 @@
      "as_printed": "Allen, Win. shipwright, house Wolcott st. b. N. Water and Kinzie-",
      "printed_page": 22,
      "occupation_1844": "shipwright",
+     "place_of_business_1844": null,
      "address_1844": "house Wolcott st. b. N. Water and Kinzie-"
     }
    ],
@@ -2515,7 +2610,8 @@
      "claim": "n1844_e0145",
      "as_printed": "Blair, Wm. stove and tin factory, cor Dearborn and South Water sts. residence Tremont House",
      "printed_page": 24,
-     "occupation_1844": "stove and tin factory, cor Dearborn and South Water sts",
+     "occupation_1844": "stove and tin factory",
+     "place_of_business_1844": "cor Dearborn and South Water sts",
      "address_1844": "residence Tremont House"
     }
    ],
@@ -2541,7 +2637,8 @@
      "claim": "n1844_e1006",
      "as_printed": "Kennicott, Wm. H. dentist, 133 Lake st. house same",
      "printed_page": 43,
-     "occupation_1844": "dentist, 133 Lake st",
+     "occupation_1844": "dentist",
+     "place_of_business_1844": "133 Lake st",
      "address_1844": "house same"
     }
    ],
@@ -2568,6 +2665,7 @@
      "as_printed": "Adams, W. H. of W. H. A. & Co. residence iasalle. street, b Washington and Madison",
      "printed_page": 21,
      "occupation_1844": "of W. H. A. & Co",
+     "place_of_business_1844": null,
      "address_1844": "residence iasalle. street, b Washington and Madison"
     }
    ],
@@ -2594,6 +2692,7 @@
      "as_printed": "Jones, Wm. of B. Jones & Co. house cor Randolph and Dearborn",
      "printed_page": 42,
      "occupation_1844": "of B. Jones & Co",
+     "place_of_business_1844": null,
      "address_1844": "house cor Randolph and Dearborn"
     }
    ],
@@ -2620,6 +2719,7 @@
      "as_printed": "Reed, William, carpenter, house Monroe st. b Clinton and Jeffer",
      "printed_page": 52,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "house Monroe st. b Clinton and Jeffer"
     }
    ],
@@ -2753,6 +2853,7 @@
      "as_printed": "Rider, E. A. clerk at C. L. P. Hojran",
      "printed_page": 52,
      "occupation_1844": "clerk at C. L. P. Hojran",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -2798,6 +2899,7 @@
      "as_printed": "Rider, E. A. clerk at C. L. P. Hojran",
      "printed_page": 52,
      "occupation_1844": "clerk at C. L. P. Hojran",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -2843,6 +2945,7 @@
      "as_printed": "Hogan, John S. C. at C. L. P. Hogan's",
      "printed_page": 40,
      "occupation_1844": "at C. L. P. Hogan's",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -2888,6 +2991,7 @@
      "as_printed": "Hogan, John S. C. at C. L. P. Hogan's",
      "printed_page": 40,
      "occupation_1844": "at C. L. P. Hogan's",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -2931,6 +3035,7 @@
      "as_printed": "Brown, Rufus B. clerk at J. P. Chapin & Co.'s, res corner Lake and Wells sts",
      "printed_page": 26,
      "occupation_1844": "clerk at J. P. Chapin & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": "res corner Lake and Wells sts"
     }
    ],
@@ -2974,6 +3079,7 @@
      "as_printed": "Morrison, Orsemus, carpenter, house Clark st",
      "printed_page": 49,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "house Clark st"
     }
    ],
@@ -3020,6 +3126,7 @@
      "as_printed": "Morrison, Orsemus, carpenter, house Clark st",
      "printed_page": 49,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "house Clark st"
     }
    ],
@@ -3066,6 +3173,7 @@
      "as_printed": "Brown, Rufus B. clerk at J. P. Chapin & Co.'s, res corner Lake and Wells sts",
      "printed_page": 26,
      "occupation_1844": "clerk at J. P. Chapin & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": "res corner Lake and Wells sts"
     }
    ],
@@ -3108,7 +3216,8 @@
      "claim": "n1844_e1758",
      "as_printed": "Taylor, Win.H. at Dan Taylor's, 120 Lake st",
      "printed_page": 58,
-     "occupation_1844": "at Dan Taylor's, 120 Lake st",
+     "occupation_1844": "at Dan Taylor's",
+     "place_of_business_1844": "120 Lake st",
      "address_1844": null
     }
    ],
@@ -3153,7 +3262,8 @@
      "claim": "n1844_e1758",
      "as_printed": "Taylor, Win.H. at Dan Taylor's, 120 Lake st",
      "printed_page": 58,
-     "occupation_1844": "at Dan Taylor's, 120 Lake st",
+     "occupation_1844": "at Dan Taylor's",
+     "place_of_business_1844": "120 Lake st",
      "address_1844": null
     }
    ],
@@ -3200,7 +3310,8 @@
      "claim": "n1844_e1747",
      "as_printed": "Taylor, Charles, merchant tailor, Clark st. house Canal st. b Wash-' ington and Madison sts (Sec card)",
      "printed_page": 58,
-     "occupation_1844": "merchant tailor, Clark st",
+     "occupation_1844": "merchant tailor",
+     "place_of_business_1844": "Clark st",
      "address_1844": "house Canal st. b Wash-' ington and Madison sts (Sec card)"
     },
     {
@@ -3208,6 +3319,7 @@
      "as_printed": "Taylor, Charles H. currier, at Johonnett, Wells, & Co.'s",
      "printed_page": 58,
      "occupation_1844": "currier, at Johonnett, Wells, & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -3250,6 +3362,7 @@
      "as_printed": "Bond, Harvey, laborer, house Clark st",
      "printed_page": 25,
      "occupation_1844": "laborer",
+     "place_of_business_1844": null,
      "address_1844": "house Clark st"
     },
     {
@@ -3257,6 +3370,7 @@
      "as_printed": "Bond, Heinan S. clerk to Loyd, Blakesley, & Co. house east of Clark street",
      "printed_page": 25,
      "occupation_1844": "clerk to Loyd, Blakesley, & Co",
+     "place_of_business_1844": null,
      "address_1844": "house east of Clark street"
     },
     {
@@ -3264,6 +3378,7 @@
      "as_printed": "Bond, Hiram, laborer, house east of Clark street",
      "printed_page": 25,
      "occupation_1844": "laborer",
+     "place_of_business_1844": null,
      "address_1844": "house east of Clark street"
     }
    ],
@@ -3312,6 +3427,7 @@
      "as_printed": "Cook, John, tailor, res Jefferson st. b Randolph and \\Vashington sts",
      "printed_page": 30,
      "occupation_1844": "tailor",
+     "place_of_business_1844": null,
      "address_1844": "res Jefferson st. b Randolph and \\Vashington sts"
     },
     {
@@ -3319,6 +3435,7 @@
      "as_printed": "Cook, Josiah P. baker, res Michigan avenue",
      "printed_page": 30,
      "occupation_1844": "baker",
+     "place_of_business_1844": null,
      "address_1844": "res Michigan avenue"
     }
    ],
@@ -3369,13 +3486,15 @@
      "as_printed": "Curtiss, James, state's attorney, office\"-. 136 Lake st. res Randolph st. 3d ward",
      "printed_page": 31,
      "occupation_1844": "state's attorney, office\"-. 136 Lake st",
+     "place_of_business_1844": null,
      "address_1844": "res Randolph st. 3d ward"
     },
     {
      "claim": "n1844_e0450",
      "as_printed": "Curtiss, J. W. gunsmith, corner of North Water and Wolcott sts",
      "printed_page": 31,
-     "occupation_1844": "gunsmith, corner of North Water and Wolcott sts",
+     "occupation_1844": "gunsmith",
+     "place_of_business_1844": "corner of North Water and Wolcott sts",
      "address_1844": null
     }
    ],
@@ -3425,6 +3544,7 @@
      "as_printed": "Smith, J. A. clerk at L. P. Sanger & Co.'s house Lake street",
      "printed_page": 56,
      "occupation_1844": "clerk at L. P. Sanger & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": "house Lake street"
     },
     {
@@ -3432,6 +3552,7 @@
      "as_printed": "Smith, J. F. of Skinner & S., Mansion House",
      "printed_page": 56,
      "occupation_1844": "of Skinner & S., Mansion House",
+     "place_of_business_1844": null,
      "address_1844": null
     },
     {
@@ -3439,6 +3560,7 @@
      "as_printed": "Smith, J. T. auctioneer at J. Bates', jr. res same",
      "printed_page": 56,
      "occupation_1844": "auctioneer at J. Bates', jr",
+     "place_of_business_1844": null,
      "address_1844": "res same"
     }
    ],
@@ -3486,7 +3608,8 @@
      "claim": "n1844_e1323",
      "as_printed": "Murphy, John, United States Hotel, corner Randolph and W. Water sts. (See card.)",
      "printed_page": 49,
-     "occupation_1844": "United States Hotel, corner Randolph and W. Water sts. (See card.)",
+     "occupation_1844": "United States Hotel",
+     "place_of_business_1844": "corner Randolph and W. Water sts. (See card.)",
      "address_1844": null
     },
     {
@@ -3494,6 +3617,7 @@
      "as_printed": "Murphy, John, laborer, h N. Water, near Pine st",
      "printed_page": 49,
      "occupation_1844": "laborer",
+     "place_of_business_1844": null,
      "address_1844": "h N. Water, near Pine st"
     }
    ],
@@ -3534,6 +3658,7 @@
      "as_printed": "Wilson, John C. carpenter, h. N. Water, near Franklin sts",
      "printed_page": 61,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "h. N. Water, near Franklin sts"
     },
     {
@@ -3541,6 +3666,7 @@
      "as_printed": "Wilson, J. D. res Seth Johnson's",
      "printed_page": 61,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "res Seth Johnson's"
     }
    ],
@@ -3584,6 +3710,7 @@
      "as_printed": "Allen, James F. carpenter, house Illinois street, b. Pine and Sand",
      "printed_page": 21,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "house Illinois street, b. Pine and Sand"
     },
     {
@@ -3591,6 +3718,7 @@
      "as_printed": "Allen, J. P. of J. P. A. & Co., house River street, 1st Ward",
      "printed_page": 21,
      "occupation_1844": "of J. P. A. & Co",
+     "place_of_business_1844": null,
      "address_1844": "house River street, 1st Ward"
     }
    ],
@@ -3632,7 +3760,8 @@
      "claim": "n1844_e1747",
      "as_printed": "Taylor, Charles, merchant tailor, Clark st. house Canal st. b Wash-' ington and Madison sts (Sec card)",
      "printed_page": 58,
-     "occupation_1844": "merchant tailor, Clark st",
+     "occupation_1844": "merchant tailor",
+     "place_of_business_1844": "Clark st",
      "address_1844": "house Canal st. b Wash-' ington and Madison sts (Sec card)"
     },
     {
@@ -3640,6 +3769,7 @@
      "as_printed": "Taylor, Charles H. currier, at Johonnett, Wells, & Co.'s",
      "printed_page": 58,
      "occupation_1844": "currier, at Johonnett, Wells, & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -3682,14 +3812,16 @@
      "claim": "n1844_e0828",
      "as_printed": "Heacock, R. E. attorney at law, ho Adams st. b Clinton & Lasalle",
      "printed_page": 39,
-     "occupation_1844": "attorney at law, ho Adams st",
-     "address_1844": "b Clinton & Lasalle"
+     "occupation_1844": "attorney at law, ho Adams st. b Clinton & Lasalle",
+     "place_of_business_1844": null,
+     "address_1844": null
     },
     {
      "claim": "n1844_e0829",
      "as_printed": "Heacock, R. E. jr. clerk, at C.Walker & Co.'s, res R. E. Heacock's",
      "printed_page": 39,
      "occupation_1844": "clerk, at C.Walker & Co.'s",
+     "place_of_business_1844": null,
      "address_1844": "res R. E. Heacock's"
     },
     {
@@ -3697,6 +3829,7 @@
      "as_printed": "Heacock, R. E- mason, at A. S. Sherman's",
      "printed_page": 39,
      "occupation_1844": "mason, at A. S. Sherman's",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -3751,6 +3884,7 @@
      "as_printed": "Jackson, Samuel, overseer of harbor, res Fort Dearborn",
      "printed_page": 41,
      "occupation_1844": "overseer of harbor",
+     "place_of_business_1844": null,
      "address_1844": "res Fort Dearborn"
     },
     {
@@ -3758,6 +3892,7 @@
      "as_printed": "Jackson, S. E. res at Samuel Jackson's .",
      "printed_page": 41,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "res at Samuel Jackson's"
     }
    ],
@@ -3801,6 +3936,7 @@
      "as_printed": "Brown, William, grocer, res North Water st. b Clark and Dearborn",
      "printed_page": 26,
      "occupation_1844": "grocer",
+     "place_of_business_1844": null,
      "address_1844": "res North Water st. b Clark and Dearborn"
     },
     {
@@ -3808,6 +3944,7 @@
      "as_printed": "Brown, William, res Sauganash Hotel",
      "printed_page": 26,
      "occupation_1844": null,
+     "place_of_business_1844": null,
      "address_1844": "res Sauganash Hotel"
     },
     {
@@ -3815,6 +3952,7 @@
      "as_printed": "Brown, William H. attorney, office Bank Building, res cor Illinois and P<ne sts",
      "printed_page": 26,
      "occupation_1844": "attorney, office Bank Building",
+     "place_of_business_1844": null,
      "address_1844": "res cor Illinois and P<ne sts"
     }
    ],
@@ -3863,6 +4001,7 @@
      "as_printed": "Smith, William, carpenter, res Mrs. Post's",
      "printed_page": 56,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "res Mrs. Post's"
     },
     {
@@ -3870,6 +4009,7 @@
      "as_printed": "Smith, W. W. clerk at S. J. Surdam's",
      "printed_page": 56,
      "occupation_1844": "clerk at S. J. Surdam's",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -3913,6 +4053,7 @@
      "as_printed": "Smith, William, carpenter, res Mrs. Post's",
      "printed_page": 56,
      "occupation_1844": "carpenter",
+     "place_of_business_1844": null,
      "address_1844": "res Mrs. Post's"
     },
     {
@@ -3920,6 +4061,7 @@
      "as_printed": "Smith, W. W. clerk at S. J. Surdam's",
      "printed_page": 56,
      "occupation_1844": "clerk at S. J. Surdam's",
+     "place_of_business_1844": null,
      "address_1844": null
     }
    ],
@@ -6174,6 +6316,7 @@
     "as_printed": "Lamb, Artemus. ship carpenter, house Michigan avenue",
     "printed_page": 44,
     "occupation_1844": "ship carpenter",
+    "place_of_business_1844": null,
     "address_1844": "house Michigan avenue"
    }
   },
@@ -6193,7 +6336,8 @@
     "claim": "n1844_e1613",
     "as_printed": "Sherwood, Smith J. jeweler, 144 Lake st. house Lasalle st. b Washington and Madison sts (See card)",
     "printed_page": 55,
-    "occupation_1844": "jeweler, 144 Lake st",
+    "occupation_1844": "jeweler",
+    "place_of_business_1844": "144 Lake st",
     "address_1844": "house Lasalle st. b Washington and Madison sts (See card)"
    }
   }
@@ -6208,6 +6352,7 @@
     "as_printed": "Taylor, A. D. builder, house Michigan ave. b Lake and Randolph",
     "printed_page": 58,
     "occupation_1844": "builder",
+    "place_of_business_1844": null,
     "address_1844": "house Michigan ave. b Lake and Randolph",
     "initials_1835": [
      "A",
@@ -6229,7 +6374,8 @@
     "claim": "n1844_e0973",
     "as_printed": "Jones, D. A. & E. M. chair and ca&inet manufactory, Dearborn st",
     "printed_page": 42,
-    "occupation_1844": "& E. M. chair and ca&inet manufactory, Dearborn st",
+    "occupation_1844": "& E. M. chair and ca&inet manufactory",
+    "place_of_business_1844": "Dearborn st",
     "address_1844": null,
     "initials_1835": [
      "D",
@@ -6252,6 +6398,7 @@
     "as_printed": "Jones, D. A. of D. A. & E. M. Jones, res Dearborn street",
     "printed_page": 42,
     "occupation_1844": "of D. A. & E. M. Jones",
+    "place_of_business_1844": null,
     "address_1844": "res Dearborn street",
     "initials_1835": [
      "D",
@@ -6274,6 +6421,7 @@
     "as_printed": "Harmon, E. R. clerk, at E. S. & J. Wadsworth's, res same",
     "printed_page": 38,
     "occupation_1844": "clerk, at E. S. & J. Wadsworth's",
+    "place_of_business_1844": null,
     "address_1844": "res same",
     "initials_1835": [
      "E",
@@ -6296,6 +6444,7 @@
     "as_printed": "Rogers, Edward K. of Horace Norton & Co. h Ind b Cass & Hush",
     "printed_page": 53,
     "occupation_1844": "of Horace Norton & Co",
+    "place_of_business_1844": null,
     "address_1844": "h Ind b Cass & Hush",
     "initials_1835": [
      "E",
@@ -6318,6 +6467,7 @@
     "as_printed": "Williams, E. S. law student at Butterfield & Collins",
     "printed_page": 61,
     "occupation_1844": "law student at Butterfield & Collins",
+    "place_of_business_1844": null,
     "address_1844": null,
     "initials_1835": [
      "E",
@@ -6339,7 +6489,8 @@
     "claim": "n1844_e0361",
     "as_printed": "Clarke, H. W. attorney at law, Clark st. opposite the City Saloon, res Mrs. Post's",
     "printed_page": 29,
-    "occupation_1844": "attorney at law, Clark st. opposite the City Saloon",
+    "occupation_1844": "attorney at law",
+    "place_of_business_1844": "Clark st. opposite the City Saloon",
     "address_1844": "res Mrs. Post's",
     "initials_1835": [
      "H",
@@ -6361,7 +6512,8 @@
     "claim": "n1844_e0354",
     "as_printed": "Clark, J. Coe, broker, Clark st. north of Lake st. (See card)",
     "printed_page": 29,
-    "occupation_1844": "broker, Clark st. north of Lake st. (See card)",
+    "occupation_1844": "broker",
+    "place_of_business_1844": "Clark st. north of Lake st. (See card)",
     "address_1844": null,
     "initials_1835": [
      "J",
@@ -6383,7 +6535,8 @@
     "claim": "n1844_e0354",
     "as_printed": "Clark, J. Coe, broker, Clark st. north of Lake st. (See card)",
     "printed_page": 29,
-    "occupation_1844": "broker, Clark st. north of Lake st. (See card)",
+    "occupation_1844": "broker",
+    "place_of_business_1844": "Clark st. north of Lake st. (See card)",
     "address_1844": null,
     "initials_1835": [
      "J",
@@ -6405,7 +6558,8 @@
     "claim": "n1844_e0633",
     "as_printed": "Foster, John H physician, 207 Lake st. house same",
     "printed_page": 35,
-    "occupation_1844": "physician, 207 Lake st",
+    "occupation_1844": "physician",
+    "place_of_business_1844": "207 Lake st",
     "address_1844": "house same",
     "initials_1835": [
      "J",
@@ -6428,6 +6582,7 @@
     "as_printed": "Heacock, R. B. res R. E. Heacock's",
     "printed_page": 39,
     "occupation_1844": null,
+    "place_of_business_1844": null,
     "address_1844": "res R. E. Heacock's",
     "initials_1835": [
      "R",
@@ -6450,6 +6605,7 @@
     "as_printed": "Reed, Sfilman O. laborer, at John Davlin's",
     "printed_page": 52,
     "occupation_1844": "laborer, at John Davlin's",
+    "place_of_business_1844": null,
     "address_1844": null,
     "initials_1835": [
      "S",
@@ -6472,6 +6628,7 @@
     "as_printed": "Clarke, William H. of C. & Co. res \"",
     "printed_page": 29,
     "occupation_1844": "of C. & Co",
+    "place_of_business_1844": null,
     "address_1844": "res \"",
     "initials_1835": [
      "W",
@@ -6496,6 +6653,7 @@
     "as_printed": "Wesencraft, C!;as. carpenter and wagon maker, c Clin and Monroe",
     "printed_page": 60,
     "occupation_1844": "carpenter and wagon maker, c Clin and Monroe",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "Charlotte",
     "forename_printed": "Chas",
@@ -6512,6 +6670,7 @@
     "as_printed": "Smith, Elijah, of H. & E. Smith, h Ohio jst. b Dear and Wolcott",
     "printed_page": 56,
     "occupation_1844": "of H. & E. Smith",
+    "place_of_business_1844": null,
     "address_1844": "h Ohio jst. b Dear and Wolcott",
     "forename_1835": "Elded",
     "forename_printed": "Elijah",
@@ -6527,7 +6686,8 @@
     "claim": "n1844_e0347",
     "as_printed": "Clark, Edwin, grocer, Lake st",
     "printed_page": 29,
-    "occupation_1844": "grocer, Lake st",
+    "occupation_1844": "grocer",
+    "place_of_business_1844": "Lake st",
     "address_1844": null,
     "forename_1835": "Erastus",
     "forename_printed": "Edwin",
@@ -6544,6 +6704,7 @@
     "as_printed": "Clark, Elisha, carpenter, res Waterst. b Washington and Madison sts",
     "printed_page": 29,
     "occupation_1844": "carpenter",
+    "place_of_business_1844": null,
     "address_1844": "res Waterst. b Washington and Madison sts",
     "forename_1835": "Erastus",
     "forename_printed": "Elisha",
@@ -6559,8 +6720,9 @@
     "claim": "n1844_e0835",
     "as_printed": "Henry, Hugh K. constable and joiner, N. Water st b Kin and Dear",
     "printed_page": 39,
-    "occupation_1844": "constable and joiner, N. Water st",
-    "address_1844": "b Kin and Dear",
+    "occupation_1844": "constable and joiner",
+    "place_of_business_1844": "N. Water st b Kin and Dear",
+    "address_1844": null,
     "forename_1835": "Hamilton",
     "forename_printed": "Hugh",
     "garbled_reading": false,
@@ -6576,6 +6738,7 @@
     "as_printed": "Brown, Henry, city attorney, office corner of State nnd Dearborn sts. house corner of Wolcott and Ontario sts (See card)",
     "printed_page": 26,
     "occupation_1844": "city attorney, office corner of State nnd Dearborn sts",
+    "place_of_business_1844": null,
     "address_1844": "house corner of Wolcott and Ontario sts (See card)",
     "forename_1835": "Hanna",
     "forename_printed": "Henry",
@@ -6592,6 +6755,7 @@
     "as_printed": "Campbell, John, laborer at A. C. Wood's residence 4th ward, west of Clark st",
     "printed_page": 27,
     "occupation_1844": "laborer at A. C. Wood's",
+    "place_of_business_1844": null,
     "address_1844": "residence 4th ward, west of Clark st",
     "forename_1835": "James",
     "forename_printed": "John",
@@ -6608,6 +6772,7 @@
     "as_printed": "Burke, John, laborer, 3d Ward, S. of Jackson st",
     "printed_page": 27,
     "occupation_1844": "laborer, 3d Ward, S. of Jackson st",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "James",
     "forename_printed": "John",
@@ -6623,7 +6788,8 @@
     "claim": "n1844_e1031",
     "as_printed": "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass",
     "printed_page": 43,
-    "occupation_1844": "register land office, 82 Lake st",
+    "occupation_1844": "register land office",
+    "place_of_business_1844": "82 Lake st",
     "address_1844": "h c Mich dc Cass",
     "forename_1835": "James",
     "forename_printed": "John",
@@ -6640,6 +6806,7 @@
     "as_printed": "Smith, James, shoejnaker, at David Jay's",
     "printed_page": 56,
     "occupation_1844": "shoejnaker, at David Jay's",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "Jeremiah",
     "forename_printed": "James",
@@ -6656,6 +6823,7 @@
     "as_printed": "Smith, John E. clerk at B. F. Sherman's",
     "printed_page": 56,
     "occupation_1844": "clerk at B. F. Sherman's",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "Jeremiah",
     "forename_printed": "John",
@@ -6672,6 +6840,7 @@
     "as_printed": "Smith, John L. clerk at Humphreys & Winslow's",
     "printed_page": 56,
     "occupation_1844": "clerk at Humphreys & Winslow's",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "Jeremiah",
     "forename_printed": "John",
@@ -6688,6 +6857,7 @@
     "as_printed": "Smith, John M. hatter, at L. P. Sunger & Co.'s h Clark street",
     "printed_page": 56,
     "occupation_1844": "hatter, at L. P. Sunger & Co.'s",
+    "place_of_business_1844": null,
     "address_1844": "h Clark street",
     "forename_1835": "Jeremiah",
     "forename_printed": "John",
@@ -6704,6 +6874,7 @@
     "as_printed": "Brown, Jeduthan, res Saugnnash Hotel",
     "printed_page": 26,
     "occupation_1844": null,
+    "place_of_business_1844": null,
     "address_1844": "res Saugnnash Hotel",
     "forename_1835": "Jesse",
     "forename_printed": "Jeduthan",
@@ -6719,8 +6890,9 @@
     "claim": "n1844_e0216",
     "as_printed": "Brown, Joseph, laborer, Madison st. b Canal and Water sts",
     "printed_page": 26,
-    "occupation_1844": "laborer, Madison st",
-    "address_1844": "b Canal and Water sts",
+    "occupation_1844": "laborer",
+    "place_of_business_1844": "Madison st. b Canal and Water sts",
+    "address_1844": null,
     "forename_1835": "Jesse",
     "forename_printed": "Joseph",
     "garbled_reading": false,
@@ -6735,8 +6907,9 @@
     "claim": "n1844_e0217",
     "as_printed": "Brown, Jos. E. carpenter, Clark st. b Madison and First sts",
     "printed_page": 26,
-    "occupation_1844": "carpenter, Clark st",
-    "address_1844": "b Madison and First sts",
+    "occupation_1844": "carpenter",
+    "place_of_business_1844": "Clark st. b Madison and First sts",
+    "address_1844": null,
     "forename_1835": "Jesse",
     "forename_printed": "Jos",
     "garbled_reading": false,
@@ -6752,6 +6925,7 @@
     "as_printed": "Cook, Josiah P. baker, res Michigan avenue",
     "printed_page": 30,
     "occupation_1844": "baker",
+    "place_of_business_1844": null,
     "address_1844": "res Michigan avenue",
     "forename_1835": "John",
     "forename_printed": "Josiah",
@@ -6768,6 +6942,7 @@
     "as_printed": "Fitzsimrnons, James, clerk, at the recorder's office, res Dr. Egan's",
     "printed_page": 34,
     "occupation_1844": "clerk, at the recorder's office",
+    "place_of_business_1844": null,
     "address_1844": "res Dr. Egan's",
     "forename_1835": "John",
     "forename_printed": "James",
@@ -6784,6 +6959,7 @@
     "as_printed": "Hogan, Joseph, currier, at Johnnott, Wells & Co.'s",
     "printed_page": 40,
     "occupation_1844": "currier, at Johnnott, Wells & Co.'s",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "John",
     "forename_printed": "Joseph",
@@ -6800,6 +6976,7 @@
     "as_printed": "Long, James, proprietor of mill, Hydraulic Go's works, res Michi gan avenue",
     "printed_page": 45,
     "occupation_1844": "proprietor of mill, Hydraulic Go's works",
+    "place_of_business_1844": null,
     "address_1844": "res Michi gan avenue",
     "forename_1835": "John",
     "forename_printed": "James",
@@ -6816,6 +6993,7 @@
     "as_printed": "Miller, Jacob, blacksmith, house Indiana st. b Dearb. and Wolcott",
     "printed_page": 48,
     "occupation_1844": "blacksmith",
+    "place_of_business_1844": null,
     "address_1844": "house Indiana st. b Dearb. and Wolcott",
     "forename_1835": "John",
     "forename_printed": "Jacob",
@@ -6832,6 +7010,7 @@
     "as_printed": "Rice., Joseph, at Stowe's foundry, res Western Hotel",
     "printed_page": 52,
     "occupation_1844": "at Stowe's foundry",
+    "place_of_business_1844": null,
     "address_1844": "res Western Hotel",
     "forename_1835": "John",
     "forename_printed": "Joseph",
@@ -6848,6 +7027,7 @@
     "as_printed": "Hogan, Joseph, currier, at Johnnott, Wells & Co.'s",
     "printed_page": 40,
     "occupation_1844": "currier, at Johnnott, Wells & Co.'s",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "John",
     "forename_printed": "Joseph",
@@ -6864,6 +7044,7 @@
     "as_printed": "Scott, James H. sash maker, 3d ward, South of Jackson st",
     "printed_page": 54,
     "occupation_1844": "sash maker, 3d ward, South of Jackson st",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "John",
     "forename_printed": "James",
@@ -6880,6 +7061,7 @@
     "as_printed": "Thompson, Joseph, caulker, house Adams st. b Clark and Lasalle",
     "printed_page": 58,
     "occupation_1844": "caulker",
+    "place_of_business_1844": null,
     "address_1844": "house Adams st. b Clark and Lasalle",
     "forename_1835": "John",
     "forename_printed": "Joseph",
@@ -6896,6 +7078,7 @@
     "as_printed": "Cook, John, tailor, res Jefferson st. b Randolph and \\Vashington sts",
     "printed_page": 30,
     "occupation_1844": "tailor",
+    "place_of_business_1844": null,
     "address_1844": "res Jefferson st. b Randolph and \\Vashington sts",
     "forename_1835": "Josiah",
     "forename_printed": "John",
@@ -6911,7 +7094,8 @@
     "claim": "n1844_e1031",
     "as_printed": "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass",
     "printed_page": 43,
-    "occupation_1844": "register land office, 82 Lake st",
+    "occupation_1844": "register land office",
+    "place_of_business_1844": "82 Lake st",
     "address_1844": "h c Mich dc Cass",
     "forename_1835": "Juliette",
     "forename_printed": "John",
@@ -6928,6 +7112,7 @@
     "as_printed": "Green, Mark T. clerk, at Stevens & Carpenter's res Mrs. Green's",
     "printed_page": 37,
     "occupation_1844": "clerk, at Stevens & Carpenter's",
+    "place_of_business_1844": null,
     "address_1844": "res Mrs. Green's",
     "forename_1835": "Mary",
     "forename_printed": "Mark",
@@ -6943,7 +7128,8 @@
     "claim": "n1844_e0746",
     "as_printed": "Green, Mrs. Mara, boarding house, corner of Clark and Wash, sts",
     "printed_page": 37,
-    "occupation_1844": "boarding house, corner of Clark and Wash, sts",
+    "occupation_1844": "boarding house",
+    "place_of_business_1844": "corner of Clark and Wash, sts",
     "address_1844": null,
     "forename_1835": "Mary",
     "forename_printed": "Mara",
@@ -6960,6 +7146,7 @@
     "as_printed": "Hogan, Michael, res Michigan avenue",
     "printed_page": 40,
     "occupation_1844": null,
+    "place_of_business_1844": null,
     "address_1844": "res Michigan avenue",
     "forename_1835": "Mary",
     "forename_printed": "Michael",
@@ -6976,6 +7163,7 @@
     "as_printed": "Smith, Michael, laborer, West of Clark South of First sts",
     "printed_page": 56,
     "occupation_1844": "laborer, West of Clark South of First sts",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "Matthias",
     "forename_printed": "Michael",
@@ -6992,6 +7180,7 @@
     "as_printed": "Smith, Michael, at S. B. Cobb's",
     "printed_page": 56,
     "occupation_1844": "at S. B. Cobb's",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "Matthias",
     "forename_printed": "Michael",
@@ -7007,8 +7196,9 @@
     "claim": "n1844_e0603",
     "as_printed": "Fisher, Peter H. turner, Franklin st. b Lake and Randolph sts",
     "printed_page": 34,
-    "occupation_1844": "turner, Franklin st",
-    "address_1844": "b Lake and Randolph sts",
+    "occupation_1844": "turner",
+    "place_of_business_1844": "Franklin st. b Lake and Randolph sts",
+    "address_1844": null,
     "forename_1835": "Pitman",
     "forename_printed": "Peter",
     "garbled_reading": false,
@@ -7024,6 +7214,7 @@
     "as_printed": "Hamilton, Robert P. of H. & White, res T. E. Hamilton's",
     "printed_page": 38,
     "occupation_1844": "of H. & White",
+    "place_of_business_1844": null,
     "address_1844": "res T. E. Hamilton's",
     "forename_1835": "Richard",
     "forename_printed": "Robert",
@@ -7040,6 +7231,7 @@
     "as_printed": "Rose, Russell",
     "printed_page": 53,
     "occupation_1844": null,
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "Ruel",
     "forename_printed": "Russell",
@@ -7055,7 +7247,8 @@
     "claim": "n1844_e0966",
     "as_printed": "Johnson, Sanford, carpenter, Dearborn st, res J. Gray's",
     "printed_page": 42,
-    "occupation_1844": "carpenter, Dearborn st",
+    "occupation_1844": "carpenter",
+    "place_of_business_1844": "Dearborn st",
     "address_1844": "res J. Gray's",
     "forename_1835": "Samuel",
     "forename_printed": "Sanford",
@@ -7072,6 +7265,7 @@
     "as_printed": "Johnson, Seth, deputy collector and inspector of Port of Chicago, house cor Washington and Lasalle sts",
     "printed_page": 42,
     "occupation_1844": "deputy collector and inspector of Port of Chicago",
+    "place_of_business_1844": null,
     "address_1844": "house cor Washington and Lasalle sts",
     "forename_1835": "Samuel",
     "forename_printed": "Seth",
@@ -7088,6 +7282,7 @@
     "as_printed": "Johnson, Seth, deputy collector and inspector of Port of Chicago, house cor Washington and Lasalle sts",
     "printed_page": 42,
     "occupation_1844": "deputy collector and inspector of Port of Chicago",
+    "place_of_business_1844": null,
     "address_1844": "house cor Washington and Lasalle sts",
     "forename_1835": "Sanford",
     "forename_printed": "Seth",
@@ -7103,8 +7298,9 @@
     "claim": "n1844_e0332",
     "as_printed": "Childs, Shubael D. engraver on wood and metal, Clark st. b Lake and Randolph sts.\"res 3d ward, school section",
     "printed_page": 28,
-    "occupation_1844": "engraver on wood and metal, Clark st",
-    "address_1844": "b Lake and Randolph sts.\"res 3d ward, school section",
+    "occupation_1844": "engraver on wood and metal",
+    "place_of_business_1844": "Clark st. b Lake and Randolph sts.\"",
+    "address_1844": "res 3d ward, school section",
     "forename_1835": "Sarah",
     "forename_printed": "Shubael",
     "garbled_reading": false,
@@ -7120,6 +7316,7 @@
     "as_printed": "Howe, Samuel, bricklayer, house Clark street",
     "printed_page": 41,
     "occupation_1844": "bricklayer",
+    "place_of_business_1844": null,
     "address_1844": "house Clark street",
     "forename_1835": "Sarah",
     "forename_printed": "Samuel",
@@ -7136,6 +7333,7 @@
     "as_printed": "Howe, Samuel, clerk at Mngie & Co.'s, h Slate, b Wash and Mad",
     "printed_page": 41,
     "occupation_1844": "clerk at Mngie & Co.'s",
+    "place_of_business_1844": null,
     "address_1844": "h Slate, b Wash and Mad",
     "forename_1835": "Sarah",
     "forename_printed": "Samuel",
@@ -7151,7 +7349,8 @@
     "claim": "n1844_e0966",
     "as_printed": "Johnson, Sanford, carpenter, Dearborn st, res J. Gray's",
     "printed_page": 42,
-    "occupation_1844": "carpenter, Dearborn st",
+    "occupation_1844": "carpenter",
+    "place_of_business_1844": "Dearborn st",
     "address_1844": "res J. Gray's",
     "forename_1835": "Seth",
     "forename_printed": "Sanford",
@@ -7168,6 +7367,7 @@
     "as_printed": "King, Solomon, hostler, Illinois Exchange",
     "printed_page": 43,
     "occupation_1844": "hostler, Illinois Exchange",
+    "place_of_business_1844": null,
     "address_1844": null,
     "forename_1835": "Sherman",
     "forename_printed": "Solomon",
@@ -7184,6 +7384,7 @@
     "as_printed": "Abbott, Thomas L. clerk at C. Mann's, residence same",
     "printed_page": 21,
     "occupation_1844": "clerk at C. Mann's",
+    "place_of_business_1844": null,
     "address_1844": "residence same",
     "forename_1835": "Titus",
     "forename_printed": "Thomas",
@@ -7200,6 +7401,7 @@
     "as_printed": "King, Thomas, ship carpenter, house b State and Clark sts",
     "printed_page": 43,
     "occupation_1844": "ship carpenter",
+    "place_of_business_1844": null,
     "address_1844": "house b State and Clark sts",
     "forename_1835": "Tuthill",
     "forename_printed": "Thomas",
@@ -7216,6 +7418,7 @@
     "as_printed": "Jones, Wm. of B. Jones & Co. house cor Randolph and Dearborn",
     "printed_page": 42,
     "occupation_1844": "of B. Jones & Co",
+    "place_of_business_1844": null,
     "address_1844": "house cor Randolph and Dearborn",
     "forename_1835": "Willard",
     "forename_printed": "Wm",
@@ -7232,6 +7435,7 @@
     "as_printed": "Bandlej Willis, b'smith, at Stow's Foundry, h N. Branch, 4th ward",
     "printed_page": 22,
     "occupation_1844": "b'smith, at Stow's Foundry",
+    "place_of_business_1844": null,
     "address_1844": "h N. Branch, 4th ward",
     "forename_1835": "Willinm",
     "forename_printed": "Willis",

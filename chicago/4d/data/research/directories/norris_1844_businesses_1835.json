@@ -54,7 +54,7 @@
   },
   {
    "firm_1844": "Newberry & Dole",
-   "trade_1844": "for. and com. merchants, cor Clark & S. Water and North Water streets (See. card)",
+   "trade_1844": "for. and com. merchants",
    "business_1835": "business_newberry_dole",
    "name_1835": "Newberry & Dole",
    "proprietors_1835": [
@@ -383,7 +383,7 @@
      "printed_page": 21
     }
    ],
-   "trade": "boot and shoe dealers, 138 Lake st (See card)",
+   "trade": "boot and shoe dealers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -629,7 +629,7 @@
      "printed_page": 22
     }
    ],
-   "trade": "dry goods and groceries, S. Water st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -663,7 +663,7 @@
      "printed_page": 22
     }
    ],
-   "trade": "attorneys and counsellors at law, 120 Lake st",
+   "trade": "attorneys and counsellors at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -833,7 +833,7 @@
      "printed_page": 23
     }
    ],
-   "trade": "confectioners, 147 Lake street (Sec card)",
+   "trade": "confectioners",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -867,7 +867,7 @@
      "printed_page": 23
     }
    ],
-   "trade": "attorneys at law, 92 Lake street (See card)",
+   "trade": "attorneys at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -968,7 +968,7 @@
      "printed_page": 25
     }
    ],
-   "trade": "stove and hardware, 109 Lake street (See card)",
+   "trade": "stove and hardware",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1080,7 +1080,7 @@
      "printed_page": 27
     }
    ],
-   "trade": "crockery store, 105 Lake st (See card)",
+   "trade": "crockery store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1114,7 +1114,7 @@
      "printed_page": 27
     }
    ],
-   "trade": "attorneys at law, 105 Lake street",
+   "trade": "attorneys at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1622,7 +1622,7 @@
      "printed_page": 29
     }
    ],
-   "trade": "carpenters, N. Water st",
+   "trade": "carpenters",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1695,7 +1695,7 @@
      "printed_page": 29
     }
    ],
-   "trade": "druggists, manufacturers of lard oil and candles, 102 Lake st. Indiana st",
+   "trade": "druggists, manufacturers of lard oil and candles",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1790,7 +1790,7 @@
      "printed_page": 29
     }
    ],
-   "trade": "Clark st and western markets",
+   "trade": null,
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1818,7 +1818,7 @@
      "printed_page": 30
     }
    ],
-   "trade": "boot, shoe, and leather store, 140 Lake st",
+   "trade": "boot, shoe, and leather store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1857,7 +1857,7 @@
      "printed_page": 89
     }
    ],
-   "trade": "dry goods and groceries, 82 Lake st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1901,7 +1901,7 @@
      "printed_page": 30
     }
    ],
-   "trade": "American Temperance House, Lake st. c Wabash",
+   "trade": "American Temperance House",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2365,7 +2365,7 @@
      "printed_page": 33
     }
    ],
-   "trade": "painters, Clark st",
+   "trade": "painters",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2460,7 +2460,7 @@
      "printed_page": 89
     }
    ],
-   "trade": "dry goods and groceries, 103 Lake st (See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2533,7 +2533,7 @@
      "printed_page": 33
     }
    ],
-   "trade": "dealers in iron, stoves, and hardware, 96 Lake st",
+   "trade": "dealers in iron, stoves, and hardware",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2561,7 +2561,7 @@
      "printed_page": 33
     }
    ],
-   "trade": "book and job printers, Saloon Buildings, 3d story, Clark st. corner Lake st",
+   "trade": "book and job printers, Saloon Buildings, 3d story",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2679,7 +2679,7 @@
      "printed_page": 35
     }
    ],
-   "trade": "attorneys at law, Clark st. opposite City Hotel",
+   "trade": "attorneys at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2718,7 +2718,7 @@
      "printed_page": 35
     }
    ],
-   "trade": "stage proprietors, corner of Lake and Dear born sts",
+   "trade": "stage proprietors",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2819,7 +2819,7 @@
      "printed_page": 36
     }
    ],
-   "trade": "book store, 106 Lake st",
+   "trade": "book store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3028,7 +3028,7 @@
      "printed_page": 36
     }
    ],
-   "trade": "dry goods and groceries, S. Water st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3084,7 +3084,7 @@
      "printed_page": 37
     }
    ],
-   "trade": "livery stable, corner of Dearborn and Randolph sts",
+   "trade": "livery stable",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3118,7 +3118,7 @@
      "printed_page": 37
     }
    ],
-   "trade": "brokers, South Water st",
+   "trade": "brokers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3152,7 +3152,7 @@
      "printed_page": 38
     }
    ],
-   "trade": "groceries, hardware, and leather store, 116 Lake st",
+   "trade": "groceries, hardware, and leather store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3393,7 +3393,7 @@
      "printed_page": 80
     }
    ],
-   "trade": "attorneys at law, Clark st. opp. P. O",
+   "trade": "attorneys at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3494,7 +3494,7 @@
      "printed_page": 39
     }
    ],
-   "trade": "ball alley and saloon, South Water st",
+   "trade": "ball alley and saloon",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3606,7 +3606,7 @@
      "printed_page": 113
     }
    ],
-   "trade": "tailors, South Water st",
+   "trade": "tailors",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3640,7 +3640,7 @@
      "printed_page": 40
     }
    ],
-   "trade": "dry goods and groceries, corner of Clark and South Water sts (See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3674,7 +3674,7 @@
      "printed_page": 40
     }
    ],
-   "trade": "Buffalo market, cor of Wolcott and N. Water",
+   "trade": "Buffalo market",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3809,7 +3809,7 @@
      "printed_page": 95
     }
    ],
-   "trade": "for. and com. merchants, S. Water street (See card)",
+   "trade": "for. and com. merchants",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3876,7 +3876,7 @@
      "printed_page": 41
     }
    ],
-   "trade": "dry goods, groceries, Dearborn",
+   "trade": "dry goods, groceries, Dearborn, b Lake and S. Water (Sec card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4390,7 +4390,7 @@
      "printed_page": 41
     }
    ],
-   "trade": "blacksmiths, West Water",
+   "trade": "blacksmiths",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4418,7 +4418,7 @@
      "printed_page": 42
     }
    ],
-   "trade": "dry goods and groceries, S. Water street",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4695,7 +4695,7 @@
      "printed_page": 42
     }
    ],
-   "trade": "builders, Dearborn",
+   "trade": "builders, Dearborn, b Randolph and Washington",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4723,7 +4723,7 @@
      "printed_page": 42
     }
    ],
-   "trade": "barbers and hair dressers, Clark street",
+   "trade": "barbers and hair dressers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4807,7 +4807,7 @@
      "printed_page": 42
     }
    ],
-   "trade": "dry goods and groceries, S. Water",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4875,7 +4875,7 @@
      "printed_page": 43
     }
    ],
-   "trade": "livery stable, Lake st",
+   "trade": "livery stable",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5039,7 +5039,7 @@
      "printed_page": 45
     }
    ],
-   "trade": "billiard saloon, corner S. Water and Dear born sts (See card)",
+   "trade": "billiard saloon",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5095,7 +5095,7 @@
      "printed_page": 45
     }
    ],
-   "trade": "dry goods and gro, 101 Lake st (Sec card)",
+   "trade": "dry goods and gro",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5247,7 +5247,7 @@
      "printed_page": 47
     }
    ],
-   "trade": "dry goods and groceries, 130 Lake street",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5280,7 +5280,7 @@
      "printed_page": 86
     }
    ],
-   "trade": "cabinet makers, 10 Clark st (See. card)",
+   "trade": "cabinet makers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5391,7 +5391,7 @@
      "printed_page": 49
     }
    ],
-   "trade": "grocers, Dearborn st",
+   "trade": "grocers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5425,7 +5425,7 @@
      "printed_page": 49
     }
    ],
-   "trade": "dry goods and groceries, 150 Lake st. (See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5616,7 +5616,7 @@
      "printed_page": 49
     }
    ],
-   "trade": "bankers, 97 Lake street",
+   "trade": "bankers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5655,7 +5655,7 @@
      "printed_page": 96
     }
    ],
-   "trade": "for. and com. merchants, cor Clark & S. Water and North Water streets (See. card)",
+   "trade": "for. and com. merchants",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5717,7 +5717,7 @@
      "printed_page": 50
     }
    ],
-   "trade": "dry goods and groceries, 80 Lake st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5756,7 +5756,7 @@
      "printed_page": 115
     }
    ],
-   "trade": "dry goods and groceries, 134 Lake st. ware",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5795,7 +5795,7 @@
      "printed_page": 50
     }
    ],
-   "trade": "forwarding and commission merchants, So. Water st. (See card)",
+   "trade": "forwarding and commission merchants",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5829,7 +5829,7 @@
      "printed_page": 50
     }
    ],
-   "trade": "land agents, Kinzie st",
+   "trade": "land agents",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6048,7 +6048,7 @@
      "printed_page": 64
     }
    ],
-   "trade": "gunsmiths, 1554 Lake st",
+   "trade": "gunsmiths",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6082,7 +6082,7 @@
      "printed_page": 51
     }
    ],
-   "trade": "linseed oil factory, Madison st 2d ward",
+   "trade": "linseed oil factory",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6126,7 +6126,7 @@
      "printed_page": 116
     }
    ],
-   "trade": "wagon makers, Randolph st",
+   "trade": "wagon makers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6167,7 +6167,7 @@
      "printed_page": 51
     }
    ],
-   "trade": "bakers, Clark st",
+   "trade": "bakers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6297,7 +6297,7 @@
      "printed_page": 52
     }
    ],
-   "trade": "boots, shoes, and leather, 133 Lake st",
+   "trade": "boots, shoes, and leather",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6325,7 +6325,7 @@
      "printed_page": 52
     }
    ],
-   "trade": "staple goods and groceries, corner South Water and State sts and 122 Lake st up stairs",
+   "trade": "staple goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6449,7 +6449,7 @@
      "printed_page": 53
     }
    ],
-   "trade": "tailors, Clark street, next door to Post Office",
+   "trade": "tailors",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6716,7 +6716,7 @@
      "printed_page": 54
     }
    ],
-   "trade": "hat, cap, and fur store, 110 Lake st",
+   "trade": "hat, cap, and fur store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6785,7 +6785,7 @@
      "printed_page": 81
     }
    ],
-   "trade": "attorneys, 123 Lake st. 2d story, (See card)",
+   "trade": "attorneys",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6858,7 +6858,7 @@
      "printed_page": 55
     }
    ],
-   "trade": "dry goods and groceries, 107 Lake st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6892,7 +6892,7 @@
      "printed_page": 55
     }
    ],
-   "trade": "groceries, and boarding house, N. Water st. n Dcarb",
+   "trade": "groceries, and boarding house",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7076,7 +7076,7 @@
      "printed_page": 81
     }
    ],
-   "trade": "attornies at law, 124 L.ike st. 2d story(,S>e card)",
+   "trade": "attornies at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7154,7 +7154,7 @@
      "printed_page": 57
     }
    ],
-   "trade": "Columbian House, Wells st. b- S Water <5cLake",
+   "trade": "Columbian House",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7551,7 +7551,7 @@
      "printed_page": 59
     }
    ],
-   "trade": "dry goods, gro. leather, &c. S. Water st",
+   "trade": "dry goods, gro. leather, &c. S. Water st. b State and Dearborn sts (See card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7585,7 +7585,7 @@
      "printed_page": 60
     }
    ],
-   "trade": "tailors, Clark st",
+   "trade": "tailors",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7737,7 +7737,7 @@
      "printed_page": 60
     }
    ],
-   "trade": "forwarding and, commission merchants, N Water street (See card)",
+   "trade": "forwarding and, commission merchants",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7793,7 +7793,7 @@
      "printed_page": 61
     }
    ],
-   "trade": "dry goods and groceries, 94 Lake st.(See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7861,7 +7861,7 @@
      "printed_page": 59
     }
    ],
-   "trade": "dry goods and groceries, 113 Lake st (See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
