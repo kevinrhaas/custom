@@ -11586,3 +11586,40 @@ place) · **L229** (the grave's fence, a hand-authored record of one small thing
 drawn, which is why nobody stands at the curb) · tickets **T-0887** (this), **T-0881** (the
 measurement), **T-0592** (the class this refuses to mint).
 **Recorded:** 2026-09-12 (T-0887).
+
+### L235 — A plant whose record states no width is measured, for the far band's species mix, at the footprint the placer already gives it
+**Decision:** the far band's grass-or-flower split is dealt on each stratum's **areal ground
+cover** — the quantity `cover.matrix_fraction` is already in — and where a species' record
+states no `width_m`, that cover is computed from the clump footprint the renderer is **already
+drawing the plant at**: `min(0.35 m, 0.16 × the record's own mid height)` as a clump radius,
+`renderers/web/js/flora.js` `clumpRadiusOf`, the rule `crowdsTheWalker` has used to keep a
+prairie dock out of the visitor's body since the timber critic's note. Fifty of the sward
+records are in that case, including **every forb of the wet prairie, the mesic prairie and the
+sand prairie**, and both marsh forbs.
+
+**Why:** the alternative is not a smaller number, it is an absent stratum. A sum taken over
+recorded widths alone returns 0.0000 for the sand prairie and 0.0000 for the marsh, and the far
+band would then deal both communities as pure grass on the strength of a field their records
+simply do not carry — a rendering decision made by a gap. The fallback is not invented here:
+it is read out of the placer, it is what those plants occupy on screen today, and the plants
+themselves are drawn from their own recorded densities either way.
+
+**What it is NOT:** it is not a width claim about any species, and no record gains a `width_m`.
+Nothing is written to `data/flora`. It is a derived quantity used inside one ratio, and
+`flora.communities()` exports `forbCoverFallbacks` per community so a reader can see exactly
+how much of a cover figure came from the fallback rather than from a stated width —
+`tools/measure_far_split.mjs` prints it in its own column.
+
+**What bounds it:** the ratio, not the geometry. This number decides **which plant a far card
+stands for**, never how many cards are dealt or how big they are, so the worst a wrong
+footprint can do is mis-colour an aggregate card. The card count, the instance count and the
+triangles are what they were.
+
+**How to resolve:** a `width_m` on the fifty records that lack one — most are prairie forbs
+whose clump diameter modern floras state directly — at which point the fallback stops firing
+and `forbCoverFallbacks` reads zero without a line of code changing.
+Related: **L185** (the forb abundances this cover is summed from, read at the top of their
+ranges) · **L32** (the same warning one stratum up: the grass is a modern remnant reading) ·
+tickets **T-0280** (this), **T-0019** (the lattice ceiling that had been deciding the split),
+**T-0209** (the split itself).
+**Recorded:** 2026-09-13 (T-0280).

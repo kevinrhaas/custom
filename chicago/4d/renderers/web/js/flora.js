@@ -1025,8 +1025,7 @@ export async function createFlora({
            *  only whether the head count is faithful, but whether the GROUND
            *  the sample covers is. */
           width: s.width ? mid(s.width) : null,
-          cover: s.stems !== null && s.width
-            ? s.stems * Math.PI * (mid(s.width) * 0.5) ** 2 : null,
+          cover: coverOf(s),
         })),
       };
       const byId = new Map(row.species.map((s) => [s.id, s]));
@@ -1488,10 +1487,68 @@ export async function createFlora({
           // card stands for. Widening the occupied band instead would have
           // bought the bloom with geometry, which is the budget the whole
           // ticket was told not to spend.
+          //
+          // T-0280. AND THE SHARE IT TAKES IS A COVER AGAINST A COVER.
+          //
+          // The split above was dealt on `forbShare`, and `forbShare` is the
+          // FORB RING's lattice occupancy — `min(1, density × cell² / perCell)`
+          // at one plant per 2.89 m² slot. Two things were wrong with it here,
+          // and they compound.
+          //
+          // It is CLAMPED, and the clamp belongs to a different lattice. Nine of
+          // the ten populated forb layers sit on that 1.000 ceiling
+          // (`tools/forb_clamp_baseline.json`), so for nine communities the far
+          // band's species mix was decided by the number 1.000 and not by
+          // anything their records say: `z06_dense_forest` asks 66.381 plants
+          // per m² and `z01_wet_prairie` asks 0.407, and the band split both as
+          // though they had asked for the same thing. The far band is dealt on
+          // its own lattice at 3.4 m and 9.5 m with `perCell: 1`, and nothing
+          // about the forb ring's slot size bounds a PROPORTION drawn on it.
+          //
+          // And it is the wrong KIND of number even unclamped. `matrixShare` is
+          // `cover.matrix_fraction`, a fraction of GROUND COVERED; `forbShare`
+          // is a slot-occupancy chance derived from stem density. Dividing one
+          // by the sum of both added an area to a probability — K49(a)'s unit
+          // error, one stratum further out — so raising the clamp would have
+          // replaced a wrong constant with a wrong quantity. At 66.381 plants
+          // per m² the unclamped share is ~1 and every far card in the dense
+          // forest would have been a flower.
+          //
+          // So both sides are now the AREAL COVER of their stratum.
+          // `subsetOn().cover` sums `stems × π·clump²` over the subset that may
+          // actually stand on this side of the waterline, which for a
+          // cover-recorded species is its own `cover_fraction` returned intact;
+          // the matrix side stays the record's own `matrix_fraction`, which is
+          // that same quantity already written down. The ratio is then a mix of
+          // two ground shares, which is what an aggregate card standing for
+          // several square metres of ground is a mix of — the reading T-0225 is
+          // in, arrived at here.
+          //
+          // THE CLUMP IS THE DRAWN ONE, and it has to be. Fifty of the sward
+          // records state no `width_m` — every forb of the wet prairie, the
+          // mesic prairie and the sand prairie, and both marsh forbs — so a sum
+          // over recorded widths alone would not make those strata small, it
+          // would make them ABSENT, and the far band would deal the sand
+          // prairie as pure grass on the strength of a missing field. `coverOf`
+          // falls back to `clumpRadiusOf`, which is the footprint the placer is
+          // ALREADY giving those plants and has given them since the walker
+          // clearance was written. `forbCoverFallbacks` on `communities()` says
+          // how many of a community's forbs were measured that way.
+          //
+          // MIDPOINT, not `coverHigh`. T-0034 deals the forb RING off the top of
+          // each recorded range because that ring is a slot COUNT and the count
+          // had headroom; `matrix_fraction` is a single recorded central figure
+          // with no upper end to match, and dividing a high end by a midpoint
+          // would tilt the mix toward flowers by the width of the forb records'
+          // ranges alone. Both sides central, or the ratio is an artefact of
+          // which end each was read at.
+          //
+          // The card count does not move. This decides what a card stands for,
+          // exactly as T-0209 above left it.
           const forbs = wet ? zone.wet.forbs : zone.dry.forbs;
-          const forbShare = wet ? zone.forbShareWet : zone.forbShare;
-          const split = forbs?.items?.length && forbShare > 0
-            ? zone.matrixShare * (1 - forbShare / (zone.matrixShare + forbShare))
+          const forbCover = forbs?.cover ?? 0;
+          const split = forbs?.items?.length && forbCover > 0
+            ? zone.matrixShare * (1 - forbCover / (zone.matrixShare + forbCover))
             : zone.matrixShare;
           const forb = u >= split;
           const sp = forb
@@ -1556,6 +1613,13 @@ export async function createFlora({
     stats,
     zoneAt(e, n) { return finder(e, n)?.id ?? null; },
     shoreDistance(e, n) { return water.distance(e, n); },
+    /** T-0280. Which SIDE of that waterline, which `shoreDistance` cannot say —
+     *  it returns a positive distance either way, to land from water and to
+     *  water from land. Every lattice pass picks its species list, and the far
+     *  band makes its grass-or-flower split, on this exact test, so a gate
+     *  sampling the ground the far band covers asks the placer for it rather
+     *  than guessing from a distance that is symmetric. */
+    isWaterAt(e, n) { return water.isWater(e, n); },
     /** May a rooted plant stand here at all — the travelled track, the
      *  building footprints and the water answered in one call. A gate
      *  measuring how densely a community was planted has to divide by the
@@ -1629,6 +1693,35 @@ export async function createFlora({
          *  slot whatever the slot is, so the density is what says how far a
          *  layer is from the ceiling and how much of its record it loses. */
         shrubDensityWet: z.wet.shrubs.density,
+        /**
+         * T-0280. The AREAL COVER each stratum's own records sum to, on each
+         * side of the waterline — the quantity `matrixShare` above is already
+         * in, and the one the far band's grass-or-flower split is dealt on.
+         *
+         * Exported beside `forbShare` rather than instead of it, because the
+         * pair is the measurement: `forbShare` is the clamped slot chance the
+         * split USED to read, `forbCover` is the cover it reads now, and a
+         * reader that has both can state the size of the change per community
+         * without re-deriving either. `matrixCover` is the graminoid subset's
+         * own cover, so a reader can also check `matrix_fraction` against what
+         * its own species records sum to.
+         */
+        matrixCover: z.dry.graminoids.cover,
+        matrixCoverWet: z.wet.graminoids.cover,
+        forbCover: z.dry.forbs.cover,
+        forbCoverWet: z.wet.forbs.cover,
+        forbCoverHigh: z.dry.forbs.coverHigh,
+        forbCoverHighWet: z.wet.forbs.coverHigh,
+        /** How many of the forb records behind those sums stated no `width_m`
+         *  and were therefore measured at the footprint the placer gives them,
+         *  and how many converted to no count at all. The provenance of the
+         *  number, exported beside it: a fifth of the sward records state no
+         *  width, and a reader of this table should not have to discover that
+         *  by reading the records. */
+        forbCoverFallbacks: z.dry.forbs.coverFallbacks,
+        forbCoverFallbacksWet: z.wet.forbs.coverFallbacks,
+        coverUnknown: z.dry.graminoids.coverUnknown + z.dry.forbs.coverUnknown
+          + z.wet.graminoids.coverUnknown + z.wet.forbs.coverUnknown,
       }));
     },
     /** The lattice/fade rings and the rebuild step, for the gate that checks a
@@ -2102,6 +2195,36 @@ function compileZones({ index, files }, terrain, problems, stats) {
          *  this, and nothing else reads it. */
         densityHigh: basis === null ? null
           : items.reduce((a, s) => a + (s.stemsHigh ?? s.stems ?? 0), 0),
+        /**
+         * T-0280. The subset's abundance summed as the FRACTION OF GROUND IT
+         * COVERS — `coverOf` over the subset — which is the same quantity, in
+         * the same unit, as the `cover.matrix_fraction` sitting in `matrixShare`
+         * below.
+         *
+         * It is not a slot count and it is not `basis`-gated: every stratum has
+         * an areal cover whether or not its slots are dealt off a sum, and the
+         * matrix's is exactly the number a reader would want to check
+         * `matrix_fraction` against. What reads it is the far band's
+         * grass-or-flower split, which needs a RATIO and therefore needs both
+         * of its sides to be the same kind of number.
+         *
+         * `coverHigh` is the same sum at the top of each recorded range, the
+         * end T-0034 deals the forb RING off. The split does not use it — see
+         * `rebuildFar` — and it is carried so the choice can be seen and
+         * re-argued without re-deriving it.
+         *
+         * It is the `drawn` reading: a record with no `width_m` contributes the
+         * footprint the placer gives it rather than nothing at all. `fallbacks`
+         * counts how many of the items that was, so no reader has to take the
+         * sum's provenance on trust, and `coverUnknown` counts the items whose
+         * abundance does not convert to a count at all — expected to be zero
+         * since K49(c1), and exported so that expectation is checkable.
+         */
+        cover: items.reduce((a, s) => a + (coverOf(s, { drawn: true }) ?? 0), 0),
+        coverHigh: items.reduce(
+          (a, s) => a + (coverOf(s, { drawn: true, high: true }) ?? 0), 0),
+        coverFallbacks: items.filter((s) => !s.width).length,
+        coverUnknown: items.filter((s) => coverOf(s, { drawn: true }) === null).length,
       };
     };
 
@@ -2506,6 +2629,52 @@ function rgb(v) {
   return [c.r, c.g, c.b];
 }
 function mid(range) { return (range[0] + range[1]) / 2; }
+
+/**
+ * T-0280. THE RADIUS OF THE CLUMP ONE PLANT'S RECORD GIVES, in metres, and the
+ * module's ONE answer to it. `crowdsTheWalker` has held that answer since the
+ * timber critic handed back the three-metre prairie dock at arm's length, and
+ * it is the general one: half the recorded `width_m` where a record states a
+ * width, and where none does, the footprint the placer gives the plant anyway,
+ * off its own recorded height. Fifty of the sward records state no width — every
+ * forb of the wet prairie, the mesic prairie and the sand prairie among them —
+ * so a rule that only worked on recorded widths would answer for half the town.
+ */
+function clumpRadiusOf(sp) {
+  return sp.width ? mid(sp.width) * 0.5 : Math.min(0.35, mid(sp.height) * 0.16);
+}
+
+/**
+ * T-0280. THE GROUND ONE SPECIES' RECORDED ABUNDANCE COVERS, as a fraction of
+ * ground: `stems × π·clump²`. For a cover-recorded species this hands its own
+ * `cover_fraction` straight back, because K49(c1) derived `stems` by dividing by
+ * exactly this disc; for a stem- or hectare-recorded one it is the conversion in
+ * the direction the record does not state.
+ *
+ * TWO QUESTIONS, and they want different answers where `width_m` is absent.
+ *
+ * `drawn: true` asks what ground the plants the renderer PUTS THERE cover, so
+ * a missing width falls back to `clumpRadiusOf`'s height rule — the footprint
+ * the placer is already giving that plant. This is the one a ratio between two
+ * strata must use, because dropping the width-less records would not make a
+ * stratum smaller, it would make it ABSENT: all five sand-prairie forbs and both
+ * marsh forbs are width-less, and a sum over recorded widths alone calls those
+ * two communities flowerless when their records plainly are not.
+ *
+ * `drawn: false` (the default) asks what the RECORD states, and answers `null`
+ * rather than a fallback where it states no width. That is the census's
+ * question — K54 put the field there to audit the authored numbers — and a
+ * derived footprint would audit the renderer against itself.
+ *
+ * `high` reads the top of each recorded range, the end T-0034 deals the forb
+ * ring off, instead of its midpoint.
+ */
+function coverOf(sp, { high = false, drawn = false } = {}) {
+  const n = high ? (sp.stemsHigh ?? sp.stems) : sp.stems;
+  if (n === null || n === undefined) return null;
+  if (!drawn && !sp.width) return null;
+  return n * Math.PI * clumpRadiusOf(sp) ** 2;
+}
 function clamp01(v) { return Math.min(1, Math.max(0, v)); }
 
 /* -------------------------------------------------------------------------- */
@@ -3239,7 +3408,7 @@ const _c = new THREE.Color();
  */
 const WALKER_RADIUS_M = 0.34;
 function crowdsTheWalker(sp, r) {
-  const clump = sp.width ? mid(sp.width) * 0.5 : Math.min(0.35, mid(sp.height) * 0.16);
+  const clump = clumpRadiusOf(sp);
   return r < WALKER_RADIUS_M + clump;
 }
 
