@@ -195,7 +195,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- tier is inside its ceiling; they are measurement until a breach is measured again.
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
-T-0833 — Make a drain lap a tool: tools/drain.mjs, which refuses on any conflict outside the build products
 T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
 T-0870 — The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported
 T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
@@ -303,3 +302,4 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+
