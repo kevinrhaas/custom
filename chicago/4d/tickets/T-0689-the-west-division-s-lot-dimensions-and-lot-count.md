@@ -1,7 +1,7 @@
 ---
 id: T-0689
 title: The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1227
 claimed_by: run 9/12/2026, 10:08:27 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T03:55:03.304Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34734600049
 ---
 
