@@ -29,6 +29,28 @@ some OTHER mode (`--gate`, `--self-test`, `--offline`) is still counted UNGATED 
 the report says which modes it does run, because those modes prove different things: a
 self-test proves the assertions fire, and only `--check` proves the committed file still
 follows from its inputs.
+
+WHAT T-0896 ADDED, AND WHY THE RATCHET ALONE WAS NOT ENOUGH. T-0714's baseline recorded
+the tools and nothing else, and `--write` rebuilt the file from the survey — so a reason
+written into it by hand did not survive the next write, and the acceptance T-0896 was
+filed with ("each carries a stated reason a reader can act on") could not be met at all.
+Reasons are AUTHORED now, `--write` carries them forward by tool, and the gate asks for
+one. Three ways to fail instead of one:
+
+  * a tool newly ungated and absent from the baseline — the original ratchet;
+  * a tool in the baseline that the gate DOES run `--check` on now. The set may shrink
+    freely, but the file has to be told, in the commit that shrank it. It was not: the
+    baseline said 18 on 2026-09-13 and the survey said 16, because
+    `crosswalk_norris_1844_advertiser.py` and `generate_school_section_grid.py` had been
+    gated since and nothing asked. A ratchet that can only measure growth against a
+    number allowed to stay too high is a ratchet with slack in it;
+  * an ungated tool carrying no `why_not_gated`. Silence is what this whole file exists
+    to end, and an empty string is silence.
+
+A REASON IS NOT ONLY "it cannot be gated". Ten of the sixteen are ungated because their
+`--check` is RED — the committed file has stopped following from its inputs and nobody
+knew. That is a finding, not an exemption, so those rows carry the measured red and the
+ticket that owns it; `owner_ticket` is where a reader goes next.
 """
 from __future__ import annotations
 
@@ -74,51 +96,103 @@ def load_baseline() -> dict:
     return json.loads(BASELINE.read_text())
 
 
+# The fields a person writes and no survey can produce. `--write` carries them
+# forward by tool, which is the whole of T-0896's mechanism: before it, the only
+# place to put a reason was a file the next write overwrote.
+AUTHORED = ("why_not_gated", "owner_ticket")
+
+
+def merge_authored(rows: list[dict], known: dict) -> list[dict]:
+    """Each surveyed row, wearing whatever the baseline already said about it."""
+    out = []
+    for row in rows:
+        merged = dict(row)
+        for field in AUTHORED:
+            value = known.get(row["tool"], {}).get(field)
+            if value not in (None, ""):
+                merged[field] = value
+        out.append(merged)
+    return out
+
+
+def by_tool(baseline: dict) -> dict:
+    return {row["tool"]: row for row in baseline.get("ungated", [])}
+
+
+def verdicts(found: list[dict], known: dict) -> list[str]:
+    """Every way the baseline can be out of step with the tree, in reading order."""
+    bad = []
+    names = {row["tool"] for row in found}
+    for tool in sorted(names - set(known)):
+        bad.append("BAD: %s has a --check mode that tools/check.sh never runs, and it "
+                   "is not in %s. Gate it, or record why not."
+                   % (tool, BASELINE.relative_to(ROOT)))
+    for tool in sorted(set(known) - names):
+        bad.append("BAD: %s is listed as ungated in %s, and the gate runs its --check "
+                   "now. Re-run tools/audit_check_gates.py --write in this commit so "
+                   "the ratchet tightens."
+                   % (tool, BASELINE.relative_to(ROOT)))
+    for tool in sorted(names & set(known)):
+        if not str(known[tool].get("why_not_gated") or "").strip():
+            bad.append("BAD: %s is ungated and %s states no reason. Write why_not_gated "
+                       "— what a reader should do about it — or gate the tool."
+                       % (tool, BASELINE.relative_to(ROOT)))
+    return bad
+
+
 def report() -> int:
     found = survey()
     print("TOOLS WITH A --check MODE: %d" % len(found["check_capable"]))
     print("RUN WITH --check BY tools/check.sh: %d"
           % (len(found["check_capable"]) - len(found["ungated"])))
     print("NOT RUN WITH --check BY tools/check.sh: %d" % len(found["ungated"]))
-    for row in found["ungated"]:
+    known = by_tool(load_baseline())
+    for row in merge_authored(found["ungated"], known):
         other = (" ".join(row["other_modes_in_check_sh"])
                  if row["other_modes_in_check_sh"] else "not run in check.sh at all")
         print("  %-52s %s" % (row["tool"], other))
+        why = row.get("why_not_gated")
+        print("      %s%s" % (why or "NO REASON RECORDED",
+                              " (%s)" % row["owner_ticket"] if row.get("owner_ticket")
+                              else ""))
     return 0
 
 
 def gate(quiet: bool = False) -> int:
-    found = {row["tool"] for row in survey()["ungated"]}
-    known = {row["tool"] for row in load_baseline().get("ungated", [])}
-    new = sorted(found - known)
-    gone = sorted(known - found)
-    for tool in new:
-        print("BAD: %s has a --check mode that tools/check.sh never runs, and it is not "
-              "in %s. Gate it, or record why not."
-              % (tool, BASELINE.relative_to(ROOT)))
-    if new:
+    found = survey()["ungated"]
+    known = by_tool(load_baseline())
+    bad = verdicts(found, known)
+    for line in bad:
+        print(line)
+    if bad:
         return 1
     if not quiet:
-        print("OK: %d ungated --check mode(s), none new%s"
-              % (len(found),
-                 "; %d newly gated since the baseline" % len(gone) if gone else ""))
+        print("OK: %d ungated --check mode(s), each recorded, none new and none stale"
+              % len(found))
     return 0
 
 
 def write() -> int:
     found = survey()
+    rows = merge_authored(found["ungated"], by_tool(load_baseline()))
     doc = {
-        "schema": 1,
-        "ticket": "T-0714",
+        "schema": 2,
+        "ticket": "T-0714, with T-0896's reasons",
         "what": "The tools carrying a --check mode that tools/check.sh does not run with "
-                "--check. A ratchet, not a target: this list may shrink, and "
-                "audit_check_gates.py --gate fails when it grows.",
+                "--check, and WHY each one is not. A ratchet, not a target: this list "
+                "may shrink, and audit_check_gates.py --gate fails when it grows, when "
+                "it is left standing above what the tree actually shows, or when a row "
+                "states no reason.",
         "how_to_change_it": "Gate the tool in tools/check.sh and re-run --write, or, if "
-                            "it genuinely cannot be gated, re-run --write in the same "
-                            "commit that says why in the PR.",
+                            "it cannot be gated today, write why_not_gated on its row "
+                            "here — --write carries that field forward — and point "
+                            "owner_ticket at whoever owns the answer. The gate fails on "
+                            "a row with no reason, and on a row the gate has since "
+                            "started running.",
         "counts": {"check_capable": len(found["check_capable"]),
-                   "ungated": len(found["ungated"])},
-        "ungated": found["ungated"],
+                   "gated": len(found["check_capable"]) - len(rows),
+                   "ungated": len(rows)},
+        "ungated": rows,
     }
     BASELINE.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n")
     print("wrote %s — %d of %d --check-capable tool(s) ungated"
@@ -151,6 +225,51 @@ def self_test() -> int:
     expect("the baseline covers every ungated tool found today",
            sorted({r["tool"] for r in found["ungated"]}
                   - {r["tool"] for r in load_baseline().get("ungated", [])}), [])
+
+    # T-0896. The three ways the baseline can be out of step with the tree. Fabricated
+    # against the real survey, because what these assert is the JUDGEMENT and not the
+    # tree: a fixture that drifts from the repository proves nothing about it.
+    real = found["ungated"]
+    sample = real[0]["tool"]
+    full = {row["tool"]: {"tool": row["tool"], "why_not_gated": "recorded"}
+            for row in real}
+    expect("a tree that matches a fully-reasoned baseline raises nothing",
+           verdicts(real, full), [])
+    expect("a newly ungated tool the baseline has never heard of fails",
+           len(verdicts(real, {k: v for k, v in full.items() if k != sample})), 1)
+    expect("…and it says to gate it or record why",
+           "Gate it, or record why not"
+           in verdicts(real, {k: v for k, v in full.items() if k != sample})[0], True)
+    stale = dict(full, **{"tools/not_a_tool_any_more.py":
+                          {"tool": "tools/not_a_tool_any_more.py",
+                           "why_not_gated": "recorded"}})
+    expect("a row the gate runs --check on now fails until --write tightens it",
+           len(verdicts(real, stale)), 1)
+    expect("…and it names the write that tightens it",
+           "--write" in verdicts(real, stale)[0], True)
+    silent = dict(full, **{sample: {"tool": sample, "why_not_gated": "   "}})
+    expect("an ungated tool with no stated reason fails",
+           len(verdicts(real, silent)), 1)
+    expect("…and a missing field is the same silence as a blank one",
+           len(verdicts(real, dict(full, **{sample: {"tool": sample}}))), 1)
+
+    # The reason is AUTHORED, so the only thing that can destroy it is the writer.
+    expect("a write carries an authored reason forward onto the surveyed row",
+           merge_authored(real, {sample: {"tool": sample, "why_not_gated": "kept",
+                                          "owner_ticket": "T-0896"}})[0].get("why_not_gated"),
+           "kept")
+    expect("…and the ticket beside it",
+           merge_authored(real, {sample: {"tool": sample, "why_not_gated": "kept",
+                                          "owner_ticket": "T-0896"}})[0].get("owner_ticket"),
+           "T-0896")
+    expect("…and an empty authored field does not overwrite the survey",
+           "why_not_gated" in merge_authored(real, {sample: {"tool": sample,
+                                                             "why_not_gated": ""}})[0],
+           False)
+    expect("every reason the committed baseline states is non-empty",
+           sorted(t for t, r in by_tool(load_baseline()).items()
+                  if not str(r.get("why_not_gated") or "").strip()), [])
+
     for line in failures:
         print("FAIL: %s" % line)
     print("self-test: %d assertion(s) failed" % len(failures))
