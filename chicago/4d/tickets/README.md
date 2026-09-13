@@ -135,6 +135,51 @@ squash-merges, so a merged branch's head never becomes an ancestor of `dev` and
 confidently wrong, which is worse than silent. Age and ticket state are the honest
 signals; the PR list is the authority.
 
+## Has its PR already merged? — `ticket.mjs landed`
+
+That blind spot has a cost, and it is the one this page opens with in a different key.
+A run that dies between its merge and `ticket.mjs done` leaves the ticket `claimed`
+behind a branch that is now COLD — and cold reads as litter, not as done. T-0429 sat
+that way for five days: `claimed`, topmost in the queue, carrying no PR, which is
+precisely the shape of available work. `steward/t-0429-south-water-lasalle` rebuilt the
+whole block on the strength of that reading — 116 files, 5,827 insertions, baked — and
+every record it produced already existed on `dev` under the same id.
+
+Git cannot answer it. The PR list can, and it is one REST call:
+
+```
+node tools/ticket.mjs landed            # add --pages N to look further back
+```
+
+For every **workable** ticket (`open`/`claimed`/`review` — the states that OFFER it as
+work), it asks whether a MERGED pull request names its id, and prints the number, the
+merge instant and the `done` command. `inflight` runs it too, because `inflight` is what
+a run reads before it picks.
+
+Three refusals make it worth trusting, and each is deliberate:
+
+- **It reports; it never fails.** The id in a PR title is a convention, not a contract,
+  and a gate that hard-failed on one would block a run that did nothing wrong. It exits
+  0 whatever it finds, `check.sh` never calls the network, and the tool says so in its
+  own output. **Read the PR before you close a ticket on it.**
+- **Evidence in one direction only.** A merged PR naming T-NNNN is strong evidence the
+  work landed. Its ABSENCE proves nothing — a PR whose title omits its id is invisible
+  here — so "nothing to report" is printed as silence, never as a clean bill of health,
+  and the report says how far back it actually read.
+- **The id must START the title.** `T-NNNN: …` is the convention; `T-0867/T-0868: …` is
+  the convention for a PR closing two. Anything else a title does with an id is *about*
+  the ticket, not the work of it. The first draft matched an id anywhere in the first
+  clause and accused three real merged PRs that had touched none of the work they named
+  — "Rank T-0727 under the drain band", "Pull T-0802 up into the blocking band", "File
+  T-0968: a green deploy is not proof the site is reachable". `blocked-owner` and
+  `blocked-tech` are excluded for the same reason: a run BLOCKS in the merging PR
+  exactly as it closes in one, so every blocked ticket is named by a merged PR by
+  design, and none of them is offered as work.
+
+`tools/test_ticket_landed.mjs` holds all of it against a constructed PR list, which is
+the only honest demonstration of a check whose right answer against the real `dev`
+changes hourly.
+
 ## Sizing: effort is measured in RUNS, and L must be split
 
 The owner asked whether tickets should carry work points, split past a threshold.
