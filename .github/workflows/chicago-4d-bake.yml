@@ -169,7 +169,7 @@ jobs:
         with:
           node-version: '22'
 
-      - run: pip install --quiet jsonschema pyproj openpyxl pypdf
+      - run: pip install --quiet jsonschema pyproj openpyxl pypdf numpy scipy Pillow
 
       # Playwright, because the LAST thing tools/bake.sh does is run the renderer
       # smoke against the mirror it has just published — and that step is the
