@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The corner shop that could have been let twice', kind: 'fix', ts: '', date: '',
+  { v: 844, title: 'The corner shop that could have been let twice', kind: 'fix', ts: '2026-09-13T17:47:01.274Z', date: 'Sep 13, 2026, 12:47 PM CT',
     items: [
       'When an 1835 newspaper advertisement names a street and nothing narrower \u2014 \u2018South Water street\u2019, no number, no neighbour \u2014 this reconstruction seats the business in an anonymous reconstructed building standing on that street, and never claims which lot. Last month the owner widened what counts as standing on a street: a building on a corner shows a face to BOTH its streets, not only the one its platted lot fronts. That widening is worth ten shops.',
       'It also created a way to count them wrong, and the way is exact. Every building a corner reading adds to a street already fronts a different street by its lot \u2014 that is what a corner is \u2014 so a ledger that spends each building once PER STREET can let two streets let out the same shop. Dealt that way today, the widening seats forty-one businesses in thirty-nine buildings: James Grant takes a La Salle Street corner that is already Rockwell\u2019s cabinet furniture warehouse by its South Water lot, and an unnamed New Store on La Salle takes Samuel Lewis\u2019s.',
