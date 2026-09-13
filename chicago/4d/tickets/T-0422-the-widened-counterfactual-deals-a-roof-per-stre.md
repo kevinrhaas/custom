@@ -1,7 +1,7 @@
 ---
 id: T-0422
 title: The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1235
 claimed_by: run 9/13/2026, 1:28:33 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T18:18:59.054Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34742685228
 ---
 
