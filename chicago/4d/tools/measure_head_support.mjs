@@ -236,8 +236,23 @@ function audit() {
   // stands for a patch of matrix, no head is ever hung from one, and counting
   // them as support is how a first cut of this measurement read 0 unsupported
   // while the evidence frame showed the fault.
+  //
+  // `flora-far` is NOT that card, and T-0448 measured why: since T-0209 the far
+  // band deals the whole community, so a flowering forb's far card carries its
+  // own flower — `rebuildFar` calls `maybeHead` on it and places the head at the
+  // card's own e,n. All 2,693 orphans that ticket read stood on a far card at
+  // 0.000 m whose top reached them. This file kept the pre-T-0209 set for a
+  // fortnight after `tools/smoke_renderer.mjs` fixed its own, so the two DID
+  // drift after all, and the 14.7 % it went on reporting was the drift and not
+  // the scene (T-0279).
   const CARRIES_HEADS = new Set(['flora-near', 'flora-forb', 'flora-rosette',
-    'flora-shrub']);
+    'flora-shrub', 'flora-far']);
+  // A far card's `spread` is its billboard HALF-WIDTH — metres, not a stem's
+  // radius — so reading it as reach would pass any head within a card's width
+  // of one, which is the free pass the note above refuses. A card supports the
+  // head it carries at its own foot and nowhere else: reach 0, which `under`
+  // floors at 5 cm.
+  const CARD = new Set(['flora-far']);
   const CELL = 1.0;
   const grid = new Map();
   let plants = 0;
@@ -251,7 +266,8 @@ function audit() {
       // The drawn body's horizontal reach: the archetypes are built in a unit
       // box and the shader scales xz by `aFlora.y`, so `spread` IS the radius
       // of the leafy envelope — at its whole size, since T-0035.
-      const rec = { x: p.x, z: p.z, top, set: m.name, h: p.h, r: p.spread, fade: f };
+      const rec = { x: p.x, z: p.z, top, set: m.name, h: p.h,
+        r: CARD.has(m.name) ? 0 : p.spread, fade: f };
       plants++;
       const kx = Math.floor(p.x / CELL); const kz = Math.floor(p.z / CELL);
       const key = `${kx},${kz}`;
@@ -343,7 +359,11 @@ function audit() {
         worst.push({
           kind,
           gap_m: best === -Infinity ? null : Number((fy - best).toFixed(3)),
-          headY_m: Number((p.y - drop).toFixed(2)),
+          // T-0035 took the world-space descent away and with it the `drop`
+          // this line still subtracted, so the file threw `drop is not defined`
+          // the instant it found the fault it exists to describe (T-0279). The
+          // head origin IS `p.y`; nothing lowers it any more.
+          headY_m: Number(p.y.toFixed(2)),
           stalkFootY_m: Number(fy.toFixed(2)),
           bestPlantTop_m: best === -Infinity ? null : Number(best.toFixed(2)),
           bestPlantSet: bestSet,

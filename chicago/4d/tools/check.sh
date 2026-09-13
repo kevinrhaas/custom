@@ -606,6 +606,20 @@ step "the platted block and lot grid re-derives from the module" \
 selftest "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
 
+# The band the two halves of that plat leave between them (T-0419). Since the owner ruled
+# on 2026-08-29 that a corridor is derived from the street CONTROL, south_water's corridor
+# stands 8.58 m north of block faces still offset from the DRAWN line, and 6,132 m2 of
+# ground belongs to neither. Which of the two is wrong is the owner's question; this gate
+# does not answer it. It pins the figures the question is asked ABOUT, so the fork cannot
+# drift under him while it waits — and it has already caught that drift once: between the
+# 2026-08-30 measurement and 2026-09-13 the shore work moved the claimed band's dry share
+# 47.6 -> 46.0 %, and ordinary building took branch A's price from 43 roofs to 53.
+step "the band between the re-centred corridor and its block faces is what T-0419 measured" \
+  python3 tools/measure_corridor_strip.py --gate
+
+selftest "…and that measurement's own assertions still fire when broken" \
+  python3 tools/measure_corridor_strip.py --self-test
+
 # T-0875. The School Section's 142 block numerals, read off the 600-dpi NA sheet.
 # It sits beside the Thompson grid because it is the same question answered the
 # other way round: there, two legible numerals could not say how a run passes from
@@ -749,7 +763,11 @@ step "no stack in the town is painted the colour of the roof it passes through" 
 # anything above a roof line. Every stack in the town already clears it; this is the ratchet
 # that stops one dropping back under. It does NOT decide which buildings the by-law reaches:
 # section 22's corporation limits are T-0334's and are not drawn yet, and nothing here is
-# conformed to a rule that may not bind it, because nothing has to move.
+# conformed to a rule that may not bind it, because nothing has to move. SINCE T-0436 it
+# also REPORTS the reach: the corporate boundary is committed, eight of the chimneyed
+# buildings stand outside it, and section 18 never bound one of them. (The line is the
+# Trustees' own of 7 November 1833 — NOT section 22, which draws the narrower
+# hay-stacking boundary and is T-0334's.)
 step "every stack is carried eighteen inches above its roof, as the by-law of 5 August 1835 requires" \
   python3 tools/measure_stack_ordinance.py --gate --quiet
 
@@ -879,6 +897,21 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# T-0436. The other kind of line over the same ground: not who could build on it, but
+# whose by-laws reached it. The Trustees walked the corporate boundary on 7 November 1833
+# and printed it three weeks later (chicago_democrat_1833_11_26#c024, tier 1); the legs
+# are authored and the ring is RESOLVED from the committed streets and the committed
+# shoreline, so a re-traced shore or a moved street must re-derive it or fail here. This
+# never fails because a building stands outside the limits — twenty-four do, and that is
+# a fact about 1835. It fails when the boundary stops being readable, or when a leg
+# carried past the end of its own committed centreline comes near enough to a drawn
+# building that the EXTENSION, rather than the ordinance, decides its side of the line.
+step "the corporate boundary of 7 November 1833 still re-derives, and decides nobody by extrapolation" \
+  python3 tools/measure_corporation_limits.py --gate --quiet
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_corporation_limits.py --self-test
+
 # T-0134. The plate the Dearborn reach was built from draws warehouses on BOTH banks and
 # only the north one stands. The south side was refused on a single spot reading taken by
 # hand — "the corridor reaches to within about 1.7 m of the waterline" — and the whole bank
@@ -977,6 +1010,21 @@ step "north-bank frontages still stand on the rule the north bank is placed by" 
 
 selftest "…and that assertion fires when a roof leaves the frontage line" \
   python3 tools/measure_north_bank_frontage.py --self-test
+
+# T-0421. Canal is the one street whose control does not agree with itself — three points
+# spreading 2.33 m, so `disagree`, so its corridor stays on the drawn line. That figure was
+# read for a year as an open question about where Canal ran. It is not: two of the five
+# OpenStreetMap nodes averaged into `kinzie_canal` are the Kinzie Street Bikeway, and on the
+# three road nodes the same three control points spread 0.09 m. The road-only reading is now
+# committed data (`control.kinzie_canal.road_only_reading`) rather than three paragraphs of
+# prose, and this re-derives BOTH spreads, the per-point offsets, and the 2.93 m variance the
+# North Branch bridge declares against that same field. Nothing moves on either reading — the
+# gate exists to keep that true, not to argue for the correction.
+step "canal's corridor still reads the same on both readings of Kinzie x Canal" \
+  python3 tools/measure_canal_control_spread.py --check
+
+selftest "…and its assertions fire when either reading, the line or the bridge drifts" \
+  python3 tools/measure_canal_control_spread.py --self-test
 
 # Two generators build party-line rows onto the committed block faces and each asserts
 # that ITS OWN run stands on one line; neither could see the other. The Lake face of
@@ -2558,6 +2606,16 @@ selftest "…and the section grid's own assertions still fire when broken" \
 step "Fergus's 1843 directory rebuilds from its committed text, at the declared counts" \
   python3 tools/read_fergus_1843.py --check
 
+# T-0987 stretch 12. The compositor set a POINT where the format sets the comma that
+# closes a surname, and the crosswalk reaches an 1835 person through the surname and
+# nothing else — so `Cook. George` made no match AND no refusal, and left no trace in
+# any pool. Twenty-five are repaired in the READING against the Internet Archive's OCR
+# of the printed volume, which this repository already held; the quote keeps the damage.
+# The table is what rots: a re-committed page, a moved segmenter, or a new run-on with
+# no row. The self-test fails on any of those, and on a repair that tidied a quote.
+selftest "…and every run-on surname in it is repaired against the printed volume, or said" \
+  python3 tools/read_fergus_1843.py --self-test
+
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
 
@@ -3059,6 +3117,21 @@ step "the lighthouse still stands on the glyph Wright drew for it" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/measure_wright_lighthouse.py --self-test
+
+# T-0334. The 5 August 1835 hay-stacking ordinance walks a six-vertex boundary round the
+# built town, and it is the only DOCUMENTED statement this project holds about where the
+# built-up town ended in the scene year — every other judgement about density here comes
+# from the plat, the land deal and measured frontage. The limit is DERIVED from committed
+# street centrelines, the committed reservation ring and the traced 1834 shore, the way
+# the datum is derived, so it is gated in both directions: the committed file must
+# re-derive exactly, and a hand edit to it is refused. That matters more here than usual
+# because the card now shows a visitor which side of the line a building stood on, and a
+# hand-nudged ring would move that verdict for 383 buildings with nothing to catch it.
+step "the 1835 hay-stacking limit still re-derives from committed street lines" \
+  python3 tools/derive_hay_limits.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/derive_hay_limits.py --self-test
 
 check_summary
 exit $CHECK_FAILED

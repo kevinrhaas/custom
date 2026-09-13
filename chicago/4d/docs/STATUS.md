@@ -1,5 +1,124 @@
 # STATUS
 
+## Shipped 2026-09-13 — T-0277: what a density handover would cost the sward's far edge, re-measured against the corrected ruler
+
+**The ramp stays, and this time the reason is a reading rather than an inherited one.**
+
+`TUNE.mid.band` and `TUNE.forb.band` are the last two coverage ramps in the sward. Every
+other boundary — the near ring's outer edge, the mid ring's inner one, both far bands —
+hands its ground over by DENSITY (T-0093, T-0086): each slot carries its own boundary drawn
+from a world-anchored rank, and a plant is drawn whole or not at all. These two still ramp,
+so at `full` the last few metres of grass and flowers are resolved through the 4x4 screen
+door — a band of dots per pixel.
+
+**Why it had to be re-asked.** T-0187 priced the change and kept the ramp, and its
+arithmetic was never in dispute. Its RULER was. Every figure it compared against was read at
+`flora.fadeAt(...) > 0.02`, a coverage the screen door renders as nothing whatever for two
+instance phases in three (T-0225), so a coverage ramp was being credited with reach no
+visitor could see. The gate reads the boundary at 1/16 now — the screen door's own quantum —
+and carries the `band x 1/16` inset that costs. The comparison a spread has to win is
+therefore a different one, and this is the re-run.
+
+**The instrument.** `tools/simulate_outer_spread.mjs` stands where the gate's part 7 and
+`tools/measure_sward_reach.mjs` stand, bins the same 16 bearings over the same +/-30 degree
+cone, and for every placed mid and forb instance reports the drawn boundary under both
+representations — today's ramp read at 1/16, and `slotRing`'s own arithmetic on this slot's
+own `aChiRing` with the rank asked of the placer through a new `flora.handoverAt` (the rule
+`fringeAt` set: ask the placer, do not re-derive the noise in the tool). It reproduces
+`measure_sward_reach.mjs`'s reading of the unmodified tree to the centimetre at both
+viewports, which is what makes its other column worth believing. Partial spreads are priced
+too, so the choice is read off a curve.
+
+| ring, tune | today, at 1/16 | fully spread | bars, spread |
+|---|---|---|---|
+| mid, `full` | 25.00 min / 26.61 mean (bars 21.76 / 24.46) | 22.58 / 25.36 | 22.20 / 24.90 — **clears** by 0.38 / 0.46 m |
+| mid, `light` | 10.32 / 11.96 (bars 9.50 / 11.50) | 8.56 / 11.23 | 9.60 / 11.60 — **over** by 1.04 / 0.37 m |
+| forb, `full` | 23.52 / 24.74 (bars 20.89 / 23.59) | 16.41 / 21.73 | 21.20 / 23.90 — **over**, from a quarter of the band upwards |
+
+At `light` three quarters of the band is over as well (11.57 mean); half clears at 11.75.
+The forb ring at `light` is over under every representation including the unmodified one —
+11 or 12 bins of 16 and a 4.47 m minimum — which is the sampling the instrument already
+declines to read a boundary off, not a defect this introduces.
+
+**Why it loses, in two parts, and the second is a better reason than T-0187 gave.**
+
+1. *The bar rises when the band is spread.* `ringsFor` replaces a spread layer's `band` with
+   `HARD`, so the `band/16` a reading at the quantum sits inside the placed boundary — 0.44 m
+   at `full`, 0.10 m at `light` — vanishes. A spread must clear a HIGHER bar with a SHORTER
+   reach. Printing it against the ramp's own bars would have flattered it by 0.44 m, which is
+   most of the margin it has.
+2. *A handover's boundary is a SAMPLE, and its expectation falls with the slots in the bin.*
+   The desktop cone holds 642 mid slots, forty to a 3.75-degree bin, and one of forty draws a
+   rank low enough to stand near the boundary. The `light` cone holds 132, about eight to a
+   bin, and eight draws do not reach it. At `light` the mid ring is as sparse as the forb ring
+   is at `full` — exactly the case `measure_sward_reach.mjs` refuses to read a boundary off.
+
+**And it cannot be taken one edge at a time.** `full` would carry a mid spread; it will not
+carry a forb one. But the forb ring ends within a metre of the mid ring deliberately, so the
+two boundaries land on the same screen row — spreading only the grass would leave the flowers
+dithering along the line the grass had just stopped drawing, drawn by half as many plants and
+against a step. A split decision is worse than either whole one.
+
+**Nothing moved.** No plant, no ring, no byte of geometry: the only renderer change is the
+additive `flora.handoverAt` accessor the tool reads through, and the TUNE commentary now
+carries these figures instead of the superseded ones. Reopening this means changing what is
+measured, not the bar — a sward dense enough at `light` for eight plants a bin to become
+forty, or a forb layer that does not have to share the mid ring's boundary.
+
+Verified: `tools/check.sh`; `node tools/measure_sward_reach.mjs --source` at both viewports
+(unchanged from dev); `node tools/simulate_outer_spread.mjs --source` at both viewports;
+the smoke parts `tools/smoke_budget.mjs --for-diff` prices for this diff.
+
+## Shipped 2026-09-13 — T-0334: the line the Trustees walked round the built-up town
+
+Section 22 of the by-laws passed 5 August 1835 forbids stacking hay inside a boundary the
+ordinance walks street by street — Washington Street at the U.S. Reservation, west to Canal,
+north to Kinzie, east to Wolcott, north to Illinois, and out to Lake Michigan — at $25 a
+stack. **It is the only documented statement this project holds about where the built-up
+town ended in the scene year.** Every other judgement here about density comes from the
+plat, the land sales and measured frontage.
+
+`tools/derive_hay_limits.py` derives it into `data/reconstruction/1835_hay_limits.json` and
+`check.sh` re-derives it on every commit. All six of the ordinance's vertices are
+intersections of committed `path_local_enu_m` centrelines; five are true crossings, and the
+sixth carries the Illinois Street line 100.78 m past its committed east end to the traced
+1834 shore (recorded, gated at 150 m). The start — *"on Washington street, at the United
+States Reservation"* — is where Washington's line meets the committed reservation ring's
+west side, and it lands there to the centimetre.
+
+**What is decided rather than derived, and graded `inferred` with its reasoning:** the
+ordinance walks an OPEN line and ends at the lake, so closing it needs the two sides it
+names but does not draw. The ring closes down the traced lake shore, across the harbour
+entrance in one straight segment (water between two piers — a closure, not a claim about
+ground), west along the reservation's own traced waterline and south down its west side.
+The reading this rests on — that a walk *commencing at* the reservation is bounded by it,
+so the garrison was not subject to the town's hay rule — is recorded with its alternative
+and what that alternative would cost (the 23 fort structures would come inside; nothing
+else would move).
+
+**Measured:** 199 acres, 4,715.9 m round, 30 vertices. Of 383 committed structure
+positions, 302 inside and 81 outside — 23 on the reservation, 36 west of Canal, 20 north of
+the Kinzie/Illinois line, 1 south of Washington (Heacock on Monroe), 1 in the harbour (the
+South Pier).
+
+**The disagreement with the block-infill programme, named.** 18 of 21 scheduled blocks are
+inside and the schedule places no NEW roof outside. The three outside are the Clinton–Canal
+tier, which the boundary leaves out because it turns north AT Canal. Two are `at_capacity`
+and hold 21 standing roofs between them (11 and 10 of 31); the third is already
+`not_a_block`. So the reconstruction's built town reaches one tier further west than the
+town's own fire line did. Either the roofs were there and the line was drawn short, or the
+tier is a block too far west. Stated, not settled.
+
+**Nothing is drawn in the scene,** and `docs/LIBERTIES.md` carries no new admission: a legal
+limit is not a fence, and nobody in 1835 could see this one. It reaches a visitor on the
+card — `renderers/web/js/ordinances.js`, a new *"Was it inside the town's fire limit?"*
+section with the verdict, the acreage, the section's own words and the citation. 383 cards
+gain the row.
+
+The ordinance is 35 days after the scene date. Carried as evidence ABOUT 1835; nothing is
+placed, moved or dated because of it, and `date_standing` in the file says so.
+
+
 ## T-0385 — the New York Clothing Store stands against the Tremont House
 
 Tuthill King's card — American 1835-06-08 c014, 1835-06-20 c007, 1835-07-04 c003,
