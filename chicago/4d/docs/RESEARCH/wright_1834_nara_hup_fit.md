@@ -6,10 +6,12 @@ recomputed from committed data by `tools/adjudicate_wright_na_fit.py --check` on
 
 > **M1 IS THE FIT IN FORCE** since T-1091. `fit` in the registration carries its eleven-point
 > coefficients; the eight-point affine T-0787 published is kept beside it as `retained_fit`,
-> because the four SEATED traces are still carried through it and the section's corner pixels
-> were recovered by inverting it. T-1092 owes the re-seating and the re-bake. Everything below
-> is the argument that got here, kept in the tense it was written in where it is about the
-> decision, and updated where it is about the state of the files.
+> because the section's corner pixels were recovered by inverting it and the adjudication that
+> compares the two fits needs both. **T-1092 completed the adoption on 2026-09-13**: the four
+> SEATED traces are carried through `fit` now, and `retained_fit` is read only where reading it
+> is the point. Everything below is the argument that got here, kept in the tense it was
+> written in where it is about the decision, and updated where it is about the state of the
+> files.
 
 ## The question
 
@@ -143,12 +145,37 @@ Addition's block numbering are seated on the committed grid rather than carried 
 sheet's own fit, so a change of registration does not reach them, and their regeneration is the
 check that says so.
 
-**T-1092 owes the other half.** Until it lands, the four seated traces are read through
-`retained_fit`, and the seven tools that build or measure them say so at the line where they
-load it — `read_kinzie_addition_streets`, `read_michigan_st_tract`, `read_wabansia_streets`,
-`seat_wabansia_streets`, `carry_kinzie_west`, `generate_school_section_grid` and
-`measure_school_section_tier_skew`. Reading `fit` in any of them would move the ground without
-moving the meshes standing on it, and `validate.py --stale` would be the thing that told you.
+**T-1092 did the other half, on 2026-09-13.** The same seven tools — `read_kinzie_addition_streets`,
+`read_michigan_st_tract`, `read_wabansia_streets`, `seat_wabansia_streets`, `carry_kinzie_west`,
+`generate_school_section_grid` and `measure_school_section_tier_skew` — read `fit` now, and each
+says so at the line where it loads it. Fifty street records moved with them: the School Section's
+twenty-seven, Kinzie's Addition's eleven, the Michigan St tract's four, Wabansia's six and
+`kinzie_west`, plus `madison`, `monroe`, `adams`, `jackson`, `hubbard` and `michigan_north`, which
+the section grid and the Addition's seating own.
+
+**The re-bake came out empty, and that is a result rather than a shortcut.** `validate.py --stale`
+re-ran over all 384 assets and found none stale, because the ground these four grids describe is
+the town's UNBUILT survey — the School Section's platted blocks south and west of the built town,
+the Addition's street grid, the Michigan St tract and Wabansia — and no committed structure stands
+on any of it. A structure is positioned by its own coordinate, not by the street it fronts, so a
+corridor that moves 16 m does not move a mesh; what it moves is every derivation that CITES a
+committed street line. Four of those had to be re-derived in the same commit and were: the
+Washington-Madison tier's seven numeral crop boxes, four of the West Division's eighteen — both
+of which had a gate on every commit and no writer until this ticket gave
+`read_washington_madison_numerals.py` and `read_west_division_numerals.py` a `--write` — the
+yard goods, whose frontages are chosen off street faces, and the land-tract join. The reading
+is never rewritten by either: `read_at` is the window the numeral was actually read on, only
+the cited box moves, and a box that no longer holds its own read window is an error rather than
+a widening.
+
+**Two figures were typed into tools rather than read from the registration, and both were the
+superseded fit's 16.19 m.** `read_wabansia_streets.py` quoted it as the tolerance its Kinzie
+cross-check is judged against, and `read_wright_legend_swatches.py` as the grace on chip 5's
+band containment. Both read `fit["rms_m"]` now. The first mattered: through M1 the sheet puts
+Wabansia's Kinzie 20.9 m from the committed line where the eight-point fit put it 8.8 m, so the
+gap is no longer inside the registration's own RMS, and the record says so in those words
+instead of asserting agreement. The identification does not rest on that gap — Wright letters
+`Kinzie` inside the corridor — but the note used to read as though it did.
 
 ## The datum is not at risk
 

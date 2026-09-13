@@ -276,11 +276,48 @@ def check(streets=None) -> list[str]:
     return problems
 
 
+def write() -> int:
+    """Re-cut the cited boxes from the committed street lines, IN PLACE — the same writer
+    read_washington_madison_numerals.py carries, for the same reason and against the same
+    trace. The crop citation is a derivation: the box is committed lines and the rule
+    above, so a street that moves re-cuts it. The READING is untouched; `read_at` is the
+    window the numeral was actually read on and this never writes it. T-1092, which moved
+    this tier's flanking streets by re-seating the School Section grid onto the
+    eleven-point registration, is what found this tier had a gate and no writer."""
+    text = TRACE.read_text()
+    derived = boxes(_streets())
+    moved = 0
+    for r in committed().values():
+        region = derived.get(r["number"], (None,))[0]
+        crop = r["crop"]
+        if region is None or crop["iiif_region"] == region:
+            continue
+        if overhang_px(crop["read_at"], region):
+            raise SystemExit(
+                f"block {r['number']}: the re-cut box {region} no longer holds the read "
+                f"window {crop['read_at']}, and this tool will not widen a box to fit a "
+                f"reading. Re-read the numeral.")
+        if text.count(crop["iiif_region"]) != 2:
+            raise SystemExit(f"block {r['number']}: {crop['iiif_region']} is not the "
+                             f"region string of exactly one entry")
+        text = text.replace(crop["iiif_region"], region)
+        moved += 1
+    TRACE.write_text(text)
+    print(f"re-cut {moved} of {len(committed())} West Division numeral crop(s) from the "
+          f"committed street lines")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--write", action="store_true",
+                    help="re-cut the cited boxes from the committed streets, in place")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
+
+    if args.write:
+        return write()
 
     if args.self_test:
         failures = []

@@ -34,11 +34,15 @@ The project already splits a street this way where the claim changes — `market
 WHAT IS ATTESTED AND WHAT IS INFERRED, kept apart because the temptation is to trade one
 for the other. Wright ATTESTS THAT the street runs here: he rules the corridor across the
 whole tract and letters it. What this tool INFERS is WHERE it lies. Carried through the NA
-sheet's own affine, Wright's Kinzie corridor centre lands 9.1 m south of the committed line
-at the tract's west end — the same figure T-1070 measured — because the sheet's drawn
-bearing in this corner is about 1.2 deg off the one the committed grid takes from modern
-control over a baseline four times longer, against a registration admitting 16.19 m RMS
-with no control point within 900 m of this tract. So the same division of labour the
+sheet's own affine, Wright's Kinzie corridor centre lands about 21 m south of the committed
+line at the tract's west end and about 9 m south at its east end, because the sheet's drawn
+bearing in this corner is about 1.6 deg off the one the committed grid takes from modern
+control over a baseline four times longer, against a registration admitting 16.02 m RMS
+with no control point within 900 m of this tract. Every one of those figures is
+MEASURED here and written into the record this tool generates, rather than quoted in
+prose: T-1070 measured 9.1 m and about 1.2 deg through the eight-point fit T-1091
+superseded, and when T-1092 re-seated this reach onto the eleven-point fit in force
+the numbers moved and the prose would not have. So the same division of labour the
 seating used holds here: the SHEET says the street is there and how far west it goes, the
 COMMITTED GRID says where the line runs and which way it lies. `geometry_confidence` is
 `inferred` for that reason and not because the reach is in doubt.
@@ -97,9 +101,10 @@ NOTE = (
     "the street runs here is Wright's claim and this project takes it. WHERE it runs is "
     "derived: the line is the committed `kinzie` line carried west on its own bearing to "
     "the easting of Wabansia's west boundary rule, which T-1074 read at tier 7. Wright's "
-    "own corridor centre, carried through the NA sheet's affine, lands 9.1 m south of that "
-    "line at the tract's west end — a bearing about 1.2 deg off, against a registration "
-    "admitting 16.19 m RMS with no control point within 900 m of this tract — so the sheet "
+    "own corridor centre, carried through the NA sheet's affine, lands {west_off} m south "
+    "of that line at the tract's west end and {east_off} m south at its east end — a "
+    "bearing {bearing} deg off, against a registration admitting {rms} m RMS with no "
+    "control point within 900 m of this tract — so the sheet "
     "measures the extent and the committed grid holds the line. `geometry_confidence` is "
     "`inferred` for that derivation, not because the reach is doubtful. STATUS, argued "
     "rather than inherited from `kinzie`: east of -320 the street is a worn earth track "
@@ -123,12 +128,12 @@ NOTE = (
 def _frame():
     g = json.loads(GCP.read_text())
     d = json.loads(DATUM.read_text())
-    # T-1091 adopted an eleven-point registration; THIS TRACE IS STILL SEATED
-    # through the eight-point fit it was built on, which the registration keeps as
-    # `retained_fit`. T-1092 re-seats it on the fit in force and re-bakes what
-    # stands on the ground that moves. Reading `fit` here would move the ground
-    # without moving the meshes on it.
-    c = g["retained_fit"]["coefficients"]
+    # T-1092 re-seated this trace onto the ELEVEN-POINT registration T-1091 adopted,
+    # and re-baked what stands on the ground that moved. `fit` IS that registration;
+    # the eight-point fit it superseded is kept beside it as `retained_fit` for the
+    # adjudication that compares the two. Reading `retained_fit` here would seat the
+    # ground on a fit this project no longer holds.
+    c = g["fit"]["coefficients"]
 
     def to_local(px, py):
         return (c["a"] * px + c["b"] * py + c["c"] - d["origin_utm_e"],
@@ -170,12 +175,31 @@ def build():
     # row in that column — the rules lean (dy/dx 0.019) and a row read at x 700 is not the
     # same row at x 682.
     west_px = margin[TIER]["rule_px_x"][0]
-    west_py = kz["centre_px_y"] + shear * (west_px - kz["ref_px_x"])
-    sheet_e, sheet_n = to_local(west_px, west_py)
+
+    def sheet_py(px):
+        return kz["centre_px_y"] + shear * (px - kz["ref_px_x"])
+
+    def sheet_point(px):
+        """Wright's Kinzie corridor centre at this sheet column, in local ENU."""
+        return to_local(px, sheet_py(px))
+
+    west_py = sheet_py(west_px)
+    sheet_e, sheet_n = sheet_point(west_px)
 
     west = on_committed_line(sheet_e)
     east = [round(kin[0][0], 2), round(kin[0][1], 2)]
     path = [west, east]
+
+    # THE SHEET'S OWN LINE AT BOTH ENDS, so the disagreement can be reported as what it
+    # measures rather than as a figure carried forward in prose. Two points on Wright's
+    # corridor centre give its bearing; where that bearing reaches the committed line's
+    # east end is what the drawn street would do over the same reach.
+    s0, s1 = sheet_point(west_px), sheet_point(west_px + 300)
+    sv = _unit(s0, s1)
+    sheet_n_at_east = s0[1] + (east[0] - s0[0]) / sv[0] * sv[1]
+    bearing_deg = abs(math.degrees(math.atan2(sv[1], sv[0]) - math.atan2(u[1], u[0])))
+    if bearing_deg > 180:
+        bearing_deg = 360 - bearing_deg
 
     evidence = {
         "west_end": {
@@ -188,7 +212,9 @@ def build():
         "east_end": {
             "from": f"{STREETS.name} § {DATUM_ID}, its own west end",
             "local_enu_m": east,
+            "sheet_south_of_committed_m": round(sheet_n_at_east - east[1], 2),
         },
+        "sheet_bearing_off_committed_deg": round(bearing_deg, 2),
         "reach_m": round(math.dist(west, east), 1),
         "bearing_from": f"{STREETS.name} § {DATUM_ID}, first point to last",
         "collinear_with_committed_kinzie": True,
@@ -196,17 +222,25 @@ def build():
         "reading": (
             "Wright's Kinzie corridor centre lands "
             f"{abs(round(sheet_n - west[1], 2))} m south of the committed line at the "
-            "tract's west boundary rule, against a registration admitting "
-            f"{trace['cross_check']['sheet_registration_rms_m']} m RMS on eight control "
-            "points, none within 900 m of this tract. The two readings agree that this is "
-            "one street; the sheet is asked for the extent and the committed grid for the "
-            "line, which is T-1070's own division of labour."
+            f"tract's west boundary rule and {abs(round(sheet_n_at_east - east[1], 2))} m "
+            "south of it at the committed line's own west end, so the drawn street runs "
+            f"{round(bearing_deg, 2)} deg off the committed bearing over this reach, "
+            "against a registration admitting "
+            f"{trace['cross_check']['sheet_registration_rms_m']} m RMS over the eleven "
+            "control points in force since T-1091, none of them within 900 m of this "
+            "tract. The two readings agree that this is one street; the sheet is asked "
+            "for the extent and the committed grid for the line, which is T-1070's own "
+            "division of labour."
         ),
     }
-    return doc, by, _entry(path), evidence, trace
+    figures = dict(west_off=abs(round(sheet_n - west[1], 2)),
+                   east_off=abs(round(sheet_n_at_east - east[1], 2)),
+                   bearing=round(bearing_deg, 2),
+                   rms=trace["cross_check"]["sheet_registration_rms_m"])
+    return doc, by, _entry(path, figures), evidence, trace
 
 
-def _entry(path):
+def _entry(path, figures):
     return {
         "id": NEW_ID,
         "name_1835": "Kinzie Street",
@@ -225,7 +259,7 @@ def _entry(path):
         "surface_confidence": "inferred",
         "wear_confidence": "inferred",
         "sources": ["wright_1834_nara_hup", "wright_1834"],
-        "note": NOTE,
+        "note": NOTE.format(**figures),
         "name_note": NAME_NOTE,
     }
 
@@ -273,6 +307,55 @@ def _render(entry, indent=4):
         text = re.sub(r"\[[^\[\]{}]*\]", collapse, text)
     pad = " " * indent
     return "\n".join(pad + ln for ln in text.split("\n"))
+
+
+def _entry_spans(text):
+    """`(id, start, end)` for every object in the `streets` array, found by scanning
+    braces rather than by matching the file's style: one committed entry
+    (`fort_bank_track`) is indented unlike the other seventy-six and a shape regex
+    walks straight past it."""
+    i = text.index("[", text.index('"streets"'))
+    spans, depth, start, in_str, esc = [], 0, None, False, False
+    for j in range(i, len(text)):
+        ch = text[j]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+            if depth == 1:
+                start = j
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                spans.append((json.loads(text[start:j + 1])["id"], start, j + 1))
+        elif ch == "]" and depth == 0:
+            break
+    return spans
+
+
+def _reseat(text, entries):
+    """Re-point streets this tool has ALREADY committed, in place, on the same argument
+    _splice makes for appending: the entry is re-rendered, the rest of the file is not
+    touched, and the diff is the lines that moved.
+
+    Until T-1092 a seating tool could only append. That was enough while the
+    registration never changed; when T-1091 put the eleven-point fit in force, every
+    line these tools had seated through the old one stayed where it was and the tools'
+    own --check went red against them. Re-running the generator is how this project
+    moves a derived line, so the generator has to be able to."""
+    at = {sid: (s, e) for sid, s, e in _entry_spans(text)}
+    for entry in sorted(entries, key=lambda e: at[e["id"]][0], reverse=True):
+        s, e = at[entry["id"]]
+        text = text[:s] + _render(entry).lstrip() + text[e:]
+    return text
 
 
 def _splice(text, entry):
@@ -355,9 +438,13 @@ def main() -> int:
           f'rule: {evidence["west_end"]["sheet_south_of_committed_m"]:+.2f} m '
           f'(registration {evidence["sheet_registration_rms_m"]} m RMS)')
     if a.write:
-        if NEW_ID in by:
-            raise SystemExit(f"{NEW_ID} is already committed; this tool appends once")
-        STREETS.write_text(_splice(STREETS.read_text(), entry))
+        # Until T-1092 this refused a second write outright. It now RE-POINTS the
+        # record it owns instead, because the line is carried west off `kinzie` to a
+        # Wabansia rule that moves when the registration does, and a generator that
+        # cannot re-derive its own output leaves the committed line on a superseded fit.
+        text = STREETS.read_text()
+        text = _reseat(text, [entry]) if NEW_ID in by else _splice(text, entry)
+        STREETS.write_text(text)
         OUT.write_text(json.dumps(_trace_doc(evidence, entry), indent=2,
                                   ensure_ascii=False) + "\n")
         print(f"wrote {STREETS.relative_to(ROOT)} and {OUT.relative_to(ROOT)}")

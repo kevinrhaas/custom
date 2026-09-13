@@ -263,8 +263,8 @@
       1863.8
      ],
      "local_enu_m": [
-      40.1,
-      441.3
+      30.5,
+      431.3
      ]
     },
     "col_east": {
@@ -273,8 +273,8 @@
       1873.3
      ],
      "local_enu_m": [
-      144.8,
-      437.8
+      136.4,
+      428.6
      ]
     }
    },
@@ -286,14 +286,14 @@
       1918.9
      ],
      "local_enu_m": [
-      40.2,
-      407.4
+      30.9,
+      398.1
      ],
-     "corridor_m": 6.62,
-     "corridor_ft": 21.7,
+     "corridor_m": 6.49,
+     "corridor_ft": 21.3,
      "centre_local_enu_m": [
-      40.2,
-      404.1
+      30.9,
+      394.8
      ]
     },
     "col_east": {
@@ -303,14 +303,14 @@
       1920.0
      ],
      "local_enu_m": [
-      144.9,
-      409.0
+      136.7,
+      400.4
      ],
-     "corridor_m": 5.59,
-     "corridor_ft": 18.3,
+     "corridor_m": 5.48,
+     "corridor_ft": 18.0,
      "centre_local_enu_m": [
-      144.9,
-      406.2
+      136.7,
+      397.7
      ]
     }
    },
@@ -322,14 +322,14 @@
       1993.1
      ],
      "local_enu_m": [
-      40.3,
-      372.1
+      31.2,
+      363.5
      ],
-     "corridor_m": 25.9,
-     "corridor_ft": 85.0,
+     "corridor_m": 25.39,
+     "corridor_ft": 83.3,
      "centre_local_enu_m": [
-      40.3,
-      359.1
+      31.3,
+      350.8
      ]
     },
     "col_east": {
@@ -339,14 +339,14 @@
       1996.6
      ],
      "local_enu_m": [
-      145.0,
-      373.6
+      137.0,
+      365.7
      ],
-     "corridor_m": 26.56,
-     "corridor_ft": 87.1,
+     "corridor_m": 26.04,
+     "corridor_ft": 85.4,
      "centre_local_enu_m": [
-      145.0,
-      360.4
+      137.2,
+      352.7
      ]
     }
    },
@@ -358,14 +358,14 @@
       2038.4
      ],
      "local_enu_m": [
-      40.4,
-      317.7
+      31.8,
+      310.2
      ],
-     "corridor_m": 4.86,
-     "corridor_ft": 15.9,
+     "corridor_m": 4.76,
+     "corridor_ft": 15.6,
      "centre_local_enu_m": [
-      40.4,
-      315.3
+      31.8,
+      307.8
      ]
     },
     "col_east": {
@@ -375,14 +375,14 @@
       2041.9
      ],
      "local_enu_m": [
-      145.1,
-      320.3
+      137.6,
+      313.4
      ],
-     "corridor_m": 6.55,
-     "corridor_ft": 21.5,
+     "corridor_m": 6.42,
+     "corridor_ft": 21.1,
      "centre_local_enu_m": [
-      145.1,
-      317.0
+      137.6,
+      310.2
      ]
     }
    },
@@ -393,8 +393,8 @@
       2080.0
      ],
      "local_enu_m": [
-      40.5,
-      282.3
+      32.1,
+      275.4
      ]
     },
     "col_east": {
@@ -403,8 +403,8 @@
       2085.1
      ],
      "local_enu_m": [
-      145.2,
-      282.0
+      138.0,
+      275.9
      ]
     }
    }
@@ -435,11 +435,11 @@
       1896.0,
       1928.5
      ],
-     "corridor_m": 22.7,
-     "corridor_ft": 74.5,
+     "corridor_m": 22.94,
+     "corridor_ft": 75.3,
      "centre_local_enu_m": [
-      108.0,
-      435.3
+      99.2,
+      425.9
      ]
     },
     "west_column_lot_lines_px_x": [
@@ -451,10 +451,10 @@
     ],
     "west_column_lots": 4,
     "west_lot_front_m": [
-     21.58,
-     15.79,
-     14.74,
-     17.04
+     21.81,
+     15.95,
+     14.89,
+     17.22
     ],
     "east_column_lot_lines_px_x": [
      1928.5,
@@ -468,15 +468,15 @@
     ],
     "east_column_lots": 7,
     "east_lot_front_m": [
-     18.23,
-     18.44,
-     16.48,
-     14.25,
-     14.32,
-     14.46,
-     12.01
+     18.42,
+     18.63,
+     16.66,
+     14.4,
+     14.47,
+     14.61,
+     12.14
     ],
-    "tract_width_m": 200.04
+    "tract_width_m": 202.15
    },
    "tier1_south": {
     "ref_px_y": 1925,
@@ -501,11 +501,11 @@
       1895.5,
       1927.8
      ],
-     "corridor_m": 22.56,
-     "corridor_ft": 74.0,
+     "corridor_m": 22.8,
+     "corridor_ft": 74.8,
      "centre_local_enu_m": [
-      107.7,
-      398.5
+      99.1,
+      389.9
      ]
     },
     "east_column_lot_lines_px_x": [
@@ -520,13 +520,13 @@
     ],
     "east_column_lots": 7,
     "east_lot_front_m": [
-     17.88,
-     18.23,
-     16.9,
-     14.25,
-     14.32,
-     15.3,
-     10.48
+     18.07,
+     18.42,
+     17.08,
+     14.4,
+     14.47,
+     15.46,
+     10.59
     ]
    },
    "tier2_north": {
@@ -552,11 +552,11 @@
       1895.1,
       1926.0
      ],
-     "corridor_m": 21.58,
-     "corridor_ft": 70.8,
+     "corridor_m": 21.81,
+     "corridor_ft": 71.6,
      "centre_local_enu_m": [
-      107.0,
-      341.9
+      98.9,
+      334.3
      ]
     },
     "east_column_lot_lines_px_x": [
@@ -571,13 +571,13 @@
     ],
     "east_column_lots": 7,
     "east_lot_front_m": [
-     17.46,
-     20.6,
-     8.24,
-     7.12,
-     14.39,
-     15.02,
-     23.61
+     17.65,
+     20.82,
+     8.33,
+     7.2,
+     14.54,
+     15.18,
+     23.86
     ]
    },
    "tier2_south": {
@@ -604,11 +604,11 @@
       1894.9,
       1925.0
      ],
-     "corridor_m": 21.02,
-     "corridor_ft": 69.0,
+     "corridor_m": 21.25,
+     "corridor_ft": 69.7,
      "centre_local_enu_m": [
-      106.7,
-      308.0
+      98.9,
+      301.1
      ]
     },
     "east_column_lot_lines_px_x": [
@@ -623,99 +623,99 @@
     ],
     "east_column_lots": 7,
     "east_lot_front_m": [
-     25.35,
-     11.11,
-     16.55,
-     14.11,
-     16.27,
-     12.57,
-     13.27
+     25.62,
+     11.22,
+     16.73,
+     14.26,
+     16.45,
+     12.7,
+     13.41
     ]
    }
   }
  },
  "module": {
   "tract_width_m": {
-   "mean": 200.04,
+   "mean": 202.15,
    "sd": 0.0,
    "n": 1
   },
-  "north_tier_depth_m": 69.24,
-  "south_tier_depth_m": 63.94,
+  "north_tier_depth_m": 67.87,
+  "south_tier_depth_m": 62.68,
   "tier_depth_by_column_m": {
    "col_west": [
-    69.24,
-    63.94
+    67.87,
+    62.68
    ],
    "col_east": [
-    64.16,
-    65.12
+    62.89,
+    63.83
    ]
   },
   "michigan_st_corridor": {
-   "read_m": 26.23,
-   "read_ft": 86.1,
+   "read_m": 25.71,
+   "read_ft": 84.4,
    "scaled_ft": 80.2,
    "n": 2
   },
   "north_south_street_corridor": {
-   "read_m": 21.96,
-   "read_ft": 72.1,
-   "scaled_ft": 72.4,
+   "read_m": 22.2,
+   "read_ft": 72.8,
+   "scaled_ft": 72.3,
    "n": 4
   },
   "alley_width": {
-   "read_m": 5.91,
-   "read_ft": 19.4,
-   "scaled_ft": 18.1,
-   "sd_m": 0.84,
+   "read_m": 5.79,
+   "read_ft": 19.0,
+   "scaled_ft": 18.0,
+   "sd_m": 0.83,
    "n": 4,
    "note": "reported, NOT settled: the sheets carry 3.7-4.5 per cent local scale error, which is large against the 0.6 m between a 16 ft and an 18 ft alley — the same refusal data/traces/vectors/street_corridors_1834.json makes."
   },
   "west_column_lot_front_m": {
-   "mean": 17.29,
-   "sd": 3.01,
+   "mean": 17.47,
+   "sd": 3.05,
    "n": 4,
    "samples": [
-    14.74,
-    15.79,
-    17.04,
-    21.58
+    14.89,
+    15.95,
+    17.22,
+    21.81
    ]
   },
   "east_column_lot_front_m": {
-   "mean": 15.4,
-   "sd": 3.99,
+   "mean": 15.56,
+   "sd": 4.03,
    "n": 28,
    "samples": [
-    7.12,
-    8.24,
-    10.48,
-    11.11,
-    12.01,
-    12.57,
-    13.27,
-    14.11,
-    14.25,
-    14.25,
-    14.32,
-    14.32,
-    14.39,
-    14.46,
-    15.02,
-    15.3,
-    16.27,
-    16.48,
-    16.55,
-    16.9,
-    17.46,
-    17.88,
-    18.23,
-    18.23,
-    18.44,
-    20.6,
-    23.61,
-    25.35
+    7.2,
+    8.33,
+    10.59,
+    11.22,
+    12.14,
+    12.7,
+    13.41,
+    14.26,
+    14.4,
+    14.4,
+    14.47,
+    14.47,
+    14.54,
+    14.61,
+    15.18,
+    15.46,
+    16.45,
+    16.66,
+    16.73,
+    17.08,
+    17.65,
+    18.07,
+    18.42,
+    18.42,
+    18.63,
+    20.82,
+    23.86,
+    25.62
    ]
   },
   "lots_per_block_row": {
@@ -739,8 +739,8 @@
       1894.5,
       1924.9
      ],
-     "corridor_m": 21.23,
-     "corridor_ft": 69.7,
+     "corridor_m": 21.46,
+     "corridor_ft": 70.4,
      "platted_ft": 80.0
     },
     "franklin": {
@@ -748,8 +748,8 @@
       2062.1,
       2094.2
      ],
-     "corridor_m": 22.42,
-     "corridor_ft": 73.6,
+     "corridor_m": 22.66,
+     "corridor_ft": 74.3,
      "platted_ft": 80.0
     },
     "wells": {
@@ -757,8 +757,8 @@
       2240.9,
       2279.1
      ],
-     "corridor_m": 26.68,
-     "corridor_ft": 87.5,
+     "corridor_m": 26.96,
+     "corridor_ft": 88.5,
      "platted_ft": 80.0
     },
     "lasalle": {
@@ -766,17 +766,17 @@
       2401.9,
       2440.3
      ],
-     "corridor_m": 26.82,
-     "corridor_ft": 88.0,
+     "corridor_m": 27.1,
+     "corridor_ft": 88.9,
      "platted_ft": 80.0
     }
    },
    "read_ft": {
-    "mean": 79.7,
-    "sd": 9.4,
+    "mean": 80.5,
+    "sd": 9.6,
     "n": 4
    },
-   "method_over_platted": 0.996
+   "method_over_platted": 1.007
   },
   "east_west_axis": {
    "corridors": {
@@ -785,8 +785,8 @@
       2621.9,
       2657.8
      ],
-     "corridor_m": 26.41,
-     "corridor_ft": 86.7,
+     "corridor_m": 25.89,
+     "corridor_ft": 85.0,
      "platted_ft": 80.0
     },
     "randolph": {
@@ -794,8 +794,8 @@
       2811.9,
       2844.5
      ],
-     "corridor_m": 23.99,
-     "corridor_ft": 78.7,
+     "corridor_m": 23.51,
+     "corridor_ft": 77.1,
      "platted_ft": 80.0
     },
     "washington": {
@@ -803,17 +803,17 @@
       3000.7,
       3038.9
      ],
-     "corridor_m": 28.11,
-     "corridor_ft": 92.2,
+     "corridor_m": 27.55,
+     "corridor_ft": 90.4,
      "platted_ft": 80.0
     }
    },
    "read_ft": {
-    "mean": 85.9,
-    "sd": 6.8,
+    "mean": 84.2,
+    "sd": 6.7,
     "n": 3
    },
-   "method_over_platted": 1.073
+   "method_over_platted": 1.052
   }
  },
  "identity": {
@@ -831,9 +831,9 @@
    "caveat": "The ground between is unsurveyed on the sheet and carries no ruled line, so this is a carry across 800 m of blank paper and not a continuous trace. It is evidence of one street, not proof of one line."
   },
   "north_south_street_is_market_street": {
-   "our_centre_local_e_m": 108.0,
+   "our_centre_local_e_m": 99.2,
    "market_north_local_e_m": 87.5,
-   "departure_m": 20.5,
+   "departure_m": 11.7,
    "reading": "The tract's north-south street stands 20.5 m east of the easting `market_north` already holds in data/streets/1835.json, on the far side of Kinzie Street from it. THE FIGURE WAS 16.7 m WHEN THIS IDENTIFICATION WAS MADE, and T-0827 moved the other line: `market` was re-fitted off the plat's 400 ft module instead of off the modern junction on N Wacker Drive it had been hung from, which carried `market_north` 3.8 m west with it. So the departure is now OUTSIDE the 16.19 m RMS this sheet's own fit carries, by 4.3 m, and inside it is no longer the thing to say. What the identification rests on instead is unchanged and was always the stronger half: 20.5 m is still less than a platted street's 24.38 m width, and there is no other north-south street within a hundred metres for this one to be. Market Street runs on north into this tract."
   },
   "consequence": "Wright's second `Michigan St` is not a second street of the same name — the premise T-0796 was filed on. The tract is platted on the town's own grid lines and only its PARCEL module is its own."
@@ -1110,8 +1110,8 @@
      1863.8
     ],
     "local_enu_m": [
-     27.5,
-     440.9
+     17.8,
+     430.8
     ]
    },
    "ne": {
@@ -1120,8 +1120,8 @@
      1873.3
     ],
     "local_enu_m": [
-     227.5,
-     440.5
+     219.9,
+     431.9
     ]
    },
    "sw": {
@@ -1130,8 +1130,8 @@
      2080.0
     ],
     "local_enu_m": [
-     27.9,
-     281.8
+     19.4,
+     274.9
     ]
    },
    "se": {
@@ -1140,8 +1140,8 @@
      2085.1
     ],
     "local_enu_m": [
-     227.8,
-     284.7
+     221.5,
+     279.1
     ]
    }
   },
