@@ -365,7 +365,8 @@
    "reason": "Wright numbers all fifty-eight blocks. This file now holds thirty-eight of them: the twenty-four of the T-0788 reading, the North Division's whole Kinzie-to-the-river tier read by T-1088 once that tier's street control was committed, and the Original Town's Washington-Madison tier read by T-1094 once Madison Street landed. The rest are refused for the same reason the method works where it does: a crop is CUT from committed street lines, and the grid still does not reach the West Division beyond Clinton or the North Branch's west bank. A numeral found by eye instead, on a sheet whose paper stretches 3.7% anisotropically, is a numeral placed by the reader rather than by the georeference \u2014 which is the mistake this file was rebuilt to stop making.",
    "ticket": "T-1099",
    "scope_note_2026_09_12": "NARROWED. The Washington-Madison tier is no longer refused: Madison Street landed with T-0877 and the tier's seven numerals \u2014 52 53 54 55 56 57 58, rising eastward \u2014 are read in blocks_not_in_the_grid by tools/read_washington_madison_numerals.py. What is still refused, and still for the same reason, is the West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: no committed street line reaches either, so no crop can be cut there. That remainder is T-1095.",
-   "scope_note_2026_09_13": "NARROWED AGAIN, and this is what is left. T-1095 read the West Division's eighteen - 8-13, 22-27 and 46-51 - by the same block-cut method, once it was shown that the division's flanking control could be cut from committed lines: `clinton` and `canal` outright, the six tier lines continued west along their own bearings past the clip at east -320 m, and Jefferson and Des Plaines as `clinton` stepped one and two modules west. Fifty-six of the fifty-eight blocks are now read. What is still refused is 14 and 15: the Carroll-Fulton band continues east of the North Branch past this file's 13, and no committed street line reaches that ground - the North Division's own streets (`market_north` and its neighbours) stop at north +108 to +126 m, a hundred metres south of the band, and nothing carries Carroll or Fulton across the water. Found by T-1095 and owned by T-1099."
+   "scope_note_2026_09_13": "NARROWED AGAIN, and this is what is left. T-1095 read the West Division's eighteen - 8-13, 22-27 and 46-51 - by the same block-cut method, once it was shown that the division's flanking control could be cut from committed lines: `clinton` and `canal` outright, the six tier lines continued west along their own bearings past the clip at east -320 m, and Jefferson and Des Plaines as `clinton` stepped one and two modules west. Fifty-six of the fifty-eight blocks are now read. What is still refused is 14 and 15: the Carroll-Fulton band continues east of the North Branch past this file's 13, and no committed street line reaches that ground - the North Division's own streets (`market_north` and its neighbours) stop at north +108 to +126 m, a hundred metres south of the band, and nothing carries Carroll or Fulton across the water. Found by T-1095 and owned by T-1099.",
+   "scope_note_2026_09_13_spent": "SPENT, and the count closes. T-1099 read both. The Carroll-Fulton band does not stop at the North Branch: 14 is the block east of 13 across the water, between the river and Market Street, and 15 is the triangle inside North Water Street at the forks. Neither needed a street the project does not hold - Market Street flanks both - and the fourth side is Carroll continued east along the bearing of its own committed path, 68 to 315 m past its committed end. The note above is also corrected: the North Division's streets do not stop 'a hundred metres south of the band'. `market_north` stops at north +46.35 m, BELOW the band, and `franklin_north` beside it at +151.61 m, above it; it was that difference that stretched block 7's box 89 m into block 14 and put two numerals in one crop. **Fifty-eight of fifty-eight.** Nothing on Wright's sheet is refused any longer for want of control."
   },
   {
    "scope": "block 30",
@@ -418,7 +419,7 @@
      "west": null,
      "east": "market_north",
      "north": "kinzie",
-     "south": "the southern endpoint of the flanking platted lines, where they stop at the river"
+     "south": "Carroll Street continued east along the bearing of its committed path"
     },
     "number": 7,
     "numeral_on_sheet": true,
@@ -427,13 +428,13 @@
      "wright_1834"
     ],
     "crop": {
-     "iiif_region": "1376,1452,178,298",
+     "iiif_region": "1376,1452,178,174",
      "zoom": "6x",
-     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1376,1452,178,298/full/0/default.jpg",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1376,1452,178,174/full/0/default.jpg",
      "read_at": "1436,1460,118,147",
      "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1436,1460,118,147/full/0/default.jpg"
     },
-    "note": "The tier's westernmost block, between the North Branch and Market Street. Its west edge is the river bank and not a committed street, so the box is cut one module (123.36 m) west of Market Street and is wider than the block; `read_at` is the tighter region the numeral was read on, and it lies wholly inside the cited box. The glyph is the same long flagged diagonal Wright writes for 7 in the lot rows above it."
+    "note": "The tier's westernmost block, between the North Branch and Market Street. Its west edge is the river bank and not a committed street, so the box is cut one module (123.36 m) west of Market Street and is wider than the block; `read_at` is the tighter region the numeral was read on, and it lies wholly inside the cited box. The glyph is the same long flagged diagonal Wright writes for 7 in the lot rows above it. SOUTH SIDE CORRECTED BY T-1099. It was Market Street's own southern endpoint (north +46.35 m), because this is the one block in the tier with a single flank and the rule's 'take the northern of the two' had only one endpoint to take - and Market is the line that does not stop at this tier, running on to the bank at the forks where `franklin_north` beside it stops at +151.61 m. The box reached 89 m past the block and cited a crop holding TWO block numerals: this one and the 14 below it. The south side is now the tier's own line, Carroll continued east. The reading never moved; only the box did."
    },
    {
     "where": "Market Street to Franklin Street, Kinzie Street to the river \u2014 the North Division's block tier",
@@ -1196,6 +1197,54 @@
      "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1262,2435,86,74/full/0/default.jpg"
     },
     "note": "The Washington-Madison band's easternmost block inside the division, against the South Branch, so its east side is the water and the box is cut a module east of Canal. The block is a wedge - the bank closes on Canal Street going south - and the numeral stands in its wide northern end. East of it the band continues into T-1094's 52 across the river."
+   },
+   {
+    "where": "the North Branch to Market Street, Carroll Street to the bank - the Carroll-Fulton band east of the river",
+    "tier": "carroll_to_the_bank_east_of_the_north_branch",
+    "bounded_by": {
+     "west": null,
+     "east": "market_north",
+     "north": "Carroll Street continued east along the bearing of its committed path",
+     "south": "the southern endpoint of Market Street's platted line, where it stops at the bank in the forks"
+    },
+    "number": 14,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1376,1624,177,126",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1376,1624,177,126/full/0/default.jpg",
+     "read_at": "1458,1679,52,40",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1458,1679,52,40/full/0/default.jpg"
+    },
+    "note": "READ, and it is the numeral that was standing inside block 7's crop - the collision T-1098 found and T-1099 settled: the column is two blocks and the box above was too tall, not a misreading. Wright draws the block with its south-east corner cut off along the bank. Its west edge is the North Branch and not a committed street, so the box is cut one module (123.36 m) west of Market Street, block 7's own rule directly above it. The first glyph is the plain flagged diagonal Wright writes for 1 (his 7, one block north and again in block 47, carries a hooked top this diagonal does not); the second is his 4 - narrow pointed loop, crossbar, descender below the line - the same figure as the 4 of block 47. The band's own run, 11 12 13 rising eastward, puts 14 here, and tools/read_west_division_numerals.py asserts it."
+   },
+   {
+    "where": "Market Street to the river's bend, Carroll Street to the bank - the triangle inside North Water Street at the forks",
+    "tier": "carroll_to_the_bank_east_of_the_north_branch",
+    "bounded_by": {
+     "west": "market_north",
+     "east": null,
+     "north": "Carroll Street continued east along the bearing of its committed path",
+     "south": "the southern endpoint of Market Street's platted line, where it stops at the bank in the forks"
+    },
+    "number": 15,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1552,1628,178,126",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1552,1628,178,126/full/0/default.jpg",
+     "read_at": "1592,1652,46,32",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1592,1652,46,32/full/0/default.jpg"
+    },
+    "note": "READ - the fifty-eighth and last of Wright's block numerals. The block is a small right triangle: vertical west side on Market Street, horizontal north side, and a hypotenuse running south-west that is North Water Street following the bank round the bend. Its east side is the river and not a street, so the box is cut one module east of Market - blocks 22, 51 and 52's rule - and is a good deal wider than the block; `read_at` is the tighter region the numeral was read on. The second glyph carries a flag across its top, which is how this file has twice before told Wright's 5 from his 6 (block 6's note). Nothing else numbered stands inside the box."
    }
   ]
  }
