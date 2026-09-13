@@ -227,6 +227,15 @@ is the contract. The short form:
 - **Pick**: take the topmost ticket in `tickets/QUEUE.md` you can actually run (skip
   `needs_bake` on the improve runner, with the skip stated in the PR). `node
   tools/ticket.mjs list --workable` prints the same order.
+- **Check it is not ALREADY DONE**: `node tools/ticket.mjs landed` names every workable
+  ticket that a MERGED PR names, with the number, the merge instant and the `done`
+  command. Git cannot answer this — everything squash-merges, so a merged branch never
+  becomes an ancestor of `dev`, and `inflight` therefore reads a finished ticket's cold
+  branch as litter rather than as done. T-0429 sat `claimed` at the top of the queue for
+  five days that way and a run rebuilt 116 files onto records already on `dev`.
+  `inflight` runs this for you. It REPORTS and never fails a gate: the id in a PR title
+  is a convention, so read the PR before you close a ticket on it, and treat its silence
+  as silence rather than as proof.
 - **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
   inflight` shows what other branches are already carrying a ticket number, which is the
   only live view of work the merged files cannot show yet. On the runner, `claim` also

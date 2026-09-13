@@ -1767,6 +1767,27 @@ step "new --after places directly under the named ticket and moves nothing else"
 step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
   node tools/test_ticket_claim_lock.mjs
 
+# AND THE QUESTION THE LOCK CANNOT ANSWER: has this ticket's PR already MERGED?
+# Everything here squash-merges, so a merged branch never becomes an ancestor of
+# `dev`; `inflight` is honest about that and falls back on branch AGE, which makes a
+# finished ticket read as litter rather than as done. T-0429 sat `claimed` behind a
+# cold branch for five days as the topmost queue line carrying no PR — the exact
+# shape of available work — and a run rebuilt the whole block, 116 files and 5,827
+# insertions, onto records already on `dev` under the same ids.
+#
+# `ticket.mjs landed` asks the one question that settles it, against the closed PRs.
+# THE GATE DOES NOT CALL THE NETWORK: this step runs the tool on a CONSTRUCTED PR
+# list, which is the only honest demonstration of a check whose correct answer
+# against the real `dev` changes hourly. What it holds is the three refusals that
+# make the report trustworthy — a queue-keeping title ("File T-0968: …", "Pull
+# T-0802 up…", "Rank T-0727 under…", three real merged PRs that touched none of the
+# work they name) is not a claim of authorship, a `done` or `blocked-owner` ticket is
+# not a finding, and an unreachable API degrades to silence rather than to an
+# accusation — plus the one that makes it safe: it exits 0 whatever it finds, because
+# a gate that hard-fails on a naming convention blocks a run that did nothing wrong.
+step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" \
+  node tools/test_ticket_landed.mjs
+
 # And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
 # every origin ref before it mints, so a duplicate id is not a missing guard but
 # the window between minting and pushing — on 2026-09-10 PRs #1048 and #1049 each

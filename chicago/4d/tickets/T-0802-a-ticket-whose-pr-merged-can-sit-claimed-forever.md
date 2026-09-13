@@ -1,7 +1,7 @@
 ---
 id: T-0802
 title: A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1253
+claimed_by: run 9/13/2026, 8:55:08 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-13T14:38:31.942Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34761019240
 ---
 
 A ticket whose PR merged can sit `claimed` forever, because nothing compares ticket state
@@ -58,3 +58,33 @@ convention will block a run that did nothing wrong.
 **Links:** T-0429 · `tools/ticket.mjs` § `inflight` · `tickets/README.md` § *A claim is only
 real once its PR merges*, which names this exact failure and costs it at ~70 minutes of loop
 time per recurrence.
+
+---
+
+**Closed by PR #1253, and the acceptance's own "reports zero" clause did not survive
+contact.** This ticket was written on 2026-09-05 predicting one instance — T-0429 — and
+asking the check to report nothing against `dev`. On its first live run, 2026-09-13, it
+reported four, and two of them are this exact fault standing right now:
+
+| ticket | state on `dev` | the merged PR naming it |
+|---|---|---|
+| **T-0995** | `open`, `pr: null` | #1064, merged 2026-09-10T10:33:18Z |
+| **T-1025** | `open`, `pr: null` | #1109, merged 2026-09-11T06:46:39Z |
+| T-0987 | `claimed` | #1116 — multi-stretch by design; reported and correctly caveated |
+| T-0520 | `open` in this PR's base | #1251, merged by a sibling slice mid-run |
+
+T-0995 and T-1025 are records already on `dev` sitting in the queue as available work.
+They are deliberately NOT closed here — closing somebody else's ticket is a second unit,
+and a PR must stay one revertible thing — but they are the live evidence the check works,
+and the next run that reads `ticket.mjs landed` will find them named with the exact `done`
+command. Filed against this ticket rather than as new tickets, per the FILING RULE.
+
+**What was found while building it**, both of which would have made the check lie:
+
+1. `spawnSync`'s default 1 MB `maxBuffer` truncates a page of a hundred pull requests into
+   an ENOBUFS, which arrives at the caller indistinguishable from "no network" — so the
+   very first live run reported a confident false all-clear. `maxBuffer` is explicit now.
+2. Matching an id anywhere in the title's first clause accused three real merged PRs that
+   had touched none of the work they named — "Rank T-0727 under the drain band", "Pull
+   T-0802 up into the blocking band", "File T-0968: a green deploy is not proof the site is
+   reachable". The id must START the title, which is what the convention actually reserves.
