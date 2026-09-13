@@ -2071,12 +2071,35 @@
    "reading": "transcription_mediated",
    "quote": "Bandlej Willis, b'smith, at Stow's Foundry, h N. Branch, 4th ward",
    "normalized": {
-    "printed_name": "Bandlej Willis",
-    "surname": "Bandlej Willis",
-    "given": null,
+    "printed_name": "Bandle, Willis",
+    "surname": "Bandle",
+    "given": "Willis",
     "firm": false,
     "occupation": "b'smith, at Stow's Foundry",
     "address": "h N. Branch, 4th ward",
+    "surname_repair": {
+     "as_read": "Bandlej Willis,",
+     "reading": "Bandle, Willis,",
+     "surname": "Bandle",
+     "why": "the name comma welded to the e beside it and read as a j tail, so the surname swallowed the forename. The image prints a comma, on the baseline with its tail, and the e closes before it",
+     "confidence": "documented",
+     "separator_mark": "welded",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 32,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "83,2769,259,2727",
+      "reads": "Bandle, Willis, b'smith, at Stow's Foundry, h N. Branch, 4th ward",
+      "reread": "Bandle, — the mark is a comma, tail and all; the e beside it is whole",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Bandle, Willis, b'smith, at Stow's Foundry, h N. Branch, 4th ward"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Bandlej Willis, b'smith, at Stow's Foundry, h N. Branch, 4th ward",
     "section": "directory"
    },
@@ -2091,7 +2114,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Bandlej Willis"
+    "Bandle, Willis"
    ],
    "town_finding": false,
    "notes": null
@@ -2300,6 +2323,7 @@
      "surname": "Barnes",
      "why": "the B set as TJ — the bowl of the B broken open and the stem read as a separate letter",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -3016,6 +3040,7 @@
      "surname": "Bates",
      "why": "the separator. The surname reads Bates and the mark after it is a clean point with no tail; the two Bates entries above it set the same comma with one. Read as one surname the entry lost John to the surname and kept `jr` as the forename",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -5156,6 +5181,7 @@
      "surname": "Botsford",
      "why": "the t read as an l, and the initial I set as a figure 1 — which is not a letter, so the entry carried no initial at all and the `1.` went into the trade. The Botsford two lines below is set from the same sorts",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -6261,16 +6287,34 @@
    "reading": "transcription_mediated",
    "quote": "Brine kerb off, John, physician, Clark st. office 143 Lake st. check-\n  ered drug store (See card)",
    "normalized": {
-    "printed_name": "Brine kerb off, John",
-    "surname": "Brine kerb off",
+    "printed_name": "Brinckerhoff, John",
+    "surname": "Brinckerhoff",
     "given": "John",
     "firm": false,
     "occupation": "physician, Clark st. office 143 Lake st. check ered drug store (See card)",
     "address": null,
-    "name_overrun": {
-     "refused": "split_surname",
-     "why": "the comma is Norris's own, and the prefix stops inside a surname the scanner broke in two",
-     "as_split_on_comma": "Brine kerb off"
+    "surname_repair": {
+     "as_read": "Brine kerb off, John,",
+     "reading": "Brinckerhoff, John,",
+     "surname": "Brinckerhoff",
+     "why": "one surname set as three words. The scan broke Brinckerhoff at two of its own letter joins; the image prints it as one sort run with no space in it, and the comma after it is the volume's name comma",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 36,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "77,263,194,222",
+      "reads": "Brinckerhoff, John, physician, Clark st. office 143 Lake st. check- ered drug store (See card)",
+      "reread": "Brinckerhoff, — one word, and a comma with a tail",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Brinckerhoff, John, physician, Clark st office 143 Lake st checkered drug store"
+     },
+     "ticket": "T-0987"
     },
     "as_printed": "Brine kerb off, John, physician, Clark st. office 143 Lake st. check ered drug store (See card)",
     "section": "directory"
@@ -6286,7 +6330,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Brine kerb off, John"
+    "Brinckerhoff, John"
    ],
    "town_finding": false,
    "notes": null
@@ -6638,12 +6682,35 @@
    "reading": "transcription_mediated",
    "quote": "Brown Clement, res Sauganash",
    "normalized": {
-    "printed_name": "Brown Clement",
-    "surname": "Brown Clement",
-    "given": null,
+    "printed_name": "Brown, Clement",
+    "surname": "Brown",
+    "given": "Clement",
     "firm": false,
     "occupation": null,
     "address": "res Sauganash",
+    "surname_repair": {
+     "as_read": "Brown Clement,",
+     "reading": "Brown, Clement,",
+     "surname": "Brown",
+     "why": "the separator is not in the ink. The image shows clean paper between Brown and Clement and no mark of any kind, so this is the compositor's omission and not the scanner's loss. The surname is what the page prints; the comma is supplied",
+     "confidence": "inferred",
+     "separator_mark": "absent",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 36,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "76,1003,243,967",
+      "reads": "Brown, Clement, res Sauganash",
+      "reread": "Brown  Clement — a word space, wider than this setting's, and nothing in it",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Brown, Clement, res Sauganash"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Brown Clement, res Sauganash",
     "section": "directory"
    },
@@ -6658,7 +6725,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Brown Clement"
+    "Brown, Clement"
    ],
    "town_finding": false,
    "notes": null
@@ -8417,12 +8484,35 @@
    "reading": "transcription_mediated",
    "quote": "Butterfield George, res Tremont House",
    "normalized": {
-    "printed_name": "Butterfield George",
-    "surname": "Butterfield George",
-    "given": null,
+    "printed_name": "Butterfield, George",
+    "surname": "Butterfield",
+    "given": "George",
     "firm": false,
     "occupation": null,
     "address": "res Tremont House",
+    "surname_repair": {
+     "as_read": "Butterfield George,",
+     "reading": "Butterfield, George,",
+     "surname": "Butterfield",
+     "why": "the same omission. Clean paper between Butterfield and George, no mark; four other Butterfields on the same leaf carry their comma",
+     "confidence": "inferred",
+     "separator_mark": "absent",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 37,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "107,1714,340,1680",
+      "reads": "Butterfield, George, res Tremont House",
+      "reread": "Butterfield George — nothing between them but paper",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Butterfield, George res Tremont House"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Butterfield George, res Tremont House",
     "section": "directory"
    },
@@ -8437,7 +8527,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Butterfield George"
+    "Butterfield, George"
    ],
    "town_finding": false,
    "notes": null
@@ -8522,6 +8612,7 @@
      "surname": "Butterfield",
      "why": "characters no compositor set. Four other Butterfields stand around it on the same page, spelled",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -8735,6 +8826,7 @@
      "surname": "Cady",
      "why": "the C set as two marks. T-1018 names this entry as its empty_prefix class — clean_head strips the `<'` and the surname read `ady`, so the only Cady the volume prints was filed under a name that is not one",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -9463,12 +9555,35 @@
    "reading": "transcription_mediated",
    "quote": "Carson James, carpenter, residence State st",
    "normalized": {
-    "printed_name": "Carson James",
-    "surname": "Carson James",
-    "given": null,
+    "printed_name": "Carson, James",
+    "surname": "Carson",
+    "given": "James",
     "firm": false,
     "occupation": "carpenter",
     "address": "residence State st",
+    "surname_repair": {
+     "as_read": "Carson James,",
+     "reading": "Carson, James,",
+     "surname": "Carson",
+     "why": "the same omission, and the third of three. Clean paper between Carson and James",
+     "confidence": "inferred",
+     "separator_mark": "absent",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 38,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "101,777,260,742",
+      "reads": "Carson, James, carpenter, residence State st",
+      "reread": "Carson James — no mark, and the gap is a word space",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Carson, James, carpenter, residence State st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Carson James, carpenter, residence State st",
     "section": "directory"
    },
@@ -9483,7 +9598,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Carson James"
+    "Carson, James"
    ],
    "town_finding": false,
    "notes": null
@@ -12444,12 +12559,35 @@
    "reading": "transcription_mediated",
    "quote": "Connell. John, laborer, Wolcott st. b Water & Kinzie sts",
    "normalized": {
-    "printed_name": "Connell. John",
-    "surname": "Connell. John",
-    "given": null,
+    "printed_name": "Connell, John",
+    "surname": "Connell",
+    "given": "John",
     "firm": false,
     "occupation": "laborer, Wolcott st",
     "address": "b Water & Kinzie sts",
+    "surname_repair": {
+     "as_read": "Connell. John,",
+     "reading": "Connell, John,",
+     "surname": "Connell",
+     "why": "THE SCANNER'S POINT, NOT THE COMPOSITOR'S. The image prints a comma with its tail below the baseline; the OCR set it as a stop and the surname then ran on to take the forename with it",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 40,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "98,1128,287,1094",
+      "reads": "Connell, John, laborer, Wolcott st. b Water & Kinzie sts",
+      "reread": "Connell, — the tail is there, curving left under the baseline",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Connell, John, laborer, Wolcott st b Water & Kinzie sts"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Connell. John, laborer, Wolcott st. b Water & Kinzie sts",
     "section": "directory"
    },
@@ -12464,7 +12602,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Connell. John"
+    "Connell, John"
    ],
    "town_finding": false,
    "notes": null
@@ -14496,12 +14634,35 @@
    "reading": "transcription_mediated",
    "quote": "D;ma. Patrick, teamster, at A. S. Sherman's",
    "normalized": {
-    "printed_name": "D;ma. Patrick",
-    "surname": "D;ma. Patrick",
-    "given": null,
+    "printed_name": "Dana, Patrick",
+    "surname": "Dana",
+    "given": "Patrick",
     "firm": false,
     "occupation": "teamster, at A. S. Sherman's",
     "address": null,
+    "surname_repair": {
+     "as_read": "D;ma. Patrick,",
+     "reading": "Dana, Patrick,",
+     "surname": "Dana",
+     "why": "the n read as a semicolon and an m — and after it a clean round point with no tail, where the format sets a comma",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 41,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "138,2170,278,2136",
+      "reads": "Dana, Patrick, teamster, at A. S. Sherman's",
+      "reread": "Dana. — four letters, and a round point sitting on the baseline",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Dana, Patrick, teamster, at A.S. Sherman's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "D;ma. Patrick, teamster, at A. S. Sherman's",
     "section": "directory"
    },
@@ -14516,7 +14677,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "D;ma. Patrick"
+    "Dana, Patrick"
    ],
    "town_finding": false,
    "notes": null
@@ -20495,12 +20656,35 @@
    "reading": "transcription_mediated",
    "quote": "Frink. John, of F. Walker <fc Co. h Rand. st. b Clark and Dearborn",
    "normalized": {
-    "printed_name": "Frink. John",
-    "surname": "Frink. John",
-    "given": null,
+    "printed_name": "Frink, John",
+    "surname": "Frink",
+    "given": "John",
     "firm": false,
     "occupation": "of F. Walker <fc Co",
     "address": "h Rand. st. b Clark and Dearborn",
+    "surname_repair": {
+     "as_read": "Frink. John,",
+     "reading": "Frink, John,",
+     "surname": "Frink",
+     "why": "a round point where the format sets a comma",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 45,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "112,1921,255,1886",
+      "reads": "Frink, John, of F. Walker <fc Co. h Rand. st. b Clark and Dearborn",
+      "reread": "Frink. — a point, square on the baseline, no tail",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Frink, John, of F. Walker & co., h Rand. st. b Clark & Dearborn"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Frink. John, of F. Walker <fc Co. h Rand. st. b Clark and Dearborn",
     "section": "directory"
    },
@@ -20515,7 +20699,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Frink. John"
+    "Frink, John"
    ],
    "town_finding": false,
    "notes": null
@@ -22007,6 +22191,7 @@
      "surname": "Gilmore",
      "why": "the final e read as a c, and the separator set as a point. The forename survived on T-1018's cap; the surname did not",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -23391,12 +23576,35 @@
    "reading": "transcription_mediated",
    "quote": "Green. Russell, clerk, at J. M. Underwood's",
    "normalized": {
-    "printed_name": "Green. Russell",
-    "surname": "Green. Russell",
-    "given": null,
+    "printed_name": "Green, Russell",
+    "surname": "Green",
+    "given": "Russell",
     "firm": false,
     "occupation": "clerk, at J. M. Underwood's",
     "address": null,
+    "surname_repair": {
+     "as_read": "Green. Russell,",
+     "reading": "Green, Russell,",
+     "surname": "Green",
+     "why": "a round point where the format sets a comma",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 47,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "128,1891,283,1857",
+      "reads": "Green, Russell, clerk, at J. M. Underwood's",
+      "reread": "Green. — a point on the baseline; nothing descends",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Green, Russell, clerk, at J.M. Underwood's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Green. Russell, clerk, at J. M. Underwood's",
     "section": "directory"
    },
@@ -23411,7 +23619,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Green. Russell"
+    "Green, Russell"
    ],
    "town_finding": false,
    "notes": null
@@ -23785,6 +23993,7 @@
      "surname": "Griswold",
      "why": "characters no compositor set. Three other Griswolds stand around it on the same page, spelled, and the entry's own address names a fourth",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -24339,6 +24548,7 @@
      "surname": "Hageman",
      "why": "the e read as a c, and the em rule the compositor set for the missing forename read as a second comma. Two other Hagemans stand above it",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -24485,12 +24695,35 @@
    "reading": "transcription_mediated",
    "quote": "Hall. Edward, saddler and harness maker, at S. 13. C'obb's",
    "normalized": {
-    "printed_name": "Hall. Edward",
-    "surname": "Hall. Edward",
-    "given": null,
+    "printed_name": "Hall, Edward",
+    "surname": "Hall",
+    "given": "Edward",
     "firm": false,
     "occupation": "saddler and harness maker, at S. 13. C'obb's",
     "address": null,
+    "surname_repair": {
+     "as_read": "Hall. Edward,",
+     "reading": "Hall, Edward,",
+     "surname": "Hall",
+     "why": "a round point where the format sets a comma. The trade is separated by a second point on the same line, which is this printing's habit and not repaired here",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 48,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "75,1231,195,1196",
+      "reads": "Hall, Edward, saddler and harness maker, at S. 13. C'obb's",
+      "reread": "Hall. — a point, and a second one after Edward",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Hall, Edward, saddler and harness maker, at S.B. Cobb's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Hall. Edward, saddler and harness maker, at S. 13. C'obb's",
     "section": "directory"
    },
@@ -24505,7 +24738,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hall. Edward"
+    "Hall, Edward"
    ],
    "town_finding": false,
    "notes": null
@@ -26637,6 +26870,7 @@
      "surname": "Higgins",
      "why": "a caret for the first g. The Higgins on the two lines below are spelled",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -27837,6 +28071,7 @@
      "surname": "Holmes",
      "why": "characters no compositor set — an rn for the m, and a j struck into the o. Three other Holmeses stand above it on the same page",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -29166,6 +29401,7 @@
      "surname": "Husted",
      "why": "the u read as an a",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -30903,6 +31139,7 @@
      "surname": "Jones",
      "why": "the n read as fi. Five other Joneses stand around it on the same page",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -32294,12 +32531,35 @@
    "reading": "transcription_mediated",
    "quote": "King. Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st",
    "normalized": {
-    "printed_name": "King. Tuthill",
-    "surname": "King. Tuthill",
-    "given": null,
+    "printed_name": "King, Tuthill",
+    "surname": "King",
+    "given": "Tuthill",
     "firm": false,
     "occupation": "clothing, dry goods, &c., 115 Lake st",
     "address": "h Clark st",
+    "surname_repair": {
+     "as_read": "King. Tuthill,",
+     "reading": "King, Tuthill,",
+     "surname": "King",
+     "why": "the scanner's point for the compositor's comma; the tail is in the ink",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 53,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "158,1842,284,1799",
+      "reads": "King, Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st",
+      "reread": "King, — the tail runs down beside the g's",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "King, Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "King. Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st",
     "section": "directory"
    },
@@ -32314,7 +32574,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "King. Tuthill"
+    "King, Tuthill"
    ],
    "town_finding": false,
    "notes": null
@@ -32702,12 +32962,35 @@
    "reading": "transcription_mediated",
    "quote": "Klien. Matthias, baker, North Water st. house same",
    "normalized": {
-    "printed_name": "Klien. Matthias",
-    "surname": "Klien. Matthias",
-    "given": null,
+    "printed_name": "Klien, Matthias",
+    "surname": "Klien",
+    "given": "Matthias",
     "firm": false,
     "occupation": "baker, North Water st",
     "address": "house same",
+    "surname_repair": {
+     "as_read": "Klien. Matthias,",
+     "reading": "Klien, Matthias,",
+     "surname": "Klien",
+     "why": "the separator, and the two hands of this reading disagreed about it — a mark with a short descender on one crop and a round point on the other. Undecided, and it does not change the split: a stop cannot follow an unabbreviated surname. Kim Torp reads the surname Klein; the image prints Klien, i before e, and the committed spelling stands",
+     "confidence": "documented",
+     "separator_mark": "undecided",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 53,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "166,2425,303,2392",
+      "reads": "Klien, Matthias, baker, North Water st. house same",
+      "reread": "Klien + a mark that may carry a tail — the two readings did not agree",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Klein, Matthias, baker, North Water st, house same"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Klien. Matthias, baker, North Water st. house same",
     "section": "directory"
    },
@@ -32722,7 +33005,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Klien. Matthias"
+    "Klien, Matthias"
    ],
    "town_finding": false,
    "notes": null
@@ -33384,12 +33667,35 @@
    "reading": "transcription_mediated",
    "quote": "Lahy. Sylvester, laborer, North Water st. near Franklin",
    "normalized": {
-    "printed_name": "Lahy. Sylvester",
-    "surname": "Lahy. Sylvester",
-    "given": null,
+    "printed_name": "Lahy, Sylvester",
+    "surname": "Lahy",
+    "given": "Sylvester",
     "firm": false,
     "occupation": "laborer, North Water st. near Franklin",
     "address": null,
+    "surname_repair": {
+     "as_read": "Lahy. Sylvester,",
+     "reading": "Lahy, Sylvester,",
+     "surname": "Lahy",
+     "why": "the separator, and the two hands disagreed here too: a tail on the first crop, none on the second, with the y's descender standing beside it either way",
+     "confidence": "documented",
+     "separator_mark": "undecided",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 54,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "70,1091,212,1047",
+      "reads": "Lahy, Sylvester, laborer, North Water st. near Franklin",
+      "reread": "Lahy + a mark the y's tail crowds; undecided",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Lahy, Sylvester, laborer, North water st. near Franklin"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Lahy. Sylvester, laborer, North Water st. near Franklin",
     "section": "directory"
    },
@@ -33404,7 +33710,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lahy. Sylvester"
+    "Lahy, Sylvester"
    ],
    "town_finding": false,
    "notes": null
@@ -33880,16 +34186,34 @@
    "reading": "transcription_mediated",
    "quote": "Lurk in, Timothy, mason, house Kinzie st. b Frank, and Wells sts",
    "normalized": {
-    "printed_name": "Lurk in, Timothy",
-    "surname": "Lurk in",
+    "printed_name": "Larkin, Timothy",
+    "surname": "Larkin",
     "given": "Timothy",
     "firm": false,
     "occupation": "mason",
     "address": "house Kinzie st. b Frank, and Wells sts",
-    "name_overrun": {
-     "refused": "split_surname",
-     "why": "the comma is Norris's own, and the prefix stops inside a surname the scanner broke in two",
-     "as_split_on_comma": "Lurk in"
+    "surname_repair": {
+     "as_read": "Lurk in, Timothy,",
+     "reading": "Larkin, Timothy,",
+     "surname": "Larkin",
+     "why": "one surname set as two words and an a read as a u. The image prints Larkin, one sort run, and a comma after it",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 54,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "74,1819,177,1786",
+      "reads": "Larkin, Timothy, mason, house Kinzie st. b Frank, and Wells sts",
+      "reread": "Larkin, — no space inside it, and a comma with a tail",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Larkin, Timothy, mason, house Kinzie st. b frank. and Wells sts"
+     },
+     "ticket": "T-0987"
     },
     "as_printed": "Lurk in, Timothy, mason, house Kinzie st. b Frank, and Wells sts",
     "section": "directory"
@@ -33905,7 +34229,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lurk in, Timothy"
+    "Larkin, Timothy"
    ],
    "town_finding": false,
    "notes": null
@@ -35335,12 +35659,35 @@
    "reading": "transcription_mediated",
    "quote": "Lowe. Oscar, clerk, E. S. & J. Wadsworth",
    "normalized": {
-    "printed_name": "Lowe. Oscar",
-    "surname": "Lowe. Oscar",
-    "given": null,
+    "printed_name": "Lowe, Oscar",
+    "surname": "Lowe",
+    "given": "Oscar",
     "firm": false,
     "occupation": "clerk, E. S. & J. Wadsworth",
     "address": null,
+    "surname_repair": {
+     "as_read": "Lowe. Oscar,",
+     "reading": "Lowe, Oscar,",
+     "surname": "Lowe",
+     "why": "the scanner's point for the compositor's comma",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 55,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "151,1798,297,1764",
+      "reads": "Lowe, Oscar, clerk, E. S. & J. Wadsworth",
+      "reread": "Lowe, — the tail is under the e",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Lowe, Oscar, clerk, E.S. & J. Wadsworth"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Lowe. Oscar, clerk, E. S. & J. Wadsworth",
     "section": "directory"
    },
@@ -35355,7 +35702,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Lowe. Oscar"
+    "Lowe, Oscar"
    ],
    "town_finding": false,
    "notes": null
@@ -36096,6 +36443,7 @@
      "surname": "McCanny",
      "why": "the M set as JYI, and the em rule for the missing forename read as a second comma. Three McCartys and a McCarthy stand above it",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -37904,12 +38252,35 @@
    "reading": "transcription_mediated",
    "quote": "Me Ward, James, harness maker at Horton's",
    "normalized": {
-    "printed_name": "Me Ward, James",
-    "surname": "Me Ward",
+    "printed_name": "McWard, James",
+    "surname": "McWard",
     "given": "James",
     "firm": false,
     "occupation": "harness maker at Horton's",
     "address": null,
+    "surname_repair": {
+     "as_read": "Me Ward, James,",
+     "reading": "McWard, James,",
+     "surname": "McWard",
+     "why": "the Scottish prefix set as a separate word and its c read as an e. The image prints McWard closed up, the c riding small against the W",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 57,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "157,856,226,822",
+      "reads": "McWard, James, harness maker at Horton's",
+      "reread": "McWard, — one word, the c small and tight to the W",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "McWard, James, harness maker at Horton's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Me Ward, James, harness maker at Horton's",
     "section": "directory"
    },
@@ -37924,7 +38295,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Me Ward, James"
+    "McWard, James"
    ],
    "town_finding": false,
    "notes": null
@@ -38741,12 +39112,35 @@
    "reading": "transcription_mediated",
    "quote": "Marsallani. Louis, stone quarrier, res Chas. McDonnell's",
    "normalized": {
-    "printed_name": "Marsallani. Louis",
-    "surname": "Marsallani. Louis",
-    "given": null,
+    "printed_name": "Marsallani, Louis",
+    "surname": "Marsallani",
+    "given": "Louis",
     "firm": false,
     "occupation": "stone quarrier",
     "address": "res Chas. McDonnell's",
+    "surname_repair": {
+     "as_read": "Marsallani. Louis,",
+     "reading": "Marsallani, Louis,",
+     "surname": "Marsallani",
+     "why": "a round point where the format sets a comma. Kim Torp reads the surname Marsallam; the image prints an n and an i, and the committed spelling stands",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 57,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "156,2097,394,2064",
+      "reads": "Marsallani, Louis, stone quarrier, res Chas. McDonnell's",
+      "reread": "Marsallani. — ends n-i, and a point on the baseline",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Marsallam, Louis, stone quarrier, res Chas. McDonell's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Marsallani. Louis, stone quarrier, res Chas. McDonnell's",
     "section": "directory"
    },
@@ -38761,7 +39155,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Marsallani. Louis"
+    "Marsallani, Louis"
    ],
    "town_finding": false,
    "notes": null
@@ -39764,12 +40158,35 @@
    "reading": "transcription_mediated",
    "quote": "Merriam. Mrs. Mary, boarding house, Lake st b State & Wabash",
    "normalized": {
-    "printed_name": "Merriam. Mrs. Mary",
-    "surname": "Merriam. Mrs. Mary",
-    "given": null,
+    "printed_name": "Merriam, Mrs. Mary",
+    "surname": "Merriam",
+    "given": "Mrs. Mary",
     "firm": false,
     "occupation": "boarding house, Lake st",
     "address": "b State & Wabash",
+    "surname_repair": {
+     "as_read": "Merriam. Mrs. Mary,",
+     "reading": "Merriam, Mrs. Mary,",
+     "surname": "Merriam",
+     "why": "the scanner's point for the compositor's comma; the title and forename follow it",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 58,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "94,1206,299,1171",
+      "reads": "Merriam, Mrs. Mary, boarding house, Lake st b State & Wabash",
+      "reread": "Merriam, — a comma, tail below the m",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Merriam, Mrs. Mary, boarding house, Lake st b State & Wabash"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Merriam. Mrs. Mary, boarding house, Lake st b State & Wabash",
     "section": "directory"
    },
@@ -39784,7 +40201,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Merriam. Mrs. Mary"
+    "Merriam, Mrs. Mary"
    ],
    "town_finding": false,
    "notes": null
@@ -43427,12 +43844,35 @@
    "reading": "transcription_mediated",
    "quote": "Otlaway. Charles, grocer, 175 Lake st",
    "normalized": {
-    "printed_name": "Otlaway. Charles",
-    "surname": "Otlaway. Charles",
-    "given": null,
+    "printed_name": "Ottaway, Charles",
+    "surname": "Ottaway",
+    "given": "Charles",
     "firm": false,
     "occupation": "grocer, 175 Lake st",
     "address": null,
+    "surname_repair": {
+     "as_read": "Otlaway. Charles,",
+     "reading": "Ottaway, Charles,",
+     "surname": "Ottaway",
+     "why": "the double t read as t-l, and a round point where the format sets a comma",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 60,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "109,2312,303,2269",
+      "reads": "Ottaway, Charles, grocer, 175 Lake st",
+      "reread": "Ottaway. — two t's, and a point with no tail",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Ottaway, Charles, grocer, 175 Lake st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Otlaway. Charles, grocer, 175 Lake st",
     "section": "directory"
    },
@@ -43447,7 +43887,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Otlaway. Charles"
+    "Ottaway, Charles"
    ],
    "town_finding": false,
    "notes": null
@@ -44033,6 +44473,7 @@
      "surname": "Pattent",
      "why": "the second t read as an i, which turns the surname into an English word and hides it. Pattee and Patten stand on the two lines above",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -45167,12 +45608,35 @@
    "reading": "transcription_mediated",
    "quote": "Pierce. Asahel, blacksmith. S. Water st. b Lake and Randolph sts\n  house Lake st. 4th ward",
    "normalized": {
-    "printed_name": "Pierce. Asahel",
-    "surname": "Pierce. Asahel",
-    "given": null,
+    "printed_name": "Pierce, Asahel",
+    "surname": "Pierce",
+    "given": "Asahel",
     "firm": false,
     "occupation": "blacksmith. S. Water st",
     "address": "b Lake and Randolph sts house Lake st. 4th ward",
+    "surname_repair": {
+     "as_read": "Pierce. Asahel,",
+     "reading": "Pierce, Asahel,",
+     "surname": "Pierce",
+     "why": "the scanner's point for the compositor's comma. Kim Torp reads the forename Asabel; the image prints Asahel and the committed reading stands",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 61,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "154,2541,316,2506",
+      "reads": "Pierce, Asahel, blacksmith. S. Water st. b Lake and Randolph sts house Lake st. 4th ward",
+      "reread": "Pierce, — a tail below the e",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Pierce, Asabel, blacksmith, S. Water st. b Lake and Randolph sts, house Lake st. 4th ward"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Pierce. Asahel, blacksmith. S. Water st. b Lake and Randolph sts house Lake st. 4th ward",
     "section": "directory"
    },
@@ -45187,7 +45651,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Pierce. Asahel"
+    "Pierce, Asahel"
    ],
    "town_finding": false,
    "notes": null
@@ -45198,12 +45662,35 @@
    "reading": "transcription_mediated",
    "quote": "Pierce. Royal, cooper",
    "normalized": {
-    "printed_name": "Pierce. Royal",
-    "surname": "Pierce. Royal",
-    "given": null,
+    "printed_name": "Pierce, Royal",
+    "surname": "Pierce",
+    "given": "Royal",
     "firm": false,
     "occupation": "cooper",
     "address": null,
+    "surname_repair": {
+     "as_read": "Pierce. Royal,",
+     "reading": "Pierce, Royal,",
+     "surname": "Pierce",
+     "why": "a round point where the format sets a comma — and the Pierce three lines above carries a comma, so the two are set differently on one page",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 61,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "154,2630,318,2597",
+      "reads": "Pierce, Royal, cooper",
+      "reread": "Pierce. — a point, and no tail at this magnification",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Pierce, Royal, cooper"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Pierce. Royal, cooper",
     "section": "directory"
    },
@@ -45218,7 +45705,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Pierce. Royal"
+    "Pierce, Royal"
    ],
    "town_finding": false,
    "notes": null
@@ -45229,12 +45716,35 @@
    "reading": "transcription_mediated",
    "quote": "Pike. Daniel, laborer, hnuse North \"Water st. near Franklin st",
    "normalized": {
-    "printed_name": "Pike. Daniel",
-    "surname": "Pike. Daniel",
-    "given": null,
+    "printed_name": "Pike, Daniel",
+    "surname": "Pike",
+    "given": "Daniel",
     "firm": false,
     "occupation": "laborer, hnuse North \"Water st. near Franklin st",
     "address": null,
+    "surname_repair": {
+     "as_read": "Pike. Daniel,",
+     "reading": "Pike, Daniel,",
+     "surname": "Pike",
+     "why": "the scanner's point for the compositor's comma",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 61,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "156,2679,280,2642",
+      "reads": "Pike, Daniel, laborer, hnuse North \"Water st. near Franklin st",
+      "reread": "Pike, — the tail is clear",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Pike, Daniel, laborer, house North Water st. near Franklin st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Pike. Daniel, laborer, hnuse North \"Water st. near Franklin st",
     "section": "directory"
    },
@@ -45249,7 +45759,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Pike. Daniel"
+    "Pike, Daniel"
    ],
    "town_finding": false,
    "notes": null
@@ -46651,12 +47161,35 @@
    "reading": "transcription_mediated",
    "quote": "Rhiner. Henry, deputy sheriff, h Lasalle st. b Lake and Randolph",
    "normalized": {
-    "printed_name": "Rhiner. Henry",
-    "surname": "Rhiner. Henry",
-    "given": null,
+    "printed_name": "Rhines, Henry",
+    "surname": "Rhines",
+    "given": "Henry",
     "firm": false,
     "occupation": "deputy sheriff",
     "address": "h Lasalle st. b Lake and Randolph",
+    "surname_repair": {
+     "as_read": "Rhiner. Henry,",
+     "reading": "Rhines, Henry,",
+     "surname": "Rhines",
+     "why": "the terminal s read as an r, and a comma read as a point",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 62,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "116,2446,293,2410",
+      "reads": "Rhines, Henry, deputy sheriff, h Lasalle st. b Lake and Randolph",
+      "reread": "Rhines, — the last letter is an s, and the mark carries a tail",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Rhines, Henry, deputy sheriff, h Lasalle st. b Lake and Randolph"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Rhiner. Henry, deputy sheriff, h Lasalle st. b Lake and Randolph",
     "section": "directory"
    },
@@ -46671,7 +47204,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Rhiner. Henry"
+    "Rhines, Henry"
    ],
    "town_finding": false,
    "notes": null
@@ -48216,12 +48749,35 @@
    "reading": "transcription_mediated",
    "quote": "iRuss. John, teamster, house cor Clinton and Madison",
    "normalized": {
-    "printed_name": "iRuss. John",
-    "surname": "iRuss. John",
-    "given": null,
+    "printed_name": "Russ, John",
+    "surname": "Russ",
+    "given": "John",
     "firm": false,
     "occupation": "teamster",
     "address": "house cor Clinton and Madison",
+    "surname_repair": {
+     "as_read": "iRuss. John,",
+     "reading": "Russ, John,",
+     "surname": "Russ",
+     "why": "a speck in the left margin read as an i, and a round point where the format sets a comma",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 63,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "125,2259,266,2225",
+      "reads": "Russ, John, teamster, house cor Clinton and Madison",
+      "reread": "Russ. — nothing before the R but a margin mark, and a point after",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Russ, John, teamster, house cor Clinton & Madison"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "iRuss. John, teamster, house cor Clinton and Madison",
     "section": "directory"
    },
@@ -48236,7 +48792,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "iRuss. John"
+    "Russ, John"
    ],
    "town_finding": false,
    "notes": null
@@ -48450,6 +49006,7 @@
      "surname": "Ryan",
      "why": "the n welded to the comma and read as `t)`. Read as one surname the entry lost John to the surname and kept `boaniing` as the trade. The Ryan on the line above is set from the same sorts",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -51136,12 +51693,35 @@
    "reading": "transcription_mediated",
    "quote": "Simpson. John, mason, house Canal st. b Adams and Jackson sts",
    "normalized": {
-    "printed_name": "Simpson. John",
-    "surname": "Simpson. John",
-    "given": null,
+    "printed_name": "Simpson, John",
+    "surname": "Simpson",
+    "given": "John",
     "firm": false,
     "occupation": "mason",
     "address": "house Canal st. b Adams and Jackson sts",
+    "surname_repair": {
+     "as_read": "Simpson. John,",
+     "reading": "Simpson, John,",
+     "surname": "Simpson",
+     "why": "the scanner's point for the compositor's comma, over a stain that runs under the line",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 65,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "119,1966,321,1922",
+      "reads": "Simpson, John, mason, house Canal st. b Adams and Jackson sts",
+      "reread": "Simpson, — a tail, and the stain sits below it",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Simpson, John, mason, house Canal st. b Adams and Jackson sts"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Simpson. John, mason, house Canal st. b Adams and Jackson sts",
     "section": "directory"
    },
@@ -51156,7 +51736,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Simpson. John"
+    "Simpson, John"
    ],
    "town_finding": false,
    "notes": null
@@ -53822,12 +54402,35 @@
    "reading": "transcription_mediated",
    "quote": "Stockton. John, carpenter, h Illinois st. b Pine and Sand sts",
    "normalized": {
-    "printed_name": "Stockton. John",
-    "surname": "Stockton. John",
-    "given": null,
+    "printed_name": "Stockton, John",
+    "surname": "Stockton",
+    "given": "John",
     "firm": false,
     "occupation": "carpenter",
     "address": "h Illinois st. b Pine and Sand sts",
+    "surname_repair": {
+     "as_read": "Stockton. John,",
+     "reading": "Stockton, John,",
+     "surname": "Stockton",
+     "why": "the scanner's point for the compositor's comma",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 67,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "137,1108,345,1073",
+      "reads": "Stockton, John, carpenter, h Illinois st. b Pine and Sand sts",
+      "reread": "Stockton, — a comma, tail below the n",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Stockton, John, carpenter, h Illinois st, P Pine and Sand sts"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Stockton. John, carpenter, h Illinois st. b Pine and Sand sts",
     "section": "directory"
    },
@@ -53842,7 +54445,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Stockton. John"
+    "Stockton, John"
    ],
    "town_finding": false,
    "notes": null
@@ -54256,12 +54859,35 @@
    "reading": "transcription_mediated",
    "quote": "Sturtevan.t. Noah, painter, at J. I. Dow's, h Market st",
    "normalized": {
-    "printed_name": "Sturtevan.t. Noah",
-    "surname": "Sturtevan.t. Noah",
-    "given": null,
+    "printed_name": "Sturtevant, Noah",
+    "surname": "Sturtevant",
+    "given": "Noah",
     "firm": false,
     "occupation": "painter, at J. I. Dow's",
     "address": "h Market st",
+    "surname_repair": {
+     "as_read": "Sturtevan.t. Noah,",
+     "reading": "Sturtevant, Noah,",
+     "surname": "Sturtevant",
+     "why": "a point set INSIDE the surname, between its n and its t, and the real separator read as a point as well. The image prints Sturtevant whole and a comma after it",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 67,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "135,1842,370,1803",
+      "reads": "Sturtevant, Noah, painter, at J. I. Dow's, h Market st",
+      "reread": "Sturtevant, — no stop inside the word, and a tail on the mark after it",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Sturtevant, Noah, painter, at J.I. Dow's. h Market st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Sturtevan.t. Noah, painter, at J. I. Dow's, h Market st",
     "section": "directory"
    },
@@ -54276,7 +54902,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Sturtevan.t. Noah"
+    "Sturtevant, Noah"
    ],
    "town_finding": false,
    "notes": null
@@ -55253,12 +55879,35 @@
    "reading": "transcription_mediated",
    "quote": "Taylor. Solomon, boot and shoemaker, 152^ Lake st. house West\n  Water st. b Randolph and Washington sts , (See card)",
    "normalized": {
-    "printed_name": "Taylor. Solomon",
-    "surname": "Taylor. Solomon",
-    "given": null,
+    "printed_name": "Taylor, Solomon",
+    "surname": "Taylor",
+    "given": "Solomon",
     "firm": false,
     "occupation": "boot and shoemaker, 152^ Lake st",
     "address": "house West Water st. b Randolph and Washington sts , (See card)",
+    "surname_repair": {
+     "as_read": "Taylor. Solomon,",
+     "reading": "Taylor, Solomon,",
+     "surname": "Taylor",
+     "why": "the scanner's point for the compositor's comma",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 68,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "121,1022,290,975",
+      "reads": "Taylor, Solomon, boot and shoemaker, 152^ Lake st. house West Water st. b Randolph and Washington sts , (See card)",
+      "reread": "Taylor, — the tail runs under the r",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Taylor, Solomon, boot & shoemaker, 152 ½ Lake st. house West Water st. b Randolph & Washington sts"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Taylor. Solomon, boot and shoemaker, 152^ Lake st. house West Water st. b Randolph and Washington sts , (See card)",
     "section": "directory"
    },
@@ -55273,7 +55922,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Taylor. Solomon"
+    "Taylor, Solomon"
    ],
    "town_finding": false,
    "notes": null
@@ -56689,12 +57338,35 @@
    "reading": "transcription_mediated",
    "quote": "Van Dre/er, E. Eagle Tavern. Dearborn st",
    "normalized": {
-    "printed_name": "Van Dre/er, E. Eagle Tavern",
-    "surname": "Van Dre/er",
+    "printed_name": "Van Drezer, E. Eagle Tavern",
+    "surname": "Van Drezer",
     "given": "E. Eagle Tavern",
     "firm": false,
     "occupation": "Dearborn st",
     "address": null,
+    "surname_repair": {
+     "as_read": "Van Dre/er, E.",
+     "reading": "Van Drezer, E.",
+     "surname": "Van Drezer",
+     "why": "not a broken surname at all: Van Drezer is two words on the page, as Van Sickle and Van Vlack are, and only its z was set as a solidus. The comma after it is printed",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 69,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "135,920,237,887",
+      "reads": "Van Drezer, E. Eagle Tavern. Dearborn st",
+      "reread": "Van Drezer, — the fourth letter of Drezer is a z, and a comma follows",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Van Drezer, E. Eagle Tavern, Dearborn st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Van Dre/er, E. Eagle Tavern. Dearborn st",
     "section": "directory"
    },
@@ -56709,7 +57381,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Van Dre/er, E. Eagle Tavern"
+    "Van Drezer, E. Eagle Tavern"
    ],
    "town_finding": false,
    "notes": null
@@ -57944,12 +58616,35 @@
    "reading": "transcription_mediated",
    "quote": "Ward. James, mason, house Randolph st",
    "normalized": {
-    "printed_name": "Ward. James",
-    "surname": "Ward. James",
-    "given": null,
+    "printed_name": "Ward, James",
+    "surname": "Ward",
+    "given": "James",
     "firm": false,
     "occupation": "mason",
     "address": "house Randolph st",
+    "surname_repair": {
+     "as_read": "Ward. James,",
+     "reading": "Ward, James,",
+     "surname": "Ward",
+     "why": "the scanner's point for the compositor's comma",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 70,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "106,449,256,413",
+      "reads": "Ward, James, mason, house Randolph st",
+      "reread": "Ward, — a comma, tail below the d",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Ward, James, mason, house Randolph st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Ward. James, mason, house Randolph st",
     "section": "directory"
    },
@@ -57964,7 +58659,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Ward. James"
+    "Ward, James"
    ],
    "town_finding": false,
    "notes": null
@@ -58259,12 +58954,35 @@
    "reading": "transcription_mediated",
    "quote": "Warring. Klias, teamster, house b Wells and Frankin sts",
    "normalized": {
-    "printed_name": "Warring. Klias",
-    "surname": "Warring. Klias",
-    "given": null,
+    "printed_name": "Warring, Elias",
+    "surname": "Warring",
+    "given": "Elias",
     "firm": false,
     "occupation": "teamster",
     "address": "house b Wells and Frankin sts",
+    "surname_repair": {
+     "as_read": "Warring. Klias,",
+     "reading": "Warring, Elias,",
+     "surname": "Warring",
+     "why": "a comma read as a point, and the forename's E read as a K — the two arms of the E joined to its stem by a heavy inking",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 70,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "108,927,319,881",
+      "reads": "Warring, Elias, teamster, house b Wells and Frankin sts",
+      "reread": "Warring, Elias — a tail on the mark, and the forename opens with an E",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Warring, Elias, teamster, house b Wells and Frankin sts"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Warring. Klias, teamster, house b Wells and Frankin sts",
     "section": "directory"
    },
@@ -58279,7 +58997,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Warring. Klias"
+    "Warring, Elias"
    ],
    "town_finding": false,
    "notes": null
@@ -58600,12 +59318,35 @@
    "reading": "transcription_mediated",
    "quote": "Welch. William, laborer, h Clark st. b N. Water and Kirfzie sts",
    "normalized": {
-    "printed_name": "Welch. William",
-    "surname": "Welch. William",
-    "given": null,
+    "printed_name": "Welch, William",
+    "surname": "Welch",
+    "given": "William",
     "firm": false,
     "occupation": "laborer",
     "address": "h Clark st. b N. Water and Kirfzie sts",
+    "surname_repair": {
+     "as_read": "Welch. William,",
+     "reading": "Welch, William,",
+     "surname": "Welch",
+     "why": "the scanner's point for the compositor's comma",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 70,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "110,1433,284,1398",
+      "reads": "Welch, William, laborer, h Clark st. b N. Water and Kirfzie sts",
+      "reread": "Welch, — a short tail under the h",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Welch, William, laborer, h Clark st. b N. Water & Kinzie sts"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Welch. William, laborer, h Clark st. b N. Water and Kirfzie sts",
     "section": "directory"
    },
@@ -58620,7 +59361,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Welch. William"
+    "Welch, William"
    ],
    "town_finding": false,
    "notes": null
@@ -58853,16 +59594,34 @@
    "reading": "transcription_mediated",
    "quote": "s Went worth, Geo. W. nst. editor Chicago Democrat, res U. S. Hotel",
    "normalized": {
-    "printed_name": "Went worth, Geo. W",
-    "surname": "Went worth",
+    "printed_name": "Wentworth, Geo. W",
+    "surname": "Wentworth",
     "given": "Geo. W",
     "firm": false,
     "occupation": "nst. editor Chicago Democrat",
     "address": "res U. S. Hotel",
-    "name_overrun": {
-     "refused": "split_surname",
-     "why": "the comma is Norris's own, and the prefix stops inside a surname the scanner broke in two",
-     "as_split_on_comma": "Went worth"
+    "surname_repair": {
+     "as_read": "s Went worth, Geo. W.",
+     "reading": "Wentworth, Geo. W.",
+     "surname": "Wentworth",
+     "why": "one surname set as two words, with a margin speck read as an s before it. The image prints Wentworth closed up and a comma after it",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 70,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "68,1905,112,1866",
+      "reads": "Wentworth, Geo. W. nst. editor Chicago Democrat, res U. S. Hotel",
+      "reread": "Wentworth, — one word, and the speck stands off in the margin",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Wentworth, Geo. W., ast. editor Chicago Democrat, res U.S. Hotel"
+     },
+     "ticket": "T-0987"
     },
     "as_printed": "s Went worth, Geo. W. nst. editor Chicago Democrat, res U. S. Hotel",
     "section": "directory"
@@ -58878,7 +59637,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Went worth, Geo. W"
+    "Wentworth, Geo. W"
    ],
    "town_finding": false,
    "notes": null
@@ -59149,12 +59908,35 @@
    "reading": "transcription_mediated",
    "quote": "Wliite. Christopher, at Turner's livery stable",
    "normalized": {
-    "printed_name": "Wliite. Christopher",
-    "surname": "Wliite. Christopher",
-    "given": null,
+    "printed_name": "White, Christopher",
+    "surname": "White",
+    "given": "Christopher",
     "firm": false,
     "occupation": "at Turner's livery stable",
     "address": null,
+    "surname_repair": {
+     "as_read": "Wliite. Christopher,",
+     "reading": "White, Christopher,",
+     "surname": "White",
+     "why": "the h read as l-i, and a round point where the format sets a comma",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 70,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "117,2413,284,2379",
+      "reads": "White, Christopher, at Turner's livery stable",
+      "reread": "White. — an h, and a point with no tail",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "White, Christopher, at Turner's livery stable"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Wliite. Christopher, at Turner's livery stable",
     "section": "directory"
    },
@@ -59169,7 +59951,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Wliite. Christopher"
+    "White, Christopher"
    ],
    "town_finding": false,
    "notes": null
@@ -59211,12 +59993,35 @@
    "reading": "transcription_mediated",
    "quote": "White. Isaac, butcher at Reynold's",
    "normalized": {
-    "printed_name": "White. Isaac",
-    "surname": "White. Isaac",
-    "given": null,
+    "printed_name": "White, Isaac",
+    "surname": "White",
+    "given": "Isaac",
     "firm": false,
     "occupation": "butcher at Reynold's",
     "address": null,
+    "surname_repair": {
+     "as_read": "White. Isaac,",
+     "reading": "White, Isaac,",
+     "surname": "White",
+     "why": "the scanner's point for the compositor's comma",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 70,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "118,2506,279,2471",
+      "reads": "White, Isaac, butcher at Reynold's",
+      "reread": "White, — a tail below the e",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "White, Isaac, butcher at Reynold's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "White. Isaac, butcher at Reynold's",
     "section": "directory"
    },
@@ -59231,7 +60036,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "White. Isaac"
+    "White, Isaac"
    ],
    "town_finding": false,
    "notes": null
@@ -60738,6 +61543,7 @@
      "surname": "Woodbury",
      "why": "the u read as an n, and the separator set as a point. Read as one surname the entry lost Hiram to the surname and carried no forename. The Woodbury on the line above is spelled",
      "confidence": "documented",
+     "separator_mark": null,
      "evidence": {
       "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
       "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
@@ -60939,16 +61745,34 @@
    "reading": "transcription_mediated",
    "quote": "Woi thinglnm, Wm. mason, h Monroe st. b State .md Clark st",
    "normalized": {
-    "printed_name": "Woi thinglnm, Wm",
-    "surname": "Woi thinglnm",
+    "printed_name": "Worthingham, Wm",
+    "surname": "Worthingham",
     "given": "Wm",
     "firm": false,
     "occupation": "mason",
     "address": "h Monroe st. b State .md Clark st",
-    "name_overrun": {
-     "refused": "split_surname",
-     "why": "the comma is Norris's own, and the prefix stops inside a surname the scanner broke in two",
-     "as_split_on_comma": "Woi thinglnm"
+    "surname_repair": {
+     "as_read": "Woi thinglnm, Wm.",
+     "reading": "Worthingham, Wm.",
+     "surname": "Worthingham",
+     "why": "one surname set as two words, with the r lost and the ha read as ln. The image prints Worthingham whole, and a comma after it",
+     "confidence": "documented",
+     "separator_mark": "comma",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 71,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "107,2564,206,2532",
+      "reads": "Worthingham, Wm. mason, h Monroe st. b State .md Clark st",
+      "reread": "Worthingham, — one word, r and h both there, and a comma",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Worthingham, Wm., mason, h Monroe st b State & Clark st"
+     },
+     "ticket": "T-0987"
     },
     "as_printed": "Woi thinglnm, Wm. mason, h Monroe st. b State .md Clark st",
     "section": "directory"
@@ -60964,7 +61788,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Woi thinglnm, Wm"
+    "Worthingham, Wm"
    ],
    "town_finding": false,
    "notes": null
@@ -62313,12 +63137,35 @@
    "reading": "transcription_mediated",
    "quote": "Gill. Edmund, tailor, house Ohio st. b Clark and Dearborn sts",
    "normalized": {
-    "printed_name": "Gill. Edmund",
-    "surname": "Gill. Edmund",
-    "given": null,
+    "printed_name": "Gill, Edmund",
+    "surname": "Gill",
+    "given": "Edmund",
     "firm": false,
     "occupation": "tailor",
     "address": "house Ohio st. b Clark and Dearborn sts",
+    "surname_repair": {
+     "as_read": "Gill. Edmund,",
+     "reading": "Gill, Edmund,",
+     "surname": "Gill",
+     "why": "a round point where the format sets a comma",
+     "confidence": "documented",
+     "separator_mark": "point",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 73,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "107,834,214,799",
+      "reads": "Gill, Edmund, tailor, house Ohio st. b Clark and Dearborn sts",
+      "reread": "Gill. — a point, square on the baseline",
+      "reread_by": "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a different magnification, taken in a shuffled order so the first pass could not be carried down the page. Where the two passes disagreed the row says so and the separator is left undecided.",
+      "second_reading": "Gill, Edmund, tailor, house Ohio st. b Clark & Dearborn sts"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Gill. Edmund, tailor, house Ohio st. b Clark and Dearborn sts",
     "section": "addenda"
    },
@@ -62333,7 +63180,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Gill. Edmund"
+    "Gill, Edmund"
    ],
    "town_finding": false,
    "notes": null

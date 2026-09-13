@@ -49,7 +49,7 @@
  ],
  "counts": {
   "people_shown": 238,
-  "people_met_by_more_than_one_volume": 146,
+  "people_met_by_more_than_one_volume": 147,
   "carrying_an_occupation": 123,
   "carrying_an_address": 156,
   "line_held_but_parse_refused": 0,
@@ -72,8 +72,8 @@
     "split_refused_fields": 3
    },
    "norris_1844": {
-    "people": 124,
-    "single_entry": 100,
+    "people": 127,
+    "single_entry": 103,
     "ambiguous": 14,
     "contested": 10,
     "split_refused_fields": 15
@@ -11311,6 +11311,30 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'King' folds to the same string as the 1844 entry's, and the given name of both begins T.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1024",
+       "printed_page": 43,
+       "as_printed": "King. Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st"
+      }
+     ],
+     "holds": [
+      "address",
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": {
@@ -11342,7 +11366,8 @@
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
@@ -14806,6 +14831,29 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Pierce' folds to the same string as the 1844 entry's, and the given name of both begins A.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1435",
+       "printed_page": 51,
+       "as_printed": "Pierce. Asahel, blacksmith. S. Water st. b Lake and Randolph sts house Lake st. 4th ward"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -14825,7 +14873,8 @@
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
@@ -16257,6 +16306,30 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Simpson' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1625",
+       "printed_page": 55,
+       "as_printed": "Simpson. John, mason, house Canal st. b Adams and Jackson sts"
+      }
+     ],
+     "holds": [
+      "address",
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": {
@@ -16287,7 +16360,8 @@
    },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
