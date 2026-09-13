@@ -1,7 +1,7 @@
 ---
 id: T-0848
 title: Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1255
 claimed_by: run 9/13/2026, 9:43:43 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T15:07:36.565Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34763304736
 ---
 
