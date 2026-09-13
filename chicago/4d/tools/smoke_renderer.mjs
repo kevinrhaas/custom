@@ -406,10 +406,27 @@ async function readRoadStations(page, label, stations) {
     failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
   });
   Object.assign(ROAD_BAND_OBSERVED, observed);
+  // T-0690 — AND TO THE STATIONS THIS INVOCATION READ, not only its viewport.
+  //
+  // The filter above was written when all three stations sat in one part, so
+  // "compares only what THIS invocation measured" was true of it. T-0173 then
+  // cut them across parts 7 and 8, and nothing here noticed: a part-filtered
+  // run compared the bank's WHOLE viewport against the one station it visited
+  // and reported every band it had not been to as `ungated — either the probes
+  // stopped projecting or the station moved`. Neither had. `SMOKE_STAGE=8`
+  // simply never goes to `south_water` or `from_above`, which are part 7's, and
+  // six of the ten movements T-0690 was filed over were exactly that. A report
+  // that cries wolf six times in ten is a report nobody reads, which is the one
+  // thing a print-only report cannot survive.
+  const visited = new Set(stations.map((st) => st.id));
   const bankedHere = Object.fromEntries(
-    Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
+    Object.entries(ROAD_BAND_BANKED).filter(([k]) => {
+      const [bankedVp, stationId] = k.split('/');
+      return bankedVp === vp && visited.has(stationId);
+    }));
   if (!Object.keys(bankedHere).length) {
-    console.log(`        road bands: nothing banked for ${vp} yet`
+    console.log(`        road bands: nothing banked for ${vp}`
+      + ` at ${[...visited].join(', ')} yet`
       + ' — re-run with --update-road-bands to bank this run (T-0016)');
   } else {
     for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
@@ -655,7 +672,53 @@ const FACADE_MOVED_MIN = 300;
  */
 const SHADOW_REACH_MIN_WORST = 4;
 
+/** The 48² frame signature THREE other assertions are measured on — the
+ *  roughness merge, the facade tone and the shadow reach, each with a floor
+ *  derived against this grid and this grid only. It keeps its name and its
+ *  value: a finer grid reads a larger worst cell for an identical change, so
+ *  moving it would quietly slacken all three at once. R-A1's own reach reading
+ *  moved off it — see ROAD_AID_REACH_GRID below. */
 const ROAD_AID_GRID = 48;
+/**
+ * T-0690 — THE GRID R-A1'S REACH IS READ ON, AND WHY IT IS NOT THE 48 ABOVE.
+ *
+ * The signature averages luma over `grid²` cells, so a roadway occupying about
+ * a tenth of the frame is diluted inside every cell it only partly covers and a
+ * coarser grid reports a smaller worst cell for the SAME change. R-A1 found
+ * that on 2026-08-16 without naming it — the aid scored worst 2 at 12² and
+ * worst 6 at 48² with nothing about the scene changed between the two runs —
+ * and set its floor at 4 from the 48² desktop reading alone. Mobile was never
+ * measured, and mobile is where the assertion has been red since 2026-09-04:
+ * the aid moves the 390×780 frame by a worst cell of 3, one short, while the
+ * mean clears its own floor comfortably.
+ *
+ * MEASURED BEFORE IT WAS SET, on the published mirror at `lake_market`, the
+ * clock held, by `tools/measure_road_aid.mjs`. Reach worst cell / residual
+ * worst cell, aid off → full on → off again:
+ *
+ *      grid    390×780      1280×800
+ *      12²      2 / 0        2 / 0
+ *      24²      3 / 0        4 / 0
+ *      48²      3 / 0        7 / 0     <- was here; mobile one short of 4
+ *      96²      7 / 0       11 / 0     <- here
+ *     144²      9 / 0       15 / 0
+ *
+ * So the aid was never weak — the instrument was blind. The residual is 0 at
+ * every grid on both viewports, which is the other half of the reading: this
+ * is dilution and not noise, and a finer grid buys signal without buying any.
+ *
+ * 96² and not 144² because the floor below does not move and 96 already clears
+ * it on the WEAKER viewport by the same margin the shipped rule asks for —
+ * SHADOW_REACH_MIN_WORST's box states it as "half the smaller of the two", and
+ * half of 7 is 3.5. Going finer would buy a headroom no assertion spends.
+ */
+const ROAD_AID_REACH_GRID = 96;
+/** UNCHANGED BY T-0690, on purpose. The gate still asks the aid for four cells
+ *  and 0.15 of mean; what changed is that both viewports can now be asked. At
+ *  96² the reading is 7 / 0.35 at 390×780 and 11 / 0.28 at 1280×800, so each
+ *  floor sits at roughly half the weaker of the two — the rule the shadow-reach
+ *  floor beside it was set by — and far above a residual measured at 0. A red
+ *  here is now a statement about the aid rather than about the grid. */
 const ROAD_AID_MIN_WORST = 4;
 const ROAD_AID_MIN_MEAN = 0.15;
 // K24. The brightness aid's own floors, and the reason they are not the road
@@ -8526,7 +8589,11 @@ for (const [label, viewport, touch] of [
       aidAtBoot === 0, `uRoadAid ${aidAtBoot} with no stored preference`);
 
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    // T-0690. ROAD_AID_REACH_GRID, not the 48² the three assertions further down
+    // share: at 390×780 a 48² cell dilutes the roadway until the aid's worst cell
+    // reads 3 against a floor of 4, and the same frame at 96² reads 7. Its box
+    // carries the sweep both readings come from.
+    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const aidOff12 = await page.evaluate(() => window.__chicago4d.capture());
     const aidSet = await page.evaluate(() => window.__chicago4d.setRoadAid(1));
     // K24. The raised READING, which until now this suite never took: both of
@@ -8534,12 +8601,12 @@ for (const [label, viewport, touch] of [
     // them and only a value that is meant to MOVE can find that out. See
     // main.js § Live getters.
     const aidLive = await page.evaluate(() => window.__chicago4d.roadAid);
-    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const aidOn12 = await page.evaluate(() => window.__chicago4d.capture());
     const dAid = signatureDistance(aidOff, aidOn);
     const dAid12 = signatureDistance(aidOff12, aidOn12);
     await page.evaluate(() => window.__chicago4d.setRoadAid(0));
-    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const dAidBack = signatureDistance(aidOff, aidBack);
     const aidRestored = await page.evaluate(() => window.__chicago4d.roadAid);
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
@@ -8559,7 +8626,7 @@ for (const [label, viewport, touch] of [
       `uRoadAid ${aidRestored}, residual mean ${dAidBack.mean?.toFixed(2)}, `
       + `worst-cell delta ${dAidBack.worst}`);
     console.log(`        road aid: full-on delta mean ${dAid.mean?.toFixed(2)} / worst `
-      + `${dAid.worst} at ${ROAD_AID_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
+      + `${dAid.worst} at ${ROAD_AID_REACH_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
       + `at 12²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
       + `${dAidBack.worst}`);
 
