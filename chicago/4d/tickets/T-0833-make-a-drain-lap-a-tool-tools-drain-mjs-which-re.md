@@ -1,7 +1,7 @@
 ---
 id: T-0833
 title: Make a drain lap a tool: tools/drain.mjs, which refuses on any conflict outside the build products
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0813
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 10:58:53 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34766866556
 ---
 
 Make a drain lap a tool: tools/drain.mjs, which refuses on any conflict outside the build products.
