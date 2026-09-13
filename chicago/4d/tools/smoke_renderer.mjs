@@ -12070,6 +12070,65 @@ for (const [label, viewport, touch] of [
       unfit.length ? unfit.map((m) => `${m.id} ${m.scroll}/${m.client} in ${m.panel}`).join('; ')
         : mountFit.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 
+    // T-0302's actual claim, and the reason the measure above was not enough:
+    // *"it is invisible today only because their longest line happens to fit;
+    // the first long `<dd>` any of them gains clips silently."* A check on the
+    // content as it stands cannot see a latent clipper, so this one puts the
+    // long line there. Each mount is CLONED, laid out as the next sibling of the
+    // original — same parent, same column width, so the measurement is of this
+    // section's real layout — every `<details>` in the copy is opened, a
+    // 90-character unbreakable run replaces the text of every leaf, and the copy
+    // is measured and removed. The original is never touched, which is what lets
+    // this sit in the middle of a part whose later assertions read the same
+    // sections' text.
+    // Measured on this branch, 2026-09-13 at 390x780: before the rules in
+    // css/evidence.css all seven clipped — liberties 1196/362, ground 1261,
+    // fauna 1196, plants 749, exclusions 685, uncertain 685, residents 689 —
+    // carried by ordinary furniture the old `dt`/`dd`-only rule did not name: a
+    // citation `<li>`, the scope pill, a `<b>` in a household's prose. After,
+    // every one of them is 362/362.
+    const mountStress = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const TOKEN = 'x'.repeat(90);
+      const stress = (id) => {
+        const mount = document.getElementById(id);
+        if (!mount) return { id, client: 0, scroll: 1, leaves: 0 };
+        const probe = mount.cloneNode(true);
+        probe.id = `${id}-t0302-probe`;
+        mount.after(probe);
+        probe.querySelectorAll('details').forEach((d) => { d.open = true; });
+        let leaves = 0;
+        for (const el of probe.querySelectorAll('*')) {
+          if (el.children.length || !el.textContent.trim()) continue;
+          el.textContent = TOKEN;
+          leaves += 1;
+        }
+        const out = { id, client: probe.clientWidth, scroll: probe.scrollWidth, leaves };
+        probe.remove();
+        return out;
+      };
+      const rows = [];
+      api.hud.setPanel(true);
+      api.hud.selectTab('evidence');
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+        api.evidenceHub.showTopic(id);
+        await new Promise((r) => setTimeout(r, 30));
+        rows.push(stress(id));
+      }
+      api.hud.selectTab('people');
+      api.people?.close?.();
+      await new Promise((r) => setTimeout(r, 30));
+      rows.push(stress('residents'));
+      api.hud.selectTab('evidence');
+      api.evidenceHub.showHub();
+      return rows;
+    });
+    const clipped = mountStress.filter((m) => !(m.client > 0 && m.leaves > 0 && m.scroll <= m.client));
+    check(`${label}: a run longer than the column breaks inside all seven mounts, not past them`,
+      mountStress.length === 7 && clipped.length === 0,
+      clipped.length ? clipped.map((m) => `${m.id} ${m.scroll}/${m.client} on ${m.leaves} leaves`).join('; ')
+        : mountStress.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
+
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a
     // hand-written paraphrase of it — a restatement with nothing holding it to

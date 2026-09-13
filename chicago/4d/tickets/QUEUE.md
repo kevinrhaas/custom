@@ -107,7 +107,6 @@
 
 
 
-T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
 # --- the end of band 1." The three directories are transcribed in full; what remains is not
@@ -168,7 +167,6 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- ==========================================================================
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-1106 — The far sward's flower share is a GROUND-COVER mix, and a visitor at fifty metres reads SILHOUETTES — T-0280 cost prairie_west every head past 26 m
-T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
 T-0268 — A building held under the standing constraint says so nowhere a visitor can see
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
