@@ -3,6 +3,37 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 256,
+      "takenAt": "2026-09-13T02:56:43.918Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "d3b0d3b36439",
+      "devCommit": "29cf712da203",
+      "treeHash": "sha256:9e815e20eb46a471",
+      "treeDirty": false,
+      "changelogHash": "sha256:917579045cd35c90",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.7,
+          3.2
+        ]
+      },
+      "source": "/tmp/s3_d12.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "1",
       "parts": [
         1
@@ -1651,40 +1682,6 @@
         ]
       },
       "source": "/tmp/smoke_d_2.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "7-8",
-      "parts": [
-        7,
-        8
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 30,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
-      ],
-      "wallSeconds": 422,
-      "takenAt": "2026-09-12T15:10:45.132Z",
-      "ref": "steward/t-1075-michigan-st-seated",
-      "commit": "d64a3b151b25",
-      "devCommit": "33638aa690ca",
-      "treeHash": "sha256:7b5f7f2ce0ac429b",
-      "treeDirty": false,
-      "changelogHash": "sha256:b8d0838e8ca2c7da",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          4.3,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke_d_1.log"
     },
     {
       "viewport": "mobile",
