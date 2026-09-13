@@ -346,10 +346,65 @@ def _render(entry, indent=4):
     return "\n".join(pad + ln for ln in text.split("\n"))
 
 
+def _entry_spans(text):
+    """`(id, start, end)` for every object in the `streets` array, found by scanning
+    braces rather than by matching the file's style: one committed entry
+    (`fort_bank_track`) is indented unlike the other seventy-six and a shape regex
+    walks straight past it."""
+    i = text.index("[", text.index('"streets"'))
+    spans, depth, start, in_str, esc = [], 0, None, False, False
+    for j in range(i, len(text)):
+        ch = text[j]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+            if depth == 1:
+                start = j
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                spans.append((json.loads(text[start:j + 1])["id"], start, j + 1))
+        elif ch == "]" and depth == 0:
+            break
+    return spans
+
+
+def _reseat(text, entries):
+    """Re-point streets this tool has ALREADY committed, in place, on the same argument
+    _splice makes for appending: the entry is re-rendered, the rest of the file is not
+    touched, and the diff is the lines that moved.
+
+    Until T-1092 a seating tool could only append. That was enough while the
+    registration never changed; when T-1091 put the eleven-point fit in force, every
+    line these tools had seated through the old one stayed where it was and the tools'
+    own --check went red against them. Re-running the generator is how this project
+    moves a derived line, so the generator has to be able to."""
+    at = {sid: (s, e) for sid, s, e in _entry_spans(text)}
+    for entry in sorted(entries, key=lambda e: at[e["id"]][0], reverse=True):
+        s, e = at[entry["id"]]
+        text = text[:s] + _render(entry).lstrip() + text[e:]
+    return text
+
+
 def _splice(text, entries):
     """Append to the array without re-serialising 51 hand-tended entries whose notes run
     to three thousand characters — a writer that re-emits the document changes a thousand
     lines of escaping to add four streets, and a reviewer should not have to read that."""
+    if not entries:
+        # A SECOND `--write` HAS NOTHING TO APPEND, and used to leave a trailing comma
+        # behind that made data/streets/1835.json unparseable — seat_wabansia_streets.py
+        # hit this under T-1086 and guarded it there; T-1092, which re-runs every seating
+        # tool on the adopted registration, hit the same thing here.
+        return text
     tail = re.compile(r'\n  \]\n\}\s*$')
     if not tail.search(text):
         raise SystemExit("data/streets/1835.json does not end in the shape this tool expects")
@@ -401,9 +456,11 @@ def main() -> int:
 
     if a.write:
         fresh = [s for s in out if s["id"] not in by]
-        if fresh:
-            STREETS.write_text(_splice(STREETS.read_text(), fresh))
-            print(f"wrote {STREETS.relative_to(ROOT)} (+{len(fresh)})")
+        seated = [s for s in out if s["id"] in by]
+        text = _reseat(_splice(STREETS.read_text(), fresh), seated)
+        STREETS.write_text(text)
+        print(f"wrote {STREETS.relative_to(ROOT)} "
+              f"(+{len(fresh)}, {len(seated)} re-seated)")
         SEATED.write_text(json.dumps(seating, indent=2, ensure_ascii=False) + "\n")
         print(f"wrote {SEATED.relative_to(ROOT)}")
     return 0

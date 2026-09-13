@@ -2288,12 +2288,34 @@
    "reading": "transcription_mediated",
    "quote": "TJarnes, Hamilton, carpenter, Randolph street, betweeri, Clark and\n  Lasalle street, house Madison street, West of Clark street",
    "normalized": {
-    "printed_name": "TJarnes, Hamilton",
-    "surname": "TJarnes",
+    "printed_name": "Barnes, Hamilton",
+    "surname": "Barnes",
     "given": "Hamilton",
     "firm": false,
     "occupation": "carpenter, Randolph street, betweeri, Clark and Lasalle street",
     "address": "house Madison street, West of Clark street",
+    "surname_repair": {
+     "as_read": "TJarnes,",
+     "reading": "Barnes,",
+     "surname": "Barnes",
+     "why": "the B set as TJ — the bowl of the B broken open and the stem read as a separate letter",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 33,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "43,586,226,546",
+      "reads": "Barnes, Hamilton, carpenter, Randolph street, between Clark and Lasalle street, house Madison street, West of Clark street",
+      "reread": "Barnes — one sort, and the Barnes two lines above is set from the same",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Barnes, Hamilton, carpenter, Randolph st, bet Clark & Lasalle st, house Madison st, West of Clark st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "TJarnes, Hamilton, carpenter, Randolph street, betweeri, Clark and Lasalle street, house Madison street, West of Clark street",
     "section": "directory"
    },
@@ -2308,7 +2330,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "TJarnes, Hamilton"
+    "Barnes, Hamilton"
    ],
    "town_finding": false,
    "notes": null
@@ -2982,12 +3004,34 @@
    "reading": "transcription_mediated",
    "quote": "Bates. John, jr. auction and commission merchant, 174 Lake street\n  house South AVater street (See card)",
    "normalized": {
-    "printed_name": "Bates. John, jr",
-    "surname": "Bates. John",
-    "given": "jr",
+    "printed_name": "Bates, John, jr",
+    "surname": "Bates",
+    "given": "John, jr",
     "firm": false,
     "occupation": "auction and commission merchant, 174 Lake street",
     "address": "house South AVater street (See card)",
+    "surname_repair": {
+     "as_read": "Bates.",
+     "reading": "Bates,",
+     "surname": "Bates",
+     "why": "the separator. The surname reads Bates and the mark after it is a clean point with no tail; the two Bates entries above it set the same comma with one. Read as one surname the entry lost John to the surname and kept `jr` as the forename",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 33,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "61,1837,200,1803",
+      "reads": "Bates. John, jr. auction and commission merchant, 174 Lake street house South Water street (See card)",
+      "reread": "Bates — and a round point, not a comma; the ink is a full stop",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Bates, John, jr., auction & commission merchant, 174 Lake st house South Water st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Bates. John, jr. auction and commission merchant, 174 Lake street house South AVater street (See card)",
     "section": "directory"
    },
@@ -3002,7 +3046,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Bates. John, jr"
+    "Bates, John, jr"
    ],
    "town_finding": false,
    "notes": null
@@ -5100,12 +5144,34 @@
    "reading": "transcription_mediated",
    "quote": "Bolsford, 1. tailor, Wells st. b Randolph and Washington streets",
    "normalized": {
-    "printed_name": "Bolsford",
-    "surname": "Bolsford",
-    "given": null,
+    "printed_name": "Botsford, I",
+    "surname": "Botsford",
+    "given": "I",
     "firm": false,
-    "occupation": "1. tailor, Wells st",
+    "occupation": "tailor, Wells st",
     "address": "b Randolph and Washington streets",
+    "surname_repair": {
+     "as_read": "Bolsford, 1.",
+     "reading": "Botsford, I.",
+     "surname": "Botsford",
+     "why": "the t read as an l, and the initial I set as a figure 1 — which is not a letter, so the entry carried no initial at all and the `1.` went into the trade. The Botsford two lines below is set from the same sorts",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 35,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "53,708,258,670",
+      "reads": "Botsford, I. tailor, Wells st. b Randolph and Washington streets",
+      "reread": "Botsford, I. — the initial is a capital I, serifed top and bottom",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Botsford, I. (or L.?), tailor, Wells st b Randolph & Washington sts"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Bolsford, 1. tailor, Wells st. b Randolph and Washington streets",
     "section": "directory"
    },
@@ -5120,7 +5186,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Bolsford"
+    "Botsford, I"
    ],
    "town_finding": false,
    "notes": null
@@ -8444,12 +8510,34 @@
    "reading": "transcription_mediated",
    "quote": "Buticifit'ld, Jonas, captain, res Franklin st",
    "normalized": {
-    "printed_name": "Buticifit'ld, Jonas",
-    "surname": "Buticifit'ld",
+    "printed_name": "Butterfield, Jonas",
+    "surname": "Butterfield",
     "given": "Jonas",
     "firm": false,
     "occupation": "captain",
     "address": "res Franklin st",
+    "surname_repair": {
+     "as_read": "Buticifit'ld,",
+     "reading": "Butterfield,",
+     "surname": "Butterfield",
+     "why": "characters no compositor set. Four other Butterfields stand around it on the same page, spelled",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 37,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "108,1858,353,1820",
+      "reads": "Butterfield, Jonas, captain, res Franklin st",
+      "reread": "Butterfield — and the four neighbours read the same",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Butterfield, Jonas, captain, res Franklin st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Buticifit'ld, Jonas, captain, res Franklin st",
     "section": "directory"
    },
@@ -8464,7 +8552,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Buticifit'ld, Jonas"
+    "Butterfield, Jonas"
    ],
    "town_finding": false,
    "notes": null
@@ -8635,16 +8723,33 @@
    "reading": "transcription_mediated",
    "quote": "<'ady, Dennis S. Lake Street House, 135 Lake st (Sec card)",
    "normalized": {
-    "printed_name": "ady, Dennis S. Lake",
-    "surname": "ady",
+    "printed_name": "Cady, Dennis S. Lake",
+    "surname": "Cady",
     "given": "Dennis S. Lake",
     "firm": false,
     "occupation": "Street House, 135 Lake st (Sec card)",
     "address": null,
-    "name_overrun": {
-     "refused": "empty_prefix",
-     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
-     "as_split_on_comma": "ady"
+    "surname_repair": {
+     "as_read": "<'ady,",
+     "reading": "Cady,",
+     "surname": "Cady",
+     "why": "the C set as two marks. T-1018 names this entry as its empty_prefix class — clean_head strips the `<'` and the surname read `ady`, so the only Cady the volume prints was filed under a name that is not one",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 37,
+      "leaf_px": [
+       1592,
+       2860
+      ],
+      "word_box": "109,2141,244,2099",
+      "reads": "Cady, Dennis S. Lake Street House, 135 Lake st (See card)",
+      "reread": "Cady — a C with the aperture open at the right, then ady",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Cady, Dennis, S Lake Street House, 135 Lake st"
+     },
+     "ticket": "T-0987"
     },
     "as_printed": "<'ady, Dennis S. Lake Street House, 135 Lake st (Sec card)",
     "section": "directory"
@@ -8660,7 +8765,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "ady, Dennis S. Lake"
+    "Cady, Dennis S. Lake"
    ],
    "town_finding": false,
    "notes": null
@@ -21890,16 +21995,33 @@
    "reading": "transcription_mediated",
    "quote": "Gilmorc. Win. laborer, li N. Branch, n river",
    "normalized": {
-    "printed_name": "Gilmorc, Win",
-    "surname": "Gilmorc",
+    "printed_name": "Gilmore, Win",
+    "surname": "Gilmore",
     "given": "Win",
     "firm": false,
     "occupation": "laborer, li N. Branch, n river",
     "address": null,
-    "name_overrun": {
-     "repaired": true,
-     "name": "Gilmorc. Win.",
-     "as_split_on_comma": "Gilmorc. Win. laborer"
+    "surname_repair": {
+     "as_read": "Gilmorc.",
+     "reading": "Gilmore,",
+     "surname": "Gilmore",
+     "why": "the final e read as a c, and the separator set as a point. The forename survived on T-1018's cap; the surname did not",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 46,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "109,2042,304,2006",
+      "reads": "Gilmore. Wm. laborer, h N. Branch, n river",
+      "reread": "Gilmore — the last letter closes, and the mark after it is a point",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Gilmore, Wm., laborer, h N. Branch, n river"
+     },
+     "ticket": "T-0987"
     },
     "as_printed": "Gilmorc. Win. laborer, li N. Branch, n river",
     "section": "directory"
@@ -21915,7 +22037,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Gilmorc, Win"
+    "Gilmore, Win"
    ],
    "town_finding": false,
    "notes": null
@@ -23651,16 +23773,33 @@
    "reading": "transcription_mediated",
    "quote": "(JrisivoM. David D. res D. S. Griswold's",
    "normalized": {
-    "printed_name": "JrisivoM, David D",
-    "surname": "JrisivoM",
+    "printed_name": "Griswold, David D",
+    "surname": "Griswold",
     "given": "David D",
     "firm": false,
     "occupation": null,
     "address": "res D. S. Griswold's",
-    "name_overrun": {
-     "repaired": true,
-     "name": "JrisivoM. David D.",
-     "as_split_on_comma": "JrisivoM. David D. res D. S. Griswold's"
+    "surname_repair": {
+     "as_read": "(JrisivoM.",
+     "reading": "Griswold,",
+     "surname": "Griswold",
+     "why": "characters no compositor set. Three other Griswolds stand around it on the same page, spelled, and the entry's own address names a fourth",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 47,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "138,2487,348,2452",
+      "reads": "Griswold, David D. res D. S. Griswold's",
+      "reread": "Griswold — and the D. S. Griswold's it gives as an address is set from the same sorts two lines above",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Griswold, David D., res D.S. Griswold's"
+     },
+     "ticket": "T-0987"
     },
     "as_printed": "(JrisivoM. David D. res D. S. Griswold's",
     "section": "directory"
@@ -23676,7 +23815,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "JrisivoM, David D"
+    "Griswold, David D"
    ],
    "town_finding": false,
    "notes": null
@@ -24188,12 +24327,34 @@
    "reading": "transcription_mediated",
    "quote": "Hagcman,, turner, at Blair's",
    "normalized": {
-    "printed_name": "Hagcman",
-    "surname": "Hagcman",
+    "printed_name": "Hageman",
+    "surname": "Hageman",
     "given": null,
     "firm": false,
     "occupation": "turner, at Blair's",
     "address": null,
+    "surname_repair": {
+     "as_read": "Hagcman,,",
+     "reading": "Hageman,",
+     "surname": "Hageman",
+     "why": "the e read as a c, and the em rule the compositor set for the missing forename read as a second comma. Two other Hagemans stand above it",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 48,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "75,1053,280,1011",
+      "reads": "Hageman, ———, turner, at Blair's",
+      "reread": "Hageman — and the mark after the comma is a rule, not a name",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Hageman, -- (sic), turner, at Blair's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Hagcman,, turner, at Blair's",
     "section": "directory"
    },
@@ -24208,7 +24369,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hagcman"
+    "Hageman"
    ],
    "town_finding": false,
    "notes": null
@@ -26464,12 +26625,34 @@
    "reading": "transcription_mediated",
    "quote": "Hi^gins, E. milk dealer, Canal st. 3d ward",
    "normalized": {
-    "printed_name": "Hi^gins, E",
-    "surname": "Hi^gins",
+    "printed_name": "Higgins, E",
+    "surname": "Higgins",
     "given": "E",
     "firm": false,
     "occupation": "milk dealer, Canal st. 3d ward",
     "address": null,
+    "surname_repair": {
+     "as_read": "Hi^gins,",
+     "reading": "Higgins,",
+     "surname": "Higgins",
+     "why": "a caret for the first g. The Higgins on the two lines below are spelled",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 49,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "121,2182,312,2141",
+      "reads": "Higgins, E. milk dealer, Canal st. 3d ward",
+      "reread": "Higgins — two g's, and the neighbours read the same",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Higgins, F., milder dealer, Canal st 3d ward"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Hi^gins, E. milk dealer, Canal st. 3d ward",
     "section": "directory"
    },
@@ -26484,7 +26667,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hi^gins, E"
+    "Higgins, E"
    ],
    "town_finding": false,
    "notes": null
@@ -27642,12 +27825,34 @@
    "reading": "transcription_mediated",
    "quote": "Hjolrnes, Mrs. house Lasalle street, b Washington and Madison",
    "normalized": {
-    "printed_name": "Hjolrnes, Mrs",
-    "surname": "Hjolrnes",
+    "printed_name": "Holmes, Mrs",
+    "surname": "Holmes",
     "given": "Mrs",
     "firm": false,
     "occupation": null,
     "address": "house Lasalle street, b Washington and Madison",
+    "surname_repair": {
+     "as_read": "Hjolrnes,",
+     "reading": "Holmes,",
+     "surname": "Holmes",
+     "why": "characters no compositor set — an rn for the m, and a j struck into the o. Three other Holmeses stand above it on the same page",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 50,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "79,1855,268,1817",
+      "reads": "Holmes, Mrs. house Lasalle street, b Washington and Madison",
+      "reread": "Holmes — and the address reads Madison, which is where the second hand reads Clinton; the committed reading has that right",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Holmes, Mrs, house Lasalle st, b Washington and Clinton"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Hjolrnes, Mrs. house Lasalle street, b Washington and Madison",
     "section": "directory"
    },
@@ -27662,7 +27867,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hjolrnes, Mrs"
+    "Holmes, Mrs"
    ],
    "town_finding": false,
    "notes": null
@@ -28949,12 +29154,34 @@
    "reading": "transcription_mediated",
    "quote": "Hasted, H. H. clothing store, 9?i| Lake, res at F. C. Sherman's—\n  (See card)",
    "normalized": {
-    "printed_name": "Hasted, H. H",
-    "surname": "Hasted",
+    "printed_name": "Husted, H. H",
+    "surname": "Husted",
     "given": "H. H",
     "firm": false,
     "occupation": "clothing store, 9?i| Lake",
     "address": "res at F. C. Sherman's— (See card)",
+    "surname_repair": {
+     "as_read": "Hasted,",
+     "reading": "Husted,",
+     "surname": "Husted",
+     "why": "the u read as an a",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 51,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "128,1664,305,1626",
+      "reads": "Husted, H. H. clothing store, 97½ Lake, res at F. C. Sherman's— (See card)",
+      "reread": "Husted — the second letter has no crossbar and closes at the foot",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Husted, H.H., clothing store, 97 ½ Lake, res at F.C. Sherman's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Hasted, H. H. clothing store, 9?i| Lake, res at F. C. Sherman's— (See card)",
     "section": "directory"
    },
@@ -28969,7 +29196,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hasted, H. H"
+    "Husted, H. H"
    ],
    "town_finding": false,
    "notes": null
@@ -30664,12 +30891,34 @@
    "reading": "transcription_mediated",
    "quote": "Jofies, Tarlcton, lumber merchant, S. W. st, at bridge, res Mrs.\n  Green's (See card)",
    "normalized": {
-    "printed_name": "Jofies, Tarlcton",
-    "surname": "Jofies",
+    "printed_name": "Jones, Tarlcton",
+    "surname": "Jones",
     "given": "Tarlcton",
     "firm": false,
     "occupation": "lumber merchant, S. W. st, at bridge",
     "address": "res Mrs. Green's (See card)",
+    "surname_repair": {
+     "as_read": "Jofies,",
+     "reading": "Jones,",
+     "surname": "Jones",
+     "why": "the n read as fi. Five other Joneses stand around it on the same page",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 52,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "66,2014,224,1975",
+      "reads": "Jones, Tarleton, lumber merchant, S. W. st, at bridge, res Mrs. Green's (See card)",
+      "reread": "Jones — and the Jones on the line above is set from the same sorts",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Jones, Tarleton, lumber merchant, S.W. st, at bridge, res Mrs. Green's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Jofies, Tarlcton, lumber merchant, S. W. st, at bridge, res Mrs. Green's (See card)",
     "section": "directory"
    },
@@ -30684,7 +30933,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Jofies, Tarlcton"
+    "Jones, Tarlcton"
    ],
    "town_finding": false,
    "notes": null
@@ -35835,12 +36084,34 @@
    "reading": "transcription_mediated",
    "quote": "JYIcCanny,, clerk, at H. M. Stow's",
    "normalized": {
-    "printed_name": "JYIcCanny",
-    "surname": "JYIcCanny",
+    "printed_name": "McCanny",
+    "surname": "McCanny",
     "given": null,
     "firm": false,
     "occupation": "clerk, at H. M. Stow's",
     "address": null,
+    "surname_repair": {
+     "as_read": "JYIcCanny,,",
+     "reading": "McCanny,",
+     "surname": "McCanny",
+     "why": "the M set as JYI, and the em rule for the missing forename read as a second comma. Three McCartys and a McCarthy stand above it",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 56,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "72,569,283,525",
+      "reads": "McCanny, ———, clerk, at H. M. Stow's",
+      "reread": "McCanny — an M, then a small-capital c; the mark after the comma is a rule",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "McCanny, ---(sic), clerk, at H.M. Stow's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "JYIcCanny,, clerk, at H. M. Stow's",
     "section": "directory"
    },
@@ -35855,7 +36126,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "JYIcCanny"
+    "McCanny"
    ],
    "town_finding": false,
    "notes": null
@@ -43750,12 +44021,34 @@
    "reading": "transcription_mediated",
    "quote": "Patient,res Mrs. Green's",
    "normalized": {
-    "printed_name": "Patient",
-    "surname": "Patient",
+    "printed_name": "Pattent",
+    "surname": "Pattent",
     "given": null,
     "firm": false,
     "occupation": null,
     "address": "res Mrs. Green's",
+    "surname_repair": {
+     "as_read": "Patient,",
+     "reading": "Pattent,",
+     "surname": "Pattent",
+     "why": "the second t read as an i, which turns the surname into an English word and hides it. Pattee and Patten stand on the two lines above",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 61,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "134,795,291,757",
+      "reads": "Pattent, ——— res Mrs. Green's",
+      "reread": "Pattent — the fourth letter is a t with its crossbar",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Pattent, -- (sic), res Mrs. Green's"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Patient,res Mrs. Green's",
     "section": "directory"
    },
@@ -43770,7 +44063,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Patient"
+    "Pattent"
    ],
    "town_finding": false,
    "notes": null
@@ -48145,12 +48438,34 @@
    "reading": "transcription_mediated",
    "quote": "Ryat). John, boaniing house. South Water street",
    "normalized": {
-    "printed_name": "Ryat). John",
-    "surname": "Ryat). John",
-    "given": null,
+    "printed_name": "Ryan, John",
+    "surname": "Ryan",
+    "given": "John",
     "firm": false,
     "occupation": "boaniing",
     "address": "house. South Water street",
+    "surname_repair": {
+     "as_read": "Ryat).",
+     "reading": "Ryan,",
+     "surname": "Ryan",
+     "why": "the n welded to the comma and read as `t)`. Read as one surname the entry lost John to the surname and kept `boaniing` as the trade. The Ryan on the line above is set from the same sorts",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 63,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "135,2586,270,2543",
+      "reads": "Ryan, John, boarding house, South Water street",
+      "reread": "Ryan — and the mark after it carries a tail, unlike Bates and Gilmore",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Ryan, John, boarding house, South Water st"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "Ryat). John, boaniing house. South Water street",
     "section": "directory"
    },
@@ -48165,7 +48480,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Ryat). John"
+    "Ryan, John"
    ],
    "town_finding": false,
    "notes": null
@@ -60411,12 +60726,34 @@
    "reading": "transcription_mediated",
    "quote": "\"Woodbnry. Hiram, clerk, at T. W. Salisbury's",
    "normalized": {
-    "printed_name": "Woodbnry. Hiram",
-    "surname": "Woodbnry. Hiram",
-    "given": null,
+    "printed_name": "Woodbury, Hiram",
+    "surname": "Woodbury",
+    "given": "Hiram",
     "firm": false,
     "occupation": "clerk, at T. W. Salisbury's",
     "address": null,
+    "surname_repair": {
+     "as_read": "\"Woodbnry.",
+     "reading": "Woodbury,",
+     "surname": "Woodbury",
+     "why": "the u read as an n, and the separator set as a point. Read as one surname the entry lost Hiram to the surname and carried no forename. The Woodbury on the line above is spelled",
+     "confidence": "documented",
+     "evidence": {
+      "source": "the archive.org scan the OCR is itself made from, item generaldirectory19norr. Each line was located by its own word coordinates in generaldirectory19norr_djvu.xml, cropped from the page image on that bounding box, enlarged and read by eye. The page images are at https://archive.org/download/generaldirectory19norr/page/leafNN.jpg.",
+      "coordinate_space": "The word box is this leaf's own OBJECT coordinates in generaldirectory19norr_djvu.xml, left,bottom,right,top, and leaf_px is the pixel size of leafNN.jpg, which is that same space. The leaves of this scan are NOT all one size — do not carry one leaf's dimensions to another.",
+      "leaf": 71,
+      "leaf_px": [
+       1564,
+       2912
+      ],
+      "word_box": "99,2300,361,2254",
+      "reads": "Woodbury. Hiram, clerk, at T. W. Salisbury's",
+      "reread": "Woodbury — and a round point after it, as Bates and Gilmore set",
+      "reread_by": "T-0987 stretch 10, read off the leaf image cropped on the word box recorded with the row, against the second hand rather than on its say-so.",
+      "second_reading": "Woodbury, A.J., clerk, at Bristol & Porter's house Monroe st (the second hand reads the line ABOVE this one; both entries stand in the committed text)"
+     },
+     "ticket": "T-0987"
+    },
     "as_printed": "\"Woodbnry. Hiram, clerk, at T. W. Salisbury's",
     "section": "directory"
    },
@@ -60431,7 +60768,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Woodbnry. Hiram"
+    "Woodbury, Hiram"
    ],
    "town_finding": false,
    "notes": null

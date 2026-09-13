@@ -133,6 +133,18 @@ WELDED_OF = [
 ]
 
 
+# HEALED AT THE SOURCE (T-0987 stretch 10). Three of T-1018's sixty-nine no longer
+# read past the end of their name, because the reason they did was a destroyed
+# surname and SURNAME_IMAGE_REPAIRS lifts it before the comma is ever walked. They
+# are kept by id rather than deleted: T-1018's classification of them was right when
+# it was made, and the ratchet now asserts the opposite — that they carry NO overrun —
+# so a repair that stops firing is caught here as well as in its own table.
+OVERRUN_HEALED = {
+    "n1844_e0276": "empty_prefix",        # <'ady, Dennis S. — the C read as two marks
+    "n1844_e0700": "repaired",            # Gilmorc. Win. laborer
+    "n1844_e0756": "repaired",            # JrisivoM. David D. res D. S. Griswold's
+}
+
 def header_like(line: str) -> bool:
     """A running head: short, and either shouting or mostly scanner noise."""
     s = line.strip()
@@ -219,11 +231,9 @@ OVERRUN_CLASSES = {
     "n1844_e0550": "repaired",            # Eachus. Virgil H. tailor
     "n1844_e0574": "repaired",            # Enos Wra. C. jr. at A. Clyburn's
     "n1844_e0615": "repaired",            # Flint. Mrs. house Adams st. b Clinton and Jefferson sfs
-    "n1844_e0700": "repaired",            # Gilmorc. Win. laborer
     "n1844_e0706": "repaired",            # Godnrd. H. B. clerk
     "n1844_e0749": "repaired",            # Greyhnn. W. hostler
     "n1844_e0754": "repaired",            # Griswold. Clns. E. clerk
-    "n1844_e0756": "repaired",            # JrisivoM. David D. res D. S. Griswold's
     "n1844_e0795": "repaired",            # Harmon Charles L. dry goods and groceries
     "n1844_e0918": "repaired",            # Hugunin. L. C. at United States Hotel
     "n1844_e0942": "repaired",            # Jeffries. Gco. warehouse man
@@ -280,7 +290,6 @@ OVERRUN_CLASSES = {
     "n1844_e1937": "split_surname",       # Woi thinglnm
     # --- empty_prefix
     "n1844_e0009": "empty_prefix",        # house Clark street (See card)
-    "n1844_e0276": "empty_prefix",        # ady
     "n1844_e0278": "empty_prefix",        # ilhoun
     "n1844_e0771": "empty_prefix",        # llageman
     "n1844_e1637": "empty_prefix",        # v; Smith
@@ -336,6 +345,7 @@ def still_the_name(tok: str, toks, i: int) -> bool:
 
 def split_entry(text: str):
     """name / occupation / address, best effort, out of one printed entry."""
+    text, surname_repair = repair_surname(text)
     head, head_repair = repair_welded_of(clean_head(text))
     prefix = name_prefix(head)
     firm = bool(FIRM.search(" ".join(prefix) + ","))
@@ -428,6 +438,8 @@ def split_entry(text: str):
     }
     if head_repair:
         out["head_repair"] = head_repair
+    if surname_repair:
+        out["surname_repair"] = surname_repair
     if overrun:
         out["name_overrun"] = overrun
     return out
@@ -591,6 +603,243 @@ REPAIR_SOURCE = ("Kim Torp's transcription of Norris 1844 for genealogytrails.co
                  "(\u00a9 2002), cached at data/research/genealogytrails/text/ by "
                  "tools/read_genealogytrails.py --fetch. An independent hand, typed "
                  "from a different copy of the same printed book.")
+
+
+# THE SURNAME THE CROSSWALK CANNOT SEE (T-0987 stretch 10)
+#
+# `crosswalk_norris_1844.py` reaches an 1835 person through the SURNAME and nothing
+# else: a fold, then the first initial. So a surname the scanner destroyed does not
+# make a bad match — it makes NO match, and no refusal either. The entry is not in
+# the pool at all, and nothing downstream can tell the difference between a name the
+# volume does not print and a name it prints that this reading could not read.
+#
+# `data/research/directories/second_readings/norris_1844_genealogytrails.json` is where
+# they were found — it had held them since T-0576 and nothing had gone back to it.
+# That file is a COMPARISON of the committed reading against Kim Torp's independent
+# transcription, and its own README says a reconciliation lands in `../claims/` and is
+# said there. Of its 67 disagreeing entries, 25 disagree about the SURNAME. Every one of the 25 was cropped from the archive.org page image on its own
+# word box and read by eye — the same discipline as IMAGE_REPAIRS above, and the same
+# citation fields, so a reader can go back to the ink.
+#
+# WHAT THE INK SAID, in three classes:
+#
+#   sixteen repaired (below). The scanner set a character no compositor did —
+#   `Buticifit'ld` for Butterfield, `(JrisivoM` for Griswold, `Hjolrnes` for Holmes,
+#   `JYIcCanny` for McCanny — or a letter for its neighbour: `Bolsford`, `Hasted`,
+#   `Patient`, `Gilmorc`. The image prints the second hand's reading in all fourteen.
+#
+#   two UPHELD, and they matter as much. `Sealey, George` and `Kautenburger, Peter`
+#   are where Kim Torp is wrong and the OCR is right; the image prints Sealey and
+#   Kautenburger. Nothing is repaired and the rows are kept, because a reconciliation
+#   that only ever moved toward the second hand would not be a reading of the page.
+#
+#   seven left alone. Four are firms whose ampersand the scanner set as `<fc`, `it`,
+#   `6c` or `A;` — T-1018 refuses that class by name and files it as its own ruling
+#   about firm/person classification, and this stretch does not smuggle it in. Two are
+#   firms the ampersand DID reach, `Moseley & SIcCord` and `Whit'mc, Magill & Co.`,
+#   whose garbled span the firm branch never reads and no crosswalk ever sees. One,
+#   `Jones, K. K.`, has the surname right already and disagrees only about a speck in
+#   the left margin, which `clean_head` was written to drop.
+#
+# THREE OF THE FOURTEEN ALSO LOSE THE FORENAME, and that is the separator. Norris sets
+# `Surname, Given`; this printing sets a proportion of those commas with the tail
+# unprinted, and the image shows a clean round point after Bates, Gilmore and
+# Woodbury. T-1018's cap catches most of that class, but not where the run-on is only
+# two words long — `Bates. John` read as one surname with a given name of `jr`,
+# `Woodbnry. Hiram` with no given name at all, and `Ryat). John` with a trade of
+# `boaniing`. The surname is DOCUMENTED, read off the image. That the point stands
+# where the format sets a comma is INFERRED, and the reasoning is that a surname is
+# never abbreviated, so a stop immediately after one cannot be an abbreviation point.
+#
+# THE REPAIR MOVES THE READING ONLY. `quote` and `normalized.as_printed` keep the
+# damage, exactly as T-0695 and T-0903 do, and every repaired claim states both
+# readings in `normalized.surname_repair`. `as_read` is the head of the printed line
+# and `--self-test` fails if a row stops matching exactly one entry.
+SURNAME_IMAGE_REPAIRS = [
+    {"as_read": "TJarnes,", "reading": "Barnes,", "surname": "Barnes", "leaf": 33,
+     "leaf_px": [1592, 2860], "word_box": "43,586,226,546",
+     "reads": "Barnes, Hamilton, carpenter, Randolph street, between Clark and "
+              "Lasalle street, house Madison street, West of Clark street",
+     "why": "the B set as TJ — the bowl of the B broken open and the stem read as a "
+            "separate letter",
+     "reread": "Barnes — one sort, and the Barnes two lines above is set from the same",
+     "second_reading": "Barnes, Hamilton, carpenter, Randolph st, bet Clark & Lasalle "
+                       "st, house Madison st, West of Clark st"},
+    {"as_read": "Bates.", "reading": "Bates,", "surname": "Bates", "leaf": 33, "separator": True,
+     "leaf_px": [1592, 2860], "word_box": "61,1837,200,1803",
+     "reads": "Bates. John, jr. auction and commission merchant, 174 Lake street "
+              "house South Water street (See card)",
+     "why": "the separator. The surname reads Bates and the mark after it is a clean "
+            "point with no tail; the two Bates entries above it set the same comma "
+            "with one. Read as one surname the entry lost John to the surname and "
+            "kept `jr` as the forename",
+     "reread": "Bates — and a round point, not a comma; the ink is a full stop",
+     "second_reading": "Bates, John, jr., auction & commission merchant, 174 Lake st "
+                       "house South Water st"},
+    {"as_read": "Bolsford, 1.", "reading": "Botsford, I.", "surname": "Botsford",
+     "leaf": 35, "leaf_px": [1592, 2860], "word_box": "53,708,258,670",
+     "reads": "Botsford, I. tailor, Wells st. b Randolph and Washington streets",
+     "why": "the t read as an l, and the initial I set as a figure 1 — which is not a "
+            "letter, so the entry carried no initial at all and the `1.` went into "
+            "the trade. The Botsford two lines below is set from the same sorts",
+     "reread": "Botsford, I. — the initial is a capital I, serifed top and bottom",
+     "second_reading": "Botsford, I. (or L.?), tailor, Wells st b Randolph & "
+                       "Washington sts"},
+    {"as_read": "Buticifit'ld,", "reading": "Butterfield,", "surname": "Butterfield",
+     "leaf": 37, "leaf_px": [1592, 2860], "word_box": "108,1858,353,1820",
+     "reads": "Butterfield, Jonas, captain, res Franklin st",
+     "why": "characters no compositor set. Four other Butterfields stand around it on "
+            "the same page, spelled",
+     "reread": "Butterfield — and the four neighbours read the same",
+     "second_reading": "Butterfield, Jonas, captain, res Franklin st"},
+    {"as_read": "<'ady,", "reading": "Cady,", "surname": "Cady", "leaf": 37,
+     "leaf_px": [1592, 2860], "word_box": "109,2141,244,2099",
+     "reads": "Cady, Dennis S. Lake Street House, 135 Lake st (See card)",
+     "why": "the C set as two marks. T-1018 names this entry as its empty_prefix "
+            "class — clean_head strips the `<'` and the surname read `ady`, so the "
+            "only Cady the volume prints was filed under a name that is not one",
+     "reread": "Cady — a C with the aperture open at the right, then ady",
+     "second_reading": "Cady, Dennis, S Lake Street House, 135 Lake st"},
+    {"as_read": "Gilmorc.", "reading": "Gilmore,", "surname": "Gilmore", "leaf": 46, "separator": True,
+     "leaf_px": [1564, 2912], "word_box": "109,2042,304,2006",
+     "reads": "Gilmore. Wm. laborer, h N. Branch, n river",
+     "why": "the final e read as a c, and the separator set as a point. The forename "
+            "survived on T-1018's cap; the surname did not",
+     "reread": "Gilmore — the last letter closes, and the mark after it is a point",
+     "second_reading": "Gilmore, Wm., laborer, h N. Branch, n river"},
+    {"as_read": "(JrisivoM.", "reading": "Griswold,", "surname": "Griswold", "leaf": 47, "separator": True,
+     "leaf_px": [1564, 2912], "word_box": "138,2487,348,2452",
+     "reads": "Griswold, David D. res D. S. Griswold's",
+     "why": "characters no compositor set. Three other Griswolds stand around it on "
+            "the same page, spelled, and the entry's own address names a fourth",
+     "reread": "Griswold — and the D. S. Griswold's it gives as an address is set "
+               "from the same sorts two lines above",
+     "second_reading": "Griswold, David D., res D.S. Griswold's"},
+    {"as_read": "Hagcman,,", "reading": "Hageman,", "surname": "Hageman", "leaf": 48,
+     "leaf_px": [1564, 2912], "word_box": "75,1053,280,1011",
+     "reads": "Hageman, ———, turner, at Blair's",
+     "why": "the e read as a c, and the em rule the compositor set for the missing "
+            "forename read as a second comma. Two other Hagemans stand above it",
+     "reread": "Hageman — and the mark after the comma is a rule, not a name",
+     "second_reading": "Hageman, -- (sic), turner, at Blair's"},
+    {"as_read": "Hi^gins,", "reading": "Higgins,", "surname": "Higgins", "leaf": 49,
+     "leaf_px": [1564, 2912], "word_box": "121,2182,312,2141",
+     "reads": "Higgins, E. milk dealer, Canal st. 3d ward",
+     "why": "a caret for the first g. The Higgins on the two lines below are spelled",
+     "reread": "Higgins — two g's, and the neighbours read the same",
+     "second_reading": "Higgins, F., milder dealer, Canal st 3d ward"},
+    {"as_read": "Hjolrnes,", "reading": "Holmes,", "surname": "Holmes", "leaf": 50,
+     "leaf_px": [1564, 2912], "word_box": "79,1855,268,1817",
+     "reads": "Holmes, Mrs. house Lasalle street, b Washington and Madison",
+     "why": "characters no compositor set — an rn for the m, and a j struck into the "
+            "o. Three other Holmeses stand above it on the same page",
+     "reread": "Holmes — and the address reads Madison, which is where the second "
+               "hand reads Clinton; the committed reading has that right",
+     "second_reading": "Holmes, Mrs, house Lasalle st, b Washington and Clinton"},
+    {"as_read": "Hasted,", "reading": "Husted,", "surname": "Husted", "leaf": 51,
+     "leaf_px": [1564, 2912], "word_box": "128,1664,305,1626",
+     "reads": "Husted, H. H. clothing store, 97½ Lake, res at F. C. Sherman's— "
+              "(See card)",
+     "why": "the u read as an a",
+     "reread": "Husted — the second letter has no crossbar and closes at the foot",
+     "second_reading": "Husted, H.H., clothing store, 97 ½ Lake, res at F.C. "
+                       "Sherman's"},
+    {"as_read": "Jofies,", "reading": "Jones,", "surname": "Jones", "leaf": 52,
+     "leaf_px": [1564, 2912], "word_box": "66,2014,224,1975",
+     "reads": "Jones, Tarleton, lumber merchant, S. W. st, at bridge, res Mrs. "
+              "Green's (See card)",
+     "why": "the n read as fi. Five other Joneses stand around it on the same page",
+     "reread": "Jones — and the Jones on the line above is set from the same sorts",
+     "second_reading": "Jones, Tarleton, lumber merchant, S.W. st, at bridge, res "
+                       "Mrs. Green's"},
+    {"as_read": "JYIcCanny,,", "reading": "McCanny,", "surname": "McCanny", "leaf": 56,
+     "leaf_px": [1564, 2912], "word_box": "72,569,283,525",
+     "reads": "McCanny, ———, clerk, at H. M. Stow's",
+     "why": "the M set as JYI, and the em rule for the missing forename read as a "
+            "second comma. Three McCartys and a McCarthy stand above it",
+     "reread": "McCanny — an M, then a small-capital c; the mark after the comma is "
+               "a rule",
+     "second_reading": "McCanny, ---(sic), clerk, at H.M. Stow's"},
+    {"as_read": "Patient,", "reading": "Pattent,", "surname": "Pattent", "leaf": 61,
+     "leaf_px": [1564, 2912], "word_box": "134,795,291,757",
+     "reads": "Pattent, ——— res Mrs. Green's",
+     "why": "the second t read as an i, which turns the surname into an English word "
+            "and hides it. Pattee and Patten stand on the two lines above",
+     "reread": "Pattent — the fourth letter is a t with its crossbar",
+     "second_reading": "Pattent, -- (sic), res Mrs. Green's"},
+    {"as_read": "Ryat).", "reading": "Ryan,", "surname": "Ryan", "leaf": 63, "separator": True,
+     "leaf_px": [1564, 2912], "word_box": "135,2586,270,2543",
+     "reads": "Ryan, John, boarding house, South Water street",
+     "why": "the n welded to the comma and read as `t)`. Read as one surname the "
+            "entry lost John to the surname and kept `boaniing` as the trade. The "
+            "Ryan on the line above is set from the same sorts",
+     "reread": "Ryan — and the mark after it carries a tail, unlike Bates and Gilmore",
+     "second_reading": "Ryan, John, boarding house, South Water st"},
+    {"as_read": "\"Woodbnry.", "reading": "Woodbury,", "surname": "Woodbury", "leaf": 71, "separator": True,
+     "leaf_px": [1564, 2912], "word_box": "99,2300,361,2254",
+     "reads": "Woodbury. Hiram, clerk, at T. W. Salisbury's",
+     "why": "the u read as an n, and the separator set as a point. Read as one "
+            "surname the entry lost Hiram to the surname and carried no forename. "
+            "The Woodbury on the line above is spelled",
+     "reread": "Woodbury — and a round point after it, as Bates and Gilmore set",
+     "second_reading": "Woodbury, A.J., clerk, at Bristol & Porter's house Monroe st "
+                       "(the second hand reads the line ABOVE this one; both entries "
+                       "stand in the committed text)"},
+]
+
+# WHERE THE SECOND HAND IS WRONG. Read off the same images, on the same terms, and
+# kept because a reconciliation that only ever moved one way would not be a reading.
+SURNAME_UPHELD = [
+    {"as_read": "Sealey,", "surname": "Sealey", "leaf": 64, "leaf_px": [1564, 2912],
+     "reads": "Sealey, George, grocer, S. Water st",
+     "why": "Kim Torp reads `Scaley (Sealy?)` and says so with her own query. The "
+            "image prints Sealey: an e in the second position, and the y carries the "
+            "ey of the fifth and sixth. The committed reading stands",
+     "second_reading": "Scaley (Sealy?), George, grocer, S. Water st"},
+    {"as_read": "Kautenburger,", "surname": "Kautenburger", "leaf": 73,
+     "leaf_px": [1564, 2912],
+     "reads": "Kautenburger, Peter, laborer, \" \" \"",
+     "why": "Kim Torp reads Kantenburger. The image prints Kautenburger, with a u. "
+            "Her line also expands this entry's three ditto marks to `house Dutch "
+            "Settlement`, which is what the two entries above it print and what the "
+            "marks carry — that reading is not disputed and is not a surname, so "
+            "it is recorded here and not applied",
+     "second_reading": "Kantenburger, Peter, laborer, house Dutch Settlement"},
+]
+
+SURNAME_IMAGE_SOURCE = IMAGE_SOURCE
+SURNAME_REREAD_BY = ("T-0987 stretch 10, read off the leaf image cropped on the word "
+                     "box recorded with the row, against the second hand rather than "
+                     "on its say-so.")
+
+
+def repair_surname(text: str):
+    """Lift a surname the scanner destroyed, BEFORE the head is cleaned or split, so
+    the comma walk and the firm test both see the name the page prints. Returns
+    (text, repair record or None) — the caller keeps the damage in `quote`."""
+    stripped = text.lstrip()
+    for row in SURNAME_IMAGE_REPAIRS:
+        if stripped.startswith(row["as_read"]):
+            return stripped.replace(row["as_read"], row["reading"], 1), {
+                "as_read": row["as_read"],
+                "reading": row["reading"],
+                "surname": row["surname"],
+                "why": row["why"],
+                "confidence": "documented",
+                "evidence": {
+                    "source": SURNAME_IMAGE_SOURCE,
+                    "coordinate_space": COORDINATE_SPACE,
+                    "leaf": row["leaf"],
+                    "leaf_px": row["leaf_px"],
+                    "word_box": row["word_box"],
+                    "reads": row["reads"],
+                    "reread": row["reread"],
+                    "reread_by": SURNAME_REREAD_BY,
+                    "second_reading": row["second_reading"],
+                },
+                "ticket": "T-0987",
+            }
+    return text, None
 
 
 def repair_welded_of(head):
@@ -919,6 +1168,14 @@ def self_test():
         if got != want:
             fired.append("%s was %s by T-1018 and now reads %r — the line moved under "
                          "the classifier" % (cid, want, got))
+    for cid, was in OVERRUN_HEALED.items():
+        c = by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in OVERRUN_HEALED and is not in the reading" % cid)
+        elif c["normalized"].get("name_overrun"):
+            fired.append("%s was %s by T-1018 and healed by the surname read off the "
+                         "page image; it reads past the end of its name again"
+                         % (cid, was))
     seen = {c["id"] for c in claims if c["normalized"].get("name_overrun")}
     for cid in sorted(seen - set(OVERRUN_CLASSES)):
         fired.append("%s reads past the end of its name with no row in OVERRUN_CLASSES: "
@@ -966,6 +1223,34 @@ def self_test():
                          "without a space and still closes the name"
                          % (c["id"], n["given"]))
 
+    # T-0987 stretch 10. Every surname read off the page image must still be reading
+    # the line it was read off. The ratchet is the same as the forename repairs': a
+    # row that stops matching exactly one entry is a re-map that moved a line, and it
+    # fails the build rather than writing the wrong surname onto the wrong man.
+    for row in SURNAME_IMAGE_REPAIRS:
+        hit = [c for c in claims
+               if (c["normalized"].get("surname_repair") or {}).get("as_read")
+               == row["as_read"]]
+        if len(hit) != 1:
+            fired.append("the surname repair %r fires on %d entries, not 1"
+                         % (row["as_read"], len(hit)))
+            continue
+        if hit[0]["normalized"].get("surname") != row["surname"]:
+            fired.append("%s reads a surname of %r after the repair, not %r"
+                         % (hit[0]["id"], hit[0]["normalized"].get("surname"),
+                            row["surname"]))
+        if row["as_read"] not in hit[0]["quote"]:
+            fired.append("%s no longer quotes %r — the damage the repair asserts is "
+                         "not in the committed text" % (hit[0]["id"], row["as_read"]))
+    for row in SURNAME_UPHELD:
+        hit = [c for c in claims
+               if c["normalized"].get("surname") == row["surname"]
+               and row["as_read"] in c["quote"]]
+        if len(hit) != 1:
+            fired.append("the upheld surname %r stands on %d entries, not 1 — the "
+                         "committed reading it upholds has moved"
+                         % (row["surname"], len(hit)))
+
     if fired:
         for line in fired:
             print("  " + line, file=sys.stderr)
@@ -980,11 +1265,17 @@ def self_test():
     print("norris 1844 --self-test: %d printed lines hold the three split rules, and "
           "no entry in %d begins an address at a capital or keeps an unspaced comma "
           "inside a forename" % (len(SPLIT_CASES), len(claims)))
+    print("norris 1844 --self-test: %d surnames read off the page image on their own "
+          "word box, %d of them carrying the name separator away with them; %d places the second hand is "
+          "wrong and the committed reading stands"
+          % (len(SURNAME_IMAGE_REPAIRS),
+             sum(1 for r in SURNAME_IMAGE_REPAIRS if r.get("separator")),
+             len(SURNAME_UPHELD)))
     print("norris 1844 --self-test: %d names read past the end of the name — %d capped "
-          "at the prefix, %s"
-          % (len(OVERRUN_CLASSES), tally["repaired"],
+          "at the prefix, %s, and %d healed at the source"
+          % (len(OVERRUN_CLASSES) + len(OVERRUN_HEALED), tally["repaired"],
              ", ".join("%d refused %s" % (n, k) for k, n in sorted(tally.items())
-                       if k != "repaired")))
+                       if k != "repaired"), len(OVERRUN_HEALED)))
     return 0
 
 

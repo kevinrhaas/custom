@@ -20,10 +20,11 @@ in milliseconds. It asserts three different KINDS of claim:
                     sheet's own JPEG header still says 5050 x 6628 at 600 dpi
                     (parsed here rather than through Pillow, so the gate has no
                     import that can make it skip — see T-1083 on why that matters)
-  the fit           every number `fit` and `scan_to_scan` state re-derives from the
-                    coefficients and the eight control points: each GCP's residual,
-                    the RMS, the axis scales, the rotation, the axis-scale
-                    difference, and which point departs most between the two scans
+  the fit           every number `fit`, `retained_fit` and `scan_to_scan` state
+                    re-derives from the coefficients and the control points: each
+                    control point's residual, the RMS, the axis scales, the rotation,
+                    the axis-scale difference, and which point departs most between
+                    the two scans
   the sheet         the scale bar's px-per-foot re-fits from its committed tick
                     columns, and each lacuna's ground extent re-derives from its box
 
@@ -31,6 +32,17 @@ The EXPENSIVE half — re-locating the eight correspondences off the raster by
 normalised cross-correlation — is the deliberate second tier, exactly as
 `trace_river.py` splits `--check-properties` from a full re-trace. Nothing here
 re-picks a point; it holds the picked ones to the fit they were used to build.
+
+SINCE T-1091 THE FIT IN FORCE IS FITTED ON ELEVEN POINTS, not eight: the eight
+crossings in `gcps[]` plus the School Section's other three corners, which live in
+the file `fit.control.extra_points_file` names because they are weaker and
+differently sourced. The gate scores the fit against ALL of its control and holds
+`fit.rms_m_on_the_eight` and `fit.rms_m_on_the_three_corners` separately, so the
+2.20 m the adoption cost the original eight stays visible rather than averaged away.
+The superseded eight-point fit is kept as `retained_fit` — seated traces are still
+carried through it until T-1092 re-seats them, and the three corner pixels were
+recovered by inverting it — so it is held to its own arithmetic too, against
+`gcps[].residual_m_in_retained_8pt_fit`.
 
 WHEN THE WORKING COPY IS ABSENT the raster lives outside this app's subtree, in
 `chicago/pre_fire_v1/`, where the owner placed it. The three raster assertions then
@@ -208,32 +220,96 @@ def check_properties(doc: dict | None = None, source: dict | None = None) -> int
         bad.append(f"the control points do not carry distinct ids: {ids}")
     fit = doc.get("fit") or {}
     coeffs = fit.get("coefficients") or {}
+
+    def shape(label, block, scale_key="scale_m_per_px"):
+        """The three numbers any affine here states about itself."""
+        c = block["coefficients"]
+        sx = math.hypot(c["a"], c["d"])
+        sy = math.hypot(c["b"], c["e"])
+        scale = block.get(scale_key) or {}
+        near(f"{label}.{scale_key}.x", scale.get("x"), sx, TOL_SCALE)
+        near(f"{label}.{scale_key}.y", scale.get("y"), sy, TOL_SCALE)
+        near(f"{label}.rotation_deg", block.get("rotation_deg"),
+             math.degrees(math.atan2(c["d"], c["a"])), TOL_DEG)
+        # Stated against the MEAN of the two axis scales, which is how the 5.2 the
+        # retained fit carries is reached; against x it would read 5.34.
+        near(f"{label}.axis_scale_difference_pct", block.get("axis_scale_difference_pct"),
+             (sy - sx) / ((sx + sy) / 2) * 100, TOL_PCT)
+
+    # T-1091. The fit in force is fitted on eleven points and only eight of them are in
+    # this file; the other three are named by fit.control.extra_points_file, and a gate
+    # that scored the fit on the eight alone would demand the wrong RMS and would go
+    # quiet the moment somebody dropped the corners out of the control.
+    extra = []
+    extra_path = ((fit.get("control") or {}).get("extra_points_file") or "").strip()
+    if extra_path:
+        ep = ROOT / extra_path
+        if not ep.exists():
+            bad.append(f"fit.control.extra_points_file: {extra_path} is not committed")
+        else:
+            extra = (json.loads(ep.read_text()).get("corners") or [])
+            if not extra:
+                bad.append(f"fit.control.extra_points_file: {extra_path} names no corners")
+    stated_points = (fit.get("control") or {}).get("points")
+    if stated_points is not None and stated_points != len(gcps) + len(extra):
+        bad.append(f"fit.control.points: committed {stated_points} != "
+                   f"{len(gcps) + len(extra)} points actually in the control")
+
     if sorted(coeffs) != list("abcdef"):
         bad.append(f"fit.coefficients: {sorted(coeffs)} is not a,b,c,d,e,f")
     elif not gcps:
         bad.append("the registration carries no control points")
     else:
+        def residual(point, coefficients):
+            px, py = point["pixel"]
+            east, north = _apply(coefficients, px, py)
+            modern = point.get("modern") or {}
+            return math.hypot(east - modern["utm_e"], north - modern["utm_n"])
+
         residuals = []
         for g in gcps:
-            px, py = g["pixel"]
-            east, north = _apply(coeffs, px, py)
-            modern = g.get("modern") or {}
-            r = math.hypot(east - modern["utm_e"], north - modern["utm_n"])
+            r = residual(g, coeffs)
             residuals.append(r)
             near(f"gcp {g.get('id')} residual_m", g.get("residual_m"), r, TOL_RESIDUAL_M)
-        near("fit.rms_m", fit.get("rms_m"), _rms(residuals), TOL_RESIDUAL_M)
+        corner_residuals = []
+        for c in extra:
+            r = residual(c, coeffs)
+            corner_residuals.append(r)
+            near(f"control point {c.get('id')} residual_m", c.get("residual_m"), r,
+                 TOL_RESIDUAL_M)
+        near("fit.rms_m", fit.get("rms_m"), _rms(residuals + corner_residuals),
+             TOL_RESIDUAL_M)
+        # Held apart on purpose: the eleven-point fit costs 2.20 m of RMS on the eight
+        # it was refitted from, and that price is the whole argument of the adoption.
+        # Averaged into one number it disappears.
+        if "rms_m_on_the_eight" in fit:
+            near("fit.rms_m_on_the_eight", fit["rms_m_on_the_eight"], _rms(residuals),
+                 TOL_RESIDUAL_M)
+        if "rms_m_on_the_three_corners" in fit and corner_residuals:
+            near("fit.rms_m_on_the_three_corners", fit["rms_m_on_the_three_corners"],
+                 _rms(corner_residuals), TOL_RESIDUAL_M)
 
-        scale = fit.get("scale_m_per_px") or {}
-        sx = math.hypot(coeffs["a"], coeffs["d"])
-        sy = math.hypot(coeffs["b"], coeffs["e"])
-        near("fit.scale_m_per_px.x", scale.get("x"), sx, TOL_SCALE)
-        near("fit.scale_m_per_px.y", scale.get("y"), sy, TOL_SCALE)
-        near("fit.rotation_deg", fit.get("rotation_deg"),
-             math.degrees(math.atan2(coeffs["d"], coeffs["a"])), TOL_DEG)
-        # Stated against the MEAN of the two axis scales, which is how the 5.2 in
-        # the file is reached; against x it would read 5.34.
-        near("fit.axis_scale_difference_pct", fit.get("axis_scale_difference_pct"),
-             (sy - sx) / ((sx + sy) / 2) * 100, TOL_PCT)
+        shape("fit", fit)
+
+        # ---- the superseded fit, kept because things are still carried through it --
+        retained = doc.get("retained_fit") or {}
+        if retained:
+            rc = retained.get("coefficients") or {}
+            if sorted(rc) != list("abcdef"):
+                bad.append(f"retained_fit.coefficients: {sorted(rc)} is not a,b,c,d,e,f")
+            else:
+                if rc == coeffs:
+                    bad.append("retained_fit.coefficients: identical to the fit in "
+                               "force, so nothing is actually retained")
+                kept = []
+                for g in gcps:
+                    r = residual(g, rc)
+                    kept.append(r)
+                    near(f"gcp {g.get('id')} residual_m_in_retained_8pt_fit",
+                         g.get("residual_m_in_retained_8pt_fit"), r, TOL_RESIDUAL_M)
+                near("retained_fit.rms_m", retained.get("rms_m"), _rms(kept),
+                     TOL_RESIDUAL_M)
+                shape("retained_fit", retained)
 
     # ---- the two scans ----------------------------------------------------
     s2s = doc.get("scan_to_scan") or {}
@@ -298,8 +374,10 @@ def check_properties(doc: dict | None = None, source: dict | None = None) -> int
         print("FAIL", line)
     if not bad:
         print(f"OK   the Wright NARA registration re-derives "
-              f"({len(gcps)} control points, rms {fit.get('rms_m')} m, "
-              f"{len(lac)} lacunae)"
+              f"({len(gcps) + len(extra)} control points, rms {fit.get('rms_m')} m, "
+              f"{len(lac)} lacunae"
+              + (f", retained 8pt fit rms {doc['retained_fit'].get('rms_m')} m"
+                 if doc.get("retained_fit") else "") + ")"
               + (f" — {len(skipped)} raster assertion(s) skipped" if skipped else ""))
     return 1 if bad else 0
 
@@ -361,6 +439,24 @@ def self_test() -> int:
         ("two control points minted with one id",
          lambda d, s: d["gcps"][1].update(id="G1"),
          "distinct ids"),
+        # T-1091's four: the eleven-point fit, its two split RMS figures, and the
+        # retained eight-point block that seated traces are still carried through.
+        ("the three foot-control corners dropped out of the stated control",
+         lambda d, s: d["fit"]["control"].update(points=8),
+         "fit.control.points"),
+        ("the price the adoption paid on the original eight talked down",
+         lambda d, s: d["fit"].update(rms_m_on_the_eight=16.19),
+         "fit.rms_m_on_the_eight"),
+        ("a nudged coefficient in the retained fit",
+         lambda d, s: d["retained_fit"]["coefficients"].update(e=-0.73),
+         "retained_fit.rms_m"),
+        ("the retained fit quietly replaced by the one in force",
+         lambda d, s: d["retained_fit"].update(
+             coefficients=copy.deepcopy(d["fit"]["coefficients"])),
+         "nothing is actually retained"),
+        ("a hand-edited residual under the retained fit",
+         lambda d, s: d["gcps"][0].update(residual_m_in_retained_8pt_fit=1.0),
+         "residual_m_in_retained_8pt_fit"),
     ]
 
     failures = 0

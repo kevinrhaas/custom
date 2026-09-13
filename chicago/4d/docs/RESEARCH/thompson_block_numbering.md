@@ -116,6 +116,85 @@ Division past Clinton, and 14–15 on the North Branch's west bank** — no comm
 reaches either, so no crop can be cut, and reading them by eye is the method this file was
 rebuilt to replace. That remainder is T-1095.
 
+## 0c. The West Division, all eighteen of it (T-1098, out of T-1095)
+
+**2026-09-13.** The eighteen numerals west of the South Branch — **8-13, 22-27, 46-51** — were the
+last of the fifty-eight still refused, and they were refused for a reason the § 0 method cannot
+argue with: *a crop is CUT from committed street lines, and the grid did not reach the West
+Division*. This section is about how that stopped being true, because the answer was not to draw
+new streets.
+
+### The three kinds of side
+
+| side | blocks | what it is |
+|---|---|---|
+| committed | 8, 13, 23, 50 outright; every box's east or west somewhere | `clinton` and `canal` run the length of the division; `kinzie`/`kinzie_west` and `madison` reach its whole width |
+| continued | every box's north and south | `carroll`, `fulton`, `lake`, `randolph`, `washington` are committed but CLIPPED at east −320 m, and each is continued west along the bearing of its own committed path. The clip is this reconstruction's extent, not a claim the street ended there — `fulton`'s own note says so |
+| stepped | the Jefferson and Des Plaines flanks; the river side of 22 and 51 | `clinton` stepped one and two modules west, and `canal` one module east |
+
+The stepped flanks are the interesting ones, and they are stepped rather than drawn **because this
+project has already refused to draw them**. `docs/RESEARCH/west_division_streets.md` § 2 refuses
+Jefferson Street and Des Plaines Street outright: both lie wholly west of the modelled ground's edge
+at east −320 m, and a street hung off the end of the terrain is the same fault this repository
+already fails a *block* for. That refusal stands. Nothing here writes a line into
+`data/streets/1835.json`; the step is a computation used to cut a crop, exactly as T-1094's
+southward continuation was, and it is stated so a reader can disagree with it.
+
+### What licences the step — three agreements, all from control already committed
+
+| check | figure |
+|---|---|
+| `clinton` + one module against the committed `canal`, at Lake Street | **0.46 m** |
+| the same, at the scene's south edge | **2.34 m** |
+| `clinton` − one module against Jefferson × Fulton (OSM 262247424, committed in `fulton`'s note) | **8.70 m** |
+| `clinton` − two modules against Des Plaines × Fulton (OSM 258966841, same note) | **8.22 m** |
+
+The module is 123.36 m — the mean spacing of the Original Town's seven flanking lines at Madison
+Street, the figure T-1088 and T-1094 each measured independently a kilometre away. The first two
+rows are the step reproducing a line this repository already holds. The last two are it landing
+eight metres west of two surviving intersections, **both to the same side**: a seat with a bias, not
+a scatter, and eight metres on a 123 m module is a quarter of the 17.5 m RMS the georeference itself
+carries. The gate re-measures all four and fails if any exceeds 15 m.
+
+`tools/read_west_division_numerals.py` cuts the boxes and `tools/check.sh` runs its `--check` and
+`--self-test`.
+
+### The eighteen, and the run they make
+
+| band, west → east | direction |
+|---|---|
+| Kinzie–Carroll: **10 9 8** │ the North Branch │ 7 6 5 4 3 2 1 | falls eastward |
+| Carroll–Fulton: **11 12 13** | rises eastward |
+| Fulton–Lake: **25 24 23 22** | falls eastward |
+| Lake–Randolph: **26 27** 28 29 | rises eastward |
+| Randolph–Washington: **47 46** 45 44 43 | falls eastward |
+| Washington–Madison: **48 49 50 51** 52 … 58 | rises eastward |
+
+Bold is what this ticket read; the rest is what T-0788, T-1088 and T-1094 had already read in the
+same bands. **That is the reading's own check, and it is a hard one.** The alternation § 0b first
+tested in advance now has to survive six more bands, and in four of them this ticket's numbers have
+to JOIN a run somebody else read from different crops: 26 27 into 28 29, 47 46 into 45 44 43, 48 49
+50 51 into 52, and 10 9 8 into the North Division's 7 across the water. A numeral misread, or a box
+cut onto the wrong block, breaks that join. The tool asserts it and the gate runs the assertion.
+
+Eighteen boxes cut from committed lines, eighteen numerals landing inside them, **no overhang
+anywhere** — where the Washington–Madison tier had one block whose glyph ran past its own edge.
+
+### What is left: two blocks, and a collision
+
+Fifty-six of fifty-eight. **14 and 15** remain, and T-1099 owns them. The Carroll–Fulton band does
+not stop at Canal Street, so 14 is the block east of 13, across the North Branch — and no committed
+line reaches it either: `market_north` and its six neighbours all stop between north +108 and
++126 m, a hundred metres short of the band, and nothing carries Carroll or Fulton over the water.
+
+One thing found on the way is worth more than the numeral. A glyph reading as 14 stands at raster
+px 1464, 1697 — local east +24.6, north +83.8 — and that point is **inside the box § 0a cites for
+block 7** (`1376,1452,178,298`), whose own numeral was read two hundred pixels north of it. Two
+block numerals cannot stand in one block. Either that column is two blocks and § 0a's box is too
+tall, or one of the two readings is wrong; it is the one box in the North Division tier whose south
+side is not a street but "the southern endpoint of the flanking platted lines, where they stop at
+the river", and T-1099 is where it gets tested.
+
 ## 0. Superseded in the best way: the numerals were there all along
 
 **2026-09-06, T-0788.** Everything below §§ 1–3 stands as the record of how six blocks got
@@ -349,6 +428,7 @@ it has not paid for.
   on a survey sheet, and everything that could not be counted is refused in writing.
 - **Not a cadastre.** No lot is owned and no lot is claimed to be the lot a particular building
   stood on. § 7 is a report of where this dataset's own buildings fall, not a title.
-- **Not the whole plat.** Thirty-eight blocks of fifty-eight — six when this memo was written,
-  another eighteen read in § 0, the North Division's seven in § 0a and the Washington–Madison
-  tier's seven in § 0b. The twenty still unread are refused there, by name.
+- **Not the whole plat.** Fifty-six blocks of fifty-eight — six when this memo was written,
+  another eighteen read in § 0, the North Division's seven in § 0a, the Washington–Madison tier's
+  seven in § 0b and the West Division's eighteen in § 0c. The two still unread, 14 and 15, are
+  refused there, by name.

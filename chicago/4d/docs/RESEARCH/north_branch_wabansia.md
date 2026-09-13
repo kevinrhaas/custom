@@ -170,10 +170,16 @@ There is no seam here and no fragment to put back. What stands between the bank 
 ink is 17 to 19 px of **coloured wash** — `dark` 26 to 67, `tint` 12 to 61 against a tolerance
 of 7 — so no path exists that does not cross something Wright drew, and `seam_wash` correctly
 declines. Reading it as bank would be precisely the error `hue_tol` 7 exists to prevent (§ 3:
-93 m into Wabansia's platted lots). **The sheet cannot support better until that colour is
-identified**, which is the tract layer's question and not the trace's — filed against T-0792.
-The 51 rows are left short, stated here, and not graded up to cover: the water polygon carries
-`uncertainty_m: 20` like its neighbours and these rows exceed it.
+93 m into Wabansia's platted lots). The 51 rows are left short, stated here, and not graded up
+to cover: the water polygon carries `uncertainty_m: 20` like its neighbours and these rows
+exceed it.
+
+**T-1082 asked the legend what that colour is, and the answer is that it is not one of the
+nine.** § 5a has the reading; the short version is that the band lies on no chip's dilution ray
+— the nearest comes 21.0 RGB units off it, and only at t 3.4, which is three times the solid
+swatch and not a dilution at all — and it is not the reach's own bank wash either (21.3 off,
+t 1.22). So the stretch is not held open waiting on the tract layer any more. The reading is
+the one the ticket predicted: **the sheet does not draw a bank there**, and the rows stay short.
 
 ### the leak test, which is the one that could have gone badly
 
@@ -201,8 +207,131 @@ used as written: that p90 is the EAST bank's, and the west bank already stood 14
 its own inked line before anything was repaired.
 
 The west bank's five remaining outside-the-ink stretches — 707–710, 715–717, 922–939, 948–951
-and 1247–1251, the west side of the splice — have the same cause as the east bank's survivor: a
-coloured wash between the grey bank wash and the ink. They go to the same ticket.
+and 1247–1251, the west side of the splice — were filed here as having the same cause as the
+east bank's survivor: a coloured wash between the grey bank wash and the ink. **Measured, they
+do not** (T-1082, § 5a). Three of the five are the reach's own grey bank wash laid a little
+heavier, one is a legend wash, and the last is three pixels of ink shoulder. None of them is
+the east stretch's colour, and no boundary moves for any of them.
+
+## 5a. What the wash is — the legend asked, on the sheet the band is actually on
+
+**Read:** 2026-09-13 · **Ticket:** T-1082 · **Tool:**
+`tools/read_north_branch_bank_wash.py` · **Record:**
+`data/traces/north_branch_bank_wash.json` · **Gated:** `tools/check.sh`, offline
+
+```
+python3 tools/read_north_branch_bank_wash.py --report            print the reading
+python3 tools/read_north_branch_bank_wash.py --build             re-read both rasters
+python3 tools/read_north_branch_bank_wash.py --check-properties  the gate; no raster, no network
+```
+
+### The thing that had to be settled first: the two sheets are two different colour records
+
+`tools/read_wright_legend_swatches.py` read Wright's nine legend chips on the **National
+Archives / Historic Urban Plans facsimile**, because at 600 dpi a chip is 54 px wide there.
+Every stretch in question is located on the **Boston Public Library master** and nowhere else.
+Carrying the facsimile's answer across fails twice, and both failures are measured:
+
+* **Position.** Of the 116 coloured bands the facsimile reading committed, the nearest to any
+  of these six stretches is **235 m** away, and the nearest to the east stretch — the one this
+  ticket was opened on — is **481 m**. The facsimile's band map has nothing on this reach at
+  all. (It could not have: the two sheets' affines carry 16.0 m and 17.5 m of RMS, so moving a
+  17 px band between them costs about 33 px of positional uncertainty, twice the feature.)
+* **Colour.** The same nine chips are **not the same nine colours**:
+
+  | chip | the legend says | master | facsimile | apart |
+  |---|---|---|---|---|
+  | 1 | U.S. Military Reservation | 213, 194, 161 | 44, 65, 93 | **223** |
+  | 2 | Surveyed by Canal Com. in 1830 | 226, 179, 161 | 176, 68, 48 | 166 |
+  | 3 | Wabansia, surveyed in 1831 | 100, 123, 129 | 145, 38, 14 | 150 |
+  | 4 | Kinzie's Addition, surveyed 1833 | 186, 182, 124 | 54, 44, 29 | 213 |
+  | 5 | School Section, surveyed 1833 | 223, 185, 78 | 218, 136, 26 | 72 |
+  | 6 | Surveyed ——— 1833, no tract named | 115, 134, 113 | 70, 67, 40 | 109 |
+  | 7 | Fractional Section 15 | 102, 149, 144 | 135, 37, 11 | 177 |
+  | 8 | Surveyed in 1833, no tract named | 217, 77, 64 | 180, 112, 39 | 57 |
+  | 9 | Part of Canal Section No. 9 | 207, 133, 96 | 57, 50, 23 | 186 |
+
+  Chip 1 is **bare paper** on the master and deep blue on the facsimile. The facsimile is a
+  reprint and its publisher's inks are not Wright's washes. Neither reading is wrong; they are
+  readings of two different objects, and **a wash on the master must be matched against the
+  master's chips**. So this tool reads the legend again, off the master, at interior
+  x 2682–2732 and the nine row runs the column's own darkness gives (stable at luminance 200,
+  205 and 210). Grouped at the facsimile reading's own 35-unit threshold the master's chips
+  fall into six separable colours as well, but **different** ones: `{1,2} {3,6,7} {4} {5} {8}
+  {9}`. Nothing here revises the facsimile reading, which stays correct about its own sheet.
+
+### How a wash is matched to a chip: the dilution ray, not the distance
+
+A legend chip is a solid swatch; the ground is the same pigment laid thin. On the master the
+ground washes sit 40 to 120 RGB units from their own chip **for being diluted**, so
+nearest-colour — the facsimile reading's rule, which its uniform reprint inks justify — matches
+nothing on this reach. What survives dilution is DIRECTION: a wash of chip *k* laid over paper
+*p* lies on the ray *p → k*, a fraction *t* along it. Each band is projected onto every
+reference's ray and carries two numbers: the perpendicular residual (is this the pigment?) and
+*t* (how thin?). A band is that pigment when the residual is under **12 RGB units** and *t* is
+in **(0.05, 1.25]** — below, it is bare paper and the direction is noise; above, it is darker
+than the solid swatch itself. The references are the nine chips **and the reach's own grey bank
+wash**, because "this is just the bank shading" is a live answer and had to be able to win.
+
+An assignment names the **class**, never the chip: the classes are exactly what the chips can
+separate, and this file refuses past them the same way the facsimile reading does.
+
+### The six stretches
+
+Band = the pixels between the traced boundary and the nearest ink, ink excluded. Paper is the
+local unwashed paper beside each stretch. `perp`/`t` are of the best reference's ray.
+
+| stretch | band | width | dark / tint | band RGB | best ray | perp | t | verdict |
+|---|---|---|---|---|---|---|---|---|
+| **east 728–779** | 886 px | 17.0 px | 41.7 / 26.1 | 182, 149, 121 | chip 1 | **21.0** | 3.38 | **not identified** |
+| west 707–710 | 49 px | 12.2 px | 22.9 / 8.0 | 172, 161, 143 | bank wash | 2.7 | 1.05 | the bank wash |
+| west 715–717 | 21 px | 7.0 px | 24.3 / 8.1 | 167, 156, 138 | bank wash | 2.3 | 1.19 | the bank wash |
+| west 922–939 | 74 px | 4.1 px | 36.4 / 41.3 | 170, 172, 169 | chip 3 | 6.4 | 0.40 | class {3, 6, 7} |
+| west 948–951 | 22 px | 5.5 px | 45.6 / 3.8 | 164, 155, 140 | bank wash | 6.5 | 1.17 | the bank wash |
+| west 1247–1251 | 3 px | 0.6 px | 90.2 / 8.9 | 120, 119, 101 | bank wash | 9.1 | 2.35 | **not identified** |
+
+**The east stretch, which is the ticket's own question, is refused.** No reference's ray comes
+within 21 RGB units of it, and the one that comes closest needs *t* 3.38 — three times the
+solid swatch, which is not a dilution. It is not the bank wash either (21.3, *t* 1.22). Its own
+colour says what it is not: against its paper it reads (−40, −58, −62), a near-neutral brown,
+where every chip that could plausibly wash this ground departs its paper far harder in one
+channel. The colour is not one of the nine, and this file does not guess a tenth.
+
+**Three of the five west stretches are the grey bank wash.** Residuals 2.3, 2.7 and 6.5 against
+a nearest rival ray of 10.2 — Wright's own bank shading, laid at *t* 1.05 to 1.19, a little
+heavier than the reach's median. They are **not** the coloured-wash fault § 5 filed them under.
+Their `tint` medians say the same thing from the other side: 8.0, 8.1 and 3.8 against a
+tolerance of 7, which is the tolerance's own margin rather than a colour. What they are is the
+opposite fault — bank wash brushed a few pixels past Wright's pen line, which is why the
+boundary there stands OUTSIDE the ink by 0.7 to 10.0 m rather than short of it.
+
+**One is a legend wash.** Rows 922–939 sit 6.4 off chip 3's ray at *t* 0.40, inside class
+{3, 6, 7} — Wabansia 1831, the unnamed 1833 survey, or Fractional Section 15. The class is as
+far as the chips go, and separating within it is the tract layer's polygon work (T-1097), not
+a colour's. Either way it is ground with a name, which is exactly what `hue_tol` 7 refuses to
+draw a bank over.
+
+**One is three pixels** on the splice row, where the boundary already stands 2.1 m outside the
+ink (§ 2). At *t* 2.35 it is twice the bank wash's strength: an ink shoulder, not a wash. The
+rule refuses it for having nothing to read rather than for what it is.
+
+### What moves, and what does not
+
+**Nothing in the trace.** Every stretch either refuses identification or lands on ground with a
+name, and both answers leave the boundary where it is. `tools/measure_north_branch_banks.py
+--check` was re-run against the committed baseline and reproduces it exactly — east median
+1.42 m, p90 6.40, 51 rows over 10 m; west median 2.85, 34 rows outside the ink, worst 9.96 m,
+0 rows worse than before.
+
+**`LEAK_BUDGET_M` stays at 14.23.** T-1082 offers to bring the ratchet down "if the west bank
+improves", and it has not: no boundary moved this pass. The committed post-repair worst is
+9.96 m, so there is 4.27 m of headroom a future pass may claim — but claiming it for work that
+did not move a pixel would tighten a gate on someone else's measurement.
+
+**Both refusals are gated.** `check.sh` fails if a future edit ever makes the two sheets' chips
+agree, or puts a facsimile band within 100 m of this reach, or identifies the east stretch's
+colour without this note moving with it — because those are the three things the reading above
+rests on, and a refusal that is not gated is a refusal that quietly expires.
 
 ## 6. What the northern end is
 
@@ -228,5 +357,7 @@ three on the survey limit, and the trace prints both counts on every run.
 
 * **No terrain.** The heightfield box stops far south of here; this is planform only.
 * **No bathymetry, no crests, no revetment**, and no claim about the bank's material.
-* **Nothing east of the river.** The unplatted ground Wright washes salmon on that side is a
-  tract question (T-0792), not a water one.
+* **Nothing east of the river.** The unplatted ground Wright washes on that side is a tract
+  question (T-0792), not a water one — and § 5a now says what the colour along its edge is
+  *not*: measured on the master, it is none of the legend's nine at any dilution, so calling
+  it "salmon", as this note did until T-1082, was an eye's word and not a reading.

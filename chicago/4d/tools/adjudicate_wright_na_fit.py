@@ -19,7 +19,9 @@ scored against the same four.
 
 THE MODELS, all least-squares, all fitted here rather than copied:
 
-  M0  the committed eight-point global affine — the incumbent.
+  M0  the eight-point global affine T-0787 published — the incumbent until T-1091,
+      and `retained_fit` in the registration since. Seated traces are still carried
+      through it, so it is read from there rather than refitted.
   M1  an eleven-point affine: the same eight, plus the section's north-west,
       south-west and south-east corners. Those three are PLSS section corners of
       sections 8/9/16/17, 16/17/20/21 and 15/16/21/22, T39N R14E, still crossings on
@@ -34,10 +36,22 @@ THE TEST each model is scored on: RMS against the eight original control points,
 against all eleven, leave-one-out RMS on its own control, and the section's measured
 mile in both axes carried through the model.
 
-WHAT THIS TOOL DOES NOT DO. It does not adopt anything. The committed fit is read,
-never written: the adjudication is a measurement, and the displacement table below
-says what adopting a model would cost the traces already keyed to this sheet. The
-datum is not at risk either way — `tools/rederive_datum.py` derives it from
+WHAT THIS TOOL DOES NOT DO. It does not adopt anything, and it never writes the
+registration. T-1091 adopted M1 by hand, on this measurement; what changed here is
+only WHERE THE TABLE IS MEASURED FROM. The displacement table used to be measured
+from M0, because M0 was the fit in force; it is now measured from the fit in force,
+which is M1, so each row still answers the one question it is for — what would move
+if this model were adopted TODAY. M0 is one of the candidates now, and its row is
+the cost of going back.
+
+TWO THINGS DELIBERATELY STILL READ THE RETAINED FIT, and getting either wrong would
+silently move the evidence. The section's four corner pixels are recovered by
+INVERTING the fit T-0797's line table was measured through, which is the retained
+eight-point one and not the one in force; invert the wrong fit and the "raw evidence"
+moves with whatever it is being used to test. And M2 is defined as the retained fit
+with its y pre-scaled, because that is the repair the ticket named.
+
+The datum is not at risk either way — `tools/rederive_datum.py` derives it from
 `wright_1834_gcps.json`, the BPL master, and never reads this sheet.
 
     python3 tools/adjudicate_wright_na_fit.py            re-measure and print
@@ -61,6 +75,11 @@ SECTION_PATH = "data/traces/vectors/school_section_blocks_1834.json"
 RECORD_PATH = "data/traces/gcp/wright_1834_nara_hup_fit_adjudication.json"
 
 MILE_M = 1609.344
+
+# The two model keys the rest of the file has to agree with itself about: the fit
+# T-0787 published and T-1091 retained, and the one T-1091 put in force.
+M0 = "M0_retained_affine_8pt"
+IN_FORCE = "M1_affine_11pt_foot_control"
 
 # Traces keyed to THIS sheet's pixel space. Every pixel reading in each is carried
 # through the candidate models to measure what adopting one would move.
@@ -188,16 +207,30 @@ def invert_affine(coef):
     return inverse
 
 
+def retained_coefficients(gcp):
+    """The eight-point affine T-0787 published, wherever it currently lives.
+
+    It was `fit` until T-1091 and is `retained_fit` after it. Read through one
+    accessor so the two things that must keep using it — the corner recovery below
+    and M2 — cannot drift apart from each other or from the file.
+    """
+    block = gcp.get("retained_fit") or gcp["fit"]
+    return block["coefficients"]
+
+
 def section_corner_pixels():
     """The section's four corner intersections, in NA pixel space.
 
-    Recovered by inverting the committed fit on T-0797's measured line table. The
-    table is local ENU; the fit is UTM; the datum carries between them.
+    Recovered by inverting THE FIT THE LINE TABLE WAS MEASURED THROUGH — T-0797 read
+    it through the eight-point fit, which is `retained_fit` now — on that table. The
+    table is local ENU; the fit is UTM; the datum carries between them. Inverting the
+    fit in force instead would move these four pixels every time the registration
+    changed, and they are the fit-independent evidence every model here is scored on.
     """
     gcp = load(GCP_PATH)
     datum = load("data/datum.json")
     sec = load(SECTION_PATH)
-    c = gcp["fit"]["coefficients"]
+    c = retained_coefficients(gcp)
     inverse = invert_affine((c["a"], c["b"], c["c"], c["d"], c["e"], c["f"]))
     oE, oN = datum["origin_utm_e"], datum["origin_utm_n"]
 
@@ -230,23 +263,30 @@ def section_own_scales(corners):
     ns_px = (span("NW", "SW") + span("NE", "SE")) / 2
     sx, sy = MILE_M / ew_px, MILE_M / ns_px
     fit = gcp["fit"]["scale_m_per_px"]
+    retained = (gcp.get("retained_fit") or gcp["fit"])
     return dict(
         east_west_span_px=round(ew_px, 2),
         north_south_span_px=round(ns_px, 2),
         implied_m_per_px=dict(x=round(sx, 5), y=round(sy, 5)),
-        committed_fit_m_per_px=dict(x=fit["x"], y=fit["y"]),
+        fit_in_force_m_per_px=dict(x=fit["x"], y=fit["y"]),
+        retained_8pt_fit_m_per_px=dict(x=retained["scale_m_per_px"]["x"],
+                                       y=retained["scale_m_per_px"]["y"]),
         fit_departure_pct=dict(x=round(100 * (fit["x"] - sx) / sx, 3),
                                y=round(100 * (fit["y"] - sy) / sy, 3)),
         anisotropy_pct=dict(
             the_section_says=round(100 * (sy / sx - 1), 2),
-            the_committed_fit_says=gcp["fit"]["axis_scale_difference_pct"]),
+            the_fit_in_force_says=gcp["fit"]["axis_scale_difference_pct"],
+            the_retained_8pt_fit_said=retained["axis_scale_difference_pct"]),
         reading=(
-            "The paper IS anisotropic and the fit overstates it. The section's own square "
-            "makes the sheet 1.9 per cent longer per pixel in y than in x; the eight-point "
-            "fit makes it 5.2 per cent. On the x axis the fit and the section agree to three "
-            "tenths of one per cent over a mile. On the y axis the fit is three per cent "
-            "long — and the section lies entirely BELOW every one of the eight control "
-            "points, so that three per cent is an extrapolation error, not a fitting error."),
+            "The paper IS anisotropic and the eight-point fit overstated it. The section's "
+            "own square makes the sheet 1.9 per cent longer per pixel in y than in x; the "
+            "eight-point fit made it 5.2 per cent, and the eleven-point fit T-1091 adopted "
+            "makes it 2.2. On the x axis every one of the three agrees with the section to "
+            "under half of one per cent over a mile. The y axis is the whole argument, and "
+            "the reason the old number was wrong is that the section lies entirely BELOW "
+            "every one of the eight control points: it was an extrapolation error, not a "
+            "fitting error, which is why control at the sheet's foot mends it and a uniform "
+            "rescale does not."),
     )
 
 
@@ -339,35 +379,40 @@ def displacement_table(base, candidates):
 # ---------------------------------------------------------------------------------
 def measure():
     gcp = load(GCP_PATH)
-    c = gcp["fit"]["coefficients"]
-    incumbent = (c["a"], c["b"], c["c"], c["d"], c["e"], c["f"])
+    c = retained_coefficients(gcp)
+    retained = (c["a"], c["b"], c["c"], c["d"], c["e"], c["f"])
+    f = gcp["fit"]["coefficients"]
+    in_force = (f["a"], f["b"], f["c"], f["d"], f["e"], f["f"])
     corners, spans = section_corner_pixels()
     eight, three, eleven = control_sets()
     g1 = next(g for g in gcp["gcps"] if g["id"] == "G1")["pixel"]
 
     models = {}
 
-    # M0 — read, not refitted, so the record is about the committed transform.
-    m0_coef = ([incumbent[0], incumbent[1], incumbent[2]],
-               [incumbent[3], incumbent[4], incumbent[5]])
-    models["M0_committed_affine_8pt"] = dict(
+    # M0 — read, not refitted, so the record is about the transform T-0787 published
+    # and the seated traces are still carried through.
+    m0_coef = ([retained[0], retained[1], retained[2]],
+               [retained[3], retained[4], retained[5]])
+    models[M0] = dict(
         terms=affine_terms, forward=make_forward(m0_coef, affine_terms),
         control=eight, coef=m0_coef, refitted=False)
-    # M0 IS the least-squares fit of the eight — this run reproduces its committed
+    # M0 IS the least-squares fit of the eight — this run reproduces its published
     # 16.19 m RMS from the control alone — so its leave-one-out is meaningful and is
-    # the honest number the candidates have to beat.
-    models["M0_committed_affine_8pt"]["refitted"] = True
+    # the honest number the candidates had to beat.
+    models[M0]["refitted"] = True
 
     # M1 — the same form, eleven points, control at the sheet's foot.
     m1_coef = fit_model(eleven, affine_terms)
-    models["M1_affine_11pt_foot_control"] = dict(
+    models[IN_FORCE] = dict(
         terms=affine_terms, forward=make_forward(m1_coef, affine_terms),
         control=eleven, coef=m1_coef, refitted=True)
 
-    # M2 — the y-scale correction the ticket names, about G1.
+    # M2 — the y-scale correction the ticket names, about G1. Defined on the RETAINED
+    # fit, because "M0 with its y rescaled" is the repair that was proposed; rebasing
+    # it on the fit in force would be a different, untested model wearing M2's name.
     k = MILE_M / spans["measured_ns"]
-    m2_coef = y_scaled(incumbent, g1, k)
-    models["M2_committed_affine_y_rescaled"] = dict(
+    m2_coef = y_scaled(retained, g1, k)
+    models["M2_retained_affine_y_rescaled"] = dict(
         terms=affine_terms, forward=make_forward(m2_coef, affine_terms),
         control=eight, coef=m2_coef, refitted=False, y_scale_factor=round(k, 6))
 
@@ -405,20 +450,40 @@ def measure():
             E=[round(v, 9) for v in m["coef"][0]], N=[round(v, 9) for v in m["coef"][1]])
         report[name] = entry
 
+    # THE TABLE IS MEASURED FROM THE FIT IN FORCE (T-1091), not from M0: what a reader
+    # needs is what would move if a model were adopted from where the project stands
+    # today. The fit in force is read from the registration rather than taken from the
+    # model that matches it, so a hand edit to those six numbers shows up as a
+    # departure below instead of quietly redefining the baseline.
+    base_coef = ([in_force[0], in_force[1], in_force[2]],
+                 [in_force[3], in_force[4], in_force[5]])
+    base = make_forward(base_coef, affine_terms)
+    matched = models[IN_FORCE]
+    departure = max(abs(a - b) for pair in zip(base_coef, matched["coef"])
+                    for a, b in zip(*pair))
+    fit_in_force = dict(
+        model=IN_FORCE,
+        source="data/traces/gcp/wright_1834_nara_hup_gcps.json § fit",
+        adopted_by="T-1091",
+        reproduces_the_model=departure < 1e-6,
+        max_coefficient_departure=float(f"{departure:.3e}"),
+        note=("The registration's committed coefficients are refitted here from the "
+              "eleven control points and compared. A departure means the block was "
+              "edited by hand, or the control moved under it."))
+
     def movement(fw):
         out = {}
         for g, pt in zip(gcp["gcps"], eight):
-            e0, n0 = models["M0_committed_affine_8pt"]["forward"](pt[0], pt[1])
+            e0, n0 = base(pt[0], pt[1])
             e1, n1 = fw(pt[0], pt[1])
             out[g["id"]] = round(math.hypot(e1 - e0, n1 - n0), 2)
         return out
 
     control_movement = {n: movement(m["forward"]) for n, m in models.items()
-                        if n != "M0_committed_affine_8pt"}
+                        if n != IN_FORCE}
 
-    base = models["M0_committed_affine_8pt"]["forward"]
     moves = displacement_table(base, {n: m["forward"] for n, m in models.items()
-                                      if n != "M0_committed_affine_8pt"})
+                                      if n != IN_FORCE})
 
     ys = [p[1] for p in eight]
     return dict(
@@ -433,19 +498,22 @@ def measure():
                      "FITTED over a quarter of the sheet and EXTRAPOLATED over the rest, "
                      "and the section is where the extrapolation can be checked against a "
                      "known length.")),
+        fit_in_force=fit_in_force,
         section_own_scales=section_own_scales(corners),
         section_corner_pixels={k: [round(v[0], 1), round(v[1], 1)] for k, v in corners.items()},
         section_corner_pixel_note=(
-            "Recovered by inverting the committed fit on T-0797's measured line table; "
+            "Recovered by inverting the RETAINED eight-point fit — the one T-0797 read "
+            "the line table through, which is what makes these four fit-independent — "
+            "on that table; "
             "NE is the same point of the drawing as GCP G1, whose committed pixel is "
             f"{g1}, so the difference between them is the span of the plat's own corner "
             "against the crossing the registration picked."),
-        measured_spans_through_the_committed_fit=dict(
+        measured_spans_through_the_retained_fit=dict(
             east_west_m=round(spans["measured_ew"], 2),
             north_south_m=round(spans["measured_ns"], 2),
             statute_mile_m=MILE_M),
         models=report,
-        displacement_from_the_committed_fit=moves,
+        displacement_from_the_fit_in_force=moves,
         control_movement=dict(
             metres_each_control_point_moves=control_movement,
             g1_note=("G1 is State and Madison, the section's north-east corner and the "
@@ -499,7 +567,7 @@ def check():
         return 1
     print(f"OK: {RECORD_PATH} matches its own measurement "
           f"({len(record['measurement']['models'])} models, "
-          f"{len(record['measurement']['displacement_from_the_committed_fit'])} traces)")
+          f"{len(record['measurement']['displacement_from_the_fit_in_force'])} traces)")
     return 0
 
 
@@ -509,12 +577,12 @@ def self_test():
     record = load(RECORD_PATH)
     good = record["measurement"]
     bad = json.loads(json.dumps(good))
-    bad["models"]["M1_affine_11pt_foot_control"]["rms_m_on_all_eleven"] += 1.0
+    bad["models"][IN_FORCE]["rms_m_on_all_eleven"] += 1.0
     if not _compare(measure(), bad):
         print("FAIL: a wrong RMS in the record did not fire the comparison")
         return 1
     bad = json.loads(json.dumps(good))
-    bad["displacement_from_the_committed_fit"].pop()
+    bad["displacement_from_the_fit_in_force"].pop()
     if not _compare(measure(), bad):
         print("FAIL: a missing trace row did not fire the comparison")
         return 1
@@ -522,6 +590,14 @@ def self_test():
     bad["section_corner_pixels"]["SW"][1] += 3
     if not _compare(measure(), bad):
         print("FAIL: a moved section corner did not fire the comparison")
+        return 1
+    # T-1091. The baseline of every displacement row is the registration's own
+    # coefficient block; if that stops being the model it claims to be, the table is
+    # measured from something nobody adjudicated.
+    bad = json.loads(json.dumps(good))
+    bad["fit_in_force"]["reproduces_the_model"] = False
+    if not _compare(measure(), bad):
+        print("FAIL: a fit in force that no longer reproduces its model did not fire")
         return 1
     print("OK: the adjudication's assertions fire when the record is wrong")
     return 0

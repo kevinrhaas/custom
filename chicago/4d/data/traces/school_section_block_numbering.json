@@ -99,10 +99,10 @@
    "numeral_on_sheet": false,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    609,
-    3153,
-    873,
-    3418
+    622,
+    3158,
+    886,
+    3430
    ],
    "confidence": "inferred",
    "sources": [
@@ -119,10 +119,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    608,
-    3342,
-    872,
-    3615
+    620,
+    3351,
+    884,
+    3631
    ],
    "confidence": "inferred",
    "sources": [
@@ -138,10 +138,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    608,
-    3539,
-    872,
-    3819
+    618,
+    3551,
+    882,
+    3839
    ],
    "confidence": "inferred",
    "sources": [
@@ -157,10 +157,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    607,
-    3742,
-    871,
-    4022
+    616,
+    3759,
+    879,
+    4046
    ],
    "confidence": "inferred",
    "sources": [
@@ -176,10 +176,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    607,
-    3945,
-    871,
-    4213
+    614,
+    3966,
+    877,
+    4241
    ],
    "confidence": "inferred",
    "sources": [
@@ -195,10 +195,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    606,
-    4137,
-    870,
-    4392
+    612,
+    4161,
+    875,
+    4423
    ],
    "confidence": "inferred",
    "sources": [
@@ -214,10 +214,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    606,
-    4316,
-    870,
-    4564
+    610,
+    4344,
+    873,
+    4599
    ],
    "confidence": "inferred",
    "sources": [
@@ -233,10 +233,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    605,
-    4488,
-    869,
-    4751
+    608,
+    4519,
+    871,
+    4790
    ],
    "confidence": "inferred",
    "sources": [
@@ -252,10 +252,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    605,
-    4675,
+    606,
+    4710,
     869,
-    4927
+    4969
    ],
    "confidence": "inferred",
    "sources": [
@@ -272,9 +272,9 @@
    "derives_from_scheme": true,
    "numeral_crop_px": [
     604,
-    4851,
-    869,
-    5107
+    4890,
+    867,
+    5153
    ],
    "confidence": "inferred",
    "sources": [
@@ -290,10 +290,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    604,
-    5031,
-    868,
-    5289
+    602,
+    5074,
+    865,
+    5338
    ],
    "confidence": "inferred",
    "sources": [
@@ -309,10 +309,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    603,
-    5213,
-    868,
-    5473
+    600,
+    5259,
+    863,
+    5526
    ],
    "confidence": "inferred",
    "sources": [
@@ -328,10 +328,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    795,
-    5219,
-    1044,
-    5479
+    790,
+    5266,
+    1038,
+    5533
    ],
    "confidence": "inferred",
    "sources": [
@@ -347,10 +347,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    796,
-    5037,
-    1045,
-    5295
+    792,
+    5081,
+    1040,
+    5345
    ],
    "confidence": "inferred",
    "sources": [
@@ -366,10 +366,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    796,
-    4857,
-    1045,
-    5113
+    794,
+    4897,
+    1042,
+    5160
    ],
    "confidence": "inferred",
    "sources": [
@@ -385,10 +385,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    797,
-    4681,
-    1046,
-    4932
+    796,
+    4718,
+    1044,
+    4976
    ],
    "confidence": "inferred",
    "sources": [
@@ -404,10 +404,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    797,
-    4494,
+    798,
+    4527,
     1046,
-    4757
+    4796
    ],
    "confidence": "inferred",
    "sources": [
@@ -423,10 +423,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    798,
-    4322,
-    1047,
-    4569
+    800,
+    4351,
+    1048,
+    4605
    ],
    "confidence": "inferred",
    "sources": [
@@ -442,10 +442,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    798,
-    4143,
-    1047,
-    4397
+    802,
+    4169,
+    1050,
+    4430
    ],
    "confidence": "inferred",
    "sources": [
@@ -461,10 +461,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    799,
-    3951,
-    1048,
-    4218
+    803,
+    3974,
+    1052,
+    4247
    ],
    "confidence": "inferred",
    "sources": [
@@ -480,10 +480,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    799,
-    3748,
-    1048,
-    4027
+    806,
+    3767,
+    1054,
+    4052
    ],
    "confidence": "inferred",
    "sources": [
@@ -499,10 +499,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    800,
-    3545,
-    1049,
-    3824
+    808,
+    3559,
+    1056,
+    3845
    ],
    "confidence": "inferred",
    "sources": [
@@ -518,10 +518,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    800,
-    3348,
-    1049,
-    3620
+    810,
+    3358,
+    1059,
+    3637
    ],
    "confidence": "inferred",
    "sources": [
@@ -537,10 +537,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    801,
-    3159,
-    1050,
-    3423
+    812,
+    3165,
+    1061,
+    3436
    ],
    "confidence": "inferred",
    "sources": [
@@ -556,10 +556,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    977,
-    3164,
-    1224,
-    3429
+    987,
+    3172,
+    1233,
+    3443
    ],
    "confidence": "inferred",
    "sources": [
@@ -575,10 +575,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    977,
-    3353,
-    1224,
-    3626
+    985,
+    3364,
+    1231,
+    3644
    ],
    "confidence": "inferred",
    "sources": [
@@ -594,10 +594,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    976,
-    3550,
-    1223,
-    3830
+    983,
+    3565,
+    1229,
+    3852
    ],
    "confidence": "inferred",
    "sources": [
@@ -613,10 +613,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    976,
-    3754,
-    1223,
-    4033
+    980,
+    3773,
+    1227,
+    4059
    ],
    "confidence": "inferred",
    "sources": [
@@ -632,10 +632,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    975,
-    3957,
-    1222,
-    4224
+    978,
+    3980,
+    1225,
+    4254
    ],
    "confidence": "inferred",
    "sources": [
@@ -651,10 +651,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    975,
-    4148,
-    1222,
-    4403
+    976,
+    4175,
+    1223,
+    4436
    ],
    "confidence": "inferred",
    "sources": [
@@ -670,10 +670,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    974,
-    4327,
+    975,
+    4358,
     1221,
-    4575
+    4612
    ],
    "confidence": "inferred",
    "sources": [
@@ -689,10 +689,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    974,
-    4499,
-    1221,
-    4762
+    973,
+    4533,
+    1219,
+    4803
    ],
    "confidence": "inferred",
    "sources": [
@@ -708,10 +708,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    974,
-    4687,
-    1221,
-    4938
+    971,
+    4724,
+    1217,
+    4982
    ],
    "confidence": "inferred",
    "sources": [
@@ -727,10 +727,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    973,
-    4862,
-    1220,
-    5119
+    969,
+    4903,
+    1215,
+    5166
    ],
    "confidence": "inferred",
    "sources": [
@@ -746,10 +746,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    973,
-    5043,
-    1220,
-    5300
+    967,
+    5088,
+    1213,
+    5352
    ],
    "confidence": "inferred",
    "sources": [
@@ -765,10 +765,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    972,
-    5224,
-    1219,
-    5484
+    965,
+    5273,
+    1211,
+    5539
    ],
    "confidence": "inferred",
    "sources": [
@@ -784,10 +784,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1147,
-    5230,
-    1388,
-    5489
+    1138,
+    5280,
+    1378,
+    5546
    ],
    "confidence": "inferred",
    "sources": [
@@ -803,10 +803,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1147,
-    5048,
-    1388,
-    5305
+    1140,
+    5094,
+    1380,
+    5358
    ],
    "confidence": "inferred",
    "sources": [
@@ -822,10 +822,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1148,
-    4868,
-    1389,
-    5124
+    1142,
+    4910,
+    1382,
+    5173
    ],
    "confidence": "inferred",
    "sources": [
@@ -841,10 +841,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1148,
-    4692,
-    1389,
-    4943
+    1144,
+    4731,
+    1384,
+    4988
    ],
    "confidence": "inferred",
    "sources": [
@@ -860,10 +860,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1149,
-    4505,
-    1389,
-    4767
+    1145,
+    4540,
+    1386,
+    4809
    ],
    "confidence": "inferred",
    "sources": [
@@ -879,10 +879,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1149,
-    4333,
-    1390,
-    4580
+    1147,
+    4364,
+    1388,
+    4618
    ],
    "confidence": "inferred",
    "sources": [
@@ -898,10 +898,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1150,
-    4154,
+    1149,
+    4182,
     1390,
-    4408
+    4443
    ],
    "confidence": "inferred",
    "sources": [
@@ -917,10 +917,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1150,
-    3963,
-    1391,
-    4229
+    1151,
+    3987,
+    1392,
+    4260
    ],
    "confidence": "inferred",
    "sources": [
@@ -936,10 +936,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1151,
-    3759,
-    1391,
-    4038
+    1153,
+    3780,
+    1394,
+    4065
    ],
    "confidence": "inferred",
    "sources": [
@@ -955,10 +955,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1151,
-    3556,
-    1392,
-    3835
+    1156,
+    3572,
+    1396,
+    3858
    ],
    "confidence": "inferred",
    "sources": [
@@ -974,10 +974,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1152,
-    3359,
-    1392,
-    3631
+    1158,
+    3371,
+    1398,
+    3650
    ],
    "confidence": "inferred",
    "sources": [
@@ -993,10 +993,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1152,
-    3170,
-    1393,
-    3434
+    1160,
+    3178,
+    1400,
+    3449
    ],
    "confidence": "inferred",
    "sources": [
@@ -1012,10 +1012,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1321,
-    3175,
-    1562,
-    3439
+    1327,
+    3185,
+    1567,
+    3456
    ],
    "confidence": "inferred",
    "sources": [
@@ -1031,10 +1031,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1320,
-    3364,
-    1561,
-    3636
+    1324,
+    3377,
+    1565,
+    3657
    ],
    "confidence": "inferred",
    "sources": [
@@ -1050,10 +1050,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1320,
-    3561,
-    1561,
-    3840
+    1322,
+    3578,
+    1563,
+    3865
    ],
    "confidence": "inferred",
    "sources": [
@@ -1069,10 +1069,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1319,
-    3765,
-    1560,
-    4043
+    1320,
+    3786,
+    1561,
+    4072
    ],
    "confidence": "inferred",
    "sources": [
@@ -1088,10 +1088,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1319,
-    3968,
-    1560,
-    4234
+    1318,
+    3993,
+    1559,
+    4267
    ],
    "confidence": "inferred",
    "sources": [
@@ -1107,10 +1107,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1318,
-    4159,
-    1559,
-    4413
+    1316,
+    4188,
+    1557,
+    4449
    ],
    "confidence": "inferred",
    "sources": [
@@ -1126,10 +1126,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1318,
-    4338,
-    1559,
-    4586
+    1314,
+    4371,
+    1555,
+    4625
    ],
    "confidence": "inferred",
    "sources": [
@@ -1145,10 +1145,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1317,
-    4510,
-    1558,
-    4773
+    1312,
+    4546,
+    1553,
+    4816
    ],
    "confidence": "inferred",
    "sources": [
@@ -1164,10 +1164,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1317,
-    4697,
-    1558,
-    4948
+    1310,
+    4737,
+    1551,
+    4995
    ],
    "confidence": "inferred",
    "sources": [
@@ -1183,10 +1183,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1316,
-    4873,
-    1558,
-    5129
+    1308,
+    4916,
+    1549,
+    5179
    ],
    "confidence": "inferred",
    "sources": [
@@ -1202,10 +1202,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1316,
-    5054,
-    1557,
-    5311
+    1306,
+    5101,
+    1547,
+    5364
    ],
    "confidence": "inferred",
    "sources": [
@@ -1221,10 +1221,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1315,
-    5235,
-    1557,
-    5495
+    1304,
+    5286,
+    1545,
+    5552
    ],
    "confidence": "inferred",
    "sources": [
@@ -1240,10 +1240,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1484,
-    5240,
-    1713,
-    5500
+    1472,
+    5292,
+    1700,
+    5558
    ],
    "confidence": "inferred",
    "sources": [
@@ -1259,10 +1259,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1485,
-    5059,
-    1713,
-    5316
+    1474,
+    5107,
+    1702,
+    5370
    ],
    "confidence": "inferred",
    "sources": [
@@ -1278,10 +1278,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1485,
-    4878,
-    1714,
-    5134
+    1476,
+    4923,
+    1704,
+    5185
    ],
    "confidence": "inferred",
    "sources": [
@@ -1297,10 +1297,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1486,
-    4703,
-    1714,
-    4953
+    1477,
+    4744,
+    1706,
+    5001
    ],
    "confidence": "inferred",
    "sources": [
@@ -1316,10 +1316,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1486,
-    4515,
-    1715,
-    4778
+    1479,
+    4553,
+    1708,
+    4822
    ],
    "confidence": "inferred",
    "sources": [
@@ -1335,10 +1335,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1487,
-    4343,
-    1715,
-    4590
+    1481,
+    4377,
+    1710,
+    4631
    ],
    "confidence": "inferred",
    "sources": [
@@ -1354,10 +1354,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1487,
-    4164,
-    1716,
-    4418
+    1483,
+    4195,
+    1712,
+    4455
    ],
    "confidence": "inferred",
    "sources": [
@@ -1373,10 +1373,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1488,
-    3973,
-    1716,
-    4239
+    1485,
+    4000,
+    1714,
+    4273
    ],
    "confidence": "inferred",
    "sources": [
@@ -1392,10 +1392,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1488,
-    3770,
-    1717,
-    4048
+    1487,
+    3793,
+    1716,
+    4078
    ],
    "confidence": "inferred",
    "sources": [
@@ -1412,9 +1412,9 @@
    "derives_from_scheme": true,
    "numeral_crop_px": [
     1489,
-    3566,
-    1717,
-    3845
+    3585,
+    1718,
+    3871
    ],
    "confidence": "inferred",
    "sources": [
@@ -1430,10 +1430,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1489,
-    3369,
-    1718,
-    3641
+    1492,
+    3384,
+    1720,
+    3663
    ],
    "confidence": "inferred",
    "sources": [
@@ -1449,10 +1449,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    1490,
-    3180,
-    1718,
-    3444
+    1494,
+    3191,
+    1722,
+    3462
    ],
    "confidence": "inferred",
    "sources": [
@@ -1468,10 +1468,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1642,
-    4708,
-    1882,
-    4959
+    1632,
+    4750,
+    1872,
+    5007
    ],
    "confidence": "inferred",
    "sources": [
@@ -1487,10 +1487,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1642,
-    4883,
-    1882,
-    5139
+    1630,
+    4929,
+    1870,
+    5191
    ],
    "confidence": "inferred",
    "sources": [
@@ -1506,10 +1506,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1641,
-    5064,
-    1881,
-    5321
+    1628,
+    5113,
+    1868,
+    5377
    ],
    "confidence": "inferred",
    "sources": [
@@ -1525,10 +1525,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1641,
-    5245,
-    1881,
-    5505
+    1626,
+    5298,
+    1866,
+    5564
    ],
    "confidence": "inferred",
    "sources": [
@@ -1544,10 +1544,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1809,
-    5251,
-    2075,
-    5511
+    1792,
+    5305,
+    2058,
+    5572
    ],
    "confidence": "inferred",
    "sources": [
@@ -1563,10 +1563,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1809,
-    5069,
-    2076,
-    5327
+    1794,
+    5119,
+    2060,
+    5384
    ],
    "confidence": "inferred",
    "sources": [
@@ -1583,9 +1583,9 @@
    "derives_from_scheme": false,
    "numeral_crop_px": [
     1646,
-    3374,
+    3390,
     1886,
-    3647
+    3669
    ],
    "confidence": "inferred",
    "sources": [
@@ -1602,10 +1602,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1646,
-    3185,
-    1886,
-    3450
+    1649,
+    3197,
+    1888,
+    3468
    ],
    "confidence": "inferred",
    "sources": [
@@ -1622,10 +1622,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1814,
-    3190,
+    1815,
+    3203,
     2080,
-    3456
+    3475
    ],
    "confidence": "inferred",
    "sources": [
@@ -1643,9 +1643,9 @@
    "derives_from_scheme": false,
    "numeral_crop_px": [
     1813,
-    3379,
-    2080,
-    3653
+    3396,
+    2078,
+    3676
    ],
    "confidence": "inferred",
    "sources": [
@@ -1662,10 +1662,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1813,
-    3576,
-    2079,
-    3857
+    1810,
+    3597,
+    2076,
+    3884
    ],
    "confidence": "inferred",
    "sources": [
@@ -1681,10 +1681,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    1812,
-    3780,
-    2079,
-    4060
+    1808,
+    3805,
+    2074,
+    4091
    ],
    "confidence": "inferred",
    "sources": [
@@ -1700,10 +1700,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2004,
-    4894,
-    2263,
-    5151
+    1989,
+    4942,
+    2247,
+    5206
    ],
    "confidence": "inferred",
    "sources": [
@@ -1719,10 +1719,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2004,
-    4719,
-    2263,
-    4971
+    1991,
+    4763,
+    2249,
+    5022
    ],
    "confidence": "inferred",
    "sources": [
@@ -1738,10 +1738,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2005,
-    4532,
-    2264,
-    4795
+    1992,
+    4572,
+    2251,
+    4843
    ],
    "confidence": "inferred",
    "sources": [
@@ -1758,10 +1758,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2005,
-    4359,
-    2264,
-    4608
+    1994,
+    4397,
+    2253,
+    4652
    ],
    "confidence": "inferred",
    "sources": [
@@ -1778,10 +1778,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2006,
-    4180,
-    2265,
-    4435
+    1996,
+    4214,
+    2255,
+    4476
    ],
    "confidence": "inferred",
    "sources": [
@@ -1797,10 +1797,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2006,
-    3989,
-    2265,
-    4256
+    1998,
+    4019,
+    2257,
+    4293
    ],
    "confidence": "inferred",
    "sources": [
@@ -1816,10 +1816,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2007,
-    3786,
-    2266,
-    4065
+    2000,
+    3812,
+    2259,
+    4098
    ],
    "confidence": "inferred",
    "sources": [
@@ -1835,10 +1835,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2007,
-    3582,
-    2266,
-    3862
+    2003,
+    3604,
+    2261,
+    3891
    ],
    "confidence": "inferred",
    "sources": [
@@ -1854,10 +1854,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2008,
-    3385,
-    2267,
-    3659
+    2005,
+    3403,
+    2263,
+    3684
    ],
    "confidence": "inferred",
    "sources": [
@@ -1873,10 +1873,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": false,
    "numeral_crop_px": [
-    2008,
-    3197,
-    2267,
-    3461
+    2007,
+    3211,
+    2265,
+    3483
    ],
    "confidence": "inferred",
    "sources": [
@@ -1892,10 +1892,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2195,
-    3202,
-    2453,
-    3467
+    2192,
+    3218,
+    2450,
+    3490
    ],
    "confidence": "inferred",
    "sources": [
@@ -1911,10 +1911,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2194,
-    3391,
-    2453,
-    3664
+    2190,
+    3411,
+    2447,
+    3691
    ],
    "confidence": "inferred",
    "sources": [
@@ -1930,10 +1930,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2194,
-    3588,
-    2452,
-    3868
+    2187,
+    3612,
+    2445,
+    3898
    ],
    "confidence": "inferred",
    "sources": [
@@ -1949,10 +1949,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2193,
-    3792,
-    2452,
-    4071
+    2185,
+    3819,
+    2443,
+    4106
    ],
    "confidence": "inferred",
    "sources": [
@@ -1968,10 +1968,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2193,
-    3995,
-    2451,
-    4262
+    2183,
+    4026,
+    2441,
+    4300
    ],
    "confidence": "inferred",
    "sources": [
@@ -1987,10 +1987,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2192,
-    4186,
-    2451,
-    4441
+    2181,
+    4221,
+    2439,
+    4483
    ],
    "confidence": "inferred",
    "sources": [
@@ -2006,10 +2006,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2192,
-    4365,
-    2450,
-    4613
+    2179,
+    4404,
+    2437,
+    4659
    ],
    "confidence": "inferred",
    "sources": [
@@ -2025,10 +2025,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2191,
-    4537,
-    2450,
-    4801
+    2177,
+    4580,
+    2435,
+    4850
    ],
    "confidence": "inferred",
    "sources": [
@@ -2044,10 +2044,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2191,
-    4725,
-    2449,
-    4976
+    2175,
+    4770,
+    2433,
+    5029
    ],
    "confidence": "inferred",
    "sources": [
@@ -2063,10 +2063,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2191,
-    4900,
-    2449,
-    5157
+    2173,
+    4950,
+    2431,
+    5213
    ],
    "confidence": "inferred",
    "sources": [
@@ -2082,10 +2082,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2190,
-    5081,
-    2449,
-    5339
+    2171,
+    5134,
+    2429,
+    5398
    ],
    "confidence": "inferred",
    "sources": [
@@ -2101,10 +2101,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2190,
-    5263,
-    2448,
-    5523
+    2169,
+    5319,
+    2427,
+    5586
    ],
    "confidence": "inferred",
    "sources": [
@@ -2120,10 +2120,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2376,
-    5268,
-    2601,
-    5527
+    2354,
+    5326,
+    2579,
+    5592
    ],
    "confidence": "inferred",
    "sources": [
@@ -2139,10 +2139,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2376,
-    5087,
-    2602,
-    5343
+    2356,
+    5141,
+    2581,
+    5404
    ],
    "confidence": "inferred",
    "sources": [
@@ -2158,10 +2158,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2377,
-    4906,
-    2602,
-    5162
+    2358,
+    4957,
+    2583,
+    5219
    ],
    "confidence": "inferred",
    "sources": [
@@ -2177,10 +2177,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2377,
-    4731,
-    2603,
-    4981
+    2360,
+    4778,
+    2585,
+    5034
    ],
    "confidence": "inferred",
    "sources": [
@@ -2196,10 +2196,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2378,
-    4543,
-    2603,
-    4806
+    2362,
+    4587,
+    2587,
+    4855
    ],
    "confidence": "inferred",
    "sources": [
@@ -2215,10 +2215,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2378,
-    4371,
-    2604,
-    4618
+    2364,
+    4411,
+    2589,
+    4664
    ],
    "confidence": "inferred",
    "sources": [
@@ -2234,10 +2234,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2379,
-    4192,
-    2604,
-    4446
+    2365,
+    4228,
+    2591,
+    4489
    ],
    "confidence": "inferred",
    "sources": [
@@ -2253,10 +2253,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2379,
-    4001,
-    2605,
-    4267
+    2367,
+    4034,
+    2593,
+    4306
    ],
    "confidence": "inferred",
    "sources": [
@@ -2272,10 +2272,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2380,
-    3798,
-    2605,
-    4076
+    2369,
+    3826,
+    2595,
+    4111
    ],
    "confidence": "inferred",
    "sources": [
@@ -2291,10 +2291,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2380,
-    3594,
-    2606,
-    3873
+    2372,
+    3619,
+    2597,
+    3904
    ],
    "confidence": "inferred",
    "sources": [
@@ -2310,10 +2310,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2381,
-    3397,
-    2606,
-    3669
+    2374,
+    3418,
+    2599,
+    3696
    ],
    "confidence": "inferred",
    "sources": [
@@ -2329,10 +2329,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2381,
-    3208,
-    2607,
-    3472
+    2376,
+    3225,
+    2601,
+    3495
    ],
    "confidence": "inferred",
    "sources": [
@@ -2348,10 +2348,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2534,
-    3213,
-    2787,
-    3478
+    2528,
+    3231,
+    2779,
+    3502
    ],
    "confidence": "inferred",
    "sources": [
@@ -2367,10 +2367,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2534,
-    3402,
-    2786,
-    3675
+    2525,
+    3423,
+    2777,
+    3703
    ],
    "confidence": "inferred",
    "sources": [
@@ -2386,10 +2386,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2533,
-    3599,
-    2786,
-    3879
+    2523,
+    3624,
+    2775,
+    3911
    ],
    "confidence": "inferred",
    "sources": [
@@ -2405,10 +2405,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2533,
-    3803,
-    2785,
-    4082
+    2521,
+    3832,
+    2773,
+    4118
    ],
    "confidence": "inferred",
    "sources": [
@@ -2424,10 +2424,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2532,
-    4006,
-    2785,
-    4273
+    2519,
+    4039,
+    2771,
+    4313
    ],
    "confidence": "inferred",
    "sources": [
@@ -2443,10 +2443,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2532,
-    4197,
-    2784,
-    4452
+    2517,
+    4234,
+    2769,
+    4496
    ],
    "confidence": "inferred",
    "sources": [
@@ -2462,10 +2462,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2531,
-    4376,
-    2784,
-    4624
+    2515,
+    4417,
+    2767,
+    4671
    ],
    "confidence": "inferred",
    "sources": [
@@ -2481,10 +2481,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2531,
-    4548,
-    2783,
-    4811
+    2513,
+    4592,
+    2765,
+    4862
    ],
    "confidence": "inferred",
    "sources": [
@@ -2500,10 +2500,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2530,
-    4735,
-    2783,
-    4987
+    2511,
+    4783,
+    2763,
+    5041
    ],
    "confidence": "inferred",
    "sources": [
@@ -2519,10 +2519,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2530,
-    4911,
-    2782,
-    5168
+    2509,
+    4962,
+    2761,
+    5226
    ],
    "confidence": "inferred",
    "sources": [
@@ -2538,10 +2538,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2530,
-    5092,
-    2782,
-    5349
+    2507,
+    5147,
+    2759,
+    5411
    ],
    "confidence": "inferred",
    "sources": [
@@ -2557,10 +2557,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2529,
-    5273,
-    2781,
-    5533
+    2505,
+    5332,
+    2757,
+    5598
    ],
    "confidence": "inferred",
    "sources": [
@@ -2576,10 +2576,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2709,
-    5279,
-    2964,
-    5539
+    2683,
+    5339,
+    2938,
+    5605
    ],
    "confidence": "inferred",
    "sources": [
@@ -2595,10 +2595,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2709,
-    5097,
-    2964,
-    5355
+    2685,
+    5154,
+    2940,
+    5418
    ],
    "confidence": "inferred",
    "sources": [
@@ -2614,10 +2614,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2710,
-    4917,
-    2965,
-    5173
+    2687,
+    4969,
+    2941,
+    5232
    ],
    "confidence": "inferred",
    "sources": [
@@ -2633,10 +2633,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2710,
-    4741,
-    2965,
-    4993
+    2689,
+    4790,
+    2943,
+    5048
    ],
    "confidence": "inferred",
    "sources": [
@@ -2653,10 +2653,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2711,
-    4554,
-    2966,
-    4817
+    2691,
+    4599,
+    2945,
+    4869
    ],
    "confidence": "inferred",
    "sources": [
@@ -2672,10 +2672,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2711,
-    4382,
-    2966,
-    4630
+    2693,
+    4424,
+    2947,
+    4678
    ],
    "confidence": "inferred",
    "sources": [
@@ -2691,10 +2691,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2712,
-    4203,
-    2967,
-    4457
+    2695,
+    4241,
+    2949,
+    4502
    ],
    "confidence": "inferred",
    "sources": [
@@ -2710,10 +2710,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2712,
-    4012,
-    2967,
-    4279
+    2697,
+    4046,
+    2951,
+    4320
    ],
    "confidence": "inferred",
    "sources": [
@@ -2729,10 +2729,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2713,
-    3808,
-    2968,
-    4087
+    2699,
+    3839,
+    2953,
+    4125
    ],
    "confidence": "inferred",
    "sources": [
@@ -2748,10 +2748,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2713,
-    3605,
-    2968,
-    3884
+    2701,
+    3631,
+    2956,
+    3918
    ],
    "confidence": "inferred",
    "sources": [
@@ -2767,10 +2767,10 @@
    "numeral_on_sheet": true,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2714,
-    3408,
-    2969,
-    3681
+    2703,
+    3430,
+    2958,
+    3710
    ],
    "confidence": "inferred",
    "sources": [
@@ -2786,10 +2786,10 @@
    "numeral_on_sheet": false,
    "derives_from_scheme": true,
    "numeral_crop_px": [
-    2714,
-    3219,
-    2969,
-    3484
+    2706,
+    3238,
+    2960,
+    3509
    ],
    "confidence": "inferred",
    "sources": [
