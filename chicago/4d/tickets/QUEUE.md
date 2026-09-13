@@ -154,7 +154,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 
 
-T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
 T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
 T-1105 — The generators reading the tract layer: the plat module's street width and block module, and the reserved-ground record citing the reservation polygon
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
@@ -308,4 +307,3 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-
