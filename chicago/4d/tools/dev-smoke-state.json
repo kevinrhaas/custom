@@ -3,6 +3,68 @@
   "readings": [
     {
       "viewport": "desktop",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 23,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 125,
+      "takenAt": "2026-09-13T19:41:54.647Z",
+      "ref": "steward/t-0809-rotting-pr-rule",
+      "commit": "2e881f4e0234",
+      "devCommit": "3bfa59b62fe4",
+      "treeHash": "sha256:023d1297910f53fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:7c88427d4bcc6984",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          2.5,
+          1.6
+        ]
+      },
+      "source": "/tmp/smoke-d9b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 23,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 67,
+      "takenAt": "2026-09-13T19:41:54.567Z",
+      "ref": "steward/t-0809-rotting-pr-rule",
+      "commit": "2e881f4e0234",
+      "devCommit": "3bfa59b62fe4",
+      "treeHash": "sha256:023d1297910f53fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:7c88427d4bcc6984",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          2.5,
+          1.6
+        ]
+      },
+      "source": "/tmp/smoke-m9b.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "12",
       "parts": [
         12
@@ -1677,68 +1739,6 @@
         ]
       },
       "source": "/tmp/smoke_m1.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 23,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 60,
-      "takenAt": "2026-09-12T09:32:52.948Z",
-      "ref": "steward/t-0800-mouth-as-built",
-      "commit": "bc35cbfba9df",
-      "devCommit": "daac751326b9",
-      "treeHash": "sha256:5ad5f05a27126ce9",
-      "treeDirty": false,
-      "changelogHash": "sha256:f8c47bd53217c938",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.3,
-          4,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_m9.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 23,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 86,
-      "takenAt": "2026-09-10T09:39:47.013Z",
-      "ref": "steward/t-0989-file-level-fallback",
-      "commit": "d4be76b2e359",
-      "devCommit": "07a6a1b04afa",
-      "treeHash": "sha256:54f167de67b289c8",
-      "treeDirty": false,
-      "changelogHash": "sha256:ca99ac810ef63bd1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.4,
-          2,
-          1
-        ]
-      },
-      "source": "/tmp/smoke-desktop.log"
     },
     {
       "viewport": "desktop",

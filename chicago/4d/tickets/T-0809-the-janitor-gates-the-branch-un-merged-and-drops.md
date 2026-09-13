@@ -1,7 +1,7 @@
 ---
 id: T-0809
 title: The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1269
 claimed_by: run 9/13/2026, 2:02:56 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T19:41:54.733Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34776174481
 ---
 
