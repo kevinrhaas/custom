@@ -1,7 +1,7 @@
 ---
 id: T-1106
 title: The far sward's flower share is a GROUND-COVER mix, and a visitor at fifty metres reads SILHOUETTES — T-0280 cost prairie_west every head past 26 m
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1248
+claimed_by: run 9/13/2026, 6:45:10 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-13T12:21:12.240Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34755100922
 ---
 
 The far sward's flower share is a GROUND-COVER mix, and a visitor at fifty metres reads SILHOUETTES — T-0280 cost prairie_west every head past 26 m.
