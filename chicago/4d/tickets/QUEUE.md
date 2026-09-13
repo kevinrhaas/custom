@@ -155,8 +155,8 @@ T-1080 — The Michigan St tract's name and the curved road north through it: wh
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
 T-1092 — Re-seat the four grids the NA sheet places — the School Section, Kinzie's Addition, the Michigan St tract and Wabansia's streets — on the adopted registration, and re-bake what stands on the ground that moves
-T-1099 — The nine survey tracts as polygons: the two ambiguous swatches resolved by position, and the damage mask the orange class needs
-T-1100 — The land sales sorted onto the survey tracts, and the generators reading the tract layer
+T-1101 — The nine survey tracts as polygons: the two ambiguous swatches resolved by position, and the damage mask the orange class needs
+T-1102 — The land sales sorted onto the survey tracts, and the generators reading the tract layer
 T-1082 — The coloured wash between Wright's bank shading and his inked bank line: 51 east-bank rows short by more than 10 m and 34 west-bank rows standing outside the ink, all of them behind a colour the tract layer has not identified
 T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
 T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
