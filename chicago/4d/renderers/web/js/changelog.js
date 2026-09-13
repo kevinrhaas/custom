@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two runs read one census cohort because neither could see the other', kind: 'fix', ts: '',
+  { v: 844, title: 'Two runs read one census cohort because neither could see the other', kind: 'fix', ts: '2026-09-13T17:35:50.032Z', date: 'Sep 13, 2026, 12:35 PM CT',
     items: [
       'This reconstruction is built by many small runs working at once, so before a run starts a piece of work it asks which pieces other runs are already holding. The answer was wrong in one particular case, and the case is common: a run that spends four hours reading a source document dropped off the list of active work after three, and was then filed under a heading that called it either finished or abandoned. It was neither.',
       'It has cost real duplicated effort. One census cohort of 76 people was read twice in a single day by two runs that could not see each other, and the two readings disagreed about 36 of those people — every one of which then had to be settled by hand.',
