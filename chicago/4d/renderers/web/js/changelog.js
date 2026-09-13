@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Six finished pieces of work were stuck in the doorway at once', kind: 'fix', ts: '',
+  { v: 841, title: 'Six finished pieces of work were stuck in the doorway at once', kind: 'fix', ts: '2026-09-13T16:26:36.796Z', date: 'Sep 13, 2026, 11:26 AM CT',
     items: [
       'This reconstruction is assembled by many small runs working at the same time, and each one finishes by proposing its change for merging. Six such proposals were sitting unmerged this morning \u2014 all of them complete, all of them checked, the oldest ten hours old \u2014 because the machinery that merges them believed every one was in conflict with the others.',
       'None of them really was. Measured across all six, they collided on only four files, and three of those four are files this project already knows how to reconcile automatically: the list of changes you are reading, the job queue, and a log of test results. Rules for merging all three were written weeks ago. The catch is that the hosting service cannot run them \u2014 a merge rule is a program, and a service will not run a program a repository hands it \u2014 so it reports a conflict that a copy of the project on any ordinary machine does not have.',
