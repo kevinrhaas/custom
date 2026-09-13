@@ -156,7 +156,6 @@ T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-1095 — The West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: still no committed street line reaches them
 T-1091 — Adopt M1 as the NA Wright sheet's registration and regenerate the five pure readings keyed to it — the block numerals, the Kinzie block name and Wabansia's water lots — nothing seated, nothing baked
 T-1092 — Re-seat the four grids the NA sheet places — the School Section, Kinzie's Addition, the Michigan St tract and Wabansia's streets — on the adopted registration, and re-bake what stands on the ground that moves
-T-1096 — Wright's legend chips read: the nine colours measured, and the two ambiguous swatches refused because the palette cannot separate them
 T-1097 — The nine survey tracts as polygons: the two ambiguous swatches resolved by position, the land sales sorted onto the tracts, and a generator reading the layer
 T-1082 — The coloured wash between Wright's bank shading and his inked bank line: 51 east-bank rows short by more than 10 m and 34 west-bank rows standing outside the ink, all of them behind a colour the tract layer has not identified
 T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered

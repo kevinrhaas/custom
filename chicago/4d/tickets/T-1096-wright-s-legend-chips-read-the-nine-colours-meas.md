@@ -1,7 +1,7 @@
 ---
 id: T-1096
 title: Wright's legend chips read: the nine colours measured, and the two ambiguous swatches refused because the palette cannot separate them
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0792
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1218
 claimed_by: run 9/12/2026, 6:33:36 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T00:08:38.992Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34724869993
 ---
 
