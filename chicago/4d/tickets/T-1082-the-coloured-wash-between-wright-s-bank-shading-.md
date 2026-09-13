@@ -1,7 +1,7 @@
 ---
 id: T-1082
 title: The coloured wash between Wright's bank shading and his inked bank line: 51 east-bank rows short by more than 10 m and 34 west-bank rows standing outside the ink, all of them behind a colour the tract layer has not identified
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1222
 claimed_by: run 9/12/2026, 8:39:50 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T02:23:17.177Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34730968938
 ---
 
