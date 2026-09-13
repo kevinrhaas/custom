@@ -181,6 +181,53 @@ const TUNE = {
    * What that does NOT do is settle whether these edges should be spread. The
    * bar is off the scale now; the measurement of what a spread costs was taken
    * against the old statistic and has to be retaken. T-0277 is that work.
+   *
+   * T-0277 — RETAKEN, AND THE RAMP STAYS. `tools/simulate_outer_spread.mjs`
+   * deals every placed mid and forb slot the rank `slotRing` would give it,
+   * bins the gate's own 16 bearings from the gate's own station, and prints the
+   * drawn boundary under both representations. It agrees with
+   * `measure_sward_reach.mjs` to the centimetre on today's reading, which is
+   * what makes the other column worth reading.
+   *
+   *   mid ring, `full`   today 25.00 min / 26.61 mean against bars 21.76 /
+   *                      24.46; fully spread 22.58 / 25.36 against 22.20 /
+   *                      24.90 — CLEARS, by 0.38 m and 0.46 m.
+   *   mid ring, `light`  today 10.32 / 11.96 against 9.50 / 11.50; fully
+   *                      spread 8.56 / 11.23 against 9.60 / 11.60 — OVER on
+   *                      both, by 1.04 m and 0.37 m. Three quarters of the
+   *                      band is over too (11.57); half clears at 11.75.
+   *   forb ring, `full`  today 23.52 / 24.74 against 20.89 / 23.59; fully
+   *                      spread 16.41 / 21.73 against 21.20 / 23.90 — OVER,
+   *                      and over from a quarter of the band upwards.
+   *
+   * THE BAR RISES WHEN THE BAND IS SPREAD, and that is half the answer.
+   * `ringsFor` replaces a spread layer's `band` with `HARD`, so the `band/16`
+   * a reading at the screen door's quantum sits inside the placed boundary —
+   * 0.44 m at `full`, 0.10 m at `light` — simply vanishes. A spread has to
+   * clear a HIGHER bar with a SHORTER reach.
+   *
+   * THE OTHER HALF IS SAMPLING DENSITY, and it is a better reason than the one
+   * T-0187 gave. A density handover's drawn boundary is the furthest slot that
+   * survives its OWN rank, so it is a sample and its expectation falls with the
+   * number of slots in the bin. The desktop cone holds 642 mid slots — forty to
+   * a 3.75-degree bin, and one of forty draws a low enough rank to stand near
+   * the boundary. The `light` cone holds 132, about eight to a bin, and eight
+   * draws do not reach it. At `light` the mid ring is as sparse as the forb
+   * ring is at `full`, which is exactly the case
+   * `tools/measure_sward_reach.mjs` already refuses to read a boundary off.
+   *
+   * AND IT CANNOT BE TAKEN ONE EDGE AT A TIME. `full` would carry a mid spread;
+   * it will not carry a forb one. But the forb ring ends within a metre of the
+   * mid ring on purpose — see `rebuildForbs` — so the two boundaries land on
+   * the same screen row, and spreading only the grass would leave the flowers
+   * dithering along the line the grass had just stopped drawing. That is the
+   * stipple this ticket set out to remove, drawn by half as many plants and
+   * against a step. A split decision is worse than either whole one.
+   *
+   * So both outer edges keep their ramp, on a measurement rather than on a
+   * superseded one. Reopening this means changing what is measured, not the
+   * bar: a sward dense enough at `light` for eight plants a bin to become
+   * forty, or a forb layer that does not have to share the mid ring's boundary.
    */
   near: { radius: 7.6, cell: 0.74, perCell: 4, tuftsPerM2: 7.30, band: 2.2,
     spreadOuter: true },
@@ -1645,6 +1692,19 @@ export async function createFlora({
       const r = rings[layer];
       return r ? fringeOf(e, n, r.fringe) : null;
     },
+
+    /** This ground's share of a spread band, in `[0, 1)` — `handoverRank`, on
+     *  the same terms `fringeAt` offers the fringe. `which` is 0 for an outer
+     *  boundary and 1 for an inner one, as in `slotRing`.
+     *
+     *  T-0277 asks what a DENSITY handover would cost on the two outer edges
+     *  that still ramp (`TUNE.mid.band`, `TUNE.forb.band`), and the only honest
+     *  way to answer is to deal each placed slot the rank it would actually get
+     *  and see where the drawn boundary lands. Re-deriving the hash in the tool
+     *  would answer a question about the tool's copy of it; this asks the
+     *  placer, which is the rule `fringeAt` set.
+     */
+    handoverAt(e, n, which = 0) { return handoverRank(e, n, which); },
 
     update(dt, camera) {
       uniforms.uChiTime.value += dt * TUNE.wind.speedNear;

@@ -574,7 +574,7 @@ def record(lots: list, refused: list, census: dict) -> dict:
                 "geometry": "renderer",
                 "note": (
                     "THE BRICK IS NOT A NEW COLOUR AND THE STONE IS. Brick is this "
-                    "town's ONE brick — generators/common/materials.py's CHIMNEY_BRICK, "
+                    "town's ONE brick — generators/common/materials.py's BRICK, "
                     "inferred, off the Petford watercolour's brick chimneys, and the "
                     "same brick every framed house in the scene carries on its stack; "
                     "the material on this lot being that brick is the cheapest honest "

@@ -11,22 +11,22 @@
  },
  "counts": {
   "residents_considered": 1293,
-  "matched_one_1844_entry": 100,
+  "matched_one_1844_entry": 103,
   "matched_more_than_one_ambiguous": 14,
   "one_1844_entry_contested_by_two_residents": 10,
-  "surname_present_initial_absent_refused": 317,
+  "surname_present_initial_absent_refused": 315,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 13,
   "residents_that_further_initial_refusal_reaches": 12,
-  "initial_agreed_forenames_disagreed_refused": 46,
+  "initial_agreed_forenames_disagreed_refused": 47,
   "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_1844_entry_by_that_refusal": 25,
   "ties_narrowed_by_a_trade": 3,
   "of_those_contested": 0,
   "of_those_ambiguous": 3,
-  "could_carry_occupation": 57,
-  "could_carry_address": 78
+  "could_carry_occupation": 59,
+  "could_carry_address": 81
  },
  "matches": [
   {
@@ -281,6 +281,31 @@
    ],
    "could_carry": [
     "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Asahel Pierce",
+   "person_id": "pierce_asahel",
+   "household_id": "hh_pierce_asahel",
+   "grade_1835": "attested",
+   "occupation_1835": "blacksmith",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": "pierce_blacksmith_shop",
+   "rule": "Surname 'Pierce' folds to the same string as the 1844 entry's, and the given name of both begins A.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1435",
+     "as_printed": "Pierce. Asahel, blacksmith. S. Water st. b Lake and Randolph sts house Lake st. 4th ward",
+     "printed_page": 51,
+     "occupation_1844": "blacksmith. S. Water st",
+     "address_1844": "b Lake and Randolph sts house Lake st. 4th ward"
+    }
+   ],
+   "could_carry": [
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1666,6 +1691,32 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "John P. Simpson",
+   "person_id": "simpson_john_p",
+   "household_id": "hh_simpson_john_p",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Simpson' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1625",
+     "as_printed": "Simpson. John, mason, house Canal st. b Adams and Jackson sts",
+     "printed_page": 55,
+     "occupation_1844": "mason",
+     "address_1844": "house Canal st. b Adams and Jackson sts"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "John Rice",
    "person_id": "rice_john",
    "household_id": "hh_rice_john",
@@ -2362,6 +2413,32 @@
      "printed_page": 34,
      "occupation_1844": "laborer",
      "address_1844": "res West Water st. b Lake and North Water sts"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Tuthill King",
+   "person_id": "king_tuthill",
+   "household_id": "hh_king_tuthill",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'King' folds to the same string as the 1844 entry's, and the given name of both begins T.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1024",
+     "as_printed": "King. Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st",
+     "printed_page": 43,
+     "occupation_1844": "clothing, dry goods, &c., 115 Lake st",
+     "address_1844": "h Clark st"
     }
    ],
    "could_carry": [
@@ -4056,13 +4133,6 @@
    "rule": "The surname 'Maclean' is in Norris 1844 and no entry under it carries the initial 'A' of 'Archibald Maclean'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Asahel Pierce",
-   "person_id": "pierce_asahel",
-   "surname_in_1844": "Pierce",
-   "candidates": 1,
-   "rule": "The surname 'Pierce' is in Norris 1844 and no entry under it carries the initial 'A' of 'Asahel Pierce'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Asury Waters",
    "person_id": "waters_asury",
    "surname_in_1844": "Waters",
@@ -4080,7 +4150,7 @@
    "resident": "Ben Butterfield",
    "person_id": "butterfield_ben",
    "surname_in_1844": "Butterfield",
-   "candidates": 2,
+   "candidates": 3,
    "rule": "The surname 'Butterfield' is in Norris 1844 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal."
   },
   {
@@ -4094,7 +4164,7 @@
    "resident": "Benjamin Hall",
    "person_id": "hall_benjamin",
    "surname_in_1844": "Hall",
-   "candidates": 2,
+   "candidates": 3,
    "rule": "The surname 'Hall' is in Norris 1844 and no entry under it carries the initial 'B' of 'Benjamin Hall'. A surname-only agreement is a refusal."
   },
   {
@@ -4122,21 +4192,21 @@
    "resident": "Byra King",
    "person_id": "king_byra",
    "surname_in_1844": "King",
-   "candidates": 6,
+   "candidates": 7,
    "rule": "The surname 'King' is in Norris 1844 and no entry under it carries the initial 'B' of 'Byra King'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Byram King",
    "person_id": "king_byram",
    "surname_in_1844": "King",
-   "candidates": 6,
+   "candidates": 7,
    "rule": "The surname 'King' is in Norris 1844 and no entry under it carries the initial 'B' of 'Byram King'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Byron King",
    "person_id": "king_byron",
    "surname_in_1844": "King",
-   "candidates": 6,
+   "candidates": 7,
    "rule": "The surname 'King' is in Norris 1844 and no entry under it carries the initial 'B' of 'Byron King'. A surname-only agreement is a refusal."
   },
   {
@@ -4276,7 +4346,7 @@
    "resident": "D H Butterfield",
    "person_id": "butterfield_d_h",
    "surname_in_1844": "Butterfield",
-   "candidates": 2,
+   "candidates": 3,
    "rule": "The surname 'Butterfield' is in Norris 1844 and no entry under it carries the initial 'D' of 'D H Butterfield'. A surname-only agreement is a refusal."
   },
   {
@@ -4297,7 +4367,7 @@
    "resident": "Damel M. Green",
    "person_id": "green_damel_m",
    "surname_in_1844": "Green",
-   "candidates": 3,
+   "candidates": 4,
    "rule": "The surname 'Green' is in Norris 1844 and no entry under it carries the initial 'D' of 'Damel M. Green'. A surname-only agreement is a refusal."
   },
   {
@@ -4423,7 +4493,7 @@
    "resident": "Edson White",
    "person_id": "white_edson",
    "surname_in_1844": "White",
-   "candidates": 4,
+   "candidates": 6,
    "rule": "The surname 'White' is in Norris 1844 and no entry under it carries the initial 'E' of 'Edson White'. A surname-only agreement is a refusal."
   },
   {
@@ -4661,7 +4731,7 @@
    "resident": "George Hall",
    "person_id": "hall_george",
    "surname_in_1844": "Hall",
-   "candidates": 2,
+   "candidates": 3,
    "rule": "The surname 'Hall' is in Norris 1844 and no entry under it carries the initial 'G' of 'George Hall'. A surname-only agreement is a refusal."
   },
   {
@@ -4766,7 +4836,7 @@
    "resident": "Hanibal Ward",
    "person_id": "ward_hanibal",
    "surname_in_1844": "Ward",
-   "candidates": 3,
+   "candidates": 4,
    "rule": "The surname 'Ward' is in Norris 1844 and no entry under it carries the initial 'H' of 'Hanibal Ward'. A surname-only agreement is a refusal."
   },
   {
@@ -4878,7 +4948,7 @@
    "resident": "Hyram King",
    "person_id": "king_hyram",
    "surname_in_1844": "King",
-   "candidates": 6,
+   "candidates": 7,
    "rule": "The surname 'King' is in Norris 1844 and no entry under it carries the initial 'H' of 'Hyram King'. A surname-only agreement is a refusal."
   },
   {
@@ -4934,7 +5004,7 @@
    "resident": "J Green",
    "person_id": "green_j",
    "surname_in_1844": "Green",
-   "candidates": 3,
+   "candidates": 4,
    "rule": "The surname 'Green' is in Norris 1844 and no entry under it carries the initial 'J' of 'J Green'. A surname-only agreement is a refusal."
   },
   {
@@ -5183,13 +5253,6 @@
    "rule": "The surname 'Noble' is in Norris 1844 and no entry under it carries the initial 'J' of 'John Noble'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "John P. Simpson",
-   "person_id": "simpson_john_p",
-   "surname_in_1844": "Simpson",
-   "candidates": 1,
-   "rule": "The surname 'Simpson' is in Norris 1844 and no entry under it carries the initial 'J' of 'John P. Simpson'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "John S. Barry",
    "person_id": "barry_john_s",
    "surname_in_1844": "Barry",
@@ -5305,7 +5368,7 @@
    "resident": "Lemuel Brown",
    "person_id": "brown_lemuel",
    "surname_in_1844": "Brown",
-   "candidates": 18,
+   "candidates": 19,
    "rule": "The surname 'Brown' is in Norris 1844 and no entry under it carries the initial 'L' of 'Lemuel Brown'. A surname-only agreement is a refusal."
   },
   {
@@ -5424,7 +5487,7 @@
    "resident": "Michael P Welch",
    "person_id": "welch_michael_p",
    "surname_in_1844": "Welch",
-   "candidates": 2,
+   "candidates": 3,
    "rule": "The surname 'Welch' is in Norris 1844 and no entry under it carries the initial 'M' of 'Michael P Welch'. A surname-only agreement is a refusal."
   },
   {
@@ -7158,6 +7221,22 @@
     "forename_printed": "Wm",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Willard' against 'Wm'. An initial standing against a full name is a match; two full names that differ are not."
+   }
+  },
+  {
+   "resident": "Willinm Bandle",
+   "person_id": "bandle_will_nm",
+   "grade_1835": "inferred",
+   "entry_1844": {
+    "claim": "n1844_e0066",
+    "as_printed": "Bandlej Willis, b'smith, at Stow's Foundry, h N. Branch, 4th ward",
+    "printed_page": 22,
+    "occupation_1844": "b'smith, at Stow's Foundry",
+    "address_1844": "h N. Branch, 4th ward",
+    "forename_1835": "Willinm",
+    "forename_printed": "Willis",
+    "garbled_reading": false,
+    "rule": "Both readings print a full forename and the two disagree: 'Willinm' against 'Willis'. An initial standing against a full name is a match; two full names that differ are not."
    }
   }
  ]

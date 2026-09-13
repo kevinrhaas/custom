@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/12/2026, 6:54:12 PM CT
+claimed_by: run 9/12/2026, 11:13:13 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34726316488
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34737247546
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -1277,6 +1277,128 @@ agrees with the OCR, or Kim Torp's line is damaged too. Three classes:
 
 Sized: 37 crops off leaves already known, at roughly the rate this stretch managed, is one
 run. No successor ticket is filed — `tickets/README.md` puts the succession on the run that
+CLOSES the programme, and the pools are not empty. This ticket stays open and is its own
+cursor.
+
+## Stretch 11 — the other thirty-seven, read off the page image (T-0987, 2026-09-13)
+
+Stretch 10 closed by naming this one: **37 person entries whose surname still hides them
+from `crosswalk_norris_1844.py`**, measured off the reading it left. All thirty-seven are
+ruled, and the count was right — 68 hold a space inside a surname, of which 12 are real
+two-word names, 8 are institutions, 11 are the firm conjunction T-1018 owns, and 37 are
+damage.
+
+### The second reading had the answer, in the bucket nobody counts
+
+Stretch 10 worked the 25 entries `norris_1844_genealogytrails.json` lists under `differs`.
+Every one of these thirty-seven is in the same file's **`identical` or `agrees`** bucket —
+Kim Torp prints `Brinckerhoff` where the scan prints `Brine kerb off`, `Larkin` for `Lurk
+in`, `Wentworth` for `Went worth` — and the comparison folds punctuation and spacing
+before it compares, so a surname split at a space, or closed by a point instead of a
+comma, reads to it as agreement. The file's summary counts `differs` and the readings sat
+there from T-0576 unlooked at. That is the finding as much as the thirty-seven are.
+
+Every one was still cropped from the archive.org leaf image on its own word box and read
+by eye, then read a **second time** on a fresh crop at a different magnification, in a
+shuffled order so the first pass could not be carried down the page. Both readings are on
+every row (`reread`). The second hand agrees with the image on all thirty-seven; where she
+and the image disagree about something else — `Klein` for `Klien`, `Marsallam` for
+`Marsallani`, `Asabel` for `Asahel` — the committed reading stands and the row says so.
+
+### What the ink said, and where it corrects stretch 10
+
+Stretch 10 wrote that this printing "sets a proportion of those commas with the tail
+unprinted". Over the ten it read, that is what the image showed. Over the twenty-seven
+separator cases here it is the **minority**:
+
+| | n |
+|---|---|
+| a comma, tail and all, that the SCANNER read as a point | **15** |
+| a round point on the baseline, nothing below it | **10** |
+| undecided — the two passes disagreed (`Klien`, `Lahy`) | **2** |
+
+So the usual cause is the OCR, not the compositor, and `separator_mark` on every row says
+which this entry is. The two undecided rows stay undecided; the split does not depend on
+it, because a full stop cannot follow an unabbreviated surname either way.
+
+The remaining ten are not separator cases. Five surnames the scan broke into words —
+**Brinckerhoff, Larkin, McWard, Wentworth, Worthingham** — one comma welded into the letter
+beside it (**Bandle**), one real two-word surname with a damaged letter (**Van Drezer**,
+whose z was set as a solidus, and which therefore belongs with Van Sickle and Van Vlack and
+not with the damage at all), and **three where the comma is not in the ink**.
+
+### Three rows are `inferred`, and that is the point
+
+`Brown Clement`, `Butterfield George` and `Carson James` show clean paper between surname
+and forename at sixteen times magnification — no comma, no point, no mark. The letters are
+DOCUMENTED; the separator this reading supplies is not, so those three rows carry
+`confidence: inferred` and the reasoning: Norris sets `Surname, Given` throughout, and a
+forename standing alone after a surname is that format with its comma omitted. Nothing
+else in the entry moves, and `--self-test` fails if a row stops matching exactly one entry.
+
+The whole `split_surname` class T-1018 refused to cap — its four entries — is repaired at
+the source and moves to `OVERRUN_HEALED`, where the ratchet now asserts the opposite.
+
+### What landed on the ground
+
+**Three people of 1835 gain their 1844 line**, which is the first time this programme has
+placed anything since stretch 7:
+
+* **Tuthill King** — `King. Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st`.
+  Fergus 1839 has him at 115 Lake and Fergus 1843 at 115 Lake with a residence at 198
+  Clark; Norris corroborates both premises five years after the first.
+* **Asahel Pierce** — `Pierce. Asahel, blacksmith. S. Water st. b Lake and Randolph sts
+  house Lake st. 4th ward`. He is the one of the three with an 1835 trade and a placed
+  1835 shop, so the address ledger rules it `already_better_placed`; what the line records
+  is that he had moved off Market Street, where Fergus 1839 printed him.
+* **John P. Simpson** — `Simpson. John, mason, house Canal st. b Adams and Jackson sts`,
+  the same address Fergus 1843 prints, eight years after the scene and corroborating it.
+
+**No new street face is placed, and clause 5 asks that this be said plainly.** The card
+carries ONE `address_later` per person — the volume nearest 1835 — and all three already
+held a nearer 1839 or 1843 address, so `back_project_addresses.py` and
+`back_project_residences.py` re-derive byte for byte. What the 1844 lines add is
+corroboration and a trade, on the card and in `data/residents/directories.json`.
+
+Of the thirty-seven, **4 now touch an 1835 person at all** — the three matches and one
+forename refusal. The other 33 have no 1835 counterpart, which is what nine years does to
+a directory and is not a shortfall.
+
+### The pools after this stretch
+
+```
+                        1839        1843        1844      1844 ad     total
+  ties               37 -> 37    41 -> 41    24 -> 24    11 -> 11   113 -> 113
+  initial-absent    260 -> 260  323 -> 323  317 -> 315  124 -> 124  1024 -> 1022
+  forename-disagr.   68 -> 68    80 -> 80    46 ->  47    0 ->  0    194 -> 195
+  matches           146 -> 146  115 -> 115  100 -> 103   18 ->  18   379 -> 382
+```
+
+Clause 3, the write ceiling: `measure_research_spend.py` reads directories **889 reached,
+889 judgeable, 889 on a card, 0 unwritten**, and the town total 0. The three matches were
+spent in the same run — `spend_directories.py` wrote the layer, the ledger and the cards,
+and because a new match re-grades nothing but does re-derive the identity master,
+`consolidate_resident_evidence.py --build`, `mint_civic_residents.py --build` and the three
+per-domain spends that write onto a re-minted card (Fergus 1839 later lists, the land tract
+sales, the old-settlers citation) were run behind it. `check.sh` green, 359 steps.
+
+### Stretch 12 — the same defect, in the Fergus volumes
+
+Measured on the reading this stretch leaves: **Fergus 1843 holds 63 person entries with a
+space inside the surname and Fergus 1839 holds 11**. Setting aside the 9 institutions and
+the one real particle in 1843, and the 1 institution, 1 particle and 2 firms in 1839:
+
+* **26 in Fergus 1843 are the separator class** — `Boyington. Charles H`, `Calighan.
+  Mathew`, `Carr. William`, `Cook. George`… the same mark, on a volume with its own scan
+  and its own compositor, so the comma/point split this stretch measured for Norris is an
+  open question there and not an answer carried over.
+* **2 more in 1843 have no separator at all** — `Harding Charles`, `Seger Joseph`.
+* that is **28**, and at the rate this stretch managed it is one run. The six
+  page-citation run-ons 1843 also holds (`84-5-6] Cutmore`, `46] Smith`, `59] Wright`…)
+  are a DIFFERENT defect — a previous entry's bracketed page number running onto the next
+  line — and belong with Fergus 1839's eight in the stretch after.
+
+No successor ticket is filed: `tickets/README.md` puts the succession on the run that
 CLOSES the programme, and the pools are not empty. This ticket stays open and is its own
 cursor.
 

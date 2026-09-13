@@ -1256,7 +1256,16 @@ evenly between 0.22 and 0.78 of the frontage. On a log building (`wolf_point_tav
 `miller_house`, `walker_meeting_house`) the first stands outside the log core's gable wall, and a
 second — where a record counts two — stands against the outer gable of the frame addition. Every
 stack is the same 0.96 m square shaft with a corbelled head, rising 0.55 m above the ridge it
-passes.
+passes. **Which wall is the gable is read off the roof, not off a compass face** (T-0435,
+2026-09-13): a log core runs its ridge along the longer plan axis, so on a cabin deeper than it
+is wide the gables are the front and back and the stack stands at the BACK one. Until that date
+the code built at a fixed face regardless, and 31 of the town's 49 log stacks stood against an
+eave — the one disposition this entry and `docs/RESEARCH/chimneys.md` §3 argue the whole
+cat-and-clay fabric AGAINST. Two knock-on placements follow from the same reading and are part
+of the decision: on a gable-fronted cabin the single back window moves to the −x eave, because
+the back wall is now a gable and carries the stack; and a SECOND stack on such a cabin —
+`brown_boarding_house` alone asks for it — slides along the facade gable into the clear band
+between the door reveal and the nearer window rather than standing through the doorway.
 **Why:** not one source in this dataset describes a chimney on any of these six buildings. What
 the sources give is a count, and only for the Sauganash is even that drawn ("both depictions show
 two"); everything else — position, size, material, whether the stack was inside the wall or
@@ -1275,6 +1284,7 @@ entry is the only place that distinction is legible.
 settle position and rough proportion for that building alone; nothing held would settle the
 others.
 **Recorded:** 2026-08-10.
+**Revised:** 2026-09-13.
 
 ### L27 — Miller House: the frame range's width and depth come from an invented plan
 **Decision:** the two-storey range fronting the river is built 9 m wide and 6 m deep — the whole
