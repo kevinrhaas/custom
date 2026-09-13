@@ -11586,3 +11586,93 @@ place) · **L229** (the grave's fence, a hand-authored record of one small thing
 drawn, which is why nobody stands at the curb) · tickets **T-0887** (this), **T-0881** (the
 measurement), **T-0592** (the class this refuses to mint).
 **Recorded:** 2026-09-12 (T-0887).
+
+### L235 — A plant whose record states no width is measured, for the far band's species mix, at the footprint the placer already gives it
+**Decision:** the far band's grass-or-flower split is dealt on a quantity summed over each
+stratum's own records — **areal ground cover** from T-0280 to T-1106, and each stratum's
+**silhouette area** since (L236) — and where a species' record states no `width_m`, the clump
+width that quantity needs is the footprint the renderer is **already drawing the plant at**: `min(0.35 m, 0.16 × the record's own mid height)` as a clump radius,
+`renderers/web/js/flora.js` `clumpRadiusOf`, the rule `crowdsTheWalker` has used to keep a
+prairie dock out of the visitor's body since the timber critic's note. Fifty of the sward
+records are in that case, including **every forb of the wet prairie, the mesic prairie and the
+sand prairie**, and both marsh forbs.
+
+**Why:** the alternative is not a smaller number, it is an absent stratum. A sum taken over
+recorded widths alone returns 0.0000 for the sand prairie and 0.0000 for the marsh, and the far
+band would then deal both communities as pure grass on the strength of a field their records
+simply do not carry — a rendering decision made by a gap. The fallback is not invented here:
+it is read out of the placer, it is what those plants occupy on screen today, and the plants
+themselves are drawn from their own recorded densities either way.
+
+**What it is NOT:** it is not a width claim about any species, and no record gains a `width_m`.
+Nothing is written to `data/flora`. It is a derived quantity used inside one ratio, and
+`flora.communities()` exports `forbCoverFallbacks` per community so a reader can see exactly
+how much of a cover figure came from the fallback rather than from a stated width —
+`tools/measure_far_split.mjs` prints it in its own column.
+
+**What bounds it:** the ratio, not the geometry. This number decides **which plant a far card
+stands for**, never how many cards are dealt or how big they are, so the worst a wrong
+footprint can do is mis-colour an aggregate card. The card count, the instance count and the
+triangles are what they were.
+
+**How to resolve:** a `width_m` on the fifty records that lack one — most are prairie forbs
+whose clump diameter modern floras state directly — at which point the fallback stops firing
+and `forbCoverFallbacks` reads zero without a line of code changing.
+Related: **L185** (the forb abundances this cover is summed from, read at the top of their
+ranges) · **L32** (the same warning one stratum up: the grass is a modern remnant reading) ·
+**L236** (the silhouette
+the same fallback width now feeds) · tickets **T-0280** (this), **T-0019** (the lattice ceiling
+that had been deciding the split), **T-0209** (the split itself), **T-1106** (the change of
+unit).
+**Recorded:** 2026-09-13 (T-0280).
+**Revised:** 2026-09-13 (T-1106) — the split moved from ground cover to silhouette area, so the
+fallback width is now one of the two factors of `w × h` rather than the radius of a disc. The
+fallback itself, the fifty records it fires on and everything this entry says about it are
+unchanged; only the ratio it feeds has changed unit.
+
+### L236 — The far band's species mix is dealt on a SILHOUETTE, and the silhouette of a clump is taken as its bounding rectangle
+**Decision:** the far band's grass-or-flower split is dealt on each stratum's **silhouette-area
+density** — `stems × w × h` per m² of ground, `silhouetteOf` in
+`renderers/web/js/flora.js` — and the silhouette of one clump is taken as the **rectangle**
+`w × h`: its recorded mid height by its drawn clump diameter, with no shape factor of any kind.
+The matrix side of the ratio is the record's own `cover.matrix_fraction` multiplied by the
+graminoid stratum's own measured aspect `sil / cover`, so the authored figure is converted
+rather than replaced. No constant enters the split that is not summed off `data/flora`.
+
+**Why:** the far band's nearest card stands 34 m from the visitor and its furthest 95 m. At
+fifty metres a 1.7 m eye looks 1.9 degrees below horizontal, so the sward is seen **edge-on, as
+a wall**, and the plant that fills a pixel is the first element the ray meets — which is
+governed by projected area per element times elements per unit ground, and not by how much
+ground each holds. The depth of the wall cancels out of a ratio between two strata standing in
+it. This is not a new model in this project: `tools/measure_far_bloom.mjs` §1 has priced the
+BLOOM share on exactly this bridge since T-0209 and states its own liberty for it, so between
+T-0280 and T-1106 the module was reading one wall in two different units one field apart.
+
+**What it is NOT:** it is not a claim that any plant is rectangular, and no record gains a
+shape. It is also not a back door to more flowers: the quantity is two-sided and it moves both
+ways. Measured over the ten communities, the forb share of the far cards **falls** at
+`z03_sedge_meadow` (11.51 % → 8.25 %, 0.717×) because that community's sedges are the taller
+narrower stratum, and rises where the forbs are — most at `z10_settled_town` (46.75 % →
+72.72 %) and `z05_riverbank_timber` (5.26 % → 10.39 %). `z04_marsh` moves by 0.01 of a
+percentage point, because its two strata happen to share an aspect of 3.98.
+
+**What bounds it:** the same bound L235 states, and for the same reason — this number decides
+**which plant a far card stands for**, never how many cards are dealt, how large they are, or
+where. The far card's own geometry is untouched: its height is still the plant's own drawn
+height and its width still `band.wide`, the aggregate width L137 gives it, so `w × h` here is
+the clump's bounding rectangle and NOT a description of the quad on screen. Card count,
+instance count, draw calls and triangles are what they were; measured at the three gate stands,
+the drawn far cards are 226 / 241 / 28 before and after.
+
+**How to resolve:** a measured vertical profile — a silhouette coefficient per growth form,
+from a canopy study or from photographs of the living remnant communities — at which point the
+rectangle becomes a coefficient times the rectangle, and where the two strata share a form it
+cancels out of the ratio again and nothing moves. Until there is one, a shape factor applied to
+only one side would be a thumb on the scale and applied to both would be arithmetic with no
+content.
+Related: **L235** (the fallback width this silhouette's `w` is read from where a record states
+none) · **L137** (the far card's aggregate width, which this deliberately does NOT read) ·
+**L185** (the abundances both sides are summed from) · tickets **T-1106** (this), **T-0280**
+(the ground-cover reading this replaces), **T-0209** (the split, and the bloom's own silhouette
+model this is brought into line with).
+**Recorded:** 2026-09-13 (T-1106).

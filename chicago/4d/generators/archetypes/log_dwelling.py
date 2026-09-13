@@ -67,7 +67,10 @@ from common.logwork import (  # noqa: E402
 )
 from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, simple_material  # noqa: E402
-from archetypes.log_dwelling_params import LogDwellingParams  # noqa: E402
+from archetypes.log_dwelling_params import (  # noqa: E402
+    ADDITION_WIN_HALF_M, DOOR_HALF_M, WIN_AT_FRAC, WIN_HALF_M, LogDwellingParams,
+    addition_extent, addition_front_rects, core_extent, core_front_rects,
+)
 
 # Materials are indices into the list passed to to_object(), in this order.
 M_LOG, M_CHINK, M_ROOF, M_FRAME, M_DARK, M_SIGN, M_PAINT = 0, 1, 2, 3, 4, 5, 6
@@ -130,7 +133,7 @@ def build(params: LogDwellingParams, name: str):
     c_roof = params.worst_conf("roof_type", "roof_pitch_deg")
 
     # Where the log core sits inside the footprint once the addition is carved out.
-    cx0, cy0, cx1, cy1 = _core_extent(params)
+    cx0, cy0, cx1, cy1 = core_extent(params)
     wall_z = params.wall_height_m
 
     hewn_log_wall(b, cx0, cy0, cx1, cy1, 0.0, wall_z, c_mass, M_LOG, M_CHINK,
@@ -219,44 +222,20 @@ def build(params: LogDwellingParams, name: str):
 
 # ---------------------------------------------------------------- plan geometry
 
-def _core_extent(p: LogDwellingParams) -> tuple[float, float, float, float]:
-    """The log core's rectangle inside the footprint bbox.
-
-    The addition is carved OUT of the footprint rather than bolted onto it, so the
-    whole building stays inside the polygon the record actually attests. See the
-    dataclass docstring in log_dwelling_params.
-    """
-    w, d = p.width_m, p.depth_m
-    if not p.frame_addition:
-        return 0.0, 0.0, w, d
-    if p.frame_addition_side == "end":
-        return 0.0, 0.0, w - p.frame_addition_width_m, d
-    return 0.0, 0.0, w, d - p.frame_addition_depth_m
-
-
-def _addition_extent(p: LogDwellingParams) -> tuple[float, float, float, float]:
-    """The frame addition's rectangle. `front` is centred on the facade; `end` runs
-    to the +x edge and aligns its front wall with the core's."""
-    w, d = p.width_m, p.depth_m
-    fw, fd = p.frame_addition_width_m, p.frame_addition_depth_m
-    if p.frame_addition_side == "end":
-        return w - fw, max(d - fd, 0.0), w, d
-    x0 = (w - fw) / 2.0
-    return x0, d - fd, x0 + fw, d
-
-
 def _ridge_along_x(x0, y0, x1, y1) -> bool:
     return (x1 - x0) >= (y1 - y0)
 
 
-#: THE FACADE'S OWN NUMBERS, hoisted out of `_core_openings` (T-0435). A second stack
-#: that lands on a gable-fronted core's FACADE has to be placed in the band that facade
-#: leaves clear, and a second copy of these figures would be a silent way for the stack
-#: and the door to drift back into each other. Half-widths in metres; `_WIN_AT` is the
-#: flanking windows' offset as a fraction of the wall's full span.
-_DOOR_HALF = 0.52
-_WIN_HALF = 0.31
-_WIN_AT = 0.28
+#: THE FACADE'S OWN NUMBERS, hoisted out of `_core_openings` (T-0435) and moved on
+#: into log_dwelling_params with T-0520, which is where the facade is now set out.
+#: They are still named here because the stack placement below reads them: a second
+#: stack that lands on a gable-fronted core's FACADE has to go in the band that
+#: facade leaves clear, and two copies of these figures would be a silent way for
+#: the stack and the door to drift back into each other. These are the params
+#: module's values, not a copy of them.
+_DOOR_HALF = DOOR_HALF_M
+_WIN_HALF = WIN_HALF_M
+_WIN_AT = WIN_AT_FRAC
 #: Half the stack shaft, and the air left between it and any opening it stands beside.
 _STACK_HALF = 0.48
 _STACK_CLEAR = 0.04
@@ -423,21 +402,31 @@ def _core_openings(b: MeshBuilder, p: LogDwellingParams, x0, y0, x1, y1,
     where its door would have been.
     """
     front_taken = p.frame_addition and p.frame_addition_side == "front"
-    story_h = wall_z / max(p.stories, 1)
     xm = (x0 + x1) / 2.0
     ym = (y0 + y1) / 2.0
-    span = x1 - x0
     gable_front = _gable_axis(p, x0, y0, x1, y1) == "y"
 
+    # THE FACADE IS THE PARAMS MODULE'S SET-OUT (T-0520). `core_front_rects` states
+    # the door and the storey windows on this wall and the signage layer reads the
+    # same list, so a board can no longer be hung over a window this builder drew
+    # somewhere else. The rects arrive in the order they are drawn in: the door, then
+    # two flanking windows per storey, then the centre window a front addition's
+    # facade gets in place of its door. The flanks below are this builder's own and
+    # are not stated there, but they take their band from the storey's front windows
+    # rather than recomputing it.
+    rects = core_front_rects(p)
+    i = 0
     if not front_taken:
-        _opening(b, "y", y1, xm - _DOOR_HALF, xm + _DOOR_HALF, 0.02, 1.95, 1, conf)
+        _kind, u0, u1, z0, z1 = rects[i]
+        i += 1
+        _opening(b, "y", y1, u0, u1, z0, z1, 1, conf)
 
     for story in range(p.stories):
-        z0 = story * story_h + story_h * 0.34
-        for u in (xm - span * _WIN_AT, xm + span * _WIN_AT):
-            _opening(b, "y", y1, u - _WIN_HALF, u + _WIN_HALF, z0, z0 + 0.72, 1, conf)
-        if front_taken and story == 0:
-            _opening(b, "y", y1, xm - _WIN_HALF, xm + _WIN_HALF, z0, z0 + 0.72, 1, conf)
+        band = rects[i:i + (3 if front_taken and story == 0 else 2)]
+        i += len(band)
+        for _kind, u0, u1, z0, z1 in band:
+            _opening(b, "y", y1, u0, u1, z0, z1, 1, conf)
+        z0, z1 = band[0][3], band[0][4]
         # ONE WINDOW BEHIND, AND NEVER IN A GABLE. The rule this line has always stated
         # is "none on the gable ends: the gables carry the chimney at one end and the
         # notching at both, and a log gable was rarely pierced" — but it was written
@@ -448,11 +437,9 @@ def _core_openings(b: MeshBuilder, p: LogDwellingParams, x0, y0, x1, y1,
         # itself is the one gable that is pierced when it is a gable, and it is pierced
         # because a cabin has to have a door.
         if gable_front:
-            _opening(b, "x", x0, ym - _WIN_HALF, ym + _WIN_HALF, z0, z0 + 0.72,
-                     -1, conf)
+            _opening(b, "x", x0, ym - _WIN_HALF, ym + _WIN_HALF, z0, z1, -1, conf)
         else:
-            _opening(b, "y", y0, xm - _WIN_HALF, xm + _WIN_HALF, z0, z0 + 0.72,
-                     -1, conf)
+            _opening(b, "y", y0, xm - _WIN_HALF, xm + _WIN_HALF, z0, z1, -1, conf)
 
 
 # ------------------------------------------------------------- frame addition
@@ -471,7 +458,7 @@ def _frame_addition(b: MeshBuilder, p: LogDwellingParams) -> float:
     c = p.worst_conf("frame_addition", "frame_addition_stories")
     c_clad = p.conf("frame_addition", "reconstructed")
     c_fen = p.conf("fenestration", "reconstructed")
-    ax0, ay0, ax1, ay1 = _addition_extent(p)
+    ax0, ay0, ax1, ay1 = addition_extent(p)
     az = p.addition_height_m
 
     b.add_box(ax0, ay0, 0.0, ax1, ay1, az, c, M_FRAME, skip=("bottom", "top"))
@@ -483,28 +470,23 @@ def _frame_addition(b: MeshBuilder, p: LogDwellingParams) -> float:
     add_ridge_z = b.add_gable_roof(rx0, ay0, ax1, ay1, az, p.roof_pitch_deg, c, M_ROOF,
                                    ridge_along_x=True)
 
-    xm = (ax0 + ax1) / 2.0
-    story_h = az / max(p.frame_addition_stories, 1)
-    front = p.frame_addition_side == "front"
     rel = 0.026                    # clapboard lip, not log relief
-    if front:
-        _opening(b, "y", ay1, xm - 0.55, xm + 0.55, 0.02, 2.05, 1, c_fen,
-                 relief=rel)
-    for story in range(p.frame_addition_stories):
-        z0 = story * story_h + story_h * 0.32
-        for fx in (0.22, 0.78):
-            u = ax0 + (ax1 - ax0) * fx
-            if story == 0 and front and abs(u - xm) < 0.9:
-                continue
-            _opening(b, "y", ay1, u - 0.36, u + 0.36, z0, z0 + 1.05, 1, c_fen,
-                     relief=rel)
+    # THE ADDITION'S FACADE IS THE PARAMS MODULE'S SET-OUT (T-0520), door and
+    # windows both, in the order they are drawn in — and it is the same list the
+    # signage layer reads when a front addition is the wall a visitor faces.
+    front_rects = addition_front_rects(p)
+    for _kind, u0, u1, z0, z1 in front_rects:
+        _opening(b, "y", ay1, u0, u1, z0, z1, 1, c_fen, relief=rel)
     # The gable end that is not buried in the log core gets one window per storey.
+    # An END addition's front wall carries exactly two windows a storey and no door
+    # (the core keeps that), so the storey's band is the pair at 2*story — read from
+    # the facade rather than recomputed, which is the whole point of T-0520.
     if p.frame_addition_side == "end":
         yc = (ay0 + ay1) / 2.0
         for story in range(p.frame_addition_stories):
-            z0 = story * story_h + story_h * 0.32
-            _opening(b, "x", ax1, yc - 0.36, yc + 0.36, z0, z0 + 1.05, 1, c_fen,
-                     relief=rel)
+            z0, z1 = front_rects[2 * story][3:]
+            _opening(b, "x", ax1, yc - ADDITION_WIN_HALF_M, yc + ADDITION_WIN_HALF_M,
+                     z0, z1, 1, c_fen, relief=rel)
     return add_ridge_z
 
 
@@ -562,7 +544,7 @@ def _chimneys(b: MeshBuilder, p: LogDwellingParams, cx0, cy0, cx1, cy1,
     if p.chimneys < 2:
         return
     if p.frame_addition and add_ridge_z is not None:
-        ax0, ay0, ax1, ay1 = _addition_extent(p)
+        ax0, ay0, ax1, ay1 = addition_extent(p)
         _stack(b, ax0, ay0, ax1, ay1, add_ridge_z, conf, mat, at_min=False,
                gable_axis="x")
     else:
@@ -661,10 +643,10 @@ def _sign(b: MeshBuilder, p: LogDwellingParams, conf: float) -> None:
     """
     front = p.frame_addition and p.frame_addition_side == "front"
     if front:
-        bx0, _, bx1, face = _addition_extent(p)
+        bx0, _, bx1, face = addition_extent(p)
         eave = p.addition_height_m
     else:
-        bx0, _, bx1, face = _core_extent(p)
+        bx0, _, bx1, face = core_extent(p)
         eave = p.wall_height_m
     x = min((bx0 + bx1) / 2.0 + 1.7, bx1 - 0.6)
 
@@ -769,7 +751,7 @@ def _sign_pole(b: MeshBuilder, p: LogDwellingParams, ridge_z: float,
     outline, so the ground under it is whatever the terrain does a metre out, and a
     set butt absorbs that instead of floating over it.
     """
-    bx0, _, bx1, face = _core_extent(p)
+    bx0, _, bx1, face = core_extent(p)
     xm = (bx0 + bx1) / 2.0
     px = min(xm + 1.85, bx1 - 0.55)
     py = face + POLE_STANDOFF_M

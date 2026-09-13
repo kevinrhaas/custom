@@ -102,14 +102,14 @@ coordinate and never a footprint.**
 | # | subject | identification | source record | rights |
 |---|---|---|---|---|
 | 1 | first Cook County jail | **unidentified-pending** | — | — |
-| 2 | Dearborn drawbridge, view one | **unidentified-pending** | — | — |
+| 2 | Dearborn drawbridge, view one | *"DEARBORN STREET DRAWBRIDGE, BUILT IN 1834."*, wood engraving, Andreas 1884 vol. I p. 631 | `andreas_1884_dearborn_drawbridge_plate` | `public_domain` |
 | 3 | Dearborn drawbridge, view two | *"Old Dearborn Street (Old Point) Bridge"*, wood engraving signed BAKER–CO, captioned by Chicagology "First Dearborn Street bridge in 1834" | `dearborn_street_bridge_1834_engraving` | `check_required` |
 | 4 | Wolf Tavern | **unidentified-pending** | — | — |
 | 5 | Tremont House street scene | wash drawing signed **N. Roswell Gifford**, captioned "Tremont House No. 1" | `gifford_tremont_house_no_1` | `check_required` |
-| 6 | Green Tree Inn — 1838 (Braunhold) | **unidentified-pending** | — | — |
+| 6 | Green Tree Inn — 1838 (Braunhold) | *"THE GREEN TREE HOTEL."*, wood engraving, Andreas 1884 vol. I p. 634 — captioned with no year and no legible signature | `andreas_1884_green_tree_hotel_plate` | `public_domain` |
 | 7 | Green Tree Inn (Trowbridge) | *"The Green Tree Tavern in 1835"*, signed **W. E. S. Trowbridge ’02** | `trowbridge_green_tree_1902` | `check_required` |
 | 8 | "Sauganash Hotel. 1831" (Petford) | **unidentified-pending** | — | — |
-| 9 | "The Sauganash Hotel" (Braunhold) | **unidentified-pending** | — | — |
+| 9 | "The Sauganash Hotel" (Braunhold) | *"THE SAUGANASH HOTEL."*, wood engraving, Andreas 1884 vol. I p. 632, copyright line `A. T. Andreas` lettered inside the plate border | `andreas_1884_sauganash_hotel_plate` | `public_domain` |
 | 10 | The Sauganash (Trowbridge) | undated drawing signed **W. E. S. Trowbridge**, captioned by Chicagology as Trowbridge's drawing of "Mark Beaubien's Sauganash hotel on Lake st. near Market st." | `trowbridge_sauganash_hotel` | `check_required` |
 | 11 | "South Water Street in 1834" | **unidentified-pending** | — | — |
 | 12 | Chicago circa 1833, looking east | **unidentified-pending** | — | — |
@@ -162,3 +162,105 @@ carries a two-digit year that is **not legible** at this resolution, so the reco
 `inferred` or `reconstructed` with the brief's path in its note, which is exactly what a
 citation-by-path is for. What the four new records change is that the claims resting on
 *them* now cite a plate with an artist, a locator and an archived copy behind it.
+
+## Identifications — T-0136, 2026-09-13: Andreas at page-image level
+
+T-0075 left eight of the twelve open and named the route out for the two Braunhold plates:
+**go to Andreas volume I at page-image level rather than to another aggregator.** That route
+was taken. It resolves three of the eight, not two, and it settles their rights at the same
+time — which was the second half of the reason for taking it.
+
+**How the plates were found, so nobody has to find them again.** The volume prints its own
+**LIST OF ILLUSTRATIONS** (§ VIEWS), and it gives the printed page of every plate in the book.
+Read at the page image it names, among others, *Wolf Point in 1830* (630), *Dearborn-street
+Drawbridge, 1834* (631), *Sauganash Hotel* (632), *Green Tree Hotel* (634) and *Frink &
+Walker's Stage Office* (636) — five plates in seven pages, because Andreas gathers the early
+taverns into one chapter, "Wolf Point and Early Hotels". Nobody had opened that list.
+
+Two facts about the archive.org scan, both measured and both non-obvious, are recorded on each
+new source record's `access_notes` as well as here:
+
+- the derivative served by `/download/historyofchicago01andr/page/n<leaf>_large.jpg` is
+  **mirrored** — flip it horizontally before reading anything;
+- in this stretch of the volume **leaf index = 2 × printed page + 33**, verified against six
+  plates and portraits (pages 629, 630, 631, 632, 634, 636). The arithmetic is **local**: leaf
+  361 is not printed page 164. Re-derive the offset from a known plate before trusting it
+  elsewhere. The item's `_page_numbers.json` derivative carries no page numbers at all, and
+  `_scandata.xml`'s `<pageNumber>` disagrees with the BookReader leaf index; neither is usable.
+
+### What resolved
+
+- **Image 9, the Sauganash (Braunhold).** Andreas vol. I p. 632, plate captioned *"THE
+  SAUGANASH HOTEL."*, with a copyright line lettered **inside the plate border at the lower
+  left**: `A. T. Andreas`, year reading `188` with the fourth digit not crisp. The clapboard
+  block, the log wing with its door direct to grade under a shed roof, the wide entrance
+  surround and the plank walk are all on it. The brief's **hitching posts and right-hand board
+  fence are not resolvable** in this scan and are therefore not claimed.
+  → `andreas_1884_sauganash_hotel_plate`.
+- **Image 6, the Green Tree (Braunhold).** Andreas vol. I p. 634, plate captioned *"THE GREEN
+  TREE HOTEL."* — **no year on the caption**, so the brief's "1838" is the brief's and this
+  record does not carry it. Identified on the two features nothing else in the volume's VIEWS
+  draws: a signboard hanging from a **tall post clear of the wall** at the corner, and **ship's
+  masts rising directly behind the roofline**. It is an 1884 witness to the post-mounted sign,
+  eighteen years older than and independent of `trowbridge_green_tree_1902`, and it agrees.
+  → `andreas_1884_green_tree_hotel_plate`.
+- **Image 2, the closer Dearborn drawbridge view** — which was not on this ticket's priority
+  list and fell out of the same chapter. Andreas vol. I p. 631, *"DEARBORN STREET DRAWBRIDGE,
+  BUILT IN 1834."*: two braced gallows frames with chains, a railed deck on cribbing, a trestle
+  approach, and **one schooner under sail immediately alongside**. It carries none of image 3's
+  three markers — the crowded reach, the beacon, the bank warehouses — which is exactly the
+  distinction `dearborn_street_bridge_1834_engraving` drew when it declined to claim this view.
+  → `andreas_1884_dearborn_drawbridge_plate`.
+
+**And the rights question closed with them.** All three are `public_domain` on the volume's
+1884 imprint. Every plate this brief had a record for until today is `check_required`, because
+every one of them was cited to a blog. That is the difference the page-level route was expected
+to make, and it made it.
+
+### The five still open, and the NEW searches that were run
+
+Not one of these repeats the four routes T-0075 recorded.
+
+- **Image 4, the Wolf Tavern.** *Ruled out against Andreas, positively.* The volume's only Wolf
+  Point view is **p. 630, "WOLF POINT IN 1830"**, and it was fetched and read: it is a distant
+  landscape across the water — the far bank, a cloud-filled sky, marsh grass in the foreground —
+  and **not** the close view of a log tavern with barrels at the wall the brief describes. There
+  is no other tavern plate in the volume's list of VIEWS. Worth recording anyway: a tall pole
+  does stand beside the buildings on the far bank in that plate, and Andreas's text on the
+  facing pages argues at length about **who painted the wolf sign and when** — so the sign is
+  attested in Andreas even though the brief's plate is not.
+- **Image 1, the first Cook County jail.** *Ruled out against Andreas, positively.* The list of
+  ILLUSTRATIONS was read end to end. Volume I reproduces *The First Court-House* (177) and *The
+  Second Court-House* (176, 181) and **no jail at all** — so the brief's jail engraving is not
+  an Andreas volume I plate, and the next attempt should go to volume II or to the Chicago
+  Historical Society's own print holdings, not back here.
+- **Image 8, the Petford watercolour.** A real advance short of the accession number. The
+  **Chicago History Museum Prints and Photographs Collection is reachable as `chm_pp` on
+  CARLI's ContentDM API** (`collections.carli.illinois.edu/digital/api/…`), and it was searched.
+  It holds exactly one Petford: **"Kinzie mansion in 1883", ICHi-01222, artist "Petford, C. E.",
+  dated 1893, "No known copyright restrictions"**. So the artist is confirmed in the CHM
+  collection, the shape of the eventual record is confirmed (an `ICHi-` number and a
+  no-known-restrictions line), and — the part that matters for grading — **the Petford hand is
+  a hand of the 1890s**, which makes the brief's "Sauganash Hotel. 1831" a retrospective of some
+  sixty years and not a contemporary record. The Sauganash watercolour itself is **not in the
+  digitised subset**: `chm_pp` returns two hits for *Sauganash* and both are something else (a
+  Mark Beaubien portrait, and the 1860 Wigwam).
+- **Image 11, the CHS postcard of "South Water Street in 1834".** Searched in the same `chm_pp`
+  collection; the nine hits for *South Water Street* are all twentieth-century photography
+  (Hedrich-Blessing and later). Its rights line still cannot be read off the object, so it still
+  gets no record.
+- **Image 12, "Chicago circa 1833, looking east".** Not an Andreas volume I plate: the volume's
+  general views are *Chicago in 1779* (frontispiece), *Chicago in 1830* (164) and *Chicago in
+  1845* (149), none of them c. 1833, and all of them wood engravings where the brief's image is
+  **coloured**. `chm_pp` has nothing for it either.
+
+**The obstacle, stated so it is not re-hit.** The Chicago History Museum's own catalogue at
+`images.chicagohistory.org` and the Chicago Collections aggregator at
+`explore.chicagocollections.org` both **refuse an automated client** from this runner — a flat
+403 from the first and a Cloudflare interstitial from the second — and HathiTrust returns 403 as
+well. CARLI's ContentDM API answers normally and is the way in to CHM material from here. That
+is why image 8 ends with an artist and a collection rather than an accession number.
+
+**Still true of all eight, and of the five that remain: none of them blocks anything.** What the
+three new records change is that the claims resting on them cite a numbered page of a
+public-domain volume instead of a line in this file.

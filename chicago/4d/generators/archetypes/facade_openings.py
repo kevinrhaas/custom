@@ -18,12 +18,13 @@ geometry a visitor sees. They live in the params modules for the reason
 `shopfront_head_z` always has: the commit gate has to read them and the commit gate
 has no Blender.
 
-WHAT IS NOT DONE YET, said plainly. The BUILDER does not yet call these functions;
-it still computes the same rectangles inline, so the two are two copies of one
-arithmetic. Making the builders consume this is T-0520, and it is a separate ticket
-because the asset staleness hash covers each builder module byte for byte: editing
-three of them stales 212 assets and demands a town-wide rebake. Until that lands,
-an opening moved in a builder must be moved here in the same commit.
+AND THE BUILDERS READ IT (T-0520). For a while they did not: each computed the same
+rectangles inline, so the answer this module gives and the mesh a visitor sees were
+two copies of one arithmetic held together by a written rule. `frame_storefront`,
+`log_dwelling` and `outbuilding` now build their front elevations from these same
+functions, so an opening has one place to be moved. Closing that gap cost a
+town-wide rebake on its own — the staleness hash covers each builder module byte
+for byte, and editing three of them staled 212 of the town's 349 assets.
 
 THE FRAME. `u` runs along the front wall from the footprint polygon's own origin;
 `z` is metres above the base of the walls, the datum `buildings.js` sets and the

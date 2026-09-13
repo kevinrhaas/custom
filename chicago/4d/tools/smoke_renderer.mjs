@@ -7024,6 +7024,59 @@ for (const [label, viewport, touch] of [
       placeholder.placeholderFlag === (placeholder.recommended === true),
       JSON.stringify(placeholder));
 
+    // --- the standing constraint, on the card ------------------------------
+    // T-0268. Nine records are held under AGENTS.md's standing constraint, and the
+    // flag used to reach a browser exactly once, as a console line about the scene.
+    //
+    // This is asserted over EVERY flagged record rather than one sampled id, because
+    // the set is the thing: `measure_review_constraint.py` decides which buildings
+    // are held and the card must not disagree with it about a single one. The two
+    // ends of that agreement are gated in different places and both are needed — the
+    // census re-derives `review_reason` against the committed sidecars, and this
+    // asks the rendered DOM whether a visitor is actually handed it.
+    //
+    // The control is the other half. A held notice on a building that is not held
+    // would be a worse fault than a missing one: it would put a consultation claim
+    // on a record nobody made it for.
+    const held = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const flag = document.querySelector('#popup .pop-flag-held');
+        return {
+          id,
+          notice: !!flag && /held pending consultation/i.test(flag.textContent),
+          why: flag?.querySelector('.pop-held-why')?.textContent?.trim() ?? '',
+          recorded: window.__chicago4d.registry.get(id)?.sidecar?.review_reason ?? '',
+          // Folded sections are not an answer to "without unfolding anything":
+          // the reason lived inside a 400-word note behind a disclosure before
+          // this, and that is the state the ticket was opened about.
+          openable: !!flag?.closest('details'),
+        };
+      };
+      const flagged = [...window.__chicago4d.registry.values()]
+        .filter((r) => r.sidecar?.review_required)
+        .map((r) => r.sidecar.id)
+        .sort();
+      const control = [...window.__chicago4d.registry.values()]
+        .find((r) => r.sidecar && !r.sidecar.review_required)?.sidecar?.id;
+      return { flagged: flagged.map(read), control: control ? read(control) : null };
+    });
+    check(`${label}: every held building says so on its card`,
+      held.flagged.length > 0 && held.flagged.every((h) => h.notice && !h.openable),
+      `${held.flagged.filter((h) => !h.notice || h.openable).map((h) => h.id).join(', ')
+       || `${held.flagged.length} flagged`}`);
+    // Verbatim, and for the same reason the account below is: this is the record's
+    // sentence, not a gloss of it, and a renderer that trimmed it to a first clause
+    // would pass any substring check written here.
+    const whyDrift = held.flagged.filter((h) => !h.recorded || h.why !== h.recorded);
+    check(`${label}: and says what it is held for, in the record's own words`,
+      held.flagged.length > 0 && whyDrift.length === 0,
+      whyDrift.map((h) => `${h.id}: shown ${JSON.stringify(h.why.slice(0, 40))}`
+        + ` vs recorded ${JSON.stringify(h.recorded.slice(0, 40))}`).join(' | '));
+    check(`${label}: and a building that is not held does not claim to be`,
+      held.control !== null && held.control.notice === false,
+      JSON.stringify(held.control));
+
     // --- the record's own account -----------------------------------------
     // `research_note` is on every record and in every compiled sidecar, and the
     // sidecar-contract gate reported it as compiled-and-never-read: an unshipped
@@ -8294,6 +8347,8 @@ for (const [label, viewport, touch] of [
         mapCaption: document.querySelector('.overview-caption')?.textContent?.trim(),
         mapAria: document.getElementById('overview-map')?.getAttribute('aria-label'),
         speedLabel: document.getElementById('v-speed')?.textContent?.trim(),
+        paceLabels: ['v-speed', 'v-wagon-speed', 'v-horse-speed'].map(
+          (id) => [id, document.getElementById(id)?.textContent?.trim() ?? null]),
         units: document.getElementById('s-units')?.value,
         mapSize: [mapCanvas.width, mapCanvas.height],
         east,
@@ -8312,9 +8367,24 @@ for (const [label, viewport, touch] of [
       && /feet|ft/.test(nav.mapAria ?? ''),
       `${nav.mapSize.join('x')}, caption ${nav.mapCaption}, aria ${nav.mapAria}, `
       + `E ${nav.east.snapshot.bounds.eMin}…${nav.east.snapshot.bounds.eMax}`);
-    check(`${label}: walking speed is presented in miles per hour`,
-      /^\d+(?:\.\d)? mph$/.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
+    // T-1081. The readout is `gait · speed` — "walk · 3.2 mph" — since T-0823 gave
+    // each pace a named gait, and this assertion's `^`-anchored bare-number pattern
+    // had called dev red on that prefix on both viewports for a week, which is a
+    // week of every PR touching parts 7-8 unable to merge. The pattern now reads the
+    // shape the HUD actually ships, so the gait is COVERED rather than contradicted:
+    // a readout that loses its unit still fires, and so does one that loses its name.
+    const PACE_READOUT = /^[a-z][a-z ]*[a-z] · \d+(?:\.\d)? mph$/;
+    check(`${label}: walking speed is presented as a named gait in miles per hour`,
+      PACE_READOUT.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
       `speed label ${nav.speedLabel}`);
+    // And all three ground paces, because the readout is one function (hud.js
+    // § gaitReadout) and a fault in it reaches the wagon and the horse too.
+    const badPace = nav.paceLabels.filter(([, text]) => !PACE_READOUT.test(text ?? ''));
+    check(`${label}: every pace slider names its gait beside an imperial speed`,
+      nav.paceLabels.length === 3 && badPace.length === 0,
+      badPace.length
+        ? badPace.map(([id, text]) => `${id} reads ${JSON.stringify(text)}`).join('; ')
+        : nav.paceLabels.map(([id, text]) => `${id} ${text}`).join(', '));
     check(`${label}: overview marker follows position and bearing`,
       nav.first !== nav.second && Math.abs(nav.moved.e - 180) < 0.1
       && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
@@ -12052,6 +12122,65 @@ for (const [label, viewport, touch] of [
       mountFit.length === 7 && unfit.length === 0,
       unfit.length ? unfit.map((m) => `${m.id} ${m.scroll}/${m.client} in ${m.panel}`).join('; ')
         : mountFit.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
+
+    // T-0302's actual claim, and the reason the measure above was not enough:
+    // *"it is invisible today only because their longest line happens to fit;
+    // the first long `<dd>` any of them gains clips silently."* A check on the
+    // content as it stands cannot see a latent clipper, so this one puts the
+    // long line there. Each mount is CLONED, laid out as the next sibling of the
+    // original — same parent, same column width, so the measurement is of this
+    // section's real layout — every `<details>` in the copy is opened, a
+    // 90-character unbreakable run replaces the text of every leaf, and the copy
+    // is measured and removed. The original is never touched, which is what lets
+    // this sit in the middle of a part whose later assertions read the same
+    // sections' text.
+    // Measured on this branch, 2026-09-13 at 390x780: before the rules in
+    // css/evidence.css all seven clipped — liberties 1196/362, ground 1261,
+    // fauna 1196, plants 749, exclusions 685, uncertain 685, residents 689 —
+    // carried by ordinary furniture the old `dt`/`dd`-only rule did not name: a
+    // citation `<li>`, the scope pill, a `<b>` in a household's prose. After,
+    // every one of them is 362/362.
+    const mountStress = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const TOKEN = 'x'.repeat(90);
+      const stress = (id) => {
+        const mount = document.getElementById(id);
+        if (!mount) return { id, client: 0, scroll: 1, leaves: 0 };
+        const probe = mount.cloneNode(true);
+        probe.id = `${id}-t0302-probe`;
+        mount.after(probe);
+        probe.querySelectorAll('details').forEach((d) => { d.open = true; });
+        let leaves = 0;
+        for (const el of probe.querySelectorAll('*')) {
+          if (el.children.length || !el.textContent.trim()) continue;
+          el.textContent = TOKEN;
+          leaves += 1;
+        }
+        const out = { id, client: probe.clientWidth, scroll: probe.scrollWidth, leaves };
+        probe.remove();
+        return out;
+      };
+      const rows = [];
+      api.hud.setPanel(true);
+      api.hud.selectTab('evidence');
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+        api.evidenceHub.showTopic(id);
+        await new Promise((r) => setTimeout(r, 30));
+        rows.push(stress(id));
+      }
+      api.hud.selectTab('people');
+      api.people?.close?.();
+      await new Promise((r) => setTimeout(r, 30));
+      rows.push(stress('residents'));
+      api.hud.selectTab('evidence');
+      api.evidenceHub.showHub();
+      return rows;
+    });
+    const clipped = mountStress.filter((m) => !(m.client > 0 && m.leaves > 0 && m.scroll <= m.client));
+    check(`${label}: a run longer than the column breaks inside all seven mounts, not past them`,
+      mountStress.length === 7 && clipped.length === 0,
+      clipped.length ? clipped.map((m) => `${m.id} ${m.scroll}/${m.client} on ${m.leaves} leaves`).join('; ')
+        : mountStress.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a

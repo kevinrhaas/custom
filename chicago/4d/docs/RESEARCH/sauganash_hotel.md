@@ -79,7 +79,7 @@ gallery.**
 
 | image | shows |
 |---|---|
-| F. Braunhold engraving, *The Sauganash Hotel*, in Andreas (1884) | two-story clapboard block, gabled roof, two chimneys, multi-pane sash, a modest entrance with no veranda — **and a single-story log wing attached at the left front**, log courses and corner notching plainly drawn |
+| *The Sauganash Hotel*, in Andreas (1884) — **now held as `andreas_1884_sauganash_hotel_plate`, vol. I p. 632** | two-story clapboard block, gabled roof, two chimneys, multi-pane sash, a modest entrance with no veranda — **and a single-story log wing attached at the left front**, log courses and corner notching plainly drawn |
 | Kurz & Allison, *Chicago In Early Days*, panel 14 (1893) | the same composition: two-story frame block, attached single-story log wing, red roof, no full-width porch |
 
 **Caveat, and it matters:** the Kurz & Allison panel follows the Andreas composition closely
@@ -94,6 +94,20 @@ being documented — which is exactly what `inferred` means.
 This replaces the earlier reading. It is recorded as a revision rather than an edit because the
 first reading came from the literature's characterization of the images and the second came from
 the images themselves, and that distinction is worth keeping visible.
+
+**The Andreas plate has a page now (T-0136, 2026-09-13).** This section read it as an Andreas
+1884 plate from the start and cited no page, because nobody had opened the volume. It is
+**volume I, printed page 632**, captioned *"THE SAUGANASH HOTEL."*, with a copyright line
+lettered inside the plate border at the lower left reading `A. T. Andreas` — held as
+`andreas_1884_sauganash_hotel_plate`, `public_domain` on the 1884 imprint. Read at the page
+image, the plate carries the clapboard block, the two ridge chimneys, the wide entrance surround
+with **no veranda**, and the log wing with its door direct to grade under a shed roof — so § 4's
+and § 4a's readings both stand, on a citable page instead of an unlocated picture.
+
+**One thing this section attributes and the plate does not.** The heading above named
+F. Braunhold as the engraver; **no signature is legible** at the resolution archive.org
+publishes, so the attribution is the owner's brief's and stays there rather than becoming the
+record's. The table row is worded accordingly.
 
 ## 4a. The log wing — a second finding from the same images
 

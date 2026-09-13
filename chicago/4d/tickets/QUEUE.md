@@ -107,7 +107,6 @@
 
 
 
-T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 # --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
 # --- the end of band 1." The three directories are transcribed in full; what remains is not
@@ -166,11 +165,6 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
-T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
-T-0268 — A building held under the standing constraint says so nowhere a visitor can see
-T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
-T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
 
 # --- ==========================================================================
@@ -311,8 +305,7 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' and the HUD has read 'walk · 3.2 mph' since T-0823, so mobile part 3 has been red on dev for a week
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1093 — The Settings speed readout now reads 'walk · 3.2 mph' and the mobile part-7 assertion wants '3.2 mph', so dev is red on a prefix nobody meant to assert against
+
