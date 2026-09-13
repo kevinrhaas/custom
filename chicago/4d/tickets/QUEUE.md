@@ -167,7 +167,6 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- ==========================================================================
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
-T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
 T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
