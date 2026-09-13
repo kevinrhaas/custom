@@ -133,3 +133,25 @@ unresolved. Do not close T-0416 on the strength of the twelve.
 - The centreline band is recorded as CONSIDERED AND DECLINED, with the one shop
   it would have added named, so a later run does not re-open it as an oversight.
 - The three storefronts this ticket is named for remain open with their reason.
+
+---
+
+## RE-DERIVED UNDER THE TOWN-WIDE LEDGER, 2026-09-13 (T-0422)
+
+T-0422 asked whether the **+12** and **+13** above were priced by a pass that could deal one
+corner building to two shopfronts. They were not, and that is now measured rather than
+assumed: when the question was put, both widenings dealt 31 and 32 **distinct** roofs for 31
+and 32 adoptions. **The numbers the owner ruled on were right.**
+
+The exposure was real all the same, and on today's tree it bites. Re-dealt now, the
+corner-side widening is worth **+10** under the ledger in force — one roof, one business,
+counted town-wide — and would be **+11** under the per-face ledger this pass kept until
+T-0422, because that ledger seats two La Salle corner-side advertisements in buildings whose
+platted South Water lots are already dealt (`recon_1835_blk_south_water_lasalle_d1_08`,
+`recon_1835_blk_south_water_lasalle_d2_09`). The eleventh shop is a second shopfront on a
+building that already has one.
+
+So the answer to this ticket is unchanged and the price is now gated: `limits()` fails if any
+costed reading's seat count runs ahead of the roofs it dealt, and `--self-test` deals all
+three readings under both ledgers on every commit. See `docs/STREET-FACE-ADOPTION.md`
+§ *One roof, one business is counted TOWN-WIDE*.
