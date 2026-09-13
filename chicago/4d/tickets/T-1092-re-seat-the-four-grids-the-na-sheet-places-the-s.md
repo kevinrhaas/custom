@@ -1,7 +1,7 @@
 ---
 id: T-1092
 title: Re-seat the four grids the NA sheet places — the School Section, Kinzie's Addition, the Michigan St tract and Wabansia's streets — on the adopted registration, and re-bake what stands on the ground that moves
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-1090
 opened: 2026-09-12
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/12/2026, 8:31:47 PM CT
 blocked_on: null
 needs_bake: true
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34730623338
 ---
 
 Re-seat the four grids the NA sheet places — the School Section, Kinzie's Addition, the Michigan St tract and Wabansia's streets — on the adopted registration, and re-bake what stands on the ground that moves.
