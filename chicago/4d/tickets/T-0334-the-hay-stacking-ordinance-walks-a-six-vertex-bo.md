@@ -1,7 +1,7 @@
 ---
 id: T-0334
 title: The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 1:46:17 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34743397635
 ---
 
 Section 22 of the ordinance passed **5 August 1835** makes it unlawful to stack hay inside a
