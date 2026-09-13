@@ -15,15 +15,16 @@
   "sheet_vs_committed_kinzie": {
     "street": "kinzie",
     "sheet_centre_local_enu_m": [
-      -737.9,
-      257.6
+      -754.3,
+      245.7
     ],
     "committed_line": "data/streets/1835.json § kinzie (Thompson plat, T-0713)",
-    "committed_n_at_same_e_m": 266.4,
-    "extrapolated_west_of_committed_end_m": 417.9,
-    "gap_m": 8.8,
-    "sheet_registration_rms_m": 16.19,
-    "reading": "The sheet puts Kinzie Street 8.8 m south of where the committed line runs at the same easting, against a registration that admits 16.19 m RMS. The two readings agree: Wabansia's south line and the town's Kinzie Street are the same street. Note the committed line is extrapolated 417.9 m west of its own west end to meet this tract, so the gap is a consistency check and not a control point."
+    "committed_n_at_same_e_m": 266.6,
+    "extrapolated_west_of_committed_end_m": 434.3,
+    "gap_m": 20.9,
+    "sheet_registration_rms_m": 16.02,
+    "gap_inside_registration_rms": false,
+    "reading": "The sheet puts Kinzie Street 20.9 m south of where the committed line runs at the same easting, against a registration that admits 16.02 m RMS — OUTSIDE it, by 4.8 m. Under the eight-point fit T-1091 superseded the same gap was 8.8 m and inside; the eleven-point fit that replaced it is the better registration over the sheet as a whole and the worse one here, which is what a fit refitted at the sheet's foot does to its north-west corner. THE IDENTIFICATION DOES NOT REST ON THIS GAP: Wright letters `Kinzie` inside this corridor, which is why Wabansia's south line and the town's Kinzie Street are read as the same street. The gap measures how well the registration carries that reading onto the committed line, and nothing else. Note the committed line is extrapolated 434.3 m west of its own west end to meet this tract, so it is a consistency check and not a control point."
   },
   "shear_between_columns": {
     "what": "T-0790 read the seven corridors in three different columns of the sheet — `col_west` at x 700, `col_trade` at 880, `col_east` at 990 — because Wright letters the names inside the corridors and a name is ink in exactly the gap the reading is trying to find. A rule row is reported at its window's own left edge, and the rules lean: dy/dx 0.019. So two corridors read in different columns are not directly subtractable, and `module.tier_pitch_px` in that file subtracts them anyway.",
@@ -47,15 +48,15 @@
       "east_px_refused": null,
       "centre_px_y": 1906.65,
       "ref_px_x": 700,
-      "north_of_kinzie_m": 126.48,
+      "north_of_kinzie_m": 123.98,
       "path_local_enu_m": [
         [
-          -747.92,
-          392.99
+          -765.39,
+          390.63
         ],
         [
-          -379.49,
-          390.06
+          -393.11,
+          387.67
         ]
       ],
       "east_end_past_committed_bank_m": null,
@@ -73,18 +74,18 @@
       "east_px_refused": null,
       "centre_px_y": 1743.2,
       "ref_px_x": 700,
-      "north_of_kinzie_m": 246.75,
+      "north_of_kinzie_m": 241.87,
       "path_local_enu_m": [
         [
-          -746.91,
-          513.25
+          -765.32,
+          508.52
         ],
         [
-          -378.34,
-          510.32
+          -392.89,
+          505.56
         ]
       ],
-      "east_end_past_committed_bank_m": -128.2,
+      "east_end_past_committed_bank_m": -144.4,
       "refused_end_past_committed_bank_m": null
     },
     {
@@ -99,18 +100,18 @@
       "east_px_refused": null,
       "centre_px_y": 1576.2,
       "ref_px_x": 700,
-      "north_of_kinzie_m": 369.62,
+      "north_of_kinzie_m": 362.32,
       "path_local_enu_m": [
         [
-          -748.47,
-          636.14
+          -767.86,
+          629.0
         ],
         [
-          -377.66,
-          633.19
+          -393.18,
+          626.01
         ]
       ],
-      "east_end_past_committed_bank_m": -59.9,
+      "east_end_past_committed_bank_m": -70.2,
       "refused_end_past_committed_bank_m": null
     },
     {
@@ -125,19 +126,19 @@
       "east_px_refused": 1212.4,
       "centre_px_y": 1410.35,
       "ref_px_x": 700,
-      "north_of_kinzie_m": 491.65,
+      "north_of_kinzie_m": 481.94,
       "path_local_enu_m": [
         [
-          -749.23,
-          758.18
+          -769.59,
+          748.63
         ],
         [
-          -493.3,
-          756.15
+          -510.99,
+          746.57
         ]
       ],
-      "east_end_past_committed_bank_m": -38.5,
-      "refused_end_past_committed_bank_m": 81.6
+      "east_end_past_committed_bank_m": -71.5,
+      "refused_end_past_committed_bank_m": 46.3
     },
     {
       "id": "trade",
@@ -147,23 +148,23 @@
         "t3"
       ],
       "west_px": 678.7,
-      "east_px": 1042.3,
-      "east_px_refused": 1046.5,
+      "east_px": 1046.5,
+      "east_px_refused": null,
       "centre_px_y": 1249.85,
       "ref_px_x": 880,
-      "north_of_kinzie_m": 612.26,
+      "north_of_kinzie_m": 600.17,
       "path_local_enu_m": [
         [
-          -749.4,
-          878.8
+          -770.72,
+          866.87
         ],
         [
-          -495.57,
-          876.78
+          -511.27,
+          864.81
         ]
       ],
-      "east_end_past_committed_bank_m": 1.8,
-      "refused_end_past_committed_bank_m": 4.9
+      "east_end_past_committed_bank_m": -16.3,
+      "refused_end_past_committed_bank_m": null
     },
     {
       "id": "free",
@@ -177,97 +178,97 @@
       "east_px_refused": null,
       "centre_px_y": 1080.45,
       "ref_px_x": 990,
-      "north_of_kinzie_m": 738.44,
+      "north_of_kinzie_m": 723.85,
       "path_local_enu_m": [
         [
-          -747.59,
-          1004.97
+          -769.89,
+          990.56
         ],
         [
-          -494.87,
-          1002.96
+          -514.53,
+          988.52
         ]
       ],
-      "east_end_past_committed_bank_m": -5.1,
+      "east_end_past_committed_bank_m": -22.6,
       "refused_end_past_committed_bank_m": null
     }
   ],
   "block_grid_polygon_local_enu_m": [
     [
-      -750.33,
-      279.22
+      -766.92,
+      279.1
     ],
     [
-      -750.05,
-      329.44
+      -767.04,
+      328.33
     ],
     [
-      -745.81,
-      452.87
+      -763.73,
+      449.33
     ],
     [
-      -748.01,
-      573.73
+      -766.91,
+      567.81
     ],
     [
-      -748.93,
-      697.83
+      -768.82,
+      689.47
     ],
     [
-      -749.53,
-      817.9
+      -770.37,
+      807.17
     ],
     [
-      -749.29,
-      937.75
+      -771.07,
+      924.66
     ],
     [
-      -746.01,
-      1051.61
+      -768.66,
+      1036.28
     ],
     [
-      -745.8,
-      1090.75
+      -768.75,
+      1074.65
     ],
     [
-      -494.65,
-      1093.78
+      -515.02,
+      1077.56
     ],
     [
-      -494.87,
-      1054.64
+      -514.93,
+      1039.19
     ],
     [
-      -495.21,
-      940.82
+      -514.38,
+      927.61
     ],
     [
-      -492.94,
-      820.99
+      -511.14,
+      810.14
     ],
     [
-      -377.77,
-      702.31
+      -393.84,
+      693.77
     ],
     [
-      -377.96,
-      578.19
+      -393.05,
+      572.1
     ],
     [
-      -379.12,
-      457.3
+      -393.26,
+      453.58
     ],
     [
-      -381.05,
-      333.89
+      -394.25,
+      332.61
     ],
     [
-      -381.37,
-      276.28
+      -394.11,
+      276.13
     ],
     [
-      -750.33,
-      279.22
+      -766.92,
+      279.1
     ]
   ],
   "water_lot_wedge_local_enu_m": {
@@ -280,7 +281,7 @@
       "vs_strip_reading_own_kinzie_row": {
         "strip_reading_px_y": 2070.0,
         "this_row_px_y_at_the_tract_corner": 2078.11,
-        "disagreement_m": 5.97,
+        "disagreement_m": 5.85,
         "why": "T-1077 read Kinzie's line in its own column and reports one row for it; this carries the street reading's rule 880 px east instead. The two disagree by 6.0 m at the tract's south-east corner, against a registration that admits 16.19 m RMS with no control point within 900 m. The carried rule is taken because the whole seating hangs from it and a tract whose south edge is read twice has two south edges."
       }
     },
@@ -289,62 +290,62 @@
         1248.22,
         1546.0
       ],
-      "reading_gap_at_the_apex_row_m": 27.95,
+      "reading_gap_at_the_apex_row_m": 27.39,
       "why": "T-1077's bank holds its northernmost station north of row 1665, so at the apex row its arithmetic puts the bank 28.0 m east of the west boundary. The apex is taken as the west boundary's point, which is measured there; the bank's leg from row 1665 to it is the one edge in this outline no station stands on. Straight-lined, the two northernmost stations would close on the boundary 31.1 m north of the read apex, so the bank curves west into the tip.",
       "confidence": "inferred"
     },
     "outline_local_enu_m": [
       [
-        -352.98,
-        662.88
+        -368.48,
+        655.11
       ],
       [
-        -347.76,
-        276.01
+        -360.15,
+        275.86
       ],
       [
-        -120.24,
-        274.2
+        -130.25,
+        274.03
       ],
       [
-        -129.88,
-        296.97
+        -140.18,
+        296.36
       ],
       [
-        -153.77,
-        320.23
+        -164.5,
+        319.16
       ],
       [
-        -175.41,
-        353.08
+        -186.62,
+        351.36
       ],
       [
-        -211.94,
-        407.81
+        -223.96,
+        405.03
       ],
       [
-        -233.11,
-        449.5
+        -245.67,
+        445.9
       ],
       [
-        -245.98,
-        483.18
+        -258.94,
+        478.93
       ],
       [
-        -266.99,
-        534.43
+        -280.58,
+        529.17
       ],
       [
-        -289.55,
-        576.1
+        -303.71,
+        570.02
       ],
       [
-        -352.98,
-        662.88
+        -368.48,
+        655.11
       ]
     ],
-    "area_m2": 43853.4,
-    "area_acres": 10.84,
+    "area_m2": 43435.8,
+    "area_acres": 10.73,
     "ranks": [
       {
         "id": "river_front",
@@ -355,60 +356,60 @@
         "cells": 13,
         "polygon_local_enu_m": [
           [
-            -352.98,
-            662.88
+            -368.48,
+            655.11
           ],
           [
-            -351.73,
-            570.42
+            -366.49,
+            564.47
           ],
           [
-            -198.12,
-            274.82
+            -208.95,
+            274.66
           ],
           [
-            -120.24,
-            274.2
+            -130.25,
+            274.03
           ],
           [
-            -129.88,
-            296.97
+            -140.18,
+            296.36
           ],
           [
-            -153.77,
-            320.23
+            -164.5,
+            319.16
           ],
           [
-            -175.41,
-            353.08
+            -186.62,
+            351.36
           ],
           [
-            -211.94,
-            407.81
+            -223.96,
+            405.03
           ],
           [
-            -233.11,
-            449.5
+            -245.67,
+            445.9
           ],
           [
-            -245.98,
-            483.18
+            -258.94,
+            478.93
           ],
           [
-            -266.99,
-            534.43
+            -280.58,
+            529.17
           ],
           [
-            -289.55,
-            576.1
+            -303.71,
+            570.02
           ],
           [
-            -352.98,
-            662.88
+            -368.48,
+            655.11
           ]
         ],
-        "area_m2": 21827.5,
-        "area_acres": 5.39
+        "area_m2": 21620.5,
+        "area_acres": 5.34
       },
       {
         "id": "second",
@@ -419,32 +420,32 @@
         "cells": 9,
         "polygon_local_enu_m": [
           [
-            -351.73,
-            570.42
+            -366.49,
+            564.47
           ],
           [
-            -350.75,
-            497.44
+            -364.92,
+            492.93
           ],
           [
-            -239.91,
-            275.16
+            -251.18,
+            275.0
           ],
           [
-            -198.12,
-            274.82
+            -208.95,
+            274.66
           ],
           [
-            -351.73,
-            570.42
+            -366.49,
+            564.47
           ],
           [
-            -351.73,
-            570.42
+            -366.49,
+            564.47
           ]
         ],
-        "area_m2": 10086.1,
-        "area_acres": 2.49
+        "area_m2": 9990.0,
+        "area_acres": 2.47
       },
       {
         "id": "third",
@@ -455,32 +456,32 @@
         "cells": 8,
         "polygon_local_enu_m": [
           [
-            -350.75,
-            497.44
+            -364.92,
+            492.93
           ],
           [
-            -348.97,
-            365.99
+            -362.09,
+            364.07
           ],
           [
-            -306.38,
-            275.69
+            -318.33,
+            275.53
           ],
           [
-            -239.91,
-            275.16
+            -251.18,
+            275.0
           ],
           [
-            -350.74,
-            497.44
+            -364.9,
+            492.93
           ],
           [
-            -350.75,
-            497.44
+            -364.92,
+            492.93
           ]
         ],
-        "area_m2": 10078.1,
-        "area_acres": 2.49
+        "area_m2": 9983.2,
+        "area_acres": 2.47
       },
       {
         "id": "corner",
@@ -491,27 +492,27 @@
         "cells": 3,
         "polygon_local_enu_m": [
           [
-            -348.97,
-            365.99
+            -362.09,
+            364.07
           ],
           [
-            -347.76,
-            276.01
+            -360.15,
+            275.86
           ],
           [
-            -306.38,
-            275.69
+            -318.33,
+            275.53
           ],
           [
-            -348.97,
-            365.99
+            -362.08,
+            364.07
           ],
           [
-            -348.97,
-            365.99
+            -362.09,
+            364.07
           ]
         ],
-        "area_m2": 1861.5,
+        "area_m2": 1844.6,
         "area_acres": 0.46
       }
     ],
@@ -525,8 +526,8 @@
         ],
         "confidence": "inferred",
         "mid_local_enu_m": [
-          -140.88,
-          284.33
+          -151.19,
+          283.97
         ]
       },
       {
@@ -538,8 +539,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -159.63,
-          303.24
+          -170.28,
+          302.5
         ]
       },
       {
@@ -551,8 +552,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -174.17,
-          325.13
+          -185.14,
+          323.97
         ]
       },
       {
@@ -564,8 +565,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -192.86,
-          352.87
+          -204.25,
+          351.16
         ]
       },
       {
@@ -577,8 +578,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -210.19,
-          376.2
+          -221.94,
+          374.04
         ]
       },
       {
@@ -590,8 +591,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -248.27,
-          434.6
+          -260.88,
+          431.3
         ]
       },
       {
@@ -603,8 +604,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -255.1,
-          462.47
+          -268.0,
+          458.63
         ]
       },
       {
@@ -616,8 +617,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -272.41,
-          488.02
+          -285.69,
+          483.67
         ]
       },
       {
@@ -629,8 +630,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -279.23,
-          517.36
+          -292.81,
+          512.44
         ]
       },
       {
@@ -642,8 +643,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -303.44,
-          559.01
+          -317.6,
+          553.27
         ]
       },
       {
@@ -655,8 +656,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -313.76,
-          585.37
+          -328.24,
+          579.12
         ]
       },
       {
@@ -668,8 +669,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -340.8,
-          619.62
+          -355.83,
+          612.7
         ]
       },
       {
@@ -681,8 +682,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -339.22,
-          654.22
+          -354.5,
+          646.62
         ]
       },
       {
@@ -694,8 +695,8 @@
         ],
         "confidence": "inferred",
         "mid_local_enu_m": [
-          -352.36,
-          549.59
+          -366.96,
+          544.05
         ]
       },
       {
@@ -707,8 +708,8 @@
         ],
         "confidence": "inferred",
         "mid_local_enu_m": [
-          -350.39,
-          527.54
+          -364.79,
+          522.43
         ]
       },
       {
@@ -720,8 +721,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -324.77,
-          488.86
+          -338.6,
+          484.51
         ]
       },
       {
@@ -733,8 +734,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -307.47,
-          460.37
+          -320.9,
+          456.58
         ]
       },
       {
@@ -746,8 +747,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -296.44,
-          434.02
+          -309.55,
+          430.74
         ]
       },
       {
@@ -759,8 +760,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -286.83,
-          404.7
+          -299.6,
+          402.0
         ]
       },
       {
@@ -772,8 +773,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -264.75,
-          357.88
+          -276.92,
+          356.1
         ]
       },
       {
@@ -785,8 +786,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -255.84,
-          326.35
+          -267.68,
+          325.19
         ]
       },
       {
@@ -798,8 +799,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -242.02,
-          300.77
+          -253.51,
+          300.11
         ]
       },
       {
@@ -811,8 +812,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -295.08,
-          301.6
+          -307.12,
+          300.93
         ]
       },
       {
@@ -824,8 +825,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -307.49,
-          329.41
+          -319.89,
+          328.2
         ]
       },
       {
@@ -837,8 +838,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -328.85,
-          380.65
+          -341.87,
+          378.44
         ]
       },
       {
@@ -850,8 +851,8 @@
         ],
         "confidence": "documented",
         "mid_local_enu_m": [
-          -344.79,
-          402.53
+          -358.15,
+          399.89
         ]
       }
     ],
@@ -860,12 +861,12 @@
         {
           "figure": 13,
           "rank": "river_front",
-          "m_outside": 6.0
+          "m_outside": 5.98
         },
         {
           "figure": 14,
           "rank": "second",
-          "m_outside": 0.91
+          "m_outside": 0.92
         }
       ],
       "why": "13 is the apex cell, east of the unmeasured chord `north_closure` describes — the bank bulges over it and no station was measured on the bulge; 14 is the second rank's pinched north tip, 1.3 px west of the tract boundary. Both are cells T-1077 graded `inferred` for the same thinness, both stand well inside the registration's own 16.19 m RMS, and neither figure is moved to suit a line this project drew.",
@@ -877,32 +878,32 @@
         {
           "station_px_y": 1665.0,
           "wedge_river_edge_px_x": 1339.8,
-          "committed_bank_px_x": 1338.8,
-          "east_of_committed_bank_m": 0.7
+          "committed_bank_px_x": 1371.4,
+          "east_of_committed_bank_m": -22.9
         },
         {
           "station_px_y": 1722.0,
           "wedge_river_edge_px_x": 1372.4,
-          "committed_bank_px_x": 1374.4,
-          "east_of_committed_bank_m": -1.5
+          "committed_bank_px_x": 1401.2,
+          "east_of_committed_bank_m": -20.8
         },
         {
           "station_px_y": 1792.0,
           "wedge_river_edge_px_x": 1402.9,
-          "committed_bank_px_x": 1400.4,
-          "east_of_committed_bank_m": 1.8
+          "committed_bank_px_x": 1426.2,
+          "east_of_committed_bank_m": -16.8
         },
         {
           "station_px_y": 1838.0,
           "wedge_river_edge_px_x": 1421.6,
-          "committed_bank_px_x": 1420.9,
-          "east_of_committed_bank_m": 0.5
+          "committed_bank_px_x": 1442.9,
+          "east_of_committed_bank_m": -15.4
         },
         {
           "station_px_y": 1895.0,
           "wedge_river_edge_px_x": 1452.2,
-          "committed_bank_px_x": 1440.8,
-          "east_of_committed_bank_m": 8.4
+          "committed_bank_px_x": null,
+          "east_of_committed_bank_m": null
         },
         {
           "station_px_y": 1970.0,
@@ -923,9 +924,9 @@
           "east_of_committed_bank_m": null
         }
       ],
-      "reach_covered": "5 of 8 stations",
-      "mean_abs_m": 2.6,
-      "max_abs_m": 8.4,
+      "reach_covered": "4 of 8 stations",
+      "mean_abs_m": 19.0,
+      "max_abs_m": 22.9,
       "reading": "The strip's river edge and the committed west bank are the SAME LINE over the reach they share: four of the five stations the committed trace covers agree within 1.8 m and the fifth within 8.4 m, on two readings of this sheet made independently. So the committed bank is not what is wrong in this corner, and T-1074's tier-4 block corner — 18.6 m OUTSIDE that bank at its own tier's middle, and the one place along this whole boundary where the sheet and the water disagree — is the outlier. It is carried as read all the same: it is Wright's ink, it is the jog T-1074 read two lots wide, and the tract boundary is not moved to flatter ground than the plate draws."
     }
   },
@@ -934,150 +935,150 @@
     "ticket": "T-1086",
     "polygon_local_enu_m": [
       [
-        -750.33,
-        279.22
+        -766.92,
+        279.1
       ],
       [
-        -750.05,
-        329.44
+        -767.04,
+        328.33
       ],
       [
-        -745.81,
-        452.87
+        -763.73,
+        449.33
       ],
       [
-        -748.01,
-        573.73
+        -766.91,
+        567.81
       ],
       [
-        -748.93,
-        697.83
+        -768.82,
+        689.47
       ],
       [
-        -749.53,
-        817.9
+        -770.37,
+        807.17
       ],
       [
-        -749.29,
-        937.75
+        -771.07,
+        924.66
       ],
       [
-        -746.01,
-        1051.61
+        -768.66,
+        1036.28
       ],
       [
-        -745.8,
-        1090.75
+        -768.75,
+        1074.65
       ],
       [
-        -494.65,
-        1093.78
+        -515.02,
+        1077.56
       ],
       [
-        -494.87,
-        1054.64
+        -514.93,
+        1039.19
       ],
       [
-        -495.21,
-        940.82
+        -514.38,
+        927.61
       ],
       [
-        -492.94,
-        820.99
+        -511.14,
+        810.14
       ],
       [
-        -377.77,
-        702.31
+        -393.84,
+        693.77
       ],
       [
-        -352.98,
-        662.88
+        -368.48,
+        655.11
       ],
       [
-        -289.55,
-        576.1
+        -303.71,
+        570.02
       ],
       [
-        -266.99,
-        534.43
+        -280.58,
+        529.17
       ],
       [
-        -245.98,
-        483.18
+        -258.94,
+        478.93
       ],
       [
-        -233.11,
-        449.5
+        -245.67,
+        445.9
       ],
       [
-        -211.94,
-        407.81
+        -223.96,
+        405.03
       ],
       [
-        -175.41,
-        353.08
+        -186.62,
+        351.36
       ],
       [
-        -153.77,
-        320.23
+        -164.5,
+        319.16
       ],
       [
-        -129.88,
-        296.97
+        -140.18,
+        296.36
       ],
       [
-        -120.24,
-        274.2
+        -130.25,
+        274.03
       ],
       [
-        -750.33,
-        279.22
+        -766.92,
+        279.1
       ]
     ],
-    "area_m2": 318203.8,
-    "area_acres": 78.63,
+    "area_m2": 315176.6,
+    "area_acres": 77.88,
     "sides": "WABANSIA'S OUTLINE — the ground the survey covers, blocks and water lots together.\n\n    Its four sides, and where each comes from:\n\n      WEST   the tract's own boundary rule, the outer of T-1074's west-margin pair at\n             each tier. The block grid's west side unchanged.\n      NORTH  T-1074's `north_rule_px_y`, from that boundary east to the block grid's own\n             east rule on tier 1. Read at one column and carried flat: the tract's tilt\n             would move its east end by at most 5.0 m over the 360 px this edge spans,\n             inside the registration's 16.19 m, and T-1074 does not say which column it\n             read, so nothing is applied that cannot be re-derived.\n      EAST   the grid's east rule down tiers 1 to 4, then the wedge's apex, then the\n             wedge's river edge to Kinzie Street. Two independent readings of one line:\n             on tiers 1 to 3 the grid's east rule stands 2.1 to 5.7 m INSIDE the committed\n             west bank of the North Branch, which is T-1074's own account of that reach —\n             \"north of Sailors Street the North Branch is close enough to the grid to\n             leave room for nothing wider\" — and from the apex south the wedge's river\n             edge is that bank to within 1.8 m at four stations of five.\n      SOUTH  Kinzie Street, the datum, as `_wedge` describes it.\n\n    WHAT IS INSIDE AND IS NOT A HOLE. The 43 px between the grid's east rule and the\n    wedge's west boundary is the north-south street T-1074 read and refused to name. It is\n    inside the survey and inside this outline, and it is not drawn as a gap.",
     "grid_east_rule_vs_committed_bank": [
       {
         "tier": "t1",
         "east_px_x": 1041.9,
         "mid_px_y": 1011.2,
-        "east_of_committed_bank_m": -5.7,
+        "east_of_committed_bank_m": -27.1,
         "on_the_outline": true
       },
       {
         "tier": "t2",
         "east_px_x": 1042.3,
         "mid_px_y": 1165.9,
-        "east_of_committed_bank_m": -2.1,
+        "east_of_committed_bank_m": -19.5,
         "on_the_outline": true
       },
       {
         "tier": "t3",
         "east_px_x": 1046.5,
         "mid_px_y": 1328.8,
-        "east_of_committed_bank_m": -2.4,
+        "east_of_committed_bank_m": -34.5,
         "on_the_outline": true
       },
       {
         "tier": "t4",
         "east_px_x": 1212.4,
         "mid_px_y": 1492.0,
-        "east_of_committed_bank_m": 18.6,
+        "east_of_committed_bank_m": -20.5,
         "on_the_outline": true
       },
       {
         "tier": "t5",
         "east_px_x": 1213.1,
         "mid_px_y": 1660.7,
-        "east_of_committed_bank_m": -90.5,
+        "east_of_committed_bank_m": -112.3,
         "on_the_outline": false
       },
       {
         "tier": "t6",
         "east_px_x": 1212.4,
         "mid_px_y": 1825.0,
-        "east_of_committed_bank_m": -150.0,
+        "east_of_committed_bank_m": -163.9,
         "on_the_outline": false
       },
       {

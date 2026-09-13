@@ -166,6 +166,22 @@ step "Wright's whole sheet still counts one watercourse that is not the river" \
 
 selftest "…and that audit's assertions still fire when broken" \
   python3 tools/audit_wright_watercourses.py --self-test
+# T-1082. The swatch reading above is of the NA/HUP facsimile; the North Branch's
+# disputed bank wash is on the BPL master, and the same nine chips are not the same
+# nine colours on the two sheets. This holds the master-side reading offline: the
+# chips' pairwise separations and their grouping re-derive from the committed
+# medians, each stretch's dilution rays re-derive from its band and paper colours,
+# each verdict re-derives from the stated rule, and the stretches themselves are
+# read from the bank baseline rather than re-declared. BOTH REFUSALS ARE GATED —
+# if a future edit ever made the two sheets' chips agree, or put a facsimile band
+# on this reach, or identified the east stretch's colour, the step says so, because
+# those are exactly the three things docs/RESEARCH/north_branch_wabansia.md § 5
+# refuses on.
+step "the North Branch's bank wash is still a colour the legend cannot name" \
+  python3 tools/read_north_branch_bank_wash.py --check-properties
+
+selftest "…and that reading's assertions still fire when broken" \
+  python3 tools/read_north_branch_bank_wash.py --self-test
 
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a

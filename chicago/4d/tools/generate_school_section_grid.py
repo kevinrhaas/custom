@@ -262,12 +262,12 @@ def load(p):
 def build():
     gcp = load("data/traces/gcp/wright_1834_nara_hup_gcps.json")
     datum = load("data/datum.json")
-    # T-1091 adopted an eleven-point registration; THIS TRACE IS STILL SEATED
-    # through the eight-point fit it was built on, which the registration keeps as
-    # `retained_fit`. T-1092 re-seats it on the fit in force and re-bakes what
-    # stands on the ground that moves. Reading `fit` here would move the ground
-    # without moving the meshes on it.
-    c = gcp["retained_fit"]["coefficients"]
+    # T-1092 re-seated this trace onto the ELEVEN-POINT registration T-1091 adopted,
+    # and re-baked what stands on the ground that moved. `fit` IS that registration;
+    # the eight-point fit it superseded is kept beside it as `retained_fit` for the
+    # adjudication that compares the two. Reading `retained_fit` here would seat the
+    # ground on a fit this project no longer holds.
+    c = gcp["fit"]["coefficients"]
     a, b, cc, d, e, f = c["a"], c["b"], c["c"], c["d"], c["e"], c["f"]
     det = a * e - b * d
     oE, oN = datum["origin_utm_e"], datum["origin_utm_n"]

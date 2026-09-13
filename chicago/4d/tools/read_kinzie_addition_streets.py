@@ -180,12 +180,12 @@ def _pairs(rules, slots, tol=13.0, minw=24.0, maxw=42.0):
 def _frame():
     g = json.loads(GCP.read_text())
     d = json.loads((ROOT / "data/datum.json").read_text())
-    # T-1091 adopted an eleven-point registration; THIS TRACE IS STILL SEATED
-    # through the eight-point fit it was built on, which the registration keeps as
-    # `retained_fit`. T-1092 re-seats it on the fit in force and re-bakes what
-    # stands on the ground that moves. Reading `fit` here would move the ground
-    # without moving the meshes on it.
-    c = g["retained_fit"]["coefficients"]
+    # T-1092 re-seated this trace onto the ELEVEN-POINT registration T-1091 adopted,
+    # and re-baked what stands on the ground that moved. `fit` IS that registration;
+    # the eight-point fit it superseded is kept beside it as `retained_fit` for the
+    # adjudication that compares the two. Reading `retained_fit` here would seat the
+    # ground on a fit this project no longer holds.
+    c = g["fit"]["coefficients"]
 
     def to_local(px, py):
         return (c["a"] * px + c["b"] * py + c["c"] - d["origin_utm_e"],

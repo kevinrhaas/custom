@@ -11,8 +11,8 @@
   },
   "registration": {
     "gcp_file": "data/traces/gcp/wright_1834_nara_hup_gcps.json",
-    "fit": "retained_fit \u2014 re-seated onto the fit in force by T-1092",
-    "rms_m": 16.19
+    "fit": "fit \u2014 the eleven-point registration in force (T-1091), re-seated onto it by T-1092",
+    "rms_m": 16.02
   },
   "method": {
     "shear_ew": 0.019,
@@ -72,13 +72,13 @@
       "name_confidence": "documented",
       "ref_px_x": 990,
       "corridor_px": 31.9,
-      "corridor_m": 23.47,
-      "corridor_ft_raw": 77.0,
+      "corridor_m": 23.01,
+      "corridor_ft_raw": 75.5,
       "corridor_ft_controlled": 73.7,
       "centre_px_y": 1080.45,
       "centre_local_enu_m": [
-        -537.3,
-        998.7
+        -557.2,
+        973.5
       ],
       "geometry_confidence": "inferred",
       "note": null
@@ -101,13 +101,13 @@
       "name_confidence": "documented",
       "ref_px_x": 880,
       "corridor_px": 28.9,
-      "corridor_m": 21.26,
-      "corridor_ft_raw": 69.8,
+      "corridor_m": 20.84,
+      "corridor_ft_raw": 68.4,
       "corridor_ft_controlled": 66.8,
       "centre_px_y": 1249.85,
       "centre_local_enu_m": [
-        -613.7,
-        871.5
+        -633.5,
+        848.3
       ],
       "geometry_confidence": "inferred",
       "note": null
@@ -130,13 +130,13 @@
       "name_confidence": "documented",
       "ref_px_x": 700,
       "corridor_px": 34.1,
-      "corridor_m": 25.09,
-      "corridor_ft_raw": 82.3,
+      "corridor_m": 24.59,
+      "corridor_ft_raw": 80.7,
       "corridor_ft_controlled": 78.8,
       "centre_px_y": 1410.35,
       "centre_local_enu_m": [
-        -739.1,
-        749.2
+        -759.3,
+        727.6
       ],
       "geometry_confidence": "inferred",
       "note": null
@@ -160,13 +160,13 @@
       "note": "The owner's crop read this as `Right or Hight`; see \u00a7 adjudications. Its corridor is the widest of the seven at 39.2 px against a 33.9 px mean, and the excess is one rule-width: the south edge is drawn twice here, a kerb line beside the rule, and the outer of the two is taken.",
       "ref_px_x": 700,
       "corridor_px": 39.2,
-      "corridor_m": 28.84,
-      "corridor_ft_raw": 94.6,
+      "corridor_m": 28.27,
+      "corridor_ft_raw": 92.8,
       "corridor_ft_controlled": 90.6,
       "centre_px_y": 1576.2,
       "centre_local_enu_m": [
-        -738.8,
-        627.2
+        -758.0,
+        608.0
       ],
       "geometry_confidence": "inferred"
     },
@@ -188,13 +188,13 @@
       "name_confidence": "documented",
       "ref_px_x": 700,
       "corridor_px": 35.2,
-      "corridor_m": 25.9,
-      "corridor_ft_raw": 85.0,
+      "corridor_m": 25.39,
+      "corridor_ft_raw": 83.3,
       "corridor_ft_controlled": 81.3,
       "centre_px_y": 1743.2,
       "centre_local_enu_m": [
-        -738.5,
-        504.3
+        -756.8,
+        487.6
       ],
       "geometry_confidence": "inferred",
       "note": null
@@ -217,13 +217,13 @@
       "name_confidence": "documented",
       "ref_px_x": 700,
       "corridor_px": 34.9,
-      "corridor_m": 25.68,
-      "corridor_ft_raw": 84.2,
+      "corridor_m": 25.17,
+      "corridor_ft_raw": 82.6,
       "corridor_ft_controlled": 80.6,
       "centre_px_y": 1906.65,
       "centre_local_enu_m": [
-        -738.2,
-        384.1
+        -755.5,
+        369.7
       ],
       "geometry_confidence": "inferred",
       "note": null
@@ -247,13 +247,13 @@
       "note": "The tract's south line, and the one street here the project already carries: `kinzie` in data/streets/1835.json, committed off the Thompson plat. It is read again on this sheet as the tract's own southern bound.",
       "ref_px_x": 700,
       "corridor_px": 34.5,
-      "corridor_m": 25.38,
-      "corridor_ft_raw": 83.3,
+      "corridor_m": 24.88,
+      "corridor_ft_raw": 81.6,
       "corridor_ft_controlled": 79.7,
       "centre_px_y": 2078.55,
       "centre_local_enu_m": [
-        -737.9,
-        257.6
+        -754.3,
+        245.7
       ],
       "geometry_confidence": "inferred"
     }
@@ -330,10 +330,10 @@
       "max": 39.2
     },
     "corridor_m": {
-      "mean": 25.09,
-      "sd": 2.33
+      "mean": 24.59,
+      "sd": 2.28
     },
-    "corridor_ft_raw": 82.3,
+    "corridor_ft_raw": 80.7,
     "corridor_ft_controlled": 78.8,
     "tier_pitch_px": [
       169.4,
@@ -344,35 +344,35 @@
       171.9
     ],
     "tier_pitch_m": {
-      "mean": 122.4,
-      "sd": 3.01,
+      "mean": 119.98,
+      "sd": 2.95,
       "n": 6,
       "each": [
-        124.64,
-        118.09,
-        122.03,
-        122.88,
-        120.26,
-        126.48
+        122.18,
+        115.76,
+        119.62,
+        120.45,
+        117.89,
+        123.98
       ]
     },
-    "tier_pitch_ft_raw": 401.6,
-    "tier_pitch_ft_controlled": 384.3,
-    "block_depth_m": 97.31,
-    "block_depth_ft_raw": 319.3,
-    "block_depth_ft_controlled": 305.5,
+    "tier_pitch_ft_raw": 393.6,
+    "tier_pitch_ft_controlled": 384.4,
+    "block_depth_m": 95.39,
+    "block_depth_ft_raw": 312.9,
+    "block_depth_ft_controlled": 305.6,
     "lots_per_block": 4,
-    "lot_depth_ft_raw": 79.8,
-    "reading": "Seven corridors at a 34.1 px mean and six tiers at a 166.3 px mean: Wabansia is laid out as a block four lots deep plus a street, repeated. The corridor reads 82.3 ft raw and 78.8 ft against the Original Town's platted 80 ft read on this sheet by this method \u2014 which is to say Wabansia is platted on the town's own street width, inside a control that itself spreads 5.2 ft. The block runs 319 ft raw on four lots of 80 ft. The regularity is the finding: the six tiers scatter 4.1 px, about 3 m, over a 1,000 px run."
+    "lot_depth_ft_raw": 78.2,
+    "reading": "Seven corridors at a 34.1 px mean and six tiers at a 166.3 px mean: Wabansia is laid out as a block four lots deep plus a street, repeated. The corridor reads 80.7 ft raw and 78.8 ft against the Original Town's platted 80 ft read on this sheet by this method \u2014 which is to say Wabansia is platted on the town's own street width, inside a control that itself spreads 5.2 ft. The block runs 313 ft raw on four lots of 78 ft. The regularity is the finding: the six tiers scatter 4.1 px, about 3 m, over a 1,000 px run."
   },
   "control": {
     "original_town_platted_ft": 80.0,
     "original_town_read_ft": {
-      "mean": 83.6,
-      "sd": 5.2,
+      "mean": 81.9,
+      "sd": 5.1,
       "n": 3
     },
-    "method_over_read": 1.045,
+    "method_over_read": 1.024,
     "source": "data/traces/kinzie_addition_street_grid.json \u00a7 control_summary",
     "reading": "A corridor on this sheet is not measured against a ruler; it is measured against the Original Town's platted 80 ft on the same sheet by the same method."
   },
@@ -387,14 +387,15 @@
   "cross_check": {
     "street": "kinzie",
     "sheet_centre_local_enu_m": [
-      -737.9,
-      257.6
+      -754.3,
+      245.7
     ],
     "committed_line": "data/streets/1835.json \u00a7 kinzie (Thompson plat, T-0713)",
-    "committed_n_at_same_e_m": 266.4,
-    "extrapolated_west_of_committed_end_m": 417.9,
-    "gap_m": 8.8,
-    "sheet_registration_rms_m": 16.19,
-    "reading": "The sheet puts Kinzie Street 8.8 m south of where the committed line runs at the same easting, against a registration that admits 16.19 m RMS. The two readings agree: Wabansia's south line and the town's Kinzie Street are the same street. Note the committed line is extrapolated 417.9 m west of its own west end to meet this tract, so the gap is a consistency check and not a control point."
+    "committed_n_at_same_e_m": 266.6,
+    "extrapolated_west_of_committed_end_m": 434.3,
+    "gap_m": 20.9,
+    "sheet_registration_rms_m": 16.02,
+    "gap_inside_registration_rms": false,
+    "reading": "The sheet puts Kinzie Street 20.9 m south of where the committed line runs at the same easting, against a registration that admits 16.02 m RMS \u2014 OUTSIDE it, by 4.8 m. Under the eight-point fit T-1091 superseded the same gap was 8.8 m and inside; the eleven-point fit that replaced it is the better registration over the sheet as a whole and the worse one here, which is what a fit refitted at the sheet's foot does to its north-west corner. THE IDENTIFICATION DOES NOT REST ON THIS GAP: Wright letters `Kinzie` inside this corridor, which is why Wabansia's south line and the town's Kinzie Street are read as the same street. The gap measures how well the registration carries that reading onto the committed line, and nothing else. Note the committed line is extrapolated 434.3 m west of its own west end to meet this tract, so it is a consistency check and not a control point."
   }
 }
