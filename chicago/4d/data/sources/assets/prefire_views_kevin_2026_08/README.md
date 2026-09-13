@@ -21,11 +21,12 @@ Known subjects (identify precisely before using — several carry printed plate 
   chimneys at both gables, 6-over-6 sash in even bays, a hanging SIGNBOARD on the
   street corner, the rear ell with its own gable. The best single facade reference in
   the set.
-- **The Kinzie mansion group** (plate "12"): the long low house with its PIAZZA/porch
-  front, the row of Lombardy poplars, the picket-fenced garden plots, outbuildings up
-  the rise behind. NOTE: the house itself is EXCLUDED from the 1835 scene (gone before
-  1835; the cottonwoods stay) — this view is reference for FENCES, GARDENS, POPLARS
-  and PORCH TREATMENT generally, not for rebuilding the house.
+- **The Kinzie mansion group** (plate "12", `p6_1.png`): the long low house with its
+  PIAZZA/porch front, the row of Lombardy poplars, the picket-fenced garden plots,
+  outbuildings up the rise behind. NOTE: the house itself is EXCLUDED from the 1835 scene
+  (gone before 1835; the cottonwoods stay) — this view is reference for FENCES, GARDENS,
+  POPLARS and PORCH TREATMENT generally, not for rebuilding the house.
+  **IDENTIFIED 2026-09-13 (T-0055): `kurz_allison_1893`, panel 12.** See the table below.
 - **The courthouse with the Doric portico** (plate "6"): **THIS IS THE 1837 (or later)
   BUILDING — A DOCUMENTED TRAP.** The 1835 courthouse is a small wooden building about
   which nearly nothing is known (see the `cook_county_courthouse_1835` record and the
@@ -36,6 +37,50 @@ The remaining images include the owner's screenshots of the current render for
 comparison. Anything used in a critique loop should be identified against
 chicagology's plate numbering first and cited to the matching `chicagology_*` source
 record.
+
+## Identifications
+
+**The numbered plates in this set are not chicagology's numbering — they are the
+panel numbers of one sheet.** T-0055 chased plate "12" and found it: the numerals
+printed in the corners of these crops are the vignette numbers of **Kurz & Allison,
+*Chicago In Early Days, 1779-1857*** (Chicago, 1893), a chromolithograph of fifteen
+numbered panels with a printed key, held here since long before this directory
+existed as `data/sources/kurz_allison_1893.json` (tier 5, **public_domain**), with the
+whole sheet committed at `chicago/reference/photos/IMG_5382.png`. So the instruction
+above is right in spirit and wrong in its destination: the citation these crops owe is
+a `kurz_allison_1893` panel, not a `chicagology_*` record.
+
+| file | numeral | the sheet's own key | source record |
+|---|---|---|---|
+| `p6_1.png` | "12." | "No. 12.  The Old Kinzie Mansion, built 1832.  Population 310." | `kurz_allison_1893`, panel 12 — **confirmed** |
+| `p6_0.png` | "11." | "No. 11.  The Green Tree Hotel, cor. West Lake and Canal St.  Built in 1833." | `kurz_allison_1893`, panel 11 — **confirmed** |
+| `p4_0.png` | plate "1" per this README | "No. 1.  Old Fort Dearborn.  Erected 1803." | `kurz_allison_1893`, panel 1 — *unconfirmed, not measured by T-0055* |
+| `p3_1.png` | plate "5" per this README | "No. 5.  Fort Dearborn, as re[built] … 1835.  Population 3,265." | `kurz_allison_1893`, panel 5 — *unconfirmed, not measured by T-0055* |
+| `p7_*`, `p8_*`, `p9_0`, `p3_0`, `p4_1`, `p5_0`, `p6_*` others | — | — | unidentified |
+
+**How plate "12" was proved, so that the next one can be done the same way.** Three
+independent agreements, of which any one alone would be an eyeball: (a) the numeral —
+"12." in the crop's upper-left corner and in the upper-left corner of the sheet's
+lower-left vignette; (b) the sheet's printed key, transcribed off the committed copy,
+whose No. 12 line names the Kinzie Mansion and whose No. 11 line names the Green Tree —
+matching the two crops that carry those two numerals; (c) a normalised cross-correlation
+of `p6_1.png` against the sheet, which peaks at **0.797** at 0.88× scale on sheet pixels
+(94,1164)-(438,1416) — that vignette — against a best of **0.341** anywhere in the
+bird's-eye panel used as a control.
+
+**The two fort rows are marked unconfirmed on purpose.** They are strongly implied by
+the same numbering and by `kurz_allison_1893`'s own locator, but T-0055's scope was the
+Kinzie plate and nothing else was measured. `data/enclosures/fort_dearborn_apron.json`
+still cites those two by committed path and still records its `sources` as empty; making
+that join, with the same three checks, is filed as its own ticket. Do not fill it in from
+this table.
+
+**What identification does and does not buy.** Panel 12 is still tier 5, still published
+fifty-eight years after the scene date, and still may never drive a coordinate. What
+changes is the citation: a source_id with a date, a publisher, a holding institution and
+an expired copyright ("Copyrighted 1893 by Kurz & Allison, 76 & 78 Wabash Avenue,
+Chicago, Ills.", printed at the foot of the sheet) in place of a path to a 391-pixel crop
+of unstated rights.
 
 ## `wright1834_clark_reach_crop.jpeg` — supplied 2026-08-13
 
