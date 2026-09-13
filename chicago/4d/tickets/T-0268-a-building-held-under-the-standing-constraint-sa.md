@@ -1,7 +1,7 @@
 ---
 id: T-0268
 title: A building held under the standing constraint says so nowhere a visitor can see
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1249
+claimed_by: run 9/13/2026, 6:53:25 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-13T12:26:30.645Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34755436969
 ---
 
 Nine structures carry `review_required: true` — the agency at Cobweb Castle, the council

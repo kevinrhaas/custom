@@ -93,80 +93,27 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 BASELINE = ROOT / "tools" / "review_constraint_baseline.json"
+SIDECARS = DATA / "sidecars"
+
+sys.path.insert(0, str(ROOT / "tools"))
 
 # The two sentences the dataset uses about this field. Direction matters: the first
 # asserts the flag is set, the second asserts it deliberately is not.
 CLAIM_CARRIES = re.compile(r"carries\s+review_required", re.I)
 CLAIM_NOT_SET = re.compile(r"review_required\s+is\s+set\s+false", re.I)
 
-# Assertion 6's two halves. The first is an ENUMERATION of the phrasings this dataset
-# actually uses to refer to the flag — `review_required` named outright, "flagged for
-# review", "REVIEW IS FLAGGED", "carries the review flag" — and not a sniff for the
-# topic: a record can discuss the removal at length (`robert_kinzie_store` did, in three
-# fields) without ever saying that it is held. A phrasing outside this list stops the
-# claim being made in a form anything can check, which is the thing to fail over rather
-# than to widen the pattern for.
-FLAG_PHRASE = re.compile(
-    r"review[_ ]required"
-    r"|flagged\s+for\s+review"
-    r"|review\s+is\s+flagged"
-    r"|flagged\s+review"
-    r"|held\s+for\s+review"
-    r"|review\s+flag\b",
-    re.I)
-# The second half: the subject AGENTS.md places under the constraint. Broad on purpose —
-# it is asking whether the record names the subject at all, and the sentence it matched
-# is printed for a reader to judge.
-CONSTRAINT_SUBJECT = re.compile(
-    r"potawatomi|pottawatomie|indigenous|native|removal|consultation|consult\b"
-    r"|indian\s+(?:trade|goods|agency|traders|agent)",
-    re.I)
-# A full stop followed by whitespace and a capital. Not `[.:]` and not any full stop:
-# these notes cite pages ("scan p. 253"), and a splitter that broke there reported
-# `clybourn_slaughterhouse`'s reason as beginning "253), a treaty-provision post".
-SENTENCE_SPLIT = re.compile(r"(?<=\.)\s+(?=[A-Z'\"])")
+# Assertion 6's two halves, the sentence splitter and the record reader live in
+# `tools/review_constraint.py` — because `compile_scene.py` now carries the same
+# sentence to the card (T-0268) and two readings of one record is how a gate and a
+# visitor come to be told different things. Assertion 7 below proves they agree.
+from review_constraint import (  # noqa: E402  (path set above)
+    CONSTRAINT_SUBJECT, FLAG_PHRASE, SENTENCE_SPLIT, prose, reason_sentence)
 
 LINK_FIELDS = ("lives_at", "works_at")
 
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
-
-
-def prose(obj) -> list[str]:
-    """Every string value in a record, at any depth."""
-    if isinstance(obj, str):
-        return [obj]
-    if isinstance(obj, dict):
-        return [s for v in obj.values() for s in prose(v)]
-    if isinstance(obj, list):
-        return [s for v in obj for s in prose(v)]
-    return []
-
-
-def reason_sentence(text: str) -> str | None:
-    """The first sentence in which a record refers to the flag it carries.
-
-    Printed rather than merely counted: assertion 6 can only hold that the claim is
-    made, and whether the claim is a REASON is a judgement no regex makes. Handing
-    the reader the sentence is the difference between a green tick and evidence.
-
-    A sentence carrying BOTH halves is preferred over the first one carrying the flag,
-    because the first is often not the reason: `jb_beaubien_homestead` refers to the
-    field in an occupants note ("see review_required and the research note") four
-    paragraphs before it argues the flag, and printing that sentence would report the
-    cross-reference as the argument.
-    """
-    fallback = None
-    for s in SENTENCE_SPLIT.split(text):
-        if not FLAG_PHRASE.search(s):
-            continue
-        s = " ".join(s.split())
-        if CONSTRAINT_SUBJECT.search(s):
-            return s
-        if fallback is None:
-            fallback = s
-    return fallback
 
 
 def value_of(field) -> str | None:
@@ -310,7 +257,23 @@ def measure() -> tuple[dict, list[str]]:
     # in `function.note`. See the module docstring.
     reasons: dict[str, str] = {}
 
-    def reasoned(where: str, rec: dict, extra: str = "") -> None:
+    # T-0268 SPLITS THIS BAR IN TWO, along the line of who reads the answer.
+    #
+    # Record-level was the right bar while the only reader was an agent with the whole
+    # file open: `cobweb_castle` opened "THE RECORD IS FLAGGED review_required BECAUSE OF
+    # WHAT THIS BUILDING WAS" and said what that was in the next sentence, which is good
+    # writing and passed.
+    #
+    # A VISITOR IS HANDED ONE SENTENCE. The card carries `review_reason` — this
+    # function's own output — and nothing around it, so for the layer the card reads,
+    # a sentence that refers to the flag and names nowhere the subject is a card that
+    # says a building is held and not what for, which is the whole of T-0268. The two
+    # records that failed the tightened bar were repaired by joining the claim to the
+    # reason they already gave one sentence later; neither gained a word of new argument.
+    #
+    # Households and persons keep the record-level bar. Nothing shows them, and
+    # widening a gate to a layer no reader reaches buys nothing.
+    def reasoned(where: str, rec: dict, extra: str = "", sentence_level: bool = False) -> None:
         text = " ".join(prose(rec)) + " " + extra
         sentence = reason_sentence(text)
         if not sentence:
@@ -321,16 +284,22 @@ def measure() -> tuple[dict, list[str]]:
                 f"made and nothing about what it rests on. Write the reason into the "
                 f"record — the convention eight of these records already keep")
             return
-        if not CONSTRAINT_SUBJECT.search(text):
+        scope = sentence if sentence_level else text
+        if not CONSTRAINT_SUBJECT.search(scope):
             problems.append(
                 f"{where}: refers to the flag ({sentence[:80]!r}) and names nowhere the "
-                f"subject AGENTS.md places under the constraint. Saying a record is held "
-                f"is not saying what it is held for")
+                f"subject AGENTS.md places under the constraint"
+                + (", IN THAT SENTENCE. This is the layer the visitor's card reads, and "
+                   "the card is handed this one sentence and nothing around it — so a "
+                   "reason the rest of the record supplies is a reason the reader never "
+                   "sees. Join the claim to the reason it already gives"
+                   if sentence_level else
+                   ". Saying a record is held is not saying what it is held for"))
             return
         reasons[where] = sentence
 
     for sid in sorted(flagged_structures):
-        reasoned(f"structure {sid}", structures[sid])
+        reasoned(f"structure {sid}", structures[sid], sentence_level=True)
     for hid in sorted(flagged_households):
         reasoned(f"household {hid}", households[hid])
     for hid, person in persons:
@@ -342,6 +311,45 @@ def measure() -> tuple[dict, list[str]]:
         # sentence reported is whichever states it.
         reasoned(f"person {hid}/{person.get('id')}", person,
                  extra=" ".join(prose(households[hid])))
+
+    # ---- assertion 7: the card is told what the gate was told ---------------------
+    # T-0268. The visitor's card reads `data/sidecars/<scene>/<id>.json`, never the
+    # research dataset, so a sentence that only ever reaches this census reaches nobody.
+    # The compiler now writes `review_reason` onto every flagged structure's sidecar
+    # from `review_constraint.record_reason` — the same reading assertion 6 judges — and
+    # this re-derives it against the committed bytes.
+    #
+    # It is checked in BOTH directions on purpose. A missing reason means a held
+    # building whose card can only say that it is held, which is the state T-0268 was
+    # opened about; a reason the census does not recognise means the card is making an
+    # argument no gate has read. The second is the worse of the two, because it looks
+    # like the work was done.
+    for scene_dir in sorted(SIDECARS.glob("*")):
+        if not scene_dir.is_dir():
+            continue
+        for sid in flagged_structures:
+            path = scene_dir / f"{sid}.json"
+            if not path.exists():
+                continue  # a structure outside this scene's date range
+            side = load(path)
+            if not side.get("review_required"):
+                problems.append(
+                    f"sidecar {scene_dir.name}/{sid}: the record carries review_required "
+                    f"and the sidecar the card reads does not. Re-run "
+                    f"tools/compile_scene.py")
+                continue
+            want = reasons.get(f"structure {sid}")
+            got = side.get("review_reason")
+            if want and not got:
+                problems.append(
+                    f"sidecar {scene_dir.name}/{sid}: the record says why it is held and "
+                    f"the sidecar carries no review_reason, so the card can tell a visitor "
+                    f"that the building is held and nothing about what for. Re-run "
+                    f"tools/compile_scene.py in the same commit as the record")
+            elif want and got != want:
+                problems.append(
+                    f"sidecar {scene_dir.name}/{sid}: the card's reason and this census's "
+                    f"differ. card {got[:60]!r} vs record {want[:60]!r}")
 
     census = {
         "structures": {"total": len(structures), "flagged": flagged_structures},

@@ -1543,13 +1543,38 @@ export async function createFlora({
           // ranges alone. Both sides central, or the ratio is an artefact of
           // which end each was read at.
           //
+          // T-1106. AND THE COVER IS A FLOOR, WHILE THIS BAND IS A WALL.
+          //
+          // Ground cover is the honest mix for ground, and everything above
+          // stands. It is not the honest mix for THIS band. The nearest far card
+          // is 34 m out and the furthest 95; at fifty metres a 1.7 m eye looks
+          // 1.9 degrees below horizontal, the sward is seen edge-on, and the
+          // plant that fills a pixel is the first element the ray meets. That is
+          // governed by silhouette area per element times elements per m² of
+          // ground — `silhouetteOf` — and the depth of the wall cancels out of a
+          // ratio between two strata standing in it.
+          //
+          // The two quantities disagree exactly where the strata differ in
+          // SHAPE. A compass plant 1.8 m tall in 1.2 m grass stands up more wall
+          // per square metre of floor than its footprint says, and under the
+          // cover reading the band could not know it: T-0280's change cost
+          // `prairie_west` every drawn head past 26.4 m, down from 135.7 m,
+          // because the tall narrow stratum was priced as though the visitor
+          // were looking down at it. `tools/measure_far_split.mjs` §1 carries all
+          // three columns and the per-community move.
+          //
+          // THIS IS THE MODEL THE MODULE ALREADY USES ONE FIELD OVER.
+          // `tools/measure_far_bloom.mjs` §1 has priced the bloom share on this
+          // same edge-on `n x a` since T-0209 and states its liberty for it, so
+          // until now the split and the bloom were two readings of one wall in
+          // two different units.
+          //
           // The card count does not move. This decides what a card stands for,
-          // exactly as T-0209 above left it.
+          // exactly as T-0209 above left it, and the boundary itself is summed
+          // off `data/flora` once per community in `farSplitOf` — no constant
+          // enters it here.
           const forbs = wet ? zone.wet.forbs : zone.dry.forbs;
-          const forbCover = forbs?.cover ?? 0;
-          const split = forbs?.items?.length && forbCover > 0
-            ? zone.matrixShare * (1 - forbCover / (zone.matrixShare + forbCover))
-            : zone.matrixShare;
+          const split = wet ? zone.farSplit.wet : zone.farSplit.dry;
           const forb = u >= split;
           const sp = forb
             ? dealt(forbs, zone.matrixShare - split, u - split)
@@ -1712,6 +1737,37 @@ export async function createFlora({
         forbCoverWet: z.wet.forbs.cover,
         forbCoverHigh: z.dry.forbs.coverHigh,
         forbCoverHighWet: z.wet.forbs.coverHigh,
+        /**
+         * T-1106. AND THE SAME FOUR STRATA AS WALLS — the silhouette-area
+         * density the far band's split is dealt on since T-1106, exported beside
+         * the cover it was dealt on between T-0280 and T-1106 so the size of the
+         * change is arithmetic on this table and not a diff of two runs.
+         *
+         * `matrixSilAspect` and `forbSilAspect` are `sil / cover` per stratum —
+         * the square metres of wall one square metre of that stratum's floor
+         * stands up. They are the entire content of the ticket: where the two
+         * aspects are equal the split does not move at all, and where the forbs
+         * are the taller narrower stratum it moves by exactly their ratio.
+         *
+         * `matrixSil` is the graminoid subset's own sum, NOT `matrixShare`
+         * converted — see `rebuildFar`, which converts the record's own
+         * `matrix_fraction` by `matrixSilAspect` rather than replacing it, and
+         * carries both so the choice is visible here.
+         */
+        matrixSil: z.dry.graminoids.sil,
+        matrixSilWet: z.wet.graminoids.sil,
+        matrixSilAspect: z.dry.graminoids.cover > 0
+          ? z.dry.graminoids.sil / z.dry.graminoids.cover : null,
+        matrixSilAspectWet: z.wet.graminoids.cover > 0
+          ? z.wet.graminoids.sil / z.wet.graminoids.cover : null,
+        forbSil: z.dry.forbs.sil,
+        forbSilWet: z.wet.forbs.sil,
+        forbSilAspect: z.dry.forbs.cover > 0
+          ? z.dry.forbs.sil / z.dry.forbs.cover : null,
+        forbSilAspectWet: z.wet.forbs.cover > 0
+          ? z.wet.forbs.sil / z.wet.forbs.cover : null,
+        silUnknown: z.dry.graminoids.silUnknown + z.dry.forbs.silUnknown
+          + z.wet.graminoids.silUnknown + z.wet.forbs.silUnknown,
         /** How many of the forb records behind those sums stated no `width_m`
          *  and were therefore measured at the footprint the placer gives them,
          *  and how many converted to no count at all. The provenance of the
@@ -2225,6 +2281,28 @@ function compileZones({ index, files }, terrain, problems, stats) {
           (a, s) => a + (coverOf(s, { drawn: true, high: true }) ?? 0), 0),
         coverFallbacks: items.filter((s) => !s.width).length,
         coverUnknown: items.filter((s) => coverOf(s, { drawn: true }) === null).length,
+        /**
+         * T-1106. THE SAME SUBSET AS A WALL — `silhouetteOf` over the subset,
+         * m² of upright silhouette per m² of ground. The far band's split reads
+         * this; `cover` is kept beside it because the PAIR is the measurement
+         * and because every other reader of a stratum's abundance is asking
+         * about ground.
+         *
+         * `silAspect` on `communities()` is the conversion these sums embody,
+         * `sil / cover` — the
+         * abundance-weighted mean of `4h / (pi w)` over the subset, which is how
+         * many square metres of wall one square metre of this stratum's floor
+         * stands up. It is exported because it is the whole content of the
+         * change: a stratum of tall narrow plants and one of low broad ones can
+         * hold the same ground and not the same sky, and this number says by how
+         * much. `silUnknown` counts the items that convert to no silhouette at
+         * all — a missing `height_m`, which no sward record has today and which
+         * is exported so that stays checkable.
+         */
+        sil: items.reduce((a, s) => a + (silhouetteOf(s, { drawn: true }) ?? 0), 0),
+        silHigh: items.reduce(
+          (a, s) => a + (silhouetteOf(s, { drawn: true, high: true }) ?? 0), 0),
+        silUnknown: items.filter((s) => silhouetteOf(s, { drawn: true }) === null).length,
       };
     };
 
@@ -2237,6 +2315,37 @@ function compileZones({ index, files }, terrain, problems, stats) {
      *  what that clamp costs the six communities already sitting on it. */
     const shareOf = (density) => Math.min(
       1, density * cell * cell / TUNE.forb.perCell);
+    /**
+     * T-1106. THE FAR BAND'S GRASS-OR-FLOWER BOUNDARY, ONE NUMBER PER SIDE OF
+     * THE WATERLINE, decided here rather than per lattice slot.
+     *
+     * `u < matrixShare` still says whether the slot is occupied at all — that is
+     * T-0209's arrangement and does not move. This says WHERE inside that range
+     * the grass ends and the flowering plants begin, and both of the quantities
+     * it is dealt on are SILHOUETTE-AREA DENSITIES (`silhouetteOf`), because the
+     * far band is a wall seen edge-on and not a floor seen from above.
+     *
+     * THE MATRIX SIDE IS THE RECORD'S OWN COVER, CONVERTED — not the graminoid
+     * subset's raw sum. `cover.matrix_fraction` is a single authored figure and
+     * T-0280 chose it deliberately over what the species rows happen to sum to;
+     * this keeps that choice and multiplies it by the stratum's own measured
+     * aspect, `sil / cover`, so the change of unit is the only thing T-1106
+     * does. `matrixSil` on `communities()` carries the raw sum beside it for a
+     * reader who wants to check the two against each other.
+     *
+     * A community whose matrix records give no silhouette to convert by keeps
+     * the pre-T-1106 arrangement of dividing covers, which is the same refusal
+     * `measure_far_bloom.mjs` §1 makes for the marsh: no silhouette, no ratio
+     * between silhouettes.
+     */
+    const farSplitOf = (matrixShare, side) => {
+      const aspect = side.graminoids.cover > 0
+        ? side.graminoids.sil / side.graminoids.cover : null;
+      const matrixSide = aspect === null ? matrixShare : matrixShare * aspect;
+      const forbSide = aspect === null ? side.forbs.cover : side.forbs.sil;
+      if (!side.forbs.items.length || !(forbSide > 0) || !(matrixSide > 0)) return matrixShare;
+      return matrixShare * (1 - forbSide / (matrixSide + forbSide));
+    };
     const dry = {
       graminoids: subsetOn(graminoids, false, SLOT_BASIS.matrix),
       forbs: subsetOn(forbs, false, SLOT_BASIS.forb),
@@ -2269,6 +2378,13 @@ function compileZones({ index, files }, terrain, problems, stats) {
        *  `cover.matrix_fraction`. Clamped only because a fraction over 1 would
        *  be a bookkeeping error the validator already refuses. */
       matrixShare: clamp01(matrixShare),
+      /** T-1106. Where the grass ends inside that occupied range, per side of
+       *  the waterline — see `farSplitOf`. Constant per community, so the far
+       *  band's per-slot work is a comparison and not a ratio. */
+      farSplit: {
+        dry: farSplitOf(clamp01(matrixShare), dry),
+        wet: farSplitOf(clamp01(matrixShare), wet),
+      },
       /**
        * T-1056 SETTLED WHAT THIS FIELD GATES, AND THE ANSWER IS NOTHING.
        *
@@ -2674,6 +2790,49 @@ function coverOf(sp, { high = false, drawn = false } = {}) {
   if (n === null || n === undefined) return null;
   if (!drawn && !sp.width) return null;
   return n * Math.PI * clumpRadiusOf(sp) ** 2;
+}
+
+/**
+ * T-1106. THE SAME STRATUM AS A WALL RATHER THAN AS A FLOOR — silhouette-area
+ * density, `stems x w x h`, in m² of upright screen-filling area per m² of
+ * ground.
+ *
+ * WHY A SECOND QUANTITY EXISTS AT ALL. `coverOf` above answers "how much GROUND
+ * does this stratum's recorded abundance hold", and that is the honest question
+ * for ground: a walker looking down sees footprints. The far band is not that
+ * view. Its nearest card stands 34 m out and its furthest 95 m, and at fifty
+ * metres a 1.7 m eye looks 1.9 degrees below horizontal — the sward is seen EDGE
+ * ON, as a wall, and what fills a pixel is the first element the ray meets. The
+ * quantity that governs which plant that is, is projected area per element times
+ * elements per unit ground, which is this; the depth of the wall cancels out of
+ * a RATIO between two strata standing in it.
+ *
+ * This is not a new model. `tools/measure_far_bloom.mjs` §1 has priced the BLOOM
+ * on exactly this bridge since T-0209, stating the same edge-on argument and the
+ * same `n x a`. What T-1106 found is that the far band's grass-or-flower SPLIT
+ * was on the other quantity, so the module was answering two neighbouring
+ * questions about the same wall in two different units.
+ *
+ * `w` IS THE DRAWN CLUMP, for the reason T-0280 gives at `coverOf`: fifty sward
+ * records state no `width_m`, and a sum over recorded widths alone would not
+ * make those strata thin, it would make them ABSENT. `h` is the record's own
+ * `height_m` on 1 July, which every sward record states — a plant with no height
+ * returns `null` and is counted as unknown rather than silently as nothing.
+ *
+ * THE SILHOUETTE IS THE CLUMP'S BOUNDING RECTANGLE, `w x h` — not an ellipse, not
+ * a measured profile, and NOT the far card's own quad, whose width is the
+ * aggregate `band.wide` L137 gives it rather than this plant's. That is a stated
+ * liberty, docs/LIBERTIES.md L236: a shape factor would cancel out of the ratio
+ * wherever the two strata share a growth form, the project has no measured
+ * profile for either to make it not cancel, and applying one to a single side
+ * would be a thumb on the scale.
+ */
+function silhouetteOf(sp, { high = false, drawn = false } = {}) {
+  const n = high ? (sp.stemsHigh ?? sp.stems) : sp.stems;
+  if (n === null || n === undefined) return null;
+  if (!drawn && !sp.width) return null;
+  if (!sp.height) return null;
+  return n * (2 * clumpRadiusOf(sp)) * mid(sp.height);
 }
 function clamp01(v) { return Math.min(1, Math.max(0, v)); }
 

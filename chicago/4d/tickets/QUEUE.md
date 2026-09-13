@@ -166,8 +166,6 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-T-1106 — The far sward's flower share is a GROUND-COVER mix, and a visitor at fifty metres reads SILHOUETTES — T-0280 cost prairie_west every head past 26 m
-T-0268 — A building held under the standing constraint says so nowhere a visitor can see
 T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
 
@@ -309,8 +307,7 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' and the HUD has read 'walk · 3.2 mph' since T-0823, so mobile part 3 has been red on dev for a week
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1093 — The Settings speed readout now reads 'walk · 3.2 mph' and the mobile part-7 assertion wants '3.2 mph', so dev is red on a prefix nobody meant to assert against
+
