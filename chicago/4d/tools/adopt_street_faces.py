@@ -538,9 +538,20 @@ def rank_key(entry: dict, gaz: dict) -> tuple:
     return (-mentions, first, entry["id"])
 
 
+#: THE TWO LEDGERS A DEAL CAN KEEP (T-0422). `TOWN_LEDGER` is the policy — one roof, one
+#: business, counted across the whole town. `PER_FACE_LEDGER` is the ledger this pass kept
+#: until the corner-side widening made it wrong: a roof spent on Dearborn was still free to
+#: Lake, so two faces could deal the same building. It survives here ONLY so `self_test()`
+#: can DERIVE it and show what the town-wide ledger is buying; no document is ever written
+#: under it, and `costed()` refuses to.
+TOWN_LEDGER = "town-wide"
+PER_FACE_LEDGER = "per face"
+
+
 def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
              yards: set[str], readings: tuple[str, ...],
-             ruled_two_houses: set[tuple[str, ...]]) -> tuple[list, list]:
+             ruled_two_houses: set[tuple[str, ...]],
+             ledger: str = TOWN_LEDGER) -> tuple[list, list]:
     """Deal the ranked pool onto the faces, reading "face" as `readings` says.
 
     The pass this file writes calls it with `ADOPTED_READINGS` and nothing else, and
@@ -558,6 +569,13 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
     gate; refusing it here means the table is never written that way in the first place.
     """
     taken: set[str] = set()
+    spent_on_face: dict[str, set[str]] = {}
+
+    def spoken_for(street_id: str) -> set[str]:
+        """The roofs this deal has already spent, as `ledger` counts them."""
+        return (taken if ledger == TOWN_LEDGER
+                else spent_on_face.setdefault(street_id, set()))
+
     seated: dict[str, dict[tuple[str, ...], str]] = {}
     adoptions: list[dict] = []
     refusals: list[dict] = []
@@ -579,7 +597,7 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
         face = faces.get(street_id) or {key: list(value)
                                         for key, value in EMPTY_FACE.items()}
         free = [sid for sid in free_under(face, readings, homes, yards)
-                if sid not in taken]
+                if sid not in spoken_for(street_id)]
         if not any(face[how] for how in readings):
             refusals.append(dict(
                 common, refusal=REFUSALS[1],
@@ -616,11 +634,13 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
                        % (len(on_face),
                           len([sid for sid in on_face if sid in homes]),
                           len([sid for sid in on_face if sid in yards]),
-                          len([sid for sid in on_face if sid in taken]))))
+                          len([sid for sid in on_face
+                               if sid in spoken_for(street_id)]))))
             continue
 
         structure_id = free[0]
         taken.add(structure_id)
+        spent_on_face.setdefault(street_id, set()).add(structure_id)
         if house:
             held[house] = entry["name"]
         how = reading_of(face, structure_id)
@@ -683,6 +703,20 @@ COSTED_READINGS = (
 )
 
 
+def dealt_twice(rows: list) -> dict[str, list[str]]:
+    """Every roof more than one row in `rows` is seated in, and who those rows are.
+
+    T-0422. Under the narrow reading a roof reached exactly one face, so "once per face"
+    and "once in the town" were the same sentence and no count could tell them apart. The
+    corner-side widening separated them, and this is the reading that says which one a
+    table obeys.
+    """
+    who: dict[str, list[str]] = {}
+    for row in rows:
+        who.setdefault(row["structure_id"], []).append(row["business_id"])
+    return {sid: names for sid, names in sorted(who.items()) if len(names) > 1}
+
+
 def costed(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
            yards: set[str], adoptions: list,
            ruled_two_houses: set[tuple[str, ...]]) -> dict:
@@ -701,7 +735,14 @@ def costed(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
     out: dict[str, dict] = {}
     for label, readings in COSTED_READINGS:
         would, refused = allocate(pool, gaz, faces, roofs, homes, yards, readings,
-                                  ruled_two_houses)
+                                  ruled_two_houses, TOWN_LEDGER)
+        # T-0422. The same reading dealt under the ledger this pass kept until the
+        # corner-side widening: one roof, one business PER FACE. It is derived here, on
+        # every rebuild, so the difference between the two ledgers is a measured number in
+        # the document rather than an argument in a ticket — and so `limits()` has
+        # something to re-assert. Nothing below is ever written as an adoption.
+        per_face, _ = allocate(pool, gaz, faces, roofs, homes, yards, readings,
+                               ruled_two_houses, PER_FACE_LEDGER)
         seated = {row["business_id"]: row for row in would}
         gained = sorted(set(seated) - set(today))
         # A wider reading is not automatically a superset. Roofs are dealt to the pool in
@@ -718,6 +759,13 @@ def costed(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
             "adopted_faces": list(readings),
             "in_force": tuple(readings) == ADOPTED_READINGS,
             "would_seat": len(would),
+            # ONE ROOF, ONE BUSINESS, TOWN-WIDE — stated as a count rather than asserted
+            # in prose, because a counterfactual nobody looks at is exactly where this
+            # would rot. `would_seat_on_distinct_roofs` must equal `would_seat`.
+            "would_seat_on_distinct_roofs": len({row["structure_id"] for row in would}),
+            "deals_a_roof_twice": dealt_twice(would),
+            "per_face_ledger_would_seat": len(per_face),
+            "per_face_ledger_would_deal_twice": dealt_twice(per_face),
             "against_the_reading_in_force": len(would) - len(today),
             "seats_that_the_reading_in_force_does_not": gained,
             "seats_that_the_reading_in_force_does_not_by_street":
@@ -908,6 +956,23 @@ def limits(doc: dict) -> list[str]:
     for structure_id in sorted(seen & yard_roofs()):
         bad.append("%s is a yard building — a privy, a stable or a woodshed standing "
                    "behind a lot — and a business cannot be seated in one" % structure_id)
+
+    # LIMIT 1 HOLDS OVER THE COUNTERFACTUALS TOO — T-0422. Every check above reads the
+    # SHIPPED table, which is the reading in force; the other two rows of
+    # `costed_readings` are the numbers the owner is asked to rule on, and until this gate
+    # existed nothing re-asserted anything about them. A widening whose seat count is
+    # inflated by dealing one corner building to two shopfronts is a wrong price on a real
+    # decision, and it would never fail a gate, because it is never adopted.
+    for label, row in sorted((doc.get("reading") or {}).get("costed_readings", {}).items()):
+        for structure_id, businesses in sorted((row.get("deals_a_roof_twice") or {}).items()):
+            bad.append("the %r counterfactual deals %s to %s — one roof, one business "
+                       "holds town-wide, not once per face"
+                       % (label, structure_id, " and ".join(businesses)))
+        if row.get("would_seat_on_distinct_roofs") != row.get("would_seat"):
+            bad.append("the %r counterfactual seats %s business(es) on %s roof(s), so its "
+                       "price is inflated by the difference"
+                       % (label, row.get("would_seat"),
+                          row.get("would_seat_on_distinct_roofs")))
     return bad
 
 
@@ -969,6 +1034,14 @@ def report() -> int:
         print("      %-34s %2d seated (%+d), %d still refused  %s"
               % (label, row["would_seat"], row["against_the_reading_in_force"],
                  row["would_still_refuse"], mark))
+        # T-0422. One roof, one business is counted TOWN-WIDE, and the second line says
+        # what that costs: a per-face ledger would price this reading higher by dealing
+        # the same corner building to two shopfronts.
+        print("          %d roof(s) dealt; per face it would seat %d and deal %s"
+              % (row["would_seat_on_distinct_roofs"], row["per_face_ledger_would_seat"],
+                 ", ".join("%s twice" % sid
+                           for sid in row["per_face_ledger_would_deal_twice"])
+                 or "no roof twice"))
         gains = row["seats_that_the_reading_in_force_does_not_by_street"]
         print("          gains: %s" % (", ".join(
             "%s +%d" % (fronting_street.street_name(street_id), n)
@@ -1079,6 +1152,25 @@ def self_test() -> int:
          lambda b: first(b).update(cites=[]),
          "cites no printing")
 
+    # T-0422. THE COUNTERFACTUALS' OWN LEDGER. Both cases mutate a costed row rather than
+    # an adoption, because that row is the only place a widening's price is written.
+    widening = next((label for label, row in doc["reading"]["costed_readings"].items()
+                     if not row["in_force"] and row["adopted_faces"] != [FRONT]), None)
+    if widening is None:
+        print("  FAIL  no widening is costed, so its ledger cannot be tested")
+        failed = 1
+    else:
+        case("a widening that deals one corner roof to two shopfronts",
+             lambda b: b["reading"]["costed_readings"][widening].update(
+                 deals_a_roof_twice={first(b)["structure_id"]:
+                                     ["business_a", "business_b"]}),
+             "one roof, one business holds town-wide")
+        case("a widening whose seat count runs ahead of the roofs it dealt",
+             lambda b: b["reading"]["costed_readings"][widening].update(
+                 would_seat_on_distinct_roofs=b["reading"]["costed_readings"]
+                 [widening]["would_seat"] - 1),
+             "its price is inflated")
+
     # Refusal 5's live half. Nine adoptions stood in outbuildings until 2026-08-29, so
     # this case is the one that would have caught it: seat the first business on a roof
     # the parcels dealt as ancillary and the limits must say so.
@@ -1118,6 +1210,44 @@ def self_test() -> int:
     else:
         print("  ok:    the phase reader distinguishes %s, so a promoted roof is visible "
               "to limit 2" % ", ".join(sorted(grades)))
+
+    # T-0422, THE LIVE HALF. The two cases above prove the gate fires; this proves it is
+    # not vacuous, by dealing every costed reading under BOTH ledgers on the tree as it
+    # stands. The town-wide ledger must never double-deal, and the difference between the
+    # two is the thing the ticket asked to be kept measured rather than argued.
+    register_for_ledger = load(REGISTER)
+    gaz_for_ledger = {b["id"]: b for b in load(GAZETTEER)["businesses"]}
+    roofs_for_ledger = reconstructed_roofs()
+    homes_for_ledger = dwellings()
+    yards_for_ledger = yard_roofs()
+    faces_for_ledger = supply(roofs_for_ledger, homes_for_ledger, yards_for_ledger)
+    ruled_for_ledger = two_house_surnames(register_for_ledger)
+    pool_for_ledger = [b for b in register_for_ledger["businesses"]
+                       if b["action"] == "street_only"]
+    pool_for_ledger.sort(key=lambda entry: rank_key(entry, gaz_for_ledger))
+    bites = 0
+    for label, readings in COSTED_READINGS:
+        under = {}
+        for ledger in (TOWN_LEDGER, PER_FACE_LEDGER):
+            rows, _ = allocate(pool_for_ledger, gaz_for_ledger, faces_for_ledger,
+                               roofs_for_ledger, homes_for_ledger, yards_for_ledger,
+                               readings, ruled_for_ledger, ledger)
+            under[ledger] = rows
+        twice = dealt_twice(under[TOWN_LEDGER])
+        if twice:
+            failed = 1
+            print("  FAIL  %r deals a roof twice under the town-wide ledger: %s"
+                  % (label, ", ".join(sorted(twice))))
+            continue
+        per_face_twice = dealt_twice(under[PER_FACE_LEDGER])
+        bites += len(per_face_twice)
+        print("  holds: %-34s %2d seated on %2d roofs town-wide; per face it would "
+              "seat %2d and deal %d roof(s) twice"
+              % (label, len(under[TOWN_LEDGER]),
+                 len({row["structure_id"] for row in under[TOWN_LEDGER]}),
+                 len(under[PER_FACE_LEDGER]), len(per_face_twice)))
+    print("  ok:    the per-face ledger would double-deal %d roof(s) across the costed "
+          "readings, so the town-wide one is doing work" % bites)
 
     # T-0414: REFUSAL 3 MUST OBEY THE IDENTITY LAYER. This is not a limit on the
     # committed document — it is a rule about how the deal is MADE — so it is asserted
@@ -1165,8 +1295,9 @@ def self_test() -> int:
         print("SELF-TEST FAIL")
         return 1
     print("SELF-TEST PASS — all four limits, both halves of both roof "
-          "refusals and both edges of the 2026-08-30 face ruling fire when broken, "
-          "and refusal 3 still obeys identity.json's two_houses rulings (18 cases)")
+          "refusals, both edges of the 2026-08-30 face ruling and both readings of the "
+          "one-roof-one-business ledger fire when broken, and refusal 3 still obeys "
+          "identity.json's two_houses rulings (20 cases)")
     return 0
 
 

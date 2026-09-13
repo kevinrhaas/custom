@@ -156,13 +156,10 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
-T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 
 # --- ==========================================================================
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
-T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-T-0055 — Hold the Kinzie-view plate as a source record
 
 # --- ==========================================================================
 # --- 6. SOUTH THROUGH TIME — owner epic, 2026-09-01, PROMOTED OUT OF EPICS 2026-09-10
@@ -172,6 +169,8 @@ T-0055 — Hold the Kinzie-view plate as a source record
 # --- is that promotion, so these fourteen are workable in rank order like any other band.
 # --- One ticket per epoch, in his own order: the shared south terrain first, then 1812, then
 # --- the 1880s. Nothing here touches the 1835 town; it stands below every band that does.
+
+T-1107 — The two fort crops in the 2026-08-11 set are almost certainly Kurz & Allison panels 1 and 5: measure the join and fill fort_dearborn_apron's empty sources
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
@@ -300,4 +299,3 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-
