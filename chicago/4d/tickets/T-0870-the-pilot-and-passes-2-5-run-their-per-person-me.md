@@ -65,3 +65,37 @@ merge. It named this residual and deliberately did not fold it in, because it me
 touching five selectors' selection logic in a PR about the snapshot. That reasoning holds;
 the finding is kept here rather than lost with the branch. That PR filed it against
 T-0854, which is a different ticket on `dev` — this is the re-filing at a free number.
+
+---
+
+## As built
+
+The scope line drawn, because acceptance 1 says "per-person membership assertions" and
+two of the five selectors ask that question as a TOTAL instead:
+
+* **Hard on every path** — the member is still in the resident layer; is not
+  `reconstructed`; is not an `inf_*` hypothesis or an unnamed placeholder (pass 5); and
+  the frozen id lists are 75 unique, non-overlapping, and the size their collision lock
+  declares. None of these can move under the tree without a person leaving it or the
+  selector's own literals being edited. This is the staleness the freeze contract's
+  assertion 2 describes, and T-0492's comment says pass 13 keeps it on the gate too.
+* **Refused while minting, reported on the gate** — whether a member still matches the
+  stratum it was DRAWN from: the `letter_list_only` flag, the established/richer-unplaced
+  shape, and the `present_on_scene_date` value a letter-list stratum is named for.
+  Passes 4 and 5 assert that per person; the pilot and passes 2 and 3 assert it as a
+  stratum COUNT read off today's presence values, which is the same event asked as a
+  total — so those counts are scoped with it. Passes 4 and 5 count their FROZEN stratum
+  labels instead, so their totals cannot move and stay hard; a comment says so at each.
+
+`resident_cohort_freeze.Membership` carries the scope and the report, and
+`freeze.stratum_self_test()` runs a selector's probes through all four corners —
+minting/frozen against moved/unmoved — which is acceptance 3.
+
+Demonstrated end to end against the tree rather than only in the self-tests: with
+`hh_force_john`'s `letter_list_only` flag flipped in `data/residents/households/`, dev's
+pilot selector exits 1 on `--gate` with `hh_force_john: no longer marked
+letter_list_only`; this branch's reports the same sentence under a "moved out of the
+stratum they were drawn from since the freeze" line and exits 0. With the pilot manifest
+moved aside so the run is a MINT, this branch's selector exits 1 on the same tree.
+
+`tools/check.sh`: 381 steps, none red, no manifest regenerated (acceptance 4).

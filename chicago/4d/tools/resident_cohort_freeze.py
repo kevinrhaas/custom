@@ -302,6 +302,102 @@ def gate(path: Path, derived: dict, label: str) -> int:
     return 0
 
 
+# ------------------------------------------------ stratum membership (T-0870)
+
+
+class Membership:
+    """Whether a frozen member still matches the stratum it was DRAWN from.
+
+    Two different questions wear the same shape in these selectors and only one of
+    them is a defect. That a member has LEFT the town, turned into an unnamed count
+    or gone `reconstructed` is staleness, and `check()` above refuses it on every
+    path — that is assertion 2 of the gate contract. That a member's
+    `letter_list_only` flag, or the presence value its stratum is named for, has
+    MOVED in the tree is the research landing: it is the identical reading T-0764
+    already takes of a moved snapshot cell, arriving through a different door. Until
+    T-0870 it raised `SystemExit` on the `--gate` path and stopped the build.
+
+    So the assertion is kept and its DIRECTION is scoped, exactly as
+    `select_resident_research_pass_13.derive(minting=...)` scopes its own (T-0492).
+    Minting a cohort still refuses a member the stratum no longer describes: the
+    freeze is being taken, and a frame that does not match the tree is not a frame.
+    Once frozen, the same finding is counted and named, and the gate stays green.
+
+        drift = freeze.Membership(minting=not args.gate and not OUT.exists())
+        ...
+        drift.holds(bool(person.get("letter_list_only")),
+                    "%s: no longer marked letter_list_only" % person_id)
+        ...
+        for line in drift.report("resident research pass two"):
+            print(line)
+
+    A selector that takes no `Membership` gets a frozen one, because minting is a
+    rare and explicit act: `tools/compile_resident_research_pilot.py` re-derives pass
+    five's cohort to compare against the committed manifest, and a flag that moved
+    under a finished pass must not stop that comparison either.
+    """
+
+    def __init__(self, minting: bool):
+        self.minting = minting
+        self.moved: list[str] = []
+
+    def holds(self, condition, message: str) -> bool:
+        """Assert `condition` while minting; record it as moved once frozen."""
+        if condition:
+            return True
+        if self.minting:
+            raise SystemExit(message)
+        self.moved.append(message)
+        return False
+
+    def report(self, label: str) -> list[str]:
+        """The gate's lines for what moved — the voice `gate()` uses for a moved cell."""
+        if not self.moved:
+            return []
+        return ["%s: %d member(s) have moved out of the stratum they were drawn from "
+                "since the freeze, which is the research landing and not staleness"
+                % (label, len(self.moved))] + ["   - %s" % line for line in self.moved]
+
+
+def stratum_self_test(label: str, probes) -> int:
+    """Prove a selector's stratum tests fire both ways (T-0870, acceptance 3).
+
+    Each probe is `(case, run)` where `run(drift, moved)` puts ONE member through the
+    selector's stratum test — `moved=True` for a member the stratum no longer
+    describes, `moved=False` for one it still does. Four things must hold, and the
+    last two are the ones this ticket bought:
+
+      minting + unmoved  → nothing;      minting + moved  → SystemExit naming it;
+      frozen  + unmoved  → nothing;      frozen  + moved  → one reported line, green.
+    """
+    bad = 0
+    for case, run in probes:
+        detail, ok = "", False
+        try:
+            run(Membership(minting=True), False)
+            try:
+                run(Membership(minting=True), True)
+                detail = "minting did not refuse the moved member"
+            except SystemExit as stop:
+                quiet, noisy = Membership(minting=False), Membership(minting=False)
+                run(quiet, False)
+                run(noisy, True)
+                if quiet.moved:
+                    detail = "the gate reported an unmoved member: %s" % quiet.moved
+                elif len(noisy.moved) != 1:
+                    detail = "the gate reported %d line(s), wanted 1" % len(noisy.moved)
+                elif noisy.moved[0] != str(stop):
+                    detail = "minting said %r and the gate said %r" % (str(stop), noisy.moved[0])
+                else:
+                    ok, detail = True, noisy.moved[0]
+        except SystemExit as stop:
+            detail = "an unmoved member was refused: %s" % stop
+        bad += 0 if ok else 1
+        print("  %s %s → %s" % ("ok   " if ok else "FAIL ", case, detail[:110]))
+    print("%s stratum self-test: %d case(s), %d failed" % (label, len(probes), bad))
+    return 1 if bad else 0
+
+
 # ---------------------------------------------------------------- the self-test
 
 def _fixture():
@@ -447,6 +543,36 @@ def self_test() -> int:
         wcase("a person in no household AND no stub is still a failure — a deletion is "
               "not a redirect",
               "c_folded" not in folded_people(root), "gone is still gone")
+
+    # ---- the membership scope: minting refuses, gating reports (T-0870)
+
+    def mcase(label, ok, detail):
+        nonlocal bad
+        if not ok:
+            bad += 1
+        cases.append(("ok   " if ok else "FAIL ", label, detail))
+
+    message = "a_one: no longer marked letter_list_only"
+    try:
+        Membership(minting=True).holds(False, message)
+        refused = "it did not raise"
+    except SystemExit as stop:
+        refused = "" if str(stop) == message else "raised %r" % str(stop)
+    mcase("minting REFUSES a member the stratum no longer describes",
+          not refused, refused or "raised, with the member named")
+
+    frozen = Membership(minting=False)
+    unmoved = frozen.holds(True, "never reached")
+    moved = frozen.holds(False, message)
+    lines = frozen.report("a cohort")
+    mcase("…and once frozen the same finding is reported, named, and green",
+          unmoved and not moved and frozen.moved == [message] and len(lines) == 2
+          and "research landing and not staleness" in lines[0]
+          and lines[1] == "   - " + message,
+          " | ".join(lines) or "nothing was reported")
+
+    mcase("a cohort with nothing moved says nothing",
+          Membership(minting=False).report("a cohort") == [], "no lines")
 
     for mark, label, detail in cases:
         print("  %s %s → %s" % (mark, label, detail[:110]))
