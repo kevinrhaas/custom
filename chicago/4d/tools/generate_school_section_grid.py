@@ -262,7 +262,12 @@ def load(p):
 def build():
     gcp = load("data/traces/gcp/wright_1834_nara_hup_gcps.json")
     datum = load("data/datum.json")
-    c = gcp["fit"]["coefficients"]
+    # T-1091 adopted an eleven-point registration; THIS TRACE IS STILL SEATED
+    # through the eight-point fit it was built on, which the registration keeps as
+    # `retained_fit`. T-1092 re-seats it on the fit in force and re-bakes what
+    # stands on the ground that moves. Reading `fit` here would move the ground
+    # without moving the meshes on it.
+    c = gcp["retained_fit"]["coefficients"]
     a, b, cc, d, e, f = c["a"], c["b"], c["c"], c["d"], c["e"], c["f"]
     det = a * e - b * d
     oE, oN = datum["origin_utm_e"], datum["origin_utm_n"]

@@ -153,7 +153,12 @@ OCCUPANCY = {
 def _frame():
     g = json.loads(GCP.read_text())
     d = json.loads(DATUM.read_text())
-    c = g["fit"]["coefficients"]
+    # T-1091 adopted an eleven-point registration; THIS TRACE IS STILL SEATED
+    # through the eight-point fit it was built on, which the registration keeps as
+    # `retained_fit`. T-1092 re-seats it on the fit in force and re-bakes what
+    # stands on the ground that moves. Reading `fit` here would move the ground
+    # without moving the meshes on it.
+    c = g["retained_fit"]["coefficients"]
 
     def to_local(px, py):
         return (c["a"] * px + c["b"] * py + c["c"] - d["origin_utm_e"],
@@ -205,7 +210,8 @@ def _bank_px(to_local):
     the grid's east edge can be checked against water this project already holds."""
     g = json.loads(BRANCHES.read_text())
     d = json.loads(DATUM.read_text())
-    c = json.loads(GCP.read_text())["fit"]["coefficients"]
+    # T-1091: the retained eight-point fit — see above.
+    c = json.loads(GCP.read_text())["retained_fit"]["coefficients"]
     a, b, dd, e = c["a"], c["b"], c["d"], c["e"]
     c0, f0 = c["c"] - d["origin_utm_e"], c["f"] - d["origin_utm_n"]
     det = a * e - b * dd

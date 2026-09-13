@@ -12,7 +12,7 @@
   },
   "which_section": "Section 16, T39N R14E \u2014 the school section the state sold in October 1833, a statute mile square bounded by Madison Street on the north, State Street on the east and, a mile from each, the lines that later carried Twelfth Street (Roosevelt Road) and Halsted Street. Its north-east corner is GCP G1 of the registration and is NOT repeated here.",
   "map_side": {
-    "method": "NOT a fresh pick off the raster. T-0797 resampled the scan into local ENU through the committed fit, picked every ruled line of the section's grid as the centroid of a darkness peak in six to eight independent bands, and committed the resulting line table. The fit is an invertible affine, so inverting it on the four corner intersections of that table returns the pixel coordinates the reading was taken at. The table is rounded to 0.01 m, which is 0.014 px, so the recovery is exact for this purpose.",
+    "method": "NOT a fresh pick off the raster. T-0797 resampled the scan into local ENU through the then-committed eight-point fit (retained_fit in the registration since T-1091), picked every ruled line of the section's grid as the centroid of a darkness peak in six to eight independent bands, and committed the resulting line table. The fit is an invertible affine, so inverting it on the four corner intersections of that table returns the pixel coordinates the reading was taken at. The table is rounded to 0.01 m, which is 0.014 px, so the recovery is exact for this purpose.",
     "source_of_the_line_table": "data/traces/vectors/school_section_blocks_1834.json",
     "north_east_corner_cross_check": {
       "drawn_corner_pixel": [
@@ -25,7 +25,7 @@
       ],
       "separation_px": 16.3,
       "separation_m_at_the_committed_scale": 12.0,
-      "reading": "The same point of the drawing, picked two ways: G1 by normalised cross-correlation against the BPL scan at the street crossing, the drawn corner as the meeting of the section's own two outer rules. Twelve metres apart, inside the registration's own 16.19 m RMS, and almost all of it in y \u2014 which is the axis this ticket is about."
+      "reading": "The same point of the drawing, picked two ways: G1 by normalised cross-correlation against the BPL scan at the street crossing, the drawn corner as the meeting of the section's own two outer rules. Twelve metres apart, inside the retained eight-point fit's own 16.19 m RMS, and almost all of it in y \u2014 which is the axis this ticket is about."
     }
   },
   "control_side": {
@@ -43,7 +43,7 @@
         653.9,
         3169.2
       ],
-      "pixel_note": "the section's own drawn corner, recovered by inverting the committed fit on T-0797's measured line table (data/traces/vectors/school_section_blocks_1834.json, grid.ns_lines[].measured and grid.ew_lines[].measured) \u2014 not a fresh pick off the raster",
+      "pixel_note": "the section's own drawn corner, recovered by inverting the RETAINED eight-point fit on T-0797's measured line table (data/traces/vectors/school_section_blocks_1834.json, grid.ns_lines[].measured and grid.ew_lines[].measured) \u2014 not a fresh pick off the raster",
       "modern": {
         "lat": 41.8817821,
         "lon": -87.6473605,
@@ -55,6 +55,7 @@
         "utm_e": 446287.9,
         "utm_n": 4636853.34
       },
+      "residual_m": 6.16,
       "confidence": "documented",
       "sources": [
         "osm_streets_2026"
@@ -69,7 +70,7 @@
         648.0,
         5423.3
       ],
-      "pixel_note": "the section's own drawn corner, recovered by inverting the committed fit on T-0797's measured line table (data/traces/vectors/school_section_blocks_1834.json, grid.ns_lines[].measured and grid.ew_lines[].measured) \u2014 not a fresh pick off the raster",
+      "pixel_note": "the section's own drawn corner, recovered by inverting the RETAINED eight-point fit on T-0797's measured line table (data/traces/vectors/school_section_blocks_1834.json, grid.ns_lines[].measured and grid.ew_lines[].measured) \u2014 not a fresh pick off the raster",
       "modern": {
         "lat": 41.8671813,
         "lon": -87.6469627,
@@ -83,6 +84,7 @@
         "utm_e": 446308.68,
         "utm_n": 4635232.01
       },
+      "residual_m": 4.66,
       "confidence": "documented",
       "sources": [
         "osm_streets_2026"
@@ -97,7 +99,7 @@
         2944.1,
         5495.3
       ],
-      "pixel_note": "the section's own drawn corner, recovered by inverting the committed fit on T-0797's measured line table (data/traces/vectors/school_section_blocks_1834.json, grid.ns_lines[].measured and grid.ew_lines[].measured) \u2014 not a fresh pick off the raster",
+      "pixel_note": "the section's own drawn corner, recovered by inverting the RETAINED eight-point fit on T-0797's measured line table (data/traces/vectors/school_section_blocks_1834.json, grid.ns_lines[].measured and grid.ew_lines[].measured) \u2014 not a fresh pick off the raster",
       "modern": {
         "lat": 41.8674192,
         "lon": -87.6274444,
@@ -112,6 +114,7 @@
         "utm_e": 447928.71,
         "utm_n": 4635246.4
       },
+      "residual_m": 7.51,
       "confidence": "documented",
       "sources": [
         "osm_streets_2026"
