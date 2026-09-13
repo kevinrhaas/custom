@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The last two block numbers, and the box that hid one', kind: 'change', ts: '', date: '',
+  { v: 837, title: 'The last two block numbers, and the box that hid one', kind: 'change', ts: '2026-09-13T15:07:45.494Z', date: 'Sep 13, 2026, 10:07 AM CT',
     items: [
       'Wright writes a number across the middle of every block of the 1834 town, and this project reads them one way only: it asks the georeference for a crop cut from that block\u2019s own committed street lines, and reports the numeral that falls inside it. Fifty-six of the fifty-eight had been read. The last two, 14 and 15, sit across the North Branch on a band no committed street was thought to reach. They are read now, and the plat is complete.',
       'What let them be read is a mistake found last week and settled today. A numeral plainly reading 14 was sitting INSIDE the crop this project cites for block 7, whose own number had been read two hundred pixels away in the same picture. Two block numbers cannot stand in one block.',
