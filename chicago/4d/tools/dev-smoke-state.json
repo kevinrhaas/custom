@@ -3,159 +3,67 @@
   "readings": [
     {
       "viewport": "desktop",
-      "stage": "12",
+      "stage": "3,12",
       "parts": [
+        3,
         12
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 67,
+      "passed": 141,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 255,
-      "takenAt": "2026-09-13T13:39:10.325Z",
-      "ref": "steward/t-0520-archetype-opening-params",
-      "commit": "662e354f13ce",
+      "wallSeconds": 414,
+      "takenAt": "2026-09-13T13:23:51.199Z",
+      "ref": "steward/t-0136-andreas-plates-page-level",
+      "commit": "563326a5f0db",
       "devCommit": "a8021875d394",
-      "treeHash": "sha256:4db99ee74f8abb6b",
+      "treeHash": "sha256:c24df211d3234f11",
       "treeDirty": false,
-      "changelogHash": "sha256:bd803aaca6e6c863",
+      "changelogHash": "sha256:8380bb72e89c3f4d",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.1,
-          4.1,
-          3.3
+          4.7,
+          4.2,
+          3.1
         ]
       },
-      "source": "/tmp/smoke_d12b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 81,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 281,
-      "takenAt": "2026-09-13T13:39:10.236Z",
-      "ref": "steward/t-0520-archetype-opening-params",
-      "commit": "662e354f13ce",
-      "devCommit": "a8021875d394",
-      "treeHash": "sha256:4db99ee74f8abb6b",
-      "treeDirty": false,
-      "changelogHash": "sha256:bd803aaca6e6c863",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4.1,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke_d1b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 250,
-      "takenAt": "2026-09-13T13:23:09.116Z",
-      "ref": "steward/t-0520-archetype-opening-params",
-      "commit": "4aad089b0011",
-      "devCommit": "047a56c7555d",
-      "treeHash": "sha256:8399f14dc4fbcbd6",
-      "treeDirty": false,
-      "changelogHash": "sha256:835fa46f9e4b70b5",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.3,
-          3.8,
-          2.9
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 81,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 292,
-      "takenAt": "2026-09-13T13:23:09.026Z",
-      "ref": "steward/t-0520-archetype-opening-params",
-      "commit": "4aad089b0011",
-      "devCommit": "047a56c7555d",
-      "treeHash": "sha256:8399f14dc4fbcbd6",
-      "treeDirty": false,
-      "changelogHash": "sha256:835fa46f9e4b70b5",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.3,
-          3.8,
-          2.9
-        ]
-      },
-      "source": "/tmp/smoke_d1.log"
+      "source": "/tmp/smoke_d2.log"
     },
     {
       "viewport": "mobile",
-      "stage": "11-12",
+      "stage": "3,12",
       "parts": [
-        11,
+        3,
         12
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 80,
+      "passed": 141,
       "failed": 0,
       "failures": [],
-      "wallSeconds": null,
-      "takenAt": "2026-09-13T13:23:05.959Z",
-      "ref": "steward/t-0520-archetype-opening-params",
-      "commit": "4aad089b0011",
-      "devCommit": "047a56c7555d",
-      "treeHash": "sha256:8399f14dc4fbcbd6",
+      "wallSeconds": 216,
+      "takenAt": "2026-09-13T13:23:51.098Z",
+      "ref": "steward/t-0136-andreas-plates-page-level",
+      "commit": "563326a5f0db",
+      "devCommit": "a8021875d394",
+      "treeHash": "sha256:c24df211d3234f11",
       "treeDirty": false,
-      "changelogHash": "sha256:835fa46f9e4b70b5",
+      "changelogHash": "sha256:8380bb72e89c3f4d",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          2.3,
-          3.8,
-          2.9
+          4.7,
+          4.2,
+          3.1
         ]
       },
-      "source": "/tmp/smoke_d1.log /tmp/smoke_d12.log /tmp/smoke_m1112.log"
+      "source": "/tmp/smoke_m2.log"
     },
     {
       "viewport": "desktop",
@@ -1606,6 +1514,104 @@
         ]
       },
       "source": "/tmp/smoke_m12b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 157,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 379,
+      "takenAt": "2026-09-13T03:54:19.935Z",
+      "ref": "steward/t-0689-west-division-lot-figures",
+      "commit": "bfa797d63ab6",
+      "devCommit": "861ae013c42f",
+      "treeHash": "sha256:03a8d96d17de1b0d",
+      "treeDirty": false,
+      "changelogHash": "sha256:cd0a585fb1486367",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          3.4
+        ]
+      },
+      "source": "/tmp/smoke_d23.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "2-3,7",
+      "parts": [
+        2,
+        3,
+        7
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 170,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+      ],
+      "wallSeconds": 404,
+      "takenAt": "2026-09-13T03:54:19.845Z",
+      "ref": "steward/t-0689-west-division-lot-figures",
+      "commit": "bfa797d63ab6",
+      "devCommit": "861ae013c42f",
+      "treeHash": "sha256:03a8d96d17de1b0d",
+      "treeDirty": false,
+      "changelogHash": "sha256:cd0a585fb1486367",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          3.4
+        ]
+      },
+      "source": "/tmp/smoke_m237.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 261,
+      "takenAt": "2026-09-13T03:54:19.755Z",
+      "ref": "steward/t-0689-west-division-lot-figures",
+      "commit": "bfa797d63ab6",
+      "devCommit": "861ae013c42f",
+      "treeHash": "sha256:03a8d96d17de1b0d",
+      "treeDirty": false,
+      "changelogHash": "sha256:cd0a585fb1486367",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          3.4
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
     },
     {
       "viewport": "desktop",
