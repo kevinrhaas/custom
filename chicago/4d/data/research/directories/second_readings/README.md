@@ -115,3 +115,51 @@ section is a list of candidates for a human, not a verdict.
 machine, one through a typist — and where they disagree the printed page has not been
 consulted. Settling one of these 67 needs the image, and this file is what tells a later run
 which 67 lines are worth fetching it for.
+
+> Twenty-five of them have since been fetched and read — the surname class, by T-0987 stretch
+> 10 on 2026-09-12; see the reconciliation at the foot of this file. The other 42 disagree
+> about a trade, an address or a forename and the sentence above still holds for them.
+
+---
+
+## The reconciliation, 2026-09-12 — T-0987 stretch 10
+
+**Twenty-five of the 67 disagree about the SURNAME, and that is the class with teeth.**
+`crosswalk_norris_1844.py` reaches an 1835 person through the surname and nothing else: a
+fold, then the first initial. A surname the scanner destroyed therefore makes no match and
+**no refusal either** — the entry is not in the pool at all, and downstream nothing can tell
+the difference between a name the volume does not print and a name it prints that this
+reading could not read. Six of the twenty-five had sat in the paragraph above, named, since
+T-0576 filed this file; nothing had gone back to them.
+
+Every one of the twenty-five was cropped from the archive.org leaf image on its own word box
+in `generaldirectory19norr_djvu.xml` and read by eye — the discipline `read_norris_1844.py`
+§ IMAGE_REPAIRS set for forenames, one field along. The ruling for each:
+
+| | how many | where it landed |
+|---|---|---|
+| the image prints the second hand's surname | **16** | `read_norris_1844.py` § `SURNAME_IMAGE_REPAIRS` — the reading moves, `quote` and `as_printed` keep the damage, and every repaired claim carries both readings in `normalized.surname_repair` |
+| the image prints the COMMITTED surname and the second hand is wrong | **2** | `§ SURNAME_UPHELD` — `Sealey, George` (she reads `Scaley (Sealy?)` and queries it herself) and `Kautenburger, Peter` (she reads `Kantenburger`) |
+| left alone | **7** | four firms whose ampersand the scan set as `<fc`, `it`, `6c` or `A;`, which T-1018 refuses by name as its own ruling about firm/person classification; two firms whose garbled span the firm branch never reads; and `Jones, K. K.`, whose surname was already right and which disagrees only about a speck in the left margin |
+
+**Five of the sixteen carried the name separator away with them.** Norris sets
+`Surname, Given`; this printing sets a proportion of those commas with the tail unprinted, and
+the image shows a clean round point after Bates, Gilmore, Griswold and Woodbury. T-1018's cap
+catches most of that class but not where the run-on is only two words long, so `Bates. John`
+had read as one surname with a forename of `jr`, `Woodbnry. Hiram` with no forename at all,
+and `Ryat). John` with a trade of `boaniing`. Those three entries gain their forename here.
+
+**What it moved.** Norris 1844's initial-absent refusals go **316 → 317**: Levi Cady gains a
+named refusal where the volume had been silent, because the one Cady entry it prints had been
+filed under `ady`. Seven refusals had been understating how many entries stand under their
+surname and are corrected — Bates 3→4, Butterfield 1→2 (twice), Griswold 3→4, Holmes 3→4,
+Jones 10→11, Ryan 1→2. **No new match, and none was expected**: not one of the sixteen carries
+an initial an 1835 namesake shares. Matches stay 100, ambiguous 14, contested 10.
+
+**This file is unchanged, as its own rule requires.** The comparison stands as it was made in
+T-0576; it is superseded, not corrected, and the sentence above is the "say so here" the rule
+asks for. `compare_norris_1844_readings.py --check` rebuilds it byte for byte after
+this stretch, and that is not an accident of timing: the comparison reads the claims' `quote`,
+and the repair leaves the quote damaged on purpose. The 67 stay 67. A comparison that healed
+itself as one side was corrected would erase the record of what had been disagreed about,
+which is the one thing this directory exists to keep.
