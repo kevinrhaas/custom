@@ -944,6 +944,38 @@ ol.cites ul.cite-lim-not li { opacity: .95; }
   color: var(--ink-dim);
 }
 
+/* The town's own law on the card (T-0334). The standing sentence must read as a
+   finding about the GROUND — which side of the Trustees' line this building stood
+   on — and not as a fourth claim about the building, so it sits in --ink while its
+   reasoning drops to --ink-dim. The ordinance's own words are set as a quotation
+   because they are a quotation: nineteen words of 1835 statute, and the only
+   documented statement this project holds about where the built town ended. Tokens
+   only, so both themes come out of the same three variables. */
+.pop-ordinance-stands {
+  margin: 0 0 6px;
+  font-size: 12.5px; line-height: 1.5;
+  color: var(--ink);
+}
+.pop-ordinance-lead {
+  margin: 0 0 8px;
+  font-size: 12px; line-height: 1.5;
+  color: var(--ink-dim);
+}
+.pop-quote {
+  margin: 0 0 8px;
+  padding: 7px 10px;
+  border-left: 2px solid var(--edge);
+  border-radius: 0 8px 8px 0;
+  background: rgb(127 127 127 / 10%);
+  font-size: 12px; line-height: 1.6; font-style: italic;
+  color: var(--ink-dim);
+}
+.pop-ordinance-cite {
+  margin: 0;
+  font-size: 11px; line-height: 1.5;
+  color: var(--ink-dim);
+}
+
 /* The record's own account: several hundred words of prose, folded away behind
    the same disclosure the liberties use, because it is the same kind of thing —
    an argument a visitor opens when they want it, not a value they skim. Shown

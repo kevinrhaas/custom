@@ -1,5 +1,55 @@
 # STATUS
 
+## Shipped 2026-09-13 — T-0334: the line the Trustees walked round the built-up town
+
+Section 22 of the by-laws passed 5 August 1835 forbids stacking hay inside a boundary the
+ordinance walks street by street — Washington Street at the U.S. Reservation, west to Canal,
+north to Kinzie, east to Wolcott, north to Illinois, and out to Lake Michigan — at $25 a
+stack. **It is the only documented statement this project holds about where the built-up
+town ended in the scene year.** Every other judgement here about density comes from the
+plat, the land sales and measured frontage.
+
+`tools/derive_hay_limits.py` derives it into `data/reconstruction/1835_hay_limits.json` and
+`check.sh` re-derives it on every commit. All six of the ordinance's vertices are
+intersections of committed `path_local_enu_m` centrelines; five are true crossings, and the
+sixth carries the Illinois Street line 100.78 m past its committed east end to the traced
+1834 shore (recorded, gated at 150 m). The start — *"on Washington street, at the United
+States Reservation"* — is where Washington's line meets the committed reservation ring's
+west side, and it lands there to the centimetre.
+
+**What is decided rather than derived, and graded `inferred` with its reasoning:** the
+ordinance walks an OPEN line and ends at the lake, so closing it needs the two sides it
+names but does not draw. The ring closes down the traced lake shore, across the harbour
+entrance in one straight segment (water between two piers — a closure, not a claim about
+ground), west along the reservation's own traced waterline and south down its west side.
+The reading this rests on — that a walk *commencing at* the reservation is bounded by it,
+so the garrison was not subject to the town's hay rule — is recorded with its alternative
+and what that alternative would cost (the 23 fort structures would come inside; nothing
+else would move).
+
+**Measured:** 199 acres, 4,715.9 m round, 30 vertices. Of 383 committed structure
+positions, 302 inside and 81 outside — 23 on the reservation, 36 west of Canal, 20 north of
+the Kinzie/Illinois line, 1 south of Washington (Heacock on Monroe), 1 in the harbour (the
+South Pier).
+
+**The disagreement with the block-infill programme, named.** 18 of 21 scheduled blocks are
+inside and the schedule places no NEW roof outside. The three outside are the Clinton–Canal
+tier, which the boundary leaves out because it turns north AT Canal. Two are `at_capacity`
+and hold 21 standing roofs between them (11 and 10 of 31); the third is already
+`not_a_block`. So the reconstruction's built town reaches one tier further west than the
+town's own fire line did. Either the roofs were there and the line was drawn short, or the
+tier is a block too far west. Stated, not settled.
+
+**Nothing is drawn in the scene,** and `docs/LIBERTIES.md` carries no new admission: a legal
+limit is not a fence, and nobody in 1835 could see this one. It reaches a visitor on the
+card — `renderers/web/js/ordinances.js`, a new *"Was it inside the town's fire limit?"*
+section with the verdict, the acreage, the section's own words and the citation. 383 cards
+gain the row.
+
+The ordinance is 35 days after the scene date. Carried as evidence ABOUT 1835; nothing is
+placed, moved or dated because of it, and `date_standing` in the file says so.
+
+
 ## T-0385 — the New York Clothing Store stands against the Tremont House
 
 Tuthill King's card — American 1835-06-08 c014, 1835-06-20 c007, 1835-07-04 c003,

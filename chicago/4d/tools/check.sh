@@ -3075,5 +3075,20 @@ step "the lighthouse still stands on the glyph Wright drew for it" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/measure_wright_lighthouse.py --self-test
 
+# T-0334. The 5 August 1835 hay-stacking ordinance walks a six-vertex boundary round the
+# built town, and it is the only DOCUMENTED statement this project holds about where the
+# built-up town ended in the scene year — every other judgement about density here comes
+# from the plat, the land deal and measured frontage. The limit is DERIVED from committed
+# street centrelines, the committed reservation ring and the traced 1834 shore, the way
+# the datum is derived, so it is gated in both directions: the committed file must
+# re-derive exactly, and a hand edit to it is refused. That matters more here than usual
+# because the card now shows a visitor which side of the line a building stood on, and a
+# hand-nudged ring would move that verdict for 383 buildings with nothing to catch it.
+step "the 1835 hay-stacking limit still re-derives from committed street lines" \
+  python3 tools/derive_hay_limits.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/derive_hay_limits.py --self-test
+
 check_summary
 exit $CHECK_FAILED

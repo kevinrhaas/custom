@@ -34,6 +34,7 @@ import { createHud } from './hud.js';
 import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
+import { loadOrdinanceLimits } from './ordinances.js';
 import { createFencedGround } from './yards.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
@@ -1574,6 +1575,15 @@ async function boot() {
   // the card says what THIS building made up, and neither can drift from the
   // markdown they are both quoting.
   popup.setLiberties(api.liberties.liberties);
+
+  // And the town's own law, which belongs to no attribute either. The 5 August 1835
+  // ordinance fenced the ground the Trustees thought was built up closely enough to
+  // burn — the only documented statement this project holds about where the built
+  // town ended — and nothing is drawn in the scene for it, because a legal limit is
+  // not a fence. The card carries it: pick a building and it says which side of the
+  // line it stood on. A failed fetch leaves the row off rather than guessing a side.
+  api.ordinances = await loadOrdinanceLimits({ dataBase: bases.dataBase, problems });
+  popup.setOrdinanceLimits(api.ordinances);
 
   // And what the GROUND claims, which no building can carry either: the surface
   // every one of them stands on is graded as carefully as they are, and said so
