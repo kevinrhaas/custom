@@ -3,6 +3,38 @@
   "readings": [
     {
       "viewport": "mobile",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 138,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 214,
+      "takenAt": "2026-09-13T06:33:14.249Z",
+      "ref": "steward/t-0421-canal-kinzie-control",
+      "commit": "c880f018ae14",
+      "devCommit": "a12fb5ed6f60",
+      "treeHash": "sha256:5ab6f46f3e5b221e",
+      "treeDirty": false,
+      "changelogHash": "sha256:751def4540cf69cf",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke_m_3_12_rebased.log"
+    },
+    {
+      "viewport": "mobile",
       "stage": "12",
       "parts": [
         12
@@ -1570,39 +1602,6 @@
         ]
       },
       "source": "/tmp/smoke_d1.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12-13",
-      "parts": [
-        3,
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 239,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 382,
-      "takenAt": "2026-09-12T20:26:33.349Z",
-      "ref": "steward/t-0987-stretch-9-norris-ties",
-      "commit": "ead58ccb07d3",
-      "devCommit": "e4796b7d6a1b",
-      "treeHash": "sha256:bf1eefc16599cd08",
-      "treeDirty": false,
-      "changelogHash": "sha256:9c397d44c1a55313",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.9,
-          4.3,
-          3.2
-        ]
-      },
-      "source": "/tmp/smoke_m.log"
     },
     {
       "viewport": "desktop",
