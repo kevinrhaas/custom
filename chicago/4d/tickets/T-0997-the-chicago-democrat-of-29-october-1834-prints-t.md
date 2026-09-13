@@ -1,7 +1,7 @@
 ---
 id: T-0997
 title: The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1277
 claimed_by: run 9/13/2026, 2:53:05 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T21:52:13.308Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34778903769
 ---
 
