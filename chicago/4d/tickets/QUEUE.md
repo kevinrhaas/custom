@@ -167,7 +167,6 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- ==========================================================================
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
-T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
 T-0055 — Hold the Kinzie-view plate as a source record
 
 # --- ==========================================================================
