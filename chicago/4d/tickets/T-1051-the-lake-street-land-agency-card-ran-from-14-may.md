@@ -1,7 +1,7 @@
 ---
 id: T-1051
 title: The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1273
 claimed_by: run 9/13/2026, 3:01:18 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T21:06:14.729Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34779292388
 ---
 
