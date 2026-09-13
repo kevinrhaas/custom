@@ -2,17 +2,17 @@
  "$schema_note": "AUTHORED, and deliberately small. It carries the Thompson plat's BLOCK NUMBERS for the blocks this reconstruction can reach them, and the numbering scheme inside a block, with the reading each rests on. Read by tools/generate_plat_lots.py, which stamps `plat_block_number` onto a block of data/traces/vectors/thompson_lots.json and `plat_lot_number` onto its lots. Nothing here authors geometry: a block's boundary and its lot lines are derived from the committed street lines exactly as before, and this file only puts a NUMBER on them.",
  "id": "thompson_block_numbering_1830",
  "plat": "thompson_plat_1830",
- "why_this_file_exists": "The most precise placement statement in the whole newspaper corpus is G. Spring's For-Sale notice — 'LOT No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street' — and it resolved to nothing, because data/traces/vectors/thompson_lots.json keys its blocks on their bounding streets and no committed source numbered one. Three separate readings recorded that the address was the most placeable thing the corpus said and that placing it was somebody else's job (T-0324, and the June and October readings of the notice). This file is that job. T-0358. Rebuilt 2026-09-06 (T-0788, owner ask): the numerals are read off the georeferenced BPL scan, block by block, instead of counted along one tier from two of them.",
- "grades": "Each entry's `confidence` grades THE NUMBER ON THIS BLOCK, not the block. Nothing here is `documented`: a numeral read off a survey sheet is read at this dataset's own +/-20 m georeference, so even a numeral that fills its own block's crop carries an identification step the sheet does not make for us. `numeral_on_sheet` says which numbers are read and which are counted — twenty-two read, one counted (the Public Square, bracketed by read numerals on both sides) — so the difference does not vanish into one grade.",
+ "why_this_file_exists": "The most precise placement statement in the whole newspaper corpus is G. Spring's For-Sale notice \u2014 'LOT No. 7, in block No. 16, one lot east of Haddock's Tavern, on Lake street' \u2014 and it resolved to nothing, because data/traces/vectors/thompson_lots.json keys its blocks on their bounding streets and no committed source numbered one. Three separate readings recorded that the address was the most placeable thing the corpus said and that placing it was somebody else's job (T-0324, and the June and October readings of the notice). This file is that job. T-0358. Rebuilt 2026-09-06 (T-0788, owner ask): the numerals are read off the georeferenced BPL scan, block by block, instead of counted along one tier from two of them.",
+ "grades": "Each entry's `confidence` grades THE NUMBER ON THIS BLOCK, not the block. Nothing here is `documented`: a numeral read off a survey sheet is read at this dataset's own +/-20 m georeference, so even a numeral that fills its own block's crop carries an identification step the sheet does not make for us. `numeral_on_sheet` says which numbers are read and which are counted \u2014 twenty-two read, one counted (the Public Square, bracketed by read numerals on both sides) \u2014 so the difference does not vanish into one grade.",
  "reading": {
   "source": "wright_1834",
   "asset": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g",
-  "asset_note": "The BPL/Leventhal copy of J. S. Wright's 1834 survey — commonwealth:js957744g, 4204 x 5166 px — read through the IIIF image API at 6x on crops CUT TO EACH BLOCK'S OWN GROUND. This is the scan this project is georeferenced to (data/traces/gcp/wright_1834_gcps.json, affine fitted from eight ground control points, RMS 17.5 m), so a crop can be computed from a block's committed street lines rather than found by eye, and the numeral that falls inside it is the numeral on that block. The earlier reading used one 639 x 719 px crop of two blocks supplied by the owner (prefire_views_kevin_2026_08/wright1834_clark_reach_crop.jpeg); that crop's two numerals, 19 and 18, are both re-read here and both stand.",
+  "asset_note": "The BPL/Leventhal copy of J. S. Wright's 1834 survey \u2014 commonwealth:js957744g, 4204 x 5166 px \u2014 read through the IIIF image API at 6x on crops CUT TO EACH BLOCK'S OWN GROUND. This is the scan this project is georeferenced to (data/traces/gcp/wright_1834_gcps.json, affine fitted from eight ground control points, RMS 17.5 m), so a crop can be computed from a block's committed street lines rather than found by eye, and the numeral that falls inside it is the numeral on that block. The earlier reading used one 639 x 719 px crop of two blocks supplied by the owner (prefire_views_kevin_2026_08/wright1834_clark_reach_crop.jpeg); that crop's two numerals, 19 and 18, are both re-read here and both stand.",
   "method": "For each block the grid holds, the four bounding street centrelines of data/streets/1835.json give a box in local ENU; tools/wright_px.py maps its corners into the BPL resource space; the box is padded 6 px and requested from IIIF at 6x. The block fills the frame, so the reading is an identification made by the committed georeference and not by counting from a neighbour. Every entry below cites the region it was read on, and any reader may re-open it and disagree.",
   "read_on": "2026-09-06",
   "what_it_carries": "Wright writes a numeral across the middle of every block of the Original Town. TWENTY-TWO of them fall on ground this project's street grid can address, and all twenty-two are read here: the South Water-Lake tier 21 20 19 18 17 16 west to east; the Lake-Randolph tier 28 29 west of the South Branch and 31 32 33 34 35 36 east of it; the Randolph-Washington tier 45 44 west of the branch, 43 42 41 40 east of it, then the block labelled 'Public Square' and no numeral, then 38 37. Lot numerals are printed inside several blocks; four of them are read in `lot_numbering` below.",
   "step": -1,
-  "direction": "THE RUN REVERSES TIER BY TIER, which is why it could never be counted from two numerals. Along South Water-Lake the number FALLS eastward (21 -> 16). Along Lake-Randolph it RISES eastward (31 -> 36). Along Randolph-Washington it FALLS again (43 -> 37). The refusal this file used to carry — that nothing said how the run passes from one tier to the next — was the right refusal: a boustrophedon is exactly what the sheet turns out to draw, and a run counted straight down the tiers would have numbered the Lake tier backwards.",
+  "direction": "THE RUN REVERSES TIER BY TIER, which is why it could never be counted from two numerals. Along South Water-Lake the number FALLS eastward (21 -> 16). Along Lake-Randolph it RISES eastward (31 -> 36). Along Randolph-Washington it FALLS again (43 -> 37). The refusal this file used to carry \u2014 that nothing said how the run passes from one tier to the next \u2014 was the right refusal: a boustrophedon is exactly what the sheet turns out to draw, and a run counted straight down the tiers would have numbered the Lake tier backwards.",
   "supersedes": "The 2026-08-29 reading counted four of the six South Water numbers from the two it could read. All four are now read off the sheet and all four counted values were right: 21, 20, 17 and 16 stand as they were, and their grade changes from counted to read. Nothing moves.",
   "identification": {
    "method": "the watercourse in the street between the two blocks, which this project has already traced and committed",
@@ -25,20 +25,20 @@
     439.1,
     463.5
    ],
-   "note": "docs/RESEARCH/clark_reach_bulge_1834.md § 4 measured the drawn watercourse's mouth at local E +462…+469 and established that the committed trace runs up the inside of its own ink line there — the stream is real, traced, and NOT the river bulge that memo was about. That places the street the stream runs down in the east half of the La Salle corridor. The nearest alternatives are Wells at E +329.3 (122 m west) and Clark at E +574.7 (123 m east), so the identification is unambiguous at this dataset's ±20 m working uncertainty even though it is an inference. The two blocks the crop numbers are therefore the Wells–La Salle block (19) and the La Salle–Clark block (18) of the tier fronting South Water Street on the north and Lake Street on the south.",
+   "note": "docs/RESEARCH/clark_reach_bulge_1834.md \u00a7 4 measured the drawn watercourse's mouth at local E +462\u2026+469 and established that the committed trace runs up the inside of its own ink line there \u2014 the stream is real, traced, and NOT the river bulge that memo was about. That places the street the stream runs down in the east half of the La Salle corridor. The nearest alternatives are Wells at E +329.3 (122 m west) and Clark at E +574.7 (123 m east), so the identification is unambiguous at this dataset's \u00b120 m working uncertainty even though it is an inference. The two blocks the crop numbers are therefore the Wells\u2013La Salle block (19) and the La Salle\u2013Clark block (18) of the tier fronting South Water Street on the north and Lake Street on the south.",
    "confidence": "inferred"
   },
-  "correction": "docs/RESEARCH/clark_reach_bulge_1834.md § 8 and docs/RESEARCH/thompson_plat_grid.md § 4 both said this crop reads 'block numbers 19, 18 and 17'. Re-read at full resolution on 2026-08-29 it carries 19 and 18 and no 17 — the map region ends at the east edge of block 18. Two consecutive numerals still fix the step and the direction, which is all either memo used the third for, but the evidence base is two blocks and both memos now say two."
+  "correction": "docs/RESEARCH/clark_reach_bulge_1834.md \u00a7 8 and docs/RESEARCH/thompson_plat_grid.md \u00a7 4 both said this crop reads 'block numbers 19, 18 and 17'. Re-read at full resolution on 2026-08-29 it carries 19 and 18 and no 17 \u2014 the map region ends at the east edge of block 18. Two consecutive numerals still fix the step and the direction, which is all either memo used the third for, but the evidence base is two blocks and both memos now say two."
  },
  "lot_numbering": {
   "scheme": "counter-clockwise from the block's north-east corner: lot 1 at the east end of the north row, running WEST to lot 4 at its west end; lot 5 at the west end of the south row, running EAST to lot 8 at its east end.",
-  "read_from": "FOUR blocks, in two tiers, all reading the same way: block 20 (blk_south_water_franklin), block 18 (blk_south_water_lasalle), block 16 (blk_south_water_dearborn) and block 40 (blk_randolph_wells). Each prints 4 3 2 1 across its north row west to east and 5 6 7 8 across its south row west to east. The scheme was read on block 18 alone in 2026-08-29, on a crop that cut the fourth lot off each row; three complete blocks now confirm it, including one in a different tier whose BLOCK numbering runs the other way — so the lot run is a property of the block and not of the tier.",
+  "read_from": "FOUR blocks, in two tiers, all reading the same way: block 20 (blk_south_water_franklin), block 18 (blk_south_water_lasalle), block 16 (blk_south_water_dearborn) and block 40 (blk_randolph_wells). Each prints 4 3 2 1 across its north row west to east and 5 6 7 8 across its south row west to east. The scheme was read on block 18 alone in 2026-08-29, on a crop that cut the fourth lot off each row; three complete blocks now confirm it, including one in a different tier whose BLOCK numbering runs the other way \u2014 so the lot run is a property of the block and not of the tier.",
   "confidence": "conjectural",
   "note": "THE SCHEME IS NOW READ ON FOUR BLOCKS AND THE LINES IT NUMBERS ARE STILL NOT DRAWN FROM ANY SHEET. The lot lines in data/traces/vectors/thompson_lots.json are the Thompson module divided into a block, graded `conjectural` for that reason, and a number put on a conjectural line is conjectural whatever the number's own provenance. What the four readings buy is the SCHEME, which is no longer a one-block reading; what they do not buy is the line. What the scheme is good for is reading a documented ADDRESS onto the grid, which is what it was fetched for.",
-  "ten_lot_blocks": "NOT EVERY BLOCK CARRIES EIGHT LOTS. The West Division block west of block 28 prints lot numerals 1 4 5 8 9 down its side — ten lots to the block, in two rows of five, with the numerals written across a horizontal alley rather than a vertical one. The module divides every block it builds into four lots per face and has no idea this shape exists. No West Division block is emitted by the generator today, so nothing is mis-numbered by it; recorded here so that the day one is, this is found first. The blocks the generator DOES emit are all in the eight-lot tiers, and all four blocks whose lot numerals are read above carry eight.",
+  "ten_lot_blocks": "NOT EVERY BLOCK CARRIES EIGHT LOTS. The West Division block west of block 28 prints lot numerals 1 4 5 8 9 down its side \u2014 ten lots to the block, in two rows of five, with the numerals written across a horizontal alley rather than a vertical one. The module divides every block it builds into four lots per face and has no idea this shape exists. No West Division block is emitted by the generator today, so nothing is mis-numbered by it; recorded here so that the day one is, this is found first. The blocks the generator DOES emit are all in the eight-lot tiers, and all four blocks whose lot numerals are read above carry eight. CORRECTED 2026-09-13, T-0689. The count was right and the alley's bearing was not. Thompson's own sheet, read block by block across all six West Division tiers (data/traces/thompson_west_division_lots.json), draws the ten lots as TWO COLUMNS OF FIVE with the alley running NORTH-SOUTH between them \u2014 each lot 180 ft deep east-west, fronting the north-south street on the outer side of its column and backing on the alley. That is what 'numerals down its side' was already describing; 'a horizontal alley' in the same sentence was the slip. The sheet also refuses the other half of the assumption: the West Division lot fronts 75 3/5 ft, not the South Division's 80, and two of the six tiers carry EIGHT lots rather than ten. Still nothing is mis-numbered by the generator, which emits no West Division block; the correction is here so that the day it does, this is found first.",
   "emitted_for": "only the blocks numbered above. A lot number without a block number says nothing.",
-  "north_division": "THE NORTH DIVISION TIER RUNS ITS ROWS THE OTHER WAY UP, and that is read, not assumed. Four of the seven blocks below print both rows legibly — blocks 7, 4, 2 and 1 — and every one of them prints 5 6 7 8 across its NORTH row west to east and 4 3 2 1 across its SOUTH row west to east. The three South Division tiers print the mirror of that (4 3 2 1 north, 5 6 7 8 south). So lot 1 sits at the block's south-east corner here and at its north-east corner there, and in both divisions the run begins on the row that faces the river. This file does NOT claim that river rule: it is one reading in each division, and a tier away from the water in either would test it. What is claimed is the four North Division blocks, which agree with one another.",
-  "confidence_note_north": "conjectural for the same reason as the scheme above — no North Division block has generated lot lines at all (tools/generate_plat_lots.py emits the South Division tiers only), so this is a scheme with nothing yet to number."
+  "north_division": "THE NORTH DIVISION TIER RUNS ITS ROWS THE OTHER WAY UP, and that is read, not assumed. Four of the seven blocks below print both rows legibly \u2014 blocks 7, 4, 2 and 1 \u2014 and every one of them prints 5 6 7 8 across its NORTH row west to east and 4 3 2 1 across its SOUTH row west to east. The three South Division tiers print the mirror of that (4 3 2 1 north, 5 6 7 8 south). So lot 1 sits at the block's south-east corner here and at its north-east corner there, and in both divisions the run begins on the row that faces the river. This file does NOT claim that river rule: it is one reading in each division, and a tier away from the water in either would test it. What is claimed is the four North Division blocks, which agree with one another.",
+  "confidence_note_north": "conjectural for the same reason as the scheme above \u2014 no North Division block has generated lot lines at all (tools/generate_plat_lots.py emits the South Division tiers only), so this is a scheme with nothing yet to number."
  },
  "blocks": [
   {
@@ -54,7 +54,7 @@
     "zoom": "6x",
     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1480,1770,260,250/full/0/default.jpg"
    },
-   "note": "READ. The triangular block the river's bend leaves between Franklin Street and the bank. The numeral's first digit is unmistakably 2; its second is crossed by the diagonal 'Water' of the South Water Street label, and reads as 1 against the tier's own run, which has 20 in the block immediately east. This block is OMITTED from the generated grid — South Water's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md section 6) — so the number is carried on the omission. South Water-Lake tier; the run falls eastward here."
+   "note": "READ. The triangular block the river's bend leaves between Franklin Street and the bank. The numeral's first digit is unmistakably 2; its second is crossed by the diagonal 'Water' of the South Water Street label, and reads as 1 against the tier's own run, which has 20 in the block immediately east. This block is OMITTED from the generated grid \u2014 South Water's committed centreline stops 24 m short of it (docs/RESEARCH/thompson_plat_grid.md section 6) \u2014 so the number is carried on the omission. South Water-Lake tier; the run falls eastward here."
   },
   {
    "block_id": "blk_south_water_franklin",
@@ -99,7 +99,7 @@
     "zoom": "6x",
     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2067,1806,190,185/full/0/default.jpg"
    },
-   "note": "READ, and re-read — the second numeral of the owner crop. Lot numerals 4 3 2 1 / 5 6 7 8, now complete where the old crop cut the fourth of each row. This is the block the lot scheme was first read from. South Water-Lake tier; the run falls eastward here."
+   "note": "READ, and re-read \u2014 the second numeral of the owner crop. Lot numerals 4 3 2 1 / 5 6 7 8, now complete where the old crop cut the fourth of each row. This is the block the lot scheme was first read from. South Water-Lake tier; the run falls eastward here."
   },
   {
    "block_id": "blk_south_water_clark",
@@ -114,7 +114,7 @@
     "zoom": "6x",
     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2244,1809,190,187/full/0/default.jpg"
    },
-   "note": "READ, where it used to be counted two blocks east of 19 — and where two memos once claimed the owner crop showed a 17 it did not contain. The sheet does carry 17 here; what was wrong was which crop it was on. South Water-Lake tier; the run falls eastward here."
+   "note": "READ, where it used to be counted two blocks east of 19 \u2014 and where two memos once claimed the owner crop showed a 17 it did not contain. The sheet does carry 17 here; what was wrong was which crop it was on. South Water-Lake tier; the run falls eastward here."
   },
   {
    "block_id": "blk_south_water_dearborn",
@@ -131,7 +131,7 @@
     "zoom": "6x",
     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2420,1816,196,185/full/0/default.jpg"
    },
-   "note": "READ — the block of G. Spring's 'LOT No. 7, in block No. 16 ... on Lake street'. The numeral is on the sheet, so the address no longer rests on arithmetic: it rests on a numeral, on the notice's own 'on Lake street' (this block's south frontage), and on the Botsford/Andreas placement of Haddock's Tavern one lot west of lot 7. The crop also carries the lot numerals 4 3 2 1 / 5 6 7 8, so lot 7 is the third lot east of Dearborn in the Lake Street row. South Water-Lake tier; the run falls eastward here."
+   "note": "READ \u2014 the block of G. Spring's 'LOT No. 7, in block No. 16 ... on Lake street'. The numeral is on the sheet, so the address no longer rests on arithmetic: it rests on a numeral, on the notice's own 'on Lake street' (this block's south frontage), and on the Botsford/Andreas placement of Haddock's Tavern one lot west of lot 7. The crop also carries the lot numerals 4 3 2 1 / 5 6 7 8, so lot 7 is the third lot east of Dearborn in the Lake Street row. South Water-Lake tier; the run falls eastward here."
   },
   {
    "block_id": "blk_lake_clinton",
@@ -161,7 +161,7 @@
     "zoom": "6x",
     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1191,1951,234,215/full/0/default.jpg"
    },
-   "note": "READ, with a caveat about the CELL rather than the number. This grid cell runs Canal Street to Market Street, 243 m, and what lies between them is block 29 on the west bank and then the river — Market Street runs along the east bank in this tier and no block stands between them (the crop at 1406,1957,152,212 is water and the South Branch label). So the cell is omitted from the grid, and the number on it is the number of the only platted ground in it. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
+   "note": "READ, with a caveat about the CELL rather than the number. This grid cell runs Canal Street to Market Street, 243 m, and what lies between them is block 29 on the west bank and then the river \u2014 Market Street runs along the east bank in this tier and no block stands between them (the crop at 1406,1957,152,212 is water and the South Branch label). So the cell is omitted from the grid, and the number on it is the number of the only platted ground in it. Lake-Randolph tier; the run RISES eastward here, the reverse of the tier above."
   },
   {
    "block_id": "blk_lake_market",
@@ -266,7 +266,7 @@
     "zoom": "6x",
     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1017,2143,197,203/full/0/default.jpg"
    },
-   "note": "READ. West Division, west bank. The Washington Street label is in the frame, and the block west of it carries lot numerals 1 4 5 8 9 — a TEN-lot block, which the module does not know about and which is recorded in `lot_numbering` rather than acted on. Randolph-Washington tier; the run falls eastward again."
+   "note": "READ. West Division, west bank. The Washington Street label is in the frame, and the block west of it carries lot numerals 1 4 5 8 9 \u2014 a TEN-lot block, which the module does not know about and which is recorded in `lot_numbering` rather than acted on. Randolph-Washington tier; the run falls eastward again."
   },
   {
    "block_id": "blk_randolph_market",
@@ -311,7 +311,7 @@
     "zoom": "6x",
     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1888,2167,188,203/full/0/default.jpg"
    },
-   "note": "READ, with complete lot numerals 4 3 2 1 / 5 6 7 8 — the fourth block on which the counter-clockwise-from-north-east scheme is read, and the first outside the South Water tier. Randolph-Washington tier; the run falls eastward again."
+   "note": "READ, with complete lot numerals 4 3 2 1 / 5 6 7 8 \u2014 the fourth block on which the counter-clockwise-from-north-east scheme is read, and the first outside the South Water tier. Randolph-Washington tier; the run falls eastward again."
   },
   {
    "block_id": "blk_randolph_lasalle",
@@ -326,7 +326,7 @@
     "zoom": "6x",
     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2063,2172,190,203/full/0/default.jpg"
    },
-   "note": "NO NUMERAL. Wright washes this block pink, rules it into eight lots like its neighbours, and letters 'Public Square' across it instead of a number — the crop cited here shows exactly that and nothing else. 39 is therefore the ONE number in this file that is still counted, and it is counted across a single block from numerals read on both sides of it: 40 stands in the block immediately west and 38 in the block immediately east, in a tier whose run falls eastward by one. There is one number between them and the square is the block that takes it. That is a stronger position than the old tier counts had — the gap is one block wide and it is bracketed — but it is not a reading, and `numeral_on_sheet` says so. The block's identity is not in question: it is the block this project's own ground control labels 'NW corner of the Public Square block' and 'SE corner of the Public Square block', and the block data/reconstruction/1835_reserved_ground.json reserves."
+   "note": "NO NUMERAL. Wright washes this block pink, rules it into eight lots like its neighbours, and letters 'Public Square' across it instead of a number \u2014 the crop cited here shows exactly that and nothing else. 39 is therefore the ONE number in this file that is still counted, and it is counted across a single block from numerals read on both sides of it: 40 stands in the block immediately west and 38 in the block immediately east, in a tier whose run falls eastward by one. There is one number between them and the square is the block that takes it. That is a stronger position than the old tier counts had \u2014 the gap is one block wide and it is bracketed \u2014 but it is not a reading, and `numeral_on_sheet` says so. The block's identity is not in question: it is the block this project's own ground control labels 'NW corner of the Public Square block' and 'SE corner of the Public Square block', and the block data/reconstruction/1835_reserved_ground.json reserves."
   },
   {
    "block_id": "blk_randolph_clark",
@@ -362,9 +362,9 @@
  "refused": [
   {
    "scope": "blocks 14 and 15, on the Carroll-Fulton band east of the North Branch",
-   "reason": "Wright numbers all fifty-eight blocks. This file now holds thirty-eight of them: the twenty-four of the T-0788 reading, the North Division's whole Kinzie-to-the-river tier read by T-1088 once that tier's street control was committed, and the Original Town's Washington-Madison tier read by T-1094 once Madison Street landed. The rest are refused for the same reason the method works where it does: a crop is CUT from committed street lines, and the grid still does not reach the West Division beyond Clinton or the North Branch's west bank. A numeral found by eye instead, on a sheet whose paper stretches 3.7% anisotropically, is a numeral placed by the reader rather than by the georeference — which is the mistake this file was rebuilt to stop making.",
+   "reason": "Wright numbers all fifty-eight blocks. This file now holds thirty-eight of them: the twenty-four of the T-0788 reading, the North Division's whole Kinzie-to-the-river tier read by T-1088 once that tier's street control was committed, and the Original Town's Washington-Madison tier read by T-1094 once Madison Street landed. The rest are refused for the same reason the method works where it does: a crop is CUT from committed street lines, and the grid still does not reach the West Division beyond Clinton or the North Branch's west bank. A numeral found by eye instead, on a sheet whose paper stretches 3.7% anisotropically, is a numeral placed by the reader rather than by the georeference \u2014 which is the mistake this file was rebuilt to stop making.",
    "ticket": "T-1099",
-   "scope_note_2026_09_12": "NARROWED. The Washington-Madison tier is no longer refused: Madison Street landed with T-0877 and the tier's seven numerals — 52 53 54 55 56 57 58, rising eastward — are read in blocks_not_in_the_grid by tools/read_washington_madison_numerals.py. What is still refused, and still for the same reason, is the West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: no committed street line reaches either, so no crop can be cut there. That remainder is T-1095.",
+   "scope_note_2026_09_12": "NARROWED. The Washington-Madison tier is no longer refused: Madison Street landed with T-0877 and the tier's seven numerals \u2014 52 53 54 55 56 57 58, rising eastward \u2014 are read in blocks_not_in_the_grid by tools/read_washington_madison_numerals.py. What is still refused, and still for the same reason, is the West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: no committed street line reaches either, so no crop can be cut there. That remainder is T-1095.",
    "scope_note_2026_09_13": "NARROWED AGAIN, and this is what is left. T-1095 read the West Division's eighteen - 8-13, 22-27 and 46-51 - by the same block-cut method, once it was shown that the division's flanking control could be cut from committed lines: `clinton` and `canal` outright, the six tier lines continued west along their own bearings past the clip at east -320 m, and Jefferson and Des Plaines as `clinton` stepped one and two modules west. Fifty-six of the fifty-eight blocks are now read. What is still refused is 14 and 15: the Carroll-Fulton band continues east of the North Branch past this file's 13, and no committed street line reaches that ground - the North Division's own streets (`market_north` and its neighbours) stop at north +108 to +126 m, a hundred metres south of the band, and nothing carries Carroll or Fulton across the water. Found by T-1095 and owned by T-1099."
   },
   {
@@ -385,10 +385,10 @@
   }
  ],
  "blocks_not_in_the_grid": {
-  "_doc": "Numerals read on ground the generated grid has no id for, so they cannot be stamped onto a block without inventing one. They are kept here so the reading is not lost and so the next person to widen the grid finds the number already waiting. Nothing reads this section. T-1088 adds the North Division's whole Kinzie-to-the-river tier — seven numerals, 7 6 5 4 3 2 1 west to east — for this reason and no other: the tier's street control is committed and attested, so every crop below is cut from it by tools/read_north_division_numerals.py and re-cut by the gate, but tools/generate_plat_lots.py emits only the three South Division tiers, so there is no cell for the numbers to be stamped onto. Widen the generator and these seven are waiting. T-1094 adds the Original Town's southernmost tier — Washington Street to Madison Street, seven numerals, 52 53 54 55 56 57 58 rising eastward — on the same terms and with one stated weakness: Washington and Madison are committed across the whole tier, but the seven flanking north-south lines stop at y = -400 m and are CONTINUED SOUTH along their own bearing to cut the boxes. That continuation is a computation from committed endpoints and is not written into data/streets/1835.json, because a line this project has no control for should not be published as one. generate_plat_lots.py emits nothing south of Washington either, so these seven wait for a cell beside the North Division's. T-1095 adds the West Division's eighteen - 8 9 10 11 12 13, 22 23 24 25 26 27 and 46 47 48 49 50 51 - on the same terms and with its own stated weakness: `clinton` and `canal` are committed and carry four of the boxes outright, the tier lines are committed but clipped at east -320 m and are continued WEST along their own bearings, and the two flanks Jefferson Street and Des Plaines Street would give are instead `clinton` stepped one and two modules west, because both streets are refused in docs/RESEARCH/west_division_streets.md section 2 for standing wholly west of the modelled ground. That step is corroborated three ways - it reproduces the committed `canal` to 0.46 m at Lake Street and 2.34 m at the scene's south edge, and lands 8.7 m and 8.2 m west of the two surviving intersections T-0446 committed in `fulton`'s note - and nothing is written into data/streets/1835.json by it. tools/read_west_division_numerals.py cuts every box and the gate re-cuts them, and it also asserts the boustrophedon ACROSS the blocks other tickets already read: 26 27 joins T-0788's 28 29 rising eastward, 47 46 joins its 45 44 43 falling eastward, and 48 49 50 51 runs on into T-1094's 52. generate_plat_lots.py emits nothing west of the river, so these eighteen wait for a cell with the other fourteen.",
+  "_doc": "Numerals read on ground the generated grid has no id for, so they cannot be stamped onto a block without inventing one. They are kept here so the reading is not lost and so the next person to widen the grid finds the number already waiting. Nothing reads this section. T-1088 adds the North Division's whole Kinzie-to-the-river tier \u2014 seven numerals, 7 6 5 4 3 2 1 west to east \u2014 for this reason and no other: the tier's street control is committed and attested, so every crop below is cut from it by tools/read_north_division_numerals.py and re-cut by the gate, but tools/generate_plat_lots.py emits only the three South Division tiers, so there is no cell for the numbers to be stamped onto. Widen the generator and these seven are waiting. T-1094 adds the Original Town's southernmost tier \u2014 Washington Street to Madison Street, seven numerals, 52 53 54 55 56 57 58 rising eastward \u2014 on the same terms and with one stated weakness: Washington and Madison are committed across the whole tier, but the seven flanking north-south lines stop at y = -400 m and are CONTINUED SOUTH along their own bearing to cut the boxes. That continuation is a computation from committed endpoints and is not written into data/streets/1835.json, because a line this project has no control for should not be published as one. generate_plat_lots.py emits nothing south of Washington either, so these seven wait for a cell beside the North Division's. T-1095 adds the West Division's eighteen - 8 9 10 11 12 13, 22 23 24 25 26 27 and 46 47 48 49 50 51 - on the same terms and with its own stated weakness: `clinton` and `canal` are committed and carry four of the boxes outright, the tier lines are committed but clipped at east -320 m and are continued WEST along their own bearings, and the two flanks Jefferson Street and Des Plaines Street would give are instead `clinton` stepped one and two modules west, because both streets are refused in docs/RESEARCH/west_division_streets.md section 2 for standing wholly west of the modelled ground. That step is corroborated three ways - it reproduces the committed `canal` to 0.46 m at Lake Street and 2.34 m at the scene's south edge, and lands 8.7 m and 8.2 m west of the two surviving intersections T-0446 committed in `fulton`'s note - and nothing is written into data/streets/1835.json by it. tools/read_west_division_numerals.py cuts every box and the gate re-cuts them, and it also asserts the boustrophedon ACROSS the blocks other tickets already read: 26 27 joins T-0788's 28 29 rising eastward, 47 46 joins its 45 44 43 falling eastward, and 48 49 50 51 runs on into T-1094's 52. generate_plat_lots.py emits nothing west of the river, so these eighteen wait for a cell with the other fourteen.",
   "readings": [
    {
-    "where": "Canal Street to West Water Street, Randolph to Washington — the West Division block on the west bank of the South Branch",
+    "where": "Canal Street to West Water Street, Randolph to Washington \u2014 the West Division block on the west bank of the South Branch",
     "number": 44,
     "numeral_on_sheet": true,
     "confidence": "inferred",
@@ -397,10 +397,10 @@
      "zoom": "6x",
      "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1196,2148,222,204/full/0/default.jpg"
     },
-    "note": "The grid's cell here is `blk_randolph_canal`, which runs Canal to MARKET and therefore spans TWO platted blocks with the river between them — 44 on the west bank and 43 on the east. That is why the cell carries no number: one number on a cell that is two blocks would be a claim the sheet does not make."
+    "note": "The grid's cell here is `blk_randolph_canal`, which runs Canal to MARKET and therefore spans TWO platted blocks with the river between them \u2014 44 on the west bank and 43 on the east. That is why the cell carries no number: one number on a cell that is two blocks would be a claim the sheet does not make."
    },
    {
-    "where": "the east bank of the South Branch to Market Street, Randolph to Washington — the wedge-shaped block Market Street cuts off",
+    "where": "the east bank of the South Branch to Market Street, Randolph to Washington \u2014 the wedge-shaped block Market Street cuts off",
     "number": 43,
     "numeral_on_sheet": true,
     "confidence": "inferred",
@@ -412,7 +412,7 @@
     "note": "Read at the east edge of the cited crop, whose west three-quarters is the river and its flow arrow. The block is narrow and tapering and carries lot numerals 7 at its north end and 8 at its south. Same cell as 44 above."
    },
    {
-    "where": "the North Branch bank to Market Street, Kinzie Street to the river — the North Division's block tier",
+    "where": "the North Branch bank to Market Street, Kinzie Street to the river \u2014 the North Division's block tier",
     "tier": "north_division_kinzie_to_the_river",
     "bounded_by": {
      "west": null,
@@ -436,7 +436,7 @@
     "note": "The tier's westernmost block, between the North Branch and Market Street. Its west edge is the river bank and not a committed street, so the box is cut one module (123.36 m) west of Market Street and is wider than the block; `read_at` is the tighter region the numeral was read on, and it lies wholly inside the cited box. The glyph is the same long flagged diagonal Wright writes for 7 in the lot rows above it."
    },
    {
-    "where": "Market Street to Franklin Street, Kinzie Street to the river — the North Division's block tier",
+    "where": "Market Street to Franklin Street, Kinzie Street to the river \u2014 the North Division's block tier",
     "tier": "north_division_kinzie_to_the_river",
     "bounded_by": {
      "west": "market_north",
@@ -457,10 +457,10 @@
      "read_at": "1587,1477,136,99",
      "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1587,1477,136,99/full/0/default.jpg"
     },
-    "note": "READ, and the hardest of the seven: the curved road that leaves the Kinzie/North Water corner and runs north crosses the numeral, and its west kerb passes through the glyph's upper stroke. What is left is a stroke descending from the upper right into a closed bottom loop, which is Wright's 6 and not his 5 — his 5 carries a flag across its top (block 5, one block east, prints one). The tier's own run, 7 to its west and 5 to its east, agrees."
+    "note": "READ, and the hardest of the seven: the curved road that leaves the Kinzie/North Water corner and runs north crosses the numeral, and its west kerb passes through the glyph's upper stroke. What is left is a stroke descending from the upper right into a closed bottom loop, which is Wright's 6 and not his 5 \u2014 his 5 carries a flag across its top (block 5, one block east, prints one). The tier's own run, 7 to its west and 5 to its east, agrees."
    },
    {
-    "where": "Franklin Street to Wells Street, Kinzie Street to the river — the North Division's block tier",
+    "where": "Franklin Street to Wells Street, Kinzie Street to the river \u2014 the North Division's block tier",
     "tier": "north_division_kinzie_to_the_river",
     "bounded_by": {
      "west": "franklin_north",
@@ -482,7 +482,7 @@
     "note": "READ. The numeral sits on the block's mid-block alley line, a little east of centre; the flag across its top is unmistakable."
    },
    {
-    "where": "Wells Street to La Salle Street, Kinzie Street to the river — the North Division's block tier",
+    "where": "Wells Street to La Salle Street, Kinzie Street to the river \u2014 the North Division's block tier",
     "tier": "north_division_kinzie_to_the_river",
     "bounded_by": {
      "west": "wells_north",
@@ -501,10 +501,10 @@
      "zoom": "6x",
      "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1903,1466,175,184/full/0/default.jpg"
     },
-    "note": "READ, and the cleanest of the seven: the block fills its crop with the numeral written across the alley and the two lot rows legible above and below it — 5 6 7 8 north, 4 3 2 1 south."
+    "note": "READ, and the cleanest of the seven: the block fills its crop with the numeral written across the alley and the two lot rows legible above and below it \u2014 5 6 7 8 north, 4 3 2 1 south."
    },
    {
-    "where": "La Salle Street to Clark Street, Kinzie Street to the river — the North Division's block tier",
+    "where": "La Salle Street to Clark Street, Kinzie Street to the river \u2014 the North Division's block tier",
     "tier": "north_division_kinzie_to_the_river",
     "bounded_by": {
      "west": "lasalle_north",
@@ -526,7 +526,7 @@
     "note": "READ. Written across the alley, slightly east of the block's centre. North Water Street's label stands below the block's south face in the same crop."
    },
    {
-    "where": "Clark Street to Dearborn Street, Kinzie Street to the river — the North Division's block tier",
+    "where": "Clark Street to Dearborn Street, Kinzie Street to the river \u2014 the North Division's block tier",
     "tier": "north_division_kinzie_to_the_river",
     "bounded_by": {
      "west": "clark_north",
@@ -548,7 +548,7 @@
     "note": "READ. Written across the alley west of centre, with both lot rows legible: 5 6 7 8 north, 4 3 2 1 south."
    },
    {
-    "where": "Dearborn Street to Wolcott Street, Kinzie Street to the river — the North Division's block tier",
+    "where": "Dearborn Street to Wolcott Street, Kinzie Street to the river \u2014 the North Division's block tier",
     "tier": "north_division_kinzie_to_the_river",
     "bounded_by": {
      "west": "dearborn_north",
@@ -570,7 +570,7 @@
     "note": "READ, and the tier's eastern end: the pink wash of Wolcott Street closes the crop on the east and Kinzie's Addition's green begins beyond it. The numeral is the same flagged diagonal as the lot numeral 1 printed at the block's south-east corner, at about twice the size."
    },
    {
-    "where": "the South Branch to Market Street, Washington to Madison — the tier's westernmost block, pinched by the river",
+    "where": "the South Branch to Market Street, Washington to Madison \u2014 the tier's westernmost block, pinched by the river",
     "tier": "washington_madison_original_town",
     "bounded_by": {
      "west": null,
@@ -695,7 +695,7 @@
      "read_at": "2141,2444,72,73",
      "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2141,2444,72,73/full/0/default.jpg"
     },
-    "note": "The 6 is a long approach stroke rising from the left, arching over and closing into a loop below — no flag on the top, which is what separates it from the 5 beside it. Its eastern edge runs close to the box's, and `read_at` sits wholly inside."
+    "note": "The 6 is a long approach stroke rising from the left, arching over and closing into a loop below \u2014 no flag on the top, which is what separates it from the 5 beside it. Its eastern edge runs close to the box's, and `read_at` sits wholly inside."
    },
    {
     "where": "Clark Street to Dearborn Street, Washington to Madison",
@@ -723,7 +723,7 @@
     "note": "The 7 is the long flagged diagonal, the same form T-1088 read as the North Division's block 7 numeral, at about the same size."
    },
    {
-    "where": "Dearborn Street to State Street, Washington to Madison — the tier's eastern end",
+    "where": "Dearborn Street to State Street, Washington to Madison \u2014 the tier's eastern end",
     "tier": "washington_madison_original_town",
     "bounded_by": {
      "west": "dearborn",

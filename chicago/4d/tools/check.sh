@@ -376,6 +376,23 @@ step "the West Division numeral crops re-cut from the committed street lines" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_west_division_numerals.py --self-test
 
+# AND THE FIGURES INSIDE THOSE BLOCKS, read off the Thompson plat itself (T-0689). T-0444's
+# acceptance point 1 asked for the West Division's lot dimensions and lot-counts to be read
+# off the sheet rather than carried west from the South Division; #681 answered the rest of
+# T-0444, said point 1 was still owed, and the ticket closed without it. The reading is
+# `data/traces/thompson_west_division_lots.json` — 22 blocks, 203 lots, every figure citing
+# the pixel region of the committed PNG it was read on. The gate holds the reading to that
+# sheet's sha256 (a re-scan invalidates all 22 blocks' citations at once), refuses any West
+# Division frontage of 80 ft — the South Division's figure, and the exact inference the
+# ticket exists to keep out — and asserts THE CLOSURE: 180 + 18 + 180 off the block faces
+# and the legend, and 5 x 75 3/5 off a margin, are 378 ft apiece from inputs that share
+# nothing, so the block is square and the 458 ft module comes back from figures.
+step "the West Division's lot figures still answer for the sheet they were read on" \
+  python3 tools/read_west_division_lots.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_west_division_lots.py --self-test
+
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
 # beside them, through the same NA affine, and re-derives the module and the Kinzie
@@ -467,6 +484,18 @@ step "the Michigan St tract's reading re-derives from its own pixels" \
 # the argument its own notes go on making. The gate recomputes all of it every run.
 step "the Michigan St tract is still seated on the two committed lines it was hung from" \
   python3 tools/seat_michigan_st_tract.py --check
+
+# THE WATER LOTS (T-1063) take BOTH halves here, unlike the street reading above, for
+# one measured reason: the re-read costs 2.1 s rather than half a minute. It walks one
+# 930-pixel line and scans a twenty-pixel band beside it, where the street reading
+# profiles five windows of a million pixels each. A gate that can afford the raster
+# should spend it — the cheap half only proves the file is self-consistent, and the
+# expensive half is what proves it is still what the sheet says.
+step "the water-lot strip's metres re-derive from the pixels committed beside them" \
+  python3 tools/read_kinzie_addition_water_lots.py --check
+
+step "…and the strip still reads the same off the sheet" \
+  python3 tools/read_kinzie_addition_water_lots.py --check-sheet
 
 # The block parcels are the same shape of derivation with one difference worth the
 # extra step: they author no coordinates at all. Every metre comes from the committed

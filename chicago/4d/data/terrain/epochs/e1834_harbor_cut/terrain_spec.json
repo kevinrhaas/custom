@@ -1,25 +1,25 @@
 {
-  "_doc": "The AUTHORED half of the terrain for epoch e1834_harbor_cut. generators/terrain_gen.py reads this plus river.geojson, hydrology.geojson and shoreline.geojson and writes heightfield.json + heightfield.bin + the terrain GLBs. Every elevation here traces to a numbered zone in docs/research/01-terrain-hydrology.md; nothing is invented to make the ground interesting. Elevations are in FEET above the summer-1835 lake and river water surface (the internal datum, data/datum.json) and are converted to metres at generation.",
+  "_doc": "The AUTHORED half of the terrain for epoch e1834_harbor_cut. generators/terrain_gen.py reads this plus river.geojson, hydrology.geojson, shoreline.geojson and branches.geojson and writes heightfield.json + heightfield.bin + the terrain GLBs. Loading a vector file does not put its features in the ground: this spec names the ones the field reads, by id. Every elevation here traces to a numbered zone in docs/research/01-terrain-hydrology.md; nothing is invented to make the ground interesting. Elevations are in FEET above the summer-1835 lake and river water surface (the internal datum, data/datum.json) and are converted to metres at generation.",
   "epoch": "e1834_harbor_cut",
   "scope": "The forks AND the harbour: the Chicago River from the North and South Branches at Wolf Point east down the main stem, through the 1834 cut, past the sand bar and the decaying old southward channel, to open Lake Michigan. Land is the three divisions the river separates, the Fort Dearborn reservation, the lakeshore sand-ridge belt east of State Street, and the bar itself.",
   "critical_caveat": "No contour survey of the 1835 town site exists. The earliest systematic levels are the 1850s street-grade and Chesbrough sewerage surveys. Every land elevation below is a period narrative statement in feet, back-calculated from grade-raising records, or inferred from geology — so NO land elevation in this spec is better than 'inferred', and the generator refuses to emit a 'documented' confidence for any land vertex. The one documented surface is the water: the pre-reversal river was sluggish and outward-flowing with a near-zero surface gradient, standing at lake level through the whole downtown reach.",
   "grid": {
     "e_min_m": -320.0,
     "e_max_m": 1700.0,
-    "n_min_m": -400.0,
+    "n_min_m": -530.0,
     "n_max_m": 400.0,
     "cell_m": 2.5,
     "encoding": "int16",
     "scale_m": 0.005,
-    "note": "2020 x 800 m, 2.5 m cells (8.2 ft — inside the dossier's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. 809 x 321 = 259 689 samples, 507 KB. Row 0 is the SOUTH edge and column 0 the WEST edge, matching the renderer's Heightfield sampler. ONE uniform cell across the whole box, argued in docs/RESEARCH/terrain_east_1834.md: a coarser cell east of the built blocks would save about 150 KB against a 25 MB publish budget and would put the only part of the field outside the dossier's own 5-10 ft recommendation exactly where the shoreline — the most-cited line on the sheet — is drawn."
+    "note": "2020 x 930 m, 2.5 m cells (8.2 ft — inside the dossier's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. 809 x 373 = 301 757 samples, 590 KB. Row 0 is the SOUTH edge and column 0 the WEST edge, matching the renderer's Heightfield sampler. ONE uniform cell across the whole box, argued in docs/RESEARCH/terrain_east_1834.md: a coarser cell east of the built blocks would save about 150 KB against a 25 MB publish budget and would put the only part of the field outside the dossier's own 5-10 ft recommendation exactly where the shoreline — the most-cited line on the sheet — is drawn. The southern extension of 2026-09-13 (T-0219) added 52 rows on the SAME lattice, so every sample the field already carried keeps its own position and only its row index moves."
   },
   "box_derivation": {
     "_doc": "Why these four numbers, each from evidence rather than from a round figure.",
     "e_max": "+1700. The easternmost thing this scene contains is the north pier's 1835 head at about E +1510 (root E +1243.5 / N +311.9, bearing 103.36 deg, 900 ft adopted — docs/RESEARCH/north_pier.md sections 2 and 4), with a +/-30 m band on the length. The easternmost traced LAND is the sand bar's east edge at E +1497.5, and the traced water stops at E +1573.6, which is the edge of the tracing window and not a shore. +1700 clears the pier head by 190 m and its error bar by 160 m, clears the traced window by 126 m so the whole traced water body is inside the box, and stands 203 m (665 ft) off the bar — inside dossier zone 30's 600-1000 ft, where the lake reaches about -10 ft. It is deliberately NOT taken from the drafted pier ends at E +1588.8: Wright draws both piers at about 1165 ft, longer than the north pier was in 1834 and longer than the south pier ever was before 1837, so the drafted extent is an AUTHORISATION and not a length at any date this project models.",
     "e_min": "-320. Unchanged. The forks trace's own western window.",
-    "n_min": "-400. Capped by evidence, not by cost: the South Branch's traced water ends at N -404.5, where the forks tracing window closes, so a box reaching further south would show open prairie where the river actually continues. -400 sits 4.5 m inside that limit and holds the sand bar down to N -400 of its traced -436.",
+    "n_min": "-530. Was -400, and -400 was capped by evidence rather than by cost: the only water traced south of the forks was the forks window's own, which ended at N -404.5, so a box reaching further south would have shown open prairie where the South Branch actually continues. That cap is spent. tools/trace_south_branch.py carries the South Branch off Wright 1834 from the forks window's south edge down to the School Section's south line — N -2149.6, both banks — in branches.geojson, and shoreline.geojson's south shore run reaches N -2159.9, so the river is now traced past anything this box would want. -530 is set by the PLAT instead: Madison Street is the 1830 plat's south boundary and its line stands at local N -525.2 at State and -519.2 at Market (resolved from the State & Madison PLSS section corner, one of the eight ground-control points that fix this project's datum). -530 clears the southernmost of those by 4.8 m and lands on the existing 2.5 m lattice, so the plat's last tier of blocks — Washington to Madison, Market to Dearborn, 6 blocks and 48 lots — stands on modelled ground for the first time. It is not set by the trace: the trace would allow -2149, and 1 619 m of prairie south of the plat is ground this scene has no reason to carry.",
     "n_max": "+400. The North Branch's traced water ends at N +401.6 for the same reason. +400 also puts 80 m of land north of the 1834 cut's north bank (N +321), so the harbour has a north shore rather than an edge.",
-    "what_this_truncates": "The bar's southern hook below N -400 (34 m of a 660 m island), the old southward channel below N -400 and therefore the natural outlet at about Madison Street (local N -525, from the State & Madison ground-control point), and the lake shore north of N +400. All three remain in shoreline.geojson and data/traces/vectors/wright_1834_east.json as evidence; none is modelled ground."
+    "what_this_truncates": "The bar's southern hook below N -400 (34 m of a 660 m island) and the lake shore north of N +400. The old southward channel's natural outlet at about Madison Street (local N -525) is now INSIDE the box, which is the second thing the southern extension buys. Below N -530 the South Branch and the lake shore both continue in branches.geojson, shoreline.geojson and data/traces/vectors/wright_1834_east.json as evidence; none of it is modelled ground."
   },
   "vertical": {
     "datum": "Z = 0.0 ft at the summer-1835 lake and river water surface",
@@ -55,17 +55,35 @@
         1
       ],
       "note": "The harbour reach from the east edge of the forks window to the lake: the main stem, the 1834 cut between its piers, the old southward channel behind the bar, and the lake margin. Interior ring 1 is the SAND BAR, which is land the water goes round — the reason the field has to understand islands and not only banks. Traced by tools/trace_shoreline.py; the two windows overlap between E +314 and E +390 and agree there to 0.1-5.7 m."
+    },
+    {
+      "feature": "south_branch_school_section",
+      "from": "branches.geojson",
+      "note": "The South Branch below the forks window: from that window's own south edge (map row 2372, a declared splice rather than a tolerance — see tools/trace_south_branch.py) down through the School Section. Only its reach above N -530 is inside this box. Traced from Wright 1834 by tools/trace_south_branch.py."
     }
   ],
   "open_lake": {
     "rule": "east of the easternmost traced water in each row, water continues",
-    "east_of_m": 1400.0,
+    "east_of_m": 1200.0,
     "dossier_zone": 30,
     "confidence": "reconstructed",
     "sources": [
       "wright_1834"
     ],
-    "note": "The harbour-reach polygon's EASTERN boundary is the tracing window, not a shore (its own provenance says so). Beyond it Wright's sheet is still lake wash. Treating that ground as LAND would invent a headland out in the lake — a false coast is the single largest claim available in this quadrant — so it is declared water instead. Stated as a rule against the trace rather than as a hand-drawn polygon, so it cannot drift if the trace is ever refit: in each row, everything east of the easternmost traced water cell is lake. The E +1400 guard keeps the rule where the argument for it holds — the easternmost traced LAND in the box is the sand bar at E +1497.5, and every row's traced water reaches further east than that. This boundary is a RULE and not a waterline: generators/terrain_gen.py never measures shore distance to it, so no bank is raised along it. The bed under it is dossier zone 30, which the dossier itself tags conjectural."
+    "note": "The harbour-reach polygon's EASTERN boundary is the tracing window, not a shore (its own provenance says so). Beyond it Wright's sheet is still lake wash. Treating that ground as LAND would invent a headland out in the lake — a false coast is the single largest claim available in this quadrant — so it is declared water instead. Stated as a rule against the trace rather than as a hand-drawn polygon, so it cannot drift if the trace is ever refit: in each row, everything east of the easternmost traced water cell is lake. The guard keeps the rule where the argument for it holds: it must stand east of anything that could let a row's easternmost traced water fall WEST of real land. It was +1400 while the box stopped at N -400, on the ground that the easternmost traced LAND is the sand bar at E +1497.5 and every row's traced water reaches further east than +1400. The southern extension (T-0219) breaks the second half of that: below about N -440 the harbour trace's east edge falls back to E +1235 to +1310, no row there reaches +1400, the rule did not fire, and 460 m of Lake Michigan came out as dry land walled off from the old southward channel by a 4.8 m cliff. The guard is therefore +1200, which is east of every traced shore in the box except the harbour mouth and the bar — and the bar is an island ring, subtracted after this rule rather than exposed to it. Lowering it changes NO row that already had traced water east of +1400, because the rule fills east of the row's EASTERNMOST traced water and a lower guard cannot move that maximum; it is a strict addition to the rows the old guard silenced, and the regenerated field proves it (the 259 689 samples of the old box come back with 181 cells changed, all of them in the West Division's south-west corner and all by one 5 mm quantisation step). This boundary is a RULE and not a waterline: generators/terrain_gen.py never measures shore distance to it, so no bank is raised along it. The bed under it is dossier zone 30, which the dossier itself tags conjectural."
+  },
+  "southern_lake": {
+    "rule": "south of N -400, east of the row's easternmost crossing of the traced lake shore, water continues",
+    "south_of_n_m": -400.0,
+    "shore_runs": [
+      "south_shore_harbor_reach"
+    ],
+    "dossier_zone": 30,
+    "confidence": "reconstructed",
+    "sources": [
+      "wright_1834"
+    ],
+    "note": "open_lake's companion, and it exists because open_lake's per-row test measures from the traced WATER WASH. That test holds north of N -400, where the harbour trace covers a continuous lake margin and every row's wash reaches past the guard. South of it the wash is patches — the old southward channel here, a lobe of lake there — and the ground BETWEEN two patches is not east of the easternmost one, so it stood as land: 9.4 ft of South Division sand-ridge crest on a plateau at E +1240 to +1310 between N -405 and -480, walled off from the channel beside it by a 4.8 m cliff, which is a headland invented in Lake Michigan and the largest false claim available in this quadrant. What the trace DOES carry south of N -400 is the SHORE: south_shore_harbor_reach is the east edge of Fractional Section 15, a surveyed line, and it runs unbroken to the foot of the sheet. A fractional section is fractional because the lake takes the rest of it, so east of that line there is water, and the rule is stated on it. It is a RULE and not a waterline: terrain_gen.py measures shore distance to the run itself, which is a traced bank, so the bank face south of the fort is raised off the survey line and not off this rule. Islands are subtracted after it, so the sand bar's southern hook (traced to N -436) is unaffected. Applied south of N -400 and no further north because every row above that line is already covered by open_lake and this rule must not move a sample the field has already committed — the regenerated field is checked against the old one and the whole 259 689-sample overlap comes back with 181 cells changed, all in the West Division's south-west corner and all by one 5 mm step."
   },
   "shore_runs": [
     {
@@ -97,9 +115,21 @@
       "from": "river.geojson",
       "division": "west_division",
       "note": "Wolf Point and the west bank of both branches."
+    },
+    {
+      "id": "south_branch_west_bank",
+      "from": "branches.geojson",
+      "division": "west_division",
+      "note": "The South Branch's west bank picked up where west_division_shore stops at N -404.3 and carried south: the Original Town west of Market Street and the School Section's blocks 69-71 and 78. The two runs abut on the tracing windows' shared row, so the West Division's waterline is continuous across the splice."
+    },
+    {
+      "id": "south_branch_east_bank",
+      "from": "branches.geojson",
+      "division": "south_division",
+      "note": "The South Branch's east bank picked up where south_division_shore stops at N -404.3 and carried south past Washington and Madison: the Original Town west of Wells Street and the School Section's blocks 83-88. This is the run that puts the plat's last tier in the South Division rather than leaving it to the nearest bank of a different one."
     }
   ],
-  "shore_runs_note": "These runs, plus the island rings, ARE the waterline. Distance is never measured to the water polygons' own boundaries, because those close across the tracing windows and a window edge is where the tracing stopped, not a bank: measuring to one would raise a bank across open water at E +314, E +390 and out in the lake.",
+  "shore_runs_note": "These runs, plus the island rings, ARE the waterline. Distance is never measured to the water polygons' own boundaries, because those close across the tracing windows and a window edge is where the tracing stopped, not a bank: measuring to one would raise a bank across open water at E +314, E +390 and out in the lake. Since T-0219 a division may also own a run from branches.geojson: the South Branch's two banks continue the forks window's two runs south of N -404.3, and division membership south of the forks is decided by them.",
   "reaches": [
     {
       "id": "main_stem",
