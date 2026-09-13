@@ -1209,10 +1209,24 @@ rule: no Amos Foster is printed in Fergus 1839, Fergus 1843, Norris 1844 or the 
 run at all, while A. H. Foster boards the American Temperance House in two volumes and is
 a partner in Jennings & Foster.
 
+**Re-measured against stretch 9, 2026-09-13**, because stretch 9 landed on `dev` after the
+paragraphs above were written and it added the middle-initial clause they say does not
+exist. `further_initials_disagree` / `middle_initial_refusal` now compare every initial
+BOTH readings set, position by position — so the sentence "the middle initial is simply
+never weighed" is no longer true of the module in general. It is still true of THIS pair,
+and for the reason stretch 9 states itself: only initials both readings set are compared,
+and `tokens('Amos')` is `['Amos']`, so the pair sets no second initial at all.
+`further_initials_disagree('Amos', 'A. H.')` returns `(False, '')` — a silence, not a
+disagreement — and `middle_initial_refusal` files nothing. The clause fires the moment the
+1835 side prints one: `Amos V` against `A. H.` refuses on `initial 2 disagrees: V against
+H`. So stretch 9 narrowed the shape this note describes without closing it, and the fold
+stands.
+
 It belongs here because this ticket owns the directories' ties and refusals, and because
 `agrees()` is imported by all six crosswalks — a change to it is a stretch of this
 ticket's work, not a one-line repair. The stretch that takes it should decide whether an
-initial run printed against a full forename may carry a SPEND at all, or only a tie filed
-for adjudication. T-1034 cohort C1 has already refused FOSTER AMOS for its own purposes
-(25 register rows, $468) after stripping the fold, so nothing is bleeding while this
-waits.
+initial run printed against a full forename, with nothing past the first initial on the
+1835 side, may carry a SPEND at all, or only a tie filed for adjudication — which is the
+one shape stretch 9's clause is written to leave alone. T-1034 cohort C1 has already
+refused FOSTER AMOS for its own purposes (25 register rows, $468) after stripping the
+fold, so nothing is bleeding while this waits.
