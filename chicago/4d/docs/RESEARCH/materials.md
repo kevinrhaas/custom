@@ -752,4 +752,90 @@ The sheet's one brick is still called **`chimney_brick`**, and a wall now reads 
 now wrong by one surface, and renaming it — or growing the sheet a `wall_finish`-style selector
 that answers *"what colour is a bare brick wall"* the way §8.3 made the placeholder ask rather
 than name — is a `common/materials.py` change, which is in **every** asset's input hash and
-therefore costs a town-wide bake. It is not worth one on its own and it is filed as **T-0332**.
+therefore costs a town-wide bake. It is not worth one on its own and it is filed as **T-0332**. **CLOSED by §10.**
+
+---
+
+## 10. WIRED IN — T-0332, 2026-09-13: the row is named for the fabric, and the surfaces ask
+
+### 10.1 THE DEFECT, IN ONE LINE
+
+`CHIMNEY_BRICK` was named in T-0008, when a stack was the only thing in this town made of brick.
+By the end of §9 the row was read by **three** committed masters and a fourth surface, and only
+one of those is a chimney:
+
+| reader | surface | since |
+|---|---|---|
+| `fort_structure.WALL_RGBA["brick"]` | the fort commandant's quarters, the magazine, the Lake House shell — attested brick **WALLS** | T-0267, §9 |
+| `frame_tavern.BRICK_RGBA` | the Sauganash's stacks — a chimney | T-0092 / T-0008 |
+| `materials.chimney_finish("interior")` | every framed house's stack | T-0008 |
+
+A sheet row is a statement about a FABRIC. Named for one of the surfaces that wears it, it
+misdescribes the other two, and §9.5 filed exactly that.
+
+### 10.2 WHAT CHANGED, AND IT IS BOTH HALVES OF THE TICKET
+
+1. **The row is `BRICK`** (`key="brick"`), and its note now says out loud that it is the town's
+   one brick on a chimney and on a wall alike, and that reading it at the fort is not a claim
+   that 1816 brick matched 1833 brick — it is the only brick this project has argued.
+   **No alias is kept.** Three call sites is not a compatibility surface, and a sheet carrying
+   two names for one row is the drift the rename exists to end.
+2. **The surfaces ASK.** §8.3's move, made for the wall: a new `materials.wall_colour(construction)`
+   answers *"what colour is a bare wall of this fabric"*, `fort_structure` calls it instead of
+   naming the row, and `frame_tavern` calls `chimney_finish("interior")` — the disposition it
+   actually builds — instead of naming it either. Renaming the row a second time would now touch
+   the sheet and nothing else.
+
+`wall_colour` returns **`None`** where the sheet states no colour, and that is deliberate. A
+selector that quietly dealt the nearest row would invent a colour under a reader that looks like
+it is asking the sheet.
+
+### 10.3 THE MEASUREMENT — A NAMING PARCEL, PROVED BY THE BYTES
+
+`common/materials.py` is in every asset's input hash, so the whole town restaled and the whole
+town was rebuilt in this commit:
+
+| measurement, 2026-09-13, on this branch | reading |
+|---|---|
+| assets stale before the bake | **384 of 384** |
+| masters rebuilt | 382 structures + 2 terrain |
+| masters whose **bytes** moved | **0** |
+| `assets/manifest.json` lines changed | 382, every one an `inputs_sha256` |
+| `brick` `baseColorFactor` on all three brick masters | `0.45, 0.23, 0.17` — before and after |
+| `tools/check.sh` | 369 steps, none red; stale check 384 match / 0 stale |
+
+Zero moved bytes is the acceptance clause, not a happy accident: a rename that repaints a
+building is the wrong change, and this is the reading that says it did not. Compare §9.4, where
+the same shape moved three of fourteen — because that parcel changed a VALUE and this one
+changes a NAME.
+
+### 10.4 WHAT THE BAKE COST, BECAUSE THE FOLKLORE WAS WRONG
+
+`generators/code_inputs.py` says a full-town rebake is "twenty minutes of Cycles and 349 GLBs
+whose bytes change because Cycles is not bit-reproducible". **Measured here: 22 seconds for 382
+structures and 10 for the terrain epoch, and no GLB's bytes changed at all.** The twenty minutes
+and the churn are both properties of `--ao`, which is off by default and which nothing passes
+(T-0015) — so the argument that a `common/` rename is too expensive to make was costing more
+than the rename. `frame_tavern`'s own note had the right order of magnitude ("a two-and-a-half-
+minute rebuild") and it is the one to believe.
+
+### 10.5 WHAT IS LEFT, AND IT IS NOT FILED — WITH THE MEASUREMENT THAT SAYS WHY
+
+`fort_structure.WALL_RGBA` still carries three archetype-local literals: `braced_frame`
+(0.60/0.55/0.46), `stone` (0.58/0.56/0.51) and `earth` (0.34/0.30/0.22). Moving them onto the
+sheet is the shape §2.3 argues for in general, and it is NOT filed, for reasons that are
+measured rather than assumed:
+
+* **`stone` and `earth` reach nothing.** No record in the dataset states either construction
+  (counted for this ticket: zero of each), so both are unreached fallbacks. Putting an unreached
+  value on the sheet would add two rows no source states and no building wears — §5's own
+  complaint — and `wall_colour` saying `None` for them is the honest form of the same fact.
+* **`braced_frame` would have to be a repaint or a new row.** The sheet's nearest finish is
+  `unpainted` at 0.52/0.44/0.34, which is a different colour, so adopting it would move buildings
+  — forbidden by this ticket's own acceptance. Carrying the fort's value onto the sheet instead
+  is a fourth convergence parcel with its own evidence to argue, in the shape of T-0138 and
+  T-0267, and it should arrive that way or not at all.
+
+The naming defect §9.5 filed is closed. What is left is a palette question, and it is written
+here rather than in a ticket because the owner asked for fewer tickets to work, not for fewer
+things to be known.
