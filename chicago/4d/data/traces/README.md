@@ -13,7 +13,7 @@ gcp/       This project's ground control: per-map GCPs with pixel coords,
 vectors/   (S2+) per-map traced vector layers, each tagged with its source_id
 ```
 
-Two files sit at the top level rather than in those directories, because neither is
+Five files sit at the top level rather than in those directories, because none of them is
 a transform or a vector layer: they are READINGS of a sheet, carrying what a numeral
 says and the crop where it says it.
 
@@ -32,6 +32,13 @@ harrison_1830_fort_burial_ground.json The Fort Cemetery parcel and Mrs Jouett's 
 harrison_1830_us_factors_house.json   Where the same plate letters 'U.S. Factor's House'
                                       (T-0894) — the reading that put 140 m between it and
                                       jb_beaubien_homestead. Authors no fabric.
+kinzie_addition_water_lots.json       Kinzie's Addition's river-front water lots (T-1063),
+                                      off the same 600-dpi NA sheet: a LOT STRIP, not a
+                                      block grid — one run of 35 parcels against the north
+                                      bank, its front line, its back line, the reach the
+                                      back line does not cross, and the division strokes.
+                                      Refuses which stroke bounds which numbered lot, and
+                                      21 of the 35 figures. Authors no fabric.
 ```
 
 Two of those four are readings of ONE plate by ONE transform, stated in each file and
