@@ -10500,9 +10500,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 401 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 410 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 401 people
+**Scope:** `residents.persons[civic_mint]` — 410 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10606,7 +10606,26 @@ refusals are not dropped — each is carried in `identity_master.json` under evi
 `newspaper_out_of_town`, with the printed place that decided it, so the arithmetic is on the
 record and a later page that puts one of these men at Chicago after all can overturn it. The number
 this liberty declares is the number of containers standing, and it will fall again as the
-remaining rulings are made.
+remaining rulings are made. T-0997 took it to 410 on 2026-09-13, and it is the first
+move in this entry's whole history that is a RISE. Every fall above is a card the town was
+holding twice, or a man it was holding who was never here; this is twelve men it was not
+holding at all. The Chicago Democrat of 29 October 1834 prints the roll of a committee a
+town meeting appointed against gambling, and the column it stands in is the worst OCR in
+the run — two printed columns cut and interleaved line by line — so no reading pass had
+ever taken a claim off that page. Read at the character level, it names twenty-one men in
+the roll and fourteen more in the report around it. Twelve of them the ladder had never
+seen. Three others the town already carried under fuller names and were folded on written
+rulings the same day — W. H. Kennicott onto the surgeon dentist, C. L. Harmon onto Charles
+Loomis Harmon of the dry-goods house, J. S. Wright onto John S. Wright — so the rise is
+twelve and not fifteen. AND FIVE MORE NAMES ON THAT ROLL ARE DELIBERATELY NOT HERE: the crop
+cuts `A. N. Ful…`, `M. M'Cle…`, `H. G. Hub…`, `… Hau…` and `Hon. R. J. …` in the middle of
+the surname, and a name the page stops halfway through is recorded as a position in the
+claim and given no entity, so it mints nobody. That refusal is not only editorial. It was
+measured: `tools/consolidate_resident_evidence.py` splits a name into surname and forename
+with the brackets already stripped, so `H. G. Hub[…]` reaches `mint_civic_residents.py` as
+the plain name `H G Hub`, its own bracketed-as-uncertain refusal cannot fire on it, and the
+town gains a card headed `The Hub household`. Five such cards were minted and deleted while
+this ticket was being written.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught

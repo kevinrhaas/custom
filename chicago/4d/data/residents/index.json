@@ -245,19 +245,19 @@
   ]
  },
  "counts": {
-  "households": 1271,
-  "persons": 1295,
+  "households": 1280,
+  "persons": 1304,
   "by_grade": {
-   "attested": 409,
-   "inferred": 886,
+   "attested": 419,
+   "inferred": 885,
    "reconstructed": 0
   },
   "letter_list_only": 747,
-  "projected_residents": 732,
+  "projected_residents": 731,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
-  "civic_mint": 401,
-  "merged_away": 54
+  "civic_mint": 410,
+  "merged_away": 57
  },
  "households": [
   {
@@ -4455,6 +4455,21 @@
    "review_required": false
   },
   {
+   "id": "hh_clarke_l",
+   "file": "households/hh_clarke_l.json",
+   "civic_mint": true,
+   "head": "clarke_l",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_clarke_w_b",
    "file": "households/hh_clarke_w_b.json",
    "civic_mint": true,
@@ -5562,6 +5577,21 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_debogart_h_ven",
+   "file": "households/hh_debogart_h_ven.json",
+   "civic_mint": true,
+   "head": "debogart_h_ven",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {
@@ -7213,13 +7243,12 @@
    "division": "unplaced",
    "persons": 1,
    "grades": {
-    "inferred": 1
+    "attested": 1
    },
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
+   "review_required": false
   },
   {
    "id": "hh_forsythe_william",
@@ -12260,6 +12289,21 @@
    "review_required": false
   },
   {
+   "id": "hh_marksall_j_m",
+   "file": "households/hh_marksall_j_m.json",
+   "civic_mint": true,
+   "head": "marksall_j_m",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_marsh_silvester",
    "file": "households/hh_marsh_silvester.json",
    "head": "marsh_silvester",
@@ -13309,6 +13353,21 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
+  },
+  {
+   "id": "hh_mosely_e_b",
+   "file": "households/hh_mosely_e_b.json",
+   "civic_mint": true,
+   "head": "mosely_e_b",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
   },
   {
    "id": "hh_muggs_david",
@@ -16061,6 +16120,21 @@
    "projected_resident": true
   },
   {
+   "id": "hh_saxton_l_c",
+   "file": "households/hh_saxton_l_c.json",
+   "civic_mint": true,
+   "head": "saxton_l_c",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_scarrett_isaac",
    "file": "households/hh_scarrett_isaac.json",
    "civic_mint": true,
@@ -16423,6 +16497,21 @@
    "file": "households/hh_sherman_silas_w.json",
    "civic_mint": true,
    "head": "sherman_silas_w",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_sherman_william_george",
+   "file": "households/hh_sherman_william_george.json",
+   "civic_mint": true,
+   "head": "sherman_william_george",
    "division": "unplaced",
    "persons": 1,
    "grades": {
@@ -16959,6 +17048,21 @@
    "projected_resident": true
   },
   {
+   "id": "hh_south_g",
+   "file": "households/hh_south_g.json",
+   "civic_mint": true,
+   "head": "south_g",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_south_orange",
    "file": "households/hh_south_orange.json",
    "letter_list_only": true,
@@ -17096,6 +17200,21 @@
    "lives_at": null,
    "works_at": null,
    "present_on_scene_date": "present",
+   "review_required": false
+  },
+  {
+   "id": "hh_springs_g",
+   "file": "households/hh_springs_g.json",
+   "civic_mint": true,
+   "head": "springs_g",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {
@@ -19326,6 +19445,21 @@
    "review_required": false
   },
   {
+   "id": "hh_whittier_daniel",
+   "file": "households/hh_whittier_daniel.json",
+   "civic_mint": true,
+   "head": "whittier_daniel",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_wickham_john_c",
    "file": "households/hh_wickham_john_c.json",
    "civic_mint": true,
@@ -20283,6 +20417,17 @@
    "ticket": "T-0839"
   },
   {
+   "person": "harmon_c_l",
+   "household": "hh_harmon_c_l",
+   "name": "C L Harmon",
+   "merged_into_person": "harmon_charles_l",
+   "merged_into_household": "hh_harmon_brothers",
+   "record_file": "merged/hh_harmon_c_l.json",
+   "rule": "C2",
+   "cluster": "harmon-isaac",
+   "ticket": "T-0997"
+  },
+  {
    "person": "harmon_isaac",
    "household": "hh_harmon_isaac",
    "name": "Isaac Harmon",
@@ -20380,6 +20525,17 @@
    "rule": "C5",
    "cluster": "hunt-c",
    "ticket": "T-0844"
+  },
+  {
+   "person": "kennicott_w_h",
+   "household": "hh_kennicott_w_h",
+   "name": "W H Kennicott",
+   "merged_into_person": "kennicott_william_h",
+   "merged_into_household": "hh_kennicott_william_h",
+   "record_file": "merged/hh_kennicott_w_h.json",
+   "rule": "C2",
+   "cluster": "kennicott",
+   "ticket": "T-0997"
   },
   {
    "person": "kennicott_w_l",
@@ -20644,6 +20800,17 @@
    "rule": "C7",
    "cluster": "vanderbogart",
    "ticket": "T-0842"
+  },
+  {
+   "person": "wright_j_s",
+   "household": "hh_wright_j_s",
+   "name": "J S Wright",
+   "merged_into_person": "wright_john_s",
+   "merged_into_household": "hh_wright_john",
+   "record_file": "merged/hh_wright_j_s.json",
+   "rule": "C2",
+   "cluster": "wright",
+   "ticket": "T-0997"
   }
  ],
  "_merged_doc": "T-0839. THE REDIRECT TABLE. One row per town card folded onto another because the two named one person. The record is not deleted: it is kept whole at the `record` path with a `merged_into` block, and this table is what lets every consumer that cites the folded `person` — the crosswalks, identity_master.json, the smoke cohorts, the placed-resident parcels — still resolve it to somebody. The ruling and its reasoning are in data/residents/card_merge_rulings.json."

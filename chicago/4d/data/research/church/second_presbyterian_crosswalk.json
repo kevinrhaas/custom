@@ -14,10 +14,10 @@
   ],
   "counts": {
     "roll_records": 941,
-    "residents_considered": 1293,
-    "residents_matched_one_line": 80,
+    "residents_considered": 1302,
+    "residents_matched_one_line": 81,
     "residents_ambiguous": 36,
-    "residents_surname_only_refused": 320
+    "residents_surname_only_refused": 321
   },
   "matched": [
     {
@@ -1151,6 +1151,24 @@
           "how_admitted": "letter",
           "printed_page": 200,
           "a_married_womans_entry": false
+        }
+      ]
+    },
+    {
+      "name": "William George Sherman",
+      "person_id": "sherman_william_george",
+      "household_id": "hh_sherman_william_george",
+      "grade": "attested",
+      "source_id": "second_presbyterian_chicago_1892",
+      "rule": "Surname 'Sherman' folds to the same string as the roll line's, and the given name of both begins W.",
+      "roll_lines": [
+        {
+          "record": "second_presb_0302",
+          "as_read": "Sherman, Mrs. William W. | Letter. | February 2, 18S7.",
+          "admitted": null,
+          "how_admitted": "letter",
+          "printed_page": 171,
+          "a_married_womans_entry": true
         }
       ]
     },
@@ -3298,6 +3316,15 @@
       "rule": "The surname 'Clarke' stands on the Second Presbyterian roll and no line under it carries the initial 'H' of 'H. B. Clarke'. A surname-only agreement is a refusal."
     },
     {
+      "name": "L Clarke",
+      "person_id": "clarke_l",
+      "household_id": "hh_clarke_l",
+      "grade": "attested",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 1,
+      "rule": "The surname 'Clarke' stands on the Second Presbyterian roll and no line under it carries the initial 'L' of 'L Clarke'. A surname-only agreement is a refusal."
+    },
+    {
       "name": "W B Clarke",
       "person_id": "clarke_w_b",
       "household_id": "hh_clarke_w_b",
@@ -3607,7 +3634,7 @@
       "name": "William Forsyth",
       "person_id": "forsyth_william",
       "household_id": "hh_forsyth_william",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 8,
       "rule": "The surname 'Forsyth' stands on the Second Presbyterian roll and no line under it carries the initial 'W' of 'William Forsyth'. A surname-only agreement is a refusal."

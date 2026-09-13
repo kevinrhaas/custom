@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "5bb6644768732ae0da1d0eb0b6f37bbdf5b98f1f169e101a19d9166fdc10406b",
+    "fingerprint": "a4986882b69488c824ad4ec87cfdf77f1efd0c317230d0b1a04b48ff277351cf",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1295,
+      "residents": 1304,
       "structures": 384,
       "voters": 345
     }
@@ -6874,6 +6874,11 @@
           "rule": "OCR variant (0.91 similarity to 'clarke')"
         },
         {
+          "id": "clarke_l",
+          "name": "L Clarke",
+          "rule": "OCR variant (0.91 similarity to 'clarke')"
+        },
+        {
           "id": "clarke_w_b",
           "name": "W B Clarke",
           "rule": "OCR variant (0.91 similarity to 'clarke')"
@@ -6991,6 +6996,11 @@
         {
           "id": "clarke_h_b",
           "name": "H. B. Clarke",
+          "rule": "exact surname"
+        },
+        {
+          "id": "clarke_l",
+          "name": "L Clarke",
           "rule": "exact surname"
         },
         {

@@ -8605,6 +8605,11 @@
      "rule": "OCR variant (0.91 similarity to 'clarke')"
     },
     {
+     "id": "clarke_l",
+     "name": "L Clarke",
+     "rule": "OCR variant (0.91 similarity to 'clarke')"
+    },
+    {
      "id": "clarke_w_b",
      "name": "W B Clarke",
      "rule": "OCR variant (0.91 similarity to 'clarke')"
@@ -8616,6 +8621,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "works_cited": [
@@ -8703,7 +8709,7 @@
    "layer": "residents",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of H. B. Clarke; W B Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of H. B. Clarke; L Clarke; W B Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v01_1377",
     "nbi_v01_1378",
@@ -8737,6 +8743,11 @@
      "rule": "exact surname"
     },
     {
+     "id": "clarke_l",
+     "name": "L Clarke",
+     "rule": "exact surname"
+    },
+    {
      "id": "clarke_w_b",
      "name": "W B Clarke",
      "rule": "exact surname"
@@ -8748,6 +8759,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "works_cited": [
@@ -40307,10 +40319,10 @@
   {
    "record_id": "nbi_v01_1361",
    "a": "Clark | _ _ Illinois, (Moses, 1.) 1868-52. 2v. See M e >",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | _ _ Illinois, (Moses, 1.) 1868-52. 2v. See M e >' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | _ _ Illinois, (Moses, 1.) 1868-52. 2v. See M e >' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40325,6 +40337,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40347,10 +40360,10 @@
   {
    "record_id": "nbi_v01_1362",
    "a": "Clark | , Oa, III. [Brink, tkOeneurh It Ct,, J V M I87B,",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | , Oa, III. [Brink, tkOeneurh It Ct,, J V M I87B,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | , Oa, III. [Brink, tkOeneurh It Ct,, J V M I87B,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40365,6 +40378,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40387,10 +40401,10 @@
   {
    "record_id": "nbi_v01_1363",
    "a": "Clark | .Bureau Co., III. (Kelt 4 Co,, Pub.) 1877, 3 i r , ,",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | .Bureau Co., III. (Kelt 4 Co,, Pub.) 1877, 3 i r , ,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | .Bureau Co., III. (Kelt 4 Co,, Pub.) 1877, 3 i r , ,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40405,6 +40419,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40427,10 +40442,10 @@
   {
    "record_id": "nbi_v01_1364",
    "a": "Clark | Adame C o . , 1 1 1 . (Hurray, WUliamaon",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Adame C o . , 1 1 1 . (Hurray, WUliamaon' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Adame C o . , 1 1 1 . (Hurray, WUliamaon' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40445,6 +40460,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40467,10 +40483,10 @@
   {
    "record_id": "nbi_v01_1365",
    "a": "Clark | Chicago, l i l , ( A n d r e « , A. T.) ,?31-6i 1-3. *",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Chicago, l i l , ( A n d r e « , A. T.) ,?31-6i 1-3. *' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Chicago, l i l , ( A n d r e « , A. T.) ,?31-6i 1-3. *' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40485,6 +40501,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40507,10 +40524,10 @@
   {
    "record_id": "nbi_v01_1366",
    "a": "Clark | Chicago, III. ( K o s a S i U > _ KVxIanj , J.) 1893:",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Chicago, III. ( K o s a S i U > _ KVxIanj , J.) 1893:' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Chicago, III. ( K o s a S i U > _ KVxIanj , J.) 1893:' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40525,6 +40542,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40547,10 +40565,10 @@
   {
    "record_id": "nbi_v01_1367",
    "a": "I Clark, | '.-go, III, Socond Presb. Ch , Í842-92, (Grant",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"I Clark, | '.-go, III, Socond Presb. Ch , Í842-92, (Grant\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"I Clark, | '.-go, III, Socond Presb. Ch , Í842-92, (Grant\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40565,6 +40583,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40587,10 +40606,10 @@
   {
    "record_id": "nbi_v01_1368",
    "a": "Clark | Christian C o , I I I , d r i n k , 1,1-Donougb dt C * .",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Christian C o , I I I , d r i n k , 1,1-Donougb dt C * .' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Christian C o , I I I , d r i n k , 1,1-Donougb dt C * .' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40605,6 +40624,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40627,10 +40647,10 @@
   {
    "record_id": "nbi_v01_1369",
    "a": "Clark | Cook C o , I I I . (Anircr.:, A. T.) 1884 :546.",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Cook C o , I I I . (Anircr.:, A. T.) 1884 :546.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Cook C o , I I I . (Anircr.:, A. T.) 1884 :546.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40645,6 +40665,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40667,10 +40688,10 @@
   {
    "record_id": "nbi_v01_1370",
    "a": "Clark | _Cook C o , 111. (La Salle Book C o , Pub.) 1900.",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | _Cook C o , 111. (La Salle Book C o , Pub.) 1900.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | _Cook C o , 111. (La Salle Book C o , Pub.) 1900.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40685,6 +40706,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40707,10 +40729,10 @@
   {
    "record_id": "nbi_v01_1371",
    "a": "Clark | DuPage Co, III, ' B l o e + a r d , R.) IB82: P t,2:",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clark | DuPage Co, III, ' B l o e + a r d , R.) IB82: P t,2:\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clark | DuPage Co, III, ' B l o e + a r d , R.) IB82: P t,2:\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40725,6 +40747,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40747,10 +40770,10 @@
   {
    "record_id": "nbi_v01_1372",
    "a": "f Clark | ' Fulton Co , III. (Chapman, C. C. t Co.) 18791",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"f Clark | ' Fulton Co , III. (Chapman, C. C. t Co.) 18791\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"f Clark | ' Fulton Co , III. (Chapman, C. C. t Co.) 18791\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40765,6 +40788,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40787,10 +40811,10 @@
   {
    "record_id": "nbi_v01_1373",
    "a": "Clark | - — O g l e Co, III. (Kett, H, F . , - * Co.) 1878i 6-*,",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | - — O g l e Co, III. (Kett, H, F . , - * Co.) 1878i 6-*,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | - — O g l e Co, III. (Kett, H, F . , - * Co.) 1878i 6-*,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40805,6 +40829,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40827,10 +40852,10 @@
   {
    "record_id": "nbi_v01_1376",
    "a": "Clark | Wlnsebago Co., III. (Kott, H. F., 4, Co., Pub.)",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Wlnsebago Co., III. (Kott, H. F., 4, Co., Pub.)' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Wlnsebago Co., III. (Kott, H. F., 4, Co., Pub.)' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40845,6 +40870,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40867,10 +40893,10 @@
   {
    "record_id": "nbi_v01_1377",
    "a": "Clarke | Illinois. (MosesyJ.) 1888-92. 2v. Sec Irder",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clarke | Illinois. (MosesyJ.) 1888-92. 2v. Sec Irder' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clarke | Illinois. (MosesyJ.) 1888-92. 2v. Sec Irder' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40885,6 +40911,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40907,10 +40934,10 @@
   {
    "record_id": "nbi_v01_1378",
    "a": "Clarke | Chicago, II., , f „...-, t , .„ , .'. 13951",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clarke | Chicago, II., , f „...-, t , .„ , .'. 13951\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clarke | Chicago, II., , f „...-, t , .„ , .'. 13951\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40925,6 +40952,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40947,10 +40975,10 @@
   {
    "record_id": "nbi_v01_1379",
    "a": "Clarke | Chicago, III., Directory, 1839. {fe'_ Clarke",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clarke | Chicago, III., Directory, 1839. {fe'_ Clarke\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clarke | Chicago, III., Directory, 1839. {fe'_ Clarke\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40965,6 +40993,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40987,10 +41016,10 @@
   {
    "record_id": "nbi_v01_1380",
    "a": "Clarke | Chicago, lil, (Andreas, A. T.) 1804-61 2-3.",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clarke | Chicago, lil, (Andreas, A. T.) 1804-61 2-3.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clarke | Chicago, lil, (Andreas, A. T.) 1804-61 2-3.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -41005,6 +41034,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
