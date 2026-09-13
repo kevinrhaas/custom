@@ -2438,6 +2438,19 @@ selftest "the printed-twice fold's own assertions still fire when broken" \
 selftest "…and the tie discriminator's do too" \
   python3 tools/tiebreak.py --self-test
 
+# T-0987 stretch 14. THE FOURTH RULE MODULE, and the one that reads the part of the
+# name the other three stop before: the crosswalks key on surname plus FIRST INITIAL,
+# so everything the compositor set after that letter was committed and never weighed.
+# It is gated here for the same reason its three siblings are — the whole of its
+# authority is the ranking (a spelling outranks an initial, or `Heacock, jr., R. E.`
+# takes his father's entry), the word-count test (fire on what a reading says, never on
+# what it omits), and three refusals that each cost more than they gave: a wife is not
+# her husband, a son is not his father, and a page setting fewer words than a reading
+# separates no two readings. Loosen any one of them and all four crosswalks re-derive
+# quietly, with a match on the face of them and a wrong man underneath.
+selftest "the whole-printed-name rule's own assertions still fire when broken" \
+  python3 tools/named_by_the_page.py --self-test
+
 # T-1038. THE THIRD RULE MODULE, and the one that answers a question the other two
 # cannot ask: is the 1835 person a PERSON at all, or the one card the letter-list
 # mint pass was allowed to seat over a surname the post office printed twice? An
