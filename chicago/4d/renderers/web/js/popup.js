@@ -701,7 +701,8 @@ function roofWords(attrs) {
  * about the scene. The sentence is standing text keyed on the boolean — the
  * record's own reasoning is in its notes below, verbatim, as the ticket says —
  * and it names what the record is held for, because "held" alone tells a reader
- * that a decision was made and nothing about what it rests on.
+ * that a decision was made and nothing about what it rests on. The record's own
+ * sentence follows it, from `review_reason` on the sidecar.
  */
 function headHtml(s, record, called, p, place) {
   const aka = Array.isArray(s.aka) && s.aka.length
@@ -753,10 +754,25 @@ function headHtml(s, record, called, p, place) {
   if (record.assetIsPlaceholder) {
     flags.push('<span class="pop-flag">This shape is a placeholder massing, not a bake from the record.</span>');
   }
+  // The one flag on this card that is not about how well the building is known.
+  // The four above qualify a reconstruction; this one says the project has stopped
+  // short of a claim on purpose, and it outranks them — so it is rendered last, in
+  // its own treatment, and it is the only flag that quotes the record.
+  //
+  // The quote is the point. Standing text can say a building is HELD; only the
+  // record can say what it is held FOR, and the sentence is the one
+  // `measure_review_constraint.py` assertion 6 judges, carried here by the
+  // compiler through the module the two of them share (T-0268). Before this the
+  // reason lived in a 400-word `research_note` the card shows verbatim and folded
+  // away, which is a reason a visitor never reads.
   if (s.review_required === true) {
-    flags.push(`<span class="pop-flag pop-flag-held">Held pending consultation — this record
-      touches the standing constraint on depicting Indigenous history in 1835; see
-      AGENTS.md. The record's own account below says what it is held for.</span>`);
+    const reason = typeof s.review_reason === 'string' ? s.review_reason.trim() : '';
+    flags.push(`<span class="pop-flag pop-flag-held"><strong>Held pending consultation.</strong>
+      This record touches the standing constraint on depicting Indigenous history in
+      1835: the project depicts the built fabric and stops there until the people
+      whose history it is have been consulted.${
+        reason ? `<em class="pop-held-why">${escapeHtml(reason)}</em>` : ''
+      }</span>`);
   }
   const flagBlock = flags.length ? `<div class="pop-flags">${flags.join('')}</div>` : '';
 

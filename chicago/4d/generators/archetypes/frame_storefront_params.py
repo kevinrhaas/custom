@@ -676,16 +676,14 @@ def from_phase(phase: dict, record: dict | None = None) -> FrameStorefrontParams
 # the params module for the same reason `shopfront_head_z` does — the commit gate
 # has to read them and the commit gate has no Blender.
 
-# HOW THIS IS KEPT TRUE, and it is a duplication with its eyes open. The builder
-# beside this file computes the same rectangles from the same constants, and until
-# it CONSUMES these functions the two are two copies. Making it consume them is
-# T-0520, and it is a separate ticket for one reason: the asset staleness hash
-# covers each archetype's builder module BYTE FOR BYTE, so editing the builder
-# stales every asset of that archetype — 212 of them across the three touched here
-# — and demands a town-wide rebake that does not fit beside this work. Until then:
-# ANY CHANGE TO AN OPENING'S GEOMETRY IN THE BUILDER MUST BE MADE HERE IN THE SAME
-# COMMIT. The constants are already shared, which is most of the drift surface; the
-# arithmetic is what is not yet.
+# THE BUILDER READS THESE (T-0520). It used to compute the same rectangles beside
+# them, which made two copies of one set-out and left a written rule — change one,
+# change the other — as the only thing holding them together. It does not any more:
+# the builder calls these functions, so an opening moved here moves on the mesh a
+# visitor sees, and there is nowhere else to move it. What made that a ticket of its
+# own is that the asset staleness hash covers each archetype's builder module BYTE
+# FOR BYTE, so touching the three builders staled 212 assets and demanded the
+# town-wide rebake that landed with the refactor.
 # ---------------------------------------------------------------------------
 
 def snap(x: float, origin: float, module: float) -> float:
@@ -769,6 +767,21 @@ def shopfront_panels(p: "FrameStorefrontParams",
     return out
 
 
+#: THE STOREY WINDOW, on any elevation of this archetype. The front wall's are set
+#: out by `front_window_rects` below; the flanks and the back are the builder's own
+#: and read these, so there is one window in this archetype and not two (T-0520).
+STOREY_WIN_W_M = 0.85
+STOREY_WIN_H_M = 1.30
+#: The sill's height up its own storey, as a fraction of the storey height.
+STOREY_SILL_FRAC = 0.30
+
+
+def storey_sill_z(p: "FrameStorefrontParams", story: int) -> float:
+    """The sill height of storey `story`'s windows, above the base of the walls."""
+    story_h = p.story_height_m
+    return story * story_h + story_h * STOREY_SILL_FRAC
+
+
 def front_window_rects(p: "FrameStorefrontParams", x0: float, x1: float,
                        shop: tuple | None) -> list[tuple]:
     """The storey windows on the FRONT wall, as `(u0, u1, z0, z1)`.
@@ -776,14 +789,13 @@ def front_window_rects(p: "FrameStorefrontParams", x0: float, x1: float,
     THE BAY COUNT COMES FROM THE FRONTAGE, not from a constant — the argument is at
     `frame_storefront._fenestration`, which draws exactly this list.
     """
-    story_h = p.story_height_m
-    win_w, win_h = 0.85, 1.30
+    win_w, win_h = STOREY_WIN_W_M, STOREY_WIN_H_M
     front_w = x1 - x0
     bays = max(2, min(7, int(round(front_w / 2.45))))
     module = module_m(p)
     out: list[tuple] = []
     for story in range(p.stories):
-        z0 = story * story_h + story_h * 0.30
+        z0 = storey_sill_z(p, story)
         if story == 0 and shop is not None:
             continue                       # the ground storey is the shop
         for i in range(bays):
@@ -791,6 +803,15 @@ def front_window_rects(p: "FrameStorefrontParams", x0: float, x1: float,
             cx = min(max(cx, x0 + win_w), x1 - win_w)
             out.append((cx - win_w / 2, cx + win_w / 2, z0, z0 + win_h))
     return out
+
+
+def plain_door_rect(u0: float, u1: float) -> tuple[float, float, float, float]:
+    """`(u0, u1, z0, z1)` of the single door a store with no shopfront shows the
+    street, centred on the frontage `u0..u1`. Robert Kinzie's Wolf Point
+    'storehouse' is the case the builder argues; the rectangle is stated here so the
+    builder and the signage layer read one door (T-0520)."""
+    cx = (u0 + u1) / 2.0
+    return cx - 0.52, cx + 0.52, 0.02, 2.06
 
 
 def front_openings(p: "FrameStorefrontParams") -> list[dict]:
@@ -821,9 +842,8 @@ def front_openings(p: "FrameStorefrontParams") -> list[dict]:
                         "z0": head + SHOP_FASCIA_M * 0.06,
                         "z1": head + SHOP_FASCIA_M + 0.11})
     else:
-        cx = (mx0 + mx1) / 2.0
-        out.append({"kind": "door", "u0": cx - 0.52, "u1": cx + 0.52,
-                    "z0": 0.02, "z1": 2.06})
+        du0, du1, dz0, dz1 = plain_door_rect(mx0, mx1)
+        out.append({"kind": "door", "u0": du0, "u1": du1, "z0": dz0, "z1": dz1})
 
     for u0, u1, z0, z1 in front_window_rects(p, mx0, mx1, shop):
         out.append({"kind": "window", "u0": u0, "u1": u1, "z0": z0, "z1": z1})

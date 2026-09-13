@@ -1,7 +1,7 @@
 ---
 id: T-0302
 title: The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1246
+claimed_by: run 9/13/2026, 5:37:57 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-13T11:48:36.263Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34752209854
 ---
 
 The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed.

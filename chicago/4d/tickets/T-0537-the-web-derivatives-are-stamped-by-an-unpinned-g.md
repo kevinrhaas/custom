@@ -67,3 +67,21 @@ holds true under.
 
 **Links:** T-0430 (where it was found) · `tools/web_derivatives.sh` ·
 `tools/measure_web_derivatives.py` · `generators/blender.pin` (the pattern) · K36(b) · K39.
+
+## The release landed — measured 2026-09-13 on T-0332's branch
+
+This is no longer hypothetical. T-0332's town-wide rebake ran `tools/bake.sh`, whose
+`web_derivatives.sh` leg resolved `npx --yes @gltf-transform/cli` to **4.5.0**; the committed
+derivatives were written by **4.4.2** (the version the script's own comment at line 19 names).
+
+| reading | |
+|---|---|
+| `assets/web/*.glb` rewritten | **196 of 384** |
+| bytes differing in a sampled file | **2** — `"generator":"glTF-Transform v4.4.2"` → `v4.5.0` |
+| masters (`assets/gltf/`) changed | 0 |
+
+So the churn is the stamp and nothing else, and it is now unavoidable on this runner: any bake
+that regenerates derivatives drags 196 unrelated files into the PR. T-0332 dropped them
+(`git checkout -- assets/web`) because zero masters moved, so no derivative needed rebuilding —
+that dodge works only while a bake changes no geometry, and the next one that does will not have
+it. Pin the CLI.

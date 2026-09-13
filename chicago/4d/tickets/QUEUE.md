@@ -26,6 +26,17 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-13  SOUTH THROUGH TIME BACK BELOW THE VISIBLE BANDS — the owner, hours after the
+#               pass below put it on top: "Move south through time so it is just before the
+#               number 6 loop improvements". So it sits between VISIBLE REFINEMENT and THE
+#               LOOP, which is where his 2026-09-10 instruction had placed it, and the four
+#               bands that build the 1835 town run ahead of it again. It stays PROMOTED —
+#               workable in rank order, not parked under EPICS — and its own 2026-09-01
+#               internal order is untouched. Bands renumbered; no ticket moved between bands,
+#               none added, none dropped (76 in, 76 out, asserted). The band's two standing
+#               notes travel with it: the 11 February 1835 extension is unresolved so terrain
+#               may cross Jackson and a chimney may not, and T-0468..T-0472 are the 1812 Fort
+#               Dearborn epoch under AGENTS.md's Indigenous-history constraint.
 #   2026-09-10  "move the south through time section below section 5 and above section 6" — the
 #               owner, hours after the reorganisation below. It is a PROMOTION as well as a move:
 #               under EPICS the loop does not work a programme until he promotes it, and it now
@@ -84,109 +95,122 @@
 #   2026-09-03  best-yield research first · consolidate every few, not at the end · the Sauganash
 #   2026-08-30  "lots of nothing happened in the city which is bad" — 41 merges, 0 buildings
 #   2026-08-29 (x2), 2026-08-28, 2026-08-27, 2026-08-23
+#   2026-09-13  SOUTH THROUGH TIME TO THE TOP, and every unplaced ticket ranked. The owner:
+#               "assess any of the unplaced tickets and assess prioritize consolidate all
+#               remaining queue tickets, keep south through time first unless there are any
+#               tickets you see as dependent necessary to complete first". Its two named
+#               dependencies were CHECKED, not assumed, and both had landed that day:
+#               T-0219 carries the heightfield through Madison (#1226) and T-0436 commits the
+#               corporation's limits (#1238) — whose open question, the 11 February 1835
+#               extension, T-0436's run wrote INTO T-0464 rather than filing separately, so it
+#               travels with the ticket it binds. Nothing else blocks the band, and it leads.
+#               The 17 unplaced tickets are placed by what each adds; SIX BANDS BECAME SIX with
+#               nothing dropped (76 in, 76 out, asserted). Four withdrawn: T-1014/T-1015/T-1016
+#               were filed on the way past T-0990 cohort C3 as titles with EMPTY acceptances and
+#               ask T-1004's question, so they fold there under the FILING RULE's case (a) and
+#               their sentences are kept verbatim in it; T-1073 reported dev's check.sh red on
+#               sauganash_range_m and T-1083 (#1216) re-banked exactly that, 1066.3 -> 1001.2 —
+#               verified by running the gate rather than by reading a green log, because this
+#               sandbox has no numpy and that is precisely how a skip reads as a pass (T-1083).
+#               NOT consolidated, deliberately: T-1021/T-1022/T-1023 are three distinct faults in
+#               one Norris reader, each with 27-33 lines of measured evidence and its own
+#               acceptance. Folding them would destroy the evidence, so they are placed
+#               ADJACENTLY instead — ordering rule 5, so one run carries the last one's context.
 
 # --- ==========================================================================
-# --- 1. FINISH THE RESEARCH — OWNER INSTRUCTION, 2026-09-10. THIS BAND RUNS FIRST.
+# --- 1. FINISH THE RESEARCH — the reads that still yield names, and the rulings that still reach a card
 # --- ==========================================================================
-# --- "finish up any research items first so we can get our best and final list of residents
-# --- and their best and complete profile and businesses and their structures and locations".
+# --- Owner, 2026-09-10: "finish up any research items first so we can get our best and final list
+# --- of residents and their best and complete profile and businesses and their structures and
+# --- locations". That band had drained to its succession ticket alone; these eleven are the
+# --- unplaced research findings, ranked by what each ADDS.
 # ---
-# --- WHAT "FINISH" MEANS HERE, MEASURED. measure_research_spend.py: every unit in all nine
-# --- sources is READ — 20,739 of them — 7,634 are spent onto a person of 1835, and 1,282 rulings
-# --- reached a card with 1,282 written. Nothing adjudicated is unspent. The 13,105 unspent units
-# --- are mostly names with no 1835 person to reach (the Newberry index, 4,199 at 0.0% match;
-# --- the directories, 7,229 post-1835 arrivals) or figures without names (the census, 84). So
-# --- this band is: the spends and identity rulings that still put a person, a trade or a place
-# --- on a card, ordered by what each adds; the handful of reads that still yield names; and
-# --- T-0987 at its foot, the one open-ended programme, worked a stretch at a time. When it is
-# --- empty, the research is finished for this pass and the town below is built from it.
+# --- T-0997 leads on yield: the Chicago Democrat of 29 October 1834 prints the committee of seventy
+# --- a town meeting appointed against gambling — about THIRTY townspeople named in one claim, and
+# --- the issue has never been extracted. T-1051 is next for the same reason: seven unread
+# --- impressions of the Lake Street land-agency card. Then the corrections with the widest reach —
+# --- T-1022's 294 entries, T-1025's 264 rulings that cannot say which printed line they rest on —
+# --- then the card-level rulings, then T-0987, the succession programme, at the foot as before.
 # ---
-# --- T-0962 LEADS because it is the honesty check on the sentence above: the spend meter cannot
-# --- see a resident_crosswalk in every domain, so "1,282 of 1,282" may be an undercount of what
-# --- is still unwritten. Run it, then spend whatever it exposes, here.
+# --- THE THREE NORRIS TICKETS RUN TOGETHER (T-1022, T-1021, T-1023): three distinct faults in
+# --- tools/read_norris_1844.py, all found by T-1018, each separately evidenced. They are adjacent
+# --- rather than folded so one run carries the context of the last.
 
-
-
-T-1035 — The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
+T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
+T-1114 — Three hundred and four Norris 1844 entries print a business street inside the trade line with no place-abbreviation, and 'b' for between is being read as the start of an address rather than a qualifier on the street before it
+T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
+T-1021 — Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
+T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
+T-1004 — Four cards each gather two men the corpus itself distinguishes by a forename or an initial — Bowen, King, Taylor, Thompson
+T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
+T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
+T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
-# --- T-0987 IS A SUCCESSION TICKET — owner, 2026-09-10: "Directories as a succession ticket at
-# --- the end of band 1." The three directories are transcribed in full; what remains is not
-# --- reading but adjudication — ~196 ties, ~1,100 initial-absent refusals, ~410 could-carry
-# --- trades and addresses — and it is the "documented address from later" he named for
-# --- positioning a business. One stretch per run; the run that closes a stretch files the
-# --- next one `--after T-0987` before it closes, so this line is the programme's cursor.
 
 # --- ==========================================================================
-# --- 2. WHAT THE VISIBLE BAND WOULD TRIP ON — ordering rule 4, and only these three
+# --- 2. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
 # --- ==========================================================================
-# --- dev IS red on one line at both viewports: the town's wagons stand on 6 headings and the
-# --- smoke asks for 8 (desktop 2-3 and mobile 1-4, filed 2026-09-06/07). Every visible PR below
-# --- inherits that red in its smoke. T-0836 says why the rule caps at 6 and T-0688 is the
-# --- repair; they are one run. T-0763 is why eight "dev is red" tickets were filed on a green
-# --- dev and withdrawn today: check.sh's negative-control self-tests print FAIL lines that
-# --- look exactly like a failing step.
+# --- Owner: "apply the research and spend it to create residents and their business and residences
+# --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
+# --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
 
-# --- ==========================================================================
-# --- 3. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
-# --- ==========================================================================
-# --- Owner: "apply the research and spend it to create residents and their business and
-# --- residences as reasonably accurate as we can". The standing gap, from town_census.json:
-# --- 367 buildings of 667, 29 people housed of 3,265, 1,318 households with no dwelling; 206
-# --- businesses, 60 street-only and 71 unplaceable. Roofs and placements first, ordered by
-# --- what each puts on the ground; then the identity and anchor repairs those placements
-# --- cannot be correct without. The triangle ceiling no longer gates any of this — every tier is
-# --- inside its ceiling on dev. T-0432's four roofs led this band on the owner's 2026-08-30
-# --- ruling and landed on 2026-09-11 as three (PR #1135): the metres of lot 2 took two roofs
-# --- beside Frederick Thomas's shop and the fourth went back to the south district's balance.
-# --- With it every platted block the plat module reaches is at_capacity, so T-0385 leads now.
+T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
 
 # --- ==========================================================================
-# --- 4. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
+# --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
 # --- ==========================================================================
-# --- Owner ask, 2026-09-05, in his own dependency order, with the sand bar's four tickets first
-# --- because they are owner-reported from the walkthrough: T-0799 traces it, T-0800 argues its
-# --- height, T-0939 stops it running to the horizon, T-0940 makes its surface sand; T-0799 runs
-# --- first if any two are picked up. Then the additions Wright draws whole and the town lacks,
-# --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
+# --- T-1067 LEADS this band now and is the largest hole in the modelled ground: it stops at n +400 m
+# --- and the whole of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks
+# --- on ground the heightfield does not cover. It is the north-bank twin of T-0219, which finished
+# --- the south side on 09-12 and unblocked the band above.
 
-
-
-
-
-
-
-T-1103 — Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
-T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
-T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
-T-1105 — The generators reading the tract layer: the plat module's street width and block module, and the reserved-ground record citing the reservation polygon
+T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
-T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
-T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 
 # --- ==========================================================================
-# --- 5. VISIBLE REFINEMENT — the town changing rather than growing
+# --- 4. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
-T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
-T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
-T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
-T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
-T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
-T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
-T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
-T-0268 — A building held under the standing constraint says so nowhere a visitor can see
-T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
-T-0136 — The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
-T-0055 — Hold the Kinzie-view plate as a source record
+# --- One ticket: the frontage layer leans on a confidence grade alone to keep street furniture off
+# --- an unoccupied invented building, because the hitching rule omits the anonymity clause the
+# --- signboard rule applies.
+
+T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
 
 # --- ==========================================================================
-# --- 6. SOUTH THROUGH TIME — owner epic, 2026-09-01, PROMOTED OUT OF EPICS 2026-09-10
+# --- 5. SOUTH THROUGH TIME — owner epic, 2026-09-01; PROMOTED, and it sits below the 1835 town
 # --- ==========================================================================
-# --- Owner, 2026-09-10: "move the south through time section below section 5 and above section
-# --- 6". It was under EPICS, which the loop does not work until the owner promotes one — this
-# --- is that promotion, so these fourteen are workable in rank order like any other band.
-# --- One ticket per epoch, in his own order: the shared south terrain first, then 1812, then
-# --- the 1880s. Nothing here touches the 1835 town; it stands below every band that does.
+# --- Owner, 2026-09-13: "Move south through time so it is just before the number 6 loop
+# --- improvements" — so the four bands that build the 1835 town run ahead of it, and it runs
+# --- ahead of the loop's own machinery. It is still PROMOTED out of EPICS (2026-09-10), which
+# --- means it is workable in rank order like any other band, and its 2026-09-01 internal order
+# --- is the owner's own.
+# ---
+# --- ITS DEPENDENCIES ARE SATISFIED, checked 2026-09-13 rather than assumed: T-0219 carried the
+# --- modelled ground through Madison (#1226, 09-12) — the precondition T-0464's own text names —
+# --- and T-0436 committed the corporation's limits (#1238, 09-13). Nothing blocks this band; it
+# --- sits here because the owner ranked the 1835 town above it, not because it is held.
+# ---
+# --- THE ONE OPEN QUESTION TRAVELS WITH T-0464 and is not a separate ticket: the corporation's
+# --- south leg is JACKSON STREET, and the extension of 11 February 1835 is recorded and NOT
+# --- resolved — the act's text is not in this corpus and Andreas misprints its year. T-0436's run
+# --- wrote that into T-0464 itself. Terrain may cross Jackson; a CHIMNEY may not, until it is
+# --- answered, or the eighteen-inch gate starts conforming buildings to a by-law that may never
+# --- have bound them.
+# ---
+# --- READ THIS BEFORE T-0468..T-0472. These five are the 1812 Fort Dearborn epoch, and AGENTS.md's
+# --- standing constraint governs every one of them: do not improvise Native presence,
+# --- representation, dialogue or depiction; it is not a research gap to be filled by inference.
+# --- T-0470 (the evacuation route and battle-location confidence zone) and T-0472 (the interpretive
+# --- scene) are that subject directly. v1 ships NO human figures, uniformly. A run reaching these
+# --- builds terrain, structures and documented geography, sets review_required with its reason in
+# --- its own words, and takes the depiction question to the owner rather than answering it.
+# ---
+# --- T-0466 is the tiling and culling plan for the four-kilometre field T-0464 builds. The owner's
+# --- order puts it third and it is left there — but a run taking T-0464 should READ it first rather
+# --- than size the field twice.
+
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
@@ -203,18 +227,20 @@ T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 
 # --- ==========================================================================
-# --- 7. THE LOOP, ITS GATES AND ITS MEASUREMENTS — invisible, and none of it blocks a visible ticket
+# --- 6. THE LOOP, ITS GATES AND ITS MEASUREMENTS — invisible, and none of it blocks a visible ticket
 # --- ==========================================================================
-# --- Ordering rule 4 in the other direction: nothing here outranks the bands above. The
-# --- triangle-and-draw-call tickets are here now rather than gating the roofs, because every
-# --- tier is inside its ceiling; they are measurement until a breach is measured again.
-T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
+# --- Ordering rule 4 in the other direction: nothing here outranks the bands above.
+# ---
+# --- T-0999 LEADS IT, and it is the one entry here that guards another band's work: nothing in the
+# --- gate can see a ruling that is simply GONE. A smaller resident_rulings.json is a legal one, and
+# --- #1055 lost forty hand-authored judgements under a green check.sh — the research band above
+# --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
+# --- re-deriving them.
+
+T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
+T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
-T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
-T-0833 — Make a drain lap a tool: tools/drain.mjs, which refuses on any conflict outside the build products
-T-0852 — tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
-T-0870 — The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported
 T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
 T-0896 — Drain the 18 --check-capable tools tools/check.sh never runs: gate each or record why it cannot be gated
 T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
@@ -250,16 +276,15 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 # --- ==========================================================================
 # --- Owner, 2026-09-10: "if you come across any epic tickets to create like you need to create
 # --- more than 5 to complete a ticket then add those to an epic at the bottom of the queue for
-# --- future improvements." TWO stand here — South Through Time was the third and the owner
-# --- promoted it to band 6 on 2026-09-10. Each is a coherent programme whose tickets belong
-# --- together, and neither adds a resident, a trade or a roof to the 1835 town.
+# --- future improvements." THREE stand here. South Through Time was the fourth and is now
+# --- band 1. None of these adds a resident, a trade or a roof to the 1835 town.
 
 # --- EPIC: THE 1840 CENSUS DEPOSIT, READ TO COMPLETENESS — 0 residents. 965 named heads are
 # --- adjudicated: 13 matched, 17 candidates, 935 refused (249 unreadable, 411 surnames absent
-# --- from 1835). Every left sheet with names has a page file. What remains is continuation
-# --- sheets carrying industry and school counts, footing disputes on figures, and one leaf read
-# --- three ways. Real, careful work, and it houses nobody. Owner, 2026-09-10: "I think in general
-# --- you've tended to create a lot of tickets like all of those census tickets and I am sad".
+# --- from 1835). What remains is continuation sheets carrying industry and school counts,
+# --- footing disputes on figures, and one leaf read three ways. Real, careful work, and it
+# --- houses nobody. Owner, 2026-09-10: "I think in general you've tended to create a lot of
+# --- tickets like all of those census tickets and I am sad".
 T-0984 — The remaining eight filled continuations of images 51-74 read one leaf per run, and blank 33SQ-GYYJ-BH recorded swept-and-empty
 T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
 T-0957 — Two readings of 33S7-9YYJ-L3 disagree on the line count and on the printed footing: 27 lines and 115, or 28 lines and 113
@@ -274,51 +299,10 @@ T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character ru
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
 
 # --- EPIC: THE ONE-LETTER CARD PAIRS — 68 pairs the exact candidate test cannot see, measured
-# --- by tools/measure_card_fuzzy_candidates.py after T-1002 ruled its three. Each needs a page
-# --- of its own: the list mixes real printed spelling variations (Foot/Foote, Lloyd/Loyd,
-# --- Pearson/Pearsons, Pruyne/Pryne) with cards minted off scanner wreckage that R5 refuses and
-# --- T-0695 reads, and with pairs that are simply two people one letter apart — John Hale
-# --- against John Vale, Mark Noble against Mary Noble. No distance separates the first kind from
-# --- the last, which is T-1001's answer over the land register reached again over the cards.
+# --- by tools/measure_card_fuzzy_candidates.py. The list mixes real printed spelling variations
+# --- (Foot/Foote, Lloyd/Loyd, Pearson/Pearsons, Pruyne/Pryne) with cards minted off scanner
+# --- wreckage, and with pairs that are simply two people one letter apart — John Hale against
+# --- John Vale, Mark Noble against Mary Noble. No distance separates the first kind from the
+# --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
 
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-0995 — Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so
-T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
-T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
-T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
-T-1004 — Erastus Bowen's card gathers two men: Fergus 1843 prints the city collector and an Erastus Selden Bowen who was sixteen in 1835
-T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
-T-1014 — The card for Nehemiah King gathers every 'N. King' reading in the corpus, and Fergus 1839 prints a Nathaniel King clerking for Tuthill King
-T-1015 — The card for Anson H. Taylor carries a press reading of 'Anson W. Taylor' and an 'A. W. Taylor' militia row, against an Anson H. everywhere else
-T-1016 — THOMPSON JOHN L was proposed onto a card with no middle initial while the layer holds Lieut J L Thompson, and the same card carries a death notice for Gen. John Leverett Thompson
-T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-1021 — Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
-T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house', so 'at H. Norton & Co.' reads as an address in 294 entries
-T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
-T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
-T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
-T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
-T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
-T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
-T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph moved sauganash_range_m 1066.3 to 1001.2 and the Chappel baseline was never re-banked
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' and the HUD has read 'walk · 3.2 mph' since T-0823, so mobile part 3 has been red on dev for a week
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-1093 — The Settings speed readout now reads 'walk · 3.2 mph' and the mobile part-7 assertion wants '3.2 mph', so dev is red on a prefix nobody meant to assert against

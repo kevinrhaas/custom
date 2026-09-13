@@ -406,10 +406,27 @@ async function readRoadStations(page, label, stations) {
     failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
   });
   Object.assign(ROAD_BAND_OBSERVED, observed);
+  // T-0690 — AND TO THE STATIONS THIS INVOCATION READ, not only its viewport.
+  //
+  // The filter above was written when all three stations sat in one part, so
+  // "compares only what THIS invocation measured" was true of it. T-0173 then
+  // cut them across parts 7 and 8, and nothing here noticed: a part-filtered
+  // run compared the bank's WHOLE viewport against the one station it visited
+  // and reported every band it had not been to as `ungated — either the probes
+  // stopped projecting or the station moved`. Neither had. `SMOKE_STAGE=8`
+  // simply never goes to `south_water` or `from_above`, which are part 7's, and
+  // six of the ten movements T-0690 was filed over were exactly that. A report
+  // that cries wolf six times in ten is a report nobody reads, which is the one
+  // thing a print-only report cannot survive.
+  const visited = new Set(stations.map((st) => st.id));
   const bankedHere = Object.fromEntries(
-    Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
+    Object.entries(ROAD_BAND_BANKED).filter(([k]) => {
+      const [bankedVp, stationId] = k.split('/');
+      return bankedVp === vp && visited.has(stationId);
+    }));
   if (!Object.keys(bankedHere).length) {
-    console.log(`        road bands: nothing banked for ${vp} yet`
+    console.log(`        road bands: nothing banked for ${vp}`
+      + ` at ${[...visited].join(', ')} yet`
       + ' — re-run with --update-road-bands to bank this run (T-0016)');
   } else {
     for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
@@ -655,7 +672,53 @@ const FACADE_MOVED_MIN = 300;
  */
 const SHADOW_REACH_MIN_WORST = 4;
 
+/** The 48² frame signature THREE other assertions are measured on — the
+ *  roughness merge, the facade tone and the shadow reach, each with a floor
+ *  derived against this grid and this grid only. It keeps its name and its
+ *  value: a finer grid reads a larger worst cell for an identical change, so
+ *  moving it would quietly slacken all three at once. R-A1's own reach reading
+ *  moved off it — see ROAD_AID_REACH_GRID below. */
 const ROAD_AID_GRID = 48;
+/**
+ * T-0690 — THE GRID R-A1'S REACH IS READ ON, AND WHY IT IS NOT THE 48 ABOVE.
+ *
+ * The signature averages luma over `grid²` cells, so a roadway occupying about
+ * a tenth of the frame is diluted inside every cell it only partly covers and a
+ * coarser grid reports a smaller worst cell for the SAME change. R-A1 found
+ * that on 2026-08-16 without naming it — the aid scored worst 2 at 12² and
+ * worst 6 at 48² with nothing about the scene changed between the two runs —
+ * and set its floor at 4 from the 48² desktop reading alone. Mobile was never
+ * measured, and mobile is where the assertion has been red since 2026-09-04:
+ * the aid moves the 390×780 frame by a worst cell of 3, one short, while the
+ * mean clears its own floor comfortably.
+ *
+ * MEASURED BEFORE IT WAS SET, on the published mirror at `lake_market`, the
+ * clock held, by `tools/measure_road_aid.mjs`. Reach worst cell / residual
+ * worst cell, aid off → full on → off again:
+ *
+ *      grid    390×780      1280×800
+ *      12²      2 / 0        2 / 0
+ *      24²      3 / 0        4 / 0
+ *      48²      3 / 0        7 / 0     <- was here; mobile one short of 4
+ *      96²      7 / 0       11 / 0     <- here
+ *     144²      9 / 0       15 / 0
+ *
+ * So the aid was never weak — the instrument was blind. The residual is 0 at
+ * every grid on both viewports, which is the other half of the reading: this
+ * is dilution and not noise, and a finer grid buys signal without buying any.
+ *
+ * 96² and not 144² because the floor below does not move and 96 already clears
+ * it on the WEAKER viewport by the same margin the shipped rule asks for —
+ * SHADOW_REACH_MIN_WORST's box states it as "half the smaller of the two", and
+ * half of 7 is 3.5. Going finer would buy a headroom no assertion spends.
+ */
+const ROAD_AID_REACH_GRID = 96;
+/** UNCHANGED BY T-0690, on purpose. The gate still asks the aid for four cells
+ *  and 0.15 of mean; what changed is that both viewports can now be asked. At
+ *  96² the reading is 7 / 0.35 at 390×780 and 11 / 0.28 at 1280×800, so each
+ *  floor sits at roughly half the weaker of the two — the rule the shadow-reach
+ *  floor beside it was set by — and far above a residual measured at 0. A red
+ *  here is now a statement about the aid rather than about the grid. */
 const ROAD_AID_MIN_WORST = 4;
 const ROAD_AID_MIN_MEAN = 0.15;
 // K24. The brightness aid's own floors, and the reason they are not the road
@@ -7024,6 +7087,59 @@ for (const [label, viewport, touch] of [
       placeholder.placeholderFlag === (placeholder.recommended === true),
       JSON.stringify(placeholder));
 
+    // --- the standing constraint, on the card ------------------------------
+    // T-0268. Nine records are held under AGENTS.md's standing constraint, and the
+    // flag used to reach a browser exactly once, as a console line about the scene.
+    //
+    // This is asserted over EVERY flagged record rather than one sampled id, because
+    // the set is the thing: `measure_review_constraint.py` decides which buildings
+    // are held and the card must not disagree with it about a single one. The two
+    // ends of that agreement are gated in different places and both are needed — the
+    // census re-derives `review_reason` against the committed sidecars, and this
+    // asks the rendered DOM whether a visitor is actually handed it.
+    //
+    // The control is the other half. A held notice on a building that is not held
+    // would be a worse fault than a missing one: it would put a consultation claim
+    // on a record nobody made it for.
+    const held = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const flag = document.querySelector('#popup .pop-flag-held');
+        return {
+          id,
+          notice: !!flag && /held pending consultation/i.test(flag.textContent),
+          why: flag?.querySelector('.pop-held-why')?.textContent?.trim() ?? '',
+          recorded: window.__chicago4d.registry.get(id)?.sidecar?.review_reason ?? '',
+          // Folded sections are not an answer to "without unfolding anything":
+          // the reason lived inside a 400-word note behind a disclosure before
+          // this, and that is the state the ticket was opened about.
+          openable: !!flag?.closest('details'),
+        };
+      };
+      const flagged = [...window.__chicago4d.registry.values()]
+        .filter((r) => r.sidecar?.review_required)
+        .map((r) => r.sidecar.id)
+        .sort();
+      const control = [...window.__chicago4d.registry.values()]
+        .find((r) => r.sidecar && !r.sidecar.review_required)?.sidecar?.id;
+      return { flagged: flagged.map(read), control: control ? read(control) : null };
+    });
+    check(`${label}: every held building says so on its card`,
+      held.flagged.length > 0 && held.flagged.every((h) => h.notice && !h.openable),
+      `${held.flagged.filter((h) => !h.notice || h.openable).map((h) => h.id).join(', ')
+       || `${held.flagged.length} flagged`}`);
+    // Verbatim, and for the same reason the account below is: this is the record's
+    // sentence, not a gloss of it, and a renderer that trimmed it to a first clause
+    // would pass any substring check written here.
+    const whyDrift = held.flagged.filter((h) => !h.recorded || h.why !== h.recorded);
+    check(`${label}: and says what it is held for, in the record's own words`,
+      held.flagged.length > 0 && whyDrift.length === 0,
+      whyDrift.map((h) => `${h.id}: shown ${JSON.stringify(h.why.slice(0, 40))}`
+        + ` vs recorded ${JSON.stringify(h.recorded.slice(0, 40))}`).join(' | '));
+    check(`${label}: and a building that is not held does not claim to be`,
+      held.control !== null && held.control.notice === false,
+      JSON.stringify(held.control));
+
     // --- the record's own account -----------------------------------------
     // `research_note` is on every record and in every compiled sidecar, and the
     // sidecar-contract gate reported it as compiled-and-never-read: an unshipped
@@ -8294,6 +8410,8 @@ for (const [label, viewport, touch] of [
         mapCaption: document.querySelector('.overview-caption')?.textContent?.trim(),
         mapAria: document.getElementById('overview-map')?.getAttribute('aria-label'),
         speedLabel: document.getElementById('v-speed')?.textContent?.trim(),
+        paceLabels: ['v-speed', 'v-wagon-speed', 'v-horse-speed'].map(
+          (id) => [id, document.getElementById(id)?.textContent?.trim() ?? null]),
         units: document.getElementById('s-units')?.value,
         mapSize: [mapCanvas.width, mapCanvas.height],
         east,
@@ -8312,9 +8430,24 @@ for (const [label, viewport, touch] of [
       && /feet|ft/.test(nav.mapAria ?? ''),
       `${nav.mapSize.join('x')}, caption ${nav.mapCaption}, aria ${nav.mapAria}, `
       + `E ${nav.east.snapshot.bounds.eMin}…${nav.east.snapshot.bounds.eMax}`);
-    check(`${label}: walking speed is presented in miles per hour`,
-      /^\d+(?:\.\d)? mph$/.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
+    // T-1081. The readout is `gait · speed` — "walk · 3.2 mph" — since T-0823 gave
+    // each pace a named gait, and this assertion's `^`-anchored bare-number pattern
+    // had called dev red on that prefix on both viewports for a week, which is a
+    // week of every PR touching parts 7-8 unable to merge. The pattern now reads the
+    // shape the HUD actually ships, so the gait is COVERED rather than contradicted:
+    // a readout that loses its unit still fires, and so does one that loses its name.
+    const PACE_READOUT = /^[a-z][a-z ]*[a-z] · \d+(?:\.\d)? mph$/;
+    check(`${label}: walking speed is presented as a named gait in miles per hour`,
+      PACE_READOUT.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
       `speed label ${nav.speedLabel}`);
+    // And all three ground paces, because the readout is one function (hud.js
+    // § gaitReadout) and a fault in it reaches the wagon and the horse too.
+    const badPace = nav.paceLabels.filter(([, text]) => !PACE_READOUT.test(text ?? ''));
+    check(`${label}: every pace slider names its gait beside an imperial speed`,
+      nav.paceLabels.length === 3 && badPace.length === 0,
+      badPace.length
+        ? badPace.map(([id, text]) => `${id} reads ${JSON.stringify(text)}`).join('; ')
+        : nav.paceLabels.map(([id, text]) => `${id} ${text}`).join(', '));
     check(`${label}: overview marker follows position and bearing`,
       nav.first !== nav.second && Math.abs(nav.moved.e - 180) < 0.1
       && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
@@ -8456,7 +8589,11 @@ for (const [label, viewport, touch] of [
       aidAtBoot === 0, `uRoadAid ${aidAtBoot} with no stored preference`);
 
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    // T-0690. ROAD_AID_REACH_GRID, not the 48² the three assertions further down
+    // share: at 390×780 a 48² cell dilutes the roadway until the aid's worst cell
+    // reads 3 against a floor of 4, and the same frame at 96² reads 7. Its box
+    // carries the sweep both readings come from.
+    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const aidOff12 = await page.evaluate(() => window.__chicago4d.capture());
     const aidSet = await page.evaluate(() => window.__chicago4d.setRoadAid(1));
     // K24. The raised READING, which until now this suite never took: both of
@@ -8464,12 +8601,12 @@ for (const [label, viewport, touch] of [
     // them and only a value that is meant to MOVE can find that out. See
     // main.js § Live getters.
     const aidLive = await page.evaluate(() => window.__chicago4d.roadAid);
-    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const aidOn12 = await page.evaluate(() => window.__chicago4d.capture());
     const dAid = signatureDistance(aidOff, aidOn);
     const dAid12 = signatureDistance(aidOff12, aidOn12);
     await page.evaluate(() => window.__chicago4d.setRoadAid(0));
-    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const dAidBack = signatureDistance(aidOff, aidBack);
     const aidRestored = await page.evaluate(() => window.__chicago4d.roadAid);
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
@@ -8489,7 +8626,7 @@ for (const [label, viewport, touch] of [
       `uRoadAid ${aidRestored}, residual mean ${dAidBack.mean?.toFixed(2)}, `
       + `worst-cell delta ${dAidBack.worst}`);
     console.log(`        road aid: full-on delta mean ${dAid.mean?.toFixed(2)} / worst `
-      + `${dAid.worst} at ${ROAD_AID_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
+      + `${dAid.worst} at ${ROAD_AID_REACH_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
       + `at 12²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
       + `${dAidBack.worst}`);
 
@@ -12052,6 +12189,65 @@ for (const [label, viewport, touch] of [
       mountFit.length === 7 && unfit.length === 0,
       unfit.length ? unfit.map((m) => `${m.id} ${m.scroll}/${m.client} in ${m.panel}`).join('; ')
         : mountFit.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
+
+    // T-0302's actual claim, and the reason the measure above was not enough:
+    // *"it is invisible today only because their longest line happens to fit;
+    // the first long `<dd>` any of them gains clips silently."* A check on the
+    // content as it stands cannot see a latent clipper, so this one puts the
+    // long line there. Each mount is CLONED, laid out as the next sibling of the
+    // original — same parent, same column width, so the measurement is of this
+    // section's real layout — every `<details>` in the copy is opened, a
+    // 90-character unbreakable run replaces the text of every leaf, and the copy
+    // is measured and removed. The original is never touched, which is what lets
+    // this sit in the middle of a part whose later assertions read the same
+    // sections' text.
+    // Measured on this branch, 2026-09-13 at 390x780: before the rules in
+    // css/evidence.css all seven clipped — liberties 1196/362, ground 1261,
+    // fauna 1196, plants 749, exclusions 685, uncertain 685, residents 689 —
+    // carried by ordinary furniture the old `dt`/`dd`-only rule did not name: a
+    // citation `<li>`, the scope pill, a `<b>` in a household's prose. After,
+    // every one of them is 362/362.
+    const mountStress = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const TOKEN = 'x'.repeat(90);
+      const stress = (id) => {
+        const mount = document.getElementById(id);
+        if (!mount) return { id, client: 0, scroll: 1, leaves: 0 };
+        const probe = mount.cloneNode(true);
+        probe.id = `${id}-t0302-probe`;
+        mount.after(probe);
+        probe.querySelectorAll('details').forEach((d) => { d.open = true; });
+        let leaves = 0;
+        for (const el of probe.querySelectorAll('*')) {
+          if (el.children.length || !el.textContent.trim()) continue;
+          el.textContent = TOKEN;
+          leaves += 1;
+        }
+        const out = { id, client: probe.clientWidth, scroll: probe.scrollWidth, leaves };
+        probe.remove();
+        return out;
+      };
+      const rows = [];
+      api.hud.setPanel(true);
+      api.hud.selectTab('evidence');
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+        api.evidenceHub.showTopic(id);
+        await new Promise((r) => setTimeout(r, 30));
+        rows.push(stress(id));
+      }
+      api.hud.selectTab('people');
+      api.people?.close?.();
+      await new Promise((r) => setTimeout(r, 30));
+      rows.push(stress('residents'));
+      api.hud.selectTab('evidence');
+      api.evidenceHub.showHub();
+      return rows;
+    });
+    const clipped = mountStress.filter((m) => !(m.client > 0 && m.leaves > 0 && m.scroll <= m.client));
+    check(`${label}: a run longer than the column breaks inside all seven mounts, not past them`,
+      mountStress.length === 7 && clipped.length === 0,
+      clipped.length ? clipped.map((m) => `${m.id} ${m.scroll}/${m.client} on ${m.leaves} leaves`).join('; ')
+        : mountStress.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a

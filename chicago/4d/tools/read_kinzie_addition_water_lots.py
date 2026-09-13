@@ -61,6 +61,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import sys
 from pathlib import Path
 
@@ -516,6 +517,33 @@ def check_offline(path=OUT):
 
 
 def check_sheet():
+    # DEGRADE POLITELY, LIKE THE OTHER THIRTEEN RASTER STEPS (T-1083) — this one
+    # did not, and the cost was measured on 2026-09-13: it raised a bare
+    # ModuleNotFoundError for PIL, `tools/check.sh` counted that as a failed step,
+    # and `.github/steward/pr-lap.sh` reads a red gate as "do not push". The lap
+    # therefore refused EVERY open PR — `pushed=0 … red=11` on run 272 — so no
+    # branch could be brought current and nothing could merge. The owner saw it as
+    # "getting some red PR's".
+    #
+    # The lap and the bake install the readers now, so this path should not be
+    # reached in CI. It is here because a gate step that CRASHES when a library is
+    # absent takes the whole gate with it, wherever it runs: the next workflow, or
+    # any agent sandbox. `--check` (check_offline) stands on the committed pixels
+    # and needs nothing, which is why that half was green throughout.
+    #
+    # C4D_GATE_REQUIRE_READERS=1 keeps T-1083's rule intact: a GATE may not count a
+    # skip as a pass, so where the readers are required this is still RED.
+    try:
+        from PIL import Image  # noqa: F401
+    except ImportError:
+        if os.environ.get("C4D_GATE_REQUIRE_READERS") == "1":
+            raise SystemExit(
+                "Pillow is not installed and C4D_GATE_REQUIRE_READERS=1: a gate may "
+                "not count a skip as a pass (T-1083). pip install Pillow")
+        print(f"   Pillow is absent, so THE SHEET WAS NOT RE-READ. {OUT.name} stands on "
+              "its committed reading; `--check` re-derives it from the committed pixels "
+              "and is unaffected.")
+        return
     built = document(read())
     have = json.loads(OUT.read_text())
     if json.dumps(built, sort_keys=True) != json.dumps(have, sort_keys=True):

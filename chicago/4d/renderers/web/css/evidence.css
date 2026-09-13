@@ -153,6 +153,49 @@
 .lib-body { grid-template-columns: minmax(0, 1fr); }
 .lib-body dt, .lib-body dd { min-width: 0; overflow-wrap: anywhere; }
 .lib summary .lib-title { min-width: 0; overflow-wrap: anywhere; }
+/* …and the other half of the same fault, measured 2026-09-13 at 390x780 with a
+   90-character unbreakable run injected into every leaf of each of the seven
+   mounts: all seven still clipped, because the rule above names `dt`, `dd` and
+   the summary title and nothing else. What carried the overflow was ordinary
+   furniture — a citation `<li>` (704 px against a 362 px box), the scope span on
+   a liberty entry (847 px), a `<b>` inside a household's prose (668 px). Naming
+   them one at a time is the same mistake at a smaller scale, so the property is
+   set ONCE at the section root: `overflow-wrap` INHERITS, so every descendant of
+   a `.liberties` mount — present and future — can break a run that is longer
+   than its column instead of widening the card. `anywhere` rather than
+   `break-word` on purpose: only `anywhere` lets the break count toward the
+   MIN-CONTENT size, which is what a `minmax(0, 1fr)` track actually measures. */
+.liberties { overflow-wrap: anywhere; }
+/* The summary row is the other place a run can push past the panel, and it is a
+   different mechanism: `.lib summary` is a flex line whose furniture — the record
+   id, the scope pill, the covers pill, the confidence chip — is `flex: 0 0 auto`
+   with `white-space: nowrap`, so it can neither shrink nor break. Letting the
+   LINE wrap instead was tried first and rejected on the measurement: `flex-wrap:
+   wrap` pushes a whole pill onto a second line whenever the title's max-content
+   width plus the pill exceeds the row, which is most entries here — the
+   liberties' 234 summary rows grew from 15,304 px to 23,276 px of stacked height
+   for a fault a visitor never sees. So the furniture is made ABLE TO SHRINK
+   instead, which costs nothing until something actually overflows: flex-shrink
+   only engages on a line that does not fit, and every one of these rows fits.
+   T-0281's `.plant-zone > summary { flex-wrap: wrap }` stays where it is — there
+   the fourth chip really does run past 390 px at rest, and wrapping is the
+   honest answer to a row that is genuinely too full.
+   `white-space` is cleared structurally rather than class by class: naming
+   `.lib-scope`, `.lib-covers`, `.conf`, `.res-chip` and `.grade` one at a time is
+   the enumeration this ticket was opened against, and the next chip added would
+   not be on the list. A pill here is 10 px of a closed vocabulary; nothing inside
+   a `.liberties` mount has to be held on one line, and no `pre`/`pre-wrap` is set
+   anywhere in these stylesheets for the reset to undo.
+   A weaker `flex-shrink` on the pills was tried, to make the TITLE absorb the
+   shrink first: at .05 the households' chip row stopped shrinking at all and
+   the residents mount overflowed at rest, 441 px against its 362 px box — the
+   fault this ticket is about, introduced by the fix for it. So the factor is 1
+   on every child, and the one visible consequence is recorded rather than
+   tuned away: on the Indian Agency House entry the scope pill now takes two
+   lines and the title one, where before the title took two and the pill one.
+   The row is the same height; nothing else in the seven sections moved. */
+.liberties .lib summary > * { min-width: 0; flex-shrink: 1; }
+.liberties * { white-space: normal; }
 
 @media (prefers-reduced-motion: reduce) {
   .ev-tile, .ev-pill, .ev-about > summary::before { transition: none; }

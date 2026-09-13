@@ -542,6 +542,50 @@
         "iso": "1834-07-24"
       },
       "notes": "A MAN STANDING FOR SHERIFF OF COOK COUNTY, addressing the electors from Chicago six days before the issue and a fortnight before the general election of Monday 11 August that claim c003 advertises. The standing candidate lists this paper prints weekly name three others for sheriff — Blackstone, Reed and Heacock, at page 3 column 1 of 1834-07-02 — and Sherman is not among them, which is what 'coming before you at this late period' means. He is extracted as a person and no business record is made. '94'→'2[4]' and '1531'→'18[34]': the year is the run's and the day is read from the digits, which support 24 and not 94 in a month of thirty-one days."
+    },
+    {
+      "id": "c011",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "house and Lend digest.\nOTS purchased and Sold, or by comicis-\nA nion.\n1:2 Buiking Lots for sale, in the town and\nSchool section.\n1 Houses to let.\nEnquire at the Ofice on\ndest opposite Dr. Ten plis.",
+      "normalized": "[H]ouse and L[a]nd [A]g[en]t. [L]OTS purchased and Sold, or by com[m]is-[s]ion. 1[2]2 Bui[ld]ing Lots for sale, in the town and School section. […] Houses to let. Enquire at the Ofice on [Lake st.] opposite Dr. Te[m]pl[e']s.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 3,
+        "lines": [
+          596,
+          606
+        ],
+        "lines_of_claim": [
+          596,
+          598,
+          600,
+          602,
+          603,
+          604,
+          605,
+          606
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's",
+          "offset_text": "dest opposite Dr. Ten plis.",
+          "offset_normalized": "[…] opposite Dr. Te[m]pl[e']s.",
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. The display line is lost in the interleave (line 595 reads 'Adieu,'), and 594, 597, 599 and 601 are the woven column's fragments. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. THE STREET IS NOT SET HERE: the address line reads 'dest opposite Dr. Ten plis.' and the words before 'opposite' are not 'Lake st.' on the page, so the anchor is read and the street left null."
     }
   ]
 }

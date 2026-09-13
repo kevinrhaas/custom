@@ -1,7 +1,7 @@
 ---
 id: T-1099
 title: Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,20 +9,25 @@ effort: S
 legacy_id: null
 parent: T-1095
 opened: 2026-09-12
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1228
+claimed_by: run 9/12/2026, 10:25:01 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-13T15:26:05.693Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34735274376
 ---
 
 Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches.
 
 Piece 2 of 2 of **T-1095 — The West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: still no committed street line reaches them**, split because the parent needed more than one run's demonstration to be done. The parent keeps the full ask and its links; this ticket owns one slice of it.
 
-**Acceptance:** (state it before working — one demonstration, never weakened to pass)
+**Acceptance:** the collision is settled by a demonstration, not a preference — it is shown which of the
+two possibilities holds, and the losing side is corrected in the file that carries it. Blocks 14 and 15 are
+then each read from a box cut by a tool the gate re-runs, or refused in writing with the figure that would
+change the answer. No numeral located by eye. Where a box's side is not a committed line, the rule standing
+in for it is stated in the tool and in the memo, corroborated against control this repository already holds,
+and graded no better than `inferred`.
 
 ---
 
@@ -48,3 +53,34 @@ blocks and not one — which would make T-1088's box too tall and its southern h
 of the two readings is wrong. Settling that is this ticket, and it is worth more than the numeral:
 it is a test of the one box in the North Division tier whose south side is not a street but "the
 southern endpoint of the flanking platted lines, where they stop at the river".
+
+
+---
+
+**Done, 2026-09-13 — PR #1228. Fifty-eight of fifty-eight.**
+
+**The collision fell the first way: the column is two blocks, and T-1088's box was too tall.** Both readings
+stand. T-1088's south rule takes *the southern endpoint of the flanking platted lines, taking the northern of
+the two*; block 7 is the one block in that tier with a SINGLE flank, so there was no northern of the two and
+the rule collapsed onto Market Street's endpoint — the one line in the tier that does not stop at the tier.
+`market_north` ends at north **+46.35 m** at the bank in the forks where `franklin_north` beside it ends at
+**+151.61 m**. The box ran **89 m** past block 7 and cited a crop with two block numerals in it. Block 7's
+south is now Carroll continued east; its reading never moved.
+
+**14** — the block between the two rivers and Market Street, box `1376,1624,177,126`, read at
+`1458,1679,52,40`. **15** — the right triangle inside North Water Street at the forks, box
+`1552,1628,178,126`, read at `1592,1652,46,32`. Both flanked by Market Street; the river side of each is
+Market stepped one module (123.36 m), which is blocks 7, 22, 51 and 52's rule. The fourth side of both is
+Carroll continued east along the bearing of its own committed path, 68 to 315 m past its committed end, and
+it is not carried further east than that.
+
+**Corroborated** by the street Wright draws between the tiers — faces at north +155.7 / +130.5 at east +40,
+and +153.0 / about +120 east of Market, with Carroll continued landing at +135.5 and +134.5, inside the drawn
+street at both longitudes. Read by eye, so stated and not gated. **Gated** instead: `read_wolf_point_numerals.py`
+re-cuts both boxes, checks each read window lies inside its box, and asserts that neither numeral lies inside
+the other's crop; `read_north_division_numerals.py`'s self-test now fires on Carroll; and 14 15 join the
+Carroll–Fulton band's tail in the boustrophedon assertion, so they must continue the run 11 12 13 fixes.
+
+The trace's refusal is marked spent. Its claim that the North Division's streets "stop between +108 and
++126 m, a hundred metres short of the band" is corrected with the measured endpoints — that error is what hid
+block 14.
