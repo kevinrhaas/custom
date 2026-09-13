@@ -42,6 +42,7 @@ READERS = {
         "the ways the fort plates draw are still the ways the town was built to",
         "Braunhold's Sauganash still says what the research note says it says",
         "the Chappel shore drawing still refuses to place its own station",
+        "the four crops are still the panels their citations name",
     ]),
     "numpy": ("numpy", [
         "…every step PIL names above — each needs both",

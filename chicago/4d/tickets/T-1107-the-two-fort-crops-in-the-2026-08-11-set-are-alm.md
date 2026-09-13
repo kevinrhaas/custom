@@ -1,7 +1,7 @@
 ---
 id: T-1107
 title: The two fort crops in the 2026-08-11 set are almost certainly Kurz & Allison panels 1 and 5: measure the join and fill fort_dearborn_apron's empty sources
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 0
 claimed_by: run 9/13/2026, 1:18:20 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T18:42:22.301Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34774017544
 ---
 
