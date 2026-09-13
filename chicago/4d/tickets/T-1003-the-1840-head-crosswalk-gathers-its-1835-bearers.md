@@ -1,7 +1,7 @@
 ---
 id: T-1003
 title: The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-10
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 6:15:22 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34788900596
 ---
 
 The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed.
