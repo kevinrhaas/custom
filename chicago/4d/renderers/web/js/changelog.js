@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Thirty townspeople in one room, a Friday evening in 1834', kind: 'change', ts: '',
+  { v: 853, title: 'Thirty townspeople in one room, a Friday evening in 1834', kind: 'change', ts: '2026-09-13T23:07:12.209Z', date: 'Sep 13, 2026, 6:07 PM CT',
     items: [
       'The Chicago Democrat of 29 October 1834 reports a town meeting called against gambling, held at the Presbyterian church on the evening of the 24th, with J. H. Kinzie in the chair and Hans Crocker as secretary. It appointed a committee of seventy to take notice of every infraction of the gaming laws and report it, and printed the committee\u2019s roll. That is one of the largest single lists of townspeople this reconstruction holds, and it carries something the post office\u2019s letter lists never do: it says these people were HERE, in one room, on a stated evening.',
       'The page had never been read. The issue itself was extracted a fortnight ago, but only page 3 \u2014 a fire ordinance, a tailor, a want advertisement \u2014 and the meeting two pages earlier was passed over, because the column it stands in is the worst OCR in the whole newspaper run.',
