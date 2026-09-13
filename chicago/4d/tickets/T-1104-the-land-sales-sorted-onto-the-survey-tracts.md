@@ -1,7 +1,7 @@
 ---
 id: T-1104
 title: The land sales sorted onto the survey tracts
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1102
 opened: 2026-09-13
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1230
 claimed_by: run 9/13/2026, 12:20:20 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T05:49:45.298Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34739061978
 ---
 
