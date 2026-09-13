@@ -2673,6 +2673,13 @@ step "Fergus's 1843 civic account rebuilds from its committed text, at the decla
 step "Fergus's 1839 directory rebuilds from its committed text" \
   python3 tools/read_fergus_1839.py --check
 
+# T-0987 stretch 13. Seven surnames the scan broke in two or the printer's comma left
+# out are repaired against a committed witness, and this is the ratchet on the table:
+# a row that stops firing, a repair that tidies its own quote, or an EIGHTH broken
+# surname arriving with no row is invisible to every reader until this fails.
+selftest "…and the seven repaired surnames in it still read off their witnesses" \
+  python3 tools/read_fergus_1839.py --self-test
+
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839.py --check
 
