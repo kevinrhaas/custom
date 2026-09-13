@@ -1,7 +1,7 @@
 ---
 id: T-0870
 title: The pilot and passes 2-5 run their per-person membership assertions on the --gate path, so a member whose letter_list_only flag moves in the tree kills the build instead of being reported
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: steward
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 12:01:32 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34769995824
 ---
 
 The pilot and passes 2-5 run their per-person membership assertions on the `--gate` path,
