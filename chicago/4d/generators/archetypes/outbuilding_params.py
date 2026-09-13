@@ -707,16 +707,14 @@ def from_phase(phase: dict, record: dict | None = None) -> OutbuildingParams:
 # sheds carry a painted name, and the generator that placed them knew the wall's
 # height and its frontage and nothing at all about the doorway in the middle of it.
 
-# HOW THIS IS KEPT TRUE, and it is a duplication with its eyes open. The builder
-# beside this file computes the same rectangles from the same constants, and until
-# it CONSUMES these functions the two are two copies. Making it consume them is
-# T-0520, and it is a separate ticket for one reason: the asset staleness hash
-# covers each archetype's builder module BYTE FOR BYTE, so editing the builder
-# stales every asset of that archetype — 212 of them across the three touched here
-# — and demands a town-wide rebake that does not fit beside this work. Until then:
-# ANY CHANGE TO AN OPENING'S GEOMETRY IN THE BUILDER MUST BE MADE HERE IN THE SAME
-# COMMIT. The constants are already shared, which is most of the drift surface; the
-# arithmetic is what is not yet.
+# THE BUILDER READS THESE (T-0520). It used to compute the same rectangles beside
+# them, which made two copies of one set-out and left a written rule — change one,
+# change the other — as the only thing holding them together. It does not any more:
+# the builder calls these functions, so an opening moved here moves on the mesh a
+# visitor sees, and there is nowhere else to move it. What made that a ticket of its
+# own is that the asset staleness hash covers each archetype's builder module BYTE
+# FOR BYTE, so touching the three builders staled 212 assets and demanded the
+# town-wide rebake that landed with the refactor.
 # ---------------------------------------------------------------------------
 
 def loft_rect(p: "OutbuildingParams") -> tuple:

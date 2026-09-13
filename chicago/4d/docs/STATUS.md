@@ -1,5 +1,292 @@
 # STATUS
 
+## Shipped 2026-09-13 — T-1106: the far band is a wall, and it had been dealt as a floor
+
+**T-0280 put both sides of the far band's grass-or-flower split into the same unit, and picked
+the wrong one.** That ticket was right that a cover cannot be divided by a lattice probability,
+and its ground-cover reading stands as the honest mix for GROUND. The far band is not ground.
+Its nearest card stands 34 m from the visitor and its furthest 95 m; at fifty metres a 1.7 m eye
+looks 1.9 degrees below horizontal, so the sward is seen **edge-on, as a wall**, and the plant
+that fills a pixel is the first element the ray meets. What governs that is projected area per
+element times elements per m² of ground — **silhouette-area density** — and the depth of the
+wall cancels out of a ratio between two strata standing in it.
+
+**The module already held that model, one field over.** `tools/measure_far_bloom.mjs` §1 has
+priced the BLOOM share on exactly this `n × a` bridge since T-0209, stating the same edge-on
+argument. Between T-0280 and this ticket the far band was reading one wall in two different
+units.
+
+**What changed.** `silhouetteOf(sp)` = `stems × w × h`, beside `coverOf`'s `stems × π·clump²`;
+`subsetOn()` sums it as `sil` beside `cover`; `farSplitOf` decides the boundary **once per
+community per side of the waterline** instead of per lattice slot, and `rebuildFar` now reads a
+constant rather than computing a ratio. The matrix side is the record's own `matrix_fraction`
+**converted** by the graminoid stratum's own measured aspect `sil / cover`, not replaced by the
+species rows' raw sum — T-0280 chose the authored figure deliberately and this keeps that
+choice. `matrixSil` is exported beside it so the two can be checked against each other. No
+constant enters the split that is not summed off `data/flora`.
+
+**The liberty, stated: L236.** The silhouette of a clump is its **bounding rectangle** `w × h`,
+with no shape factor. It is explicitly NOT the far card's own quad — that card's width is the
+aggregate `band.wide` L137 gives it, not this plant's. A shape factor cancels out of the ratio
+wherever the two strata share a growth form, the project has no measured profile for either to
+make it not cancel, and applying one to a single side would be a thumb on the scale. L235 is
+revised in the same pass: the fallback width it covers is now one factor of `w × h` rather than
+the radius of a disc, and is otherwise untouched.
+
+**It moves both ways, which is the test that it is a measurement.**
+`tools/measure_far_split.mjs --source` now prints all three units side by side. The forb's share
+of the far cards, per community:
+
+| community | T-0209 lattice | T-0280 cover | T-1106 silhouette | move | aspect gram / forb |
+|---|---|---|---|---|---|
+| z10_settled_town | 68.97 %* | 46.75 % | **72.72 %** | 1.556× | 0.67 / 2.04 |
+| z06_dense_forest | 74.07 %* | 72.10 % | **78.48 %** | 1.088× | 1.91 / 2.70 |
+| z04_marsh | 57.14 %* | 38.02 % | **38.01 %** | 1.000× | 3.98 / 3.98 |
+| z03_sedge_meadow | 54.05 %* | 11.51 % | **8.25 %** | **0.717×** | 3.47 / 2.40 |
+| z05_riverbank_timber | 68.97 %* | 5.26 % | **10.39 %** | 1.974× | 2.12 / 4.43 |
+| z02_mesic_prairie | 51.28 %* | 2.74 % | **3.73 %** | 1.364× | 2.63 / 3.62 |
+| z01_wet_prairie | 50.00 %* | 2.95 % | **3.62 %** | 1.228× | 3.22 / 3.98 |
+| z08_lakeshore | 74.07 %* | 6.33 % | **6.50 %** | 1.026× | 2.18 / 2.24 |
+| z09_sand_prairie | 35.45 % | 0.16 % | **0.30 %** | 1.938× | 2.05 / 3.98 |
+| z07_bur_oak_savanna | 0.00 % | 0.00 % | 0.00 % | — | — |
+
+`*` was sitting on the forb ring's 1.000 ceiling. `aspect` is each stratum's own `sil / cover`,
+the square metres of wall one square metre of its floor stands up, and the move is the ratio of
+the two — arithmetic, not a tuning. **`z03_sedge_meadow` goes DOWN**, because its sedges are the
+taller narrower stratum; `z04_marsh` moves by one hundredth of a percentage point, because its
+two strata happen to share an aspect of 3.98. A change that could only add flowers would not be
+a measurement.
+
+**At the three gate stands**, the annulus weighted by the ground it lands on:
+
+| stand | T-0209 | T-0280 | T-1106 | far cards |
+|---|---|---|---|---|
+| prairie_west (z02_mesic_prairie) | 51.40 % | 4.72 % | **6.62 %** | 226 |
+| prairie_south (z05_riverbank_timber) | 52.04 % | 7.33 % | **8.97 %** | 241 |
+| river_bank (z04_marsh) | 42.07 % | 19.93 % | **24.41 %** | 28 |
+
+**The drawn bloom, both readings measured on this same tree in this run**
+(`tools/measure_far_bloom.mjs --source`, desktop):
+
+| stand | heads before → after | furthest | > 24 m | > 40 m |
+|---|---|---|---|---|
+| prairie_west | 1993 → **1997** | 26.4 → **47.5 m** | 102 → **106** | 0 → **4** |
+| prairie_south | 1225 → **1238** | 78.7 → 76.5 m | 149 → **162** | 19 → **32** |
+| river_bank | 43 → 43 | 14.0 → 14.0 m | 0 → 0 | 0 → 0 |
+
+`prairie_west` regains the far tail T-0280 cost it — nothing past 40 m before, four heads now,
+and the furthest head almost doubles. **It does not go back to 135.7 m, and it must not**: that
+figure was bought by a clamped constant, and T-0280's refusal of it is not reopened here.
+`prairie_south`'s furthest ticks down 2.2 m while its counts past 24 m and past 40 m both rise —
+the tail is a re-deal of the same lottery and the single furthest head is its noisiest statistic;
+the bin counts are the figure to read.
+
+**What did not move.** Card count, instance count, draw calls, triangles, and where any card
+stands: 226 / 241 / 28 far cards at the three stands before and after. This decides what a card
+is a picture of, exactly as T-0209 left it. Zero sward records convert to no silhouette —
+`silUnknown` is exported so that stays checkable.
+
+## Shipped 2026-09-13 — T-0280: the far band's grass-or-flower split was reading a lattice ceiling, and now reads the ground
+
+**Eight of the ten communities were splitting on the number 1.000.**
+
+`rebuildFar` decides whether a far card stands for a grass or for a flowering plant with
+
+    split = matrixShare × (1 − forbside / (matrixShare + forbside))
+
+so the forb's share of the cards the band occupies is exactly `forbside / (matrixShare +
+forbside)`, and the whole of this ticket is about which number `forbside` is. It was
+`forbShare` — the **forb ring's** lattice occupancy, `min(1, density × cell² / perCell)` at one
+plant per 2.89 m² slot. Nine of the ten populated forb layers sit on that clamp (T-0019,
+`tools/forb_clamp_baseline.json`), so for nine communities the far band's species mix was
+decided by a ceiling and not by anything their records say. `z06_dense_forest` asks 66.381
+plants per m² and `z01_wet_prairie` asks 0.407, and the band split both as though they had
+asked for the same thing.
+
+**And it was the wrong kind of number even unclamped.** `matrixShare` is
+`cover.matrix_fraction`, a fraction of GROUND COVERED; `forbShare` is a slot-occupancy chance
+derived from stem density. Dividing one by the sum of both adds an area to a probability —
+K49(a)'s unit error, one stratum further out — so raising the clamp would have swapped a wrong
+constant for a wrong quantity. At 66.381 plants per m² the unclamped share is ~1 and every far
+card in the dense forest would have been a flower.
+
+**Both sides are now the same quantity: the ground the stratum covers.** `subsetOn().cover`
+sums `stems × π·clump²` over the subset that may stand on this side of the waterline, which for
+a cover-recorded species hands back its own `cover_fraction` intact. The matrix side stays the
+record's own `matrix_fraction` — that same quantity, already written down.
+
+**The clump is the drawn one, and it has to be (L235).** Fifty sward records state no
+`width_m`: every forb of the wet prairie, the mesic prairie and the sand prairie, and both
+marsh forbs. A sum over recorded widths alone returns **0.0000** for the sand prairie and
+**0.0000** for the marsh, and the band would deal both as pure grass on the strength of a
+missing field. `coverOf` falls back to `clumpRadiusOf` — the footprint `crowdsTheWalker` has
+given those plants all along — and `flora.communities()` exports `forbCoverFallbacks` so the
+provenance of every figure below is visible rather than assumed.
+
+**The instrument.** `tools/measure_far_split.mjs`. BEFORE and AFTER are not two runs compared
+by hand: `communities()` exports `forbShare` beside `forbCover`, so both are arithmetic on the
+same compiled communities in one pass. §2 samples the far band's annulus (16–175 m) with the
+placer's own `zoneAt` and a new `flora.isWaterAt` — `shoreDistance` cannot say which SIDE of
+the waterline a sample is on — and weights each sample by `farBand.coverAt(d)`.
+
+| community | matrix | forbShare | forbCover | before | after | w-less |
+|---|---|---|---|---|---|---|
+| `z06_dense_forest` | 0.350 | 1.000\* | 0.9045 | 74.07 % | **72.10 %** | 1 |
+| `z10_settled_town` | 0.450 | 1.000\* | 0.3950 | 68.97 % | **46.75 %** | 0 |
+| `z04_marsh` | 0.750 | 1.000\* | 0.4600 | 57.14 % | **38.02 %** | 2 |
+| `z03_sedge_meadow` | 0.850 | 1.000\* | 0.1106 | 54.05 % | **11.51 %** | 1 |
+| `z08_lakeshore` | 0.350 | 1.000\* | 0.0237 | 74.07 % | **6.33 %** | 3 |
+| `z05_riverbank_timber` | 0.450 | 1.000\* | 0.0250 | 68.97 % | **5.26 %** | 0 |
+| `z01_wet_prairie` | 1.000 | 1.000\* | 0.0304 | 50.00 % | **2.95 %** | 11 |
+| `z02_mesic_prairie` | 0.950 | 1.000\* | 0.0267 | 51.28 % | **2.74 %** | 9 |
+| `z09_sand_prairie` | 0.600 | 0.329 | 0.0009 | 35.45 % | **0.16 %** | 5 |
+| `z07_bur_oak_savanna` | 0.900 | 0.000 | 0.0000 | 0.00 % | 0.00 % | 0 |
+
+\* on the clamp. Read the `before` column down: it is 50–74 % everywhere, and it is 50–74 %
+everywhere **because it is `matrixShare` divided by `matrixShare + 1`**. The `after` column
+spans 0.16 % to 72 %, and it is ordered the way the records are: a prairie is a grass matrix
+with scattered forbs, a closed forest floor is a herb layer under a canopy. Nothing about the
+mix was a reading before; all of it is now.
+
+At the stands, the annulus weighted by the ground it lands on: `prairie_west` **51.40 % →
+4.72 %**, `prairie_south` **52.04 % → 7.33 %**, `river_bank` **42.07 % → 19.93 %**. The card
+count does not move at any of them — 226, 241 and 28 far cards before and after — because this
+decides what a card STANDS FOR, exactly as T-0209 left it.
+
+**What a visitor loses, stated plainly** (`tools/measure_far_bloom.mjs --source`, desktop). At
+`prairie_west` the drawn heads go **2,522 → 1,993** and the furthest **135.7 m → 26.4 m**; at
+`prairie_south`, 1,602 → 1,225 and 167.1 m → 78.7 m; `river_bank` is unchanged at 43 and 14.0 m
+(its band is mostly water and timber). **The distant bloom was bought by the clamp.** T-0209's
+acceptance — *bloom past twenty-four metres at `prairie_west`* — still holds on 102 heads, and
+nothing past 40 m survives. That is the honest consequence of taking a constant out of a ratio,
+not a regression to repair by putting it back: if the far sward should read as more flowered
+than its ground cover, the argument for that is a SILHOUETTE reading (a tall forb is more
+visible per square metre of ground than the grass it stands in), which is a different
+measurement and is filed as its own ticket.
+
+**Files:** `renderers/web/js/flora.js` (`clumpRadiusOf`, `coverOf`, `subsetOn().cover`,
+`rebuildFar`, `communities()`, `isWaterAt`) · `tools/measure_far_split.mjs` (new) ·
+`docs/LIBERTIES.md` L235.
+
+## Shipped 2026-09-13 — T-0277: what a density handover would cost the sward's far edge, re-measured against the corrected ruler
+
+**The ramp stays, and this time the reason is a reading rather than an inherited one.**
+
+`TUNE.mid.band` and `TUNE.forb.band` are the last two coverage ramps in the sward. Every
+other boundary — the near ring's outer edge, the mid ring's inner one, both far bands —
+hands its ground over by DENSITY (T-0093, T-0086): each slot carries its own boundary drawn
+from a world-anchored rank, and a plant is drawn whole or not at all. These two still ramp,
+so at `full` the last few metres of grass and flowers are resolved through the 4x4 screen
+door — a band of dots per pixel.
+
+**Why it had to be re-asked.** T-0187 priced the change and kept the ramp, and its
+arithmetic was never in dispute. Its RULER was. Every figure it compared against was read at
+`flora.fadeAt(...) > 0.02`, a coverage the screen door renders as nothing whatever for two
+instance phases in three (T-0225), so a coverage ramp was being credited with reach no
+visitor could see. The gate reads the boundary at 1/16 now — the screen door's own quantum —
+and carries the `band x 1/16` inset that costs. The comparison a spread has to win is
+therefore a different one, and this is the re-run.
+
+**The instrument.** `tools/simulate_outer_spread.mjs` stands where the gate's part 7 and
+`tools/measure_sward_reach.mjs` stand, bins the same 16 bearings over the same +/-30 degree
+cone, and for every placed mid and forb instance reports the drawn boundary under both
+representations — today's ramp read at 1/16, and `slotRing`'s own arithmetic on this slot's
+own `aChiRing` with the rank asked of the placer through a new `flora.handoverAt` (the rule
+`fringeAt` set: ask the placer, do not re-derive the noise in the tool). It reproduces
+`measure_sward_reach.mjs`'s reading of the unmodified tree to the centimetre at both
+viewports, which is what makes its other column worth believing. Partial spreads are priced
+too, so the choice is read off a curve.
+
+| ring, tune | today, at 1/16 | fully spread | bars, spread |
+|---|---|---|---|
+| mid, `full` | 25.00 min / 26.61 mean (bars 21.76 / 24.46) | 22.58 / 25.36 | 22.20 / 24.90 — **clears** by 0.38 / 0.46 m |
+| mid, `light` | 10.32 / 11.96 (bars 9.50 / 11.50) | 8.56 / 11.23 | 9.60 / 11.60 — **over** by 1.04 / 0.37 m |
+| forb, `full` | 23.52 / 24.74 (bars 20.89 / 23.59) | 16.41 / 21.73 | 21.20 / 23.90 — **over**, from a quarter of the band upwards |
+
+At `light` three quarters of the band is over as well (11.57 mean); half clears at 11.75.
+The forb ring at `light` is over under every representation including the unmodified one —
+11 or 12 bins of 16 and a 4.47 m minimum — which is the sampling the instrument already
+declines to read a boundary off, not a defect this introduces.
+
+**Why it loses, in two parts, and the second is a better reason than T-0187 gave.**
+
+1. *The bar rises when the band is spread.* `ringsFor` replaces a spread layer's `band` with
+   `HARD`, so the `band/16` a reading at the quantum sits inside the placed boundary — 0.44 m
+   at `full`, 0.10 m at `light` — vanishes. A spread must clear a HIGHER bar with a SHORTER
+   reach. Printing it against the ramp's own bars would have flattered it by 0.44 m, which is
+   most of the margin it has.
+2. *A handover's boundary is a SAMPLE, and its expectation falls with the slots in the bin.*
+   The desktop cone holds 642 mid slots, forty to a 3.75-degree bin, and one of forty draws a
+   rank low enough to stand near the boundary. The `light` cone holds 132, about eight to a
+   bin, and eight draws do not reach it. At `light` the mid ring is as sparse as the forb ring
+   is at `full` — exactly the case `measure_sward_reach.mjs` refuses to read a boundary off.
+
+**And it cannot be taken one edge at a time.** `full` would carry a mid spread; it will not
+carry a forb one. But the forb ring ends within a metre of the mid ring deliberately, so the
+two boundaries land on the same screen row — spreading only the grass would leave the flowers
+dithering along the line the grass had just stopped drawing, drawn by half as many plants and
+against a step. A split decision is worse than either whole one.
+
+**Nothing moved.** No plant, no ring, no byte of geometry: the only renderer change is the
+additive `flora.handoverAt` accessor the tool reads through, and the TUNE commentary now
+carries these figures instead of the superseded ones. Reopening this means changing what is
+measured, not the bar — a sward dense enough at `light` for eight plants a bin to become
+forty, or a forb layer that does not have to share the mid ring's boundary.
+
+Verified: `tools/check.sh`; `node tools/measure_sward_reach.mjs --source` at both viewports
+(unchanged from dev); `node tools/simulate_outer_spread.mjs --source` at both viewports;
+the smoke parts `tools/smoke_budget.mjs --for-diff` prices for this diff.
+
+## Shipped 2026-09-13 — T-0334: the line the Trustees walked round the built-up town
+
+Section 22 of the by-laws passed 5 August 1835 forbids stacking hay inside a boundary the
+ordinance walks street by street — Washington Street at the U.S. Reservation, west to Canal,
+north to Kinzie, east to Wolcott, north to Illinois, and out to Lake Michigan — at $25 a
+stack. **It is the only documented statement this project holds about where the built-up
+town ended in the scene year.** Every other judgement here about density comes from the
+plat, the land sales and measured frontage.
+
+`tools/derive_hay_limits.py` derives it into `data/reconstruction/1835_hay_limits.json` and
+`check.sh` re-derives it on every commit. All six of the ordinance's vertices are
+intersections of committed `path_local_enu_m` centrelines; five are true crossings, and the
+sixth carries the Illinois Street line 100.78 m past its committed east end to the traced
+1834 shore (recorded, gated at 150 m). The start — *"on Washington street, at the United
+States Reservation"* — is where Washington's line meets the committed reservation ring's
+west side, and it lands there to the centimetre.
+
+**What is decided rather than derived, and graded `inferred` with its reasoning:** the
+ordinance walks an OPEN line and ends at the lake, so closing it needs the two sides it
+names but does not draw. The ring closes down the traced lake shore, across the harbour
+entrance in one straight segment (water between two piers — a closure, not a claim about
+ground), west along the reservation's own traced waterline and south down its west side.
+The reading this rests on — that a walk *commencing at* the reservation is bounded by it,
+so the garrison was not subject to the town's hay rule — is recorded with its alternative
+and what that alternative would cost (the 23 fort structures would come inside; nothing
+else would move).
+
+**Measured:** 199 acres, 4,715.9 m round, 30 vertices. Of 383 committed structure
+positions, 302 inside and 81 outside — 23 on the reservation, 36 west of Canal, 20 north of
+the Kinzie/Illinois line, 1 south of Washington (Heacock on Monroe), 1 in the harbour (the
+South Pier).
+
+**The disagreement with the block-infill programme, named.** 18 of 21 scheduled blocks are
+inside and the schedule places no NEW roof outside. The three outside are the Clinton–Canal
+tier, which the boundary leaves out because it turns north AT Canal. Two are `at_capacity`
+and hold 21 standing roofs between them (11 and 10 of 31); the third is already
+`not_a_block`. So the reconstruction's built town reaches one tier further west than the
+town's own fire line did. Either the roofs were there and the line was drawn short, or the
+tier is a block too far west. Stated, not settled.
+
+**Nothing is drawn in the scene,** and `docs/LIBERTIES.md` carries no new admission: a legal
+limit is not a fence, and nobody in 1835 could see this one. It reaches a visitor on the
+card — `renderers/web/js/ordinances.js`, a new *"Was it inside the town's fire limit?"*
+section with the verdict, the acreage, the section's own words and the citation. 383 cards
+gain the row.
+
+The ordinance is 35 days after the scene date. Carried as evidence ABOUT 1835; nothing is
+placed, moved or dated because of it, and `date_standing` in the file says so.
+
+
 ## T-0385 — the New York Clothing Store stands against the Tremont House
 
 Tuthill King's card — American 1835-06-08 c014, 1835-06-20 c007, 1835-07-04 c003,

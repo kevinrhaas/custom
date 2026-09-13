@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Derive T-0463's fixed, non-overlapping 75-person research cohort."""
+"""Derive T-0463's fixed, non-overlapping 75-person research cohort.
+
+The stratum tests are pass 2's `member()`, and so is their scope: refused while
+minting, reported on the gate (T-0870).
+"""
 from __future__ import annotations
 import argparse
 import json
 
 from select_resident_research_pass_2 import ROOT, RESIDENTS, PILOT, load_people, member
+from select_resident_research_pass_2 import stratum_probes
 
 import resident_cohort_freeze as freeze
 
@@ -42,20 +47,21 @@ UNCERTAIN_LETTER_IDS = (
     "alden_ebenozer",
 )
 
-def derive() -> dict:
+def derive(drift: freeze.Membership | None = None) -> dict:
+    drift = drift if drift is not None else freeze.Membership(minting=False)
     index, households = load_people()
     # The compiled payload grows when this pass is added, so its review list cannot
     # be used as the prior set. Read the two fixed manifests that predate T-0463.
     reviewed = ({row["person_id"] for row in json.loads(PILOT.read_text())["people"]}
                 | {row["person_id"] for row in json.loads(PASS2.read_text())["people"]})
     people = [member(index, pid, "established_profile",
-                     "Established named resident selected to deepen an existing household profile.")
+                     "Established named resident selected to deepen an existing household profile.", drift)
               for pid in ESTABLISHED_IDS]
     people += [member(index, pid, "letter_list_only",
-                      "Distinctive or variant-rich scene-date return selected for identity and duplicate testing.")
+                      "Distinctive or variant-rich scene-date return selected for identity and duplicate testing.", drift)
                for pid in PRESENT_LETTER_IDS]
     people += [member(index, pid, "letter_list_only",
-                      "Distinctive or variant-rich earlier return selected for identity and duplicate testing.")
+                      "Distinctive or variant-rich earlier return selected for identity and duplicate testing.", drift)
                for pid in UNCERTAIN_LETTER_IDS]
     ids = [row["person_id"] for row in people]
     if overlap := reviewed.intersection(ids):
@@ -69,8 +75,9 @@ def derive() -> dict:
     }
     expected = {"established_profile": 25, "letter_list_only_present": 25,
                 "letter_list_only_uncertain": 25}
-    if strata != expected:
-        raise SystemExit(f"pass-three strata changed: {strata}")
+    # Counted off today's presence values, so it moves for the same reason a flag does
+    # (T-0870). The frozen id lists above stay hard on every path.
+    drift.holds(strata == expected, f"pass-three strata changed: {strata}")
     eligible = sum(p.get("grade") != "reconstructed" for h in households for p in h.get("persons", []))
     return {"_doc": "T-0463's reproducible third 75-person research cohort; selection is not evidence about a person.",
             "version": 1, "ticket": "T-0463", "scene_date": "1835-07-01",
@@ -80,11 +87,23 @@ def derive() -> dict:
                                  "cumulative_reviewed": len(reviewed) + 75, "strata": strata},
             "people": people}
 
+def self_test() -> int:
+    return freeze.stratum_self_test("resident research pass three", stratum_probes(
+        "an established member that became letter-list-only",
+        "a letter-list member whose letter_list_only flag moved"))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
-    doc = derive()
+    if args.self_test:
+        return self_test()
+    drift = freeze.Membership(minting=not args.gate and not OUT.exists())
+    doc = derive(drift)
+    for line in drift.report("resident research pass three"):
+        print("   %s" % line)
     # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
     # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:

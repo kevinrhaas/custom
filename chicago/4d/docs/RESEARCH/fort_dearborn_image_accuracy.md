@@ -133,6 +133,9 @@ phone, where an 0.86 m post would read as a paddock rail. The one place the mode
 draughtsman's own bind is a **phone at the river stand**, where a 1.62 px pitch falls under the
 pixel grid and beats into a 4 px moiré — a fact about a 390 px screen at fifty metres, not about
 the reconstruction. It is filed as its own ticket rather than answered by coarsening the wall.
+**T-0266 settled that ticket on 2026-09-13, and narrowed this row: the phone reading above was
+taken at `devicePixelRatio` 1, which is the renderer a phone gets only when the visitor has turned
+Render quality down. At the shipped default the same stand resolves. See the section below.**
 
 **What this changes:** nothing standing. `picket_width_m` 0.24 and `picket_spacing_m` 0.30 are
 unmoved and still `reconstructed`, the 768 posts and the palisade's committed master are untouched
@@ -140,6 +143,77 @@ and unrebaked, and no confidence was upgraded. `docs/LIBERTIES.md` **L47** — w
 "the gap between the posts, which decides whether you can see through the wall" — carries the
 disagreement and its resolution, and so do both attribute notes on the record, which is where a
 visitor opening the stockade's card will read it.
+
+### The phone's moiré is a SETTING, not a wall (T-0266, 2026-09-13)
+
+The row above reads *aliased* on a phone, and it was filed as its own ticket to decide what the
+renderer should do about a 1.62 px rhythm. The answer is that it should do nothing, and the reason
+is that **the aliased row was never a reading of a phone.** It is a reading of a phone with
+*Render quality* turned down.
+
+`measure_picket_reading.mjs` booted every context at `deviceScaleFactor: 1`. That is not a detail
+of the harness: `deviceScaleFactor` sets `window.devicePixelRatio` inside the page, and `main.js`
+boot reads exactly that —
+
+```js
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, hud.settings.quality));
+```
+
+— with `hud.js` `DEFAULTS.quality` **1.5 on both platforms**. So a context at dsf 1 asks the
+renderer for `min(1, 1.5)` = **1.0**, and a real phone at dsf 2 asks for `min(2, 1.5)` = **1.5**:
+three backing-store pixels for every two CSS pixels, against one. Every picket reading this project
+had ever taken on a phone was at the lower of those two — which is what the renderer draws when the
+visitor uses the escape hatch T-0157 shipped for frame rate. **The shipped default had not been
+measured here at all.**
+
+The file now reads the phone at both, in one pass. `phone-dpr2` is the same viewport, the same
+stand and the same camera on a raster twice as wide, so its crop rectangle and its wall span are
+the phone's multiplied by the ratio — a derivation, not a second constant read off by eye.
+
+| stand | viewport | dpr | ratio | measured | expected | autocorr | 2× | reads as |
+|---|---|---|---|---|---|---|---|---|
+| p4_0, across the river | desktop | 1 | 1.0× | 4 px | 4.49 px | +0.93 | +0.85 | **posts** |
+| north gate | desktop | 1 | 1.0× | 34 px | — | +0.67 | +0.50 | **posts** |
+| p4_0, across the river | phone | 1 | 1.0× | 4 px | 1.62 px | +0.68 | +0.34 | **aliased** |
+| north gate | phone | 1 | 1.0× | 16 px | — | +0.76 | +0.56 | **posts** |
+| p4_0, across the river | phone | 2 | 1.5× | 4 px | **3.25 px** | **+0.84** | **+0.64** | **posts** |
+| north gate | phone | 2 | 1.5× | 33 px | — | +0.80 | +0.61 | **posts** |
+
+At the ratio a phone actually rasterises into, the river stand **resolves**. The measured 4 px
+stands against a 3.25 px expectation — 1.23 of it, inside the 1.5 this instrument calls a beat —
+where at ratio 1.0 the same 4 px stood against 1.62 and was 2.5 times the wall's own rhythm. The
+reading is not merely re-labelled: the correlation rises +0.68 → +0.84 and its harmonic +0.34 →
++0.64, which is the difference between a rhythm inferred from a residual and one that is simply
+there. Read in backing-store pixels rather than screen ones, the wall draws 2.43 px of pitch at the
+default and 1.62 at the hatch, either side of the 2 px floor where a rhythm stops being separable
+at all. The north gate resolves at every ratio, and the desktop is untouched.
+
+Evidence: `docs/evidence/t-0185-{p4_0,north_wall}-phone-dpr2.png`, beside the dsf-1 pair already
+here.
+
+**What the alternatives would have cost, which is the thing the ticket asked to be decided
+against.** Two were available and both are refused on a measured price rather than on taste:
+
+* **Close the hatch** — floor the pixel ratio at 1.5 so no phone can fall under the rhythm. T-0157
+  measured what that floor is worth: dropping the ratio to 1 *cuts the multisampled pixel count by
+  56 %*, at 4 stations, which is the whole reason the control exists. Forcing it back up is 2.25×
+  the shaded pixels, town-wide and at every stand, bought to settle one wall's rhythm at one stand
+  across the river — and bought from precisely the visitor who asked for frame rate instead. The
+  trade is the wrong way round.
+* **Smooth the wall at range** — swap the picket rhythm for a slab beyond some distance. It needs a
+  rebake of the palisade, it puts a different wall at `p4_0`'s own stand from the one the plate is
+  compared against two sections above, and T-0185 already settled that the fine rhythm is right at
+  every range a visitor can choose. This ticket refused it in advance and the measurement does not
+  reopen it.
+
+So nothing in the scene changes and nothing is rebaked. What changes is that the instrument can no
+longer read a phone at a setting and report it as the phone: the ratio each row was drawn into is a
+column in its own table.
+
+**The honest limit.** These are SwiftShader renders at a `deviceScaleFactor` Playwright sets, not
+frames off phone silicon, and the frame COST of either ratio on real hardware is still unmeasured —
+T-0157 says so of its own figure and this does not improve on it. What is measured here is what is
+drawn, which is the question the ticket asked.
 
 ## Row 3 was wrong, and the correction is the interesting part (T-0094, 2026-08-24)
 

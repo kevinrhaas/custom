@@ -13958,14 +13958,24 @@
    "reading": "transcription_mediated",
    "quote": "Boyington. Charles H., captain schooner Charlotte, res Indiana, bet Pine and Sand",
    "normalized": {
-    "printed_name": "Boyington. Charles H",
-    "surname": "Boyington. Charles H",
-    "given": null,
+    "printed_name": "Boyington, Charles H",
+    "surname": "Boyington",
+    "given": "Charles H",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "captain schooner Charlotte",
     "address": "res Indiana, bet Pine and Sand",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Boyington. Charles H",
+     "reading": "Boyington, Charles H",
+     "verdict": "second_hand_comma",
+     "confidence": "documented",
+     "second_hand": "3oyington, Ciiarles H.., <a])tain schooner CIkliIoUc^",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Boyington. Charles H., captain schooner Charlotte, res Indiana, bet Pine and Sand",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -13981,7 +13991,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Boyington. Charles H"
+    "Boyington, Charles H"
    ],
    "town_finding": false,
    "notes": null
@@ -18404,14 +18414,24 @@
    "reading": "transcription_mediated",
    "quote": "Calighan. Mathew, carpenter, bds Edward Gavin",
    "normalized": {
-    "printed_name": "Calighan. Mathew",
-    "surname": "Calighan. Mathew",
-    "given": null,
+    "printed_name": "Calighan, Mathew",
+    "surname": "Calighan",
+    "given": "Mathew",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "carpenter",
     "address": "bds Edward Gavin",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Calighan. Mathew",
+     "reading": "Calighan, Mathew",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Calighan. ]\\Iathcw, carpenter, bds Edward Gavin",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Calighan. Mathew, carpenter, bds Edward Gavin",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -18427,7 +18447,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Calighan. Mathew"
+    "Calighan, Mathew"
    ],
    "town_finding": false,
    "notes": null
@@ -19217,14 +19237,24 @@
    "reading": "transcription_mediated",
    "quote": "Carr. William, sailor, res Canal, 3d Ward",
    "normalized": {
-    "printed_name": "Carr. William",
-    "surname": "Carr. William",
-    "given": null,
+    "printed_name": "Carr, William",
+    "surname": "Carr",
+    "given": "William",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "sailor",
     "address": "res Canal, 3d Ward",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Carr. William",
+     "reading": "Carr, William",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Carr. AVilliam, sailor, res Canal, od Ward",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Carr. William, sailor, res Canal, 3d Ward",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -19240,7 +19270,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Carr. William"
+    "Carr, William"
    ],
    "town_finding": false,
    "notes": null
@@ -19504,9 +19534,9 @@
    "reading": "transcription_mediated",
    "quote": "Case. Elan, carpenter, Scoville & Gates Case. John Roman (Norton & C), bds City Refectory, 17 Dearborn\n[died, Elmhurst, Ill., September 4, 1877, aged 74.]",
    "normalized": {
-    "printed_name": "Case. Elan",
-    "surname": "Case. Elan",
-    "given": null,
+    "printed_name": "Case, Elan",
+    "surname": "Case",
+    "given": "Elan",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "carpenter, Scoville & Gates Case. John Roman (Norton & C)",
@@ -19514,6 +19544,16 @@
     "bracket_notes": [
      "died, Elmhurst, Ill., September 4, 1877, aged 74."
     ],
+    "surname_repair": {
+     "as_read": "Case. Elan",
+     "reading": "Case, Elan",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Ca^^e. Elan, carjtenter, Scoville & Gates",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Case. Elan, carpenter, Scoville & Gates Case. John Roman (Norton & C), bds City Refectory, 17 Dearborn [died, Elmhurst, Ill., September 4, 1877, aged 74.]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -19529,7 +19569,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Case. Elan"
+    "Case, Elan"
    ],
    "town_finding": false,
    "notes": null
@@ -24007,14 +24047,24 @@
    "reading": "transcription_mediated",
    "quote": "Constantine. Patrick, laborer, res bet Michigan and Illinois, 5th Ward",
    "normalized": {
-    "printed_name": "Constantine. Patrick",
-    "surname": "Constantine. Patrick",
-    "given": null,
+    "printed_name": "Constantine, Patrick",
+    "surname": "Constantine",
+    "given": "Patrick",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "laborer",
     "address": "res bet Michigan and Illinois, 5th Ward",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Constantine. Patrick",
+     "reading": "Constantine, Patrick",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "<'onstantine. Patrick, laborer, res bet Michigan and Illinois. 5th Ward",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Constantine. Patrick, laborer, res bet Michigan and Illinois, 5th Ward",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -24030,7 +24080,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Constantine. Patrick"
+    "Constantine, Patrick"
    ],
    "town_finding": false,
    "notes": null
@@ -24077,14 +24127,24 @@
    "reading": "transcription_mediated",
    "quote": "Cook. George, bartender, bds American Temperance House",
    "normalized": {
-    "printed_name": "Cook. George",
-    "surname": "Cook. George",
-    "given": null,
+    "printed_name": "Cook, George",
+    "surname": "Cook",
+    "given": "George",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "bartender",
     "address": "bds American Temperance House",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Cook. George",
+     "reading": "Cook, George",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Cook. George, bartender, hds xVnierican Temperance House",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Cook. George, bartender, bds American Temperance House",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -24100,7 +24160,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Cook. George"
+    "Cook, George"
    ],
    "town_finding": false,
    "notes": null
@@ -24217,14 +24277,24 @@
    "reading": "transcription_mediated",
    "quote": "Cook. Josiah P., baker, res Michigan ave",
    "normalized": {
-    "printed_name": "Cook. Josiah P",
-    "surname": "Cook. Josiah P",
-    "given": null,
+    "printed_name": "Cook, Josiah P",
+    "surname": "Cook",
+    "given": "Josiah P",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "baker",
     "address": "res Michigan ave",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Cook. Josiah P",
+     "reading": "Cook, Josiah P",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Cook. Josiah P.., baker, res ^Michigan ave",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Cook. Josiah P., baker, res Michigan ave",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -24240,7 +24310,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Cook. Josiah P"
+    "Cook, Josiah P"
    ],
    "town_finding": false,
    "notes": null
@@ -24423,14 +24493,24 @@
    "reading": "transcription_mediated",
    "quote": "Cooley. Miss, dress and cloak maker, 175 Lake",
    "normalized": {
-    "printed_name": "Cooley. Miss",
-    "surname": "Cooley. Miss",
-    "given": null,
+    "printed_name": "Cooley, Miss",
+    "surname": "Cooley",
+    "given": "Miss",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "dress and cloak maker, 175 Lake",
     "address": null,
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Cooley. Miss",
+     "reading": "Cooley, Miss",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Cooley. Miss, dress and cloak maker. 17.j Lake",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Cooley. Miss, dress and cloak maker, 175 Lake",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -24446,7 +24526,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Cooley. Miss"
+    "Cooley, Miss"
    ],
    "town_finding": false,
    "notes": null
@@ -24493,9 +24573,9 @@
    "reading": "transcription_mediated",
    "quote": "Corbidge. John, cutler and grinder, 197 Randolph, bet Wells and Franklin [died June 1, 1887, aged 68 1/3 ]",
    "normalized": {
-    "printed_name": "Corbidge. John",
-    "surname": "Corbidge. John",
-    "given": null,
+    "printed_name": "Corbidge, John",
+    "surname": "Corbidge",
+    "given": "John",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "cutler and grinder, 197 Randolph",
@@ -24503,6 +24583,16 @@
     "bracket_notes": [
      "died June 1, 1887, aged 68 1/3"
     ],
+    "surname_repair": {
+     "as_read": "Corbidge. John",
+     "reading": "Corbidge, John",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Corbidge. John, cutler and grinder. 11)7 Randolph",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Corbidge. John, cutler and grinder, 197 Randolph, bet Wells and Franklin [died June 1, 1887, aged 68 1/3 ]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -24518,7 +24608,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Corbidge. John"
+    "Corbidge, John"
    ],
    "town_finding": false,
    "notes": null
@@ -26190,7 +26280,7 @@
    "id": "f1843_e0753",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged",
+   "quote": "Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged\n84-5-6]",
    "normalized": {
     "printed_name": "Cushing, Nathaniel Sawyer",
     "surname": "Cushing",
@@ -26198,17 +26288,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": null,
-    "address": "house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged",
-    "bracket_notes": [],
-    "as_printed": "Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged",
+    "address": "house painter, 41 State near Lake, res same",
+    "bracket_notes": [
+     "died, Lombard, Ill., May 13, 1889, aged 84-5-6"
+    ],
+    "as_printed": "Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged 84-5-6]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Cutmore; the age 84-5-6 closes the obituary of f1843_e0753 above",
+     "entry": "f1843_e0754",
+     "obituary": "f1843_e0753",
+     "age": "84-5-6",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "I  died,  Lombard.  111.,  May  13.  1889.  aged  84-5-0. Cutraore,  Henry,  grocer.  West  liandolph,  bet  W  Water  and  Canal",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_002.txt",
-    "lines": [
-     647,
-     647
+    "spans": [
+     {
+      "line": 647,
+      "from": 0,
+      "to": 111
+     },
+     {
+      "line": 648,
+      "from": 0,
+      "to": 7
+     }
     ],
     "page": "fergus_1843_page_002",
     "printed_section": "C"
@@ -26224,32 +26338,49 @@
    "id": "f1843_e0754",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "84-5-6] Cutmore, Henry, grocer. West Randolph, bet W Water and Canal",
+   "quote": "Cutmore, Henry, grocer. West Randolph, bet W Water and Canal",
    "normalized": {
-    "printed_name": "84-5-6] Cutmore, Henry",
-    "surname": "84-5-6] Cutmore",
+    "printed_name": "Cutmore, Henry",
+    "surname": "Cutmore",
     "given": "Henry",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "grocer. West Randolph",
     "address": "bet W Water and Canal",
     "bracket_notes": [],
-    "as_printed": "84-5-6] Cutmore, Henry, grocer. West Randolph, bet W Water and Canal",
+    "as_printed": "Cutmore, Henry, grocer. West Randolph, bet W Water and Canal",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "84-5-6] Cutmore",
+     "reading": "the entry begins at Cutmore; the age 84-5-6 closes the obituary of f1843_e0753 above",
+     "entry": "f1843_e0754",
+     "obituary": "f1843_e0753",
+     "age": "84-5-6",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "I  died,  Lombard.  111.,  May  13.  1889.  aged  84-5-0. Cutraore,  Henry,  grocer.  West  liandolph,  bet  W  Water  and  Canal",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_002.txt",
-    "lines": [
-     648,
-     648
+    "spans": [
+     {
+      "line": 648,
+      "from": 8,
+      "to": 68
+     }
     ],
     "page": "fergus_1843_page_002",
     "printed_section": "C"
    },
    "describes_date": "1843",
    "entities": [
-    "84-5-6] Cutmore, Henry"
+    "Cutmore, Henry"
    ],
    "town_finding": false,
    "notes": null
@@ -33185,14 +33316,24 @@
    "reading": "transcription_mediated",
    "quote": "Fish. James P., carpenter, res. Kinzie, east of Rush",
    "normalized": {
-    "printed_name": "Fish. James P",
-    "surname": "Fish. James P",
-    "given": null,
+    "printed_name": "Fish, James P",
+    "surname": "Fish",
+    "given": "James P",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "carpenter",
     "address": "res. Kinzie, east of Rush",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Fish. James P",
+     "reading": "Fish, James P",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Fish. James P., carpenter, res. Kinzie, east of Rush",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Fish. James P., carpenter, res. Kinzie, east of Rush",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -33208,7 +33349,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Fish. James P"
+    "Fish, James P"
    ],
    "town_finding": false,
    "notes": null
@@ -36857,9 +36998,9 @@
    "reading": "transcription_mediated",
    "quote": "Gauch. Jacob P., brewer, Indiana, bet Pine and Sand, res same [died September 9, 1893, aged 68]",
    "normalized": {
-    "printed_name": "Gauch. Jacob P",
-    "surname": "Gauch. Jacob P",
-    "given": null,
+    "printed_name": "Gauch, Jacob P",
+    "surname": "Gauch",
+    "given": "Jacob P",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "brewer, Indiana",
@@ -36867,6 +37008,16 @@
     "bracket_notes": [
      "died September 9, 1893, aged 68"
     ],
+    "surname_repair": {
+     "as_read": "Gauch. Jacob P",
+     "reading": "Gauch, Jacob P",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Gaueh. Jacob P., brewer, Indiana, bet Pine and Sand, res same",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Gauch. Jacob P., brewer, Indiana, bet Pine and Sand, res same [died September 9, 1893, aged 68]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -36882,7 +37033,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Gauch. Jacob P"
+    "Gauch, Jacob P"
    ],
    "town_finding": false,
    "notes": null
@@ -38171,14 +38322,24 @@
    "reading": "transcription_mediated",
    "quote": "Goodwin. Francis P., planemaker, res W. Lake, bet Water and Canal",
    "normalized": {
-    "printed_name": "Goodwin. Francis P",
-    "surname": "Goodwin. Francis P",
-    "given": null,
+    "printed_name": "Goodwin, Francis P",
+    "surname": "Goodwin",
+    "given": "Francis P",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "planemaker",
     "address": "res W. Lake, bet Water and Canal",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Goodwin. Francis P",
+     "reading": "Goodwin, Francis P",
+     "verdict": "second_hand_comma",
+     "confidence": "documented",
+     "second_hand": "<Jood\\vin, Francis \\\\. planemaker. res VV^ Lake",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Goodwin. Francis P., planemaker, res W. Lake, bet Water and Canal",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -38194,7 +38355,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Goodwin. Francis P"
+    "Goodwin, Francis P"
    ],
    "town_finding": false,
    "notes": null
@@ -38549,9 +38710,9 @@
    "reading": "transcription_mediated",
    "quote": "Graff. Peter, carpenter, res Monroe, bet Clark and State [died March 5, 1884, aged 39]",
    "normalized": {
-    "printed_name": "Graff. Peter",
-    "surname": "Graff. Peter",
-    "given": null,
+    "printed_name": "Graff, Peter",
+    "surname": "Graff",
+    "given": "Peter",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "carpenter",
@@ -38559,6 +38720,16 @@
     "bracket_notes": [
      "died March 5, 1884, aged 39"
     ],
+    "surname_repair": {
+     "as_read": "Graff. Peter",
+     "reading": "Graff, Peter",
+     "verdict": "second_hand_comma",
+     "confidence": "documented",
+     "second_hand": "Graflf, Peter, carpenter, res 3Ionroe. bet Clark and State",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Graff. Peter, carpenter, res Monroe, bet Clark and State [died March 5, 1884, aged 39]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -38574,7 +38745,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Graff. Peter"
+    "Graff, Peter"
    ],
    "town_finding": false,
    "notes": null
@@ -41846,9 +42017,9 @@
    "reading": "transcription_mediated",
    "quote": "Harding Charles, captain schooner Gen. Thornton, bds Tremont House [died July 15, 1883, aged 67.]",
    "normalized": {
-    "printed_name": "Harding Charles",
-    "surname": "Harding Charles",
-    "given": null,
+    "printed_name": "Harding, Charles",
+    "surname": "Harding",
+    "given": "Charles",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "captain schooner Gen. Thornton",
@@ -41856,6 +42027,16 @@
     "bracket_notes": [
      "died July 15, 1883, aged 67."
     ],
+    "surname_repair": {
+     "as_read": "Harding Charles",
+     "reading": "Harding, Charles",
+     "verdict": "second_hand_supplies",
+     "confidence": "documented",
+     "second_hand": "Harding, Charles, captaio schooncu Ge7i. Thornton, bds Tremont House",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Harding Charles, captain schooner Gen. Thornton, bds Tremont House [died July 15, 1883, aged 67.]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -41871,7 +42052,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Harding Charles"
+    "Harding, Charles"
    ],
    "town_finding": false,
    "notes": null
@@ -43273,9 +43454,9 @@
    "reading": "transcription_mediated",
    "quote": "Heald. Alexander Hamilton, mason, bds Daniel Heald, jr. [died. Oak Park, Cook Co., Ill., November 11, 1885, aged\n72 1/3 ].",
    "normalized": {
-    "printed_name": "Heald. Alexander Hamilton",
-    "surname": "Heald. Alexander Hamilton",
-    "given": null,
+    "printed_name": "Heald, Alexander Hamilton",
+    "surname": "Heald",
+    "given": "Alexander Hamilton",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "mason",
@@ -43283,6 +43464,16 @@
     "bracket_notes": [
      "died. Oak Park, Cook Co., Ill., November 11, 1885, aged 72 1/3"
     ],
+    "surname_repair": {
+     "as_read": "Heald. Alexander Hamilton",
+     "reading": "Heald, Alexander Hamilton",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "llcald. Alexander Hamilton, masoji. 1)ds Daniel Heald, ir.",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Heald. Alexander Hamilton, mason, bds Daniel Heald, jr. [died. Oak Park, Cook Co., Ill., November 11, 1885, aged 72 1/3 ].",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -43298,7 +43489,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Heald. Alexander Hamilton"
+    "Heald, Alexander Hamilton"
    ],
    "town_finding": false,
    "notes": null
@@ -43309,9 +43500,9 @@
    "reading": "transcription_mediated",
    "quote": "Heald. jr., Daniel, mason, Jackson, bet Clark and Pacific ave [died. Trenton. N.J., July 12, 1874, aged 66 - 9-28].",
    "normalized": {
-    "printed_name": "Heald. jr, Daniel",
-    "surname": "Heald. jr",
-    "given": "Daniel",
+    "printed_name": "Heald, jr., Daniel",
+    "surname": "Heald",
+    "given": "jr., Daniel",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "mason, Jackson",
@@ -43319,6 +43510,16 @@
     "bracket_notes": [
      "died. Trenton. N.J., July 12, 1874, aged 66 - 9-28"
     ],
+    "surname_repair": {
+     "as_read": "Heald. jr",
+     "reading": "Heald, jr",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Ileald. jr., Daniel, mason. J",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Heald. jr., Daniel, mason, Jackson, bet Clark and Pacific ave [died. Trenton. N.J., July 12, 1874, aged 66 - 9-28].",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -43334,7 +43535,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Heald. jr, Daniel"
+    "Heald, jr., Daniel"
    ],
    "town_finding": false,
    "notes": null
@@ -43663,16 +43864,26 @@
    "reading": "transcription_mediated",
    "quote": "Herrick. Ira N.. contractor. [d. Park Manor, Ill., Jan. 17, 1890, a. 68.]",
    "normalized": {
-    "printed_name": "Herrick. Ira N.. contractor",
-    "surname": "Herrick. Ira N.. contractor",
-    "given": null,
+    "printed_name": "Herrick, Ira N",
+    "surname": "Herrick",
+    "given": "Ira N",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": null,
+    "occupation": "contractor",
     "address": null,
     "bracket_notes": [
      "d. Park Manor, Ill., Jan. 17, 1890, a. 68."
     ],
+    "surname_repair": {
+     "as_read": "Herrick. Ira N.. contractor",
+     "reading": "Herrick, Ira N.. contractor",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Herrick. Ira X.. contractor, [d.. Park Manor, HI., Jan. 17, 1890",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Herrick. Ira N.. contractor. [d. Park Manor, Ill., Jan. 17, 1890, a. 68.]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -43688,7 +43899,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Herrick. Ira N.. contractor"
+    "Herrick, Ira N"
    ],
    "town_finding": false,
    "notes": null
@@ -46100,9 +46311,9 @@
    "reading": "transcription_mediated",
    "quote": "Houfe. Thomas, teamster, Wm. Lill, bds John Greenwood [died before July 10, 1851.]",
    "normalized": {
-    "printed_name": "Houfe. Thomas",
-    "surname": "Houfe. Thomas",
-    "given": null,
+    "printed_name": "Houfe, Thomas",
+    "surname": "Houfe",
+    "given": "Thomas",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "teamster, Wm. Lill",
@@ -46110,6 +46321,16 @@
     "bracket_notes": [
      "died before July 10, 1851."
     ],
+    "surname_repair": {
+     "as_read": "Houfe. Thomas",
+     "reading": "Houfe, Thomas",
+     "verdict": "second_hand_comma",
+     "confidence": "documented",
+     "second_hand": "Houfc, Thomas, teamster, AA'm. Lill, bds .John Greenwood",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Houfe. Thomas, teamster, Wm. Lill, bds John Greenwood [died before July 10, 1851.]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -46125,7 +46346,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Houfe. Thomas"
+    "Houfe, Thomas"
    ],
    "town_finding": false,
    "notes": null
@@ -46622,14 +46843,24 @@
    "reading": "transcription_mediated",
    "quote": "Howe. Fred. A., jr., clerk, bds Frederick A. Howe",
    "normalized": {
-    "printed_name": "Howe. Fred. A, jr",
-    "surname": "Howe. Fred. A",
-    "given": "jr",
+    "printed_name": "Howe, Fred. A., jr",
+    "surname": "Howe",
+    "given": "Fred. A., jr",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "clerk",
     "address": "bds Frederick A. Howe",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Howe. Fred. A",
+     "reading": "Howe, Fred. A",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Howe. Fred. A., jr., clerk, bds Frederick A. Howe",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Howe. Fred. A., jr., clerk, bds Frederick A. Howe",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -46645,7 +46876,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Howe. Fred. A, jr"
+    "Howe, Fred. A., jr"
    ],
    "town_finding": false,
    "notes": null
@@ -55606,7 +55837,7 @@
    "id": "f1843_e1600",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Lind, Sylvester, lumber merchant, 255 Randolph, bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged",
+   "quote": "Lind, Sylvester, lumber merchant, 255 Randolph, bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged\n84.]",
    "normalized": {
     "printed_name": "Lind, Sylvester",
     "surname": "Lind",
@@ -55614,17 +55845,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": "lumber merchant, 255 Randolph",
-    "address": "bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged",
-    "bracket_notes": [],
-    "as_printed": "Lind, Sylvester, lumber merchant, 255 Randolph, bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged",
+    "address": "bds Sauganash",
+    "bracket_notes": [
+     "died, Lake Forest, Ill., February 6, 1892, aged 84."
+    ],
+    "as_printed": "Lind, Sylvester, lumber merchant, 255 Randolph, bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged 84.]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Lindebner; the age 84 closes the obituary of f1843_e1600 above",
+     "entry": "f1843_e1601",
+     "obituary": "f1843_e1600",
+     "age": "84",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died.  Lake  Forest,  111.,  February  (J,  1892,  aged  84. Lindebner,  Joseph,  tailor,  Edward  Manierre.  bds  same",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     504,
-     504
+    "spans": [
+     {
+      "line": 504,
+      "from": 0,
+      "to": 110
+     },
+     {
+      "line": 505,
+      "from": 0,
+      "to": 4
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "L"
@@ -55640,32 +55895,49 @@
    "id": "f1843_e1601",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "84.] Lindebner, Joseph, tailor, Edward Manierre, bds same",
+   "quote": "Lindebner, Joseph, tailor, Edward Manierre, bds same",
    "normalized": {
-    "printed_name": "84.] Lindebner, Joseph",
-    "surname": "84.] Lindebner",
+    "printed_name": "Lindebner, Joseph",
+    "surname": "Lindebner",
     "given": "Joseph",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "tailor, Edward Manierre",
     "address": "bds same",
     "bracket_notes": [],
-    "as_printed": "84.] Lindebner, Joseph, tailor, Edward Manierre, bds same",
+    "as_printed": "Lindebner, Joseph, tailor, Edward Manierre, bds same",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "84.] Lindebner",
+     "reading": "the entry begins at Lindebner; the age 84 closes the obituary of f1843_e1600 above",
+     "entry": "f1843_e1601",
+     "obituary": "f1843_e1600",
+     "age": "84",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died.  Lake  Forest,  111.,  February  (J,  1892,  aged  84. Lindebner,  Joseph,  tailor,  Edward  Manierre.  bds  same",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     505,
-     505
+    "spans": [
+     {
+      "line": 505,
+      "from": 5,
+      "to": 57
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "L"
    },
    "describes_date": "1843",
    "entities": [
-    "84.] Lindebner, Joseph"
+    "Lindebner, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -55912,7 +56184,7 @@
    "id": "f1843_e1609",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged",
+   "quote": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged\n74.]",
    "normalized": {
     "printed_name": "Long, James",
     "surname": "Long",
@@ -55920,17 +56192,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": "proprietor hydraulic mill, n.e",
-    "address": "cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged",
-    "bracket_notes": [],
-    "as_printed": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged",
+    "address": "cor Lake and Mich, ave",
+    "bracket_notes": [
+     "died, Paris, France, April 10, 1876, aged 74."
+    ],
+    "as_printed": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged 74.]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Loomis; the age 74 closes the obituary of f1843_e1609 above",
+     "entry": "f1843_e1610",
+     "obituary": "f1843_e1609",
+     "age": "74",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Paris,  France,  April  10,  1870,  aged  74. Loomis.  Henry,  lumber  merchant,  cor  West  Water  and  I^andolph",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     513,
-     513
+    "spans": [
+     {
+      "line": 513,
+      "from": 0,
+      "to": 110
+     },
+     {
+      "line": 514,
+      "from": 0,
+      "to": 4
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "L"
@@ -55946,10 +56242,10 @@
    "id": "f1843_e1610",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "74.] Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged\n68.]",
+   "quote": "Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged\n68.]",
    "normalized": {
-    "printed_name": "74.] Loomis, Henry",
-    "surname": "74.] Loomis",
+    "printed_name": "Loomis, Henry",
+    "surname": "Loomis",
     "given": "Henry",
     "firm": false,
     "editorial_bracket": false,
@@ -55958,22 +56254,44 @@
     "bracket_notes": [
      "died, Burlington, Vt., December 18, 1886, aged 68."
     ],
-    "as_printed": "74.] Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged 68.]",
+    "as_printed": "Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged 68.]",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "74.] Loomis",
+     "reading": "the entry begins at Loomis; the age 74 closes the obituary of f1843_e1609 above",
+     "entry": "f1843_e1610",
+     "obituary": "f1843_e1609",
+     "age": "74",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Paris,  France,  April  10,  1870,  aged  74. Loomis.  Henry,  lumber  merchant,  cor  West  Water  and  I^andolph",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     514,
-     515
+    "spans": [
+     {
+      "line": 514,
+      "from": 5,
+      "to": 112
+     },
+     {
+      "line": 515,
+      "from": 0,
+      "to": 4
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "L"
    },
    "describes_date": "1843",
    "entities": [
-    "74.] Loomis, Henry"
+    "Loomis, Henry"
    ],
    "town_finding": false,
    "notes": null
@@ -56640,9 +56958,9 @@
    "reading": "transcription_mediated",
    "quote": "Lyman. Daniel, miller, [died at Hyde Park, April 19, 1882, aged 92.]",
    "normalized": {
-    "printed_name": "Lyman. Daniel",
-    "surname": "Lyman. Daniel",
-    "given": null,
+    "printed_name": "Lyman, Daniel",
+    "surname": "Lyman",
+    "given": "Daniel",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "miller",
@@ -56650,6 +56968,16 @@
     "bracket_notes": [
      "died at Hyde Park, April 19, 1882, aged 92."
     ],
+    "surname_repair": {
+     "as_read": "Lyman. Daniel",
+     "reading": "Lyman, Daniel",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Lyman. Daniel, miller, [died at Hyde I'ark, Aj^ril 10, 1882",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Lyman. Daniel, miller, [died at Hyde Park, April 19, 1882, aged 92.]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -56665,7 +56993,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Lyman. Daniel"
+    "Lyman, Daniel"
    ],
    "town_finding": false,
    "notes": null
@@ -60376,14 +60704,24 @@
    "reading": "transcription_mediated",
    "quote": "Mann. J., hatter, Israel Cyrus Stephens",
    "normalized": {
-    "printed_name": "Mann. J",
-    "surname": "Mann. J",
-    "given": null,
+    "printed_name": "Mann, J",
+    "surname": "Mann",
+    "given": "J",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "hatter, Israel Cyrus Stephens",
     "address": null,
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Mann. J",
+     "reading": "Mann, J",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Mann. J., hatter, Israel Cyrus Stepliens",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Mann. J., hatter, Israel Cyrus Stephens",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -60399,7 +60737,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Mann. J"
+    "Mann, J"
    ],
    "town_finding": false,
    "notes": null
@@ -64558,14 +64896,24 @@
    "reading": "transcription_mediated",
    "quote": "Munson. F. A., res Illinois Exchange, 192 Lake",
    "normalized": {
-    "printed_name": "Munson. F. A",
-    "surname": "Munson. F. A",
-    "given": null,
+    "printed_name": "Munson, F. A",
+    "surname": "Munson",
+    "given": "F. A",
     "firm": false,
     "editorial_bracket": false,
     "occupation": null,
     "address": "res Illinois Exchange, 192 Lake",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Munson. F. A",
+     "reading": "Munson, F. A",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "Mimson. F. A., res Illinois Exchange, 192 Lake",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Munson. F. A., res Illinois Exchange, 192 Lake",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -64581,7 +64929,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Munson. F. A"
+    "Munson, F. A"
    ],
    "town_finding": false,
    "notes": null
@@ -66880,9 +67228,9 @@
    "reading": "transcription_mediated",
    "quote": "O'Neil. Michael, carpenter, res Dearborn, bet N. Water and Kinzie [died December 9, 1863, aged 48]",
    "normalized": {
-    "printed_name": "O'Neil. Michael",
-    "surname": "O'Neil. Michael",
-    "given": null,
+    "printed_name": "O'Neil, Michael",
+    "surname": "O'Neil",
+    "given": "Michael",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "carpenter",
@@ -66890,6 +67238,16 @@
     "bracket_notes": [
      "died December 9, 1863, aged 48"
     ],
+    "surname_repair": {
+     "as_read": "O'Neil. Michael",
+     "reading": "O'Neil, Michael",
+     "verdict": "both_point",
+     "confidence": "inferred",
+     "second_hand": "O'Xeil. Michael, carj)enter. res Dearborn, bet X. Water",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "O'Neil. Michael, carpenter, res Dearborn, bet N. Water and Kinzie [died December 9, 1863, aged 48]",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -66905,7 +67263,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "O'Neil. Michael"
+    "O'Neil, Michael"
    ],
    "town_finding": false,
    "notes": null
@@ -67298,7 +67656,7 @@
    "id": "f1843_e1937",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Otis, Seth T., hardware, stoves, etc., 126 Lake, res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged",
+   "quote": "Otis, Seth T., hardware, stoves, etc., 126 Lake, res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged\n71.]",
    "normalized": {
     "printed_name": "Otis, Seth T",
     "surname": "Otis",
@@ -67306,17 +67664,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": "hardware, stoves, etc., 126 Lake",
-    "address": "res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged",
-    "bracket_notes": [],
-    "as_printed": "Otis, Seth T., hardware, stoves, etc., 126 Lake, res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged",
+    "address": "res 166 State",
+    "bracket_notes": [
+     "died, Ann Arbor, Mich., January 23, 1882, aged 71."
+    ],
+    "as_printed": "Otis, Seth T., hardware, stoves, etc., 126 Lake, res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged 71.]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Otis; the age 71 closes the obituary of f1843_e1937 above",
+     "entry": "f1843_e1938",
+     "obituary": "f1843_e1937",
+     "age": "71",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Ann  Arbor,  Mich.,  January  23,  1S82,  aged  71. r^tis,  Seth,  county  ])Oor-house  keeper       [died  April  27,  1847,  aged  70.",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     867,
-     867
+    "spans": [
+     {
+      "line": 867,
+      "from": 0,
+      "to": 110
+     },
+     {
+      "line": 868,
+      "from": 0,
+      "to": 4
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "O"
@@ -67332,10 +67714,10 @@
    "id": "f1843_e1938",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "71.] Otis, Seth, county poor-house keeper [died April 27, 1847, aged 70.]",
+   "quote": "Otis, Seth, county poor-house keeper [died April 27, 1847, aged 70.]",
    "normalized": {
-    "printed_name": "71.] Otis, Seth",
-    "surname": "71.] Otis",
+    "printed_name": "Otis, Seth",
+    "surname": "Otis",
     "given": "Seth",
     "firm": false,
     "editorial_bracket": false,
@@ -67344,22 +67726,39 @@
     "bracket_notes": [
      "died April 27, 1847, aged 70."
     ],
-    "as_printed": "71.] Otis, Seth, county poor-house keeper [died April 27, 1847, aged 70.]",
+    "as_printed": "Otis, Seth, county poor-house keeper [died April 27, 1847, aged 70.]",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "71.] Otis",
+     "reading": "the entry begins at Otis; the age 71 closes the obituary of f1843_e1937 above",
+     "entry": "f1843_e1938",
+     "obituary": "f1843_e1937",
+     "age": "71",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Ann  Arbor,  Mich.,  January  23,  1S82,  aged  71. r^tis,  Seth,  county  ])Oor-house  keeper       [died  April  27,  1847,  aged  70.",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     868,
-     868
+    "spans": [
+     {
+      "line": 868,
+      "from": 5,
+      "to": 73
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "O"
    },
    "describes_date": "1843",
    "entities": [
-    "71.] Otis, Seth"
+    "Otis, Seth"
    ],
    "town_finding": false,
    "notes": null
@@ -77102,14 +77501,24 @@
    "reading": "transcription_mediated",
    "quote": "Seger Joseph, water carrier, res Dutch Settlement",
    "normalized": {
-    "printed_name": "Seger Joseph",
-    "surname": "Seger Joseph",
-    "given": null,
+    "printed_name": "Seger, Joseph",
+    "surname": "Seger",
+    "given": "Joseph",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "water carrier",
     "address": "res Dutch Settlement",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Seger Joseph",
+     "reading": "Seger, Joseph",
+     "verdict": "second_hand_supplies",
+     "confidence": "documented",
+     "second_hand": "Seger, Jose])h, water carrier, res Dutch Settlement",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Seger Joseph, water carrier, res Dutch Settlement",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -77125,7 +77534,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Seger Joseph"
+    "Seger, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -80227,7 +80636,7 @@
    "id": "f1843_e2309",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Smith, Samuel P,, clerk, Gurnee & Matteson, bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged",
+   "quote": "Smith, Samuel P,, clerk, Gurnee & Matteson, bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged\n46]",
    "normalized": {
     "printed_name": "Smith, Samuel P",
     "surname": "Smith",
@@ -80235,17 +80644,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": "clerk, Gurnee & Matteson",
-    "address": "bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged",
-    "bracket_notes": [],
-    "as_printed": "Smith, Samuel P,, clerk, Gurnee & Matteson, bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged",
+    "address": "bds Mrs. Haight",
+    "bracket_notes": [
+     "died, Bureau Co,, Ill., October 2, 1862, aged 46"
+    ],
+    "as_printed": "Smith, Samuel P,, clerk, Gurnee & Matteson, bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged 46]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Smith; the age 46 closes the obituary of f1843_e2309 above",
+     "entry": "f1843_e2310",
+     "obituary": "f1843_e2309",
+     "age": "46",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died.  Bureau  Co,.  111.,  October  2,  1862.  a.o-ed  46 Smith,  Theophilus  AVa'sbington,  attorney  (S.  ct  Ballingall),  6  Clark",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_004.txt",
-    "lines": [
-     415,
-     415
+    "spans": [
+     {
+      "line": 415,
+      "from": 0,
+      "to": 106
+     },
+     {
+      "line": 416,
+      "from": 0,
+      "to": 3
+     }
     ],
     "page": "fergus_1843_page_004",
     "printed_section": "S"
@@ -80261,10 +80694,10 @@
    "id": "f1843_e2310",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "46] Smith, Theophilus Washington, attorney (S. & Ballingall), 6 Clark [died May 6, 1846, aged 60]",
+   "quote": "Smith, Theophilus Washington, attorney (S. & Ballingall), 6 Clark [died May 6, 1846, aged 60]",
    "normalized": {
-    "printed_name": "46] Smith, Theophilus Washington",
-    "surname": "46] Smith",
+    "printed_name": "Smith, Theophilus Washington",
+    "surname": "Smith",
     "given": "Theophilus Washington",
     "firm": false,
     "editorial_bracket": false,
@@ -80273,22 +80706,39 @@
     "bracket_notes": [
      "died May 6, 1846, aged 60"
     ],
-    "as_printed": "46] Smith, Theophilus Washington, attorney (S. & Ballingall), 6 Clark [died May 6, 1846, aged 60]",
+    "as_printed": "Smith, Theophilus Washington, attorney (S. & Ballingall), 6 Clark [died May 6, 1846, aged 60]",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "46] Smith",
+     "reading": "the entry begins at Smith; the age 46 closes the obituary of f1843_e2309 above",
+     "entry": "f1843_e2310",
+     "obituary": "f1843_e2309",
+     "age": "46",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died.  Bureau  Co,.  111.,  October  2,  1862.  a.o-ed  46 Smith,  Theophilus  AVa'sbington,  attorney  (S.  ct  Ballingall),  6  Clark",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_004.txt",
-    "lines": [
-     416,
-     416
+    "spans": [
+     {
+      "line": 416,
+      "from": 4,
+      "to": 97
+     }
     ],
     "page": "fergus_1843_page_004",
     "printed_section": "S"
    },
    "describes_date": "1843",
    "entities": [
-    "46] Smith, Theophilus Washington"
+    "Smith, Theophilus Washington"
    ],
    "town_finding": false,
    "notes": null
@@ -83723,14 +84173,24 @@
    "reading": "transcription_mediated",
    "quote": "Tarbox. C. F., clerk, Orrington Lunt, bds John B. Mitchell",
    "normalized": {
-    "printed_name": "Tarbox. C. F",
-    "surname": "Tarbox. C. F",
-    "given": null,
+    "printed_name": "Tarbox, C. F",
+    "surname": "Tarbox",
+    "given": "C. F",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "clerk, Orrington Lunt",
     "address": "bds John B. Mitchell",
     "bracket_notes": [],
+    "surname_repair": {
+     "as_read": "Tarbox. C. F",
+     "reading": "Tarbox, C. F",
+     "verdict": "second_hand_comma",
+     "confidence": "documented",
+     "second_hand": "Tarbox, C. F., clerk, Orriligton Lunt, hds John B. iMitchcll",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 12"
+    },
     "as_printed": "Tarbox. C. F., clerk, Orrington Lunt, bds John B. Mitchell",
     "section": "alphabetical directory",
     "trade_heading": null
@@ -83746,7 +84206,7 @@
    },
    "describes_date": "1843",
    "entities": [
-    "Tarbox. C. F"
+    "Tarbox, C. F"
    ],
    "town_finding": false,
    "notes": null
@@ -92988,25 +93448,49 @@
    "id": "f1843_e2675",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+   "quote": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged\n59]",
    "normalized": {
     "printed_name": "Wright, John Stephen",
     "surname": "Wright",
     "given": "John Stephen",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+    "occupation": "editor and proprietor Prairie Farmer",
     "address": null,
-    "bracket_notes": [],
-    "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+    "bracket_notes": [
+     "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
+    ],
+    "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Wright; the age 59 closes the obituary of f1843_e2675 above",
+     "entry": "f1843_e2676",
+     "obituary": "f1843_e2675",
+     "age": "59",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Pbiladelpbia,  Pa..  Se])t.  2G,  1874,  aged  51). ■\\Vrigbt,  ^Irs.  Hulda,  M'id.  of  .Jobn,  IIG  3Iicbigan  ave,  s.-w.  cor  Madison",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_004.txt",
-    "lines": [
-     821,
-     821
+    "spans": [
+     {
+      "line": 821,
+      "from": 0,
+      "to": 106
+     },
+     {
+      "line": 822,
+      "from": 0,
+      "to": 3
+     }
     ],
     "page": "fergus_1843_page_004",
     "printed_section": "W"
@@ -93022,10 +93506,10 @@
    "id": "f1843_e2676",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "59] Wright, Mrs. Hulda, wid. of John, 116 Michigan ave, s.-w. cor Madison [died April 13, 1854, aged 67]",
+   "quote": "Wright, Mrs. Hulda, wid. of John, 116 Michigan ave, s.-w. cor Madison [died April 13, 1854, aged 67]",
    "normalized": {
-    "printed_name": "59] Wright, Mrs. Hulda",
-    "surname": "59] Wright",
+    "printed_name": "Wright, Mrs. Hulda",
+    "surname": "Wright",
     "given": "Mrs. Hulda",
     "firm": false,
     "editorial_bracket": false,
@@ -93034,22 +93518,39 @@
     "bracket_notes": [
      "died April 13, 1854, aged 67"
     ],
-    "as_printed": "59] Wright, Mrs. Hulda, wid. of John, 116 Michigan ave, s.-w. cor Madison [died April 13, 1854, aged 67]",
+    "as_printed": "Wright, Mrs. Hulda, wid. of John, 116 Michigan ave, s.-w. cor Madison [died April 13, 1854, aged 67]",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "59] Wright",
+     "reading": "the entry begins at Wright; the age 59 closes the obituary of f1843_e2675 above",
+     "entry": "f1843_e2676",
+     "obituary": "f1843_e2675",
+     "age": "59",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Pbiladelpbia,  Pa..  Se])t.  2G,  1874,  aged  51). ■\\Vrigbt,  ^Irs.  Hulda,  M'id.  of  .Jobn,  IIG  3Iicbigan  ave,  s.-w.  cor  Madison",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_004.txt",
-    "lines": [
-     822,
-     822
+    "spans": [
+     {
+      "line": 822,
+      "from": 4,
+      "to": 104
+     }
     ],
     "page": "fergus_1843_page_004",
     "printed_section": "W"
    },
    "describes_date": "1843",
    "entities": [
-    "59] Wright, Mrs. Hulda"
+    "Wright, Mrs. Hulda"
    ],
    "town_finding": false,
    "notes": null

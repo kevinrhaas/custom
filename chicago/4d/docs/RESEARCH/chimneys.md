@@ -71,6 +71,13 @@ not eat floor space."* That sentence was committed years of parcels before this 
 is a claim about FABRIC that the renderer then ignored, painting the thing it describes in
 the roof's colour.
 
+**It is now true of every log stack in the town, which it was not when this section was
+written.** Until T-0435 (2026-09-13) the code built the stack at a fixed compass face
+while the roof ran its ridge along the longer plan axis, so 31 of 49 stacks stood against
+an EAVE — the fabric argument above was being made from a disposition two-thirds of the
+town did not have. §7 records the repair and the before/after; the argument here is
+unchanged, because it was the geometry that was wrong and not the reasoning.
+
 So the fabric follows the disposition that was already argued: a **cat-and-clay** stack —
 split sticks laid up in courses like a miniature crib and daubed inside and out with the
 same clay the wall below it is chinked with. Fieldstone is the other half of the archetype's
@@ -165,7 +172,8 @@ the gable so that it "can be pulled away from the building when it catches fire"
 building in this fort has one. Painting a cat-and-clay flue up the middle of a barracks
 would contradict the geometry the archetype has built since it was written.
 
-So the fort takes **§2's brick row, unchanged** — `CHIMNEY_BRICK`, 0.45/0.23/0.17 linear at
+So the fort takes **§2's brick row, unchanged** — `BRICK` (named `CHIMNEY_BRICK` until
+T-0332 renamed it for the fabric rather than one of its surfaces), 0.45/0.23/0.17 linear at
 roughness 0.85, the town's one brick. No third row, no new number, and no new liberty:
 `docs/LIBERTIES.md` **L26** already owns where a fort stack stands, and the fabric here is
 reasoned from attested evidence rather than invented, so it is **inferred** and L168's own
@@ -316,6 +324,60 @@ docstring — *"one exterior stack against a gable end"* — and it is the dispo
 argues the cat-and-clay fabric from**: *"built against the gable so it can be pulled away
 from the building when it catches fire."* Two-thirds of the town's log stacks are not in
 it. **T-0435** owns that; it moves geometry on 29 masters and needs a bake.
+
+### T-0435: the stacks now stand where the argument says (2026-09-13)
+
+The eave figure is **zero**. On the tree this was fixed against the split had grown to 49
+stacks, **31 of them against an eave**, and the same instrument now reads **49 at a gable
+end and 0 at an eave** — the only reading in the census that moved, stack for stack, is
+those 31.
+
+The repair is one sentence of code: `_stack` no longer builds at the −x face
+unconditionally. It takes a `gable_axis`, and `_gable_axis` answers it from the roof the
+building actually has — the ridge's own axis, so the gables are the ends the ridge runs
+to. A SHED roof is answered `x` unconditionally rather than from the plan, because
+`_shed_roof` always falls from the −y wall to the facade whatever the proportions are, so
+its sloping ends are always the ±x faces; no record in the 1835 scene asks for a
+shed-roofed log dwelling today, and the branch is a rule stated before it is needed. The
+block itself is written once, in a (gable, cross) frame, and swapped into world axes at
+the last step, so the two orientations cannot drift apart by hand.
+
+**Two things a gable-fronted cabin made the archetype say out loud.** On a cabin deeper
+than it is wide the ±y faces are the gables, which means the FACADE is a gable, and two
+pieces of the elevation had quietly assumed it was not:
+
+- *The back window.* `_core_openings` has always put one window on the −y elevation under
+  the rule *"none on the gable ends: the gables carry the chimney at one end and the
+  notching at both, and a log gable was rarely pierced."* That rule was written when the
+  back wall was assumed to be an eave. On a gable-fronted cabin −y is a gable and now
+  carries the stack, so the window goes to the −x eave instead — the same rule applied to
+  the roof the building has. The facade stays the one gable that is pierced, because a
+  cabin has to have a door.
+- *The second stack.* `brown_boarding_house` is the only record in the scene that asks for
+  it — two stacks, no frame addition, 7.32 m wide and 12.19 m deep — and "the other end of
+  the one element there is" is its street front. Centred, the shaft would have stood
+  through the doorway. It slides along the gable into the clear band the facade leaves
+  between the door reveal and the nearer flanking window and stands in the middle of it,
+  which is where an end-wall flue serving the front pen would rise anyway. The figures it
+  is placed from are `_core_openings`' own, hoisted into module constants so a second copy
+  cannot drift.
+
+**Before and after, on the extreme case.** `brown_boarding_house` carried the deepest fault
+in the town: both its stacks stood against an eave with **3.197 m** of flue above the roof
+beside them — a chimney standing over ten feet proud of the surface it is built against.
+They now clear **0.720 m** (the rear gable) and **1.118 m** (the facade gable, measured
+through the eave overhang it passes at its offset). Every other moved stack lands on the
+same **0.720 m** the seventeen correct ones always had, which is what the geometry
+predicts: a gable stack is the same block on either axis.
+
+**The by-law is not touched.** All 249 stacks on 227 buildings still clear eighteen inches;
+the floor is still the eleven frame taverns' 0.550 m. A stack that follows the ridge to a
+gable gets SHORTER — 3.197 m to 0.720 m at the extreme — and 0.720 m is 28.3 inches, so
+nothing approaches the gate. `tools/check.sh` is green, including `validate.py --stale`,
+which is what forced all 49 log masters to be regenerated rather than the 30 that visibly
+moved: the archetype's own sha is in every log building's input hash. 30 masters changed
+bytes; the other 19 rebuilt byte-for-byte identical, which is the evidence the change
+reaches exactly the cabins it should.
 
 ### A correction: section 22 is not the corporation limits
 

@@ -227,9 +227,23 @@ is the contract. The short form:
 - **Pick**: take the topmost ticket in `tickets/QUEUE.md` you can actually run (skip
   `needs_bake` on the improve runner, with the skip stated in the PR). `node
   tools/ticket.mjs list --workable` prints the same order.
+- **Check it is not ALREADY DONE**: `node tools/ticket.mjs landed` names every workable
+  ticket that a MERGED PR names, with the number, the merge instant and the `done`
+  command. Git cannot answer this — everything squash-merges, so a merged branch never
+  becomes an ancestor of `dev`, and `inflight` therefore reads a finished ticket's cold
+  branch as litter rather than as done. T-0429 sat `claimed` at the top of the queue for
+  five days that way and a run rebuilt 116 files onto records already on `dev`.
+  `inflight` runs this for you. It REPORTS and never fails a gate: the id in a PR title
+  is a convention, so read the PR before you close a ticket on it, and treat its silence
+  as silence rather than as proof.
 - **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
   inflight` shows what other branches are already carrying a ticket number, which is the
-  only live view of work the merged files cannot show yet. On the runner, `claim` also
+  only live view of work the merged files cannot show yet. It reads each branch as
+  **live**, **held** or **cold**, and `held` is the one to read carefully: the branch is
+  older than a run but the ticket's claim lock still stands, so it is either a run reading
+  sources for hours or a run that died after its merge. Check its PR before you take it —
+  age alone used to file that branch under "finished or litter", and two runs read cohort
+  14 in parallel for it (T-0852). On the runner, `claim` also
   records WHICH Actions run holds the ticket (`claimed_run`) and `done` records the
   INSTANT it finished (`closed_at`), so BOARD.md can show what is being worked now and
   what finished in the order it finished. Neither is ever hand-written.

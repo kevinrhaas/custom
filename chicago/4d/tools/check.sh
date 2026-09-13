@@ -166,6 +166,16 @@ step "Wright's whole sheet still counts one watercourse that is not the river" \
 
 selftest "…and that audit's assertions still fire when broken" \
   python3 tools/audit_wright_watercourses.py --self-test
+
+# T-1080. The second, INDEPENDENT read of that one watercourse — off the 600 dpi NA/HUP
+# sheet under its own registration, where `north_side_slough` was traced off the BPL
+# master scan. It began life as a road record and the road was withdrawn: the two
+# readings are one feature, and this is the only cross-check that record has. `--check`
+# re-derives every metre, and the identity figure with it, from the committed pixels
+# without opening the raster, so the gate can ask it. The raster half is `--check-sheet`
+# and needs Pillow and numpy, which this gate does not have.
+step "the NA re-read of the north-side slough still lands on the committed centreline" \
+  python3 tools/read_north_side_slough_na.py --check
 # T-1101. The nine chips, put on the ground. Seven of the nine tracts are polygons now —
 # every one of them re-derived here from geometry this project already committed, never
 # traced off a wash — and the two that name no tract are REFUSED, with the number that
@@ -181,6 +191,21 @@ step "the nine survey tracts still stand where their committed ground puts them"
 
 selftest "…and the tract layer's assertions still fire when broken" \
   python3 tools/build_survey_tracts.py --self-test
+
+# T-1104. The tract layer names who surveyed the ground; the register names who bought it,
+# and since T-0609 it has been on the ground. This joins them, and the join is where two
+# committed files can quietly stop agreeing: a section corner that drifts, a seating that is
+# re-fitted or a school-section block that moves changes which polygon a parcel falls in
+# WITHOUT changing either file's own gate. So every share is re-clipped here from the
+# committed rings and compared to the last decimal. The prose claims are gated as numbers
+# too — that none of the seven 1830 canal entries touches the Original Town, that no row
+# refused for being off the modelled ground names one of the four carried sections, and
+# that the town-plat lots are still refused rather than sorted on a guess at their code.
+step "the register's parcels still fall on the same survey tracts" \
+  python3 tools/sort_land_sales_onto_tracts.py --check
+
+selftest "…and the clip, the precedence clause and both refusals still fire when broken" \
+  python3 tools/sort_land_sales_onto_tracts.py --self-test
 
 # T-1082. The swatch reading above is of the NA/HUP facsimile; the North Branch's
 # disputed bank wash is on the BPL master, and the same nine chips are not the same
@@ -257,6 +282,28 @@ selftest "the QUEUE.md merge driver still does what .gitattributes promises" \
 step "the owner's queue ranking has not gone backwards" \
   node tools/check_queue_order.mjs
 
+# THE CHANGELOG-ENTRY GATE ANSWERS THE RIGHT QUESTION ABOUT THE RIGHT FILES, and
+# until 2026-09-13 nothing tested that it did. `check-changelog-entry.mjs` runs
+# only from the PR workflow (its own header says why: the nightly bake regenerates
+# data/ and a gate inside check.sh would fail every bake), so its behaviour was
+# never exercised anywhere — and it was the commonest cause of a red PR that day.
+# Not for being strict about the town: `tools/dev-smoke-state.json` is T-0216's
+# register of smoke RESULTS and sits under the watched `tools/` prefix, so a run
+# that filed its readings — which AGENTS.md REQUIRES — drew a red gate for obeying
+# the contract. #1264 and #1269 were red with that file as the only watched path
+# they touched, and the same hand-written `Changelog: none` trailer had been added
+# to #1090, #1108, #1126 and #1247 two days earlier. #1255 is NOT that shape and
+# stays red correctly — it changed smoke_renderer.mjs too — which is the case the
+# test's last two assertions pin.
+#
+# The exemption fixes it once; this keeps it fixed, and holds the gate's other
+# answers while it is there — an exemption list is exactly the kind of edit that
+# quietly widens. It asserts the gate STILL BITES on a real change with no entry,
+# that the opt-out still needs a reason, and that a moved BASELINE beside the smoke
+# register is NOT exempt, because a baseline is a claim about the town.
+step "the changelog-entry gate exempts a smoke reading and still bites on a change" \
+  node tools/test_changelog_entry_gate.mjs
+
 selftest "…and its own assertions still fire when broken" \
   node tools/check_queue_order-selftest.mjs
 
@@ -284,6 +331,20 @@ selftest "the changelog merge driver still does what .gitattributes promises" \
 # and is never invoked looks exactly like no driver at all.
 selftest "the build-product and smoke-ledger merge drivers do what .gitattributes promises" \
   node tools/merge-generated-selftest.mjs
+
+# T-0833. THE LAP THAT USES THEM. Every driver above only ever protects a LOCAL
+# merge — git keeps a driver's command out of tracked content, so GitHub loads
+# none of them and reports a conflict a clone does not have (measured on PR #940).
+# Six PRs stood open against dev on 2026-09-13, all six called conflicting by
+# `git merge-tree`, and on only four files: changelog.js (6), QUEUE.md (6),
+# dev-smoke-state.json (5) — all three driver-covered — and assets/manifest.json
+# (1), which is a real one. tools/drain.mjs is the clone that can apply the first
+# three and hand back the fourth, and what is tested hardest is the handing back:
+# a batching tool that quietly picks between two research claims looks exactly
+# like one that works. The suite asserts the refusal exits non-zero and LEAVES THE
+# MARKERS, which is the property a person actually uses.
+selftest "the drain lap still refuses every conflict its drivers do not cover" \
+  node tools/drain-selftest.mjs
 
 # ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
 # say what `queue` runs — git keeps a driver command out of tracked content on
@@ -392,6 +453,20 @@ step "the West Division's lot figures still answer for the sheet they were read 
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_west_division_lots.py --self-test
+
+# BLOCKS 14 AND 15, THE LAST TWO OF THE FIFTY-EIGHT (T-1099). They were refused for want of a
+# street, and the street was there: Market Street flanks both, and the fourth side is Carroll
+# continued east along the bearing of its own committed path. The same correction settles the
+# collision T-1098 found — block 7's box took Market's own southern endpoint for its south,
+# because block 7 is the one block in its tier with a single flank, and so reached 89 m past
+# itself and cited a crop with TWO block numerals in it. The gate re-cuts both boxes, checks
+# each read window lies inside the box it is cited under, and asserts directly that neither
+# block's numeral lies inside the other's crop.
+step "blocks 14 and 15 re-cut from Market Street and Carroll continued east" \
+  python3 tools/read_wolf_point_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wolf_point_numerals.py --self-test
 
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
@@ -591,6 +666,20 @@ step "the platted block and lot grid re-derives from the module" \
 selftest "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
 
+# The band the two halves of that plat leave between them (T-0419). Since the owner ruled
+# on 2026-08-29 that a corridor is derived from the street CONTROL, south_water's corridor
+# stands 8.58 m north of block faces still offset from the DRAWN line, and 6,132 m2 of
+# ground belongs to neither. Which of the two is wrong is the owner's question; this gate
+# does not answer it. It pins the figures the question is asked ABOUT, so the fork cannot
+# drift under him while it waits — and it has already caught that drift once: between the
+# 2026-08-30 measurement and 2026-09-13 the shore work moved the claimed band's dry share
+# 47.6 -> 46.0 %, and ordinary building took branch A's price from 43 roofs to 53.
+step "the band between the re-centred corridor and its block faces is what T-0419 measured" \
+  python3 tools/measure_corridor_strip.py --gate
+
+selftest "…and that measurement's own assertions still fire when broken" \
+  python3 tools/measure_corridor_strip.py --self-test
+
 # T-0875. The School Section's 142 block numerals, read off the 600-dpi NA sheet.
 # It sits beside the Thompson grid because it is the same question answered the
 # other way round: there, two legible numerals could not say how a run passes from
@@ -734,7 +823,11 @@ step "no stack in the town is painted the colour of the roof it passes through" 
 # anything above a roof line. Every stack in the town already clears it; this is the ratchet
 # that stops one dropping back under. It does NOT decide which buildings the by-law reaches:
 # section 22's corporation limits are T-0334's and are not drawn yet, and nothing here is
-# conformed to a rule that may not bind it, because nothing has to move.
+# conformed to a rule that may not bind it, because nothing has to move. SINCE T-0436 it
+# also REPORTS the reach: the corporate boundary is committed, eight of the chimneyed
+# buildings stand outside it, and section 18 never bound one of them. (The line is the
+# Trustees' own of 7 November 1833 — NOT section 22, which draws the narrower
+# hay-stacking boundary and is T-0334's.)
 step "every stack is carried eighteen inches above its roof, as the by-law of 5 August 1835 requires" \
   python3 tools/measure_stack_ordinance.py --gate --quiet
 
@@ -864,6 +957,21 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# T-0436. The other kind of line over the same ground: not who could build on it, but
+# whose by-laws reached it. The Trustees walked the corporate boundary on 7 November 1833
+# and printed it three weeks later (chicago_democrat_1833_11_26#c024, tier 1); the legs
+# are authored and the ring is RESOLVED from the committed streets and the committed
+# shoreline, so a re-traced shore or a moved street must re-derive it or fail here. This
+# never fails because a building stands outside the limits — twenty-four do, and that is
+# a fact about 1835. It fails when the boundary stops being readable, or when a leg
+# carried past the end of its own committed centreline comes near enough to a drawn
+# building that the EXTENSION, rather than the ordinance, decides its side of the line.
+step "the corporate boundary of 7 November 1833 still re-derives, and decides nobody by extrapolation" \
+  python3 tools/measure_corporation_limits.py --gate --quiet
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_corporation_limits.py --self-test
+
 # T-0134. The plate the Dearborn reach was built from draws warehouses on BOTH banks and
 # only the north one stands. The south side was refused on a single spot reading taken by
 # hand — "the corridor reaches to within about 1.7 m of the waterline" — and the whole bank
@@ -962,6 +1070,21 @@ step "north-bank frontages still stand on the rule the north bank is placed by" 
 
 selftest "…and that assertion fires when a roof leaves the frontage line" \
   python3 tools/measure_north_bank_frontage.py --self-test
+
+# T-0421. Canal is the one street whose control does not agree with itself — three points
+# spreading 2.33 m, so `disagree`, so its corridor stays on the drawn line. That figure was
+# read for a year as an open question about where Canal ran. It is not: two of the five
+# OpenStreetMap nodes averaged into `kinzie_canal` are the Kinzie Street Bikeway, and on the
+# three road nodes the same three control points spread 0.09 m. The road-only reading is now
+# committed data (`control.kinzie_canal.road_only_reading`) rather than three paragraphs of
+# prose, and this re-derives BOTH spreads, the per-point offsets, and the 2.93 m variance the
+# North Branch bridge declares against that same field. Nothing moves on either reading — the
+# gate exists to keep that true, not to argue for the correction.
+step "canal's corridor still reads the same on both readings of Kinzie x Canal" \
+  python3 tools/measure_canal_control_spread.py --check
+
+selftest "…and its assertions fire when either reading, the line or the bridge drifts" \
+  python3 tools/measure_canal_control_spread.py --self-test
 
 # Two generators build party-line rows onto the committed block faces and each asserts
 # that ITS OWN run stands on one line; neither could see the other. The Lake face of
@@ -1337,6 +1460,20 @@ selftest "…and its own assertions still fire when broken" \
 # can catch is the detector moving under them, which is what its baseline is for.
 # One asks the plate about the town; the other asks the town about the plate.
 
+# FOUR CROPS, FOUR PANELS OF ONE SHEET. Three of the fort layers' plates reached
+# this repository as owner-supplied crops with a README and were cited by committed
+# path for a month; T-0055 joined the Kinzie one to kurz_allison_1893 by hand and
+# left the rest unconfirmed, and T-1107 measured them. The gate is not there to
+# re-prove the identification — that is settled and written into the source record.
+# It is there because a citation can rot silently: re-crop, re-scan or re-compress
+# either image and four source_ids quietly stop pointing at what they claim, with
+# nothing else in this repository able to notice. Six seconds to hold the join.
+step "the four crops are still the panels their citations name" \
+  python3 tools/measure_plate_join.py --gate --quiet
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_plate_join.py --self-test
+
 # Fort Dearborn's gates are built SHUT on purpose — the archetype's own words: a
 # fort with its gates standing open makes a claim about the hour of the day, and
 # the garrison is attested for the scene date. Both of them stood a quarter open.
@@ -1694,6 +1831,48 @@ step "new --after places directly under the named ticket and moves nothing else"
 step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
   node tools/test_ticket_claim_lock.mjs
 
+# AND THE QUESTION THE LOCK CANNOT ANSWER: has this ticket's PR already MERGED?
+# Everything here squash-merges, so a merged branch never becomes an ancestor of
+# `dev`; `inflight` is honest about that and falls back on branch AGE, which makes a
+# finished ticket read as litter rather than as done. T-0429 sat `claimed` behind a
+# cold branch for five days as the topmost queue line carrying no PR — the exact
+# shape of available work — and a run rebuilt the whole block, 116 files and 5,827
+# insertions, onto records already on `dev` under the same ids.
+#
+# `ticket.mjs landed` asks the one question that settles it, against the closed PRs.
+# THE GATE DOES NOT CALL THE NETWORK: this step runs the tool on a CONSTRUCTED PR
+# list, which is the only honest demonstration of a check whose correct answer
+# against the real `dev` changes hourly. What it holds is the three refusals that
+# make the report trustworthy — a queue-keeping title ("File T-0968: …", "Pull
+# T-0802 up…", "Rank T-0727 under…", three real merged PRs that touched none of the
+# work they name) is not a claim of authorship, a `done` or `blocked-owner` ticket is
+# not a finding, and an unreachable API degrades to silence rather than to an
+# accusation — plus the one that makes it safe: it exits 0 whatever it finds, because
+# a gate that hard-fails on a naming convention blocks a run that did nothing wrong.
+step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" \
+  node tools/test_ticket_landed.mjs
+
+# AND THE OTHER HALF OF THE SAME BLIND SPOT (T-0852). `inflight` read branch AGE and
+# nothing else, so a run that claims and then READS sources for four hours dropped out
+# of the hot list at three — into a list headed "finished tickets, or branches older
+# than a run", which is false about it twice over. Cohort 14 (T-0509) was read twice on
+# 2026-09-05 by two runs that could not see each other; the ledgers disagreed on 36 of
+# the 76 people and T-0816 had to adjudicate every one.
+#
+# The reading now takes TWO witnesses, and the second is what keeps the fix honest. The
+# ticket file saying `claimed` is necessary and not sufficient — T-0987 is worked one
+# stretch per run and sits `claimed` on `dev` permanently, so the file alone reported
+# seven of its long-merged branches as in flight. The CLAIM LOCK is the other: it is
+# taken with the claim and released by `done`, so it lives exactly as long as the run.
+# Held is reported as in flight and SAID to be a long read or a dead one, because
+# T-0429's fault runs the opposite way and must stay visible.
+#
+# The gate runs it on a CONSTRUCTED branch list for the reason `landed` does: the right
+# answer against the real remote changes hourly. Both wrong readings are held — age
+# alone fails the fault, the file alone fails T-0987 and T-0429.
+step "a claim that outlived the window is work, and a merged branch is still litter" \
+  node tools/test_ticket_inflight.mjs
+
 # And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
 # every origin ref before it mints, so a duplicate id is not a missing guard but
 # the window between minting and pushing — on 2026-09-10 PRs #1048 and #1049 each
@@ -1997,6 +2176,21 @@ step "the fourth non-overlapping 75-person research cohort is fixed" \
 
 step "the fifth non-overlapping 75-person research cohort is fixed" \
   python3 tools/select_resident_research_pass_5.py --gate
+
+# T-0870. The five gates above used to DIE when a member's `letter_list_only` flag, or
+# the presence value its stratum is named for, moved in the tree — the same event
+# T-0764 had just settled is the research landing rather than staleness, arriving
+# through a different door. The assertions are kept and their direction is scoped the
+# way pass 13 scopes its own (T-0492): minting a cohort still refuses a member the
+# stratum no longer describes, and once frozen the gate counts and names it and stays
+# green. These prove BOTH halves per selector, because a scope nobody tests is a
+# deletion nobody noticed.
+selftest "…and each selector's stratum tests still refuse a mint and report a gate" \
+  sh -c 'python3 tools/select_resident_research_pilot.py --self-test \
+      && python3 tools/select_resident_research_pass_2.py --self-test \
+      && python3 tools/select_resident_research_pass_3.py --self-test \
+      && python3 tools/select_resident_research_pass_4.py --self-test \
+      && python3 tools/select_resident_research_pass_5.py --self-test'
 
 # T-0492 fixes cohorts 13, 14 and 15 in one selector, BEFORE their three tickets run,
 # so T-0508, T-0509 and T-0510 do not edit this file and the same population frame at
@@ -2543,6 +2737,16 @@ selftest "…and the section grid's own assertions still fire when broken" \
 step "Fergus's 1843 directory rebuilds from its committed text, at the declared counts" \
   python3 tools/read_fergus_1843.py --check
 
+# T-0987 stretch 12. The compositor set a POINT where the format sets the comma that
+# closes a surname, and the crosswalk reaches an 1835 person through the surname and
+# nothing else — so `Cook. George` made no match AND no refusal, and left no trace in
+# any pool. Twenty-five are repaired in the READING against the Internet Archive's OCR
+# of the printed volume, which this repository already held; the quote keeps the damage.
+# The table is what rots: a re-committed page, a moved segmenter, or a new run-on with
+# no row. The self-test fails on any of those, and on a repair that tidied a quote.
+selftest "…and every run-on surname in it is repaired against the printed volume, or said" \
+  python3 tools/read_fergus_1843.py --self-test
+
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
 
@@ -2568,6 +2772,13 @@ step "Fergus's 1843 civic account rebuilds from its committed text, at the decla
 # otherwise be a sentence in a README that nothing enforces.
 step "Fergus's 1839 directory rebuilds from its committed text" \
   python3 tools/read_fergus_1839.py --check
+
+# T-0987 stretch 13. Seven surnames the scan broke in two or the printer's comma left
+# out are repaired against a committed witness, and this is the ratchet on the table:
+# a row that stops firing, a repair that tidies its own quote, or an EIGHTH broken
+# surname arriving with no row is invisible to every reader until this fails.
+selftest "…and the seven repaired surnames in it still read off their witnesses" \
+  python3 tools/read_fergus_1839.py --self-test
 
 step "…and its crosswalk to the four pools of 1835 names rebuilds too" \
   python3 tools/crosswalk_fergus_1839.py --check
@@ -3044,6 +3255,21 @@ step "the lighthouse still stands on the glyph Wright drew for it" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/measure_wright_lighthouse.py --self-test
+
+# T-0334. The 5 August 1835 hay-stacking ordinance walks a six-vertex boundary round the
+# built town, and it is the only DOCUMENTED statement this project holds about where the
+# built-up town ended in the scene year — every other judgement about density here comes
+# from the plat, the land deal and measured frontage. The limit is DERIVED from committed
+# street centrelines, the committed reservation ring and the traced 1834 shore, the way
+# the datum is derived, so it is gated in both directions: the committed file must
+# re-derive exactly, and a hand edit to it is refused. That matters more here than usual
+# because the card now shows a visitor which side of the line a building stood on, and a
+# hand-nudged ring would move that verdict for 383 buildings with nothing to catch it.
+step "the 1835 hay-stacking limit still re-derives from committed street lines" \
+  python3 tools/derive_hay_limits.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/derive_hay_limits.py --self-test
 
 check_summary
 exit $CHECK_FAILED

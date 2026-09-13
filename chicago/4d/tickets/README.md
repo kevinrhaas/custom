@@ -123,17 +123,87 @@ window the claim lock above closes, and it is why `inflight` now also shows
 node tools/ticket.mjs inflight
 ```
 
-It maps every remote branch back to the ticket whose number it carries, and separates
-**live** (pushed within three hours, on an unfinished ticket — a run lasts about one) from
-**cold** (a finished ticket, or a branch older than any run could be). It also lists
-claims sitting in the merged files with no branch behind them, which is the shape of a
-run that claimed and died.
+It maps every remote branch back to the ticket whose number it carries, and gives each
+one of three readings:
+
+- **live** — pushed within three hours, on an unfinished ticket. A run lasts about one.
+- **held** — older than that, and the ticket's CLAIM LOCK still stands on the remote.
+- **cold** — a finished ticket, or an unclaimed branch older than any run could be.
+
+It also lists claims sitting in the merged files with no branch behind them, which is the
+shape of a run that claimed and died.
+
+**Why `held` exists** (T-0852). Age was the whole answer until 2026-09-13, and a run that
+claims, pushes, and then READS sources for four hours fell out of the hot list at three —
+into a heading that called it finished or litter when it was neither, at exactly the moment
+duplicating it was most expensive. Cohort 14 (T-0509) was read twice on 2026-09-05 by two
+runs that could not see each other; the two ledgers disagreed on 36 of the 76 people and
+T-0816 had to adjudicate every one of them.
+
+**Why it takes the lock and not just the ticket file.** `claimed` in the merged files is
+necessary and not sufficient: T-0987 is worked one stretch per run and sits `claimed` on
+`dev` permanently by design, so trusting the file alone reported all seven of its
+long-merged branches as in flight. The claim lock is taken in the same breath as the claim
+and released by `ticket.mjs done`, so it lives for exactly as long as the run does — and
+`inflight` already reads every remote head, so asking costs nothing.
+
+**And `held` is not `live`, deliberately.** A run that dies between its merge and `done`
+leaves the ticket `claimed` with the lock still standing, which looks identical from here.
+So a held branch is printed under IN FLIGHT with its age and a line saying it is either a
+long read or a dead run, and that the PR list decides which — never as settled work. Both
+readings are held by `tools/test_ticket_inflight.mjs` against a constructed branch list:
+age alone fails the fault, the ticket file alone fails T-0987 and T-0429.
 
 **What it deliberately does not claim:** whether a branch's work LANDED. Everything here
 squash-merges, so a merged branch's head never becomes an ancestor of `dev` and
 `merge-base --is-ancestor` answers "unmerged" for every branch that ever shipped —
 confidently wrong, which is worse than silent. Age and ticket state are the honest
 signals; the PR list is the authority.
+
+## Has its PR already merged? — `ticket.mjs landed`
+
+That blind spot has a cost, and it is the one this page opens with in a different key.
+A run that dies between its merge and `ticket.mjs done` leaves the ticket `claimed`
+behind a branch that is now COLD — and cold reads as litter, not as done. T-0429 sat
+that way for five days: `claimed`, topmost in the queue, carrying no PR, which is
+precisely the shape of available work. `steward/t-0429-south-water-lasalle` rebuilt the
+whole block on the strength of that reading — 116 files, 5,827 insertions, baked — and
+every record it produced already existed on `dev` under the same id.
+
+Git cannot answer it. The PR list can, and it is one REST call:
+
+```
+node tools/ticket.mjs landed            # add --pages N to look further back
+```
+
+For every **workable** ticket (`open`/`claimed`/`review` — the states that OFFER it as
+work), it asks whether a MERGED pull request names its id, and prints the number, the
+merge instant and the `done` command. `inflight` runs it too, because `inflight` is what
+a run reads before it picks.
+
+Three refusals make it worth trusting, and each is deliberate:
+
+- **It reports; it never fails.** The id in a PR title is a convention, not a contract,
+  and a gate that hard-failed on one would block a run that did nothing wrong. It exits
+  0 whatever it finds, `check.sh` never calls the network, and the tool says so in its
+  own output. **Read the PR before you close a ticket on it.**
+- **Evidence in one direction only.** A merged PR naming T-NNNN is strong evidence the
+  work landed. Its ABSENCE proves nothing — a PR whose title omits its id is invisible
+  here — so "nothing to report" is printed as silence, never as a clean bill of health,
+  and the report says how far back it actually read.
+- **The id must START the title.** `T-NNNN: …` is the convention; `T-0867/T-0868: …` is
+  the convention for a PR closing two. Anything else a title does with an id is *about*
+  the ticket, not the work of it. The first draft matched an id anywhere in the first
+  clause and accused three real merged PRs that had touched none of the work they named
+  — "Rank T-0727 under the drain band", "Pull T-0802 up into the blocking band", "File
+  T-0968: a green deploy is not proof the site is reachable". `blocked-owner` and
+  `blocked-tech` are excluded for the same reason: a run BLOCKS in the merging PR
+  exactly as it closes in one, so every blocked ticket is named by a merged PR by
+  design, and none of them is offered as work.
+
+`tools/test_ticket_landed.mjs` holds all of it against a constructed PR list, which is
+the only honest demonstration of a check whose right answer against the real `dev`
+changes hourly.
 
 ## Sizing: effort is measured in RUNS, and L must be split
 

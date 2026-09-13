@@ -64,15 +64,46 @@ outside the Addition's west boundary rule, where Wright draws the Original Town'
 division instead — two eight-lot blocks that carry their own bold 1 and 2 across their
 mid-lines, on ground this plat does not own. Nothing inside the Addition's boundary
 carries either figure. They are recorded in § refused rather than counted onto a cell:
-a number placed to make a run close is not a reading. See T-1063, which owns the river
-tier and the water lots and is where the next look at this belongs.
+a number placed to make a run close is not a reading.
+
+T-1103 THEN ASKED WHOSE THOSE TWO FIGURES ARE, and both halves of the answer are now
+derived here rather than described.
+
+  * WHOSE. They are the Original Town's North Division blocks 2 and 1 — Clark to
+    Dearborn and Dearborn to Wolcott, Kinzie Street to the river — which T-1088 read
+    off the BPL scan from crops cut out of committed street lines, and which
+    `where_one_and_two_stand()` re-cuts here and carries into this sheet's pixel space
+    through the committed scan-to-scan affine. They land on the ground T-1061 refused.
+    The two series are independent, not one series broken: Thompson's North Division
+    also prints 3 4 5 6 7 in the same tier band, and so does the Addition.
+  * AND THEY ARE NOT EVEN WHERE THE RUN WOULD PUT THEM. Extrapolating the boustrophedon
+    west of block 3 asks for two cells in the Addition's river tier, y 2009-2133. The
+    figures stand a whole tier lower, y 2141-2351, in a tier the Addition does not have,
+    because Kinzie Street is south of Michigan Street and only the Original Town plats
+    that ground. So the westward extrapolation never had anything to find.
+  * THE DOCUMENTARY TEST T-1061 NAMED RETURNS A MEASURED NEGATIVE. `documentary_sweep()`
+    reads every claim in data/research/newspapers/extracted/ that names the Addition and
+    asks which name a numbered parcel in it. Every one that does names a WATER LOT — No.
+    11 and No. 12 — and not one names a block of the Addition at all, let alone block 1
+    or 2. So the notice that would settle it is not in the corpus this project holds.
+
+WHAT IS RULED, therefore: the Addition's own block numbering as this sheet draws it
+begins at 3, and blocks 1 and 2 stay refused rather than placed. That is a statement
+about the drawing and about a corpus read to exhaustion, not about the recorded plat,
+which this project still does not hold — so the grade stays `inferred` and § refused
+keeps saying what would overturn it.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import read_north_division_numerals as north_division  # noqa: E402
+import wright_px  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 GRID = ROOT / "data" / "traces" / "kinzie_addition_street_grid.json"
@@ -96,6 +127,25 @@ SHEET_TOL_PX = 3.0
 # boundary this reading may claim. They bound a crop box and nothing else.
 RIVER_BANK_PX_Y = 2133.0
 LAKE_SHORE_PX_X = 3760.0
+
+# WHERE T-1061 SAW THE TWO BOLD FIGURES, in NA raster pixels, quoted from the
+# refusal it wrote. T-1103 identifies them, and the identification is checked
+# against this span rather than replacing it: a derivation that drifted off the
+# ground the refusal was written about would be identifying something else.
+T_1061_SPAN_PX = (2610.0, 2140.0, 2930.0, 2320.0)
+# The two Original Town blocks the identification names, east to west, as
+# tools/read_north_division_numerals.py keys them.
+THOMPSON_BLOCKS = (2, 1)
+
+# The corpus the documentary test reads, and the shape of the question put to it.
+CORPUS = ROOT / "data" / "research" / "newspapers" / "extracted"
+ADDITION_RE = re.compile(r"[Kk]in[sz]i[eo]'?s?\s+[Aa]ddition")
+# A numbered parcel named in the same claim. `Water Lot` is kept distinct from
+# `Block` because the whole finding is that the corpus only ever says the first.
+# Case-insensitive because the Democrat sets these lines in small caps and the
+# transcriptions keep it: `WATER Lot No. 12` is the same parcel as `water lot No. 11`.
+WATER_LOT_RE = re.compile(r"water\s+lots?\s*(?:No\.?)?\s*(\d+)", re.IGNORECASE)
+BLOCK_RE = re.compile(r"blocks?\s*(?:No\.?)?\s*(\d+)", re.IGNORECASE)
 
 # A crop is padded past its cell by this much on every side. Wright writes a
 # block's figure across the block's own mid-line, and in the columns the lake
@@ -262,10 +312,136 @@ def boustrophedon() -> dict[tuple[int, int], int]:
     return out
 
 
+def _scan_to_scan(gcp: dict):
+    """BPL pixel -> NA pixel, the affine this project already committed.
+
+    T-1088 read the two figures on the BPL master and this file reads the Addition
+    on the NA sheet, so an identification has to cross between them. The crossing
+    is the committed eight-point affine and it costs that fit's 8.5 px residual —
+    which is why the check below allows a whole cell's worth of slop and not a
+    pixel's.
+    """
+    c = gcp["scan_to_scan"]["coefficients"]
+
+    def to_na(x: float, y: float) -> tuple[float, float]:
+        return (c["a"] * x + c["b"] * y + c["c"],
+                c["d"] * x + c["e"] * y + c["f"])
+
+    return to_na
+
+
+def where_one_and_two_stand(gcp: dict) -> dict:
+    """The two bold figures, identified — re-cut from committed street lines.
+
+    Nothing here is typed in. `read_north_division_numerals.boxes()` cuts each
+    Original Town North Division block out of data/streets/1835.json exactly as the
+    gate already makes it; `wright_px` puts that on the BPL master; the affine above
+    carries it onto this sheet. If a street moves, this moves with it.
+    """
+    to_na = _scan_to_scan(gcp)
+    streets = north_division._streets()
+    boxes = north_division.boxes(streets)
+    found = []
+    for number in THOMPSON_BLOCKS:
+        _, (x0, south, x1, north) = boxes[number]
+        p0 = wright_px.to_pixel(x0, north)
+        p1 = wright_px.to_pixel(x1, south)
+        a, b = to_na(*p0), to_na(*p1)
+        found.append({
+            "number": number,
+            "plat": "thompson_plat_1830",
+            "tier": "north_division_kinzie_to_the_river",
+            "bounded_by": ("Clark Street to Dearborn Street" if number == 2 else
+                           "Dearborn Street to Wolcott Street") +
+                          ", Kinzie Street to the river",
+            "box_in_na_pixel_space": [round(v, 1) for v in (a[0], a[1], b[0], b[1])],
+            "read_independently_by": "T-1088, off the BPL scan, at "
+                                     "data/traces/thompson_block_numbering.json "
+                                     "§ blocks_not_in_the_grid",
+        })
+    xs = [v for f in found for v in (f["box_in_na_pixel_space"][0], f["box_in_na_pixel_space"][2])]
+    ys = [v for f in found for v in (f["box_in_na_pixel_space"][1], f["box_in_na_pixel_space"][3])]
+    return {
+        "figures": found,
+        "union_in_na_pixel_space": [round(min(xs), 1), round(min(ys), 1),
+                        round(max(xs), 1), round(max(ys), 1)],
+        "the_span_t_1061_refused": list(T_1061_SPAN_PX),
+        "why_these_keys_do_not_end_in_px": (
+            "tools/adjudicate_wright_na_fit.py harvests every `*_px` key in this trace "
+            "as a reading made ON this sheet, and measures how far a change of "
+            "registration would move it. These boxes are not that. They start at "
+            "committed street lines in metres and arrive here through the scan-to-scan "
+            "affine, never through the NA sheet's own fit, so adopting a different fit "
+            "would not move them at all and counting them would make that table say "
+            "something false."),
+        "derivation": (
+            "data/streets/1835.json -> tools/read_north_division_numerals.py "
+            "§ boxes() -> tools/wright_px.py (BPL pixels) -> this file's "
+            "gcps § scan_to_scan (NA pixels). Every step is committed and the "
+            "gate re-runs all of them."),
+    }
+
+
+def documentary_sweep() -> dict:
+    """The test T-1061 named, put to the corpus and counted.
+
+    'A Democrat notice selling a lot in block 1 or block 2 of the Addition with a
+    street named beside it' — this reads every extracted claim that names the
+    Addition and records which of them name a numbered parcel with it.
+    """
+    naming, parcels, blocks = 0, [], []
+    for path in sorted(CORPUS.glob("*.json")):
+        doc = load(path)
+        for claim in doc["claims"]:
+            text = (claim.get("normalized") or "").replace("[", "").replace("]", "")
+            if not ADDITION_RE.search(text):
+                continue
+            naming += 1
+            water = WATER_LOT_RE.findall(text)
+            block = BLOCK_RE.findall(text)
+            cite = f"{doc['issue_id']} {claim['id']}"
+            for n in water:
+                parcels.append({"parcel": f"water lot {n}", "claim": cite})
+            for n in block:
+                blocks.append({"block": int(n), "claim": cite})
+    return {
+        "corpus": "data/research/newspapers/extracted/",
+        "question": (
+            "which claims that name Kinzie's Addition also name a numbered parcel "
+            "in it, and does any of them name a block"),
+        "method": (
+            "Every claim's `normalized` transcription with its restoration brackets "
+            "stripped, matched for the Addition's name in the spellings the paper "
+            "actually prints (Kinzie's / Kinsie's / Kinzio's, Addition / addition), "
+            "then for `Water Lot No. N` and `Block No. N` in the same claim. "
+            "Re-run by the gate, so a notice added to the corpus reopens this."),
+        "claims_naming_the_addition": naming,
+        "parcels_named_with_it": parcels,
+        "block_numbers_in_the_same_claim": blocks,
+        "finding": (
+            "EVERY parcel the corpus names in Kinzie's Addition is a WATER LOT — No. "
+            "11 in the Breed v. Hale attachment, and No. 12 in Hiram Pearsons's "
+            "stolen-timber notice, its reprint a week later, and his sale notice that "
+            "September. Not one claim in the run names a block OF the Addition. The "
+            "block numbers listed above stand in the same claim as the Addition's name "
+            "and belong elsewhere on both counts: nine of them are the attachment's own "
+            "parcels, which that notice puts in section 16 in so many words, and the "
+            "tenth is Pearsons's 'Lots 2, 7 and 8 in block 5', printed after his water "
+            "lot with no plat named — the same advertiser is offering school-section "
+            "lots in the next advertisement. Block 5 is left ambiguous here rather than "
+            "annexed: an unattributed block 5 is not evidence about blocks 1 and 2 "
+            "either way. The state's town-lot register cannot help and is not cited as "
+            "if it could: Kinzie's Addition is private ground and every parcel in "
+            "data/research/land_sales/ is coded CHIOT, CHIOTV, CHIV or CHI."),
+    }
+
+
 def build() -> dict:
     grid = load(GRID)
     gcp = load(GCP)
     raster = gcp["raster"]
+    identification = where_one_and_two_stand(gcp)
+    sweep = documentary_sweep()
     cols, rows = grid_lines(grid)
     derived = boustrophedon()
     col_name = {c: (slug, gloss) for c, slug, gloss in COLUMNS}
@@ -416,12 +592,47 @@ def build() -> dict:
                     "Putting them on those two blocks would be reading one plat's "
                     "numbers onto another's ground to make a run close, and putting them "
                     "on no cell at all is the honest half of the same reading."),
+                "identified_2026_09_13": identification,
+                "identified_note": (
+                    "T-1103. The two figures are NAMED, and the refusal is unchanged by "
+                    "it: they are the Original Town's North Division blocks 2 and 1, "
+                    "Clark to Dearborn and Dearborn to Wolcott, between Kinzie Street "
+                    "and the river. The boxes above are cut from committed street lines "
+                    "and carried onto this sheet, and they land on the span T-1061 "
+                    "refused. Two things follow. FIRST, the two series are independent "
+                    "rather than one series broken across a boundary: Thompson's North "
+                    "Division prints 7 6 5 4 3 2 1 west to east in this tier and the "
+                    "Addition prints 3 4 5 6 7 west to east in its own, so 3 to 7 are "
+                    "written twice on this sheet, on two plats, and neither run "
+                    "continues the other. SECOND, the figures are not even where the "
+                    "westward extrapolation asks for them: it wants two cells in the "
+                    "Addition's river tier at y 2009-2133 and these stand a tier lower, "
+                    "because Kinzie Street is south of Michigan Street and only the "
+                    "Original Town plats that ground. Neither the Addition's west "
+                    "boundary rule nor the legend's tract colouring is impeached by "
+                    "them — they were never the Addition's to begin with."),
+                "the_documentary_test": sweep,
+                "ruling_2026_09_13": (
+                    "THE ADDITION'S OWN NUMBERING, AS THIS SHEET DRAWS IT, BEGINS AT 3, "
+                    "and blocks 1 and 2 stay refused rather than placed. The sheet "
+                    "carries fifty-two cells inside the Addition's boundary and they "
+                    "hold 3 to 54 with nothing missing; the ground west of the boundary "
+                    "that the run points at belongs to the Original Town and is now "
+                    "named; the water lots cannot be the remainder, because T-1063 read "
+                    "the river front as one continuous 1-35 lot strip; and the corpus "
+                    "names no block of the Addition at all. This is a reading of a "
+                    "drawing and of a corpus read to exhaustion, NOT a reading of the "
+                    "recorded plat, which this project does not hold — so it is stated "
+                    "here and no cell is created for it, and nothing in § blocks "
+                    "changes."),
                 "what_would_settle_it": (
                     "The recorded plat of Kinzie's Addition itself (Cook County, "
-                    "surveyed 1833), or a Democrat notice selling a lot in block 1 or "
-                    "block 2 of the Addition with a street named beside it. T-1063 owns "
-                    "the river tier and the water lots and is where the next look "
-                    "belongs."),
+                    "surveyed 1833), which is the only record that can say what the "
+                    "surveyor numbered rather than what the draughtsman drew. The "
+                    "newspaper half of this test is spent: § the_documentary_test is "
+                    "re-run by the gate, so a Democrat issue added to the corpus that "
+                    "names a block of the Addition will reopen it by failing this "
+                    "file."),
             },
         ],
         "blocks": blocks,
@@ -495,6 +706,63 @@ def assertions(doc: dict) -> list[str]:
         bad.append("`numeral_outside_cell` no longer marks exactly the gore's figures")
     if not doc["refused"]:
         bad.append("blocks 1 and 2 have stopped being refused in writing")
+        return bad
+
+    # T-1103. The identification of the two figures, and the corpus test that
+    # leaves the refusal standing. Both are derived in build(); these say what
+    # about them has to stay true.
+    refusal = doc["refused"][0]
+    ident = refusal.get("identified_2026_09_13")
+    if not ident:
+        bad.append("the refusal has stopped saying whose the two bold figures are")
+    else:
+        numbers = [f["number"] for f in ident["figures"]]
+        if sorted(numbers) != [1, 2]:
+            bad.append(f"the identification names blocks {sorted(numbers)} and it is "
+                       "about the Original Town's 1 and 2")
+        if any(f["plat"] == doc["plat"] for f in ident["figures"]):
+            bad.append("the identification has put the two figures on THIS plat — which "
+                       "is the reading the refusal exists to refuse")
+        ux0, uy0, ux1, uy1 = ident["union_in_na_pixel_space"]
+        sx0, sy0, sx1, sy1 = ident["the_span_t_1061_refused"]
+        if ux1 < sx0 or ux0 > sx1 or uy1 < sy0 or uy0 > sy1:
+            bad.append(f"the identified figures sit at {ident['union_in_na_pixel_space']} and the "
+                       f"span T-1061 refused is {ident['the_span_t_1061_refused']} — "
+                       "they no longer overlap, so this is identifying other ground")
+        west = doc["grid"]["west_boundary_px_x"]
+        river_tier_bottom = doc["grid"]["tier_bands_px_y"][-1][1]
+        for f in ident["figures"]:
+            x0, y0, x1, y1 = f["box_in_na_pixel_space"]
+            cx, cy = (x0 + x1) / 2.0, (y0 + y1) / 2.0
+            if cx >= west:
+                bad.append(f"block {f['number']}'s figure is centred at x {cx:.0f}, "
+                           f"inside the Addition's west boundary rule at x {west} — a "
+                           "figure inside the boundary is the Addition's to explain")
+            if cy <= river_tier_bottom:
+                bad.append(f"block {f['number']}'s figure is centred at y {cy:.0f}, "
+                           f"inside the river tier, which ends at y {river_tier_bottom} "
+                           "— then the run's extrapolation did have somewhere to land")
+
+    test = refusal.get("the_documentary_test")
+    if not test:
+        bad.append("the refusal has stopped carrying the corpus test that leaves it "
+                   "standing")
+    else:
+        if test["claims_naming_the_addition"] < 1:
+            bad.append("the corpus sweep found no claim naming Kinzie's Addition at all "
+                       "— it is not reading the corpus")
+        if not test["parcels_named_with_it"]:
+            bad.append("the corpus sweep found no numbered parcel in the Addition, and "
+                       "the finding it reports is that every one of them is a water lot")
+        hit = sorted({b["block"] for b in test["block_numbers_in_the_same_claim"]
+                      if b["block"] in (1, 2)})
+        if hit:
+            bad.append(f"a claim naming the Addition now names block {hit} — the "
+                       "documentary test T-1061 asked for has been answered and this "
+                       "refusal has to be reopened, not regenerated")
+    if "ruling_2026_09_13" not in refusal:
+        bad.append("the refusal has stopped stating what it rules — that the Addition's "
+                   "numbering as drawn begins at 3")
     return bad
 
 
@@ -628,6 +896,28 @@ def self_test() -> int:
     def stop_refusing_one_and_two(doc):
         doc["refused"] = []
 
+    def lose_the_identification(doc):
+        doc["refused"][0].pop("identified_2026_09_13")
+
+    def move_a_figure_inside_the_boundary(doc):
+        f = doc["refused"][0]["identified_2026_09_13"]["figures"][0]
+        f["box_in_na_pixel_space"] = [3000.0, 2141.0, 3100.0, 2351.0]
+
+    def annex_a_figure_to_this_plat(doc):
+        doc["refused"][0]["identified_2026_09_13"]["figures"][0]["plat"] = doc["plat"]
+
+    def drift_off_the_refused_span(doc):
+        doc["refused"][0]["identified_2026_09_13"]["union_in_na_pixel_space"] = [10.0, 10.0, 20.0,
+                                                                    20.0]
+
+    def find_block_one_in_the_corpus(doc):
+        doc["refused"][0]["the_documentary_test"][
+            "block_numbers_in_the_same_claim"].append(
+                {"block": 1, "claim": "a notice nobody has read"})
+
+    def lose_the_ruling(doc):
+        doc["refused"][0].pop("ruling_2026_09_13")
+
     cases = [("a cell dropped from the reading", drop_a_cell),
              ("one number used twice", repeat_a_number),
              ("a cell that stops obeying the run", break_the_run),
@@ -640,7 +930,16 @@ def self_test() -> int:
              ("a gore that has grown to a block", widen_the_gore),
              ("the gore's figures claimed to sit inside their cell",
               move_the_gores_figures_inside),
-             ("blocks 1 and 2 quietly stopping being refused", stop_refusing_one_and_two)]
+             ("blocks 1 and 2 quietly stopping being refused", stop_refusing_one_and_two),
+             ("the refusal forgetting whose the two figures are", lose_the_identification),
+             ("a figure moved inside the Addition's boundary",
+              move_a_figure_inside_the_boundary),
+             ("a figure annexed to this plat", annex_a_figure_to_this_plat),
+             ("the identification drifting off the ground T-1061 refused",
+              drift_off_the_refused_span),
+             ("a corpus notice turning up that names block 1 of the Addition",
+              find_block_one_in_the_corpus),
+             ("the refusal losing the ruling it states", lose_the_ruling)]
 
     failed = 0
     for name, break_it in cases:

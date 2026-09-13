@@ -47,6 +47,10 @@ the printer set them differently.
   Seven times on page 2 the transcription runs a new entry onto the same line as
   the tail of the one before — "aged 84-6. Ballantine, David (B. & Sherman), ..."
   Those are cut mid-line and located with `spans`, which is what `spans` is for.
+  Six more do it across a WRAP, where the tail is an obituary bracket closing on
+  an age and the next entry follows it — "84-5-6] Cutmore, Henry, grocer" — and
+  T-0987 stretch 13 cuts those the same way, giving the age back to the obituary
+  above. See `OBITUARY_TAIL_RUN_ONS`.
 
 1843 IS EIGHT YEARS LATE, and Fergus compiled it in 1896 out of the 1844 canvass.
 Nothing here is an 1835 fact. Every claim carries `describes_date: "1843"`, and
@@ -162,6 +166,282 @@ def split_name(rest: str):
     return given_s, rest[len(" ".join(given)):].strip(" ,.")
 
 
+# ---------------------------------------------------------------------------
+# T-0987 stretch 12 — THE SEPARATOR THE COMPOSITOR SET AS A POINT.
+#
+# `split_entry` closes the surname at the first comma, because that is the format
+# Fergus sets: `Surname, Given, trade, address`. Where the comma is not there the
+# head runs on, and the surname this reading hands the crosswalk is not a surname
+# at all — `Boyington. Charles H`, `Cook. George`, `Harding Charles`. The
+# crosswalk reaches an 1835 person through the surname and nothing else, so a
+# surname like that makes NO match and NO refusal: the entry leaves no trace in
+# any pool this ticket counts. That is a hole in the denominator, and stretches 10
+# and 11 measured the same hole in Norris 1844.
+#
+# TWENTY-SIX person entries in this volume carry a space inside their surname and
+# are neither an institution, a real two-word name, nor the six `84-5-6] Cutmore`
+# heads, which are a different defect and not this one. (Stretch 12 called those
+# six a page-citation run-on. They are not: stretch 13 measured them and they are
+# the obituary tail of the entry ABOVE, cut back to it below.) Twenty-five are
+# repaired here and one is left alone.
+#
+# THE SECOND HAND. The committed text of this domain is K. Torp's 2007
+# transcription on Genealogy Trails. This repository ALSO holds, under
+# `data/research/books/text/fergus_26_29.txt`, the Internet Archive's own OCR of
+# the printed volume — Fergus' Historical Series Nos. 26-29 bound in one, of which
+# No. 28 IS this directory (source record `fergus_historical_series_26_29`). Two
+# independent extractions of one printing, and neither was made from the other.
+# Every row below carries what that second hand prints, verbatim with its own
+# damage, so the comparison can be run again.
+#
+# WHAT THE TWO HANDS SAID, and the confidence follows it and is not chosen:
+#
+#   5  the printed volume sets a COMMA where this transcription sets a point
+#      (Boyington, Goodwin, Graff, Houfe, Tarbox). The separator is DOCUMENTED:
+#      the volume prints it, and Torp's point is this transcription's damage.
+#   2  the printed volume sets a COMMA where this transcription sets NOTHING
+#      (Harding, Seger). Also DOCUMENTED, and these two are the whole of the
+#      no-separator class.
+#  18  BOTH hands read a point. The surname is DOCUMENTED — two readings agree on
+#      the letters — but that the point stands where the format sets a comma is
+#      INFERRED, and the reason is stretch 10's and is stated again here: a
+#      surname is never abbreviated, so a stop immediately after one cannot be an
+#      abbreviation point. The five rows above are the corroboration that reading
+#      had lacked: in five places out of twenty-three the second hand reads the
+#      comma outright, so the point is a defect class in this printing and not a
+#      punctuation Fergus chose.
+#
+# THE REPAIR MOVES THE READING ONLY. `quote` and `as_printed` keep the damage —
+# a tidied quote cannot be found again — and every repaired claim states both
+# readings in `normalized.surname_repair`. `--self-test` fails if a row stops
+# matching exactly one entry, if a repaired entry stops reading its surname, or if
+# a repair tidied a quote.
+SECOND_HAND_SOURCE = "fergus_historical_series_26_29"
+SECOND_HAND = (
+    "The Internet Archive's OCR of the printed volume, committed at "
+    "data/research/books/text/fergus_26_29.txt (archive.org item "
+    "fergushistorical2629unse, the Allen County Public Library copy; No. 28 of "
+    "Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR "
+    "damage left in, so the comparison re-runs.")
+
+SURNAME_SEPARATOR_REPAIRS = [
+    {"id": 'f1843_e0403', "as_read": 'Boyington. Charles H',
+     "reading": 'Boyington, Charles H',
+     "verdict": 'second_hand_comma', "confidence": 'documented',
+     "second_hand": '3oyington, Ciiarles H.., <a])tain schooner CIkliIoUc^'},
+    {"id": 'f1843_e1098', "as_read": 'Goodwin. Francis P',
+     "reading": 'Goodwin, Francis P',
+     "verdict": 'second_hand_comma', "confidence": 'documented',
+     "second_hand": '<Jood\\vin, Francis \\\\. planemaker. res VV^ Lake'},
+    {"id": 'f1843_e1109', "as_read": 'Graff. Peter',
+     "reading": 'Graff, Peter',
+     "verdict": 'second_hand_comma', "confidence": 'documented',
+     "second_hand": 'Graflf, Peter, carpenter, res 3Ionroe. bet Clark and State'},
+    {"id": 'f1843_e1326', "as_read": 'Houfe. Thomas',
+     "reading": 'Houfe, Thomas',
+     "verdict": 'second_hand_comma', "confidence": 'documented',
+     "second_hand": "Houfc, Thomas, teamster, AA'm. Lill, bds .John Greenwood"},
+    {"id": 'f1843_e2409', "as_read": 'Tarbox. C. F',
+     "reading": 'Tarbox, C. F',
+     "verdict": 'second_hand_comma', "confidence": 'documented',
+     "second_hand": 'Tarbox, C. F., clerk, Orriligton Lunt, hds John B. iMitchcll'},
+    {"id": 'f1843_e1204', "as_read": 'Harding Charles',
+     "reading": 'Harding, Charles',
+     "verdict": 'second_hand_supplies', "confidence": 'documented',
+     "second_hand": 'Harding, Charles, captaio schooncu Ge7i. Thornton, bds Tremont House'},
+    {"id": 'f1843_e2219', "as_read": 'Seger Joseph',
+     "reading": 'Seger, Joseph',
+     "verdict": 'second_hand_supplies', "confidence": 'documented',
+     "second_hand": 'Seger, Jose])h, water carrier, res Dutch Settlement'},
+    {"id": 'f1843_e0530', "as_read": 'Calighan. Mathew',
+     "reading": 'Calighan, Mathew',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Calighan. ]\\Iathcw, carpenter, bds Edward Gavin'},
+    {"id": 'f1843_e0553', "as_read": 'Carr. William',
+     "reading": 'Carr, William',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Carr. AVilliam, sailor, res Canal, od Ward'},
+    {"id": 'f1843_e0561', "as_read": 'Case. Elan',
+     "reading": 'Case, Elan',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Ca^^e. Elan, carjtenter, Scoville & Gates'},
+    {"id": 'f1843_e0690', "as_read": 'Constantine. Patrick',
+     "reading": 'Constantine, Patrick',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": "<'onstantine. Patrick, laborer, res bet Michigan and Illinois. 5th Ward"},
+    {"id": 'f1843_e0692', "as_read": 'Cook. George',
+     "reading": 'Cook, George',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Cook. George, bartender, hds xVnierican Temperance House'},
+    {"id": 'f1843_e0696', "as_read": 'Cook. Josiah P',
+     "reading": 'Cook, Josiah P',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Cook. Josiah P.., baker, res ^Michigan ave'},
+    {"id": 'f1843_e0702', "as_read": 'Cooley. Miss',
+     "reading": 'Cooley, Miss',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Cooley. Miss, dress and cloak maker. 17.j Lake'},
+    {"id": 'f1843_e0704', "as_read": 'Corbidge. John',
+     "reading": 'Corbidge, John',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Corbidge. John, cutler and grinder. 11)7 Randolph'},
+    {"id": 'f1843_e0954', "as_read": 'Fish. James P',
+     "reading": 'Fish, James P',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Fish. James P., carpenter, res. Kinzie, east of Rush'},
+    {"id": 'f1843_e1060', "as_read": 'Gauch. Jacob P',
+     "reading": 'Gauch, Jacob P',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Gaueh. Jacob P., brewer, Indiana, bet Pine and Sand, res same'},
+    {"id": 'f1843_e1245', "as_read": 'Heald. Alexander Hamilton',
+     "reading": 'Heald, Alexander Hamilton',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'llcald. Alexander Hamilton, masoji. 1)ds Daniel Heald, ir.'},
+    {"id": 'f1843_e1246', "as_read": 'Heald. jr',
+     "reading": 'Heald, jr',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Ileald. jr., Daniel, mason. J'},
+    {"id": 'f1843_e1256', "as_read": 'Herrick. Ira N.. contractor',
+     "reading": 'Herrick, Ira N.. contractor',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Herrick. Ira X.. contractor, [d.. Park Manor, HI., Jan. 17, 1890'},
+    {"id": 'f1843_e1341', "as_read": 'Howe. Fred. A',
+     "reading": 'Howe, Fred. A',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Howe. Fred. A., jr., clerk, bds Frederick A. Howe'},
+    {"id": 'f1843_e1630', "as_read": 'Lyman. Daniel',
+     "reading": 'Lyman, Daniel',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": "Lyman. Daniel, miller, [died at Hyde I'ark, Aj^ril 10, 1882"},
+    {"id": 'f1843_e1738', "as_read": 'Mann. J',
+     "reading": 'Mann, J',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Mann. J., hatter, Israel Cyrus Stepliens'},
+    {"id": 'f1843_e1858', "as_read": 'Munson. F. A',
+     "reading": 'Munson, F. A',
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": 'Mimson. F. A., res Illinois Exchange, 192 Lake'},
+    {"id": 'f1843_e1925', "as_read": "O'Neil. Michael",
+     "reading": "O'Neil, Michael",
+     "verdict": 'both_point', "confidence": 'inferred',
+     "second_hand": "O'Xeil. Michael, carj)enter. res Dearborn, bet X. Water"},
+]
+
+# LEFT ALONE, and the reason is the second hand's and not a judgement about the
+# entry. `Glansman. John, butcher, Western Market, cor N. Water and Clark` is the
+# twenty-sixth, and it carries the same point as the eighteen. But the printed
+# volume's OCR DROPPED THE HEAD OF THAT LINE: between `Gilson` and `Gleason` it
+# prints only the line's tail, `AVater and Clark`, and no name. So there is no
+# second reading of this separator to set against Torp's, and the one argument the
+# eighteen rest on — two hands agreeing on the letters — is unavailable here.
+# Repairing it would be assuming the class rather than reading it. It stays in the
+# pool, uncounted, and this note says why.
+SURNAME_SEPARATOR_LEFT_ALONE = [
+    {"id": "f1843_e1088", "as_read": "Glansman. John",
+     "why": "the second hand's OCR drops the head of this line and prints only its "
+            "tail, `AVater and Clark`, so there is no second reading of the separator"},
+    # AND ONE THAT IS NOT A NAME AT ALL. `Jan. 18, 1868, aged 77 1/4.` is the tail of
+    # the obituary bracket on the entry above it, wrapped onto a line of its own by
+    # the web transcription and segmented as an entry. It carries the run-on SHAPE and
+    # none of the defect: there is no surname here to repair. It is a segmenting fault
+    # and a different ticket's, and it is named here so the ratchet below does not have
+    # to file it under institutions, which it is not.
+    {"id": "f1843_e1434", "as_read": "Jan. 18",
+     "why": "not an entry: the tail of the preceding entry's obituary bracket, wrapped "
+            "onto its own line by the transcription and segmented as one. No surname to "
+            "repair; a segmenting fault, recorded and left"},
+]
+
+# ---------------------------------------------------------------------------
+# T-0987 stretch 13 — THE AGE THAT WAS READ AS A SURNAME.
+#
+# Stretch 12 filed this pool as "the page-citation run-on" and described it as a
+# cross-reference Torp interpolates — `84-5-6] Cutmore`, six of them. MEASURED,
+# THAT IS NOT WHAT THEY ARE, and this stretch says so before it repairs them.
+# There is no cross-reference. Every one of the six is the TAIL OF THE OBITUARY
+# BRACKET ON THE ENTRY ABOVE, wrapped onto the next line by the transcription and
+# closed there before the next entry begins:
+#
+#   Cushing, Nathaniel Sawyer, house painter, ... [died, Lombard, Ill., May 13, 1889, aged
+#   84-5-6] Cutmore, Henry, grocer. West Randolph, bet W Water and Canal
+#
+# So the digits are an AGE, they belong to the entry above, and the entry below
+# begins after the bracket. It is the same defect `f1843_e1434` carries — the
+# obituary tail wrapped onto a line of its own — with one difference that makes it
+# worse: there the tail wrapped ALONE and became a nameless entry, while here the
+# next entry follows it on the same line, so the tail is swallowed into a REAL
+# person's head and that person's surname becomes `84-5-6 Cutmore`. Six people of
+# the volume are unreachable by the crosswalk, which reaches an 1835 person through
+# the surname and nothing else, and six obituaries lose their age.
+#
+# THE SEGMENTER ALREADY HAD THE ANSWER AND NEVER REACHED IT. `alpha_entries` cuts
+# an entry mid-line and locates both halves with `spans` — the seven run-ons of
+# page 2 are cut that way. These six never got there: the test for "does an entry
+# begin on this line" strips leading non-letters before it looks (`lead`), so the
+# line PASSES as the start of an entry and is then recorded from column 0, junk
+# and all. The repair is to take the same cut the run-on path takes, at the end of
+# the bracket, which puts the age back on the entry above and starts the new entry
+# at its own surname. No new locator kind, no new claim, no change to any count
+# `coverage.json` declares.
+#
+# THE SECOND HAND SETTLES IT, and is stretch 12's: the Internet Archive's OCR of
+# the printed volume at `data/research/books/text/fergus_26_29.txt`. In ALL SIX it
+# closes the age onto the obituary above and sets the next entry after it, so the
+# reading below is `documented` in every row — two independent extractions of one
+# printing agree on where the age belongs. Nothing was fetched for this stretch.
+OBITUARY_TAIL_RUN_ONS = [
+    {"id": 'f1843_e0754', "tail": '84-5-6]', "surname": 'Cutmore',
+     "age_of": 'f1843_e0753', "age": '84-5-6',
+     "second_hand": 'I  died,  Lombard.  111.,  May  13.  1889.  aged  84-5-0. '
+                    'Cutraore,  Henry,  grocer.  West  liandolph,  bet  W  Water  and  Canal'},
+    {"id": 'f1843_e1601', "tail": '84.]', "surname": 'Lindebner',
+     "age_of": 'f1843_e1600', "age": '84',
+     "second_hand": '[died.  Lake  Forest,  111.,  February  (J,  1892,  aged  84. '
+                    'Lindebner,  Joseph,  tailor,  Edward  Manierre.  bds  same'},
+    {"id": 'f1843_e1610', "tail": '74.]', "surname": 'Loomis',
+     "age_of": 'f1843_e1609', "age": '74',
+     "second_hand": '[died,  Paris,  France,  April  10,  1870,  aged  74. '
+                    'Loomis.  Henry,  lumber  merchant,  cor  West  Water  and  I^andolph'},
+    {"id": 'f1843_e1938', "tail": '71.]', "surname": 'Otis',
+     "age_of": 'f1843_e1937', "age": '71',
+     "second_hand": '[died,  Ann  Arbor,  Mich.,  January  23,  1S82,  aged  71. '
+                    'r^tis,  Seth,  county  ])Oor-house  keeper       [died  April  27,  1847,  aged  70.'},
+    {"id": 'f1843_e2310', "tail": '46]', "surname": 'Smith',
+     "age_of": 'f1843_e2309', "age": '46',
+     "second_hand": '[died.  Bureau  Co,.  111.,  October  2,  1862.  a.o-ed  46 '
+                    "Smith,  Theophilus  AVa'sbington,  attorney  (S.  ct  Ballingall),  6  Clark"},
+    {"id": 'f1843_e2676', "tail": '59]', "surname": 'Wright',
+     "age_of": 'f1843_e2675', "age": '59',
+     "second_hand": '[died,  Pbiladelpbia,  Pa..  Se])t.  2G,  1874,  aged  51). '
+                    "\u25a0\\Vrigbt,  ^Irs.  Hulda,  M'id.  of  .Jobn,  IIG  3Iicbigan  ave,  s.-w.  cor  Madison"},
+]
+
+# The shape, so a SEVENTH cannot arrive unnoticed: a run of digits (with the
+# hyphenated sixths Fergus sets for a part-year, `84-5-6`), an optional stop, and
+# the bracket that closes the obituary above. `[Jackson Hall, 45 LaSalle ...` — the
+# editorial bracket that IS its own entry — opens with a bracket and carries no
+# digits before it, so it cannot match.
+OBIT_TAIL = re.compile(r"^\s*\d[\d\-]*\s*\.?\](\s+)")
+
+
+_REPAIR_BY_READ = {r["as_read"]: r for r in SURNAME_SEPARATOR_REPAIRS}
+_OBIT_TAIL_BY_ID = {r["id"]: r for r in OBITUARY_TAIL_RUN_ONS}
+_OBIT_TAIL_BY_AGE_OF = {r["age_of"]: r for r in OBITUARY_TAIL_RUN_ONS}
+
+
+def repair_separator(body: str):
+    """Lift a run-on surname before the comma is ever walked, or leave it alone.
+
+    Returns `(body, row)`. Longest match first, so a row whose `as_read` is a
+    prefix of another's cannot steal it.
+    """
+    for as_read in sorted(_REPAIR_BY_READ, key=len, reverse=True):
+        if body.startswith(as_read):
+            row = _REPAIR_BY_READ[as_read]
+            return row["reading"] + body[len(as_read):], row
+    return body, None
+
+
 def split_entry(flat: str, shouted: bool):
     """name / occupation / address, best effort, out of one printed entry.
 
@@ -180,6 +460,7 @@ def split_entry(flat: str, shouted: bool):
     editorial = not body and len(notes) == 1
     if editorial:
         body = notes[0]
+    repair = None
     if shouted:
         # The business directory: the subject is the shouted run at the head.
         printed = shouted_head(body) or body.split(",")[0].strip(" ,.")
@@ -193,6 +474,9 @@ def split_entry(flat: str, shouted: bool):
                                  for t in parts[:-1])
         firm = surname is None
     else:
+        # T-0987 stretch 12: the separator, before the comma is walked. The repair
+        # rewrites the leading run only; `flat` is untouched and becomes the quote.
+        body, repair = repair_separator(body)
         head = body.split(",")[0].strip()
         firm = bool(FIRM.search(head)) or "&" in head
         if firm:
@@ -205,7 +489,7 @@ def split_entry(flat: str, shouted: bool):
     m = PLACE.search(rest)
     occupation = (rest[:m.start()] if m else rest).strip(" ,.")
     address = (rest[m.start():] if m else "").strip(" ,.")
-    return {
+    out = {
         "printed_name": printed,
         "surname": surname,
         "given": given or None,
@@ -215,6 +499,21 @@ def split_entry(flat: str, shouted: bool):
         "address": address or None,
         "bracket_notes": notes,
     }
+    if repair is not None:
+        # Both readings, on the claim, so nothing downstream has to take the repair
+        # on trust: what this transcription printed, what the repair reads, what the
+        # second hand prints, and which of the two the confidence rests on.
+        out["surname_repair"] = {
+            "as_read": repair["as_read"],
+            "reading": repair["reading"],
+            "verdict": repair["verdict"],
+            "confidence": repair["confidence"],
+            "second_hand": repair["second_hand"],
+            "second_hand_source_id": SECOND_HAND_SOURCE,
+            "second_hand_note": SECOND_HAND,
+            "ticket": "T-0987 stretch 12",
+        }
+    return out
 
 
 def shouted_head(line: str):
@@ -287,7 +586,18 @@ def alpha_entries(lines):
             # entry's tail, not a new name.
             starts = ("," in head) or surname >= last_surname
         if starts:
-            out.append([section, i, i, None])
+            # T-0987 stretch 13. `lead` stripped the leading non-letters to decide
+            # that an entry begins here, and then the entry was recorded from
+            # column 0 and kept them. Where those non-letters are the tail of the
+            # obituary bracket above — an age and the bracket that closes it — the
+            # cut belongs where the run-on path below puts one: the entry above
+            # ENDS at the bracket, and this one BEGINS at its own surname.
+            tail = OBIT_TAIL.match(line) if out else None
+            if tail:
+                out[-1] = [out[-1][0], out[-1][1], i, out[-1][3], tail.start(1)]
+                out.append([section, i, i, tail.end(1)])
+            else:
+                out.append([section, i, i, None])
             last_surname = fold_surname(re.split(r"[,\.]", lead, 1)[0])
             continue
         if not out:
@@ -362,6 +672,32 @@ def build_claims():
             flat = re.sub(r"\s+", " ", raw).strip()
             norm = split_entry(flat, shouted=False)
             norm["as_printed"] = flat
+            cid = "f1843_e%04d" % n
+            tail_row = _OBIT_TAIL_BY_ID.get(cid) or _OBIT_TAIL_BY_AGE_OF.get(cid)
+            if tail_row is not None:
+                # Both readings on both halves of the pair, so nothing downstream
+                # takes the cut on trust: what this transcription ran together, what
+                # the cut reads, and what the second hand prints for the same two
+                # lines. `side` says which half this claim is.
+                norm["obituary_tail_cut"] = {
+                    "side": ("entry" if cid == tail_row["id"] else "obituary"),
+                    "as_read": (tail_row["tail"] + " " + tail_row["surname"]
+                                if cid == tail_row["id"] else
+                                "the bracket left open, the age on the line below"),
+                    "reading": ("the entry begins at %s; the age %s closes the "
+                                "obituary of %s above"
+                                % (tail_row["surname"], tail_row["age"],
+                                   tail_row["age_of"])),
+                    "entry": tail_row["id"],
+                    "obituary": tail_row["age_of"],
+                    "age": tail_row["age"],
+                    "verdict": "second_hand_closes_the_age_above",
+                    "confidence": "documented",
+                    "second_hand": tail_row["second_hand"],
+                    "second_hand_source_id": SECOND_HAND_SOURCE,
+                    "second_hand_note": SECOND_HAND,
+                    "ticket": "T-0987 stretch 13",
+                }
             norm["section"] = "alphabetical directory"
             norm["trade_heading"] = None
             if not norm["printed_name"]:
@@ -443,7 +779,153 @@ def declared_counts():
     return {}
 
 
+INSTITUTIONS_AND_PARTICLES = 30
+# T-0987 stretch 13 emptied this pool: all six were the obituary tail of the entry
+# above, and the cut puts the age back and starts the entry at its own surname. A
+# seventh would be a new defect, and this is where it would show.
+OBITUARY_TAIL_RUN_ONS_LEFT = 0
+
+
+def self_test():
+    """The separator table is a ratchet, and this is the pawl.
+
+    Four ways it rots, and each fails here: a row stops matching exactly one
+    entry (the text was re-committed, or the segmenter moved); a repaired entry
+    stops reading a bare surname; a repair tidies the quote it was supposed to
+    leave damaged; or a NEW run-on surname arrives with no row and no reason for
+    standing outside the table.
+    """
+    claims, _, _ = build_claims()
+    fails = []
+
+    # 1. every row fired, exactly once.
+    fired = {}
+    for c in claims:
+        rep = c["normalized"].get("surname_repair")
+        if rep:
+            fired.setdefault(rep["as_read"], []).append(c["id"])
+    for row in SURNAME_SEPARATOR_REPAIRS:
+        got = fired.get(row["as_read"], [])
+        if got != [row["id"]]:
+            fails.append("%s: %r matched %r, expected exactly [%r]"
+                         % (row["id"], row["as_read"], got, row["id"]))
+    for as_read, got in fired.items():
+        if as_read not in _REPAIR_BY_READ:
+            fails.append("a repair fired from no row: %r on %r" % (as_read, got))
+
+    by_id = {c["id"]: c for c in claims}
+
+    # 2. each repaired entry now reads a surname with no space in it, and the
+    #    repaired surname is the head of the row's own reading.
+    for row in SURNAME_SEPARATOR_REPAIRS:
+        c = by_id.get(row["id"])
+        if c is None:
+            fails.append("%s: no such entry any more" % row["id"])
+            continue
+        sn = c["normalized"].get("surname") or ""
+        if not sn or " " in sn:
+            fails.append("%s: repaired and still reads surname %r" % (row["id"], sn))
+        elif not row["reading"].startswith(sn):
+            fails.append("%s: reads surname %r, which is not the head of %r"
+                         % (row["id"], sn, row["reading"]))
+        # 3. the damage stays in the quote and in as_printed.
+        for field in ("quote",):
+            text = re.sub(r"\s+", " ", c[field])
+            if row["as_read"] not in text:
+                fails.append("%s: the repair tidied %s — %r is gone from it"
+                             % (row["id"], field, row["as_read"]))
+        if row["as_read"] not in c["normalized"]["as_printed"]:
+            fails.append("%s: the repair tidied as_printed" % row["id"])
+        if row["confidence"] != ("inferred" if row["verdict"] == "both_point"
+                                 else "documented"):
+            fails.append("%s: confidence %r does not follow verdict %r"
+                         % (row["id"], row["confidence"], row["verdict"]))
+
+    # 4. nothing new in the pool. A person surname carrying a space is either an
+    #    institution or a real particle, a page-citation run-on, or the one entry
+    #    the second hand cannot rule on. Anything else is a repair nobody made.
+    left = {r["id"] for r in SURNAME_SEPARATOR_LEFT_ALONE}
+    run_on = re.compile(r"^\d+[-\d]*[.\]]")
+    unexplained, run_ons, other = [], 0, 0
+    for c in claims:
+        if c["kind"] != "person":
+            continue
+        sn = c["normalized"].get("surname") or ""
+        if " " not in sn:
+            continue
+        if c["id"] in left:
+            continue
+        if run_on.match(sn):
+            run_ons += 1
+        elif "." in sn.split(" ")[0] and not sn.startswith("St."):
+            unexplained.append((c["id"], sn))
+        else:
+            other += 1
+    if unexplained:
+        fails.append("run-on surnames with no row in the table: %r" % (unexplained,))
+    if run_ons != OBITUARY_TAIL_RUN_ONS_LEFT:
+        fails.append("surnames still carrying a wrapped obituary tail: %d, expected %d"
+                     % (run_ons, OBITUARY_TAIL_RUN_ONS_LEFT))
+
+    # 6. T-0987 stretch 13: every obituary-tail cut still fires, on BOTH halves, and
+    #    the age it hands back is still on the obituary above. Four ways this rots: a
+    #    row stops cutting (the text was re-committed or the segmenter moved); the cut
+    #    lands in the wrong place and the entry reads a dirty surname; the age fails to
+    #    reach the bracket above; or the pair stops being adjacent, which would mean an
+    #    entry was gained or lost between them and the ids no longer name the pair.
+    for row in OBITUARY_TAIL_RUN_ONS:
+        entry, above = by_id.get(row["id"]), by_id.get(row["age_of"])
+        if entry is None or above is None:
+            fails.append("%s: the pair %s/%s no longer exists"
+                         % (row["id"], row["age_of"], row["id"]))
+            continue
+        sn = entry["normalized"].get("surname") or ""
+        if sn != row["surname"]:
+            fails.append("%s: cut reads surname %r, expected %r"
+                         % (row["id"], sn, row["surname"]))
+        if row["tail"] in entry["normalized"]["as_printed"]:
+            fails.append("%s: the tail %r is still on the entry"
+                         % (row["id"], row["tail"]))
+        if not above["normalized"]["as_printed"].rstrip().endswith(row["tail"]):
+            fails.append("%s: the obituary above does not close on %r — it reads %r"
+                         % (row["age_of"], row["tail"],
+                            above["normalized"]["as_printed"][-30:]))
+        for half in (entry, above):
+            cut = half["normalized"].get("obituary_tail_cut")
+            if not cut or cut["age"] != row["age"]:
+                fails.append("%s: no obituary_tail_cut naming age %r"
+                             % (half["id"], row["age"]))
+    if other != INSTITUTIONS_AND_PARTICLES:
+        fails.append("institutions and real particles: %d, expected %d"
+                     % (other, INSTITUTIONS_AND_PARTICLES))
+
+    # 5. the left-alone entry is still damaged; if it ever stops being, the note
+    #    that explains why it was left alone has to be revisited.
+    for row in SURNAME_SEPARATOR_LEFT_ALONE:
+        c = by_id.get(row["id"])
+        if c is None or c["normalized"].get("surname") != row["as_read"]:
+            fails.append("%s: left alone as %r, now reads %r"
+                         % (row["id"], row["as_read"],
+                            c and c["normalized"].get("surname")))
+
+    for f in fails:
+        print("  " + f, file=sys.stderr)
+    if fails:
+        print("fergus 1843 separator repairs: %d failure(s)" % len(fails), file=sys.stderr)
+        return 1
+    doc = sum(1 for r in SURNAME_SEPARATOR_REPAIRS if r["confidence"] == "documented")
+    print("fergus 1843: %d run-on surnames repaired (%d documented off the second hand, "
+          "%d inferred from the format), %d left alone; %d obituary tails cut back onto "
+          "the entry above (%d still swallowed), %d institutions or particles standing"
+          % (len(SURNAME_SEPARATOR_REPAIRS), doc, len(SURNAME_SEPARATOR_REPAIRS) - doc,
+             len(SURNAME_SEPARATOR_LEFT_ALONE), len(OBITUARY_TAIL_RUN_ONS), run_ons,
+             other))
+    return 0
+
+
 def main():
+    if "--self-test" in sys.argv:
+        return self_test()
     claims, per_page, warnings = build_claims()
     doc = payload(claims, per_page)
     if "--check" in sys.argv:
