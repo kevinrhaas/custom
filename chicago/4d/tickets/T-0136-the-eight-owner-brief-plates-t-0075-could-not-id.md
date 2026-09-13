@@ -1,7 +1,7 @@
 ---
 id: T-0136
 title: The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-22
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 7:33:25 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34757111135
 ---
 
 The eight owner-brief plates T-0075 could not identify: Andreas at page-image level, and two museum objects.
