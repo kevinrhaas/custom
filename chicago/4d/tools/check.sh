@@ -2519,6 +2519,23 @@ selftest "…and every garbled forename in them is repaired, cited, and none is 
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
 
+# T-0896. The advertising directory's READING, which its crosswalk above stands on and
+# which nothing re-derived. 38 pages of display cards, sliced out of the committed page
+# text at each card's own line range, so the failure this catches is a quote that has
+# stopped coming from the page it cites — the one fault the crosswalk gate cannot see,
+# because the crosswalk re-derives from the reading and would follow it wherever it went.
+step "…and the advertising directory's cards re-derive from the committed page text" \
+  python3 tools/read_norris_1844_advertiser.py --check
+
+# T-0896. AND THE SECOND READING OF THE SAME VOLUME. T-0566 read the Internet Archive
+# scan; Kim Torp read the printed book independently onto genealogytrails.com. The
+# committed file is the MATCH between the two hands, and it is the only thing in this
+# project that says where our reading of Norris disagrees with somebody else's. It ran
+# once, in 2026-09-03, and was never asked again: a re-read entry on either side, or a
+# blocking rule changed under the matcher, moves the disagreements and nothing noticed.
+step "…and our reading of Norris still disagrees with Torp's in exactly the places recorded" \
+  python3 tools/compare_norris_1844_readings.py --check
+
 # T-0867. The ADVERTISING directory's crosswalk beside it, which was the only one of
 # the four with a committed output and no gate — so it sat at the residents layer of
 # 4 September while the layer moved under it, and a regeneration on this ticket moved
