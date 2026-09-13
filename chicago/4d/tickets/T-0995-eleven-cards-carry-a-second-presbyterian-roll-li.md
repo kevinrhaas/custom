@@ -1,7 +1,7 @@
 ---
 id: T-0995
 title: Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1281
+claimed_by: run 9/13/2026, 5:02:42 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-13T22:34:01.338Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34785405985
 ---
 
 Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so.
