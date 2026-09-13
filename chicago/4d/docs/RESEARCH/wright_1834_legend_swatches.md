@@ -88,14 +88,17 @@ the eight largest per class with their pixel boxes and their local metres.
 The one reading made here is chip 5's, because it can be tested rather than asserted.
 Section 16's four sides are already committed — seated on the PLSS corner at State and
 Madison and a nominal mile, by work (`school_section_blocks_1834.json`) that never looked
-at a colour. Every one of those four sides falls **inside** the band of chip 5's colour:
+at a colour. Both sides of the table below moved under T-1092, which re-seated that
+section grid onto the eleven-point registration T-1091 adopted and re-derived these
+bands through the same fit; the containment is what survived the move, which is more
+than the agreement claimed before. Every one of those four sides falls **inside** the band of chip 5's colour:
 
 | side | committed | the yellow band spans | outside the band by |
 |---|---|---|---|
-| north (Madison) | N −534.0 | −590.0 … −527.0 | 0.0 m |
-| south (12th) | N −2143.3 | −2212.0 … −2094.4 | 0.0 m |
-| east (State) | E +835.6 | +532.2 … +841.8 | 0.0 m |
-| west | E −773.8 | −779.3 … −725.1 | 0.0 m |
+| north (Madison) | N −519.1 | −579.8 … −514.7 | 0.0 m |
+| south (12th) | N −2128.4 | −2169.2 … −2048.8 | 0.0 m |
+| east (State) | E +841.9 | +544.9 … +848.1 | 0.0 m |
+| west | E −767.5 | −777.2 … −727.5 | 0.0 m |
 
 A band is 40 to 120 m thick — brush, bleed, and the cell grid — so its outer edge is not
 an estimate of a line and is not treated as one; containment is the claim a painted

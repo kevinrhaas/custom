@@ -48,12 +48,12 @@ WHAT IS REFUSED HERE, and the refusals are the point.
                     8's duller orange. The polygon stands on the committed seating; the
                     COLOUR evidence for it is absent and is recorded as absent.
   chip 2 Canal Com. its class has two bands, the fewest on the sheet, and NEITHER stands
-                    on the Original Town: both sit at the Madison/State corner, 35 m and
-                    147 m from it, where four tracts meet and the colours crowd. They cannot place a tract; the Original Town is
+                    on the Original Town: both sit at the Madison/State corner, 48 m and
+                    146 m from it, where four tracts meet and the colours crowd. They cannot place a tract; the Original Town is
                     placed from its four named bounds instead and the colour is
                     recorded as insufficient rather than as agreement.
   chips 6 and 8     are not resolved, and the reason is measured rather than asserted.
-                    EVERY ONE of their unnamed-ground bands — eight for chip 6, three for
+                    EVERY ONE of their unnamed-ground bands — seven for chip 6, three for
                     chip 8, after the exclusions — falls in one of two places this
                     project's own geometry does not reach: beyond the four sections the
                     PLSS grid is carried across (L219), or north of where the committed

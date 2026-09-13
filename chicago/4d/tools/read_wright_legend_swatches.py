@@ -274,7 +274,10 @@ def cross_check(groups, bands) -> dict:
     """
     anchor = load(SCHOOL_BLOCKS)["anchor"]
     entry = next(e for e in bands if 5 in e["class"])
-    out = {"confidence": "inferred", "rms_grace_m": 16.19}
+    # The grace is the registration's OWN RMS, read from it rather than typed here: the
+    # fit in force changed under T-1091 and a figure written into a tool does not follow
+    # (T-1092 found this one still quoting the superseded eight-point fit's 16.19 m).
+    out = {"confidence": "inferred", "rms_grace_m": load(GCPS)["fit"]["rms_m"]}
     for side, axis in (("north", "n"), ("south", "n"), ("east", "e"), ("west", "e")):
         want = anchor[side]
         out[side] = _side_check(entry["bands"], axis, want)
@@ -479,10 +482,11 @@ def check_properties(doc: dict | None = None) -> int:
                     bad.append(f"cross_check_school_section.{side}.{key}: committed "
                                f"{got.get(key)} != {want[key]} re-derived from the bands")
             gap = want["outside_band_by_m"]
-            if gap is None or gap > checks.get("rms_grace_m", 16.19):
+            grace = checks.get("rms_grace_m", load(GCPS)["fit"]["rms_m"])
+            if gap is None or gap > grace:
                 bad.append(f"cross_check_school_section.{side}: section 16's committed side "
                            f"stands {gap} m outside chip 5's band, past the sheet's own "
-                           "16.19 m RMS — the one chip-to-ground reading this file makes "
+                           f"{grace} m RMS — the one chip-to-ground reading this file makes "
                            "no longer holds")
 
     raster = doc.get("raster", {})

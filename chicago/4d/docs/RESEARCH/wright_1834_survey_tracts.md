@@ -31,12 +31,12 @@ The colour is then used for the one thing it is good for: **agreeing or disagree
 | chip | tract | acres | boundary from | grade | bands of its own class on it |
 |---|---|---:|---|---|---:|
 | 1 | U.S. Military Reservation | 65.70 | the committed reservation ring | inferred | **1 of 1** |
-| 2 | Surveyed by Canal Com. in 1830 (the Original Town) | 262.27 | Kinzie / State / Madison / Des Plaines, each a committed line | conjectural | 0 of 2 |
-| 3 | Wabansia, surveyed 1831 | 78.63 | the committed seating (T-1086) | inferred | 0 |
-| 4 | Kinzie's Addition, surveyed 1833 | 84.23 | the envelope of its own five north-south streets | reconstructed | 1 |
+| 2 | Surveyed by Canal Com. in 1830 (the Original Town) | 256.12 | Kinzie / State / Madison / Des Plaines, each a committed line | conjectural | 0 of 2 |
+| 3 | Wabansia, surveyed 1831 | 77.88 | the committed seating (T-1086) | inferred | 0 |
+| 4 | Kinzie's Addition, surveyed 1833 | 85.10 | the envelope of its own five north-south streets | reconstructed | 2 |
 | 5 | School Section, surveyed 1833 | 640.00 | section 16, T39N R14E | inferred | **13 of 15** |
 | 7 | Fractional Section 15 | 204.38 | section 15 cut on the east by the committed shore | reconstructed | **3 of 4** |
-| 9 | Part of Canal Section No. 9 | 382.00 | section 9 with the Original Town cut out | conjectural | 10 |
+| 9 | Part of Canal Section No. 9 | 383.16 | section 9 with the Original Town cut out | conjectural | 7 |
 
 **The strongest three are the ones the colour confirms.** Chip 1's class has exactly one
 band on the whole sheet and it stands inside the committed reservation. Chip 5's fifteen
@@ -60,14 +60,14 @@ than let this paragraph stand unchallenged.
 
 **Chip 2, the Canal Commissioners' 1830 survey — two bands, neither on the tract.** Its
 class has the fewest bands on the sheet, and both sit at the Madison / State corner —
-35 m and 147 m from it — where four tracts meet and the colours crowd. They cannot place anything.
+48 m and 146 m from it — where four tracts meet and the colours crowd. They cannot place anything.
 The Original Town is placed from its four named bounds instead, and — this matters — that
 placing is graded **conjectural**, because *no source record this project holds states
 those four bounds*. `thompson_plat_1830` carries the plat's figures (roughly 0.375 square
 miles, 80-ft streets, 18-ft alleys) and not its perimeter. The four streets are the
 standard account; the standard account is not a citation. What CAN be checked is checked:
 all 19 committed plat blocks fall inside the rectangle, and the rectangle over-runs the
-printed three-eighths of a square mile by 9.3 %, as an envelope of four outer bounds must.
+printed three-eighths of a square mile by 6.7 %, as an envelope of four outer bounds must.
 
 **Chips 6 and 8 are not resolved — and the reason is ground, not evidence.** The parent
 ticket's method was: inside a class whose other members are named ground, the band that
@@ -75,12 +75,12 @@ is NOT on named ground belongs to the unnamed chip. Applied:
 
 | | bands | excluded | on a class mate | on other named ground | on unnamed ground |
 |---|---:|---:|---:|---:|---:|
-| chip 6 (class 4/6/9) | 40 | 8 | 11 | 13 | **8** |
+| chip 6 (class 4/6/9) | 40 | 8 | 9 | 16 | **7** |
 | chip 8 (class 8 alone) | 54 | 23 | — | 28 | **3** |
 
-Eleven bands are left, and **every single one of them falls in a place this project's own
+Ten bands are left, and **every single one of them falls in a place this project's own
 geometry does not reach**: seven beyond the four sections the PLSS grid is carried across
-(L219), four north of where the committed lake-shore trace ends. Nothing is left over
+(L219), three north of where the committed lake-shore trace ends. Nothing is left over
 that could be an unrecorded survey.
 
 So the honest reading is not "the method failed". It is: *the method ran out of ground.*
@@ -113,7 +113,7 @@ once, and the question "which tract is this wash" has a right answer: **the most
 one.** That is the order the record's `PRECEDENCE` carries, and it is the order the ninth
 chip's own wording implies — *Part of Canal Sec. No 9* is what is left of the section once
 the plats inside it are taken out. The cut is only taken because the Original Town's east
-and south bounds stand within 11.81 m and 8.83 m of section 9's own lines; past 25 m the
+and south bounds stand within 11.93 m and 6.12 m of section 9's own lines; past 25 m the
 tool refuses the cut rather than force it.
 
 Wabansia's seated outline also falls inside section 9's constructed square. That is
@@ -132,7 +132,7 @@ entered by this man on this date, and nothing about who held it on 1 July 1835.
   The chip's own date, in the register.
 - **Kinzie's Addition** — Robert A. Kinzie, north fraction of section 10, **102.29 acres,
   7 May 1831**. The register spells the surname two ways across the two rows and both are
-  carried rather than silently merged. The street envelope committed here is **18.06 acres
+  carried rather than silently merged. The street envelope committed here is **17.19 acres
   short** of the patent, and it should be: the patent covers the water lots between North
   Water Street and the river and the shore-cut blocks east of Sand Street, neither of them
   committed geometry (T-0799, T-0800).
@@ -151,11 +151,12 @@ T-1091 adopted the eleven-point M1 registration of the NA sheet while this was b
 written, which moves every band's local metres. That is exactly the kind of drift the
 gate exists to catch, and it caught it: the record was rebuilt on the new fit rather
 than re-stated. **The agreement improved across the board.** The School Section went
-from twelve of fifteen bands inside its square to thirteen; section 9's remainder from
-seven bands of its own class to ten; chip 6's class from eight bands on a named class
-mate to eleven, and chip 8's unnamed-ground remainder from four bands to three. Nothing
-here was tuned to the new fit — the same tool, the same thresholds, a better
-registration underneath.
+from twelve of fifteen bands inside its square to thirteen, and chip 8's unnamed-ground
+remainder from four bands to three. T-1092 then re-seated the four grids the same sheet
+places, which moved Wabansia's outline, Kinzie's Addition and the Original Town again;
+the record was rebuilt a second time rather than re-stated, and Kinzie's Addition picked
+up a second band of its own class in the move. Nothing here was tuned to either fit —
+the same tool, the same thresholds, better ground underneath.
 
 ## 8. What this leaves for T-1102 and for the parent
 

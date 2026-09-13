@@ -61,13 +61,13 @@
   },
   "cuts": {
     "section_9_cut": {
-      "east_gap_m": 11.81,
-      "south_gap_m": 8.83
+      "east_gap_m": 11.93,
+      "south_gap_m": 6.12
     },
     "original_town_bounds_local_m": {
-      "west_e": -512.74,
+      "west_e": -506.45,
       "east_e": 825.75,
-      "south_n": -534.0,
+      "south_n": -519.05,
       "north_n": 258.97
     }
   },
@@ -311,24 +311,24 @@
       "placed": true,
       "polygon_local_enu_m": [
         [
-          -512.74,
-          -534.0
+          -506.45,
+          -519.05
         ],
         [
           825.75,
-          -534.0
+          -519.05
         ],
         [
           825.75,
           258.97
         ],
         [
-          -512.74,
+          -506.45,
           258.97
         ]
       ],
-      "area_m2": 1061378.0,
-      "area_acres": 262.27,
+      "area_m2": 1036473.8,
+      "area_acres": 256.12,
       "boundary_from": "the four streets every account of the 1830 plat names as its bounds — Kinzie, State, Madison and Des Plaines — each taken from its committed line in data/streets/1835.json.",
       "geometry_confidence": "conjectural",
       "geometry_note": "CONJECTURAL, and for a reason worth stating: the four bounds above are the standard account of the 1830 plat, and NO source record this project holds states them. `thompson_plat_1830` carries the plat's figures — roughly 0.375 square miles, 80-ft streets, 18-ft alleys — and not its perimeter. So the streets are committed and the CHOICE of those four as the bounds is not, which is a conjecture however ordinary it sounds, and it is graded as one until a held source draws the line. What can be checked is checked: all 19 committed plat blocks fall inside the rectangle. It is also an ENVELOPE, bigger than the plat: the printed figure for the Original Town is three-eighths of a square mile; the four bounds give more, because the plat's actual west edge north of Randolph is not committed here and the rectangle carries ground the plat did not. The over-run is measured on this record rather than absorbed.",
@@ -409,109 +409,109 @@
       "placed": true,
       "polygon_local_enu_m": [
         [
-          -750.33,
-          279.22
+          -766.92,
+          279.1
         ],
         [
-          -750.05,
-          329.44
+          -767.04,
+          328.33
         ],
         [
-          -745.81,
-          452.87
+          -763.73,
+          449.33
         ],
         [
-          -748.01,
-          573.73
+          -766.91,
+          567.81
         ],
         [
-          -748.93,
-          697.83
+          -768.82,
+          689.47
         ],
         [
-          -749.53,
-          817.9
+          -770.37,
+          807.17
         ],
         [
-          -749.29,
-          937.75
+          -771.07,
+          924.66
         ],
         [
-          -746.01,
-          1051.61
+          -768.66,
+          1036.28
         ],
         [
-          -745.8,
-          1090.75
+          -768.75,
+          1074.65
         ],
         [
-          -494.65,
-          1093.78
+          -515.02,
+          1077.56
         ],
         [
-          -494.87,
-          1054.64
+          -514.93,
+          1039.19
         ],
         [
-          -495.21,
-          940.82
+          -514.38,
+          927.61
         ],
         [
-          -492.94,
-          820.99
+          -511.14,
+          810.14
         ],
         [
-          -377.77,
-          702.31
+          -393.84,
+          693.77
         ],
         [
-          -352.98,
-          662.88
+          -368.48,
+          655.11
         ],
         [
-          -289.55,
-          576.1
+          -303.71,
+          570.02
         ],
         [
-          -266.99,
-          534.43
+          -280.58,
+          529.17
         ],
         [
-          -245.98,
-          483.18
+          -258.94,
+          478.93
         ],
         [
-          -233.11,
-          449.5
+          -245.67,
+          445.9
         ],
         [
-          -211.94,
-          407.81
+          -223.96,
+          405.03
         ],
         [
-          -175.41,
-          353.08
+          -186.62,
+          351.36
         ],
         [
-          -153.77,
-          320.23
+          -164.5,
+          319.16
         ],
         [
-          -129.88,
-          296.97
+          -140.18,
+          296.36
         ],
         [
-          -120.24,
-          274.2
+          -130.25,
+          274.03
         ]
       ],
-      "area_m2": 318203.8,
-      "area_acres": 78.63,
+      "area_m2": 315176.6,
+      "area_acres": 77.88,
       "boundary_from": "data/traces/wabansia_seating.json, `tract_polygon_local_enu_m` — the outline T-1086 seated on the committed town grid.",
       "geometry_confidence": "inferred",
       "geometry_note": "Taken whole from the committed seating. NO band of Wabansia's own colour class stands on it; the colour evidence is absent, not weak, and T-1096 measured the reason.",
       "bands_of_its_own_class_standing_on_it": 0,
-      "bands_of_any_class_standing_on_it": 3,
+      "bands_of_any_class_standing_on_it": 6,
       "owner_on_scene_date": {
         "entries": [],
         "count": 0,
@@ -541,11 +541,11 @@
           258.97
         ],
         [
-          1272.4,
+          1277.01,
           258.97
         ],
         [
-          1272.4,
+          1277.01,
           1029.71
         ],
         [
@@ -553,13 +553,13 @@
           1029.71
         ]
       ],
-      "area_m2": 340857.4,
-      "area_acres": 84.23,
+      "area_m2": 344406.7,
+      "area_acres": 85.1,
       "boundary_from": "the envelope of the Addition's own five north-south streets (Wolcott, Cass, Rush, Pine, Sand), Kinzie Street on the south and its northmost committed corridor on the north.",
       "geometry_confidence": "reconstructed",
       "geometry_note": "The streets are committed; the envelope round them is not a traced boundary. It is SHORT of the patent, and the shortfall is measured on this record: the envelope excludes the water lots between North Water Street and the river and the shore-cut blocks east of Sand Street, neither of them committed geometry (T-0799, T-0800).",
-      "bands_of_its_own_class_standing_on_it": 1,
-      "bands_of_any_class_standing_on_it": 1,
+      "bands_of_its_own_class_standing_on_it": 2,
+      "bands_of_any_class_standing_on_it": 2,
       "owner_on_scene_date": {
         "entries": [
           {
@@ -3007,7 +3007,7 @@
       "colour_class_is_the_chip_alone": false,
       "placed": false,
       "polygon_local_enu_m": null,
-      "why_not_placed": "The unnamed-ground bands of this class do not cluster: 6 groups at 250.0 m linkage, the largest holding 32% of the cells against the 60% this file requires. A survey tract is one connected piece of ground and a scatter is not one. AND THE SCATTER IS NOT RANDOM: 7 beyond the carried section grid, 1 north of the committed shore — so what is missing here is ground, not evidence. Carrying the PLSS grid past the four sections it is held to (L219), or committing the lake shore north of where its trace ends, is what would let this chip be adjudicated at all.",
+      "why_not_placed": "The unnamed-ground bands of this class do not cluster: 6 groups at 250.0 m linkage, the largest holding 31% of the cells against the 60% this file requires. A survey tract is one connected piece of ground and a scatter is not one. AND THE SCATTER IS NOT RANDOM: 7 beyond the carried section grid — so what is missing here is ground, not evidence. Carrying the PLSS grid past the four sections it is held to (L219), or committing the lake shore north of where its trace ends, is what would let this chip be adjudicated at all.",
       "positional_adjudication": {
         "class_mates_named": [
           "kinzies_addition",
@@ -3015,22 +3015,21 @@
         ],
         "bands_total": 40,
         "bands_excluded": 8,
-        "bands_on_a_class_mate": 11,
-        "bands_on_other_named_ground": 13,
-        "bands_on_unnamed_ground": 8,
+        "bands_on_a_class_mate": 9,
+        "bands_on_other_named_ground": 16,
+        "bands_on_unnamed_ground": 7,
         "unnamed_spread_m": [
-          1950.9,
+          1857.3,
           3425.6
         ],
         "unnamed_ground_is": {
-          "beyond_the_carried_section_grid": 7,
-          "north_of_the_committed_shore": 1
+          "beyond_the_carried_section_grid": 7
         },
         "clusters_at_link_m": {
           "link_m": 250.0,
           "count": 6,
-          "largest_bands": 3,
-          "largest_cell_share": 0.323
+          "largest_bands": 1,
+          "largest_cell_share": 0.305
         },
         "coherent": false,
         "wash_extent_local_m": null
@@ -3389,16 +3388,16 @@
           -512.21
         ],
         [
-          -512.58,
-          -514.31
+          -506.41,
+          -514.36
         ],
         [
-          -506.31,
-          258.91
+          -500.14,
+          258.92
         ],
         [
-          843.9,
-          247.96
+          843.91,
+          248.01
         ],
         [
           850.69,
@@ -3409,13 +3408,13 @@
           1097.08
         ]
       ],
-      "area_m2": 1545899.7,
-      "area_acres": 382.0,
+      "area_m2": 1550600.9,
+      "area_acres": 383.16,
       "boundary_from": "section 9 with the Original Town cut out of its south-east corner — the L the two chips must partition the section into if chip 2 is the 1830 plat and chip 9 is what was left.",
       "geometry_confidence": "conjectural",
       "geometry_note": "CONJECTURAL BY INHERITANCE. The section square is constructed (L219) and would be `reconstructed`, but the notch cut out of it is the Original Town's west bound, which is conjectural — so this ring can be no better than that one, and it is not graded better. The cut is only taken because the Original Town's east and south bounds stand within tolerance of section 9's own lines; the two gaps are printed on this record and the cut refuses itself if either opens past 25 m.",
-      "bands_of_its_own_class_standing_on_it": 10,
-      "bands_of_any_class_standing_on_it": 23,
+      "bands_of_its_own_class_standing_on_it": 7,
+      "bands_of_any_class_standing_on_it": 20,
       "owner_on_scene_date": {
         "entries": [],
         "count": 0,
@@ -3441,26 +3440,25 @@
       ],
       "bands_total": 40,
       "bands_excluded": 8,
-      "bands_on_a_class_mate": 11,
-      "bands_on_other_named_ground": 13,
-      "bands_on_unnamed_ground": 8,
+      "bands_on_a_class_mate": 9,
+      "bands_on_other_named_ground": 16,
+      "bands_on_unnamed_ground": 7,
       "unnamed_spread_m": [
-        1950.9,
+        1857.3,
         3425.6
       ],
       "clusters_at_link_m": {
         "link_m": 250.0,
         "count": 6,
-        "largest_bands": 3,
-        "largest_cell_share": 0.323
+        "largest_bands": 1,
+        "largest_cell_share": 0.305
       },
       "unnamed_ground_is": {
-        "beyond_the_carried_section_grid": 7,
-        "north_of_the_committed_shore": 1
+        "beyond_the_carried_section_grid": 7
       },
       "coherent": false,
       "wash_extent_local_m": null,
-      "why_not_placed": "The unnamed-ground bands of this class do not cluster: 6 groups at 250.0 m linkage, the largest holding 32% of the cells against the 60% this file requires. A survey tract is one connected piece of ground and a scatter is not one. AND THE SCATTER IS NOT RANDOM: 7 beyond the carried section grid, 1 north of the committed shore — so what is missing here is ground, not evidence. Carrying the PLSS grid past the four sections it is held to (L219), or committing the lake shore north of where its trace ends, is what would let this chip be adjudicated at all.",
+      "why_not_placed": "The unnamed-ground bands of this class do not cluster: 6 groups at 250.0 m linkage, the largest holding 31% of the cells against the 60% this file requires. A survey tract is one connected piece of ground and a scatter is not one. AND THE SCATTER IS NOT RANDOM: 7 beyond the carried section grid — so what is missing here is ground, not evidence. Carrying the PLSS grid past the four sections it is held to (L219), or committing the lake shore north of where its trace ends, is what would let this chip be adjudicated at all.",
       "unnamed_bands": [
         {
           "cells": 264,
@@ -3517,20 +3515,6 @@
           "excluded": null,
           "on": null,
           "unnamed_because": "beyond_the_carried_section_grid"
-        },
-        {
-          "cells": 121,
-          "centroid_px": [
-            3584.0,
-            1218.2
-          ],
-          "local_m": [
-            1273.3,
-            945.7
-          ],
-          "excluded": null,
-          "on": null,
-          "unnamed_because": "north_of_the_committed_shore"
         },
         {
           "cells": 72,
@@ -3668,16 +3652,16 @@
     "original_town_against_its_printed_area": {
       "claim": "The 1830 plat is printed as three-eighths of a square mile.",
       "printed_km2": 0.9712,
-      "envelope_km2": 1.0614,
-      "over_run_ratio": 1.093,
+      "envelope_km2": 1.0365,
+      "over_run_ratio": 1.067,
       "reading": "The envelope over-runs the plat, as an envelope of four outer bounds must. It is recorded, not corrected: correcting it would mean inventing the plat's west edge north of Randolph.",
       "confidence": "inferred"
     },
     "kinzies_addition_against_its_patent": {
       "claim": "Robert A. Kinzie entered the north fraction of section 10 at 102.29 acres on 1831-05-07.",
       "patent_acres": 102.29,
-      "street_envelope_acres": 84.23,
-      "shortfall_acres": 18.06,
+      "street_envelope_acres": 85.1,
+      "shortfall_acres": 17.19,
       "reading": "The envelope is SHORT, and it should be: the patent covers the water lots and the shore-cut blocks the committed street lines do not reach.",
       "confidence": "inferred"
     }
@@ -3870,8 +3854,7 @@
             945.7
           ],
           "excluded": null,
-          "on": null,
-          "unnamed_because": "north_of_the_committed_shore"
+          "on": "kinzies_addition"
         },
         {
           "cells": 107,
@@ -4156,7 +4139,10 @@
             1046.4
           ],
           "excluded": null,
-          "on": "canal_section_9_remainder"
+          "on": "wabansia",
+          "also_inside": [
+            "canal_section_9_remainder"
+          ]
         },
         {
           "cells": 45,
@@ -4247,7 +4233,10 @@
             780.1
           ],
           "excluded": null,
-          "on": "canal_section_9_remainder"
+          "on": "wabansia",
+          "also_inside": [
+            "canal_section_9_remainder"
+          ]
         },
         {
           "cells": 42,
@@ -4312,7 +4301,10 @@
             447.8
           ],
           "excluded": null,
-          "on": "canal_section_9_remainder"
+          "on": "wabansia",
+          "also_inside": [
+            "canal_section_9_remainder"
+          ]
         },
         {
           "cells": 40,
@@ -5309,6 +5301,6 @@
     "refused": 2,
     "bands_classified": 116,
     "bands_excluded": 32,
-    "bands_on_a_named_tract": 72
+    "bands_on_a_named_tract": 73
   }
 }
