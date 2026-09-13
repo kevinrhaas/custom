@@ -154,7 +154,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 
 
-T-1105 — The generators reading the tract layer: the plat module's street width and block module, and the reserved-ground record citing the reservation polygon
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
 T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
@@ -303,4 +302,3 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-

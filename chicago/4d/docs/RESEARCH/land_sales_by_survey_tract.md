@@ -117,8 +117,14 @@ and 15, and `06126` in section 16.
 
 ## What this does not do
 
-The parent ticket asked for two things and this is one of them. **The generators do not
-read the tract layer yet** — the plat module still chooses one street width and one block
-module for the whole town rather than the one the tract it stands in used, and
-`1835_reserved_ground.json` still does not cite the reservation polygon. That half is
-split off and keeps its own ticket.
+The parent ticket asked for two things and this was one of them. The other half — the
+generators reading the tract layer — was split off as T-1105 and is **done**, in
+[`generators_reading_the_tract_layer.md`](generators_reading_the_tract_layer.md). The plat
+module now clips every block against the layer and stamps the tract, the share and the
+module on it; the answer is that all nineteen blocks stand in `canal_commissioners_1830`
+and the layer cannot discriminate this grid at all. What varies inside that one tract is
+the DIVISION, and the West Division's own printed module is refused on arithmetic — two
+180-ft lot columns need 360 ft of face and the committed blocks give 315.2 and 326.1 —
+with the shortfall traced back to this project's West Division street spacing (T-0445) and
+not to the module. `1835_reserved_ground.json` now cites the reservation polygon under
+`federal_reserved_ground`.

@@ -1,7 +1,7 @@
 ---
 id: T-1105
 title: The generators reading the tract layer: the plat module's street width and block module, and the reserved-ground record citing the reservation polygon
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1102
 opened: 2026-09-13
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1234
+claimed_by: run 9/13/2026, 1:06:50 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-13T16:53:20.289Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34741831489
 ---
 
 The generators reading the tract layer: the plat module's street width and block module, and the reserved-ground record citing the reservation polygon.
