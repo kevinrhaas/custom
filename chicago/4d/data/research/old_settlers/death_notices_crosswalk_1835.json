@@ -3418,18 +3418,18 @@
    "rule": "The surname 'Egan' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Emeline Egan'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
+   "resident": "Erastus Bowen",
+   "person_id": "bowen_erastus_selden",
+   "surname_in_the_list": "Bowen",
+   "candidates": 2,
+   "rule": "The surname 'Bowen' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Erastus Bowen'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
    "resident": "Erastus Clark",
    "person_id": "clark_erastus",
    "surname_in_the_list": "Clark",
    "candidates": 2,
    "rule": "The surname 'Clark' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Erastus Clark'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
-  },
-  {
-   "resident": "Erastus Selden Bowen",
-   "person_id": "bowen_erastus_selden",
-   "surname_in_the_list": "Bowen",
-   "candidates": 2,
-   "rule": "The surname 'Bowen' is in Fergus's death notices and no entry under it carries the initial 'E' of 'Erastus Selden Bowen'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Esq. Mark Noble",

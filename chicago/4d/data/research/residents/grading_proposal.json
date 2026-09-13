@@ -59,26 +59,26 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6812,
+  "identities": 6815,
   "by_grade": {
    "None": 45,
-   "not_1835_resident": 4457,
+   "not_1835_resident": 4460,
    "inferred": 1943,
    "attested": 367
   },
   "by_subtype": {
-   "None": 5099,
-   "projected_resident": 1713
+   "None": 5101,
+   "projected_resident": 1714
   },
   "by_rule": {
    "G5": 45,
-   "G0": 4457,
-   "G3": 1712,
+   "G0": 4460,
+   "G3": 1713,
    "G1b": 294,
    "G2b": 37,
    "G1a": 51,
    "G1c": 22,
-   "G2e": 126,
+   "G2e": 125,
    "G2c": 34,
    "G2a": 33,
    "G4": 1
@@ -714,7 +714,8 @@
   {"identity":"id_bowen_air","name":"Air Bowen","canonical_person_id":"bowen_air","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_bowen_air"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_bowen_charles_henry","name":"Charles Henry Bowen","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0389"],"evidence_classes":["directory_1843"]},
   {"identity":"id_bowen_chauncey_thomas","name":"Chauncey Thomas Bowen","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0054"],"evidence_classes":["death_notice"]},
-  {"identity":"id_bowen_erastus_selden","name":"Erastus Selden Bowen","canonical_person_id":"bowen_erastus_selden","rule":"G1c","grade":"attested","resident_subtype":null,"evidence":["directories:f1843_e0391","civic:tax_1833_008","civic:poll_1834_017","directories:f1843_e0390","directories:n1844_e0167","newspapers:person_erastus_bowen"],"evidence_classes":["directory_1843","directory_1844","newspaper_letter_list","poll_1834","tax_1833","town_layer"]},
+  {"identity":"id_bowen_erastus","name":"Erastus Bowen","canonical_person_id":"bowen_erastus_selden","rule":"G1c","grade":"attested","resident_subtype":null,"evidence":["civic:tax_1833_008","civic:poll_1834_017","directories:f1843_e0390","directories:n1844_e0167","newspapers:person_erastus_bowen"],"evidence_classes":["directory_1843","directory_1844","newspaper_letter_list","poll_1834","tax_1833","town_layer"]},
+  {"identity":"id_bowen_erastus_selden","name":"Erastus Selden Bowen","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0391"],"evidence_classes":["directory_1843"]},
   {"identity":"id_bowen_henry","name":"Henry Bowen","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-PC:30","directories:f1843_e0392","directories:n1844_e0169"],"evidence_classes":["census_1840","directory_1843","directory_1844"]},
   {"identity":"id_bowen_hiram","name":"Hiram Bowen","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_hiram_bowen"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_bowen_james_harvey","name":"James Harvey Bowen","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0055"],"evidence_classes":["death_notice"]},
@@ -3580,9 +3581,10 @@
   {"identity":"id_king_henry_won","name":"Henry Won King","canonical_person_id":null,"rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["newspapers:person_king_henry_won","newspapers:person_king_henry_hon"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_king_hyram","name":"Hyram King","canonical_person_id":"king_hyram","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_hyram_king"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_king_john_lyle","name":"John Lyle King","canonical_person_id":"king_john_lyle","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["old_settlers:fdn0362","directories:f1843_e1490","civic:poll_1835_042","directories:f1843_e1489","directories:n1844_e1021"],"evidence_classes":["death_notice","directory_1843","directory_1844","poll_1835","town_layer"]},
+  {"identity":"id_king_n","name":"N King","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e1022"],"evidence_classes":["directory_1844"]},
   {"identity":"id_king_nathan_e","name":"Nathan E King","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33SQ-GYYJ-RK:7"],"evidence_classes":["census_1840"]},
   {"identity":"id_king_nathaniel_a","name":"Nathaniel A King","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-DD:20","directories:f1843_e1491"],"evidence_classes":["census_1840","directory_1843"]},
-  {"identity":"id_king_nehemiah","name":"Nehemiah King","canonical_person_id":"king_nehemiah","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_nehemiah_king","directories:n1844_e1022"],"evidence_classes":["directory_1844","newspaper_1833_1835","town_layer"]},
+  {"identity":"id_king_nehemiah","name":"Nehemiah King","canonical_person_id":"king_nehemiah","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_nehemiah_king"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_king_neheminh","name":"Neheminh King","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_king_neheminh"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_king_sherman","name":"Sherman King","canonical_person_id":"king_sherman","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_sherman_king"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_king_solomon","name":"Solomon King","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1492","directories:n1844_e1025"],"evidence_classes":["directory_1843","directory_1844"]},
@@ -6205,7 +6207,8 @@
   {"identity":"id_thomes_r_or_ja","name":"R Or Ja Thomes","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_thomes_r_obert_or_ja_mes"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_thompson_george_c","name":"George C Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2436","directories:n1844_e1765"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_thompson_j_c","name":"J C Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-DD:31"],"evidence_classes":["census_1840"]},
-  {"identity":"id_thompson_john_leverett","name":"John Leverett Thompson","canonical_person_id":"thompson_john","rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["old_settlers:fdn0666","newspapers:person_john_thompson"],"evidence_classes":["death_notice","newspaper_letter_list","town_layer"]},
+  {"identity":"id_thompson_john","name":"John Thompson","canonical_person_id":"thompson_john","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_john_thompson"],"evidence_classes":["newspaper_letter_list","town_layer"]},
+  {"identity":"id_thompson_john_leverett","name":"John Leverett Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0666"],"evidence_classes":["death_notice"]},
   {"identity":"id_thompson_leonard_w","name":"Leonard W Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2438","directories:n1844_e1766"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_thompson_lieut_j_l","name":"Lieut J L Thompson","canonical_person_id":"thompson_lieut_j_l","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_lieut_j_l_thompson","directories:f1843_e2437","directories:n1844_e1767"],"evidence_classes":["directory_1843","directory_1844","newspaper_1833_1835","town_layer"]},
   {"identity":"id_thompson_lieut_seth","name":"Lieut Seth Thompson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0665"],"evidence_classes":["death_notice"]},

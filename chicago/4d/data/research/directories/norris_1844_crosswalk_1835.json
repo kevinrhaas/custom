@@ -789,6 +789,32 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Erastus Bowen",
+   "person_id": "bowen_erastus_selden",
+   "household_id": "hh_bowen_erastus_selden",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Bowen' folds to the same string as the 1844 entry's, and the given name of both begins E.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0167",
+     "as_printed": "Bowen, Erastus, of B. & Cole, house Michigan avenue",
+     "printed_page": 25,
+     "occupation_1844": "of B. & Cole",
+     "address_1844": "house Michigan avenue"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Erastus Clark",
    "person_id": "clark_erastus",
    "household_id": "hh_clark_erastus",
@@ -805,32 +831,6 @@
      "printed_page": 29,
      "occupation_1844": "dry goods and groceries, 154 Lake st",
      "address_1844": "residence Hum phrey Clark's"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "Erastus Selden Bowen",
-   "person_id": "bowen_erastus_selden",
-   "household_id": "hh_bowen_erastus_selden",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Bowen' folds to the same string as the 1844 entry's, and the given name of both begins E.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0167",
-     "as_printed": "Bowen, Erastus, of B. & Cole, house Michigan avenue",
-     "printed_page": 25,
-     "occupation_1844": "of B. & Cole",
-     "address_1844": "house Michigan avenue"
     }
    ],
    "could_carry": [

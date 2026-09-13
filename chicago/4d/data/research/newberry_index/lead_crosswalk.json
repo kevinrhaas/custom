@@ -4258,7 +4258,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of air. Bowen; Erastus Selden Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against air. Bowen; Erastus Selden Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold.",
+   "reason": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of air. Bowen; Erastus Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against air. Bowen; Erastus Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold.",
    "record_ids": [
     "nbi_v01_0720",
     "nbi_v01_0721",
@@ -4272,7 +4272,7 @@
     },
     {
      "id": "bowen_erastus_selden",
-     "name": "Erastus Selden Bowen",
+     "name": "Erastus Bowen",
      "rule": "exact surname"
     }
    ],
@@ -4465,7 +4465,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against air. Bowen; Erastus Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_0744"
    ],
@@ -4477,7 +4477,7 @@
     },
     {
      "id": "bowen_erastus_selden",
-     "name": "Erastus Selden Bowen",
+     "name": "Erastus Bowen",
      "rule": "OCR variant (0.89 similarity to 'bowen')"
     },
     {
@@ -4619,7 +4619,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Bownen' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bownen' at all. And if it were, a heading against air. Bowen; Erastus Selden Bowen would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Bownen' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bownen' at all. And if it were, a heading against air. Bowen; Erastus Bowen would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_0742"
    ],
@@ -4631,7 +4631,7 @@
     },
     {
      "id": "bowen_erastus_selden",
-     "name": "Erastus Selden Bowen",
+     "name": "Erastus Bowen",
      "rule": "OCR variant (0.91 similarity to 'bowen')"
     }
    ],
@@ -60439,10 +60439,10 @@
   {
    "record_id": "nbi_v01_0720",
    "a": "Bowen | E 65.05 _ C m o l l Co,, 111. (Ke",
-   "b": "Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen",
+   "b": "Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | E 65.05 _ C m o l l Co,, 111. (Ke' against Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen.",
+   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | E 65.05 _ C m o l l Co,, 111. (Ke' against Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -60477,10 +60477,10 @@
   {
    "record_id": "nbi_v01_0721",
    "a": "Bowen | John E l i o t B . (Bowen, C.W., and j .Chicago, III. (",
-   "b": "Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen",
+   "b": "Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | John E l i o t B . (Bowen, C.W., and j .Chicago, III. (' against Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen.",
+   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | John E l i o t B . (Bowen, C.W., and j .Chicago, III. (' against Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -60515,10 +60515,10 @@
   {
    "record_id": "nbi_v01_0722",
    "a": "Bowen | horooe.1780. l f l B l . Seo i n d o x . J Chicago, III",
-   "b": "Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen",
+   "b": "Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | horooe.1780. l f l B l . Seo i n d o x . J Chicago, III' against Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen.",
+   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | horooe.1780. l f l B l . Seo i n d o x . J Chicago, III' against Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -60653,10 +60653,10 @@
   {
    "record_id": "nbi_v01_0742",
    "a": "Bownen | Fulton Co , III, (Chapman, C. C, Í: Co.) IB79i",
-   "b": "Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen",
+   "b": "Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Bownen' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bownen' at all. And if it were, a heading against Henry Bowen would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bownen | Fulton Co , III, (Chapman, C. C, Í: Co.) IB79i' against Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen.",
+   "rule": "Refused twice over. No candidate reaches 'Bownen' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bownen' at all. And if it were, a heading against Henry Bowen would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bownen | Fulton Co , III, (Chapman, C. C, Í: Co.) IB79i' against Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -60691,10 +60691,10 @@
   {
    "record_id": "nbi_v01_0744",
    "a": "Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"'* . _",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"\\'* . _' against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen.",
+   "rule": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"\\'* . _' against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
