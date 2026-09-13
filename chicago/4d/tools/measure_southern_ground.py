@@ -368,6 +368,12 @@ def coverage_figures(m: dict | None = None) -> dict:
     Deliberately a small, stable subset: what a scheduler needs in order not to book a
     roof onto ground that is not there. Rounded here, once, so the programme and this
     command cannot disagree at the last decimal.
+
+    The tier's three figures were `unmodelled_tier_*` until T-0219 carried the field
+    south to Madison and the tier stopped being unmodelled. They are `last_tier_*` now,
+    and they carry the count that decides it: how many of the tier's 24 block-boundary
+    points stand on the field. A key that states a conclusion goes stale the day the
+    conclusion changes; a key that states a measurement does not.
     """
     m = measure() if m is None else m
     return {
@@ -378,9 +384,11 @@ def coverage_figures(m: dict | None = None) -> dict:
         "land_south_of_committed_plat_ha": round(m["south_of_plat"]["land_ha"], 4),
         "south_division_land_south_of_committed_plat_ha": round(
             m["south_of_plat"]["south_division_land_ha"], 4),
-        "unmodelled_tier_blocks": m["tier"]["count"],
-        "unmodelled_tier_lots": m["tier"]["lots"],
-        "unmodelled_tier_area_ha": round(m["tier"]["area_ha"], 2),
+        "last_tier_blocks": m["tier"]["count"],
+        "last_tier_lots": m["tier"]["lots"],
+        "last_tier_area_ha": round(m["tier"]["area_ha"], 2),
+        "last_tier_ring_points_on_field": m["tier"]["ring_points_on_field"],
+        "last_tier_ring_points": sum(r["ring_points"] for r in m["tier"]["blocks"]),
     }
 
 

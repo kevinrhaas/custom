@@ -828,27 +828,56 @@ def southern_ground() -> tuple[dict, str]:
 
     m = measure()
     figures = coverage_figures(m)
+    on_field = figures["last_tier_ring_points_on_field"]
+    of_total = figures["last_tier_ring_points"]
+
+    if on_field < of_total:
+        return figures, (
+            f"TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled "
+            f"heightfield ends at local N {figures['field_south_edge_n_m']:.1f} m, which falls "
+            f"inside Washington Street's own platted corridor — "
+            f"{m['washington_corridor']['area_m2'] / 1e4:.2f} ha of that street's south half "
+            f"lies off the field. South of the corridor the field holds "
+            f"{figures['land_south_of_committed_plat_ha']:.4f} ha of land above the water "
+            f"surface and "
+            f"{figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of it is in "
+            f"the South Division: the rest is the West Division bank, across the South Branch. "
+            f"Madison Street, the plat's south boundary, is "
+            f"{figures['madison_south_of_field_m']:.1f} m further south again, so the plat's "
+            f"last tier — {figures['last_tier_blocks']} blocks and "
+            f"{figures['last_tier_lots']} lots between Market and State, "
+            f"{figures['last_tier_area_ha']:.2f} ha — has {on_field} of its {of_total} "
+            f"block-boundary points on modelled ground. "
+            f"Every north-south column of the south plat has its committed centreline cut at "
+            f"the field's own south edge, so carrying street control further south would emit "
+            f"blocks whose every placement tools/generate_block_infill.py refuses for standing "
+            f"outside the modelled terrain. Ground east of State is not coming at any date — "
+            f"it is the United States Reservation (T-E2). Measured by "
+            f"tools/measure_southern_ground.py."
+        )
+
+    ends = ", ".join(f"{v:.0f}" for v in m["columns_end_n_m"].values())
     return figures, (
-        f"TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled "
-        f"heightfield ends at local N {figures['field_south_edge_n_m']:.1f} m, which falls "
-        f"inside Washington Street's own platted corridor — "
-        f"{m['washington_corridor']['area_m2'] / 1e4:.2f} ha of that street's south half "
-        f"lies off the field. South of the corridor the field holds "
-        f"{figures['land_south_of_committed_plat_ha']:.4f} ha of land above the water "
-        f"surface and "
-        f"{figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of it is in "
-        f"the South Division: the rest is the West Division bank, across the South Branch. "
-        f"Madison Street, the plat's south boundary, is "
-        f"{figures['madison_south_of_field_m']:.1f} m further south again, so the plat's "
-        f"last tier — {figures['unmodelled_tier_blocks']} blocks and "
-        f"{figures['unmodelled_tier_lots']} lots between Market and State, "
-        f"{figures['unmodelled_tier_area_ha']:.2f} ha — is not modelled ground at all. "
-        f"Every north-south column of the south plat has its committed centreline cut at "
-        f"the field's own south edge, so carrying street control further south would emit "
-        f"blocks whose every placement tools/generate_block_infill.py refuses for standing "
-        f"outside the modelled terrain. Ground east of State is not coming at any date — "
-        f"it is the United States Reservation (T-E2). Measured by "
-        f"tools/measure_southern_ground.py."
+        f"STREET CONTROL — the S9 line ROADMAP has recorded as owed since before this "
+        f"schedule was written — and, for the first time, nothing else. THE TERRAIN IS NO "
+        f"LONGER THE BLOCKER: T-0219 carried the heightfield south to local N "
+        f"{figures['field_south_edge_n_m']:.1f} m, {-figures['madison_south_of_field_m']:.1f} m "
+        f"past Madison Street's line at State, and the plat's last tier — "
+        f"{figures['last_tier_blocks']} blocks and {figures['last_tier_lots']} lots between "
+        f"Market and State, {figures['last_tier_area_ha']:.2f} ha — now stands on modelled "
+        f"ground at all {on_field} of its {of_total} block-boundary points. Washington "
+        f"Street's platted corridor is fully on the field "
+        f"({m['washington_corridor']['area_m2'] / 1e4:.2f} ha off it, against 0.33 ha before), "
+        f"and south of that corridor the field holds "
+        f"{figures['land_south_of_committed_plat_ha']:.4f} ha of land above the water surface, "
+        f"{figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of it in the "
+        f"South Division — where the same measurement returned 0.0000 ha before. What is left "
+        f"is the control itself: the plat's north-south columns still end at local N {ends}, "
+        f"the OLD south edge of the field, because they were cut where the ground used to "
+        f"stop. Carrying them to Madison is street work on ground that is now under them, and "
+        f"tools/generate_block_infill.py will accept what it emits. Ground east of State is "
+        f"still not coming at any date — it is the United States Reservation (T-E2). Measured "
+        f"by tools/measure_southern_ground.py."
     )
 
 

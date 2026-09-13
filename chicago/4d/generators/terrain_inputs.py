@@ -279,7 +279,8 @@ def terrain_inputs_doc(ep_dir: Path) -> dict:
         "spec": strip_prose(_load(ep_dir / "terrain_spec.json")),
         "vectors": {
             name: strip_prose(_load(ep_dir / name))
-            for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson")
+            for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson",
+                         "branches.geojson")
         },
         "datum": strip_prose(_load(ROOT / "data" / "datum.json")),
         "code": _code_shas(),
