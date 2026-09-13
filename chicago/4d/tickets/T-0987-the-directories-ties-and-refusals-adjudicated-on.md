@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/12/2026, 2:05:46 PM CT
+claimed_by: run 9/12/2026, 6:54:12 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34712943596
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34726316488
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -1177,3 +1177,105 @@ is what a page image can overturn, and Norris's scan is the cleanest of the thre
 stand at 113 across the three volumes and are no longer the biggest thing on the table. No
 successor ticket is filed: `tickets/README.md` puts the succession on the run that CLOSES the
 programme. This ticket stays open and is its own cursor.
+
+---
+
+## Stretch 10 — the surname the crosswalk cannot see, 2026-09-12
+
+**The pool named by stretch 9 was Norris 1844's 316 initial-absent refusals, and the bound
+this stretch put on it is the part a source already committed to this repository can rule
+on.** Three hundred and sixteen page reads do not fit in a run. Twenty-five do, and they are
+the twenty-five the project had already been told about and never gone back to.
+
+### Why a surname is not one refusal among many
+
+`crosswalk_norris_1844.py` reaches an 1835 person through the surname and nothing else — a
+fold, then the first initial. A destroyed surname therefore does not make a bad match. It
+makes **no match and no refusal**, and the entry is not in any pool the ticket's table counts.
+Downstream, nothing distinguishes a name the volume does not print from a name it prints that
+this reading could not read. That is a hole in the denominator, not the numerator, and it is
+invisible to every count this programme has quoted.
+
+`data/research/directories/second_readings/norris_1844_genealogytrails.json` is where they had
+been sitting since T-0576: Kim Torp's independent transcription against the committed OCR,
+2,065 of 2,073 matched, **67 differ — and 25 of the 67 differ about the surname.** Six of the
+twenty-five are named in that file's own README, in prose, with nothing done about them. Its
+rule says a reconciliation lands in `../claims/` and is said there; nothing had.
+
+### What the ink said
+
+All twenty-five cropped from the archive.org leaf image on their own `generaldirectory19norr_djvu.xml`
+word box and read by eye, then read a second time cold on the same crop — the discipline
+T-0900/T-0903 set for forenames, one field along, with each row carrying its own leaf, leaf
+pixel size and word box so the crop is reproducible.
+
+| | n | where |
+|---|---|---|
+| the image prints the second hand's surname | **16** | `read_norris_1844.py` § `SURNAME_IMAGE_REPAIRS` |
+| the image prints the COMMITTED surname; the second hand is wrong | **2** | § `SURNAME_UPHELD` — `Sealey` (she reads `Scaley (Sealy?)`), `Kautenburger` (she reads `Kantenburger`) |
+| left alone | **7** | four firms whose ampersand the scan set `<fc`/`it`/`6c`/`A;`, which T-1018 refuses by name as its own ruling; two firms whose garbled span the firm branch never reads; `Jones, K. K.`, right already, disagreeing only about a margin speck |
+
+The repair moves the READING only: `quote` and `as_printed` keep the damage, and every
+repaired claim states both readings in `normalized.surname_repair`. `--self-test` fails if a
+row stops matching exactly one entry, if a repaired entry stops reading its surname, or if the
+damage the row asserts leaves the committed text.
+
+**Five carried the name separator away with them.** Norris sets `Surname, Given`; this
+printing sets a proportion of those commas with the tail unprinted, and the image shows a
+clean round point after Bates, Gilmore, Griswold and Woodbury. T-1018's cap catches most of
+that class but not a two-word run-on, so `Bates. John` had a forename of `jr`, `Woodbnry.
+Hiram` none at all, and `Ryat). John` a trade of `boaniing`. The surname is DOCUMENTED, off
+the image. That the point stands where the format sets a comma is INFERRED, and the reason is
+stated: a surname is never abbreviated, so a stop immediately after one cannot be an
+abbreviation point. Three of T-1018's sixty-nine overruns are healed at the source by this and
+move to `OVERRUN_HEALED`, where the ratchet now asserts the opposite.
+
+### The pools after this stretch
+
+```
+                        1839        1843        1844      1844 ad     total
+  ties               37 -> 37    41 -> 41    24 -> 24    11 -> 11   113 -> 113
+  initial-absent    260 -> 260  323 -> 323  316 -> 317  124 -> 124  1023 -> 1024
+  forename-disagr.   68 -> 68    80 -> 80    46 -> 46     0 ->  0    194 -> 194
+  matches           146 -> 146  115 -> 115  100 -> 100   18 -> 18   379 -> 379
+```
+
+**Nothing was placed, and clause 5 asks that this be said plainly.** Not one of the sixteen
+carries an initial an 1835 namesake shares, so there is no new match, no trade onto a card and
+no business onto a street face. What moved: **Levi Cady gains a named refusal where the volume
+had been silent** — the one Cady entry Norris prints had been filed under `ady` — and seven
+refusals that had been understating their own candidate counts are corrected (Bates 3→4,
+Butterfield 1→2 twice, Griswold 3→4, Holmes 3→4, Jones 10→11, Ryan 1→2). The pool grew by one
+because the book got bigger, which is the right direction for a hole in a denominator.
+
+Clause 3, the write ceiling: `measure_research_spend.py` reads directories **883 reached, 883
+judgeable, 883 on a card, 0 unwritten**, and the town total 0 — unmoved, as it should be when
+a stretch lands no ruling on a card. `check.sh` green, 345 steps.
+`compare_norris_1844_readings.py --check` rebuilds the comparison byte for byte, and that is
+not luck: the comparison reads the claims' `quote`, and the repair leaves the quote damaged on
+purpose, so the 67 stay 67. A comparison that healed itself as one side was corrected would
+erase the record of what had been disagreed about.
+
+### Stretch 11 — the other thirty-seven, and no second reading to find them
+
+Measured on the reading this stretch leaves: **68 person entries still hold a space inside
+their surname**, and twelve of them are real (`De Wolf`, `La Croix`, `Van Sickle`, `St.
+Palais`), eight are institutions and headings, and eleven are the firm-conjunction class
+T-1018 has already ticketed. **That leaves 37 entries whose surname hides them from the
+crosswalk exactly as these sixteen did**, and the second reading does NOT flag them — it
+agrees with the OCR, or Kim Torp's line is damaged too. Three classes:
+
+* **27 the separator** — `Connell. John`, `Frink. John`, `Pierce. Asahel`, `Merriam. Mrs.
+  Mary`, `Taylor. Solomon`, `White. Isaac`… the same unprinted comma tail, on a two-word
+  run-on T-1018's cap cannot reach. These are the cheap ones: the rule is already argued
+  above and each needs one crop to confirm the surname.
+* **4 no separator at all** — `Bandlej Willis`, `Brown Clement`, `Butterfield George`,
+  `Carson James`.
+* **6 a surname the scanner broke in two** — `Went worth`, `Lurk in`, `Brine kerb off`,
+  `Me Ward`, `Woi thinglnm`, `Van Dre/er`; T-1018 named four of these as `split_surname` and
+  refused to cap them, which is still the right refusal and not yet a reading.
+
+Sized: 37 crops off leaves already known, at roughly the rate this stretch managed, is one
+run. No successor ticket is filed — `tickets/README.md` puts the succession on the run that
+CLOSES the programme, and the pools are not empty. This ticket stays open and is its own
+cursor.
