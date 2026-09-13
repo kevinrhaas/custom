@@ -143,6 +143,11 @@ OVERRUN_HEALED = {
     "n1844_e0276": "empty_prefix",        # <'ady, Dennis S. — the C read as two marks
     "n1844_e0700": "repaired",            # Gilmorc. Win. laborer
     "n1844_e0756": "repaired",            # JrisivoM. David D. res D. S. Griswold's
+    # T-0987 stretch 11 — the whole split_surname class, read off the page image.
+    "n1844_e0198": "split_surname",       # Brine kerb off  -> Brinckerhoff
+    "n1844_e1075": "split_surname",       # Lurk in         -> Larkin
+    "n1844_e1872": "split_surname",       # Went worth      -> Wentworth
+    "n1844_e1937": "split_surname",       # Woi thinglnm    -> Worthingham
 }
 
 def header_like(line: str) -> bool:
@@ -284,10 +289,9 @@ OVERRUN_CLASSES = {
     "n1844_e0787": "firm_conj",           # Hamilton <fc White
     "n1844_e1629": "firm_conj",           # Skinner 6c .Smith
     # --- split_surname
-    "n1844_e0198": "split_surname",       # Brine kerb off
-    "n1844_e1075": "split_surname",       # Lurk in
-    "n1844_e1872": "split_surname",       # Went worth
-    "n1844_e1937": "split_surname",       # Woi thinglnm
+    #     T-1018 named four here and refused to cap them, which was the right refusal
+    #     and not a reading. T-0987 stretch 11 read all four off the page image, so
+    #     they are repaired at the source now and stand in OVERRUN_HEALED below.
     # --- empty_prefix
     "n1844_e0009": "empty_prefix",        # house Clark street (See card)
     "n1844_e0278": "empty_prefix",        # ilhoun
@@ -807,6 +811,485 @@ SURNAME_UPHELD = [
      "second_reading": "Kantenburger, Peter, laborer, house Dutch Settlement"},
 ]
 
+
+# THE OTHER THIRTY-SEVEN (T-0987 stretch 11)
+#
+# Stretch 10 repaired sixteen surnames the scan destroyed, found through the second
+# reading's own list of disagreements. It closed by measuring what that list could NOT
+# see: 68 person entries still hold a space inside their surname, and once the twelve
+# real two-word names, the eight institutions and the eleven firm conjunctions T-1018
+# owns are set aside, THIRTY-SEVEN remain — entries whose surname hides them from
+# `crosswalk_norris_1844.py` exactly as those sixteen did, and which the comparison
+# never flagged because it folds punctuation and spacing before it compares.
+#
+# THAT FOLD IS THE FINDING. Every one of the thirty-seven is in the comparison's
+# `identical` or `agrees` bucket, carrying the second hand's correct line — Brinckerhoff
+# for `Brine kerb off`, Larkin for `Lurk in`, Wentworth for `Went worth` — and nothing
+# had gone back to it, because the file's own summary counts only `differs`. The answer
+# had been in the repository since T-0576.
+#
+# All thirty-seven were cropped from the archive.org leaf image on their own word box,
+# enlarged and read, and then read a SECOND time on a fresh crop at a different
+# magnification, in an order shuffled so the reader could not carry the first pass's
+# expectation down the page. Both passes are recorded: `reread` is the second.
+#
+# WHAT THE INK SAID ABOUT THE SEPARATOR, which is where this stretch corrects the one
+# before it. Stretch 10 wrote that this printing "sets a proportion of those commas with
+# the tail unprinted". For the ten it read, that was what the image showed. Across the
+# twenty-seven here it is the MINORITY case:
+#
+#     15  a comma, tail and all, that the SCANNER read as a point
+#     10  a round point on the baseline, with nothing below it
+#      2  undecided — the two passes disagreed (Klien, Lahy)
+#
+# So the common cause is the OCR, not the compositor, and `separator_mark` on every row
+# says which one this entry is. The remaining ten of the thirty-seven are not separator
+# cases at all: five surnames the scan broke into words (Brinckerhoff, Larkin, McWard,
+# Wentworth, Worthingham), one comma welded into the letter beside it (Bandle), one real
+# two-word surname with a damaged letter (Van Drezer, whose z was set as a solidus), and
+# THREE WHERE THE COMMA IS NOT IN THE INK AT ALL.
+#
+# THOSE THREE ARE `inferred`, AND THE DISTINCTION IS THE POINT. Brown, Butterfield and
+# Carson show clean paper between surname and forename — no comma, no point, no mark of
+# any kind, at sixteen times magnification. The surname is still DOCUMENTED, because the
+# letters are on the page; the separator this reading supplies is not, so those rows
+# carry `confidence: inferred` and the reasoning T-0987 stretch 10 argued: Norris sets
+# `Surname, Given` throughout, and a forename standing alone after a surname is that
+# format with its comma omitted. Nothing else in the entry moves.
+#
+# THE REPAIR MOVES THE READING ONLY, on the same terms as every row above: `quote` and
+# `normalized.as_printed` keep the damage, `--self-test` fails if a row stops matching
+# exactly one entry, and the crosswalk is re-derived in the same commit.
+
+SURNAME_IMAGE_REPAIRS_STRETCH_11 = [
+    {"as_read": "Bandlej Willis,",
+     "reading": "Bandle, Willis,",
+     "surname": "Bandle", "leaf": 32, "leaf_px": [1592, 2860],
+     "word_box": "83,2769,259,2727", "separator_mark": "welded",
+     "separator": True,
+     "reads": "Bandle, Willis, b'smith, at Stow's Foundry, h N. Branch, 4th ward",
+     "why": "the name comma welded to the e beside it and read as a j tail, so the "
+            "surname swallowed the forename. The image prints a comma, on the baseline "
+            "with its tail, and the e closes before it",
+     "reread": "Bandle, — the mark is a comma, tail and all; the e beside it is whole",
+     "second_reading": "Bandle, Willis, b'smith, at Stow's Foundry, h N. Branch, 4th "
+                      "ward",
+     "second_reading_bucket": "agrees", "entry": "n1844_e0066"},
+    {"as_read": "Brine kerb off, John,",
+     "reading": "Brinckerhoff, John,",
+     "surname": "Brinckerhoff", "leaf": 36, "leaf_px": [1592, 2860],
+     "word_box": "77,263,194,222", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Brinckerhoff, John, physician, Clark st. office 143 Lake st. check- "
+              "ered drug store (See card)",
+     "why": "one surname set as three words. The scan broke Brinckerhoff at two of its "
+            "own letter joins; the image prints it as one sort run with no space in "
+            "it, and the comma after it is the volume's name comma",
+     "reread": "Brinckerhoff, — one word, and a comma with a tail",
+     "second_reading": "Brinckerhoff, John, physician, Clark st office 143 Lake st "
+                      "checkered drug store",
+     "second_reading_bucket": "agrees", "entry": "n1844_e0198"},
+    {"as_read": "Brown Clement,",
+     "reading": "Brown, Clement,",
+     "surname": "Brown", "leaf": 36, "leaf_px": [1592, 2860],
+     "word_box": "76,1003,243,967", "separator_mark": "absent",
+     "separator": True, "confidence": "inferred",
+     "reads": "Brown, Clement, res Sauganash",
+     "why": "the separator is not in the ink. The image shows clean paper between "
+            "Brown and Clement and no mark of any kind, so this is the compositor's "
+            "omission and not the scanner's loss. The surname is what the page prints; "
+            "the comma is supplied",
+     "reread": "Brown  Clement — a word space, wider than this setting's, and nothing "
+               "in it",
+     "second_reading": "Brown, Clement, res Sauganash",
+     "second_reading_bucket": "identical", "entry": "n1844_e0210"},
+    {"as_read": "Butterfield George,",
+     "reading": "Butterfield, George,",
+     "surname": "Butterfield", "leaf": 37, "leaf_px": [1592, 2860],
+     "word_box": "107,1714,340,1680", "separator_mark": "absent",
+     "separator": True, "confidence": "inferred",
+     "reads": "Butterfield, George, res Tremont House",
+     "why": "the same omission. Clean paper between Butterfield and George, no mark; "
+            "four other Butterfields on the same leaf carry their comma",
+     "reread": "Butterfield George — nothing between them but paper",
+     "second_reading": "Butterfield, George res Tremont House",
+     "second_reading_bucket": "identical", "entry": "n1844_e0267"},
+    {"as_read": "Carson James,",
+     "reading": "Carson, James,",
+     "surname": "Carson", "leaf": 38, "leaf_px": [1564, 2912],
+     "word_box": "101,777,260,742", "separator_mark": "absent",
+     "separator": True, "confidence": "inferred",
+     "reads": "Carson, James, carpenter, residence State st",
+     "why": "the same omission, and the third of three. Clean paper between Carson and "
+            "James",
+     "reread": "Carson James — no mark, and the gap is a word space",
+     "second_reading": "Carson, James, carpenter, residence State st",
+     "second_reading_bucket": "identical", "entry": "n1844_e0299"},
+    {"as_read": "Connell. John,",
+     "reading": "Connell, John,",
+     "surname": "Connell", "leaf": 40, "leaf_px": [1564, 2912],
+     "word_box": "98,1128,287,1094", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Connell, John, laborer, Wolcott st. b Water & Kinzie sts",
+     "why": "THE SCANNER'S POINT, NOT THE COMPOSITOR'S. The image prints a comma with "
+            "its tail below the baseline; the OCR set it as a stop and the surname "
+            "then ran on to take the forename with it",
+     "reread": "Connell, — the tail is there, curving left under the baseline",
+     "second_reading": "Connell, John, laborer, Wolcott st b Water & Kinzie sts",
+     "second_reading_bucket": "identical", "entry": "n1844_e0395"},
+    {"as_read": "D;ma. Patrick,",
+     "reading": "Dana, Patrick,",
+     "surname": "Dana", "leaf": 41, "leaf_px": [1564, 2912],
+     "word_box": "138,2170,278,2136", "separator_mark": "point",
+     "separator": True,
+     "reads": "Dana, Patrick, teamster, at A. S. Sherman's",
+     "why": "the n read as a semicolon and an m — and after it a clean round point "
+            "with no tail, where the format sets a comma",
+     "reread": "Dana. — four letters, and a round point sitting on the baseline",
+     "second_reading": "Dana, Patrick, teamster, at A.S. Sherman's",
+     "second_reading_bucket": "agrees", "entry": "n1844_e0460"},
+    {"as_read": "Frink. John,",
+     "reading": "Frink, John,",
+     "surname": "Frink", "leaf": 45, "leaf_px": [1564, 2912],
+     "word_box": "112,1921,255,1886", "separator_mark": "point",
+     "separator": True,
+     "reads": "Frink, John, of F. Walker <fc Co. h Rand. st. b Clark and Dearborn",
+     "why": "a round point where the format sets a comma",
+     "reread": "Frink. — a point, square on the baseline, no tail",
+     "second_reading": "Frink, John, of F. Walker & co., h Rand. st. b Clark & Dearborn",
+     "second_reading_bucket": "agrees", "entry": "n1844_e0652"},
+    {"as_read": "Green. Russell,",
+     "reading": "Green, Russell,",
+     "surname": "Green", "leaf": 47, "leaf_px": [1564, 2912],
+     "word_box": "128,1891,283,1857", "separator_mark": "point",
+     "separator": True,
+     "reads": "Green, Russell, clerk, at J. M. Underwood's",
+     "why": "a round point where the format sets a comma",
+     "reread": "Green. — a point on the baseline; nothing descends",
+     "second_reading": "Green, Russell, clerk, at J.M. Underwood's",
+     "second_reading_bucket": "identical", "entry": "n1844_e0744"},
+    {"as_read": "Hall. Edward,",
+     "reading": "Hall, Edward,",
+     "surname": "Hall", "leaf": 48, "leaf_px": [1564, 2912],
+     "word_box": "75,1231,195,1196", "separator_mark": "point",
+     "separator": True,
+     "reads": "Hall, Edward, saddler and harness maker, at S. 13. C'obb's",
+     "why": "a round point where the format sets a comma. The trade is separated by a "
+            "second point on the same line, which is this printing's habit and not "
+            "repaired here",
+     "reread": "Hall. — a point, and a second one after Edward",
+     "second_reading": "Hall, Edward, saddler and harness maker, at S.B. Cobb's",
+     "second_reading_bucket": "agrees", "entry": "n1844_e0777"},
+    {"as_read": "King. Tuthill,",
+     "reading": "King, Tuthill,",
+     "surname": "King", "leaf": 53, "leaf_px": [1564, 2912],
+     "word_box": "158,1842,284,1799", "separator_mark": "comma",
+     "separator": True,
+     "reads": "King, Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st",
+     "why": "the scanner's point for the compositor's comma; the tail is in the ink",
+     "reread": "King, — the tail runs down beside the g's",
+     "second_reading": "King, Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark "
+                      "st",
+     "second_reading_bucket": "identical", "entry": "n1844_e1024"},
+    {"as_read": "Klien. Matthias,",
+     "reading": "Klien, Matthias,",
+     "surname": "Klien", "leaf": 53, "leaf_px": [1564, 2912],
+     "word_box": "166,2425,303,2392", "separator_mark": "undecided",
+     "separator": True,
+     "reads": "Klien, Matthias, baker, North Water st. house same",
+     "why": "the separator, and the two hands of this reading disagreed about it — a "
+            "mark with a short descender on one crop and a round point on the other. "
+            "Undecided, and it does not change the split: a stop cannot follow an "
+            "unabbreviated surname. Kim Torp reads the surname Klein; the image prints "
+            "Klien, i before e, and the committed spelling stands",
+     "reread": "Klien + a mark that may carry a tail — the two readings did not agree",
+     "second_reading": "Klein, Matthias, baker, North Water st, house same",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1037"},
+    {"as_read": "Lahy. Sylvester,",
+     "reading": "Lahy, Sylvester,",
+     "surname": "Lahy", "leaf": 54, "leaf_px": [1564, 2912],
+     "word_box": "70,1091,212,1047", "separator_mark": "undecided",
+     "separator": True,
+     "reads": "Lahy, Sylvester, laborer, North Water st. near Franklin",
+     "why": "the separator, and the two hands disagreed here too: a tail on the first "
+            "crop, none on the second, with the y's descender standing beside it "
+            "either way",
+     "reread": "Lahy + a mark the y's tail crowds; undecided",
+     "second_reading": "Lahy, Sylvester, laborer, North water st. near Franklin",
+     "second_reading_bucket": "identical", "entry": "n1844_e1059"},
+    {"as_read": "Lurk in, Timothy,",
+     "reading": "Larkin, Timothy,",
+     "surname": "Larkin", "leaf": 54, "leaf_px": [1564, 2912],
+     "word_box": "74,1819,177,1786", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Larkin, Timothy, mason, house Kinzie st. b Frank, and Wells sts",
+     "why": "one surname set as two words and an a read as a u. The image prints "
+            "Larkin, one sort run, and a comma after it",
+     "reread": "Larkin, — no space inside it, and a comma with a tail",
+     "second_reading": "Larkin, Timothy, mason, house Kinzie st. b frank. and Wells sts",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1075"},
+    {"as_read": "Lowe. Oscar,",
+     "reading": "Lowe, Oscar,",
+     "surname": "Lowe", "leaf": 55, "leaf_px": [1564, 2912],
+     "word_box": "151,1798,297,1764", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Lowe, Oscar, clerk, E. S. & J. Wadsworth",
+     "why": "the scanner's point for the compositor's comma",
+     "reread": "Lowe, — the tail is under the e",
+     "second_reading": "Lowe, Oscar, clerk, E.S. & J. Wadsworth",
+     "second_reading_bucket": "identical", "entry": "n1844_e1121"},
+    {"as_read": "Me Ward, James,",
+     "reading": "McWard, James,",
+     "surname": "McWard", "leaf": 57, "leaf_px": [1564, 2912],
+     "word_box": "157,856,226,822", "separator_mark": "comma",
+     "separator": True,
+     "reads": "McWard, James, harness maker at Horton's",
+     "why": "the Scottish prefix set as a separate word and its c read as an e. The "
+            "image prints McWard closed up, the c riding small against the W",
+     "reread": "McWard, — one word, the c small and tight to the W",
+     "second_reading": "McWard, James, harness maker at Horton's",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1203"},
+    {"as_read": "Marsallani. Louis,",
+     "reading": "Marsallani, Louis,",
+     "surname": "Marsallani", "leaf": 57, "leaf_px": [1564, 2912],
+     "word_box": "156,2097,394,2064", "separator_mark": "point",
+     "separator": True,
+     "reads": "Marsallani, Louis, stone quarrier, res Chas. McDonnell's",
+     "why": "a round point where the format sets a comma. Kim Torp reads the surname "
+            "Marsallam; the image prints an n and an i, and the committed spelling "
+            "stands",
+     "reread": "Marsallani. — ends n-i, and a point on the baseline",
+     "second_reading": "Marsallam, Louis, stone quarrier, res Chas. McDonell's",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1230"},
+    {"as_read": "Merriam. Mrs. Mary,",
+     "reading": "Merriam, Mrs. Mary,",
+     "surname": "Merriam", "leaf": 58, "leaf_px": [1564, 2912],
+     "word_box": "94,1206,299,1171", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Merriam, Mrs. Mary, boarding house, Lake st b State & Wabash",
+     "why": "the scanner's point for the compositor's comma; the title and forename "
+            "follow it",
+     "reread": "Merriam, — a comma, tail below the m",
+     "second_reading": "Merriam, Mrs. Mary, boarding house, Lake st b State & Wabash",
+     "second_reading_bucket": "identical", "entry": "n1844_e1263"},
+    {"as_read": "Otlaway. Charles,",
+     "reading": "Ottaway, Charles,",
+     "surname": "Ottaway", "leaf": 60, "leaf_px": [1564, 2912],
+     "word_box": "109,2312,303,2269", "separator_mark": "point",
+     "separator": True,
+     "reads": "Ottaway, Charles, grocer, 175 Lake st",
+     "why": "the double t read as t-l, and a round point where the format sets a comma",
+     "reread": "Ottaway. — two t's, and a point with no tail",
+     "second_reading": "Ottaway, Charles, grocer, 175 Lake st",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1381"},
+    {"as_read": "Pierce. Asahel,",
+     "reading": "Pierce, Asahel,",
+     "surname": "Pierce", "leaf": 61, "leaf_px": [1564, 2912],
+     "word_box": "154,2541,316,2506", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Pierce, Asahel, blacksmith. S. Water st. b Lake and Randolph sts house "
+              "Lake st. 4th ward",
+     "why": "the scanner's point for the compositor's comma. Kim Torp reads the "
+            "forename Asabel; the image prints Asahel and the committed reading stands",
+     "reread": "Pierce, — a tail below the e",
+     "second_reading": "Pierce, Asabel, blacksmith, S. Water st. b Lake and Randolph "
+                      "sts, house Lake st. 4th ward",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1435"},
+    {"as_read": "Pierce. Royal,",
+     "reading": "Pierce, Royal,",
+     "surname": "Pierce", "leaf": 61, "leaf_px": [1564, 2912],
+     "word_box": "154,2630,318,2597", "separator_mark": "point",
+     "separator": True,
+     "reads": "Pierce, Royal, cooper",
+     "why": "a round point where the format sets a comma — and the Pierce three lines "
+            "above carries a comma, so the two are set differently on one page",
+     "reread": "Pierce. — a point, and no tail at this magnification",
+     "second_reading": "Pierce, Royal, cooper",
+     "second_reading_bucket": "identical", "entry": "n1844_e1436"},
+    {"as_read": "Pike. Daniel,",
+     "reading": "Pike, Daniel,",
+     "surname": "Pike", "leaf": 61, "leaf_px": [1564, 2912],
+     "word_box": "156,2679,280,2642", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Pike, Daniel, laborer, hnuse North \"Water st. near Franklin st",
+     "why": "the scanner's point for the compositor's comma",
+     "reread": "Pike, — the tail is clear",
+     "second_reading": "Pike, Daniel, laborer, house North Water st. near Franklin st",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1437"},
+    {"as_read": "Rhiner. Henry,",
+     "reading": "Rhines, Henry,",
+     "surname": "Rhines", "leaf": 62, "leaf_px": [1564, 2912],
+     "word_box": "116,2446,293,2410", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Rhines, Henry, deputy sheriff, h Lasalle st. b Lake and Randolph",
+     "why": "the terminal s read as an r, and a comma read as a point",
+     "reread": "Rhines, — the last letter is an s, and the mark carries a tail",
+     "second_reading": "Rhines, Henry, deputy sheriff, h Lasalle st. b Lake and "
+                      "Randolph",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1482"},
+    {"as_read": "iRuss. John,",
+     "reading": "Russ, John,",
+     "surname": "Russ", "leaf": 63, "leaf_px": [1564, 2912],
+     "word_box": "125,2259,266,2225", "separator_mark": "point",
+     "separator": True,
+     "reads": "Russ, John, teamster, house cor Clinton and Madison",
+     "why": "a speck in the left margin read as an i, and a round point where the "
+            "format sets a comma",
+     "reread": "Russ. — nothing before the R but a margin mark, and a point after",
+     "second_reading": "Russ, John, teamster, house cor Clinton & Madison",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1532"},
+    {"as_read": "Simpson. John,",
+     "reading": "Simpson, John,",
+     "surname": "Simpson", "leaf": 65, "leaf_px": [1564, 2912],
+     "word_box": "119,1966,321,1922", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Simpson, John, mason, house Canal st. b Adams and Jackson sts",
+     "why": "the scanner's point for the compositor's comma, over a stain that runs "
+            "under the line",
+     "reread": "Simpson, — a tail, and the stain sits below it",
+     "second_reading": "Simpson, John, mason, house Canal st. b Adams and Jackson sts",
+     "second_reading_bucket": "identical", "entry": "n1844_e1625"},
+    {"as_read": "Stockton. John,",
+     "reading": "Stockton, John,",
+     "surname": "Stockton", "leaf": 67, "leaf_px": [1564, 2912],
+     "word_box": "137,1108,345,1073", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Stockton, John, carpenter, h Illinois st. b Pine and Sand sts",
+     "why": "the scanner's point for the compositor's comma",
+     "reread": "Stockton, — a comma, tail below the n",
+     "second_reading": "Stockton, John, carpenter, h Illinois st, P Pine and Sand sts",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1711"},
+    {"as_read": "Sturtevan.t. Noah,",
+     "reading": "Sturtevant, Noah,",
+     "surname": "Sturtevant", "leaf": 67, "leaf_px": [1564, 2912],
+     "word_box": "135,1842,370,1803", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Sturtevant, Noah, painter, at J. I. Dow's, h Market st",
+     "why": "a point set INSIDE the surname, between its n and its t, and the real "
+            "separator read as a point as well. The image prints Sturtevant whole and "
+            "a comma after it",
+     "reread": "Sturtevant, — no stop inside the word, and a tail on the mark after it",
+     "second_reading": "Sturtevant, Noah, painter, at J.I. Dow's. h Market st",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1725"},
+    {"as_read": "Taylor. Solomon,",
+     "reading": "Taylor, Solomon,",
+     "surname": "Taylor", "leaf": 68, "leaf_px": [1564, 2912],
+     "word_box": "121,1022,290,975", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Taylor, Solomon, boot and shoemaker, 152^ Lake st. house West Water st. "
+              "b Randolph and Washington sts , (See card)",
+     "why": "the scanner's point for the compositor's comma",
+     "reread": "Taylor, — the tail runs under the r",
+     "second_reading": "Taylor, Solomon, boot & shoemaker, 152 ½ Lake st. house West "
+                      "Water st. b Randolph & Washington sts",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1757"},
+    {"as_read": "Van Dre/er, E.",
+     "reading": "Van Drezer, E.",
+     "surname": "Van Drezer", "leaf": 69, "leaf_px": [1564, 2912],
+     "word_box": "135,920,237,887", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Van Drezer, E. Eagle Tavern. Dearborn st",
+     "why": "not a broken surname at all: Van Drezer is two words on the page, as Van "
+            "Sickle and Van Vlack are, and only its z was set as a solidus. The comma "
+            "after it is printed",
+     "reread": "Van Drezer, — the fourth letter of Drezer is a z, and a comma follows",
+     "second_reading": "Van Drezer, E. Eagle Tavern, Dearborn st",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1803"},
+    {"as_read": "Ward. James,",
+     "reading": "Ward, James,",
+     "surname": "Ward", "leaf": 70, "leaf_px": [1564, 2912],
+     "word_box": "106,449,256,413", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Ward, James, mason, house Randolph st",
+     "why": "the scanner's point for the compositor's comma",
+     "reread": "Ward, — a comma, tail below the d",
+     "second_reading": "Ward, James, mason, house Randolph st",
+     "second_reading_bucket": "identical", "entry": "n1844_e1843"},
+    {"as_read": "Warring. Klias,",
+     "reading": "Warring, Elias,",
+     "surname": "Warring", "leaf": 70, "leaf_px": [1564, 2912],
+     "word_box": "108,927,319,881", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Warring, Elias, teamster, house b Wells and Frankin sts",
+     "why": "a comma read as a point, and the forename's E read as a K — the two arms "
+            "of the E joined to its stem by a heavy inking",
+     "reread": "Warring, Elias — a tail on the mark, and the forename opens with an E",
+     "second_reading": "Warring, Elias, teamster, house b Wells and Frankin sts",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1853"},
+    {"as_read": "Welch. William,",
+     "reading": "Welch, William,",
+     "surname": "Welch", "leaf": 70, "leaf_px": [1564, 2912],
+     "word_box": "110,1433,284,1398", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Welch, William, laborer, h Clark st. b N. Water and Kirfzie sts",
+     "why": "the scanner's point for the compositor's comma",
+     "reread": "Welch, — a short tail under the h",
+     "second_reading": "Welch, William, laborer, h Clark st. b N. Water & Kinzie sts",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1864"},
+    {"as_read": "s Went worth, Geo. W.",
+     "reading": "Wentworth, Geo. W.",
+     "surname": "Wentworth", "leaf": 70, "leaf_px": [1564, 2912],
+     "word_box": "68,1905,112,1866", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Wentworth, Geo. W. nst. editor Chicago Democrat, res U. S. Hotel",
+     "why": "one surname set as two words, with a margin speck read as an s before it. "
+            "The image prints Wentworth closed up and a comma after it",
+     "reread": "Wentworth, — one word, and the speck stands off in the margin",
+     "second_reading": "Wentworth, Geo. W., ast. editor Chicago Democrat, res U.S. "
+                      "Hotel",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1872"},
+    {"as_read": "Wliite. Christopher,",
+     "reading": "White, Christopher,",
+     "surname": "White", "leaf": 70, "leaf_px": [1564, 2912],
+     "word_box": "117,2413,284,2379", "separator_mark": "point",
+     "separator": True,
+     "reads": "White, Christopher, at Turner's livery stable",
+     "why": "the h read as l-i, and a round point where the format sets a comma",
+     "reread": "White. — an h, and a point with no tail",
+     "second_reading": "White, Christopher, at Turner's livery stable",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1881"},
+    {"as_read": "White. Isaac,",
+     "reading": "White, Isaac,",
+     "surname": "White", "leaf": 70, "leaf_px": [1564, 2912],
+     "word_box": "118,2506,279,2471", "separator_mark": "comma",
+     "separator": True,
+     "reads": "White, Isaac, butcher at Reynold's",
+     "why": "the scanner's point for the compositor's comma",
+     "reread": "White, — a tail below the e",
+     "second_reading": "White, Isaac, butcher at Reynold's",
+     "second_reading_bucket": "identical", "entry": "n1844_e1883"},
+    {"as_read": "Woi thinglnm, Wm.",
+     "reading": "Worthingham, Wm.",
+     "surname": "Worthingham", "leaf": 71, "leaf_px": [1564, 2912],
+     "word_box": "107,2564,206,2532", "separator_mark": "comma",
+     "separator": True,
+     "reads": "Worthingham, Wm. mason, h Monroe st. b State .md Clark st",
+     "why": "one surname set as two words, with the r lost and the ha read as ln. The "
+            "image prints Worthingham whole, and a comma after it",
+     "reread": "Worthingham, — one word, r and h both there, and a comma",
+     "second_reading": "Worthingham, Wm., mason, h Monroe st b State & Clark st",
+     "second_reading_bucket": "agrees", "entry": "n1844_e1937"},
+    {"as_read": "Gill. Edmund,",
+     "reading": "Gill, Edmund,",
+     "surname": "Gill", "leaf": 73, "leaf_px": [1564, 2912],
+     "word_box": "107,834,214,799", "separator_mark": "point",
+     "separator": True,
+     "reads": "Gill, Edmund, tailor, house Ohio st. b Clark and Dearborn sts",
+     "why": "a round point where the format sets a comma",
+     "reread": "Gill. — a point, square on the baseline",
+     "second_reading": "Gill, Edmund, tailor, house Ohio st. b Clark & Dearborn sts",
+     "second_reading_bucket": "identical", "entry": "n1844_e1981"},
+]
+
+SURNAME_REREAD_BY_11 = (
+    "T-0987 stretch 11, a second reading off a fresh crop of the same word box at a "
+    "different magnification, taken in a shuffled order so the first pass could not "
+    "be carried down the page. Where the two passes disagreed the row says so and "
+    "the separator is left undecided.")
+for _row in SURNAME_IMAGE_REPAIRS_STRETCH_11:
+    _row["reread_by"] = SURNAME_REREAD_BY_11
+SURNAME_IMAGE_REPAIRS += SURNAME_IMAGE_REPAIRS_STRETCH_11
+
 SURNAME_IMAGE_SOURCE = IMAGE_SOURCE
 SURNAME_REREAD_BY = ("T-0987 stretch 10, read off the leaf image cropped on the word "
                      "box recorded with the row, against the second hand rather than "
@@ -825,7 +1308,12 @@ def repair_surname(text: str):
                 "reading": row["reading"],
                 "surname": row["surname"],
                 "why": row["why"],
-                "confidence": "documented",
+                # The LETTERS are always documented — they are on the page. The
+                # SEPARATOR is not always: three entries (T-0987 stretch 11) print no
+                # mark at all between surname and forename, and the comma this reading
+                # supplies is the format's, not the compositor's. Those rows say so.
+                "confidence": row.get("confidence", "documented"),
+                "separator_mark": row.get("separator_mark"),
                 "evidence": {
                     "source": SURNAME_IMAGE_SOURCE,
                     "coordinate_space": COORDINATE_SPACE,
@@ -834,7 +1322,7 @@ def repair_surname(text: str):
                     "word_box": row["word_box"],
                     "reads": row["reads"],
                     "reread": row["reread"],
-                    "reread_by": SURNAME_REREAD_BY,
+                    "reread_by": row.get("reread_by", SURNAME_REREAD_BY),
                     "second_reading": row["second_reading"],
                 },
                 "ticket": "T-0987",
