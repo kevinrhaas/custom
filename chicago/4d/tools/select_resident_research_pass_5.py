@@ -4,6 +4,11 @@
 Pass 5 was claimed while T-0478 was still in flight. The selector retains
 a frozen copy of all 75 T-0478 person ids as the historical collision lock and
 keeps the claim-time population frame stable while validating current residents.
+
+`compact_member()` refuses a member that has left the town, gone `reconstructed`,
+turned into an `inf_*` hypothesis or lost its name on every path, and scopes the
+STRATUM tests — the flag and the presence value the stratum is named for — to the
+minting path, reporting them on the gate (T-0870).
 """
 from __future__ import annotations
 
@@ -92,7 +97,8 @@ PASS4_CLAIMED_IDS = (set(PASS4_ESTABLISHED_IDS) |
                      set(PASS4_UNCERTAIN_LETTER_IDS))
 
 
-def compact_member(index: dict, person_id: str, stratum: str) -> dict:
+def compact_member(index: dict, person_id: str, stratum: str,
+                   drift: freeze.Membership) -> dict:
     if person_id not in index:
         raise SystemExit(f"fixed cohort member {person_id} is missing")
     household, person = index[person_id]
@@ -102,29 +108,34 @@ def compact_member(index: dict, person_id: str, stratum: str) -> dict:
         raise SystemExit(f"{person_id}: hypothesised inf_* person is outside T-0479")
     if "unnamed" in person.get("name", "").lower():
         raise SystemExit(f"{person_id}: unnamed placeholder is outside T-0479")
+    # …and below this line the questions are about the STRATUM, not the person (T-0870).
     letter = bool(person.get("letter_list_only"))
-    if stratum == "remaining_named_non_letter" and letter:
-        raise SystemExit(f"{person_id}: remaining established person became letter-list-only")
-    if stratum.startswith("letter_list_only_") and not letter:
-        raise SystemExit(f"{person_id}: postal-list person no longer marked letter_list_only")
-    expected_presence = "present" if stratum == "letter_list_only_present" else None
-    if expected_presence and household["present_on_scene_date"]["value"] != expected_presence:
-        raise SystemExit(f"{person_id}: pass-five present stratum changed")
-    if stratum == "letter_list_only_uncertain" and household["present_on_scene_date"]["value"] != "uncertain":
-        raise SystemExit(f"{person_id}: pass-five uncertain stratum changed")
+    if stratum == "remaining_named_non_letter":
+        drift.holds(not letter,
+                    f"{person_id}: remaining established person became letter-list-only")
+    if stratum.startswith("letter_list_only_"):
+        drift.holds(letter,
+                    f"{person_id}: postal-list person no longer marked letter_list_only")
+    if stratum == "letter_list_only_present":
+        drift.holds(household["present_on_scene_date"]["value"] == "present",
+                    f"{person_id}: pass-five present stratum changed")
+    if stratum == "letter_list_only_uncertain":
+        drift.holds(household["present_on_scene_date"]["value"] == "uncertain",
+                    f"{person_id}: pass-five uncertain stratum changed")
     return {"household_id": household["id"], "person_id": person_id, "stratum": stratum}
 
 
-def derive() -> dict:
+def derive(drift: freeze.Membership | None = None) -> dict:
+    drift = drift if drift is not None else freeze.Membership(minting=False)
     index, _ = load_people()
     pilot_ids = {row["person_id"] for row in json.loads(PILOT.read_text())["people"]}
     pass2_ids = {row["person_id"] for row in json.loads(PASS2.read_text())["people"]}
     pass3_ids = {row["person_id"] for row in json.loads(PASS3.read_text())["people"]}
     prior_merged = pilot_ids | pass2_ids | pass3_ids
 
-    people = [compact_member(index, pid, "remaining_named_non_letter") for pid in ESTABLISHED_IDS]
-    people += [compact_member(index, pid, "letter_list_only_present") for pid in PRESENT_LETTER_IDS]
-    people += [compact_member(index, pid, "letter_list_only_uncertain") for pid in UNCERTAIN_LETTER_IDS]
+    people = [compact_member(index, pid, "remaining_named_non_letter", drift) for pid in ESTABLISHED_IDS]
+    people += [compact_member(index, pid, "letter_list_only_present", drift) for pid in PRESENT_LETTER_IDS]
+    people += [compact_member(index, pid, "letter_list_only_uncertain", drift) for pid in UNCERTAIN_LETTER_IDS]
     ids = [row["person_id"] for row in people]
 
     if overlap := prior_merged.intersection(ids):
@@ -143,6 +154,8 @@ def derive() -> dict:
     }
     expected = {"remaining_named_non_letter": 9, "letter_list_only_present": 33,
                 "letter_list_only_uncertain": 33}
+    # Counted off the FROZEN `stratum` labels above rather than today's records, so it
+    # cannot move under the tree and stays hard on every path (T-0870).
     if strata != expected:
         raise SystemExit(f"pass-five strata changed: {strata}")
 
@@ -170,11 +183,51 @@ def derive() -> dict:
     }
 
 
+def self_test() -> int:
+    """One member through each of pass five's stratum tests, moved and unmoved."""
+    def run_one(stratum, letter, presence):
+        def run(drift, _moved):
+            index = {"probe": ({"id": "hh_probe",
+                                "present_on_scene_date": {"value": presence}},
+                               {"id": "probe", "name": "A Probe", "grade": "inferred",
+                                "letter_list_only": letter})}
+            compact_member(index, "probe", stratum, drift)
+        return run
+
+    def flag_probe(stratum, letter):
+        """Only the flag moves; the presence value the stratum names stays put."""
+        return lambda drift, moved: run_one(
+            stratum, letter if moved else not letter,
+            "uncertain" if stratum.endswith("uncertain") else "present")(drift, moved)
+
+    def presence_probe(stratum, presence):
+        """Only the presence value moves; the flag stays marked."""
+        return lambda drift, moved: run_one(
+            stratum, True, "elsewhere" if moved else presence)(drift, moved)
+
+    return freeze.stratum_self_test("resident research pass five", [
+        ("a remaining-named member that became letter-list-only",
+         flag_probe("remaining_named_non_letter", True)),
+        ("a postal-list member whose letter_list_only flag moved",
+         flag_probe("letter_list_only_present", False)),
+        ("a present-list member ruled elsewhere on the scene date",
+         presence_probe("letter_list_only_present", "present")),
+        ("an uncertain-list member whose presence was settled",
+         presence_probe("letter_list_only_uncertain", "uncertain")),
+    ])
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
-    doc = derive()
+    if args.self_test:
+        return self_test()
+    drift = freeze.Membership(minting=not args.gate and not OUT.exists())
+    doc = derive(drift)
+    for line in drift.report("resident research pass five"):
+        print("   %s" % line)
     # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
     # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:

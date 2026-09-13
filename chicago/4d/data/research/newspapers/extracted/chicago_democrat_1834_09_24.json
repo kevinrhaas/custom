@@ -532,6 +532,50 @@
         "iso": "1834-09-23"
       },
       "notes": "The second half of the militia election the month began with: the northern battalion voted at the Mansion House in Chicago on the third Saturday of September (1834-09-03 c010), and the southern battalion votes at Ingersoll's in Plainfield on 4 October. Extracted for the BOUNDARY, which is the sharpest statement in the month of where Chicago's hinterland was reckoned to end: south of the Oak Woods, south of a line to Laughton's, south and south west of the Dupage. 'Bravntex' → 'Bea[ub]ien' is the same signature the 09-03 order carries as 'Besunirs'; two ruined readings of one known name, and the name is the town's."
+    },
+    {
+      "id": "c012",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: Nonse end Leel gent.]\nOT8 purchased and Bold, or by commie\n& sion,\n* Building Lota for eale, in the town and\n1 Housee to Let.\nBehoul section.\n• al. apposite Dr. Templés.\nEnguire at the Offce ne",
+      "normalized": "[…] [Ho]use [a]nd L[an]d [A]gent. [L]OT[S] purchased and [S]old, or by commi[s]-sion. [12] Building Lot[s] for [s]ale, in the town and […] Houses to Let. [S]choo[l] section. [Lake] [st.] [o]pposite Dr. Templ[e]'s. En[q]uire at the Off[i]ce o[n]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          3407,
+          3414
+        ],
+        "lines_of_claim": [
+          3407,
+          3408,
+          3409,
+          3410,
+          3411,
+          3412,
+          3413,
+          3414
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's",
+          "offset_text": "• al. apposite Dr. Templés.",
+          "offset_normalized": "[… st.] [o]pposite Dr. Templ[e]'s.",
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. The display line is lost — 3406 closes J. K. Botsford's notice immediately above — and the trade line itself is inside the transcription's uncertainty mark, '[uncertain: Nonse end Leel gent.]'. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. The street did not survive the left margin ('• al. apposite Dr. Templés.'), so the anchor is read and the street left null; the card's last lines are set out of order, the address (3413) above 'Enguire at the Offce ne' (3414)."
     }
   ]
 }

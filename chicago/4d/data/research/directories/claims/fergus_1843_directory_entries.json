@@ -26280,7 +26280,7 @@
    "id": "f1843_e0753",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged",
+   "quote": "Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged\n84-5-6]",
    "normalized": {
     "printed_name": "Cushing, Nathaniel Sawyer",
     "surname": "Cushing",
@@ -26288,17 +26288,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": null,
-    "address": "house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged",
-    "bracket_notes": [],
-    "as_printed": "Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged",
+    "address": "house painter, 41 State near Lake, res same",
+    "bracket_notes": [
+     "died, Lombard, Ill., May 13, 1889, aged 84-5-6"
+    ],
+    "as_printed": "Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged 84-5-6]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Cutmore; the age 84-5-6 closes the obituary of f1843_e0753 above",
+     "entry": "f1843_e0754",
+     "obituary": "f1843_e0753",
+     "age": "84-5-6",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "I  died,  Lombard.  111.,  May  13.  1889.  aged  84-5-0. Cutraore,  Henry,  grocer.  West  liandolph,  bet  W  Water  and  Canal",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_002.txt",
-    "lines": [
-     647,
-     647
+    "spans": [
+     {
+      "line": 647,
+      "from": 0,
+      "to": 111
+     },
+     {
+      "line": 648,
+      "from": 0,
+      "to": 7
+     }
     ],
     "page": "fergus_1843_page_002",
     "printed_section": "C"
@@ -26314,32 +26338,49 @@
    "id": "f1843_e0754",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "84-5-6] Cutmore, Henry, grocer. West Randolph, bet W Water and Canal",
+   "quote": "Cutmore, Henry, grocer. West Randolph, bet W Water and Canal",
    "normalized": {
-    "printed_name": "84-5-6] Cutmore, Henry",
-    "surname": "84-5-6] Cutmore",
+    "printed_name": "Cutmore, Henry",
+    "surname": "Cutmore",
     "given": "Henry",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "grocer. West Randolph",
     "address": "bet W Water and Canal",
     "bracket_notes": [],
-    "as_printed": "84-5-6] Cutmore, Henry, grocer. West Randolph, bet W Water and Canal",
+    "as_printed": "Cutmore, Henry, grocer. West Randolph, bet W Water and Canal",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "84-5-6] Cutmore",
+     "reading": "the entry begins at Cutmore; the age 84-5-6 closes the obituary of f1843_e0753 above",
+     "entry": "f1843_e0754",
+     "obituary": "f1843_e0753",
+     "age": "84-5-6",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "I  died,  Lombard.  111.,  May  13.  1889.  aged  84-5-0. Cutraore,  Henry,  grocer.  West  liandolph,  bet  W  Water  and  Canal",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_002.txt",
-    "lines": [
-     648,
-     648
+    "spans": [
+     {
+      "line": 648,
+      "from": 8,
+      "to": 68
+     }
     ],
     "page": "fergus_1843_page_002",
     "printed_section": "C"
    },
    "describes_date": "1843",
    "entities": [
-    "84-5-6] Cutmore, Henry"
+    "Cutmore, Henry"
    ],
    "town_finding": false,
    "notes": null
@@ -55796,7 +55837,7 @@
    "id": "f1843_e1600",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Lind, Sylvester, lumber merchant, 255 Randolph, bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged",
+   "quote": "Lind, Sylvester, lumber merchant, 255 Randolph, bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged\n84.]",
    "normalized": {
     "printed_name": "Lind, Sylvester",
     "surname": "Lind",
@@ -55804,17 +55845,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": "lumber merchant, 255 Randolph",
-    "address": "bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged",
-    "bracket_notes": [],
-    "as_printed": "Lind, Sylvester, lumber merchant, 255 Randolph, bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged",
+    "address": "bds Sauganash",
+    "bracket_notes": [
+     "died, Lake Forest, Ill., February 6, 1892, aged 84."
+    ],
+    "as_printed": "Lind, Sylvester, lumber merchant, 255 Randolph, bds Sauganash [died, Lake Forest, Ill., February 6, 1892, aged 84.]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Lindebner; the age 84 closes the obituary of f1843_e1600 above",
+     "entry": "f1843_e1601",
+     "obituary": "f1843_e1600",
+     "age": "84",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died.  Lake  Forest,  111.,  February  (J,  1892,  aged  84. Lindebner,  Joseph,  tailor,  Edward  Manierre.  bds  same",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     504,
-     504
+    "spans": [
+     {
+      "line": 504,
+      "from": 0,
+      "to": 110
+     },
+     {
+      "line": 505,
+      "from": 0,
+      "to": 4
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "L"
@@ -55830,32 +55895,49 @@
    "id": "f1843_e1601",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "84.] Lindebner, Joseph, tailor, Edward Manierre, bds same",
+   "quote": "Lindebner, Joseph, tailor, Edward Manierre, bds same",
    "normalized": {
-    "printed_name": "84.] Lindebner, Joseph",
-    "surname": "84.] Lindebner",
+    "printed_name": "Lindebner, Joseph",
+    "surname": "Lindebner",
     "given": "Joseph",
     "firm": false,
     "editorial_bracket": false,
     "occupation": "tailor, Edward Manierre",
     "address": "bds same",
     "bracket_notes": [],
-    "as_printed": "84.] Lindebner, Joseph, tailor, Edward Manierre, bds same",
+    "as_printed": "Lindebner, Joseph, tailor, Edward Manierre, bds same",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "84.] Lindebner",
+     "reading": "the entry begins at Lindebner; the age 84 closes the obituary of f1843_e1600 above",
+     "entry": "f1843_e1601",
+     "obituary": "f1843_e1600",
+     "age": "84",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died.  Lake  Forest,  111.,  February  (J,  1892,  aged  84. Lindebner,  Joseph,  tailor,  Edward  Manierre.  bds  same",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     505,
-     505
+    "spans": [
+     {
+      "line": 505,
+      "from": 5,
+      "to": 57
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "L"
    },
    "describes_date": "1843",
    "entities": [
-    "84.] Lindebner, Joseph"
+    "Lindebner, Joseph"
    ],
    "town_finding": false,
    "notes": null
@@ -56102,7 +56184,7 @@
    "id": "f1843_e1609",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged",
+   "quote": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged\n74.]",
    "normalized": {
     "printed_name": "Long, James",
     "surname": "Long",
@@ -56110,17 +56192,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": "proprietor hydraulic mill, n.e",
-    "address": "cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged",
-    "bracket_notes": [],
-    "as_printed": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged",
+    "address": "cor Lake and Mich, ave",
+    "bracket_notes": [
+     "died, Paris, France, April 10, 1876, aged 74."
+    ],
+    "as_printed": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged 74.]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Loomis; the age 74 closes the obituary of f1843_e1609 above",
+     "entry": "f1843_e1610",
+     "obituary": "f1843_e1609",
+     "age": "74",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Paris,  France,  April  10,  1870,  aged  74. Loomis.  Henry,  lumber  merchant,  cor  West  Water  and  I^andolph",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     513,
-     513
+    "spans": [
+     {
+      "line": 513,
+      "from": 0,
+      "to": 110
+     },
+     {
+      "line": 514,
+      "from": 0,
+      "to": 4
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "L"
@@ -56136,10 +56242,10 @@
    "id": "f1843_e1610",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "74.] Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged\n68.]",
+   "quote": "Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged\n68.]",
    "normalized": {
-    "printed_name": "74.] Loomis, Henry",
-    "surname": "74.] Loomis",
+    "printed_name": "Loomis, Henry",
+    "surname": "Loomis",
     "given": "Henry",
     "firm": false,
     "editorial_bracket": false,
@@ -56148,22 +56254,44 @@
     "bracket_notes": [
      "died, Burlington, Vt., December 18, 1886, aged 68."
     ],
-    "as_printed": "74.] Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged 68.]",
+    "as_printed": "Loomis, Henry, lumber merchant, cor West Water and Randolph [died, Burlington, Vt., December 18, 1886, aged 68.]",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "74.] Loomis",
+     "reading": "the entry begins at Loomis; the age 74 closes the obituary of f1843_e1609 above",
+     "entry": "f1843_e1610",
+     "obituary": "f1843_e1609",
+     "age": "74",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Paris,  France,  April  10,  1870,  aged  74. Loomis.  Henry,  lumber  merchant,  cor  West  Water  and  I^andolph",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     514,
-     515
+    "spans": [
+     {
+      "line": 514,
+      "from": 5,
+      "to": 112
+     },
+     {
+      "line": 515,
+      "from": 0,
+      "to": 4
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "L"
    },
    "describes_date": "1843",
    "entities": [
-    "74.] Loomis, Henry"
+    "Loomis, Henry"
    ],
    "town_finding": false,
    "notes": null
@@ -67528,7 +67656,7 @@
    "id": "f1843_e1937",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Otis, Seth T., hardware, stoves, etc., 126 Lake, res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged",
+   "quote": "Otis, Seth T., hardware, stoves, etc., 126 Lake, res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged\n71.]",
    "normalized": {
     "printed_name": "Otis, Seth T",
     "surname": "Otis",
@@ -67536,17 +67664,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": "hardware, stoves, etc., 126 Lake",
-    "address": "res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged",
-    "bracket_notes": [],
-    "as_printed": "Otis, Seth T., hardware, stoves, etc., 126 Lake, res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged",
+    "address": "res 166 State",
+    "bracket_notes": [
+     "died, Ann Arbor, Mich., January 23, 1882, aged 71."
+    ],
+    "as_printed": "Otis, Seth T., hardware, stoves, etc., 126 Lake, res 166 State [died, Ann Arbor, Mich., January 23, 1882, aged 71.]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Otis; the age 71 closes the obituary of f1843_e1937 above",
+     "entry": "f1843_e1938",
+     "obituary": "f1843_e1937",
+     "age": "71",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Ann  Arbor,  Mich.,  January  23,  1S82,  aged  71. r^tis,  Seth,  county  ])Oor-house  keeper       [died  April  27,  1847,  aged  70.",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     867,
-     867
+    "spans": [
+     {
+      "line": 867,
+      "from": 0,
+      "to": 110
+     },
+     {
+      "line": 868,
+      "from": 0,
+      "to": 4
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "O"
@@ -67562,10 +67714,10 @@
    "id": "f1843_e1938",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "71.] Otis, Seth, county poor-house keeper [died April 27, 1847, aged 70.]",
+   "quote": "Otis, Seth, county poor-house keeper [died April 27, 1847, aged 70.]",
    "normalized": {
-    "printed_name": "71.] Otis, Seth",
-    "surname": "71.] Otis",
+    "printed_name": "Otis, Seth",
+    "surname": "Otis",
     "given": "Seth",
     "firm": false,
     "editorial_bracket": false,
@@ -67574,22 +67726,39 @@
     "bracket_notes": [
      "died April 27, 1847, aged 70."
     ],
-    "as_printed": "71.] Otis, Seth, county poor-house keeper [died April 27, 1847, aged 70.]",
+    "as_printed": "Otis, Seth, county poor-house keeper [died April 27, 1847, aged 70.]",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "71.] Otis",
+     "reading": "the entry begins at Otis; the age 71 closes the obituary of f1843_e1937 above",
+     "entry": "f1843_e1938",
+     "obituary": "f1843_e1937",
+     "age": "71",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Ann  Arbor,  Mich.,  January  23,  1S82,  aged  71. r^tis,  Seth,  county  ])Oor-house  keeper       [died  April  27,  1847,  aged  70.",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_003.txt",
-    "lines": [
-     868,
-     868
+    "spans": [
+     {
+      "line": 868,
+      "from": 5,
+      "to": 73
+     }
     ],
     "page": "fergus_1843_page_003",
     "printed_section": "O"
    },
    "describes_date": "1843",
    "entities": [
-    "71.] Otis, Seth"
+    "Otis, Seth"
    ],
    "town_finding": false,
    "notes": null
@@ -80467,7 +80636,7 @@
    "id": "f1843_e2309",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Smith, Samuel P,, clerk, Gurnee & Matteson, bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged",
+   "quote": "Smith, Samuel P,, clerk, Gurnee & Matteson, bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged\n46]",
    "normalized": {
     "printed_name": "Smith, Samuel P",
     "surname": "Smith",
@@ -80475,17 +80644,41 @@
     "firm": false,
     "editorial_bracket": false,
     "occupation": "clerk, Gurnee & Matteson",
-    "address": "bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged",
-    "bracket_notes": [],
-    "as_printed": "Smith, Samuel P,, clerk, Gurnee & Matteson, bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged",
+    "address": "bds Mrs. Haight",
+    "bracket_notes": [
+     "died, Bureau Co,, Ill., October 2, 1862, aged 46"
+    ],
+    "as_printed": "Smith, Samuel P,, clerk, Gurnee & Matteson, bds Mrs. Haight [died, Bureau Co,, Ill., October 2, 1862, aged 46]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Smith; the age 46 closes the obituary of f1843_e2309 above",
+     "entry": "f1843_e2310",
+     "obituary": "f1843_e2309",
+     "age": "46",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died.  Bureau  Co,.  111.,  October  2,  1862.  a.o-ed  46 Smith,  Theophilus  AVa'sbington,  attorney  (S.  ct  Ballingall),  6  Clark",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_004.txt",
-    "lines": [
-     415,
-     415
+    "spans": [
+     {
+      "line": 415,
+      "from": 0,
+      "to": 106
+     },
+     {
+      "line": 416,
+      "from": 0,
+      "to": 3
+     }
     ],
     "page": "fergus_1843_page_004",
     "printed_section": "S"
@@ -80501,10 +80694,10 @@
    "id": "f1843_e2310",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "46] Smith, Theophilus Washington, attorney (S. & Ballingall), 6 Clark [died May 6, 1846, aged 60]",
+   "quote": "Smith, Theophilus Washington, attorney (S. & Ballingall), 6 Clark [died May 6, 1846, aged 60]",
    "normalized": {
-    "printed_name": "46] Smith, Theophilus Washington",
-    "surname": "46] Smith",
+    "printed_name": "Smith, Theophilus Washington",
+    "surname": "Smith",
     "given": "Theophilus Washington",
     "firm": false,
     "editorial_bracket": false,
@@ -80513,22 +80706,39 @@
     "bracket_notes": [
      "died May 6, 1846, aged 60"
     ],
-    "as_printed": "46] Smith, Theophilus Washington, attorney (S. & Ballingall), 6 Clark [died May 6, 1846, aged 60]",
+    "as_printed": "Smith, Theophilus Washington, attorney (S. & Ballingall), 6 Clark [died May 6, 1846, aged 60]",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "46] Smith",
+     "reading": "the entry begins at Smith; the age 46 closes the obituary of f1843_e2309 above",
+     "entry": "f1843_e2310",
+     "obituary": "f1843_e2309",
+     "age": "46",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died.  Bureau  Co,.  111.,  October  2,  1862.  a.o-ed  46 Smith,  Theophilus  AVa'sbington,  attorney  (S.  ct  Ballingall),  6  Clark",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_004.txt",
-    "lines": [
-     416,
-     416
+    "spans": [
+     {
+      "line": 416,
+      "from": 4,
+      "to": 97
+     }
     ],
     "page": "fergus_1843_page_004",
     "printed_section": "S"
    },
    "describes_date": "1843",
    "entities": [
-    "46] Smith, Theophilus Washington"
+    "Smith, Theophilus Washington"
    ],
    "town_finding": false,
    "notes": null
@@ -93238,25 +93448,49 @@
    "id": "f1843_e2675",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+   "quote": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged\n59]",
    "normalized": {
     "printed_name": "Wright, John Stephen",
     "surname": "Wright",
     "given": "John Stephen",
     "firm": false,
     "editorial_bracket": false,
-    "occupation": "editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+    "occupation": "editor and proprietor Prairie Farmer",
     "address": null,
-    "bracket_notes": [],
-    "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+    "bracket_notes": [
+     "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
+    ],
+    "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
+    "obituary_tail_cut": {
+     "side": "obituary",
+     "as_read": "the bracket left open, the age on the line below",
+     "reading": "the entry begins at Wright; the age 59 closes the obituary of f1843_e2675 above",
+     "entry": "f1843_e2676",
+     "obituary": "f1843_e2675",
+     "age": "59",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Pbiladelpbia,  Pa..  Se])t.  2G,  1874,  aged  51). ■\\Vrigbt,  ^Irs.  Hulda,  M'id.  of  .Jobn,  IIG  3Iicbigan  ave,  s.-w.  cor  Madison",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_004.txt",
-    "lines": [
-     821,
-     821
+    "spans": [
+     {
+      "line": 821,
+      "from": 0,
+      "to": 106
+     },
+     {
+      "line": 822,
+      "from": 0,
+      "to": 3
+     }
     ],
     "page": "fergus_1843_page_004",
     "printed_section": "W"
@@ -93272,10 +93506,10 @@
    "id": "f1843_e2676",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "59] Wright, Mrs. Hulda, wid. of John, 116 Michigan ave, s.-w. cor Madison [died April 13, 1854, aged 67]",
+   "quote": "Wright, Mrs. Hulda, wid. of John, 116 Michigan ave, s.-w. cor Madison [died April 13, 1854, aged 67]",
    "normalized": {
-    "printed_name": "59] Wright, Mrs. Hulda",
-    "surname": "59] Wright",
+    "printed_name": "Wright, Mrs. Hulda",
+    "surname": "Wright",
     "given": "Mrs. Hulda",
     "firm": false,
     "editorial_bracket": false,
@@ -93284,22 +93518,39 @@
     "bracket_notes": [
      "died April 13, 1854, aged 67"
     ],
-    "as_printed": "59] Wright, Mrs. Hulda, wid. of John, 116 Michigan ave, s.-w. cor Madison [died April 13, 1854, aged 67]",
+    "as_printed": "Wright, Mrs. Hulda, wid. of John, 116 Michigan ave, s.-w. cor Madison [died April 13, 1854, aged 67]",
+    "obituary_tail_cut": {
+     "side": "entry",
+     "as_read": "59] Wright",
+     "reading": "the entry begins at Wright; the age 59 closes the obituary of f1843_e2675 above",
+     "entry": "f1843_e2676",
+     "obituary": "f1843_e2675",
+     "age": "59",
+     "verdict": "second_hand_closes_the_age_above",
+     "confidence": "documented",
+     "second_hand": "[died,  Pbiladelpbia,  Pa..  Se])t.  2G,  1874,  aged  51). ■\\Vrigbt,  ^Irs.  Hulda,  M'id.  of  .Jobn,  IIG  3Iicbigan  ave,  s.-w.  cor  Madison",
+     "second_hand_source_id": "fergus_historical_series_26_29",
+     "second_hand_note": "The Internet Archive's OCR of the printed volume, committed at data/research/books/text/fergus_26_29.txt (archive.org item fergushistorical2629unse, the Allen County Public Library copy; No. 28 of Fergus' Historical Series IS this directory). Quoted verbatim, its own OCR damage left in, so the comparison re-runs.",
+     "ticket": "T-0987 stretch 13"
+    },
     "section": "alphabetical directory",
     "trade_heading": null
    },
    "locator": {
     "text_file": "fergus_1843_page_004.txt",
-    "lines": [
-     822,
-     822
+    "spans": [
+     {
+      "line": 822,
+      "from": 4,
+      "to": 104
+     }
     ],
     "page": "fergus_1843_page_004",
     "printed_section": "W"
    },
    "describes_date": "1843",
    "entities": [
-    "59] Wright, Mrs. Hulda"
+    "Wright, Mrs. Hulda"
    ],
    "town_finding": false,
    "notes": null
