@@ -1,7 +1,7 @@
 ---
 id: T-1099
 title: Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1095
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1228
 claimed_by: run 9/12/2026, 10:25:01 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T15:26:05.693Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34735274376
 ---
 
