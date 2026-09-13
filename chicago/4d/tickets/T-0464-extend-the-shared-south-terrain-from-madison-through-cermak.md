@@ -37,3 +37,50 @@ corpus, Andreas misprints its year, and Chicago Avenue and Twelfth Street are no
 committed as centrelines. See `docs/RESEARCH/corporation_limits.md` § what is still open.
 Answer that before this ticket ships a chimney south of Jackson, or the eighteen-inch gate
 starts conforming buildings to a by-law that may never have bound them.
+
+
+---
+
+**ACCEPTANCE, STATED 2026-09-13 BEFORE WORKING, AND WHERE IT STANDS.**
+
+1. A baked epoch covers Madison-to-Cermak with no out-of-bounds fallback — the
+   HEIGHTFIELD reaches the street, not the apron. **MET.** N -3800.
+2. The south bound is derived from the datum, with the buffer measured against
+   the control's own uncertainty rather than rounded. **MET.** Two committed
+   section corners (State & Madison N -525.27, State & Roosevelt N -2149.40) are
+   the School Section's mile; Twenty-Second is the next mile line south at
+   N -3758.74; -3800 clears it by 41.3 m, clears the surveyed-spacing reading
+   (-3773.5) by 26.5 m, and clears the 16.95 m picking spread.
+3. Existing downtown terrain unchanged. **MET, ASSERTED NOT CLAIMED** — the
+   overlapping 373 x 809 sub-array is bit-identical to the pre-change bin.
+4. E/W width verified against the traced South Branch and lake shore over the
+   whole reach, widened only where evidence requires. **MET, AND IT REQUIRED
+   NOTHING**: over the traced reach the South Branch spans local E -43..+339 and
+   the lake shore E +314..+1459, both well inside -320..+1700; below Twelfth
+   Street there is no trace to widen for. The question re-opens when T-0465 lands
+   the trace.
+5. Nothing south of the evidence graded better than conjectural. **MET** —
+   `evidence_limit`, and the surface there is carried, not computed.
+
+Also landed because the extension forced them: `southern_lake.beyond_the_trace`
+(without it 355 x 1640 m of Lake Michigan came out as dry land);
+`skirt_margin_m()` derived against the widest horizontal span, since north-south
+is now the wider and the old east-west derivation would have brought T-0152's plan
+displacement back; `south_sand_ridge` declared west to E +890; micro-relief stopped
+at Madison Street (9.10 MB of master, 807 KiB of payload, for ground nothing walks
+on); Heacock's house on Monroe finally standing on ground, which its own record
+had asked for.
+
+**PARKED ON `hold` IN PR #1257 — the field is done and gated, the town's response
+to it is a second demonstration.** `tools/check.sh` is at 7 of 377 steps and every
+one is a record that BANKS the heightfield box re-deriving against the new one:
+the Kinzie Block reading, the corridor strip, the dooryard plantings,
+`reconcile_665`, `compile_scene`'s sidecars, and the platted-block gate. The last
+is the reason to stop rather than push through: `blk_washington_clark` stood off
+the modelled ground and now stands ON it, so the roof schedule will deal to it —
+new geometry, a structure bake and a measured before/after. Three banks were
+re-run inside this PR already (`measure_planting_reach --update`,
+`measure_far_timber --update`, `compile_liberties`).
+
+NEXT RUN, in order: `reconcile_665.py`, the three re-derives, `compile_scene.py`,
+then what `blk_washington_clark` gaining ground means for the schedule.
