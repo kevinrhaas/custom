@@ -141,7 +141,6 @@ T-1114 — Three hundred and four Norris 1844 entries print a business street in
 T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
 T-1021 — Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
-T-1004 — Four cards each gather two men the corpus itself distinguishes by a forename or an initial — Bowen, King, Taylor, Thompson
 T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
 T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
 T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
@@ -241,7 +240,11 @@ T-1029 — Three derived artefacts are stale on dev and nothing re-derives them:
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
 T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
-T-0896 — Drain the 18 --check-capable tools tools/check.sh never runs: gate each or record why it cannot be gated
+T-1112 — generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it
+T-1111 — voter_crosswalk.json is stale against read_voter_lists.py, and 35 of 345 voters stand unmatched behind it
+T-1110 — st_marys_baptisms_crosswalk.json is hand-edited away from what read_st_marys_baptisms.py rebuilds
+T-1109 — pass_14_findings.json no longer matches what complete_resident_research_pass_14.py re-derives
+T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
@@ -304,4 +307,3 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- John Vale, Mark Noble against Mary Noble. No distance separates the first kind from the
 # --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
-
