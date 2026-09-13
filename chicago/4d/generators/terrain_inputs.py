@@ -134,7 +134,8 @@ CONSUMED = {
     "approaches": frozenset({"line", "mode", "deck_ft", "grade", "half_width_m",
                              "side_slope", "end_overhang_m"}),
     "watercourses": frozenset({"bed_ft", "e_fold_m"}),
-    "micro_relief": frozenset({"amplitude_ft", "wavelengths_m", "seed"}),
+    "micro_relief": frozenset({"amplitude_ft", "wavelengths_m", "seed",
+                               "south_limit_n_m"}),
     "surface_materials": frozenset(),
 }
 

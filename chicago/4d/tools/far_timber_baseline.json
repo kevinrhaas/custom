@@ -3,6 +3,12 @@
  "epoch": "e1834_harbor_cut",
  "sample_step_m": 2.0,
  "bodies": {
+  "south_branch_belt": {
+   "wet": 57,
+   "samples": 2308,
+   "wet_length_m": 113.7,
+   "worst_depth_m": 1.511
+  },
   "north_branch_belt": {
    "wet": 8,
    "samples": 2513,
