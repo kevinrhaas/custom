@@ -1,5 +1,91 @@
 # STATUS
 
+## Shipped 2026-09-13 — T-1106: the far band is a wall, and it had been dealt as a floor
+
+**T-0280 put both sides of the far band's grass-or-flower split into the same unit, and picked
+the wrong one.** That ticket was right that a cover cannot be divided by a lattice probability,
+and its ground-cover reading stands as the honest mix for GROUND. The far band is not ground.
+Its nearest card stands 34 m from the visitor and its furthest 95 m; at fifty metres a 1.7 m eye
+looks 1.9 degrees below horizontal, so the sward is seen **edge-on, as a wall**, and the plant
+that fills a pixel is the first element the ray meets. What governs that is projected area per
+element times elements per m² of ground — **silhouette-area density** — and the depth of the
+wall cancels out of a ratio between two strata standing in it.
+
+**The module already held that model, one field over.** `tools/measure_far_bloom.mjs` §1 has
+priced the BLOOM share on exactly this `n × a` bridge since T-0209, stating the same edge-on
+argument. Between T-0280 and this ticket the far band was reading one wall in two different
+units.
+
+**What changed.** `silhouetteOf(sp)` = `stems × w × h`, beside `coverOf`'s `stems × π·clump²`;
+`subsetOn()` sums it as `sil` beside `cover`; `farSplitOf` decides the boundary **once per
+community per side of the waterline** instead of per lattice slot, and `rebuildFar` now reads a
+constant rather than computing a ratio. The matrix side is the record's own `matrix_fraction`
+**converted** by the graminoid stratum's own measured aspect `sil / cover`, not replaced by the
+species rows' raw sum — T-0280 chose the authored figure deliberately and this keeps that
+choice. `matrixSil` is exported beside it so the two can be checked against each other. No
+constant enters the split that is not summed off `data/flora`.
+
+**The liberty, stated: L236.** The silhouette of a clump is its **bounding rectangle** `w × h`,
+with no shape factor. It is explicitly NOT the far card's own quad — that card's width is the
+aggregate `band.wide` L137 gives it, not this plant's. A shape factor cancels out of the ratio
+wherever the two strata share a growth form, the project has no measured profile for either to
+make it not cancel, and applying one to a single side would be a thumb on the scale. L235 is
+revised in the same pass: the fallback width it covers is now one factor of `w × h` rather than
+the radius of a disc, and is otherwise untouched.
+
+**It moves both ways, which is the test that it is a measurement.**
+`tools/measure_far_split.mjs --source` now prints all three units side by side. The forb's share
+of the far cards, per community:
+
+| community | T-0209 lattice | T-0280 cover | T-1106 silhouette | move | aspect gram / forb |
+|---|---|---|---|---|---|
+| z10_settled_town | 68.97 %* | 46.75 % | **72.72 %** | 1.556× | 0.67 / 2.04 |
+| z06_dense_forest | 74.07 %* | 72.10 % | **78.48 %** | 1.088× | 1.91 / 2.70 |
+| z04_marsh | 57.14 %* | 38.02 % | **38.01 %** | 1.000× | 3.98 / 3.98 |
+| z03_sedge_meadow | 54.05 %* | 11.51 % | **8.25 %** | **0.717×** | 3.47 / 2.40 |
+| z05_riverbank_timber | 68.97 %* | 5.26 % | **10.39 %** | 1.974× | 2.12 / 4.43 |
+| z02_mesic_prairie | 51.28 %* | 2.74 % | **3.73 %** | 1.364× | 2.63 / 3.62 |
+| z01_wet_prairie | 50.00 %* | 2.95 % | **3.62 %** | 1.228× | 3.22 / 3.98 |
+| z08_lakeshore | 74.07 %* | 6.33 % | **6.50 %** | 1.026× | 2.18 / 2.24 |
+| z09_sand_prairie | 35.45 % | 0.16 % | **0.30 %** | 1.938× | 2.05 / 3.98 |
+| z07_bur_oak_savanna | 0.00 % | 0.00 % | 0.00 % | — | — |
+
+`*` was sitting on the forb ring's 1.000 ceiling. `aspect` is each stratum's own `sil / cover`,
+the square metres of wall one square metre of its floor stands up, and the move is the ratio of
+the two — arithmetic, not a tuning. **`z03_sedge_meadow` goes DOWN**, because its sedges are the
+taller narrower stratum; `z04_marsh` moves by one hundredth of a percentage point, because its
+two strata happen to share an aspect of 3.98. A change that could only add flowers would not be
+a measurement.
+
+**At the three gate stands**, the annulus weighted by the ground it lands on:
+
+| stand | T-0209 | T-0280 | T-1106 | far cards |
+|---|---|---|---|---|
+| prairie_west (z02_mesic_prairie) | 51.40 % | 4.72 % | **6.62 %** | 226 |
+| prairie_south (z05_riverbank_timber) | 52.04 % | 7.33 % | **8.97 %** | 241 |
+| river_bank (z04_marsh) | 42.07 % | 19.93 % | **24.41 %** | 28 |
+
+**The drawn bloom, both readings measured on this same tree in this run**
+(`tools/measure_far_bloom.mjs --source`, desktop):
+
+| stand | heads before → after | furthest | > 24 m | > 40 m |
+|---|---|---|---|---|
+| prairie_west | 1993 → **1997** | 26.4 → **47.5 m** | 102 → **106** | 0 → **4** |
+| prairie_south | 1225 → **1238** | 78.7 → 76.5 m | 149 → **162** | 19 → **32** |
+| river_bank | 43 → 43 | 14.0 → 14.0 m | 0 → 0 | 0 → 0 |
+
+`prairie_west` regains the far tail T-0280 cost it — nothing past 40 m before, four heads now,
+and the furthest head almost doubles. **It does not go back to 135.7 m, and it must not**: that
+figure was bought by a clamped constant, and T-0280's refusal of it is not reopened here.
+`prairie_south`'s furthest ticks down 2.2 m while its counts past 24 m and past 40 m both rise —
+the tail is a re-deal of the same lottery and the single furthest head is its noisiest statistic;
+the bin counts are the figure to read.
+
+**What did not move.** Card count, instance count, draw calls, triangles, and where any card
+stands: 226 / 241 / 28 far cards at the three stands before and after. This decides what a card
+is a picture of, exactly as T-0209 left it. Zero sward records convert to no silhouette —
+`silUnknown` is exported so that stays checkable.
+
 ## Shipped 2026-09-13 — T-0280: the far band's grass-or-flower split was reading a lattice ceiling, and now reads the ground
 
 **Eight of the ten communities were splitting on the number 1.000.**
