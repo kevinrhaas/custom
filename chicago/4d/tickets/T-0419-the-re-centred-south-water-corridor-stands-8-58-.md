@@ -10,7 +10,7 @@ legacy_id: null
 parent: null
 opened: 2026-08-29
 closed: null
-pr: null
+pr: 1240
 claimed_by: run 9/13/2026, 3:28:25 AM CT
 blocked_on: Is the platted BLOCK grid on the South Water reach offset from the control too — branch A, which re-cuts 32 lots carrying 53 committed roofs and drops blk_south_water_lasalle (8 lots, 18 roofs, all of T-0429) into the river — or is the drawn line the block grid's own control, branch B, in which case the corridor and the blocks answer two different questions and 10 corridor readers each declare which? Measured 2026-08-30, re-measured 2026-09-13: the abandoned band is 6,132 m2 and 99.1% dry, the band the corridor claims instead is 54.0% river, and branch A's price rose from 43 to 53 roofs in the fortnight the question waited. See docs/ROADMAP.md K30(f).
 needs_bake: false
