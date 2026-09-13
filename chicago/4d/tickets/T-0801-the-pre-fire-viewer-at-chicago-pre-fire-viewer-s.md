@@ -1,7 +1,7 @@
 ---
 id: T-0801
 title: The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-05
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 1:34:18 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34774857229
 ---
 
 **The owner, 2026-09-05:** *"can you add a ticket to update https://custom.polecat.live/chicago/pre-fire/viewer/ with that map."*
