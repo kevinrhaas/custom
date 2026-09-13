@@ -3533,6 +3533,68 @@
         ]
       },
       "source": "/tmp/s_d7.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 225,
+      "takenAt": "2026-09-13T08:16:41.801Z",
+      "ref": "steward/t-0266-phone-picket-moire",
+      "commit": "db60fd53996c",
+      "devCommit": "45c2d116e329",
+      "treeHash": "sha256:198f192c54bdefa6",
+      "treeDirty": false,
+      "changelogHash": "sha256:e961cd7513e09af8",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.6,
+          3.1,
+          2.1
+        ]
+      },
+      "source": "/tmp/smoke-desktop-12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 120,
+      "takenAt": "2026-09-13T08:16:41.719Z",
+      "ref": "steward/t-0266-phone-picket-moire",
+      "commit": "db60fd53996c",
+      "devCommit": "45c2d116e329",
+      "treeHash": "sha256:198f192c54bdefa6",
+      "treeDirty": false,
+      "changelogHash": "sha256:e961cd7513e09af8",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.6,
+          3.1,
+          2.1
+        ]
+      },
+      "source": "/tmp/smoke-mobile-12.log"
     }
   ]
 }

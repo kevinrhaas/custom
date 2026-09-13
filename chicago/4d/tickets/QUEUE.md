@@ -160,7 +160,6 @@ T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json un
 # --- ==========================================================================
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
-T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0055 — Hold the Kinzie-view plate as a source record
 
 # --- ==========================================================================
@@ -301,4 +300,3 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-
