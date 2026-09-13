@@ -282,6 +282,11 @@ WELDED_OF = [
 # so a repair that stops firing is caught here as well as in its own table.
 OVERRUN_HEALED = {
     "n1844_e0276": "empty_prefix",        # <'ady, Dennis S. — the C read as two marks
+    # T-1023 — the rest of the empty_prefix class, healed at the head of the line.
+    "n1844_e0009": "empty_prefix",        # the turned tail of Adams, R. E. W: no name
+    "n1844_e0278": "empty_prefix",        # * '.ilhoun      -> Calhoun
+    "n1844_e0771": "empty_prefix",        # llageman        -> Hageman
+    "n1844_e1637": "empty_prefix",        # v; Smith        -> Smith
     "n1844_e0700": "repaired",            # Gilmorc. Win. laborer
     "n1844_e0756": "repaired",            # JrisivoM. David D. res D. S. Griswold's
     # T-0987 stretch 11 — the whole split_surname class, read off the page image.
@@ -434,10 +439,12 @@ OVERRUN_CLASSES = {
     #     and not a reading. T-0987 stretch 11 read all four off the page image, so
     #     they are repaired at the source now and stand in OVERRUN_HEALED below.
     # --- empty_prefix
-    "n1844_e0009": "empty_prefix",        # house Clark street (See card)
-    "n1844_e0278": "empty_prefix",        # ilhoun
-    "n1844_e0771": "empty_prefix",        # llageman
-    "n1844_e1637": "empty_prefix",        # v; Smith
+    #     T-1018 named five and refused to cap any of them, which was the right
+    #     refusal and not a reading. All five are read at the source now and stand in
+    #     OVERRUN_HEALED below — one off the page image (T-0987 stretch 10), three off
+    #     the second hand, and one ruled a turned line rather than a name at all
+    #     (T-1023). The class is EMPTY and the self-test holds it empty: a sixth entry
+    #     that reads past an empty prefix is a new fault and must be ruled, not filed.
 }
 
 
@@ -1435,6 +1442,83 @@ for _row in SURNAME_IMAGE_REPAIRS_STRETCH_11:
     _row["reread_by"] = SURNAME_REREAD_BY_11
 SURNAME_IMAGE_REPAIRS += SURNAME_IMAGE_REPAIRS_STRETCH_11
 
+# THE MARGIN'S SPECKS ARE NOT PART OF THE NAME (T-1023)
+#
+# T-1018 refused five entries as `empty_prefix`: the reading begins at the trade or
+# mid-word, so there is no name to cap the comma span to, and capping would set
+# `surname` to `''` — which `crosswalk_norris_1844.py` skips WITHOUT SAYING SO. Five
+# men would leave the town's reach in silence. One of the five, `<'ady, Dennis S.`,
+# was read off the page image by T-0987 stretch 10 and stands in OVERRUN_HEALED.
+# This is the other four, and two more of the same class the overrun test never saw.
+#
+# THE DAMAGE IS AT THE HEAD OF THE LINE, WHERE THIS SCAN'S LEFT MARGIN COLLECTS INK.
+# `clean_head()` already drops a speck that stands apart from the surname — a stray
+# quote, a bullet, a lone letter and a space. It cannot drop one the scanner WELDED
+# to the first letter (`vButterfield`, `iStrail`, `llageman`), and it cannot restore
+# a capital the speck ate (`* '.ilhoun` for Calhoun). Either way the entry is filed
+# under a name the volume does not print.
+#
+# READ AGAINST THE SECOND HAND, NOT OFF THE IMAGE, and the row says which. T-0987
+# stretch 10 cropped its 16 surnames from the page image because the second hand and
+# the OCR DISAGREED and something had to break the tie. Here they do not disagree:
+# the OCR keeps every letter of the surname but the first, the second hand prints the
+# whole word, and the volume's own alphabetical run brackets it on both sides — the
+# `Calhoun, Alvin` set one line above, the `Hageman, F.` and `Hageman, ——` set one and
+# two lines below, four spelled Butterfields around a fifth, `Stowe` above `Strang`.
+# Three witnesses that agree do not need a fourth. Where they had NOT agreed, this
+# table would not be the instrument; the image would.
+#
+# THE REPAIR MOVES THE READING ONLY. `quote` and `normalized.as_printed` keep the
+# damage, exactly as REPAIRS and SURNAME_IMAGE_REPAIRS do, and the claim states both
+# readings in `normalized.surname_repair`. `--self-test` fails if a row stops matching
+# exactly one entry, or matches one whose surname it does not change.
+MARGIN_SURNAME_REPAIRS = [
+    {"as_read": "vButterfield,", "reading": "Butterfield,", "surname": "Butterfield",
+     "why": "a speck welded to the B. clean_head drops a lone letter that stands "
+            "apart from the name; this one has no space after it, so the surname "
+            "read `vButterfield` and no Butterfield in the volume is spelled so",
+     "brackets": "Butterfit'd, Wm. one line above and Butlerworih one line below — the "
+                 "run is Butterfield, and four of them stand on this page",
+     "file": "1844directory.txt", "line": 304,
+     "second_reading": "Butterfield, Carver, printer of the Prairie Farmer, 112 Lake st"},
+    {"as_read": "* '.ilhoun,", "reading": "Calhoun,", "surname": "Calhoun",
+     "why": "the C eaten by a speck in the margin. clean_head strips `* '.` and the "
+            "surname read `ilhoun`, so the John Calhoun who printed the Chicago "
+            "Democrat was filed under a name that is not one",
+     "brackets": "Calhoun, Alvin one line above and Calighan one line below — the "
+                 "alphabetical run admits no other word here",
+     "file": "1844directory.txt", "line": 309,
+     "second_reading": "Calhoun, John, printer, house State st b Wash and Madison sts"},
+    {"as_read": "llageman,", "reading": "Hageman,", "surname": "Hageman",
+     "why": "the H set as two l's — its stems read and its crossbar lost. The "
+            "surname read `llageman`, which sorts nowhere near the H's",
+     "brackets": "Haeni one line above, and Hageman, F. and Hageman, —— one and two "
+                 "lines below, both spelled",
+     "file": "1844directory.txt", "line": 812,
+     "second_reading": "Hageman, Christopher, grocer, N. Water st. b Clark & Dearborn"},
+    {"as_read": "v; Smith,", "reading": "Smith,", "surname": "Smith",
+     "why": "a speck and a semicolon in the margin ahead of a surname that is "
+            "otherwise whole. clean_head drops a lone letter followed by a space; "
+            "`v;` is a letter followed by a point, so the surname read `v; Smith`",
+     "brackets": "Smith, Andrew one line above and Smith, Benjamin one line below — "
+                 "the Smith run, and this entry prints Smith with it",
+     "file": "1844dir2.txt", "line": 521,
+     "second_reading": "Smith, Abial, printer, Dem. Office, res lake Street House"},
+    {"as_read": "iStrail,", "reading": "Strail,", "surname": "Strail",
+     "why": "a speck welded to the S, as with Butterfield above — no space, so "
+            "clean_head cannot see it and the surname read `iStrail`",
+     "brackets": "Stowe, W. H. one line above and Strang one line below; and the "
+                 "second hand's own Casey entry names `Isaac Strail's` as an address",
+     "file": "1844dir2.txt", "line": 602,
+     "second_reading": "Strail, Isaac, dry goods & groceries, Clark st b S. Water & Lake"},
+]
+
+MARGIN_SURNAME_WHY = (
+    "The head of the printed line carries a mark from this scan's left margin — "
+    "welded to the first letter, or standing where the first letter was. The quote "
+    "keeps it and the reading does not.")
+
+
 SURNAME_IMAGE_SOURCE = IMAGE_SOURCE
 SURNAME_REREAD_BY = ("T-0987 stretch 10, read off the leaf image cropped on the word "
                      "box recorded with the row, against the second hand rather than "
@@ -1471,6 +1555,32 @@ def repair_surname(text: str):
                     "second_reading": row["second_reading"],
                 },
                 "ticket": "T-0987",
+            }
+    for row in MARGIN_SURNAME_REPAIRS:
+        if stripped.startswith(row["as_read"]):
+            return stripped.replace(row["as_read"], row["reading"], 1), {
+                "as_read": row["as_read"],
+                "reading": row["reading"],
+                "surname": row["surname"],
+                "why": row["why"],
+                # DOCUMENTED. Every letter of the reading is printed somewhere the
+                # row names — in the OCR itself but the first, in the second hand
+                # whole, and in the volume's own neighbours. Nothing here is supplied
+                # by the format, so there is no separator to grade (see above).
+                "confidence": "documented",
+                "evidence": {
+                    "source": REPAIR_SOURCE,
+                    "file": "data/research/genealogytrails/text/" + row["file"],
+                    "line": row["line"],
+                    "reads": row["second_reading"],
+                    "and_the_volume_itself": row["brackets"],
+                    "why_not_the_image": (
+                        "The second hand, the OCR's own surviving letters and the "
+                        "alphabetical run agree. The page image is what breaks a "
+                        "TIE between the two hands (T-0987 stretch 10); there is "
+                        "no tie here."),
+                },
+                "ticket": "T-1023",
             }
     return text, None
 
@@ -1549,6 +1659,58 @@ def apply_repair(norm):
     return None
 
 
+# THE TURNED LINE THE SCANNER UN-INDENTED (T-1023)
+#
+# Norris sets an entry too long for the measure by turning it and INDENTING the tail,
+# and `build_claims` reads that indent: a line beginning with two spaces belongs to
+# the entry above. One line in the volume is a turned tail with no indent, because the
+# scan's left margin dropped ink into the space the compositor left:
+#
+#     Adams, R. E. W, physician, corner of Clark and Lake streets,-
+#     . -house Clark street (See card)
+#
+# Read as its own entry it became n1844_e0009 — a man whose surname is "house Clark
+# street (See card)", which is how he reached `identity_master.json` as
+# `id_street_house_clark`. It is also why R. E. W. Adams has no address: the `house`
+# that opens his residence is on the line the reading threw away.
+#
+# ONE LINE, NAMED, NOT A RULE. The volume was swept for the class (every unindented
+# line in leaves 31-75 whose head reads lower-case after `clean_head`) and outside
+# Norris's own prose, which SKIP already drops, this is the only one; the rest are
+# margin specks welded to a capital, which MARGIN_SURNAME_REPAIRS reads. A general
+# rule — "a line that cannot begin a name is a turned line" — would have to be
+# measured against 2,073 entries before it could be trusted, and it would buy exactly
+# this one line. So the boundary rule is UNCHANGED and the exception is a row with a
+# citation, which `--self-test` holds to the text.
+#
+# THE ID IS KEPT. n1844_e0009 is cited from `identity_master.json`,
+# `grading_proposal.json` and the second-hand comparison; ids are allocated by
+# position, so folding the line away would renumber all 2,064 entries after it. The
+# tail is JOINED to the entry above — which is what makes the address land — and the
+# id stays, carrying a claim that says what it is and holds no name. The crosswalk
+# passes over it by the surname test, as before, but no longer in silence: it now
+# names every claim it sets aside and why (see crosswalk_norris_1844.py).
+TURNED_LINES = {
+    (31, 34): {
+        "joins": "n1844_e0008",
+        "why": "the turned tail of the Adams, R. E. W entry above it, un-indented "
+               "because the scanner read ink in the margin where the indent is. "
+               "The entry as printed is one line and its turn.",
+        "evidence": {
+            "source": REPAIR_SOURCE,
+            "file": "data/research/genealogytrails/text/1844directory.txt",
+            "line": 33,
+            "reads": "Adams, R.E.W. physician, corner of Clark and Lake sts, "
+                     "house Clark st",
+            "and_the_volume_itself": "the line above ends in a comma and a rule, "
+                                     "which is the compositor's turn, and the tail "
+                                     "carries no name of its own",
+        },
+        "ticket": "T-1023",
+    },
+}
+
+
 def build_claims():
     claims, warnings = [], []
     n = repaired = 0
@@ -1573,10 +1735,39 @@ def build_claims():
         for first, last in entries:
             n += 1
             raw = "\n".join(lines[first - 1:last])
+            turned = TURNED_LINES.get((leaf, first))
+            tail = TURNED_LINES.get((leaf, last + 1))
+            read_lines = lines[first - 1:last]
+            if tail is not None:
+                # The turn belongs to THIS entry: read the two together, so the
+                # address the tail opens lands. Its own claim keeps its id below.
+                # THE TAIL'S OWN MARGIN INK IS DROPPED FROM THE READING and kept in
+                # the quote, exactly as clean_head does at the head of an entry —
+                # `. -house Clark street` joined raw would put a hyphen in front of
+                # `house`, and PLACE refuses a hyphenated one (it is the guard that
+                # keeps `boarding-house` from opening an address), so the residence
+                # would not land even after the join.
+                raw = raw + "\n" + lines[last]
+                read_lines = read_lines + [clean_head(lines[last])]
             flat = re.sub(r"\s+", " ", raw.replace("-\n", "")).strip()
-            norm = split_entry(flat)
-            if apply_repair(norm):
-                repaired += 1
+            read_flat = re.sub(r"\s+", " ",
+                               "\n".join(read_lines).replace("-\n", "")).strip()
+            if turned is not None:
+                # A tail with no name of its own. It is read with the entry above and
+                # is not a person; the claim exists so the id keeps its place and says
+                # out loud what the line is.
+                norm = {"printed_name": None, "surname": None, "given": None,
+                        "firm": False, "occupation": None, "address": None,
+                        "turned_line": turned}
+            else:
+                norm = split_entry(read_flat)
+                if apply_repair(norm):
+                    repaired += 1
+                if tail is not None:
+                    norm["turned_line_joined"] = {
+                        "line": last + 1, "reads": lines[last].strip(),
+                        "why": tail["why"], "evidence": tail["evidence"],
+                        "ticket": tail["ticket"]}
             norm["as_printed"] = flat
             after = (leaf, first) >= ADDENDA_FROM
             norm["section"] = "addenda" if after else "directory"
@@ -1589,13 +1780,14 @@ def build_claims():
                                            "rule": ADDRESS_REFUSED_NOTE}
             claims.append({
                 "id": cid,
-                "kind": "business" if norm["firm"] else "person",
+                "kind": "turned_line" if turned is not None else (
+                    "business" if norm["firm"] else "person"),
                 "reading": "transcription_mediated",
                 "quote": raw,
                 "normalized": norm,
                 "locator": {
                     "text_file": "norris_1844_leaf_%03d.txt" % leaf,
-                    "lines": [first, last],
+                    "lines": [first, last + 1 if tail is not None else last],
                     "page": "norris_1844_leaf_%03d" % leaf,
                     "printed_page": printed,
                 },
@@ -1886,6 +2078,89 @@ def self_test():
         if row["as_read"] not in hit[0]["quote"]:
             fired.append("%s no longer quotes %r — the damage the repair asserts is "
                          "not in the committed text" % (hit[0]["id"], row["as_read"]))
+    # T-1023. The margin repairs carry the same ratchet, and one more: the row must
+    # say something. A row whose `as_read` still matched but whose surname the reading
+    # already got right would be a repair that repairs nothing, and the next reader
+    # would trust it.
+    for row in MARGIN_SURNAME_REPAIRS:
+        hit = [c for c in claims
+               if (c["normalized"].get("surname_repair") or {}).get("as_read")
+               == row["as_read"]]
+        if len(hit) != 1:
+            fired.append("the margin surname repair %r fires on %d entries, not 1"
+                         % (row["as_read"], len(hit)))
+            continue
+        if hit[0]["normalized"].get("surname") != row["surname"]:
+            fired.append("%s reads a surname of %r after the margin repair, not %r"
+                         % (hit[0]["id"], hit[0]["normalized"].get("surname"),
+                            row["surname"]))
+        if row["as_read"] not in hit[0]["quote"]:
+            fired.append("%s no longer quotes %r — the damage the margin repair "
+                         "asserts is not in the committed text"
+                         % (hit[0]["id"], row["as_read"]))
+        if row["as_read"].lstrip().startswith(row["reading"]):
+            fired.append("the margin surname repair %r changes nothing — the reading "
+                         "was already right" % (row["as_read"],))
+        # AND THE SPELLING IS THE SECOND HAND'S, NOT THE ROW'S. Without this a row
+        # could carry any name at all: `surname`, `reading` and the claim would all
+        # agree with each other and with nothing on the page.
+        if row["reading"].rstrip(",") != row["surname"]:
+            fired.append("the margin surname repair %r reads %r and calls the surname "
+                         "%r" % (row["as_read"], row["reading"], row["surname"]))
+        if not row["second_reading"].startswith(row["surname"] + ","):
+            fired.append("the second hand at %s:%d does not open with %r — the margin "
+                         "repair is spelling a name its own citation does not"
+                         % (row["file"], row["line"], row["surname"]))
+        # The second hand has to be quotable where the row says it is.
+        try:
+            line = open(os.path.join(ROOT, "data/research/genealogytrails/text",
+                                     row["file"]), encoding="utf-8").read(
+                                         ).splitlines()[row["line"] - 1]
+        except (OSError, IndexError):
+            line = None
+        if line is None or line.strip() != row["second_reading"]:
+            fired.append("%s:%d does not read %r — the second hand the margin repair "
+                         "cites has moved" % (row["file"], row["line"],
+                                              row["second_reading"]))
+
+    # T-1023. The turned line is an exception to the boundary rule, held to the text
+    # on both sides: the tail must still be where the row says, the entry above must
+    # have swallowed it, and the tail's own claim must hold no name — because the one
+    # thing this ruling must never do is mint a man out of an address.
+    for (leaf, line_no), row in TURNED_LINES.items():
+        lines = leaf_lines(leaf)
+        tail = [c for c in claims
+                if (c["normalized"].get("turned_line") or {}).get("joins")]
+        tail = [c for c in tail if c["locator"]["lines"] == [line_no, line_no]
+                and c["locator"]["page"] == "norris_1844_leaf_%03d" % leaf]
+        if len(tail) != 1:
+            fired.append("leaf %d line %d is named a turned line and %d claim(s) say "
+                         "so" % (leaf, line_no, len(tail)))
+            continue
+        t = tail[0]
+        if t["kind"] != "turned_line":
+            fired.append("%s is a turned line and is filed as a %r, which is what the "
+                         "crosswalk and the identity layer read" % (t["id"], t["kind"]))
+        if t["normalized"]["surname"] or t["normalized"]["printed_name"]:
+            fired.append("%s is a turned line and carries a name — the ruling has "
+                         "minted a man out of an address" % t["id"])
+        if t["entities"]:
+            fired.append("%s is a turned line and reaches the identity layer as %r"
+                         % (t["id"], t["entities"]))
+        if t["id"] != "n1844_e%04d" % (int(row["joins"][-4:]) + 1):
+            fired.append("%s is the turned line of %s, which is not the claim above it"
+                         % (t["id"], row["joins"]))
+        above = [c for c in claims if c["id"] == row["joins"]]
+        if not above:
+            fired.append("%s is named as the entry a turned line joins and is not in "
+                         "the reading" % row["joins"])
+        elif above[0]["locator"]["lines"][1] != line_no:
+            fired.append("%s does not read through line %d — the turned line it was "
+                         "joined to is loose again" % (row["joins"], line_no))
+        elif lines[line_no - 1].strip() not in above[0]["quote"]:
+            fired.append("%s does not quote the turned line at leaf %d line %d"
+                         % (row["joins"], leaf, line_no))
+
     for row in SURNAME_UPHELD:
         hit = [c for c in claims
                if c["normalized"].get("surname") == row["surname"]
@@ -2016,6 +2291,10 @@ def self_test():
           "%d entries move and every one of them had a street inside its forename; "
           "%d streets are refused an address and each says why on the claim"
           % (len(STREET_IN_FORENAME), len(ADDRESS_REFUSED)))
+    print("norris 1844 --self-test: %d surnames lifted out of the margin's ink against "
+          "the second hand and the volume's own alphabetical run, and %d turned line(s) "
+          "the scanner un-indented read with the entry above rather than as a man"
+          % (len(MARGIN_SURNAME_REPAIRS), len(TURNED_LINES)))
     print("norris 1844 --self-test: %d names read past the end of the name — %d capped "
           "at the prefix, %s, and %d healed at the source"
           % (len(OVERRUN_CLASSES) + len(OVERRUN_HEALED), tally["repaired"],
