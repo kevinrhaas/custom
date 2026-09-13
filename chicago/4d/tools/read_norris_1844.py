@@ -80,6 +80,123 @@ PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s"
 PLACE_CASE_BLIND = re.compile(r"\b(?:h|house|res|residence|r|boards|bds|b)\.?\s", re.I)
 CASE_RULE_MOVES = 95   # …and the price, held by --self-test against a re-read
 
+# THE STREET NORRIS PRINTS WITH NO PLACE-ABBREVIATION BEFORE IT (T-1113).
+#
+# `PLACE` cuts a trade from an address at Norris's own `h`/`res`/`b`. Where he sets
+# none there is nothing to cut at, and the whole tail stays in `occupation` — 304 of
+# the 2,073 entries name a street that way, because a shop's address IS its trade line
+# ("grocer, 175 Lake st"). That volume-scale question is not this rule and is filed
+# separately; what is repaired here is the entry where the street reached the NAME.
+#
+# The forename walk takes a capitalised token while it has fewer than three, so a
+# street set straight after the surname is read as a third forename and the trade then
+# begins at the bare word `st`:
+#
+#     Brown, S. B. Ohio st. b Cass and Rush sts   →  given "S. B. Ohio", trade "st"
+#     Intelligence Office, Clark st. opposite …   →  given "Clark",     trade "st. …"
+#
+# THE TEST IS THE WORD THAT FOLLOWS, NOT A LIST OF STREETS. A capitalised token with a
+# street designator immediately after it is the street's name — Norris has no forename
+# that a `st`, `street` or `avenue` follows. Holding a gazetteer here would fail on the
+# scanner's spellings (`Wash.`, `Frank.`, `Lasatte`) and would have to be kept in step
+# with the street layer; the designator is set by the same compositor as the street and
+# travels with it. A ONE-LETTER token is exempt: `Geo. W. Water street` sets an initial
+# before the street, and `W.` is as likely the man's as the street's West — see the
+# residual noted with n1844_e0807 below.
+#
+# It moves seven entries and all seven are the defect. `--self-test` re-reads the whole
+# volume with the rule off and prices it, the same way the case rule is priced.
+STREET_DESIGNATOR = re.compile(r"^(?:st|street|streets|sts|av|ave|avenue|alley|road"
+                               r"|lane|court)$", re.I)
+STREET_RULE = True          # …turned off by --self-test, to re-read and price it
+
+
+def street_ahead(toks, i: int) -> bool:
+    """True when toks[i] is a street's NAME — capitalised, more than one letter, and
+    the very next token is a designator Norris only ever sets after a street."""
+    if not STREET_RULE or i + 1 >= len(toks):
+        return False
+    tok = toks[i].strip(".,'\"")
+    if len(tok) < 2 or not tok[:1].isupper() or tok.lower() in TITLES:
+        return False
+    return bool(STREET_DESIGNATOR.match(toks[i + 1].strip(".,;:'\"")))
+
+
+# …AND THE SEVEN, WITH WHAT EACH READS AFTER THE RULE. The second hand — Kim Torp's
+# independent transcription, compared entry by entry in
+# data/research/directories/second_readings/norris_1844_genealogytrails.json — prints
+# the same street in every one of them, so the street is the printed page's and not
+# this scan's OCR.
+STREET_IN_FORENAME = {
+    # id:            (given,        occupation,                      address)
+    "n1844_e0220": ("S. B", "Ohio st", "b Cass and Rush sts"),
+    "n1844_e0276": ("Dennis S", "Lake Street House, 135 Lake st (Sec card)", None),
+    "n1844_e0328": ("Thos", "Wolcott st", "b Illinois and Indiana sts"),
+    "n1844_e0567": ("George A", "Clark st market", "res Farmers' Exchange"),
+    "n1844_e0677": ("Mrs", "Wash. st", "b Frank, and Market sts"),
+    "n1844_e0807": ("Geo. W", "Water street", "house Wabash st"),
+    "n1844_e1993": (None, "Clark st. opposite Saloon, over J; B. F. Rus sell's Land "
+                          "Office", None),
+}
+
+# WHAT IT COSTS DOWNSTREAM, MEASURED (T-1113). `consolidate_resident_evidence.py`
+# gathers an identity on surname plus forenames, so a street inside the forename minted
+# a person: `id_brown_s_b_ohio` stood beside the Simon B. Brown whom Fergus 1843 puts
+# on Ohio between Cass and Rush — the same street the phantom was named for. Five such
+# identities fold into the person they were always part of (Brown, Cady, Chapman, Ellis,
+# Hart, and the Intelligence Office into the 1843 intelligence office at 38 Clark), and
+# `n1844_e0677` becomes an R1 refusal, because `Galvin, Mrs.` names no forename once the
+# street is off it. identities 6,817 → 6,812, appearances 10,546 → 10,545. The 1844
+# crosswalk is unmoved — none of these twelve entries reaches an 1835 resident, and
+# `could_carry_address` holds at 81.
+
+# THE RESIDUAL, STATED RATHER THAN HIDDEN (n1844_e0807). `Hart, Geo. W. Water street,
+# house Wabash st` reads a forename of "Geo. W" and a trade line beginning "Water
+# street", and the `W.` may belong to either side: George W. Hart, or the West Water
+# street this volume names a dozen times. Both hands print it the same, so no reading
+# settles it. The rule leaves the initial with the man because that is where the walk
+# already had it; what it fixes there is the street inside the name, not the initial.
+
+
+# THE STREET THAT IS THE FIRM'S AND NOT THE MAN'S — REFUSED, WITH THE REASON (T-1113).
+#
+# Five entries print a street after `of <firm>` or `at <employer>'s` and no place
+# abbreviation anywhere. Reading that street into `address` would be the easy repair
+# and a false one: `of B. & Sherman, Dearborn street` is where the PARTNERSHIP stands,
+# not where David Ballentine sleeps, and this project's `address` is a residence —
+# Norris marks one with `h`, `res` or `b` and marks none of these. A business street
+# landed on a resident's card as a home is a provenance defect that no downstream
+# reader could see, so all five stay refused and say why here and on the claim.
+#
+# THE SIXTH OF THEM IS THE PRINTED LINE RUNNING OUT. `Magie, H. H. of H. H. M. & Co.
+# house` ends AT the abbreviation with no street after it. The ticket expected that to
+# need a page-image read; it does not. The second hand typed the same line from a
+# different copy of the printed book and ends at the same word — the comparison scores
+# the pair identical, ratio 1.0 — so the shortfall is the printed page's, not this
+# scan's, and there is no street on the page to go and read.
+ADDRESS_REFUSED = {
+    "n1844_e0062": ("firm_address",
+                    "of B. & Sherman: Dearborn street bet Kinzie and Michigan is the "
+                    "partnership's address, and Norris sets no h/res/b for the man"),
+    "n1844_e0817": ("firm_address",
+                    "of H. & Shur: South Water st is the partnership's address, and "
+                    "Norris sets no h/res/b for the man"),
+    "n1844_e1206": ("printed_line_short",
+                    "the line ends at the abbreviation — 'of H. H. M. & Co. house' "
+                    "with no street after it. The second hand reads it identically "
+                    "off a different copy (ratio 1.0), so the page prints no street"),
+    "n1844_e1470": ("employer_address",
+                    "at B. W. Raymond's: 122 Lake st is the employer's shop, and "
+                    "Norris sets no h/res/b for the man"),
+    "n1844_e1858": ("employer_address",
+                    "clerk at J. B. Busch's: Clark st is the employer's premises, and "
+                    "Norris sets no h/res/b for the man"),
+}
+ADDRESS_REFUSED_NOTE = (
+    "address is a RESIDENCE in this reading, and Norris marks one with h, res or b. "
+    "This entry names a street with no such mark, so the street is not read into "
+    "address. See tools/read_norris_1844.py, ADDRESS_REFUSED.")
+
 # FIRM OR PERSON IS DECIDED ON THE LEADING TOKENS, NOT ON THE FIRST COMMA (T-1013).
 #
 # The first version of this test read `FIRM` against the text before the first
@@ -412,6 +529,10 @@ def split_entry(text: str):
         toks = rest.split()
         for i, tok in enumerate(toks):
             bare = tok.strip(".,'\"").lower()
+            # T-1113. A capitalised token a street designator follows is the street's
+            # name, and the name ended before it.
+            if street_ahead(toks, i):
+                break
             if bare in TITLES or re.fullmatch(r"[A-Z]", tok.strip(".,")) or (
                     tok[:1].isupper() and len(given) < 3 and not PLACE.fullmatch(tok + " ")):
                 # AND THE COMMA THE COMPOSITOR SET WITHOUT A SPACE AFTER IT is the
@@ -1459,8 +1580,15 @@ def build_claims():
             norm["as_printed"] = flat
             after = (leaf, first) >= ADDENDA_FROM
             norm["section"] = "addenda" if after else "directory"
+            cid = "n1844_e%04d" % n
+            # T-1113. The street this entry prints is refused an address, and the claim
+            # carries the reason rather than leaving a reader to guess at a null.
+            if cid in ADDRESS_REFUSED:
+                cls, why = ADDRESS_REFUSED[cid]
+                norm["address_refused"] = {"class": cls, "why": why,
+                                           "rule": ADDRESS_REFUSED_NOTE}
             claims.append({
-                "id": "n1844_e%04d" % n,
+                "id": cid,
                 "kind": "business" if norm["firm"] else "person",
                 "reading": "transcription_mediated",
                 "quote": raw,
@@ -1519,7 +1647,9 @@ def payload(claims):
                         "stands.",
         "counts": {"claims": len(claims), "person": people, "business": len(claims) - people,
                    "given_repairs": sum(1 for c in claims
-                                        if "given_repair" in c["normalized"])},
+                                        if "given_repair" in c["normalized"]),
+                   "address_refusals": sum(1 for c in claims
+                                           if "address_refused" in c["normalized"])},
         "claims": claims,
     }
 
@@ -1796,6 +1926,69 @@ def self_test():
                          "rule changed a reading for some reason other than the "
                          "defect, and that is a trade, not a repair" % (c["id"], was[:32]))
 
+    # T-1113. THE STREET RULE IS PRICED THE SAME WAY — re-read with it off, and every
+    # entry that moves must have had a street inside its forename. The named readings
+    # are asserted too, because a price with nothing behind it only says a number
+    # changed; these say WHICH lines, and what each one now reads.
+    global STREET_RULE
+    STREET_RULE = False
+    try:
+        no_street = {c["id"]: c["normalized"] for c in build_claims()[0]}
+    finally:
+        STREET_RULE = True
+    shape = lambda n: (n.get("given"), n.get("occupation"), n.get("address"))
+    street_moved = [c for c in claims
+                    if shape(c["normalized"]) != shape(no_street.get(c["id"], {}))]
+    if sorted(c["id"] for c in street_moved) != sorted(STREET_IN_FORENAME):
+        fired.append("the street rule moves %s, not the %d entries it is priced at — "
+                     "re-measure it and rewrite STREET_IN_FORENAME rather than editing "
+                     "the table to pass"
+                     % (sorted(c["id"] for c in street_moved), len(STREET_IN_FORENAME)))
+    for c in street_moved:
+        was = no_street.get(c["id"], {}).get("given") or ""
+        tail = was.split()[-1].strip(" .,") if was.split() else ""
+        if not tail or not re.search(r"\b%s\b\.?\s+(?:st|street|streets|sts|av|ave"
+                                    r"|avenue|alley|road|lane|court)\b"
+                                    % re.escape(tail), c["normalized"]["as_printed"],
+                                    re.I):
+            fired.append("%s moves under the street rule and its old forename ended "
+                         "at %r, which the printed line does not follow with a street "
+                         "designator — the rule changed a reading for some reason "
+                         "other than the defect" % (c["id"], was))
+    for cid, (given, occupation, address) in STREET_IN_FORENAME.items():
+        c = by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in STREET_IN_FORENAME and is not in the reading"
+                         % cid)
+            continue
+        got = c["normalized"]
+        if (got.get("given"), got.get("occupation"), got.get("address")) != (
+                given, occupation, address):
+            fired.append("%s reads given=%r trade=%r address=%r, not %r/%r/%r — the "
+                         "street rule moved" % (cid, got.get("given"),
+                                                got.get("occupation"),
+                                                got.get("address"), given,
+                                                occupation, address))
+    # …and the refusals hold. A refusal that quietly starts landing an address is the
+    # provenance defect the band exists to prevent, so it fails the build.
+    STREET_TAIL = re.compile(r"\b(?:st|street|sts|streets|avenue|av)\b\.?", re.I)
+    for cid, (cls, why) in ADDRESS_REFUSED.items():
+        c = by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in ADDRESS_REFUSED and is not in the reading"
+                         % cid)
+            continue
+        got = c["normalized"]
+        if got.get("address") is not None:
+            fired.append("%s is refused an address and now carries %r — %s"
+                         % (cid, got["address"], why))
+        if (got.get("address_refused") or {}).get("class") != cls:
+            fired.append("%s does not carry its refusal on the claim" % cid)
+        if cls != "printed_line_short" and not STREET_TAIL.search(got.get("occupation")
+                                                                 or ""):
+            fired.append("%s is refused because its street belongs to a firm, and its "
+                         "trade line no longer prints a street at all — the refusal is "
+                         "answering a line that moved" % cid)
     if fired:
         for line in fired:
             print("  " + line, file=sys.stderr)
@@ -1819,6 +2012,10 @@ def self_test():
           % (len(SURNAME_IMAGE_REPAIRS),
              sum(1 for r in SURNAME_IMAGE_REPAIRS if r.get("separator")),
              len(SURNAME_UPHELD)))
+    print("norris 1844 --self-test: the street rule re-read against the whole volume — "
+          "%d entries move and every one of them had a street inside its forename; "
+          "%d streets are refused an address and each says why on the claim"
+          % (len(STREET_IN_FORENAME), len(ADDRESS_REFUSED)))
     print("norris 1844 --self-test: %d names read past the end of the name — %d capped "
           "at the prefix, %s, and %d healed at the source"
           % (len(OVERRUN_CLASSES) + len(OVERRUN_HEALED), tally["repaired"],
