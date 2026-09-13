@@ -354,6 +354,49 @@
         "verbatim": "Chicago, July 28, 1834.",
         "iso": "1834-07-28"
       }
+    },
+    {
+      "id": "c008",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "ese and Lund dIgent.\n\"8 purchased and Sold, or by commie-\nBuilding Lots for sale, in the town and\nSchool section.\nopposite Dr. Zemples.\nHousee to Let.\nEnquire at the Office en",
+      "normalized": "[…] [Hou]se and L[a]nd [A]gent. [LOT]S purchased and Sold, or by commi[s]-sion. [12] Building Lots for sale, in the town and School section. […] House[s] to Let. Enquire at the Office [o]n [Lake st.] opposite Dr. [T]emple[']s.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          3262,
+          3268
+        ],
+        "lines_of_claim": [
+          3262,
+          3263,
+          3264,
+          3265,
+          3266,
+          3267,
+          3268
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's",
+          "offset_text": "opposite Dr. Zemples.",
+          "offset_normalized": "[…] opposite Dr. [T]emple[']s.",
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. THE LAST IMPRESSION OF THE RUN the corpus can read: the card is not in the Democrat after this issue. The display line is lost — 3261 closes J. K. Botsford's notice immediately above. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. The street did not survive the margin and the lines are set out of order (the address at 3266 above 'Housee to Let.' at 3267), so the anchor is read and the street left null. AND IT MATTERS TO A REFUSAL THIS CLAIM DOES NOT TOUCH: identity.json's `refused_firm_merges` holds 'W. G. Blanchard' apart from 'G. Blanshard' partly on the reading that the two cards run in succession rather than together — 'a gap between the two runs rather than an overlap'. This issue is 1834-10-01, the same issue in which 'G. BLANSHARD' is set whole in the stray-horse reward notice that refusal cites, and the Blanshard land card first runs a week later on 1834-10-08. That is a fact about the weeks, recorded here where it was found. The refusal is NOT reopened by this claim and nothing here is merged: what the overlap is worth is a question for the file that owns it."
     }
   ]
 }

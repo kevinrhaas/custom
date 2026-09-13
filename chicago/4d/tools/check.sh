@@ -282,6 +282,28 @@ selftest "the QUEUE.md merge driver still does what .gitattributes promises" \
 step "the owner's queue ranking has not gone backwards" \
   node tools/check_queue_order.mjs
 
+# THE CHANGELOG-ENTRY GATE ANSWERS THE RIGHT QUESTION ABOUT THE RIGHT FILES, and
+# until 2026-09-13 nothing tested that it did. `check-changelog-entry.mjs` runs
+# only from the PR workflow (its own header says why: the nightly bake regenerates
+# data/ and a gate inside check.sh would fail every bake), so its behaviour was
+# never exercised anywhere — and it was the commonest cause of a red PR that day.
+# Not for being strict about the town: `tools/dev-smoke-state.json` is T-0216's
+# register of smoke RESULTS and sits under the watched `tools/` prefix, so a run
+# that filed its readings — which AGENTS.md REQUIRES — drew a red gate for obeying
+# the contract. #1264 and #1269 were red with that file as the only watched path
+# they touched, and the same hand-written `Changelog: none` trailer had been added
+# to #1090, #1108, #1126 and #1247 two days earlier. #1255 is NOT that shape and
+# stays red correctly — it changed smoke_renderer.mjs too — which is the case the
+# test's last two assertions pin.
+#
+# The exemption fixes it once; this keeps it fixed, and holds the gate's other
+# answers while it is there — an exemption list is exactly the kind of edit that
+# quietly widens. It asserts the gate STILL BITES on a real change with no entry,
+# that the opt-out still needs a reason, and that a moved BASELINE beside the smoke
+# register is NOT exempt, because a baseline is a claim about the town.
+step "the changelog-entry gate exempts a smoke reading and still bites on a change" \
+  node tools/test_changelog_entry_gate.mjs
+
 selftest "…and its own assertions still fire when broken" \
   node tools/check_queue_order-selftest.mjs
 
@@ -1447,6 +1469,20 @@ selftest "…and its own assertions still fire when broken" \
 # can catch is the detector moving under them, which is what its baseline is for.
 # One asks the plate about the town; the other asks the town about the plate.
 
+# FOUR CROPS, FOUR PANELS OF ONE SHEET. Three of the fort layers' plates reached
+# this repository as owner-supplied crops with a README and were cited by committed
+# path for a month; T-0055 joined the Kinzie one to kurz_allison_1893 by hand and
+# left the rest unconfirmed, and T-1107 measured them. The gate is not there to
+# re-prove the identification — that is settled and written into the source record.
+# It is there because a citation can rot silently: re-crop, re-scan or re-compress
+# either image and four source_ids quietly stop pointing at what they claim, with
+# nothing else in this repository able to notice. Six seconds to hold the join.
+step "the four crops are still the panels their citations name" \
+  python3 tools/measure_plate_join.py --gate --quiet
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_plate_join.py --self-test
+
 # Fort Dearborn's gates are built SHUT on purpose — the archetype's own words: a
 # fort with its gates standing open makes a claim about the hour of the day, and
 # the garrison is attested for the scene date. Both of them stood a quarter open.
@@ -1825,6 +1861,27 @@ step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
 step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" \
   node tools/test_ticket_landed.mjs
 
+# AND THE OTHER HALF OF THE SAME BLIND SPOT (T-0852). `inflight` read branch AGE and
+# nothing else, so a run that claims and then READS sources for four hours dropped out
+# of the hot list at three — into a list headed "finished tickets, or branches older
+# than a run", which is false about it twice over. Cohort 14 (T-0509) was read twice on
+# 2026-09-05 by two runs that could not see each other; the ledgers disagreed on 36 of
+# the 76 people and T-0816 had to adjudicate every one.
+#
+# The reading now takes TWO witnesses, and the second is what keeps the fix honest. The
+# ticket file saying `claimed` is necessary and not sufficient — T-0987 is worked one
+# stretch per run and sits `claimed` on `dev` permanently, so the file alone reported
+# seven of its long-merged branches as in flight. The CLAIM LOCK is the other: it is
+# taken with the claim and released by `done`, so it lives exactly as long as the run.
+# Held is reported as in flight and SAID to be a long read or a dead one, because
+# T-0429's fault runs the opposite way and must stay visible.
+#
+# The gate runs it on a CONSTRUCTED branch list for the reason `landed` does: the right
+# answer against the real remote changes hourly. Both wrong readings are held — age
+# alone fails the fault, the file alone fails T-0987 and T-0429.
+step "a claim that outlived the window is work, and a merged branch is still litter" \
+  node tools/test_ticket_inflight.mjs
+
 # And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
 # every origin ref before it mints, so a duplicate id is not a missing guard but
 # the window between minting and pushing — on 2026-09-10 PRs #1048 and #1049 each
@@ -2128,6 +2185,21 @@ step "the fourth non-overlapping 75-person research cohort is fixed" \
 
 step "the fifth non-overlapping 75-person research cohort is fixed" \
   python3 tools/select_resident_research_pass_5.py --gate
+
+# T-0870. The five gates above used to DIE when a member's `letter_list_only` flag, or
+# the presence value its stratum is named for, moved in the tree — the same event
+# T-0764 had just settled is the research landing rather than staleness, arriving
+# through a different door. The assertions are kept and their direction is scoped the
+# way pass 13 scopes its own (T-0492): minting a cohort still refuses a member the
+# stratum no longer describes, and once frozen the gate counts and names it and stays
+# green. These prove BOTH halves per selector, because a scope nobody tests is a
+# deletion nobody noticed.
+selftest "…and each selector's stratum tests still refuse a mint and report a gate" \
+  sh -c 'python3 tools/select_resident_research_pilot.py --self-test \
+      && python3 tools/select_resident_research_pass_2.py --self-test \
+      && python3 tools/select_resident_research_pass_3.py --self-test \
+      && python3 tools/select_resident_research_pass_4.py --self-test \
+      && python3 tools/select_resident_research_pass_5.py --self-test'
 
 # T-0492 fixes cohorts 13, 14 and 15 in one selector, BEFORE their three tickets run,
 # so T-0508, T-0509 and T-0510 do not edit this file and the same population frame at
