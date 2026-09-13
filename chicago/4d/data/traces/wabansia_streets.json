@@ -11,6 +11,7 @@
   },
   "registration": {
     "gcp_file": "data/traces/gcp/wright_1834_nara_hup_gcps.json",
+    "fit": "retained_fit \u2014 re-seated onto the fit in force by T-1092",
     "rms_m": 16.19
   },
   "method": {

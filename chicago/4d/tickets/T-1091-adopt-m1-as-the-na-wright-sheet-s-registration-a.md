@@ -1,7 +1,7 @@
 ---
 id: T-1091
 title: Adopt M1 as the NA Wright sheet's registration and regenerate the five pure readings keyed to it — the block numerals, the Kinzie block name and Wabansia's water lots — nothing seated, nothing baked
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1090
 opened: 2026-09-12
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1220
+claimed_by: run 9/12/2026, 6:57:25 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-13T01:05:10.667Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34726540431
 ---
 
 Adopt M1 as the NA Wright sheet's registration and regenerate the five pure readings keyed to it — the block numerals, the Kinzie block name and Wabansia's water lots — nothing seated, nothing baked.

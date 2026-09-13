@@ -14,7 +14,7 @@
   "matched_one_1844_entry": 100,
   "matched_more_than_one_ambiguous": 14,
   "one_1844_entry_contested_by_two_residents": 10,
-  "surname_present_initial_absent_refused": 316,
+  "surname_present_initial_absent_refused": 317,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 13,
@@ -4080,7 +4080,7 @@
    "resident": "Ben Butterfield",
    "person_id": "butterfield_ben",
    "surname_in_1844": "Butterfield",
-   "candidates": 1,
+   "candidates": 2,
    "rule": "The surname 'Butterfield' is in Norris 1844 and no entry under it carries the initial 'B' of 'Ben Butterfield'. A surname-only agreement is a refusal."
   },
   {
@@ -4276,7 +4276,7 @@
    "resident": "D H Butterfield",
    "person_id": "butterfield_d_h",
    "surname_in_1844": "Butterfield",
-   "candidates": 1,
+   "candidates": 2,
    "rule": "The surname 'Butterfield' is in Norris 1844 and no entry under it carries the initial 'D' of 'D H Butterfield'. A surname-only agreement is a refusal."
   },
   {
@@ -4395,7 +4395,7 @@
    "resident": "Eben Griswold",
    "person_id": "griswold_eben",
    "surname_in_1844": "Griswold",
-   "candidates": 3,
+   "candidates": 4,
    "rule": "The surname 'Griswold' is in Norris 1844 and no entry under it carries the initial 'E' of 'Eben Griswold'. A surname-only agreement is a refusal."
   },
   {
@@ -4773,7 +4773,7 @@
    "resident": "Harriet Ellen Bates",
    "person_id": "bates_harriet_ellen",
    "surname_in_1844": "Bates",
-   "candidates": 3,
+   "candidates": 4,
    "rule": "The surname 'Bates' is in Norris 1844 and no entry under it carries the initial 'H' of 'Harriet Ellen Bates'. A surname-only agreement is a refusal."
   },
   {
@@ -4850,7 +4850,7 @@
    "resident": "Hiram Holmes",
    "person_id": "holmes_hiram",
    "surname_in_1844": "Holmes",
-   "candidates": 3,
+   "candidates": 4,
    "rule": "The surname 'Holmes' is in Norris 1844 and no entry under it carries the initial 'H' of 'Hiram Holmes'. A surname-only agreement is a refusal."
   },
   {
@@ -5316,6 +5316,13 @@
    "rule": "The surname 'Ayres' is in Norris 1844 and no entry under it carries the initial 'L' of 'Levi Ayres'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Levi Cady",
+   "person_id": "cady_levi",
+   "surname_in_1844": "Cady",
+   "candidates": 1,
+   "rule": "The surname 'Cady' is in Norris 1844 and no entry under it carries the initial 'L' of 'Levi Cady'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Levi F. Arnold",
    "person_id": "arnold_levi_f",
    "surname_in_1844": "Arnold",
@@ -5375,7 +5382,7 @@
    "resident": "M Jones",
    "person_id": "jones_m",
    "surname_in_1844": "Jones",
-   "candidates": 10,
+   "candidates": 11,
    "rule": "The surname 'Jones' is in Norris 1844 and no entry under it carries the initial 'M' of 'M Jones'. A surname-only agreement is a refusal."
   },
   {
@@ -5893,7 +5900,7 @@
    "resident": "Thomas Ryan",
    "person_id": "ryan_thomas",
    "surname_in_1844": "Ryan",
-   "candidates": 1,
+   "candidates": 2,
    "rule": "The surname 'Ryan' is in Norris 1844 and no entry under it carries the initial 'T' of 'Thomas Ryan'. A surname-only agreement is a refusal."
   },
   {

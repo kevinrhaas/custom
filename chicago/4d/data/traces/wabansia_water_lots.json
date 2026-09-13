@@ -11,7 +11,7 @@
   },
   "registration": {
     "gcp_file": "data/traces/gcp/wright_1834_nara_hup_gcps.json",
-    "rms_m": 16.19
+    "rms_m": 16.02
   },
   "method": {
     "shear": 0.45,
@@ -87,9 +87,9 @@
       "length_px": 524.0,
       "cells": 13,
       "depth_px_at_mid": 83.7,
-      "depth_m_at_mid": 58.46,
-      "depth_ft_raw": 191.8,
-      "depth_ft_controlled": 183.6
+      "depth_m_at_mid": 59.08,
+      "depth_ft_raw": 193.8,
+      "depth_ft_controlled": 185.5
     },
     {
       "id": "second",
@@ -100,9 +100,9 @@
       "length_px": 398.3,
       "cells": 9,
       "depth_px_at_mid": 54.8,
-      "depth_m_at_mid": 38.25,
-      "depth_ft_raw": 125.5,
-      "depth_ft_controlled": 120.1
+      "depth_m_at_mid": 38.65,
+      "depth_ft_raw": 126.8,
+      "depth_ft_controlled": 121.3
     },
     {
       "id": "third",
@@ -113,9 +113,9 @@
       "length_px": 299.1,
       "cells": 8,
       "depth_px_at_mid": 90.0,
-      "depth_m_at_mid": 62.84,
-      "depth_ft_raw": 206.2,
-      "depth_ft_controlled": 197.3
+      "depth_m_at_mid": 63.5,
+      "depth_ft_raw": 208.3,
+      "depth_ft_controlled": 199.4
     },
     {
       "id": "corner",
@@ -126,9 +126,9 @@
       "length_px": 120.4,
       "cells": 3,
       "depth_px_at_mid": 28.9,
-      "depth_m_at_mid": 20.19,
-      "depth_ft_raw": 66.2,
-      "depth_ft_controlled": 63.4
+      "depth_m_at_mid": 20.4,
+      "depth_ft_raw": 66.9,
+      "depth_ft_controlled": 64.0
     }
   ],
   "lots": [
@@ -690,23 +690,23 @@
     {
       "rank": "river_front",
       "adjacent_pairs": 10,
-      "pitch_m": 31.02,
-      "pitch_ft_raw": 101.8,
-      "pitch_ft_controlled": 97.4
+      "pitch_m": 30.66,
+      "pitch_ft_raw": 100.6,
+      "pitch_ft_controlled": 96.2
     },
     {
       "rank": "second",
       "adjacent_pairs": 6,
-      "pitch_m": 29.33,
-      "pitch_ft_raw": 96.2,
-      "pitch_ft_controlled": 92.1
+      "pitch_m": 28.89,
+      "pitch_ft_raw": 94.8,
+      "pitch_ft_controlled": 90.7
     },
     {
       "rank": "third",
       "adjacent_pairs": 2,
-      "pitch_m": 28.6,
-      "pitch_ft_raw": 93.8,
-      "pitch_ft_controlled": 89.8
+      "pitch_m": 28.28,
+      "pitch_ft_raw": 92.8,
+      "pitch_ft_controlled": 88.8
     }
   ],
   "corridors": [
@@ -727,7 +727,7 @@
             1740.0
           ],
           "width_px": 34.0,
-          "width_m": 26.9,
+          "width_m": 26.51,
           "rank_bounds_sheared_x": [
             1192.1,
             1286.0
@@ -744,7 +744,7 @@
             1768.0
           ],
           "width_px": 23.0,
-          "width_m": 18.2,
+          "width_m": 17.93,
           "rank_bounds_sheared_x": [
             1143.2,
             1195.5
@@ -773,7 +773,7 @@
             1918.0
           ],
           "width_px": 46.0,
-          "width_m": 36.4,
+          "width_m": 35.87,
           "rank_bounds_sheared_x": [
             1209.3,
             1288.0
@@ -790,7 +790,7 @@
             1948.0
           ],
           "width_px": 33.0,
-          "width_m": 26.11,
+          "width_m": 25.73,
           "rank_bounds_sheared_x": [
             1156.9,
             1213.0
@@ -807,7 +807,7 @@
             1985.0
           ],
           "width_px": 37.0,
-          "width_m": 29.28,
+          "width_m": 28.85,
           "rank_bounds_sheared_x": [
             1068.3,
             1159.6

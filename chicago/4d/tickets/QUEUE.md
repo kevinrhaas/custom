@@ -155,7 +155,6 @@ T-1080 — The Michigan St tract's name and the curved road north through it: wh
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-1098 — The West Division past Clinton read by the block-cut method - 8-13, 22-27, 46-51
 T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
-T-1091 — Adopt M1 as the NA Wright sheet's registration and regenerate the five pure readings keyed to it — the block numerals, the Kinzie block name and Wabansia's water lots — nothing seated, nothing baked
 T-1092 — Re-seat the four grids the NA sheet places — the School Section, Kinzie's Addition, the Michigan St tract and Wabansia's streets — on the adopted registration, and re-bake what stands on the ground that moves
 T-1097 — The nine survey tracts as polygons: the two ambiguous swatches resolved by position, the land sales sorted onto the tracts, and a generator reading the layer
 T-1082 — The coloured wash between Wright's bank shading and his inked bank line: 51 east-bank rows short by more than 10 m and 34 west-bank rows standing outside the ink, all of them behind a colour the tract layer has not identified
@@ -327,3 +326,4 @@ T-1081 — The smoke's walking-speed assertion still expects a bare '3.2 mph' an
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1093 — The Settings speed readout now reads 'walk · 3.2 mph' and the mobile part-7 assertion wants '3.2 mph', so dev is red on a prefix nobody meant to assert against
+

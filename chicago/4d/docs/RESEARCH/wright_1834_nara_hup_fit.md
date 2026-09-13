@@ -1,8 +1,15 @@
 # The registration of the National Archives Wright sheet, adjudicated
 
-**Ticket:** T-0878. **Answer file:** `data/traces/gcp/wright_1834_nara_hup_fit_adjudication.json`,
+**Ticket:** T-0878, adopted by T-1091 on 2026-09-12. **Answer file:** `data/traces/gcp/wright_1834_nara_hup_fit_adjudication.json`,
 recomputed from committed data by `tools/adjudicate_wright_na_fit.py --check` on every commit.
 **New control:** `data/traces/gcp/wright_1834_nara_hup_section_corners.json`.
+
+> **M1 IS THE FIT IN FORCE** since T-1091. `fit` in the registration carries its eleven-point
+> coefficients; the eight-point affine T-0787 published is kept beside it as `retained_fit`,
+> because the four SEATED traces are still carried through it and the section's corner pixels
+> were recovered by inverting it. T-1092 owes the re-seating and the re-bake. Everything below
+> is the argument that got here, kept in the tense it was written in where it is about the
+> decision, and updated where it is about the state of the files.
 
 ## The question
 
@@ -65,13 +72,16 @@ bought by adding parameters.
 
 | model | RMS/8 | RMS/3 corners | RMS/11 | worst | **leave-one-out** | mile N–S |
 |---|---|---|---|---|---|---|
-| **M0** committed affine, 8 pt | 16.19 | 42.71 | 26.23 | 59.12 | 23.29 | +3.06 % |
+| **M0** the 8-pt affine, now `retained_fit` | 16.19 | 42.71 | 26.23 | 59.12 | 23.29 | +3.06 % |
 | **M1** affine, 11 pt, foot control | 18.39 | 6.22 | 16.02 | 37.00 | **20.17** | +1.03 % |
 | **M2** M0, y rescaled ×0.970273 | 27.89 | 16.88 | 25.36 | 41.11 | n/a | 0.00 % |
 | **M3** second-order poly, 11 pt | 16.33 | 0.74 | 13.94 | 27.80 | **51.28** | +0.23 % |
 
-The tool reproduces M0's committed 16.19 m from the control alone, which is what licenses the
-rest of the table.
+The tool reproduces M0's published 16.19 m from the control alone, which is what licenses the
+rest of the table. The model keys in the answer file are `M0_retained_affine_8pt`,
+`M1_affine_11pt_foot_control`, `M2_retained_affine_y_rescaled` and `M3_poly2_11pt`, and the
+displacement table is measured **from the fit in force** — so each row answers what would move
+if that model were adopted today.
 
 **M2, the y-scale correction, is rejected.** It buys the mile exactly and pays 11.7 m of RMS on
 the control the project already had; G2, G6 and G7 each move 29–35 m. It does not remove the
@@ -81,7 +91,7 @@ error, it moves it onto the only part of the sheet that was measured properly.
 of anything here and worst out of sample by a factor of two. It also throws readings as far as
 120.5 m. The leave-one-out is the measurement that says so — not a prior about polynomials.
 
-**M1, control at the sheet's foot, is adopted.** Same functional form, refitted on the eight
+**M1, control at the sheet's foot, is adopted** — and in force since T-1091. Same functional form, refitted on the eight
 plus the section's other three corners. It is the only candidate that improves the honest
 out-of-sample number, 23.29 → 20.17 m; RMS at the section's corners falls 42.71 → 6.22 m, the
 worst point 59.12 → 37.00 m, and it costs 2.2 m on the original eight.
@@ -101,14 +111,15 @@ M1's residual mile error — +1.03 % north-south, +0.66 % east-west — straddle
 model has reproduced its control, and what is left is the control's error. Driving the mile to
 zero is precisely what M2 does and precisely why M2 is rejected.
 
-## What adoption costs, and why this ticket did not do it
+## What adoption cost
 
-The ticket's own acceptance said to measure the change on the committed traces *before*
-adopting. Measured, under M1:
+T-0878's acceptance said to measure the change on the committed traces *before* adopting, and
+T-1091 adopted on that measurement. The table is the distance each trace's readings moved when
+the fit changed — which is also, read the other way, the cost of going back:
 
 | trace | readings | median move | max |
 |---|---|---|---|
-| School Section block numbering | 143 | 27.11 m | 84.37 m |
+| School Section block numbering | 143 | 27.65 m | 84.37 m |
 | Wabansia block numbering | 28 | 25.22 m | 34.81 m |
 | Wabansia streets | 12 | 22.80 m | 32.63 m |
 | Kinzie block name | 4 | 21.29 m | 21.29 m |
@@ -120,11 +131,24 @@ adopting. Measured, under M1:
 
 Twenty-seven metres of median movement in the School Section's numbering is more than a block.
 So adoption is a regeneration of nine committed traces, a re-seating of four grids, and a
-re-bake of every structure standing on ground that moves — more than one run, and a different
-unit of work from the adjudication. It is filed as **T-1091** (adopt the fit, regenerate the
-five pure readings) and **T-1092** (re-seat the four grids, re-bake). Nothing about the
-committed fit changed in T-0878's commit; the `fit` block now carries the finding and says it
-is still the fit in force.
+re-bake of every structure standing on ground that moves — more than one run, which is why it
+was split into **T-1091** (adopt the fit, regenerate the five pure readings) and **T-1092**
+(re-seat the four grids, re-bake).
+
+**T-1091 did the first half.** `fit` is M1; `retained_fit` is the eight-point affine, kept whole
+with its own per-point residuals in `gcps[].residual_m_in_retained_8pt_fit`; the three foot
+corners carry a `residual_m` each; and the five pure readings were regenerated by their own
+generators. Two of the five came back byte-identical — the Kinzie block name and Kinzie's
+Addition's block numbering are seated on the committed grid rather than carried through the
+sheet's own fit, so a change of registration does not reach them, and their regeneration is the
+check that says so.
+
+**T-1092 owes the other half.** Until it lands, the four seated traces are read through
+`retained_fit`, and the seven tools that build or measure them say so at the line where they
+load it — `read_kinzie_addition_streets`, `read_michigan_st_tract`, `read_wabansia_streets`,
+`seat_wabansia_streets`, `carry_kinzie_west`, `generate_school_section_grid` and
+`measure_school_section_tier_skew`. Reading `fit` in any of them would move the ground without
+moving the meshes standing on it, and `validate.py --stale` would be the thing that told you.
 
 ## The datum is not at risk
 
@@ -133,8 +157,22 @@ never reads this sheet. Adopting M1 moves readings taken off the NA scan; it doe
 scene origin or anything keyed to the BPL registration. That was the one thing the ticket
 feared, and it is not there.
 
-## The practical rule, until T-1091 lands
+## The practical rule now
 
-A reading taken south of Madison Street off the NA sheet carries about three per cent of y
-error. T-0797's pattern is the safe one and is the reason its grid is not wrong: **anchor on a
-length that is known on the ground, not on the paper.**
+A reading taken south of Madison Street off the NA sheet used to carry about three per cent of y
+error; through M1 it carries about one, and that one is the control's rather than the paper's.
+The rule underneath has not changed and is why T-0797's grid was never wrong: **anchor on a
+length that is known on the ground, not on the paper.** M1 is still one affine over a sheet
+whose paper is not uniform — 37.00 m at its worst control point — and a reading that needs
+better than that needs its own local control, not a better global fit.
+
+## What holds this
+
+`tools/check_wright_nara_registration.py --check-properties` scores the fit against **all
+eleven** of its control points, holds `rms_m_on_the_eight` and `rms_m_on_the_three_corners`
+apart so the 2.20 m the adoption cost the original eight stays visible, and re-derives the
+retained fit's own arithmetic beside it. Its `--self-test` breaks eighteen things and watches
+each one fire, five of them T-1091's. `tools/adjudicate_wright_na_fit.py --check` re-runs this
+whole page's measurement on every commit, and since T-1091 also refits the eleven points and
+compares the result with the coefficient block actually committed — so a hand edit to those six
+numbers is caught rather than silently redefining the baseline of the displacement table.
