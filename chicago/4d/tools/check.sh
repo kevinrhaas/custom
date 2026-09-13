@@ -1816,6 +1816,27 @@ step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
 step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" \
   node tools/test_ticket_landed.mjs
 
+# AND THE OTHER HALF OF THE SAME BLIND SPOT (T-0852). `inflight` read branch AGE and
+# nothing else, so a run that claims and then READS sources for four hours dropped out
+# of the hot list at three — into a list headed "finished tickets, or branches older
+# than a run", which is false about it twice over. Cohort 14 (T-0509) was read twice on
+# 2026-09-05 by two runs that could not see each other; the ledgers disagreed on 36 of
+# the 76 people and T-0816 had to adjudicate every one.
+#
+# The reading now takes TWO witnesses, and the second is what keeps the fix honest. The
+# ticket file saying `claimed` is necessary and not sufficient — T-0987 is worked one
+# stretch per run and sits `claimed` on `dev` permanently, so the file alone reported
+# seven of its long-merged branches as in flight. The CLAIM LOCK is the other: it is
+# taken with the claim and released by `done`, so it lives exactly as long as the run.
+# Held is reported as in flight and SAID to be a long read or a dead one, because
+# T-0429's fault runs the opposite way and must stay visible.
+#
+# The gate runs it on a CONSTRUCTED branch list for the reason `landed` does: the right
+# answer against the real remote changes hourly. Both wrong readings are held — age
+# alone fails the fault, the file alone fails T-0987 and T-0429.
+step "a claim that outlived the window is work, and a merged branch is still litter" \
+  node tools/test_ticket_inflight.mjs
+
 # And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
 # every origin ref before it mints, so a duplicate id is not a missing guard but
 # the window between minting and pushing — on 2026-09-10 PRs #1048 and #1049 each

@@ -238,7 +238,12 @@ is the contract. The short form:
   as silence rather than as proof.
 - **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
   inflight` shows what other branches are already carrying a ticket number, which is the
-  only live view of work the merged files cannot show yet. On the runner, `claim` also
+  only live view of work the merged files cannot show yet. It reads each branch as
+  **live**, **held** or **cold**, and `held` is the one to read carefully: the branch is
+  older than a run but the ticket's claim lock still stands, so it is either a run reading
+  sources for hours or a run that died after its merge. Check its PR before you take it —
+  age alone used to file that branch under "finished or litter", and two runs read cohort
+  14 in parallel for it (T-0852). On the runner, `claim` also
   records WHICH Actions run holds the ticket (`claimed_run`) and `done` records the
   INSTANT it finished (`closed_at`), so BOARD.md can show what is being worked now and
   what finished in the order it finished. Neither is ever hand-written.
