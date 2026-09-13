@@ -177,6 +177,7 @@ T-0055 — Hold the Kinzie-view plate as a source record
 # --- is that promotion, so these fourteen are workable in rank order like any other band.
 # --- One ticket per epoch, in his own order: the shared south terrain first, then 1812, then
 # --- the 1880s. Nothing here touches the 1835 town; it stands below every band that does.
+T-1107 — The two fort crops in the 2026-08-11 set are almost certainly Kurz & Allison panels 1 and 5: measure the join and fill fort_dearborn_apron's empty sources
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
@@ -310,4 +311,3 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-
