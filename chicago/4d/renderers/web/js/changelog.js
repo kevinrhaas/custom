@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The Evidence cards stay readable on a phone, whatever lands in them', kind: 'fix', ts: '', date: '',
+  { v: 830, title: 'The Evidence cards stay readable on a phone, whatever lands in them', kind: 'fix', ts: '2026-09-13T11:47:57.416Z', date: 'Sep 13, 2026, 6:47 AM CT',
     items: [
       'Everything this reconstruction admits about itself is on seven cards \u2014 the liberties it takes, the ground\u2019s own claims, the animals, the plants, the buildings it leaves out, the questions still open, and the households. On a phone each of those sits in a column about 362 pixels wide, and a card holding one long unbroken run of characters \u2014 a record id, a file path, a word nobody can hyphenate \u2014 did not wrap it. It made the card wider than the column instead, and the panel then cut every line of reasoning off at its right edge rather than scrolling.',
       'That is the worst kind of layout fault, because nothing ever reports it. The page itself does not overflow, so every check ever written here said the panel was fine while the text inside it was being clipped. It was found and half-fixed three weeks ago on the plants card, which had grown a row of thirty words; the same fault was left standing under the other six, invisible only because their longest line happened to fit.',
