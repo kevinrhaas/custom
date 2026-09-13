@@ -843,6 +843,49 @@
         }
       },
       "notes": "THE PAPER'S OWN OFFICE, AND IT IS A CORNER: the Chicago Democrat was printed in the building at the corner of South Water and Clark streets. That is a documented storefront on the plat's busiest frontage and the corpus has been quoting the paper for a year without recording where it stood. The colophon is set in the same column as an attachment notice and the segmenter alternates them, which is why the reading reorders the village and the building; every line quoted is the colophon's. The publisher's name is from the paper's own masthead line, page 1 column 1 line 14, 'BY J. CALHOI[UN]'. Two other issues carry the same colophon — 1834-09-03 page 4 column 6 lines 4749-4756 and 1834-09-24 page 4 column 6 lines 4522-4526 — and the 09-03 reading says 'every Tuesday', which is wrong for a Wednesday paper and is why this witness is the one quoted."
+    },
+    {
+      "id": "c011",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: BLALYCHARD,]\nnd Land igent.\nased and Sold, or by commie-\nLots for sale, in the town and\nir. Temple's.\nLet\nEnquire at the Ofice on",
+      "normalized": "[uncertain: BLALYCHARD,] [House a]nd Land [A]gent. [LOTS purch]ased and Sold, or by commi[s]-[sion. 12 Building] Lots for sale, in the town and [School section. … Houses to] Let. Enquire at the Ofice on [Lake st. opposite D]r. Temple's.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 6,
+        "lines": [
+          3292,
+          3298
+        ],
+        "lines_of_claim": [
+          3292,
+          3293,
+          3294,
+          3295,
+          3296,
+          3297,
+          3298
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's",
+          "offset_text": "ir. Temple's.",
+          "offset_normalized": "[… opposite D]r. Temple's.",
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. THIS IS THE SECOND OF THE TWO IMPRESSIONS WHOSE COLUMN IS NOT A TESSERACT FALLBACK and the other half of T-0408's repair of the surname: line 3292 sets '[uncertain: BLALYCHARD,]', with the transcription's own uncertainty mark, and it is quoted with the mark and not cleaned. No forename stands in it at all. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. THE COLUMN IS CUT DOWN ITS LEFT MARGIN — every line loses its opening words — and the lines are set out of order, the address (3296) standing above 'Let' (3297) and 'Enquire at the Ofice on' (3298). The street is therefore NOT set here: 'ir. Temple's.' carries the anchor and the margin took 'Lake st. opposite' with it, so the street is left null."
     }
   ]
 }
