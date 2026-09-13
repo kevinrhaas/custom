@@ -150,7 +150,7 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- then the bank and plat corrections, then the measurements that decide the lot-grid fork.
 
 
-T-1088 — Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
+T-1098 — Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
 T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-1095 — The West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: still no committed street line reaches them
