@@ -275,13 +275,13 @@
    "household_id": "hh_cook_john",
    "person_id": "cook_john",
    "person": "John Cook",
-   "address_as_printed": "res Jefferson st. b Randolph and \\Vashington sts",
+   "address_as_printed": "res Jefferson, bet W. Randolph and Washington",
    "address_read_as_the_home": null,
    "kind": "resides",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": null,
    "trade_not_required": true,
@@ -297,13 +297,13 @@
    "household_id": "hh_cook_josiah_p",
    "person_id": "cook_josiah_p",
    "person": "Josiah P Cook",
-   "address_as_printed": "res Michigan avenue",
+   "address_as_printed": "res Michigan ave",
    "address_read_as_the_home": null,
    "kind": "resides",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": null,
    "trade_not_required": true,
