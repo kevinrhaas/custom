@@ -978,6 +978,21 @@ step "north-bank frontages still stand on the rule the north bank is placed by" 
 selftest "…and that assertion fires when a roof leaves the frontage line" \
   python3 tools/measure_north_bank_frontage.py --self-test
 
+# T-0421. Canal is the one street whose control does not agree with itself — three points
+# spreading 2.33 m, so `disagree`, so its corridor stays on the drawn line. That figure was
+# read for a year as an open question about where Canal ran. It is not: two of the five
+# OpenStreetMap nodes averaged into `kinzie_canal` are the Kinzie Street Bikeway, and on the
+# three road nodes the same three control points spread 0.09 m. The road-only reading is now
+# committed data (`control.kinzie_canal.road_only_reading`) rather than three paragraphs of
+# prose, and this re-derives BOTH spreads, the per-point offsets, and the 2.93 m variance the
+# North Branch bridge declares against that same field. Nothing moves on either reading — the
+# gate exists to keep that true, not to argue for the correction.
+step "canal's corridor still reads the same on both readings of Kinzie x Canal" \
+  python3 tools/measure_canal_control_spread.py --check
+
+selftest "…and its assertions fire when either reading, the line or the bridge drifts" \
+  python3 tools/measure_canal_control_spread.py --self-test
+
 # Two generators build party-line rows onto the committed block faces and each asserts
 # that ITS OWN run stands on one line; neither could see the other. The Lake face of
 # blk_lake_clark is built by both and carried two lines 0.70 m apart, ten metres apart
@@ -3059,6 +3074,21 @@ step "the lighthouse still stands on the glyph Wright drew for it" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/measure_wright_lighthouse.py --self-test
+
+# T-0334. The 5 August 1835 hay-stacking ordinance walks a six-vertex boundary round the
+# built town, and it is the only DOCUMENTED statement this project holds about where the
+# built-up town ended in the scene year — every other judgement about density here comes
+# from the plat, the land deal and measured frontage. The limit is DERIVED from committed
+# street centrelines, the committed reservation ring and the traced 1834 shore, the way
+# the datum is derived, so it is gated in both directions: the committed file must
+# re-derive exactly, and a hand edit to it is refused. That matters more here than usual
+# because the card now shows a visitor which side of the line a building stood on, and a
+# hand-nudged ring would move that verdict for 383 buildings with nothing to catch it.
+step "the 1835 hay-stacking limit still re-derives from committed street lines" \
+  python3 tools/derive_hay_limits.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/derive_hay_limits.py --self-test
 
 check_summary
 exit $CHECK_FAILED

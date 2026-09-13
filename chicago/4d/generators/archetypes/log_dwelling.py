@@ -249,6 +249,38 @@ def _ridge_along_x(x0, y0, x1, y1) -> bool:
     return (x1 - x0) >= (y1 - y0)
 
 
+#: THE FACADE'S OWN NUMBERS, hoisted out of `_core_openings` (T-0435). A second stack
+#: that lands on a gable-fronted core's FACADE has to be placed in the band that facade
+#: leaves clear, and a second copy of these figures would be a silent way for the stack
+#: and the door to drift back into each other. Half-widths in metres; `_WIN_AT` is the
+#: flanking windows' offset as a fraction of the wall's full span.
+_DOOR_HALF = 0.52
+_WIN_HALF = 0.31
+_WIN_AT = 0.28
+#: Half the stack shaft, and the air left between it and any opening it stands beside.
+_STACK_HALF = 0.48
+_STACK_CLEAR = 0.04
+
+
+def _gable_axis(p: LogDwellingParams, x0, y0, x1, y1) -> str:
+    """Which axis the log core's two GABLE faces sit on: 'x' or 'y' (T-0435).
+
+    The gables are the ends the ridge runs to, so this is the ridge's own axis. A
+    gable roof runs it along the longer plan axis (`_ridge_along_x`). A SHED roof has
+    no gable at all in the strict sense, but `_shed_roof` always falls from the -y
+    wall to the facade whatever the plan proportions are, so its high edge — the line
+    everything here measures a stack against — always runs along x, and its sloping
+    ends are always the +/-x faces. Hence the shed case is 'x' unconditionally, and is
+    NOT `_ridge_along_x`: reading a shed roof off the plan would move a deep shed
+    cabin's stack off the end it correctly stands on. No record in the 1835 scene asks
+    for a shed-roofed log dwelling today — all 49 are gable — so this branch is a rule
+    stated before it is needed, not a reading of anything committed.
+    """
+    if p.roof_type == "shed":
+        return "x"
+    return "x" if _ridge_along_x(x0, y0, x1, y1) else "y"
+
+
 # ------------------------------------------------------------------ primitives
 
 def _panel(b: MeshBuilder, axis: str, plane: float, u0: float, u1: float,
@@ -360,9 +392,10 @@ def _loft_opening(b: MeshBuilder, p: LogDwellingParams, x0, y0, x1, y1,
     make the loft more visible would be adding evidence rather than reading it.
 
     One gable, not both, and specifically the gable the chimney is NOT on. The stack
-    stands against the -x end and is wider than this opening, so an opening at both
-    ends buries one of them inside masonry — invisible in the render and still costing
-    its triangles.
+    stands against the LOW end of the ridge's own axis (`_chimneys`, `_gable_axis`) and
+    is wider than this opening, so an opening at both ends buries one of them inside
+    masonry — invisible in the render and still costing its triangles. The vent below
+    takes the +x or +y end to match, which is why both read the same `_ridge_along_x`.
     """
     if p.roof_type != "gable":
         return
@@ -392,21 +425,34 @@ def _core_openings(b: MeshBuilder, p: LogDwellingParams, x0, y0, x1, y1,
     front_taken = p.frame_addition and p.frame_addition_side == "front"
     story_h = wall_z / max(p.stories, 1)
     xm = (x0 + x1) / 2.0
+    ym = (y0 + y1) / 2.0
     span = x1 - x0
+    gable_front = _gable_axis(p, x0, y0, x1, y1) == "y"
 
     if not front_taken:
-        _opening(b, "y", y1, xm - 0.52, xm + 0.52, 0.02, 1.95, 1, conf)
+        _opening(b, "y", y1, xm - _DOOR_HALF, xm + _DOOR_HALF, 0.02, 1.95, 1, conf)
 
     for story in range(p.stories):
         z0 = story * story_h + story_h * 0.34
-        for u in (xm - span * 0.28, xm + span * 0.28):
-            _opening(b, "y", y1, u - 0.31, u + 0.31, z0, z0 + 0.72, 1, conf)
+        for u in (xm - span * _WIN_AT, xm + span * _WIN_AT):
+            _opening(b, "y", y1, u - _WIN_HALF, u + _WIN_HALF, z0, z0 + 0.72, 1, conf)
         if front_taken and story == 0:
-            _opening(b, "y", y1, xm - 0.31, xm + 0.31, z0, z0 + 0.72, 1, conf)
-        # One window on the south elevation, none on the gable ends: the gables carry
-        # the chimney at one end and the notching at both, and a log gable was rarely
-        # pierced.
-        _opening(b, "y", y0, xm - 0.31, xm + 0.31, z0, z0 + 0.72, -1, conf)
+            _opening(b, "y", y1, xm - _WIN_HALF, xm + _WIN_HALF, z0, z0 + 0.72, 1, conf)
+        # ONE WINDOW BEHIND, AND NEVER IN A GABLE. The rule this line has always stated
+        # is "none on the gable ends: the gables carry the chimney at one end and the
+        # notching at both, and a log gable was rarely pierced" — but it was written
+        # when the back wall was assumed to be an eave, which it is only on a cabin at
+        # least as wide as it is deep. On a GABLE-FRONTED cabin (T-0435) -y is a gable
+        # and now carries the stack, so the window goes to the -x eave instead, which
+        # is the same rule applied to the roof the building actually has. The facade
+        # itself is the one gable that is pierced when it is a gable, and it is pierced
+        # because a cabin has to have a door.
+        if gable_front:
+            _opening(b, "x", x0, ym - _WIN_HALF, ym + _WIN_HALF, z0, z0 + 0.72,
+                     -1, conf)
+        else:
+            _opening(b, "y", y0, xm - _WIN_HALF, xm + _WIN_HALF, z0, z0 + 0.72,
+                     -1, conf)
 
 
 # ------------------------------------------------------------- frame addition
@@ -487,15 +533,23 @@ def _chimneys(b: MeshBuilder, p: LogDwellingParams, cx0, cy0, cx1, cy1,
     the arrangement needs an argument rather than a preference, and the argument is
     the one the records themselves give:
 
-    - The first stack stands against the log core's -x gable. That is the frontier
-      pattern and it is what this archetype has always built.
+    - The first stack stands against a GABLE end of the log core — the end the ridge
+      runs to, not a fixed compass face. That is the frontier pattern and it is what
+      this archetype's prose has always described; until T-0435 the code built it at
+      the -x face unconditionally, so a cabin deeper than it is wide (`_roof` runs the
+      ridge along the longer plan axis) put its stack against an EAVE instead, and 30
+      of the town's 49 log stacks stood in a disposition the archetype argues against.
+      Of the two gable ends the stack takes the one AWAY FROM THE STREET: on a
+      gable-fronted cabin the facade is a gable, and a chimney is not what that
+      elevation carries.
     - The second stands on the FRAME ADDITION when there is one. Miller's record
       counts two because "a two-part building of this size — a former tavern with a
       log cabin behind — would normally carry a stack in each element", and putting
       both on the log core would build a number the record gives while contradicting
       the reasoning it gives for the number. It goes against the addition's outer
-      gable, mirroring the core's.
-    - With no addition, a second stack goes against the core's +x gable, which is
+      gable, mirroring the core's. The addition's roof is always built ridge-along-x
+      (`_frame_addition`), so its gable ends are always its +/-x faces.
+    - With no addition, a second stack goes against the core's other gable, which is
       the other end of the one element there is. No record in the dataset asks for
       this case yet.
 
@@ -503,44 +557,90 @@ def _chimneys(b: MeshBuilder, p: LogDwellingParams, cx0, cy0, cx1, cy1,
     """
     if p.chimneys <= 0:
         return
-    _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, mat, at_min_x=True)
+    axis = _gable_axis(p, cx0, cy0, cx1, cy1)
+    _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, mat, at_min=True, gable_axis=axis)
     if p.chimneys < 2:
         return
     if p.frame_addition and add_ridge_z is not None:
         ax0, ay0, ax1, ay1 = _addition_extent(p)
-        _stack(b, ax0, ay0, ax1, ay1, add_ridge_z, conf, mat, at_min_x=False)
+        _stack(b, ax0, ay0, ax1, ay1, add_ridge_z, conf, mat, at_min=False,
+               gable_axis="x")
     else:
-        _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, mat, at_min_x=False)
+        _stack(b, cx0, cy0, cx1, cy1, ridge_z, conf, mat, at_min=False,
+               gable_axis=axis,
+               cross=_facade_stack_cross(cx1 - cx0) if axis == "y" else 0.0)
+
+
+def _facade_stack_cross(span: float) -> float:
+    """How far a second core stack slides along the FACADE gable to clear the door.
+
+    Only a gable-fronted cabin reaches this (T-0435): its two gable ends are the back
+    and the FRONT, so the second stack — the one that takes "the other end of the one
+    element there is" — lands on the elevation carrying the front door. `brown_boarding_house`
+    is the only record in the 1835 scene that asks for it: two stacks, no frame
+    addition, 7.32 m wide and 12.19 m deep.
+
+    Centred, the shaft would stand straight through the doorway. So it takes the clear
+    band the facade leaves between the door reveal and the nearer flanking window, and
+    stands in the middle of it — which is where an end-wall flue serving the front pen
+    would rise anyway, beside the door rather than over it. If that band is too narrow
+    to hold a shaft (a cabin under about 4.4 m wide), it goes just outside the door
+    reveal instead and `_stack`'s own clamp keeps it inside the wall; no record asks
+    for that case today.
+    """
+    lo = _DOOR_HALF + _STACK_CLEAR + _STACK_HALF
+    hi = span * _WIN_AT - _WIN_HALF - _STACK_CLEAR - _STACK_HALF
+    return (lo + hi) / 2.0 if hi > lo else lo
 
 
 def _stack(b: MeshBuilder, x0, y0, x1, y1, ridge_z: float, conf: float, mat: int,
-           at_min_x: bool) -> None:
-    """One exterior stack against a gable end — the -x end, or mirrored to +x.
+           at_min: bool, gable_axis: str = "x", cross: float = 0.0) -> None:
+    """One exterior stack against a gable end — the low end of `gable_axis`, or
+    mirrored to the high end.
 
     Outside the wall, not inside it, which is the frontier pattern: a stick-and-clay
     or fieldstone stack built against the gable can be pulled away from the building
     when it catches fire, and it does not eat floor space. Nothing about the stack is
     attested for any building in the dataset, so it carries the count's confidence
     and no more.
+
+    `cross` slides the stack along its gable, away from centre; see `_facade_stack_cross`.
+
+    `gable_axis` names the axis the ROOF RIDGE runs along, which is the axis whose two
+    faces are gables. It is a parameter rather than a constant because it has to
+    follow the roof: a gable roof on this archetype runs its ridge along the longer
+    plan axis, so on a cabin deeper than it is wide the gables are the +/-y faces and
+    a stack pinned to -x would stand against an eave — 2.3 to 3.2 m of flue above the
+    roof beside it, and the very disposition docs/RESEARCH/chimneys.md §3 argues the
+    cat-and-clay fabric AGAINST. See `_gable_axis`. The geometry below is written in a
+    (gable, cross) frame and swapped into world axes at the last step, so the two
+    orientations are the same block, not two blocks kept in step by hand.
     """
-    yc = (y0 + y1) / 2.0
-    half = 0.48
-    face, out = (x0, -1.0) if at_min_x else (x1, 1.0)
+    glo, ghi, clo, chi = (x0, x1, y0, y1) if gable_axis == "x" else (y0, y1, x0, x1)
+    half = _STACK_HALF
+    # Centred on its gable unless the caller has to slide it clear of an opening, and
+    # never past the wall's own corner.
+    room = max((chi - clo) / 2.0 - half, 0.0)
+    cc = (clo + chi) / 2.0 + max(-room, min(room, cross))
+    face, out = (glo, -1.0) if at_min else (ghi, 1.0)
 
     def span(inset: float, proud: float) -> tuple[float, float]:
-        """(low x, high x) for a block reaching `proud` out from the gable face and
-        `inset` into it, on whichever side of the building this stack is on."""
+        """(low, high) along the gable axis for a block reaching `proud` out from the
+        gable face and `inset` into it, on whichever end of the building this is."""
         a, c = face + out * proud, face - out * inset
         return (a, c) if a < c else (c, a)
 
-    sx0, sx1 = span(0.08, 0.72)
-    b.add_box(sx0, yc - half, 0.0, sx1, yc + half, ridge_z + 0.55,
-              conf, mat, skip=("bottom",))
+    def box(g0: float, g1: float, c0: float, c1: float, z0: float, z1: float) -> None:
+        if gable_axis == "x":
+            b.add_box(g0, c0, z0, g1, c1, z1, conf, mat, skip=("bottom",))
+        else:
+            b.add_box(c0, g0, z0, c1, g1, z1, conf, mat, skip=("bottom",))
+
+    sg0, sg1 = span(0.08, 0.72)
+    box(sg0, sg1, cc - half, cc + half, 0.0, ridge_z + 0.55)
     # a slight corbel at the head, so it reads as a chimney rather than a post
-    hx0, hx1 = span(0.12, 0.82)
-    b.add_box(hx0, yc - half - 0.08, ridge_z + 0.55,
-              hx1, yc + half + 0.08, ridge_z + 0.72, conf, mat,
-              skip=("bottom",))
+    hg0, hg1 = span(0.12, 0.82)
+    box(hg0, hg1, cc - half - 0.08, cc + half + 0.08, ridge_z + 0.55, ridge_z + 0.72)
 
 
 def _sign(b: MeshBuilder, p: LogDwellingParams, conf: float) -> None:
