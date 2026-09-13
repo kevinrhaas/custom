@@ -310,6 +310,20 @@ selftest "the changelog merge driver still does what .gitattributes promises" \
 selftest "the build-product and smoke-ledger merge drivers do what .gitattributes promises" \
   node tools/merge-generated-selftest.mjs
 
+# T-0833. THE LAP THAT USES THEM. Every driver above only ever protects a LOCAL
+# merge — git keeps a driver's command out of tracked content, so GitHub loads
+# none of them and reports a conflict a clone does not have (measured on PR #940).
+# Six PRs stood open against dev on 2026-09-13, all six called conflicting by
+# `git merge-tree`, and on only four files: changelog.js (6), QUEUE.md (6),
+# dev-smoke-state.json (5) — all three driver-covered — and assets/manifest.json
+# (1), which is a real one. tools/drain.mjs is the clone that can apply the first
+# three and hand back the fourth, and what is tested hardest is the handing back:
+# a batching tool that quietly picks between two research claims looks exactly
+# like one that works. The suite asserts the refusal exits non-zero and LEAVES THE
+# MARKERS, which is the property a person actually uses.
+selftest "the drain lap still refuses every conflict its drivers do not cover" \
+  node tools/drain-selftest.mjs
+
 # ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
 # say what `queue` runs — git keeps a driver command out of tracked content on
 # purpose. So each clone registers it once, and a clone that has not is NOT
