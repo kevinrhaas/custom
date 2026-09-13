@@ -1009,6 +1009,7 @@
       "title": "Every chimney stands where the archetype puts it",
       "section": "per_subject",
       "subjects": [
+        "brown_boarding_house",
         "green_tree_tavern",
         "miller_house",
         "sauganash_hotel",
@@ -1018,11 +1019,11 @@
       ],
       "covers": [],
       "recorded": "2026-08-10",
-      "revised": null,
+      "revised": "2026-09-13",
       "fields": [
         {
           "label": "Decision",
-          "text": "the records count the stacks and the archetypes place them. On a frame block (`sauganash_hotel`, `green_tree_tavern`, `western_hotel`) they sit on the ridge line, spaced evenly between 0.22 and 0.78 of the frontage. On a log building (`wolf_point_tavern`, `miller_house`, `walker_meeting_house`) the first stands outside the log core's gable wall, and a second — where a record counts two — stands against the outer gable of the frame addition. Every stack is the same 0.96 m square shaft with a corbelled head, rising 0.55 m above the ridge it passes."
+          "text": "the records count the stacks and the archetypes place them. On a frame block (`sauganash_hotel`, `green_tree_tavern`, `western_hotel`) they sit on the ridge line, spaced evenly between 0.22 and 0.78 of the frontage. On a log building (`wolf_point_tavern`, `miller_house`, `walker_meeting_house`) the first stands outside the log core's gable wall, and a second — where a record counts two — stands against the outer gable of the frame addition. Every stack is the same 0.96 m square shaft with a corbelled head, rising 0.55 m above the ridge it passes. **Which wall is the gable is read off the roof, not off a compass face** (T-0435, 2026-09-13): a log core runs its ridge along the longer plan axis, so on a cabin deeper than it is wide the gables are the front and back and the stack stands at the BACK one. Until that date the code built at a fixed face regardless, and 31 of the town's 49 log stacks stood against an eave — the one disposition this entry and `docs/RESEARCH/chimneys.md` §3 argue the whole cat-and-clay fabric AGAINST. Two knock-on placements follow from the same reading and are part of the decision: on a gable-fronted cabin the single back window moves to the −x eave, because the back wall is now a gable and carries the stack; and a SECOND stack on such a cabin — `brown_boarding_house` alone asks for it — slides along the facade gable into the clear band between the door reveal and the nearer window rather than standing through the doorway."
         },
         {
           "label": "Why",
@@ -1039,6 +1040,10 @@
         {
           "label": "Recorded",
           "text": "2026-08-10."
+        },
+        {
+          "label": "Revised",
+          "text": "2026-09-13."
         }
       ]
     },
