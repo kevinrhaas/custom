@@ -155,7 +155,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 
 
-T-1103 — Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
 T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
 T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
 T-1105 — The generators reading the tract layer: the plat module's street width and block module, and the reserved-ground record citing the reservation polygon
