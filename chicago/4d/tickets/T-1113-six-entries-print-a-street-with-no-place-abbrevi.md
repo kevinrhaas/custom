@@ -1,7 +1,7 @@
 ---
 id: T-1113
 title: Six entries print a street with no place-abbreviation before it, so the address never lands: five let the street follow the firm directly and one has Clark st eaten by the business name
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-13
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 4:09:56 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34782843048
 ---
 
 Six entries print a street with no place-abbreviation before it, so the address never lands: five let the street follow the firm directly and one has Clark st eaten by the business name.
