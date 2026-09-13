@@ -168,7 +168,6 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- ==========================================================================
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
-T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
 T-0334 — The hay-stacking ordinance walks a six-vertex boundary round the built town, and nothing draws or tests it
 T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats

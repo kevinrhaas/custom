@@ -1,7 +1,7 @@
 ---
 id: T-0435
 title: 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-30
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1237
 claimed_by: run 9/13/2026, 1:37:55 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-13T07:35:24.196Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34743086606
 ---
 
