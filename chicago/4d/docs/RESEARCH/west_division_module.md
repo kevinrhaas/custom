@@ -80,7 +80,39 @@ same reason. The spacing finding in §1 of the answer is stronger than that: a
 distance between two centrelines does not depend on where the grid is pinned, so
 "short by 90 ft" holds whatever the anchor turns out to be.
 
-## What this memo does NOT establish, and T-0444 stays open on it
+## What this memo did NOT establish — READ 2026-09-13, and it survives
+
+**T-0689 read the sheet.** Everything below this line is the 2026-09-03 text, kept because
+it is the record of what the module rested on before the reading; what it rests on now is
+`docs/RESEARCH/west_division_lot_figures.md` and
+`data/traces/thompson_west_division_lots.json`, 22 blocks and 203 lots with the pixel region
+of each figure.
+
+Both of the inferences this section owns up to are now printed figures:
+
+- **lot depth 180 ft** — printed on six block faces (29 north, 44 west column, and the south
+  faces of 48, 49, 50, 51).
+- **two lots across by five down** — ten numerals, two columns of five, counted on every
+  standard block of six tiers.
+
+So the 458 ft module does not move by a foot, and `tools/read_west_division_lots.py` asserts
+the agreement in metres — edit either the memo or the reading away from the other and the
+commit goes red. The three findings in the answer above stand unchanged, and the swap stays
+excluded on the bank, which is what it always stood on.
+
+Two things the sheet adds that this memo could not have guessed. **The West Division lot
+fronts 75 ⅗ ft, not 80** — 80 is the South Division's figure and the one an inference
+carries west. And **the six tiers are not the same tier**: Fulton–Lake is four rows and
+eight lots, Carroll–Fulton's south row is deeper (96 ft printed against it), and the north
+tier is truncated by the town line into eight lots with a run no other tier uses. Only the
+Lake, Randolph and Washington tiers are the 458 ft square this memo's arithmetic describes.
+
+The negative search below is also closed: the sheet was in the repository the whole time,
+and the owner pointed T-0444 at it on 2026-09-03.
+
+---
+
+### The 2026-09-03 text, as written
 
 Acceptance 1 asks for the West Division's **lot dimensions and block lot-counts
 read off the plat sheet** and committed as data. That is not done here, and the
