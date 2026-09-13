@@ -59,7 +59,8 @@ from common.logwork import (  # noqa: E402
 from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.outbuilding_params import (  # noqa: E402
-    DOOR_JAMB_M, OutbuildingParams, eave_overhang_m,
+    DOOR_JAMB_M, OutbuildingParams, boarding_holes, eave_overhang_m, loft_rect,
+    vent_rect,
 )
 
 # Materials are indices into the list passed to to_object(), in this order.
@@ -146,7 +147,7 @@ def build(params: OutbuildingParams, name: str):
     c_roof = p.worst_conf("roof_type", "roof_pitch_deg")
     c_fen = p.conf("fenestration", "reconstructed")
 
-    holes = _openings(p)
+    holes = boarding_holes(p)
 
     if p.construction == "log":
         _log_walls(b, p, c_mass)
@@ -167,7 +168,7 @@ def build(params: OutbuildingParams, name: str):
         _doorway(b, p, p.door_side, p.door_size_m, p.conf("door", "reconstructed"))
     if p.loft and p.loft_side:
         _loft_door(b, p, p.conf("loft", "reconstructed"))
-    vent = _vent_rect(p)
+    vent = vent_rect(p)
     if vent:
         _vent(b, p, vent, c_fen)
 
@@ -854,28 +855,6 @@ def _offsets(p: OutbuildingParams) -> dict:
             "leaf": 0.020, "batten": 0.031}
 
 
-def _openings(p: OutbuildingParams) -> dict:
-    """side -> [(u0, u1, z0, z1), ...] to be cut out of the boarding.
-
-    Only meaningful for boarded construction; the log path ignores it, because a hole in
-    a log wall is not a hole in this model.
-    """
-    holes: dict = {}
-    if p.construction == "log":
-        return holes
-    if p.door != "none":
-        dw, dh = p.door_size_m
-        um = p.side_run_m(p.door_side) / 2.0
-        holes.setdefault(p.door_side, []).append(
-            (um - dw / 2.0, um + dw / 2.0, 0.0, dh))
-    if p.loft and p.loft_side:
-        holes.setdefault(p.loft_side, []).append(_loft_rect(p))
-    v = _vent_rect(p)
-    if v:
-        holes.setdefault(v[0], []).append(v[1])
-    return holes
-
-
 def _doorway(b: MeshBuilder, p: OutbuildingParams, side: str, size: tuple,
              conf: float) -> None:
     """A doorway: a dark opening in a sawn frame, with a batten door hung in it.
@@ -935,18 +914,6 @@ def _leaf(b: MeshBuilder, p: OutbuildingParams, side: str, u0: float, u1: float,
               conf, M_TIMBER)
 
 
-def _loft_rect(p: OutbuildingParams) -> tuple:
-    """(u0, u1, z0, z1) of the hay door on `p.loft_side`."""
-    side = p.loft_side
-    run = p.side_run_m(side)
-    dw, dh = p.loft_door_size_m
-    if p.roof_type == "shed":
-        z1 = float(p.wall_height_m) + p.roof_rise_m - 0.22
-    else:
-        z1 = float(p.wall_height_m) + p.roof_rise_m * 0.74
-    return (run / 2.0 - dw / 2.0, run / 2.0 + dw / 2.0, z1 - dh, z1)
-
-
 def _loft_door(b: MeshBuilder, p: OutbuildingParams, conf: float) -> None:
     """The loft's only external trace: the door you pitch hay through.
 
@@ -958,7 +925,7 @@ def _loft_door(b: MeshBuilder, p: OutbuildingParams, conf: float) -> None:
     side = p.loft_side
     if not side:
         return
-    u0, u1, z0, z1 = _loft_rect(p)
+    u0, u1, z0, z1 = loft_rect(p)
     off = _offsets(p)
     _face(b, side, p, off["dark"], [(u0, z0), (u1, z0), (u1, z1), (u0, z1)],
           conf, M_DARK)
@@ -970,38 +937,6 @@ def _loft_door(b: MeshBuilder, p: OutbuildingParams, conf: float) -> None:
         _prism(b, side, p, [(u0, a), (u1, a), (u1, c), (u0, c)],
                0.0, off["frame"], conf, M_TIMBER)
     _leaf(b, p, side, u0 + 0.01, u1 - 0.01, z0 + 0.01, z1 - 0.01, off, conf)
-
-
-def _vent_rect(p: OutbuildingParams):
-    """The one small unglazed opening this archetype gives a closed outbuilding, as
-    `(side, (u0, u1, z0, z1))`, or None.
-
-    A FIXED DEFAULT, not a record's value: `fenestration` is read for its confidence
-    and never for its value, exactly as in frame_tavern, because a tint is not a
-    building. A stable with no opening but its door is a crate, and a smokehouse needs
-    to breathe — but the size, the shape and the position of this hole are the
-    archetype's, and docs/LIBERTIES.md owns them the moment a record uses this
-    archetype.
-
-    Skipped on anything under 2.4 m: a privy's ventilation is the gaps between its own
-    boards, and cutting a window in one would be inventing a fitting.
-    """
-    if min(p.width_m, p.depth_m) < 2.4 or p.open_sides:
-        return None
-    order = ["back", "left", "right", "front"]
-    for side in order:
-        if side == p.door_side and p.door != "none":
-            continue
-        if side == p.loft_side:
-            continue
-        run = p.side_run_m(side)
-        if run < 1.4:
-            continue
-        z1 = min(float(p.wall_height_m) - 0.30, 2.35)
-        if z1 < 1.2:
-            continue
-        return (side, (run * 0.62 - 0.19, run * 0.62 + 0.19, z1 - 0.32, z1))
-    return None
 
 
 def _vent(b: MeshBuilder, p: OutbuildingParams, vent: tuple, conf: float) -> None:
