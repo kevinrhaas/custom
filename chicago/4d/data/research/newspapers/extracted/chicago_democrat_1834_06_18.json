@@ -961,6 +961,50 @@
         "iso": "1834-04-08"
       },
       "notes": "GARDEN AND FLOWER SEED ON SALE IN CHICAGO IN THE SPRING OF 1834, which is a small fact with a visible consequence: somebody in this town was planting a flower garden. Sold by the postmaster, who is the John S. C. Hogan continuing the Brewster, Hogan & Co. stand (1834-06-11 claims c001 and c002). The bracketed words are supplied from the 1834-06-04 printing of the same notice (page 3 column 6, lines 2169-2174), which sets 'GARDEN' and 'CLOVER SEED' legibly."
+    },
+    {
+      "id": "c020",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "House and Land\nOTS purchased and Sold,\n/ sion,\n12 Building Lote for sale, in\nSchool pection.\n*3 Housee to Let.\nEnquire\nLake st. opposite Dr. Temple s.",
+      "normalized": "House and Land [Agent.] [L]OTS purchased and Sold, [or by commis-]sion. 12 Building Lot[s] for sale, in [the town and] School [s]ection. […] House[s] to Let. Enquire [at the Office on] Lake st. opposite Dr. Temple['s.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 2,
+        "lines": [
+          3263,
+          3275
+        ],
+        "lines_of_claim": [
+          3263,
+          3265,
+          3267,
+          3268,
+          3270,
+          3272,
+          3273,
+          3275
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's",
+          "offset_text": "Lake st. opposite Dr. Temple s.",
+          "offset_normalized": "Lake st. opposite Dr. Temple['s.]",
+          "street": "Lake Street"
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. THE COLUMN IS INTERLEAVED and this card occupies alternate lines of it: 3264 ('or a small family,'), 3266 ('Newberry & Dole':'), 3269 (',, and some Window') and 3271 ('of A. SWEET.') belong to the advertisements woven through and are named in `lines` without being quoted. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. Line 3261, '[uncertain: I Go BION]', stands where the display line would fall in that alternation, but the interleave makes the attribution a guess and it is deliberately left out of the claim rather than read as a fourth mangled setting of the name."
     }
   ]
 }

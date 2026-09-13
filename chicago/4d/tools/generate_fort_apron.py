@@ -302,16 +302,30 @@ def record(rings: list, outer: list, frame: dict, checks: list, palisade: dict) 
                 "what both committed plates draw and what daily use makes of ground; that it "
                 f"reached exactly {APRON_M:.1f} m is invented. docs/LIBERTIES.md L174."
             ),
-            "sources": [],
+            "sources": ["kurz_allison_1893"],
             "sources_note": (
-                "EMPTY, AND THAT IS THE FINDING, exactly as data/enclosures/"
-                "town_dooryard_pickets.json says of the Kinzie view. The two Fort Dearborn "
-                "plates reach this repository only as owner-supplied reference images with a "
-                "README (data/sources/assets/prefire_views_kevin_2026_08/p4_0.png and "
-                "p4_1.png); no source record holds them, so the citation here is a committed "
-                "path and nothing stronger. Holding them as source records is T-0055's and "
-                "T-0075's work, not this record's, and inventing a source_id to fill the "
-                "field would be the worst thing an agent can do here (AGENTS.md rule 1)."
+                "NAMED SINCE 2026-09-13 (T-1107), AND THE PLATE WAS ONE THIS PROJECT "
+                "ALREADY HELD. This field used to read 'EMPTY, AND THAT IS THE FINDING', "
+                "because the fort views reached the repository only as owner-supplied crops "
+                "with a README (data/sources/assets/prefire_views_kevin_2026_08/p4_0.png and "
+                "p4_1.png) and no source record held them. Both are panels of "
+                "`kurz_allison_1893` - Kurz & Allison, 'Chicago In Early Days, 1779-1857' "
+                "(1893), tier 5, public_domain, the whole sheet committed at "
+                "chicago/reference/photos/IMG_5382.png. Measured, not recognised, by "
+                "tools/measure_plate_join.py, which re-measures the join on every commit: "
+                "p4_0 is PANEL 1 ('No. 1.  Old Fort Dearborn.  Erected 1803.'), ncc 0.896 at "
+                "0.295x against 0.400 anywhere in the control panel.\n\n"
+                "AND THE PAIR IS NOT A PAIR. p4_1 is PANEL 8 - 'No. 8.  Chicago in 1830 - "
+                "From the Lake.  Population 96.' - a TOWN view of 1830, not a second view of "
+                "the fort, so the sentence this record used to carry about 'the two Fort "
+                "Dearborn plates' was wrong about one of them. It costs this record nothing: "
+                "the treatment below is read off p4_0 alone and always was, and the "
+                "existence note above says 'both committed plates draw' a bare apron, which "
+                "both of them do - panel 8 draws the same bare ground round the same post "
+                "five years earlier. Nothing here is one grade better evidenced for being "
+                "cited. The plate is still a retrospective lithograph published fifty-eight "
+                "years after the scene date, it may never drive a coordinate, and every "
+                "value on this record stays `reconstructed` for the reasons it always did."
             ),
         },
         "runs": [],
@@ -352,10 +366,13 @@ def record(rings: list, outer: list, frame: dict, checks: list, palisade: dict) 
         "assertions": checks,
         "research_note": (
             "WHAT WOULD MOVE THIS OFF RECONSTRUCTION: a garrison return or quartermaster's "
-            "account describing the ground of the reservation; an 1830s survey of the United "
-            "States Reservation showing cleared ground; or an identification of either Fort "
-            "Dearborn plate against a dated original, which would raise it above the tier-5 "
-            "pictorial standing that lets it drive setting and never a coordinate. WHAT THIS "
+            "account describing the ground of the reservation; or an 1830s survey of the United "
+            "States Reservation showing cleared ground. ONE ROUTE IS NOW CLOSED: this note "
+            "used to offer 'an identification of either Fort Dearborn plate against a dated "
+            "original' as a third, and T-1107 made that identification - p4_0 is panel 1 of "
+            "kurz_allison_1893, measured. It did NOT raise the standing, because the dated "
+            "original is itself the 1893 retrospective; naming a tier-5 lithograph settles "
+            "its rights and its date and leaves its tier exactly where it was. WHAT THIS "
             "RECORD IS SHORT OF, stated rather than left to be noticed: the width is one "
             "number for all four sides, where a real post wears its gate side hardest; the "
             "band stops square, where trodden ground fans out from a gate; and the ground "

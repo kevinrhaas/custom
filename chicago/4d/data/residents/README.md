@@ -201,3 +201,40 @@ his own rival. T-0993's `BLANCHARD GURTREY` is worse: its hand `named` ruling is
 re-pointed onto the garbled card `blanshard_g`, so a written judgement silently changes
 who it names. So the mechanical fold stays exact, and a surname the sources spell two ways
 is **ruled**, one cluster at a time, on a page that demonstrates the variation.
+
+## One card, several men — the ruling that takes a reading OFF a person (T-1004)
+
+`card_merge_rulings.json` above asks whether a cluster of cards is one man.
+`card_conflation_rulings.json` asks the opposite question of a SINGLE card: is this
+card one man? Until T-1004 nothing could answer no. `tools/consolidate_resident_evidence.py`
+had `declared_anchors()`, which forces a reading ONTO a person a crosswalk has matched,
+and no opposite — so where the town held one man of a name and the sources held two, the
+second man's documents folded onto the first man's card and nothing said so.
+
+`declared_splits()` is that opposite and reads this file. A ruling is one of two states,
+and they are gated in **opposite directions**:
+
+| state | what it does | what the gate proves |
+|---|---|---|
+| `split` | names readings that come off the card, each with its rule and its reasoning | the reading is OFF that person, on an identity held apart by the ruling's own rule, standing on no card where the ruling says the second man is not in the layer |
+| `recorded` | nothing moves — the card is written down as gathering two men, with the question it leaves open | the readings named in `still_on_the_card` are STILL on that person, so something else moving them makes the ruling stale and red |
+
+The rules a split may stand on are `SPLIT_RULES` in that tool, echoed into the master:
+**X1** one volume prints both men · **X2** the entry's own qualifier names the other man ·
+**X3** the arithmetic refuses it · **X0** recorded, not split.
+
+Two things worth knowing before adding a ruling:
+
+- **A conflation ruling outranks the anchor it contradicts**, and it is the only place
+  this tool sets a declared adjudication aside. Norris 1844's `King, N. clerk, at T.
+  King's` was crossed onto Nehemiah King by the directories' own crosswalk, on a count of
+  who holds a card; the ruling that takes it off him rests on Fergus 1839 printing `King,
+  Nathaniel, clerk, Tuthill King`. Both are declared, the later one was made with the page
+  in hand, and the override is written into the master's `declared_refusals` naming the
+  anchor it displaced. Never silent.
+- **A name may have to move with the reading.** `hh_bowen_erastus_selden` was minted under
+  the name of the man being ruled off it, so the split alone would have left two identities
+  sharing one id. `name_as_ruled` moves the card's name and the gate holds it there. The
+  **id does not move**: `bowen_erastus_selden` is a key quoted in twenty-seven committed
+  files, and renaming it is a mechanical change with nothing to do with which man is which.
+  The disagreement between the id and the name is recorded on the card rather than hidden.

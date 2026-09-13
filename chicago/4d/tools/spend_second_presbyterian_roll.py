@@ -54,6 +54,20 @@ defect they guard against is the same one. The fifth is this roll's own.
      caution would make them look like a person on a roll. So the flag travels onto the card
      in the crosswalk's own words, and a reader can argue with it.
 
+  6. A LINE MET BY SEVERAL TOWNSPEOPLE SAYS SO ON EVERY ONE OF THEIR CARDS (T-0995). Rule 4
+     is about the PERSON — the crosswalk matches a person to exactly one line — and it says
+     nothing whatever about the LINE, which may be met by several. `matched` means this
+     RESIDENT met exactly one line; a resident meeting several is `ambiguous`. Five records
+     are matched to two or three cards apiece, eleven cards in all, and each of the three
+     Cooks read "carries 1 line whose surname and given initial agree with this person's" —
+     true of each of them, and reading as though the line were about the one card in front of
+     the reader. That is T-0700's failure exactly: a paragraph that is not false and is not
+     the whole ruling either. So where a record reaches more than one person, every one of
+     those cards NAMES THE OTHERS, and `--check` refuses a card that omits them. The clause
+     is derived, never asserted: it names the rival person ids the crosswalk itself produces,
+     and `--self-test` holds that a shared line names its rivals and an unshared one carries
+     no such clause at all.
+
 THE LEDGER IS NOT A CROSSWALK, deliberately, and for the reason the earlier passes gave:
 `data/research/church/second_presbyterian_roll_spend_1835.json` carries no "crosswalk" in its
 name so that `measure_research_spend.py` does not read a record of WRITES as a second
@@ -112,6 +126,15 @@ LADDER_LIMIT = (
     "roll is handed to the card as a thing a reader may weigh, and the verdict stays with "
     "T-0515, which applies the ladder against every source at once.")
 
+# The opening of rule 6's clause (T-0995), and the thing `--check` looks for when it asks
+# whether a card whose roll line is met by several townspeople says so. A separate marker
+# rather than a substring test on the names, so the gate can tell "this card names the wrong
+# rivals" from "this card was never told the line is shared" and say which.
+SHARED_MARKER = "THE SAME ROLL LINE IS MET BY OTHER TOWNSPEOPLE OF THIS NAME:"
+
+# How many, in words, because the clause reads as a sentence and not as a table.
+_COUNT_WORDS = {2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
+
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -135,6 +158,60 @@ def rulings() -> list:
     return rows
 
 
+def shared_records(rows: list | None = None) -> dict:
+    """record id -> every matched row that names it, for the records more than one row does.
+
+    Rule 6 (T-0995). The crosswalk's `matched` container is indexed BY PERSON, so nothing in
+    it can see that one printed line was met by three Cooks; only this regrouping can. Rows
+    come back in `rulings()` order — by person id — so the clause a card is told is stable
+    between runs and the ledger re-derives byte for byte.
+    """
+    if rows is None:
+        rows = rulings()
+    by: dict = {}
+    for row in rows:
+        for line in row["roll_lines"]:
+            by.setdefault(line["record"], []).append(row)
+    return {record: group for record, group in by.items() if len(group) > 1}
+
+
+def _named(row: dict) -> str:
+    """A rival as a reader would go and find them: the name the town holds, then the card."""
+    return "%s (%s)" % (row.get("name") or row["person_id"], row["person_id"])
+
+
+def _and_list(parts: list) -> str:
+    if len(parts) == 1:
+        return parts[0]
+    return "%s and %s" % (", ".join(parts[:-1]), parts[-1])
+
+
+def shared_clause(row: dict, shared: dict | None = None) -> str:
+    """Rule 6's sentence for one card, or "" where this card's line reaches nobody else."""
+    if shared is None:
+        shared = shared_records()
+    said = []
+    for line in row["roll_lines"]:
+        group = shared.get(line["record"])
+        if not group:
+            continue
+        rivals = [r for r in group if r["person_id"] != row["person_id"]]
+        if not rivals:
+            continue
+        rules = {r["rule"] for r in group}
+        under = ("under this same rule " if len(rules) == 1 else "")
+        said.append(
+            "%s is matched %sto %s, so it is met by %s townspeople of this name, and it says "
+            "which of them it was about no more than it says it was about this one — the test "
+            "that decided it is a surname and a given initial agreeing, which cannot tell them "
+            "apart."
+            % (line["record"], under, _and_list([_named(r) for r in rivals]),
+               _COUNT_WORDS.get(len(group), str(len(group)))))
+    if not said:
+        return ""
+    return " %s %s" % (SHARED_MARKER, " ".join(said))
+
+
 def where(row: dict) -> list:
     """Where each line of this ruling sits, as a reader would go back to it."""
     return ["%s, printed page %s" % (line["record"], line["printed_page"])
@@ -153,8 +230,12 @@ def _admission(line: dict) -> str:
     return "the roll printing neither when nor how the member was admitted"
 
 
-def paragraph(row: dict) -> str:
-    """What one person's card is told, and the whole of it."""
+def paragraph(row: dict, shared: dict | None = None) -> str:
+    """What one person's card is told, and the whole of it.
+
+    `shared` is rule 6's index (T-0995); a caller with it already in hand passes it so the
+    whole pass regroups the crosswalk once rather than once per card.
+    """
     doc = load(CROSSWALK)
     lines = row["roll_lines"]
     as_read = ", ".join("“%s”" % line["as_read"] for line in lines)
@@ -171,16 +252,18 @@ def paragraph(row: dict) -> str:
         "%s The 1892 printed membership roll of the Second Presbyterian Church of Chicago, "
         "read line by line into this repository, carries %d line%s whose surname and given "
         "initial agree with this person's — %s (%s), %s. Under the rule that decided it: %s "
-        "WHAT THE MATCH MINTS OR REGRADES: “%s”%s %s"
+        "WHAT THE MATCH MINTS OR REGRADES: “%s”%s%s %s"
         % (MARKER, len(lines), "" if len(lines) == 1 else "s", as_read,
            "; ".join(where(row)), admissions, row["rule"].rstrip(".") + ".",
-           (doc.get("mints_or_regrades") or "").strip(), mrs, LADDER_LIMIT))
+           (doc.get("mints_or_regrades") or "").strip(), mrs,
+           shared_clause(row, shared), LADDER_LIMIT))
 
 
 # --- the ledger ------------------------------------------------------------------------
 
 def ledger_doc() -> dict:
     rows = rulings()
+    shared = shared_records(rows)
     xw = load(CROSSWALK)
     return {
         "schema": SCHEMA,
@@ -206,6 +289,10 @@ def ledger_doc() -> dict:
             "households_touched": len({r["household_id"] for r in rows}),
             "married_womens_entries": sum(
                 1 for r in rows if any(l.get("a_married_womans_entry") for l in r["roll_lines"])),
+            # Rule 6 (T-0995). `matched` is indexed by person and cannot state either of these.
+            "roll_lines_met_by_more_than_one_person": len(shared),
+            "cards_naming_the_others_on_their_line": sum(
+                1 for r in rows if shared_clause(r, shared)),
             "grades_changed": 0,
         },
         "people": [
@@ -213,7 +300,12 @@ def ledger_doc() -> dict:
              "resident_name": r.get("name"), "grade_left_alone": r.get("grade"),
              "rule": r["rule"], "roll_lines": where(r),
              "as_read": [l["as_read"] for l in r["roll_lines"]],
-             "told": paragraph(r)}
+             "others_on_the_same_roll_line": sorted(
+                 other["person_id"]
+                 for line in r["roll_lines"]
+                 for other in shared.get(line["record"], [])
+                 if other["person_id"] != r["person_id"]),
+             "told": paragraph(r, shared)}
             for r in rows
         ],
     }
@@ -221,14 +313,14 @@ def ledger_doc() -> dict:
 
 # --- the write -------------------------------------------------------------------------
 
-def apply_to_person(person: dict, row: dict) -> bool:
+def apply_to_person(person: dict, row: dict, shared: dict | None = None) -> bool:
     """The ONLY mutation this tool performs. Two keys, and rule 2 is held here."""
     changed = False
     if SOURCE_ID not in (person.get("sources") or []):
         person["sources"] = (person.get("sources") or []) + [SOURCE_ID]
         changed = True
     note = (person.get("note") or "").strip()
-    want = paragraph(row)
+    want = paragraph(row, shared)
     if MARKER not in note:
         person["note"] = (note + " " + want).strip()
         changed = True
@@ -304,7 +396,9 @@ def retract(quiet: bool = False) -> int:
 
 def apply(quiet: bool = False) -> int:
     touched = 0
-    for row in rulings():
+    rows = rulings()
+    shared = shared_records(rows)
+    for row in rows:
         path = HOUSEHOLDS / ("%s.json" % row["household_id"])
         if not path.exists():
             continue
@@ -312,7 +406,7 @@ def apply(quiet: bool = False) -> int:
         for person in hh.get("persons") or []:
             if person.get("id") != row["person_id"]:
                 continue
-            if apply_to_person(person, row):
+            if apply_to_person(person, row, shared):
                 touched += 1
                 dump(path, hh)
     if not quiet:
@@ -341,7 +435,7 @@ def _person(row: dict):
     return None
 
 
-def _gaps_over(row: dict, person: dict) -> list:
+def _gaps_over(row: dict, person: dict, shared: dict | None = None) -> list:
     """gaps() for one already-loaded person — what the self-test needs and the gate reuses."""
     out = []
     who = "%s/%s" % (row["household_id"], row["person_id"])
@@ -351,7 +445,7 @@ def _gaps_over(row: dict, person: dict) -> list:
     note = person.get("note") or ""
     if MARKER not in note:
         out.append("%s — matched by the crosswalk and the card carries no paragraph" % who)
-    elif _mine(note) != paragraph(row):
+    elif _mine(note) != paragraph(row, shared):
         # T-0700's lesson, which T-0698 learned the same way: `gaps` asked whether a
         # paragraph was PRESENT and never whether it was RIGHT, so a card kept saying a
         # thing its ruling had stopped saying. A stale paragraph is a gate failure here.
@@ -362,6 +456,7 @@ def _gaps_over(row: dict, person: dict) -> list:
 
 def gaps(rows: list) -> list:
     """Every ruling has to be ON the record it names, or the ruling is only a file."""
+    shared = shared_records(rows)
     bad = []
     for row in rows:
         person = _person(row)
@@ -369,7 +464,51 @@ def gaps(rows: list) -> list:
             bad.append("%s/%s — the record the ruling names does not exist"
                        % (row["household_id"], row["person_id"]))
             continue
-        bad.extend(_gaps_over(row, person))
+        bad.extend(_gaps_over(row, person, shared))
+    return bad
+
+
+def _rivals_said(row: dict, person: dict, shared: dict) -> list:
+    """Rule 6 over one already-loaded person — what the self-test needs and the gate reuses.
+
+    `gaps` would already fire on any of this, because a paragraph that omits the clause is a
+    paragraph that no longer says what the crosswalk says. It would fire saying THAT, though,
+    and the reader would have to diff two paragraphs to find out which sentence moved. This
+    asks rule 6's question in rule 6's own words, and names the card that is unsaid."""
+    who = "%s/%s" % (row["household_id"], row["person_id"])
+    note = person.get("note") or ""
+    if MARKER not in note:
+        return []            # `gaps` owns the card with no paragraph at all.
+    mine = _mine(note)
+    others = sorted(other["person_id"]
+                    for line in row["roll_lines"]
+                    for other in shared.get(line["record"], [])
+                    if other["person_id"] != row["person_id"])
+    if not others:
+        if SHARED_MARKER in mine:
+            return ["%s — names others on its roll line and no other person is matched to it"
+                    % who]
+        return []
+    if SHARED_MARKER not in mine:
+        return ["%s — its roll line is met by %d townsperson(s) more and the card does not "
+                "say so: %s" % (who, len(others), ", ".join(others))]
+    unsaid = [pid for pid in others if pid not in mine]
+    if unsaid:
+        return ["%s — says its roll line is shared and does not name %s"
+                % (who, ", ".join(unsaid))]
+    return []
+
+
+def unsaid_rivals(rows: list) -> list:
+    """Rule 6 (T-0995), over the cards as they stand: a roll line met by more than one
+    townsperson names the others on every one of their cards, and only on theirs."""
+    shared = shared_records(rows)
+    bad = []
+    for row in rows:
+        person = _person(row)
+        if person is None:
+            continue        # `gaps` owns the missing record.
+        bad.extend(_rivals_said(row, person, shared))
     return bad
 
 
@@ -430,7 +569,7 @@ def check(quiet: bool = False) -> int:
         print("   %s no longer re-derives from the crosswalk — re-run the tool"
               % LEDGER.relative_to(ROOT))
         return 1
-    bad = gaps(rows) + strays(rows) + doubles() + unspendable()
+    bad = gaps(rows) + strays(rows) + doubles() + unspendable() + unsaid_rivals(rows)
     if bad:
         for line in bad[:20]:
             print("   %s" % line)
@@ -438,33 +577,53 @@ def check(quiet: bool = False) -> int:
             print("   …and %d more" % (len(bad) - 20))
         return 1
     if not quiet:
+        shared = shared_records(rows)
         print("Second Presbyterian roll: %d matched ruling(s) on %d card(s), no strays, "
-              "none written twice, no refusal spent" % (len(rows), len(rows)))
+              "none written twice, no refusal spent; %d roll line(s) met by more than one "
+              "townsperson, named on all %d of their cards"
+              % (len(rows), len(rows), len(shared),
+                 sum(1 for r in rows if shared_clause(r, shared))))
     return 0
 
 
 def report() -> int:
     rows = rulings()
-    print("%-30s %-26s %-9s %-6s %s"
-          % ("household", "person", "grade", "Mrs?", "roll line"))
-    print("-" * 130)
+    shared = shared_records(rows)
+    print("%-30s %-26s %-9s %-6s %-6s %s"
+          % ("household", "person", "grade", "Mrs?", "share", "roll line"))
+    print("-" * 138)
     for r in rows:
         mrs = "yes" if any(l.get("a_married_womans_entry") for l in r["roll_lines"]) else ""
-        print("%-30s %-26s %-9s %-6s %s"
+        met = max([len(shared.get(l["record"], ())) for l in r["roll_lines"]] or [0])
+        print("%-30s %-26s %-9s %-6s %-6s %s"
               % (r["household_id"], r["person_id"], r.get("grade"), mrs,
-                 "; ".join(where(r))))
-    print("-" * 130)
+                 ("of %d" % met) if met else "", "; ".join(where(r))))
+    print("-" * 138)
     print("%d people, %d household(s), %d married-woman entr(ies); nothing minted, no grade moved"
           % (len(rows), len({r["household_id"] for r in rows}),
              sum(1 for r in rows
                  if any(l.get("a_married_womans_entry") for l in r["roll_lines"]))))
+    print("rule 6: %d roll line(s) met by more than one townsperson, reaching %d card(s)"
+          % (len(shared), sum(1 for r in rows if shared_clause(r, shared))))
+    for record, group in sorted(shared.items()):
+        line = [l for l in group[0]["roll_lines"] if l["record"] == record][0]
+        print("   %s  “%s”" % (record, line["as_read"]))
+        for r in group:
+            print("      %s" % _named(r))
     return 0
 
 
 def self_test() -> int:
     fails = []
+    fired = 0
 
     def fires(label, ok):
+        # Counted rather than totted up by hand: the printed figure used to be a literal
+        # `27 + 5 * len(rows)` kept in step with the body by memory, and rule 6 (T-0995)
+        # fires a different number of assertions on a shared line than on a lone one, so
+        # no literal can be right for both.
+        nonlocal fired
+        fired += 1
         if not ok:
             fails.append(label)
 
@@ -536,9 +695,11 @@ def self_test() -> int:
           retract_from_person(untouched) is False and untouched == before)
 
     # Rule 5, and the two things every paragraph must carry.
+    shared = shared_records(rows)
     mrs_seen = plain_seen = False
+    shared_seen = unshared_seen = False
     for r in rows:
-        text = paragraph(r)
+        text = paragraph(r, shared)
         fires("every paragraph quotes the crosswalk's own mints-or-regrades sentence",
               "cannot place a person in the town of July 1835" in text)
         fires("every paragraph carries the ladder limit", LADDER_LIMIT in text)
@@ -553,7 +714,78 @@ def self_test() -> int:
             plain_seen = True
             fires("rule 5: a plain line does not carry the Mrs caution",
                   "MARRIED WOMAN'S ENTRY" not in text)
+        others = sorted(other["person_id"]
+                        for line in r["roll_lines"]
+                        for other in shared.get(line["record"], [])
+                        if other["person_id"] != r["person_id"])
+        if others:
+            shared_seen = True
+            fires("rule 6: a shared roll line says so", SHARED_MARKER in text)
+            fires("rule 6: …and names every other townsperson matched to it",
+                  all(pid in text for pid in others))
+            fires("rule 6: …and counts them, this card included",
+                  _COUNT_WORDS[len(others) + 1] + " townspeople of this name" in text)
+            fires("rule 6: …and names none of them as this card",
+                  text.count(r["person_id"]) == 0 or "(%s)" % r["person_id"] not in
+                  text.split(SHARED_MARKER)[1])
+        else:
+            unshared_seen = True
+            fires("rule 6: an unshared line carries no rivals clause",
+                  SHARED_MARKER not in text)
     fires("rule 5 is exercised on both kinds of line", mrs_seen and plain_seen)
+    fires("rule 6 is exercised on both kinds of line", shared_seen and unshared_seen)
+
+    # Rule 6's index, and the gate that holds it — over synthetic cards, so the assertions
+    # fire whatever the town currently looks like.
+    fires("rule 6: the index keeps only records more than one row names",
+          all(len(g) > 1 for g in shared.values()))
+    fires("rule 6: every row in the index is a matched row",
+          {x["person_id"] for g in shared.values() for x in g} <= {r["person_id"] for r in rows})
+    fires("rule 6: the index is stable under re-derivation", shared_records(rows) == shared)
+
+    a = {"name": "A Cook", "person_id": "cook_a", "household_id": "hh_cook_a",
+         "grade": "inferred", "source_id": SOURCE_ID, "rule": "R.",
+         "roll_lines": [{"record": "second_presb_9001", "as_read": "Cook, Mrs. J. L.",
+                         "admitted": "1843-01-05", "how_admitted": "letter",
+                         "printed_page": 183, "a_married_womans_entry": True}]}
+    b = json.loads(json.dumps(a))
+    b.update(name="B Cook", person_id="cook_b", household_id="hh_cook_b")
+    lone = json.loads(json.dumps(a))
+    lone.update(name="C Lone", person_id="lone_c", household_id="hh_lone_c")
+    lone["roll_lines"][0]["record"] = "second_presb_9002"
+    pair = shared_records([a, b, lone])
+    fires("rule 6: two rows on one record are shared and a row alone is not",
+          set(pair) == {"second_presb_9001"} and len(pair["second_presb_9001"]) == 2)
+    fires("rule 6: the clause names the other and not this one",
+          "cook_b" in shared_clause(a, pair) and "(cook_a)" not in shared_clause(a, pair))
+    fires("rule 6: a row whose record nobody else names gets no clause",
+          shared_clause(lone, pair) == "")
+
+    card = {"id": "cook_a", "sources": [SOURCE_ID], "note": paragraph(a, pair)}
+    fires("rule 6: a card that names its rivals passes", _rivals_said(a, card, pair) == [])
+    stripped = {"id": "cook_a", "sources": [SOURCE_ID],
+                "note": paragraph(a, pair).replace(shared_clause(a, pair), "")}
+    fires("rule 6: a card whose clause was struck out is refused",
+          any("does not say so" in m for m in _rivals_said(a, stripped, pair)))
+    renamed = {"id": "cook_a", "sources": [SOURCE_ID],
+               "note": paragraph(a, pair).replace("cook_b", "cook_z")}
+    fires("rule 6: a card naming the wrong rival is refused",
+          any("does not name cook_b" in m for m in _rivals_said(a, renamed, pair)))
+    # Inside this pass's own span, not after it: a SHARED_MARKER appended past LADDER_LIMIT
+    # is another writer's sentence and rule 6 must not read it as this card's claim.
+    invented = {"id": "lone_c", "sources": [SOURCE_ID],
+                "note": paragraph(lone, pair).replace(
+                    LADDER_LIMIT, SHARED_MARKER + " second_presb_9002 … " + LADDER_LIMIT)}
+    fires("rule 6: a card claiming a share its line does not have is refused",
+          any("no other person is matched" in m for m in _rivals_said(lone, invented, pair)))
+    fires("rule 6: a card with no paragraph is left to `gaps`",
+          _rivals_said(a, {"id": "cook_a", "note": ""}, pair) == [])
+    fires("rule 6: the clause is inside this pass's own span and not after it",
+          SHARED_MARKER in _mine(card["note"]))
+    later = {"id": "lone_c", "sources": [SOURCE_ID],
+             "note": paragraph(lone, pair) + " " + SHARED_MARKER + " another writer's words."}
+    fires("rule 6: a later writer's sentence past the ladder limit is not this card's claim",
+          _rivals_said(lone, later, pair) == [])
 
     # THE ONCE-EACH RULE, both directions (T-0846). The copy that stood in this file counted
     # the marker and never looked for a SUPERSEDED wording — the half `spend_land_sales.py`
@@ -576,8 +808,8 @@ def self_test() -> int:
 
     for line in fails:
         print("   FAIL: %s" % line)
-    print("Second Presbyterian roll self-test: %d assertion group(s), %d failure(s)"
-          % (27 + 5 * len(rows), len(fails)))
+    print("Second Presbyterian roll self-test: %d assertion(s) over %d ruling(s), "
+          "%d failure(s)" % (fired, len(rows), len(fails)))
     return 1 if fails else 0
 
 
