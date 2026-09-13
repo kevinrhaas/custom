@@ -58,6 +58,15 @@ outcome carries that rule's id. It is deliberately hard to get to `matched`.
                                Fergus 1843 or Norris 1844 directory entry adjudicated to
                                that person id), or an adjudicated 1840 bridge already
                                exists for them.
+    L6b reached_through_a_card_merge_caps_at_candidate
+                               the full name agrees, is unique on both sides, and a
+                               discriminator holds — but the spelling that agrees is one
+                               the residents layer no longer prints, and reaches this
+                               person only through a landed card-merge ruling. The merge
+                               supplied the agreement, so the merge may not also supply
+                               the match. Capped at `candidate`; a reading of the 1840
+                               line beside the survivor's live card is what promotes it.
+                               T-1003, and the reasoning is in the domain README.
     L7  candidate              the full name agrees and is unique on both sides, and
                                no independent discriminator was found.
 
@@ -227,6 +236,78 @@ def read_residents() -> list:
     return people
 
 
+def merged_card_aliases(residents: list) -> list:
+    """The 1835 spellings a landed card merge took OUT of the layer, each standing for
+    the person it was RULED to be (T-1003).
+
+    A town card is spelled the way the list it was minted from spelled the man. Where two
+    of those spellings turned out to be one person, `data/residents/card_merge_rulings.json`
+    says so on a page and `tools/consolidate_town_cards.py --apply` lands it: the folded
+    card leaves `households/`, and `index.json`'s `merged` table keeps the NAME it carried.
+    That name is an adjudicated 1835 spelling of a person this town holds, so it gathers
+    him — otherwise an 1840 head this project has already reasoned about is refused against
+    nobody. `Ed. Kimberley`, printed page 234 line 3, is the head it was written for: when
+    `kimberley_ed` folded onto `kimberly_edmund_s` the layer's only Kimberley went with it
+    and the head fell to L2, whose text says a surname absent from 1835 is evidence rather
+    than a gap. It was not absent. It was folded.
+
+    Each alias is indexed under the FOLDED card's parsed name and carries the SURVIVOR's
+    id, live name, grade and attestations — gathered under one spelling, weighed as the
+    other, exactly as `tools/read_land_sales.py` `merged_card_surnames` does it.
+
+    THIS IS NOT A FOLD AND MUST NEVER BECOME ONE. Nothing here compares two spellings or
+    measures a distance between them; it reads a written ruling that a card of a specific
+    spelling names a specific person. `tools/measure_surname_fold.py` prices the mechanical
+    alternative, and it is refused.
+
+    Only a merge whose folded name gives a handle the live name does not is returned — a
+    different surname, or a different full-name key. Forty-three of the fifty-four landed
+    merges add nothing and are skipped.
+    """
+    index = load(ROOT / "data" / "residents" / "index.json")
+    table = index.get("merged") or []
+    forward = {e["person"]: e.get("merged_into_person") for e in table}
+
+    def survivor_of(pid, seen=None):
+        seen = seen or set()
+        while pid in forward and pid not in seen:
+            seen.add(pid)
+            pid = forward[pid]
+        return pid
+
+    by_person = {r["person_id"]: r for r in residents if r.get("person_id")}
+    out = []
+    for entry in table:
+        folded_name = entry.get("name") or ""
+        if not folded_name.strip():
+            continue
+        # A merge onto a card that was itself later folded is followed; a dangling one,
+        # or one whose survivor the layer no longer holds, is simply skipped.
+        survivor = by_person.get(survivor_of(entry.get("merged_into_person")))
+        if not survivor:
+            continue
+        folded = parse_name(folded_name)
+        live = survivor["parsed"]
+        if not folded["surname"] or folded["uncertain"]:
+            continue
+        # A handle the live name does not already give: a different surname bucket, or a
+        # different full-name key. A folded card written with initials only has no key at
+        # all (`E S Kimberly`), so it can only ever offer a surname — and where that
+        # surname is the live one too, it offers nothing and is skipped.
+        new_surname = folded["surname"] != live["surname"]
+        new_key = bool(folded["key"]) and folded["key"] != live["key"]
+        if not (new_surname or new_key):
+            continue
+        alias = dict(survivor)
+        alias["parsed"] = folded
+        alias["via_card_merge"] = entry.get("person")
+        alias["folded_card_name"] = folded_name
+        alias["card_merge_rule"] = entry.get("rule")
+        alias["card_merge_ticket"] = entry.get("ticket")
+        out.append(alias)
+    return out
+
+
 def read_voters() -> list:
     """The voter pool, each entry carrying the source the civic crosswalk states.
 
@@ -344,11 +425,30 @@ def read_legacy_unmatched() -> list:
 # ------------------------------------------------------------------ adjudication
 
 def index_by(pool: list, attr: str) -> dict:
+    """Bucket a name pool by one parsed attribute.
+
+    T-1003: a person may stand in a bucket under more than one adjudicated spelling once
+    card-merge aliases are in the pool — `Ed S Kimberly` and the live `Dr Edmund Stoughton
+    Kimberly` are one man in the `kimberly` surname bucket. A bucket therefore holds each
+    `person_id` ONCE, live entry first, so that L5 cannot refuse a man for being
+    adjudicated twice and L3/L4 cannot count him twice among the bearers. Pools with no
+    person id (voters, the letter list, bridge candidates) are unaffected.
+    """
     idx = {}
     for item in pool:
         value = item["parsed"][attr]
         if value:
             idx.setdefault(value, []).append(item)
+    for value, bucket in idx.items():
+        seen, kept = set(), []
+        for item in sorted(bucket, key=lambda i: bool(i.get("via_card_merge"))):
+            pid = item.get("person_id")
+            if pid is not None:
+                if pid in seen:
+                    continue
+                seen.add(pid)
+            kept.append(item)
+        idx[value] = kept
     return idx
 
 
@@ -416,6 +516,21 @@ def later_census_block(head: dict, resident: dict, basis: str) -> dict:
     }
 
 
+def note_card_merge_bearers(out: dict, bearers: list) -> None:
+    """Name, on a refusal, any 1835 bearer the head reached through a folded card (T-1003).
+
+    A refusal that lists its bearers should say which of them the layer reaches under a
+    spelling it no longer prints, or the row cannot be audited against the merge table.
+    """
+    via = [{"folded_person_id": b["via_card_merge"],
+            "folded_card_name": b.get("folded_card_name"),
+            "survivor_person_id": b["person_id"],
+            "survivor_live_name": b["name"]}
+           for b in bearers if b.get("via_card_merge")]
+    if via:
+        out["surname_bearers_via_card_merge"] = via[:8]
+
+
 def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                voters_by_key, letters_by_key, cands_by_key,
                persistence, existing_bridges) -> dict:
@@ -469,6 +584,7 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                 "identity." % (head["normalized"], len(bearers), parsed["surname"])
             )
             out["surname_bearers_1835"] = [b["person_id"] for b in bearers][:8]
+            note_card_merge_bearers(out, bearers)
             return out
         initial_only_bearers = [b for b in bearers if not b["parsed"]["forename"]
                                 and initials(b["parsed"]["given"])[:1] == [parsed["forename"][0]]]
@@ -482,6 +598,7 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                                ", ".join(b["name"] for b in initial_only_bearers[:4]))
             )
             out["surname_bearers_1835"] = [b["person_id"] for b in initial_only_bearers][:8]
+            note_card_merge_bearers(out, initial_only_bearers)
             return out
         out["outcome"] = "refused"
         out["rule"] = "L3 given_name_conflict"
@@ -492,6 +609,7 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                                     parsed["forename"])
         )
         out["surname_bearers_1835"] = [b["person_id"] for b in bearers][:8]
+        note_card_merge_bearers(out, bearers)
         return out
 
     rival_heads = [h for h in heads_by_key.get(parsed["key"], []) if h is not head]
@@ -533,6 +651,7 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                               "withdrawn here — this file adjudicates lines, and "
                               "T-0515 owns the bridge table.")
         out["candidates_1835"] = [b["person_id"] for b in exact][:8]
+        note_card_merge_bearers(out, exact)
         out["other_1840_lines_with_this_name"] = [
             {"familysearch_id": h["familysearch_id"], "printed_page": h["printed_page"],
              "line": h["line"]} for h in rival_heads][:8]
@@ -543,6 +662,24 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
     out["household_id"] = resident["household_id"]
     out["resident_name"] = resident["name"]
     out["resident_grade_1835"] = resident["grade"]
+    # T-1003. The name that agreed may be a spelling the layer no longer prints, reached
+    # only through a landed card-merge ruling. Say so on the row whatever rung it lands on
+    # — the field name is the land crosswalk's, deliberately — and cap it at L6b below.
+    out["via_card_merge"] = resident.get("via_card_merge")
+    if resident.get("via_card_merge"):
+        out["reached_through_card_merge"] = {
+            "folded_person_id": resident["via_card_merge"],
+            "folded_card_name": resident.get("folded_card_name"),
+            "survivor_person_id": resident["person_id"],
+            "survivor_live_name": resident["name"],
+            "rule": resident.get("card_merge_rule"),
+            "ticket": resident.get("card_merge_ticket"),
+            "why": "the head agrees with %r, a spelling the residents layer no longer "
+                   "prints: that card was folded onto %s by a written ruling in "
+                   "data/residents/card_merge_rulings.json. The person is gathered under "
+                   "the folded spelling and weighed by his live card."
+                   % (resident.get("folded_card_name"), resident["person_id"]),
+        }
 
     discriminators = []
     for entry in persistence.get(resident["person_id"], []):
@@ -595,6 +732,29 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                 % (head["line"], head["familysearch_id"])
             )
             out["would_be_matched_on_a_firmer_read"] = True
+            if resident.get("via_card_merge"):
+                out["reason"] += (
+                    " The agreement is also with a spelling the layer no longer prints "
+                    "(%r, folded onto this card), which caps the row at candidate on its "
+                    "own account — see L6b." % resident.get("folded_card_name"))
+            return out
+        if resident.get("via_card_merge"):
+            out["outcome"] = "candidate"
+            out["rule"] = "L6b reached_through_a_card_merge_caps_at_candidate"
+            out["reason"] = (
+                basis + " But the name that agrees is %r — a spelling the residents layer "
+                "no longer prints, which reaches %s only through the card-merge ruling "
+                "that folded it onto him. L6 asks that the full name agree AND that "
+                "something independent of the name discriminate; here the merge supplied "
+                "the agreement, and the merge was a ruling about two 1835 cards that says "
+                "nothing whatever about an 1840 sheet. Letting it through would have a "
+                "card merge promote an 1840 identity as a side effect of tidying 1835. "
+                "What promotes this row is a reading: line %s of %s set beside %r by "
+                "somebody who looked. T-1003, and the ruling is in the domain README."
+                % (resident.get("folded_card_name"), resident["person_id"],
+                   head["line"], head["familysearch_id"], resident["name"])
+            )
+            out["would_be_matched_on_a_read_of_the_line"] = True
             return out
         out["outcome"] = "matched"
         out["rule"] = "L6 matched"
@@ -709,8 +869,12 @@ def build() -> dict:
     persistence = read_persistence()
     existing = read_existing_bridges()
 
-    residents_by_key = index_by(residents, "key")
-    residents_by_surname = index_by(residents, "surname")
+    # T-1003. The spellings a landed card merge took out of the layer still gather the
+    # person they were ruled to be — but only to `candidate`, never to a match. See
+    # `merged_card_aliases` and the domain README's ruling.
+    pool = residents + merged_card_aliases(residents)
+    residents_by_key = index_by(pool, "key")
+    residents_by_surname = index_by(pool, "surname")
     heads_by_key = {}
     for head in heads:
         if head["parsed"]["key"]:
@@ -764,6 +928,12 @@ def build() -> dict:
              "says": "the full name is borne by more than one person on a side"},
             {"rule": "L6a low_confidence_caps_at_candidate", "outcome": "candidate",
              "says": "the match would hold, but the reader graded this name low"},
+            {"rule": "L6b reached_through_a_card_merge_caps_at_candidate",
+             "outcome": "candidate",
+             "says": "the match would hold, but the name that agrees is a spelling the "
+                     "layer no longer prints and reaches the person only through a "
+                     "landed card-merge ruling. The merge supplied the agreement, so "
+                     "the merge may not also supply the match (T-1003)"},
             {"rule": "L6 matched", "outcome": "matched",
              "says": "unique full-name agreement, a read graded medium or better, AND "
                      "a discriminator independent of the name"},
@@ -1069,6 +1239,48 @@ def self_test() -> int:
            len(doc["legacy_29_readjudicated"]["heads"]), 29)
     expect("no legacy head is left without a reason",
            all(h.get("reason") for h in doc["legacy_29_readjudicated"]["heads"]), True)
+
+    # T-1003 — the card-merge route, and the cap on it. These assertions are the rule:
+    # if one of them stops firing the ruling in the domain README has stopped being true
+    # of the code, which is the only way this cap can quietly come off.
+    aliases = merged_card_aliases(read_residents())
+    expect("a landed card merge whose folded name offers no handle the live name does "
+           "not is skipped, so the pool grows by rulings and not by every merge",
+           len(aliases) < len(load(ROOT / "data" / "residents" / "index.json")["merged"]),
+           True)
+    expect("every alias stands for a person the layer still holds, under the folded "
+           "card's parsed name and the survivor's live name",
+           all(a.get("via_card_merge") and a.get("person_id") and a.get("name")
+               and a["parsed"] != parse_name(a["name"]) for a in aliases), True)
+    expect("an alias is gathered under a handle its survivor's live name does not give",
+           all(a["parsed"]["surname"] != parse_name(a["name"])["surname"]
+               or (a["parsed"]["key"] and a["parsed"]["key"] != parse_name(a["name"])["key"])
+               for a in aliases), True)
+
+    merged_route = [r for r in doc["heads"] if r.get("via_card_merge")]
+    expect("the card-merge route reaches at least one head, so the cap below is tested "
+           "against a row and not against an empty list", bool(merged_route), True)
+    expect("NO HEAD IS EVER MATCHED THROUGH A CARD MERGE — the merge supplied the name "
+           "agreement, so it may not also supply the identity (the domain README's "
+           "ruling, and the whole point of L6b)",
+           [r["normalized"] for r in merged_route if r["outcome"] == "matched"], [])
+    expect("every merge-reached head says how it was reached",
+           all(r.get("reached_through_card_merge", {}).get("folded_person_id")
+               == r["via_card_merge"] for r in merged_route), True)
+    expect("every L6b row is a candidate and names the reading that would promote it",
+           all(r["outcome"] == "candidate"
+               and r.get("would_be_matched_on_a_read_of_the_line")
+               for r in doc["heads"] if r["rule"].startswith("L6b")), True)
+    expect("Ed. Kimberley, the head this rule was written for, is a candidate under L6b "
+           "and not the L2 refusal a folded card had left it as",
+           next(((r["outcome"], r["rule"], r["via_card_merge"]) for r in doc["heads"]
+                 if r["familysearch_id"] == "33S7-9YYJ-99F" and r["line"] == 3), None),
+           ("candidate", "L6b reached_through_a_card_merge_caps_at_candidate",
+            "kimberley_ed"))
+    expect("a survivor gathered under more than one adjudicated spelling is still ONE "
+           "person in a bucket, so L5 cannot refuse a man for being adjudicated twice",
+           [k for k, bucket in index_by(read_residents() + aliases, "surname").items()
+            if len({b["person_id"] for b in bucket}) != len(bucket)], [])
     for line in failures:
         print("FAIL: %s" % line)
     print("self-test: %d assertion(s) failed" % len(failures))

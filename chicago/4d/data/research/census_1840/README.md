@@ -1673,10 +1673,23 @@ identity may well be right, and the ground under it is not firm enough to assert
         agreement, so the merge may not also supply the match.
 
 Where a row could fire both L6a and L6b the first that fires names the outcome, as the
-ladder has always worked; both cap at `candidate` and the reason states the other. Every row
-reached this way carries **`via_card_merge`** — the folded person id — whatever rung it lands
-on, including a refusal, so a reader can always see how the bucket was reached. The field
-name is the land crosswalk's, deliberately.
+ladder has always worked; both cap at `candidate` and the reason states the other.
+
+**A row always says how it was reached**, so no outcome on this route can be read without
+seeing the merge behind it. A head that reaches ONE person through a folded spelling carries
+**`via_card_merge`** — the folded person id, the land crosswalk's field name, deliberately —
+on whatever rung it lands, refusals included, beside a `reached_through_card_merge` block
+naming the folded card, the survivor and the merge's own rule and ticket. A head merely
+REFUSED against a bucket that an alias stands in reaches nobody, so it carries no
+`via_card_merge`; instead `surname_bearers_via_card_merge` names which of the bearers the
+refusal lists are held under a spelling the layer no longer prints. Both fields are absent,
+not null, where neither applies.
+
+**The tool proves this rule against itself.** `--self-test` asserts that no head is ever
+`matched` through a card merge, that every L6b row is a candidate naming the read that would
+promote it, that this head lands exactly where this section says, and that a survivor
+gathered under two spellings is still one person in a bucket. Deleting the cap turns two of
+those assertions red, which is how the cap is stopped from quietly coming off.
 
 **What it moves.** Eleven landed merges fold a name that gives a handle the survivor's live
 name does not; three of those differ in the SURNAME (Clybourn/Clybourne, Kimberley/Kimberly,
