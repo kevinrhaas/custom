@@ -33,6 +33,10 @@
     ],
     "in_force": false,
     "would_seat": 30,
+    "would_seat_on_distinct_roofs": 30,
+    "deals_a_roof_twice": {},
+    "per_face_ledger_would_seat": 30,
+    "per_face_ledger_would_deal_twice": {},
     "against_the_reading_in_force": -10,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
@@ -63,6 +67,19 @@
     ],
     "in_force": true,
     "would_seat": 40,
+    "would_seat_on_distinct_roofs": 40,
+    "deals_a_roof_twice": {},
+    "per_face_ledger_would_seat": 41,
+    "per_face_ledger_would_deal_twice": {
+     "recon_1835_blk_south_water_lasalle_d1_08": [
+      "business_james_grant",
+      "business_rockwell_cabinet_furniture_warehouse"
+     ],
+     "recon_1835_blk_south_water_lasalle_d2_09": [
+      "business_samuel_lewis",
+      "business_unnamed_new_store_la_salle_street"
+     ]
+    },
     "against_the_reading_in_force": 0,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
@@ -83,6 +100,19 @@
     ],
     "in_force": false,
     "would_seat": 40,
+    "would_seat_on_distinct_roofs": 40,
+    "deals_a_roof_twice": {},
+    "per_face_ledger_would_seat": 41,
+    "per_face_ledger_would_deal_twice": {
+     "recon_1835_blk_south_water_lasalle_d1_08": [
+      "business_james_grant",
+      "business_rockwell_cabinet_furniture_warehouse"
+     ],
+     "recon_1835_blk_south_water_lasalle_d2_09": [
+      "business_samuel_lewis",
+      "business_unnamed_new_store_la_salle_street"
+     ]
+    },
     "against_the_reading_in_force": 0,
     "seats_that_the_reading_in_force_does_not": [],
     "seats_that_the_reading_in_force_does_not_by_street": {},
