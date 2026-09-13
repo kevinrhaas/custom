@@ -121,6 +121,20 @@ const REACHES = {
   'north_wall/desktop': [['north curtain, west of the gate', [20, 450, 410, 540]]],
   'north_wall/phone': [['north curtain, west of the gate', [5, 135, 360, 480]]],
 };
+// `phone-dpr2` frames the IDENTICAL scene as `phone` — same CSS viewport, same
+// stand, same camera — on a raster twice as wide. So its rectangle is the phone's
+// multiplied by the dsf, which is a derivation and not a second eyeballed
+// constant: the wall is in the same place on the glass and only the ruler
+// changed. The run writes both shots beside the numbers, so a rectangle that has
+// drifted off the wall is still visible rather than silent.
+const scaleRect = ([x0, x1, y0, y1], k) => [x0 * k, x1 * k, y0 * k, y1 * k];
+const reachesFor = (stand, vpName, dsf) => {
+  const own = REACHES[`${stand}/${vpName}`];
+  if (own) return own;
+  const base = REACHES[`${stand}/phone`];
+  if (!base || dsf === 1) return [];
+  return base.map(([reach, rect]) => [reach, scaleRect(rect, dsf)]);
+};
 
 // The drawn extent of the whole 53 m curtain in that shot, corner to corner, so
 // the pitch the wall MUST be drawing can be derived and the pitch that was
@@ -133,9 +147,23 @@ const REACHES = {
 // lost there, because a 33 px rhythm cannot alias.
 const WALL_M = 53;
 const SPANS = { 'p4_0/desktop': [157, 950], 'p4_0/phone': [15, 302] };
+// Scaled for the same reason and by the same factor: the curtain's two corners
+// are at the same place on the glass, counted in a raster dsf times finer.
+const spanFor = (stand, vpName, dsf) => {
+  const own = SPANS[`${stand}/${vpName}`];
+  if (own) return own;
+  const base = SPANS[`${stand}/phone`];
+  if (!base || dsf === 1) return null;
+  return [base[0] * dsf, base[1] * dsf];
+};
 const ALIAS_FACTOR = 1.5;   // measured this much above expectation is a beat, not a post
 
 const SPACING_M = 0.30;   // form.picket_spacing_m on fort_dearborn_palisade
+// hud.js DEFAULTS.quality — the shipped default on BOTH platforms, and the cap in
+// `renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, quality))`. Stated
+// here so the table can print the backing store each row was actually drawn into;
+// if hud.js ever moves it, this becomes a lie and the printed ratio is where it shows.
+const QUALITY_DEFAULT = 1.5;
 const MIN_LAG = 3;        // below this every rendered image correlates with itself
 const MAX_LAG = 60;
 const MIN_GAP_PX = 1;     // below this the gap is never a whole pixel of background
@@ -147,9 +175,36 @@ const STANDS = [
   ['north_wall', { e: 1156.5, n: 253.2, yaw: 180 },
     'outside the north curtain by the gate, where a visitor walks up to it'],
 ];
+/**
+ * The viewports, each with the DEVICE PIXEL RATIO it is booted at — and the
+ * phone is here twice, because until T-0266 it was only ever read at one of the
+ * two ratios a phone can be in.
+ *
+ * `deviceScaleFactor` is not a detail of the harness. It sets
+ * `window.devicePixelRatio` inside the page, and `main.js` boot reads exactly
+ * that: `renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1,
+ * hud.settings.quality))`, with the shipped default of `quality` **1.5 on both
+ * platforms**. So a context at dsf 1 gets `min(1, 1.5)` = **1.0** and a context
+ * at dsf 2 gets `min(2, 1.5)` = **1.5**: one backing-store pixel per CSS pixel
+ * against three for every two. Every reading this file took before T-0266 was
+ * at dsf 1 — which is not what a phone is. It is what a phone becomes when the
+ * visitor drops *Render quality* to 1 in Settings, the escape hatch T-0157
+ * shipped for frame rate. The default was never measured here at all.
+ *
+ * dsf 2 rather than 3 because 2 is the floor of the phones this renderer targets
+ * and the renderer caps at 1.5 regardless — every phone at dsf 2 or above draws
+ * the identical backing store, so 2 stands for all of them and 3 would only
+ * enlarge the screenshot.
+ *
+ * The screenshot comes back at CSS x dsf, and the canvas is composited up to it
+ * from the 1.5x backing store — which is what a phone's own compositor does with
+ * the same two numbers. So the dsf-2 shot is the picture on the glass, not a
+ * proxy for it.
+ */
 const VIEWPORTS = [
-  ['desktop', { width: 1280, height: 800 }, false],
-  ['phone', { width: 390, height: 780 }, true],
+  ['desktop', { width: 1280, height: 800 }, false, 1],
+  ['phone', { width: 390, height: 780 }, true, 1],
+  ['phone-dpr2', { width: 390, height: 780 }, true, 2],
 ];
 
 /** Rec. 709 luminance, the same weighting `measure_picket_plate.py` uses. */
@@ -296,12 +351,12 @@ const base = `http://127.0.0.1:${server.address().port}`;
 const rows = [];
 const errors = [];
 const shots = [];
-for (const [vpName, viewport, hasTouch] of VIEWPORTS) {
+for (const [vpName, viewport, hasTouch, dsf] of VIEWPORTS) {
   const browser = await chromium.launch({
     executablePath: process.env.PW_EXECUTABLE || undefined,
     args: ['--use-gl=swiftshader', '--enable-unsafe-swiftshader'],
   });
-  const ctx = await browser.newContext({ viewport, hasTouch, deviceScaleFactor: 1 });
+  const ctx = await browser.newContext({ viewport, hasTouch, deviceScaleFactor: dsf });
   const page = await ctx.newPage();
   page.on('pageerror', (e) => errors.push(`${vpName}: ${e}`));
   await page.addInitScript(() => {
@@ -329,7 +384,7 @@ for (const [vpName, viewport, hasTouch] of VIEWPORTS) {
     const file = OUT ? path.join(OUT, name) : null;
     if (file) await mkdir(OUT, { recursive: true });
     const png = await page.screenshot(file ? { path: file } : {});
-    shots.push({ key: `${standName}/${vpName}`, stand: standName, viewport: vpName, why, name, png });
+    shots.push({ key: `${standName}/${vpName}`, stand: standName, viewport: vpName, dsf, why, name, png });
   }
   await browser.close();
 }
@@ -347,7 +402,7 @@ const browser = await chromium.launch({
 const page = await browser.newPage();
 await page.goto('about:blank');
 for (const shot of shots) {
-  const reaches = REACHES[shot.key] ?? [];
+  const reaches = reachesFor(shot.stand, shot.viewport, shot.dsf);
   const img = await page.evaluate(async (b64) => {
     const blob = await (await fetch(`data:image/png;base64,${b64}`)).blob();
     const bmp = await createImageBitmap(blob);
@@ -360,10 +415,12 @@ for (const shot of shots) {
   for (const [reach, rect] of reaches) {
     const raw = profile(img, rect);
     const { dev, ...read } = rhythm(raw);
-    const sp = SPANS[shot.key];
+    const sp = spanFor(shot.stand, shot.viewport, shot.dsf);
     const pxPerM = sp ? (sp[1] - sp[0]) / WALL_M : null;
     rows.push({
-      stand: shot.stand, viewport: shot.viewport, reach, rect, shot: shot.name, why: shot.why,
+      stand: shot.stand, viewport: shot.viewport, dsf: shot.dsf,
+      pixel_ratio: Math.min(shot.dsf, QUALITY_DEFAULT),
+      reach, rect, shot: shot.name, why: shot.why,
       px_per_m: pxPerM ? Math.round(pxPerM * 100) / 100 : null,
       expected_px: pxPerM ? Math.round(SPACING_M * pxPerM * 100) / 100 : null,
       ...read, strokes: dev ? strokes(dev) : null,
@@ -387,9 +444,10 @@ if (AS_JSON) {
 } else {
   console.log('\n  THE MODEL ON SCREEN — the drawn picket rhythm where a visitor stands');
   console.log(`    source: ${WANT_SOURCE ? 'the working tree' : 'the published mirror'}`);
-  console.log('    stand       viewport  measured  expected  autocorr    2x   win   reads as');
+  console.log('    stand       viewport     dpr  ratio  measured  expected  autocorr    2x   win   reads as');
   for (const r of rows) {
-    console.log(`    ${r.stand.padEnd(11)} ${r.viewport.padEnd(8)} `
+    console.log(`    ${r.stand.padEnd(11)} ${r.viewport.padEnd(11)} `
+      + `${String(r.dsf).padStart(3)}  ${r.pixel_ratio.toFixed(1).padStart(4)}x `
       + `${String(r.pitch_px ?? '—').padStart(5)} px ${(r.expected_px ? `${r.expected_px} px` : '—').padStart(9)} `
       + `${r.autocorr.toFixed(2).padStart(8)} ${(r.harmonic === null ? '—' : r.harmonic.toFixed(2)).padStart(5)} `
       + `${String(r.window ?? '—').padStart(4)}   ${verdict(r)}`);
@@ -398,6 +456,9 @@ if (AS_JSON) {
     + `${MIN_HARMONIC}, and ${MIN_GAP_PX} px of gap for the gap itself to be drawn`);
   console.log('    the plate, for comparison: 10 px pitch, autocorr +0.69, gaps 2-5 px — '
     + 'and it could not have drawn the model\'s 0.70 px gap (measure_picket_plate.py)');
+  console.log(`    dpr is the context's devicePixelRatio and ratio is what the renderer then asks `
+    + `for, min(dpr, quality ${QUALITY_DEFAULT}); the phone rows are the SAME device at the two `
+    + `settings — dpr 1 is Render quality 1, the escape hatch, and dpr 2 is the shipped default`);
   if (errors.length) console.log(`    pageerrors: ${errors.length}`);
 }
 process.exit(errors.length ? 1 : 0);

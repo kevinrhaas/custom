@@ -1438,6 +1438,20 @@ selftest "…and its own assertions still fire when broken" \
 # can catch is the detector moving under them, which is what its baseline is for.
 # One asks the plate about the town; the other asks the town about the plate.
 
+# FOUR CROPS, FOUR PANELS OF ONE SHEET. Three of the fort layers' plates reached
+# this repository as owner-supplied crops with a README and were cited by committed
+# path for a month; T-0055 joined the Kinzie one to kurz_allison_1893 by hand and
+# left the rest unconfirmed, and T-1107 measured them. The gate is not there to
+# re-prove the identification — that is settled and written into the source record.
+# It is there because a citation can rot silently: re-crop, re-scan or re-compress
+# either image and four source_ids quietly stop pointing at what they claim, with
+# nothing else in this repository able to notice. Six seconds to hold the join.
+step "the four crops are still the panels their citations name" \
+  python3 tools/measure_plate_join.py --gate --quiet
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_plate_join.py --self-test
+
 # Fort Dearborn's gates are built SHUT on purpose — the archetype's own words: a
 # fort with its gates standing open makes a claim about the hour of the day, and
 # the garrison is attested for the scene date. Both of them stood a quarter open.
