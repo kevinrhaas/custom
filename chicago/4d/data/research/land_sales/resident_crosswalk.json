@@ -705,10 +705,10 @@
         "ls1004"
       ],
       "resident_id": "bowen_erastus_selden",
-      "resident_name": "Erastus Selden Bowen",
+      "resident_name": "Erastus Bowen",
       "household_id": "hh_bowen_erastus_selden",
       "match": "forename_agrees",
-      "rule": "BOWEN ERASTUS matches Erastus Selden Bowen: the forename names Erastus Selden Bowen of the 2 people of this surname, and the forename agrees in full.",
+      "rule": "BOWEN ERASTUS matches Erastus Bowen: the forename names Erastus Bowen of the 2 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -722,10 +722,10 @@
         },
         {
           "key": "bowen_erastus_selden",
-          "name": "Erastus Selden Bowen",
+          "name": "Erastus Bowen",
           "forename_agrees": true,
           "why": "the forenames agree in full — same (M1)",
-          "middle_initial": "S",
+          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "survives"
         }

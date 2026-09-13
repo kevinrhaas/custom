@@ -282,6 +282,28 @@ selftest "the QUEUE.md merge driver still does what .gitattributes promises" \
 step "the owner's queue ranking has not gone backwards" \
   node tools/check_queue_order.mjs
 
+# THE CHANGELOG-ENTRY GATE ANSWERS THE RIGHT QUESTION ABOUT THE RIGHT FILES, and
+# until 2026-09-13 nothing tested that it did. `check-changelog-entry.mjs` runs
+# only from the PR workflow (its own header says why: the nightly bake regenerates
+# data/ and a gate inside check.sh would fail every bake), so its behaviour was
+# never exercised anywhere — and it was the commonest cause of a red PR that day.
+# Not for being strict about the town: `tools/dev-smoke-state.json` is T-0216's
+# register of smoke RESULTS and sits under the watched `tools/` prefix, so a run
+# that filed its readings — which AGENTS.md REQUIRES — drew a red gate for obeying
+# the contract. #1264 and #1269 were red with that file as the only watched path
+# they touched, and the same hand-written `Changelog: none` trailer had been added
+# to #1090, #1108, #1126 and #1247 two days earlier. #1255 is NOT that shape and
+# stays red correctly — it changed smoke_renderer.mjs too — which is the case the
+# test's last two assertions pin.
+#
+# The exemption fixes it once; this keeps it fixed, and holds the gate's other
+# answers while it is there — an exemption list is exactly the kind of edit that
+# quietly widens. It asserts the gate STILL BITES on a real change with no entry,
+# that the opt-out still needs a reason, and that a moved BASELINE beside the smoke
+# register is NOT exempt, because a baseline is a claim about the town.
+step "the changelog-entry gate exempts a smoke reading and still bites on a change" \
+  node tools/test_changelog_entry_gate.mjs
+
 selftest "…and its own assertions still fire when broken" \
   node tools/check_queue_order-selftest.mjs
 
@@ -2487,6 +2509,23 @@ selftest "…and every garbled forename in them is repaired, cited, and none is 
 
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
+
+# T-0896. The advertising directory's READING, which its crosswalk above stands on and
+# which nothing re-derived. 38 pages of display cards, sliced out of the committed page
+# text at each card's own line range, so the failure this catches is a quote that has
+# stopped coming from the page it cites — the one fault the crosswalk gate cannot see,
+# because the crosswalk re-derives from the reading and would follow it wherever it went.
+step "…and the advertising directory's cards re-derive from the committed page text" \
+  python3 tools/read_norris_1844_advertiser.py --check
+
+# T-0896. AND THE SECOND READING OF THE SAME VOLUME. T-0566 read the Internet Archive
+# scan; Kim Torp read the printed book independently onto genealogytrails.com. The
+# committed file is the MATCH between the two hands, and it is the only thing in this
+# project that says where our reading of Norris disagrees with somebody else's. It ran
+# once, in 2026-09-03, and was never asked again: a re-read entry on either side, or a
+# blocking rule changed under the matcher, moves the disagreements and nothing noticed.
+step "…and our reading of Norris still disagrees with Torp's in exactly the places recorded" \
+  python3 tools/compare_norris_1844_readings.py --check
 
 # T-0867. The ADVERTISING directory's crosswalk beside it, which was the only one of
 # the four with a committed output and no gate — so it sat at the residents layer of

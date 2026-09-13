@@ -53,6 +53,34 @@ const WATCHED = [
 const EXEMPT = [
   'chicago/4d/tickets/',
   'chicago/4d/docs/',
+  // A SMOKE READING IS EVIDENCE THAT A GATE WAS RUN, NEVER A CHANGE TO THE TOWN,
+  // and this file was the single commonest cause of a red PR on 2026-09-13. The
+  // owner: "Getting some red PR's, can you find what is going on make the fix so
+  // they don't break again".
+  //
+  // `tools/dev-smoke-state.json` is T-0216's append-only register of smoke results,
+  // and it sits under the watched `tools/` prefix by accident of where it lives.
+  // AGENTS.md REQUIRES a run to file its readings (`dev-smoke-state.mjs record`),
+  // so the gate was firing on runs for doing exactly what the contract asks — and
+  // the fix every time was a `Changelog: none` trailer explaining that a test
+  // result is not a release note, written by hand, over and over.
+  //
+  // Measured on the open PRs that afternoon: #1264 and #1269 were red with this
+  // file as the ONLY watched path they touched, and #1263 is a PR whose whole
+  // content is five smoke readings. The same hand-written trailer had already been
+  // added to #1090, #1108, #1126 and #1247 on 2026-09-11.
+  //
+  // #1255 is the shape this does NOT excuse, and it was checked rather than assumed:
+  // it touched the smoke register AND `tools/smoke_renderer.mjs`, a real change to
+  // the suite, so it stays red until it carries an entry or a reason. Readings filed
+  // beside a change are still readings beside a change.
+  //
+  // NOTHING ELSE UNDER tools/ IS EXEMPTED, deliberately. The baselines beside it —
+  // research_spend_baseline.json, layer_reads_baseline.json, the Chappel banked
+  // reading — MOVE when real work moves, and a changed baseline is a claim about
+  // the town that a reader may well want to hear about. Only the record of having
+  // run a test is exempt, because it says nothing about the town at all.
+  'chicago/4d/tools/dev-smoke-state.json',
 ];
 const CHANGELOG = 'chicago/4d/renderers/web/js/changelog.js';
 
