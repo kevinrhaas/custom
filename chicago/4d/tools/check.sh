@@ -606,6 +606,20 @@ step "the platted block and lot grid re-derives from the module" \
 selftest "…and a block whose rows have crossed is refused rather than emitted" \
   python3 tools/generate_plat_lots.py --self-test
 
+# The band the two halves of that plat leave between them (T-0419). Since the owner ruled
+# on 2026-08-29 that a corridor is derived from the street CONTROL, south_water's corridor
+# stands 8.58 m north of block faces still offset from the DRAWN line, and 6,132 m2 of
+# ground belongs to neither. Which of the two is wrong is the owner's question; this gate
+# does not answer it. It pins the figures the question is asked ABOUT, so the fork cannot
+# drift under him while it waits — and it has already caught that drift once: between the
+# 2026-08-30 measurement and 2026-09-13 the shore work moved the claimed band's dry share
+# 47.6 -> 46.0 %, and ordinary building took branch A's price from 43 roofs to 53.
+step "the band between the re-centred corridor and its block faces is what T-0419 measured" \
+  python3 tools/measure_corridor_strip.py --gate
+
+selftest "…and that measurement's own assertions still fire when broken" \
+  python3 tools/measure_corridor_strip.py --self-test
+
 # T-0875. The School Section's 142 block numerals, read off the 600-dpi NA sheet.
 # It sits beside the Thompson grid because it is the same question answered the
 # other way round: there, two legible numerals could not say how a run passes from
