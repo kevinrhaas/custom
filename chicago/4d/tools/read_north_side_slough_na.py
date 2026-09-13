@@ -1,24 +1,54 @@
 #!/usr/bin/env python3
-"""Trace the curved road Wright draws through the Michigan St tract, and seat it.
+"""Re-read Wright's one curved double line north of the river, off the 600 dpi NA/HUP sheet.
 
-    tools/read_michigan_st_tract_road.py                print the reading
-    tools/read_michigan_st_tract_road.py --write        write the trace and the track record
-    tools/read_michigan_st_tract_road.py --check        re-derive the committed file WITHOUT the raster
-    tools/read_michigan_st_tract_road.py --check-sheet  re-read the raster and compare
+    tools/read_north_side_slough_na.py                print the reading
+    tools/read_north_side_slough_na.py --write        write the trace record
+    tools/read_north_side_slough_na.py --check        re-derive the committed file WITHOUT the raster
+    tools/read_north_side_slough_na.py --check-sheet  re-read the raster and compare
 
-WHAT IS DRAWN. On the 1834 Wright sheet, one road leaves the north bank of the Main
-Branch a little east of Market Street, runs north-north-west across North Water Street
-and Kinzie Street, bulges west, and ends inside the Michigan St tract at that tract's
-Michigan Street. It is drawn as a DOUBLE LINE that curves, and it cuts diagonally across
-platted blocks and lot lines - which is what tells it from a street. Apart from the fort's
-road on the reservation it is the only such line on the sheet (T-1080, piece 2 of T-1075).
+WHAT IS DRAWN. On the 1834 Wright sheet, one curved double line leaves the north bank of
+the Main Branch a little east of Market Street, runs north-north-west across North Water
+Street and Kinzie Street, bulges west, and ends at the Michigan St tract's Michigan
+Street. Apart from the fort's road on the reservation it is the only such line on the
+sheet. T-1075 raised it as a ROAD serving the tract; that reading is WITHDRAWN and this
+file is what withdrew it (see THE IDENTITY below). What the sheet says, and all this
+reading claims, is that Wright drew a curved double line here and where it falls.
 
-WHAT THE TRACE SETTLES, and it corrects the ticket's own premise. The road does NOT run
-north THROUGH the tract. Both of its strokes stop inside the Michigan Street corridor,
-short of that street's north rule, and the tract's north tier is ruled across with no road
-in it. The road ENDS at Michigan Street.
+THE IDENTITY, and it is why this file is not named for a road. The project already holds
+this feature, and holds it as WATER: `north_side_slough` in
+`data/terrain/epochs/e1834_harbor_cut/hydrology.geojson`, a 45-vertex centreline of "a
+narrow winding watercourse running north out of the main stem, across Kinzie Street,
+ending at Michigan Street", traced off the BPL master scan by `tools/trace_river.py` and
+citing `wright_1834` for existence AND course. The two readings are the same ink:
 
-THE METHOD is a ridge follower, not a row scan, because the road curves and crosses dozens
+  - This reading's 36 sheet stations lie a MEDIAN 1.54 m from that committed centreline
+    (max 17.91 m), against a record whose own stated vertex uncertainty is +/-20 m and a
+    sheet fit whose RMS is 16.19 m here and 17.5 m there. Two scans, two registrations,
+    two tracers, four hundred commits apart, and every station inside either one's error.
+    `--check` re-derives the figure from committed data; it is not transcribed.
+  - The corridor widths agree: 12.35 m mean between stroke centres here, 13.02 m measured
+    on the same strokes by T-0795's independent sweep of the whole sheet.
+  - T-0795 counted every non-river watercourse Wright draws on the sheet and found
+    exactly ONE. It is this line.
+  - It is drawn as a CONFLUENCE. At NA px (2033, 2270) the west stroke becomes the
+    river's north bank running south-west and the east stroke becomes the same bank
+    running east: two banks continuous with the main stem's, on either side of an
+    opening. A road drawn to a river either stops at the bank or crosses it.
+  - Thompson's 1830 plat draws this feature as water across North Division block 6, the
+    same block the line crosses (T-0452).
+
+So this is a SECOND, INDEPENDENT read of `north_side_slough`, off a different scan under
+a different registration, and its value is corroboration: it is the only cross-check that
+record has. It commits no feature of its own. Nothing here is seated into
+`data/streets/1835.json` and nothing here may be.
+
+WHAT THE TRACE ALSO SETTLES. The line does NOT run north THROUGH the Michigan St tract.
+Both strokes stop inside the Michigan Street corridor, short of that street's north rule,
+and the tract's north tier is ruled across with nothing in it. T-1075's premise that it
+runs north through the tract is not what the sheet draws — true of a watercourse ending
+at Michigan Street exactly as the slough record already says it does.
+
+THE METHOD is a ridge follower, not a row scan, because the line curves and crosses dozens
 of ruled lines that a row scan cannot tell from it. From a stated seed on each stroke the
 tracer steps STEP px along the current heading, searches +/-HALF px along the normal for
 the darkest sample (bilinear), moves there, and re-estimates the heading from the last
@@ -26,21 +56,21 @@ three steps under a stated smoothing. Every parameter is committed below, so `--
 re-runs the identical trace and `--check` re-derives every metre from the committed pixels
 without opening the raster at all.
 
-THE SEATING, and why it is not the tract's. The tract is seated 38 m north of where this
-sheet's fit draws it (T-1079: Wright compresses y at his western margin, and the committed
-Kinzie-to-Michigan span holds a block tier plus an 80 ft street where the fit's does not).
-The road spans BOTH regimes: its southern two thirds lie in the North Division, where this
-sheet's fit is good - the drawn rule that carries Kinzie's south side falls 3 m from the
-committed line - and only its northern third lies inside the compressed tract. So the road
-is seated with a correction that is ZERO at the Kinzie crossing and grows linearly, in the
-sheet's own northing, to the tract's committed seating offset at Michigan Street. All of
-Wright's compression is put where the project already says it is, and none of it is spread
-over ground the sheet gets right.
+THE SEATING is a sheet-to-ground transfer and not a claim about a feature. The Michigan St
+tract is seated 38 m north of where this sheet's fit draws it (T-1079: Wright compresses y
+at his western margin). The line spans both regimes: its southern two thirds lie in the
+North Division, where this sheet's fit is good — the drawn rule that carries Kinzie's south
+side falls 3 m from the committed line — and only its northern third lies inside the
+compressed tract. So it is carried with a correction that is ZERO at the Kinzie crossing
+and grows linearly, in the sheet's own northing, to the tract's committed seating offset at
+Michigan Street. `centre_sheet_local_enu_m` is the raw fit and is what the identity above
+is measured on; `seated_local_enu_m` is that transfer. Neither is a committed feature.
 
-THE TWO ENDS are carried onto the committed lines the road meets: 6.0 m north at the top, to
-the centreline of `michigan_north_tract`, because the drawn strokes stop inside that street's
-corridor; and 8.3 m back at the foot, because the drawn junction with the river bank falls
-that far south of the committed `north_water`. Both runs are stated here and in the record.
+THE TWO ENDS are carried onto the committed lines the trace meets: 6.0 m north at the top,
+to the centreline of `michigan_north_tract`, because the drawn strokes stop inside that
+street's corridor; and 8.3 m back at the foot, because the drawn junction with the river
+bank falls that far south of the committed `north_water`. Both runs are stated here and in
+the record.
 """
 
 from __future__ import annotations
@@ -52,15 +82,15 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "data/traces/michigan_st_tract_road.json"
+OUT = ROOT / "data/traces/north_side_slough_na_reread.json"
 GRID = ROOT / "data/traces/michigan_st_tract_grid.json"
 GCP = ROOT / "data/traces/gcp/wright_1834_nara_hup_gcps.json"
 DATUM = ROOT / "data/datum.json"
 STREETS = ROOT / "data/streets/1835.json"
+HYDRO = ROOT / "data/terrain/epochs/e1834_harbor_cut/hydrology.geojson"
 
 RASTER = ROOT.parent / "pre_fire_v1/maps/images/1834-wright-map.jpg"
 
-TRACK_ID = "michigan_st_tract_road"
 
 # --- the trace, stated so it can be re-run ------------------------------------------
 SEEDS = {
@@ -296,6 +326,7 @@ def derive(rows):
         "seated_local_enu_m": seated_ext,
         "committed_local_enu_m": simple,
         "committed_max_departure_m": round(dev, 2),
+        "identity": _identity(centre_sheet),
         "corridor_m": {"mean": round(mean_w, 2), "sd": round(sd_w, 2),
                        "min": round(min(widths), 2), "max": round(max(widths), 2)},
         "seating": {
@@ -310,6 +341,39 @@ def derive(rows):
         },
         "length_m": round(length, 1),
         "m_per_px": round(m_per_px, 5),
+    }
+
+
+def _slough_local_enu():
+    """`north_side_slough`'s committed centreline, in the project's local ENU metres."""
+    d = json.loads(DATUM.read_text())
+    E0, N0 = d["origin_utm_e"], d["origin_utm_n"]
+    hyd = json.loads(HYDRO.read_text())
+    for f in hyd["features"]:
+        if f["properties"].get("name") == "Unnamed slough, north side":
+            return [(e - E0, n - N0) for e, n in f["geometry"]["coordinates"]]
+    raise SystemExit("north_side_slough is not in " + str(HYDRO))
+
+
+def _identity(centre_sheet):
+    """How far this reading's sheet stations fall from the committed watercourse.
+
+    The point of the number: `north_side_slough` was traced off the BPL master scan under
+    its own registration, and this is the only independent read of the same ink. If the two
+    disagree by more than either one's stated uncertainty they are not the same feature.
+    """
+    sl = _slough_local_enu()
+    ds = sorted(min(_seg_dist(p, sl[i], sl[i + 1]) for i in range(len(sl) - 1))
+                for p in centre_sheet)
+    return {
+        "against": "north_side_slough (data/terrain/epochs/e1834_harbor_cut/hydrology.geojson)",
+        "stations": len(ds),
+        "median_departure_m": round(ds[len(ds) // 2], 2),
+        "max_departure_m": round(ds[-1], 2),
+        "min_departure_m": round(ds[0], 2),
+        "this_reading_affine_rms_m": 16.19,
+        "slough_record_vertex_uncertainty_m": 20,
+        "verdict": "the same feature, read twice",
     }
 
 
@@ -379,7 +443,7 @@ def main():
         have = json.loads(OUT.read_text())
         bad = []
         for k in ("seated_local_enu_m", "committed_local_enu_m", "committed_max_departure_m",
-                  "centre_sheet_local_enu_m", "length_m", "corridor_m"):
+                  "centre_sheet_local_enu_m", "length_m", "corridor_m", "identity"):
             if json.dumps(have[k], sort_keys=True) != json.dumps(got[k], sort_keys=True):
                 bad.append(k)
         print("--check:", "re-derives" if not bad else f"DISAGREES on {bad}")
@@ -389,7 +453,7 @@ def main():
     if args.write:
         payload = {
             "_doc": __doc__.replace("SOUTH_GAP_M", str(got["seating"]["south_trim_to_north_water_m"])),
-            "ticket": "T-1080 (piece 2 of T-1075: the name, and the road)",
+            "ticket": "T-1080 (piece 2 of T-1075; the road reading withdrawn on T-0795's count)",
             "raster": json.loads(GCP.read_text())["raster"],
             "registration": "data/traces/gcp/wright_1834_nara_hup_gcps.json, `fit` (NA pixel -> EPSG:26916, RMS 16.19 m on eight control points)",
             "method": {
@@ -408,23 +472,36 @@ def main():
             "confidence_note": (
                 "Every number here is a measurement of a stated raster by a stated tracer with "
                 "committed parameters, and what it is documented ABOUT is the sheet: Wright drew "
-                "a curved double line here. That there was a road on this ground is what the sheet "
-                "says; what the road was CALLED, who made it and where it went beyond the two ends "
-                "drawn are not in this reading and are not claimed by it."
+                "a curved double line here, and it falls where these numbers put it. WHAT THE "
+                "LINE IS is not this reading's to assert and is not asserted: the project holds "
+                "it as the watercourse `north_side_slough`, and `identity` below is this "
+                "reading's cross-check of that record rather than a rival to it. The road "
+                "reading T-1075 raised is withdrawn; see docs/RESEARCH/michigan_st_tract.md."
             ),
             "strokes_px": [[y, round(w, 2), round(e, 2)] for y, w, e in rows],
             **got,
             "findings": [
-                "The road ENDS at Michigan Street. Both strokes stop inside that street's corridor, "
-                f"short of its north rule; the tract's north tier is ruled across with no road in it. "
-                "T-1075's premise that the road runs north THROUGH the tract is not what the sheet draws.",
-                "It is a road and not a street: it curves, and it cuts diagonally across platted "
-                "blocks and lot lines in the North Division tier and in the tract's south tier.",
+                f"The same ink as `north_side_slough`. This reading's sheet stations fall a median "
+                f"{got['identity']['median_departure_m']} m from that committed centreline "
+                f"(max {got['identity']['max_departure_m']} m) — two scans, two registrations, two "
+                "tracers, inside either one's stated uncertainty. The project has held this feature "
+                "as water since before T-1075 asked what the line was.",
+                "The line ENDS at Michigan Street. Both strokes stop inside that street's corridor, "
+                "short of its north rule; the tract's north tier is ruled across with nothing in it. "
+                "T-1075's premise that it runs north THROUGH the tract is not what the sheet draws — "
+                "and the slough record says the watercourse ends at Michigan Street.",
+                "It is not a platted street: it curves, and it cuts diagonally across platted blocks "
+                "and lot lines in the North Division tier and in the tract's south tier. That argues "
+                "against a STREET and not for a road: a plat ruled over a watercourse is the "
+                "ordinary case.",
                 f"The drawn corridor averages {got['corridor_m']['mean']} m between stroke centres "
-                f"(sd {got['corridor_m']['sd']} m, {got['corridor_m']['min']}-{got['corridor_m']['max']} m). "
-                "A hand-drawn double line on a manuscript sheet carries no platted width, and none is "
-                "taken from it.",
-                f"Seated, the road runs {got['length_m']} m from North Water Street to Michigan Street.",
+                f"(sd {got['corridor_m']['sd']} m, {got['corridor_m']['min']}-{got['corridor_m']['max']} m), "
+                "against 13.02 m measured on the same strokes by T-0795's independent sweep. A "
+                "hand-drawn double line on a manuscript sheet carries no surveyed width, and none is "
+                "taken from it — the slough record's own 7.1 m is measured from the bank wash, not "
+                "from these strokes.",
+                f"Carried onto the committed grid the line runs {got['length_m']} m from North Water "
+                "Street to Michigan Street. That transfer commits no feature; see THE SEATING.",
             ],
         }
         OUT.write_text(json.dumps(payload, indent=1) + "\n")

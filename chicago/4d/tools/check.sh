@@ -166,6 +166,16 @@ step "Wright's whole sheet still counts one watercourse that is not the river" \
 
 selftest "…and that audit's assertions still fire when broken" \
   python3 tools/audit_wright_watercourses.py --self-test
+
+# T-1080. The second, INDEPENDENT read of that one watercourse — off the 600 dpi NA/HUP
+# sheet under its own registration, where `north_side_slough` was traced off the BPL
+# master scan. It began life as a road record and the road was withdrawn: the two
+# readings are one feature, and this is the only cross-check that record has. `--check`
+# re-derives every metre, and the identity figure with it, from the committed pixels
+# without opening the raster, so the gate can ask it. The raster half is `--check-sheet`
+# and needs Pillow and numpy, which this gate does not have.
+step "the NA re-read of the north-side slough still lands on the committed centreline" \
+  python3 tools/read_north_side_slough_na.py --check
 # T-1101. The nine chips, put on the ground. Seven of the nine tracts are polygons now —
 # every one of them re-derived here from geometry this project already committed, never
 # traced off a wash — and the two that name no tract are REFUSED, with the number that

@@ -1,6 +1,7 @@
 # The Michigan St tract north of Kinzie Street
 
 T-0796 · T-1076 (the reading) · T-1079 (the seating) · T-1080 (the name, and the road — this note)
+· T-0795 (the sheet's watercourses) · T-0452 (Thompson's sloughs)
 
 Wright's 1834 survey draws, immediately north of Kinzie Street and east of the North
 Branch, a small platted square unlike anything around it: two block columns, two block
@@ -83,17 +84,10 @@ no trace and no polygon in this project carries the name Wolcott.
    a named addition north of Kinzie would name the tract directly. The extracted issues
    in `data/research/newspapers/extracted/` have been searched for *addition*; the hits
    are Kinzie's, Dearborn, and Carpenter's, and none is north of Kinzie Street here.
-3. **The curved road — now read, and it does not name the tract either.** T-1080 traced
-   it: `data/traces/michigan_st_tract_road.json`, committed as the track
-   `michigan_st_tract_road`. It leaves the north bank of the Main Branch a little east of
-   Market Street, crosses North Water Street and Kinzie Street, bulges west, and **ends at
-   the tract's Michigan Street** — it does not run north THROUGH the tract, which was
-   T-1075's premise: both drawn strokes stop inside that street's corridor and the north
-   tier is ruled across with no road in it. That is an argument about what the road was FOR
-   — it goes to this tract and no further, from the river — and it is not an argument about
-   what the tract was called. The Green Bay road remains the obvious candidate for the
-   ground the road crosses and no source in this repository fixes where that road left the
-   bank.
+3. **The curved line north of the river is NOT a road, and so it names nothing.** T-1080
+   traced it off the 600 dpi NA/HUP sheet and it turned out to be a feature this project
+   already holds — as **water**. See the section below. It was never going to name the
+   tract; it now does not even belong to the tract's question.
 
 ## The seating, and what it cost
 
@@ -110,19 +104,72 @@ it Wright's compression in y at his sheet's western margin. The alternative, han
 ladder on `kinzie`, would have kept the drawn frontage and committed a **second** Michigan
 Street 38 m south of the committed one, which is the one thing the reading refuses.
 
-## The road, and what it is evidence of
+## The curved line north of the river: read as a road, and withdrawn
 
-Wright's one road north of the river is drawn, seated and committed (T-1080). What it adds
-to the tract's question is small and worth stating exactly, because it is tempting to make
-it bigger:
+T-1075 asked for "the curved road north through the tract" and T-1080 went and traced it.
+The trace is good and the reading it was put to was wrong, and both halves of that are
+worth keeping.
 
-- **The tract had traffic from the river.** A road drawn to it, from the bank, is a road
-  somebody used. The tract is not a paper plat on the sheet alone.
-- **It ends at Michigan Street.** 266 m of it, and then nothing. Whatever the tract was, the
-  road served it rather than passing through on its way somewhere north.
-- **It still does not name anything.** No lettering, no legend swatch of its own, and no
-  source in this repository describes a road on this ground. `name_1835` on that record is
-  descriptive and says so.
+**What was traced.** One curved double line leaves the north bank of the Main Branch a
+little east of Market Street, crosses North Water Street and Kinzie Street, bulges west,
+and ends at this tract's Michigan Street. Apart from the fort's road on the reservation it
+is the only such line on Wright's sheet. It is read at 600 dpi by a ridge follower with
+every parameter committed: `tools/read_north_side_slough_na.py`,
+`data/traces/north_side_slough_na_reread.json`. `--check-sheet` re-runs the identical
+trace off the raster (worst stroke disagreement 0.00 px over 36 rows) and `--check`
+re-derives every metre from the committed pixels without opening it.
 
-Both halves of T-1080's question therefore close the same way: the road is read and
-committed, and the tract's name is refused — now twice over, on size and on date.
+**Why it is not a road.** The project has held this feature since long before the ticket
+existed, and holds it as a watercourse: **`north_side_slough`**, in
+`data/terrain/epochs/e1834_harbor_cut/hydrology.geojson` — a 45-vertex centreline
+described as *"a narrow winding watercourse running north out of the main stem, across
+Kinzie Street, ending at Michigan Street"*, traced off the BPL master scan by
+`tools/trace_river.py`, citing `wright_1834` for **existence and course**. Same two ends,
+same reach, same ink. Five things say so and none of them is an opinion about what the
+line looks like:
+
+| | |
+|---|---|
+| **The geometry** | This reading's 36 sheet stations fall a **median 1.54 m** from the committed slough centreline, worst **17.91 m**. The slough record states its own vertex uncertainty as ±20 m; this sheet's fit has an RMS of 16.19 m. Two scans, two registrations, two tracers, four hundred commits apart, and every station inside either one's error. |
+| **The count** | T-0795 swept the whole sheet in twenty 1:1 tiles and counted the non-river watercourses Wright draws. **One.** It is this line. (`docs/RESEARCH/wright_1834_watercourses.md`) |
+| **The junction** | At NA px (2033, 2270) the west stroke *becomes* the river's north bank running south-west and the east stroke *becomes* the same bank running east: two banks continuous with the main stem's, on either side of an opening. It is drawn as a **confluence**. A road drawn to a river either stops at the bank or crosses it; this does neither. |
+| **The second surveyor** | Thompson's 1830 plat draws this feature as water, across North Division block 6 — the same block the line crosses (T-0452, `docs/RESEARCH/thompson_plat_sloughs.md`). Four years earlier, same ground. |
+| **The width** | 12.35 m mean between stroke centres here; 13.02 m measured on the same strokes by T-0795's independent method. The same pair of strokes, twice. |
+
+The one argument that was ever offered FOR a road — *it curves, and it cuts diagonally
+across platted blocks and lot lines* — argues against a **street** and not for a road. A
+plat ruled over a watercourse is the ordinary case; a road ruled across finished blocks is
+not.
+
+**What was withdrawn.** The track record `michigan_st_tract_road` and its seating into
+`data/streets/1835.json`. Neither is in this repository and neither may be re-seated: two
+records of one feature, one of them water and one of them a road, is the failure this
+project exists to avoid. The reading itself is kept under the feature's own name, as what
+it actually is — **the only independent cross-check `north_side_slough` has**, off a
+different scan under a different registration. A record whose stated uncertainty is ±20 m
+gains a great deal from a second read that lands 1.54 m away.
+
+**And it dissolves the blocker that parked this ticket.** The road record could not merge
+because, seated, its ribbon's west edge sampled 10–25 cm below the summer-1835 water
+surface between N 240 and N 320, so the renderer refused the panels there and T-0184's
+wedge check reported the hole. That was not a rendering fault and not a tolerance to
+loosen. **The ground under that line is wet because this project already carves a
+watercourse along it.** The terrain was right; the road was the error. Nothing needs to
+move.
+
+## What this does NOT settle
+
+- **It does not name the tract.** The line goes to the tract and no further, and now it is
+  not even traffic — so the argument that "the tract had traffic from the river" is
+  withdrawn with the road. Nothing in the corpus names this tract; see above.
+- **It does not regrade the slough.** `north_side_slough` keeps its own grades, which were
+  ruled on the evidence by T-0687: course `attested`, width `inferred`, depth
+  `reconstructed`. A corroborating read does not promote anything, and this one is not
+  allowed to. The hydrology file is generated by `tools/trace_river.py` and is not
+  hand-edited here.
+- **It does not say where the Green Bay road left the bank.** That question was always
+  separate and no source in this repository fixes it. There is now one less candidate.
+
+Both halves of T-1080 therefore close as refusals, which is the honest outcome and was
+always a permitted one: the tract's name is refused — twice over, on size and on date —
+and the road is refused, because the thing it was read from is water.
