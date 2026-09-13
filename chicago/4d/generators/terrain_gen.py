@@ -12,6 +12,8 @@ Inputs, all committed:
     data/terrain/epochs/<e>/terrain_spec.json         the authored zone table
     data/terrain/epochs/<e>/river.geojson             traced water polygon + bank runs
     data/terrain/epochs/<e>/hydrology.geojson         traced secondary watercourses
+    data/terrain/epochs/<e>/shoreline.geojson         the harbour reach, the bar and the lake
+    data/terrain/epochs/<e>/branches.geojson          the branches beyond the forks window
 
 Outputs:
 
@@ -495,7 +497,9 @@ def build_field(spec, feats, origin):
     renderers/web/js/terrain.js's Heightfield sampler requires.
 
     `feats` is every traced feature the epoch owns, by id, across river.geojson,
-    hydrology.geojson and shoreline.geojson.
+    hydrology.geojson, shoreline.geojson and branches.geojson. The spec decides
+    which of them the field reads; loading a file does not put its features in
+    the ground.
     """
     o_e, o_n = origin
     g = spec["grid"]
@@ -512,6 +516,12 @@ def build_field(spec, feats, origin):
     def ring_of(spec_ref):
         f = feats[spec_ref["feature"]]
         return to_local(f["geometry"]["coordinates"][int(spec_ref.get("ring", 0))])[:-1]
+
+    # The traced shore runs, in local metres. Resolved before the water mask
+    # because `southern_lake` below is stated against the SHORE and not against
+    # the water wash, and the waterline needs them anyway.
+    shore_runs = {s["id"]: to_local(feats[s["id"]]["geometry"]["coordinates"])
+                  for s in spec["shore_runs"]}
 
     # ---- what is water ----------------------------------------------------
     # Union of the traced water polygons, minus their islands. The sand bar is
@@ -537,6 +547,35 @@ def build_field(spec, feats, origin):
         idx = np.arange(E.shape[1])[None, :]
         east = np.where(in_water & (E > guard), idx, -1).max(axis=1)
         in_water |= (idx > east[:, None]) & (east >= 0)[:, None] & (E > guard)
+    # The same argument, made where the water wash runs out instead of where the
+    # tracing window does. South of the sand bar's traced hook the harbour trace
+    # carries the SHORE — the east edge of Fractional Section 15, a surveyed line
+    # — all the way to the foot of the sheet, but its water wash south of there
+    # is patches rather than a margin, so `open_lake`'s per-row test ("east of
+    # the easternmost traced WATER") measures from a patch and leaves the ground
+    # between two patches standing as dry land. It came out as a 4.8 m plateau of
+    # mainland sand ridge in the middle of Lake Michigan. This rule measures from
+    # the traced SHORE instead: south of the stated line, every cell east of the
+    # row's easternmost crossing of a named shore run is lake. Islands are
+    # subtracted after it, exactly as they are after `open_lake`, so the bar's
+    # southern hook is not touched by it.
+    south_rule = spec.get("southern_lake")
+    if south_rule:
+        n_cap = float(south_rule["south_of_n_m"])
+        east_edge = np.full(E.shape[0], -np.inf)
+        for rid in south_rule["shore_runs"]:
+            pts = shore_runs[rid]
+            for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                if y1 == y2:
+                    continue
+                lo, hi = (y1, y2) if y1 < y2 else (y2, y1)
+                sel = (N[:, 0] >= lo) & (N[:, 0] <= hi) & (N[:, 0] < n_cap)
+                if not sel.any():
+                    continue
+                t = (N[sel, 0] - y1) / (y2 - y1)
+                east_edge[sel] = np.maximum(east_edge[sel], x1 + t * (x2 - x1))
+        in_water |= (E > east_edge[:, None]) & np.isfinite(east_edge)[:, None]
+
     in_water &= ~islands
 
     # ---- the waterline ----------------------------------------------------
@@ -545,8 +584,6 @@ def build_field(spec, feats, origin):
     # traced window (the forks polygon at E +390, the harbour polygon at E +314
     # and again out in the lake), and a window edge is a place the tracing
     # stopped, not a bank. Measuring to it would raise a bank across open water.
-    shore_runs = {s["id"]: to_local(feats[s["id"]]["geometry"]["coordinates"])
-                  for s in spec["shore_runs"]}
     waterlines = [seg_distance(E, N, pts) for pts in shore_runs.values()]
     for isl in spec.get("islands", []):
         r = ring_of(isl["ring"])
@@ -1285,7 +1322,8 @@ def main() -> int:
     ep_dir = ROOT / "data" / "terrain" / "epochs" / args.epoch
     spec = load(ep_dir / "terrain_spec.json")
     feats = {}
-    for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson"):
+    for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson",
+                 "branches.geojson"):
         for f in load(ep_dir / name)["features"]:
             feats[f["id"]] = f
     origin = (datum["origin_utm_e"], datum["origin_utm_n"])

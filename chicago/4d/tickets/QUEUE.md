@@ -152,7 +152,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
 T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
-T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
 T-1102 — The land sales sorted onto the survey tracts, and the generators reading the tract layer
 T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
