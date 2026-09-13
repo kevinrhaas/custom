@@ -196,7 +196,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- Ordering rule 4 in the other direction: nothing here outranks the bands above. The
 # --- triangle-and-draw-call tickets are here now rather than gating the roofs, because every
 # --- tier is inside its ceiling; they are measurement until a breach is measured again.
-T-0802 — A ticket whose PR merged can sit 'claimed' forever, because nothing compares ticket state against the PRs that landed
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
 T-0690 — dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
 T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
