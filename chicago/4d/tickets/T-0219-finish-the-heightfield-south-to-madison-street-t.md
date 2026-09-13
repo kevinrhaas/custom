@@ -1,7 +1,7 @@
 ---
 id: T-0219
 title: Finish the heightfield SOUTH to Madison Street, the plat's last tier
-state: open
+state: done
 epic: GROUND
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-24
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1226
+claimed_by: run 9/12/2026, 9:42:48 PM CT
 blocked_on: null
 needs_bake: true
+closed_at: 2026-09-13T03:51:36.284Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34733592047
 ---
 
 Finish the heightfield SOUTH to Madison Street, the plat's last tier. The mirror of
