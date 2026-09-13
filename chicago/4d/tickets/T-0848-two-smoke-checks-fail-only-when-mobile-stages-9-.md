@@ -53,7 +53,13 @@ has yet moved the visitor, and each delta section teleports to it and states why
 
 Legs 2 and 3 are bit-identical, which is the acceptance: the combined range and the
 isolated part now measure the same frame. Floors are untouched at `worst>=3, mean>=0.03`
-and `worst>=4`. Legs 2-4 are filed in `tools/dev-smoke-state.json`.
+and `worst>=4`.
+
+Legs 1-4 were measured on `dev` a3c49b288. `dev` then advanced to 7b186cd0a under the
+branch, so leg 2 was re-run on the rebased tree — 10 / 0.19 and 6 again, 36 passed, 0
+failed, 2 m 26 s — and it is THAT reading that is filed in `tools/dev-smoke-state.json`,
+because the record stamps the tree a reading was actually taken on and a reading of a
+superseded tree filed under the new hash would be a claim the run did not make.
 
 `check.sh` is green but for one step, "…and the strip still reads the same off the sheet",
 which fails identically on pristine `dev` and is not this ticket's.
