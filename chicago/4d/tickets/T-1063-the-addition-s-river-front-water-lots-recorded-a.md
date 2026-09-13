@@ -35,9 +35,12 @@ committed raster through the committed affine and re-derived by the gate in both
 facsimile is refused by number, and what the reading cannot settle — which stroke bounds
 which numbered lot — is named as a refusal rather than filled in.
 
-**What it came to.** 35 parcels over 664.7 m of bank, from the Original Town's east line to
-the harbour. Mean frontage 59.6 ft, depth about 37 ft — wharfage proportions, not town-lot
-proportions, against Thompson's 80 ft. The back line is absent over three consecutive
+**What it came to.** 35 parcels over 667.0 m of bank, from the Original Town's east line to
+the harbour. Mean frontage 61.1 ft, depth about 38 ft — wharfage proportions, not town-lot
+proportions, against Thompson's 80 ft. (Those metres are the reading re-derived through the
+ELEVEN-point fit T-1091 adopted on 2026-09-12, after this reading was first taken on the
+eight-point one; the count, the strokes and the refusals are identical either way, so the
+2-3 per cent is the pinning's correction and not a re-reading.) The back line is absent over three consecutive
 stations between the thirteenth cell and the cell lettered 15, and the run's own figures
 reach 35 only if that reach carries lot 14; lot 14 is recorded as inferred from the count,
 and the reach itself is left unexplained. Fourteen figures are legible and 21 are refused.

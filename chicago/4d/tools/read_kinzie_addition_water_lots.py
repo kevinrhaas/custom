@@ -361,8 +361,17 @@ def document(doc):
         "generated_by": "tools/read_kinzie_addition_water_lots.py",
         "raster": {k: g["raster"][k] for k in
                    ("working_copy", "width", "height", "dpi", "sha256", "source_id")},
-        "registration": "data/traces/gcp/wright_1834_nara_hup_gcps.json, `fit` "
-                        "(NA pixel -> EPSG:26916, RMS 16.19 m on eight control points)",
+        "registration": {
+            # Read off the GCP file rather than restated here: T-1091 replaced the
+            # eight-point fit with an eleven-point one AFTER this reading was first
+            # written, and the sentence that named the old RMS went stale in place.
+            # `--check` re-derives every metre through whichever fit is in force, so the
+            # provenance line has to move with it.
+            "gcp_file": "data/traces/gcp/wright_1834_nara_hup_gcps.json",
+            "fit": g["fit"]["type"],
+            "rms_m": g["fit"]["rms_m"],
+            "adopted": g["fit"]["adopted"].split(".")[0],
+        },
         "read_on": "2026-09-12",
         "method": "tools/read_kinzie_addition_water_lots.py — a tangential follower walks "
                   "the drawn bank from one seed point, which gives the run an arc "
