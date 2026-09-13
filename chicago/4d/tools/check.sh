@@ -152,6 +152,36 @@ step "Wright's legend chips still refuse what they cannot separate" \
 selftest "…and that reading's assertions still fire when broken" \
   python3 tools/read_wright_legend_swatches.py --self-test
 
+# T-0795. The whole-sheet watercourse count, and what it costs to be wrong about it:
+# the audit's headline is that Wright draws ONE watercourse that is not the river, so
+# every number it rests on has to stay re-derivable or the count becomes an assertion.
+# Offline half — the two bank re-entrant picks carried through the committed affine and
+# checked against the E-ranges the traced 1834 waterline gives for the La Salle and
+# State Street mouths, the station count against the committed centreline, the scale
+# against the fit's axes, and every id the audit names against the terrain that holds
+# it. The raster half is `--check-sheet` and needs Pillow and numpy, which this gate
+# does not have.
+step "Wright's whole sheet still counts one watercourse that is not the river" \
+  python3 tools/audit_wright_watercourses.py --check-properties
+
+selftest "…and that audit's assertions still fire when broken" \
+  python3 tools/audit_wright_watercourses.py --self-test
+# T-1101. The nine chips, put on the ground. Seven of the nine tracts are polygons now —
+# every one of them re-derived here from geometry this project already committed, never
+# traced off a wash — and the two that name no tract are REFUSED, with the number that
+# would change the refusal attached. This step rebuilds all seven rings from their own
+# inputs and re-takes all 116 band verdicts from the band centroids the record carries,
+# so a street line that moves, a section corner that drifts, a seating that is re-fitted
+# or a grade quietly upgraded is a failure here rather than a claim nobody re-checked.
+# The REFUSALS are gated too, for the same reason the swatch step gates its own: if a
+# later edit gave Wabansia colour evidence it does not have, or handed one of the unnamed
+# chips a polygon, the prose would still read correctly and only this would notice.
+step "the nine survey tracts still stand where their committed ground puts them" \
+  python3 tools/build_survey_tracts.py --check-properties
+
+selftest "…and the tract layer's assertions still fire when broken" \
+  python3 tools/build_survey_tracts.py --self-test
+
 # T-1082. The swatch reading above is of the NA/HUP facsimile; the North Branch's
 # disputed bank wash is on the BPL master, and the same nine chips are not the same
 # nine colours on the two sheets. This holds the master-side reading offline: the

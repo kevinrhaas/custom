@@ -141,6 +141,132 @@
       "passed": 67,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 256,
+      "takenAt": "2026-09-13T02:56:43.918Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "d3b0d3b36439",
+      "devCommit": "29cf712da203",
+      "treeHash": "sha256:9e815e20eb46a471",
+      "treeDirty": false,
+      "changelogHash": "sha256:917579045cd35c90",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.7,
+          3.2
+        ]
+      },
+      "source": "/tmp/s3_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 284,
+      "takenAt": "2026-09-13T02:44:54.266Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
+      "devCommit": "30e58d3ea729",
+      "treeHash": "sha256:2ef027c420eb5794",
+      "treeDirty": false,
+      "changelogHash": "sha256:f0569fd969a81c8d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.2,
+          4.7,
+          3.7
+        ]
+      },
+      "source": "/tmp/s2_d1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "11-13",
+      "parts": [
+        11,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 181,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 428,
+      "takenAt": "2026-09-13T02:44:54.175Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
+      "devCommit": "30e58d3ea729",
+      "treeHash": "sha256:2ef027c420eb5794",
+      "treeDirty": false,
+      "changelogHash": "sha256:f0569fd969a81c8d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.5,
+          4.8,
+          3.7
+        ]
+      },
+      "source": "/tmp/s2_m1113.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 278,
+      "takenAt": "2026-09-13T02:44:54.087Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
+      "devCommit": "30e58d3ea729",
+      "treeHash": "sha256:2ef027c420eb5794",
+      "treeDirty": false,
+      "changelogHash": "sha256:f0569fd969a81c8d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.5,
+          4.8,
+          3.7
+        ]
+      },
+      "source": "/tmp/s2_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 204,
       "takenAt": "2026-09-13T01:30:54.860Z",
       "ref": "steward/t-1095-west-division-numerals",

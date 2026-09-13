@@ -154,8 +154,7 @@ T-1063 — The Addition's river-front water lots recorded as a lot strip rather 
 T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
 T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
-T-1097 — The nine survey tracts as polygons: the two ambiguous swatches resolved by position, the land sales sorted onto the tracts, and a generator reading the layer
-T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
+T-1102 — The land sales sorted onto the survey tracts, and the generators reading the tract layer
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
 T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
