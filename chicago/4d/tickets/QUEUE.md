@@ -143,6 +143,7 @@ T-1021 — Seven Norris 1844 firms are read as people because the scanner set th
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
 T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
+T-1116 — The 1840 head crosswalk reads a military rank as a forename: Lieut. James Allen is indexed under the key 'lieut|allen', and five other tools in this repo already strip lieut as a rank
 T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 
@@ -307,4 +308,3 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- John Vale, Mark Noble against Mary Noble. No distance separates the first kind from the
 # --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
-

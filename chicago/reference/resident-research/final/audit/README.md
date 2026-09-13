@@ -31,7 +31,7 @@ Each line is *how many of the 1295 people carry at least one record of that kind
 | kinship | **14** | 1.1% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.9% | the household resolves a `lives_at` or a `works_at` |
 | voter / civic evidence | **301** | 23.2% | a poll book, tax list, muster roll, treaty payment or other public record |
-| census linkage | **47** | 3.6% | an 1840 census row bridged to this person |
+| census linkage | **48** | 3.7% | an 1840 census row bridged to this person |
 
 ## What each person rests on
 
@@ -53,7 +53,7 @@ record agree; two newspaper notices of the same name are
 | --- | ---: |
 | newspaper | 1070 |
 | civic | 301 |
-| census | 47 |
+| census | 48 |
 | church | 46 |
 | book | 255 |
 | directory | 225 |
@@ -320,7 +320,7 @@ defect in this export.
 
 | gap | people | what it means |
 | --- | ---: | --- |
-| no census linkage | 1248 | no 1840 census row is bridged to this person |
+| no census linkage | 1247 | no 1840 census row is bridged to this person |
 | no address | 1219 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1199 | the household carries division `unplaced`: in the town, on no lot |
 | rests on one source | 826 | one source id on the card and no second category to check it against |
