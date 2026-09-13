@@ -1,6 +1,171 @@
 {
-  "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
+  "note": "T-0216 \u2014 dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log \u2014 local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree \u2014 but read the stage number as dated rather than current.",
   "readings": [
+    {
+      "viewport": "desktop",
+      "stage": "10",
+      "parts": [
+        10
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 32,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 322,
+      "takenAt": "2026-09-13T01:04:35.190Z",
+      "ref": "steward/t-1091-adopt-m1-registration",
+      "commit": "d9321ea88086",
+      "devCommit": "99a86b257d78",
+      "treeHash": "sha256:8c3256eca787c5e7",
+      "treeDirty": false,
+      "changelogHash": "sha256:e23dbff10a0a78ca",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4,
+          3.8
+        ]
+      },
+      "source": "/tmp/smoke_d3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8,10",
+      "parts": [
+        8,
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 38,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: the suite body ran to completion \u2014 Error: page.evaluate: Target page, context or browser has been closed"
+      ],
+      "wallSeconds": 570,
+      "takenAt": "2026-09-13T00:59:07.572Z",
+      "ref": "steward/t-1091-adopt-m1-registration",
+      "commit": "d9321ea88086",
+      "devCommit": "99a86b257d78",
+      "treeHash": "sha256:8c3256eca787c5e7",
+      "treeDirty": false,
+      "changelogHash": "sha256:e23dbff10a0a78ca",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.4,
+          4,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d2.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 263,
+      "takenAt": "2026-09-13T00:49:19.140Z",
+      "ref": "steward/t-1091-adopt-m1-registration",
+      "commit": "d9321ea88086",
+      "devCommit": "99a86b257d78",
+      "treeHash": "sha256:8c3256eca787c5e7",
+      "treeDirty": false,
+      "changelogHash": "sha256:e23dbff10a0a78ca",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.5,
+          3.9,
+          3.2
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "10-12",
+      "parts": [
+        10,
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 103,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 440,
+      "takenAt": "2026-09-13T00:44:50.153Z",
+      "ref": "steward/t-1091-adopt-m1-registration",
+      "commit": "d9321ea88086",
+      "devCommit": "99a86b257d78",
+      "treeHash": "sha256:8c3256eca787c5e7",
+      "treeDirty": false,
+      "changelogHash": "sha256:e23dbff10a0a78ca",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.4,
+          3.9,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_m2.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "2,7-8",
+      "parts": [
+        2,
+        7,
+        8
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 106,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: walking speed is presented in miles per hour \u2014 speed label walk \u00b7 3.2 mph",
+        "mobile 390x780: raising the road-legibility aid reaches the render \u2014 set to 1, reads back 1: cell delta mean 0.24, worst 3 (need worst>=4, mean>=0.15)"
+      ],
+      "wallSeconds": 460,
+      "takenAt": "2026-09-13T00:37:25.417Z",
+      "ref": "steward/t-1091-adopt-m1-registration",
+      "commit": "d9321ea88086",
+      "devCommit": "99a86b257d78",
+      "treeHash": "sha256:8c3256eca787c5e7",
+      "treeDirty": false,
+      "changelogHash": "sha256:e23dbff10a0a78ca",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3,
+          3.3,
+          2.1
+        ]
+      },
+      "source": "/tmp/smoke_m1.log"
+    },
     {
       "viewport": "desktop",
       "stage": "8,10",
@@ -13,7 +178,7 @@
       "passed": 29,
       "failed": 1,
       "failures": [
-        "desktop 1280x800: the suite body ran to completion — Error: page.evaluate: Target page, context or browser has been closed"
+        "desktop 1280x800: the suite body ran to completion \u2014 Error: page.evaluate: Target page, context or browser has been closed"
       ],
       "wallSeconds": null,
       "takenAt": "2026-09-12T23:45:44.571Z",
@@ -48,8 +213,8 @@
       "passed": 106,
       "failed": 2,
       "failures": [
-        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph",
-        "mobile 390x780: raising the road-legibility aid reaches the render — set to 1, reads back 1: cell delta mean 0.24, worst 3 (need worst>=4, mean>=0.15)"
+        "mobile 390x780: walking speed is presented in miles per hour \u2014 speed label walk \u00b7 3.2 mph",
+        "mobile 390x780: raising the road-legibility aid reaches the render \u2014 set to 1, reads back 1: cell delta mean 0.24, worst 3 (need worst>=4, mean>=0.15)"
       ],
       "wallSeconds": 508,
       "takenAt": "2026-09-12T23:45:44.478Z",
@@ -134,6 +299,161 @@
         ]
       },
       "source": "/tmp/wm/smoke_m1012.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 275,
+      "takenAt": "2026-09-12T23:38:29.858Z",
+      "ref": "HEAD",
+      "commit": "4e2b9f48a5d2",
+      "devCommit": "b5c56c7559c7",
+      "treeHash": "sha256:dddc383519f6af1a",
+      "treeDirty": false,
+      "changelogHash": "sha256:83f90821d30fbde1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          3.1,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 147,
+      "takenAt": "2026-09-12T23:38:29.758Z",
+      "ref": "HEAD",
+      "commit": "4e2b9f48a5d2",
+      "devCommit": "b5c56c7559c7",
+      "treeHash": "sha256:dddc383519f6af1a",
+      "treeDirty": false,
+      "changelogHash": "sha256:83f90821d30fbde1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.5,
+          3.1,
+          1.9
+        ]
+      },
+      "source": "/tmp/smoke_m12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 253,
+      "takenAt": "2026-09-12T22:52:51.841Z",
+      "ref": "steward/t-0862-wright-nara-gate",
+      "commit": "e8c0c61c293b",
+      "devCommit": "b68cdf4f3776",
+      "treeHash": "sha256:267286eaa4063251",
+      "treeDirty": false,
+      "changelogHash": "sha256:d630aa04fa8f8bef",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.7,
+          3.5,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke-d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 147,
+      "takenAt": "2026-09-12T22:52:51.751Z",
+      "ref": "steward/t-0862-wright-nara-gate",
+      "commit": "e8c0c61c293b",
+      "devCommit": "b68cdf4f3776",
+      "treeHash": "sha256:267286eaa4063251",
+      "treeDirty": false,
+      "changelogHash": "sha256:d630aa04fa8f8bef",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.7,
+          3.5,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke-m12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 236,
+      "takenAt": "2026-09-12T22:50:43.364Z",
+      "ref": "steward/t-0878-wright-na-y-scale",
+      "commit": "c4b7a99dda03",
+      "devCommit": "dbe2a4a63fb5",
+      "treeHash": "sha256:f54f3e5582fe969b",
+      "treeDirty": false,
+      "changelogHash": "sha256:0092d8359a2d225f",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          3.2,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke_d12c.log"
     },
     {
       "viewport": "desktop",
@@ -336,7 +656,7 @@
       "passed": 16,
       "failed": 1,
       "failures": [
-        "mobile 390x780: raising the road-legibility aid reaches the render — set to 1, reads back 1: cell delta mean 0.24, worst 3 (need worst>=4, mean>=0.15)"
+        "mobile 390x780: raising the road-legibility aid reaches the render \u2014 set to 1, reads back 1: cell delta mean 0.24, worst 3 (need worst>=4, mean>=0.15)"
       ],
       "wallSeconds": 189,
       "takenAt": "2026-09-12T21:47:25.529Z",
@@ -593,7 +913,7 @@
       "passed": 30,
       "failed": 1,
       "failures": [
-        "desktop 1280x800: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+        "desktop 1280x800: walking speed is presented in miles per hour \u2014 speed label walk \u00b7 3.2 mph"
       ],
       "wallSeconds": 425,
       "takenAt": "2026-09-12T18:28:02.879Z",
@@ -694,7 +1014,7 @@
       "passed": 178,
       "failed": 1,
       "failures": [
-        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+        "mobile 390x780: walking speed is presented in miles per hour \u2014 speed label walk \u00b7 3.2 mph"
       ],
       "wallSeconds": 576,
       "takenAt": "2026-09-12T18:25:37.437Z",
@@ -795,7 +1115,7 @@
       "passed": 178,
       "failed": 1,
       "failures": [
-        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+        "mobile 390x780: walking speed is presented in miles per hour \u2014 speed label walk \u00b7 3.2 mph"
       ],
       "wallSeconds": 403,
       "takenAt": "2026-09-12T18:06:30.850Z",
@@ -1117,7 +1437,7 @@
       "passed": 30,
       "failed": 1,
       "failures": [
-        "desktop 1280x800: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+        "desktop 1280x800: walking speed is presented in miles per hour \u2014 speed label walk \u00b7 3.2 mph"
       ],
       "wallSeconds": 422,
       "takenAt": "2026-09-12T15:10:45.132Z",
@@ -1186,7 +1506,7 @@
       "passed": 178,
       "failed": 1,
       "failures": [
-        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
+        "mobile 390x780: walking speed is presented in miles per hour \u2014 speed label walk \u00b7 3.2 mph"
       ],
       "wallSeconds": 419,
       "takenAt": "2026-09-12T14:57:14.281Z",
@@ -1938,161 +2258,6 @@
         ]
       },
       "source": "/tmp/s_m5_8.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 275,
-      "takenAt": "2026-09-12T23:38:29.858Z",
-      "ref": "HEAD",
-      "commit": "4e2b9f48a5d2",
-      "devCommit": "b5c56c7559c7",
-      "treeHash": "sha256:dddc383519f6af1a",
-      "treeDirty": false,
-      "changelogHash": "sha256:83f90821d30fbde1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.5,
-          3.1,
-          1.9
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 147,
-      "takenAt": "2026-09-12T23:38:29.758Z",
-      "ref": "HEAD",
-      "commit": "4e2b9f48a5d2",
-      "devCommit": "b5c56c7559c7",
-      "treeHash": "sha256:dddc383519f6af1a",
-      "treeDirty": false,
-      "changelogHash": "sha256:83f90821d30fbde1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.5,
-          3.1,
-          1.9
-        ]
-      },
-      "source": "/tmp/smoke_m12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 253,
-      "takenAt": "2026-09-12T22:52:51.841Z",
-      "ref": "steward/t-0862-wright-nara-gate",
-      "commit": "e8c0c61c293b",
-      "devCommit": "b68cdf4f3776",
-      "treeHash": "sha256:267286eaa4063251",
-      "treeDirty": false,
-      "changelogHash": "sha256:d630aa04fa8f8bef",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.7,
-          3.5,
-          1.8
-        ]
-      },
-      "source": "/tmp/smoke-d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 147,
-      "takenAt": "2026-09-12T22:52:51.751Z",
-      "ref": "steward/t-0862-wright-nara-gate",
-      "commit": "e8c0c61c293b",
-      "devCommit": "b68cdf4f3776",
-      "treeHash": "sha256:267286eaa4063251",
-      "treeDirty": false,
-      "changelogHash": "sha256:d630aa04fa8f8bef",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.7,
-          3.5,
-          1.8
-        ]
-      },
-      "source": "/tmp/smoke-m12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 67,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 236,
-      "takenAt": "2026-09-12T22:50:43.364Z",
-      "ref": "steward/t-0878-wright-na-y-scale",
-      "commit": "c4b7a99dda03",
-      "devCommit": "dbe2a4a63fb5",
-      "treeHash": "sha256:f54f3e5582fe969b",
-      "treeDirty": false,
-      "changelogHash": "sha256:0092d8359a2d225f",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          3.2,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke_d12c.log"
     }
   ]
 }
