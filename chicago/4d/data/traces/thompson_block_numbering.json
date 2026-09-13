@@ -361,10 +361,11 @@
  ],
  "refused": [
   {
-   "scope": "the Washington-Madison tier (52-58), the West Division outside the two tiers read here (8-13, 22-27, 46-51), and 14-15 on the North Branch's west bank",
+   "scope": "blocks 14 and 15, on the Carroll-Fulton band east of the North Branch",
    "reason": "Wright numbers all fifty-eight blocks. This file now holds thirty-eight of them: the twenty-four of the T-0788 reading, the North Division's whole Kinzie-to-the-river tier read by T-1088 once that tier's street control was committed, and the Original Town's Washington-Madison tier read by T-1094 once Madison Street landed. The rest are refused for the same reason the method works where it does: a crop is CUT from committed street lines, and the grid still does not reach the West Division beyond Clinton or the North Branch's west bank. A numeral found by eye instead, on a sheet whose paper stretches 3.7% anisotropically, is a numeral placed by the reader rather than by the georeference — which is the mistake this file was rebuilt to stop making.",
-   "ticket": "T-1095",
-   "scope_note_2026_09_12": "NARROWED. The Washington-Madison tier is no longer refused: Madison Street landed with T-0877 and the tier's seven numerals — 52 53 54 55 56 57 58, rising eastward — are read in blocks_not_in_the_grid by tools/read_washington_madison_numerals.py. What is still refused, and still for the same reason, is the West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: no committed street line reaches either, so no crop can be cut there. That remainder is T-1095."
+   "ticket": "T-1099",
+   "scope_note_2026_09_12": "NARROWED. The Washington-Madison tier is no longer refused: Madison Street landed with T-0877 and the tier's seven numerals — 52 53 54 55 56 57 58, rising eastward — are read in blocks_not_in_the_grid by tools/read_washington_madison_numerals.py. What is still refused, and still for the same reason, is the West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: no committed street line reaches either, so no crop can be cut there. That remainder is T-1095.",
+   "scope_note_2026_09_13": "NARROWED AGAIN, and this is what is left. T-1095 read the West Division's eighteen - 8-13, 22-27 and 46-51 - by the same block-cut method, once it was shown that the division's flanking control could be cut from committed lines: `clinton` and `canal` outright, the six tier lines continued west along their own bearings past the clip at east -320 m, and Jefferson and Des Plaines as `clinton` stepped one and two modules west. Fifty-six of the fifty-eight blocks are now read. What is still refused is 14 and 15: the Carroll-Fulton band continues east of the North Branch past this file's 13, and no committed street line reaches that ground - the North Division's own streets (`market_north` and its neighbours) stop at north +108 to +126 m, a hundred metres south of the band, and nothing carries Carroll or Fulton across the water. Found by T-1095 and owned by T-1099."
   },
   {
    "scope": "block 30",
@@ -384,7 +385,7 @@
   }
  ],
  "blocks_not_in_the_grid": {
-  "_doc": "Numerals read on ground the generated grid has no id for, so they cannot be stamped onto a block without inventing one. They are kept here so the reading is not lost and so the next person to widen the grid finds the number already waiting. Nothing reads this section. T-1088 adds the North Division's whole Kinzie-to-the-river tier — seven numerals, 7 6 5 4 3 2 1 west to east — for this reason and no other: the tier's street control is committed and attested, so every crop below is cut from it by tools/read_north_division_numerals.py and re-cut by the gate, but tools/generate_plat_lots.py emits only the three South Division tiers, so there is no cell for the numbers to be stamped onto. Widen the generator and these seven are waiting. T-1094 adds the Original Town's southernmost tier — Washington Street to Madison Street, seven numerals, 52 53 54 55 56 57 58 rising eastward — on the same terms and with one stated weakness: Washington and Madison are committed across the whole tier, but the seven flanking north-south lines stop at y = -400 m and are CONTINUED SOUTH along their own bearing to cut the boxes. That continuation is a computation from committed endpoints and is not written into data/streets/1835.json, because a line this project has no control for should not be published as one. generate_plat_lots.py emits nothing south of Washington either, so these seven wait for a cell beside the North Division's.",
+  "_doc": "Numerals read on ground the generated grid has no id for, so they cannot be stamped onto a block without inventing one. They are kept here so the reading is not lost and so the next person to widen the grid finds the number already waiting. Nothing reads this section. T-1088 adds the North Division's whole Kinzie-to-the-river tier — seven numerals, 7 6 5 4 3 2 1 west to east — for this reason and no other: the tier's street control is committed and attested, so every crop below is cut from it by tools/read_north_division_numerals.py and re-cut by the gate, but tools/generate_plat_lots.py emits only the three South Division tiers, so there is no cell for the numbers to be stamped onto. Widen the generator and these seven are waiting. T-1094 adds the Original Town's southernmost tier — Washington Street to Madison Street, seven numerals, 52 53 54 55 56 57 58 rising eastward — on the same terms and with one stated weakness: Washington and Madison are committed across the whole tier, but the seven flanking north-south lines stop at y = -400 m and are CONTINUED SOUTH along their own bearing to cut the boxes. That continuation is a computation from committed endpoints and is not written into data/streets/1835.json, because a line this project has no control for should not be published as one. generate_plat_lots.py emits nothing south of Washington either, so these seven wait for a cell beside the North Division's. T-1095 adds the West Division's eighteen - 8 9 10 11 12 13, 22 23 24 25 26 27 and 46 47 48 49 50 51 - on the same terms and with its own stated weakness: `clinton` and `canal` are committed and carry four of the boxes outright, the tier lines are committed but clipped at east -320 m and are continued WEST along their own bearings, and the two flanks Jefferson Street and Des Plaines Street would give are instead `clinton` stepped one and two modules west, because both streets are refused in docs/RESEARCH/west_division_streets.md section 2 for standing wholly west of the modelled ground. That step is corroborated three ways - it reproduces the committed `canal` to 0.46 m at Lake Street and 2.34 m at the scene's south edge, and lands 8.7 m and 8.2 m west of the two surviving intersections T-0446 committed in `fulton`'s note - and nothing is written into data/streets/1835.json by it. tools/read_west_division_numerals.py cuts every box and the gate re-cuts them, and it also asserts the boustrophedon ACROSS the blocks other tickets already read: 26 27 joins T-0788's 28 29 rising eastward, 47 46 joins its 45 44 43 falling eastward, and 48 49 50 51 runs on into T-1094's 52. generate_plat_lots.py emits nothing west of the river, so these eighteen wait for a cell with the other fourteen.",
   "readings": [
    {
     "where": "Canal Street to West Water Street, Randolph to Washington — the West Division block on the west bank of the South Branch",
@@ -745,6 +746,456 @@
      "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/2490,2451,72,73/full/0/default.jpg"
     },
     "note": "The 8 is the double loop, drawn closed both above and below. The block is the tier's eastern end: State Street closes the crop and the box is the widest of the seven because the Dearborn-State module is."
+   },
+   {
+    "where": "Des Plaines Street to Jefferson Street, Kinzie Street to Carroll Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "des_plaines",
+     "east": "jefferson",
+     "north": "kinzie",
+     "south": "carroll",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 10,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "659,1432,178,176",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/659,1432,178,176/full/0/default.jpg",
+     "read_at": "751,1456,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/751,1456,86,74/full/0/default.jpg"
+    },
+    "note": "The westernmost block this file reads in the Kinzie-Carroll band, and the tier's highest number: the run falls eastward from here. The 0 carries the diagonal stroke through the bowl that Wright uses to keep it apart from an O."
+   },
+   {
+    "where": "Jefferson Street to Clinton Street, Kinzie Street to Carroll Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "jefferson",
+     "east": "clinton",
+     "north": "kinzie",
+     "south": "carroll",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 9,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "836,1437,177,175",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/836,1437,177,175/full/0/default.jpg",
+     "read_at": "919,1467,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/919,1467,86,74/full/0/default.jpg"
+    },
+    "note": "Between Jefferson and Clinton in the Kinzie-Carroll band. A single digit with the long descending tail Wright gives every 9 on this sheet; the vertical `St.` of Jefferson Street stands in the corridor at the box's west edge and is the street's own label, not a numeral."
+   },
+   {
+    "where": "Clinton Street to Canal Street, Kinzie Street to Carroll Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "clinton",
+     "east": "canal",
+     "north": "kinzie",
+     "south": "carroll",
+     "note": "Both flanks are committed lines in data/streets/1835.json, continued north or south along the bearing of their own committed path where the tier lies past an end. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 8,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1012,1442,164,174",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1012,1442,164,174/full/0/default.jpg",
+     "read_at": "1087,1467,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1087,1467,86,74/full/0/default.jpg"
+    },
+    "note": "The first West Division numeral of the Kinzie-Carroll band, and the one that closes the tier the North Division's 1-7 begin: read west to east the whole band is 10 9 8 | the North Branch | 7 6 5 4 3 2 1, a single run falling eastward across the water. The glyph is Wright's two-loop 8, the upper loop the smaller, written across the block's mid-line between the two lot rows."
+   },
+   {
+    "where": "Des Plaines Street to Jefferson Street, Carroll Street to Fulton Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "des_plaines",
+     "east": "jefferson",
+     "north": "carroll",
+     "south": "fulton",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 11,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "662,1605,178,176",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/662,1605,178,176/full/0/default.jpg",
+     "read_at": "754,1620,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/754,1620,86,74/full/0/default.jpg"
+    },
+    "note": "The Carroll-Fulton band reverses the band above it, and 11 is where that reversal starts: 10 9 8 falling eastward above, 11 12 13 rising eastward here. Two upright strokes, each with the small foot-serif Wright gives a 1."
+   },
+   {
+    "where": "Jefferson Street to Clinton Street, Carroll Street to Fulton Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "jefferson",
+     "east": "clinton",
+     "north": "carroll",
+     "south": "fulton",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 12,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "839,1610,177,175",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/839,1610,177,175/full/0/default.jpg",
+     "read_at": "930,1629,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/930,1629,86,74/full/0/default.jpg"
+    },
+    "note": "Between Jefferson and Clinton in the Carroll-Fulton band. The second glyph is a 2 and not a 7: it closes on a flat base stroke where this sheet's 7s (block 47 two bands south) run on into an unterminated diagonal."
+   },
+   {
+    "where": "Clinton Street to Canal Street, Carroll Street to Fulton Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "clinton",
+     "east": "canal",
+     "north": "carroll",
+     "south": "fulton",
+     "note": "Both flanks are committed lines in data/streets/1835.json, continued north or south along the bearing of their own committed path where the tier lies past an end. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 13,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1015,1614,170,175",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1015,1614,170,175/full/0/default.jpg",
+     "read_at": "1099,1629,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1099,1629,86,74/full/0/default.jpg"
+    },
+    "note": "The Carroll-Fulton band's easternmost block inside the division, flanked by the committed `clinton` and `canal`. The 3 is the closed-bowl form, the same Wright writes in block 53 across the river."
+   },
+   {
+    "where": "Des Plaines Street to Jefferson Street, Fulton Street to Lake Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "des_plaines",
+     "east": "jefferson",
+     "north": "fulton",
+     "south": "lake",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 25,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "665,1778,178,167",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/665,1778,178,167/full/0/default.jpg",
+     "read_at": "729,1816,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/729,1816,86,74/full/0/default.jpg"
+    },
+    "note": "The westernmost block of the Fulton-Lake band. The 5 carries the flagged top and deep bowl Wright gives every 5 on this sheet, the same form T-1094 reads in blocks 55 and 56."
+   },
+   {
+    "where": "Jefferson Street to Clinton Street, Fulton Street to Lake Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "jefferson",
+     "east": "clinton",
+     "north": "fulton",
+     "south": "lake",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 24,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "842,1783,178,167",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/842,1783,178,167/full/0/default.jpg",
+     "read_at": "909,1826,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/909,1826,86,74/full/0/default.jpg"
+    },
+    "note": "Between Jefferson and Clinton in the Fulton-Lake band. The 4 is the open-topped form with the crossbar carried past the upright, which is how it is told from the 4 of block 44 across the river in the Randolph-Washington band, drawn closed."
+   },
+   {
+    "where": "Clinton Street to Canal Street, Fulton Street to Lake Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "clinton",
+     "east": "canal",
+     "north": "fulton",
+     "south": "lake",
+     "note": "Both flanks are committed lines in data/streets/1835.json, continued north or south along the bearing of their own committed path where the tier lies past an end. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 23,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1019,1787,175,168",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1019,1787,175,168/full/0/default.jpg",
+     "read_at": "1080,1830,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1080,1830,86,74/full/0/default.jpg"
+    },
+    "note": "Between Clinton and Canal in the Fulton-Lake band, both flanks committed. The 3 closes its lower bowl into a loop, as in block 13 two bands north."
+   },
+   {
+    "where": "Canal Street to the South Branch, Fulton Street to Lake Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "canal",
+     "east": null,
+     "north": "fulton",
+     "south": "lake",
+     "note": "The east flank is the South Branch and not a street, so the box is cut one module (123.36 m) east of Canal Street, the same rule block 52 takes at the river in T-1094 and block 7 in T-1088. The west flank is the committed `canal`, continued along its own bearing where the tier lies past an end."
+    },
+    "number": 22,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1193,1791,178,169",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1193,1791,178,169/full/0/default.jpg",
+     "read_at": "1215,1859,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1215,1859,86,74/full/0/default.jpg"
+    },
+    "note": "The triangular block the fork leaves between Canal Street and the South Branch - the one block of the eighteen whose shape the plat itself decides rather than the grid. Its east side is the water, so the box is cut a module east of Canal and is wider than the block; the numeral sits low and west in it, clear of the bank. Two 2s of the same open-tailed form, and the easternmost number of the Fulton-Lake band, which falls westward from here: 22 23 24 25."
+   },
+   {
+    "where": "Des Plaines Street to Jefferson Street, Lake Street to Randolph Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "des_plaines",
+     "east": "jefferson",
+     "north": "lake",
+     "south": "randolph",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 26,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "669,1943,177,200",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/669,1943,177,200/full/0/default.jpg",
+     "read_at": "738,2000,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/738,2000,86,74/full/0/default.jpg"
+    },
+    "note": "The Lake-Randolph band rises eastward, and this file's 26 27 joins T-0788's 28 29 in the same band without a break - the strongest single check on the reading here, because 28 and 29 were read from a different ticket's crops. The 6 has the small closed bowl and high entry stroke of Wright's 6."
+   },
+   {
+    "where": "Jefferson Street to Clinton Street, Lake Street to Randolph Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "jefferson",
+     "east": "clinton",
+     "north": "lake",
+     "south": "randolph",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 27,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "845,1948,178,199",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/845,1948,178,199/full/0/default.jpg",
+     "read_at": "922,2009,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/922,2009,86,74/full/0/default.jpg"
+    },
+    "note": "Between Jefferson and Clinton in the Lake-Randolph band. The box also carries this block's lot numerals down its eastern column - 2 3 6 7 10 reading down the west row - and the block numeral is written over them at twice their size, which is how the two are told apart throughout this reading."
+   },
+   {
+    "where": "Des Plaines Street to Jefferson Street, Randolph Street to Washington Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "des_plaines",
+     "east": "jefferson",
+     "north": "randolph",
+     "south": "washington",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 47,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "672,2141,178,188",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/672,2141,178,188/full/0/default.jpg",
+     "read_at": "749,2199,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/749,2199,86,74/full/0/default.jpg"
+    },
+    "note": "The westernmost block of the Randolph-Washington band. The 7 runs on into an unterminated diagonal with no base stroke - the form that separates a 7 from the 2 of block 12 in the same hand."
+   },
+   {
+    "where": "Jefferson Street to Clinton Street, Randolph Street to Washington Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "jefferson",
+     "east": "clinton",
+     "north": "randolph",
+     "south": "washington",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 46,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "849,2145,178,189",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/849,2145,178,189/full/0/default.jpg",
+     "read_at": "921,2203,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/921,2203,86,74/full/0/default.jpg"
+    },
+    "note": "The Randolph-Washington band falls westward: T-0788 read 43 44 45 east of here and this file continues 46 47 west of them, one run. The 4 is the closed form and the 6 the small-bowled one; a full stop follows the number, as it does after 46 on the sheet and nowhere else in this band."
+   },
+   {
+    "where": "Des Plaines Street to Jefferson Street, Washington Street to Madison Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "des_plaines",
+     "east": "jefferson",
+     "north": "washington",
+     "south": "madison",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 48,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "676,2327,178,210",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/676,2327,178,210/full/0/default.jpg",
+     "read_at": "763,2430,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/763,2430,86,74/full/0/default.jpg"
+    },
+    "note": "The Washington-Madison band reverses again and rises eastward, 48 49 50 51, and runs on into T-1094's 52 at the South Branch without a break. The numeral sits low in the box because Madison Street closes the band 149 m below Washington here, a shorter tier than the four above it."
+   },
+   {
+    "where": "Jefferson Street to Clinton Street, Washington Street to Madison Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "jefferson",
+     "east": "clinton",
+     "north": "washington",
+     "south": "madison",
+     "note": "Jefferson Street and Des Plaines Street are REFUSED as streets - both lie wholly west of the modelled ground's west edge at east -320 m, and docs/RESEARCH/west_division_streets.md section 2 refuses them there - so this flank is `clinton` stepped west by one module (Jefferson) or two (Des Plaines), the module being the 123.36 m the Original Town's seven flanking lines measure at Madison Street. Nothing is written into data/streets/1835.json by that step. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 49,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "852,2332,178,209",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/852,2332,178,209/full/0/default.jpg",
+     "read_at": "929,2435,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/929,2435,86,74/full/0/default.jpg"
+    },
+    "note": "Between Jefferson and Clinton in the Washington-Madison band. The 9's descending tail is the same as block 9's eleven bands north, in the same hand and the same size."
+   },
+   {
+    "where": "Clinton Street to Canal Street, Washington Street to Madison Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "clinton",
+     "east": "canal",
+     "north": "washington",
+     "south": "madison",
+     "note": "Both flanks are committed lines in data/streets/1835.json, continued north or south along the bearing of their own committed path where the tier lies past an end. tools/read_west_division_numerals.py states the rule and the gate re-cuts every box from it."
+    },
+    "number": 50,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1029,2337,182,207",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1029,2337,182,207/full/0/default.jpg",
+     "read_at": "1091,2430,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1091,2430,86,74/full/0/default.jpg"
+    },
+    "note": "Between Clinton and Canal in the Washington-Madison band, both flanks committed. A blue ink stain from the sheet's colour wash crosses the 5's bowl; the glyph is legible through it and the 0 carries the same diagonal stroke as block 10's."
+   },
+   {
+    "where": "Canal Street to the South Branch, Washington Street to Madison Street",
+    "tier": "west_division_original_town",
+    "bounded_by": {
+     "west": "canal",
+     "east": null,
+     "north": "washington",
+     "south": "madison",
+     "note": "The east flank is the South Branch and not a street, so the box is cut one module (123.36 m) east of Canal Street, the same rule block 52 takes at the river in T-1094 and block 7 in T-1088. The west flank is the committed `canal`, continued along its own bearing where the tier lies past an end."
+    },
+    "number": 51,
+    "numeral_on_sheet": true,
+    "confidence": "inferred",
+    "sources": [
+     "wright_1834"
+    ],
+    "crop": {
+     "iiif_region": "1210,2342,178,206",
+     "zoom": "6x",
+     "url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1210,2342,178,206/full/0/default.jpg",
+     "read_at": "1262,2435,86,74",
+     "read_at_url": "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:js957744g/1262,2435,86,74/full/0/default.jpg"
+    },
+    "note": "The Washington-Madison band's easternmost block inside the division, against the South Branch, so its east side is the water and the box is cut a module east of Canal. The block is a wedge - the bank closes on Canal Street going south - and the numeral stands in its wide northern end. East of it the band continues into T-1094's 52 across the river."
    }
   ]
  }

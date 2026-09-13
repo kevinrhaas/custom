@@ -313,6 +313,22 @@ step "the Washington-Madison numeral crops re-cut from the committed street line
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_washington_madison_numerals.py --self-test
 
+# THE WEST DIVISION'S EIGHTEEN BLOCK NUMERALS (T-1098, out of T-1095), the last eighteen
+# of the fifty-eight and the ones that had no control at all. Four boxes are flanked by
+# two committed lines; the six tier lines are committed but clipped at east -320 m and are
+# continued WEST along their own bearings; and the two flanks Jefferson and Des Plaines
+# would give are `clinton` stepped one and two modules west, because both streets are
+# REFUSED for standing wholly west of the modelled ground. The gate re-cuts every box,
+# checks every read window still lies inside the box it is cited under, re-measures the
+# three agreements that licence the step, and asserts the boustrophedon ACROSS the blocks
+# other tickets already read — so a numeral misread here breaks against T-0788's 28 29 and
+# T-1094's 52 rather than quietly standing alone.
+step "the West Division numeral crops re-cut from the committed street lines" \
+  python3 tools/read_west_division_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_west_division_numerals.py --self-test
+
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
 # beside them, through the same NA affine, and re-derives the module and the Kinzie
