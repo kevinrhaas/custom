@@ -1,7 +1,7 @@
 ---
 id: T-0421
 title: Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 12:54:37 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34741297404
 ---
 
 Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them.
