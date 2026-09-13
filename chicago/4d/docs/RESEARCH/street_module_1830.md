@@ -550,3 +550,75 @@ then 3.17 m along the street's own bearing to restore the 5.486 m platted alley 
 station is #974's and is unchanged in substance; #975's is not taken, and its own placement
 would have put this facade 6.24 m from the `attested` `kinzie` centreline — 5.95 m inside
 the platted corridor of a street that genuinely carries the module.
+
+## 12. What the queued Canal/Kinzie correction costs the platted corridor — and it is a cycle path
+
+**T-0421, 2026-09-13.** § 3 above names the two coordinates for Kinzie × Canal and settles
+which subset of the crossing is right. It does not say what the unapplied correction *costs*,
+and by 2026-08-29 that had turned into an open question about Canal Street itself.
+
+T-0009 derived every street's platted corridor from its committed control that day, per the
+owner's ruling. `plat_corridors.control_offsets()` reported Canal as **the one street with
+more than one control point that does not agree with itself**:
+
+| control point | offset from Canal's drawn centreline |
+|---|---|
+| `lake_canal` | +0.00 m |
+| `randolph_canal` | +0.09 m |
+| `kinzie_canal` | **−2.24 m** |
+
+A spread of **2.33 m**, verdict `disagree`, so the corridor stays on the drawn line — the
+honest answer, because no rigid translation satisfies three points and re-drawing the line is
+what the ruling forbids. T-0421 was filed to ask whether the platted block grid on that reach
+is also offset, in which case the lots and every roof on them move.
+
+**It is not, and the question dissolves.** Substitute the road-only reading of the same
+junction — the three shared nodes of the five, the ones that are West Kinzie Street × North
+Canal Street rather than the Kinzie Street Bikeway crossing Canal — and run the identical
+computation against the identical committed lines:
+
+| control point | as committed | on the road-only reading |
+|---|---|---|
+| `lake_canal` | +0.00 m | +0.00 m |
+| `randolph_canal` | +0.09 m | +0.09 m |
+| `kinzie_canal` | −2.24 m | **+0.01 m** |
+| **spread** | **2.33 m** | **0.09 m** |
+
+**The 2.33 m is the bikeway inside the control's own average. It was never Canal Street
+disagreeing with itself** — the drawn line reproduces all three of its control points to
+**9 cm**, which is a quarter of the width of the pen that drew it and 190 times inside the
+17.5 m coordinate residual that brackets where it is placed. The `canal` record in
+`data/streets/1835.json` has said in words since it was drawn that its line "uses the
+road-only Kinzie control already adopted by the North Branch bridge rather than the queued
+five-node bikeway-inclusive GCP"; this is the arithmetic of that sentence.
+
+### Both readings stand, and each file now says the other exists
+
+The ticket asked for the control to be said in one place rather than two. It is one place —
+and the answer is that the two coordinates are answers to two different questions, so both
+stay, each with its reason committed beside it:
+
+* **`control.kinzie_canal.utm_e/utm_n` stays the five-node mean.** It *is* georeferencing
+  GCP HB. Re-deriving it re-runs the Hathaway cross-check fit and re-bakes the North Branch
+  bridge, whose span is a mesh parameter measured off the traced 1834 banks (§ 3). That cost
+  has been written down since 2026-08-10 and is unchanged.
+* **The road-only mean is now committed as data**, at
+  `data/traces/street_control.json` § `control.kinzie_canal.road_only_reading` — its three
+  node ids, E 446891.71, N 4637657.80, how it was derived, and the two committed placements
+  that stand on it. Until this ticket it lived only in prose, in three separate paragraphs,
+  while two placements depended on it and nothing could re-derive either.
+* **The `canal` street record names that field**, and the field names the street record and
+  the bridge record back.
+
+### Nothing moves, and a gate keeps it that way
+
+`tools/measure_canal_control_spread.py --check` runs in `tools/check.sh` and re-derives all
+of it every commit: both spreads, all six per-point offsets, and the **2.93 m** the North
+Branch bridge declares as `centreline.control_variance_m` — which is exactly the northing
+between `kinzie_canal` and its own `road_only_reading`, and was until now two prose numbers
+that happened to agree.
+
+The verdict is `disagree` **on both readings**, because 0.09 m is still wider than the 0.01 m
+`plat_corridors.QUOTED_M` quotes offsets to. So Canal's corridor sits where it sat, the lot
+grid is untouched, and no roof moves. What changed is the size of the unknown: from 2.33 m,
+which is a question about a street, to 0.09 m, which is not.
