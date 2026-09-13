@@ -1,7 +1,7 @@
 ---
 id: T-0871
 title: The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: steward
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-06
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 2:05:49 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34776448081
 ---
 
 `tools/rebuild_resident_index.py` is the single owner of `data/residents/index.json`
