@@ -117,9 +117,44 @@ fronting one can. So the tool deals every costed reading out in full, in
 
 | reading | seated | against the reading in force | still refused | where the difference lands |
 |---|---|---|---|---|
-| lot front only | 19 | −10 | 40 | — |
-| a corner side is a face — **in force** | **29** | — | 30 | Dearborn +6, La Salle +3, Canal +1 |
-| a corner side **or the band** is a face | 29 | 0 | 30 | nothing further |
+| lot front only | 30 | −10 | 31 | — |
+| a corner side is a face — **in force** | **40** | — | 21 | Dearborn +6, La Salle +3, Canal +1 |
+| a corner side **or the band** is a face | 40 | 0 | 21 | nothing further |
+
+The absolute counts move as the register and the roofs do — they were 19 / 29 / 29 when the
+ruling was made and are 30 / 40 / 40 today — and the table is re-derived on every rebuild,
+so read the shape rather than the numbers: **the widening is worth ten shops and the band is
+worth none**, and it has been all three times it has been dealt.
+
+#### One roof, one business is counted TOWN-WIDE, not once per face (T-0422)
+
+Under the narrow reading a roof reached exactly one face, so "spent on this street" and
+"spent" were the same sentence. **The corner-side widening separated them**, and the ledger
+that keeps them separate is the one this pass keeps: `allocate()` holds a single town-wide
+set of spent roofs, and a corner building dealt to a La Salle advertisement is no longer
+free to the South Water one whose platted lot it actually is.
+
+It is not a hypothetical care. Every roof a corner-side reading adds to a face **already
+fronts another street by its lot** — that is what a corner is — and dealt under the older
+per-face ledger the widening today seats *forty-one* businesses on *thirty-nine* roofs:
+
+- `recon_1835_blk_south_water_lasalle_d1_08` — James Grant, by La Salle's corner side, into
+  the building Rockwell's cabinet furniture warehouse already holds by its South Water lot;
+- `recon_1835_blk_south_water_lasalle_d2_09` — the unnamed *New Store, La Salle street*,
+  into Samuel Lewis's.
+
+So the per-face ledger prices the widening at **+11**, and eleven is wrong: the eleventh
+shop is a second shopfront on a building that already has one. The reading in force spends
+each roof once and prices it at **+10**.
+
+**The counterfactuals are gated, because they are the numbers a ruling is made on.**
+`reading.costed_readings` carries `would_seat_on_distinct_roofs`, `deals_a_roof_twice` and —
+derived on every rebuild, so the difference stays measured rather than argued —
+`per_face_ledger_would_seat` and `per_face_ledger_would_deal_twice`. `limits()` fails the
+gate if a costed row's seat count ever runs ahead of the roofs it dealt, and `--self-test`
+both breaks that gate to show it fires and deals all three readings under both ledgers to
+show it is not vacuous. A wrong price on a decision the owner has not yet made would
+otherwise never fail anything, because it is never adopted.
 
 **The +12 measured when the question was asked is +10 once it is applied, and the
 difference is a refusal the measurement could not see.** Refusal 5 refuses a roof
