@@ -1177,3 +1177,56 @@ is what a page image can overturn, and Norris's scan is the cleanest of the thre
 stand at 113 across the three volumes and are no longer the biggest thing on the table. No
 successor ticket is filed: `tickets/README.md` puts the succession on the run that CLOSES the
 programme. This ticket stays open and is its own cursor.
+
+---
+
+---
+
+## Added on the way past by T-1035 (2026-09-12): the initial rule the FIRM route now states does not reach the PERSON route, and cannot
+
+T-1035 asked how much initial agreement a one-surname join needs when both sides print
+more than one initial, and answered it for `date_norris_1844_businesses.py`'s firm route:
+CONTAINMENT. One side's printed initials must all be printed by the other. `{W}` against
+`{W, H}` is one man printed two ways and is admitted; `{W, H}` against `{R, E, W}` meets
+on W, and agreeing on one of three is not agreeing, so it is refused. That is landed.
+
+T-1035 carried a note asking the same rule be tested against the PERSON pair T-1034's
+cohort C1 found — `foster_amos`, an Amos Foster off one line of the 1833 poll list,
+carrying `Foster, A. H. (Jennings & F.)` from Fergus 1843 and Norris 1844. **The test was
+run, and the rule does not refuse it.** The person route's forename test is
+`tools/name_agreement.py`'s `agrees()`, and it weighs only the FIRST word of each reading:
+`is_full_forename('A. H.')` is false, so the pair returns `(True, "initial")` before any
+initial past the first is looked at. Transplanting containment changes nothing — the
+1835 side prints the full forename *Amos*, which yields the single initial `A`, and
+`{A} ⊆ {A, H}` is exactly the abbreviation case containment is written to ADMIT.
+
+**So the shapes are different and the fix is not the same fix.** The firm pair is two
+initial RUNS that each print one the other lacks. The Foster pair is a full forename on
+one side against an initial run on the other, where the middle initial is simply never
+weighed — and it cannot be weighed by name arithmetic alone, because an Amos H. Foster is
+a perfectly possible man. What actually stands against this join is EVIDENCE, not a name
+rule: no Amos Foster is printed in Fergus 1839, Fergus 1843, Norris 1844 or the newspaper
+run at all, while A. H. Foster boards the American Temperance House in two volumes and is
+a partner in Jennings & Foster.
+
+**Re-measured against stretch 9, 2026-09-13**, because stretch 9 landed on `dev` after the
+paragraphs above were written and it added the middle-initial clause they say does not
+exist. `further_initials_disagree` / `middle_initial_refusal` now compare every initial
+BOTH readings set, position by position — so the sentence "the middle initial is simply
+never weighed" is no longer true of the module in general. It is still true of THIS pair,
+and for the reason stretch 9 states itself: only initials both readings set are compared,
+and `tokens('Amos')` is `['Amos']`, so the pair sets no second initial at all.
+`further_initials_disagree('Amos', 'A. H.')` returns `(False, '')` — a silence, not a
+disagreement — and `middle_initial_refusal` files nothing. The clause fires the moment the
+1835 side prints one: `Amos V` against `A. H.` refuses on `initial 2 disagrees: V against
+H`. So stretch 9 narrowed the shape this note describes without closing it, and the fold
+stands.
+
+It belongs here because this ticket owns the directories' ties and refusals, and because
+`agrees()` is imported by all six crosswalks — a change to it is a stretch of this
+ticket's work, not a one-line repair. The stretch that takes it should decide whether an
+initial run printed against a full forename, with nothing past the first initial on the
+1835 side, may carry a SPEND at all, or only a tie filed for adjudication — which is the
+one shape stretch 9's clause is written to leave alone. T-1034 cohort C1 has already
+refused FOSTER AMOS for its own purposes (25 register rows, $468) after stripping the
+fold, so nothing is bleeding while this waits.

@@ -1,7 +1,7 @@
 ---
 id: T-1035
 title: The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1137
+claimed_by: run 9/11/2026, 9:48:30 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-12T03:05:42.888Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34668395014
 ---
 
 The 1843 continuity route joins 'W. H. Adams & Co' to 'R. E. W. Adams, homoeopathic physician' on one shared initial out of three.
@@ -72,3 +72,41 @@ route instead of the firm route, and whatever rule this ticket states should be 
 this pair too. The cost is already visible: the fold made a one-reading card look like a
 three-domain one, which is the kind of thickness a land-sale ruling reads as corroboration.
 T-1034's cohort C1 refused FOSTER AMOS after stripping it (25 register rows, $468).
+
+---
+
+## Closed by PR #1137 (2026-09-12) — the rule, and what it moved
+
+**THE RULE STATED.** The initials are held as a SET, not in the order printed, so the
+strongest thing the join can ask of them is CONTAINMENT: one side's initials must all be
+printed by the other. A side printing FEWER is no evidence against the identity — one man
+is printed with different numbers of initials from volume to volume, so `{W}` against
+`{W, H}` is admitted. A side printing a DIFFERENT one while the other prints one it lacks
+is two different men, and no amount of overlap redeems it. The rule prose in the
+docstring is the same string the JSON publishes as `continuity_rule`, so the file states
+its own rule where a reader of the output will find it.
+
+**MEASURED, before → after (dev at a9d9d4618):**
+
+    firms_also_printed_in_fergus_1843      163 → 163   unchanged
+    fergus entry links across all firms    202 → 199
+    continuity / ambiguous / refused       2 / 2 / 8   unchanged
+
+The count does not move, and that is the honest result: `Adams, W. H. & Co` IS in Fergus
+1843, through its own exact printing `f1843_e0029`. What was wrong was the entry LIST hung
+off it. Three links fall, and they are the only three the new clause touches:
+
+    Adams, W. H. & Co    f1843_e0029, f1843_e0130  →  f1843_e0029
+    W. H. Adams & Co.    f1843_e0029, f1843_e0130  →  f1843_e0029
+    R. E. W. Adams       f1843_e0029, f1843_e0130  →  f1843_e0130
+
+The eight exact pairings T-1020 opened all stand; three of them are now self-test cases,
+beside the Adams pair and beside `{W} ⊆ {W, H}`. CONTINUITY is untouched — no 1835 Adams
+stands against either firm, so no record moves and no grade changes.
+
+**THE PERSON PAIR WAS TESTED AND THE RULE DOES NOT REACH IT.** `foster_amos` /
+`Foster, A. H.` is a different shape — a full forename against an initial run, where
+`name_agreement.agrees()` weighs only the first word and containment would ADMIT the pair
+anyway (`{A} ⊆ {A, H}` is the abbreviation case). The finding and its reasoning are filed
+on **T-0987**, which owns the directories' ties and refusals and whose stretches are what
+can afford to change `agrees()` across all six crosswalks.

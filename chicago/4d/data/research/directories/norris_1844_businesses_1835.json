@@ -6,7 +6,7 @@
  "scene_date": "1835-07-01",
  "the_question": "and it is a dating question, not a matching one:\nof the firms Norris's 1844 volume prints, which ones does some printing put in the\ntown of 1 July 1835? Under the ratified ladder an 1844 listing alone never puts a\nbusiness in the 1835 town, so a firm reaches this scene only if a DATE reaches it,\nand the ticket names the three printings that could carry one — the Historical\nSketch, the firm's own advertising card, and Fergus's 1843 directory. This walks\nall three over every firm the volume prints and writes down what each one reached.",
  "the_three_routes": "SKETCH. The 65 town findings read out of Norris's own Historical Sketch and\n  Statistical Account (T-0567) carry a `describes_date`. A finding dated at or\n  before 1835 whose PRINTED QUOTE names every significant word of a firm's name is\n  a candidate dating; the reader's `normalized` gloss is deliberately NOT searched,\n  because it is this project's prose and finding this project's own words in it\n  would date nothing.\n  OWN CARD. A card in the Advertising Directory (T-0568) may print its own\n  founding — \"established 18xx\", \"since 18xx\", \"commenced business in 18xx\". The\n  card's `dated_statement`, and a scan of the card's printed text for founding\n  language beside a year, are both taken.\n  FERGUS 1843. Fergus's 1843 directory (T-0571) is a year nearer the scene and its\n  business entries are advertisements too. A Fergus entry matched to the firm and\n  carrying founding language beside a year at or before 1835 is a dating; a Fergus\n  entry with no such year is PRESENCE IN 1843 and is not one. Being in print in\n  1843 is not being in business in 1835, and this file never treats it as though\n  it were.",
- "continuity_rule": "A firm the 1835\nnewspapers already carry — the 206 businesses of `gazetteer.json` — and Norris\nstill prints in 1844 is corroborated as having survived nine years. That is\nCONTINUITY: it confirms a business the town already holds and it adds none, it\ncarries no founding date, and it moves no grade. It is recorded here because the\nowner's ask was to validate and confirm as well as to add, and because a reader\nwho finds Newberry & Dole in both volumes should be able to see that this project\nnoticed. The rule is the standing one, adapted from names to firm styles:\n  A firm printing and an 1835 business agree when the SET of surnames printed in\n  the firm style is equal on both sides, and no given-name initial printed on both\n  sides for a shared surname contradicts. A ONE-surname firm additionally REQUIRES\n  an initial printed on both sides and agreeing — \"B. Jones & Co.\" against a town\n  that holds a Jones is the eleven-Smiths refusal, however good it looks. Where a\n  firm meets more than one 1835 business on that rule the match is AMBIGUOUS and\n  is filed as such, not resolved.",
+ "continuity_rule": "A firm the 1835\nnewspapers already carry — the 206 businesses of `gazetteer.json` — and Norris\nstill prints in 1844 is corroborated as having survived nine years. That is\nCONTINUITY: it confirms a business the town already holds and it adds none, it\ncarries no founding date, and it moves no grade. It is recorded here because the\nowner's ask was to validate and confirm as well as to add, and because a reader\nwho finds Newberry & Dole in both volumes should be able to see that this project\nnoticed. The rule is the standing one, adapted from names to firm styles:\n  A firm printing and an 1835 business agree when the SET of surnames printed in\n  the firm style is equal on both sides, and the given-name initials printed for a\n  shared surname AGREE AS FAR AS BOTH SIDES GO. A ONE-surname firm additionally\n  REQUIRES an initial printed on both sides and agreeing — \"B. Jones & Co.\" against\n  a town that holds a Jones is the eleven-Smiths refusal, however good it looks.\n  Where a firm meets more than one 1835 business on that rule the match is\n  AMBIGUOUS and is filed as such, not resolved.\n\n  AS FAR AS BOTH SIDES GO means one side's initials must be CONTAINED IN the\n  other's, and it is the whole of what this rule can say about initials it holds as\n  a set rather than in the order printed. One man is printed with different NUMBERS\n  of initials from year to year — 'W. Adams' in one volume and 'W. H. Adams' in the\n  next — so a side printing FEWER is no evidence against him, and {W} against\n  {W, H} is admitted. But an initial printed on one side and absent from the other\n  WHILE THAT OTHER prints one this side lacks is two different men, and no amount of\n  overlap redeems it: {W, H} against {R, E, W} meets on W and is REFUSED. That pair\n  is real and is why this clause is written (T-1035) — Norris's boot and shoe firm\n  'Adams, W. H. & Co' was counted present in Fergus's 1843 directory through\n  'R. E. W. ADAMS, homoeopathic physician', on one shared initial out of three,\n  because the rule asked only whether ANY initial agreed and never how many did not.",
  "counts": {
   "firm_printings_read": 246,
   "firms_read": 231,
@@ -399,11 +399,6 @@
       "claim": "f1843_e0029",
       "founding_year_printed": null,
       "quote": "W. H. ADAMS & CO., manufacturers and wholesale and retail dealers in boots, shoes, leather, findings, etc.,\n138 Lake Street, Chicago, Ill."
-     },
-     {
-      "claim": "f1843_e0130",
-      "founding_year_printed": null,
-      "quote": "R. E. W. ADAMS, homoeopathic physician, office corner of Clark and Lake streets; residence, Clark Street, opposite\nthe public square."
      }
     ],
     "present_in_1843": true,
@@ -6247,11 +6242,6 @@
    "fergus_1843": {
     "entries": [
      {
-      "claim": "f1843_e0029",
-      "founding_year_printed": null,
-      "quote": "W. H. ADAMS & CO., manufacturers and wholesale and retail dealers in boots, shoes, leather, findings, etc.,\n138 Lake Street, Chicago, Ill."
-     },
-     {
       "claim": "f1843_e0130",
       "founding_year_printed": null,
       "quote": "R. E. W. ADAMS, homoeopathic physician, office corner of Clark and Lake streets; residence, Clark Street, opposite\nthe public square."
@@ -7509,11 +7499,6 @@
       "claim": "f1843_e0029",
       "founding_year_printed": null,
       "quote": "W. H. ADAMS & CO., manufacturers and wholesale and retail dealers in boots, shoes, leather, findings, etc.,\n138 Lake Street, Chicago, Ill."
-     },
-     {
-      "claim": "f1843_e0130",
-      "founding_year_printed": null,
-      "quote": "R. E. W. ADAMS, homoeopathic physician, office corner of Clark and Lake streets; residence, Clark Street, opposite\nthe public square."
      }
     ],
     "present_in_1843": true,
