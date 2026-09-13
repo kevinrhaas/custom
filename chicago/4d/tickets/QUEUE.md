@@ -169,7 +169,6 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- ==========================================================================
 T-0435 — 30 of the 47 cat-and-clay stacks stand against an eave wall, and both the archetype and the fabric argument say gable
 T-0436 — The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
-T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
 T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
 T-0277 — The mid and forb rings' outer edges are re-priced for a density handover, now the reach statistic is honest
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
