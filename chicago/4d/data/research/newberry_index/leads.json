@@ -9,7 +9,7 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "5bb6644768732ae0da1d0eb0b6f37bbdf5b98f1f169e101a19d9166fdc10406b",
+    "fingerprint": "6fe10f477601a14f73326e0273c8ad341626dc3abdfddc279a347ef51ea052a1",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
@@ -3403,7 +3403,7 @@
         },
         {
           "id": "bowen_erastus_selden",
-          "name": "Erastus Selden Bowen",
+          "name": "Erastus Bowen",
           "rule": "exact surname"
         }
       ],
@@ -3580,7 +3580,7 @@
         },
         {
           "id": "bowen_erastus_selden",
-          "name": "Erastus Selden Bowen",
+          "name": "Erastus Bowen",
           "rule": "OCR variant (0.89 similarity to 'bowen')"
         },
         {
@@ -3705,7 +3705,7 @@
         },
         {
           "id": "bowen_erastus_selden",
-          "name": "Erastus Selden Bowen",
+          "name": "Erastus Bowen",
           "rule": "OCR variant (0.91 similarity to 'bowen')"
         }
       ],
