@@ -51,9 +51,10 @@ every other. So the clause is recorded and binds nothing that is drawn.
 
 Section 18 binds *"within the limits of the Corporation"*, and until T-0436 this file
 said that section 22 of the same sitting walks those limits. **IT DOES NOT.** Section 22
-draws the hay-stacking boundary, which is a DIFFERENT and narrower line and is T-0334's;
-reading it as the corporate limits is a mistake this docstring made and this paragraph
-retracts. The corporation's limits are the ones the Trustees walked on 7 November 1833
+draws the hay-stacking boundary, which is a DIFFERENT and narrower line and is T-0334's
+— committed since that ticket landed, at `data/reconstruction/1835_hay_limits.json`, and
+199 acres against this boundary's 532. Reading section 22 as the corporate limits is a
+mistake this docstring made and this paragraph retracts. The corporation's limits are the ones the Trustees walked on 7 November 1833
 and printed three weeks later in the first number of the Chicago Democrat
 (`chicago_democrat_1833_11_26#c024`, tier 1) — and since T-0436 they are committed, at
 `data/reconstruction/1835_corporation_limits.json`, resolved by

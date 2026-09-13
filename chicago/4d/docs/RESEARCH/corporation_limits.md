@@ -71,8 +71,9 @@ gate had been holding the fort to a town by-law that did not reach the fort.
 The same run retracts a mistake in that gate's own docstring. It said section 22 of the
 ordinance of 5 August 1835 "walks those limits street by street". **It does not** —
 section 22 draws the hay-stacking boundary, which is a different and narrower line, and
-is T-0334's. Section 22 is sometimes read as describing the corporate limits and it does
-not describe them.
+is T-0334's — landed while this ran, at `data/reconstruction/1835_hay_limits.json`, and
+199 acres against this boundary's 532. Section 22 is sometimes read as describing the
+corporate limits and it does not describe them.
 
 ## What is still open
 
