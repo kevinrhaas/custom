@@ -152,7 +152,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
 T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
-T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
 T-1102 — The land sales sorted onto the survey tracts, and the generators reading the tract layer
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
