@@ -59,20 +59,20 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6817,
+  "identities": 6814,
   "by_grade": {
    "None": 45,
-   "not_1835_resident": 4462,
+   "not_1835_resident": 4459,
    "inferred": 1943,
    "attested": 367
   },
   "by_subtype": {
-   "None": 5104,
+   "None": 5101,
    "projected_resident": 1713
   },
   "by_rule": {
    "G5": 45,
-   "G0": 4462,
+   "G0": 4459,
    "G3": 1712,
    "G1b": 294,
    "G2b": 37,
@@ -874,8 +874,7 @@
   {"identity":"id_brown_stephen","name":"Stephen Brown","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-Q1:14"],"evidence_classes":["census_1840"]},
   {"identity":"id_brown_thomas","name":"Thomas Brown","canonical_person_id":null,"rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-9MX:21","directories:f1843_e0464","directories:f1843_e0465","directories:n1844_e0223","newspapers:person_thomas_brown"],"evidence_classes":["census_1840","directory_1843","directory_1844","newspaper_letter_list"]},
   {"identity":"id_brown_william","name":"William Brown","canonical_person_id":null,"rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["census_1840:33SQ-GYYJ-992:24","directories:f1843_e0466","directories:f1843_e0467","directories:n1844_e0224","directories:n1844_e0225","old_settlers:fdn0068","newspapers:person_brown_william","census_1840:33SQ-GYYJ-RJ:18"],"evidence_classes":["census_1840","death_notice","directory_1843","directory_1844","newspaper_letter_list"]},
-  {"identity":"id_brown_william_h","name":"William H Brown","canonical_person_id":"brown_william_h","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:n1844_e0226","newspapers:person_wm_h_brown","newspapers:person_w_h_brown"],"evidence_classes":["directory_1844","newspaper_1833_1835","town_layer"]},
-  {"identity":"id_brown_william_hubbard","name":"William Hubbard Brown","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0468"],"evidence_classes":["directory_1843"]},
+  {"identity":"id_brown_william_h","name":"William H Brown","canonical_person_id":"brown_william_h","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["directories:n1844_e0226","newspapers:person_wm_h_brown","newspapers:person_w_h_brown","directories:f1843_e0468"],"evidence_classes":["directory_1843","directory_1844","newspaper_1833_1835","town_layer"]},
   {"identity":"id_brown_william_joseph","name":"William Joseph Brown","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_018_3"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_brown_zadoc","name":"Zadoc Brown","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_zadoc_brown"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_browne_charles_evarts","name":"Charles Evarts Browne","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0469"],"evidence_classes":["directory_1843"]},
@@ -3032,8 +3031,8 @@
   {"identity":"id_hoffman_michael","name":"Michael Hoffman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1292","directories:n1844_e0866"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_hogan_charles_l_p","name":"Charles L P Hogan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1293","directories:n1844_e0867"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_hogan_john","name":"John Hogan","canonical_person_id":"hogan_john","rule":"G2c","grade":"inferred","resident_subtype":null,"evidence":["church:st_cyr_death_03_1"],"evidence_classes":["church_1833_1835","town_layer"]},
-  {"identity":"id_hogan_john_s_c","name":"John S C Hogan","canonical_person_id":"hogan_john_s_c","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1833_015","civic:tax_1833_045","civic:poll_1834_054","civic:blackhawk_1832_036","directories:n1844_e0868","newspapers:person_hogan_john_s_c","newspapers:person_john_s_c_hogan","newspapers:person_hogan_j_s_c","newspapers:person_j_s_c_hogan"],"evidence_classes":["directory_1844","muster_1832","newspaper_1833_1835","newspaper_letter_list","poll_1833","poll_1834","tax_1833","town_layer"]},
-  {"identity":"id_hogan_john_stephen_coates","name":"John Stephen Coates Hogan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1294","old_settlers:fdn0301"],"evidence_classes":["death_notice","directory_1843"]},
+  {"identity":"id_hogan_john_s_c","name":"John S C Hogan","canonical_person_id":"hogan_john_s_c","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1833_015","civic:tax_1833_045","civic:poll_1834_054","civic:blackhawk_1832_036","directories:n1844_e0868","newspapers:person_hogan_john_s_c","newspapers:person_john_s_c_hogan","newspapers:person_hogan_j_s_c","newspapers:person_j_s_c_hogan","directories:f1843_e1294"],"evidence_classes":["directory_1843","directory_1844","muster_1832","newspaper_1833_1835","newspaper_letter_list","poll_1833","poll_1834","tax_1833","town_layer"]},
+  {"identity":"id_hogan_john_stephen_coates","name":"John Stephen Coates Hogan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0301"],"evidence_classes":["death_notice"]},
   {"identity":"id_hogan_joseph","name":"Joseph Hogan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0869"],"evidence_classes":["directory_1844"]},
   {"identity":"id_hogan_mary","name":"Mary Hogan","canonical_person_id":"hogan_mary","rule":"G2c","grade":"inferred","resident_subtype":null,"evidence":["church:st_cyr_marriage_007_2"],"evidence_classes":["church_1833_1835","town_layer"]},
   {"identity":"id_hogan_michael","name":"Michael Hogan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e1295","directories:n1844_e0870"],"evidence_classes":["directory_1843","directory_1844"]},
@@ -6163,8 +6162,7 @@
   {"identity":"id_taylor_w_l","name":"W L Taylor","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_w_il_l_iam_taylor"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_taylor_w_w","name":"W W Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-PC:3"],"evidence_classes":["census_1840"]},
   {"identity":"id_taylor_william","name":"William Taylor","canonical_person_id":"taylor_william","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_william_taylor","newspapers:person_wm_taylor"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
-  {"identity":"id_taylor_william_h","name":"William H Taylor","canonical_person_id":"taylor_william_h","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_taylor_wm_h","newspapers:person_wm_h_taylor"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
-  {"identity":"id_taylor_william_hartt","name":"William Hartt Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2423"],"evidence_classes":["directory_1843"]},
+  {"identity":"id_taylor_william_h","name":"William H Taylor","canonical_person_id":"taylor_william_h","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_taylor_wm_h","newspapers:person_wm_h_taylor","directories:f1843_e2423"],"evidence_classes":["directory_1843","newspaper_1833_1835","town_layer"]},
   {"identity":"id_taylor_win_h","name":"Win H Taylor","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e1758"],"evidence_classes":["directory_1844"]},
   {"identity":"id_tcal_thom_s","name":"Thom S Tcal","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_me_tcal_f_thom_a_s"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_teal_william","name":"William Teal","canonical_person_id":"teal_william","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_william_teal"],"evidence_classes":["newspaper_letter_list","town_layer"]},
@@ -6862,8 +6860,7 @@
   {"identity":"id_wright_james","name":"James Wright","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0749"],"evidence_classes":["death_notice"]},
   {"identity":"id_wright_john","name":"John Wright","canonical_person_id":"wright_john","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["civic:poll_1833_030","civic:tax_1833_114","census_1840:33SQ-GYYJ-93G:17","old_settlers:fdn0750","newspapers:person_john_wright","newspapers:person_wright_john"],"evidence_classes":["census_1840","death_notice","newspaper_1833_1835","poll_1833","tax_1833","town_layer"]},
   {"identity":"id_wright_john_d","name":"John D Wright","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_wright_john_d"],"evidence_classes":["newspaper_letter_list"]},
-  {"identity":"id_wright_john_s","name":"John S Wright","canonical_person_id":"wright_john_s","rule":"G5","grade":null,"resident_subtype":null,"evidence":[],"evidence_classes":["town_layer"]},
-  {"identity":"id_wright_john_stephen","name":"John Stephen Wright","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2675"],"evidence_classes":["directory_1843"]},
+  {"identity":"id_wright_john_s","name":"John S Wright","canonical_person_id":"wright_john_s","rule":"G5","grade":null,"resident_subtype":null,"evidence":["directories:f1843_e2675"],"evidence_classes":["directory_1843","town_layer"]},
   {"identity":"id_wright_p_r","name":"P R Wright","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2677","directories:n1844_e1940"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_wright_robert_c","name":"Robert C Wright","canonical_person_id":"wright_robert_c","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["old_settlers:fdn0752","civic:poll_1835_085"],"evidence_classes":["death_notice","poll_1835","town_layer"]},
   {"identity":"id_wright_samuel","name":"Samuel Wright","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_samuel_wright"],"evidence_classes":["newspaper_letter_list"]},
@@ -7065,6 +7062,6 @@
   {"identity":"id_vasseur_noel","kind":"downgrade","rule":"G3","person_id":"vasseur_noel","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":"projected_resident"}},
   {"identity":"id_walters_william","kind":"abstention","rule":"G5","person_id":"walters_william","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]},
   {"identity":"id_woodworth_james_h","kind":"downgrade","rule":"G2e","person_id":"woodworth_james_h","why":"the ladder proposes a lower grade than the card carries; the card was graded on evidence this consolidation may not read, so the disagreement is listed rather than resolved","from":{"grade":"attested","resident_subtype":null},"to":{"grade":"inferred","resident_subtype":null}},
-  {"identity":"id_wright_john_s","kind":"abstention","rule":"G5","person_id":"wright_john_s","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["town_layer"]}
+  {"identity":"id_wright_john_s","kind":"abstention","rule":"G5","person_id":"wright_john_s","why":"the town carries this person and every appearance this consolidation can see describes a date after the scene year; their card rests on sources outside these domains, so the ladder does not rule","evidence_classes":["directory_1843","town_layer"]}
  ]
 }

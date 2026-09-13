@@ -5,11 +5,11 @@
  "unspent_ceiling": {
   "civic": 16,
   "census_1830": 0,
-  "census_1840": 284,
+  "census_1840": 85,
   "church": 505,
   "books": 222,
-  "directories": 7315,
-  "newberry_index": 4914,
+  "directories": 7279,
+  "newberry_index": 4219,
   "land_sales": 868,
   "old_settlers": 460
  },
@@ -23,8 +23,8 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 812,
-   "spent": 819
+   "read": 1080,
+   "spent": 995
   },
   "church": {
    "read": 1743,
@@ -36,11 +36,11 @@
   },
   "directories": {
    "read": 8258,
-   "spent": 943
+   "spent": 979
   },
   "newberry_index": {
-   "read": 7005,
-   "spent": 2091
+   "read": 6658,
+   "spent": 2439
   },
   "land_sales": {
    "read": 1572,
@@ -638,7 +638,7 @@
  "unwritten_ceiling": {
   "census_1840": 0,
   "civic": 0,
-  "directories": 1,
+  "directories": 0,
   "land_sales": 0,
   "old_settlers": 0,
   "church": 0

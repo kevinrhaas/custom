@@ -8,14 +8,14 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 58,
-  "printed_as_a_residence": 46,
+  "addresses_adjudicated": 57,
+  "printed_as_a_residence": 45,
   "printed_as_a_lodging": 12,
   "placed": 12,
   "placed_as_a_face": 12,
   "placed_with_no_1835_trade": 8,
   "already_better_placed": 0,
-  "refused": 46,
+  "refused": 45,
   "faces_reached": [
    "Clark Street",
    "Lake Street",
@@ -382,28 +382,6 @@
    "placement": "face"
   },
   {
-   "household_id": "hh_elston_daniel",
-   "person_id": "elston_daniel",
-   "person": "Daniel Elston",
-   "address_as_printed": "res North Branch",
-   "address_read_as_the_home": null,
-   "kind": "resides",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "soap_and_candle_maker",
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "refused",
-   "clause": "R4",
-   "reason": "The North Branch is the river, not a platted street.",
-   "street_id": null,
-   "face": null,
-   "placement": null
-  },
-  {
    "household_id": "hh_fitzgerald_thos",
    "person_id": "fitzgerald_thos",
    "person": "Thos. Fitzgerald",
@@ -668,6 +646,28 @@
    "placement": null
   },
   {
+   "household_id": "hh_jackson_samuel",
+   "person_id": "jackson_samuel",
+   "person": "Samuel Jackson",
+   "address_as_printed": "res Fort Dearborn",
+   "address_read_as_the_home": null,
+   "kind": "resides",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names Fort Dearborn — the fort at the river mouth — and not Dearborn Street, which runs south from the river three blocks west of it. The fort IS 1835 ground and the town holds it, but this policy's unit is a street face and a reservation is not one, so the address is refused here rather than resolved onto the wrong grammar.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
    "household_id": "hh_johnson_sanford",
    "person_id": "johnson_sanford",
    "person": "Sanford Johnson",
@@ -693,13 +693,13 @@
    "household_id": "hh_johnson_seth",
    "person_id": "johnson_seth",
    "person": "Seth Johnson",
-   "address_as_printed": "house cor Washington and Lasalle sts",
+   "address_as_printed": "res s.-w. cor Washington and LaSalle",
    "address_read_as_the_home": null,
    "kind": "resides",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": null,
    "trade_not_required": true,
@@ -1061,28 +1061,6 @@
    "reason": "Monroe Street is south of Madison, outside the platted town of 1835.",
    "street_id": null,
    "face": null,
-   "placement": null
-  },
-  {
-   "household_id": "hh_rue_john_c",
-   "person_id": "rue_john_c",
-   "person": "John C Rue",
-   "address_as_printed": "h Clark, b Madison and Monroe",
-   "address_read_as_the_home": null,
-   "kind": "resides",
-   "describes_date": 1844,
-   "read_back_years": 9,
-   "sources": [
-    "norris_directory_1844"
-   ],
-   "occupation_1835": null,
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "refused",
-   "clause": "R4",
-   "reason": "The face resolves — Clark Street is 1835's — but the entry sets the house against a second street the town does not have: Madison Street bounds the 1830 plat on the south and the modelled town stops at it; the 1835 street layer carries no Madison. Taking the face and dropping the qualifier would put the home somewhere the address does not say it was.",
-   "street_id": "clark",
-   "face": "Clark Street",
    "placement": null
   },
   {
