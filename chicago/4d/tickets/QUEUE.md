@@ -302,4 +302,3 @@ T-1073 — dev's check.sh is red: moving the lighthouse onto Wright's glyph move
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-
