@@ -1,7 +1,7 @@
 ---
 id: T-1022
 title: PLACE matches an upper-case one-letter initial as the 'h' of 'house', so 'at H. Norton & Co.' reads as an address in 294 entries
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1272
 claimed_by: run 9/13/2026, 3:03:53 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T20:29:19.179Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34779431849
 ---
 
