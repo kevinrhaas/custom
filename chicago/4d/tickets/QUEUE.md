@@ -170,7 +170,6 @@ T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json un
 # --- One ticket per epoch, in his own order: the shared south terrain first, then 1812, then
 # --- the 1880s. Nothing here touches the 1835 town; it stands below every band that does.
 
-T-1107 — The two fort crops in the 2026-08-11 set are almost certainly Kurz & Allison panels 1 and 5: measure the join and fill fort_dearborn_apron's empty sources
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
