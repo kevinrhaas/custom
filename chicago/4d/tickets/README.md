@@ -123,11 +123,36 @@ window the claim lock above closes, and it is why `inflight` now also shows
 node tools/ticket.mjs inflight
 ```
 
-It maps every remote branch back to the ticket whose number it carries, and separates
-**live** (pushed within three hours, on an unfinished ticket — a run lasts about one) from
-**cold** (a finished ticket, or a branch older than any run could be). It also lists
-claims sitting in the merged files with no branch behind them, which is the shape of a
-run that claimed and died.
+It maps every remote branch back to the ticket whose number it carries, and gives each
+one of three readings:
+
+- **live** — pushed within three hours, on an unfinished ticket. A run lasts about one.
+- **held** — older than that, and the ticket's CLAIM LOCK still stands on the remote.
+- **cold** — a finished ticket, or an unclaimed branch older than any run could be.
+
+It also lists claims sitting in the merged files with no branch behind them, which is the
+shape of a run that claimed and died.
+
+**Why `held` exists** (T-0852). Age was the whole answer until 2026-09-13, and a run that
+claims, pushes, and then READS sources for four hours fell out of the hot list at three —
+into a heading that called it finished or litter when it was neither, at exactly the moment
+duplicating it was most expensive. Cohort 14 (T-0509) was read twice on 2026-09-05 by two
+runs that could not see each other; the two ledgers disagreed on 36 of the 76 people and
+T-0816 had to adjudicate every one of them.
+
+**Why it takes the lock and not just the ticket file.** `claimed` in the merged files is
+necessary and not sufficient: T-0987 is worked one stretch per run and sits `claimed` on
+`dev` permanently by design, so trusting the file alone reported all seven of its
+long-merged branches as in flight. The claim lock is taken in the same breath as the claim
+and released by `ticket.mjs done`, so it lives for exactly as long as the run does — and
+`inflight` already reads every remote head, so asking costs nothing.
+
+**And `held` is not `live`, deliberately.** A run that dies between its merge and `done`
+leaves the ticket `claimed` with the lock still standing, which looks identical from here.
+So a held branch is printed under IN FLIGHT with its age and a line saying it is either a
+long read or a dead run, and that the PR list decides which — never as settled work. Both
+readings are held by `tools/test_ticket_inflight.mjs` against a constructed branch list:
+age alone fails the fault, the ticket file alone fails T-0987 and T-0429.
 
 **What it deliberately does not claim:** whether a branch's work LANDED. Everything here
 squash-merges, so a merged branch's head never becomes an ancestor of `dev` and
