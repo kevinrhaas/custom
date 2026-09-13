@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The two missing block numbers belong to somebody else\u2019s plat', kind: 'change', ts: '',
+  { v: 836, title: 'The two missing block numbers belong to somebody else\u2019s plat', kind: 'change', ts: '2026-09-13T14:35:48.940Z', date: 'Sep 13, 2026, 9:35 AM CT',
     items: [
       'Kinzie\u2019s Addition is the ground north of the river that John Kinzie\u2019s heirs laid out and sold off, and the 1834 sheet draws a block number in every cell of it. A reading here last week counted fifty-one figures over fifty-two cells, with the run\u2019s first two \u2014 1 and 2 \u2014 standing on no cell at all. They sit west of the Addition\u2019s own boundary, on ground the sheet letters to another survey, and the reading would not count them onto a cell it could not name.',
       'They are named now: blocks 2 and 1 of the Original Town\u2019s North Division, Clark Street to Dearborn and Dearborn to Wolcott, between Kinzie Street and the river \u2014 the same two figures another reading took off a different scan of a different plat, arrived at from the other direction. Nothing was typed in to make it fit. The boxes are cut from street lines this project already holds, in metres, and carried onto the sheet by the registration it already holds; move one of those streets and both boxes move with it.',
