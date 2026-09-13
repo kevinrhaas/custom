@@ -102,7 +102,120 @@
   {
    "scope": "blocks 1 and 2",
    "reason": "NOT FOUND, AND NOT COUNTED IN. The run puts them west of block 3 in the river tier, beyond the Addition's west boundary rule, and the ground there is the Original Town's north division: two eight-lot blocks carrying their own bold 1 and 2 across their mid-lines at NA x 2610-2930, y 2140-2320, on a plat this file is not reading. Nothing inside the Addition's boundary carries either figure. Putting them on those two blocks would be reading one plat's numbers onto another's ground to make a run close, and putting them on no cell at all is the honest half of the same reading.",
-   "what_would_settle_it": "The recorded plat of Kinzie's Addition itself (Cook County, surveyed 1833), or a Democrat notice selling a lot in block 1 or block 2 of the Addition with a street named beside it. T-1063 owns the river tier and the water lots and is where the next look belongs."
+   "identified_2026_09_13": {
+    "figures": [
+     {
+      "number": 2,
+      "plat": "thompson_plat_1830",
+      "tier": "north_division_kinzie_to_the_river",
+      "bounded_by": "Clark Street to Dearborn Street, Kinzie Street to the river",
+      "box_in_na_pixel_space": [
+       2582.8,
+       2141.3,
+       2758.5,
+       2344.9
+      ],
+      "read_independently_by": "T-1088, off the BPL scan, at data/traces/thompson_block_numbering.json § blocks_not_in_the_grid"
+     },
+     {
+      "number": 1,
+      "plat": "thompson_plat_1830",
+      "tier": "north_division_kinzie_to_the_river",
+      "bounded_by": "Dearborn Street to Wolcott Street, Kinzie Street to the river",
+      "box_in_na_pixel_space": [
+       2758.9,
+       2148.1,
+       2941.0,
+       2351.2
+      ],
+      "read_independently_by": "T-1088, off the BPL scan, at data/traces/thompson_block_numbering.json § blocks_not_in_the_grid"
+     }
+    ],
+    "union_in_na_pixel_space": [
+     2582.8,
+     2141.3,
+     2941.0,
+     2351.2
+    ],
+    "the_span_t_1061_refused": [
+     2610.0,
+     2140.0,
+     2930.0,
+     2320.0
+    ],
+    "why_these_keys_do_not_end_in_px": "tools/adjudicate_wright_na_fit.py harvests every `*_px` key in this trace as a reading made ON this sheet, and measures how far a change of registration would move it. These boxes are not that. They start at committed street lines in metres and arrive here through the scan-to-scan affine, never through the NA sheet's own fit, so adopting a different fit would not move them at all and counting them would make that table say something false.",
+    "derivation": "data/streets/1835.json -> tools/read_north_division_numerals.py § boxes() -> tools/wright_px.py (BPL pixels) -> this file's gcps § scan_to_scan (NA pixels). Every step is committed and the gate re-runs all of them."
+   },
+   "identified_note": "T-1103. The two figures are NAMED, and the refusal is unchanged by it: they are the Original Town's North Division blocks 2 and 1, Clark to Dearborn and Dearborn to Wolcott, between Kinzie Street and the river. The boxes above are cut from committed street lines and carried onto this sheet, and they land on the span T-1061 refused. Two things follow. FIRST, the two series are independent rather than one series broken across a boundary: Thompson's North Division prints 7 6 5 4 3 2 1 west to east in this tier and the Addition prints 3 4 5 6 7 west to east in its own, so 3 to 7 are written twice on this sheet, on two plats, and neither run continues the other. SECOND, the figures are not even where the westward extrapolation asks for them: it wants two cells in the Addition's river tier at y 2009-2133 and these stand a tier lower, because Kinzie Street is south of Michigan Street and only the Original Town plats that ground. Neither the Addition's west boundary rule nor the legend's tract colouring is impeached by them — they were never the Addition's to begin with.",
+   "the_documentary_test": {
+    "corpus": "data/research/newspapers/extracted/",
+    "question": "which claims that name Kinzie's Addition also name a numbered parcel in it, and does any of them name a block",
+    "method": "Every claim's `normalized` transcription with its restoration brackets stripped, matched for the Addition's name in the spellings the paper actually prints (Kinzie's / Kinsie's / Kinzio's, Addition / addition), then for `Water Lot No. N` and `Block No. N` in the same claim. Re-run by the gate, so a notice added to the corpus reopens this.",
+    "claims_naming_the_addition": 13,
+    "parcels_named_with_it": [
+     {
+      "parcel": "water lot 12",
+      "claim": "chicago_democrat_1834_02_04 c010"
+     },
+     {
+      "parcel": "water lot 12",
+      "claim": "chicago_democrat_1834_02_11 c008"
+     },
+     {
+      "parcel": "water lot 11",
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "parcel": "water lot 12",
+      "claim": "chicago_democrat_1834_09_10 c004"
+     }
+    ],
+    "block_numbers_in_the_same_claim": [
+     {
+      "block": 48,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 72,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 80,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 81,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 96,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 79,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 71,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 67,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 22,
+      "claim": "chicago_democrat_1834_04_16 c005"
+     },
+     {
+      "block": 5,
+      "claim": "chicago_democrat_1834_09_10 c004"
+     }
+    ],
+    "finding": "EVERY parcel the corpus names in Kinzie's Addition is a WATER LOT — No. 11 in the Breed v. Hale attachment, and No. 12 in Hiram Pearsons's stolen-timber notice, its reprint a week later, and his sale notice that September. Not one claim in the run names a block OF the Addition. The block numbers listed above stand in the same claim as the Addition's name and belong elsewhere on both counts: nine of them are the attachment's own parcels, which that notice puts in section 16 in so many words, and the tenth is Pearsons's 'Lots 2, 7 and 8 in block 5', printed after his water lot with no plat named — the same advertiser is offering school-section lots in the next advertisement. Block 5 is left ambiguous here rather than annexed: an unattributed block 5 is not evidence about blocks 1 and 2 either way. The state's town-lot register cannot help and is not cited as if it could: Kinzie's Addition is private ground and every parcel in data/research/land_sales/ is coded CHIOT, CHIOTV, CHIV or CHI."
+   },
+   "ruling_2026_09_13": "THE ADDITION'S OWN NUMBERING, AS THIS SHEET DRAWS IT, BEGINS AT 3, and blocks 1 and 2 stay refused rather than placed. The sheet carries fifty-two cells inside the Addition's boundary and they hold 3 to 54 with nothing missing; the ground west of the boundary that the run points at belongs to the Original Town and is now named; the water lots cannot be the remainder, because T-1063 read the river front as one continuous 1-35 lot strip; and the corpus names no block of the Addition at all. This is a reading of a drawing and of a corpus read to exhaustion, NOT a reading of the recorded plat, which this project does not hold — so it is stated here and no cell is created for it, and nothing in § blocks changes.",
+   "what_would_settle_it": "The recorded plat of Kinzie's Addition itself (Cook County, surveyed 1833), which is the only record that can say what the surveyor numbered rather than what the draughtsman drew. The newspaper half of this test is spent: § the_documentary_test is re-run by the gate, so a Democrat issue added to the corpus that names a block of the Addition will reopen it by failing this file."
   }
  ],
  "blocks": [
