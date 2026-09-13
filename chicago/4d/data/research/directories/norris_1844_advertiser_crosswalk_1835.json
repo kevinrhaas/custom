@@ -10,19 +10,27 @@
   "premises": "The 1835 layer records a premises as a structure id and the directories print a later street address, or a person to board with. They are not comparable, so what the test measures is which rival the town has already placed on the ground — and preferring the better-documented record is how a reconstruction invents a fact.",
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
+ "whole_name_rule": ". A printed forename and a reading of 1835 are THE SAME NAME when\nthey set the SAME NUMBER of words and agree word by word — each pair either\nletter for letter, or one of them the single initial the other begins with.\nWhere exactly ONE candidate is the same name in that sense, the page names\nthat one and no other. Where none is, or more than one is, nothing happens\nand the tie stands with the reason filed.",
+ "wife_rule": "— the second clause, and it is R6 arriving where it\nwas always true. `tools/consolidate_resident_evidence.py` holds `Mrs Rufus\nBrown` apart from `Rufus Brown` (R6, T-0723) because the honorific strip leaves\nthe husband's forename tokens on both readings and folds a wife onto him. The\ncrosswalks strip titles the same way and had no such rule, so the town layer's\ntwo people met `Brown, Rufus B., warehouseman` together and were filed as a\nCONTEST — a man contesting a printed line with his own wife. Where one\ncandidate of 1835 carries a female honorific, its forename tokens are exactly\nthose of another candidate carried WITHOUT one, and the printed entry sets no\nfemale honorific of its own, the entry is the husband's and she is not named by\nit. The proof is the same proof R6 asks for and it is in the contest itself:\nthe town layer prints both readings, which is what put them here together.",
  "counts": {
   "cards": 158,
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
   "residents_considered": 1293,
-  "matched_one_card": 18,
+  "matched_one_card": 19,
   "matched_more_than_one_ambiguous": 3,
-  "one_printed_proprietor_contested_by_two_residents": 8,
+  "one_printed_proprietor_contested_by_two_residents": 6,
   "surname_present_initial_absent_refused": 124,
   "letter_list_bucket_refused": 1,
   "residents_that_refusal_reaches": 1,
-  "ties_offered_the_trade_discriminator": 11,
+  "cards_the_whole_name_refused": 0,
+  "residents_that_whole_name_refusal_reaches": 0,
+  "cards_a_female_honorific_refused": 0,
+  "contests_the_page_named": 1,
+  "residents_not_named_by_a_contested_card": 1,
+  "residents_held_off_a_husbands_card": 1,
+  "ties_offered_the_trade_discriminator": 9,
   "ties_narrowed_by_a_trade": 0,
   "of_those_contested": 0,
   "of_those_ambiguous": 0,
@@ -130,6 +138,37 @@
    ],
    "could_carry": [],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
+  },
+  {
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "household_id": "hh_taylor_anson",
+   "grade_1835": "attested",
+   "occupation_1835": "carpenter",
+   "occupation_1835_confidence": "inferred",
+   "lives_at_1835": null,
+   "works_at_1835": "south_branch_raft_bridge",
+   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0150",
+     "proprietor_as_printed": "Chas. Taylor",
+     "firm": "Chas. Taylor",
+     "trade_1844": "fashionable tailor",
+     "address_1844": "Clark street, between Lake street and the Post Office",
+     "printed_page": 114
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "named_by_the_page": {
+    "over": [
+     "Mrs. C. Taylor"
+    ],
+    "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+    "named": null,
+    "why": "the only reading left after R6"
+   }
   },
   {
    "resident": "Charles Loomis Harmon",
@@ -487,49 +526,6 @@
  "discriminated": [],
  "contested": [
   {
-   "resident": "Charles H. Taylor",
-   "person_id": "taylor_charles",
-   "household_id": "hh_taylor_anson",
-   "grade_1835": "attested",
-   "occupation_1835": "carpenter",
-   "occupation_1835_confidence": "inferred",
-   "lives_at_1835": null,
-   "works_at_1835": "south_branch_raft_bridge",
-   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the printed name 'Chas. Taylor' on that rule, and at most one of them is the man who paid for it. The match is not made.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0150",
-     "proprietor_as_printed": "Chas. Taylor",
-     "firm": "Chas. Taylor",
-     "trade_1844": "fashionable tailor",
-     "address_1844": "Clark street, between Lake street and the Post Office",
-     "printed_page": 114
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
-   "contested_with": [
-    "Mrs. C. Taylor"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "taylor_charles",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "taylor_c",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
    "resident": "E Kirby Smith",
    "person_id": "smith_e_kirby",
    "household_id": "hh_smith_e_kirby",
@@ -714,52 +710,6 @@
    }
   },
   {
-   "resident": "Mrs. C. Taylor",
-   "person_id": "taylor_c",
-   "household_id": "hh_taylor_c",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Taylor' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the printed name 'Chas. Taylor' on that rule, and at most one of them is the man who paid for it. The match is not made.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0150",
-     "proprietor_as_printed": "Chas. Taylor",
-     "firm": "Chas. Taylor",
-     "trade_1844": "fashionable tailor",
-     "address_1844": "Clark street, between Lake street and the Post Office",
-     "printed_page": 114
-    }
-   ],
-   "could_carry": [
-    "trade",
-    "place_of_business"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
-   "contested_with": [
-    "Charles H. Taylor"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "taylor_charles",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "taylor_c",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
    "resident": "Willard Jones",
    "person_id": "jones_willard",
    "household_id": "hh_jones_willard",
@@ -889,6 +839,7 @@
      "printed_page": 106
     }
    ],
+   "whole_name_declined": "the page sets 'A' and 3 of the 3 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "place_of_business"
    ],
@@ -944,6 +895,7 @@
      "printed_page": 104
     }
    ],
+   "whole_name_declined": "the page sets 'George' and 2 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "place_of_business"
    ],
@@ -994,6 +946,7 @@
      "printed_page": 104
     }
    ],
+   "whole_name_declined": "the page sets 'Gurdon Saltonstall' and 2 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
    "discriminator": {
@@ -1906,6 +1859,42 @@
     "address_1844": "144 Lake street",
     "printed_page": 107
    }
+  }
+ ],
+ "whole_name_refusals": [],
+ "female_honorific_refusals": [],
+ "not_named_by_the_page": [
+  {
+   "resident": "Mrs. C. Taylor",
+   "person_id": "taylor_c",
+   "card_1844": {
+    "claim": "n1844_ad0150",
+    "proprietor_as_printed": "Chas. Taylor",
+    "firm": "Chas. Taylor",
+    "trade_1844": "fashionable tailor",
+    "address_1844": "Clark street, between Lake street and the Post Office",
+    "printed_page": 114
+   },
+   "named_instead": "Charles H. Taylor",
+   "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+   "rule": "the only reading left after R6"
+  }
+ ],
+ "held_off_a_husbands_card": [
+  {
+   "resident": "Mrs. C. Taylor",
+   "person_id": "taylor_c",
+   "card_1844": {
+    "claim": "n1844_ad0150",
+    "proprietor_as_printed": "Chas. Taylor",
+    "firm": "Chas. Taylor",
+    "trade_1844": "fashionable tailor",
+    "address_1844": "Clark street, between Lake street and the Post Office",
+    "printed_page": 114
+   },
+   "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+   "honorific": "MRS",
+   "why": "'Mrs. C. Taylor' and 'Chas. Taylor' disagree about a female honorific, and another reading in this tie agrees with 'Chas. Taylor' about it. A wife is not her husband — the identity layer already holds that pair apart by R6 — and the body that sets both readings is what says so."
   }
  ]
 }

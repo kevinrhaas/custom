@@ -42,6 +42,7 @@ import name_agreement as na  # the title and suffix vocabulary, imported not res
 import tiebreak            # the tie discriminator (T-0696), imported not restated
 import trade_recorded     # "does the layer hold a trade?" (T-0867), likewise
 import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
+import named_by_the_page as nbp  # the whole printed name (T-0987 stretch 14), likewise
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CARDS = os.path.join(ROOT, "data/research/directories/claims/norris_1844_advertiser.json")
@@ -156,6 +157,7 @@ def main():
 
     matches, ambiguous, refusals = [], [], []
     bucket_refusals = []
+    page_name_refusals, wife_axis_refusals = [], []
     ll_index = llb.buckets(llb.pool())
     people = residents()
     for r in people:
@@ -189,6 +191,40 @@ def main():
                             "card_1844": card_row(c, printed)})
                 bucket_refusals.append(row)
             continue
+        # T-0987 stretch 14. THE WHOLE PRINTED NAME, WORD FOR WORD. This file
+        # keys a card on the surname and the first initial of the proprietor and
+        # weighs nothing else at all — it never imported T-0670's forename rule
+        # or stretch 9's further initials either (stretch 2 found that and left
+        # it). The clause asks whether the printed proprietor IS this name: the
+        # same number of words, word for word, closest of the candidates or none.
+        page_declined = None
+        if len(hits) > 1:
+            kept_h, honorific = nbp.honorific_must_agree(
+                r["name"], hits, lambda h: h[1])
+            for h, note in honorific:
+                row = card_row(*h)
+                row.update({"clause": note["clause"], "rule": note["why"],
+                            "honorific": note["honorific"]})
+                wife_axis_refusals.append({
+                    "resident": r["name"], "person_id": r["person_id"],
+                    "grade_1835": r["grade"], "card_1844": row})
+            hits = kept_h
+        if len(hits) > 1:
+            winner, note = nbp.decide(
+                r["given"], hits, lambda h: split_printed(h[1])[0],
+                reading_name=r["name"], name_of=lambda h: h[1])
+            if winner is not None:
+                for h in hits:
+                    if h is winner:
+                        continue
+                    row = card_row(*h)
+                    row.update({"clause": note["clause"], "rule": note["why"]})
+                    page_name_refusals.append({
+                        "resident": r["name"], "person_id": r["person_id"],
+                        "grade_1835": r["grade"], "card_1844": row})
+                hits = [winner]
+            else:
+                page_declined = note["why"]
         rows = [card_row(c, printed) for c, printed in hits]
         rec = {
             "resident": r["name"], "person_id": r["person_id"],
@@ -200,6 +236,8 @@ def main():
                     "name of both begins %s." % (r["surname"], initial(r["given"]).upper()),
             "cards_1844": rows,
         }
+        if page_declined:
+            rec["whole_name_declined"] = page_declined
         carries = []
         # `none_recorded` IS NO OCCUPATION (T-0867) — the same predicate, and the
         # same bug, as the directory-proper crosswalk carried until this ticket.
@@ -222,6 +260,46 @@ def main():
     for m in matches:
         card = m["cards_1844"][0]
         claimed[(card["claim"], card["proprietor_as_printed"])].append(m)
+
+    # T-0987 stretch 14, the other axis: which of two people of 1835 the printed
+    # proprietor is. R6 first — a card paid for under a man's own name is not his
+    # wife's, whatever the first initial says.
+    given_1835 = {p["person_id"]: p["given"] for p in people}
+    page_named, wife_refused = [], []
+    for key, rivals in sorted(claimed.items()):
+        if len(rivals) < 2:
+            continue
+        printed = key[1]
+        given_of = lambda m: given_1835.get(m["person_id"], "")
+        kept_r, wives = nbp.honorific_must_agree(
+            printed, rivals, lambda m: m["resident"])
+        for m, note in wives:
+            wife_refused.append({"resident": m["resident"], "person_id": m["person_id"],
+                                 "card_1844": m["cards_1844"][0], **note})
+        if len(kept_r) > 1:
+            winner, note = nbp.decide(
+                split_printed(printed)[0], kept_r, given_of,
+                reading_name=printed, name_of=lambda m: m["resident"], one_body=False)
+        elif kept_r:
+            winner, note = kept_r[0], {"clause": nbp.WIFE_CLAUSE, "named": None,
+                                       "why": "the only reading left after R6"}
+        else:
+            winner, note = None, None
+        if winner is None:
+            continue
+        for m in rivals:
+            if m is winner:
+                continue
+            page_named.append({"resident": m["resident"], "person_id": m["person_id"],
+                               "card_1844": m["cards_1844"][0],
+                               "named_instead": winner["resident"],
+                               "clause": note["clause"], "rule": note["why"]})
+            m["_not_named"] = True
+        winner["named_by_the_page"] = {
+            "over": [m["resident"] for m in rivals if m is not winner], **note}
+        claimed[key] = [winner]
+    matches = [m for m in matches if not m.pop("_not_named", False)]
+
     contested = []
     for _, rivals in sorted(claimed.items()):
         if len(rivals) > 1:
@@ -303,6 +381,10 @@ def main():
         "discriminator_rule": tiebreak.__doc__.split("THE RULING")[1].split(
             "Run it directly")[0].strip(),
         "refused_discriminators": tiebreak.REFUSED_DISCRIMINATORS,
+        "whole_name_rule": nbp.__doc__.split("THE RULING")[1].split(
+            "WHAT THE WORD-COUNT TEST IS FOR")[0].strip(),
+        "wife_rule": nbp.__doc__.split("A WIFE IS NOT HER HUSBAND")[1].split(
+            "The honorific must stand")[0].strip(),
         "counts": {
             "cards": len(cards),
             "proprietor_names_printed": named + surname_only,
@@ -315,6 +397,14 @@ def main():
             "surname_present_initial_absent_refused": len(refusals),
             "letter_list_bucket_refused": len(bucket_refusals),
             "residents_that_refusal_reaches": len({b["person_id"] for b in bucket_refusals}),
+            "cards_the_whole_name_refused": len(page_name_refusals),
+            "residents_that_whole_name_refusal_reaches": len(
+                {f["person_id"] for f in page_name_refusals}),
+            "cards_a_female_honorific_refused": len(wife_axis_refusals),
+            "contests_the_page_named": len(
+                {n["card_1844"]["claim"] for n in page_named}),
+            "residents_not_named_by_a_contested_card": len(page_named),
+            "residents_held_off_a_husbands_card": len(wife_refused),
             "ties_offered_the_trade_discriminator": len(ambiguous) + len(contested),
             "ties_narrowed_by_a_trade": len(discriminated),
             "of_those_contested": sum(1 for d in discriminated if d["tie"] == "contested"),
@@ -330,6 +420,14 @@ def main():
         "refusals": sorted(refusals, key=lambda m: m["resident"]),
         "letter_list_bucket_refusals": sorted(
             bucket_refusals, key=lambda m: (m["resident"], m["card_1844"]["claim"])),
+        "whole_name_refusals": sorted(
+            page_name_refusals, key=lambda m: (m["resident"], m["card_1844"]["claim"])),
+        "female_honorific_refusals": sorted(
+            wife_axis_refusals, key=lambda m: (m["resident"], m["card_1844"]["claim"])),
+        "not_named_by_the_page": sorted(
+            page_named, key=lambda m: (m["card_1844"]["claim"], m["resident"])),
+        "held_off_a_husbands_card": sorted(
+            wife_refused, key=lambda m: (m["card_1844"]["claim"], m["resident"])),
     }
     if "--check" in sys.argv:
         if not os.path.exists(OUT):

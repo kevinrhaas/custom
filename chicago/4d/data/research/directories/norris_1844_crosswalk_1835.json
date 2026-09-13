@@ -9,11 +9,13 @@
   "premises": "The 1835 layer records a premises as a structure id and the directories print a later street address, or a person to board with. They are not comparable, so what the test measures is which rival the town has already placed on the ground — and preferring the better-documented record is how a reconstruction invents a fact.",
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
+ "whole_name_rule": ". A printed forename and a reading of 1835 are THE SAME NAME when\nthey set the SAME NUMBER of words and agree word by word — each pair either\nletter for letter, or one of them the single initial the other begins with.\nWhere exactly ONE candidate is the same name in that sense, the page names\nthat one and no other. Where none is, or more than one is, nothing happens\nand the tie stands with the reason filed.",
+ "wife_rule": "— the second clause, and it is R6 arriving where it\nwas always true. `tools/consolidate_resident_evidence.py` holds `Mrs Rufus\nBrown` apart from `Rufus Brown` (R6, T-0723) because the honorific strip leaves\nthe husband's forename tokens on both readings and folds a wife onto him. The\ncrosswalks strip titles the same way and had no such rule, so the town layer's\ntwo people met `Brown, Rufus B., warehouseman` together and were filed as a\nCONTEST — a man contesting a printed line with his own wife. Where one\ncandidate of 1835 carries a female honorific, its forename tokens are exactly\nthose of another candidate carried WITHOUT one, and the printed entry sets no\nfemale honorific of its own, the entry is the husband's and she is not named by\nit. The proof is the same proof R6 asks for and it is in the contest itself:\nthe town layer prints both readings, which is what put them here together.",
  "counts": {
   "residents_considered": 1293,
-  "matched_one_1844_entry": 103,
-  "matched_more_than_one_ambiguous": 14,
-  "one_1844_entry_contested_by_two_residents": 10,
+  "matched_one_1844_entry": 112,
+  "matched_more_than_one_ambiguous": 9,
+  "one_1844_entry_contested_by_two_residents": 2,
   "surname_present_initial_absent_refused": 315,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
@@ -21,12 +23,18 @@
   "residents_that_further_initial_refusal_reaches": 12,
   "initial_agreed_forenames_disagreed_refused": 47,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1844_entry_by_that_refusal": 25,
-  "ties_narrowed_by_a_trade": 3,
+  "residents_left_with_no_1844_entry_by_that_refusal": 26,
+  "entries_the_whole_name_refused": 6,
+  "residents_that_whole_name_refusal_reaches": 5,
+  "entries_a_female_honorific_refused": 0,
+  "contests_the_page_named": 4,
+  "residents_not_named_by_a_contested_entry": 4,
+  "residents_held_off_a_husbands_entry": 1,
+  "ties_narrowed_by_a_trade": 2,
   "of_those_contested": 0,
-  "of_those_ambiguous": 3,
-  "could_carry_occupation": 59,
-  "could_carry_address": 81
+  "of_those_ambiguous": 2,
+  "could_carry_occupation": 64,
+  "could_carry_address": 86
  },
  "matches": [
   {
@@ -414,6 +422,29 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "household_id": "hh_taylor_anson",
+   "grade_1835": "attested",
+   "occupation_1835": "carpenter",
+   "occupation_1835_confidence": "inferred",
+   "lives_at_1835": null,
+   "works_at_1835": "south_branch_raft_bridge",
+   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins C.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1748",
+     "as_printed": "Taylor, Charles H. currier, at Johonnett, Wells, & Co.'s",
+     "printed_page": 58,
+     "occupation_1844": "currier, at Johonnett, Wells, & Co.'s",
+     "address_1844": null
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Charles Loomis Harmon",
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
@@ -711,6 +742,39 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Eli A Rider",
+   "person_id": "rider_eli_a",
+   "household_id": "hh_rider_eli_a",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Rider' folds to the same string as the 1844 entry's, and the given name of both begins E.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1487",
+     "as_printed": "Rider, E. A. clerk at C. L. P. Hojran",
+     "printed_page": 52,
+     "occupation_1844": "clerk at C. L. P. Hojran",
+     "address_1844": null
+    }
+   ],
+   "could_carry": [
+    "occupation"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "Elia Rider"
+    ],
+    "clause": "the whole printed name, word for word",
+    "named": "elia",
+    "why": "the page sets 'E A' and exactly one of the 2 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+   }
   },
   {
    "resident": "Eli B Williams",
@@ -1264,6 +1328,31 @@
    "resident_given_is_initial_only": true
   },
   {
+   "resident": "J. Curtiss",
+   "person_id": "curtiss_j",
+   "household_id": "hh_curtiss_j",
+   "grade_1835": "attested",
+   "occupation_1835": "attorney",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Curtiss' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0449",
+     "as_printed": "Curtiss, James, state's attorney, office\"-. 136 Lake st. res Randolph st. 3d ward",
+     "printed_page": 31,
+     "occupation_1844": "state's attorney, office\"-. 136 Lake st",
+     "address_1844": "res Randolph st. 3d ward"
+    }
+   ],
+   "could_carry": [
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": true
+  },
+  {
    "resident": "J. E. Bishop",
    "person_id": "bishop_j_e",
    "household_id": "hh_bishop_j_e",
@@ -1742,6 +1831,37 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "John S. C. Hogan",
+   "person_id": "hogan_john_s_c",
+   "household_id": "hh_hogan_john_s_c",
+   "grade_1835": "attested",
+   "occupation_1835": "postmaster",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": "hogan_store",
+   "rule": "Surname 'Hogan' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0868",
+     "as_printed": "Hogan, John S. C. at C. L. P. Hogan's",
+     "printed_page": 40,
+     "occupation_1844": "at C. L. P. Hogan's",
+     "address_1844": null
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "John Hogan"
+    ],
+    "clause": "the whole printed name, word for word",
+    "named": "johnsc",
+    "why": "the page sets 'John S C' and exactly one of the 2 readings is that name word for word and most closely: 3 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
    "resident": "John Scott",
    "person_id": "scott_john",
    "household_id": "hh_scott_john",
@@ -2048,6 +2168,40 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Orsemus Morrison",
+   "person_id": "morrison_orsemus",
+   "household_id": "hh_morrison_orsemus",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Morrison' folds to the same string as the 1844 entry's, and the given name of both begins O.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1313",
+     "as_printed": "Morrison, Orsemus, carpenter, house Clark st",
+     "printed_page": 49,
+     "occupation_1844": "carpenter",
+     "address_1844": "house Clark st"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "Ordemus Morrison"
+    ],
+    "clause": "the whole printed name, word for word",
+    "named": "orsemus",
+    "why": "the page sets 'Orsemus' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
    "resident": "Parker M. Cole",
    "person_id": "cole_parker_m",
    "household_id": "hh_cole_parker_m",
@@ -2197,6 +2351,37 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Rufus Brown",
+   "person_id": "brown_rufus",
+   "household_id": "hh_brown_rufus",
+   "grade_1835": "attested",
+   "occupation_1835": "boarding_house_keeper",
+   "occupation_1835_confidence": "inferred",
+   "lives_at_1835": "brown_boarding_house",
+   "works_at_1835": "brown_boarding_house",
+   "rule": "Surname 'Brown' folds to the same string as the 1844 entry's, and the given name of both begins R.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0219",
+     "as_printed": "Brown, Rufus B. clerk at J. P. Chapin & Co.'s, res corner Lake and Wells sts",
+     "printed_page": 26,
+     "occupation_1844": "clerk at J. P. Chapin & Co.'s",
+     "address_1844": "res corner Lake and Wells sts"
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "Mrs Rufus Brown"
+    ],
+    "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+    "named": null,
+    "why": "the only reading left after R6"
+   }
+  },
+  {
    "resident": "S. Foot",
    "person_id": "foot_s",
    "household_id": "hh_foot_s",
@@ -2218,6 +2403,32 @@
    "could_carry": [],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": true
+  },
+  {
+   "resident": "Samuel Jackson",
+   "person_id": "jackson_samuel",
+   "household_id": "hh_jackson_samuel",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Jackson' folds to the same string as the 1844 entry's, and the given name of both begins S.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0933",
+     "as_printed": "Jackson, Samuel, overseer of harbor, res Fort Dearborn",
+     "printed_page": 41,
+     "occupation_1844": "overseer of harbor",
+     "address_1844": "res Fort Dearborn"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
   },
   {
    "resident": "Sanford Johnson",
@@ -2527,6 +2738,32 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "William H Brown",
+   "person_id": "brown_william_h",
+   "household_id": "hh_brown_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Brown' folds to the same string as the 1844 entry's, and the given name of both begins W.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e0226",
+     "as_printed": "Brown, William H. attorney, office Bank Building, res cor Illinois and P<ne sts",
+     "printed_page": 26,
+     "occupation_1844": "attorney, office Bank Building",
+     "address_1844": "res cor Illinois and P<ne sts"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "William H Kennicott",
    "person_id": "kennicott_william_h",
    "household_id": "hh_kennicott_william_h",
@@ -2629,6 +2866,32 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "William Smith",
+   "person_id": "smith_william",
+   "household_id": "hh_smith_william",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins W.",
+   "entries_1844": [
+    {
+     "claim": "n1844_e1667",
+     "as_printed": "Smith, William, carpenter, res Mrs. Post's",
+     "printed_page": 56,
+     "occupation_1844": "carpenter",
+     "address_1844": "res Mrs. Post's"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
+   "resident_given_is_initial_only": false
   }
  ],
  "discriminated": [
@@ -2660,38 +2923,6 @@
       "agrees": true,
       "why": "the same trade word",
       "outcome": "named_by_discriminator"
-     }
-    ]
-   }
-  },
-  {
-   "tie": "ambiguous",
-   "resident": "J. Curtiss",
-   "person_id": "curtiss_j",
-   "entries": 2,
-   "named": "Curtiss, James, state's attorney, office\"-. 136 Lake st. res Randolph st. 3d ward",
-   "claim": "n1844_e0449",
-   "discriminator": {
-    "kind": "trade",
-    "named": "n1844_e0449",
-    "confidence": "reconstructed",
-    "occupation_1835": "attorney",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "n1844_e0449",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
-     },
-     {
-      "key": "n1844_e0450",
-      "agrees": false,
-      "why": "two trades that do not agree",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'n1844_e0449' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
      }
     ]
    }
@@ -2737,362 +2968,6 @@
   }
  ],
  "contested": [
-  {
-   "resident": "Eli A Rider",
-   "person_id": "rider_eli_a",
-   "household_id": "hh_rider_eli_a",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Rider' folds to the same string as the 1844 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1487",
-     "as_printed": "Rider, E. A. clerk at C. L. P. Hojran",
-     "printed_page": 52,
-     "occupation_1844": "clerk at C. L. P. Hojran",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Elia Rider"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "rider_eli_a",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "rider_elia",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Elia Rider",
-   "person_id": "rider_elia",
-   "household_id": "hh_rider_elia",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Rider' folds to the same string as the 1844 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1487",
-     "as_printed": "Rider, E. A. clerk at C. L. P. Hojran",
-     "printed_page": 52,
-     "occupation_1844": "clerk at C. L. P. Hojran",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Eli A Rider"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "rider_eli_a",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "rider_elia",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John Hogan",
-   "person_id": "hogan_john",
-   "household_id": "hh_hogan_john",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hogan' folds to the same string as the 1844 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0868",
-     "as_printed": "Hogan, John S. C. at C. L. P. Hogan's",
-     "printed_page": 40,
-     "occupation_1844": "at C. L. P. Hogan's",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "John S. C. Hogan"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "hogan_john",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "hogan_john_s_c",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John S. C. Hogan",
-   "person_id": "hogan_john_s_c",
-   "household_id": "hh_hogan_john_s_c",
-   "grade_1835": "attested",
-   "occupation_1835": "postmaster",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": "hogan_store",
-   "rule": "Surname 'Hogan' folds to the same string as the 1844 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0868",
-     "as_printed": "Hogan, John S. C. at C. L. P. Hogan's",
-     "printed_page": 40,
-     "occupation_1844": "at C. L. P. Hogan's",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "John Hogan"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "hogan_john",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "hogan_john_s_c",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Mrs Rufus Brown",
-   "person_id": "brown_mrs_rufus",
-   "household_id": "hh_brown_rufus",
-   "grade_1835": "inferred",
-   "occupation_1835": "boarding_house_keeper",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": "brown_boarding_house",
-   "works_at_1835": "brown_boarding_house",
-   "rule": "Surname 'Brown' folds to the same string as the 1844 entry's, and the given name of both begins R. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0219",
-     "as_printed": "Brown, Rufus B. clerk at J. P. Chapin & Co.'s, res corner Lake and Wells sts",
-     "printed_page": 26,
-     "occupation_1844": "clerk at J. P. Chapin & Co.'s",
-     "address_1844": "res corner Lake and Wells sts"
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Rufus Brown"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "brown_rufus",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "brown_mrs_rufus",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Ordemus Morrison",
-   "person_id": "morrison_ordemus",
-   "household_id": "hh_morrison_ordemus",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Morrison' folds to the same string as the 1844 entry's, and the given name of both begins O. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1313",
-     "as_printed": "Morrison, Orsemus, carpenter, house Clark st",
-     "printed_page": 49,
-     "occupation_1844": "carpenter",
-     "address_1844": "house Clark st"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Orsemus Morrison"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "morrison_ordemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "morrison_orsemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Orsemus Morrison",
-   "person_id": "morrison_orsemus",
-   "household_id": "hh_morrison_orsemus",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Morrison' folds to the same string as the 1844 entry's, and the given name of both begins O. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1313",
-     "as_printed": "Morrison, Orsemus, carpenter, house Clark st",
-     "printed_page": 49,
-     "occupation_1844": "carpenter",
-     "address_1844": "house Clark st"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Ordemus Morrison"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "morrison_ordemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "morrison_orsemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Rufus Brown",
-   "person_id": "brown_rufus",
-   "household_id": "hh_brown_rufus",
-   "grade_1835": "attested",
-   "occupation_1835": "boarding_house_keeper",
-   "occupation_1835_confidence": "inferred",
-   "lives_at_1835": "brown_boarding_house",
-   "works_at_1835": "brown_boarding_house",
-   "rule": "Surname 'Brown' folds to the same string as the 1844 entry's, and the given name of both begins R. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0219",
-     "as_printed": "Brown, Rufus B. clerk at J. P. Chapin & Co.'s, res corner Lake and Wells sts",
-     "printed_page": 26,
-     "occupation_1844": "clerk at J. P. Chapin & Co.'s",
-     "address_1844": "res corner Lake and Wells sts"
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Mrs Rufus Brown"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "brown_rufus",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "brown_mrs_rufus",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
   {
    "resident": "William H Taylor",
    "person_id": "taylor_william_h",
@@ -3186,55 +3061,6 @@
  ],
  "ambiguous": [
   {
-   "resident": "Charles H. Taylor",
-   "person_id": "taylor_charles",
-   "household_id": "hh_taylor_anson",
-   "grade_1835": "attested",
-   "occupation_1835": "carpenter",
-   "occupation_1835_confidence": "inferred",
-   "lives_at_1835": null,
-   "works_at_1835": "south_branch_raft_bridge",
-   "rule": "Surname 'Taylor' folds to the same string as the 1844 entry's, and the given name of both begins C.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1747",
-     "as_printed": "Taylor, Charles, merchant tailor, Clark st. house Canal st. b Wash-' ington and Madison sts (Sec card)",
-     "printed_page": 58,
-     "occupation_1844": "merchant tailor, Clark st",
-     "address_1844": "house Canal st. b Wash-' ington and Madison sts (Sec card)"
-    },
-    {
-     "claim": "n1844_e1748",
-     "as_printed": "Taylor, Charles H. currier, at Johonnett, Wells, & Co.'s",
-     "printed_page": 58,
-     "occupation_1844": "currier, at Johonnett, Wells, & Co.'s",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "n1844_e1747",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "n1844_e1748",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
    "resident": "H Bond",
    "person_id": "bond_h",
    "household_id": "hh_bond_h",
@@ -3267,6 +3093,7 @@
      "address_1844": "house east of Clark street"
     }
    ],
+   "whole_name_declined": "the page sets 'H' and 2 of the 3 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address"
@@ -3323,6 +3150,7 @@
     }
    ],
    "further_initials_declined": "A further initial refuses 1 of the 2 printings under this name, and the one left standing prints fewer initials than the 1835 reading does — it is silent where the refused rival spoke. Promoting a silence to a match on the strength of a rival's refusal would decide this tie on the weaker of the two readings, so nothing is refused and the tie stands.",
+   "whole_name_declined": "the page sets 'J B' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "address"
    ],
@@ -3349,62 +3177,6 @@
       "agrees": true,
       "why": "the same trade word",
       "outcome": "named_by_discriminator"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "J. Curtiss",
-   "person_id": "curtiss_j",
-   "household_id": "hh_curtiss_j",
-   "grade_1835": "attested",
-   "occupation_1835": "attorney",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Curtiss' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0449",
-     "as_printed": "Curtiss, James, state's attorney, office\"-. 136 Lake st. res Randolph st. 3d ward",
-     "printed_page": 31,
-     "occupation_1844": "state's attorney, office\"-. 136 Lake st",
-     "address_1844": "res Randolph st. 3d ward"
-    },
-    {
-     "claim": "n1844_e0450",
-     "as_printed": "Curtiss, J. W. gunsmith, corner of North Water and Wolcott sts",
-     "printed_page": 31,
-     "occupation_1844": "gunsmith, corner of North Water and Wolcott sts",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": true,
-   "discriminator": {
-    "kind": "trade",
-    "named": "n1844_e0449",
-    "confidence": "reconstructed",
-    "occupation_1835": "attorney",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "n1844_e0449",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
-     },
-     {
-      "key": "n1844_e0450",
-      "agrees": false,
-      "why": "two trades that do not agree",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'n1844_e0449' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
      }
     ]
    }
@@ -3442,6 +3214,7 @@
      "address_1844": "res same"
     }
    ],
+   "whole_name_declined": "the page sets 'Jeremiah' and 0 of the 3 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address"
@@ -3497,6 +3270,7 @@
      "address_1844": "h N. Water, near Pine st"
     }
    ],
+   "whole_name_declined": "the page sets 'John' and 2 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false,
@@ -3544,6 +3318,7 @@
      "address_1844": "res Seth Johnson's"
     }
    ],
+   "whole_name_declined": "the page sets 'John' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address"
@@ -3594,6 +3369,7 @@
      "address_1844": "house River street, 1st Ward"
     }
    ],
+   "whole_name_declined": "the page sets 'James' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "address"
    ],
@@ -3643,6 +3419,7 @@
      "address_1844": null
     }
    ],
+   "whole_name_declined": "'Mrs. C. Taylor' carries a female honorific and no reading offered against it does. The honorific says the name under it may not be her own, so it is not hers to weigh: the comparison is declined and the tie stands.",
    "could_carry": [
     "occupation",
     "address"
@@ -3700,6 +3477,7 @@
      "address_1844": null
     }
    ],
+   "whole_name_declined": "the page sets a generational suffix (JR) on 1 of the 3 readings and 'Russel E. Heacock' carries none. Which man of the name is a thing the page distinguishes and this reading does not, so the comparison is declined and the tie stands.",
    "could_carry": [],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
    "resident_given_is_initial_only": false,
@@ -3736,168 +3514,6 @@
    }
   },
   {
-   "resident": "Samuel Jackson",
-   "person_id": "jackson_samuel",
-   "household_id": "hh_jackson_samuel",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Jackson' folds to the same string as the 1844 entry's, and the given name of both begins S.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0933",
-     "as_printed": "Jackson, Samuel, overseer of harbor, res Fort Dearborn",
-     "printed_page": 41,
-     "occupation_1844": "overseer of harbor",
-     "address_1844": "res Fort Dearborn"
-    },
-    {
-     "claim": "n1844_e0934",
-     "as_printed": "Jackson, S. E. res at Samuel Jackson's .",
-     "printed_page": 41,
-     "occupation_1844": null,
-     "address_1844": "res at Samuel Jackson's"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "n1844_e0933",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "n1844_e0934",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "William H Brown",
-   "person_id": "brown_william_h",
-   "household_id": "hh_brown_william_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Brown' folds to the same string as the 1844 entry's, and the given name of both begins W.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0224",
-     "as_printed": "Brown, William, grocer, res North Water st. b Clark and Dearborn",
-     "printed_page": 26,
-     "occupation_1844": "grocer",
-     "address_1844": "res North Water st. b Clark and Dearborn"
-    },
-    {
-     "claim": "n1844_e0225",
-     "as_printed": "Brown, William, res Sauganash Hotel",
-     "printed_page": 26,
-     "occupation_1844": null,
-     "address_1844": "res Sauganash Hotel"
-    },
-    {
-     "claim": "n1844_e0226",
-     "as_printed": "Brown, William H. attorney, office Bank Building, res cor Illinois and P<ne sts",
-     "printed_page": 26,
-     "occupation_1844": "attorney, office Bank Building",
-     "address_1844": "res cor Illinois and P<ne sts"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "n1844_e0224",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "n1844_e0225",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "n1844_e0226",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "William Smith",
-   "person_id": "smith_william",
-   "household_id": "hh_smith_william",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Smith' folds to the same string as the 1844 entry's, and the given name of both begins W.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e1667",
-     "as_printed": "Smith, William, carpenter, res Mrs. Post's",
-     "printed_page": 56,
-     "occupation_1844": "carpenter",
-     "address_1844": "res Mrs. Post's"
-    },
-    {
-     "claim": "n1844_e1668",
-     "as_printed": "Smith, W. W. clerk at S. J. Surdam's",
-     "printed_page": 56,
-     "occupation_1844": "clerk at S. J. Surdam's",
-     "address_1844": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "n1844_e1667",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "n1844_e1668",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
    "resident": "William V Smith",
    "person_id": "smith_william_v",
    "household_id": "hh_smith_william_v",
@@ -3924,6 +3540,7 @@
     }
    ],
    "further_initials_declined": "A further initial refuses 1 of the 2 printings under this name, and the one left standing prints fewer initials than the 1835 reading does — it is silent where the refused rival spoke. Promoting a silence to a match on the strength of a rival's refusal would decide this tie on the weaker of the two readings, so nothing is refused and the tie stands.",
+   "whole_name_declined": "the page sets 'William V' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address"
@@ -7238,6 +6855,167 @@
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Willinm' against 'Willis'. An initial standing against a full name is a match; two full names that differ are not."
    }
+  }
+ ],
+ "whole_name_refusals": [
+  {
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "grade_1835": "attested",
+   "entry_1844": {
+    "claim": "n1844_e1747",
+    "as_printed": "Taylor, Charles, merchant tailor, Clark st. house Canal st. b Wash-' ington and Madison sts (Sec card)",
+    "printed_page": 58,
+    "occupation_1844": "merchant tailor, Clark st",
+    "address_1844": "house Canal st. b Wash-' ington and Madison sts (Sec card)",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'Charles H' and exactly one of the 2 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "J. Curtiss",
+   "person_id": "curtiss_j",
+   "grade_1835": "attested",
+   "entry_1844": {
+    "claim": "n1844_e0450",
+    "as_printed": "Curtiss, J. W. gunsmith, corner of North Water and Wolcott sts",
+    "printed_page": 31,
+    "occupation_1844": "gunsmith, corner of North Water and Wolcott sts",
+    "address_1844": null,
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'J' and exactly one of the 2 readings is that name word for word and most closely: 1 word, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "Samuel Jackson",
+   "person_id": "jackson_samuel",
+   "grade_1835": "attested",
+   "entry_1844": {
+    "claim": "n1844_e0934",
+    "as_printed": "Jackson, S. E. res at Samuel Jackson's .",
+    "printed_page": 41,
+    "occupation_1844": null,
+    "address_1844": "res at Samuel Jackson's",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'Samuel' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "William H Brown",
+   "person_id": "brown_william_h",
+   "grade_1835": "attested",
+   "entry_1844": {
+    "claim": "n1844_e0224",
+    "as_printed": "Brown, William, grocer, res North Water st. b Clark and Dearborn",
+    "printed_page": 26,
+    "occupation_1844": "grocer",
+    "address_1844": "res North Water st. b Clark and Dearborn",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'William H' and exactly one of the 3 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "William H Brown",
+   "person_id": "brown_william_h",
+   "grade_1835": "attested",
+   "entry_1844": {
+    "claim": "n1844_e0225",
+    "as_printed": "Brown, William, res Sauganash Hotel",
+    "printed_page": 26,
+    "occupation_1844": null,
+    "address_1844": "res Sauganash Hotel",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'William H' and exactly one of the 3 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "William Smith",
+   "person_id": "smith_william",
+   "grade_1835": "attested",
+   "entry_1844": {
+    "claim": "n1844_e1668",
+    "as_printed": "Smith, W. W. clerk at S. J. Surdam's",
+    "printed_page": 56,
+    "occupation_1844": "clerk at S. J. Surdam's",
+    "address_1844": null,
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'William' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  }
+ ],
+ "female_honorific_refusals": [],
+ "not_named_by_the_page": [
+  {
+   "resident": "Mrs Rufus Brown",
+   "person_id": "brown_mrs_rufus",
+   "entry_1844": {
+    "claim": "n1844_e0219",
+    "as_printed": "Brown, Rufus B. clerk at J. P. Chapin & Co.'s, res corner Lake and Wells sts",
+    "printed_page": 26,
+    "occupation_1844": "clerk at J. P. Chapin & Co.'s",
+    "address_1844": "res corner Lake and Wells sts"
+   },
+   "named_instead": "Rufus Brown",
+   "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+   "rule": "the only reading left after R6"
+  },
+  {
+   "resident": "John Hogan",
+   "person_id": "hogan_john",
+   "entry_1844": {
+    "claim": "n1844_e0868",
+    "as_printed": "Hogan, John S. C. at C. L. P. Hogan's",
+    "printed_page": 40,
+    "occupation_1844": "at C. L. P. Hogan's",
+    "address_1844": null
+   },
+   "named_instead": "John S. C. Hogan",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'John S C' and exactly one of the 2 readings is that name word for word and most closely: 3 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+  },
+  {
+   "resident": "Ordemus Morrison",
+   "person_id": "morrison_ordemus",
+   "entry_1844": {
+    "claim": "n1844_e1313",
+    "as_printed": "Morrison, Orsemus, carpenter, house Clark st",
+    "printed_page": 49,
+    "occupation_1844": "carpenter",
+    "address_1844": "house Clark st"
+   },
+   "named_instead": "Orsemus Morrison",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'Orsemus' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+  },
+  {
+   "resident": "Elia Rider",
+   "person_id": "rider_elia",
+   "entry_1844": {
+    "claim": "n1844_e1487",
+    "as_printed": "Rider, E. A. clerk at C. L. P. Hojran",
+    "printed_page": 52,
+    "occupation_1844": "clerk at C. L. P. Hojran",
+    "address_1844": null
+   },
+   "named_instead": "Eli A Rider",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'E A' and exactly one of the 2 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+  }
+ ],
+ "held_off_a_husbands_entry": [
+  {
+   "resident": "Mrs Rufus Brown",
+   "person_id": "brown_mrs_rufus",
+   "entry_1844": {
+    "claim": "n1844_e0219",
+    "as_printed": "Brown, Rufus B. clerk at J. P. Chapin & Co.'s, res corner Lake and Wells sts",
+    "printed_page": 26,
+    "occupation_1844": "clerk at J. P. Chapin & Co.'s",
+    "address_1844": "res corner Lake and Wells sts"
+   },
+   "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+   "honorific": "MRS",
+   "why": "'Mrs Rufus Brown' and 'Rufus B' disagree about a female honorific, and another reading in this tie agrees with 'Rufus B' about it. A wife is not her husband — the identity layer already holds that pair apart by R6 — and the body that sets both readings is what says so."
   }
  ]
 }
