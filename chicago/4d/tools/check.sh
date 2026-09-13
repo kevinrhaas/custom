@@ -418,6 +418,20 @@ step "the West Division's lot figures still answer for the sheet they were read 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_west_division_lots.py --self-test
 
+# BLOCKS 14 AND 15, THE LAST TWO OF THE FIFTY-EIGHT (T-1099). They were refused for want of a
+# street, and the street was there: Market Street flanks both, and the fourth side is Carroll
+# continued east along the bearing of its own committed path. The same correction settles the
+# collision T-1098 found — block 7's box took Market's own southern endpoint for its south,
+# because block 7 is the one block in its tier with a single flank, and so reached 89 m past
+# itself and cited a crop with TWO block numerals in it. The gate re-cuts both boxes, checks
+# each read window lies inside the box it is cited under, and asserts directly that neither
+# block's numeral lies inside the other's crop.
+step "blocks 14 and 15 re-cut from Market Street and Carroll continued east" \
+  python3 tools/read_wolf_point_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wolf_point_numerals.py --self-test
+
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
 # beside them, through the same NA affine, and re-derives the module and the Kinzie
