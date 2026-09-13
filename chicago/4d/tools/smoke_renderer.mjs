@@ -406,10 +406,27 @@ async function readRoadStations(page, label, stations) {
     failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
   });
   Object.assign(ROAD_BAND_OBSERVED, observed);
+  // T-0690 — AND TO THE STATIONS THIS INVOCATION READ, not only its viewport.
+  //
+  // The filter above was written when all three stations sat in one part, so
+  // "compares only what THIS invocation measured" was true of it. T-0173 then
+  // cut them across parts 7 and 8, and nothing here noticed: a part-filtered
+  // run compared the bank's WHOLE viewport against the one station it visited
+  // and reported every band it had not been to as `ungated — either the probes
+  // stopped projecting or the station moved`. Neither had. `SMOKE_STAGE=8`
+  // simply never goes to `south_water` or `from_above`, which are part 7's, and
+  // six of the ten movements T-0690 was filed over were exactly that. A report
+  // that cries wolf six times in ten is a report nobody reads, which is the one
+  // thing a print-only report cannot survive.
+  const visited = new Set(stations.map((st) => st.id));
   const bankedHere = Object.fromEntries(
-    Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
+    Object.entries(ROAD_BAND_BANKED).filter(([k]) => {
+      const [bankedVp, stationId] = k.split('/');
+      return bankedVp === vp && visited.has(stationId);
+    }));
   if (!Object.keys(bankedHere).length) {
-    console.log(`        road bands: nothing banked for ${vp} yet`
+    console.log(`        road bands: nothing banked for ${vp}`
+      + ` at ${[...visited].join(', ')} yet`
       + ' — re-run with --update-road-bands to bank this run (T-0016)');
   } else {
     for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
