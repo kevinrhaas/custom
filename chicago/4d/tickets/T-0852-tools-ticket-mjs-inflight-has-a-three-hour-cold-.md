@@ -1,7 +1,7 @@
 ---
 id: T-0852
 title: tools/ticket.mjs inflight has a three-hour cold window, so a run that claims and then reads for four hours is invisible to the next run
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1259
 claimed_by: run 9/13/2026, 11:57:25 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T17:19:28.894Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34769893923
 ---
 
