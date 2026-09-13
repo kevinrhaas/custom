@@ -1,7 +1,7 @@
 ---
 id: T-1101
 title: The nine survey tracts as polygons: the two ambiguous swatches resolved by position, and the damage mask the orange class needs
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1097
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1224
 claimed_by: run 9/12/2026, 8:27:31 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T02:45:34.555Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34730332513
 ---
 
