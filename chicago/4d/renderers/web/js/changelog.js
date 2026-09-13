@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The lots west of the river, read off the 1830 plat', kind: 'change', ts: '',
+  { v: 815, title: 'The lots west of the river, read off the 1830 plat', kind: 'change', ts: '2026-09-13T04:14:39.216Z', date: 'Sep 12, 2026, 11:14 PM CT',
     items: [
       'Everything west of the South Branch rests on how wide a block is over there, and that rested on two guesses: that a lot is 180 feet deep, worked out backwards from streets already committed, and that a block holds two lots across and five down. Both were written down honestly as guesses, and the work using them said somebody should go and read the 1830 plat. Nobody had. The sheet has been in this repository the whole time.',
       'It is read now \u2014 twenty-two blocks, two hundred and three lots, every figure carrying the patch of the sheet it came off so anybody can open the same crop and disagree. Both guesses were right, and the 458-foot block width they build comes back unchanged.',
