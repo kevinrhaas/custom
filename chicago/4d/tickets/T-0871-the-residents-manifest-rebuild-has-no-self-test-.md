@@ -1,7 +1,7 @@
 ---
 id: T-0871
 title: The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1267
 claimed_by: run 9/13/2026, 2:05:49 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T19:24:12.148Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34776448081
 ---
 
