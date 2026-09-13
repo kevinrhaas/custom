@@ -1,7 +1,7 @@
 ---
 id: T-1081
 title: The smoke's walking-speed assertion still expects a bare '3.2 mph' and the HUD has read 'walk · 3.2 mph' since T-0823, so mobile part 3 has been red on dev for a week
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1247
 claimed_by: run 9/13/2026, 6:43:44 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T12:10:34.386Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34754956831
 ---
 
