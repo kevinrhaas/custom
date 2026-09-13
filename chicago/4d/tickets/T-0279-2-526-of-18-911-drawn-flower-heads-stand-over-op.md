@@ -1,7 +1,7 @@
 ---
 id: T-0279
 title: 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1244
 claimed_by: run 9/13/2026, 4:28:36 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T10:27:39.758Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34749474099
 ---
 
