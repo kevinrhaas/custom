@@ -1,7 +1,7 @@
 ---
 id: T-0266
 title: On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-28
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 2:53:34 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34746186584
 ---
 
 On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats.
