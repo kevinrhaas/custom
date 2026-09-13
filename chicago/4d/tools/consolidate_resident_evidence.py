@@ -72,6 +72,7 @@ LADDER_COVERAGE = OUT_DIR / "ladder_coverage.json"
 POLICY = ROOT / "docs" / "RESEARCH" / "resident-grading-policy.md"
 INDEX = RESIDENTS / "index.json"
 CARD_RULINGS = RESIDENTS / "card_merge_rulings.json"
+CONFLATIONS = RESIDENTS / "card_conflation_rulings.json"
 
 SCENE_YEAR = 1835
 GENERATED_BY = "tools/consolidate_resident_evidence.py --build"
@@ -123,6 +124,31 @@ REFUSAL_RULES = {
           "fired, because a refusal whose stated reason is untrue of the page is barely "
           "better than no refusal at all (T-0692).",
 }
+
+# T-1004. ONE CARD, TWO MEN — the rules that take a reading OFF a person, and the only
+# rules in this file that are not derived from the name. `declared_anchors` below forces
+# a reading ONTO a person a crosswalk matched; nothing could force one off, so a card
+# gathered a second man in silence and every downstream reading of it was about whichever
+# man the reader assumed. The verdicts live in data/residents/card_conflation_rulings.json
+# with their reasoning; these are the grounds a verdict may stand on.
+SPLIT_RULES = {
+    "X1": "ONE VOLUME PRINTS BOTH MEN. The same book sets two entries whose names differ "
+          "only by tokens the merge rules ignore, and a directory does not enter one man "
+          "twice under two spellings. The fact R6 already rests on, about the page rather "
+          "than the name, applied to two men instead of to a wife and her husband.",
+    "X2": "THE ENTRY'S OWN QUALIFIER NAMES THE OTHER MAN. An initial-only reading carries "
+          "a trade, an employer or an address, and another volume prints that qualifier "
+          "against a FULL forename of the surname. M2 attaches an initial to the one full "
+          "forename the TOWN holds a card for, which is a fact about the rest of the town "
+          "and not evidence about the reading (T-0697, in the other direction).",
+    "X3": "THE ARITHMETIC REFUSES IT. A printed age fixes a birth year and the birth year "
+          "puts the man at an age on the scene date that the record folded onto him cannot "
+          "describe. A man born about 1835 did not write to the post office in 1834.",
+    "X0": "RECORDED, NOT SPLIT. The evidence says a card gathers two men and does not say "
+          "which reading is whose, or the fold is a landed adjudication only the owner may "
+          "reverse. Nothing moves; the ruling is written and gated the other way round.",
+}
+
 
 # The ratified ladder, 2026-09-03, verbatim in the policy doc. One rung, one id, and the
 # rung records what class of evidence it accepts.
@@ -776,8 +802,17 @@ def compact(member) -> dict:
 # and initial-only readings attach to them only when exactly one anchor fits.
 
 
-def cluster(appearances):
-    """-> (identities, refusals). An identity is a surname plus one forename signature."""
+def cluster(appearances, splits=None):
+    """-> (identities, refusals). An identity is a surname plus one forename signature.
+
+    `splits` is T-1004's ruling table, (domain, record_id) -> verdict, and it is the one
+    thing here that overrules the name rules DOWNWARDS: a reading named in it is held out
+    of its surname's anchoring and anchored among the other ruled-out readings instead,
+    exactly as R6 holds a wife out of her husband's bucket. It defaults to EMPTY rather
+    than to the committed file so that a caller passing fixtures — every self-test below
+    — gets the derived rules alone; build() passes declared_splits().
+    """
+    splits = splits or {}
     buckets = defaultdict(list)
     unnamed = []
     for entry in appearances:
@@ -857,6 +892,35 @@ def cluster(appearances):
 
     for surname in sorted(buckets):
         rows = buckets[surname]
+        # T-1004. THE READINGS A RULING TAKES OFF A PERSON, held out before anything is
+        # anchored. The shape is R6's below — pull them from `rows`, say so once for the
+        # surname, and anchor them among THEMSELVES at the foot of the loop — because the
+        # need is the same: a reading that the name rules would fold onto a card, held
+        # apart by a fact the name cannot carry. The difference is only where the fact
+        # comes from. R6 reads it off the page automatically; these are adjudicated one at
+        # a time in data/residents/card_conflation_rulings.json, because no rule could
+        # have derived that a 69-year-old's death in 1888 is not the man on an 1833 tax
+        # list. Held out, not dropped: the reading stands as an identity of its own, the
+        # ladder grades it, and where every appearance of it describes a date after the
+        # scene year G0 makes it `not_1835_resident` and no card is ever minted.
+        ruled_out = [e for e in rows if (e["domain"], e["record_id"]) in splits]
+        if ruled_out:
+            refusals.append({
+                "rule": sorted({str(splits[(e["domain"], e["record_id"])].get("rule"))
+                                for e in ruled_out})[0],
+                "why": ("a ruling in data/residents/card_conflation_rulings.json takes "
+                        "these readings off the person the name rules folded them onto: "
+                        "one card was gathering two men"),
+                "surname": surname,
+                "records": sorted(e["record_id"] for e in ruled_out),
+                "held_apart": sorted(
+                    {f"{splits[(e['domain'], e['record_id'])].get('belongs_to')}"
+                     f" (off {splits[(e['domain'], e['record_id'])].get('off')},"
+                     f" {splits[(e['domain'], e['record_id'])].get('rule')})"
+                     for e in ruled_out}),
+                "declared_in": "residents/card_conflation_rulings.json#cards",
+            })
+            rows = [e for e in rows if e not in ruled_out]
         # R6, T-0723. A woman whose only printed name is her husband's. The honorific is
         # stripped before the tokens are compared, so `Mrs Rufus Brown` and `Rufus Brown`
         # arrive here letter for letter identical and M1 folds her onto him.
@@ -995,6 +1059,22 @@ def cluster(appearances):
                                                for m in members}),
                         "held_apart_by": "R6",
                     })
+        # T-1004's readings, anchored among themselves by the same rules. The identity
+        # carries the ruling's own X-rule in `held_apart_by`, so the master says WHICH
+        # ground took it off its card and a reader is never left to infer it from the id.
+        if ruled_out:
+            for signature, members in sorted(
+                    anchor(ruled_out, surname, refusals).items()):
+                verdicts = [splits[(m["domain"], m["record_id"])] for m in members]
+                identities.append({
+                    "id": "id_" + surname + "_" + ("_".join(signature) or "x"),
+                    "surname": surname,
+                    "forename": " ".join(signature),
+                    "members": members,
+                    "merge_rules": sorted({m.get("_merge_rule", "M1") for m in members}),
+                    "held_apart_by": sorted({str(v.get("rule")) for v in verdicts})[0],
+                    "held_apart_from": sorted({str(v.get("off")) for v in verdicts}),
+                })
     return identities, refusals
 
 
@@ -1047,6 +1127,38 @@ def _person_ids(row) -> list:
         if isinstance(value, list):
             out.extend(v for v in value if isinstance(v, str))
     return out
+
+
+def declared_splits(path=None) -> dict:
+    """(domain, record_id) -> the ruling that takes that reading off its person.
+
+    T-1004. The ONLY input to this tool that overrules the name rules downwards. It is
+    read from data/residents/card_conflation_rulings.json, where each verdict carries the
+    person it comes off, the man it belongs to, the rule it stands on and its reasoning.
+    Only `state: "split"` rulings appear here — an `X0` ruling is RECORDED and moves
+    nothing, and is gated by conflation_problems() instead.
+    """
+    doc = load(path or CONFLATIONS)
+    if not isinstance(doc, dict):
+        return {}
+    splits = {}
+    for card in doc.get("cards", []):
+        if not isinstance(card, dict) or card.get("state") != "split":
+            continue
+        for row in card.get("off_the_card", []):
+            domain, record_id = row.get("domain"), row.get("record_id")
+            if not (isinstance(domain, str) and isinstance(record_id, str)):
+                continue
+            splits[(domain, record_id)] = {
+                "rule": row.get("rule"),
+                "off": card.get("person_id"),
+                "card": card.get("card"),
+                "belongs_to": row.get("belongs_to"),
+                "as_read": row.get("as_read"),
+                "for": row.get("for"),
+                "declared_in": "residents/card_conflation_rulings.json#cards",
+            }
+    return splits
 
 
 def declared_anchors():
@@ -1281,10 +1393,32 @@ def build():
     appearances = []
     for domain, reader in READERS.items():
         appearances.extend(reader())
-    identities, refusals = cluster(appearances)
-    identities, refusals, anchored = apply_anchors(identities, refusals, declared_anchors())
+    splits = declared_splits()
+    identities, refusals = cluster(appearances, splits)
+    # T-1004. A CONFLATION RULING OUTRANKS THE ANCHOR IT CONTRADICTS, and this is the one
+    # place in this tool where a declared adjudication is set aside. `apply_anchors` exists
+    # because derived caution must not overturn a landed match, and it is right — but the
+    # match it lands is itself derived where a crosswalk matched on the name alone. Norris
+    # 1844's `King, N. clerk, at T. King's` was crossed onto Nehemiah King by the
+    # directories' own crosswalk, on M2's count of cards, and the ruling that takes it off
+    # him rests on Fergus 1839 printing `King, Nathaniel, clerk, Tuthill King` — the page,
+    # against a count. Both are declared; the later one was made with the page in hand and
+    # it names the anchor it overrules. The override is not silent: every one is written
+    # into the master's declared_refusals with the anchor it displaced.
+    anchors = declared_anchors()
+    overruled_anchors = [
+        {"a": splits[key]["as_read"], "b": anchor["person_id"], "rule": splits[key]["rule"],
+         "declared_in": splits[key]["declared_in"],
+         "evidence": f"{key[0]}:{key[1]} was crossed onto {anchor['person_id']} by "
+                     f"{anchor['declared_in']}; T-1004's conflation ruling takes it off "
+                     f"that card and gives it to {splits[key]['belongs_to']}. "
+                     + str(splits[key].get("for") or "")}
+        for key, anchor in sorted(anchors.items()) if key in splits]
+    anchors = {k: v for k, v in anchors.items() if k not in splits}
+    identities, refusals, anchored = apply_anchors(identities, refusals, anchors)
     declared_merges, declared_refusals = declared_rulings()
     declared_merges = anchored + declared_merges
+    declared_refusals = overruled_anchors + declared_refusals
     links = person_links()
 
     rows = []
@@ -1316,6 +1450,7 @@ def build():
             "merge_rules": identity["merge_rules"],
             "honorific": identity.get("honorific"),
             "held_apart_by": identity.get("held_apart_by"),
+            "held_apart_from": identity.get("held_apart_from"),
             "appearances": [compact(m) for m in members],
             "domains": sorted({m["domain"] for m in members}),
             "sources_offered": sorted(offered),
@@ -1340,6 +1475,7 @@ def build():
         "scene_year": SCENE_YEAR,
         "merge_rules": MERGE_RULES,
         "refusal_rules": REFUSAL_RULES,
+        "split_rules": SPLIT_RULES,
         "counts": {
             "identities": len(rows),
             "appearances": sum(len(r["appearances"]) for r in rows),
@@ -1350,6 +1486,7 @@ def build():
             "declared_merges": len(declared_merges),
             "appearances_moved_by_a_landed_adjudication": len(anchored),
             "declared_refusals": len(declared_refusals),
+            "appearances_taken_off_a_card_by_a_conflation_ruling": len(declared_splits()),
             "appearances_refused_as_out_of_town": sum(
                 1 for r in rows for a in r["appearances"]
                 if a["evidence_class"] == OUT_OF_TOWN_CLASS),
@@ -1732,6 +1869,89 @@ def deferred_card_clusters(path: Path = CARD_RULINGS) -> dict:
     return {frozenset(row.get("cards") or []): row for row in doc.get("deferred") or []}
 
 
+def conflation_problems(master, doc=None) -> list[str]:
+    """T-1004. THE CONFLATION RULINGS, HELD TO WHAT THEY CLAIM.
+
+    A ruling that quietly stops being true is worse than no ruling: the next pass reads
+    it instead of the page. So each one is re-proved against the master this run built,
+    and the two states are gated in OPPOSITE directions, which is the whole point of
+    writing an X0 down at all.
+
+      split     — the reading must be OFF the person it was ruled off, on an identity
+                  held apart by the ruling's own rule, and that identity must stand on
+                  no card where the ruling says the second man is not in the layer.
+                  A ruling whose reading has drifted back onto its card is red.
+      recorded  — the readings named in `still_on_the_card` must STILL be on that
+                  person. Nothing moves for an X0, so the only way it can go stale is
+                  for something else to move it, and that is exactly what this catches.
+
+    `name_as_ruled` is checked the same way: the card carries the name the ruling gives
+    it, or the ruling is not in force.
+    """
+    doc = doc if doc is not None else load(CONFLATIONS)
+    if not isinstance(doc, dict):
+        return ["data/residents/card_conflation_rulings.json is missing or unreadable"]
+    problems = []
+    home, names, carded = {}, {}, {}
+    for row in master["identities"]:
+        for entry in row["appearances"]:
+            home[(entry["domain"], entry["record_id"])] = row
+            if entry["domain"] == "residents":
+                names[entry["record_id"]] = entry.get("as_read")
+                carded[entry["record_id"]] = row
+    for card in doc.get("cards", []):
+        who, state = card.get("person_id"), card.get("state")
+        where = f"conflation ruling on {who}"
+        if who not in names:
+            problems.append(f"{where}: no person of that id stands in the residents layer")
+            continue
+        if card.get("name_as_ruled") and names[who] != card["name_as_ruled"]:
+            problems.append(f"{where}: the card reads {names[who]!r} and the ruling gives "
+                            f"it {card['name_as_ruled']!r}")
+        if state == "split":
+            for row in card.get("off_the_card", []):
+                key = (row.get("domain"), row.get("record_id"))
+                rule = row.get("rule")
+                if rule not in SPLIT_RULES:
+                    problems.append(f"{where}: {key[1]} cites unknown split rule {rule}")
+                if not row.get("for"):
+                    problems.append(f"{where}: {key[1]} is ruled off and states no reason")
+                holder = home.get(key)
+                if holder is None:
+                    problems.append(f"{where}: {key[1]} is not a reading this corpus holds")
+                    continue
+                if holder is carded.get(who):
+                    problems.append(f"{where}: {key[1]} is ruled off this card and is "
+                                    f"still on it — the split is not in force")
+                    continue
+                if holder.get("held_apart_by") != rule:
+                    problems.append(f"{where}: {key[1]} stands on {holder['id']}, which is "
+                                    f"held apart by {holder.get('held_apart_by')} and not "
+                                    f"by the ruling's {rule}")
+                if (card.get("second_man_in_the_layer") is False
+                        and holder.get("canonical_person_id")):
+                    problems.append(
+                        f"{where}: the ruling says the second man is not in the layer and "
+                        f"{holder['id']} now stands on card "
+                        f"{holder['canonical_person_id']}")
+        elif state == "recorded":
+            if not card.get("open_question_for_the_owner") and not card.get("for"):
+                problems.append(f"{where}: recorded as gathering two men and states nothing")
+            for record_id in card.get("still_on_the_card", []):
+                holder = next((r for r in (home.get((d, record_id)) for d in
+                               ("civic", "newspapers", "directories", "old_settlers",
+                                "church", "census_1840", "residents")) if r), None)
+                if holder is None:
+                    problems.append(f"{where}: {record_id} is not a reading this corpus holds")
+                elif holder is not carded.get(who):
+                    problems.append(f"{where}: {record_id} is recorded as still on this "
+                                    f"card and has moved to {holder['id']} — the ruling "
+                                    f"is stale and needs re-reading, not re-stating")
+        else:
+            problems.append(f"{where}: state {state!r} is neither split nor recorded")
+    return problems
+
+
 def invariants(master, proposal, ladder=None, deferred=None) -> list[str]:
     """The assertions the acceptance names. Each returns a sentence, or nothing."""
     problems = list(undeclared_church_records())
@@ -1748,7 +1968,7 @@ def invariants(master, proposal, ladder=None, deferred=None) -> list[str]:
         if len(holders) > 1:
             problems.append(f"{key[0]}:{key[1]} is claimed by {len(holders)} identities")
     for refusal in master["refusals"]:
-        if refusal["rule"] not in REFUSAL_RULES:
+        if refusal["rule"] not in REFUSAL_RULES and refusal["rule"] not in SPLIT_RULES:
             problems.append(f"a refusal cites unknown rule {refusal['rule']}")
         if not refusal.get("why"):
             problems.append("a refusal states no reason")
@@ -1925,6 +2145,22 @@ def cmd_check() -> int:
         else:
             print(f"  ok    {path.relative_to(ROOT)} re-derives")
     problems = invariants(master, proposal, ladder)
+    # T-1004. The conflation rulings are held to what they claim against the master this
+    # run built. It is not in invariants() because invariants() is exercised by fixtures
+    # — two-identity masters that hold none of the real town — and a ruling about Erastus
+    # Bowen has nothing to say about those. It belongs here, where the master is the town.
+    conflations = conflation_problems(master)
+    for problem in conflations[:10]:
+        print(f"  FAIL {problem}")
+    failures += 1 if conflations else 0
+    if not conflations:
+        ruled = load(CONFLATIONS) or {}
+        cards = ruled.get("cards") or []
+        split = sum(len(c.get("off_the_card") or []) for c in cards
+                    if c.get("state") == "split")
+        print(f"  ok    {len(cards)} card(s) ruled on for gathering two men — {split} "
+              f"reading(s) held off the card they were folded onto, and every ruling "
+              f"still says what the master says")
     for problem in problems[:10]:
         print(f"  FAIL {problem}")
     failures += 1 if problems else 0
@@ -2150,6 +2386,95 @@ def cmd_self_test() -> int:
             ok = got == (want[0], want[1])
         print(f"  {'ok   ' if ok else 'FAIL'} split_name({text!r}) -> {got}")
         failures += 0 if ok else 1
+
+    # ---- T-1004: ONE CARD, TWO MEN -------------------------------------------
+    # The rule is `splits`, and it is the only thing in this file that overrules a name.
+    # These four cases are it and its two edges: a reading named in a ruling leaves its
+    # card and stands on an identity of its own; a reading NOT named is untouched, so the
+    # rule cannot reach past its ruling; and the gate that holds a ruling to what it says
+    # fires in BOTH directions — a split that stopped splitting, and an X0 whose readings
+    # moved when the ruling says they did not.
+    def split_bucket(splits):
+        return cluster([
+            {"domain": d, "record_id": rid, "normalized": name, "as_read": name,
+             "evidence_class": "directory_1843", "source_id": src}
+            for rid, name, d, src in (
+                ("d1", "Bowen, Erastus", "directories", "fergus_1843"),
+                ("d2", "Bowen, Erastus Selden", "directories", "fergus_1843"),
+                ("t0", "Erastus Bowen", "residents", None))], splits)
+
+    ids, refs = split_bucket({("directories", "d2"): {
+        "rule": "X1", "off": "bowen_erastus_selden", "belongs_to": "the veterinary surgeon",
+        "as_read": "Bowen, Erastus Selden", "for": "Fergus prints both men",
+        "declared_in": "test"}})
+    apart = [i for i in ids if i.get("held_apart_by") == "X1"]
+    kept = [i for i in ids if not i.get("held_apart_by")]
+    if (len(apart) == 1 and len(kept) == 1
+            and {m["record_id"] for m in apart[0]["members"]} == {"d2"}
+            and {m["record_id"] for m in kept[0]["members"]} == {"d1", "t0"}
+            and apart[0].get("held_apart_from") == ["bowen_erastus_selden"]
+            and any(r["rule"] == "X1" for r in refs)):
+        print("  ok    a ruled reading leaves the card it was folded onto (X1)")
+    else:
+        print(f"  FAIL  the conflation ruling did not split the card: "
+              f"{[(i['id'], sorted(m['record_id'] for m in i['members'])) for i in ids]}")
+        failures += 1
+
+    ids, _ = split_bucket({})
+    if len(ids) == 1 and len(ids[0]["members"]) == 3:
+        print("  ok    …and with no ruling the same three readings are one man again")
+    else:
+        print(f"  FAIL  the splitter reached past its ruling: {[i['id'] for i in ids]}")
+        failures += 1
+
+    # The gate on the ruling file itself, against a master this test builds by hand.
+    def conflation_master(*rows):
+        return {"identities": [
+            {"id": i, "canonical_person_id": c, "held_apart_by": h,
+             "appearances": [{"domain": d, "record_id": r, "as_read": a}
+                             for d, r, a in apps]}
+            for i, c, h, apps in rows]}
+
+    on_card = ("id_x_a", "p1", None,
+               [("residents", "p1", "Erastus Bowen"), ("directories", "e1", "Bowen, Erastus")])
+    held = ("id_x_b", None, "X1", [("directories", "e2", "Bowen, Erastus Selden")])
+    ruling = {"cards": [{"card": "hh_x", "person_id": "p1", "state": "split",
+                         "name_as_ruled": "Erastus Bowen",
+                         "second_man_in_the_layer": False,
+                         "off_the_card": [{"domain": "directories", "record_id": "e2",
+                                           "rule": "X1", "for": "the page prints both"}]}]}
+    cases = [
+        ("a ruling in force is not reported", conflation_master(on_card, held), ruling, False),
+        ("a split that stopped splitting is caught",
+         conflation_master(("id_x_a", "p1", None,
+                            [("residents", "p1", "Erastus Bowen"),
+                             ("directories", "e2", "Bowen, Erastus Selden")])), ruling, True),
+        ("a card renamed out from under its ruling is caught",
+         conflation_master(("id_x_a", "p1", None,
+                            [("residents", "p1", "Erastus Selden Bowen")]), held), ruling, True),
+        ("a second man who has since got a card is caught",
+         conflation_master(on_card, ("id_x_b", "p2", "X1",
+                                     [("directories", "e2", "Bowen, Erastus Selden")])),
+         ruling, True),
+        ("a split ruling that states no reason is caught", conflation_master(on_card, held),
+         {"cards": [{"person_id": "p1", "state": "split", "off_the_card": [
+             {"domain": "directories", "record_id": "e2", "rule": "X1"}]}]}, True),
+        ("an X0 whose readings have moved off the card is caught",
+         conflation_master(on_card, held),
+         {"cards": [{"person_id": "p1", "state": "recorded", "for": "three initials",
+                     "still_on_the_card": ["e2"]}]}, True),
+        ("an X0 whose readings are where it says is not reported",
+         conflation_master(on_card, held),
+         {"cards": [{"person_id": "p1", "state": "recorded", "for": "three initials",
+                     "still_on_the_card": ["e1"]}]}, False),
+    ]
+    for what, master_doc, doc, want_problem in cases:
+        got = bool(conflation_problems(master_doc, doc))
+        if got == want_problem:
+            print(f"  ok    {what}")
+        else:
+            print(f"  FAIL  {what}: {conflation_problems(master_doc, doc)}")
+            failures += 1
 
     # ---- T-0723: A WIFE IS NOT HER HUSBAND -----------------------------------
     # The honorific strip is right for `John Bates Jr.` and it is what folded

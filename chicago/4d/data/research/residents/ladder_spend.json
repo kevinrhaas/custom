@@ -19,8 +19,8 @@
    "G1a": 22,
    "G1b": 91,
    "G1c": 10,
-   "G2e": 48,
-   "G3": 641
+   "G2e": 47,
+   "G3": 642
   },
   "conflicts_by_kind": {
    "abstention": 45,
@@ -6680,10 +6680,10 @@
    "person_id": "thompson_john",
    "household_id": "hh_thompson_john",
    "name": "John Thompson",
-   "identity": "id_thompson_john_leverett",
-   "rule": "G2e",
+   "identity": "id_thompson_john",
+   "rule": "G3",
    "grade": "inferred",
-   "resident_subtype": null
+   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "thrall_e_l",
