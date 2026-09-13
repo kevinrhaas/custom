@@ -1,5 +1,74 @@
 # STATUS
 
+## Shipped 2026-09-13 — T-0277: what a density handover would cost the sward's far edge, re-measured against the corrected ruler
+
+**The ramp stays, and this time the reason is a reading rather than an inherited one.**
+
+`TUNE.mid.band` and `TUNE.forb.band` are the last two coverage ramps in the sward. Every
+other boundary — the near ring's outer edge, the mid ring's inner one, both far bands —
+hands its ground over by DENSITY (T-0093, T-0086): each slot carries its own boundary drawn
+from a world-anchored rank, and a plant is drawn whole or not at all. These two still ramp,
+so at `full` the last few metres of grass and flowers are resolved through the 4x4 screen
+door — a band of dots per pixel.
+
+**Why it had to be re-asked.** T-0187 priced the change and kept the ramp, and its
+arithmetic was never in dispute. Its RULER was. Every figure it compared against was read at
+`flora.fadeAt(...) > 0.02`, a coverage the screen door renders as nothing whatever for two
+instance phases in three (T-0225), so a coverage ramp was being credited with reach no
+visitor could see. The gate reads the boundary at 1/16 now — the screen door's own quantum —
+and carries the `band x 1/16` inset that costs. The comparison a spread has to win is
+therefore a different one, and this is the re-run.
+
+**The instrument.** `tools/simulate_outer_spread.mjs` stands where the gate's part 7 and
+`tools/measure_sward_reach.mjs` stand, bins the same 16 bearings over the same +/-30 degree
+cone, and for every placed mid and forb instance reports the drawn boundary under both
+representations — today's ramp read at 1/16, and `slotRing`'s own arithmetic on this slot's
+own `aChiRing` with the rank asked of the placer through a new `flora.handoverAt` (the rule
+`fringeAt` set: ask the placer, do not re-derive the noise in the tool). It reproduces
+`measure_sward_reach.mjs`'s reading of the unmodified tree to the centimetre at both
+viewports, which is what makes its other column worth believing. Partial spreads are priced
+too, so the choice is read off a curve.
+
+| ring, tune | today, at 1/16 | fully spread | bars, spread |
+|---|---|---|---|
+| mid, `full` | 25.00 min / 26.61 mean (bars 21.76 / 24.46) | 22.58 / 25.36 | 22.20 / 24.90 — **clears** by 0.38 / 0.46 m |
+| mid, `light` | 10.32 / 11.96 (bars 9.50 / 11.50) | 8.56 / 11.23 | 9.60 / 11.60 — **over** by 1.04 / 0.37 m |
+| forb, `full` | 23.52 / 24.74 (bars 20.89 / 23.59) | 16.41 / 21.73 | 21.20 / 23.90 — **over**, from a quarter of the band upwards |
+
+At `light` three quarters of the band is over as well (11.57 mean); half clears at 11.75.
+The forb ring at `light` is over under every representation including the unmodified one —
+11 or 12 bins of 16 and a 4.47 m minimum — which is the sampling the instrument already
+declines to read a boundary off, not a defect this introduces.
+
+**Why it loses, in two parts, and the second is a better reason than T-0187 gave.**
+
+1. *The bar rises when the band is spread.* `ringsFor` replaces a spread layer's `band` with
+   `HARD`, so the `band/16` a reading at the quantum sits inside the placed boundary — 0.44 m
+   at `full`, 0.10 m at `light` — vanishes. A spread must clear a HIGHER bar with a SHORTER
+   reach. Printing it against the ramp's own bars would have flattered it by 0.44 m, which is
+   most of the margin it has.
+2. *A handover's boundary is a SAMPLE, and its expectation falls with the slots in the bin.*
+   The desktop cone holds 642 mid slots, forty to a 3.75-degree bin, and one of forty draws a
+   rank low enough to stand near the boundary. The `light` cone holds 132, about eight to a
+   bin, and eight draws do not reach it. At `light` the mid ring is as sparse as the forb ring
+   is at `full` — exactly the case `measure_sward_reach.mjs` refuses to read a boundary off.
+
+**And it cannot be taken one edge at a time.** `full` would carry a mid spread; it will not
+carry a forb one. But the forb ring ends within a metre of the mid ring deliberately, so the
+two boundaries land on the same screen row — spreading only the grass would leave the flowers
+dithering along the line the grass had just stopped drawing, drawn by half as many plants and
+against a step. A split decision is worse than either whole one.
+
+**Nothing moved.** No plant, no ring, no byte of geometry: the only renderer change is the
+additive `flora.handoverAt` accessor the tool reads through, and the TUNE commentary now
+carries these figures instead of the superseded ones. Reopening this means changing what is
+measured, not the bar — a sward dense enough at `light` for eight plants a bin to become
+forty, or a forb layer that does not have to share the mid ring's boundary.
+
+Verified: `tools/check.sh`; `node tools/measure_sward_reach.mjs --source` at both viewports
+(unchanged from dev); `node tools/simulate_outer_spread.mjs --source` at both viewports;
+the smoke parts `tools/smoke_budget.mjs --for-diff` prices for this diff.
+
 ## Shipped 2026-09-13 — T-0334: the line the Trustees walked round the built-up town
 
 Section 22 of the by-laws passed 5 August 1835 forbids stacking hay inside a boundary the
