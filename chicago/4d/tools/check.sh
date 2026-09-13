@@ -581,6 +581,15 @@ selftest "…and its own assertions still fire when broken" \
 step "the residents manifest re-derives from the household cards" \
   python3 tools/rebuild_resident_index.py --check
 
+# T-0871. It was the only re-derivation gate in this tree whose own assertions had
+# never been shown to fire, and its argument list was read as `"--write" in argv` and
+# nothing else - so `--wrtie` typed for `--write` fell through to the compare path,
+# printed that the manifest re-derives, wrote nothing and exited 0. The parser refuses
+# an unrecognised flag now, and this proves both: every refusal above broken on
+# purpose, and the typo answered with a non-zero exit rather than a green check.
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/rebuild_resident_index.py --self-test
+
 # The kinship the corpus already states (T-0734). The audit that opened that ticket
 # found 14 of 1,404 people related to anybody at all, and the reason was never that
 # the sources were silent: the register marries couples this town holds both halves
