@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The far side of the river, numbered', kind: 'change', ts: '',
+  { v: 809, title: 'The far side of the river, numbered', kind: 'change', ts: '2026-09-13T01:31:16.349Z', date: 'Sep 12, 2026, 8:31 PM CT',
     items: [
       'Wright writes a number across the middle of every block of the town, and this project reads them one way only: it asks the georeference for a crop cut from that block\u2019s own committed street lines, and reports the numeral that falls inside it. Eighteen blocks had resisted that \u2014 the whole West Division, across the South Branch \u2014 because two of the streets that flank them are not in the street data at all. They are now read: 8 9 10 11 12 13, 22 23 24 25 26 27, and 46 47 48 49 50 51.',
       'The two missing streets are Jefferson and Des Plaines, and they are missing on purpose. Both stand entirely west of where this reconstruction\u2019s modelled ground stops, and a street hanging off the end of the terrain is the same fault a building would be refused for. That refusal has not been quietly reversed to get the numbers. Instead each flank is Clinton Street stepped west by one block-width and two \u2014 arithmetic used to cut a photograph, not a line added to the map.',
