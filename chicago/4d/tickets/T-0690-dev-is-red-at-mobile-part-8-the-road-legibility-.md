@@ -1,7 +1,7 @@
 ---
 id: T-0690
 title: dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-04
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 10:26:47 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34765103447
 ---
 
 dev is red at mobile part 8: the road-legibility aid moves the frame by 3 cells where the gate wants 4.
