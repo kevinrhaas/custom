@@ -172,7 +172,8 @@ the gable so that it "can be pulled away from the building when it catches fire"
 building in this fort has one. Painting a cat-and-clay flue up the middle of a barracks
 would contradict the geometry the archetype has built since it was written.
 
-So the fort takes **§2's brick row, unchanged** — `CHIMNEY_BRICK`, 0.45/0.23/0.17 linear at
+So the fort takes **§2's brick row, unchanged** — `BRICK` (named `CHIMNEY_BRICK` until
+T-0332 renamed it for the fabric rather than one of its surfaces), 0.45/0.23/0.17 linear at
 roughness 0.85, the town's one brick. No third row, no new number, and no new liberty:
 `docs/LIBERTIES.md` **L26** already owns where a fort stack stands, and the fabric here is
 reasoned from attested evidence rather than invented, so it is **inferred** and L168's own

@@ -441,7 +441,7 @@ SAWN_FRAMING = Finish(
          "does.")
 
 
-# ------------------------------------------------------------- the chimney stack
+# ---------------------------------------------- the bare masonry, and the stack
 #
 # R-W2a finding 1, discharged by T-0008: `frame_dwelling`, `frame_storefront` and
 # `log_dwelling` built their stacks with the ROOF material, so every stack in the town
@@ -473,12 +473,30 @@ SAWN_FRAMING = Finish(
 # Neither row claims a stack for a building whose record does not count one, and
 # neither is a covering claim about the roof it passes through.
 
-CHIMNEY_BRICK = Finish(
-    key="chimney_brick", rgba=(0.45, 0.23, 0.17, 1.0), roughness=0.85, tier="inferred",
-    note="Unpainted soft-mud brick. Verbatim `frame_tavern.BRICK_RGBA` (T-0092), off "
-         "the Petford watercolour's brick chimneys, so the Sauganash's own stacks do "
-         "not change colour when the rest of the town's stop being roof-coloured. "
-         "docs/RESEARCH/chimneys.md §2.")
+# T-0332 RENAMED THIS ROW, AND THE RENAME IS THE WHOLE OF THAT TICKET. It was
+# `CHIMNEY_BRICK` from T-0008, when a stack was the only thing in the town made of
+# brick. T-0267 brought the fort's wall onto it and T-0092's tavern stack was already
+# on it, so one row named for one surface was being read by three, two of them
+# attested brick WALLS and neither of them a chimney. The name is now the FABRIC —
+# which is what a material sheet row is — and the surfaces ask for it through the two
+# selectors below rather than naming it, so nothing has to be renamed again the next
+# time a third kind of brick surface arrives. materials.md §9.5 filed it; §10 closes
+# it. No alias is kept: three call sites is not a compatibility surface, and a sheet
+# carrying two names for one row is the drift this rename exists to end.
+#
+# The VALUE is untouched, to the last decimal, and that is the check on the parcel:
+# a rename that repaints a building is the wrong change.
+
+BRICK = Finish(
+    key="brick", rgba=(0.45, 0.23, 0.17, 1.0), roughness=0.85, tier="inferred",
+    note="Unpainted soft-mud brick — the town's ONE brick, on a chimney and on a "
+         "wall alike. Verbatim `frame_tavern.BRICK_RGBA` (T-0092), off the Petford "
+         "watercolour's brick chimneys, so the Sauganash's own stacks do not change "
+         "colour when the rest of the town's stop being roof-coloured. It is NOT a "
+         "claim that the fort's 1816 brick matched the town's 1833 brick: nothing "
+         "here shows the colour of any fort surface, and the row is read there "
+         "because it is the only brick this project has argued. "
+         "docs/RESEARCH/chimneys.md §2 and §6, materials.md §9 and §10.")
 CHIMNEY_STICK_CLAY = Finish(
     key="chimney_stick_clay", rgba=(0.562, 0.527, 0.468, 1.0), roughness=0.95,
     tier="reconstructed",
@@ -574,6 +592,39 @@ def wall_finish(paint: str | None = None, finish_key: str | None = None,
     return FINISHES[default]
 
 
+#: The bare masonry fabrics — a wall whose colour is the material's own rather than
+#: something it wears. Exactly one row is here, because exactly one bare wall fabric
+#: in this town has a colour anybody argued: `BRICK`, off the Petford watercolour. A
+#: FRAMED or CLAD wall is deliberately absent — it wears a finish, and `wall_finish`
+#: is the question for that one.
+_BARE_WALL_FINISH: dict[str, Finish] = {
+    "brick": BRICK,
+}
+
+
+def wall_colour(construction: str | None = None) -> Finish | None:
+    """What colour a BARE wall of this construction is — or `None` where the sheet
+    states no colour for that fabric, which the caller must then answer itself.
+
+    This is §8.3's move made for the wall: T-0267 put the fort's brick wall onto the
+    sheet by NAMING the row, and the row was called `chimney_brick`, so a wall was
+    painted out of a constant named for a different surface (T-0332). Asked the
+    question rather than told the answer, a wall cannot go on pointing at a row that
+    has since moved — and the row can be renamed, as it just has been, without
+    hunting the archetypes for the name.
+
+    `None` rather than a fallback is the deliberate half. The sheet does not know
+    what colour a stone or an earth wall is — no source in this repository states
+    either, and no record in the dataset builds one (measured for T-0332) — and a
+    selector that quietly dealt the nearest row would be inventing a colour under a
+    reader that looks like it is asking the sheet. Saying nothing is the honest
+    answer, and it leaves the value where its one holder can argue it.
+    """
+    if construction and construction in _BARE_WALL_FINISH:
+        return _BARE_WALL_FINISH[construction]
+    return None
+
+
 def roof_finish(roof_condition: str | None = None) -> Finish:
     """What a roof wears. A WEATHERING CONDITION and never a covering — see the
     module docstring, and R-W2a finding 2, which this parcel does not discharge."""
@@ -597,7 +648,7 @@ def chimney_finish(stack: str) -> Finish:
     Anything else takes brick: an interior stack is the town's majority and the
     better-evidenced of the two. `docs/RESEARCH/chimneys.md` is the whole argument.
     """
-    return CHIMNEY_STICK_CLAY if stack == "exterior_gable" else CHIMNEY_BRICK
+    return CHIMNEY_STICK_CLAY if stack == "exterior_gable" else BRICK
 
 
 def resolve(substrate: Substrate, finish: Finish) -> tuple[tuple, float]:

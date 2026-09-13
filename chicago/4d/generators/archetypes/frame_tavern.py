@@ -52,7 +52,13 @@ M_BRICK = 5
 # in the same commit rather than a parcel that cannot go green. The value itself is
 # UNCHANGED, so the Sauganash's masters come out byte-for-byte identical — which is
 # the check that this was a move and not a repaint.
-BRICK_RGBA = materials.CHIMNEY_BRICK.rgba
+# T-0332: ASKED, not named. This stack rises inside the building and breaks the
+# roof at the ridge, so the question the sheet answers is `chimney_finish
+# ("interior")` — the disposition this archetype actually builds — and the row
+# behind it can be renamed (it has been: `CHIMNEY_BRICK` is `BRICK` now) without
+# this module knowing. materials.md §8.3 argued the shape; §10 applied it here.
+BRICK = materials.chimney_finish("interior")
+BRICK_RGBA = BRICK.rgba
 ROOF_MOSS_RGBA = (0.20, 0.26, 0.17, 1.0)   # the Petford view's dark green/moss shingle
 
 # The exposed face per course is `params.siding_exposure_m` — a record's own mill
@@ -202,7 +208,7 @@ def build(params: FrameTavernParams, name: str):
     ]
     if params.chimneys > 0:
         mats.append(simple_material("brick", BRICK_RGBA,
-                                    roughness=materials.CHIMNEY_BRICK.roughness))
+                                    roughness=BRICK.roughness))
     return b.to_object(mats)
 
 

@@ -62,7 +62,20 @@ WALL_RGBA = {
     # any Chicago brick is the Petford watercolour of the Sauganash. chimneys.md §6
     # made exactly this argument for the fort's stacks and named this convergence as
     # the parcel that follows it. materials.md §9 is the whole of it.
-    "brick": materials.CHIMNEY_BRICK.rgba,
+    #
+    # T-0332: and it ASKS for it now rather than naming the row. `materials.wall_colour`
+    # is the wall's own question — "what colour is a bare wall of this fabric" — so the
+    # sheet could rename the row it answers with (`CHIMNEY_BRICK` -> `BRICK`, because a
+    # row named for a chimney was painting two attested brick WALLS) without this table
+    # having to be found and edited. materials.md §8.3 is the shape; §10 is the parcel.
+    "brick": materials.wall_colour("brick").rgba,
+    # STONE and EARTH stay local, and the reason is measured rather than assumed: no
+    # source in this repository states the colour of a stone or an earth wall, and no
+    # record in the dataset builds one (T-0332 counted: zero of either construction).
+    # `wall_colour` therefore answers None for both, which is the sheet saying so out
+    # loud instead of dealing the nearest row. These two are this archetype's own
+    # unreached fallbacks; if a record ever builds one, that is when the value has to
+    # be argued and the argument is what puts it on the sheet. materials.md §10.5.
     "stone": (0.58, 0.56, 0.51, 1.0),
     "earth": (0.34, 0.30, 0.22, 1.0),
 }
