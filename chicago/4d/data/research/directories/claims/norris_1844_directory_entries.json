@@ -13,8 +13,8 @@
  "reading_note": "transcription_mediated throughout: this is archive.org's OCR of the printed page, machine-read and not checked against the image by eye. The damage is left in every quote on purpose — 'Win.' for 'Wm.', 'ISickalls' for 'Nickalls' — because a tidied quote cannot be found again. The repair, where one is safe, is in normalized. A forename the scanner garbled beyond a compositor's alphabet is repaired against Kim Torp's independent transcription of the same directory, and the repaired entry carries normalized.given_repair with both readings and the citation (T-0695); where that second hand cannot read the token either, the damage stands.",
  "counts": {
   "claims": 2073,
-  "person": 1984,
-  "business": 89,
+  "person": 1983,
+  "business": 90,
   "given_repairs": 15,
   "address_refusals": 5
  },
@@ -262,22 +262,35 @@
    "id": "n1844_e0008",
    "kind": "person",
    "reading": "transcription_mediated",
-   "quote": "Adams, R. E. W, physician, corner of Clark and Lake streets,-",
+   "quote": "Adams, R. E. W, physician, corner of Clark and Lake streets,-\n. -house Clark street (See card)",
    "normalized": {
     "printed_name": "Adams, R. E. W",
     "surname": "Adams",
     "given": "R. E. W",
     "firm": false,
-    "occupation": "physician, corner of Clark and Lake streets,-",
-    "address": null,
-    "as_printed": "Adams, R. E. W, physician, corner of Clark and Lake streets,-",
+    "occupation": "physician, corner of Clark and Lake streets",
+    "address": "house Clark street (See card)",
+    "turned_line_joined": {
+     "line": 34,
+     "reads": ". -house Clark street (See card)",
+     "why": "the turned tail of the Adams, R. E. W entry above it, un-indented because the scanner read ink in the margin where the indent is. The entry as printed is one line and its turn.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 33,
+      "reads": "Adams, R.E.W. physician, corner of Clark and Lake sts, house Clark st",
+      "and_the_volume_itself": "the line above ends in a comma and a rule, which is the compositor's turn, and the tail carries no name of its own"
+     },
+     "ticket": "T-1023"
+    },
+    "as_printed": "Adams, R. E. W, physician, corner of Clark and Lake streets,. -house Clark street (See card)",
     "section": "directory"
    },
    "locator": {
     "text_file": "norris_1844_leaf_031.txt",
     "lines": [
      33,
-     33
+     34
     ],
     "page": "norris_1844_leaf_031",
     "printed_page": 21
@@ -291,20 +304,27 @@
   },
   {
    "id": "n1844_e0009",
-   "kind": "person",
+   "kind": "turned_line",
    "reading": "transcription_mediated",
    "quote": ". -house Clark street (See card)",
    "normalized": {
-    "printed_name": "house Clark street (See card)",
-    "surname": "house Clark street (See card)",
+    "printed_name": null,
+    "surname": null,
     "given": null,
     "firm": false,
     "occupation": null,
     "address": null,
-    "name_overrun": {
-     "refused": "empty_prefix",
-     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
-     "as_split_on_comma": "house Clark street (See card)"
+    "turned_line": {
+     "joins": "n1844_e0008",
+     "why": "the turned tail of the Adams, R. E. W entry above it, un-indented because the scanner read ink in the margin where the indent is. The entry as printed is one line and its turn.",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 33,
+      "reads": "Adams, R.E.W. physician, corner of Clark and Lake sts, house Clark st",
+      "and_the_volume_itself": "the line above ends in a comma and a rule, which is the compositor's turn, and the tail carries no name of its own"
+     },
+     "ticket": "T-1023"
     },
     "as_printed": ". -house Clark street (See card)",
     "section": "directory"
@@ -319,9 +339,7 @@
     "printed_page": 21
    },
    "describes_date": "1844",
-   "entities": [
-    "house Clark street (See card)"
-   ],
+   "entities": [],
    "town_finding": false,
    "notes": null
   },
@@ -8691,12 +8709,28 @@
    "reading": "transcription_mediated",
    "quote": "vButterfield, Carver, primer of the Prairie Farmer, 112 Lake st",
    "normalized": {
-    "printed_name": "vButterfield, Carver",
-    "surname": "vButterfield",
+    "printed_name": "Butterfield, Carver",
+    "surname": "Butterfield",
     "given": "Carver",
     "firm": false,
     "occupation": "primer of the Prairie Farmer, 112 Lake st",
     "address": null,
+    "surname_repair": {
+     "as_read": "vButterfield,",
+     "reading": "Butterfield,",
+     "surname": "Butterfield",
+     "why": "a speck welded to the B. clean_head drops a lone letter that stands apart from the name; this one has no space after it, so the surname read `vButterfield` and no Butterfield in the volume is spelled so",
+     "confidence": "documented",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 304,
+      "reads": "Butterfield, Carver, printer of the Prairie Farmer, 112 Lake st",
+      "and_the_volume_itself": "Butterfit'd, Wm. one line above and Butlerworih one line below — the run is Butterfield, and four of them stand on this page",
+      "why_not_the_image": "The second hand, the OCR's own surviving letters and the alphabetical run agree. The page image is what breaks a TIE between the two hands (T-0987 stretch 10); there is no tie here."
+     },
+     "ticket": "T-1023"
+    },
     "as_printed": "vButterfield, Carver, primer of the Prairie Farmer, 112 Lake st",
     "section": "directory"
    },
@@ -8711,7 +8745,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "vButterfield, Carver"
+    "Butterfield, Carver"
    ],
    "town_finding": false,
    "notes": null
@@ -8905,16 +8939,27 @@
    "reading": "transcription_mediated",
    "quote": "* '.ilhoun, John, printer, house State st. b Wash and Madison sts",
    "normalized": {
-    "printed_name": "ilhoun, John",
-    "surname": "ilhoun",
+    "printed_name": "Calhoun, John",
+    "surname": "Calhoun",
     "given": "John",
     "firm": false,
     "occupation": "printer",
     "address": "house State st. b Wash and Madison sts",
-    "name_overrun": {
-     "refused": "empty_prefix",
-     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
-     "as_split_on_comma": "ilhoun"
+    "surname_repair": {
+     "as_read": "* '.ilhoun,",
+     "reading": "Calhoun,",
+     "surname": "Calhoun",
+     "why": "the C eaten by a speck in the margin. clean_head strips `* '.` and the surname read `ilhoun`, so the John Calhoun who printed the Chicago Democrat was filed under a name that is not one",
+     "confidence": "documented",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 309,
+      "reads": "Calhoun, John, printer, house State st b Wash and Madison sts",
+      "and_the_volume_itself": "Calhoun, Alvin one line above and Calighan one line below — the alphabetical run admits no other word here",
+      "why_not_the_image": "The second hand, the OCR's own surviving letters and the alphabetical run agree. The page image is what breaks a TIE between the two hands (T-0987 stretch 10); there is no tie here."
+     },
+     "ticket": "T-1023"
     },
     "as_printed": "* '.ilhoun, John, printer, house State st. b Wash and Madison sts",
     "section": "directory"
@@ -8930,7 +8975,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "ilhoun, John"
+    "Calhoun, John"
    ],
    "town_finding": false,
    "notes": null
@@ -24475,16 +24520,27 @@
    "reading": "transcription_mediated",
    "quote": "llageman, Christopher, grocer, N. Water st. b Clark & Dearborn",
    "normalized": {
-    "printed_name": "llageman, Christopher",
-    "surname": "llageman",
+    "printed_name": "Hageman, Christopher",
+    "surname": "Hageman",
     "given": "Christopher",
     "firm": false,
     "occupation": "grocer, N. Water st",
     "address": "b Clark & Dearborn",
-    "name_overrun": {
-     "refused": "empty_prefix",
-     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
-     "as_split_on_comma": "llageman"
+    "surname_repair": {
+     "as_read": "llageman,",
+     "reading": "Hageman,",
+     "surname": "Hageman",
+     "why": "the H set as two l's — its stems read and its crossbar lost. The surname read `llageman`, which sorts nowhere near the H's",
+     "confidence": "documented",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844directory.txt",
+      "line": 812,
+      "reads": "Hageman, Christopher, grocer, N. Water st. b Clark & Dearborn",
+      "and_the_volume_itself": "Haeni one line above, and Hageman, F. and Hageman, —— one and two lines below, both spelled",
+      "why_not_the_image": "The second hand, the OCR's own surviving letters and the alphabetical run agree. The page image is what breaks a TIE between the two hands (T-0987 stretch 10); there is no tie here."
+     },
+     "ticket": "T-1023"
     },
     "as_printed": "llageman, Christopher, grocer, N. Water st. b Clark & Dearborn",
     "section": "directory"
@@ -24500,7 +24556,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "llageman, Christopher"
+    "Hageman, Christopher"
    ],
    "town_finding": false,
    "notes": null
@@ -52114,16 +52170,27 @@
    "reading": "transcription_mediated",
    "quote": "v; Smith, Abial, printer. Dem. Olnce, res Lake Street House",
    "normalized": {
-    "printed_name": "v; Smith, Abial",
-    "surname": "v; Smith",
+    "printed_name": "Smith, Abial",
+    "surname": "Smith",
     "given": "Abial",
     "firm": false,
     "occupation": "printer. Dem. Olnce",
     "address": "res Lake Street House",
-    "name_overrun": {
-     "refused": "empty_prefix",
-     "why": "the reading begins at the trade, so there is no name to cap to; an empty surname would drop the claim out of the crosswalk",
-     "as_split_on_comma": "v; Smith"
+    "surname_repair": {
+     "as_read": "v; Smith,",
+     "reading": "Smith,",
+     "surname": "Smith",
+     "why": "a speck and a semicolon in the margin ahead of a surname that is otherwise whole. clean_head drops a lone letter followed by a space; `v;` is a letter followed by a point, so the surname read `v; Smith`",
+     "confidence": "documented",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844dir2.txt",
+      "line": 521,
+      "reads": "Smith, Abial, printer, Dem. Office, res lake Street House",
+      "and_the_volume_itself": "Smith, Andrew one line above and Smith, Benjamin one line below — the Smith run, and this entry prints Smith with it",
+      "why_not_the_image": "The second hand, the OCR's own surviving letters and the alphabetical run agree. The page image is what breaks a TIE between the two hands (T-0987 stretch 10); there is no tie here."
+     },
+     "ticket": "T-1023"
     },
     "as_printed": "v; Smith, Abial, printer. Dem. Olnce, res Lake Street House",
     "section": "directory"
@@ -52139,7 +52206,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "v; Smith, Abial"
+    "Smith, Abial"
    ],
    "town_finding": false,
    "notes": null
@@ -54601,12 +54668,28 @@
    "reading": "transcription_mediated",
    "quote": "iStrail, Isaac, dry goods and groceries, Clark st. b S. Water & Lake",
    "normalized": {
-    "printed_name": "iStrail, Isaac",
-    "surname": "iStrail",
+    "printed_name": "Strail, Isaac",
+    "surname": "Strail",
     "given": "Isaac",
     "firm": false,
     "occupation": "dry goods and groceries, Clark st",
     "address": "b S. Water & Lake",
+    "surname_repair": {
+     "as_read": "iStrail,",
+     "reading": "Strail,",
+     "surname": "Strail",
+     "why": "a speck welded to the S, as with Butterfield above — no space, so clean_head cannot see it and the surname read `iStrail`",
+     "confidence": "documented",
+     "evidence": {
+      "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+      "file": "data/research/genealogytrails/text/1844dir2.txt",
+      "line": 602,
+      "reads": "Strail, Isaac, dry goods & groceries, Clark st b S. Water & Lake",
+      "and_the_volume_itself": "Stowe, W. H. one line above and Strang one line below; and the second hand's own Casey entry names `Isaac Strail's` as an address",
+      "why_not_the_image": "The second hand, the OCR's own surviving letters and the alphabetical run agree. The page image is what breaks a TIE between the two hands (T-0987 stretch 10); there is no tie here."
+     },
+     "ticket": "T-1023"
+    },
     "as_printed": "iStrail, Isaac, dry goods and groceries, Clark st. b S. Water & Lake",
     "section": "directory"
    },
@@ -54621,7 +54704,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "iStrail, Isaac"
+    "Strail, Isaac"
    ],
    "town_finding": false,
    "notes": null
