@@ -1202,6 +1202,48 @@
       "reading": "transcription_mediated",
       "id": "c021",
       "quote": "Lots for Sale.\nW\n/th. be sold on resconabie terms, the\nWater Street, and Lot No. 3 block 11\n[uncertain: Sowing intr]\nNo. 3block 20\nwest bridge\nwo stories, and in eligibly situated for busir\n, first has\nEnquire at the office of Collins and Cator\nJuly 8, 1831."
+    },
+    {
+      "id": "c022",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "House and Land gent.\nLOTs parchased and sold, or by commi\n1:2 Building Lots for sale, in the town ar\nTake st mouse r. Tampingure at the office:\n1 Houses to Let\nschool section.",
+      "normalized": "House and Land [A]gent. LOT[S] p[u]rchased and sold, or by commi[ssion.] 1[2]2 Building Lots for sale, in the town a[nd] School section. […] Houses to Let […]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2954,
+          2959
+        ],
+        "lines_of_claim": [
+          2954,
+          2955,
+          2956,
+          2957,
+          2958,
+          2959
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. The display line is lost — line 2953 closes P. Pruyne & Co.'s notice immediately above. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. THE ADDRESS LINE IS PRESENT AND UNREADABLE: line 2957 sets 'Take st mouse r. Tampingure at the office:', which is the card's 'Lake st. opposite Dr. Temple's. Enquire at the Office on' collapsed into one line and mangled past the point where either the street or the anchor can be read off it. It is quoted where it stands and this printing is recorded as SILENT about placement — not given the address its neighbours print — which is the difference between reading a line and recognising a card. 2959 sets 'school section.' after 'Houses to Let', out of the card's order."
     }
   ]
 }

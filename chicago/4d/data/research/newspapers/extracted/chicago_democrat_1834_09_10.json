@@ -1165,6 +1165,48 @@
         }
       },
       "notes": "A SECOND SMITHY, PLACED AGAINST THE JAIL. 'OPPOSITE THE JAIL' is the whole of the address the advertisement gives — no street — so the placement is `relative` on the jail and no street is recorded. The jail is the log jail on the public square, which T-0246 has just put on the plat, so this anchor is one the model can actually resolve. The advertisement is badly cut in this column and only the lines that carry the claim are quoted; line 3567's 'are,' and 3570's 'lowest' belong to the neighbouring hardware column. The same firm's head reads 'DALLY A M' at 1834-09-03 page 4 column 3 line 3869 with 'OPPOStTE THE' at 3871, which is the same shop and no cleaner."
+    },
+    {
+      "id": "c020",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: ase and dandoigent.]\n[uncertain: y purchased and Sold, or by coanis]\n[uncertain: Biding Lots for salo, in the town and]\n[uncertain: FEN]\n[uncertain: es Dre parir at the Ofice ol]\n[uncertain: chool section.]",
+      "normalized": "[…] [Hou]se and [L]and [A]gent. [LOTS] purchased and Sold, or by co[mm]is[sion.] [12] B[u]ilding Lots for salo, in the town and […] […] [S]chool section.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          2850,
+          2855
+        ],
+        "lines_of_claim": [
+          2850,
+          2851,
+          2852,
+          2853,
+          2854,
+          2855
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. EVERY LINE OF THIS COLUMN IS INSIDE AN UNCERTAINTY MARK, the transcription's own, and they are quoted with the marks rather than stripped. The display line is lost. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. Line 2854, '[uncertain: es Dre parir at the Ofice ol]', is where the address stands; neither 'Lake' nor 'Temple' can be read off it, so this printing is recorded as silent about placement rather than credited with the anchor its neighbours print."
     }
   ]
 }
