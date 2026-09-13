@@ -1,7 +1,7 @@
 ---
 id: T-0436
 title: The corporation's limits have no committed geometry, and the fire ordinance binds only inside them
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-30
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1238
+claimed_by: run 9/13/2026, 2:13:16 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-13T07:51:41.116Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34744481248
 ---
 
 The corporation's limits have no committed geometry, and the fire ordinance binds only
