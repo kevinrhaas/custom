@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The book was cited, the printed line was not', kind: 'fix', ts: '',
+  { v: 854, title: 'The book was cited, the printed line was not', kind: 'fix', ts: '2026-09-13T23:30:41.867Z', date: 'Sep 13, 2026, 6:30 PM CT',
     items: [
       'A resident of this town can carry a reading taken from a Chicago city directory of 1839, 1843 or 1844 \u2014 a later trade, a later address \u2014 set beside the 1835 record and never inside it. There are 895 such rulings, and a standing check asks of each one whether the person\u2019s card actually learned it. For two days in September the answer for 264 of them was no, and the check could not say so.',
       'The reason is worth stating plainly, because it is the difference between a citation and a reading. Each of these crosswalks names the volume it rests on once, at the top of the file, so that one name belongs to every ruling in it equally. A card that mentioned the book \u2014 for any reason, put there by any pass \u2014 therefore satisfied all of them at once. The pass that writes these cards wrote the volume and never the printed ENTRY, so a reader of John H. Kinzie\u2019s card was told that Norris\u2019s 1844 directory had met him and could not find the line.',
