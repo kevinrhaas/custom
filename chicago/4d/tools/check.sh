@@ -136,6 +136,22 @@ step "the Wright NARA registration still re-derives from its own control points"
 selftest "…and its own assertions still fire when broken" \
   python3 tools/check_wright_nara_registration.py --self-test
 
+# T-0792 piece 1. The nine coloured chips of Wright's legend are the only place any
+# sheet in this project says who surveyed what ground and when, and three open tickets
+# ask to read a wash "against the legend's swatches". This holds the reading offline:
+# every pairwise chip distance re-derives from the committed medians, the grouping into
+# separable colours re-derives at the committed threshold, each band's local metres
+# re-derive through the committed affine, and the one chip-to-ground claim — that every
+# committed side of section 16 falls inside chip 5's band — re-derives from the blocks
+# file's own anchor. The REFUSAL is gated too: if a future edit ever made the nine chips
+# look separable, the step says so, because the two ambiguous swatches are refused on
+# exactly that arithmetic.
+step "Wright's legend chips still refuse what they cannot separate" \
+  python3 tools/read_wright_legend_swatches.py --check-properties
+
+selftest "…and that reading's assertions still fire when broken" \
+  python3 tools/read_wright_legend_swatches.py --self-test
+
 # Runs early and costs milliseconds, because the fault it catches is cheap to
 # make and expensive to ship: on 2026-08-24 three conflict-marker lines rode a
 # merge into docs/LIBERTIES.md, compiled into data/liberties.json, published to
