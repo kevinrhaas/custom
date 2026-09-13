@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The fort\u2019s burying ground joins the ground nothing may be built on', kind: 'change', ts: '',
+  { v: 854, title: 'The fort\u2019s burying ground joins the ground nothing may be built on', kind: 'change', ts: '2026-09-13T23:38:18.456Z', date: 'Sep 13, 2026, 6:38 PM CT',
     items: [
       'This project keeps a short list of ground never open to a private builder, so the invented households it deals across the town cannot be dealt onto it: the United States Reservation around Fort Dearborn, and the sand bar across the river mouth. A third belonged on it and could not get on \u2014 the Fort Cemetery, which an 1830 plan of the river mouth draws as two boundary lines running down to the lake with its name written across the ground between them.',
       'The obstacle was a rule held to deliberately. Nothing on that list may have its corners typed in by hand; each is worked out afresh, every time the checks run, from the survey lines or the traced shoreline it claims to follow, so a boundary cannot quietly drift from the evidence for it. The cemetery has neither. It is ink on a sheet, and the only record of where it sits is a measurement taken off that sheet in pixels.',
