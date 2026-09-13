@@ -153,7 +153,7 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 T-1063 — The Addition's river-front water lots recorded as a lot strip rather than a block grid
 T-1080 — The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
 T-0219 — Finish the heightfield SOUTH to Madison Street, the plat's last tier
-T-1095 — The West Division past Clinton (8-13, 22-27, 46-51) and 14-15 on the North Branch's west bank: still no committed street line reaches them
+T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, where no committed street line reaches
 T-1092 — Re-seat the four grids the NA sheet places — the School Section, Kinzie's Addition, the Michigan St tract and Wabansia's streets — on the adopted registration, and re-bake what stands on the ground that moves
 T-1097 — The nine survey tracts as polygons: the two ambiguous swatches resolved by position, the land sales sorted onto the tracts, and a generator reading the layer
 T-1082 — The coloured wash between Wright's bank shading and his inked bank line: 51 east-bank rows short by more than 10 m and 34 west-bank rows standing outside the ink, all of them behind a colour the tract layer has not identified
