@@ -109,6 +109,132 @@
       "passed": 67,
       "failed": 0,
       "failures": [],
+      "wallSeconds": 256,
+      "takenAt": "2026-09-13T02:56:43.918Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "d3b0d3b36439",
+      "devCommit": "29cf712da203",
+      "treeHash": "sha256:9e815e20eb46a471",
+      "treeDirty": false,
+      "changelogHash": "sha256:917579045cd35c90",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          3.7,
+          3.2
+        ]
+      },
+      "source": "/tmp/s3_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 284,
+      "takenAt": "2026-09-13T02:44:54.266Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
+      "devCommit": "30e58d3ea729",
+      "treeHash": "sha256:2ef027c420eb5794",
+      "treeDirty": false,
+      "changelogHash": "sha256:f0569fd969a81c8d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.2,
+          4.7,
+          3.7
+        ]
+      },
+      "source": "/tmp/s2_d1.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "11-13",
+      "parts": [
+        11,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 181,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 428,
+      "takenAt": "2026-09-13T02:44:54.175Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
+      "devCommit": "30e58d3ea729",
+      "treeHash": "sha256:2ef027c420eb5794",
+      "treeDirty": false,
+      "changelogHash": "sha256:f0569fd969a81c8d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.5,
+          4.8,
+          3.7
+        ]
+      },
+      "source": "/tmp/s2_m1113.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 278,
+      "takenAt": "2026-09-13T02:44:54.087Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
+      "devCommit": "30e58d3ea729",
+      "treeHash": "sha256:2ef027c420eb5794",
+      "treeDirty": false,
+      "changelogHash": "sha256:f0569fd969a81c8d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.5,
+          4.8,
+          3.7
+        ]
+      },
+      "source": "/tmp/s2_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 67,
+      "failed": 0,
+      "failures": [],
       "wallSeconds": 204,
       "takenAt": "2026-09-13T01:30:54.860Z",
       "ref": "steward/t-1095-west-division-numerals",
@@ -1653,40 +1779,6 @@
         ]
       },
       "source": "/tmp/smoke_d_2.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "7-8",
-      "parts": [
-        7,
-        8
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 30,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
-      ],
-      "wallSeconds": 422,
-      "takenAt": "2026-09-12T15:10:45.132Z",
-      "ref": "steward/t-1075-michigan-st-seated",
-      "commit": "d64a3b151b25",
-      "devCommit": "33638aa690ca",
-      "treeHash": "sha256:7b5f7f2ce0ac429b",
-      "treeDirty": false,
-      "changelogHash": "sha256:b8d0838e8ca2c7da",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          4.3,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke_d_1.log"
     },
     {
       "viewport": "mobile",

@@ -171,11 +171,58 @@ def check(streets=None) -> list[str]:
     return problems
 
 
+def write() -> int:
+    """Re-cut the cited boxes from the committed street lines, IN PLACE.
+
+    The crop citation is a derivation, not a reading: the box is four committed lines
+    and the rule above, so a street that moves re-cuts it. Until T-1092 there was only a
+    gate and no writer, and the run that moved Madison Street — the School Section grid
+    re-seated onto the eleven-point registration T-1091 adopted — had nothing to
+    regenerate the citation with. The READING is untouched: `read_at` is the window the
+    numeral was actually read on and this never writes it. Only the box, its URL, and
+    the declared overhang of a window that sticks out of the box are re-derived, and the
+    replacement is made on the region STRING so the diff is the lines that moved rather
+    than a re-serialisation of a hand-tended file."""
+    text = TRACE.read_text()
+    derived = boxes(_streets())
+    moved = 0
+    for r in committed().values():
+        region = derived.get(r["number"], (None,))[0]
+        crop = r["crop"]
+        if region is None or crop["iiif_region"] == region:
+            continue
+        if overhang_px(crop["read_at"], region) and crop.get("read_at_overhang_px") is None:
+            raise SystemExit(
+                f"block {r['number']}: the re-cut box {region} no longer holds the read "
+                f"window {crop['read_at']}, and this tool will not widen a box to fit a "
+                f"reading. Re-read the numeral, or declare the overhang.")
+        if text.count(crop["iiif_region"]) != 2:
+            raise SystemExit(f"block {r['number']}: {crop['iiif_region']} is not the "
+                             f"region string of exactly one entry")
+        text = text.replace(crop["iiif_region"], region)
+        if crop.get("read_at_overhang_px") is not None:
+            was = crop["read_at_overhang_px"]
+            now = overhang_px(crop["read_at_overhanging"], region)
+            if now != was:
+                text = text.replace(f'"read_at_overhang_px": {was},',
+                                    f'"read_at_overhang_px": {now},')
+        moved += 1
+    TRACE.write_text(text)
+    print(f"re-cut {moved} of {len(committed())} Washington-Madison numeral crop(s) from "
+          f"the committed street lines")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--write", action="store_true",
+                    help="re-cut the cited boxes from the committed streets, in place")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
+
+    if args.write:
+        return write()
 
     if args.self_test:
         failures = []

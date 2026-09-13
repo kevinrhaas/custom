@@ -89,7 +89,7 @@
       "depth_px_at_mid": 83.7,
       "depth_m_at_mid": 59.08,
       "depth_ft_raw": 193.8,
-      "depth_ft_controlled": 185.5
+      "depth_ft_controlled": 189.3
     },
     {
       "id": "second",
@@ -102,7 +102,7 @@
       "depth_px_at_mid": 54.8,
       "depth_m_at_mid": 38.65,
       "depth_ft_raw": 126.8,
-      "depth_ft_controlled": 121.3
+      "depth_ft_controlled": 123.8
     },
     {
       "id": "third",
@@ -115,7 +115,7 @@
       "depth_px_at_mid": 90.0,
       "depth_m_at_mid": 63.5,
       "depth_ft_raw": 208.3,
-      "depth_ft_controlled": 199.4
+      "depth_ft_controlled": 203.5
     },
     {
       "id": "corner",
@@ -128,7 +128,7 @@
       "depth_px_at_mid": 28.9,
       "depth_m_at_mid": 20.4,
       "depth_ft_raw": 66.9,
-      "depth_ft_controlled": 64.0
+      "depth_ft_controlled": 65.4
     }
   ],
   "lots": [
@@ -692,21 +692,21 @@
       "adjacent_pairs": 10,
       "pitch_m": 30.66,
       "pitch_ft_raw": 100.6,
-      "pitch_ft_controlled": 96.2
+      "pitch_ft_controlled": 98.2
     },
     {
       "rank": "second",
       "adjacent_pairs": 6,
       "pitch_m": 28.89,
       "pitch_ft_raw": 94.8,
-      "pitch_ft_controlled": 90.7
+      "pitch_ft_controlled": 92.6
     },
     {
       "rank": "third",
       "adjacent_pairs": 2,
       "pitch_m": 28.28,
       "pitch_ft_raw": 92.8,
-      "pitch_ft_controlled": 88.8
+      "pitch_ft_controlled": 90.6
     }
   ],
   "corridors": [
@@ -867,10 +867,10 @@
     "what_would_settle_it": "a recorded plat of Wabansia, or a Democrat notice selling a numbered water lot in the tract with its rank named"
   },
   "control_summary": {
-    "method_over_read": 1.045,
+    "method_over_read": 1.024,
     "original_town_read_ft": {
-      "mean": 83.6,
-      "sd": 5.2,
+      "mean": 81.9,
+      "sd": 5.1,
       "n": 3
     }
   },

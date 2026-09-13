@@ -153,12 +153,12 @@ OCCUPANCY = {
 def _frame():
     g = json.loads(GCP.read_text())
     d = json.loads(DATUM.read_text())
-    # T-1091 adopted an eleven-point registration; THIS TRACE IS STILL SEATED
-    # through the eight-point fit it was built on, which the registration keeps as
-    # `retained_fit`. T-1092 re-seats it on the fit in force and re-bakes what
-    # stands on the ground that moves. Reading `fit` here would move the ground
-    # without moving the meshes on it.
-    c = g["retained_fit"]["coefficients"]
+    # T-1092 re-seated this trace onto the ELEVEN-POINT registration T-1091 adopted,
+    # and re-baked what stands on the ground that moved. `fit` IS that registration;
+    # the eight-point fit it superseded is kept beside it as `retained_fit` for the
+    # adjudication that compares the two. Reading `retained_fit` here would seat the
+    # ground on a fit this project no longer holds.
+    c = g["fit"]["coefficients"]
 
     def to_local(px, py):
         return (c["a"] * px + c["b"] * py + c["c"] - d["origin_utm_e"],
@@ -210,8 +210,8 @@ def _bank_px(to_local):
     the grid's east edge can be checked against water this project already holds."""
     g = json.loads(BRANCHES.read_text())
     d = json.loads(DATUM.read_text())
-    # T-1091: the retained eight-point fit — see above.
-    c = json.loads(GCP.read_text())["retained_fit"]["coefficients"]
+    # T-1092: the eleven-point fit in force — see _frame above.
+    c = json.loads(GCP.read_text())["fit"]["coefficients"]
     a, b, dd, e = c["a"], c["b"], c["d"], c["e"]
     c0, f0 = c["c"] - d["origin_utm_e"], c["f"] - d["origin_utm_n"]
     det = a * e - b * dd
@@ -815,6 +815,55 @@ def _render(entry, indent=4):
     return "\n".join(pad + ln for ln in text.split("\n"))
 
 
+def _entry_spans(text):
+    """`(id, start, end)` for every object in the `streets` array, found by scanning
+    braces rather than by matching the file's style: one committed entry
+    (`fort_bank_track`) is indented unlike the other seventy-six and a shape regex
+    walks straight past it."""
+    i = text.index("[", text.index('"streets"'))
+    spans, depth, start, in_str, esc = [], 0, None, False, False
+    for j in range(i, len(text)):
+        ch = text[j]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            depth += 1
+            if depth == 1:
+                start = j
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                spans.append((json.loads(text[start:j + 1])["id"], start, j + 1))
+        elif ch == "]" and depth == 0:
+            break
+    return spans
+
+
+def _reseat(text, entries):
+    """Re-point streets this tool has ALREADY committed, in place, on the same argument
+    _splice makes for appending: the entry is re-rendered, the rest of the file is not
+    touched, and the diff is the lines that moved.
+
+    Until T-1092 a seating tool could only append. That was enough while the
+    registration never changed; when T-1091 put the eleven-point fit in force, every
+    line these tools had seated through the old one stayed where it was and the tools'
+    own --check went red against them. Re-running the generator is how this project
+    moves a derived line, so the generator has to be able to."""
+    at = {sid: (s, e) for sid, s, e in _entry_spans(text)}
+    for entry in sorted(entries, key=lambda e: at[e["id"]][0], reverse=True):
+        s, e = at[entry["id"]]
+        text = text[:s] + _render(entry).lstrip() + text[e:]
+    return text
+
+
 def _splice(text, entries):
     """Append the new streets WITHOUT re-serialising the file, for the reason
     seat_kinzie_addition_streets.py gives: a writer that re-emits this document changes
@@ -943,7 +992,8 @@ def main() -> int:
         print("RED  " + line)
     if a.write:
         fresh = [s for s in out if s["id"] not in by]
-        STREETS.write_text(_splice(STREETS.read_text(), fresh))
+        seated = [s for s in out if s["id"] in by]
+        STREETS.write_text(_reseat(_splice(STREETS.read_text(), fresh), seated))
         OUT.write_text(json.dumps(_trace_doc(evidence, trace, poly, wedge, tract),
                                    indent=2, ensure_ascii=False) + "\n")
         print(f"wrote {STREETS.relative_to(ROOT)} and {OUT.relative_to(ROOT)}")
