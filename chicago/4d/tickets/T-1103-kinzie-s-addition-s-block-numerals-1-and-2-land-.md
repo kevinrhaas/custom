@@ -1,7 +1,7 @@
 ---
 id: T-1103
 title: Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-12
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 12:28:25 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34740265829
 ---
 
 Kinzie's Addition's block numerals 1 and 2 land on no cell inside the plat, and the water lots did not take them.
