@@ -1189,7 +1189,7 @@
   ],
   "cross_check_school_section": {
     "confidence": "inferred",
-    "rms_grace_m": 16.19,
+    "rms_grace_m": 16.02,
     "north": {
       "band_span_m": [
         -579.8,
@@ -1198,7 +1198,7 @@
       "band_mid_m": -547.2,
       "outside_band_by_m": 0.0,
       "cells": 423,
-      "committed_m": -534.0
+      "committed_m": -519.05
     },
     "south": {
       "band_span_m": [
@@ -1208,7 +1208,7 @@
       "band_mid_m": -2109.0,
       "outside_band_by_m": 0.0,
       "cells": 930,
-      "committed_m": -2143.34
+      "committed_m": -2128.4
     },
     "east": {
       "band_span_m": [
@@ -1218,7 +1218,7 @@
       "band_mid_m": 696.5,
       "outside_band_by_m": 0.0,
       "cells": 1704,
-      "committed_m": 835.57
+      "committed_m": 841.86
     },
     "west": {
       "band_span_m": [
@@ -1228,7 +1228,7 @@
       "band_mid_m": -752.4,
       "outside_band_by_m": 0.0,
       "cells": 818,
-      "committed_m": -773.77
+      "committed_m": -767.49
     },
     "note": "Every committed side of section 16 falls inside the band of chip 5's own colour. The section's geometry comes from the PLSS corner at State and Madison and a nominal mile; the band comes from a colour chip 3,000 px away on the same paper. They were derived without reference to each other, so the agreement is evidence that reading ground off these chips is worth doing — and it is the ONLY chip-to-ground reading this file makes. The other eight are piece 2's."
   }
