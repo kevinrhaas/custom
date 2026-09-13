@@ -56,6 +56,30 @@ TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "
 #   `Res`); the three single letters do not.
 PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s")
 
+# …AND THE SUPERSEDED PATTERN IS KEPT SO THE RULE CAN BE RE-MEASURED, NOT ASSERTED
+# (T-1022). The case rule above landed inside another ticket's stretch and was never
+# priced, so the count that mattered — how many entries' READING it moves — was
+# carried as a guess. `--self-test` now re-reads the whole volume through this
+# pattern and prices it against the committed one, which is the only form of the
+# claim that cannot go stale:
+#
+#   294  entries print an upper-case `H.`, `R.` or `B.` token at all
+#   275  of them have that capital as the FIRST place-shaped token in the line —
+#        usually inside the NAME, which the split never cuts at, so the reading stands
+#    95  entries have their occupation or address actually MOVE, and all 95 are the
+#        defect exactly: under the case-blind pattern each one's address began at a
+#        one-letter initial. There is no other reason an entry moves, which is what
+#        makes every one of the 95 a repair rather than a trade.
+#
+# Downstream, `crosswalk_norris_1844.py` carries `could_carry_address` 82 → 81. The
+# single match that stopped carrying one is Joseph Bradley (n1844_e0186, `clerk, at
+# W. H. Adams & Co.'s`), whose case-blind "address" was `H. Adams & Co.'s` — the tail
+# of his employer's firm and never a place. The lost match is a false one; nothing a
+# resident could stand on was given up. `could_carry_occupation` holds at 59 and
+# every other crosswalk count is unchanged.
+PLACE_CASE_BLIND = re.compile(r"\b(?:h|house|res|residence|r|boards|bds|b)\.?\s", re.I)
+CASE_RULE_MOVES = 95   # …and the price, held by --self-test against a re-read
+
 # FIRM OR PERSON IS DECIDED ON THE LEADING TOKENS, NOT ON THE FIRST COMMA (T-1013).
 #
 # The first version of this test read `FIRM` against the text before the first
@@ -1687,6 +1711,8 @@ def self_test():
         # the abbreviation is lower case and a man's initial is not
         "n1844_e0113": ("Adam", "shoemaker, at J. B. Mitchell's"),
         "n1844_e0135": ("A", "clerk at H. O. Stone's"),
+        # …and T-1022's own line, the one the ticket was written on
+        "n1844_e1936": ("D. L", "at H. Norton & Co.'s"),
     }
     for cid, (given, occupation) in SPLIT_CASES.items():
         c = by_id.get(cid)
@@ -1739,6 +1765,37 @@ def self_test():
                          "committed reading it upholds has moved"
                          % (row["surname"], len(hit)))
 
+    # T-1022. THE CASE RULE IS PRICED BY RE-READING, NOT BY A REMEMBERED NUMBER.
+    # The whole volume is read a second time through the superseded case-blind
+    # pattern and the two readings are diffed. Two things are asserted, and the
+    # second is the one that makes the first mean anything: that a known number of
+    # entries move, and that EVERY entry which moves does so because its case-blind
+    # address began at a one-letter initial — the defect itself. An entry moving for
+    # any other reason would be a trade, not a repair, and fails here.
+    global PLACE
+    kept = PLACE
+    try:
+        PLACE = PLACE_CASE_BLIND
+        case_blind = {c["id"]: c["normalized"] for c in build_claims()[0]}
+    finally:
+        PLACE = kept
+    moved = [c for c in claims
+             if (c["normalized"].get("occupation"), c["normalized"].get("address"))
+             != (case_blind.get(c["id"], {}).get("occupation"),
+                 case_blind.get(c["id"], {}).get("address"))]
+    if len(moved) != CASE_RULE_MOVES:
+        fired.append("the case rule moves %d entries, not the %d it is priced at — "
+                     "re-measure it and rewrite the band above PLACE_CASE_BLIND "
+                     "rather than editing this number to pass"
+                     % (len(moved), CASE_RULE_MOVES))
+    for c in moved:
+        was = case_blind.get(c["id"], {}).get("address") or ""
+        if not re.match(r"^[A-Z]\.?\s", was):
+            fired.append("%s moves under the case rule and its case-blind address "
+                         "was %r, which does not begin at a one-letter initial — the "
+                         "rule changed a reading for some reason other than the "
+                         "defect, and that is a trade, not a repair" % (c["id"], was[:32]))
+
     if fired:
         for line in fired:
             print("  " + line, file=sys.stderr)
@@ -1753,6 +1810,9 @@ def self_test():
     print("norris 1844 --self-test: %d printed lines hold the three split rules, and "
           "no entry in %d begins an address at a capital or keeps an unspaced comma "
           "inside a forename" % (len(SPLIT_CASES), len(claims)))
+    print("norris 1844 --self-test: the case rule re-read against the whole volume — "
+          "%d of %d entries move and every one of them had a case-blind address "
+          "beginning at a one-letter initial" % (CASE_RULE_MOVES, len(claims)))
     print("norris 1844 --self-test: %d surnames read off the page image on their own "
           "word box, %d of them carrying the name separator away with them; %d places the second hand is "
           "wrong and the committed reading stands"
