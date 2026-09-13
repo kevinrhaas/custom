@@ -8294,6 +8294,8 @@ for (const [label, viewport, touch] of [
         mapCaption: document.querySelector('.overview-caption')?.textContent?.trim(),
         mapAria: document.getElementById('overview-map')?.getAttribute('aria-label'),
         speedLabel: document.getElementById('v-speed')?.textContent?.trim(),
+        paceLabels: ['v-speed', 'v-wagon-speed', 'v-horse-speed'].map(
+          (id) => [id, document.getElementById(id)?.textContent?.trim() ?? null]),
         units: document.getElementById('s-units')?.value,
         mapSize: [mapCanvas.width, mapCanvas.height],
         east,
@@ -8312,9 +8314,24 @@ for (const [label, viewport, touch] of [
       && /feet|ft/.test(nav.mapAria ?? ''),
       `${nav.mapSize.join('x')}, caption ${nav.mapCaption}, aria ${nav.mapAria}, `
       + `E ${nav.east.snapshot.bounds.eMin}…${nav.east.snapshot.bounds.eMax}`);
-    check(`${label}: walking speed is presented in miles per hour`,
-      /^\d+(?:\.\d)? mph$/.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
+    // T-1081. The readout is `gait · speed` — "walk · 3.2 mph" — since T-0823 gave
+    // each pace a named gait, and this assertion's `^`-anchored bare-number pattern
+    // had called dev red on that prefix on both viewports for a week, which is a
+    // week of every PR touching parts 7-8 unable to merge. The pattern now reads the
+    // shape the HUD actually ships, so the gait is COVERED rather than contradicted:
+    // a readout that loses its unit still fires, and so does one that loses its name.
+    const PACE_READOUT = /^[a-z][a-z ]*[a-z] · \d+(?:\.\d)? mph$/;
+    check(`${label}: walking speed is presented as a named gait in miles per hour`,
+      PACE_READOUT.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
       `speed label ${nav.speedLabel}`);
+    // And all three ground paces, because the readout is one function (hud.js
+    // § gaitReadout) and a fault in it reaches the wagon and the horse too.
+    const badPace = nav.paceLabels.filter(([, text]) => !PACE_READOUT.test(text ?? ''));
+    check(`${label}: every pace slider names its gait beside an imperial speed`,
+      nav.paceLabels.length === 3 && badPace.length === 0,
+      badPace.length
+        ? badPace.map(([id, text]) => `${id} reads ${JSON.stringify(text)}`).join('; ')
+        : nav.paceLabels.map(([id, text]) => `${id} ${text}`).join(', '));
     check(`${label}: overview marker follows position and bearing`,
       nav.first !== nav.second && Math.abs(nav.moved.e - 180) < 0.1
       && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
