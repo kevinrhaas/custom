@@ -163,7 +163,6 @@ T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through H
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
 T-0419 — The re-centred South Water corridor stands 8.58 m off its own block faces, and the strip between belongs to neither
 T-0421 — Canal Street's three control points spread 2.33 m, so its corridor cannot be centred on any of them
-T-0422 — The widened counterfactual deals a roof per street, and every roof a widening adds already fronts another street
 
 # --- ==========================================================================
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
