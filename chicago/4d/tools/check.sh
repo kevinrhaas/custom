@@ -152,6 +152,20 @@ step "Wright's legend chips still refuse what they cannot separate" \
 selftest "…and that reading's assertions still fire when broken" \
   python3 tools/read_wright_legend_swatches.py --self-test
 
+# T-0795. The whole-sheet watercourse count, and what it costs to be wrong about it:
+# the audit's headline is that Wright draws ONE watercourse that is not the river, so
+# every number it rests on has to stay re-derivable or the count becomes an assertion.
+# Offline half — the two bank re-entrant picks carried through the committed affine and
+# checked against the E-ranges the traced 1834 waterline gives for the La Salle and
+# State Street mouths, the station count against the committed centreline, the scale
+# against the fit's axes, and every id the audit names against the terrain that holds
+# it. The raster half is `--check-sheet` and needs Pillow and numpy, which this gate
+# does not have.
+step "Wright's whole sheet still counts one watercourse that is not the river" \
+  python3 tools/audit_wright_watercourses.py --check-properties
+
+selftest "…and that audit's assertions still fire when broken" \
+  python3 tools/audit_wright_watercourses.py --self-test
 # T-1101. The nine chips, put on the ground. Seven of the nine tracts are polygons now —
 # every one of them re-derived here from geometry this project already committed, never
 # traced off a wash — and the two that name no tract are REFUSED, with the number that
