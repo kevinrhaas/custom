@@ -62,7 +62,7 @@ jobs:
           node-version: '22'
 
       - name: Install validator dependencies
-        run: pip install --quiet jsonschema pyproj openpyxl pypdf
+        run: pip install --quiet jsonschema pyproj openpyxl pypdf numpy scipy Pillow
 
       - name: Lap every open PR
         env:

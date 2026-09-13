@@ -26,6 +26,17 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-13  SOUTH THROUGH TIME BACK BELOW THE VISIBLE BANDS — the owner, hours after the
+#               pass below put it on top: "Move south through time so it is just before the
+#               number 6 loop improvements". So it sits between VISIBLE REFINEMENT and THE
+#               LOOP, which is where his 2026-09-10 instruction had placed it, and the four
+#               bands that build the 1835 town run ahead of it again. It stays PROMOTED —
+#               workable in rank order, not parked under EPICS — and its own 2026-09-01
+#               internal order is untouched. Bands renumbered; no ticket moved between bands,
+#               none added, none dropped (76 in, 76 out, asserted). The band's two standing
+#               notes travel with it: the 11 February 1835 extension is unresolved so terrain
+#               may cross Jackson and a chimney may not, and T-0468..T-0472 are the 1812 Fort
+#               Dearborn epoch under AGENTS.md's Indigenous-history constraint.
 #   2026-09-10  "move the south through time section below section 5 and above section 6" — the
 #               owner, hours after the reorganisation below. It is a PROMOTION as well as a move:
 #               under EPICS the loop does not work a programme until he promotes it, and it now
@@ -107,11 +118,79 @@
 #               ADJACENTLY instead — ordering rule 5, so one run carries the last one's context.
 
 # --- ==========================================================================
-# --- 1. SOUTH THROUGH TIME — OWNER INSTRUCTION, 2026-09-13. THIS BAND RUNS FIRST.
+# --- 1. FINISH THE RESEARCH — the reads that still yield names, and the rulings that still reach a card
 # --- ==========================================================================
-# --- "keep south through time first". It was band 6; it now leads, in the owner's own 2026-09-01
-# --- order, and its dependencies are satisfied: T-0219 carried the modelled ground through Madison
-# --- (#1226, 09-12) and T-0436 committed the corporation's limits (#1238, 09-13).
+# --- Owner, 2026-09-10: "finish up any research items first so we can get our best and final list
+# --- of residents and their best and complete profile and businesses and their structures and
+# --- locations". That band had drained to its succession ticket alone; these eleven are the
+# --- unplaced research findings, ranked by what each ADDS.
+# ---
+# --- T-0997 leads on yield: the Chicago Democrat of 29 October 1834 prints the committee of seventy
+# --- a town meeting appointed against gambling — about THIRTY townspeople named in one claim, and
+# --- the issue has never been extracted. T-1051 is next for the same reason: seven unread
+# --- impressions of the Lake Street land-agency card. Then the corrections with the widest reach —
+# --- T-1022's 294 entries, T-1025's 264 rulings that cannot say which printed line they rest on —
+# --- then the card-level rulings, then T-0987, the succession programme, at the foot as before.
+# ---
+# --- THE THREE NORRIS TICKETS RUN TOGETHER (T-1022, T-1021, T-1023): three distinct faults in
+# --- tools/read_norris_1844.py, all found by T-1018, each separately evidenced. They are adjacent
+# --- rather than folded so one run carries the context of the last.
+
+T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
+T-1114 — Three hundred and four Norris 1844 entries print a business street inside the trade line with no place-abbreviation, and 'b' for between is being read as the start of an address rather than a qualifier on the street before it
+T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
+T-1021 — Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
+T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
+T-1004 — Four cards each gather two men the corpus itself distinguishes by a forename or an initial — Bowen, King, Taylor, Thompson
+T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
+T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
+T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
+T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
+
+# --- ==========================================================================
+# --- 2. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
+# --- ==========================================================================
+# --- Owner: "apply the research and spend it to create residents and their business and residences
+# --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
+# --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
+
+T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
+T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
+
+# --- ==========================================================================
+# --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
+# --- ==========================================================================
+# --- T-1067 LEADS this band now and is the largest hole in the modelled ground: it stops at n +400 m
+# --- and the whole of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks
+# --- on ground the heightfield does not cover. It is the north-bank twin of T-0219, which finished
+# --- the south side on 09-12 and unblocked the band above.
+
+T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
+T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
+T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
+
+# --- ==========================================================================
+# --- 4. VISIBLE REFINEMENT — the town changing rather than growing
+# --- ==========================================================================
+# --- One ticket: the frontage layer leans on a confidence grade alone to keep street furniture off
+# --- an unoccupied invented building, because the hitching rule omits the anonymity clause the
+# --- signboard rule applies.
+
+T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
+
+# --- ==========================================================================
+# --- 5. SOUTH THROUGH TIME — owner epic, 2026-09-01; PROMOTED, and it sits below the 1835 town
+# --- ==========================================================================
+# --- Owner, 2026-09-13: "Move south through time so it is just before the number 6 loop
+# --- improvements" — so the four bands that build the 1835 town run ahead of it, and it runs
+# --- ahead of the loop's own machinery. It is still PROMOTED out of EPICS (2026-09-10), which
+# --- means it is workable in rank order like any other band, and its 2026-09-01 internal order
+# --- is the owner's own.
+# ---
+# --- ITS DEPENDENCIES ARE SATISFIED, checked 2026-09-13 rather than assumed: T-0219 carried the
+# --- modelled ground through Madison (#1226, 09-12) — the precondition T-0464's own text names —
+# --- and T-0436 committed the corporation's limits (#1238, 09-13). Nothing blocks this band; it
+# --- sits here because the owner ranked the 1835 town above it, not because it is held.
 # ---
 # --- THE ONE OPEN QUESTION TRAVELS WITH T-0464 and is not a separate ticket: the corporation's
 # --- south leg is JACKSON STREET, and the extension of 11 February 1835 is recorded and NOT
@@ -146,69 +225,6 @@ T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
 T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
-
-# --- ==========================================================================
-# --- 2. FINISH THE RESEARCH — the reads that still yield names, and the rulings that still reach a card
-# --- ==========================================================================
-# --- Owner, 2026-09-10: "finish up any research items first so we can get our best and final list
-# --- of residents and their best and complete profile and businesses and their structures and
-# --- locations". That band had drained to its succession ticket alone; these eleven are the
-# --- unplaced research findings, ranked by what each ADDS.
-# ---
-# --- T-0997 leads on yield: the Chicago Democrat of 29 October 1834 prints the committee of seventy
-# --- a town meeting appointed against gambling — about THIRTY townspeople named in one claim, and
-# --- the issue has never been extracted. T-1051 is next for the same reason: seven unread
-# --- impressions of the Lake Street land-agency card. Then the corrections with the widest reach —
-# --- T-1022's 294 entries, T-1025's 264 rulings that cannot say which printed line they rest on —
-# --- then the card-level rulings, then T-0987, the succession programme, at the foot as before.
-# ---
-# --- THE THREE NORRIS TICKETS RUN TOGETHER (T-1022, T-1021, T-1023): three distinct faults in
-# --- tools/read_norris_1844.py, all found by T-1018, each separately evidenced. They are adjacent
-# --- rather than folded so one run carries the context of the last.
-
-T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
-T-1051 — The Lake Street land-agency card ran from 14 May to 17 September 1834 and the corpus has read two of its nine impressions
-T-1022 — PLACE matches an upper-case one-letter initial as the 'h' of 'house', so 'at H. Norton & Co.' reads as an address in 294 entries
-T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
-T-1021 — Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
-T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
-T-1004 — Four cards each gather two men the corpus itself distinguishes by a forename or an initial — Bowen, King, Taylor, Thompson
-T-0995 — Eleven cards carry a Second Presbyterian roll line that is matched to two or three townspeople each, and not one of them says so
-T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
-T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
-T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
-T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
-
-# --- ==========================================================================
-# --- 3. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
-# --- ==========================================================================
-# --- Owner: "apply the research and spend it to create residents and their business and residences
-# --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
-# --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
-
-T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
-T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
-
-# --- ==========================================================================
-# --- 4. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
-# --- ==========================================================================
-# --- T-1067 LEADS this band now and is the largest hole in the modelled ground: it stops at n +400 m
-# --- and the whole of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks
-# --- on ground the heightfield does not cover. It is the north-bank twin of T-0219, which finished
-# --- the south side on 09-12 and unblocked the band above.
-
-T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
-T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
-T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
-
-# --- ==========================================================================
-# --- 5. VISIBLE REFINEMENT — the town changing rather than growing
-# --- ==========================================================================
-# --- One ticket: the frontage layer leans on a confidence grade alone to keep street furniture off
-# --- an unoccupied invented building, because the hitching rule omits the anonymity clause the
-# --- signboard rule applies.
-
-T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
 
 # --- ==========================================================================
 # --- 6. THE LOOP, ITS GATES AND ITS MEASUREMENTS — invisible, and none of it blocks a visible ticket
@@ -293,3 +309,4 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- John Vale, Mark Noble against Mary Noble. No distance separates the first kind from the
 # --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
+

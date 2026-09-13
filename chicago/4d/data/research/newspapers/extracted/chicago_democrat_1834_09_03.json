@@ -1253,6 +1253,48 @@
         }
       },
       "notes": "A second insertion of Hubbard & Co. in the same issue (see c018), carrying the goods rather than the agency. 'Grando Clerk' and 'Hersane' at line 3501 are cigar manufacturers' marks and are not read as people; 'Hersane' is normalized 'H[a]v[a]n[a]' with the letters bracketed because the reading is not certain and the sister witness at 1834-09-10 page 3 column 6 line 3149 reads 'lark, Elevanun, and others', which is no better."
+    },
+    {
+      "id": "c025",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: 1% 0. ?A?A]\nBlouse and Lend gent.\nA sion.\nOTS purchased and Sold, or by connia.\n1-2 Building Lota for sale, in the town and\nSchool section.",
+      "normalized": "[…] [H]ouse and L[a]nd [A]gent. [L]OTS purchased and Sold, or by conni[s]-sion. 1[2]2 Building Lot[s] for sale, in the town and School section.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3184,
+          3189
+        ],
+        "lines_of_claim": [
+          3184,
+          3185,
+          3186,
+          3187,
+          3188,
+          3189
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. The display line is transcribed '[uncertain: 1% 0. ?A?A]' (3184) — the transcription's own question marks, kept — and nothing is read off it. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. The card is set out of order, 'A sion.' (3186) standing above the line it completes (3187); the normalization puts it back and the quote does not. Neither the houses to let nor the address is in this column, so this printing is recorded as silent about placement."
     }
   ]
 }
