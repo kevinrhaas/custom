@@ -182,6 +182,21 @@ step "the nine survey tracts still stand where their committed ground puts them"
 selftest "…and the tract layer's assertions still fire when broken" \
   python3 tools/build_survey_tracts.py --self-test
 
+# T-1102. The tract layer names who surveyed the ground; the register names who bought it,
+# and since T-0609 it has been on the ground. This joins them, and the join is where two
+# committed files can quietly stop agreeing: a section corner that drifts, a seating that is
+# re-fitted or a school-section block that moves changes which polygon a parcel falls in
+# WITHOUT changing either file's own gate. So every share is re-clipped here from the
+# committed rings and compared to the last decimal. The prose claims are gated as numbers
+# too — that none of the seven 1830 canal entries touches the Original Town, that no row
+# refused for being off the modelled ground names one of the four carried sections, and
+# that the town-plat lots are still refused rather than sorted on a guess at their code.
+step "the register's parcels still fall on the same survey tracts" \
+  python3 tools/sort_land_sales_onto_tracts.py --check
+
+selftest "…and the clip, the precedence clause and both refusals still fire when broken" \
+  python3 tools/sort_land_sales_onto_tracts.py --self-test
+
 # T-1082. The swatch reading above is of the NA/HUP facsimile; the North Branch's
 # disputed bank wash is on the BPL master, and the same nine chips are not the same
 # nine colours on the two sheets. This holds the master-side reading offline: the
