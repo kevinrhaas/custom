@@ -1,7 +1,7 @@
 ---
 id: T-0795
 title: Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
+closed: 2026-09-12
+pr: 1225
 claimed_by: run 9/12/2026, 9:28:09 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T03:08:47.502Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34732963894
 ---
 

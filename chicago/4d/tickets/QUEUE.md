@@ -157,7 +157,6 @@ T-1099 — Blocks 14 and 15 on the Carroll-Fulton band across the North Branch, 
 T-1092 — Re-seat the four grids the NA sheet places — the School Section, Kinzie's Addition, the Michigan St tract and Wabansia's streets — on the adopted registration, and re-bake what stands on the ground that moves
 T-1097 — The nine survey tracts as polygons: the two ambiguous swatches resolved by position, the land sales sorted onto the tracts, and a generator reading the layer
 T-1082 — The coloured wash between Wright's bank shading and his inked bank line: 51 east-bank rows short by more than 10 m and 34 west-bank rows standing outside the ink, all of them behind a colour the tract layer has not identified
-T-0795 — Every watercourse Wright draws, counted on the new sheet: the three Main Branch sloughs re-checked, and any the BPL tracing windows never covered
 T-0689 — The West Division's lot dimensions and lot-counts are still unread off the Thompson plat, and T-0444 closed without them
 T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
