@@ -1,7 +1,7 @@
 ---
 id: T-1073
 title: dev's check.sh is red: moving the lighthouse onto Wright's glyph moved sauganash_range_m 1066.3 to 1001.2 and the Chappel baseline was never re-banked
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
+closed: 2026-09-13
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: Resolved by T-1083 (#1216) on 2026-09-13, which re-banked chappel_shore_lighthouse_baseline.json sauganash_range_m from 1066.3 to 1001.2 — the exact re-bank this ticket asked for. Verified rather than inferred from a green log: the town geometry is derived LIVE from the committed records and is gated whether or not an image library is present, and measure_chappel_shore_lighthouse.py --gate exits 0 on dev today.
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T19:17:51.810Z
 claimed_run: null
 ---
 
