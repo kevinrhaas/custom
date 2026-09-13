@@ -1,7 +1,7 @@
 ---
 id: T-1080
 title: The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1075
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1202
 claimed_by: run 9/13/2026, 8:30:54 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-13T14:05:14.188Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34759781726
 ---
 
@@ -38,7 +38,7 @@ Piece 2 of 2 of **T-1075 — The Michigan St tract named and seated: who platted
 
 ---
 
-## FOUND BY T-0795, 2026-09-13 — the road is the slough, and that is why the ribbon is wet
+## FOUND BY T-0795, 2026-09-13 — the road is the slough, and that is why the ribbon is wet *(acted on; see RESOLVED below)*
 
 T-0795 walked the whole 600 dpi NA/HUP sheet for watercourses. It draws exactly one that is
 not the river, and **it is this ticket's curved double line.**
@@ -81,3 +81,53 @@ way it goes, the two records must not both stand.
 
 Audit: `docs/RESEARCH/wright_1834_watercourses.md`,
 `data/traces/wright_1834_watercourse_audit.json`.
+
+---
+
+## RESOLVED, 2026-09-13 — the road is withdrawn, and the reading is kept as the slough's cross-check
+
+T-0795 asked this ticket to decide, and it decides for the watercourse. **The road record
+`michigan_st_tract_road` is withdrawn and nothing is seated into `data/streets/1835.json`.**
+Both acceptance criteria are met as REFUSALS, which was always a permitted outcome:
+
+1. **The name is refused**, twice over. Wolcott's Addition is out on the calendar — Moses &
+   Kirkland line 13122 places it after the canal commissioners' June 1836 addition, two years
+   past Wright's survey — and out on the arithmetic, eighty acres against this tract's 7.78.
+   No source in the corpus gives this tract a boundary or a name.
+2. **The road trace is refused**, because the thing it was read from is water.
+3. **Nothing was graded up to make it pass.** The slough keeps T-0687's grades exactly:
+   course `attested`, width `inferred`, depth `reconstructed`. A second reading corroborates;
+   it does not promote. No liberty is taken, so no L234: withdrawing a record invents nothing.
+
+**The measurement that settled it**, and it is re-derived by `--check` rather than transcribed:
+this reading's 36 sheet stations fall a **median 1.54 m** from the committed `north_side_slough`
+centreline, **17.91 m** at worst — against that record's own stated ±20 m vertex uncertainty and
+this sheet's 16.19 m RMS. Two scans (NA/HUP 600 dpi against the BPL master), two registrations,
+two tracers, four hundred commits apart. Beside it: T-0795's count of ONE non-river watercourse
+on the whole sheet; the confluence at NA px (2033, 2270); Thompson's 1830 plat drawing the same
+feature as water across the same block; and stroke separations agreeing to 0.2 m (12.35 m here,
+13.02 m there).
+
+**The blocker is dissolved rather than worked around.** The wedge check was reporting the truth:
+the ribbon's west edge sampled 10–25 cm below the summer-1835 water surface *because this project
+already carves a watercourse along that line*. None of the three ways out in the WIP note was
+needed. The terrain does not move, the line does not move, and nothing is rebaked.
+
+**What shipped**
+
+- `tools/read_north_side_slough_na.py` and `data/traces/north_side_slough_na_reread.json`
+  (renamed from `read_michigan_st_tract_road.py` / `michigan_st_tract_road.json`) — the reading,
+  under the feature's own name, carrying a re-derived `identity` block. It is now the only
+  independent cross-check `north_side_slough` has.
+- `tools/check.sh` gates its `--check`.
+- The open question on the terrain record and its Evidence card is closed in the record's own
+  words (`terrain_spec.json`, recompiled into `data/sidecars/1835/terrain.json`); the same in
+  `tools/audit_wright_watercourses.py`'s narrative and in
+  `docs/RESEARCH/wright_1834_watercourses.md`.
+- `docs/RESEARCH/michigan_st_tract.md` carries the adjudication and both refusals.
+
+**Verification.** `tools/check.sh` green — 375 steps, none red. Smoke `--for-diff` named parts
+2-3,7-8,10-12; parts 2,7-8,10-11 are attributed only by the `data/traces/` glob and this trace
+builds nothing, so the four legs that genuinely cover the diff were run and all passed: desktop
+and mobile part 3 (the record's account on the card, and the heightfield) and part 12 (the
+release notes). Readings filed with `dev-smoke-state.mjs record`.
