@@ -15,7 +15,8 @@
   "claims": 2073,
   "person": 1984,
   "business": 89,
-  "given_repairs": 15
+  "given_repairs": 15,
+  "address_refusals": 5
  },
  "claims": [
   {
@@ -1949,7 +1950,12 @@
     "occupation": "of B. & Sherman, Dearborn street bet Kinzie and Michigan",
     "address": null,
     "as_printed": "Ballentine, David, of B. & Sherman, Dearborn street bet Kinzie and Michigan",
-    "section": "directory"
+    "section": "directory",
+    "address_refused": {
+     "class": "firm_address",
+     "why": "of B. & Sherman: Dearborn street bet Kinzie and Michigan is the partnership's address, and Norris sets no h/res/b for the man",
+     "rule": "address is a RESIDENCE in this reading, and Norris marks one with h, res or b. This entry names a street with no such mark, so the street is not read into address. See tools/read_norris_1844.py, ADDRESS_REFUSED."
+    }
    },
    "locator": {
     "text_file": "norris_1844_leaf_032.txt",
@@ -7015,11 +7021,11 @@
    "reading": "transcription_mediated",
    "quote": "Brown, S. B. Ohio st. b Cass and Rush sts",
    "normalized": {
-    "printed_name": "Brown, S. B. Ohio",
+    "printed_name": "Brown, S. B",
     "surname": "Brown",
-    "given": "S. B. Ohio",
+    "given": "S. B",
     "firm": false,
-    "occupation": "st",
+    "occupation": "Ohio st",
     "address": "b Cass and Rush sts",
     "as_printed": "Brown, S. B. Ohio st. b Cass and Rush sts",
     "section": "directory"
@@ -7035,7 +7041,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Brown, S. B. Ohio"
+    "Brown, S. B"
    ],
    "town_finding": false,
    "notes": null
@@ -8814,11 +8820,11 @@
    "reading": "transcription_mediated",
    "quote": "<'ady, Dennis S. Lake Street House, 135 Lake st (Sec card)",
    "normalized": {
-    "printed_name": "Cady, Dennis S. Lake",
+    "printed_name": "Cady, Dennis S",
     "surname": "Cady",
-    "given": "Dennis S. Lake",
+    "given": "Dennis S",
     "firm": false,
-    "occupation": "Street House, 135 Lake st (Sec card)",
+    "occupation": "Lake Street House, 135 Lake st (Sec card)",
     "address": null,
     "surname_repair": {
      "as_read": "<'ady,",
@@ -8857,7 +8863,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Cady, Dennis S. Lake"
+    "Cady, Dennis S"
    ],
    "town_finding": false,
    "notes": null
@@ -10477,11 +10483,11 @@
    "reading": "transcription_mediated",
    "quote": "Chapman, Thos. Wolcott st. b Illinois and Indiana sts.",
    "normalized": {
-    "printed_name": "Chapman, Thos. Wolcott",
+    "printed_name": "Chapman, Thos",
     "surname": "Chapman",
-    "given": "Thos. Wolcott",
+    "given": "Thos",
     "firm": false,
-    "occupation": "st",
+    "occupation": "Wolcott st",
     "address": "b Illinois and Indiana sts",
     "as_printed": "Chapman, Thos. Wolcott st. b Illinois and Indiana sts.",
     "section": "directory"
@@ -10497,7 +10503,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Chapman, Thos. Wolcott"
+    "Chapman, Thos"
    ],
    "town_finding": false,
    "notes": null
@@ -18011,11 +18017,11 @@
    "reading": "transcription_mediated",
    "quote": "Ellis, George A. Clark st market, res Farmers' Exchange.",
    "normalized": {
-    "printed_name": "Ellis, George A. Clark",
+    "printed_name": "Ellis, George A",
     "surname": "Ellis",
-    "given": "George A. Clark",
+    "given": "George A",
     "firm": false,
-    "occupation": "st market",
+    "occupation": "Clark st market",
     "address": "res Farmers' Exchange",
     "as_printed": "Ellis, George A. Clark st market, res Farmers' Exchange.",
     "section": "directory"
@@ -18031,7 +18037,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Ellis, George A. Clark"
+    "Ellis, George A"
    ],
    "town_finding": false,
    "notes": null
@@ -21466,11 +21472,11 @@
    "reading": "transcription_mediated",
    "quote": "Galvin, Mrs. Wash. st. b Frank, and Market sts",
    "normalized": {
-    "printed_name": "Galvin, Mrs. Wash",
+    "printed_name": "Galvin, Mrs",
     "surname": "Galvin",
-    "given": "Mrs. Wash",
+    "given": "Mrs",
     "firm": false,
-    "occupation": "st",
+    "occupation": "Wash. st",
     "address": "b Frank, and Market sts",
     "as_printed": "Galvin, Mrs. Wash. st. b Frank, and Market sts",
     "section": "directory"
@@ -21486,7 +21492,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Galvin, Mrs. Wash"
+    "Galvin, Mrs"
    ],
    "town_finding": false,
    "notes": null
@@ -25658,11 +25664,11 @@
    "reading": "transcription_mediated",
    "quote": "Hart, Geo. W. Water street, house Wabash st",
    "normalized": {
-    "printed_name": "Hart, Geo. W. Water",
+    "printed_name": "Hart, Geo. W",
     "surname": "Hart",
-    "given": "Geo. W. Water",
+    "given": "Geo. W",
     "firm": false,
-    "occupation": "street",
+    "occupation": "Water street",
     "address": "house Wabash st",
     "as_printed": "Hart, Geo. W. Water street, house Wabash st",
     "section": "directory"
@@ -25678,7 +25684,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hart, Geo. W. Water"
+    "Hart, Geo. W"
    ],
    "town_finding": false,
    "notes": null
@@ -25975,7 +25981,12 @@
     "occupation": "of H. & Shur, South Water st",
     "address": null,
     "as_printed": "Hatch, Herman, of H. & Shur, South Water st.",
-    "section": "directory"
+    "section": "directory",
+    "address_refused": {
+     "class": "firm_address",
+     "why": "of H. & Shur: South Water st is the partnership's address, and Norris sets no h/res/b for the man",
+     "rule": "address is a RESIDENCE in this reading, and Norris marks one with h, res or b. This entry names a street with no such mark, so the street is not read into address. See tools/read_norris_1844.py, ADDRESS_REFUSED."
+    }
    },
    "locator": {
     "text_file": "norris_1844_leaf_049.txt",
@@ -38375,7 +38386,12 @@
     "occupation": "of H. H. M. & Co. house",
     "address": null,
     "as_printed": "Magie, H. H. of H. H. M. & Co. house",
-    "section": "directory"
+    "section": "directory",
+    "address_refused": {
+     "class": "printed_line_short",
+     "why": "the line ends at the abbreviation — 'of H. H. M. & Co. house' with no street after it. The second hand reads it identically off a different copy (ratio 1.0), so the page prints no street",
+     "rule": "address is a RESIDENCE in this reading, and Norris marks one with h, res or b. This entry names a street with no such mark, so the street is not read into address. See tools/read_norris_1844.py, ADDRESS_REFUSED."
+    }
    },
    "locator": {
     "text_file": "norris_1844_leaf_057.txt",
@@ -46796,7 +46812,12 @@
     "occupation": "at B. W. Raymond's 122 Lake st",
     "address": null,
     "as_printed": "Raymond, Geo. at B. W. Raymond's 122 Lake st",
-    "section": "directory"
+    "section": "directory",
+    "address_refused": {
+     "class": "employer_address",
+     "why": "at B. W. Raymond's: 122 Lake st is the employer's shop, and Norris sets no h/res/b for the man",
+     "rule": "address is a RESIDENCE in this reading, and Norris marks one with h, res or b. This entry names a street with no such mark, so the street is not read into address. See tools/read_norris_1844.py, ADDRESS_REFUSED."
+    }
    },
    "locator": {
     "text_file": "norris_1844_leaf_062.txt",
@@ -59139,7 +59160,12 @@
     "occupation": "clerk at J. B. Busch's, Clark st",
     "address": null,
     "as_printed": "Weber, Ignace, clerk at J. B. Busch's, Clark st",
-    "section": "directory"
+    "section": "directory",
+    "address_refused": {
+     "class": "employer_address",
+     "why": "clerk at J. B. Busch's: Clark st is the employer's premises, and Norris sets no h/res/b for the man",
+     "rule": "address is a RESIDENCE in this reading, and Norris marks one with h, res or b. This entry names a street with no such mark, so the street is not read into address. See tools/read_norris_1844.py, ADDRESS_REFUSED."
+    }
    },
    "locator": {
     "text_file": "norris_1844_leaf_070.txt",
@@ -63537,11 +63563,11 @@
    "reading": "transcription_mediated",
    "quote": "Intelligence Office, Clark st. opposite Saloon, over J; B. F. Rus-\n  sell's Land Office",
    "normalized": {
-    "printed_name": "Intelligence Office, Clark",
+    "printed_name": "Intelligence Office",
     "surname": "Intelligence Office",
-    "given": "Clark",
+    "given": null,
     "firm": false,
-    "occupation": "st. opposite Saloon, over J; B. F. Rus sell's Land Office",
+    "occupation": "Clark st. opposite Saloon, over J; B. F. Rus sell's Land Office",
     "address": null,
     "as_printed": "Intelligence Office, Clark st. opposite Saloon, over J; B. F. Rus sell's Land Office",
     "section": "addenda"
@@ -63557,7 +63583,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Intelligence Office, Clark"
+    "Intelligence Office"
    ],
    "town_finding": false,
    "notes": null

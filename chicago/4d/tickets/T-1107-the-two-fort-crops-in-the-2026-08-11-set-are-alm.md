@@ -1,7 +1,7 @@
 ---
 id: T-1107
 title: The two fort crops in the 2026-08-11 set are almost certainly Kurz & Allison panels 1 and 5: measure the join and fill fort_dearborn_apron's empty sources
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1265
+claimed_by: run 9/13/2026, 1:18:20 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-13T19:01:12.866Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34774017544
 ---
 
 T-0055 identified the Kinzie crop (`p6_1.png`, numeral "12.") as **panel 12 of

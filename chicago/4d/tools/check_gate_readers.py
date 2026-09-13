@@ -42,6 +42,11 @@ READERS = {
         "the ways the fort plates draw are still the ways the town was built to",
         "Braunhold's Sauganash still says what the research note says it says",
         "the Chappel shore drawing still refuses to place its own station",
+        "the four crops are still the panels their citations name",
+        # Registered 2026-09-13, and it is the one that was NOT here — which is
+        # exactly why it crashed instead of standing on its banked reading. See
+        # read_kinzie_addition_water_lots.py § check_sheet.
+        "…and the strip still reads the same off the sheet",
     ]),
     "numpy": ("numpy", [
         "…every step PIL names above — each needs both",

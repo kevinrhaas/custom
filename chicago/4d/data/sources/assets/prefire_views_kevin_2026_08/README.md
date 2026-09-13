@@ -13,7 +13,9 @@ they may never drive a coordinate or a footprint outline. They are comps, not su
 
 Known subjects (identify precisely before using — several carry printed plate numbers):
 
-- **Fort Dearborn from across the river** (two views, one coloured): the fort on its
+- **Fort Dearborn from across the river** (two views, one coloured — but see
+  *Identifications* below: `p4_1` turned out to be an 1830 TOWN view, panel 8, not a
+  second fort view): the fort on its
   RISING GROUND with the whitewashed palisade, outbuildings on the slope, the low
   wooded far bank, bark canoes. The bank height and its GRADATION down to the water is
   exactly what the owner wants the terrain to learn from (ROADMAP P8).
@@ -54,9 +56,10 @@ a `kurz_allison_1893` panel, not a `chicagology_*` record.
 |---|---|---|---|
 | `p6_1.png` | "12." | "No. 12.  The Old Kinzie Mansion, built 1832.  Population 310." | `kurz_allison_1893`, panel 12 — **confirmed** |
 | `p6_0.png` | "11." | "No. 11.  The Green Tree Hotel, cor. West Lake and Canal St.  Built in 1833." | `kurz_allison_1893`, panel 11 — **confirmed** |
-| `p4_0.png` | plate "1" per this README | "No. 1.  Old Fort Dearborn.  Erected 1803." | `kurz_allison_1893`, panel 1 — *unconfirmed, not measured by T-0055* |
-| `p3_1.png` | plate "5" per this README | "No. 5.  Fort Dearborn, as re[built] … 1835.  Population 3,265." | `kurz_allison_1893`, panel 5 — *unconfirmed, not measured by T-0055* |
-| `p7_*`, `p8_*`, `p9_0`, `p3_0`, `p4_1`, `p5_0`, `p6_*` others | — | — | unidentified |
+| `p4_0.png` | "1." | "No. 1.  Old Fort Dearborn.  Erected 1803." | `kurz_allison_1893`, panel 1 — **confirmed** (T-1107) |
+| `p3_1.png` | "5." | "No. 5.  Fort Dearborn, as re[built] … 1835.  Population 3,265." | `kurz_allison_1893`, panel 5 — **confirmed** (T-1107) |
+| `p4_1.png` | none in the crop | "No. 8.  Chicago in 1830—From the Lake.  Population 96." | `kurz_allison_1893`, panel 8 — **confirmed** (T-1107); **NOT a fort plate** |
+| `p7_*`, `p8_*`, `p9_0`, `p3_0`, `p5_0`, `p6_*` others | — | — | unidentified |
 
 **How plate "12" was proved, so that the next one can be done the same way.** Three
 independent agreements, of which any one alone would be an eyeball: (a) the numeral —
@@ -68,12 +71,35 @@ of `p6_1.png` against the sheet, which peaks at **0.797** at 0.88× scale on she
 (94,1164)-(438,1416) — that vignette — against a best of **0.341** anywhere in the
 bird's-eye panel used as a control.
 
-**The two fort rows are marked unconfirmed on purpose.** They are strongly implied by
-the same numbering and by `kurz_allison_1893`'s own locator, but T-0055's scope was the
-Kinzie plate and nothing else was measured. `data/enclosures/fort_dearborn_apron.json`
-still cites those two by committed path and still records its `sources` as empty; making
-that join, with the same three checks, is filed as its own ticket. Do not fill it in from
-this table.
+**The three fort-batch rows were measured by T-1107, and the method is now a file.**
+`tools/measure_plate_join.py` is T-0055's correlation made repeatable: it re-measures all
+four joins on every commit, and `--crop <path>` will price a new one. What it found:
+
+| crop | panel | ncc | scale | sheet pixels | control |
+|---|---|---|---|---|---|
+| `p6_1.png` | 12 | 0.861 | 0.880× | (95,1163)-(439,1416) | 0.342 |
+| `p4_0.png` | 1 | 0.896 | 0.295× | (99,78)-(553,331) | 0.400 |
+| `p3_1.png` | 5 | 0.812 | 0.425× | (1486,77)-(1945,323) | 0.337 |
+| `p4_1.png` | 8 | 0.863 | 0.735× | (533,342)-(1511,831) | 0.325 |
+
+`control` is the best the same crop reaches anywhere in the 1853 bird's-eye panel. The
+panel-12 row is the calibration — it reproduces T-0055's 0.341 control to a thousandth.
+`data/enclosures/fort_dearborn_apron.json`'s `existence.sources` now carries
+`kurz_allison_1893` instead of the empty field it recorded as a finding, written through
+`tools/generate_fort_apron.py` and not by hand.
+
+**`p4_1.png` IS NOT A SECOND FORT VIEW, and the bullet above is wrong about it.** It is
+panel 8, *"Chicago in 1830—From the Lake. Population 96"* — the town five years before
+the scene date, in which the fort is one building among many, and before the rebuilt
+walls of panel 5. It carries no numeral because it is cropped inside the frame; the
+sheet prints the number outside the frame's top-left corner, at sheet (572,304). Nothing
+measured off it is retracted — `tools/measure_fort_ways_plate.py` and
+`tools/generate_fort_trees.py` ask it what the picture draws, and naming a picture does
+not change it — but the DATE a reader attaches to those answers is 1830, not 1835.
+
+**Read the fort batch as three subjects, not two copies:** panel 1 is the post of 1803,
+panel 5 is the post as rebuilt in 1835 (the only key line in the sheet that names the
+scene year), and panel 8 is the town of 1830.
 
 **What identification does and does not buy.** Panel 12 is still tier 5, still published
 fifty-eight years after the scene date, and still may never drive a coordinate. What

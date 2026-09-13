@@ -5,7 +5,7 @@
   "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from gazetteer.json and the committed town by tools/compile_register.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer or the dataset, not this file.",
   "compiled_from": {
     "gazetteer": {
-      "claims": 1169,
+      "claims": 1185,
       "persons": 2665,
       "businesses": 196
     },
@@ -8162,8 +8162,8 @@
       "street_id": "lake",
       "placement_class": "relative",
       "evidence": {
-        "first_issue": "1834-06-11",
-        "last_issue": "1834-07-09"
+        "first_issue": "1834-05-21",
+        "last_issue": "1834-10-01"
       },
       "present_at_scene_date": true,
       "exclusion": null,
