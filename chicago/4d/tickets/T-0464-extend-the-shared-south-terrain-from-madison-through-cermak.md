@@ -1,18 +1,21 @@
 ---
 id: T-0464
 title: Extend the shared south terrain from Madison through Cermak
-state: open
+state: claimed
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
 effort: M
 legacy_id: null
+parent: null
 opened: 2026-09-01
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 10:21:08 AM CT
 blocked_on: T-0219
 needs_bake: true
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34765142411
 ---
 
 After T-0219 carries the current 1835 heightfield through Madison, extend the project’s durable geographic frame south far enough to contain the 1812 battle corridor and the Prairie Avenue district: at minimum through modern Cermak/22nd, with a measured buffer so terrain, shoreline and structures do not terminate inside the historical area.
