@@ -47,6 +47,10 @@ the printer set them differently.
   Seven times on page 2 the transcription runs a new entry onto the same line as
   the tail of the one before — "aged 84-6. Ballantine, David (B. & Sherman), ..."
   Those are cut mid-line and located with `spans`, which is what `spans` is for.
+  Six more do it across a WRAP, where the tail is an obituary bracket closing on
+  an age and the next entry follows it — "84-5-6] Cutmore, Henry, grocer" — and
+  T-0987 stretch 13 cuts those the same way, giving the age back to the obituary
+  above. See `OBITUARY_TAIL_RUN_ONS`.
 
 1843 IS EIGHT YEARS LATE, and Fergus compiled it in 1896 out of the 1844 canvass.
 Nothing here is an 1835 fact. Every claim carries `describes_date: "1843"`, and
@@ -175,9 +179,11 @@ def split_name(rest: str):
 # and 11 measured the same hole in Norris 1844.
 #
 # TWENTY-SIX person entries in this volume carry a space inside their surname and
-# are neither an institution, a real two-word name, nor the page-citation run-on
-# class (`84-5-6] Cutmore`, six of them, a different defect and not this one).
-# Twenty-five are repaired below and one is left alone.
+# are neither an institution, a real two-word name, nor the six `84-5-6] Cutmore`
+# heads, which are a different defect and not this one. (Stretch 12 called those
+# six a page-citation run-on. They are not: stretch 13 measured them and they are
+# the obituary tail of the entry ABOVE, cut back to it below.) Twenty-five are
+# repaired here and one is left alone.
 #
 # THE SECOND HAND. The committed text of this domain is K. Torp's 2007
 # transcription on Genealogy Trails. This repository ALSO holds, under
@@ -346,7 +352,81 @@ SURNAME_SEPARATOR_LEFT_ALONE = [
             "repair; a segmenting fault, recorded and left"},
 ]
 
+# ---------------------------------------------------------------------------
+# T-0987 stretch 13 — THE AGE THAT WAS READ AS A SURNAME.
+#
+# Stretch 12 filed this pool as "the page-citation run-on" and described it as a
+# cross-reference Torp interpolates — `84-5-6] Cutmore`, six of them. MEASURED,
+# THAT IS NOT WHAT THEY ARE, and this stretch says so before it repairs them.
+# There is no cross-reference. Every one of the six is the TAIL OF THE OBITUARY
+# BRACKET ON THE ENTRY ABOVE, wrapped onto the next line by the transcription and
+# closed there before the next entry begins:
+#
+#   Cushing, Nathaniel Sawyer, house painter, ... [died, Lombard, Ill., May 13, 1889, aged
+#   84-5-6] Cutmore, Henry, grocer. West Randolph, bet W Water and Canal
+#
+# So the digits are an AGE, they belong to the entry above, and the entry below
+# begins after the bracket. It is the same defect `f1843_e1434` carries — the
+# obituary tail wrapped onto a line of its own — with one difference that makes it
+# worse: there the tail wrapped ALONE and became a nameless entry, while here the
+# next entry follows it on the same line, so the tail is swallowed into a REAL
+# person's head and that person's surname becomes `84-5-6 Cutmore`. Six people of
+# the volume are unreachable by the crosswalk, which reaches an 1835 person through
+# the surname and nothing else, and six obituaries lose their age.
+#
+# THE SEGMENTER ALREADY HAD THE ANSWER AND NEVER REACHED IT. `alpha_entries` cuts
+# an entry mid-line and locates both halves with `spans` — the seven run-ons of
+# page 2 are cut that way. These six never got there: the test for "does an entry
+# begin on this line" strips leading non-letters before it looks (`lead`), so the
+# line PASSES as the start of an entry and is then recorded from column 0, junk
+# and all. The repair is to take the same cut the run-on path takes, at the end of
+# the bracket, which puts the age back on the entry above and starts the new entry
+# at its own surname. No new locator kind, no new claim, no change to any count
+# `coverage.json` declares.
+#
+# THE SECOND HAND SETTLES IT, and is stretch 12's: the Internet Archive's OCR of
+# the printed volume at `data/research/books/text/fergus_26_29.txt`. In ALL SIX it
+# closes the age onto the obituary above and sets the next entry after it, so the
+# reading below is `documented` in every row — two independent extractions of one
+# printing agree on where the age belongs. Nothing was fetched for this stretch.
+OBITUARY_TAIL_RUN_ONS = [
+    {"id": 'f1843_e0754', "tail": '84-5-6]', "surname": 'Cutmore',
+     "age_of": 'f1843_e0753', "age": '84-5-6',
+     "second_hand": 'I  died,  Lombard.  111.,  May  13.  1889.  aged  84-5-0. '
+                    'Cutraore,  Henry,  grocer.  West  liandolph,  bet  W  Water  and  Canal'},
+    {"id": 'f1843_e1601', "tail": '84.]', "surname": 'Lindebner',
+     "age_of": 'f1843_e1600', "age": '84',
+     "second_hand": '[died.  Lake  Forest,  111.,  February  (J,  1892,  aged  84. '
+                    'Lindebner,  Joseph,  tailor,  Edward  Manierre.  bds  same'},
+    {"id": 'f1843_e1610', "tail": '74.]', "surname": 'Loomis',
+     "age_of": 'f1843_e1609', "age": '74',
+     "second_hand": '[died,  Paris,  France,  April  10,  1870,  aged  74. '
+                    'Loomis.  Henry,  lumber  merchant,  cor  West  Water  and  I^andolph'},
+    {"id": 'f1843_e1938', "tail": '71.]', "surname": 'Otis',
+     "age_of": 'f1843_e1937', "age": '71',
+     "second_hand": '[died,  Ann  Arbor,  Mich.,  January  23,  1S82,  aged  71. '
+                    'r^tis,  Seth,  county  ])Oor-house  keeper       [died  April  27,  1847,  aged  70.'},
+    {"id": 'f1843_e2310', "tail": '46]', "surname": 'Smith',
+     "age_of": 'f1843_e2309', "age": '46',
+     "second_hand": '[died.  Bureau  Co,.  111.,  October  2,  1862.  a.o-ed  46 '
+                    "Smith,  Theophilus  AVa'sbington,  attorney  (S.  ct  Ballingall),  6  Clark"},
+    {"id": 'f1843_e2676', "tail": '59]', "surname": 'Wright',
+     "age_of": 'f1843_e2675', "age": '59',
+     "second_hand": '[died,  Pbiladelpbia,  Pa..  Se])t.  2G,  1874,  aged  51). '
+                    "\u25a0\\Vrigbt,  ^Irs.  Hulda,  M'id.  of  .Jobn,  IIG  3Iicbigan  ave,  s.-w.  cor  Madison"},
+]
+
+# The shape, so a SEVENTH cannot arrive unnoticed: a run of digits (with the
+# hyphenated sixths Fergus sets for a part-year, `84-5-6`), an optional stop, and
+# the bracket that closes the obituary above. `[Jackson Hall, 45 LaSalle ...` — the
+# editorial bracket that IS its own entry — opens with a bracket and carries no
+# digits before it, so it cannot match.
+OBIT_TAIL = re.compile(r"^\s*\d[\d\-]*\s*\.?\](\s+)")
+
+
 _REPAIR_BY_READ = {r["as_read"]: r for r in SURNAME_SEPARATOR_REPAIRS}
+_OBIT_TAIL_BY_ID = {r["id"]: r for r in OBITUARY_TAIL_RUN_ONS}
+_OBIT_TAIL_BY_AGE_OF = {r["age_of"]: r for r in OBITUARY_TAIL_RUN_ONS}
 
 
 def repair_separator(body: str):
@@ -506,7 +586,18 @@ def alpha_entries(lines):
             # entry's tail, not a new name.
             starts = ("," in head) or surname >= last_surname
         if starts:
-            out.append([section, i, i, None])
+            # T-0987 stretch 13. `lead` stripped the leading non-letters to decide
+            # that an entry begins here, and then the entry was recorded from
+            # column 0 and kept them. Where those non-letters are the tail of the
+            # obituary bracket above — an age and the bracket that closes it — the
+            # cut belongs where the run-on path below puts one: the entry above
+            # ENDS at the bracket, and this one BEGINS at its own surname.
+            tail = OBIT_TAIL.match(line) if out else None
+            if tail:
+                out[-1] = [out[-1][0], out[-1][1], i, out[-1][3], tail.start(1)]
+                out.append([section, i, i, tail.end(1)])
+            else:
+                out.append([section, i, i, None])
             last_surname = fold_surname(re.split(r"[,\.]", lead, 1)[0])
             continue
         if not out:
@@ -581,6 +672,32 @@ def build_claims():
             flat = re.sub(r"\s+", " ", raw).strip()
             norm = split_entry(flat, shouted=False)
             norm["as_printed"] = flat
+            cid = "f1843_e%04d" % n
+            tail_row = _OBIT_TAIL_BY_ID.get(cid) or _OBIT_TAIL_BY_AGE_OF.get(cid)
+            if tail_row is not None:
+                # Both readings on both halves of the pair, so nothing downstream
+                # takes the cut on trust: what this transcription ran together, what
+                # the cut reads, and what the second hand prints for the same two
+                # lines. `side` says which half this claim is.
+                norm["obituary_tail_cut"] = {
+                    "side": ("entry" if cid == tail_row["id"] else "obituary"),
+                    "as_read": (tail_row["tail"] + " " + tail_row["surname"]
+                                if cid == tail_row["id"] else
+                                "the bracket left open, the age on the line below"),
+                    "reading": ("the entry begins at %s; the age %s closes the "
+                                "obituary of %s above"
+                                % (tail_row["surname"], tail_row["age"],
+                                   tail_row["age_of"])),
+                    "entry": tail_row["id"],
+                    "obituary": tail_row["age_of"],
+                    "age": tail_row["age"],
+                    "verdict": "second_hand_closes_the_age_above",
+                    "confidence": "documented",
+                    "second_hand": tail_row["second_hand"],
+                    "second_hand_source_id": SECOND_HAND_SOURCE,
+                    "second_hand_note": SECOND_HAND,
+                    "ticket": "T-0987 stretch 13",
+                }
             norm["section"] = "alphabetical directory"
             norm["trade_heading"] = None
             if not norm["printed_name"]:
@@ -663,7 +780,10 @@ def declared_counts():
 
 
 INSTITUTIONS_AND_PARTICLES = 30
-PAGE_CITATION_RUN_ONS = 6
+# T-0987 stretch 13 emptied this pool: all six were the obituary tail of the entry
+# above, and the cut puts the age back and starts the entry at its own surname. A
+# seventh would be a new defect, and this is where it would show.
+OBITUARY_TAIL_RUN_ONS_LEFT = 0
 
 
 def self_test():
@@ -743,9 +863,38 @@ def self_test():
             other += 1
     if unexplained:
         fails.append("run-on surnames with no row in the table: %r" % (unexplained,))
-    if run_ons != PAGE_CITATION_RUN_ONS:
-        fails.append("page-citation run-ons: %d, expected %d (T-0987 stretch 13's pool)"
-                     % (run_ons, PAGE_CITATION_RUN_ONS))
+    if run_ons != OBITUARY_TAIL_RUN_ONS_LEFT:
+        fails.append("surnames still carrying a wrapped obituary tail: %d, expected %d"
+                     % (run_ons, OBITUARY_TAIL_RUN_ONS_LEFT))
+
+    # 6. T-0987 stretch 13: every obituary-tail cut still fires, on BOTH halves, and
+    #    the age it hands back is still on the obituary above. Four ways this rots: a
+    #    row stops cutting (the text was re-committed or the segmenter moved); the cut
+    #    lands in the wrong place and the entry reads a dirty surname; the age fails to
+    #    reach the bracket above; or the pair stops being adjacent, which would mean an
+    #    entry was gained or lost between them and the ids no longer name the pair.
+    for row in OBITUARY_TAIL_RUN_ONS:
+        entry, above = by_id.get(row["id"]), by_id.get(row["age_of"])
+        if entry is None or above is None:
+            fails.append("%s: the pair %s/%s no longer exists"
+                         % (row["id"], row["age_of"], row["id"]))
+            continue
+        sn = entry["normalized"].get("surname") or ""
+        if sn != row["surname"]:
+            fails.append("%s: cut reads surname %r, expected %r"
+                         % (row["id"], sn, row["surname"]))
+        if row["tail"] in entry["normalized"]["as_printed"]:
+            fails.append("%s: the tail %r is still on the entry"
+                         % (row["id"], row["tail"]))
+        if not above["normalized"]["as_printed"].rstrip().endswith(row["tail"]):
+            fails.append("%s: the obituary above does not close on %r — it reads %r"
+                         % (row["age_of"], row["tail"],
+                            above["normalized"]["as_printed"][-30:]))
+        for half in (entry, above):
+            cut = half["normalized"].get("obituary_tail_cut")
+            if not cut or cut["age"] != row["age"]:
+                fails.append("%s: no obituary_tail_cut naming age %r"
+                             % (half["id"], row["age"]))
     if other != INSTITUTIONS_AND_PARTICLES:
         fails.append("institutions and real particles: %d, expected %d"
                      % (other, INSTITUTIONS_AND_PARTICLES))
@@ -766,10 +915,11 @@ def self_test():
         return 1
     doc = sum(1 for r in SURNAME_SEPARATOR_REPAIRS if r["confidence"] == "documented")
     print("fergus 1843: %d run-on surnames repaired (%d documented off the second hand, "
-          "%d inferred from the format), %d left alone, %d page-citation run-ons and %d "
-          "institutions or particles standing"
+          "%d inferred from the format), %d left alone; %d obituary tails cut back onto "
+          "the entry above (%d still swallowed), %d institutions or particles standing"
           % (len(SURNAME_SEPARATOR_REPAIRS), doc, len(SURNAME_SEPARATOR_REPAIRS) - doc,
-             len(SURNAME_SEPARATOR_LEFT_ALONE), run_ons, other))
+             len(SURNAME_SEPARATOR_LEFT_ALONE), len(OBITUARY_TAIL_RUN_ONS), run_ons,
+             other))
     return 0
 
 

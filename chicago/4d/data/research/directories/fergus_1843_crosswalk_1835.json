@@ -4891,17 +4891,18 @@
    "entries_1843": [
     {
      "claim": "f1843_e2675",
-     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
      "page": "fergus_1843_page_004",
      "section": "alphabetical directory",
      "trade_heading": null,
-     "occupation_1843": "editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+     "occupation_1843": "editor and proprietor Prairie Farmer",
      "address_1843": null,
-     "death_note_1843": null
+     "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
     }
    ],
    "could_carry": [
-    "occupation"
+    "occupation",
+    "death_note"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": true,
@@ -5058,16 +5059,18 @@
    "entries_1843": [
     {
      "claim": "f1843_e2675",
-     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
      "page": "fergus_1843_page_004",
      "section": "alphabetical directory",
      "trade_heading": null,
-     "occupation_1843": "editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+     "occupation_1843": "editor and proprietor Prairie Farmer",
      "address_1843": null,
-     "death_note_1843": null
+     "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
     }
    ],
-   "could_carry": [],
+   "could_carry": [
+    "death_note"
+   ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false,
    "contested_with": [
@@ -5110,16 +5113,18 @@
    "entries_1843": [
     {
      "claim": "f1843_e2675",
-     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
      "page": "fergus_1843_page_004",
      "section": "alphabetical directory",
      "trade_heading": null,
-     "occupation_1843": "editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged",
+     "occupation_1843": "editor and proprietor Prairie Farmer",
      "address_1843": null,
-     "death_note_1843": null
+     "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
     }
    ],
-   "could_carry": [],
+   "could_carry": [
+    "death_note"
+   ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false,
    "contested_with": [
@@ -10518,13 +10523,13 @@
    "grade_1835": "inferred",
    "entry_1843": {
     "claim": "f1843_e1609",
-    "as_printed": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged",
+    "as_printed": "Long, James, proprietor hydraulic mill, n.e. cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged 74.]",
     "page": "fergus_1843_page_003",
     "section": "alphabetical directory",
     "trade_heading": null,
     "occupation_1843": "proprietor hydraulic mill, n.e",
-    "address_1843": "cor Lake and Mich, ave [died, Paris, France, April 10, 1876, aged",
-    "death_note_1843": null,
+    "address_1843": "cor Lake and Mich, ave",
+    "death_note_1843": "died, Paris, France, April 10, 1876, aged 74.",
     "forename_1835": "John",
     "forename_printed": "James",
     "garbled_reading": false,

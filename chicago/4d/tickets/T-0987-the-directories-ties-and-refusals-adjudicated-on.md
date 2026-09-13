@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/13/2026, 4:11:56 AM CT
+claimed_by: run 9/13/2026, 8:50:01 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34748985075
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34760796797
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -1573,6 +1573,162 @@ Thirteen entries, of which six can be ruled off a source already committed. One 
 comfortably. No successor ticket is filed: `tickets/README.md` puts the succession on the
 run that CLOSES the programme, and the pools are not empty. This ticket stays open and is
 its own cursor.
+
+
+## Stretch 13 — the age read as a surname, and the surname the scan broke in two (T-0987, 2026-09-13)
+
+Stretch 12 named this stretch and sized it at thirteen entries: "6 in Fergus 1843, the
+page-citation run-on" and "7 workable in Fergus 1839". **The count is right and the
+diagnosis is not, and this stretch says so before it repairs anything.** There is no page
+citation. Every one of the six is the TAIL OF THE OBITUARY BRACKET ON THE ENTRY ABOVE,
+wrapped by the transcription onto the next line and closed there:
+
+```
+  Cushing, Nathaniel Sawyer, house painter, 41 State near Lake, res same [died, Lombard, Ill., May 13, 1889, aged
+  84-5-6] Cutmore, Henry, grocer. West Randolph, bet W Water and Canal
+```
+
+`84-5-6` is an age — eighty-four and five-sixths, the fraction Fergus sets for a part
+year — and it is CUSHING's. The same for `84.]` (Lind), `74.]` (Long), `71.]` (Otis, Seth
+T.), `46]` (Smith, Samuel P.) and `59]` (Wright, John Stephen). So the defect is
+`f1843_e1434`'s, one step worse: there the wrapped tail became a nameless entry of its
+own, here a REAL person follows it on the same line and is filed under the age.
+
+### The correction that matters more than the six: what the hole actually was
+
+Stretches 10 to 12 all rest on one sentence — a surname carrying a space makes no match
+and no refusal, so the entry is in no pool this ticket counts. **Measured against
+`name_agreement.fold`, that is true of the class those stretches repaired and FALSE of
+this one.** `fold` strips whitespace and punctuation:
+
+```
+  fold('Cook. George')          -> 'cookgeorge'     the forename is IN the key: invisible
+  fold('84-5-6] Cutmore')       -> 'cutmore'        reaches the right shelf already
+  fold('Stark weather')         -> 'starkweather'   reaches the right shelf already
+  fold('Densmore Eleazer W.')   -> 'densmoreeleazerw'  invisible
+```
+
+The defect that hides an entry is **the head running on into the FORENAME**, not a space
+inside the surname. Stretch 12's twenty-five rows are that shape and its argument holds
+for them. Of this stretch's thirteen, only THREE are — the 1839 comma-absent heads. The
+other ten were reaching the crosswalk all along, and what was lost was the READING: who
+the person is, what the trade is, where the obituary ends. That is why the pools below
+barely move and the book grows anyway, and it is the honest size of this pool.
+
+### Fergus 1843 — six obituary tails, cut back onto the entry above
+
+The segmenter already had the answer and never reached it. `alpha_entries` cuts an entry
+mid-line and locates both halves with `spans` — the seven run-ons of page 2 go that way.
+These six never got there because the test for "does an entry begin here" strips leading
+non-letters before it looks, so the line PASSES and is then recorded from column 0, junk
+and all. `OBITUARY_TAIL_RUN_ONS` takes the same cut at the bracket. No new locator kind, no
+new claim, and 2,695 entries before and after, which is what `coverage.json` declares.
+
+**The second hand is stretch 12's, and it settles all six**, so every row is `documented`:
+the Internet Archive's OCR of the printed volume closes the age onto the obituary above and
+sets the next entry after it in each case — `[died, Ann Arbor, Mich., January 23, 1S82,
+aged 71. r^tis, Seth, county ])Oor-house keeper`. Nothing was fetched.
+
+### Fergus 1839 — seven, and there is no second hand for this volume
+
+Eleven person entries carry a space inside their surname. Four stand outside and are not
+this defect: `St. Palais`, `State Bank Branch`, and the two `Wheeler k` firms whose
+ampersand the scan set as a `k` (T-1018's class). The seven are two shapes:
+
+| | n | rows |
+|---|---|---|
+| the scan broke one surname in two | 4 | Gilbert on, Snow hook, Stark weather, Wick wire |
+| the comma is absent and the head runs on | 3 | Densmore Eleazer W., Johnson John, Scammon J. Young |
+
+Stretch 12 left "is there a second hand for 1839?" open. **There is not** — the committed
+text here is ALREADY archive.org's OCR of the Allen County scan, so stretch 12's trick has
+nothing to set against it. This stretch answers a different question instead, and every row
+cites a committed witness or admits it has none:
+
+* **the same volume, elsewhere.** `Gilberton, Ralph, laborer,` is the NEXT LINE after
+  `Gilbert on, Francis, laborer,` on leaf 27 — one surname set twice on one page, broken
+  once. `J. Young Scammon,` is set whole in the volume's own subscriber list on leaf 54,
+  with four further `J. Y. Scammon` printings.
+* **a later directory**, a different printing and a different transcription: Fergus 1843
+  through stretch 12's second hand (`Starkweather, Charles Robert, assistant postma-ter`;
+  `Densmore, Eleazer "Woodworth, clerk.`) and Norris 1844 (`Snowhook, W.B., grocer`;
+  `Starkweather, C. Robt, ast P.M.`). The Calumet Club's 1879 registry prints `Densmore,
+  Eleazer W. | 1835, Sept.`
+* **the alphabet**, which every row passes and none rests on alone: `Snowhook` between
+  `Snow, Ira` and `Soden`, `Wickwire` between `Wicker, Joel II.` at the foot of leaf 47 and
+  `Wiggins` at the head of 48.
+
+**Five are `documented` and two are `inferred`, and the two say why.** `Wick wire` is the
+one row of the seven no committed source speaks for in any spelling — the format and the
+alphabet are its whole argument. `Johnson John` has no hand printing a separator for that
+line; `Johnson, John` is printed with its comma by Fergus 1843 and Norris 1844, but of
+OTHER men, which is exactly why it is not `documented`.
+
+### What landed, and what did not
+
+**Four identities enter `identity_master.json`** — `id_cutmore_henry`,
+`id_lindebner_joseph`, `id_smith_theophilus_washington`, `id_wright_hulda` — each standing
+in one domain, none of them a person of 1835. Appearances 10,540 → 10,546 (the six 1843
+entries; Loomis and Otis folded onto identities already there) and derived refusals 1,827 →
+1,821. The book got bigger; the town did not, and clause 5 is answered plainly: **this
+stretch placed nothing on the ground.** Not one of the thirteen is an 1835 resident.
+
+**One thing a reader sees.** `f1843_e2675` — John Stephen Wright, founder of the Prairie
+Farmer — is quoted on three contested Wright rulings, and the quotation used to end at
+`aged` and now ends at `aged 59`, with the obituary out of the occupation field and into
+`death_note_1843` where it belongs. The same repair cleans `occupation_1843` and
+`address_1843` on all six.
+
+**No grade moved, no confidence was raised, `docs/LIBERTIES.md` gains nothing** — nothing
+was invented. `mint_civic_residents --regrade` reports 0 regraded.
+
+### The pools after this stretch
+
+```
+                        1839        1843        1844      1844 ad     total
+  ties               37 -> 37    40 -> 40    24 -> 24    11 -> 11   112 -> 112
+  initial-absent    260 -> 260  323 -> 323  315 -> 315  124 -> 124  1022 -> 1022
+  forename-disagr.   68 -> 68    81 -> 81    47 -> 47     0 ->  0    196 -> 196
+  matches           146 -> 146  118 -> 118  103 -> 103   18 ->  18   385 -> 385
+```
+
+**Nothing moves, and that is the finding, not a failure of the stretch** — see the
+correction above: ten of the thirteen were already folding to the right shelf, so repairing
+their reading cannot move a pool. The one composition change is inside a bucket: `Johnson
+John` becomes the 8th candidate under `Johnson` on three no-forename rulings, where there
+were 7.
+
+Clause 3, the write ceiling: `measure_research_spend.py` reads directories **895 reached,
+895 judgeable, 895 on a card, 0 unwritten**, town total 0 — measured before and after and
+identical, so no spend was lost. The chain was iterated behind the readings:
+`spend_directories.py`, `consolidate_resident_evidence.py --build`, `mint_civic_residents
+--build` and `--regrade`, `spend_ladder_rungs.py`, `qualify_later_trades.py`, both
+back-projections, `synthesize_resident_research.py`, `export_resident_audit.py --build`.
+
+### The gates
+
+`read_fergus_1839.py --self-test` is NEW and is wired into `check.sh` beside its `--check`,
+matching what stretch 12 built for 1843. Both ratchets hold four ways their table rots: a
+row stops firing, a repaired entry still reads a spaced surname, a repair TIDIES the quote
+it was meant to leave damaged, or a new broken surname arrives with no row. 1843's
+`PAGE_CITATION_RUN_ONS = 6` becomes `OBITUARY_TAIL_RUN_ONS_LEFT = 0` and gains a sixth
+check: every cut still fires on BOTH halves and the age still closes the obituary above.
+
+### Stretch 14 — the ties, which stretch 12 said were next and are
+
+With the thirteen closed, the reading defects this ticket knows of in Fergus 1839 and 1843
+are empty: 4 spaced surnames standing in 1839 (St. Palais, the State Bank Branch and
+T-1018's two `Wheeler k` firms) and in 1843 the 30 institutions and particles plus the 2
+stretch 12 left alone with its reasons. The pools are what is left, in the order
+this ticket sets: **the 112 ties first** — 37 in Fergus 1839, 40 in Fergus 1843, 24 in
+Norris 1844, 11 in the advertiser — and a tie is one page-read from a match. Stretches 3, 7
+and 9 each took one volume's ties under T-0696's rule (a trade may narrow a tie, a premises
+may not); 1839's 37 are the largest single pool left and nothing has been run on them since
+stretch 3. After the ties, the 1,022 initial-absent refusals, beginning with the volume
+whose scan is best. No successor ticket is filed: `tickets/README.md` puts the succession on
+the run that CLOSES the programme, and the pools are not empty. This ticket stays open and
+is its own cursor.
+
 
 ---
 

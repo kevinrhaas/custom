@@ -22,10 +22,10 @@
    "unmatched": 114
   },
   "directories": {
-   "names_read": 4338,
-   "identities": 2849,
+   "names_read": 4344,
+   "identities": 2853,
    "appearances_on_an_identity_the_town_already_carries": 285,
-   "unmatched": 4053
+   "unmatched": 4059
   },
   "newspapers": {
    "names_read": 2316,
@@ -97,7 +97,7 @@
   "civic|newspapers": 108,
   "civic|old_settlers": 30,
   "civic|residents": 263,
-  "directories|directories": 2849,
+  "directories|directories": 2853,
   "directories|newspapers": 160,
   "directories|old_settlers": 32,
   "directories|residents": 158,
@@ -116,7 +116,7 @@
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
    "R1": 369,
-   "R5": 273,
+   "R5": 267,
    "R2": 979,
    "R3": 120,
    "R4": 77,
