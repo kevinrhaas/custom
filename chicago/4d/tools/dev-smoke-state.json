@@ -12,60 +12,92 @@
       "passed": 67,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 205,
-      "takenAt": "2026-09-13T03:08:06.668Z",
-      "ref": "steward/t-1080-michigan-tract-name-road",
-      "commit": "a6b8ca53b7e1",
-      "devCommit": "30e58d3ea729",
-      "treeHash": "sha256:b64a00dc9fb1c240",
+      "wallSeconds": 256,
+      "takenAt": "2026-09-13T02:56:43.918Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "d3b0d3b36439",
+      "devCommit": "29cf712da203",
+      "treeHash": "sha256:9e815e20eb46a471",
       "treeDirty": false,
-      "changelogHash": "sha256:4cb9e1f7268fbe53",
+      "changelogHash": "sha256:917579045cd35c90",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4,
-          4,
-          2.9
+          4.8,
+          3.7,
+          3.2
         ]
       },
-      "source": "/tmp/t795/smoke_d12.log"
+      "source": "/tmp/s3_d12.log"
     },
     {
       "viewport": "desktop",
-      "stage": "2-3",
+      "stage": "1",
       "parts": [
-        2,
-        3
+        1
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 157,
+      "passed": 81,
       "failed": 0,
       "failures": [],
       "wallSeconds": 284,
-      "takenAt": "2026-09-13T03:04:31.902Z",
-      "ref": "steward/t-1080-michigan-tract-name-road",
-      "commit": "a6b8ca53b7e1",
+      "takenAt": "2026-09-13T02:44:54.266Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
       "devCommit": "30e58d3ea729",
-      "treeHash": "sha256:b64a00dc9fb1c240",
+      "treeHash": "sha256:2ef027c420eb5794",
       "treeDirty": false,
-      "changelogHash": "sha256:4cb9e1f7268fbe53",
+      "changelogHash": "sha256:f0569fd969a81c8d",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.3,
-          3.9,
-          2.5
+          5.2,
+          4.7,
+          3.7
         ]
       },
-      "source": "/tmp/t795/smoke_d23.log"
+      "source": "/tmp/s2_d1.log"
     },
     {
       "viewport": "mobile",
+      "stage": "11-13",
+      "parts": [
+        11,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 181,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 428,
+      "takenAt": "2026-09-13T02:44:54.175Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
+      "devCommit": "30e58d3ea729",
+      "treeHash": "sha256:2ef027c420eb5794",
+      "treeDirty": false,
+      "changelogHash": "sha256:f0569fd969a81c8d",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.5,
+          4.8,
+          3.7
+        ]
+      },
+      "source": "/tmp/s2_m1113.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "12",
       "parts": [
         12
@@ -75,60 +107,25 @@
       "passed": 67,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 112,
-      "takenAt": "2026-09-13T02:59:44.228Z",
-      "ref": "steward/t-1080-michigan-tract-name-road",
-      "commit": "a6b8ca53b7e1",
+      "wallSeconds": 278,
+      "takenAt": "2026-09-13T02:44:54.087Z",
+      "ref": "steward/t-1097-survey-tract-polygons",
+      "commit": "1d6d63f7f9a7",
       "devCommit": "30e58d3ea729",
-      "treeHash": "sha256:b64a00dc9fb1c240",
+      "treeHash": "sha256:2ef027c420eb5794",
       "treeDirty": false,
-      "changelogHash": "sha256:4cb9e1f7268fbe53",
+      "changelogHash": "sha256:f0569fd969a81c8d",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3,
-          3,
-          1.9
+          5.5,
+          4.8,
+          3.7
         ]
       },
-      "source": "/tmp/t795/smoke_m12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "2-3,7",
-      "parts": [
-        2,
-        3,
-        7
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 170,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph"
-      ],
-      "wallSeconds": 294,
-      "takenAt": "2026-09-13T02:57:45.423Z",
-      "ref": "steward/t-1080-michigan-tract-name-road",
-      "commit": "a6b8ca53b7e1",
-      "devCommit": "30e58d3ea729",
-      "treeHash": "sha256:b64a00dc9fb1c240",
-      "treeDirty": false,
-      "changelogHash": "sha256:4cb9e1f7268fbe53",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.7,
-          2.9,
-          1.7
-        ]
-      },
-      "source": "/tmp/t795/smoke_m237.log"
+      "source": "/tmp/s2_d12.log"
     },
     {
       "viewport": "desktop",
