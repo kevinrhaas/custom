@@ -888,6 +888,50 @@ function whereSection(p, place) {
   </section>`;
 }
 
+/**
+ * The town's own law, on the building it fell on or did not.
+ *
+ * The 5 August 1835 ordinance is the only DOCUMENTED statement this project holds
+ * about where the built-up town ended in the scene year — a boundary the Trustees
+ * walked street by street, inside which a hay stack cost twenty-five dollars. It
+ * is a fire rule, so the line IS their answer to "where is the town built up?",
+ * and every other answer in this dataset is derived from the plat, the land deal
+ * and measured frontage instead.
+ *
+ * Nothing is drawn in the scene for it: a legal limit is not a fence. This row is
+ * where it reaches a visitor, and it says which side of the line the building a
+ * visitor just clicked on stood on.
+ *
+ * Silent in two cases, both deliberate. `limits` null means the derived file did
+ * not load, and "not loaded" is not the same claim as "this building was outside".
+ * A null answer means the record commits no position, so there is no side to
+ * be on. The ordinance is also five weeks LATER than the scene date, which the
+ * row says rather than hides.
+ */
+function ordinanceSection(limits, p) {
+  if (!limits) return '';
+  const covered = limits.coversPlacement(p);
+  if (covered === null) return '';
+  const ord = limits.ordinance ?? {};
+  const inside = covered
+    ? 'Inside the limit — hay could not lawfully be stacked here.'
+    : 'Outside the limit — the rule did not reach this ground.';
+  const quote = ord.quote
+    ? `<blockquote class="pop-quote">${escapeHtml(ord.quote)}</blockquote>` : '';
+  return `<section class="pop-sec pop-ordinance">
+    <h3>Was it inside the town's fire limit?</h3>
+    <p class="pop-ordinance-stands">${escapeHtml(inside)}</p>
+    <p class="pop-ordinance-lead">Section 22 of the by-laws the Trustees passed on
+      5 August 1835 made it unlawful to stack hay inside a boundary they walked street
+      by street — ${limits.areaAcres ? `${escapeHtml(String(limits.areaAcres))} acres` : 'a boundary'}
+      of it — under twenty-five dollars a stack. It is the town's own statement of where
+      it was built up closely enough to burn, five weeks after this scene.</p>
+    ${quote}
+    <p class="pop-ordinance-cite">The Chicago Democrat, 19 August 1835, page 1 —
+      the limit is derived from committed street lines, never drawn in the scene.</p>
+  </section>`;
+}
+
 /** The three panes under the facts, and the strip that switches them. The last
  *  tab a visitor chose is remembered for the session — module scope, not
  *  storage — so walking from one building to the next keeps the reader where
@@ -965,6 +1009,8 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
   /** Same rule for the scene's open questions: null means "not loaded", which is
    *  not the same claim as "nothing is open about this building". */
   let openQuestions = null;
+  /** Null until the derived ordinance limits load; see `ordinanceSection`. */
+  let ordinanceLimits = null;
   let currentRecord = null;
 
   function close() {
@@ -1018,6 +1064,18 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
       if (currentRecord) this.show(currentRecord);
     },
 
+    /**
+     * Hand the popup the derived town ordinance limits, on the same terms as the
+     * liberties and the open questions: a card already on screen is redrawn rather
+     * than left without a row the dataset can now fill.
+     *
+     * @param {object|null} limits  `loadOrdinanceLimits()`'s handle, or null
+     */
+    setOrdinanceLimits(limits) {
+      ordinanceLimits = limits ?? null;
+      if (currentRecord) this.show(currentRecord);
+    },
+
     /** @param {object} record  a registry entry: { id, sidecar, ... } */
     show(record) {
       if (!record?.sidecar) return false;
@@ -1068,6 +1126,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
       const evidencePane = `
         ${basisSection(s, place)}
         ${whereSection(p, place)}
+        ${ordinanceSection(ordinanceLimits, p)}
         ${presenceSection(s)}
         ${shapeSection(s)}
         <section class="pop-sec">

@@ -152,6 +152,14 @@ cp -f data/liberties.json "$SITE/data/"
 # residents/ failure, a fourth time.
 cp -f data/town_census.json "$SITE/data/"
 
+# The derived town-ordinance limits the building card reads (T-0334). Derived by
+# tools/derive_hay_limits.py and re-derived by tools/check.sh; renderers/web/js/
+# ordinances.js fetches it at data/reconstruction/1835_hay_limits.json, so leaving
+# it behind here is a 404 on the deployed site and a card missing a row while the
+# dev tree shows it — the scenes/, fauna/ and residents/ failure again.
+mkdir -p "$SITE/data/reconstruction"
+cp -f data/reconstruction/1835_hay_limits.json "$SITE/data/reconstruction/"
+
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —
 # publishing heightfield.json without heightfield.bin gives a flat world and a
