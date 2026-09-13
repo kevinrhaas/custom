@@ -1,7 +1,7 @@
 ---
 id: T-1080
 title: The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-1075
 opened: 2026-09-12
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 8:30:54 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34759781726
 ---
 
 The Michigan St tract's name and the curved road north through it: who platted it, what the sources call it, and the road traced off Wright's sheet.
