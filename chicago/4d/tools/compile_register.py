@@ -594,8 +594,29 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     # counted along. So the record reaching furthest SOUTH takes the name, and the North
     # Division line stays reachable by its id. Before this, seating those six lines
     # re-anchored 90 fields of the register onto the wrong side of the water.
+    #
+    # T-0877 FOUND THE RULE'S UNSTATED HALF. "Furthest south" was a proxy for "the street
+    # the advertising town walked on", sound while the only rival was across the river and
+    # wrong the moment a rival appeared BELOW the town. Wright's School Section is a mile
+    # of ruled grid south of Madison, and seven of its north-south lines are lettered with
+    # names the town also uses — Clinton, Canal, Market, Wells, Clark, State. Every one of
+    # them reaches a mile further south than the street it shares a name with, so the bare
+    # proxy would have handed the printed name to unopened prairie: a notice reading
+    # "Clark st." would have resolved a mile from the town that printed it.
+    #
+    # So the proxy is replaced by the thing it stood for, and the data already says it.
+    # A record the town USED carries no `opened` flag at all — the twenty-eight streets of
+    # the 1830 plats, the fort's two ways — while every survey line seated since is
+    # `opened: false`, `track_width_m: 0`, "platted, unopened, unworn". A printed street
+    # name in a newspaper or a directory is a place somebody walked to, so an unopened line
+    # never takes a name from a street that was open, whichever reaches further south.
+    # Within each of those two groups the T-0451 rule is unchanged, which is what keeps
+    # `dearborn` ahead of `dearborn_north` (neither carries the flag) and what keeps the
+    # School Section's own line ahead of a hypothetical rival further north (both do).
+    # Measured when it landed: the winner of every name key in the register was unchanged.
     for s in sorted(load_json(streets_file).get("streets", []),
-                    key=lambda r: min(p[1] for p in r["path_local_enu_m"])):
+                    key=lambda r: (r.get("opened") is False,
+                                   min(p[1] for p in r["path_local_enu_m"]))):
         # A street with no name — the eight unnamed tiers Wright rules across the School
         # Section carry `name_1835: null` — has no key for a printed name to match, and
         # `street_key(None)` is the EMPTY string. Seated, it made "" a live key and every

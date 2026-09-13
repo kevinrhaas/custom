@@ -84,7 +84,7 @@
       "what": "Fergus 1843 and Norris 1844 directory adjudications — the independent discriminator",
       "path": "data/research/directories/",
       "available": true,
-      "n": 142
+      "n": 137
     },
     {
       "what": "the 1839 Chicago directory",
@@ -101,8 +101,8 @@
   ],
   "counts": {
     "named_heads": 965,
-    "matched": 14,
-    "candidate": 15,
+    "matched": 13,
+    "candidate": 16,
     "refused": 936
   },
   "counts_by_rule": {
@@ -111,9 +111,9 @@
     "L3 given_name_conflict": 191,
     "L4 initial_only": 73,
     "L5 name_is_not_unique": 7,
-    "L6 matched": 14,
+    "L6 matched": 13,
     "L6a low_confidence_caps_at_candidate": 5,
-    "L7 candidate": 10
+    "L7 candidate": 11
   },
   "printed_pages_read_here": [
     207,
@@ -9706,11 +9706,23 @@
           "entry_carries_an_address": true,
           "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
           "why": "the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        },
+        {
+          "kind": "directory_persistence",
+          "year": 1843,
+          "source_id": "fergus_chicago_directory_1843",
+          "entries": [
+            "Hubbard, Gurdon Saltonstall, forwarding and commission, South Water, near Clark, res 300 Indiana, near Rush [died September 14, 1886, aged 84.]"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
         }
       ],
       "outcome": "matched",
       "rule": "L6 matched",
-      "reason": "Full forename and surname agree (Gurdon S. Hubbard = Gurdon Saltonstall Hubbard), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "reason": "Full forename and surname agree (Gurdon S. Hubbard = Gurdon Saltonstall Hubbard), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
       "proposed_later_census": {
         "year": 1840,
         "source_id": "census_1840_chicago_familysearch_images",
@@ -9730,7 +9742,7 @@
           "persons_columns_read": 0,
           "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
         },
-        "bridge_basis": "Full forename and surname agree (Gurdon S. Hubbard = Gurdon Saltonstall Hubbard), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+        "bridge_basis": "Full forename and surname agree (Gurdon S. Hubbard = Gurdon Saltonstall Hubbard), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
         "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
       }
     },
@@ -15240,57 +15252,10 @@
       "household_id": "hh_rogers_edward_a",
       "resident_name": "Edward A. Rogers",
       "resident_grade_1835": "attested",
-      "discriminators": [
-        {
-          "kind": "directory_persistence",
-          "year": 1844,
-          "source_id": "norris_directory_1844",
-          "entries": [
-            "Rogers, Edward K. of Horace Norton & Co. h Ind b Cass & Hush"
-          ],
-          "forename_written_out_in_the_entry": true,
-          "entry_carries_an_address": true,
-          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
-          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
-        },
-        {
-          "kind": "directory_persistence",
-          "year": 1843,
-          "source_id": "fergus_chicago_directory_1843",
-          "entries": [
-            "Rogers, Edward Kendall (Horace Norton & Co.), res Indiana, bet Cass and Rush [died, Eastman, Ga., May 2, 1883, aged 70]"
-          ],
-          "forename_written_out_in_the_entry": true,
-          "entry_carries_an_address": true,
-          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
-          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
-        }
-      ],
-      "outcome": "matched",
-      "rule": "L6 matched",
-      "reason": "Full forename and surname agree (Edward H. Rogers = Edward A. Rogers), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
-      "proposed_later_census": {
-        "year": 1840,
-        "source_id": "census_1840_chicago_familysearch_images",
-        "serial": null,
-        "serial_note": "no IPUMS serial is asserted: the page-to-serial fingerprint is T-0504 and is not landed. The head is located by image, printed page and line, which is what this project read.",
-        "head_name_transcribed": "Edw. H. Rogers",
-        "head_name_normalized": "Edward H. Rogers",
-        "name_confidence": "medium",
-        "identity_confidence": "provisional",
-        "bridge_status": "proposed",
-        "serial_mapping_confidence": null,
-        "census_page": 233,
-        "census_row": 9,
-        "source_image": "chicago/reference/census1840/33SQ-GYYJ-RJ.jpg",
-        "source_kind": "1840 left image, read line by line in this repo",
-        "household": {
-          "persons_columns_read": 0,
-          "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
-        },
-        "bridge_basis": "Full forename and surname agree (Edward H. Rogers = Edward A. Rogers), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
-        "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
-      }
+      "discriminators": [],
+      "outcome": "candidate",
+      "rule": "L7 candidate",
+      "reason": "Full forename and surname agree (Edward H. Rogers = Edward A. Rogers) and the name is unique on both sides, but nothing independent of the name was found: rogers_edward_a carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 1 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33SQ-GYYJ-RJ",

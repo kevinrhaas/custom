@@ -159,6 +159,148 @@ def initial(given):
     return ""
 
 
+def initials(given):
+    """EVERY initial the reading sets, titles and suffixes dropped.
+
+    Lifted out of `printed_twice._initials` (T-0987 stretch 9) so that the
+    module which asks "are these two printings one man?" and the module which
+    asks "is this printing that person of 1835?" count a name's initials the
+    same way. `printed_twice` imports this one."""
+    out = []
+    for tok in tokens(given):
+        for ch in tok:
+            if ch.isalpha():
+                out.append(ch.lower())
+                break
+    return out
+
+
+# THE STROKE ARTEFACTS, and why a further initial can be UNREADABLE (T-0987
+# stretch 9). The rule below refuses two readings that print different middle
+# initials, and it may only do that where both letters were actually read. In
+# these scans they very often were not: Fergus 1839's H is set as two strokes
+# and comes back as `II`, `I I`, `IT`, `IL`, `Ik`; its D comes back as `I)`.
+# `Chapman, Charles II.`, `Beaubien, Charles IT`, `Caton, John I).`,
+# `Taylor, Anson IT` — every one of them is a man the 1835 layer holds under the
+# very initial the artefact hides, and a rule that read the artefact as a letter
+# refused all four. Measured over the four transcribed volumes: 16 further-name
+# tokens carry a character no compositor set, and 22 more are two capitals with
+# no name behind them.
+#
+# So this is T-0695's principle applied one field along — a disagreement against
+# a GARBLED reading is a transcription defect and not two people — and the
+# direction it errs in is the safe one: an unreadable initial refuses nothing
+# and the tie stands. A further initial is READ when it is a single letter with
+# nothing but a printer's point after it, or a middle name of three letters or
+# more spelled out. `I` is excluded even so: it is the shape every one of those
+# artefacts collapses to, and a middle initial I does not occur in the 1835
+# layer or in these volumes except as one of them.
+_READ_INITIAL = re.compile(r"[A-Za-z][.,’']?$")
+_READ_NAME = re.compile(r"[A-Za-z][A-Za-z.’'-]{2,}$")
+_STROKE = ("i", "l", "1")
+
+
+def _readable_further(tok):
+    """Was this further-name token actually read, or is it a stroke artefact?"""
+    if _READ_INITIAL.match(tok):
+        return tok[0].lower() not in _STROKE
+    return bool(_READ_NAME.match(tok)) and re.sub(r"[^A-Za-z]", "", tok).isalpha() \
+        and len(re.sub(r"[^A-Za-z]", "", tok)) >= 3
+
+
+def further_initials_disagree(given_a, given_b):
+    """(disagree?, why) for the initials AFTER the first — T-0987 stretch 9.
+
+    `agrees` above judges the FIRST forename and nothing else, and the
+    crosswalks get the first INITIAL from the bucket they look a resident up
+    in. So nothing in the chain had ever compared a middle initial, and
+    `H. B. Clarke` of 1835 could stand against `Clarke, H. W.` — an attorney
+    whose middle initial the volume prints, and prints differently.
+
+    Only initials BOTH readings set are compared, position by position, which
+    is the same clause `printed_twice.consistent` applies to two printings.
+    A reading that stops early is not contradicted by one that goes on:
+    `William Smith` against `Smith, W. W.` sets no second initial and is not
+    refused here — it is a silence, not a disagreement — whereas
+    `William V Smith` against `Smith, W. W.` sets V where the volume prints W,
+    and two men are standing there.
+
+    The comparison is of INITIALS and not of names, so it fires on a middle
+    name spelled out as readily as on a letter: `Gurdon Saltonstall Hubbard`
+    against `Hubbard, G. S.` agrees, and against `Hubbard, G. W.` does not.
+    """
+    ta, tb = tokens(given_a)[1:], tokens(given_b)[1:]
+    for i, (x, y) in enumerate(zip(ta, tb)):
+        if not (_readable_further(x) and _readable_further(y)):
+            return False, ""          # unread, so nothing after it can be judged
+        if x[0].lower() != y[0].lower():
+            return True, ("initial %d disagrees: %s against %s"
+                          % (i + 2, x[0].upper(), y[0].upper()))
+    return False, ""
+
+
+def middle_initial_refusal(resident_given, printed_given):
+    """The record filed when a further initial disagrees, or None."""
+    bad, why = further_initials_disagree(resident_given, printed_given)
+    if not bad:
+        return None
+    return {
+        "initials_1835": [c.upper() for c in initials(resident_given)],
+        "initials_printed": [c.upper() for c in initials(printed_given)],
+        "clause": "further initial",
+        "rule": ("The first initial and the first forename agree, and a further "
+                 "initial does not: %s. The surname-plus-initial rule reads the "
+                 "FIRST letter only, so a middle initial both readings print has "
+                 "never been compared, and two men who share a surname and a first "
+                 "initial were being merged on the strength of the letter they "
+                 "share. Only initials both readings set are compared: a reading "
+                 "that stops early is a silence and is not refused here."
+                 % why),
+    }
+
+
+def narrow_by_further_initials(resident_given, candidates, given_of):
+    """Drop the candidates a further initial refuses — (kept, refused, blocked).
+
+    T-0987 stretch 9. `candidates` is the tie as the crosswalk built it and
+    `given_of` reads the printed given name off one of them. Returns the
+    candidates that survive, the (candidate, note) pairs this clause refuses,
+    and — where the clause declined to fire — the reason, so that a decision
+    not to act is filed as a reading like any other.
+
+    **SILENCE IS NOT AGREEMENT.** The one case the clause holds back from is
+    the one where firing would manufacture a match out of a candidate that
+    says nothing. `J. B. Cook`, baker of 1835, meets `Cook, Josiah P. baker`
+    and `Cook, John, tailor`: the P refuses Josiah, and what is left is John,
+    who prints no second initial at all. Refusing the rival for SPEAKING and
+    then promoting the survivor for its SILENCE is how a reconstruction picks
+    the wrong man and calls it a reading — and here it would pick the tailor
+    over the baker. So where the refusal would leave exactly one candidate and
+    that candidate sets fewer initials than the 1835 reading does, nothing is
+    refused: the tie stands, and the narrowing that was declined is recorded.
+    A survivor that prints the initial and prints it the same — `Williams,
+    Eli B.` against `E. S.` — is not silent, and the tie resolves.
+    """
+    refused = [(c, middle_initial_refusal(resident_given, given_of(c)))
+               for c in candidates]
+    refused = [(c, n) for c, n in refused if n]
+    if not refused:
+        return list(candidates), [], None
+    kept = [c for c in candidates if not any(c is d for d, _ in refused)]
+    if len(kept) == 1:
+        mine = len(initials(resident_given))
+        if len(initials(given_of(kept[0]))) < mine:
+            return list(candidates), [], (
+                "A further initial refuses %d of the %d printings under this name, "
+                "and the one left standing prints fewer initials than the 1835 "
+                "reading does — it is silent where the refused rival spoke. "
+                "Promoting a silence to a match on the strength of a rival's "
+                "refusal would decide this tie on the weaker of the two readings, "
+                "so nothing is refused and the tie stands."
+                % (len(refused), len(candidates)))
+    return kept, refused, None
+
+
 def is_full_forename(given):
     """A full forename, as against an initial: more than one letter."""
     return len(fold(first_word(given))) > 1
@@ -244,6 +386,14 @@ CASES = [
 ]
 
 
+def na_initials_stable():
+    """`printed_twice` used to carry its own copy of this counter; it imports
+    this one now, and these are the cases that copy's self-test held."""
+    return (initials("Doctor D. S.") == ["d", "s"]
+            and initials("G. S.") == ["g", "s"]
+            and initials("Silas B., jr.") == ["s", "b"])
+
+
 def self_test():
     fired = []
     for a, b, want, why in CASES:
@@ -255,6 +405,38 @@ def self_test():
     assert not garbled("A-rthur"), "a hyphen is not an artefact"
     assert refusal("Titus H", "Thomas L.")["forename_printed"] == "Thomas"
     assert refusal("F.", "Francis") is None
+    # T-0987 stretch 9 — the further initials, and the silence that is not agreement.
+    fi = [
+        ("H. B.", "H. W", True, "Clarke: the middle initial the volume prints"),
+        ("Eli B", "E. S", True, "Williams: a middle initial against a middle initial"),
+        ("Anson H.", "A. D", True, "Taylor: A. D. is Augustine Deodat, not Anson H."),
+        ("John A", "J. Coe", True, "Clark: a middle name spelled out still sets its initial"),
+        ("Gurdon Saltonstall", "G. S", False, "Hubbard: spelled out and agreeing"),
+        ("William", "W. W", False, "a reading that stops early is silent, not refused"),
+        ("William V", "William", False, "and the silence the other way round"),
+        ("Dr. John Herbert", "John N", True, "a title is dropped before the initials are counted"),
+        ("Anson H.", "Anson IT", False, "Fergus's H set as two strokes: unread, not disagreed"),
+        ("Charles H", "Charles II.", False, "and the other shape of the same artefact"),
+        ("John Dean", "John I).", False, "a D read as I-bracket is not a D that disagrees"),
+        ("W B", "Wm. I I.", False, "an I in the further position is a stroke, never a letter"),
+        ("Augustine Deodat", "A. D", False, "a middle name spelled out sets its own initial"),
+        ("Edward A.", "Edward K.", True, "and a letter that WAS read still refuses"),
+    ]
+    for a, b, want, why in fi:
+        got, _ = further_initials_disagree(a, b)
+        if got != want:
+            fired.append("further initials %r vs %r: expected %s (%s)" % (a, b, want, why))
+    # the narrowing, and the one case it declines to make
+    cands = [{"g": "Josiah P"}, {"g": "John"}]
+    kept, ref, blocked = narrow_by_further_initials("J. B.", cands, lambda c: c["g"])
+    assert len(kept) == 2 and not ref and blocked, "Cook: a silent survivor is not promoted"
+    cands = [{"g": "E. S"}, {"g": "Eli B"}]
+    kept, ref, blocked = narrow_by_further_initials("Eli B", cands, lambda c: c["g"])
+    assert len(kept) == 1 and kept[0]["g"] == "Eli B" and len(ref) == 1 and not blocked, \
+        "Williams: the tie resolves onto the printing that agrees"
+    kept, ref, blocked = narrow_by_further_initials("W B", [{"g": "William H"}], lambda c: c["g"])
+    assert not kept and len(ref) == 1, "Clarke: a lone match is withdrawn, not held"
+    assert na_initials_stable(), "printed_twice must count initials the same way"
     if fired:
         for line in fired:
             print("  " + line, file=sys.stderr)

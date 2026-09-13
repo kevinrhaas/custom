@@ -27,6 +27,7 @@ from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import crosswalk_fergus_1839 as cw  # the rule, imported rather than restated
+import name_agreement as na  # the further-initial refusal (T-0987 stretch 9)
 import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -75,7 +76,8 @@ def index(claims):
     return by_key, surnames
 
 
-def match_pool(pool, by_key, surnames, extra=None, bucket_refusals=None):
+def match_pool(pool, by_key, surnames, extra=None, bucket_refusals=None,
+               middle_initial_refusals=None):
     ll_index = llb.buckets(llb.pool())
     matched, ambiguous, refused = [], [], []
     for r in pool:
@@ -107,10 +109,33 @@ def match_pool(pool, by_key, surnames, extra=None, bucket_refusals=None):
                         rec.update(extra(r))
                     bucket_refusals.append(rec)
                 continue
+        # T-0987 stretch 9. THE FURTHER INITIALS, and this pool asks for them
+        # because it is the one pool here whose rulings reach a CARD. The poll
+        # prints `W. H. Clarke` and the town holds `W B Clarke`; the bucket
+        # above compares the W and stops, so the poll line had been written onto
+        # the wrong man's card. Applied where a card is reached and nowhere
+        # else, which is the same scope T-0670 states on the directory file.
+        mi_declined = None
+        if middle_initial_refusals is not None:
+            survivors, mi_refused, mi_declined = na.narrow_by_further_initials(
+                r["given"], hits,
+                lambda h: cw.split_name(h["normalized"]["name"])[1])
+            for h, note in mi_refused:
+                row = row_of(h)
+                row.update(note)
+                mrec = {"name": r["name"], "entry_1837": row}
+                if extra:
+                    mrec.update(extra(r))
+                middle_initial_refusals.append(mrec)
+            hits = survivors
+            if not hits:
+                continue
         rec = {"name": r["name"],
                "rule": "Surname %r folds to the same string as the 1837 entry's, and the "
                        "given name of both begins %s." % (r["surname"], i.upper()),
                "entries_1837": [row_of(h) for h in hits]}
+        if mi_declined:
+            rec["further_initials_declined"] = mi_declined
         if extra:
             rec.update(extra(r))
         (matched if len(hits) == 1 else ambiguous).append(rec)
@@ -134,8 +159,10 @@ def main():
 
     people = cw.residents()
     res_bucket_refused = []
+    res_middle_initial_refused = []
     res_matched, res_ambiguous, res_refused = match_pool(
         people, by_key, surnames, bucket_refusals=res_bucket_refused,
+        middle_initial_refusals=res_middle_initial_refused,
         extra=lambda r: {"person_id": r["person_id"], "household_id": r["household_id"],
                          "grade_1835": r["grade"]})
     # ONE 1837 VOTER, TWO 1835 PEOPLE is a collision, not a match.
@@ -206,6 +233,7 @@ def main():
             "residents_ambiguous": len(res_ambiguous),
             "residents_contested": len(contested),
             "residents_surname_only_refused": len(res_refused),
+            "residents_further_initial_disagreed_refused": len(res_middle_initial_refused),
             "residents_letter_list_bucket_refused": len(res_bucket_refused),
             "voters_matched_one_entry": len(v_matched),
             "voters_ambiguous": len(v_ambiguous),
@@ -222,6 +250,9 @@ def main():
             "contested": sorted(contested, key=lambda m: m["name"]),
             "ambiguous": sorted(res_ambiguous, key=lambda m: m["name"]),
             "refusals": sorted(res_refused, key=lambda m: m["name"]),
+            "middle_initial_refusals": sorted(
+                res_middle_initial_refused,
+                key=lambda m: (m["name"], m["entry_1837"]["claim"])),
             "letter_list_bucket_refusals": sorted(
                 res_bucket_refused, key=lambda m: (m["name"], m["entry_1837"]["claim"])),
         },

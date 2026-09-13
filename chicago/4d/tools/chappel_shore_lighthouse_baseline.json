@@ -1,5 +1,5 @@
 {
-  "$note": "T-0649. The banked reading of the Eliza Chappel shore drawing and of the 1838 harbour-light plate by tools/measure_chappel_shore_lighthouse.py. Both sheets are committed and cannot change, so this exists for two reasons: CI installs no image library and would otherwise skip the reading in silence, and a detector edit that quietly moves a reading is a thing this project has been bitten by (T-0197). Regenerate with --write-baseline, and only ever with the reason in the commit.",
+  "$note": "T-0649. The banked reading of the Eliza Chappel shore drawing and of the 1838 harbour-light plate by tools/measure_chappel_shore_lighthouse.py. Both sheets are committed and cannot change, so this exists for two reasons: CI installs no image library and would otherwise skip the reading in silence, and a detector edit that quietly moves a reading is a thing this project has been bitten by (T-0197). Regenerate with --write-baseline, and only ever with the reason in the commit. T-1083: the `town` block here is the drift BASE only. It is arithmetic over data/structures/*.json, not over either raster, and the tool re-derives it live on every run \u2014 so a record that moves is caught with or without an image library. Re-derived 2026-09-12 because T-1065 (#1189) put the lighthouse on Wright's own glyph and nothing re-banked this with it.",
   "reading": {
     "adults": {
       "bank_hatted_man": {
@@ -206,13 +206,13 @@
     },
     "town": {
       "lighthouse_utm": [
-        448177.9,
-        4637625.0
+        448128.29,
+        4637568.34
       ],
       "palisade_span_m": 53.0,
-      "palisade_to_light_m": 35.1,
-      "sauganash_bearing_to_light_deg": 70.3,
-      "sauganash_range_m": 1066.3,
+      "palisade_to_light_m": 71.4,
+      "sauganash_bearing_to_light_deg": 72.4,
+      "sauganash_range_m": 1001.2,
       "sauganash_utm": [
         447174.1,
         4637265.2
