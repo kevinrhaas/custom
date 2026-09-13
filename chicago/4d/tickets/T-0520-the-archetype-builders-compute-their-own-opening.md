@@ -1,7 +1,7 @@
 ---
 id: T-0520
 title: The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-09-03
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 7:30:48 AM CT
 blocked_on: null
 needs_bake: true
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34757125217
 ---
 
 Raised out of T-0459, which is where the reader came from, and left open there
