@@ -41,7 +41,7 @@ kinzie_addition_water_lots.json       Kinzie's Addition's river-front water lots
                                       21 of the 35 figures. Authors no fabric.
 ```
 
-Two of those four are readings of ONE plate by ONE transform, stated in each file and
+Two of those five are readings of ONE plate by ONE transform, stated in each file and
 derived on neither: T-0883 fitted it, and a later reading spends it rather than re-fitting
 it, so two readings of that sheet can be subtracted from each other.
 

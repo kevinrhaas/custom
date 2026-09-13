@@ -376,6 +376,23 @@ step "the West Division numeral crops re-cut from the committed street lines" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_west_division_numerals.py --self-test
 
+# AND THE FIGURES INSIDE THOSE BLOCKS, read off the Thompson plat itself (T-0689). T-0444's
+# acceptance point 1 asked for the West Division's lot dimensions and lot-counts to be read
+# off the sheet rather than carried west from the South Division; #681 answered the rest of
+# T-0444, said point 1 was still owed, and the ticket closed without it. The reading is
+# `data/traces/thompson_west_division_lots.json` — 22 blocks, 203 lots, every figure citing
+# the pixel region of the committed PNG it was read on. The gate holds the reading to that
+# sheet's sha256 (a re-scan invalidates all 22 blocks' citations at once), refuses any West
+# Division frontage of 80 ft — the South Division's figure, and the exact inference the
+# ticket exists to keep out — and asserts THE CLOSURE: 180 + 18 + 180 off the block faces
+# and the legend, and 5 x 75 3/5 off a margin, are 378 ft apiece from inputs that share
+# nothing, so the block is square and the 458 ft module comes back from figures.
+step "the West Division's lot figures still answer for the sheet they were read on" \
+  python3 tools/read_west_division_lots.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_west_division_lots.py --self-test
+
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
 # beside them, through the same NA affine, and re-derives the module and the Kinzie
