@@ -56,8 +56,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 # T-E2's refused ground is resolved from the committed traces rather than stored, so the
 # generator asks the same command the gate does instead of keeping its own copy.
 from band_notes import split_notes  # noqa: E402
-from measure_no_build_ground import bar_ring, inside as point_in_ring  # noqa: E402
-from measure_no_build_ground import reservation_ring  # noqa: E402
+from measure_no_build_ground import inside as point_in_ring  # noqa: E402
+from measure_no_build_ground import resolve as no_build_ring  # noqa: E402
 # T-0112. The clapboard stock is dealt at the end of the parcel — over all fourteen
 # blocks at once, because a roof on one block's alley face stands within 60 m of the
 # next block's — since it is the one form value that depends on where a building's
@@ -66,8 +66,14 @@ from siding_stock import deal_records as deal_siding  # noqa: E402
 
 
 def no_build_rings() -> dict[str, list[tuple[float, float]]]:
-    ring, _madison, _section = reservation_ring()
-    return {"fort_dearborn_reservation": ring, "river_mouth_sand_bar": bar_ring()}
+    """Every region the refusal file authors, resolved the way its own entry says.
+
+    Named by the FILE rather than by this function, so a region added there is refused
+    here on the same commit — T-0891 added the Fort Cemetery and this is what kept the
+    generator and the gate from disagreeing about what ground exists.
+    """
+    refused = load(DATA / "reconstruction" / "1835_no_build_ground.json")
+    return {region["id"]: no_build_ring(region) for region in refused["regions"]}
 
 # An adopted roof's `occupants` block is authored ONCE, in the household programme's
 # ledger, and handed to whichever generator owns the roof — the arrangement the three

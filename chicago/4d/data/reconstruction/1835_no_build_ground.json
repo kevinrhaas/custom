@@ -101,6 +101,46 @@
       "refused": {
         "anonymous_infill": "All of it. The bar carries 9.53 ha of modelled surface above the water line — 23.5 acres, and every gate this project had would have let a house stand on it."
       }
+    },
+    {
+      "id": "fort_cemetery",
+      "name": "The Fort Cemetery",
+      "aka": [
+        "the fort's burying ground",
+        "the burial ground south of Fort Dearborn"
+      ],
+      "kind": "burial_ground",
+      "confidence": "documented",
+      "sources": [
+        "harrison_1830_river_mouth"
+      ],
+      "note": "THE 1830 HARRISON PLAN LETTERS THIS PARCEL 'Fort Cemetery' AND BOUNDS IT, and a named burying ground on a military reservation is the plainest refusal in this file: the ground was in use for burial, the United States held it, and no private builder could have taken it. The refusal is graded on that and nothing else. What the plate does NOT give is fabric — no fence, no gate, no wall, no marker, no path, no count of burials and no extent of them — and data/traces/harrison_1830_fort_burial_ground.json refuses to build it for exactly that reason. A region here is what that reading asked for and could not have: the parcel is refused to the infill generators without anything being invented to stand on it. It lies WHOLLY INSIDE the reservation's polygon, so it refuses no square metre the reservation does not refuse today. That is not redundancy. The reservation's boundary is a derived FLOOR its own entry records as 13.2 % short of the documented acreage, and `under_coverage` there says a terrain extension re-opens it; this boundary is a reading of a plate and does not move when that one is re-cut. The two claims are independent, and the day either is re-drawn the other still stands.",
+      "boundary": {
+        "method": "plate_read",
+        "confidence": "inferred",
+        "control": {
+          "trace": "data/traces/harrison_1830_fort_burial_ground.json",
+          "source_id": "harrison_1830_river_mouth",
+          "ring": "fort_cemetery",
+          "label": "Fort Cemetery"
+        },
+        "derived_from": "Four corners MEASURED IN PIXELS on the 1830 Harrison plan and resolved to local ground by that reading's own anchor, scale and orientation. No vertex is authored here and none is copied here: tools/measure_no_build_ground.py re-derives the metres from the pixels every time it runs and fails if they and the metres the trace stores disagree by more than the rounding the trace prints to. That is what T-0891 existed to build — the trace's own closing note says this ring 'comes off a plate instead' and that teaching the tool to resolve a plate-read ring 'is its own ticket'.",
+        "how_the_corners_were_got": "Three lines fitted independently on the plate, and the parcel closing on them: the north-east and south-west boundaries over 33 and 53 sample columns (0.72 px and 0.46 px of scatter) and the road's south-east edge over its own (0.17 px). Corners one and four are where the two boundaries meet the road edge, computed from the fits. Corners two and three are where each boundary's ink runs out at the drawn shore, which is a hatched band rather than a line — the trace calls those two the softest numbers on the record and gives them +/-5 px (1.7 m) of their own.",
+        "uncertainty": "The plate carries NO SCALE BAR and its source record says it is used for arrangement and proportion rather than absolute size, so this ring carries the +/-20 percent on size and +/-25 m on position every plate-derived record in this dataset carries. The boundary is `inferred` while the refusal is `documented`, which is the distinction `the_refusal_is_not_the_boundary` draws at the head of this file.",
+        "measured": {
+          "plate_area_m2": 5886,
+          "plate_area_acres": 1.45,
+          "note": "The trace's own figure, and this command re-derives 5885.9 m2 from the pixels. It is the area the plate DRAWS, and the +/-20 percent on size is on it."
+        },
+        "nested_in": "fort_dearborn_reservation"
+      },
+      "what_may_stand_here": {
+        "rule": "Nothing. No committed footprint stands inside this parcel and no anonymous roof may be dealt one. A record may stand here on its own evidence — a burying ground has a fence or a gate the day a source gives it one — and it would be permitted here by name with that source in its `why`, the way the pier is on the bar.",
+        "permitted": []
+      },
+      "refused": {
+        "anonymous_infill": "All of it: 1.45 acres as the plate draws it, 0.59 ha of it modelled land. The parcel already stood inside the reservation's refusal, so it adds no ground to the union — what it adds is a reason that outlives the reservation's boundary being re-cut, and a name for the ground in the table."
+      }
     }
   ]
 }
