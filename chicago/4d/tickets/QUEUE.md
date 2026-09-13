@@ -167,7 +167,6 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-T-0332 — The sheet's one brick is called chimney_brick, and a wall now reads it
 T-0279 — 2,526 of 18,911 drawn flower heads stand over open ground with no plant under their own stalk, on an unmodified dev
 T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
 T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
