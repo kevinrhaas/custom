@@ -55,3 +55,10 @@ for, or the gate's worst-cell floor is re-derived from what the aid can actually
 do at 390x780 and the reasoning is written down. Whichever it is, `origin/dev`
 comes back green at mobile part 8, and the nine moved road bands are explained or
 re-banked.
+
+STILL REPRODUCES, 2026-09-13, measured by T-1081's mobile stage-8 leg against the
+published mirror on a green `check.sh`: `set to 1, reads back 1: cell delta mean 0.24,
+worst 3 (need worst>=4, mean>=0.15)` — byte-identical to the reading dev's standing record
+has carried since 2026-09-13T01:14. The mean clears its threshold and only the worst cell
+falls short, by one. With T-1081 landed this is the LAST standing red on dev's smoke, and
+mobile part 8 is the only part it holds.
