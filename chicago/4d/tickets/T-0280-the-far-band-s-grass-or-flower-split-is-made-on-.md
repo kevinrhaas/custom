@@ -1,7 +1,7 @@
 ---
 id: T-0280
 title: The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1245
+claimed_by: run 9/13/2026, 4:47:39 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-13T10:55:26.878Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34750045325
 ---
 
 The far band's grass-or-flower split is made on the forb lattice's CLAMPED share.

@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/12/2026, 11:13:13 PM CT
+claimed_by: run 9/13/2026, 4:11:56 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34737247546
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34748985075
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -1401,6 +1401,178 @@ the one real particle in 1843, and the 1 institution, 1 particle and 2 firms in 
 No successor ticket is filed: `tickets/README.md` puts the succession on the run that
 CLOSES the programme, and the pools are not empty. This ticket stays open and is its own
 cursor.
+
+## Stretch 12 — the separator Fergus 1843 sets as a point, and the second reading this repository already held (T-0987, 2026-09-13)
+
+Stretch 11 closed by naming this one: the same defect as Norris 1844's, in the Fergus
+volumes. **Its sizing does not survive measurement and this stretch says so first.** It
+counted "26 in Fergus 1843 … the separator class" and "2 more with no separator at all";
+measured on dev at 1e82d25c2, the separator class is **24**, because the 26 included
+`Eagle Tavern. 10 Dearborn`, which is a house and not a person, and `Jan. 18`, which is
+not an entry at all. 24 + 2 = **26 person entries** whose surname runs on into the
+forename. The other 37 of the 63 that carry a space inside a surname are 30 institutions
+and real particles (`St. Palais`, `Farmers' Exchange`, `Young Men's Association`), 6
+page-citation run-ons, and `Jan. 18`.
+
+### Why a run-on surname is not one refusal among many
+
+The argument is stretch 10's, one volume along. `crosswalk_fergus_1843.py` reaches an 1835
+person through the surname and nothing else, and `split_entry` takes the surname to be
+everything before the first comma — which is the format Fergus sets. Where the compositor
+set a POINT the head runs on, the surname is `Cook. George`, and the entry makes **no match
+and no refusal**. It is in no pool this ticket's table counts. The write-up quoting "323
+initial-absent refusals in 1843" was quoting a denominator 26 entries short, and nothing
+downstream could tell a name the volume does not print from a name it prints that this
+reading could not read.
+
+### The second hand, and it was already committed here
+
+The committed text of this domain is K. Torp's 2007 transcription on Genealogy Trails.
+This repository ALSO holds `data/research/books/text/fergus_26_29.txt` — the Internet
+Archive's own OCR of the PRINTED volume, item `fergushistorical2629unse`, the Allen County
+copy, of which **No. 28 is this directory** (source record `fergus_historical_series_26_29`,
+deposited on T-0499/T-0500 for the civic pages). Two independent extractions of one
+printing, neither made from the other, sitting in the same repository for ten days without
+being set against each other. No fetch was needed for this stretch and none was made.
+
+Every row in `read_fergus_1843.py` § `SURNAME_SEPARATOR_REPAIRS` carries what that second
+hand prints, verbatim with its own OCR damage, so the comparison re-runs.
+
+### What the two hands said, and the confidence follows it
+
+| | n | reading | confidence |
+|---|---|---|---|
+| the printed volume sets a COMMA where this transcription sets a point | **5** | Boyington, Goodwin, Graff, Houfe, Tarbox | `documented` |
+| the printed volume sets a COMMA where this transcription sets NOTHING | **2** | Harding, Seger — the whole no-separator class | `documented` |
+| BOTH hands read the point | **18** | Calighan, Carr, Case, Constantine, Cook ×2, Cooley, Corbidge, Fish, Gauch, Heald ×2, Herrick, Howe, Lyman, Mann, Munson, O'Neil | `inferred` |
+| left alone | **1** | Glansman | — |
+
+The eighteen are `inferred` and the reason is stated rather than assumed: the letters are
+documented — two readings agree on them — but that the point stands where the format sets
+a comma is the inference, and it rests on stretch 10's argument that a surname is never
+abbreviated, so a stop immediately after one cannot be an abbreviation point. **The five
+rows above them are the corroboration that argument had lacked.** In five places out of
+twenty-three the second hand reads the comma outright, which makes the point a defect
+class in this printing rather than a punctuation Fergus chose.
+
+**Glansman is left alone, and the reason is the second hand's.** `Glansman. John, butcher,
+Western Market, cor N. Water and Clark` carries the same point as the eighteen. But the
+printed volume's OCR dropped the head of that line: between `Gilson` and `Gleason` it runs
+`…AVater and Clark | Trleason, Alichaol, cooper…` and prints no name. The one argument the
+eighteen rest on — two hands agreeing on the letters — is unavailable, and repairing him
+would be assuming the class rather than reading it. The entry is not spurious: its own tail
+is in the second hand, in the right place in the alphabet.
+
+**The repair moves the READING only.** `quote` and `as_printed` keep the damage — a tidied
+quote cannot be found again — and every repaired claim states both readings, the verdict
+and the second hand's own line in `normalized.surname_repair`. Nothing was fetched, no
+confidence was raised to make a count look better, and `docs/LIBERTIES.md` gains no entry
+because nothing was invented.
+
+### What landed on the ground
+
+**Three people of 1835 gain their 1843 entry**, and one of the three is a knock-on rather
+than a new reading:
+
+* `herrick_ira` → `f1843_e1256`, *Herrick, Ira N., contractor*
+* `cook_josiah_p` → `f1843_e0696`, *Cook, Josiah P., baker, res Michigan ave*
+* `cook_john` → `f1843_e0695`, *Cook, John* — **not a repaired entry.** It had been
+  CONTESTED: with Josiah's own line invisible, two residents stood against one entry and
+  the crosswalk refused both. Josiah taking his own line released the contest, and John
+  Cook's match is what the pool had been hiding.
+
+**Seventeen identities enter `identity_master.json`, every one at `not_1835_resident`
+(rule G0).** That is the honest half of the repair and it is the direction a closed hole
+in a denominator moves: the book got bigger, the town did not.
+
+**No grade was raised.** One `resident_subtype` moved: `herrick_ira` loses
+`projected_resident` under G2e, by the committed rule and on an exact forename agreement —
+`projected_resident` means *documented once and corroborated by nothing else*, and he is
+now printed in a second source class. The grade stayed `inferred`. `--regrade` reports
+`direction: subtype_only` and the synthesis records it: projected residents 733 → 732,
+letter-list people carrying a ladder rung 65 → 66.
+
+### The pools after this stretch
+
+```
+                        1839        1843        1844      1844 ad     total
+  ties               37 -> 37    41 -> 40    24 -> 24    11 -> 11   113 -> 112
+  initial-absent    260 -> 260  323 -> 323  315 -> 315  124 -> 124  1022 -> 1022
+  forename-disagr.   68 -> 68    80 -> 81    47 -> 47     0 ->  0    195 -> 196
+  matches           146 -> 146  115 -> 118  103 -> 103   18 ->  18   382 -> 385
+```
+
+The 1843 ties fall by one because a contest was released, not because a tie was decided.
+The forename-disagreement pool GAINS one, which is the right direction too: an entry that
+used to be invisible is now visible enough to be refused for a reason.
+
+Clause 3, the write ceiling: `measure_research_spend.py` reads directories **895 reached,
+895 judgeable, 895 on a card, 0 unwritten**, and the town total 0. The three matches were
+spent in the same run — `spend_directories.py` wrote the layer, the ledger and the cards,
+and `consolidate_resident_evidence.py --build`, `mint_civic_residents.py --build` and
+`--regrade`, `spend_ladder_rungs.py`, `qualify_later_trades.py` and both back-projections
+were iterated to a fixpoint behind it (two passes; the second changed nothing), then
+`synthesize_resident_research.py`, `export_resident_audit.py --build` and
+`compile_scene.py --all`. `check.sh` green, **372 steps, none red**.
+
+### The gates
+
+`read_fergus_1843.py --self-test` is new and is wired into `check.sh` beside the existing
+`--check`. It is a ratchet on four ways the table rots: a row stops matching exactly one
+entry; a repaired entry stops reading a bare surname; a repair TIDIES the quote it was
+meant to leave damaged; or a new run-on surname arrives with no row. It also holds the
+counts of what stands outside the table — 6 page-citation run-ons, 30 institutions and
+particles — and asserts that the confidence of every row still follows its verdict, so a
+row cannot be quietly promoted from `inferred` to `documented`.
+
+### Three findings this stretch declined to take, recorded here rather than filed
+
+* **`f1843_e1434` is not an entry.** `Jan. 18, 1868, aged 77¼.` is the tail of the
+  preceding entry's obituary bracket, wrapped onto its own line by the transcription and
+  segmented as an entry of its own. It has the run-on shape and none of the defect: there
+  is no surname to repair. A segmenting fault, named in `SURNAME_SEPARATOR_LEFT_ALONE` so
+  the ratchet does not have to file it under institutions, which it is not.
+* **`f1843_e0561` carries two entries on one line.** Torp runs `Case. Elan, carpenter,
+  Scoville & Gates` straight into `Case. John Roman (Norton & C), bds City Refectory`; the
+  printed volume sets them as two, and reads the second with a comma. The surname repair
+  reaches Elan Case and leaves John Roman Case inside the occupation field. Splitting it
+  would change an entry count `coverage.json` declares, which is a different defect and a
+  different ticket's.
+* **`Cook. Isaac` and `Cook. Thomas` are in the second hand and not in the pool.** The
+  printed volume sets a point after both; Torp reads a comma. That is the same compositor
+  defect, caught by the transcription rather than propagated by it — evidence for the
+  eighteen, and nothing to repair.
+
+### Stretch 13 — the page citations, and Fergus 1839's own eleven
+
+**Stretch 12's filing said "Fergus 1839's eight" page-citation run-ons. There are none.**
+Measured on this branch: Fergus 1839 holds **0** person entries whose surname carries a
+digit or a bracket, out of 1,584. The reason is the corpus, not the printer — Fergus 1839's
+committed text is archive.org's OCR of the scan (`fetch_fergus_1839_pages.py`), while the
+bracketed page citations are an artefact of the 1843 WEB transcription, where Torp
+interpolates a cross-reference that the segmenter then takes for the head of the next line.
+So the defect is one volume's and one corpus's.
+
+What is actually left, and it is small:
+
+* **6 in Fergus 1843, the page-citation run-on** — `84-5-6] Cutmore`, `84.] Lindebner`,
+  `74.] Loomis`, `71.] Otis`, `46] Smith`, `59] Wright`. All six hide a real person with a
+  real trade, Theophilus Washington Smith and Mrs Hulda Wright among them, and the printed
+  volume can be asked about every one of them the way this stretch asked about the
+  twenty-six.
+* **7 workable in Fergus 1839**, out of the 11 that carry a space inside a surname: 3 with
+  no separator (`Densmore Eleazer W`, `Johnson John`, `Scammon J. Young`) and 4 the scanner
+  broke in two (`Gilbert on`, `Snow hook`, `Stark weather`, `Wick wire`). The other 4 are
+  `St. Palais`, `State Bank Branch`, and the two `Wheeler k` firms whose ampersand the scan
+  set as a `k` — T-1018's class, not this one. **A second hand for 1839 is an open question
+  this stretch did not settle:** its committed text is already the archive.org OCR, so the
+  second reading would have to be the genealogytrails transcription of the same volume, and
+  whether one exists has not been checked.
+
+Thirteen entries, of which six can be ruled off a source already committed. One run, and
+comfortably. No successor ticket is filed: `tickets/README.md` puts the succession on the
+run that CLOSES the programme, and the pools are not empty. This ticket stays open and is
+its own cursor.
 
 ---
 

@@ -166,7 +166,7 @@ T-0422 — The widened counterfactual deals a roof per street, and every roof a 
 # --- 5. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
 T-0266 — On a phone from across the river the stockade's picket rhythm falls under the pixel grid and beats
-T-0280 — The far band's grass-or-flower split is made on the forb lattice's CLAMPED share
+T-1106 — The far sward's flower share is a GROUND-COVER mix, and a visitor at fifty metres reads SILHOUETTES — T-0280 cost prairie_west every head past 26 m
 T-0302 — The .lib-body grid resolves toward max-content under all six other Evidence sections, and only the plants section is fixed
 T-0268 — A building held under the standing constraint says so nowhere a visitor can see
 T-0520 — The archetype builders compute their own opening rectangles beside the ones facade_openings states, and only a town-wide rebake can join them

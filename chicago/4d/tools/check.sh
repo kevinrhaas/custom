@@ -2606,6 +2606,16 @@ selftest "…and the section grid's own assertions still fire when broken" \
 step "Fergus's 1843 directory rebuilds from its committed text, at the declared counts" \
   python3 tools/read_fergus_1843.py --check
 
+# T-0987 stretch 12. The compositor set a POINT where the format sets the comma that
+# closes a surname, and the crosswalk reaches an 1835 person through the surname and
+# nothing else — so `Cook. George` made no match AND no refusal, and left no trace in
+# any pool. Twenty-five are repaired in the READING against the Internet Archive's OCR
+# of the printed volume, which this repository already held; the quote keeps the damage.
+# The table is what rots: a re-committed page, a moved segmenter, or a new run-on with
+# no row. The self-test fails on any of those, and on a repair that tidied a quote.
+selftest "…and every run-on surname in it is repaired against the printed volume, or said" \
+  python3 tools/read_fergus_1843.py --self-test
+
 step "…and its crosswalk to the 1835 residents rebuilds too" \
   python3 tools/crosswalk_fergus_1843.py --check
 

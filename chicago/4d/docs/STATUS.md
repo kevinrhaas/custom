@@ -1,5 +1,87 @@
 # STATUS
 
+## Shipped 2026-09-13 — T-0280: the far band's grass-or-flower split was reading a lattice ceiling, and now reads the ground
+
+**Eight of the ten communities were splitting on the number 1.000.**
+
+`rebuildFar` decides whether a far card stands for a grass or for a flowering plant with
+
+    split = matrixShare × (1 − forbside / (matrixShare + forbside))
+
+so the forb's share of the cards the band occupies is exactly `forbside / (matrixShare +
+forbside)`, and the whole of this ticket is about which number `forbside` is. It was
+`forbShare` — the **forb ring's** lattice occupancy, `min(1, density × cell² / perCell)` at one
+plant per 2.89 m² slot. Nine of the ten populated forb layers sit on that clamp (T-0019,
+`tools/forb_clamp_baseline.json`), so for nine communities the far band's species mix was
+decided by a ceiling and not by anything their records say. `z06_dense_forest` asks 66.381
+plants per m² and `z01_wet_prairie` asks 0.407, and the band split both as though they had
+asked for the same thing.
+
+**And it was the wrong kind of number even unclamped.** `matrixShare` is
+`cover.matrix_fraction`, a fraction of GROUND COVERED; `forbShare` is a slot-occupancy chance
+derived from stem density. Dividing one by the sum of both adds an area to a probability —
+K49(a)'s unit error, one stratum further out — so raising the clamp would have swapped a wrong
+constant for a wrong quantity. At 66.381 plants per m² the unclamped share is ~1 and every far
+card in the dense forest would have been a flower.
+
+**Both sides are now the same quantity: the ground the stratum covers.** `subsetOn().cover`
+sums `stems × π·clump²` over the subset that may stand on this side of the waterline, which for
+a cover-recorded species hands back its own `cover_fraction` intact. The matrix side stays the
+record's own `matrix_fraction` — that same quantity, already written down.
+
+**The clump is the drawn one, and it has to be (L235).** Fifty sward records state no
+`width_m`: every forb of the wet prairie, the mesic prairie and the sand prairie, and both
+marsh forbs. A sum over recorded widths alone returns **0.0000** for the sand prairie and
+**0.0000** for the marsh, and the band would deal both as pure grass on the strength of a
+missing field. `coverOf` falls back to `clumpRadiusOf` — the footprint `crowdsTheWalker` has
+given those plants all along — and `flora.communities()` exports `forbCoverFallbacks` so the
+provenance of every figure below is visible rather than assumed.
+
+**The instrument.** `tools/measure_far_split.mjs`. BEFORE and AFTER are not two runs compared
+by hand: `communities()` exports `forbShare` beside `forbCover`, so both are arithmetic on the
+same compiled communities in one pass. §2 samples the far band's annulus (16–175 m) with the
+placer's own `zoneAt` and a new `flora.isWaterAt` — `shoreDistance` cannot say which SIDE of
+the waterline a sample is on — and weights each sample by `farBand.coverAt(d)`.
+
+| community | matrix | forbShare | forbCover | before | after | w-less |
+|---|---|---|---|---|---|---|
+| `z06_dense_forest` | 0.350 | 1.000\* | 0.9045 | 74.07 % | **72.10 %** | 1 |
+| `z10_settled_town` | 0.450 | 1.000\* | 0.3950 | 68.97 % | **46.75 %** | 0 |
+| `z04_marsh` | 0.750 | 1.000\* | 0.4600 | 57.14 % | **38.02 %** | 2 |
+| `z03_sedge_meadow` | 0.850 | 1.000\* | 0.1106 | 54.05 % | **11.51 %** | 1 |
+| `z08_lakeshore` | 0.350 | 1.000\* | 0.0237 | 74.07 % | **6.33 %** | 3 |
+| `z05_riverbank_timber` | 0.450 | 1.000\* | 0.0250 | 68.97 % | **5.26 %** | 0 |
+| `z01_wet_prairie` | 1.000 | 1.000\* | 0.0304 | 50.00 % | **2.95 %** | 11 |
+| `z02_mesic_prairie` | 0.950 | 1.000\* | 0.0267 | 51.28 % | **2.74 %** | 9 |
+| `z09_sand_prairie` | 0.600 | 0.329 | 0.0009 | 35.45 % | **0.16 %** | 5 |
+| `z07_bur_oak_savanna` | 0.900 | 0.000 | 0.0000 | 0.00 % | 0.00 % | 0 |
+
+\* on the clamp. Read the `before` column down: it is 50–74 % everywhere, and it is 50–74 %
+everywhere **because it is `matrixShare` divided by `matrixShare + 1`**. The `after` column
+spans 0.16 % to 72 %, and it is ordered the way the records are: a prairie is a grass matrix
+with scattered forbs, a closed forest floor is a herb layer under a canopy. Nothing about the
+mix was a reading before; all of it is now.
+
+At the stands, the annulus weighted by the ground it lands on: `prairie_west` **51.40 % →
+4.72 %**, `prairie_south` **52.04 % → 7.33 %**, `river_bank` **42.07 % → 19.93 %**. The card
+count does not move at any of them — 226, 241 and 28 far cards before and after — because this
+decides what a card STANDS FOR, exactly as T-0209 left it.
+
+**What a visitor loses, stated plainly** (`tools/measure_far_bloom.mjs --source`, desktop). At
+`prairie_west` the drawn heads go **2,522 → 1,993** and the furthest **135.7 m → 26.4 m**; at
+`prairie_south`, 1,602 → 1,225 and 167.1 m → 78.7 m; `river_bank` is unchanged at 43 and 14.0 m
+(its band is mostly water and timber). **The distant bloom was bought by the clamp.** T-0209's
+acceptance — *bloom past twenty-four metres at `prairie_west`* — still holds on 102 heads, and
+nothing past 40 m survives. That is the honest consequence of taking a constant out of a ratio,
+not a regression to repair by putting it back: if the far sward should read as more flowered
+than its ground cover, the argument for that is a SILHOUETTE reading (a tall forb is more
+visible per square metre of ground than the grass it stands in), which is a different
+measurement and is filed as its own ticket.
+
+**Files:** `renderers/web/js/flora.js` (`clumpRadiusOf`, `coverOf`, `subsetOn().cover`,
+`rebuildFar`, `communities()`, `isWaterAt`) · `tools/measure_far_split.mjs` (new) ·
+`docs/LIBERTIES.md` L235.
+
 ## Shipped 2026-09-13 — T-0277: what a density handover would cost the sward's far edge, re-measured against the corrected ruler
 
 **The ramp stays, and this time the reason is a reading rather than an inherited one.**
