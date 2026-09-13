@@ -7024,6 +7024,59 @@ for (const [label, viewport, touch] of [
       placeholder.placeholderFlag === (placeholder.recommended === true),
       JSON.stringify(placeholder));
 
+    // --- the standing constraint, on the card ------------------------------
+    // T-0268. Nine records are held under AGENTS.md's standing constraint, and the
+    // flag used to reach a browser exactly once, as a console line about the scene.
+    //
+    // This is asserted over EVERY flagged record rather than one sampled id, because
+    // the set is the thing: `measure_review_constraint.py` decides which buildings
+    // are held and the card must not disagree with it about a single one. The two
+    // ends of that agreement are gated in different places and both are needed — the
+    // census re-derives `review_reason` against the committed sidecars, and this
+    // asks the rendered DOM whether a visitor is actually handed it.
+    //
+    // The control is the other half. A held notice on a building that is not held
+    // would be a worse fault than a missing one: it would put a consultation claim
+    // on a record nobody made it for.
+    const held = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const flag = document.querySelector('#popup .pop-flag-held');
+        return {
+          id,
+          notice: !!flag && /held pending consultation/i.test(flag.textContent),
+          why: flag?.querySelector('.pop-held-why')?.textContent?.trim() ?? '',
+          recorded: window.__chicago4d.registry.get(id)?.sidecar?.review_reason ?? '',
+          // Folded sections are not an answer to "without unfolding anything":
+          // the reason lived inside a 400-word note behind a disclosure before
+          // this, and that is the state the ticket was opened about.
+          openable: !!flag?.closest('details'),
+        };
+      };
+      const flagged = [...window.__chicago4d.registry.values()]
+        .filter((r) => r.sidecar?.review_required)
+        .map((r) => r.sidecar.id)
+        .sort();
+      const control = [...window.__chicago4d.registry.values()]
+        .find((r) => r.sidecar && !r.sidecar.review_required)?.sidecar?.id;
+      return { flagged: flagged.map(read), control: control ? read(control) : null };
+    });
+    check(`${label}: every held building says so on its card`,
+      held.flagged.length > 0 && held.flagged.every((h) => h.notice && !h.openable),
+      `${held.flagged.filter((h) => !h.notice || h.openable).map((h) => h.id).join(', ')
+       || `${held.flagged.length} flagged`}`);
+    // Verbatim, and for the same reason the account below is: this is the record's
+    // sentence, not a gloss of it, and a renderer that trimmed it to a first clause
+    // would pass any substring check written here.
+    const whyDrift = held.flagged.filter((h) => !h.recorded || h.why !== h.recorded);
+    check(`${label}: and says what it is held for, in the record's own words`,
+      held.flagged.length > 0 && whyDrift.length === 0,
+      whyDrift.map((h) => `${h.id}: shown ${JSON.stringify(h.why.slice(0, 40))}`
+        + ` vs recorded ${JSON.stringify(h.recorded.slice(0, 40))}`).join(' | '));
+    check(`${label}: and a building that is not held does not claim to be`,
+      held.control !== null && held.control.notice === false,
+      JSON.stringify(held.control));
+
     // --- the record's own account -----------------------------------------
     // `research_note` is on every record and in every compiled sidecar, and the
     // sidecar-contract gate reported it as compiled-and-never-read: an unshipped
