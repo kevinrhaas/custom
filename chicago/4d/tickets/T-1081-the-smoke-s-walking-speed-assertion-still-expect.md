@@ -47,3 +47,25 @@ And one consequence beyond the count of red parts: this assertion sits on the gr
 covers `data/streets/1835.json`, so EVERY run that touches a street line draws a red leg
 it must read, attribute and argue past before it can merge. T-1070 spent a leg doing that.
 A gate that is red for a reason unrelated to the diff in front of it stops being a gate.
+
+SHIPPED, 2026-09-13. `tools/smoke_renderer.mjs` § the navigation reading now tests
+`/^[a-z][a-z ]*[a-z] · \d+(?:\.\d)? mph$/` against `#v-speed` and still refuses `m/s`, so
+the gait word T-0823 put there is COVERED rather than contradicted: a readout that loses
+its unit fires, and so does one that loses its name. The acceptance's third clause is met
+by a second assertion taken on all three pace readouts at once — `v-speed`,
+`v-wagon-speed`, `v-horse-speed` — because `hud.js` paints them through one
+`gaitReadout`, so a fault in it reaches the wagon and the horse and only one of them was
+ever asserted on.
+
+MEASURED HERE, each leg in the foreground against the published mirror:
+
+    mobile  stage 7   PASS  24 passed, 0 failed, 3 m 23 s
+    desktop stage 7   PASS  24 passed, 0 failed, 5 m 13 s
+    mobile  stage 8   FAIL  16 passed, 1 failed, 3 m 12 s — the road-legibility aid, T-0690
+
+Part 7 is green at BOTH viewports for the first time since 2026-09-05. The dev record had
+this failure filed under mobile part 8 as well; that is where the leg that measured it was
+cut (`stage 2,7-8`), not where the assertion lives — part 8's own red is T-0690's and is
+untouched by this. All three readings filed with `dev-smoke-state.mjs record`.
+
+T-1093 asked the same question five days later and is withdrawn to this ticket.
