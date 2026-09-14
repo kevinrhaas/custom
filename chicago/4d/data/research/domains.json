@@ -15,7 +15,8 @@
     "landscape",
     "appearance",
     "household",
-    "civic"
+    "civic",
+    "turned_line"
   ],
   "readings": [
     "transcription_mediated",

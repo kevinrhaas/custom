@@ -72,8 +72,8 @@
     "split_refused_fields": 3
    },
    "norris_1844": {
-    "people": 127,
-    "single_entry": 103,
+    "people": 128,
+    "single_entry": 104,
     "ambiguous": 14,
     "contested": 10,
     "split_refused_fields": 15
@@ -3292,6 +3292,29 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Calhoun' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e0278",
+       "printed_page": 27,
+       "as_printed": "* '.ilhoun, John, printer, house State st. b Wash and Madison sts"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -3311,7 +3334,8 @@
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {

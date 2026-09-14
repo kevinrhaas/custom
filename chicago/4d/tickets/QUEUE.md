@@ -136,7 +136,6 @@
 # --- tools/read_norris_1844.py, all found by T-1018, each separately evidenced. They are adjacent
 # --- rather than folded so one run carries the context of the last.
 
-T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-1119 — Three gazetteer names parse to inert keys for a reason the rank rule does not own: a surname-first entry with no comma inversion, an [uncertain: …] wrapper read as a forename, and a rank-and-regiment line that names nobody
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 
