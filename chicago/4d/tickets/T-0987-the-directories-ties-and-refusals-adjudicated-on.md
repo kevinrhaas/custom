@@ -1900,6 +1900,28 @@ John K.), or a generational suffix this town's record does not answer. No succes
 filed: `tickets/README.md` puts the succession on the run that CLOSES the programme, and the
 pools are not empty. This ticket stays open and is its own cursor.
 
+### Stretch 14 re-measured on the merged tree (the lap of 2026-09-14)
+
+The table above is a reading of the tree the stretch was worked on. `dev` moved seventy-odd
+commits under the branch before it landed — T-1110, T-1122 and T-1123 among them — and the
+residents layer gained cards, so the crosswalks were re-derived on the merged tree and the
+pools are restated here rather than edited above:
+
+```
+                        1839        1843        1844      1844 ad     total
+  matched              165 -> 163  135 -> 136  112 -> 113   19 -> 19   431 -> 431
+  ambiguous             10 ->  11   15 ->  15    9 ->   9    3 ->  3    37 ->  38
+  contested              2 ->   4    2 ->   2    2 ->   2    6 ->  6    12 ->  14
+  ties standing         12 ->  15   17 ->  17   11 ->  11    9 ->  9    49 ->  52
+```
+
+**The total of matches does not move**: 431 before, 431 after. What moved is the distribution,
+and in the direction a new card is supposed to move it — two 1839 entries that named exactly
+one person now name two, so they go back to the tie pool, and one entry each in 1843 and 1844
+that named nobody now names somebody. Nothing was regraded to hold the number still. The
+figure the next stretch works from is **52 ties, 1,022 initial-absent refusals**; the stretch
+named for it is unchanged, the 1843 initial-absent pool.
+
 ---
 
 ## Added on the way past by T-1035 (2026-09-12): the initial rule the FIRM route now states does not reach the PERSON route, and cannot
