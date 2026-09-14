@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Seven shops filed under the name of a man who never existed', kind: 'fix', ts: '',
+  { v: 862, title: 'Seven shops filed under the name of a man who never existed', kind: 'fix', ts: '2026-09-14T04:07:10.076Z', date: 'Sep 13, 2026, 11:07 PM CT',
     items: [
       'Norris\u2019s Chicago directory of 1844 is read here entry by entry, and a directory entry is either a person or a business. The test for a business is the ampersand: \u2018Bowen & Cole, dry goods and groceries, 66 Lake street\u2019 is a partnership, and the two surnames either side of that one character are its partners.',
       'The scan this reading is taken from does not always set an ampersand. Seven times it set something else \u2014 \u2018<fc\u2019, \u20186c\u2019, and, worst of all, the ordinary English word \u2018it\u2019 \u2014 and each of those seven entries was therefore read as a MAN, whose surname was the whole firm. The directory held a Mr \u2018Gould it Dodge\u2019 who kept a ball alley on South Water Street, a Mr \u2018Bracken it Tuller\u2019 selling dry goods at 161 Lake, a Mr \u2018Ballentine <fc Sherman\u2019 at 122 Lake. Seven shops on Lake, Water and Clark streets, every one of them with a printed street number, were filed under a name no printer ever set.',
