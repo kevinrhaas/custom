@@ -2275,6 +2275,18 @@ step "the fifteenth research cohort is fixed" \
 step "all 375 reviewed residents have reproducible research outcomes" \
   python3 tools/compile_resident_research_pilot.py --gate
 
+# T-1109. Cohort 14's ledger is the one a SECOND reading had to adjudicate: T-0816 ruled
+# the 36 people the two readings disagreed on, and fourteen of those rulings go against
+# what the mechanical rule derives. Until this gate the ruled outcomes lived only as an
+# edit of the output file, so the pass could not be re-derived at all — and nothing asked
+# it to, while all thirteen crosswalks it reads were rebuilt underneath it between
+# 2026-09-05 and 2026-09-14. The tool now reads pass_14_reconciliation.json as the
+# evidence it is, which is what makes --check possible; this step is what stops the two
+# from parting again. A failure here means either a crosswalk moved and the ledger has
+# not been regenerated, or somebody edited the findings by hand.
+step "cohort 14's ruled ledger still follows from its crosswalks and T-0816's rulings" \
+  python3 tools/complete_resident_research_pass_14.py --check
+
 # T-0511. The reference README's completion rule says a cohort ticket is not complete
 # "while its XLSX/CSV/README package exists only locally", and on 2026-09-04 the folders
 # existed for T-0478..T-0486 only: the first three slices — 225 people — had findings JSON

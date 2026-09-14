@@ -5,16 +5,10 @@
   "how_to_change_it": "Gate the tool in tools/check.sh and re-run --write, or, if it cannot be gated today, write why_not_gated on its row here — --write carries that field forward — and point owner_ticket at whoever owns the answer. The gate fails on a row with no reason, and on a row the gate has since started running.",
   "counts": {
     "check_capable": 141,
-    "gated": 129,
-    "ungated": 12
+    "gated": 130,
+    "ungated": 11
   },
   "ungated": [
-    {
-      "tool": "tools/complete_resident_research_pass_14.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1109. `--check` fails: pass_14_findings.json does not match a re-derivation. Gate it in the commit that makes it green.",
-      "owner_ticket": "T-1109"
-    },
     {
       "tool": "tools/generate_inferred_households.py",
       "other_modes_in_check_sh": [],
