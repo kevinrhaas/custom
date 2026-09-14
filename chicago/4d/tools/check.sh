@@ -966,6 +966,15 @@ step "nothing unpermitted stands on reserved ground" \
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
 
+# T-0891. The gate above now resolves a third KIND of ring: one read off a plate, rebuilt
+# from the corner pixels and the transform a committed trace records rather than authored
+# as vertices. Its worth is what it refuses — a ground corner edited without its pixel, a
+# transform swapped under a reading taken before it — and not one of those is reachable
+# from the committed data, so nothing would ever run them. This does, against fabricated
+# copies of the real reading, so the refusals cannot rot into passes unnoticed.
+selftest "…and the plate-reading resolver’s refusals still fire when broken" \
+  python3 tools/measure_no_build_ground.py --self-test
+
 # T-0436. The other kind of line over the same ground: not who could build on it, but
 # whose by-laws reached it. The Trustees walked the corporate boundary on 7 November 1833
 # and printed it three weeks later (chicago_democrat_1833_11_26#c024, tier 1); the legs
