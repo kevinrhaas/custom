@@ -10516,9 +10516,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 401 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 405 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 401 people
+**Scope:** `residents.persons[civic_mint]` — 405 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10620,9 +10620,7 @@ identities whose ONLY evidence inside the scene window was such a reading: with 
 the ladder reaches nothing, and a container the ladder cannot reach is not minted. The
 refusals are not dropped — each is carried in `identity_master.json` under evidence class
 `newspaper_out_of_town`, with the printed place that decided it, so the arithmetic is on the
-record and a later page that puts one of these men at Chicago after all can overturn it. The number
-this liberty declares is the number of containers standing, and it will fall again as the
-remaining rulings are made.
+record and a later page that puts one of these men at Chicago after all can overturn it. T-1120 took it to 405 on 2026-09-14, and it is the FIRST RISE this entry records: every move above it was a card the town was holding twice, or a man who was never here. This one is a man the town was holding once and should have been holding twice. M2 — the rule that attaches an initial-only forename to the one full forename of that surname — compared the LEADING initial and nothing else, so `B. S. Sherman` of the 1840 census went onto `Sherman, Benj. F.` across a middle initial both readings print and neither shares. Forty readings folded that way; R7 refuses them now, on R4's own reasoning one position to the right, and four of the forty were the only evidence inside the scene window that reached a minted container, so four containers stand where one did. Two of the four cost a NAME to gain a man: the 1835 poll list's `King, J. D.` had been carrying John Lyle King into the town, and the newspapers' `J. F. Wight` had been carrying J. Ambrose Wight, so each of those two now stands under the initials his own source prints instead of under a fuller name a fold supplied. That is the trade this liberty is declaring, and it is the conservative direction: a name the page does not set is not an improvement on one it does. The number this liberty declares is the number of containers standing, and it will move again as the remaining rulings are made.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
