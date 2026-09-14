@@ -5,6 +5,10 @@ crosswalk every entry to the residents layer (T-0493).
     tools/read_voter_lists.py --build    write the records, the crosswalk, coverage
     tools/read_voter_lists.py --check    re-derive and refuse a stale committed file
 
+`--check` holds all THREE files this tool writes — the records, voter_crosswalk.json
+and the T-0493 rows of the domain's civic/crosswalk.json — and tools/check.sh runs it
+(T-1029). It used to hold the first two only, and the third drifted for eleven days.
+
 WHY THIS IS A TOOL AND NOT A HAND-TYPED FILE. `data/research/civic/README.md` says
 the records here are hand-authored, and for a book that is right — somebody must
 decide what a paragraph says. A POLL BOOK is not that. It is 345 printed rows in
@@ -502,7 +506,7 @@ def build(write=True):
         dump(RECORDS, records_doc)
         dump(CROSSWALK, crosswalk_doc)
         dump(IDENTITY, identity)
-    return records_doc, crosswalk_doc, refusals
+    return records_doc, crosswalk_doc, refusals, identity
 
 
 def main():
@@ -511,7 +515,7 @@ def main():
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
     if args.build:
-        recs, cross, refusals = build(write=True)
+        recs, cross, refusals, _ = build(write=True)
         print("voter lists: %d entries, %d distinct surnames; %d matched, "
               "%d candidate, %d unmatched; %d refusal(s) proposed"
               % (recs["counts"]["entries"], recs["counts"]["distinct_surnames"],
@@ -519,9 +523,17 @@ def main():
                  cross["counts"]["unmatched"], len(refusals)))
         return 0
     if args.check:
-        recs, cross, _ = build(write=False)
+        recs, cross, _, identity = build(write=False)
         bad = []
-        for path, want in ((RECORDS, recs), (CROSSWALK, cross)):
+        # T-1029. The identity file is checked ALONGSIDE the two this tool owns
+        # outright, and it is checked the same way it is written: `build(write=False)`
+        # loads the committed crosswalk.json and splices only the rows tagged with
+        # this pass, so comparing the result back against the file asks exactly one
+        # question — are T-0493's `passes` entry and refusals what the rules derive
+        # today? Another pass's rows are on both sides of the comparison and cannot
+        # fail it. Without this step the refusal count sat at 82 while the tool
+        # derived 26 for eleven days, because nothing re-derived it and nothing asked.
+        for path, want in ((RECORDS, recs), (CROSSWALK, cross), (IDENTITY, identity)):
             if not path.exists():
                 bad.append("%s is missing — run --build" % path.name)
             elif load(path) != want:
@@ -529,9 +541,12 @@ def main():
                            "tools/read_voter_lists.py --build" % path.name)
         for b in bad:
             print("  FAIL  " + b)
-        print("  voter lists: %d entries, %d matched, %d candidate, %d unmatched"
+        declared = next((p["refusals"] for p in identity.get("passes") or []
+                         if p.get("ticket") == "T-0493"), None)
+        print("  voter lists: %d entries, %d matched, %d candidate, %d unmatched; "
+              "T-0493 declares %s refusal(s) in crosswalk.json"
               % (recs["counts"]["entries"], cross["counts"]["matched"],
-                 cross["counts"]["candidate"], cross["counts"]["unmatched"]))
+                 cross["counts"]["candidate"], cross["counts"]["unmatched"], declared))
         return 1 if bad else 0
     ap.error("one of --build or --check")
 
