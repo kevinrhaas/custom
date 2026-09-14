@@ -1,7 +1,7 @@
 ---
 id: T-1005
 title: Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1289
 claimed_by: run 9/13/2026, 6:00:52 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-14T00:07:04.476Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34788257430
 ---
 
