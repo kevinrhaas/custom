@@ -1862,6 +1862,16 @@ step "new --after places directly under the named ticket and moves nothing else"
 step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
   node tools/test_ticket_claim_lock.mjs
 
+# AND THE LAP THAT CARRIES ALL OF IT MUST NEVER BE QUIETLY USELESS. On
+# 2026-09-14 `gh pr list` hit a rate limit, pr-lap.sh's `PRS=$(...)` took the
+# failure without `-e` to stop it, and the run printed
+# `PR lap: pushed=0 already-current=0 left-alone=0 red=0` — what a healthy idle
+# lap prints — and exited GREEN having lapped nothing. Every lap in that window
+# read clean while sweeping nothing, which is what a stuck PR queue looks like
+# from outside. This runs the REAL script against a faked `gh`.
+step "a lap that could not ask never reports that it found nothing" \
+  node tools/test_pr_lap_list.mjs
+
 # AND THE QUESTION THE LOCK CANNOT ANSWER: has this ticket's PR already MERGED?
 # Everything here squash-merges, so a merged branch never becomes an ancestor of
 # `dev`; `inflight` is honest about that and falls back on branch AGE, which makes a

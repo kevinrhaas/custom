@@ -131,7 +131,63 @@ PRS=$(gh pr list --repo "$REPO" --base "$BASE" --state open --limit 100 \
         --jq '.[] | select(.isDraft==false)
                   | select([.labels[].name] | index("hold") | not)
                   | "\(.number)\t\(.headRefName)"')
-[ -n "$ONLY" ] && PRS=$(echo "$PRS" | awk -v n="$ONLY" -F'\t' '$1==n')
+# THE STATUS OF THAT CALL, BECAUSE AN EMPTY ANSWER AND A FAILED ONE LOOK
+# IDENTICAL FROM HERE. `PRS=$(cmd)` carries cmd's exit status, and this script
+# runs `set -uo pipefail` WITHOUT `-e`, so a failure does not stop it: PRS is
+# simply empty, the loop below runs zero times, and the lap prints
+#
+#   PR lap: pushed=0 already-current=0 left-alone=0 red=0
+#
+# which is EXACTLY what a healthy lap with nothing to do prints. It then exits 0
+# and the workflow goes green.
+#
+# Measured 2026-09-14 on run 301, dispatched with LAP_ONLY=1257 to lap a PR that
+# was 39 commits behind dev:
+#
+#   GraphQL: API rate limit already exceeded for user ID 4193586.
+#   PR lap: pushed=0 already-current=0 left-alone=0 red=0
+#
+# The run was GREEN. Nothing was lapped, nothing said so, and the only trace was
+# one line of gh's stderr in the middle of a successful log. Every lap inside
+# that rate-limit window reported clean while sweeping nothing — which is what a
+# stuck PR queue looks like from the outside when the workflow list looks
+# healthy.
+#
+# This is the same shape as the steward janitor's `set -e` abort (polecat-platform
+# #165): a failure wearing the costume of a clean run. The janitor at least went
+# RED. This went green, which is worse.
+#
+# So the lap now refuses to be quietly useless. If it cannot ASK, it fails, loudly
+# — the lap's whole job is the list, and a lap that cannot see its PRs has not
+# done that job. (If `set -e` is ever added to this script, this capture needs a
+# `set +e` around it or it becomes unreachable — which is precisely the bug #165
+# was.)
+LIST_RC=$?
+if [ "$LIST_RC" -ne 0 ]; then
+  echo "::error::gh pr list failed (exit $LIST_RC) — the lap cannot see the pull requests it exists to lap."
+  echo "::error::A rate limit or an auth failure here is indistinguishable from an empty queue:"
+  echo "::error::both leave the list empty, and the lap would print 'pushed=0 ... red=0' and exit 0."
+  echo "::error::Failing instead, so a lap that swept nothing is never reported as a lap that found nothing."
+  exit 1
+fi
+
+if [ -n "$ONLY" ]; then
+  # A DISPATCH THAT NAMES A PR AND MATCHES NOTHING IS ALSO NOT "no work". The
+  # operator asked for something specific; silence is the wrong answer whether the
+  # number is wrong, the PR is closed, or — the case that cost an hour on
+  # 2026-09-14 — it carries `hold`, which the filter above removes BEFORE this
+  # line ever sees it.
+  MATCHED=$(echo "$PRS" | awk -v n="$ONLY" -F'\t' '$1==n')
+  if [ -z "$MATCHED" ]; then
+    echo "::error::LAP_ONLY=$ONLY matched no lappable pull request into $BASE."
+    echo "::error::The list above holds $(echo "$PRS" | grep -c . || true) PR(s). A PR is absent from it when it is"
+    echo "::error::closed, a draft, labelled 'hold', or targets another base — the 'hold' filter runs"
+    echo "::error::BEFORE this one, so a held PR can never be reached by naming it here. Remove the"
+    echo "::error::label first if that is what you meant."
+    exit 1
+  fi
+  PRS="$MATCHED"
+fi
 
 PUSHED=0; SKIPPED=0; RED=0; NOOP=0
 while IFS=$'\t' read -r N BR; do
