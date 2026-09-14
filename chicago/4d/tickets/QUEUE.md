@@ -305,4 +305,4 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
-
+T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
