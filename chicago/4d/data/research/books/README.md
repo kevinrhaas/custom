@@ -630,3 +630,27 @@ for Chicago plus a canal context would take it for 1835.
 all twenty-five people named inside the 1830–1836 window by name with the outcome of
 each, because a crosswalk that reports only its merges cannot be audited. Nothing in
 `data/residents/`, `data/structures/` or `data/assets/` was edited.
+
+## The trade-census spend rulings are guarded against a lost judgement (T-1125)
+
+`trade_census_1835_spend_rulings.json` is `hand_authored: true`, and every gate that reads
+it re-derives DOWNSTREAM of it — so a shrinking file is a legal file, and no derivation can
+say otherwise. Since T-1125 `tools/check_rulings_not_lost.py` (run by `check.sh`) holds it
+to the MERGE BASE: every judgement adjudicated there must still be adjudicated at HEAD, by
+identity and not only by count, so a swap that never moves the total is caught too.
+
+**Five stores hold a judgement** and are counted together, so moving one between them is a
+move and not a loss: `classes_ruled`, `practitioners`, `institutions`,
+`documented_absences` and `register_records_not_assigned`. A class ruled, a practitioner
+placed under it, an institution present at the scene date, an absence documented and a
+register record deliberately left unassigned are five ways of saying that somebody decided.
+
+**Two stores are deliberately left out.** `occupation_classes` maps the residents
+vocabulary onto a census word and is a transcription of that vocabulary, not a ruling on
+the town. `open_questions` is the opposite of a judgement — it is what this pass declined
+to decide — and it *should* be able to shrink, because a question leaves by being answered.
+
+**To remove a ruling**, move it into `withdrawn[]` carrying a `reason` and the `ticket`
+that decided it. It is counted with the other five, so the total never falls and the record
+of what left says why. A `withdrawn[]` entry with no reason is refused as a deletion
+wearing a label. The array does not exist in the file yet and does not need to.

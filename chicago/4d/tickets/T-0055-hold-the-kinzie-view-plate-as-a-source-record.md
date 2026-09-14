@@ -1,7 +1,7 @@
 ---
 id: T-0055
 title: Hold the Kinzie-view plate as a source record
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-18
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1252
+claimed_by: run 9/13/2026, 7:49:08 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-13T13:50:49.199Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34757978313
 ---
 
 Hold the Kinzie-view plate as a source record.

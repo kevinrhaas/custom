@@ -282,6 +282,28 @@ selftest "the QUEUE.md merge driver still does what .gitattributes promises" \
 step "the owner's queue ranking has not gone backwards" \
   node tools/check_queue_order.mjs
 
+# THE CHANGELOG-ENTRY GATE ANSWERS THE RIGHT QUESTION ABOUT THE RIGHT FILES, and
+# until 2026-09-13 nothing tested that it did. `check-changelog-entry.mjs` runs
+# only from the PR workflow (its own header says why: the nightly bake regenerates
+# data/ and a gate inside check.sh would fail every bake), so its behaviour was
+# never exercised anywhere — and it was the commonest cause of a red PR that day.
+# Not for being strict about the town: `tools/dev-smoke-state.json` is T-0216's
+# register of smoke RESULTS and sits under the watched `tools/` prefix, so a run
+# that filed its readings — which AGENTS.md REQUIRES — drew a red gate for obeying
+# the contract. #1264 and #1269 were red with that file as the only watched path
+# they touched, and the same hand-written `Changelog: none` trailer had been added
+# to #1090, #1108, #1126 and #1247 two days earlier. #1255 is NOT that shape and
+# stays red correctly — it changed smoke_renderer.mjs too — which is the case the
+# test's last two assertions pin.
+#
+# The exemption fixes it once; this keeps it fixed, and holds the gate's other
+# answers while it is there — an exemption list is exactly the kind of edit that
+# quietly widens. It asserts the gate STILL BITES on a real change with no entry,
+# that the opt-out still needs a reason, and that a moved BASELINE beside the smoke
+# register is NOT exempt, because a baseline is a claim about the town.
+step "the changelog-entry gate exempts a smoke reading and still bites on a change" \
+  node tools/test_changelog_entry_gate.mjs
+
 selftest "…and its own assertions still fire when broken" \
   node tools/check_queue_order-selftest.mjs
 
@@ -309,6 +331,20 @@ selftest "the changelog merge driver still does what .gitattributes promises" \
 # and is never invoked looks exactly like no driver at all.
 selftest "the build-product and smoke-ledger merge drivers do what .gitattributes promises" \
   node tools/merge-generated-selftest.mjs
+
+# T-0833. THE LAP THAT USES THEM. Every driver above only ever protects a LOCAL
+# merge — git keeps a driver's command out of tracked content, so GitHub loads
+# none of them and reports a conflict a clone does not have (measured on PR #940).
+# Six PRs stood open against dev on 2026-09-13, all six called conflicting by
+# `git merge-tree`, and on only four files: changelog.js (6), QUEUE.md (6),
+# dev-smoke-state.json (5) — all three driver-covered — and assets/manifest.json
+# (1), which is a real one. tools/drain.mjs is the clone that can apply the first
+# three and hand back the fourth, and what is tested hardest is the handing back:
+# a batching tool that quietly picks between two research claims looks exactly
+# like one that works. The suite asserts the refusal exits non-zero and LEAVES THE
+# MARKERS, which is the property a person actually uses.
+selftest "the drain lap still refuses every conflict its drivers do not cover" \
+  node tools/drain-selftest.mjs
 
 # ADVISORY, NEVER A FAILURE. .gitattributes can declare `merge=queue` but cannot
 # say what `queue` runs — git keeps a driver command out of tracked content on
@@ -417,6 +453,20 @@ step "the West Division's lot figures still answer for the sheet they were read 
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_west_division_lots.py --self-test
+
+# BLOCKS 14 AND 15, THE LAST TWO OF THE FIFTY-EIGHT (T-1099). They were refused for want of a
+# street, and the street was there: Market Street flanks both, and the fourth side is Carroll
+# continued east along the bearing of its own committed path. The same correction settles the
+# collision T-1098 found — block 7's box took Market's own southern endpoint for its south,
+# because block 7 is the one block in its tier with a single flank, and so reached 89 m past
+# itself and cited a crop with TWO block numerals in it. The gate re-cuts both boxes, checks
+# each read window lies inside the box it is cited under, and asserts directly that neither
+# block's numeral lies inside the other's crop.
+step "blocks 14 and 15 re-cut from Market Street and Carroll continued east" \
+  python3 tools/read_wolf_point_numerals.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_wolf_point_numerals.py --self-test
 
 # WABANSIA'S EAST-WEST STREETS, split the same way and for the same reason (T-1068).
 # The cheap half re-derives every metre of the seven corridors from the pixels committed
@@ -552,6 +602,15 @@ selftest "…and its own assertions still fire when broken" \
 # what the derivation produces.
 step "the residents manifest re-derives from the household cards" \
   python3 tools/rebuild_resident_index.py --check
+
+# T-0871. It was the only re-derivation gate in this tree whose own assertions had
+# never been shown to fire, and its argument list was read as `"--write" in argv` and
+# nothing else - so `--wrtie` typed for `--write` fell through to the compare path,
+# printed that the manifest re-derives, wrote nothing and exited 0. The parser refuses
+# an unrecognised flag now, and this proves both: every refusal above broken on
+# purpose, and the typo answered with a non-zero exit rather than a green check.
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/rebuild_resident_index.py --self-test
 
 # The kinship the corpus already states (T-0734). The audit that opened that ticket
 # found 14 of 1,404 people related to anybody at all, and the reason was never that
@@ -906,6 +965,15 @@ step "nothing unpermitted stands on reserved ground" \
 # are resolved from the traces, so a terrain extension that outruns them fails here.
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
+
+# T-0891. The gate above now resolves a third KIND of ring: one read off a plate, rebuilt
+# from the corner pixels and the transform a committed trace records rather than authored
+# as vertices. Its worth is what it refuses — a ground corner edited without its pixel, a
+# transform swapped under a reading taken before it — and not one of those is reachable
+# from the committed data, so nothing would ever run them. This does, against fabricated
+# copies of the real reading, so the refusals cannot rot into passes unnoticed.
+selftest "…and the plate-reading resolver’s refusals still fire when broken" \
+  python3 tools/measure_no_build_ground.py --self-test
 
 # T-0436. The other kind of line over the same ground: not who could build on it, but
 # whose by-laws reached it. The Trustees walked the corporate boundary on 7 November 1833
@@ -1410,6 +1478,20 @@ selftest "…and its own assertions still fire when broken" \
 # can catch is the detector moving under them, which is what its baseline is for.
 # One asks the plate about the town; the other asks the town about the plate.
 
+# FOUR CROPS, FOUR PANELS OF ONE SHEET. Three of the fort layers' plates reached
+# this repository as owner-supplied crops with a README and were cited by committed
+# path for a month; T-0055 joined the Kinzie one to kurz_allison_1893 by hand and
+# left the rest unconfirmed, and T-1107 measured them. The gate is not there to
+# re-prove the identification — that is settled and written into the source record.
+# It is there because a citation can rot silently: re-crop, re-scan or re-compress
+# either image and four source_ids quietly stop pointing at what they claim, with
+# nothing else in this repository able to notice. Six seconds to hold the join.
+step "the four crops are still the panels their citations name" \
+  python3 tools/measure_plate_join.py --gate --quiet
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/measure_plate_join.py --self-test
+
 # Fort Dearborn's gates are built SHUT on purpose — the archetype's own words: a
 # fort with its gates standing open makes a claim about the hour of the day, and
 # the garrison is attested for the scene date. Both of them stood a quarter open.
@@ -1587,6 +1669,19 @@ step "the ground mesh still meets the heightfield the walker samples" \
 # bytes rather than the arithmetic on the generator's side of the bake (T-0152).
 step "the shipped ground stands where the master does, and inside the road lift" \
   node tools/measure_terrain_horizontal.mjs --gate
+
+# T-1067. The two gates above measure the ground against the mesh drawn FROM it,
+# which cannot see the town standing where there is no ground at all. The box
+# stops at n +400 and Kinzie's Addition was committed running to n +1029.71, so
+# Wolcott Street's ribbon leaves the modelled ground and is draped on the
+# renderer's fallback constant for 629.72 m, and 79.5 % of the north wall is a
+# one-way door under the walker's 0.35 m step-up rule. None of that is asserted
+# to be SMALL — no setting of this repo makes it small today, and a gate that
+# demanded one would only ever be red. What is asserted is that the committed
+# reading still matches a re-derivation, so the number cannot drift while the
+# box or the street layer moves and nobody notices.
+step "the town off the modelled ground is still the town the reading measured" \
+  node tools/measure_north_of_box.mjs --gate
 
 # The shrub archetype's own bounds, which are the only two numbers in it the
 # RESEARCH owns: the clump keeps the half-width its record states, and a leaf
@@ -1767,6 +1862,16 @@ step "new --after places directly under the named ticket and moves nothing else"
 step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
   node tools/test_ticket_claim_lock.mjs
 
+# AND THE LAP THAT CARRIES ALL OF IT MUST NEVER BE QUIETLY USELESS. On
+# 2026-09-14 `gh pr list` hit a rate limit, pr-lap.sh's `PRS=$(...)` took the
+# failure without `-e` to stop it, and the run printed
+# `PR lap: pushed=0 already-current=0 left-alone=0 red=0` — what a healthy idle
+# lap prints — and exited GREEN having lapped nothing. Every lap in that window
+# read clean while sweeping nothing, which is what a stuck PR queue looks like
+# from outside. This runs the REAL script against a faked `gh`.
+step "a lap that could not ask never reports that it found nothing" \
+  node tools/test_pr_lap_list.mjs
+
 # AND THE QUESTION THE LOCK CANNOT ANSWER: has this ticket's PR already MERGED?
 # Everything here squash-merges, so a merged branch never becomes an ancestor of
 # `dev`; `inflight` is honest about that and falls back on branch AGE, which makes a
@@ -1787,6 +1892,27 @@ step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
 # a gate that hard-fails on a naming convention blocks a run that did nothing wrong.
 step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" \
   node tools/test_ticket_landed.mjs
+
+# AND THE OTHER HALF OF THE SAME BLIND SPOT (T-0852). `inflight` read branch AGE and
+# nothing else, so a run that claims and then READS sources for four hours dropped out
+# of the hot list at three — into a list headed "finished tickets, or branches older
+# than a run", which is false about it twice over. Cohort 14 (T-0509) was read twice on
+# 2026-09-05 by two runs that could not see each other; the ledgers disagreed on 36 of
+# the 76 people and T-0816 had to adjudicate every one.
+#
+# The reading now takes TWO witnesses, and the second is what keeps the fix honest. The
+# ticket file saying `claimed` is necessary and not sufficient — T-0987 is worked one
+# stretch per run and sits `claimed` on `dev` permanently, so the file alone reported
+# seven of its long-merged branches as in flight. The CLAIM LOCK is the other: it is
+# taken with the claim and released by `done`, so it lives exactly as long as the run.
+# Held is reported as in flight and SAID to be a long read or a dead one, because
+# T-0429's fault runs the opposite way and must stay visible.
+#
+# The gate runs it on a CONSTRUCTED branch list for the reason `landed` does: the right
+# answer against the real remote changes hourly. Both wrong readings are held — age
+# alone fails the fault, the file alone fails T-0987 and T-0429.
+step "a claim that outlived the window is work, and a merged branch is still litter" \
+  node tools/test_ticket_inflight.mjs
 
 # And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
 # every origin ref before it mints, so a duplicate id is not a missing guard but
@@ -2091,6 +2217,21 @@ step "the fourth non-overlapping 75-person research cohort is fixed" \
 
 step "the fifth non-overlapping 75-person research cohort is fixed" \
   python3 tools/select_resident_research_pass_5.py --gate
+
+# T-0870. The five gates above used to DIE when a member's `letter_list_only` flag, or
+# the presence value its stratum is named for, moved in the tree — the same event
+# T-0764 had just settled is the research landing rather than staleness, arriving
+# through a different door. The assertions are kept and their direction is scoped the
+# way pass 13 scopes its own (T-0492): minting a cohort still refuses a member the
+# stratum no longer describes, and once frozen the gate counts and names it and stays
+# green. These prove BOTH halves per selector, because a scope nobody tests is a
+# deletion nobody noticed.
+selftest "…and each selector's stratum tests still refuse a mint and report a gate" \
+  sh -c 'python3 tools/select_resident_research_pilot.py --self-test \
+      && python3 tools/select_resident_research_pass_2.py --self-test \
+      && python3 tools/select_resident_research_pass_3.py --self-test \
+      && python3 tools/select_resident_research_pass_4.py --self-test \
+      && python3 tools/select_resident_research_pass_5.py --self-test'
 
 # T-0492 fixes cohorts 13, 14 and 15 in one selector, BEFORE their three tickets run,
 # so T-0508, T-0509 and T-0510 do not edit this file and the same population frame at
@@ -2410,6 +2551,23 @@ selftest "…and every garbled forename in them is repaired, cited, and none is 
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
 
+# T-0896. The advertising directory's READING, which its crosswalk above stands on and
+# which nothing re-derived. 38 pages of display cards, sliced out of the committed page
+# text at each card's own line range, so the failure this catches is a quote that has
+# stopped coming from the page it cites — the one fault the crosswalk gate cannot see,
+# because the crosswalk re-derives from the reading and would follow it wherever it went.
+step "…and the advertising directory's cards re-derive from the committed page text" \
+  python3 tools/read_norris_1844_advertiser.py --check
+
+# T-0896. AND THE SECOND READING OF THE SAME VOLUME. T-0566 read the Internet Archive
+# scan; Kim Torp read the printed book independently onto genealogytrails.com. The
+# committed file is the MATCH between the two hands, and it is the only thing in this
+# project that says where our reading of Norris disagrees with somebody else's. It ran
+# once, in 2026-09-03, and was never asked again: a re-read entry on either side, or a
+# blocking rule changed under the matcher, moves the disagreements and nothing noticed.
+step "…and our reading of Norris still disagrees with Torp's in exactly the places recorded" \
+  python3 tools/compare_norris_1844_readings.py --check
+
 # T-0867. The ADVERTISING directory's crosswalk beside it, which was the only one of
 # the four with a committed output and no gate — so it sat at the residents layer of
 # 4 September while the layer moved under it, and a regeneration on this ticket moved
@@ -2599,6 +2757,40 @@ step "the land tract sales re-derive from their committed deposit" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
+
+# T-1124. …AND THE ONE QUESTION EVERY STEP ABOVE IS STRUCTURALLY UNABLE TO ASK: is a
+# judgement simply GONE? `--check` above asks whether each surviving ruling is WELL
+# FORMED, and on #1055 they all were — the eight that were left after a merge lap ate
+# forty re-derived perfectly into a crosswalk perfectly consistent with them, and this
+# gate was green on that commit and on every commit after it. A smaller rulings file is
+# a legal rulings file. Twelve resident cards silently got back a federal land purchase
+# each had been ruled it could not have, and the only witness was prose.
+#
+# So this compares the tree against the MERGE BASE rather than against anything the tree
+# carries, by identity and by count, with `ruled[]` and `retired[]` counted together so a
+# retirement is a move rather than a loss. A deliberate removal is still possible and
+# states itself: the entry moves into `withdrawn[]` carrying its reason and its ticket.
+step "no land-sale ruling has left the file without saying so" \
+  python3 tools/check_rulings_not_lost.py
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_rulings_not_lost.py --self-test
+
+# T-1017. A ruling about a KIND OF ARGUMENT, and the only one in this domain that rests on a
+# measurement rather than on a page. T-0990 refused RUSSELL SAMUEL and SKINNER JOSEPH while
+# recording that the rows are at the town's own school-section sale — an argument it filed
+# rather than used. T-1017 answers it by counting, and the answer is no: the sale is enriched
+# in town-side names and cannot separate two bearers of one, so it is a prior over a
+# population and not a check on a row. The figures behind that move whenever a ruling is made
+# or the residents layer grows, which is exactly why they are asserted here and not merely
+# printed. If the sale ever ceases to be non-exclusive, ceases to be minority-upheld, or
+# ceases to print a surname twice, this step goes red naming the arm that failed and the
+# question reopens — rather than the ruling standing on a measurement that moved under it.
+step "the school-section sale still reads the way T-1017 ruled it" \
+  python3 tools/school_section_sale.py --check
+
+selftest "…and all three arms of that ruling still fail when broken" \
+  python3 tools/school_section_sale.py --self-test
 
 # T-1001. The surname fold is EXACT, and the measurement that says it should stay exact
 # is the only thing standing between this domain and a fold that looks kinder and costs
@@ -3170,6 +3362,18 @@ step "the 1835 hay-stacking limit still re-derives from committed street lines" 
 
 selftest "…and its own refusals still fire when broken" \
   python3 tools/derive_hay_limits.py --self-test
+
+# The agency relation the SAME card reads (T-1041), and gated the same way for the same
+# reason. This one is a relation between two records rather than a measurement, so what
+# a hand edit could do here is worse than a wrong number: it could hand a house a trade
+# it never had, or quietly drop the standing caveat that says a holding is only a
+# holding. Both are refusals in the tool, and the re-derivation is what keeps the card
+# showing the register rather than somebody's improvement on it.
+step "the agency relation still re-derives from the committed register" \
+  python3 tools/compile_agencies.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/compile_agencies.py --self-test
 
 check_summary
 exit $CHECK_FAILED

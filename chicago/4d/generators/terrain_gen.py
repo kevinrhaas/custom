@@ -466,6 +466,22 @@ def point_in_ring(E, N, ring):
     return inside
 
 
+def carry_run_north(pts, to_n):
+    """A traced run with its northern tip carried due north to `to_n`.
+
+    The tip has to be an END of the polyline — a run whose northernmost vertex
+    is in its middle is a bend, not a truncation, and carrying THAT north would
+    put a spur through the middle of a bank. Refused rather than guessed at.
+    """
+    i = max(range(len(pts)), key=lambda k: pts[k][1])
+    if i not in (0, len(pts) - 1):
+        raise ValueError(f"northernmost vertex {i} of {len(pts)} is not an end of "
+                         f"the run, so it is a bend and not the end of a tracing "
+                         f"window; refusing to carry it north")
+    tip = (pts[i][0], to_n)
+    return ([tip] + list(pts)) if i == 0 else (list(pts) + [tip])
+
+
 def smoothstep(t):
     t = np.clip(t, 0.0, 1.0)
     return t * t * (3.0 - 2.0 * t)
@@ -545,6 +561,21 @@ def build_field(spec, feats, origin):
     # the water wash, and the waterline needs them anyway.
     shore_runs = {s["id"]: to_local(feats[s["id"]]["geometry"]["coordinates"])
                   for s in spec["shore_runs"]}
+    # A TRACED RUN THAT STOPS AT THE EDGE OF ITS WINDOW HAS NOT REACHED THE END
+    # OF WHAT IT DRAWS. `skirt_terminations` says the same thing about the box's
+    # own walls — "a place the reading stopped, not a place the land did" — and
+    # the north wall is where it started to matter: the North Branch's two banks
+    # end on the line Wright ruled across the top of his sheet, and the
+    # harbour-reach shore ends 2.7 m short of the box. Left there, the waterline
+    # north of each is measured to the run's last VERTEX rather than to a bank,
+    # which stands the ground off a cliff and silences the lake rule that reads
+    # the run per row. Each carry is declared in the spec, run by run, and
+    # carries the tip's own easting rather than the bearing of its last segment:
+    # the minimal continuation, because a bearing is a claim about where the
+    # line bends above the sheet.
+    for cy in spec.get("trace_carries", []):
+        shore_runs[cy["run"]] = carry_run_north(shore_runs[cy["run"]],
+                                                float(cy["to_n_m"]))
 
     # ---- what is water ----------------------------------------------------
     # Union of the traced water polygons, minus their islands. The sand bar is
@@ -582,17 +613,30 @@ def build_field(spec, feats, origin):
     # row's easternmost crossing of a named shore run is lake. Islands are
     # subtracted after it, exactly as they are after `open_lake`, so the bar's
     # southern hook is not touched by it.
-    south_rule = spec.get("southern_lake")
-    if south_rule:
-        n_cap = float(south_rule["south_of_n_m"])
+    # ONE RULE STATED AT BOTH ENDS. `northern_lake` is the same sentence at the
+    # other end of the same trace, and it is here for the same reason: the
+    # harbour-reach polygon's NORTH edge is the top of the tracing window, and
+    # Wright's wash frays across it — between N +1114.8 and +1118.0 it reads as
+    # two lobes with a 25 m notch between them, and the ground inside that notch
+    # is not east of the row's easternmost water. It came out as a one-cell
+    # causeway of 8.2 ft sand ridge standing in Lake Michigan at N +1117.5,
+    # which is the southern fault exactly, found at the far end of the box by
+    # T-1123's extension. The two blocks are read by one loop so neither can
+    # drift away from the other.
+    for key, sign in (("southern_lake", -1.0), ("northern_lake", +1.0)):
+        rule = spec.get(key)
+        if not rule:
+            continue
+        n_cap = float(rule["south_of_n_m" if sign < 0 else "north_of_n_m"])
         east_edge = np.full(E.shape[0], -np.inf)
-        for rid in south_rule["shore_runs"]:
+        for rid in rule["shore_runs"]:
             pts = shore_runs[rid]
             for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
                 if y1 == y2:
                     continue
                 lo, hi = (y1, y2) if y1 < y2 else (y2, y1)
-                sel = (N[:, 0] >= lo) & (N[:, 0] <= hi) & (N[:, 0] < n_cap)
+                beyond = (N[:, 0] > n_cap) if sign > 0 else (N[:, 0] < n_cap)
+                sel = (N[:, 0] >= lo) & (N[:, 0] <= hi) & beyond
                 if not sel.any():
                     continue
                 t = (N[sel, 0] - y1) / (y2 - y1)
@@ -611,13 +655,52 @@ def build_field(spec, feats, origin):
         # what the modern shore south of Twelfth Street looks like. It is
         # CONJECTURAL, it is recorded in docs/LIBERTIES.md, and T-0465 replaces
         # it with a trace.
-        if south_rule.get("beyond_the_trace"):
+        #
+        # SOUTHERN ONLY, AND THE GUARD IS NOT DECORATION. This block was written
+        # against a standalone `south_rule` before T-1123 folded the two ends
+        # into the loop above; the merge of the two branches was CLEAN and left
+        # it reading a name that no longer existed (`NameError: south_rule`).
+        # Renaming it to `rule` is most of the fix, and not all of it: the tail
+        # below is the SOUTHERNMOST vertex (`min` on northing) and `unreached`
+        # looks for rows BELOW it, so run against `northern_lake` it would hold
+        # the wrong end of the trace and flood rows the north wall never reaches.
+        # Only `southern_lake` declares `beyond_the_trace` today, so the key test
+        # alone would not fire — but a future northern one would fail silently,
+        # and this whole block exists because a silent flood of dry land is the
+        # most expensive mistake available in this quadrant.
+        if sign < 0 and rule.get("beyond_the_trace"):
             tail_n, tail_e = min((p[1], p[0])
-                                 for rid in south_rule["shore_runs"]
+                                 for rid in rule["shore_runs"]
                                  for p in shore_runs[rid])
             unreached = (N[:, 0] < min(tail_n, n_cap)) & ~np.isfinite(east_edge)
             east_edge[unreached] = tail_e
         in_water |= (E > east_edge[:, None]) & np.isfinite(east_edge)[:, None]
+
+    # THE SPLICES — where two tracing windows are declared to abut and the
+    # sampled row between them falls inside neither ring. The windows meet on a
+    # shared map row, but each closes with its own SLANTED chord across the
+    # channel and the two chords are neither parallel nor coincident: at the
+    # forks/North-Branch splice the forks polygon reaches E -160.3 at N +402.5
+    # and the branch polygon starts at -195.4, so 35 m of channel belongs to
+    # neither and stands as a 2.5 m-wide, 1.0 m-high weir across the river. The
+    # southern splice carries the identical bar at N -405 (E +5 to +32.5) and
+    # has done since T-0219 committed it; T-1123 built the northern twin and
+    # this repairs both, because it is one seam mechanism and not two.
+    #
+    # The water is spanned from the traced BANKS either side of the seam rather
+    # than from either polygon: the runs that meet at a splice are named in the
+    # spec, the vertex of each nearest the band is its tip, and the span is the
+    # hull of the west tips to the hull of the east tips. It is a union and can
+    # only ADD water, never take a traced cell away, and it reaches one sampled
+    # row per splice.
+    for sp in spec.get("splices", []):
+        lo, hi = sorted(float(x) for x in sp["n_range"])
+        mid = 0.5 * (lo + hi)
+        def tip(rid, at=mid):
+            return min(shore_runs[rid], key=lambda q: abs(q[1] - at))
+        west = min(tip(r)[0] for r in sp["west_runs"])
+        east = max(tip(r)[0] for r in sp["east_runs"])
+        in_water |= ((N >= lo) & (N <= hi) & (E >= west) & (E <= east))
 
     in_water &= ~islands
 

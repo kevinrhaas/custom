@@ -54,7 +54,401 @@ TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "
 #   `B.` of his employer and read a trade of "shoemaker, at J". 271 of the 2,073
 #   entries were cut at an initial. The abbreviation WORDS stay case-blind (`res`,
 #   `Res`); the three single letters do not.
-PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s")
+#
+#   AND `b` IS NOT ONE OF THEM. It stands for BETWEEN — Norris says so himself, in
+#   the REMARKS this pattern was built from: "b stands for between; Rand for
+#   Randolph; Mad for Madison; Wash for Washinglon". Between is a qualifier on the
+#   street already named, not a word that opens a place, and reading it as a starter
+#   cut 175 entries in the middle of their own location. See PLACE_B_AS_PLACE below.
+PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hr])\.?\s")
+
+# …AND `House` IS ALSO THE NAME OF A BUILDING, WHICH THIS RULE CANNOT SEE (T-1021,
+# found in passing and named here so the next run does not rediscover it). The word
+# is matched case-blind, so a capitalised `House` standing inside a hotel's proper
+# name opens the address at the wrong word. It is four entries, all of them printed:
+#
+#     n1844_e0402  Cook, Geo. barkeeper, at American Temperance House res same
+#     n1844_e0849  Hisiley, Geo. House of Entertainment, S. Water st.'near Lasalle st
+#     n1844_e1629  Skinner & Smith, Mansion House. 6G Lake street
+#     n1844_e1764  Thomas & Wheelock, Washington Coffee House, Tremont House
+#
+# Norris prints his abbreviation lower case — `house Adams st.` — which is the same
+# tell the single letters already use, so the repair is narrow. It is a separate
+# ruling about the PLACE rule and is not made here.
+
+# …AND THE SUPERSEDED PATTERN IS KEPT SO THE RULE CAN BE RE-MEASURED, NOT ASSERTED
+# (T-1022). The case rule above landed inside another ticket's stretch and was never
+# priced, so the count that mattered — how many entries' READING it moves — was
+# carried as a guess. `--self-test` now re-reads the whole volume through this
+# pattern and prices it against the committed one, which is the only form of the
+# claim that cannot go stale:
+#
+#   185  entries print an upper-case `H.` or `R.` token at all
+#   140  of them have that capital as the FIRST place-shaped token in the line —
+#        usually inside the NAME, which the split never cuts at, so the reading stands
+#    45  entries have their occupation or address actually MOVE, and all 45 are the
+#        defect exactly: under the case-blind pattern each one's address began at a
+#        one-letter initial. There is no other reason an entry moves, which is what
+#        makes every one of the 45 a repair rather than a trade.
+#
+# THE NUMBERS WERE 294 / 275 / 95 UNTIL T-1114, and they fell because this pattern
+# stopped carrying `b`, not because the rule changed. The old superseded pattern
+# differed from the committed one in TWO things — case, and whether `b` opens a place
+# — so it priced neither cleanly, and half its moves were capital `B.` initials that
+# the between rule now accounts for on its own. Each pattern below differs from
+# `PLACE` in exactly one thing, and prices exactly that.
+#
+# Downstream, `crosswalk_norris_1844.py` carries `could_carry_address` 82 → 81. The
+# single match that stopped carrying one is Joseph Bradley (n1844_e0186, `clerk, at
+# W. H. Adams & Co.'s`), whose case-blind "address" was `H. Adams & Co.'s` — the tail
+# of his employer's firm and never a place. The lost match is a false one; nothing a
+# resident could stand on was given up. `could_carry_occupation` holds at 59 and
+# every other crosswalk count is unchanged.
+#
+# …and since T-1114 this pattern differs from the committed one in CASE ALONE. It
+# carried `b` as well, from the reading that `b` is a place mark; it is not, and that
+# is priced separately by PLACE_B_AS_PLACE below. A superseded pattern that differs in
+# two things prices neither, so the `b` came out and the count was re-measured: 45.
+PLACE_CASE_BLIND = re.compile(r"\b(?:h|house|res|residence|r|boards|bds)\.?\s", re.I)
+CASE_RULE_MOVES = 45   # …and the price, held by --self-test against a re-read
+
+# `b` IS BETWEEN, AND BETWEEN IS NOT A PLACE (T-1114).
+#
+# The pattern above opened an address at a lowercase `b`, on the reading that Norris's
+# three abbreviations are all place marks. Two of them are: `h` is house and `r` is
+# residence. The third is not, and the book says so on the first page of the directory
+# proper, in the REMARKS this whole band was read from:
+#
+#     "Abbreviations, which occur only in a very few words, will readily be
+#      understood; b stands for BETWEEN; Rand for Randolph; Mad for Madison …
+#      The word street, in some instances, is omitted. The place of business
+#      uniformly precedes the residence."   — leaf 31, printed page 21
+#
+# Between qualifies the street ALREADY NAMED. Cutting at it therefore severs a location
+# from its own street and hands half of each to a different field:
+#
+#     Wheeler, laborer, Washington st, b Wells and Franklin sts
+#        was  occupation "laborer, Washington st"   address "b Wells and Franklin sts"
+#        now  one location, entire, and no address at all
+#
+# 494 lowercase `b` tokens stand in this volume and every one of them is followed by a
+# street name — `Clark` 61 times, `Lake` 52, `Wolcott` and `Cass` 23 each. The two lines
+# in which a `b` precedes `at` (`Horton, B. at Mrs. Boyer's`) print it CAPITALISED,
+# because it is a man's initial, and the case rule above already keeps those out.
+#
+# THE PRICE, RE-MEASURED BY `--self-test` AGAINST THE SUPERSEDED PATTERN: 175 entries
+# move, and each one moves for this defect and no other — under the old pattern every
+# one of the 175 had an address beginning at `b `, which is asserted rather than
+# described. 164 of them lose an address that was only ever the tail of a location and
+# keep it whole in the trade line; the other 11 GAIN the residence the old cut buried,
+# because Norris had set a real `res` or `house` further along the line and the `b`
+# reached it first:
+#
+#     Bristol, tailor, Clark st. b Lake and Water sts. res Illinois st. b Clark …
+#        was  address "b Lake and Water sts. res Illinois st. b Clark and Dearborn sts"
+#        now  address "res Illinois st. b Clark and Dearborn sts" — his house, alone
+#
+# Those 11 are the plainest possible demonstration of the preface's other sentence: the
+# place of business uniformly precedes the residence, and the old rule read the join.
+PLACE_B_AS_PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s")
+B_RULE_MOVES = 175              # …and 11 of them recover a residence, asserted below
+B_RULE_RECOVERS_ADDRESS = 11
+
+
+# THE STREET NORRIS PRINTS WITH NO PLACE-ABBREVIATION BEFORE IT (T-1113).
+#
+# `PLACE` cuts a trade from an address at Norris's own `h`/`res`/`b`. Where he sets
+# none there is nothing to cut at, and the whole tail stays in `occupation` — 304 of
+# the 2,073 entries name a street that way, because a shop's address IS its trade line
+# ("grocer, 175 Lake st"). That volume-scale question is not this rule and is filed
+# separately; what is repaired here is the entry where the street reached the NAME.
+#
+# The forename walk takes a capitalised token while it has fewer than three, so a
+# street set straight after the surname is read as a third forename and the trade then
+# begins at the bare word `st`:
+#
+#     Brown, S. B. Ohio st. b Cass and Rush sts   →  given "S. B. Ohio", trade "st"
+#     Intelligence Office, Clark st. opposite …   →  given "Clark",     trade "st. …"
+#
+# THE TEST IS THE WORD THAT FOLLOWS, NOT A LIST OF STREETS. A capitalised token with a
+# street designator immediately after it is the street's name — Norris has no forename
+# that a `st`, `street` or `avenue` follows. Holding a gazetteer here would fail on the
+# scanner's spellings (`Wash.`, `Frank.`, `Lasatte`) and would have to be kept in step
+# with the street layer; the designator is set by the same compositor as the street and
+# travels with it. A ONE-LETTER token is exempt: `Geo. W. Water street` sets an initial
+# before the street, and `W.` is as likely the man's as the street's West — see the
+# residual noted with n1844_e0807 below.
+#
+# It moves seven entries and all seven are the defect. `--self-test` re-reads the whole
+# volume with the rule off and prices it, the same way the case rule is priced.
+STREET_DESIGNATOR = re.compile(r"^(?:st|street|streets|sts|av|ave|avenue|alley|road"
+                               r"|lane|court)$", re.I)
+STREET_RULE = True          # …turned off by --self-test, to re-read and price it
+
+
+def street_ahead(toks, i: int) -> bool:
+    """True when toks[i] is a street's NAME — capitalised, more than one letter, and
+    the very next token is a designator Norris only ever sets after a street."""
+    if not STREET_RULE or i + 1 >= len(toks):
+        return False
+    tok = toks[i].strip(".,'\"")
+    if len(tok) < 2 or not tok[:1].isupper() or tok.lower() in TITLES:
+        return False
+    return bool(STREET_DESIGNATOR.match(toks[i + 1].strip(".,;:'\"")))
+
+
+# …AND THE SEVEN, WITH WHAT EACH READS AFTER THE RULE. The second hand — Kim Torp's
+# independent transcription, compared entry by entry in
+# data/research/directories/second_readings/norris_1844_genealogytrails.json — prints
+# the same street in every one of them, so the street is the printed page's and not
+# this scan's OCR.
+STREET_IN_FORENAME = {
+    # T-1114 added the fourth column: the street these entries were named for is now
+    # read out of the trade line into place_of_business, which is where five of the seven
+    # keep it. `Water street` is not a trade and never was.
+    # id:          (given,      occupation,  place_of_business,                  address)
+    "n1844_e0220": ("S. B", None,
+                    "Ohio st. b Cass and Rush sts", None),
+    "n1844_e0276": ("Dennis S", "Lake Street House",
+                    "135 Lake st (Sec card)", None),
+    "n1844_e0328": ("Thos", None,
+                    "Wolcott st. b Illinois and Indiana sts", None),
+    "n1844_e0567": ("George A", None,
+                    "Clark st market", "res Farmers' Exchange"),
+    "n1844_e0677": ("Mrs", None,
+                    "Wash. st. b Frank, and Market sts", None),
+    "n1844_e0807": ("Geo. W", None,
+                    "Water street", "house Wabash st"),
+    "n1844_e1993": (None, None,
+                    "Clark st. opposite Saloon, over J; B. F. Rus sell's Land Office",
+                    None),
+}
+
+# WHAT IT COSTS DOWNSTREAM, MEASURED (T-1113). `consolidate_resident_evidence.py`
+# gathers an identity on surname plus forenames, so a street inside the forename minted
+# a person: `id_brown_s_b_ohio` stood beside the Simon B. Brown whom Fergus 1843 puts
+# on Ohio between Cass and Rush — the same street the phantom was named for. Five such
+# identities fold into the person they were always part of (Brown, Cady, Chapman, Ellis,
+# Hart, and the Intelligence Office into the 1843 intelligence office at 38 Clark), and
+# `n1844_e0677` becomes an R1 refusal, because `Galvin, Mrs.` names no forename once the
+# street is off it. identities 6,817 → 6,812, appearances 10,546 → 10,545. The 1844
+# crosswalk is unmoved — none of these twelve entries reaches an 1835 resident, and
+# `could_carry_address` holds at 81.
+
+# THE RESIDUAL, STATED RATHER THAN HIDDEN (n1844_e0807). `Hart, Geo. W. Water street,
+# house Wabash st` reads a forename of "Geo. W" and a trade line beginning "Water
+# street", and the `W.` may belong to either side: George W. Hart, or the West Water
+# street this volume names a dozen times. Both hands print it the same, so no reading
+# settles it. The rule leaves the initial with the man because that is where the walk
+# already had it; what it fixes there is the street inside the name, not the initial.
+
+
+# THE STREET THAT IS THE FIRM'S AND NOT THE MAN'S — REFUSED, WITH THE REASON (T-1113).
+#
+# Five entries print a street after `of <firm>` or `at <employer>'s` and no place
+# abbreviation anywhere. Reading that street into `address` would be the easy repair
+# and a false one: `of B. & Sherman, Dearborn street` is where the PARTNERSHIP stands,
+# not where David Ballentine sleeps, and this project's `address` is a residence —
+# Norris marks one with `h`, `res` or `b` and marks none of these. A business street
+# landed on a resident's card as a home is a provenance defect that no downstream
+# reader could see, so all five stay refused and say why here and on the claim.
+#
+# THE SIXTH OF THEM IS THE PRINTED LINE RUNNING OUT. `Magie, H. H. of H. H. M. & Co.
+# house` ends AT the abbreviation with no street after it. The ticket expected that to
+# need a page-image read; it does not. The second hand typed the same line from a
+# different copy of the printed book and ends at the same word — the comparison scores
+# the pair identical, ratio 1.0 — so the shortfall is the printed page's, not this
+# scan's, and there is no street on the page to go and read.
+ADDRESS_REFUSED = {
+    "n1844_e0062": ("firm_address",
+                    "of B. & Sherman: Dearborn street bet Kinzie and Michigan is the "
+                    "partnership's address, and Norris sets no h/res/b for the man"),
+    "n1844_e0817": ("firm_address",
+                    "of H. & Shur: South Water st is the partnership's address, and "
+                    "Norris sets no h/res/b for the man"),
+    "n1844_e1206": ("printed_line_short",
+                    "the line ends at the abbreviation — 'of H. H. M. & Co. house' "
+                    "with no street after it. The second hand reads it identically "
+                    "off a different copy (ratio 1.0), so the page prints no street"),
+    "n1844_e1470": ("employer_address",
+                    "at B. W. Raymond's: 122 Lake st is the employer's shop, and "
+                    "Norris sets no h/res/b for the man"),
+    "n1844_e1858": ("employer_address",
+                    "clerk at J. B. Busch's: Clark st is the employer's premises, and "
+                    "Norris sets no h/res/b for the man"),
+}
+ADDRESS_REFUSED_NOTE = (
+    "address is a RESIDENCE in this reading, and Norris marks one with h or res. "
+    "This entry names a street with no such mark, so the street is not read into "
+    "address; where the street is the place the trade is carried on it is read into "
+    "place_of_business instead (T-1114). See tools/read_norris_1844.py, ADDRESS_REFUSED.")
+
+
+# THE PLACE OF BUSINESS IS ITS OWN FIELD, AND NORRIS SAYS WHICH PLACE IT IS (T-1114).
+#
+# THE FIELD QUESTION, DECIDED FIRST. T-1113 ruled that a street with no dwelling mark is
+# not a residence and must not land in `address`, and refused five entries on it. That
+# ruling is right and it left 468 entries naming a street with nowhere to put it — a
+# shop's address IS its trade line, and Norris prints no `h` or `res` in front of one.
+# The question this ticket had to settle is whether the reading should hold a second
+# field for that place, and the book settles it in the same sentence that settles `b`:
+#
+#     "The place of business uniformly precedes the residence."   — leaf 31
+#
+# So the unmarked street is not an unclassified location the reading has to guess at.
+# It is the PLACE OF BUSINESS, named by the compiler's own convention, and it is a
+# different kind of fact from a residence: one is where a man could be found trading,
+# the other where he slept. They are therefore two fields and not one, and `address`
+# stays what T-1113 made it. `place_of_business` is `documented` in the same sense the
+# rest of this reading is — it is what the printed line says — and nothing in it may
+# ever be promoted into `address`, because the preface distinguishes them and this
+# reading is not entitled to collapse the distinction.
+#
+# AND A FIRM'S STREET IS THE FIRM'S. The ticket asked whether it belongs on a partner's
+# card. It does not, and the new field does not change that: `n1844_e0062` reads
+# `of B. & Sherman, Dearborn street bet Kinzie and Michigan`, whose place_of_business is
+# where the PARTNERSHIP stands. ADDRESS_REFUSED already refuses it as his residence;
+# place_of_business says whose place it is without claiming it is his home. The five
+# refusals are unchanged and still carry their reason.
+#
+# THE CUT — AN OPENER, NOT A GAZETTEER. The place begins at the first token that can
+# only open one, taken at a boundary the compositor's own comma marks:
+#
+#   * a house number followed by a capitalised word  — "156 Lake st"
+#   * `corner` / `cor` / `near` / `opposite` / `opp`  — "corner of Lake and Wells sts"
+#   * a street: an optional direction (`N.`, `So.`, `North`), a capitalised name of
+#     more than one letter, and a designator — "Clark st", "N. Water street"
+#   * …or that same street with the designator ABSENT, which the preface warns of
+#     ("The word street, in some instances, is omitted") and which is only read when a
+#     direction stands in front of it and a qualifier behind: "S. Water, b Clark and
+#     Dearborn". Both fences are needed; without them "Mansion House" reads as a street.
+#
+# TWO GUARDS, EACH PUT THERE BY AN ENTRY THAT BROKE WITHOUT IT:
+#
+#   `after_street` — what follows the designator may not be a fresh capitalised word.
+#   `Lake Street House, 135 Lake st` is a HOTEL named after a street, and without this
+#   the whole line reads as a location and Dennis S. Brainard loses his trade. With it
+#   the cut falls at the house number, where it belongs: trade "Lake Street House",
+#   place "135 Lake st".
+#
+#   the walk back — the comma is where the cut is LOOKED for, not where the place must
+#   start. `physician, office Clark street, opposite City Hotel` has no comma before
+#   `Clark`, so the scan first sees `opposite` and would cut a location in half again.
+#   From an accepted opener the rule walks back to the earliest street whose own tail
+#   reaches it, and takes that instead: trade "physician, office", place the whole of
+#   "Clark street, opposite City Hotel".
+#
+# THE PRICE, RE-MEASURED BY `--self-test` WITH THE RULE OFF: 503 entries carry a
+# place_of_business, and their `occupation` is the trade alone where it was the trade and
+# the location run together. No entry gains or loses an `address`; the rule reads only
+# the trade line. 20 of the 498 have no trade at all in front of the place, which is
+# Norris printing a location and nothing else, and those read an occupation of null.
+#
+# WHAT IS STILL REFUSED, COUNTED RATHER THAN HIDDEN. About 250 further entries name
+# something place-shaped that this rule will not cut, and they stay whole in
+# `occupation` on purpose. Three kinds, all seen: the scan's own damage inside the
+# street (`Clark st_.`, `betweeri`, `c W. Water`), a line with no comma anywhere to cut
+# at (`laborer 3d ward south of Jackson st`), and a ward or a landmark standing where a
+# street would (`2d ward, North of Jackson st`). Each would need either a gazetteer —
+# refused above, and by T-1113 before it — or a page-image read, and a wrong cut here
+# writes a false trade onto a card. They are left for the reading that can see the page.
+PLACE_OF_BUSINESS_RULE = True      # …turned off by --self-test, to re-read and price it
+PLACE_OF_BUSINESS_ENTRIES = 503
+PLACE_OF_BUSINESS_NOTE = (
+    "the place the trade is carried on, read out of the trade line Norris prints it "
+    "in. His preface: 'The place of business uniformly precedes the residence.' It is "
+    "NOT a residence and may not be read into address. See tools/read_norris_1844.py, "
+    "PLACE_OF_BUSINESS_RULE.")
+
+DESIGNATOR = re.compile(r"^(?:st|street|streets|sts|av|ave|avenue|alley|road|lane|court)$",
+                        re.I)
+DIRECTION = re.compile(r"^(?:n|s|e|w|no|so|north|south|east|west)$", re.I)
+PLACE_OPENER = re.compile(r"^(?:corner|cor|near|opposite|opp)$", re.I)
+HOUSE_NUMBER = re.compile(r"^\d+$")
+# Words that may stand inside a location between its street and a later opener.
+PLACE_PARTICLE = {"b", "bet", "between", "near", "cor", "corner", "opposite", "opp",
+                  "and", "of", "the", "no", "nos"}
+# …and the narrower set the omitted designator is read behind: a qualifier that can
+# only follow a street. `and` is not one of them — it joins two streets in a corner.
+STREET_QUALIFIER = {"b", "bet", "between", "near", "cor", "corner", "opposite", "opp"}
+
+
+def _bare(tok: str) -> str:
+    return tok.strip(".,;:'\"()-").lower()
+
+
+def _bp_capitalised(tok: str) -> bool:
+    s = tok.strip(".,;:'\"()-")
+    return bool(s) and s[:1].isupper()
+
+
+def _comma_closed(tok: str) -> bool:
+    """The compositor's comma, whatever punctuation he set after it."""
+    return tok.rstrip(".;:'\"()").endswith(",")
+
+
+def after_street(toks, j: int) -> bool:
+    """What follows a street designator may not be a fresh capitalised word — that is
+    a name the street is part of ("Lake Street House"), not a location."""
+    if j >= len(toks):
+        return True
+    if toks[j].startswith("("):
+        return True     # "(See card)" — Norris's cross-reference to an advertisement
+    b = _bare(toks[j])
+    if not b or b[:1].isdigit() or DIRECTION.match(b):
+        return True
+    return not _bp_capitalised(toks[j])
+
+
+def street_at(toks, i: int) -> int:
+    """Index just past the street beginning at toks[i], or 0 if none begins there."""
+    j = i
+    if DIRECTION.match(_bare(toks[j])) and j + 1 < len(toks) and _bp_capitalised(toks[j + 1]):
+        j += 1
+    s = toks[j].strip(".,;:'\"()-")
+    if len(s) < 2 or not s[:1].isupper() or _bare(toks[j]) in TITLES:
+        return 0
+    if j + 1 < len(toks) and DESIGNATOR.match(_bare(toks[j + 1])):
+        return j + 2
+    # The designator Norris's preface says he sometimes omits — read only behind a
+    # direction and in front of a qualifier, which is what keeps a name out.
+    if j > i and j + 1 < len(toks) and _bare(toks[j + 1]) in STREET_QUALIFIER:
+        return j + 1
+    return 0
+
+
+def place_opens_at(toks, i: int) -> bool:
+    if PLACE_OPENER.match(_bare(toks[i])) and i + 1 < len(toks) and (
+            _bp_capitalised(toks[i + 1]) or _bare(toks[i + 1]) == "of"):
+        return True
+    s = toks[i].strip(".,;:'\"()")
+    if HOUSE_NUMBER.fullmatch(s) and i + 1 < len(toks) and _bp_capitalised(toks[i + 1]):
+        return True
+    end = street_at(toks, i)
+    return bool(end) and after_street(toks, end)
+
+
+def split_place_of_business(occupation):
+    """(trade, place_of_business) — the place read out of the trade line, or None."""
+    if not PLACE_OF_BUSINESS_RULE or not occupation:
+        return occupation, None
+    toks = occupation.split()
+    for i in range(len(toks)):
+        if i and not _comma_closed(toks[i - 1]):
+            continue
+        if not place_opens_at(toks, i):
+            continue
+        for k in range(i):
+            end = street_at(toks, k)
+            if end and end <= i and after_street(toks, end) and all(
+                    _bare(t) in PLACE_PARTICLE or _capitalised(t) or not _bare(t)
+                    or _bare(t)[:1].isdigit() or DESIGNATOR.match(_bare(t))
+                    or DIRECTION.match(_bare(t)) for t in toks[end:i]):
+                i = k
+                break
+        return (" ".join(toks[:i]).strip(" ,.") or None,
+                " ".join(toks[i:]).strip(" ,.") or None)
+    return occupation, None
 
 # FIRM OR PERSON IS DECIDED ON THE LEADING TOKENS, NOT ON THE FIRST COMMA (T-1013).
 #
@@ -133,6 +527,159 @@ WELDED_OF = [
 ]
 
 
+# THE SCANNER'S AMPERSAND, AND THE SEVEN FIRMS THAT READ AS MEN (T-1021).
+#
+# `FIRM` needs a real `&`. archive.org sets this volume's ampersand as `<fc`, `6c`
+# or `it` in seven entries, so the test never fires and each reads as a man whose
+# surname is the whole partnership — seven Lake, Water and Clark street TRADES,
+# with printed addresses, filed under a name no compositor set:
+#
+#     Ballentine <fc Sherman, dry goods and groceries, 122 Lake street
+#     Bowen 6c Cole, dry goods and groceries, 66 Lake street
+#     Bracken it Tuller, dry goods and groceries, 161 Lake st
+#     Crauer <fc Sanser, builders, Clark st. b Randolph and Michigan sts
+#     Gould it Dodge, ball alley and grocery, South Water st. b State and Dearborn
+#     Hamilton <fc White, dry goods and grocery store, 139 Lake st
+#     Skinner 6c .Smith, Mansion House. 6G Lake street
+#
+# T-1018 REFUSED them rather than damage them — capping the comma-derived name at
+# the prefix would have truncated `Bowen 6c Cole` to `Bowen` and minted a man who
+# is not in the book — and left the ruling to this ticket. Here it is made.
+#
+# THE RULING IS THE BOOK'S OWN, NOT THIS TOOL'S GUESS. Norris prints every one of
+# the seven partnerships a SECOND time, in a partner's own entry or a clerk's, and
+# on those lines the scanner set the ampersand correctly:
+#
+#     n1844_e0062  Ballentine, David, of B. & Sherman, Dearborn street bet Kinzie…
+#     n1844_e0167  Bowen, Erastus, of B. & Cole, house Michigan avenue
+#     n1844_e0179  Bracken, John, of Bracken & Tuller, res Wabash avenue
+#     n1844_e1555  Sanser, John W. of Cruver & S. house cor Clark and Michigan sts
+#     n1844_e0507  Dodge, Martin, of Gould & Dodge, res N. Gould's
+#     n1844_e0783  Hamilton, Robert P. of H. & White, res T. E. Hamilton's
+#     n1844_e1654  Smith, J. F. of Skinner & S., Mansion House
+#
+# So the question each row answers is not "is this a firm" — the volume says it is,
+# twice — but "which character did the compositor set", and the second hand (Kim
+# Torp's transcription, cited by file and line) answers that off the printed page.
+# Where SHE disagrees with this reading she is quoted in `second_hand_disagrees`
+# and nothing here is moved to match her: Crauer/Cruver is a SURNAME disagreement
+# this repair does not touch, and it stands unresolved.
+#
+# THE TRAP, AND WHY THIS IS A TABLE. `it` is an English word and `6c` is how this
+# scanner sets `&c.` — `Surdam. S. J. stoves, &c. 132 Lake st`. A rule loose enough
+# to read those three tokens as ampersands wherever they stand would weld `stoves
+# it` into a partnership, so this is a table of NAMED SPANS, exactly as WELDED_OF
+# above is a table and not a wider OF_STOP. It touches seven entries and can touch
+# no eighth, which `--self-test` asserts from both ends: each span matches exactly
+# one entry, and any entry the `Name <conj> Name` SHAPE still reaches with no row
+# here stays a T-1018 refusal and fails the OVERRUN_CLASSES ratchet.
+#
+# The reading moves and the quote keeps the damage, the standing convention. One
+# row lifts a second character with the ampersand and says so.
+CONJ_AMPERSAND = [
+    {"span": "Ballentine <fc Sherman", "reading": "Ballentine & Sherman",
+     "as_read": "<fc", "printed_page": 22,
+     "same_volume": ("n1844_e0062", "Ballentine, David, of B. & Sherman, Dearborn "
+                     "street bet Kinzie and Michigan"),
+     "second_reading": "Ballentine & Sherman, dry goods & groceries, 122 Lake st",
+     "file": "1844directory.txt", "line": 88, "second_hand_disagrees": None},
+    {"span": "Bowen 6c Cole", "reading": "Bowen & Cole",
+     "as_read": "6c", "printed_page": 25,
+     "same_volume": ("n1844_e0167", "Bowen, Erastus, of B. & Cole, house Michigan avenue"),
+     "second_reading": "Bowen & Cole, dry goods & groceries, 66 Lake st",
+     "file": "1844directory.txt", "line": 196, "second_hand_disagrees": None},
+    {"span": "Bracken it Tuller", "reading": "Bracken & Tuller",
+     "as_read": "it", "printed_page": 25,
+     "same_volume": ("n1844_e0179", "Bracken, John, of Bracken & Tuller, res Wabash avenue"),
+     "second_reading": "Bracken & Tuller, dry goods and groceries, 161 Lake st",
+     "file": "1844directory.txt", "line": 208, "second_hand_disagrees": None},
+    {"span": "Crauer <fc Sanser", "reading": "Crauer & Sanser",
+     "as_read": "<fc", "printed_page": 31,
+     "same_volume": ("n1844_e1555", "Sanser, John W. of Cruver & S. house cor Clark "
+                     "and Michigan sts"),
+     "second_reading": "Cruver & Sanser, builders, Clark st. b Randolph & Michigan sts",
+     "file": "1844directory.txt", "line": 474,
+     "second_hand_disagrees": "Kim Torp reads the first partner's surname CRUVER, and "
+                              "so does this volume's own second printing of the firm "
+                              "(n1844_e1555, n1844_e0993, n1844_e1778). The ampersand "
+                              "is the only character this row lifts: the u/a of the "
+                              "surname is a separate reading, it needs the page image, "
+                              "and it is left standing as the scanner set it."},
+    {"span": "Gould it Dodge", "reading": "Gould & Dodge",
+     "as_read": "it", "printed_page": 37,
+     "same_volume": ("n1844_e0507", "Dodge, Martin, of Gould & Dodge, res N. Gould's"),
+     "second_reading": "Gould & Dodge, ball alley and grocery, South Water st. b State "
+                       "& Dearborn sts",
+     "file": "1844directory.txt", "line": 759, "second_hand_disagrees": None},
+    {"span": "Hamilton <fc White", "reading": "Hamilton & White",
+     "as_read": "<fc", "printed_page": 38,
+     "same_volume": ("n1844_e0783", "Hamilton, Robert P. of H. & White, res T. E. "
+                     "Hamilton's"),
+     "second_reading": "Hamilton & White, dry goods and grocery store, 139 Lake st",
+     "file": "1844directory.txt", "line": 828, "second_hand_disagrees": None},
+    {"span": "Skinner 6c .Smith", "reading": "Skinner & Smith",
+     "as_read": "6c", "printed_page": 55,
+     "same_volume": ("n1844_e1654", "Smith, J. F. of Skinner & S., Mansion House"),
+     "second_reading": "Skinner & Smith, Mansion house, 86 Lake st",
+     "file": "1844dir2.txt", "line": 513,
+     "also_lifts": ("the stray full stop the scanner set before Smith. It is the same "
+                    "line and the same sort, both witnesses print the partner's name "
+                    "clean, and left standing it would name the firm `Skinner & "
+                    ".Smith`. The quote keeps it."),
+     "second_hand_disagrees": None},
+]
+
+# …AND EVERY OTHER ENTRY IN THE VOLUME THAT CARRIES ONE OF THESE TOKENS (T-1021).
+#
+# This is the trap, enumerated. Twenty-one entries print `<fc`, `6c`, `&c` or a bare
+# `it` outside the seven spans above, and not one of them is a partnership the firm
+# test is missing. They fall into four kinds:
+#
+#   a PERSON naming somebody else's firm      `Parker, John, of P. 6c Dpdge, ho Dearborn`
+#   `&c.` closing a stock list                `hardware, iron, nails, &c. 128 Lake st`
+#   the scanner's `at`, set as `;it`          `cabinet maker ;it J. B. Weir's`
+#   a firm already read as one, on `& Co.`    `Wheeler, Wm. & Co. hardwaid, &c. 145 Lake st`
+#
+# A rule that read those tokens as ampersands wherever they stood would take all
+# twenty-one — welding `nails &c` and `maker ;it` into partnerships. The table above
+# cannot reach them, because it matches a whole span at the head of an entry, and this
+# asserts it: by id, by the printed line, and by what each must READ as. Three of them
+# are firms and stay firms; the other eighteen are men and stay men. A re-read that
+# moves one fails here rather than silently widening what the repair touches.
+#
+# The value is (firm, as printed).
+CONJ_UNTOUCHED = {
+    "n1844_e0191": (False, "Brand, Alexander, of Murray <fc Brand, res cor Illinois aud Cass "
+                           "sts"),
+    "n1844_e0268": (False, "Buuerfield, Justin, of B. <fc Collins, res c Michigan and Rush "
+                           "sts"),
+    "n1844_e0350": (False, "Clark, F. of C. Haines, &c Co. res American Temperance House"),
+    "n1844_e0355": (False, "Clark, L. W. hardware, iron, nails, &c. 128 Lake st. cor Clark "
+                           "st. (See card)"),
+    "n1844_e0366": (False, "Cleaver, Joseph, cabinet maker ;it J. B. Weir's"),
+    "n1844_e0496": (False, "Dike, Henry, of Morey &c D. res Isaac Dike's"),
+    "n1844_e0652": (False, "Frink. John, of F. Walker <fc Co. h Rand. st. b Clark and "
+                           "Dearborn"),
+    "n1844_e0710": (False, "Goodrich, Grant, of Spr'mjr <fc G. h Illinois st. b Cass and Rush "
+                           "sts"),
+    "n1844_e0713": (False, "Goodsell, L. B. dry goods, &c. Dearborn st. b Lake & S. Water'"),
+    "n1844_e0716": (True, "Goss, S. W. & Co. dry goods, &c. !J8 Lake st"),
+    "n1844_e1024": (False, "King. Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st"),
+    "n1844_e1095": (False, "Leonard, J. W. clerk, ;it Clark, Haines & Co.'s"),
+    "n1844_e1103": (False, "Lill, V/m. of L. & Diversy, brewers, n Sand <fc Chicago Avenue"),
+    "n1844_e1334": (False, "Nauberger, Hugh, at P. Fund 6c Co.'s"),
+    "n1844_e1393": (False, "Parker, John, of P. 6c Dpdge, ho Dearborn st. b Wash & Monroe"),
+    "n1844_e1493": (False, "Roberts, D. L. Chicago Temperance House, Lasalle b Lake <fc'S. "
+                           "Water sts (bee card)"),
+    "n1844_e1693": (False, "Stearns, M. Grdry goods, &c. 136 Lake st"),
+    "n1844_e1695": (False, "Stein, Charles, of Sirausel &c S. h Lasalle st near Lake"),
+    "n1844_e1734": (False, "Surdam. S. J. stoves, &c. 132 Lake st"),
+    "n1844_e1828": (True, "Walker, C. & Co. dry goods, gro. leather, &c. S. Water st. b State "
+                          "and Dearborn sts (See card)"),
+    "n1844_e1877": (True, "Wheeler, Wm. & Co. hardwaid, &c. 145 Lake st. (See card)"),
+}
+
+
 # HEALED AT THE SOURCE (T-0987 stretch 10). Three of T-1018's sixty-nine no longer
 # read past the end of their name, because the reason they did was a destroyed
 # surname and SURNAME_IMAGE_REPAIRS lifts it before the comma is ever walked. They
@@ -141,6 +688,11 @@ WELDED_OF = [
 # so a repair that stops firing is caught here as well as in its own table.
 OVERRUN_HEALED = {
     "n1844_e0276": "empty_prefix",        # <'ady, Dennis S. — the C read as two marks
+    # T-1023 — the rest of the empty_prefix class, healed at the head of the line.
+    "n1844_e0009": "empty_prefix",        # the turned tail of Adams, R. E. W: no name
+    "n1844_e0278": "empty_prefix",        # * '.ilhoun      -> Calhoun
+    "n1844_e0771": "empty_prefix",        # llageman        -> Hageman
+    "n1844_e1637": "empty_prefix",        # v; Smith        -> Smith
     "n1844_e0700": "repaired",            # Gilmorc. Win. laborer
     "n1844_e0756": "repaired",            # JrisivoM. David D. res D. S. Griswold's
     # T-0987 stretch 11 — the whole split_surname class, read off the page image.
@@ -148,6 +700,15 @@ OVERRUN_HEALED = {
     "n1844_e1075": "split_surname",       # Lurk in         -> Larkin
     "n1844_e1872": "split_surname",       # Went worth      -> Wentworth
     "n1844_e1937": "split_surname",       # Woi thinglnm    -> Worthingham
+    # T-1021 — the whole firm_conj class, ruled firms on the volume's own second
+    # printing of each partnership and healed by CONJ_AMPERSAND lifting the character.
+    "n1844_e0063": "firm_conj",           # Ballentine <fc Sherman -> Ballentine & Sherman
+    "n1844_e0168": "firm_conj",           # Bowen 6c Cole          -> Bowen & Cole
+    "n1844_e0180": "firm_conj",           # Bracken it Tuller      -> Bracken & Tuller
+    "n1844_e0439": "firm_conj",           # Crauer <fc Sanser      -> Crauer & Sanser
+    "n1844_e0719": "firm_conj",           # Gould it Dodge         -> Gould & Dodge
+    "n1844_e0787": "firm_conj",           # Hamilton <fc White     -> Hamilton & White
+    "n1844_e1629": "firm_conj",           # Skinner 6c .Smith      -> Skinner & Smith
 }
 
 def header_like(line: str) -> bool:
@@ -203,7 +764,16 @@ def clean_head(text: str) -> str:
 #                      `Name <conj> Name`, which is what this refusal tests. Widening
 #                      FIRM to read those three tokens as ampersands is a separate
 #                      ruling about firm/person classification, and `it` is an English
-#                      word, so it is filed as its own ticket rather than smuggled in.
+#                      word, so it was filed as its own ticket rather than smuggled in.
+#                      THAT TICKET IS MADE (T-1021, CONJ_AMPERSAND above): all seven
+#                      are ruled firms on the book's own second printing of each
+#                      partnership, the character is lifted by named span, and with it
+#                      lifted there is no overrun left — the name and the prefix are
+#                      the same three tokens — so the seven move to OVERRUN_HEALED.
+#                      The refusal is kept and now stands EMPTY on this reading: it is
+#                      the net under the table, so an eighth span of this shape is
+#                      refused rather than read, and fails the ratchet below for having
+#                      no row in OVERRUN_CLASSES.
 #
 #   split_surname (4)  The comma IS Norris's name comma and the prefix stops INSIDE a
 #                      surname the scanner broke in two: `Went worth, Geo. W.`,
@@ -280,23 +850,21 @@ OVERRUN_CLASSES = {
     "n1844_e1623": "firm_branch",         # Sicar & Co. groceries
     "n1844_e1817": "firm_branch",         # WTadsworth. E. S. & J. dry goods and groceries
     "n1844_e1892": "firm_branch",         # Wicker. C. G. & Co. dry goods and groceries
-    # --- firm_conj
-    "n1844_e0063": "firm_conj",           # Ballentine <fc Sherman
-    "n1844_e0168": "firm_conj",           # Bowen 6c Cole
-    "n1844_e0180": "firm_conj",           # Bracken it Tuller
-    "n1844_e0439": "firm_conj",           # Crauer <fc Sanser
-    "n1844_e0719": "firm_conj",           # Gould it Dodge
-    "n1844_e0787": "firm_conj",           # Hamilton <fc White
-    "n1844_e1629": "firm_conj",           # Skinner 6c .Smith
+    # --- firm_conj: RULED, AND HEALED AT THE SOURCE (T-1021). The seven rows moved
+    # to OVERRUN_HEALED below. They no longer read past the end of their name at all:
+    # with the ampersand lifted, the comma-derived name and the prefix are the same
+    # three tokens, so there is no overrun left to refuse.
     # --- split_surname
     #     T-1018 named four here and refused to cap them, which was the right refusal
     #     and not a reading. T-0987 stretch 11 read all four off the page image, so
     #     they are repaired at the source now and stand in OVERRUN_HEALED below.
     # --- empty_prefix
-    "n1844_e0009": "empty_prefix",        # house Clark street (See card)
-    "n1844_e0278": "empty_prefix",        # ilhoun
-    "n1844_e0771": "empty_prefix",        # llageman
-    "n1844_e1637": "empty_prefix",        # v; Smith
+    #     T-1018 named five and refused to cap any of them, which was the right
+    #     refusal and not a reading. All five are read at the source now and stand in
+    #     OVERRUN_HEALED below — one off the page image (T-0987 stretch 10), three off
+    #     the second hand, and one ruled a turned line rather than a name at all
+    #     (T-1023). The class is EMPTY and the self-test holds it empty: a sixth entry
+    #     that reads past an empty prefix is a new fault and must be ruled, not filed.
 }
 
 
@@ -351,6 +919,7 @@ def split_entry(text: str):
     """name / occupation / address, best effort, out of one printed entry."""
     text, surname_repair = repair_surname(text)
     head, head_repair = repair_welded_of(clean_head(text))
+    head, conj_repair = repair_conj_ampersand(head)
     prefix = name_prefix(head)
     firm = bool(FIRM.search(" ".join(prefix) + ","))
     if "," in head:
@@ -388,6 +957,10 @@ def split_entry(text: str):
         toks = rest.split()
         for i, tok in enumerate(toks):
             bare = tok.strip(".,'\"").lower()
+            # T-1113. A capitalised token a street designator follows is the street's
+            # name, and the name ended before it.
+            if street_ahead(toks, i):
+                break
             if bare in TITLES or re.fullmatch(r"[A-Z]", tok.strip(".,")) or (
                     tok[:1].isupper() and len(given) < 3 and not PLACE.fullmatch(tok + " ")):
                 # AND THE COMMA THE COMPOSITOR SET WITHOUT A SPACE AFTER IT is the
@@ -432,18 +1005,26 @@ def split_entry(text: str):
         address = (tail[m.start():] if m else "").strip(" ,.")
     else:
         printed = surname + (", " + given_s if given_s else "")
+    # T-1114. The place of business stands inside the trade line, because Norris prints
+    # no mark in front of it; it is read out into its own field and never into address.
+    trade, place_of_business = split_place_of_business(occupation or None)
     out = {
         "printed_name": printed,
         "surname": None if firm else surname,
         "given": None if firm else (given_s or None),
         "firm": firm,
-        "occupation": occupation or None,
+        "occupation": trade,
         "address": address or None,
     }
+    if place_of_business:
+        out["place_of_business"] = place_of_business
+        out["place_of_business_note"] = PLACE_OF_BUSINESS_NOTE
     if head_repair:
         out["head_repair"] = head_repair
     if surname_repair:
         out["surname_repair"] = surname_repair
+    if conj_repair:
+        out["conj_repair"] = conj_repair
     if overrun:
         out["name_overrun"] = overrun
     return out
@@ -1290,6 +1871,83 @@ for _row in SURNAME_IMAGE_REPAIRS_STRETCH_11:
     _row["reread_by"] = SURNAME_REREAD_BY_11
 SURNAME_IMAGE_REPAIRS += SURNAME_IMAGE_REPAIRS_STRETCH_11
 
+# THE MARGIN'S SPECKS ARE NOT PART OF THE NAME (T-1023)
+#
+# T-1018 refused five entries as `empty_prefix`: the reading begins at the trade or
+# mid-word, so there is no name to cap the comma span to, and capping would set
+# `surname` to `''` — which `crosswalk_norris_1844.py` skips WITHOUT SAYING SO. Five
+# men would leave the town's reach in silence. One of the five, `<'ady, Dennis S.`,
+# was read off the page image by T-0987 stretch 10 and stands in OVERRUN_HEALED.
+# This is the other four, and two more of the same class the overrun test never saw.
+#
+# THE DAMAGE IS AT THE HEAD OF THE LINE, WHERE THIS SCAN'S LEFT MARGIN COLLECTS INK.
+# `clean_head()` already drops a speck that stands apart from the surname — a stray
+# quote, a bullet, a lone letter and a space. It cannot drop one the scanner WELDED
+# to the first letter (`vButterfield`, `iStrail`, `llageman`), and it cannot restore
+# a capital the speck ate (`* '.ilhoun` for Calhoun). Either way the entry is filed
+# under a name the volume does not print.
+#
+# READ AGAINST THE SECOND HAND, NOT OFF THE IMAGE, and the row says which. T-0987
+# stretch 10 cropped its 16 surnames from the page image because the second hand and
+# the OCR DISAGREED and something had to break the tie. Here they do not disagree:
+# the OCR keeps every letter of the surname but the first, the second hand prints the
+# whole word, and the volume's own alphabetical run brackets it on both sides — the
+# `Calhoun, Alvin` set one line above, the `Hageman, F.` and `Hageman, ——` set one and
+# two lines below, four spelled Butterfields around a fifth, `Stowe` above `Strang`.
+# Three witnesses that agree do not need a fourth. Where they had NOT agreed, this
+# table would not be the instrument; the image would.
+#
+# THE REPAIR MOVES THE READING ONLY. `quote` and `normalized.as_printed` keep the
+# damage, exactly as REPAIRS and SURNAME_IMAGE_REPAIRS do, and the claim states both
+# readings in `normalized.surname_repair`. `--self-test` fails if a row stops matching
+# exactly one entry, or matches one whose surname it does not change.
+MARGIN_SURNAME_REPAIRS = [
+    {"as_read": "vButterfield,", "reading": "Butterfield,", "surname": "Butterfield",
+     "why": "a speck welded to the B. clean_head drops a lone letter that stands "
+            "apart from the name; this one has no space after it, so the surname "
+            "read `vButterfield` and no Butterfield in the volume is spelled so",
+     "brackets": "Butterfit'd, Wm. one line above and Butlerworih one line below — the "
+                 "run is Butterfield, and four of them stand on this page",
+     "file": "1844directory.txt", "line": 304,
+     "second_reading": "Butterfield, Carver, printer of the Prairie Farmer, 112 Lake st"},
+    {"as_read": "* '.ilhoun,", "reading": "Calhoun,", "surname": "Calhoun",
+     "why": "the C eaten by a speck in the margin. clean_head strips `* '.` and the "
+            "surname read `ilhoun`, so the John Calhoun who printed the Chicago "
+            "Democrat was filed under a name that is not one",
+     "brackets": "Calhoun, Alvin one line above and Calighan one line below — the "
+                 "alphabetical run admits no other word here",
+     "file": "1844directory.txt", "line": 309,
+     "second_reading": "Calhoun, John, printer, house State st b Wash and Madison sts"},
+    {"as_read": "llageman,", "reading": "Hageman,", "surname": "Hageman",
+     "why": "the H set as two l's — its stems read and its crossbar lost. The "
+            "surname read `llageman`, which sorts nowhere near the H's",
+     "brackets": "Haeni one line above, and Hageman, F. and Hageman, —— one and two "
+                 "lines below, both spelled",
+     "file": "1844directory.txt", "line": 812,
+     "second_reading": "Hageman, Christopher, grocer, N. Water st. b Clark & Dearborn"},
+    {"as_read": "v; Smith,", "reading": "Smith,", "surname": "Smith",
+     "why": "a speck and a semicolon in the margin ahead of a surname that is "
+            "otherwise whole. clean_head drops a lone letter followed by a space; "
+            "`v;` is a letter followed by a point, so the surname read `v; Smith`",
+     "brackets": "Smith, Andrew one line above and Smith, Benjamin one line below — "
+                 "the Smith run, and this entry prints Smith with it",
+     "file": "1844dir2.txt", "line": 521,
+     "second_reading": "Smith, Abial, printer, Dem. Office, res lake Street House"},
+    {"as_read": "iStrail,", "reading": "Strail,", "surname": "Strail",
+     "why": "a speck welded to the S, as with Butterfield above — no space, so "
+            "clean_head cannot see it and the surname read `iStrail`",
+     "brackets": "Stowe, W. H. one line above and Strang one line below; and the "
+                 "second hand's own Casey entry names `Isaac Strail's` as an address",
+     "file": "1844dir2.txt", "line": 602,
+     "second_reading": "Strail, Isaac, dry goods & groceries, Clark st b S. Water & Lake"},
+]
+
+MARGIN_SURNAME_WHY = (
+    "The head of the printed line carries a mark from this scan's left margin — "
+    "welded to the first letter, or standing where the first letter was. The quote "
+    "keeps it and the reading does not.")
+
+
 SURNAME_IMAGE_SOURCE = IMAGE_SOURCE
 SURNAME_REREAD_BY = ("T-0987 stretch 10, read off the leaf image cropped on the word "
                      "box recorded with the row, against the second hand rather than "
@@ -1327,6 +1985,32 @@ def repair_surname(text: str):
                 },
                 "ticket": "T-0987",
             }
+    for row in MARGIN_SURNAME_REPAIRS:
+        if stripped.startswith(row["as_read"]):
+            return stripped.replace(row["as_read"], row["reading"], 1), {
+                "as_read": row["as_read"],
+                "reading": row["reading"],
+                "surname": row["surname"],
+                "why": row["why"],
+                # DOCUMENTED. Every letter of the reading is printed somewhere the
+                # row names — in the OCR itself but the first, in the second hand
+                # whole, and in the volume's own neighbours. Nothing here is supplied
+                # by the format, so there is no separator to grade (see above).
+                "confidence": "documented",
+                "evidence": {
+                    "source": REPAIR_SOURCE,
+                    "file": "data/research/genealogytrails/text/" + row["file"],
+                    "line": row["line"],
+                    "reads": row["second_reading"],
+                    "and_the_volume_itself": row["brackets"],
+                    "why_not_the_image": (
+                        "The second hand, the OCR's own surviving letters and the "
+                        "alphabetical run agree. The page image is what breaks a "
+                        "TIE between the two hands (T-0987 stretch 10); there is "
+                        "no tie here."),
+                },
+                "ticket": "T-1023",
+            }
     return text, None
 
 
@@ -1349,6 +2033,48 @@ def repair_welded_of(head):
                     "reads": row["second_reading"],
                 },
                 "ticket": "T-1013",
+            }
+    return head, None
+
+
+def repair_conj_ampersand(head):
+    """Lift an ampersand the scanner set as `<fc`, `6c` or `it`, BEFORE the prefix
+    walk and the firm test, so a partnership is read as one. Returns (head, repair
+    record or None) — the caller keeps the damaged text in `quote` and `as_printed`.
+
+    Matched on the whole printed span, never on the conjunction alone: see
+    CONJ_AMPERSAND for why the loose rule is the wrong one."""
+    for row in CONJ_AMPERSAND:
+        if head.startswith(row["span"]):
+            evidence = {
+                "and_the_same_volume_prints_the_partnership": {
+                    "claim": row["same_volume"][0],
+                    "reads": row["same_volume"][1],
+                    "note": "Norris sets the ampersand correctly on this line, so the "
+                            "firm is ruled on the book's own second printing of it.",
+                },
+                "second_hand": {
+                    "source": REPAIR_SOURCE,
+                    "file": "data/research/genealogytrails/text/" + row["file"],
+                    "line": row["line"],
+                    "reads": row["second_reading"],
+                },
+            }
+            if row.get("second_hand_disagrees"):
+                evidence["and_where_the_second_hand_disagrees"] = row["second_hand_disagrees"]
+            if row.get("also_lifts"):
+                evidence["this_row_also_lifts"] = row["also_lifts"]
+            return head.replace(row["span"], row["reading"], 1), {
+                "as_read": row["as_read"],
+                "reading": "&",
+                "span_as_read": row["span"],
+                "span_reading": row["reading"],
+                "printed_page": row["printed_page"],
+                "why": "The scanner set this firm's ampersand as %r, so the firm test "
+                       "never fired and the partnership read as a man whose surname was "
+                       "the whole firm; the quote keeps the damage." % row["as_read"],
+                "evidence": evidence,
+                "ticket": "T-1021",
             }
     return head, None
 
@@ -1404,6 +2130,58 @@ def apply_repair(norm):
     return None
 
 
+# THE TURNED LINE THE SCANNER UN-INDENTED (T-1023)
+#
+# Norris sets an entry too long for the measure by turning it and INDENTING the tail,
+# and `build_claims` reads that indent: a line beginning with two spaces belongs to
+# the entry above. One line in the volume is a turned tail with no indent, because the
+# scan's left margin dropped ink into the space the compositor left:
+#
+#     Adams, R. E. W, physician, corner of Clark and Lake streets,-
+#     . -house Clark street (See card)
+#
+# Read as its own entry it became n1844_e0009 — a man whose surname is "house Clark
+# street (See card)", which is how he reached `identity_master.json` as
+# `id_street_house_clark`. It is also why R. E. W. Adams has no address: the `house`
+# that opens his residence is on the line the reading threw away.
+#
+# ONE LINE, NAMED, NOT A RULE. The volume was swept for the class (every unindented
+# line in leaves 31-75 whose head reads lower-case after `clean_head`) and outside
+# Norris's own prose, which SKIP already drops, this is the only one; the rest are
+# margin specks welded to a capital, which MARGIN_SURNAME_REPAIRS reads. A general
+# rule — "a line that cannot begin a name is a turned line" — would have to be
+# measured against 2,073 entries before it could be trusted, and it would buy exactly
+# this one line. So the boundary rule is UNCHANGED and the exception is a row with a
+# citation, which `--self-test` holds to the text.
+#
+# THE ID IS KEPT. n1844_e0009 is cited from `identity_master.json`,
+# `grading_proposal.json` and the second-hand comparison; ids are allocated by
+# position, so folding the line away would renumber all 2,064 entries after it. The
+# tail is JOINED to the entry above — which is what makes the address land — and the
+# id stays, carrying a claim that says what it is and holds no name. The crosswalk
+# passes over it by the surname test, as before, but no longer in silence: it now
+# names every claim it sets aside and why (see crosswalk_norris_1844.py).
+TURNED_LINES = {
+    (31, 34): {
+        "joins": "n1844_e0008",
+        "why": "the turned tail of the Adams, R. E. W entry above it, un-indented "
+               "because the scanner read ink in the margin where the indent is. "
+               "The entry as printed is one line and its turn.",
+        "evidence": {
+            "source": REPAIR_SOURCE,
+            "file": "data/research/genealogytrails/text/1844directory.txt",
+            "line": 33,
+            "reads": "Adams, R.E.W. physician, corner of Clark and Lake sts, "
+                     "house Clark st",
+            "and_the_volume_itself": "the line above ends in a comma and a rule, "
+                                     "which is the compositor's turn, and the tail "
+                                     "carries no name of its own",
+        },
+        "ticket": "T-1023",
+    },
+}
+
+
 def build_claims():
     claims, warnings = [], []
     n = repaired = 0
@@ -1428,22 +2206,59 @@ def build_claims():
         for first, last in entries:
             n += 1
             raw = "\n".join(lines[first - 1:last])
+            turned = TURNED_LINES.get((leaf, first))
+            tail = TURNED_LINES.get((leaf, last + 1))
+            read_lines = lines[first - 1:last]
+            if tail is not None:
+                # The turn belongs to THIS entry: read the two together, so the
+                # address the tail opens lands. Its own claim keeps its id below.
+                # THE TAIL'S OWN MARGIN INK IS DROPPED FROM THE READING and kept in
+                # the quote, exactly as clean_head does at the head of an entry —
+                # `. -house Clark street` joined raw would put a hyphen in front of
+                # `house`, and PLACE refuses a hyphenated one (it is the guard that
+                # keeps `boarding-house` from opening an address), so the residence
+                # would not land even after the join.
+                raw = raw + "\n" + lines[last]
+                read_lines = read_lines + [clean_head(lines[last])]
             flat = re.sub(r"\s+", " ", raw.replace("-\n", "")).strip()
-            norm = split_entry(flat)
-            if apply_repair(norm):
-                repaired += 1
+            read_flat = re.sub(r"\s+", " ",
+                               "\n".join(read_lines).replace("-\n", "")).strip()
+            if turned is not None:
+                # A tail with no name of its own. It is read with the entry above and
+                # is not a person; the claim exists so the id keeps its place and says
+                # out loud what the line is.
+                norm = {"printed_name": None, "surname": None, "given": None,
+                        "firm": False, "occupation": None, "address": None,
+                        "turned_line": turned}
+            else:
+                norm = split_entry(read_flat)
+                if apply_repair(norm):
+                    repaired += 1
+                if tail is not None:
+                    norm["turned_line_joined"] = {
+                        "line": last + 1, "reads": lines[last].strip(),
+                        "why": tail["why"], "evidence": tail["evidence"],
+                        "ticket": tail["ticket"]}
             norm["as_printed"] = flat
             after = (leaf, first) >= ADDENDA_FROM
             norm["section"] = "addenda" if after else "directory"
+            cid = "n1844_e%04d" % n
+            # T-1113. The street this entry prints is refused an address, and the claim
+            # carries the reason rather than leaving a reader to guess at a null.
+            if cid in ADDRESS_REFUSED:
+                cls, why = ADDRESS_REFUSED[cid]
+                norm["address_refused"] = {"class": cls, "why": why,
+                                           "rule": ADDRESS_REFUSED_NOTE}
             claims.append({
-                "id": "n1844_e%04d" % n,
-                "kind": "business" if norm["firm"] else "person",
+                "id": cid,
+                "kind": "turned_line" if turned is not None else (
+                    "business" if norm["firm"] else "person"),
                 "reading": "transcription_mediated",
                 "quote": raw,
                 "normalized": norm,
                 "locator": {
                     "text_file": "norris_1844_leaf_%03d.txt" % leaf,
-                    "lines": [first, last],
+                    "lines": [first, last + 1 if tail is not None else last],
                     "page": "norris_1844_leaf_%03d" % leaf,
                     "printed_page": printed,
                 },
@@ -1495,7 +2310,11 @@ def payload(claims):
                         "stands.",
         "counts": {"claims": len(claims), "person": people, "business": len(claims) - people,
                    "given_repairs": sum(1 for c in claims
-                                        if "given_repair" in c["normalized"])},
+                                        if "given_repair" in c["normalized"]),
+                   "address_refusals": sum(1 for c in claims
+                                           if "address_refused" in c["normalized"]),
+                   "places_of_business": sum(1 for c in claims
+                                          if "place_of_business" in c["normalized"])},
         "claims": claims,
     }
 
@@ -1629,6 +2448,86 @@ def self_test():
         if OF_STOP.search(row["as_read"]):
             fired.append("welded-`of` repair %r repairs a token OF_STOP already sees, "
                          "so the table is doing the regex's work" % row["as_read"])
+    # T-1021. THE SCANNER'S AMPERSAND, AND THE TRAP EITHER SIDE OF IT.
+    #
+    # CONJ_AMPERSAND reads `<fc`, `6c` and `it` as `&` in seven NAMED SPANS. The whole
+    # risk is the other direction: `it` is an English word and `6c` is how this scanner
+    # sets `&c.`, so a rule that read those tokens wherever they stood would weld
+    # `stoves it` into a partnership and mint firms out of grocers' stock lists. The
+    # table cannot do that — it matches a whole span at the head of the entry — and
+    # this asserts it from both ends.
+    #
+    # FIRST, EACH ROW. Exactly one entry, ruled a firm, named as the row reads it, and
+    # the damage still standing in the quote. Each row's ruling rests on Norris's OWN
+    # second printing of the partnership, so that line is asserted present with a real
+    # ampersand in it: if a re-read moves it, the evidence for the repair is gone and
+    # this fails rather than the repair quietly carrying on without it.
+    conj_by_id = {c["id"]: c for c in claims}
+    for row in CONJ_AMPERSAND:
+        hits = [c for c in claims
+                if c["normalized"].get("conj_repair", {}).get("span_as_read") == row["span"]]
+        if len(hits) != 1:
+            fired.append("conj-ampersand repair %r fired on %d entries, not 1"
+                         % (row["span"], len(hits)))
+            continue
+        c = hits[0]
+        if row["span"] not in c["quote"]:
+            fired.append("conj-ampersand repair %r tidied the quote — the damage must "
+                         "stand there" % row["span"])
+        if not c["normalized"]["firm"]:
+            fired.append("%s carries the conj-ampersand repair %r and still reads as a "
+                         "person — the firm test did not fire on the lifted `&`"
+                         % (c["id"], row["span"]))
+        if c["normalized"]["printed_name"] != row["reading"]:
+            fired.append("%s is repaired to %r and names itself %r"
+                         % (c["id"], row["reading"], c["normalized"]["printed_name"]))
+        witness = conj_by_id.get(row["same_volume"][0])
+        if witness is None:
+            fired.append("the same-volume witness %s for %r is not in the reading"
+                         % (row["same_volume"][0], row["span"]))
+        elif " & " not in witness["normalized"]["as_printed"]:
+            fired.append("the same-volume witness %s for %r no longer prints a plain "
+                         "ampersand, so the ruling has lost its evidence"
+                         % (row["same_volume"][0], row["span"]))
+    # SECOND, THE TRAP. Every entry in the volume that carries one of these tokens
+    # ANYWHERE is enumerated here with what it must read as, and only the seven may
+    # carry the repair. Nineteen of them are the trap in person: `&c.` closing a
+    # grocer's stock list, and the conjunction standing inside a partner's or a
+    # clerk's entry — `of P. 6c Dpdge`, `at P. Fund 6c Co.'s` — where the man, not the
+    # firm, is the entry. All of them must stay people.
+    conj_seen = {c["id"] for c in claims if c["normalized"].get("conj_repair")}
+    conj_want = set()
+    for row in CONJ_AMPERSAND:
+        conj_want |= {c["id"] for c in claims
+                      if c["normalized"].get("conj_repair", {}).get("span_as_read") == row["span"]}
+    for cid in sorted(conj_seen - conj_want):
+        fired.append("%s carries a conj-ampersand repair with no row in CONJ_AMPERSAND"
+                     % cid)
+    if len(conj_seen) != len(CONJ_AMPERSAND):
+        fired.append("%d entries carry a conj-ampersand repair and the table has %d rows"
+                     % (len(conj_seen), len(CONJ_AMPERSAND)))
+    for cid, (firm, printed) in CONJ_UNTOUCHED.items():
+        c = conj_by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in CONJ_UNTOUCHED and is not in the reading" % cid)
+            continue
+        if c["normalized"]["as_printed"] != printed:
+            fired.append("%s is named in CONJ_UNTOUCHED and its printed text moved — the "
+                         "witness is stale: %r" % (cid, c["normalized"]["as_printed"][:60]))
+        if c["normalized"].get("conj_repair"):
+            fired.append("%s carries one of these tokens in a stock list, an address or "
+                         "a partner's entry and the repair reached it: %r"
+                         % (cid, printed[:60]))
+        if c["normalized"]["firm"] != firm:
+            fired.append("%s must read firm=%s and reads firm=%s — the conjunction "
+                         "rule moved a man into a firm or a firm out of one: %r"
+                         % (cid, firm, c["normalized"]["firm"], printed[:60]))
+    tokened = {c["id"] for c in claims
+               if re.search(r"<fc|6c|&c|\bit\b", c["normalized"]["as_printed"])}
+    for cid in sorted(tokened - set(CONJ_UNTOUCHED) - conj_want):
+        fired.append("%s prints a scanner conjunction and has no row in CONJ_AMPERSAND "
+                     "or CONJ_UNTOUCHED: %r"
+                     % (cid, conj_by_id[cid]["normalized"]["as_printed"][:60]))
     # The two readings of a firm cannot disagree: the name is the run the test was
     # decided on, so a business whose name carries no firm marker is a contradiction.
     for c in claims:
@@ -1661,8 +2560,9 @@ def self_test():
         if c is None:
             fired.append("%s is named in OVERRUN_HEALED and is not in the reading" % cid)
         elif c["normalized"].get("name_overrun"):
-            fired.append("%s was %s by T-1018 and healed by the surname read off the "
-                         "page image; it reads past the end of its name again"
+            fired.append("%s was %s by T-1018 and healed at the source — by the "
+                         "surname read off the page image, or by the ampersand "
+                         "CONJ_AMPERSAND lifts; it reads past the end of its name again"
                          % (cid, was))
     seen = {c["id"] for c in claims if c["normalized"].get("name_overrun")}
     for cid in sorted(seen - set(OVERRUN_CLASSES)):
@@ -1677,7 +2577,9 @@ def self_test():
     # a rule proved on one entry and broken everywhere else reads green.
     SPLIT_CASES = {
         # the printed comma closes the name
-        "n1844_e0098": ("Morris", "Illinois street"),
+        # …its trade is empty since T-1114 moved the street into place_of_business, so
+        # the street it was asserted on is asserted there instead, just below.
+        "n1844_e0098": ("Morris", None),
         "n1844_e0791": ("Abraham", "Methodist clergymen"),
         # …and the comma set with no space after it is the same comma
         "n1844_e0367": ("T. B", "soap and oil factory"),
@@ -1687,6 +2589,8 @@ def self_test():
         # the abbreviation is lower case and a man's initial is not
         "n1844_e0113": ("Adam", "shoemaker, at J. B. Mitchell's"),
         "n1844_e0135": ("A", "clerk at H. O. Stone's"),
+        # …and T-1022's own line, the one the ticket was written on
+        "n1844_e1936": ("D. L", "at H. Norton & Co.'s"),
     }
     for cid, (given, occupation) in SPLIT_CASES.items():
         c = by_id.get(cid)
@@ -1700,6 +2604,12 @@ def self_test():
         if occupation is not None and got.get("occupation") != occupation:
             fired.append("%s reads a trade of %r, not %r — the split moved"
                          % (cid, got.get("occupation"), occupation))
+    if (by_id.get("n1844_e0098", {}).get("normalized", {}).get("place_of_business")
+            != "Illinois street, b Dearborn and Wolcott sts"):
+        fired.append("n1844_e0098 reads a place of business of %r — the printed comma "
+                     "that closes the name, or the place cut, moved"
+                     % (by_id.get("n1844_e0098", {}).get("normalized", {})
+                        .get("place_of_business")))
     for c in claims:
         n = c["normalized"]
         if re.match(r"^[A-Z]\.?\s", n.get("address") or ""):
@@ -1730,6 +2640,89 @@ def self_test():
         if row["as_read"] not in hit[0]["quote"]:
             fired.append("%s no longer quotes %r — the damage the repair asserts is "
                          "not in the committed text" % (hit[0]["id"], row["as_read"]))
+    # T-1023. The margin repairs carry the same ratchet, and one more: the row must
+    # say something. A row whose `as_read` still matched but whose surname the reading
+    # already got right would be a repair that repairs nothing, and the next reader
+    # would trust it.
+    for row in MARGIN_SURNAME_REPAIRS:
+        hit = [c for c in claims
+               if (c["normalized"].get("surname_repair") or {}).get("as_read")
+               == row["as_read"]]
+        if len(hit) != 1:
+            fired.append("the margin surname repair %r fires on %d entries, not 1"
+                         % (row["as_read"], len(hit)))
+            continue
+        if hit[0]["normalized"].get("surname") != row["surname"]:
+            fired.append("%s reads a surname of %r after the margin repair, not %r"
+                         % (hit[0]["id"], hit[0]["normalized"].get("surname"),
+                            row["surname"]))
+        if row["as_read"] not in hit[0]["quote"]:
+            fired.append("%s no longer quotes %r — the damage the margin repair "
+                         "asserts is not in the committed text"
+                         % (hit[0]["id"], row["as_read"]))
+        if row["as_read"].lstrip().startswith(row["reading"]):
+            fired.append("the margin surname repair %r changes nothing — the reading "
+                         "was already right" % (row["as_read"],))
+        # AND THE SPELLING IS THE SECOND HAND'S, NOT THE ROW'S. Without this a row
+        # could carry any name at all: `surname`, `reading` and the claim would all
+        # agree with each other and with nothing on the page.
+        if row["reading"].rstrip(",") != row["surname"]:
+            fired.append("the margin surname repair %r reads %r and calls the surname "
+                         "%r" % (row["as_read"], row["reading"], row["surname"]))
+        if not row["second_reading"].startswith(row["surname"] + ","):
+            fired.append("the second hand at %s:%d does not open with %r — the margin "
+                         "repair is spelling a name its own citation does not"
+                         % (row["file"], row["line"], row["surname"]))
+        # The second hand has to be quotable where the row says it is.
+        try:
+            line = open(os.path.join(ROOT, "data/research/genealogytrails/text",
+                                     row["file"]), encoding="utf-8").read(
+                                         ).splitlines()[row["line"] - 1]
+        except (OSError, IndexError):
+            line = None
+        if line is None or line.strip() != row["second_reading"]:
+            fired.append("%s:%d does not read %r — the second hand the margin repair "
+                         "cites has moved" % (row["file"], row["line"],
+                                              row["second_reading"]))
+
+    # T-1023. The turned line is an exception to the boundary rule, held to the text
+    # on both sides: the tail must still be where the row says, the entry above must
+    # have swallowed it, and the tail's own claim must hold no name — because the one
+    # thing this ruling must never do is mint a man out of an address.
+    for (leaf, line_no), row in TURNED_LINES.items():
+        lines = leaf_lines(leaf)
+        tail = [c for c in claims
+                if (c["normalized"].get("turned_line") or {}).get("joins")]
+        tail = [c for c in tail if c["locator"]["lines"] == [line_no, line_no]
+                and c["locator"]["page"] == "norris_1844_leaf_%03d" % leaf]
+        if len(tail) != 1:
+            fired.append("leaf %d line %d is named a turned line and %d claim(s) say "
+                         "so" % (leaf, line_no, len(tail)))
+            continue
+        t = tail[0]
+        if t["kind"] != "turned_line":
+            fired.append("%s is a turned line and is filed as a %r, which is what the "
+                         "crosswalk and the identity layer read" % (t["id"], t["kind"]))
+        if t["normalized"]["surname"] or t["normalized"]["printed_name"]:
+            fired.append("%s is a turned line and carries a name — the ruling has "
+                         "minted a man out of an address" % t["id"])
+        if t["entities"]:
+            fired.append("%s is a turned line and reaches the identity layer as %r"
+                         % (t["id"], t["entities"]))
+        if t["id"] != "n1844_e%04d" % (int(row["joins"][-4:]) + 1):
+            fired.append("%s is the turned line of %s, which is not the claim above it"
+                         % (t["id"], row["joins"]))
+        above = [c for c in claims if c["id"] == row["joins"]]
+        if not above:
+            fired.append("%s is named as the entry a turned line joins and is not in "
+                         "the reading" % row["joins"])
+        elif above[0]["locator"]["lines"][1] != line_no:
+            fired.append("%s does not read through line %d — the turned line it was "
+                         "joined to is loose again" % (row["joins"], line_no))
+        elif lines[line_no - 1].strip() not in above[0]["quote"]:
+            fired.append("%s does not quote the turned line at leaf %d line %d"
+                         % (row["joins"], leaf, line_no))
+
     for row in SURNAME_UPHELD:
         hit = [c for c in claims
                if c["normalized"].get("surname") == row["surname"]
@@ -1739,6 +2732,169 @@ def self_test():
                          "committed reading it upholds has moved"
                          % (row["surname"], len(hit)))
 
+    # T-1022. THE CASE RULE IS PRICED BY RE-READING, NOT BY A REMEMBERED NUMBER.
+    # The whole volume is read a second time through the superseded case-blind
+    # pattern and the two readings are diffed. Two things are asserted, and the
+    # second is the one that makes the first mean anything: that a known number of
+    # entries move, and that EVERY entry which moves does so because its case-blind
+    # address began at a one-letter initial — the defect itself. An entry moving for
+    # any other reason would be a trade, not a repair, and fails here.
+    global PLACE
+    kept = PLACE
+    try:
+        PLACE = PLACE_CASE_BLIND
+        case_blind = {c["id"]: c["normalized"] for c in build_claims()[0]}
+    finally:
+        PLACE = kept
+    moved = [c for c in claims
+             if (c["normalized"].get("occupation"), c["normalized"].get("address"))
+             != (case_blind.get(c["id"], {}).get("occupation"),
+                 case_blind.get(c["id"], {}).get("address"))]
+    if len(moved) != CASE_RULE_MOVES:
+        fired.append("the case rule moves %d entries, not the %d it is priced at — "
+                     "re-measure it and rewrite the band above PLACE_CASE_BLIND "
+                     "rather than editing this number to pass"
+                     % (len(moved), CASE_RULE_MOVES))
+    for c in moved:
+        was = case_blind.get(c["id"], {}).get("address") or ""
+        if not re.match(r"^[A-Z]\.?\s", was):
+            fired.append("%s moves under the case rule and its case-blind address "
+                         "was %r, which does not begin at a one-letter initial — the "
+                         "rule changed a reading for some reason other than the "
+                         "defect, and that is a trade, not a repair" % (c["id"], was[:32]))
+
+    # T-1114. `b` IS BETWEEN — PRICED THE SAME WAY, by re-reading the whole volume with
+    # the superseded pattern and requiring every entry that moves to move for THIS
+    # defect: under the old rule its address began at a `b`, and under no other reading
+    # does one. The 11 that come out of it holding a residence are asserted separately,
+    # because they are the half of the repair a bare count cannot show.
+    kept = PLACE
+    try:
+        PLACE = PLACE_B_AS_PLACE
+        b_as_place = {c["id"]: c["normalized"] for c in build_claims()[0]}
+    finally:
+        PLACE = kept
+    b_moved = [c for c in claims
+               if (c["normalized"].get("occupation"), c["normalized"].get("address"))
+               != (b_as_place.get(c["id"], {}).get("occupation"),
+                   b_as_place.get(c["id"], {}).get("address"))]
+    if len(b_moved) != B_RULE_MOVES:
+        fired.append("the between rule moves %d entries, not the %d it is priced at — "
+                     "re-measure it and rewrite the band above PLACE_B_AS_PLACE rather "
+                     "than editing this number to pass" % (len(b_moved), B_RULE_MOVES))
+    for c in b_moved:
+        was = b_as_place.get(c["id"], {}).get("address") or ""
+        if not re.match(r"^b\b", was):
+            fired.append("%s moves under the between rule and its old address was %r, "
+                         "which does not begin at a `b` — the rule changed a reading "
+                         "for some reason other than the defect" % (c["id"], was[:32]))
+    recovered = [c for c in b_moved if c["normalized"].get("address")]
+    if len(recovered) != B_RULE_RECOVERS_ADDRESS:
+        fired.append("%d of the moved entries keep an address, not the %d priced — the "
+                     "residences the old cut buried are the point of the repair"
+                     % (len(recovered), B_RULE_RECOVERS_ADDRESS))
+    for c in recovered:
+        if not PLACE.match((c["normalized"]["address"] + " ")):
+            fired.append("%s keeps an address of %r, which does not open at one of "
+                         "Norris's own place marks" % (c["id"], c["normalized"]["address"]))
+
+    # T-1114. THE PLACE OF BUSINESS, PRICED WITH THE RULE OFF. It reads the trade line
+    # and nothing else, so the one thing that must not move is `address`: a business
+    # street reaching a residence field is the provenance defect T-1113 refused five
+    # entries to prevent, and it would be invisible downstream.
+    global PLACE_OF_BUSINESS_RULE
+    PLACE_OF_BUSINESS_RULE = False
+    try:
+        no_place = {c["id"]: c["normalized"] for c in build_claims()[0]}
+    finally:
+        PLACE_OF_BUSINESS_RULE = True
+    carried = [c for c in claims if c["normalized"].get("place_of_business")]
+    if len(carried) != PLACE_OF_BUSINESS_ENTRIES:
+        fired.append("%d entries carry a place of business, not the %d priced — re-measure "
+                     "it and rewrite the band above PLACE_OF_BUSINESS_RULE rather than "
+                     "editing this number to pass"
+                     % (len(carried), PLACE_OF_BUSINESS_ENTRIES))
+    for c in claims:
+        n, was = c["normalized"], no_place.get(c["id"], {})
+        if n.get("address") != was.get("address"):
+            fired.append("%s changes its address when the place-of-business rule is on — "
+                         "the rule reads the trade line and may not touch a residence"
+                         % c["id"])
+        letters = lambda t: re.sub(r"[^0-9A-Za-z]", "", t or "")
+        joined = letters(n.get("occupation")) + letters(n.get("place_of_business"))
+        if n.get("place_of_business") and joined != letters(was.get("occupation")):
+            fired.append("%s loses text at the place cut: %r + %r is not the trade line "
+                         "%r it was read from" % (c["id"], n.get("occupation"),
+                                                  n.get("place_of_business"),
+                                                  was.get("occupation")))
+        if n.get("place_of_business") and not n.get("place_of_business_note"):
+            fired.append("%s carries a place of business with no note saying it is not a "
+                         "residence" % c["id"])
+
+    # T-1113. THE STREET RULE IS PRICED THE SAME WAY — re-read with it off, and every
+    # entry that moves must have had a street inside its forename. The named readings
+    # are asserted too, because a price with nothing behind it only says a number
+    # changed; these say WHICH lines, and what each one now reads.
+    global STREET_RULE
+    STREET_RULE = False
+    try:
+        no_street = {c["id"]: c["normalized"] for c in build_claims()[0]}
+    finally:
+        STREET_RULE = True
+    shape = lambda n: (n.get("given"), n.get("occupation"), n.get("place_of_business"),
+                       n.get("address"))
+    street_moved = [c for c in claims
+                    if shape(c["normalized"]) != shape(no_street.get(c["id"], {}))]
+    if sorted(c["id"] for c in street_moved) != sorted(STREET_IN_FORENAME):
+        fired.append("the street rule moves %s, not the %d entries it is priced at — "
+                     "re-measure it and rewrite STREET_IN_FORENAME rather than editing "
+                     "the table to pass"
+                     % (sorted(c["id"] for c in street_moved), len(STREET_IN_FORENAME)))
+    for c in street_moved:
+        was = no_street.get(c["id"], {}).get("given") or ""
+        tail = was.split()[-1].strip(" .,") if was.split() else ""
+        if not tail or not re.search(r"\b%s\b\.?\s+(?:st|street|streets|sts|av|ave"
+                                    r"|avenue|alley|road|lane|court)\b"
+                                    % re.escape(tail), c["normalized"]["as_printed"],
+                                    re.I):
+            fired.append("%s moves under the street rule and its old forename ended "
+                         "at %r, which the printed line does not follow with a street "
+                         "designator — the rule changed a reading for some reason "
+                         "other than the defect" % (c["id"], was))
+    for cid, (given, occupation, place, address) in STREET_IN_FORENAME.items():
+        c = by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in STREET_IN_FORENAME and is not in the reading"
+                         % cid)
+            continue
+        got = c["normalized"]
+        if (got.get("given"), got.get("occupation"), got.get("place_of_business"),
+                got.get("address")) != (given, occupation, place, address):
+            fired.append("%s reads given=%r trade=%r place=%r address=%r, not "
+                         "%r/%r/%r/%r — the street rule moved"
+                         % (cid, got.get("given"), got.get("occupation"),
+                            got.get("place_of_business"), got.get("address"),
+                            given, occupation, place, address))
+    # …and the refusals hold. A refusal that quietly starts landing an address is the
+    # provenance defect the band exists to prevent, so it fails the build.
+    STREET_TAIL = re.compile(r"\b(?:st|street|sts|streets|avenue|av)\b\.?", re.I)
+    for cid, (cls, why) in ADDRESS_REFUSED.items():
+        c = by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in ADDRESS_REFUSED and is not in the reading"
+                         % cid)
+            continue
+        got = c["normalized"]
+        if got.get("address") is not None:
+            fired.append("%s is refused an address and now carries %r — %s"
+                         % (cid, got["address"], why))
+        if (got.get("address_refused") or {}).get("class") != cls:
+            fired.append("%s does not carry its refusal on the claim" % cid)
+        if cls != "printed_line_short" and not STREET_TAIL.search(
+                "%s %s" % (got.get("occupation") or "", got.get("place_of_business") or "")):
+            fired.append("%s is refused because its street belongs to a firm, and its "
+                         "trade line no longer prints a street at all — the refusal is "
+                         "answering a line that moved" % cid)
     if fired:
         for line in fired:
             print("  " + line, file=sys.stderr)
@@ -1753,12 +2909,30 @@ def self_test():
     print("norris 1844 --self-test: %d printed lines hold the three split rules, and "
           "no entry in %d begins an address at a capital or keeps an unspaced comma "
           "inside a forename" % (len(SPLIT_CASES), len(claims)))
+    print("norris 1844 --self-test: the case rule re-read against the whole volume — "
+          "%d of %d entries move and every one of them had a case-blind address "
+          "beginning at a one-letter initial" % (CASE_RULE_MOVES, len(claims)))
+    print("norris 1844 --self-test: the between rule re-read against the whole volume — "
+          "%d entries move, every one of them had an address beginning at a `b`, and "
+          "%d of them recover the residence the old cut had buried"
+          % (B_RULE_MOVES, B_RULE_RECOVERS_ADDRESS))
+    print("norris 1844 --self-test: %d entries carry a place of business read out of the "
+          "trade line, none of them moves an address, and every one says on the claim "
+          "that it is not a residence" % PLACE_OF_BUSINESS_ENTRIES)
     print("norris 1844 --self-test: %d surnames read off the page image on their own "
           "word box, %d of them carrying the name separator away with them; %d places the second hand is "
           "wrong and the committed reading stands"
           % (len(SURNAME_IMAGE_REPAIRS),
              sum(1 for r in SURNAME_IMAGE_REPAIRS if r.get("separator")),
              len(SURNAME_UPHELD)))
+    print("norris 1844 --self-test: the street rule re-read against the whole volume — "
+          "%d entries move and every one of them had a street inside its forename; "
+          "%d streets are refused an address and each says why on the claim"
+          % (len(STREET_IN_FORENAME), len(ADDRESS_REFUSED)))
+    print("norris 1844 --self-test: %d surnames lifted out of the margin's ink against "
+          "the second hand and the volume's own alphabetical run, and %d turned line(s) "
+          "the scanner un-indented read with the entry above rather than as a man"
+          % (len(MARGIN_SURNAME_REPAIRS), len(TURNED_LINES)))
     print("norris 1844 --self-test: %d names read past the end of the name — %d capped "
           "at the prefix, %s, and %d healed at the source"
           % (len(OVERRUN_CLASSES) + len(OVERRUN_HEALED), tally["repaired"],

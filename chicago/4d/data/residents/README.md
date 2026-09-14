@@ -201,3 +201,70 @@ his own rival. T-0993's `BLANCHARD GURTREY` is worse: its hand `named` ruling is
 re-pointed onto the garbled card `blanshard_g`, so a written judgement silently changes
 who it names. So the mechanical fold stays exact, and a surname the sources spell two ways
 is **ruled**, one cluster at a time, on a page that demonstrates the variation.
+
+## One card, several men — the ruling that takes a reading OFF a person (T-1004)
+
+`card_merge_rulings.json` above asks whether a cluster of cards is one man.
+`card_conflation_rulings.json` asks the opposite question of a SINGLE card: is this
+card one man? Until T-1004 nothing could answer no. `tools/consolidate_resident_evidence.py`
+had `declared_anchors()`, which forces a reading ONTO a person a crosswalk has matched,
+and no opposite — so where the town held one man of a name and the sources held two, the
+second man's documents folded onto the first man's card and nothing said so.
+
+`declared_splits()` is that opposite and reads this file. A ruling is one of two states,
+and they are gated in **opposite directions**:
+
+| state | what it does | what the gate proves |
+|---|---|---|
+| `split` | names readings that come off the card, each with its rule and its reasoning | the reading is OFF that person, on an identity held apart by the ruling's own rule, standing on no card where the ruling says the second man is not in the layer |
+| `recorded` | nothing moves — the card is written down as gathering two men, with the question it leaves open | the readings named in `still_on_the_card` are STILL on that person, so something else moving them makes the ruling stale and red |
+
+The rules a split may stand on are `SPLIT_RULES` in that tool, echoed into the master:
+**X1** one volume prints both men · **X2** the entry's own qualifier names the other man ·
+**X3** the arithmetic refuses it · **X0** recorded, not split.
+
+Two things worth knowing before adding a ruling:
+
+- **A conflation ruling outranks the anchor it contradicts**, and it is the only place
+  this tool sets a declared adjudication aside. Norris 1844's `King, N. clerk, at T.
+  King's` was crossed onto Nehemiah King by the directories' own crosswalk, on a count of
+  who holds a card; the ruling that takes it off him rests on Fergus 1839 printing `King,
+  Nathaniel, clerk, Tuthill King`. Both are declared, the later one was made with the page
+  in hand, and the override is written into the master's `declared_refusals` naming the
+  anchor it displaced. Never silent.
+- **A name may have to move with the reading.** `hh_bowen_erastus_selden` was minted under
+  the name of the man being ruled off it, so the split alone would have left two identities
+  sharing one id. `name_as_ruled` moves the card's name and the gate holds it there. The
+  **id does not move**: `bowen_erastus_selden` is a key quoted in twenty-seven committed
+  files, and renaming it is a mechanical change with nothing to do with which man is which.
+  The disagreement between the id and the name is recorded on the card rather than hidden.
+
+## The merge rulings are guarded against a lost judgement (T-1125)
+
+`card_merge_rulings.json` carries the owner's 64 written rulings on which town cards are
+one person, nested one level inside the 50 clusters the surname test proposed.
+`consolidate_town_cards.py` reads them and WRITES
+`data/research/residents/card_merge_crosswalk.json` from them — so the crosswalk is the
+mirror and this is the original. A ruling that vanishes from here does not break the
+consolidation; it lands one fewer merge, and a resident silently re-splits into the several
+cards T-0839 joined.
+
+Since T-1125 `tools/check_rulings_not_lost.py` (run by `check.sh`) holds this file to the
+MERGE BASE. A judgement is `(the cluster it is about, the rule it applied)` — the cluster
+and not the ruling alone, because eleven clusters carry more than one ruling and a
+cluster-level count would not see one of them leave.
+
+**Left out**: `rules` is the rule text C0–C22 the rulings cite; `derived_candidate` and
+`why_not_derived` describe how a cluster was proposed rather than how it was decided; and
+`also_ruled_on` is a LOG OF PASSES — a date, a ticket and a sentence about what that pass
+decided — whose decisions are themselves in `clusters[].rulings`, so counting it would
+count the same judgement twice under a key that is a date.
+
+The two files the guard REFUSED entry, with the reason on record in the tool's `REFUSED`
+table: `card_merge_crosswalk.json` and `town_card_candidates.json`, both written by
+`consolidate_town_cards.py --apply`. The candidates file is a worklist that gets *smaller*
+as clusters are ruled on, so a floor under its count would be a gate against the work
+getting done.
+
+**To remove a ruling**, move it into a top-level `withdrawn[]` carrying the cluster `id`,
+the `rule`, a `reason` and the `ticket` that decided it.

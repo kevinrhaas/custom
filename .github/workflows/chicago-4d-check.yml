@@ -52,6 +52,13 @@ jobs:
         working-directory: chicago/4d
         env:
           C4D_GATE_REQUIRE_READERS: '1'
+          # T-1124. The lost-judgement guard holds this tree to the MERGE BASE, so it
+          # needs a base ref in the clone — which `fetch-depth: 0` above provides — and
+          # it needs the absence of one to be RED here rather than a warning. Same two
+          # states, same reason, as C4D_GATE_REQUIRE_READERS: a gate may not count a
+          # skip as a pass. tools/check_rulings_not_lost.py --self-test asserts that
+          # both of these lines are still here.
+          C4D_GATE_REQUIRE_BASE: '1'
         run: ./tools/check.sh
 
       # T-0409 — deliberately NOT inside check.sh. The nightly bake regenerates

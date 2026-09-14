@@ -211,7 +211,11 @@ _STREET_WORD = re.compile(
     r"milwaukee\s+ave(?:nue)?|north\s+branch|st\.?\s+clair|la\s*salle|"
     r"lake|randolph|washington|market|franklin|wells|clark[e]?|dearb(?:orn)?|state|"
     r"canal|clinton|kinzie|wolcott|madison|monroe|adams|jackson|illinois|indiana|"
-    r"ohio|superior|erie|pine|cass|rush|jefferson|wabash|michigan)\b", re.I)
+    r"ohio|superior|erie|pine|cass|rush|jefferson|wabash|michigan|"
+    # ...and the volumes' own contractions of those names (T-1050), LAST in the
+    # alternation so a spelled-out name is always tried first: at the start of
+    # `Randolph` the engine reaches `randolph` before it reaches `rand`.
+    r"wash|rand|ran|dear|wol|frank|kin|clin|mich|mad|mon|jack|ind|wab|ad)\b", re.I)
 
 
 # The names whose type word is part of the NAME and must survive the fold.
@@ -223,6 +227,67 @@ _STREET_WORD = re.compile(
 # NOT_1835 keys of those names unreachable — a latent refusal no address had yet
 # exercised, found by T-0669 when a residence printed `res 5 Dearborn pl`.
 KEEPS_ITS_TYPE_WORD = ("michigan street", "michigan ave", "dearborn pl", "st clair")
+
+
+# THE VOLUMES' OWN CONTRACTIONS OF A STREET NAME — T-1050. Norris's REMARKS page
+# declares that he uses them and names three: "Abbreviations, which occur only in a
+# very few words, will readily be understood; b stands for between; Rand for Randolph;
+# Mad for Madison; Wash for Washinglon, &c."
+# (`data/research/directories/text/norris_1844_leaf_031.txt` lines 9-11, printed page
+# 21). His `&c.` is the whole difficulty: he sets eleven more the page never lists, and
+# a table that knows only the spelled-out name can see none of them.
+#
+# That is not a cosmetic miss, because of what this table is FOR. It decides whether a
+# printed name is a street the town of 1835 has, and a contraction hides the names it
+# does NOT have exactly as well as the ones it does. Norris prints Rebecca Sherman's
+# house at `h Clark st. b Mad. & Mon`; read as naming Clark alone, that is Clark Street
+# placed on a qualifier the pass never saw — while `h Clark, b Madison and Monroe`, the
+# same address spelled out one line further down the same column, is refused. One
+# address, two spellings, two verdicts, and the one that said MORE was the one the pass
+# could not read.
+#
+# The expansion happens ONCE, in `street_words`, rather than as aliases in STREET_1835
+# and NOT_1835: those two tables carry the argument about the ground, a contraction is
+# a fact about the type, and keeping them apart means each refusal is still written out
+# exactly once.
+#
+# Every expansion is unique on the 1844 street list — no other Chicago street of the
+# period begins Wol, Frank, Kin, Clin, Mon, Jack or Wab — and every occurrence of every
+# one of these tokens, across all 4,235 addresses the four volumes print, is that
+# street. Three are `documented` by the preface above; the rest are `inferred` from
+# that sentence's `&c.` plus the uniqueness of the expansion, which is the reasoning
+# note the confidence model requires.
+PRINTED_ABBREVIATION = {
+    # named by Norris's preface
+    "rand": "randolph",
+    "mad": "madison",
+    "wash": "washington",
+    # his `&c.`, one entry per token the pages actually set
+    "ran": "randolph",
+    "dear": "dearborn",
+    "wol": "wolcott",
+    "frank": "franklin",
+    "kin": "kinzie",
+    "clin": "clinton",
+    "mich": "michigan",
+    "mon": "monroe",
+    "jack": "jackson",
+    "ind": "indiana",
+    "wab": "wabash",
+    "ad": "adams",
+}
+
+# NOT in the table, and left unread on purpose. `h Lake st. b Frank <t Wat` (Norris,
+# the one occurrence in 4,235 addresses) contracts either North Water Street or South
+# Water Street, both of which the 1835 layer carries, and the token cannot decide
+# which. T-0397's rule is that a name the page does not let you read stays unread, so
+# this one is declared here instead of guessed at. Nothing turns on it either way:
+# both candidates are 1835 streets, so the qualifier would be permitted under either
+# reading, and `--self-test` asserts the token stays invisible.
+UNREADABLE_ABBREVIATION = {
+    "wat": "North Water Street or South Water Street — the contraction cannot "
+           "decide which, and the 1835 layer carries both.",
+}
 
 
 def fold(token: str) -> str:
@@ -242,10 +307,25 @@ def street_words(address: str) -> list[str]:
     out, seen = [], set()
     for m in _STREET_WORD.finditer(address):
         raw = m.group(0)
-        # `michigan` alone is ambiguous; look at the word after it.
+        # A CONTRACTION IS READ ONLY WHERE THE PAGE SETS IT AS A WORD OF ITS OWN
+        # (T-1050). The one measured reason: the scanner sets `and` as `;ind` in
+        # `res nenr Clark ;ind N. Water sts. 5th ward`, and a damaged conjunction
+        # glued to a semicolon must not read as Indiana Street. Three other `Ind`
+        # in the corpus all stand free and all are Indiana. No volume sets a street
+        # contraction with punctuation shoved against its front, so requiring
+        # whitespace in front of one costs the table nothing and closes that.
+        abbrev = PRINTED_ABBREVIATION.get(raw.lower().strip(" .,"))
+        if abbrev:
+            if not (m.start() == 0 or address[m.start() - 1].isspace()):
+                continue
+            raw = abbrev
+        # `michigan` alone is ambiguous; look at the word after it. The point and the
+        # comma have to be stepped over, because `Mich. av.` and `Mich Av` are how
+        # Norris sets the avenue and a bare `\s*ave` reads both as the north-side
+        # street — which is the NOT_1835 name being hidden a second way (T-1050).
         tail = address[m.end():m.end() + 12].lower()
         if raw.lower().strip() == "michigan":
-            raw = "michigan ave" if re.match(r"\s*ave", tail) else "michigan street"
+            raw = "michigan ave" if re.match(r"[\s.,]*av", tail) else "michigan street"
         elif re.match(r"^michigan\s+st", raw.lower()):
             raw = "michigan street"
         elif re.match(r"^michigan\s+ave", raw.lower()):
@@ -717,6 +797,64 @@ def self_test() -> int:
     want("an 1844 landmark leaves a face",
          one("office Clark street, opposite City Saloon", "hardware_merchant", None,
              year=1844), "placed", "3 and 4", "face")
+
+    # T-1050 — THE VOLUMES' OWN CONTRACTIONS, one case per entry in the table, each
+    # quoted off a page. The table is shared with the residence pass, so this is where
+    # it is held: a contraction that stops resolving silently un-refuses every address
+    # whose qualifier it hides, which is the fault that ticket was filed for.
+    for printed, expect in [
+            ("h Wells st. b Rand and Wash sis", ["wells", "randolph", "washington"]),
+            ("h Wells st. b Wash & Mad", ["wells", "washington", "madison"]),
+            ("house State st. b Ran dolph and Washington streets",
+             ["state", "randolph", "washington"]),
+            ("h Rand st. b Dear and Lake sts", ["randolph", "dearborn", "lake"]),
+            ("h Mich st. b Dear & Wol", ["michigan street", "dearborn", "wolcott"]),
+            ("b Wells & Frank", ["wells", "franklin"]),
+            ("b Kin and Dear", ["kinzie", "dearborn"]),
+            ("h Washington, b Canal & Clin", ["washington", "canal", "clinton"]),
+            ("h Clark st. b Mad. & Mon", ["clark", "madison", "monroe"]),
+            ("b Jack. & Fifth", ["jackson"]),
+            ("r Ind, b Cass & Rush", ["indiana", "cass", "rush"]),
+            ("res Wab. av. b Mon. and Ad", ["wabash", "monroe", "adams"]),
+            # The point and the comma between `Mich` and `av` are Norris's, and the
+            # avenue is the NOT_1835 name, so stepping over them is load-bearing.
+            ("house cor Mich. av. and Randolph", ["michigan ave", "randolph"]),
+            ("h c Mich Av & Mad st", ["michigan ave", "madison"]),
+            ("h c Mich dc Cass", ["michigan street", "cass"]),
+            # The scanner's word-splits fall out of the same table: a contraction is
+            # what the first half of a broken name looks like.
+            ("house Dear-. born street, bet Randolph and Washington",
+             ["dearborn", "randolph", "washington"]),
+            ("house State street, bet Wash ington and Madison",
+             ["state", "washington", "madison"]),
+            # A contraction is read only where the page sets it as a word of its own:
+            # `;ind` here is the scanner's `and`, not Indiana Street.
+            ("res nenr Clark ;ind N. Water sts. 5th ward", ["clark", "n water"]),
+            # And the one contraction left unread, because it cannot be decided.
+            ("h Lake st. b Frank <t Wat", ["lake", "franklin"]),
+    ]:
+        got = street_words(printed)
+        if got != expect:
+            fails.append(f"contraction: {printed!r} read as {got}, wanted {expect}")
+    for token in UNREADABLE_ABBREVIATION:
+        if token in PRINTED_ABBREVIATION:
+            fails.append(f"'{token}' is declared unreadable and also expanded")
+        if street_words(f"h Lake st. b {token.title()}") != ["lake"]:
+            fails.append(f"'{token}' is declared unreadable and still read as a street")
+    # Every expansion has to be a name one of the two tables rules on, or the
+    # contraction buys a refusal reading `'x' is not a street this pass's table knows`
+    # — a right answer for a wrong reason, which is worse than not reading it. The one
+    # exception is `michigan`, which is deliberately NOT in either table: it is
+    # ambiguous between the north-side street and the lakefront avenue, and the
+    # disambiguation above splits it before the tables are consulted.
+    for token, full in PRINTED_ABBREVIATION.items():
+        if full == "michigan":
+            continue
+        if full not in STREET_1835 and full not in NOT_1835:
+            fails.append(f"'{token}' expands to '{full}', which neither table rules on")
+    for reading in ("michigan street", "michigan ave"):
+        if reading not in STREET_1835 and reading not in NOT_1835:
+            fails.append(f"'{reading}' is a reading of `Mich` neither table rules on")
 
     # Michigan Street, the north-side one, does resolve.
     r = one("Michigan st", "forwarding_and_commission", None)

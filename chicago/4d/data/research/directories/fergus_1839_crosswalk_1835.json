@@ -24,7 +24,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1293
+   "n": 1306
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -34,7 +34,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2620
+   "n": 2640
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -43,22 +43,22 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 146,
-  "residents_ambiguous": 25,
-  "residents_contested": 12,
-  "residents_surname_only_refused": 260,
+  "residents_matched_one_entry": 144,
+  "residents_ambiguous": 26,
+  "residents_contested": 14,
+  "residents_surname_only_refused": 263,
   "voters_matched_one_entry": 122,
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 75,
-  "letter_list_matched_one_entry": 337,
-  "letter_list_ambiguous": 91,
-  "letter_list_surname_only_refused": 664,
+  "letter_list_matched_one_entry": 340,
+  "letter_list_ambiguous": 92,
+  "letter_list_surname_only_refused": 671,
   "heads_1840_matched_one_entry": 170,
   "heads_1840_ambiguous": 56,
   "heads_1840_surname_only_refused": 223,
   "residents_further_initial_disagreed_refused": 6,
   "residents_that_further_initial_refusal_reaches": 6,
-  "residents_initial_agreed_forenames_disagreed_refused": 68,
+  "residents_initial_agreed_forenames_disagreed_refused": 66,
   "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_entry_by_that_refusal": 36,
   "residents_letter_list_bucket_refused": 1,
@@ -67,9 +67,9 @@
   "of_those_contested": 0,
   "of_those_ambiguous": 4,
   "residents_narrowings_withdrawn_as_a_collision": 0,
-  "residents_ties_left_standing": 33,
-  "residents_could_carry_occupation": 79,
-  "residents_could_carry_street": 91
+  "residents_ties_left_standing": 36,
+  "residents_could_carry_occupation": 77,
+  "residents_could_carry_street": 90
  },
  "residents": {
   "matches": [
@@ -1310,7 +1310,7 @@
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
    {
-    "name": "Erastus Selden Bowen",
+    "name": "Erastus Bowen",
     "rule": "Surname 'Bowen' folds to the same string as the 1839 entry's, and the given name of both begins E.",
     "entries_1839": [
      {
@@ -2478,31 +2478,6 @@
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
    {
-    "name": "John Lyle King",
-    "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0852",
-      "as_printed": "King, jr. , John, merchant, bds. Lake House",
-      "printed_page": 21,
-      "occupation_1839": "merchant",
-      "address_1839": "bds. Lake House",
-      "streets_1839": [],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "king_john_lyle",
-    "household_id": "hh_king_john_lyle",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
     "name": "John Miller",
     "rule": "Surname 'Miller' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -2914,34 +2889,6 @@
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
-    "name": "Paul J Carli",
-    "rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0234",
-      "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells",
-      "printed_page": 9,
-      "occupation_1839": "candies and notions",
-      "address_1839": "South Water st. near Wells",
-      "streets_1839": [
-       "South Water st"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "carli_paul_j",
-    "household_id": "hh_carli_paul_j",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation",
-     "street_1839"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
@@ -3716,7 +3663,7 @@
     ],
     "person_id": "forsyth_william",
     "household_id": "hh_forsyth_william",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "occupation_1835_confidence": "reconstructed",
     "lives_at_1835": null,
@@ -4558,6 +4505,102 @@
     }
    },
    {
+    "name": "P S Carli",
+    "rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0234",
+      "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells",
+      "printed_page": 9,
+      "occupation_1839": "candies and notions",
+      "address_1839": "South Water st. near Wells",
+      "streets_1839": [
+       "South Water st"
+      ],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "carli_p_s",
+    "household_id": "hh_carli_p_s",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "could_carry": [
+     "occupation",
+     "street_1839"
+    ],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
+    "contested_with": [
+     "Paul J Carli"
+    ],
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "carli_p_s",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "carli_paul_j",
+       "agrees": false,
+       "why": "no trade on one side"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Paul J Carli",
+    "rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0234",
+      "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells",
+      "printed_page": 9,
+      "occupation_1839": "candies and notions",
+      "address_1839": "South Water st. near Wells",
+      "streets_1839": [
+       "South Water st"
+      ],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "carli_paul_j",
+    "household_id": "hh_carli_paul_j",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "could_carry": [
+     "occupation",
+     "street_1839"
+    ],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
+    "contested_with": [
+     "P S Carli"
+    ],
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "carli_p_s",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "carli_paul_j",
+       "agrees": false,
+       "why": "no trade on one side"
+      }
+     ]
+    }
+   },
+   {
     "name": "Rufus Brown",
     "rule": "Surname 'Brown' folds to the same string as the 1839 entry's, and the given name of both begins R. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
     "entries_1839": [
@@ -4948,6 +4991,67 @@
        "why": "no trade on one side",
        "outcome": "refused_by_discriminator",
        "refusal": "The trade printed against this name agrees with 'f1839_e0329' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
+      }
+     ]
+    }
+   },
+   {
+    "name": "J D King",
+    "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0852",
+      "as_printed": "King, jr. , John, merchant, bds. Lake House",
+      "printed_page": 21,
+      "occupation_1839": "merchant",
+      "address_1839": "bds. Lake House",
+      "streets_1839": [],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0853",
+      "as_printed": "King, Joe, (pork an’ a bean) restaurant, South Water near Clark",
+      "printed_page": 21,
+      "occupation_1839": "(pork an’ a bean) restaurant, South Water near Clark",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0854",
+      "as_printed": "King, Joseph, drayman,",
+      "printed_page": 21,
+      "occupation_1839": "drayman",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "king_j_d",
+    "household_id": "hh_king_j_d",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "f1839_e0852",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "f1839_e0853",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "f1839_e0854",
+       "agrees": false,
+       "why": "no trade on one side"
       }
      ]
     }
@@ -6472,6 +6576,11 @@
     "rule": "The surname 'Stevens' is in Fergus 1839 and no entry under it carries the initial 'I' of 'Issac Stevens'. A surname-only agreement is a refusal."
    },
    {
+    "name": "J D Matthews",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Matthews' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J D Matthews'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "J Green",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Green' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J Green'. A surname-only agreement is a refusal."
@@ -6620,6 +6729,11 @@
     "name": "L B Cobb",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Cobb' is in Fergus 1839 and no entry under it carries the initial 'L' of 'L B Cobb'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "L Clarke",
+    "candidates_under_that_surname": 9,
+    "rule": "The surname 'Clarke' is in Fergus 1839 and no entry under it carries the initial 'L' of 'L Clarke'. A surname-only agreement is a refusal."
    },
    {
     "name": "L G Curtiss",
@@ -7110,6 +7224,11 @@
     "name": "William G Blair",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Blair' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William G Blair'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William George Sherman",
+    "candidates_under_that_surname": 8,
+    "rule": "The surname 'Sherman' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William George Sherman'. A surname-only agreement is a refusal."
    },
    {
     "name": "William H. Beach",
@@ -8318,50 +8437,6 @@
     },
     "person_id": "knight_john",
     "household_id": "hh_knight_john",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "John Lyle King",
-    "entry_1839": {
-     "claim": "f1839_e0853",
-     "as_printed": "King, Joe, (pork an’ a bean) restaurant, South Water near Clark",
-     "printed_page": 21,
-     "occupation_1839": "(pork an’ a bean) restaurant, South Water near Clark",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "John",
-     "forename_printed": "Joe",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'John' against 'Joe'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "king_john_lyle",
-    "household_id": "hh_king_john_lyle",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "John Lyle King",
-    "entry_1839": {
-     "claim": "f1839_e0854",
-     "as_printed": "King, Joseph, drayman,",
-     "printed_page": 21,
-     "occupation_1839": "drayman",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "John",
-     "forename_printed": "Joseph",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'John' against 'Joseph'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "king_john_lyle",
-    "household_id": "hh_king_john_lyle",
     "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "occupation_1835_confidence": "reconstructed",
@@ -14367,8 +14442,8 @@
     ]
    },
    {
-    "name": "Grant Goodrich",
-    "rule": "Surname 'Goodrich' folds to the same string as the 1839 entry's, and the given name of both begins G.",
+    "name": "Grant [Goodrich]",
+    "rule": "Surname '[Goodrich]' folds to the same string as the 1839 entry's, and the given name of both begins G.",
     "entries_1839": [
      {
       "claim": "f1839_e0560",
@@ -15503,6 +15578,23 @@
       "address_1839": "South Water street near 5th ave",
       "streets_1839": [
        "South Water street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "Jno. H. Kinzie",
+    "rule": "Surname 'Kinzie' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0861",
+      "as_printed": "Kinzie, James, real estate agent, North Canal street",
+      "printed_page": 21,
+      "occupation_1839": "real estate agent",
+      "address_1839": "North Canal street",
+      "streets_1839": [
+       "North Canal street"
       ],
       "address_is_street_only": false
      }
@@ -17461,6 +17553,23 @@
     ]
    },
    {
+    "name": "W. H. Kennicott",
+    "rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0835",
+      "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street",
+      "printed_page": 21,
+      "occupation_1839": "dentist",
+      "address_1839": "Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "W. Kimball",
     "rule": "Surname 'Kimball' folds to the same string as the 1839 entry's, and the given name of both begins W.",
     "entries_1839": [
@@ -17565,6 +17674,23 @@
       "occupation_1839": "blacksmith, Asahel Pierce",
       "address_1839": null,
       "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "William Forsyth",
+    "rule": "Surname 'Forsyth' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0492",
+      "as_printed": "Forsyth, William, merchant, West Water street",
+      "printed_page": 14,
+      "occupation_1839": "merchant",
+      "address_1839": "West Water street",
+      "streets_1839": [
+       "West Water street"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -18762,6 +18888,35 @@
       "occupation_1839": "6th ward",
       "address_1839": null,
       "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
+    "name": "J. S. Wright",
+    "rule": "Surname 'Wright' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1647",
+      "as_printed": "Wright, John, Michigan ave. cor. Madison st",
+      "printed_page": 36,
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
+      "streets_1839": [
+       "Michigan ave",
+       "Madison st"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1648",
+      "as_printed": "Wright, John S., forwarding commission merchant, N. Water st",
+      "printed_page": 36,
+      "occupation_1839": "forwarding commission merchant",
+      "address_1839": "N. Water st",
+      "streets_1839": [
+       "N. Water st"
+      ],
       "address_is_street_only": false
      }
     ]
@@ -21119,6 +21274,11 @@
     "rule": "The surname 'Harrington' is in Fergus 1839 and no entry under it carries the initial 'C' of 'C. Harrington'. A surname-only agreement is a refusal."
    },
    {
+    "name": "C. L. Harmon",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Harmon' is in Fergus 1839 and no entry under it carries the initial 'C' of 'C. L. Harmon'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Caleb Foster",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Foster' is in Fergus 1839 and no entry under it carries the initial 'C' of 'Caleb Foster'. A surname-only agreement is a refusal."
@@ -22464,6 +22624,11 @@
     "rule": "The surname 'Baldwin' is in Fergus 1839 and no entry under it carries the initial 'L' of 'L. Baldwin'. A surname-only agreement is a refusal."
    },
    {
+    "name": "L. Clarke",
+    "candidates_under_that_surname": 9,
+    "rule": "The surname 'Clarke' is in Fergus 1839 and no entry under it carries the initial 'L' of 'L. Clarke'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "L. Curtiss",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Curtiss' is in Fergus 1839 and no entry under it carries the initial 'L' of 'L. Curtiss'. A surname-only agreement is a refusal."
@@ -23539,6 +23704,11 @@
     "rule": "The surname 'Reed' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W. Reed'. A surname-only agreement is a refusal."
    },
    {
+    "name": "W. Sherman",
+    "candidates_under_that_surname": 8,
+    "rule": "The surname 'Sherman' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W. Sherman'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "W[i]lson, Walter",
     "candidates_under_that_surname": 6,
     "rule": "The surname 'W[i]lson' is in Fergus 1839 and no entry under it carries the initial 'W' of 'W[i]lson, Walter'. A surname-only agreement is a refusal."
@@ -23709,9 +23879,29 @@
     "rule": "The surname 'Butterfield' is in Fergus 1839 and no entry under it carries the initial 'Z' of 'Zimry Butterfield'. A surname-only agreement is a refusal."
    },
    {
+    "name": "[?] Avery",
+    "candidates_under_that_surname": 2,
+    "rule": "'[?] Avery' carries no forename — a rank or a suffix stands where the given name would be — so there is no initial to carry the surname 'Avery' to. Fergus 1839 prints 2 entries under that surname and the rule cannot choose between them."
+   },
+   {
+    "name": "[?] Beaubien",
+    "candidates_under_that_surname": 4,
+    "rule": "'[?] Beaubien' carries no forename — a rank or a suffix stands where the given name would be — so there is no initial to carry the surname 'Beaubien' to. Fergus 1839 prints 4 entries under that surname and the rule cannot choose between them."
+   },
+   {
+    "name": "[?] Clybourn",
+    "candidates_under_that_surname": 1,
+    "rule": "'[?] Clybourn' carries no forename — a rank or a suffix stands where the given name would be — so there is no initial to carry the surname 'Clybourn' to. Fergus 1839 prints 1 entry under that surname and the rule cannot choose between them."
+   },
+   {
     "name": "[?] Goodrich",
     "candidates_under_that_surname": 3,
     "rule": "'[?] Goodrich' carries no forename — a rank or a suffix stands where the given name would be — so there is no initial to carry the surname 'Goodrich' to. Fergus 1839 prints 3 entries under that surname and the rule cannot choose between them."
+   },
+   {
+    "name": "[?] Snow",
+    "candidates_under_that_surname": 1,
+    "rule": "'[?] Snow' carries no forename — a rank or a suffix stands where the given name would be — so there is no initial to carry the surname 'Snow' to. Fergus 1839 prints 1 entry under that surname and the rule cannot choose between them."
    },
    {
     "name": "[?] Sprague",

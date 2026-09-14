@@ -36,6 +36,17 @@ mean spacing of the six flanking lines (123.36 m). That is a wider box than the
 block, and it is cited as such; the numeral falls inside it and the entry records
 the tighter region it was actually read on.
 
+AND ITS SOUTH SIDE IS NOT THE RULE ABOVE — corrected by T-1099. With one flank
+there is no "northern of the two", so the rule degenerated to Market Street's own
+southern endpoint, and Market is precisely the line that does not stop at this
+tier: `market_north` runs on to north +46.35 m at the bank in the forks, where
+`franklin_north` beside it stops at +151.61 m. The box ran 89 m past block 7 and
+swallowed the block below, whose numeral 14 sat inside the crop this file cited
+for 7. Block 7's south is therefore the TIER's own south line — Carroll Street
+continued east along the bearing of its committed path, from
+`tools/read_wolf_point_numerals.py`, taken where it runs furthest north so the
+box does not reach over the street. Both numerals stood; only the box was wrong.
+
     tools/read_north_division_numerals.py            print the derivation
     tools/read_north_division_numerals.py --check    fail if the committed crops
                                                      are not what this re-derives
@@ -89,7 +100,12 @@ def boxes(streets) -> dict[int, tuple[str, tuple[float, float, float, float]]]:
     for west, east, number in TIER:
         e_end = streets[east]["path_local_enu_m"][0]
         if west is None:
-            x0, x1, south = e_end[0] - mod, e_end[0], e_end[1]
+            # T-1099: one flank, so no "northern of the two" — the tier's own
+            # south line stands in for it. Imported late: read_wolf_point_numerals
+            # imports this module for the module width.
+            import read_wolf_point_numerals as wolf
+            x0, x1 = e_end[0] - mod, e_end[0]
+            south = max(wolf.carroll_east(streets, x0), wolf.carroll_east(streets, x1))
         else:
             w_end = streets[west]["path_local_enu_m"][0]
             x0, x1, south = w_end[0], e_end[0], max(w_end[1], e_end[1])
@@ -134,7 +150,15 @@ def main() -> int:
         if not check(streets):
             print("SELF-TEST FAILED: a street moved 40 m and the crop check stayed silent")
             return 1
-        print("self-test: moving Clark Street 40 m breaks the crop check, as it must")
+        # block 7's south side is Carroll continued east (T-1099), so the tier now
+        # depends on a street outside its own flanks and the gate has to say so.
+        streets = _streets()
+        streets["carroll"]["path_local_enu_m"][-1][1] += 40.0
+        if not check(streets):
+            print("SELF-TEST FAILED: Carroll moved 40 m and block 7's crop check stayed silent")
+            return 1
+        print("self-test: moving Clark Street 40 m, or Carroll's east end 40 m under block 7's "
+              "south side, breaks the crop check, as both must")
         return 0
 
     problems = check()

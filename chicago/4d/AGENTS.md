@@ -238,7 +238,12 @@ is the contract. The short form:
   as silence rather than as proof.
 - **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
   inflight` shows what other branches are already carrying a ticket number, which is the
-  only live view of work the merged files cannot show yet. On the runner, `claim` also
+  only live view of work the merged files cannot show yet. It reads each branch as
+  **live**, **held** or **cold**, and `held` is the one to read carefully: the branch is
+  older than a run but the ticket's claim lock still stands, so it is either a run reading
+  sources for hours or a run that died after its merge. Check its PR before you take it —
+  age alone used to file that branch under "finished or litter", and two runs read cohort
+  14 in parallel for it (T-0852). On the runner, `claim` also
   records WHICH Actions run holds the ticket (`claimed_run`) and `done` records the
   INSTANT it finished (`closed_at`), so BOARD.md can show what is being worked now and
   what finished in the order it finished. Neither is ever hand-written.
@@ -345,6 +350,21 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
 - **Branch `steward/<topic>` off `dev`. PR into `dev`. Merge when the dev gate is green.**
   Never push to `dev` or `main` directly. Ambiguous or unverified work stays an open PR
   with the `hold` label and a written explanation.
+- **A `steward/*` PR THAT CANNOT MERGE IS NOT OPEN — IT IS ROTTING.** Its ticket still
+  reads `open` at the top of the queue, so the next slice picks the same row and rebuilds
+  the same work. Measured 2026-09-13 (T-0809): **all five** open steward PRs on `dev`
+  conflicted with it — #1210, #1231, #1239, #1242, #1252 — every one of them on
+  `renderers/web/js/changelog.js`, `tickets/QUEUE.md` or `tools/dev-smoke-state.json`,
+  and the janitor had swept and silently skipped all five every two hours. Twenty-one had
+  silted up the same way in 2026-09: 21 open, 21 conflicting, six build products between
+  them, five past saving. Two things follow, and both are now true:
+  - the janitor **gates the merge, not the bare branch, and comments once naming the
+    conflicting paths** on any PR it cannot merge (polecat-platform#161). If your PR is
+    rotting you will be told inside one sweep; rebase it on `dev` or label it `hold`.
+  - those three files conflict on nearly every landing BY DESIGN — the root
+    `.gitattributes` refuses to union-merge the changelog because union silently
+    corrupted it on five consecutive merges in one day. So expect to rebase, and **finish
+    the PR you open inside your own run** rather than leaving it to be swept.
 - **Merging into `dev` is STAGE, not ship.** It publishes only the integration preview at
   `/custom/chicago/4d/dev/walk/?year=1835` — noindex, banner-marked, `build.json` says
   `tier: dev`. Production is untouched.

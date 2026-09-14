@@ -324,6 +324,63 @@ function branchAgeHours(sha) {
 const RUN_HOURS = 3;
 
 /**
+ * IS SOMEBODY ON THIS BRANCH RIGHT NOW? — `live` / `held` / `cold` (T-0852).
+ *
+ * Branch AGE was the whole answer until now, and it has a blind spot the lane pays
+ * for. A run claims, pushes its claim commit, and then READS for four hours; at the
+ * three-hour mark its branch drops out of the hot list and `inflight` files it under
+ * "finished tickets, or branches older than a run". Both halves of that heading are
+ * false about it — it is neither finished nor litter — and it drops out at exactly
+ * the moment duplicating it is most expensive. Cohort 14 (T-0509) was read twice on
+ * 2026-09-05 by two runs that could not see each other; the two ledgers disagreed on
+ * 36 of the 76 people and T-0816 had to adjudicate every one of them.
+ *
+ * So age is no longer the only witness. TWO others answer together, and it takes
+ * both — the first draft of this took only the ticket file and was too loud to use:
+ *
+ *   - the ticket FILE says `claimed` or `review`. Necessary, not sufficient. T-0987
+ *     is worked one stretch per run and is `claimed` on `dev` permanently by design,
+ *     so the file alone reported all SEVEN of its long-merged branches as in flight.
+ *   - a CLAIM LOCK for that ticket stands on the remote. `claim/t-nnnn` is taken in
+ *     the same breath as the claim and released by `ticket.mjs done`, so it is alive
+ *     for exactly as long as the run is — however many hours that run spends reading.
+ *     It costs nothing to ask: `remoteBranches` already lists every head, this one
+ *     included, in the one `ls-remote` this command was already making.
+ *
+ * `held` rather than `live`, and the distinction is the honest part. T-0802's blind
+ * spot runs the other way: a run that dies between its merge and `ticket.mjs done`
+ * leaves the ticket `claimed` behind a genuinely cold branch — T-0429 sat that way
+ * for five days and cost a 116-file rebuild. If an old claim simply became `live`
+ * this command would hide that one forever. `held` reports the branch as in flight,
+ * prints its age, and says in one line that a claim outliving a run is either a long
+ * read or a dead one and the PR list decides which. `cold` keeps exactly the meaning
+ * it always had.
+ *
+ * Offline, and deliberately: `landed` is where the PR question is asked, and these
+ * callers stand between a run and its work.
+ */
+const HELD_STATES = ['claimed', 'review'];
+function inflightState(state, ageHours, locked = false) {
+  if (['done', 'withdrawn', 'split'].includes(state)) return 'cold';
+  if (ageHours === null || ageHours <= RUN_HOURS) return 'live';
+  return locked && HELD_STATES.includes(state) ? 'held' : 'cold';
+}
+
+/** Which tickets have a claim marker standing on the remote, out of one branch list. */
+function lockedIds(branches) {
+  const held = new Set();
+  for (const b of branches) {
+    if (!isClaimMarker(b.name)) continue;
+    const n = /t-?0*(\d+)/i.exec(b.name)?.[1];
+    if (n) held.add(idOf(Number(n)));
+  }
+  return held;
+}
+
+/** How old, in the words the reports use. */
+const ageWords = (h) => (h === null ? '' : h < 1 ? `${Math.round(h * 60)}m ago` : `${Math.round(h)}h ago`);
+
+/**
  * Does this branch name carry this ticket's number?
  *
  * Branch names are not standardised — the same ticket has been worked on
@@ -344,15 +401,24 @@ const isClaimMarker = (name) => /^claim\//.test(name);
  *  Claim markers are deliberately NOT counted here: the lock is the authority on
  *  a live claim and says who holds it and since when, so letting them fall
  *  through to this scan would only replace a precise message with a vague one. */
-function remoteBranchesFor(id) {
+function remoteBranchesFor(id, state = 'open') {
   const here = currentBranch();
   return remoteBranches()
     .filter((b) => b.name !== here && !isClaimMarker(b.name) && branchCarries(b.name, id))
     .map((b) => {
       const age = branchAgeHours(b.sha);
-      return age !== null && age > RUN_HOURS
-        ? `${b.name}  (last pushed ${Math.round(age)}h ago — older than a run, likely litter)`
-        : b.name;
+      // The same three-way reading `inflight` uses, so the two commands cannot
+      // disagree about the same branch. Before T-0852 this said "likely litter"
+      // about every branch past the window — including the one belonging to a run
+      // still reading sources on a ticket the files themselves call `claimed`.
+      switch (inflightState(state, age, lockedIds(remoteBranches()).has(id))) {
+        case 'held':
+          return `${b.name}  (last pushed ${ageWords(age)}, and ${id}'s claim still stands on the remote — a long read or a dead run; the PR list decides)`;
+        case 'cold':
+          return `${b.name}  (last pushed ${ageWords(age)} — older than a run, likely litter)`;
+        default:
+          return b.name;
+      }
     });
 }
 
@@ -749,9 +815,23 @@ function takeClaimLock(id, by, run, { steal = false } = {}) {
 }
 
 /** Give the claim back. Best-effort by design: a marker nobody released is
- *  litter, never a block, because a stale one is stolen on the next claim. */
+ *  litter, never a block, because a stale one is stolen on the next claim.
+ *
+ *  Best-effort is not the same as SILENT, which is what this was. Every caller
+ *  ignores the boolean, so a delete that failed looked exactly like one that
+ *  worked — and three `done` tickets carried a marker for days with nothing
+ *  anywhere saying so. A missing ref is the one failure that is not news: it
+ *  means the marker was already gone, which is the state we wanted. */
 function releaseClaimLock(id) {
-  return gitTry(['push', 'origin', '--delete', claimBranch(id)]).ok;
+  const r = gitTry(['push', 'origin', '--delete', claimBranch(id)]);
+  const alreadyGone = /remote ref does not exist|unable to delete/i.test(r.err || '');
+  if (!r.ok && !alreadyGone) {
+    const why = (r.err || '').trim().split('\n').filter(Boolean).pop() || 'no reason given';
+    console.warn(`  NOTE: the claim marker ${claimBranch(id)} was not released — ${why}\n`
+      + `        That is litter, not a block: a marker older than ${RUN_HOURS}h is stolen by the\n`
+      + `        next claim, and \`ticket.mjs claims --sweep\` clears it.`);
+  }
+  return r.ok;
 }
 
 function find(tickets, id) {
@@ -1146,7 +1226,7 @@ switch (cmd) {
     // The remote branch list is the one piece of shared state a run CAN see
     // before it starts, so look there. Best-effort by construction: no network,
     // no git, or a detached checkout just means no warning — never a false stop.
-    const rival = remoteBranchesFor(t.id);
+    const rival = remoteBranchesFor(t.id, t.state);
     if (rival.length && !has('force')) {
       console.error(`${t.id} looks like it is already being worked:\n`
         + rival.map((b) => `  ${b}`).join('\n')
@@ -1300,6 +1380,18 @@ switch (cmd) {
     queueReplace(t.id, rows, t.title);
     t.state = 'split'; t.closed = today(); t.closed_at = nowIso();
     writeTicket(t); generateBoard(loadAll());
+    // SPLIT IS A TERMINAL STATE AND MUST GIVE THE CLAIM BACK, exactly as `done`,
+    // `block` and `withdraw` do. It did not, and splitting is not a rare path —
+    // it is what a run does the moment it finds its ticket is bigger than one
+    // demonstration. Measured 2026-09-14: nineteen claim markers stood on the
+    // remote, and THIRTEEN of them belonged to tickets in state `split`. Every
+    // one was a run that finished its work correctly and left a lock behind.
+    //
+    // Nothing else collects them. The janitor lists open PULL REQUESTS, and a
+    // marker has no pull request; the 3h staleness rule only lets the NEXT claim
+    // on that same ticket steal it, which never comes for a ticket that is now
+    // closed and out of the queue.
+    releaseClaimLock(t.id);
     console.log(`${t.id} → split into ${titles.length}; children hold its place in QUEUE`);
     break;
   }
@@ -1326,34 +1418,64 @@ switch (cmd) {
    *   - a branch on an OPEN ticket — that is the loop, working, right now;
    *   - a branch on a DONE ticket — a leftover, safe to delete;
    *   - a ticket the files call `claimed` with no branch — an abandoned claim.
+   *
+   * A FOURTH, since T-0852: a branch older than a run whose ticket the files still
+   * call `claimed`. That used to be filed under "cold", which said it was finished
+   * or litter when it was neither — see `inflightState` for the cohort that cost.
    */
   case 'inflight': {
     const here = currentBranch();
-    const branches = remoteBranches();
+    // `--branches-json <file>` is the offline demonstration, the same device
+    // `landed --pr-json` uses and for the same reason: the correct answer against
+    // the real remote changes hourly, so the gate runs on a constructed branch list
+    // ([{ name, age_hours }]) and asserts the READING rather than the day.
+    const fixtureFile = flag('branches-json');
+    const branches = typeof fixtureFile === 'string'
+      ? JSON.parse(readFileSync(fixtureFile, 'utf8')).map((b) => ({
+          name: b.name, age: b.age_hours === null || b.age_hours === undefined ? null : Number(b.age_hours),
+        }))
+      : remoteBranches().map((b) => ({ name: b.name, age: branchAgeHours(b.sha) }));
+    const locked = lockedIds(branches);
     const rows = [];
     for (const b of branches) {
       const t = tickets.find((x) => branchCarries(b.name, x.id));
-      if (t) rows.push({ b: b.name, t, age: branchAgeHours(b.sha) });
+      if (t) rows.push({ b: b.name, t, age: b.age, how: inflightState(t.state, b.age, locked.has(t.id)) });
     }
-    // Live work first: a young branch on a ticket that is not finished.
-    const isLive = (r) => !['done', 'withdrawn'].includes(r.t.state) && (r.age === null || r.age <= RUN_HOURS);
-    rows.sort((a, b) => Number(isLive(b)) - Number(isLive(a)) || a.t.id.localeCompare(b.t.id));
+    // Live work first, then the claims that outlived the window, then the cold.
+    const RANK = { live: 0, held: 1, cold: 2 };
+    rows.sort((a, b) => RANK[a.how] - RANK[b.how] || a.t.id.localeCompare(b.t.id));
 
     if (!branches.length) {
       console.log('no remote branches readable (no network, or no git) — nothing to report');
       break;
     }
-    const live = rows.filter(isLive);
-    const cold = rows.filter((r) => !isLive(r));
-    const age = (r) => (r.age === null ? '' : r.age < 1 ? `${Math.round(r.age * 60)}m ago` : `${Math.round(r.age)}h ago`);
+    const live = rows.filter((r) => r.how === 'live');
+    const held = rows.filter((r) => r.how === 'held');
+    const cold = rows.filter((r) => r.how === 'cold');
+    const age = (r) => ageWords(r.age);
+    const say = (r) => {
+      console.log(`  ${r.t.id}  ${String(r.t.state).padEnd(9)} ${r.t.requested_by === 'owner' ? 'OWNER ' : '      '}${r.t.title}`);
+      console.log(`          ↳ ${r.b}${isClaimMarker(r.b) ? '   (claim lock — claimed, nothing pushed yet)' : ''}${r.b === here ? '   ← you are here' : ''}   ${age(r)}\n`);
+    };
 
-    if (!live.length) {
-      console.log('IN FLIGHT — nothing. No fresh branch carries a ticket number.');
+    if (has('json')) {
+      console.log(JSON.stringify(rows.map((r) => ({
+        id: r.t.id, state: r.t.state, branch: r.b, age_hours: r.age, reading: r.how,
+      })), null, 2));
+      break;
+    }
+
+    if (!live.length && !held.length) {
+      console.log('IN FLIGHT — nothing. No branch carries an unfinished ticket number.');
     } else {
-      console.log(`IN FLIGHT — ${live.length} branch(es) pushed within ${RUN_HOURS}h on unfinished tickets:\n`);
-      for (const r of live) {
-        console.log(`  ${r.t.id}  ${String(r.t.state).padEnd(9)} ${r.t.requested_by === 'owner' ? 'OWNER ' : '      '}${r.t.title}`);
-        console.log(`          ↳ ${r.b}${isClaimMarker(r.b) ? '   (claim lock — claimed, nothing pushed yet)' : ''}${r.b === here ? '   ← you are here' : ''}   ${age(r)}\n`);
+      console.log(`IN FLIGHT — ${live.length + held.length} branch(es) on unfinished tickets:\n`);
+      for (const r of live) say(r);
+      if (held.length) {
+        console.log(`  …and ${held.length} whose branch is older than a run (${RUN_HOURS}h) but whose`);
+        console.log('  claim still stands on the remote — a run reading sources for hours looks');
+        console.log('  exactly like a run that died after its merge. Do not take one without reading');
+        console.log('  its PR first; `ticket.mjs landed` names the ones whose PR already merged.\n');
+        for (const r of held) say(r);
       }
     }
     console.log('Git cannot tell you whether a branch LANDED — everything here squash-merges,');
@@ -1361,7 +1483,7 @@ switch (cmd) {
     console.log(`  ${REPO_URL}/pulls\n`);
 
     if (cold.length) {
-      console.log(`Cold — finished tickets, or branches older than a run (${cold.length}):`);
+      console.log(`Cold — finished tickets, or unclaimed branches older than a run (${cold.length}):`);
       for (const r of cold) {
         console.log(`  ${r.b}  (${r.t.id}, ${r.t.state}${age(r) ? ', ' + age(r) : ''})`);
       }

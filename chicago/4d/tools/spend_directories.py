@@ -824,7 +824,12 @@ def self_test() -> int:
     stating: it does not break the pass to prove an assertion fires, it asserts the
     four rules against all 138 people and 303 rulings on every run. What it catches is
     a later change to a crosswalk, a carry rule or this file that lets a value cross
-    which the rules forbid — which is the failure that would matter."""
+    which the rules forbid — which is the failure that would matter.
+
+    It holds one rule that is not a carry rule at all: that a card this pass writes
+    NAMES the printed entries it was ruled on (T-1025). That one is about whether the
+    reading can be found again rather than about what crossed, which is why it is the
+    last assertion here and not one of the four."""
     failures = []
 
     def check(label: str, condition: bool) -> None:
@@ -913,6 +918,40 @@ def self_test() -> int:
         check("%s cites less than its claims rest on" % hid,
               stated <= set(block["sources"]) and bool(block["sources"]))
 
+    # THE ENTRY, AND NOT ONLY THE BOOK (T-1025). Citing the volume is the weaker
+    # half of the second hop and it was the only half this pass held. A generated
+    # crosswalk states its one source id at the top of the file, so that id is
+    # shared by every ruling in it and a citation put on a card by ANY other pass
+    # satisfied all of them at once; `measure_research_spend.subject_of` therefore
+    # requires the card to name the printed entry the ruling was made ON. Until
+    # T-0987 stretch 1 (PR #1116) added `ruled_on` this pass wrote the volume and
+    # never the entry, and all 264 of the domain's person-reaching rulings were
+    # unwritten behind cards that cited the book — including the four T-1018 had
+    # just recorded as spent. Nothing in THIS file held that repair afterwards.
+    # It was ratcheted only by `measure_research_spend.py --gate`, one number over
+    # the whole town, which can say that some card is missing some entry and never
+    # which card or which entry.
+    #
+    # So the rule is asserted here, per household and per entry, and deliberately
+    # against the BLOCK this pass writes rather than against the record it lands
+    # on: a record may carry the id from some other pass, and a repair that leans
+    # on that is not this pass's repair. `ruled_on` speaks for the ambiguous and
+    # contested rows too, which carry no graded value at all, so the assertion
+    # covers every entry ruled onto the household and not only the ones that
+    # crossed.
+    entries_of: dict[str, set] = {}
+    for r in rows:
+        hid = r["household_id"]
+        if hid in card:
+            entries_of.setdefault(hid, set()).update(
+                e["claim_id"] for a in r["appearances"] for e in a["entries"]
+                if e["claim_id"])
+    for hid, block in card.items():
+        text = json.dumps(block, ensure_ascii=False)
+        missing = sorted(c for c in entries_of.get(hid, ()) if c not in text)
+        check("%s cites the volume and names none of the entries ruled onto it (%s)"
+              % (hid, ", ".join(missing)), not missing)
+
     # The instrument's own reading of the ledger: a ruling it cannot anchor is
     # invisible to it, and this pass exists to be counted.
     check("a ruling carries no anchor the spend measure can read",
@@ -924,7 +963,7 @@ def self_test() -> int:
         print("   %d assertion(s) failed" % len(failures), file=sys.stderr)
         return 1
     print("   OK: %d assertions over %d people and %d rulings"
-          % (5 + len(rows) * 3 + len(card), len(rows), len(led["rulings"])))
+          % (5 + len(rows) * 3 + len(card) * 2, len(rows), len(led["rulings"])))
     return 0
 
 

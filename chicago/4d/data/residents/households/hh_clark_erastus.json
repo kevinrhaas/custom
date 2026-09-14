@@ -61,7 +61,7 @@
     "value": "none_recorded",
     "confidence": "reconstructed",
     "later_occupation": {
-     "value": "dry goods and groceries, 154 Lake st",
+     "value": "dry goods and groceries",
      "describes_date": 1844,
      "confidence": "attested",
      "sources": [
@@ -134,7 +134,7 @@
    {
     "person_id": "clark_erastus",
     "occupation_later": {
-     "value": "dry goods and groceries, 154 Lake st",
+     "value": "dry goods and groceries",
      "confidence": "attested",
      "describes_date": 1844,
      "sources": [
