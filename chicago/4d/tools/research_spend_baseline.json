@@ -7,7 +7,7 @@
   "census_1830": 0,
   "census_1840": 284,
   "church": 505,
-  "books": 222,
+  "books": 223,
   "directories": 7315,
   "newberry_index": 4914,
   "land_sales": 868,
@@ -31,7 +31,7 @@
    "spent": 1238
   },
   "books": {
-   "read": 302,
+   "read": 303,
    "spent": 80
   },
   "directories": {
@@ -569,6 +569,14 @@
    "to": 7315,
    "date": "2026-09-12",
    "why": "T-0987 stretch 9 withdrew 20 directory matches on a middle initial the rule had never compared — Edward Kendall Rogers is not Edward A. Rogers, Henry Wilcox Clarke is not H. B. Clarke — and ten printed entries stop being ruled on because the man they were ruled onto was the wrong man. The unspent count rises for a reading that got MORE careful, not for reading that outran the town: 7305 -> 7315, every one of the ten named in the crosswalks' middle_initial_refusals blocks with the letter it turned on."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 222,
+   "to": 223,
+   "date": "2026-09-14",
+   "why": "T-1017 read one passage of Moses & Kirkland vol. 2 (bk_mose2_021) to settle a question about the REGISTER, not about a card: whether buying at the town's October 1833 school-section sale is itself a check that a name belonged to the town. It is not, and the passage is why — the auction's fourth-largest hand, Arthur Bronson, is one of 'two visitors to the settlement from New York' who went home again. The claim is spent in data/research/land_sales/resident_rulings.json (the_school_section_answer, and the BRONSON ARTHUR, SKINNER JOSEPH and RUSSELL SAMUEL rulings), which is another domain's file, so this gate cannot see it and correctly reports books one unit ahead. Deliberately NOT spent onto a card: whether it retracts hh_bronson_arthur's present_on_scene_date is a question about the 1833 tax list and is filed as T-1117, which is where the spend belongs."
   }
  ],
  "lowered": [
