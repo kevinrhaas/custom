@@ -252,7 +252,7 @@
    "inferred": 886,
    "reconstructed": 0
   },
-  "letter_list_only": 747,
+  "letter_list_only": 740,
   "projected_residents": 733,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
@@ -669,7 +669,6 @@
   {
    "id": "hh_ambrose_joshua",
    "file": "households/hh_ambrose_joshua.json",
-   "letter_list_only": true,
    "head": "ambrose_joshua",
    "division": "unplaced",
    "persons": 1,
@@ -2713,7 +2712,6 @@
   {
    "id": "hh_bradford_harriet",
    "file": "households/hh_bradford_harriet.json",
-   "letter_list_only": true,
    "head": "bradford_harriet",
    "division": "unplaced",
    "persons": 1,
@@ -4007,7 +4005,6 @@
   {
    "id": "hh_chapman_chas_h",
    "file": "households/hh_chapman_chas_h.json",
-   "letter_list_only": true,
    "head": "chapman_chas_h",
    "division": "unplaced",
    "persons": 1,
@@ -6961,7 +6958,6 @@
   {
    "id": "hh_fitzgerald_thos",
    "file": "households/hh_fitzgerald_thos.json",
-   "letter_list_only": true,
    "head": "fitzgerald_thos",
    "division": "unplaced",
    "persons": 1,
@@ -13405,7 +13401,6 @@
   {
    "id": "hh_murray_alonzo",
    "file": "households/hh_murray_alonzo.json",
-   "letter_list_only": true,
    "head": "murray_alonzo",
    "division": "unplaced",
    "persons": 1,
@@ -13531,7 +13526,6 @@
   {
    "id": "hh_neff_r_a",
    "file": "households/hh_neff_r_a.json",
-   "letter_list_only": true,
    "head": "neff_r_a",
    "division": "unplaced",
    "persons": 1,
@@ -16640,7 +16634,6 @@
   {
    "id": "hh_simons_e",
    "file": "households/hh_simons_e.json",
-   "letter_list_only": true,
    "head": "simons_e",
    "division": "unplaced",
    "persons": 1,

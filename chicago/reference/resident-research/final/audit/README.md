@@ -39,8 +39,8 @@ Each line is *how many of the 1295 people carry at least one record of that kind
 | --- | ---: | ---: |
 | `corroborated_across_categories` | 454 | 35.1% |
 | `two_or_more_sources_one_category` | 12 | 0.9% |
-| `one_source` | 255 | 19.7% |
-| `the_letter_lists_alone` | 571 | 44.1% |
+| `one_source` | 259 | 20.0% |
+| `the_letter_lists_alone` | 567 | 43.8% |
 | `no_source` | 3 | 0.2% |
 
 `corroborated_across_categories` is the only result that means two *kinds* of
@@ -324,7 +324,7 @@ defect in this export.
 | no address | 1219 | neither `lives_at` nor `works_at` resolves |
 | unplaced | 1199 | the household carries division `unplaced`: in the town, on no lot |
 | rests on one source | 826 | one source id on the card and no second category to check it against |
-| rests on the letter lists alone | 571 | known only from the post office's uncalled-for lists |
+| rests on the letter lists alone | 567 | known only from the post office's uncalled-for lists |
 | no research row | 455 | no cohort ticket has reviewed this person; the programme reached 840 of 1295 |
 | candidate identity open | 120 | a candidate was found and not asserted; the identity is still a question |
 | conflicting evidence, ruled | 96 | a recorded conflict carries a written adjudication and a named reopening condition; every one of them is a decline, and none adopts a candidate |

@@ -10188,7 +10188,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 747 people
+**Scope:** `residents.persons[letter_list_only]` — 740 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
@@ -10213,8 +10213,9 @@ So each is a household of ONE, `division: unplaced`, `lives_at` and `works_at` u
 `occupation` recorded as none, `letter_list_only: true`, carrying `letter_list_returns` — the
 dated returns behind it — so a name printed on the scene date can be told from one printed
 eighteen months earlier. `--gate` refuses a roof, a trade, a second member, a manifest row that
-drops the flag and a structure record that names one of them; `--self-test` breaks each of those
-seven assertions and requires the gate to fire.
+disagrees with its card, a structure record that names one of them, and — since T-1005 — the
+flag itself on a person whose own `press_evidence` carries an ordinary reading of the papers;
+`--self-test` breaks each of those ten assertions and requires the gate to fire.
 
 **And twenty-two have joined it, off a line nothing had ever read (T-1011).** The 1 January
 1834 return prints 170 lines. The extraction this pass minted that cohort from is two segmenter
@@ -10237,6 +10238,21 @@ he is the one Norton of that initial the town holds. The record is not deleted; 
 onto him, kept whole under `data/residents/merged/`, and its letter becomes a second source for
 a man the town already documents. That is the only way a name leaves this set — a ruling that
 says who it already was, never a quiet withdrawal — and it takes the count from 727 to 726.
+
+**And seven have left it the other way — the record contradicting its own flag (T-1005).** The
+flag is written at MINT time, when a list of uncalled-for letters is all there is. The
+consolidation passes then add `press_evidence` to a card and never looked at the flag again, so
+seven cards reached `dev` asserting *known only from the post office* while carrying, on the same
+record, an ordinary reading of the papers — Chas. H. Chapman carried three. Each was adjudicated
+against the newspaper register, which marks those press-persons `letter_list_only: false`, and
+against the claims themselves, which are entered as business, building, event and notice rather
+than as the `person`-kind claim a letter list is. The flag is cleared on all seven and the notes
+that said *nothing else in the corpus names this person* now name what does. Nobody leaves the
+TOWN by this: they are the same seven residents, read on better evidence than the set they were
+counted in. What left is the claim that the post office was all there was, and the count goes
+from 747 to 740. The rule is one line — a person may not carry the flag while a press row on the
+same record is not a letter list — it is one-directional, so it may refuse the flag and never
+grant it, and it is now the gate's own assertion.
 
 **What the refusals still take, and they are the only thing between a post-office list and this
 town's population.** 1,181 of the 1,908 names in the pool are refused, in order: 454 garbled by
