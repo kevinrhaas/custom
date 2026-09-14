@@ -114,6 +114,7 @@ jobs:
       changed: ${{ steps.push.outputs.changed }}
       sha: ${{ steps.baseref.outputs.sha }}
       base: ${{ steps.baseref.outputs.branch }}
+      base_live: ${{ steps.baseref.outputs.base_live }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -145,6 +146,11 @@ jobs:
       # from the result. The rule and its tiers live in tools/bake_ref.py.
       - name: Which ref does this bake build?
         id: baseref
+        env:
+          # --check-base asks the pulls API whether this ref still has an open PR.
+          # Read-only, and its absence is not fatal — bake_ref.py answers "live"
+          # when it cannot ask.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           # stdout is the branch, stderr is the reason, and --github also writes
@@ -155,6 +161,18 @@ jobs:
             git checkout -B "$BRANCH" "refs/remotes/origin/$BRANCH"
           fi
           echo "baking $BRANCH at $(git rev-parse --short HEAD)"
+          # IS THAT REF STILL GOING ANYWHERE? A bake runs the better part of an
+          # hour, and the branch can merge while it does — after which the PR
+          # opens into a branch nothing will ever merge again. Seven bakes were
+          # in that state on 2026-09-14 (#1283 #1285 #1286 #1288 #1292 #1293
+          # #1294), five of them already dead before the bake started. The rule,
+          # its three answers and that measurement live in tools/bake_ref.py.
+          # It fails safe: any doubt, including an unreachable API, answers 1.
+          BASE_LIVE=$(python3 chicago/4d/tools/bake_ref.py --check-base "$BRANCH")
+          echo "base_live=$BASE_LIVE" >> "$GITHUB_OUTPUT"
+          if [ "$BASE_LIVE" != "1" ]; then
+            echo "::notice::$BRANCH has no open pull request left, so a bake PR into it could never reach dev. The bake still runs and pushes its branch; open-pr will not open a PR. The next bake on dev regenerates this content from the sources that did merge."
+          fi
           # The exact commit the mirror was baked from. The smoke and open-pr jobs
           # check this out rather than the workflow ref, so all three jobs read the
           # same tools/ and the same tree — a bake that started before dev moved is
@@ -447,7 +465,14 @@ jobs:
   # Only now. A bake whose mirror fails the smoke keeps its branch and gets no PR.
   open-pr:
     needs: [bake, smoke]
-    if: needs.bake.outputs.changed == '1'
+    # `base_live` is the second half of T-0454. `base` says which ref this bake
+    # was built from; `base_live` says whether that ref still has anywhere to go.
+    # A bake whose branch merged while it ran would otherwise open a 196-file PR
+    # into a branch nothing will ever merge again — and one that also matches the
+    # steward janitor's `steward/*` sweep, so it would cost a full check.sh gate
+    # every hour for a base that cannot move. The branch is still pushed; only
+    # the PR is withheld, and the next dev bake regenerates the content.
+    if: needs.bake.outputs.changed == '1' && needs.bake.outputs.base_live == '1'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

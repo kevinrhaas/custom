@@ -292,4 +292,33 @@ before T-0831 resolves the same way one cut after it does (T-0857)." 2>/dev/null
 done <<< "$PRS"
 
 say ""
+
+# --- claim markers nobody released ------------------------------------------
+# A claim is a branch, `claim/t-NNNN`, and NOTHING ELSE COLLECTS THEM. The
+# steward janitor sweeps open PULL REQUESTS and a marker has none; the 3h
+# staleness rule only lets the NEXT claim on that same ticket steal it, which
+# never comes once the ticket is closed and out of the queue.
+#
+# So they accumulated. Measured 2026-09-14: nineteen markers on the remote, the
+# oldest three days old, and seventeen of the nineteen belonging to tickets that
+# were no longer open. The largest single cause was `ticket.mjs split` never
+# releasing — fixed in the tool — but a run that DIES mid-work leaves one too,
+# and no fix in the tool can help there because the run is gone.
+#
+# The lap is the right broom: it already runs on every push to dev, it already
+# holds the credentials, and `claims --sweep` deletes only markers older than
+# RUN_HOURS — which the claim path itself already treats as dead and steals.
+# Best-effort, and never the lap's exit status: a marker is litter, not a block.
+# $WORK, not a relative path: the loop above walks in and out of checkouts, so
+# the only directory this script can name with confidence is the one it resolved
+# at the top.
+if [ -f "$WORK/chicago/4d/tools/ticket.mjs" ]; then
+  say "claim markers:"
+  ( cd "$WORK/chicago/4d" && node tools/ticket.mjs claims --sweep 2>&1 ) \
+    | tail -n 60 | while IFS= read -r line; do say "  $line"; done
+else
+  say "claim markers: tools/ticket.mjs is not in this checkout — not swept"
+fi
+
+say ""
 say "PR lap: pushed=$PUSHED already-current=$NOOP left-alone=$SKIPPED red=$RED"
