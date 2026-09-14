@@ -13,8 +13,8 @@
  "reading_note": "transcription_mediated throughout: this is archive.org's OCR of the printed page, machine-read and not checked against the image by eye. The damage is left in every quote on purpose — 'Win.' for 'Wm.', 'ISickalls' for 'Nickalls' — because a tidied quote cannot be found again. The repair, where one is safe, is in normalized. A forename the scanner garbled beyond a compositor's alphabet is repaired against Kim Torp's independent transcription of the same directory, and the repaired entry carries normalized.given_repair with both readings and the citation (T-0695); where that second hand cannot read the token either, the damage stands.",
  "counts": {
   "claims": 2073,
-  "person": 1984,
-  "business": 89,
+  "person": 1977,
+  "business": 96,
   "given_repairs": 15,
   "address_refusals": 5
  },
@@ -1975,20 +1975,37 @@
   },
   {
    "id": "n1844_e0063",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Ballentine <fc Sherman, dry goods and groceries, 122 Lake street\n  (See card)",
    "normalized": {
-    "printed_name": "Ballentine <fc Sherman",
-    "surname": "Ballentine <fc Sherman",
+    "printed_name": "Ballentine & Sherman",
+    "surname": null,
     "given": null,
-    "firm": false,
+    "firm": true,
     "occupation": "dry goods and groceries, 122 Lake street (See card)",
     "address": null,
-    "name_overrun": {
-     "refused": "firm_conj",
-     "why": "the scanner set this firm's ampersand as '<fc', so the firm test never fired; capping would truncate it to a man who is not in the book",
-     "as_split_on_comma": "Ballentine <fc Sherman"
+    "conj_repair": {
+     "as_read": "<fc",
+     "reading": "&",
+     "span_as_read": "Ballentine <fc Sherman",
+     "span_reading": "Ballentine & Sherman",
+     "printed_page": 22,
+     "why": "The scanner set this firm's ampersand as '<fc', so the firm test never fired and the partnership read as a man whose surname was the whole firm; the quote keeps the damage.",
+     "evidence": {
+      "and_the_same_volume_prints_the_partnership": {
+       "claim": "n1844_e0062",
+       "reads": "Ballentine, David, of B. & Sherman, Dearborn street bet Kinzie and Michigan",
+       "note": "Norris sets the ampersand correctly on this line, so the firm is ruled on the book's own second printing of it."
+      },
+      "second_hand": {
+       "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+       "file": "data/research/genealogytrails/text/1844directory.txt",
+       "line": 88,
+       "reads": "Ballentine & Sherman, dry goods & groceries, 122 Lake st"
+      }
+     },
+     "ticket": "T-1021"
     },
     "as_printed": "Ballentine <fc Sherman, dry goods and groceries, 122 Lake street (See card)",
     "section": "directory"
@@ -2004,7 +2021,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Ballentine <fc Sherman"
+    "Ballentine & Sherman"
    ],
    "town_finding": false,
    "notes": null
@@ -5349,20 +5366,37 @@
   },
   {
    "id": "n1844_e0168",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Bowen 6c Cole, dry goods and groceries, 66 Lake street",
    "normalized": {
-    "printed_name": "Bowen 6c Cole",
-    "surname": "Bowen 6c Cole",
+    "printed_name": "Bowen & Cole",
+    "surname": null,
     "given": null,
-    "firm": false,
+    "firm": true,
     "occupation": "dry goods and groceries, 66 Lake street",
     "address": null,
-    "name_overrun": {
-     "refused": "firm_conj",
-     "why": "the scanner set this firm's ampersand as '6c', so the firm test never fired; capping would truncate it to a man who is not in the book",
-     "as_split_on_comma": "Bowen 6c Cole"
+    "conj_repair": {
+     "as_read": "6c",
+     "reading": "&",
+     "span_as_read": "Bowen 6c Cole",
+     "span_reading": "Bowen & Cole",
+     "printed_page": 25,
+     "why": "The scanner set this firm's ampersand as '6c', so the firm test never fired and the partnership read as a man whose surname was the whole firm; the quote keeps the damage.",
+     "evidence": {
+      "and_the_same_volume_prints_the_partnership": {
+       "claim": "n1844_e0167",
+       "reads": "Bowen, Erastus, of B. & Cole, house Michigan avenue",
+       "note": "Norris sets the ampersand correctly on this line, so the firm is ruled on the book's own second printing of it."
+      },
+      "second_hand": {
+       "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+       "file": "data/research/genealogytrails/text/1844directory.txt",
+       "line": 196,
+       "reads": "Bowen & Cole, dry goods & groceries, 66 Lake st"
+      }
+     },
+     "ticket": "T-1021"
     },
     "as_printed": "Bowen 6c Cole, dry goods and groceries, 66 Lake street",
     "section": "directory"
@@ -5378,7 +5412,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Bowen 6c Cole"
+    "Bowen & Cole"
    ],
    "town_finding": false,
    "notes": null
@@ -5726,20 +5760,37 @@
   },
   {
    "id": "n1844_e0180",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Bracken it Tuller, dry goods and groceries, 161 Lake st (See card)",
    "normalized": {
-    "printed_name": "Bracken it Tuller",
-    "surname": "Bracken it Tuller",
+    "printed_name": "Bracken & Tuller",
+    "surname": null,
     "given": null,
-    "firm": false,
+    "firm": true,
     "occupation": "dry goods and groceries, 161 Lake st (See card)",
     "address": null,
-    "name_overrun": {
-     "refused": "firm_conj",
-     "why": "the scanner set this firm's ampersand as 'it', so the firm test never fired; capping would truncate it to a man who is not in the book",
-     "as_split_on_comma": "Bracken it Tuller"
+    "conj_repair": {
+     "as_read": "it",
+     "reading": "&",
+     "span_as_read": "Bracken it Tuller",
+     "span_reading": "Bracken & Tuller",
+     "printed_page": 25,
+     "why": "The scanner set this firm's ampersand as 'it', so the firm test never fired and the partnership read as a man whose surname was the whole firm; the quote keeps the damage.",
+     "evidence": {
+      "and_the_same_volume_prints_the_partnership": {
+       "claim": "n1844_e0179",
+       "reads": "Bracken, John, of Bracken & Tuller, res Wabash avenue",
+       "note": "Norris sets the ampersand correctly on this line, so the firm is ruled on the book's own second printing of it."
+      },
+      "second_hand": {
+       "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+       "file": "data/research/genealogytrails/text/1844directory.txt",
+       "line": 208,
+       "reads": "Bracken & Tuller, dry goods and groceries, 161 Lake st"
+      }
+     },
+     "ticket": "T-1021"
     },
     "as_printed": "Bracken it Tuller, dry goods and groceries, 161 Lake st (See card)",
     "section": "directory"
@@ -5755,7 +5806,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Bracken it Tuller"
+    "Bracken & Tuller"
    ],
    "town_finding": false,
    "notes": null
@@ -13980,20 +14031,38 @@
   },
   {
    "id": "n1844_e0439",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Crauer <fc Sanser, builders, Clark st. b Randolph and Michigan sts",
    "normalized": {
-    "printed_name": "Crauer <fc Sanser",
-    "surname": "Crauer <fc Sanser",
+    "printed_name": "Crauer & Sanser",
+    "surname": null,
     "given": null,
-    "firm": false,
+    "firm": true,
     "occupation": "builders, Clark st",
     "address": "b Randolph and Michigan sts",
-    "name_overrun": {
-     "refused": "firm_conj",
-     "why": "the scanner set this firm's ampersand as '<fc', so the firm test never fired; capping would truncate it to a man who is not in the book",
-     "as_split_on_comma": "Crauer <fc Sanser"
+    "conj_repair": {
+     "as_read": "<fc",
+     "reading": "&",
+     "span_as_read": "Crauer <fc Sanser",
+     "span_reading": "Crauer & Sanser",
+     "printed_page": 31,
+     "why": "The scanner set this firm's ampersand as '<fc', so the firm test never fired and the partnership read as a man whose surname was the whole firm; the quote keeps the damage.",
+     "evidence": {
+      "and_the_same_volume_prints_the_partnership": {
+       "claim": "n1844_e1555",
+       "reads": "Sanser, John W. of Cruver & S. house cor Clark and Michigan sts",
+       "note": "Norris sets the ampersand correctly on this line, so the firm is ruled on the book's own second printing of it."
+      },
+      "second_hand": {
+       "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+       "file": "data/research/genealogytrails/text/1844directory.txt",
+       "line": 474,
+       "reads": "Cruver & Sanser, builders, Clark st. b Randolph & Michigan sts"
+      },
+      "and_where_the_second_hand_disagrees": "Kim Torp reads the first partner's surname CRUVER, and so does this volume's own second printing of the firm (n1844_e1555, n1844_e0993, n1844_e1778). The ampersand is the only character this row lifts: the u/a of the surname is a separate reading, it needs the page image, and it is left standing as the scanner set it."
+     },
+     "ticket": "T-1021"
     },
     "as_printed": "Crauer <fc Sanser, builders, Clark st. b Randolph and Michigan sts",
     "section": "directory"
@@ -14009,7 +14078,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Crauer <fc Sanser"
+    "Crauer & Sanser"
    ],
    "town_finding": false,
    "notes": null
@@ -22798,20 +22867,37 @@
   },
   {
    "id": "n1844_e0719",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Gould it Dodge, ball alley and grocery, South Water st. b State\n  and Dearborn sts",
    "normalized": {
-    "printed_name": "Gould it Dodge",
-    "surname": "Gould it Dodge",
+    "printed_name": "Gould & Dodge",
+    "surname": null,
     "given": null,
-    "firm": false,
+    "firm": true,
     "occupation": "ball alley and grocery, South Water st",
     "address": "b State and Dearborn sts",
-    "name_overrun": {
-     "refused": "firm_conj",
-     "why": "the scanner set this firm's ampersand as 'it', so the firm test never fired; capping would truncate it to a man who is not in the book",
-     "as_split_on_comma": "Gould it Dodge"
+    "conj_repair": {
+     "as_read": "it",
+     "reading": "&",
+     "span_as_read": "Gould it Dodge",
+     "span_reading": "Gould & Dodge",
+     "printed_page": 37,
+     "why": "The scanner set this firm's ampersand as 'it', so the firm test never fired and the partnership read as a man whose surname was the whole firm; the quote keeps the damage.",
+     "evidence": {
+      "and_the_same_volume_prints_the_partnership": {
+       "claim": "n1844_e0507",
+       "reads": "Dodge, Martin, of Gould & Dodge, res N. Gould's",
+       "note": "Norris sets the ampersand correctly on this line, so the firm is ruled on the book's own second printing of it."
+      },
+      "second_hand": {
+       "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+       "file": "data/research/genealogytrails/text/1844directory.txt",
+       "line": 759,
+       "reads": "Gould & Dodge, ball alley and grocery, South Water st. b State & Dearborn sts"
+      }
+     },
+     "ticket": "T-1021"
     },
     "as_printed": "Gould it Dodge, ball alley and grocery, South Water st. b State and Dearborn sts",
     "section": "directory"
@@ -22827,7 +22913,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Gould it Dodge"
+    "Gould & Dodge"
    ],
    "town_finding": false,
    "notes": null
@@ -25030,20 +25116,37 @@
   },
   {
    "id": "n1844_e0787",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Hamilton <fc White, dry goods and grocery store, 139 Lake st",
    "normalized": {
-    "printed_name": "Hamilton <fc White",
-    "surname": "Hamilton <fc White",
+    "printed_name": "Hamilton & White",
+    "surname": null,
     "given": null,
-    "firm": false,
+    "firm": true,
     "occupation": "dry goods and grocery store, 139 Lake st",
     "address": null,
-    "name_overrun": {
-     "refused": "firm_conj",
-     "why": "the scanner set this firm's ampersand as '<fc', so the firm test never fired; capping would truncate it to a man who is not in the book",
-     "as_split_on_comma": "Hamilton <fc White"
+    "conj_repair": {
+     "as_read": "<fc",
+     "reading": "&",
+     "span_as_read": "Hamilton <fc White",
+     "span_reading": "Hamilton & White",
+     "printed_page": 38,
+     "why": "The scanner set this firm's ampersand as '<fc', so the firm test never fired and the partnership read as a man whose surname was the whole firm; the quote keeps the damage.",
+     "evidence": {
+      "and_the_same_volume_prints_the_partnership": {
+       "claim": "n1844_e0783",
+       "reads": "Hamilton, Robert P. of H. & White, res T. E. Hamilton's",
+       "note": "Norris sets the ampersand correctly on this line, so the firm is ruled on the book's own second printing of it."
+      },
+      "second_hand": {
+       "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+       "file": "data/research/genealogytrails/text/1844directory.txt",
+       "line": 828,
+       "reads": "Hamilton & White, dry goods and grocery store, 139 Lake st"
+      }
+     },
+     "ticket": "T-1021"
     },
     "as_printed": "Hamilton <fc White, dry goods and grocery store, 139 Lake st",
     "section": "directory"
@@ -25059,7 +25162,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Hamilton <fc White"
+    "Hamilton & White"
    ],
    "town_finding": false,
    "notes": null
@@ -51857,20 +51960,38 @@
   },
   {
    "id": "n1844_e1629",
-   "kind": "person",
+   "kind": "business",
    "reading": "transcription_mediated",
    "quote": "Skinner 6c .Smith, Mansion House. 6G Lake street (Sec card)",
    "normalized": {
-    "printed_name": "Skinner 6c .Smith, Mansion",
-    "surname": "Skinner 6c .Smith",
-    "given": "Mansion",
-    "firm": false,
-    "occupation": null,
+    "printed_name": "Skinner & Smith",
+    "surname": null,
+    "given": null,
+    "firm": true,
+    "occupation": "Mansion",
     "address": "House. 6G Lake street (Sec card)",
-    "name_overrun": {
-     "refused": "firm_conj",
-     "why": "the scanner set this firm's ampersand as '6c', so the firm test never fired; capping would truncate it to a man who is not in the book",
-     "as_split_on_comma": "Skinner 6c .Smith"
+    "conj_repair": {
+     "as_read": "6c",
+     "reading": "&",
+     "span_as_read": "Skinner 6c .Smith",
+     "span_reading": "Skinner & Smith",
+     "printed_page": 55,
+     "why": "The scanner set this firm's ampersand as '6c', so the firm test never fired and the partnership read as a man whose surname was the whole firm; the quote keeps the damage.",
+     "evidence": {
+      "and_the_same_volume_prints_the_partnership": {
+       "claim": "n1844_e1654",
+       "reads": "Smith, J. F. of Skinner & S., Mansion House",
+       "note": "Norris sets the ampersand correctly on this line, so the firm is ruled on the book's own second printing of it."
+      },
+      "second_hand": {
+       "source": "Kim Torp's transcription of Norris 1844 for genealogytrails.com (© 2002), cached at data/research/genealogytrails/text/ by tools/read_genealogytrails.py --fetch. An independent hand, typed from a different copy of the same printed book.",
+       "file": "data/research/genealogytrails/text/1844dir2.txt",
+       "line": 513,
+       "reads": "Skinner & Smith, Mansion house, 86 Lake st"
+      },
+      "this_row_also_lifts": "the stray full stop the scanner set before Smith. It is the same line and the same sort, both witnesses print the partner's name clean, and left standing it would name the firm `Skinner & .Smith`. The quote keeps it."
+     },
+     "ticket": "T-1021"
     },
     "as_printed": "Skinner 6c .Smith, Mansion House. 6G Lake street (Sec card)",
     "section": "directory"
@@ -51886,7 +52007,7 @@
    },
    "describes_date": "1844",
    "entities": [
-    "Skinner 6c .Smith, Mansion"
+    "Skinner & Smith"
    ],
    "town_finding": false,
    "notes": null

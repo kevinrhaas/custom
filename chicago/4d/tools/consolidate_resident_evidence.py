@@ -84,7 +84,10 @@ GENERATED_BY = "tools/consolidate_resident_evidence.py --build"
 MERGE_RULES = {
     "M1": "Identical normalised name — same surname, same forename tokens, letter for letter.",
     "M2": "An initial-only forename attaches to the ONE full forename of that surname carrying "
-          "the initial. Two or more rivals is R3, never a choice.",
+          "the initial. Two or more rivals is R3, never a choice. EVERY initial the reading "
+          "prints is compared, not just the leading one (T-1120): where the reading and the "
+          "anchor both set a name-part at a position and those parts begin with different "
+          "letters, M2 does not fire and R7 refuses.",
     "M3": "A middle initial present on one reading and absent on the other, forename and surname "
           "agreeing, and no rival of that surname carrying a different middle initial.",
     "D1": "A merge already declared by a domain's own crosswalk or by the newspapers' identity.json. "
@@ -100,6 +103,7 @@ REFUSAL_RULES = {
           "Refused with the rivals named rather than guessed at.",
     "R4": "Same surname and same forename initial, but two different full forenames "
           "(Jonathan against John). Two men until something says otherwise.",
+    "R7": "SAME LEADING INITIAL, DISAGREEING MIDDLE (T-1120). An initial-only reading and the one full forename M2 would attach it to both set a name-part after the forename, and those parts begin with different letters: `B. S. Sherman` against `Sherman, Benj. F.`. R4 already says two different full forenames behind one initial are two men; this is that fact one position to the right, and M3 exists precisely because the readable case is a middle initial present on ONE side — present on both and different is a disagreement, not a silence. R6's own initials test has compared every position since T-0951; M2 compared only the leading one, and folded across the difference. Two men until something says otherwise.",
     "D2": "A refusal already declared by a domain's own crosswalk or by identity.json.",
     "R6": "A FEMALE HONORIFIC STANDING ON A MAN'S OWN NAME. `Mrs Rufus Brown` is not "
           "Rufus Brown: the honorific strip leaves the husband's forename tokens on both "
@@ -405,6 +409,30 @@ def forename_signature(given: list[str]) -> tuple[str, ...]:
 
 def is_initial(token: str) -> bool:
     return len(token) == 1
+
+
+def as_printed(token: str) -> str:
+    """A name-part the way the page sets it — `F.` for an initial, `Tuttle` for a name."""
+    return token.upper() + "." if is_initial(token) else token.title()
+
+
+def initials_disagree(given: list[str], signature: tuple[str, ...]) -> int | None:
+    """T-1120. The first position after the forename where two readings of one name
+    set name-parts beginning with DIFFERENT letters -> that index, else None.
+
+    Compares only positions both readings fill: a middle initial present on one side
+    and absent on the other is M3's case and stays M3's case. `Ambrose` against `A.`
+    agrees — the test is the letter, because a directory abbreviates and a census does
+    not, and the same man is printed both ways. `S.` against `F.` does not agree, and
+    nothing in this corpus abbreviates Franklin as S.
+
+    Position 0 is skipped: M2's caller has already matched the forename initial, and
+    R2/R4 own the ways that one can differ.
+    """
+    for i in range(1, min(len(given), len(signature))):
+        if given[i][0] != signature[i][0]:
+            return i
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -870,12 +898,30 @@ def cluster(appearances, splits=None):
             fits = [s for s in anchors if s and s[0][0] == given[0][0]]
             exact = [s for s in anchors if forename_signature(given) == tuple(t[0] for t in s)]
             chosen = None
-            if len(fits) == 1:
+            # T-1120. M2 compares EVERY initial the reading prints, not the leading one
+            # alone. `fits` is matched on given[0] only, so a sole fit can still disagree
+            # one position to the right — `B. S. Sherman` reaching `Sherman, Benj. F.` —
+            # and folding there crosses a difference the page states. R7 refuses it.
+            # `exact` needs every position equal, so it can never be the disagreeing one.
+            clash = initials_disagree(given, fits[0]) if len(fits) == 1 else None
+            if len(fits) == 1 and clash is None:
                 chosen = fits[0]
                 entry["_merge_rule"] = "M2"
             elif len(exact) == 1:
                 chosen = exact[0]
                 entry["_merge_rule"] = "M2"
+            elif clash is not None:
+                refusals.append({
+                    "rule": "R7",
+                    "why": ("an initial-only forename and the one full forename of that "
+                            "surname it fits set different letters after the forename"),
+                    "domain": entry["domain"], "record_id": entry["record_id"],
+                    "as_read": entry.get("as_read"),
+                    "anchor": " ".join(fits[0]).title() + " " + surname.title(),
+                    "disagreeing_position": clash,
+                    "reading_prints": as_printed(given[clash]),
+                    "anchor_prints": as_printed(fits[0][clash]),
+                })
             elif len(fits) > 1:
                 refusals.append({
                     "rule": "R3",
@@ -2630,6 +2676,46 @@ def cmd_self_test() -> int:
         failures += 1
     else:
         print("  ok    an initial-only forename with two rivals is refused, not guessed")
+
+    # ---- T-1120: M2 reads every initial, not just the leading one -----------
+    sherman = cluster([
+        {"domain": "d", "record_id": "1", "normalized": "Benjamin F. Sherman",
+         "evidence_class": "poll_1835", "source_id": "s"},
+        {"domain": "d", "record_id": "2", "normalized": "B. S. Sherman",
+         "evidence_class": "poll_1835", "source_id": "s"},
+    ])
+    crossed = [r for r in sherman[1] if r["rule"] == "R7"]
+    if len(sherman[0]) == 2 and len(crossed) == 1 and crossed[0]["record_id"] == "2":
+        print("  ok    a disagreeing middle initial refuses the fold (R7)")
+    else:
+        print("  FAIL 'B. S. Sherman' folded onto 'Benjamin F. Sherman' across the middle")
+        failures += 1
+
+    # M3's case is untouched: the middle initial is present on ONE side only.
+    silent = cluster([
+        {"domain": "d", "record_id": "1", "normalized": "Benjamin F. Sherman",
+         "evidence_class": "poll_1835", "source_id": "s"},
+        {"domain": "d", "record_id": "2", "normalized": "B. Sherman",
+         "evidence_class": "poll_1835", "source_id": "s"},
+    ])
+    if len(silent[0]) == 1 and not any(r["rule"] == "R7" for r in silent[1]):
+        print("  ok    …and a middle initial absent on one side still merges")
+    else:
+        print("  FAIL 'B. Sherman' was refused for a middle initial it never printed")
+        failures += 1
+
+    # THE LETTER IS THE TEST, not the length: a directory abbreviates what a card spells.
+    spelled = cluster([
+        {"domain": "d", "record_id": "1", "normalized": "J. Ambrose Wight",
+         "evidence_class": "poll_1835", "source_id": "s"},
+        {"domain": "d", "record_id": "2", "normalized": "Joseph A. Wight",
+         "evidence_class": "poll_1835", "source_id": "s"},
+    ])
+    if not any(r["rule"] == "R7" for r in spelled[1]):
+        print("  ok    …and `Ambrose` against `A.` is agreement, not a clash")
+    else:
+        print("  FAIL an abbreviated middle name was read as a different letter")
+        failures += 1
 
     # ---- T-0843: one identity, one card ------------------------------------
     def only_cards(*rows):

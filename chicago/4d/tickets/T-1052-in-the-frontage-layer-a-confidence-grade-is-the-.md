@@ -1,7 +1,7 @@
 ---
 id: T-1052
 title: In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-14
+pr: 1320
+claimed_by: run 9/14/2026, 6:53:06 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-14T12:19:29.000Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34840138482
 ---
 
 In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies.

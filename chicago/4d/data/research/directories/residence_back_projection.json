@@ -9,8 +9,8 @@
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
   "addresses_adjudicated": 58,
-  "printed_as_a_residence": 46,
-  "printed_as_a_lodging": 12,
+  "printed_as_a_residence": 45,
+  "printed_as_a_lodging": 13,
   "placed": 12,
   "placed_as_a_face": 12,
   "placed_with_no_1835_trade": 8,
@@ -756,9 +756,9 @@
    "placement": null
   },
   {
-   "household_id": "hh_king_john_lyle",
-   "person_id": "king_john_lyle",
-   "person": "John Lyle King",
+   "household_id": "hh_king_j_d",
+   "person_id": "king_j_d",
+   "person": "J D King",
    "address_as_printed": "res S. Jackson's",
    "address_read_as_the_home": null,
    "kind": "resides",
@@ -1130,6 +1130,28 @@
    "placement": "face"
   },
   {
+   "household_id": "hh_sherman_william_george",
+   "person_id": "sherman_william_george",
+   "person": "William George Sherman",
+   "address_as_printed": "bds Oren Sherman",
+   "address_read_as_the_home": null,
+   "kind": "boards",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": null,
+   "trade_not_required": true,
+   "lives_at_1835": null,
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The entry names the person this man boarded with and not a street. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "street_id": null,
+   "face": null,
+   "placement": null
+  },
+  {
    "household_id": "hh_simons_e",
    "person_id": "simons_e",
    "person": "E. Simons",
@@ -1257,28 +1279,6 @@
    "outcome": "refused",
    "clause": "R4",
    "reason": "Adams Street is south of Madison, outside the platted town of 1835.",
-   "street_id": null,
-   "face": null,
-   "placement": null
-  },
-  {
-   "household_id": "hh_wight_j_ambrose",
-   "person_id": "wight_j_ambrose",
-   "person": "J Ambrose Wight",
-   "address_as_printed": "res Mrs. Wright's",
-   "address_read_as_the_home": null,
-   "kind": "resides",
-   "describes_date": 1844,
-   "read_back_years": 9,
-   "sources": [
-    "norris_directory_1844"
-   ],
-   "occupation_1835": null,
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "refused",
-   "clause": "R4",
-   "reason": "The entry names the household this man boarded with, by its head, and not a street. Where that household is itself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null

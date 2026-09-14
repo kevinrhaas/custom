@@ -7,14 +7,14 @@
  "scene_year": 1835,
  "street_layer": "data/streets/1835.json",
  "counts": {
-  "addresses_adjudicated": 156,
+  "addresses_adjudicated": 155,
   "placed": 17,
   "placed_as_a_face": 14,
   "placed_as_a_corner": 1,
   "placed_anchored_on_a_crossing": 2,
   "already_better_placed": 27,
-  "refused": 112,
-  "refused_clause_1_no_1835_business": 98,
+  "refused": 111,
+  "refused_clause_1_no_1835_business": 97,
   "refused_clause_2_a_residence_not_a_shop": 8,
   "refused_clause_3_not_on_the_1835_grid": 6,
   "faces_reached": [
@@ -510,27 +510,6 @@
    "outcome": "already_better_placed",
    "clause": "2",
    "reason": "An 1835 placement already stands: this household works at `chicago_democrat_office`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_carli_paul_j",
-   "person_id": "carli_paul_j",
-   "person": "Paul J Carli",
-   "address_as_printed": "South Water st. near Wells",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -1909,9 +1888,9 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_king_john_lyle",
-   "person_id": "king_john_lyle",
-   "person": "John Lyle King",
+   "household_id": "hh_king_j_d",
+   "person_id": "king_j_d",
+   "person": "J D King",
    "address_as_printed": "res S. Jackson's",
    "describes_date": 1844,
    "read_back_years": 9,
@@ -2917,6 +2896,27 @@
    "position_local_enu_m": null
   },
   {
+   "household_id": "hh_sherman_william_george",
+   "person_id": "sherman_william_george",
+   "person": "William George Sherman",
+   "address_as_printed": "bds Oren Sherman",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
    "household_id": "hh_simons_e",
    "person_id": "simons_e",
    "person": "E. Simons",
@@ -3219,27 +3219,6 @@
    "read_back_years": 8,
    "sources": [
     "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_wight_j_ambrose",
-   "person_id": "wight_j_ambrose",
-   "person": "J Ambrose Wight",
-   "address_as_printed": "res Mrs. Wright's",
-   "describes_date": 1844,
-   "read_back_years": 9,
-   "sources": [
-    "norris_directory_1844"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,

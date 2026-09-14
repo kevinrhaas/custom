@@ -82,7 +82,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # terrain entries were stamped under, so a definition change is a visible, dated
 # event and the gate refuses a manifest it cannot compute rather than comparing
 # two hashes that mean different things.
-SCHEME = "resolved-spec-v4"
+SCHEME = "resolved-spec-v5"
 
 # Keys whose values are written for a reader, plus the one that is written for a
 # reader AND a gate: `mesh` declares what the ground does with a figure this
@@ -92,7 +92,17 @@ SCHEME = "resolved-spec-v4"
 # `generators/` reads any of them —
 # `test_terrain_prose_is_not_read_by_the_generator` holds that open.
 PROSE_KEYS = frozenset({"note", "_doc", "label", "scope", "critical_caveat",
-                        "why", "sources", "mesh"})
+                        "why", "sources", "mesh", "box_derivation"})
+
+# `box_derivation` joined the set in v5 (T-1067), and it is the plainest member
+# of it: four paragraphs arguing each wall of the box from evidence, read by a
+# person and by nothing else. It is where the reasoning for e_min, e_max, n_min
+# and n_max has to be written, and until now writing a sentence into it reported
+# both terrain meshes as STALE and demanded a twenty-minute Blender bake for text
+# — the exact fault this module's docstring opens with, arriving through the one
+# block whose whole purpose is prose. The GRID is what the generator reads and
+# the grid is hashed; moving a number there still costs a bake, as it must,
+# because that number moves every vertex in the field.
 
 
 # Per graded block of `terrain_spec.json`, the field keys whose VALUE reaches a
