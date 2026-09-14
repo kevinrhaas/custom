@@ -169,7 +169,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- there is no way to know whether this is one building once or many buildings often.
 
 T-1126 — A building that fails to load leaves its signboard hanging in the air and its goods in the grass: the scene draws furniture whose host is missing, and nothing reports the error
-T-1122 — Both back-projection passes call every householder 'this man' in generated prose, and one of the 57 is Rebecca Sherman
 
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
@@ -332,3 +331,6 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
 
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge

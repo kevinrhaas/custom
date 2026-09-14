@@ -5295,6 +5295,108 @@
         ]
       },
       "source": "/tmp/smoke-mobile.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 112,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 404,
+      "takenAt": "2026-09-14T17:38:07.409Z",
+      "ref": "steward/t-1122-householder-prose-sex",
+      "commit": "ae2290e9d98b",
+      "devCommit": "f839907e964b",
+      "treeHash": "sha256:6e6489c9c6ad8951",
+      "treeDirty": false,
+      "changelogHash": "sha256:84a814804b2a93fa",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke-desktop-13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 146,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 482,
+      "takenAt": "2026-09-14T17:38:07.314Z",
+      "ref": "steward/t-1122-householder-prose-sex",
+      "commit": "ae2290e9d98b",
+      "devCommit": "f839907e964b",
+      "treeHash": "sha256:6e6489c9c6ad8951",
+      "treeDirty": false,
+      "changelogHash": "sha256:84a814804b2a93fa",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke-desktop-3-12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 250,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 458,
+      "takenAt": "2026-09-14T17:38:07.219Z",
+      "ref": "steward/t-1122-householder-prose-sex",
+      "commit": "ae2290e9d98b",
+      "devCommit": "f839907e964b",
+      "treeHash": "sha256:6e6489c9c6ad8951",
+      "treeDirty": false,
+      "changelogHash": "sha256:84a814804b2a93fa",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke-mobile-3-12-13.log"
     }
   ]
 }
