@@ -5,8 +5,8 @@
   "how_to_change_it": "Gate the tool in tools/check.sh and re-run --write, or, if it cannot be gated today, write why_not_gated on its row here — --write carries that field forward — and point owner_ticket at whoever owns the answer. The gate fails on a row with no reason, and on a row the gate has since started running.",
   "counts": {
     "check_capable": 141,
-    "gated": 129,
-    "ungated": 12
+    "gated": 130,
+    "ungated": 11
   },
   "ungated": [
     {
@@ -52,12 +52,6 @@
       "other_modes_in_check_sh": [],
       "why_not_gated": "RED — T-0856. `--check` fails on resident_crosswalk.json having been hand-edited, AND it rewrites that file as a side effect of being asked. A --check that dirties the tree it measures cannot be gated before that is fixed; T-0856 carries both.",
       "owner_ticket": "T-0856"
-    },
-    {
-      "tool": "tools/read_st_marys_baptisms.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1110. `--check` fails: st_marys_baptisms_crosswalk.json is not what the tool rebuilds. Gate it in the commit that makes it green.",
-      "owner_ticket": "T-1110"
     },
     {
       "tool": "tools/rename_household_ids.py",
