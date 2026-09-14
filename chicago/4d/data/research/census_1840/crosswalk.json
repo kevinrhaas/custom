@@ -12,10 +12,10 @@
       "outcomes": {
         "named_heads": 965,
         "matched": 13,
-        "candidate": 16,
-        "refused": 936
+        "candidate": 18,
+        "refused": 934
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 18 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -3271,7 +3271,7 @@
     {
       "a": "Henry Bowen",
       "b": "air. Bowen",
-      "rule": "'Henry Bowen' at printed page 218 line 30 (33S7-9YYJ-PC) is NOT 'air. Bowen': The surname 'bowen' is carried by 2 person(s) of 1835 (air. Bowen, Erastus Selden Bowen) and none of their given names is 'henry'.",
+      "rule": "'Henry Bowen' at printed page 218 line 30 (33S7-9YYJ-PC) is NOT 'air. Bowen': The surname 'bowen' is carried by 2 person(s) of 1835 (air. Bowen, Erastus Bowen) and none of their given names is 'henry'.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -3280,8 +3280,8 @@
     },
     {
       "a": "Henry Bowen",
-      "b": "Erastus Selden Bowen",
-      "rule": "'Henry Bowen' at printed page 218 line 30 (33S7-9YYJ-PC) is NOT 'Erastus Selden Bowen': The surname 'bowen' is carried by 2 person(s) of 1835 (air. Bowen, Erastus Selden Bowen) and none of their given names is 'henry'.",
+      "b": "Erastus Bowen",
+      "rule": "'Henry Bowen' at printed page 218 line 30 (33S7-9YYJ-PC) is NOT 'Erastus Bowen': The surname 'bowen' is carried by 2 person(s) of 1835 (air. Bowen, Erastus Bowen) and none of their given names is 'henry'.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -4362,36 +4362,6 @@
       "a": "William H. Thomas",
       "b": "Frederick Thomas",
       "rule": "'William H. Thomas' at printed page 207 line 8 (33SQ-GYYJ-93G) is NOT 'Frederick Thomas': The surname 'thomas' is carried by 1 person(s) of 1835 (Frederick Thomas) and none of their given names is 'william'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "James P. Allen",
-      "b": "Edward Richards Allen",
-      "rule": "'James P. Allen' at printed page 207 line 9 (33SQ-GYYJ-93G) is NOT 'Edward Richards Allen': The surname 'allen' is carried by 3 person(s) of 1835 (Edward Richards Allen, Lieut. James Allen, William Allen) and none of their given names is 'james'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "James P. Allen",
-      "b": "Lieut. James Allen",
-      "rule": "'James P. Allen' at printed page 207 line 9 (33SQ-GYYJ-93G) is NOT 'Lieut. James Allen': The surname 'allen' is carried by 3 person(s) of 1835 (Edward Richards Allen, Lieut. James Allen, William Allen) and none of their given names is 'james'.",
-      "evidence": [
-        "33SQ-GYYJ-93G",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "James P. Allen",
-      "b": "William Allen",
-      "rule": "'James P. Allen' at printed page 207 line 9 (33SQ-GYYJ-93G) is NOT 'William Allen': The surname 'allen' is carried by 3 person(s) of 1835 (Edward Richards Allen, Lieut. James Allen, William Allen) and none of their given names is 'james'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",

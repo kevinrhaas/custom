@@ -1607,3 +1607,94 @@ cells leave its population key unset. No candidate passes both keys, no sequence
 screen is licensed, and the continuation stays unnamed. No 1840 count is assigned
 to an 1835 resident. Six group-3 continuations are now read line by line and nine
 images remain inventoried only; T-0984 retains eight filled leaves and blank BH.
+
+## A head reached through a card merge is a candidate, never a match (T-1003, 2026-09-13)
+
+THE RULE IS WRITTEN HERE BEFORE IT IS CODED, because it decides an outcome and not a
+convenience, and because it is general: it governs every card merge this project lands,
+not the one that exposed it.
+
+**What exposed it.** T-1001 ruled that `kimberley_ed` and `kimberly_edmund_s` are one man —
+the Chicago Democrat of 1 July 1835 sets both spellings in one column of one page, `E. S.
+Kimberley` and `Dr. Kimberly` four sentences apart inside one article — and folded the
+first onto the second. With that card folded the residents layer held no Kimberley at all.
+`crosswalk_census_1840_heads.py` gathers its 1835 bearers by surname and folds the surname
+EXACTLY, so the 1840 head `Ed. Kimberley` (33S7-9YYJ-99F, printed page 234, line 3) stopped
+reaching anybody and fell from an L7 candidate to **L2 no_surname_in_the_1835_pools** —
+whose standing text reads "a surname absent from 1835 is evidence of that, not a gap in the
+reading". On that row it had become a false statement. The surname was never absent from
+1835; it was absent from the layer's LIVE index, and only because the town folded it.
+
+**First question: does the survivor inherit the folded card's printed name for matching?**
+YES. A folded card's name is a spelling the town's OWN card carried, joined to this person
+by a written ruling read off a page — `data/residents/card_merge_rulings.json` states it and
+`index.json`'s `merged` table remembers the name. That is an adjudication this project has
+already made, and declining to gather under it would throw the adjudication away and refuse
+a head against nobody. So the folded spelling enters the 1835 pools — both the surname pool
+and the full-name key pool — standing for the SURVIVOR.
+
+Two limits come with it, both taken from the land register's answer to the same question
+(`tools/read_land_sales.py` `merged_card_surnames`, T-1001), which is already on the record:
+
+  * The person is WEIGHED BY HIS LIVE CARD — its name, its grade, its attestations. Only
+    which bucket he stands in comes from the folded card. Nothing about the decision is
+    special-cased; the row prints the live name as `resident_name`, as every other row does.
+  * THIS IS NOT A FOLD AND MUST NEVER BECOME ONE. Nothing here compares two spellings or
+    measures a distance between them. It reads a written ruling that a specific card of a
+    specific spelling names a specific person. `tools/measure_surname_fold.py` prints what a
+    mechanical one-letter fold would cost instead, and it is refused.
+  * Uniqueness counts the survivor ONCE however many of his spellings gather him, so L5 is
+    not made to refuse a man for being adjudicated twice.
+
+**Second question, and it is the one that matters: may the discriminators the merge handed
+him count towards L6?** NO. A head that reaches a person ONLY through a folded card's
+spelling is CAPPED at `candidate`.
+
+L6 does not ask merely that a discriminator exist. It asks that the full name AGREE, be
+unique on both sides, and be independently discriminated. On this route the name that agrees
+is the FOLDED card's, and the discriminator is attested under the SURVIVOR's — the survivor
+has one here, `Kimberly, Edmund Stoughten, physician, 101 Lake` in Fergus 1843. Nobody has
+read the 1840 line against the live card's spelling; the merge ruling was made about two
+1835 cards and says nothing whatever about an 1840 sheet. To let it through would be to have
+a card merge PROMOTE AN 1840 IDENTITY AS A SIDE EFFECT OF TIDYING 1835 — an identity minted
+by bookkeeping rather than by a reading. T-1001's own ruling says in as many words that
+nothing was promoted to make it tidy, and this is the same sentence applied one domain over.
+
+What promotes such a head is a reading: the 1840 line set beside the survivor's live card by
+somebody who looked. Until then the row says candidate and says why.
+
+**The ladder gains one rule**, parallel to L6a and capping for the same kind of reason — the
+identity may well be right, and the ground under it is not firm enough to assert:
+
+    L6b reached_through_a_card_merge_caps_at_candidate
+        the full name agrees, is unique on both sides, a discriminator holds, and the
+        agreement is with a spelling the residents layer no longer prints — it reaches
+        this person only through a landed card-merge ruling. The merge supplied the
+        agreement, so the merge may not also supply the match.
+
+Where a row could fire both L6a and L6b the first that fires names the outcome, as the
+ladder has always worked; both cap at `candidate` and the reason states the other.
+
+**A row always says how it was reached**, so no outcome on this route can be read without
+seeing the merge behind it. A head that reaches ONE person through a folded spelling carries
+**`via_card_merge`** — the folded person id, the land crosswalk's field name, deliberately —
+on whatever rung it lands, refusals included, beside a `reached_through_card_merge` block
+naming the folded card, the survivor and the merge's own rule and ticket. A head merely
+REFUSED against a bucket that an alias stands in reaches nobody, so it carries no
+`via_card_merge`; instead `surname_bearers_via_card_merge` names which of the bearers the
+refusal lists are held under a spelling the layer no longer prints. Both fields are absent,
+not null, where neither applies.
+
+**The tool proves this rule against itself.** `--self-test` asserts that no head is ever
+`matched` through a card merge, that every L6b row is a candidate naming the read that would
+promote it, that this head lands exactly where this section says, and that a survivor
+gathered under two spellings is still one person in a bucket. Deleting the cap turns two of
+those assertions red, which is how the cap is stopped from quietly coming off.
+
+**What it moves.** Eleven landed merges fold a name that gives a handle the survivor's live
+name does not; three of those differ in the SURNAME (Clybourn/Clybourne, Kimberley/Kimberly,
+Vandenbogart/Vanderbogart) and the rest in the forename (Gordon/Gurdon Hubbard, John B/Jean
+Baptiste Beaubien, Medard and Medore/Madore Beaubien, Russell/Russel Heacock, Th J V/Thomas
+Owen, Ed S Kimberly, James/Lieut. James Allen). The counts this pass moves are in the
+crosswalk's own `counts_by_rule`, and the Kimberley head lands where this rule says it does:
+a candidate under L6b, not a match.
