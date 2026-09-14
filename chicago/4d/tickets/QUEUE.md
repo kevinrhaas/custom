@@ -139,7 +139,6 @@
 T-0997 — The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting appointed against gambling, and the issue has never been extracted: about thirty townspeople named in one claim
 T-1114 — Three hundred and four Norris 1844 entries print a business street inside the trade line with no place-abbreviation, and 'b' for between is being read as the start of an address rather than a qualifier on the street before it
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
-T-1120 — The identity master's M2 folds an initial-only forename onto a full one on the LEADING initial alone, so B. S. Sherman of the 1840 census attaches to Benjamin F. Sherman across a disagreeing middle initial
 T-1119 — Three gazetteer names parse to inert keys for a reason the rank rule does not own: a surname-first entry with no comma inversion, an [uncertain: …] wrapper read as a forename, and a rank-and-regiment line that names nobody
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 
@@ -301,4 +300,3 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
-
