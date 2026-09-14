@@ -1469,6 +1469,21 @@ for (const [label, viewport, touch] of [
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
 
+    /**
+     * DRAWN AGAINST INDEXED (T-1126). "The scene has structures" passes with one
+     * building standing and three hundred and eighty missing, which is close to
+     * the shape of the fault this came from: one auction room failed to fetch,
+     * the walk went on looking finished, and the only detector was the owner
+     * standing in front of the hole. The roll is the renderer's own count of how
+     * many structures it was told to place against how many put geometry into a
+     * batch, so the gate can now read the number rather than the adjective.
+     */
+    const roll = await page.evaluate(() => window.__chicago4d.roll);
+    check(`${label}: every structure that should draw, drew`,
+      !!roll && roll.expected > 0 && roll.standing === roll.expected,
+      roll ? `${roll.standing} of ${roll.expected} standing; missing `
+        + `${roll.missing.slice(0, 5).join(', ')}` : 'no roll call was taken');
+
     // T-0848 — THE POSE EVERY DELTA CHECK IS CALIBRATED AT, read here because
     // this is the last line before the stage-guarded body, and nothing above it
     // has moved the visitor. A *reaches the render* check winds a shipped value

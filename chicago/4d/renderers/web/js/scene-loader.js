@@ -69,6 +69,47 @@ export function loadMeshoptDecoder() {
 }
 
 /**
+ * Fetch one asset, and if the network refuses once, ASK AGAIN — T-1126.
+ *
+ * A scene load fires ~380 concurrent `fetch`es at a static host in the space of
+ * a second. Browsers cap concurrency per origin and queue the rest, and a
+ * queued request is a request that can be dropped: on 14 September 2026 the
+ * owner walked Dearborn Street and found one auction room absent, with its
+ * signboard still hanging where its east wall should have been, and the same
+ * page reloaded a minute later had it. One GLB out of 380, transient, gone on
+ * reload — the signature of a dropped request, not of a broken file.
+ *
+ * Nothing here diagnoses WHICH cause it was, and it deliberately does not try:
+ * a single retry after a short pause answers the dropped-request family
+ * (concurrency queue, aborted socket, a `publish.sh` window while the mirror is
+ * mid-write) without a theory about which member of it happened. What makes the
+ * rate knowable is not this function but the count it feeds — `retried` says how
+ * often the first ask failed, which is the figure that was missing.
+ *
+ * The retry is ONE, and it is not a loop. A GLB that is genuinely absent or
+ * genuinely corrupt must still fail fast and be reported: the answer to a
+ * missing building is a named error, never a page that hangs looking for it.
+ */
+async function fetchAsset(url) {
+  let first;
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      return { buffer: await res.arrayBuffer(), retried: attempt > 0 };
+    } catch (err) {
+      if (attempt) throw new Error(`${err.message} (asked twice)`);
+      first = err;
+      // Long enough for a saturated connection pool to drain a slot, short
+      // enough that nobody waits on it: the other ~379 loads are still in
+      // flight beside this one and the boot is gated on all of them.
+      await new Promise((r) => { setTimeout(r, 250); });
+    }
+  }
+  throw first;
+}
+
+/**
  * Load one scene.
  *
  * @returns {Promise<{
@@ -144,6 +185,11 @@ export async function loadScene(year, bases = resolveBases()) {
         gltf: null,
         drawnBy: sidecar.drawn_by ?? null,
         assetIsPlaceholder: false,
+        /** T-1126: why this record's geometry is not in the scene, or null if
+         *  nothing went wrong. A record drawn by another layer is not a failure
+         *  and does not set it. */
+        loadFailed: null,
+        assetRetried: false,
         assetUrl: null,
         sidecarUrl: String(sidecarUrl),
         instanceId: null,
@@ -168,10 +214,12 @@ export async function loadScene(year, bases = resolveBases()) {
      * than routed through a sidecar field the compiler would have to invent.
      */
     let assetIsPlaceholder = false;
+    let loadFailed = null;
+    let assetRetried = false;
     try {
-      const res = await fetch(assetUrl, { cache: 'no-cache' });
-      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-      const buffer = await res.arrayBuffer();
+      const got = await fetchAsset(assetUrl);
+      const { buffer } = got;
+      assetRetried = got.retried;
       bytes += buffer.byteLength;
 
       const header = glbHeader(buffer);
@@ -188,7 +236,20 @@ export async function loadScene(year, bases = resolveBases()) {
           + 'massing only, not a bake');
       }
     } catch (err) {
-      problems.push(`asset ${sidecar.asset}: ${err.message}`);
+      /**
+       * NAME THE STRUCTURE, not just the file — T-1126. This line used to read
+       * `asset <path>: <error>`, which is the one fact a reader of the problem
+       * list cannot act on: it says a bake is missing without saying which
+       * building is therefore absent from the town, and every layer downstream
+       * that hangs furniture on that building goes on hanging it.
+       */
+      loadFailed = err.message;
+      problems.push(`${id}: its asset ${sidecar.asset} did not load (${err.message}) — `
+        + 'the building is NOT in the scene');
+    }
+    if (assetRetried) {
+      problems.push(`${id}: its asset ${sidecar.asset} failed on the first ask and `
+        + 'loaded on the second — a dropped request, not a bad file');
     }
 
     registry.set(id, {
@@ -197,6 +258,8 @@ export async function loadScene(year, bases = resolveBases()) {
       gltf,
       drawnBy: null,
       assetIsPlaceholder,
+      loadFailed,
+      assetRetried,
       assetUrl: String(assetUrl),
       sidecarUrl: String(sidecarUrl),
       /** filled in by buildings.js once the node is in the batch */

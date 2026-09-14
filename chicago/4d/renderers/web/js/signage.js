@@ -864,6 +864,21 @@ async function getJSON(url) {
  */
 export async function createSignage({
   dataBase, terrain, confidence = null, problems = [],
+  /**
+   * IS THIS BOARD'S BUILDING ACTUALLY STANDING? — T-1126.
+   *
+   * Every sign in this layer is a function of a wall: the record carries the
+   * anchor on the facade, the bearing out of it, and a `height_datum` that says
+   * in so many words "the base of this building's walls, as buildings.js sets
+   * them". When the wall fails to arrive the arithmetic still works perfectly
+   * and hangs the board 2.55 m up over an empty lot, which is a false claim
+   * about the town made in the town's own voice.
+   *
+   * So the layer asks. The default answers no for everything, which is the
+   * behaviour every gate and every caller had before this parameter existed —
+   * a layer built without a scene behind it draws its whole record.
+   */
+  hostMissing = () => false,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'signage';
@@ -872,7 +887,7 @@ export async function createSignage({
     records: [],
     signs: [],
     spans: [],
-    census: { records: 0, boards: 0, lettered: 0, refused: 0, mountings: {} },
+    census: { records: 0, boards: 0, lettered: 0, refused: 0, orphaned: 0, mountings: {} },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -929,6 +944,15 @@ export async function createSignage({
    */
   const spans = out.spans;
   for (const sign of all) {
+    // A board comes down with its building (T-1126). Counted rather than
+    // silently dropped: a town short of one signboard is a town short of one
+    // BUILDING, and the count is what says so.
+    if (hostMissing(sign.structure_id)) {
+      out.census.orphaned += 1;
+      problems.push(`signage: ${sign.structure_id} drew no geometry — its board is `
+        + 'taken down rather than hung on a wall that is not there');
+      continue;
+    }
     const art = atlas?.signs.get(sign.structure_id) ?? plain;
     const from = buf.pos.length / 9;
     if (!buildSign(buf, sign, terrain, art, timberUV, problems)) continue;
