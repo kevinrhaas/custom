@@ -5,8 +5,8 @@
   "how_to_change_it": "Gate the tool in tools/check.sh and re-run --write, or, if it cannot be gated today, write why_not_gated on its row here — --write carries that field forward — and point owner_ticket at whoever owns the answer. The gate fails on a row with no reason, and on a row the gate has since started running.",
   "counts": {
     "check_capable": 141,
-    "gated": 128,
-    "ungated": 13
+    "gated": 129,
+    "ungated": 12
   },
   "ungated": [
     {
@@ -81,12 +81,6 @@
         "--offline"
       ],
       "why_not_gated": "`--check` fetches the leaf images from the archive and needs Pillow, so it cannot be a per-commit gate. check.sh runs `--offline`, which proves a different and gateable thing: that the committed measurement re-derives without the network. Named by T-0896 before it started."
-    },
-    {
-      "tool": "generators/placeholder.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1112. `--check` fails: _CONFIDENCE carries [0.0, 0.5] and not all three levels, so the asset that exists to make the confidence view testable cannot test it. Gate it in the commit that makes it green.",
-      "owner_ticket": "T-1112"
     }
   ]
 }
