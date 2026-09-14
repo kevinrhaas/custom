@@ -880,3 +880,28 @@ and John Holbrook's 10 June.
 only after the scene date, present on it by assumption, and no opening notice dated on or
 before it to carry the assumption. Thirty-three businesses. `docs/LIBERTIES.md` carries
 neither class yet — T-0357 is the survival half and T-0404 the backdating half.
+
+## The trade-class and place rulings are guarded against a lost judgement (T-1125)
+
+Two hand-authored adjudications live in this directory, and both are read by gates that
+re-derive downstream of them — which means a shrinking file passes every one of them. Since
+T-1125 `tools/check_rulings_not_lost.py` (run by `check.sh`) holds both to the MERGE BASE
+by identity as well as by count.
+
+**`trade_class_rulings.json`** — `trade_rulings` (145) and `business_overrides` (4) are the
+judgement. `scope` is part of a trade ruling's identity because the same trade is ruled
+twice, once inside the town and once outside it. LEFT OUT: `vocabulary` transcribes the
+eighteen printed count-lines of the census and its `compared` flag is recomputed by
+`trade_census_1835.py --check`; `register_cautions` is prose about the register rather than
+a ruling on it; `boundaries` is the rule text B1–B6 the rulings cite, and a rule is not one
+of the things it rules on.
+
+**`place_vocabulary.json`** — `places` (128) is the judgement: a place the newspapers name,
+resolved inside or outside the committed town. LEFT OUT: `counts`, which
+`resolve_place_vocabulary.py --check` recomputes field by field from the gazetteer and
+these rulings, and which the file itself says is measured rather than asserted. The
+identity is the `place` and nothing under it, because the `derived` block inside each entry
+is rewritten by that same tool.
+
+**To remove a ruling from either**, move it into `withdrawn[]` with a `reason` and the
+`ticket` that decided it; it is counted alongside the rest, so the total never falls.

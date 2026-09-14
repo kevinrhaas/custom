@@ -679,7 +679,12 @@ has been withdrawn.
 
 The second half of T-0999 — the same guard over the rest of the hand-authored evidence in
 `data/research/`, which needs a reading of what a judgement is in each file before a count
-over it means anything — is T-1125.
+over it means anything — is T-1125, and it landed. The registry now holds **six** files and
+**708** judgements: this one, the trade-census spend rulings, the newspapers' trade-class
+and place rulings, Fergus 1839's lot corrections, and `data/residents/card_merge_rulings.json`.
+Five more files were REFUSED entry with the reason recorded in the tool's `REFUSED` table —
+four of them because they are DERIVED, and a floor under a derivation's count is a gate that
+fires the moment the generator legitimately derives less.
 
 ## Two things about the source, both learned the hard way
 
