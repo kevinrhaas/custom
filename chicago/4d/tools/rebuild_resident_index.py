@@ -27,8 +27,15 @@ the WHOLE layer, that every writer calls:
 and that `tools/check.sh` re-derives it, so drift is a red build rather than a
 hunt through 19 per-household errors.
 
-    python3 tools/rebuild_resident_index.py --check    re-derive and compare
-    python3 tools/rebuild_resident_index.py --write    re-derive and write
+    python3 tools/rebuild_resident_index.py --check      re-derive and compare
+    python3 tools/rebuild_resident_index.py --write      re-derive and write
+    python3 tools/rebuild_resident_index.py --self-test  break every rule on purpose
+
+The argument list is PARSED, not sniffed (T-0871). It used to be read as
+`"--write" in argv` and nothing else, so `--wrtie` typed for `--write` fell
+through to the compare path, printed that the manifest re-derives, wrote
+nothing, and exited 0 — the same quiet staleness T-0715 was opened about, one
+level up. An unrecognised flag is now a refusal.
 
 WHAT IT DOES NOT TOUCH: `_doc`, `version`, `scene_date`, `dossier`,
 `vocabulary`, `researched_not_resident`, and any `counts` key that is not
@@ -39,7 +46,9 @@ deleting evidence to make a tally tidy.
 """
 from __future__ import annotations
 
+import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -197,11 +206,184 @@ def differences(committed: dict, derived: dict, limit: int = 12) -> list[str]:
 FIX = "python3 tools/rebuild_resident_index.py --write"
 
 
+# --- the self-test -----------------------------------------------------------
+#
+# T-0871. This was the only re-derivation gate in the tree without one, and a
+# rule that has never been shown to fail is a rule nobody has tested. The case
+# list is the one PR #926 carried — an independent implementation of T-0715 that
+# #924 beat to the merge — rewritten against dev's `rebuild(index, docs)`.
+#
+# Nothing here touches data/residents/index.json. The town below is three people
+# in two households, built in memory: `household_docs` filters on the parent
+# directory's NAME, so these paths never have to exist on disk.
+
+def _card(hid: str, persons: list[dict], **fields) -> tuple[Path, dict]:
+    """One synthetic household card, addressed as if it sat in the layer."""
+    doc = {"id": hid, "head": fields.pop("head", f"{hid}_head"),
+           "division": fields.pop("division", "north"), "persons": persons}
+    doc.update(fields)
+    return HOUSEHOLDS / f"{hid}.json", doc
+
+
+def _copy(obj):
+    return json.loads(json.dumps(obj))
+
+
+def self_test() -> int:
+    """Every rule the derivation follows and every refusal --check makes, broken."""
+    fails: list[str] = []
+
+    def check_that(label, cond):
+        if not cond:
+            fails.append(label)
+        print(("  ok   " if cond else "  FAIL ") + label)
+
+    a_path, a_doc = _card(
+        "hh_a",
+        [{"id": "p_a1", "grade": "attested", "civic_mint": True},
+         {"id": "p_a2", "grade": "inferred", "letter_list_only": True,
+          "later_census": "1840_head_0001"}],
+        lives_at={"value": "Lake Street", "confidence": "documented"},
+        present_on_scene_date={"value": True, "confidence": "inferred"})
+    b_path, b_doc = _card(
+        "hh_b",
+        [{"id": "p_b1", "grade": "reconstructed", "resident_subtype": PROJECTED}],
+        review_required=True)
+    docs = {a_path: a_doc, b_path: b_doc}
+
+    derived = rebuild({"counts": {}}, docs)
+    rows = {r["id"]: r for r in derived["households"]}
+    counts = derived["counts"]
+
+    # --- what the derivation says -------------------------------------------
+    check_that("grades tally the persons, household by household and in total",
+               rows["hh_a"]["grades"] == {"attested": 1, "inferred": 1}
+               and rows["hh_b"]["grades"] == {"reconstructed": 1}
+               and counts["by_grade"] == {"attested": 1, "inferred": 1,
+                                          "reconstructed": 1})
+    check_that("a flag is written only when it is true",
+               rows["hh_a"].get("letter_list_only") is True
+               and rows["hh_a"].get("civic_mint") is True
+               and rows["hh_a"].get("census_1840_linked") == 1
+               and "letter_list_only" not in rows["hh_b"]
+               and "civic_mint" not in rows["hh_b"]
+               and "census_1840_linked" not in rows["hh_b"])
+    check_that("projected_resident comes off the person's resident_subtype",
+               rows["hh_b"].get(PROJECTED) is True and PROJECTED not in rows["hh_a"])
+    check_that("every derived count is the tally of the cards, not of the old file",
+               counts["households"] == 2 and counts["persons"] == 3
+               and counts["letter_list_only"] == 1
+               and counts["projected_residents"] == 1
+               and counts["census_1840_linked"] == 1
+               and counts["civic_mint"] == 1)
+    check_that("a {value, confidence} block contributes its value, and an "
+               "unstated one reads as None",
+               rows["hh_a"]["lives_at"] == "Lake Street"
+               and rows["hh_a"]["present_on_scene_date"] is True
+               and rows["hh_b"]["lives_at"] is None
+               and rows["hh_b"]["works_at"] is None)
+    check_that("review_required is a bool on every row, stated or not",
+               rows["hh_b"]["review_required"] is True
+               and rows["hh_a"]["review_required"] is False)
+    check_that("key order is canonical, whatever order the card carried",
+               all(list(r) == [k for k in ROW_KEYS if k in r] for r in rows.values()))
+    check_that("rows are ordered by id, not by the filesystem",
+               [r["id"] for r in derived["households"]] == ["hh_a", "hh_b"])
+
+    again = rebuild(_copy(derived), docs)
+    check_that("a rebuild of a rebuild is a no-op",
+               dumps(again) == dumps(derived))
+
+    authored = rebuild({"counts": {"reconstructed_removed_in_2026_09_02_synthesis": 7,
+                                   "households": 99}}, docs)["counts"]
+    check_that("an authored count is carried through untouched, in its own place",
+               authored["reconstructed_removed_in_2026_09_02_synthesis"] == 7
+               and authored["households"] == 2
+               and list(authored)[0] == "reconstructed_removed_in_2026_09_02_synthesis")
+
+    # --- what --check refuses, each broken on purpose ------------------------
+    check_that("a manifest that matches its cards reports nothing",
+               differences(_copy(derived), derived) == [])
+
+    regraded = _copy(derived)
+    regraded["households"][0]["grades"] = {"attested": 2}
+    check_that("a row whose grade disagrees with its card is caught",
+               any("hh_a" in d and "grades" in d for d in differences(regraded, derived)))
+
+    no_row = _copy(derived)
+    no_row["households"] = [r for r in no_row["households"] if r["id"] != "hh_b"]
+    check_that("a card with no manifest row is caught",
+               any("has a card and no manifest row" in d
+                   for d in differences(no_row, derived)))
+
+    no_card = _copy(derived)
+    no_card["households"].append({"id": "hh_z", "file": "households/hh_z.json"})
+    check_that("a manifest row with no card is caught",
+               any("has a manifest row and no card" in d
+                   for d in differences(no_card, derived)))
+
+    ghost_key = _copy(derived)
+    ghost_key["households"][0]["nickname"] = "the brick row"
+    check_that("a row key no derivation emits is named, not ignored",
+               any("nickname" in d for d in differences(ghost_key, derived)))
+
+    false_flag = _copy(derived)
+    false_flag["households"][1]["letter_list_only"] = True
+    check_that("a flag written when it is false is caught",
+               any("hh_b" in d and "letter_list_only" in d
+                   for d in differences(false_flag, derived)))
+
+    moved = []
+    for key in DERIVED_COUNTS:
+        broken = _copy(derived)
+        was = broken["counts"][key]
+        broken["counts"][key] = {"attested": 999} if isinstance(was, dict) else 999
+        if not any(d.startswith(f"counts.{key}:") for d in differences(broken, derived)):
+            moved.append(key)
+    check_that(f"each of the {len(DERIVED_COUNTS)} derived counts is caught when "
+               f"moved ({', '.join(DERIVED_COUNTS)})", not moved)
+
+    over = _copy(derived)
+    over["households"] = [dict(r, persons=r["persons"] + 1) for r in over["households"]]
+    check_that("the drift report is capped, and says how many it did not print",
+               any("more" in d for d in differences(over, derived, limit=1)))
+
+    # --- what the argument list refuses --------------------------------------
+    #
+    # The fault this ticket is named for: `--wrtie` used to report success and
+    # write nothing. Run for real, because it is the PARSER under test and an
+    # in-process call would not exercise it.
+    def run(*args):
+        return subprocess.run([sys.executable, str(Path(__file__).resolve()), *args],
+                              capture_output=True, text=True)
+
+    typo = run("--wrtie")
+    check_that("a typo'd --write is REFUSED, not silently read as a check",
+               typo.returncode != 0 and "--wrtie" in (typo.stderr + typo.stdout))
+    check_that("...and an unrecognised flag of any kind is refused too",
+               run("--nonsense-flag").returncode != 0
+               and run("--selftest").returncode != 0)
+    check_that("--check still passes on the committed manifest",
+               run("--check").returncode == 0)
+
+    print(f"\n{len(fails)} failure(s)")
+    return 1 if fails else 0
+
+
 def main(argv: list[str]) -> int:
-    write = "--write" in argv
+    ap = argparse.ArgumentParser(
+        description="Re-derive data/residents/index.json from the household cards.")
+    ap.add_argument("--check", action="store_true",
+                    help="re-derive and compare (the default, and what check.sh runs)")
+    ap.add_argument("--write", action="store_true", help="re-derive and write")
+    ap.add_argument("--self-test", action="store_true",
+                    help="prove every assertion above fires when broken")
+    args = ap.parse_args(argv)
+    if args.self_test:
+        return self_test()
     committed = json.loads(INDEX.read_text(encoding="utf-8"))
     derived = rebuild(json.loads(json.dumps(committed)))
-    if write:
+    if args.write:
         # The published mirror is NOT a copy - tools/publish.sh transforms the
         # residents layer and check_published_residents.mjs gates the transform -
         # so this writes the source and leaves the mirror to the publisher.
