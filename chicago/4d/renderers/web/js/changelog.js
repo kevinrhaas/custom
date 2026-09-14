@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'What b means, on Norris\u2019s own first page', kind: 'fix', ts: '',
+  { v: 858, title: 'What b means, on Norris\u2019s own first page', kind: 'fix', ts: '2026-09-14T01:32:17.132Z', date: 'Sep 13, 2026, 8:32 PM CT',
     items: [
       'Norris\u2019s 1844 directory prints each townsman as a name, a trade and a place, and this reconstruction cuts that line at the abbreviations Norris uses \u2014 h for house, r for residence, b for between. Two of the three are places. The third is not, and he says so in the remarks at the head of his own book: \u2018b stands for between\u2019.',
       'Between is not somewhere a man lives. It qualifies the street already named, and cutting a line at it severs a location from its own street and files each half under a different heading. Stephen Athy, laborer, Washington st, b Wells and Franklin sts was written down here with a trade of \u2018laborer, Washington st\u2019 and a home address of \u2018b Wells and Franklin sts\u2019 \u2014 half a location, with the street it belongs to left behind in the trade. A hundred and seventy-five entries read that way.',
