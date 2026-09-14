@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
 #
 # THE PR LAP. For every open PR into `dev` that is not a draft and not `hold`:
-# merge `dev` in, regenerate what a tool owns, gate it, and push. It does NOT
-# merge the PR — auto-merge does that once `gate` goes green on the new head.
+# merge `dev` in, regenerate what a tool owns, and push. It does NOT gate — CI
+# does, on the push (see the long note above the push below) — and it does NOT
+# merge the PR.
+#
+# WHAT DOES MERGE IT: `.github/steward/merge-ready.sh`. This line used to read
+# "auto-merge does that once `gate` goes green", and that was not true. Nothing
+# in this repository arms auto-merge except chicago-4d-bake.yml, and only on
+# bakes; the fleet janitor believed the same sentence from the other side
+# ("`custom` merges through the lap plus GitHub auto-merge") while deliberately
+# excluding `custom` from its own roster. Checked 2026-09-14 against every PR
+# that landed that day: #1327 and #1312 merged with `auto_merge: off`, armed by
+# hand. So the lap made pull requests clean, CI made them green, and they sat —
+# which is what an unmergeable queue looks like when every PR in it is mergeable.
 #
 # WHY THIS EXISTS (T-0857). GitHub's server-side merge NEVER runs a custom merge
 # driver. `.gitattributes` can name `merge=generated`; only a clone that has run

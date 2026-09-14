@@ -1,0 +1,70 @@
+name: Chicago 4D — merge ready
+
+# Merges every open PR into `dev` that GitHub itself reports as `clean`.
+# See .github/steward/merge-ready.sh for why nothing did this before: the lap
+# says auto-merge merges, the fleet janitor says the lap does, `custom` is not in
+# the janitor's roster, and the only thing that arms auto-merge is the bake
+# workflow — on bakes. Finished pull requests sat green and unmerged.
+#
+# NEEDS STEWARD_PAT for the same reason the lap does: a merge made with
+# GITHUB_TOKEN does not trigger the workflows that run on a push to `dev`, so the
+# next lap would never fire and every remaining PR would stay `dirty` (T-0857).
+
+on:
+  # The moment a gate finishes, some PR may have just turned `clean`. This fires
+  # on completion whatever the conclusion — a red gate simply leaves that PR
+  # `blocked` and the run reports it as waiting, which is information too.
+  workflow_run:
+    workflows: ['Chicago 4D — gate']
+    types: [completed]
+  # The backstop. `workflow_run` is best-effort and does not fire for every path
+  # a PR can take to `clean` — a label coming off, a review landing, a base that
+  # moved. Ten minutes is cheap: a run with nothing to do is a handful of REST
+  # calls against a 15,000/hour budget.
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Consider a single PR number (blank = every open PR)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Report what would merge, merge nothing'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# One at a time, and never cancelled mid-merge. Two concurrent runs would both
+# read `clean` on the same PR and the loser would get a 409 — harmless, but the
+# log would read as a failure that is really a race.
+concurrency:
+  group: chicago-4d-merge-ready
+  cancel-in-progress: false
+
+jobs:
+  merge-ready:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check the secret before doing anything
+        env:
+          P: ${{ secrets.STEWARD_PAT }}
+        run: |
+          [ -n "$P" ] || {
+            echo "::error::STEWARD_PAT is missing. A merge made with GITHUB_TOKEN does"
+            echo "::error::not trigger the PR lap on the resulting push to dev, so every"
+            echo "::error::other open PR would be left dirty with nothing to clear it."
+            exit 1; }
+
+      - uses: actions/checkout@v4
+
+      - name: Merge every PR GitHub calls clean
+        env:
+          GH_TOKEN: ${{ secrets.STEWARD_PAT }}
+          MERGE_ONLY: ${{ inputs.only }}
+          MERGE_DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: bash .github/steward/merge-ready.sh

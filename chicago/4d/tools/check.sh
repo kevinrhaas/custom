@@ -1872,6 +1872,21 @@ step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
 step "a lap that could not ask never reports that it found nothing" \
   node tools/test_pr_lap_list.mjs
 
+# AND THE THING THAT ACTUALLY MERGES A FINISHED PULL REQUEST, which for most of
+# this repository's life was NOBODY. The lap's header said auto-merge did it; the
+# fleet janitor said the lap plus auto-merge did it, while excluding `custom`
+# from its own roster; the only `gh pr merge --auto` in the repo is in
+# chicago-4d-bake.yml and fires on bakes. Checked 2026-09-14: #1327 and #1312
+# both merged with `auto_merge: off` — by hand. So the lap made pull requests
+# clean, CI made them green, and the queue still did not drain.
+# merge-ready.sh closes that, and the state it merges on is the one thing that
+# must never drift: `clean` is GitHub's own verdict that the branch merges AND
+# every required check passed, while `blocked` — which every PR reads while its
+# gate runs, i.e. all of them at once after a lap — must never merge. This runs
+# the REAL script against a faked `gh` and asserts exactly that.
+step "the merger merges what GitHub calls clean, and nothing else" \
+  node tools/test_merge_ready.mjs
+
 # AND THE QUESTION THE LOCK CANNOT ANSWER: has this ticket's PR already MERGED?
 # Everything here squash-merges, so a merged branch never becomes an ancestor of
 # `dev`; `inflight` is honest about that and falls back on branch AGE, which makes a
