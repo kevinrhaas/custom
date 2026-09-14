@@ -655,6 +655,32 @@ re-derived perfectly into a crosswalk perfectly consistent with it. `check.sh` w
 on #1055 and on every commit after it. The count is the only thing that can be watched
 here and nothing watches it; T-0999 is that gate.
 
+**Something watches it now (T-1124, the first half of T-0999).** `check.sh` runs
+`tools/check_rulings_not_lost.py`, which asks the one question every step above is
+structurally unable to ask — *is a judgement simply GONE?* — and it asks it of the MERGE
+BASE rather than of anything this tree carries, because a branch that dropped forty
+entries and edited a total downwards in the same commit would satisfy any self-consistent
+check. Two readings of "still here", both required: by IDENTITY, every
+`(purchaser_as_read, resident_id)` adjudicated at the base is adjudicated at HEAD — the
+strong one, which catches a swap that never moves the total — and by COUNT, which is the
+number a person reads and the one this incident is remembered by, 49 → 9.
+
+`ruled[]` and `retired[]` are counted TOGETHER, so retiring a ruling the way `PRUYNE P AND
+CO` was retired above is a MOVE and not a loss.
+
+**How to remove a ruling, since removing one is still possible.** A judgement that should
+never have been made does not get deleted. It moves into a third array, `withdrawn[]`,
+which is counted alongside the other two and whose entries must carry a `reason` and the
+`ticket` that decided it — the same trade `retired[]` already makes, and the same one the
+liberty ledger makes. The total therefore never falls, and the record of what left says
+why. A `withdrawn[]` entry with no reason written is refused by the gate as a deletion
+wearing a label. The array does not exist in the file yet and does not need to: nothing
+has been withdrawn.
+
+The second half of T-0999 — the same guard over the rest of the hand-authored evidence in
+`data/research/`, which needs a reading of what a judgement is in each file before a count
+over it means anything — is T-1125.
+
 ## Two things about the source, both learned the hard way
 
 **The search shows at most 150 rows at a time — and it pages.** A whole-township query
