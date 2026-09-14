@@ -220,9 +220,11 @@ REFUSED = {
         "and the ticket that owns it wants zero.",
     "chicago/4d/data/research/church/st_marys_baptisms_crosswalk.json":
         "DERIVED. `read_st_marys_baptisms.py --build` rebuilds all four of its "
-        "judgement-shaped stores from the page readings. It is ALSO known to have drifted "
-        "off what that tool rebuilds — T-1110 owns that, and the fix there is to make the "
-        "tool and the file agree, not to freeze a count under the drift.",
+        "judgement-shaped stores from the page readings. It HAD drifted off what that "
+        "tool rebuilds; T-1110 closed that by rebuilding and gating `--check` in "
+        "tools/check.sh, so the drift is now caught at its source rather than by a "
+        "count frozen here. Its second input — data/residents/ — moves, and a count "
+        "under it would fire on the town gaining a resident.",
     "chicago/4d/data/research/land_sales/school_section_sale_1833.json":
         "NOT A RULING FILE, and it says so: `the_ruling_is_not_here` points at "
         "land_sales/resident_rulings.json, which is registry entry one. "
