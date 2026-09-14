@@ -151,6 +151,72 @@ TITLES = {"mrs", "mr", "miss", "ms", "capt", "dr", "rev", "col", "gen", "major",
 RANKS = {"lieut", "lieutt", "lieuts", "lieutenant", "lt"}
 FIRM_TAIL = re.compile(r"\s*&\s*(co|son|sons|bro|bros|brother|brothers)\.?\s*$", re.I)
 
+# T-1119. THE TRANSCRIBER'S MARKS ARE ABOUT THE READING, NOT PART OF THE NAME, and
+# this tool was the one place in the corpus that had never been told. The extracted
+# newspapers carry three marks, all settled elsewhere: `[x]` around a letter supplied
+# for a recognition-class error, `[?]` where no letter could be supplied, and an
+# `[uncertain: ...]` wrapper where the printed form supports no confident reading.
+# compile_gazetteer.py `unmarked` reads them; concord_letter_list_1834_01_01.py folds
+# them; T-0299 ruled that the markup is NOT a word boundary. Here the generic cleaner
+# turned every bracket into a space, so `Dani[e]l O. Robian` parsed as the forenames
+# dani / e / l and `[uncertain: Aaron Wallace]` parsed with the word `uncertain` as
+# its forename — 119 gazetteer names carried that wrapper and every one of them keyed
+# under it.
+#
+# The wrapper is STRIPPED and the reading kept, which is what compile_gazetteer and the
+# concordance both do: the doubt belongs in the stored reading, where it is, and not in
+# the parse. Nothing here grades a name lower for carrying it.
+UNCERTAIN_PART = re.compile(r"\[uncertain:\s*(.*?)\]")
+
+
+def unmarked(raw: str) -> str:
+    """A written name with the transcriber's markup taken off (T-1119).
+
+    `[?]` becomes a space before the generic bracket strip, so it is not mistaken for a
+    supplied letter — which is the behaviour this tool already had, and `uncertain` is
+    read off the raw string before any of this runs.
+    """
+    text = UNCERTAIN_PART.sub(r"\1", raw or "")
+    text = text.replace("[?]", " ")
+    return re.sub(r"\[([^\]]*)\]", r"\1", text)
+
+
+def name_tokens(text: str) -> list:
+    """One side of a written name, as the words a parse may use.
+
+    Suffixes and ranks go here because they are dropped in ANY position (T-1116) and so
+    cannot help decide which side of a comma is the surname.
+    """
+    text = re.sub(r"[^A-Za-z0-9 .,'-]", " ", text)
+    text = text.replace(",", " ").replace(".", " ")
+    tokens = [t for t in text.split() if t]
+    tokens = [t for t in tokens if t.lower().strip("'-") not in SUFFIXES]
+    return [t for t in tokens if t.lower().strip("'-") not in RANKS]
+
+
+def inverted(head: list, tail: list) -> bool:
+    """Whether a comma marks a surname-first entry (T-1119).
+
+    THE LETTER LISTS ARE PRINTED SURNAME-FIRST — `Aiker, Samuel`, `Abbot, 8. G.`,
+    `Peterson, [uncertain: Isaac]` — and this parser flattened the comma to a space and
+    took the LAST word as the surname, so 1,018 of the 2,665 gazetteer names were read
+    backwards: Samuel became the surname and Aiker the forename. compile_gazetteer.py
+    has inverted on the comma since the gazetteer existed (`surname` splits on it,
+    `initials` reads the half after it); this tool never did.
+
+    A COMMA IS NOT ALWAYS AN INVERSION, and the guard is the surname side's last word.
+    `Augustus H, Conant` is an OCR comma standing where a period belongs — the word
+    before it is a bare initial, which no surname is — and inverting it would move a
+    correct parse onto the letter H. So the comma inverts only where the side before it
+    ENDS in a word of more than one letter, and where the side after it supplies
+    something: `E. Wentworth, Jr.` and `Hubbard & Brown,` both have nothing left after
+    their suffix and their trailing comma, and both stay forename-first.
+    """
+    if not head or not tail:
+        return False
+    return len(re.sub(r"[^A-Za-z]", "", head[-1].lower())) > 1
+
+
 
 def load(path: Path):
     with path.open() as fh:
@@ -158,34 +224,60 @@ def load(path: Path):
 
 
 def parse_name(raw: str) -> dict:
-    """Split a written name into given tokens and a surname, and say how sure it is."""
+    """Split a written name into given tokens and a surname, and say how sure it is.
+
+    T-1119 put three things into this parse that the rest of the corpus had already
+    settled and this tool alone had not: the transcriber's markup comes off before the
+    words are counted (`unmarked`), a comma can mark a surname-first entry (`inverted`),
+    and a line whose surname side is UNSUPPLIED names nobody — see below.
+    """
     text = (raw or "").strip()
     uncertain = "[?]" in text
     firm = bool(FIRM_TAIL.search(text))
-    text = FIRM_TAIL.sub("", text)
-    text = text.replace("[?]", " ")
-    text = re.sub(r"[^A-Za-z0-9 .,'-]", " ", text)
-    text = text.replace(",", " ").replace(".", " ")
-    tokens = [t for t in text.split() if t]
-    tokens = [t for t in tokens if t.lower().strip("'-") not in SUFFIXES]
-    # T-1116: a rank is not a name, in any position. See RANKS above.
-    tokens = [t for t in tokens if t.lower().strip("'-") not in RANKS]
-    # T-0969: a courtesy title is not a forename. Retain the female style as
-    # an identity distinction: Mrs Rufus Brown must not become Rufus Brown.
-    female_style = False
-    while tokens and tokens[0].lower().strip("'-") in TITLES:
-        female_style |= tokens.pop(0).lower().strip("'-") in {"mrs", "miss", "ms"}
-    parts = []
-    for t in tokens:
-        low = re.sub(r"[^a-z]", "", t.lower())
-        if not low:
-            continue
-        parts.append(ABBREV.get(low, low))
-    if not parts:
+    text = unmarked(FIRM_TAIL.sub("", text))
+    head, comma, tail = text.partition(",")
+    head_tokens, tail_tokens = name_tokens(head), name_tokens(tail)
+
+    # T-1119: a name whose SURNAME SIDE is unsupplied is not a name at all. The
+    # Democrat of 28 May 1834 prints its beef contractor as
+    # `[...], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence` — the
+    # transcriber's ellipsis says the printing gave no name, and what follows the comma
+    # is the office, not the man. Flattened, it keyed `th|subsistence` off `5th` and
+    # `Subsistence`, which is a key for a regiment and a ration. identity_master.json
+    # already refuses this reading under R5; the parse now agrees with it.
+    if comma and not head_tokens and tail_tokens:
         return {"surname": "", "given": [], "forename": "", "uncertain": True,
                 "firm": firm, "key": ""}
-    surname = parts[-1]
-    given = parts[:-1]
+
+    # T-0969: a courtesy title is not a forename. Retain the female style as
+    # an identity distinction: Mrs Rufus Brown must not become Rufus Brown.
+    def style(tokens):
+        female = False
+        while tokens and tokens[0].lower().strip("'-") in TITLES:
+            female |= tokens.pop(0).lower().strip("'-") in {"mrs", "miss", "ms"}
+        return tokens, female
+
+    def fold(tokens):
+        out = []
+        for t in tokens:
+            low = re.sub(r"[^a-z]", "", t.lower())
+            if low:
+                out.append(ABBREV.get(low, low))
+        return out
+
+    if inverted(head_tokens, tail_tokens):
+        # The title still leads the GIVEN half, which after an inversion is the half
+        # after the comma: `Howe, Miss Jane E.` is a married style, not a Miss Howe.
+        given_tokens, female_style = style(tail_tokens)
+        surname_parts, given = fold(head_tokens), fold(given_tokens)
+    else:
+        tokens, female_style = style(head_tokens + tail_tokens)
+        parts = fold(tokens)
+        surname_parts, given = parts[-1:], parts[:-1]
+    if not surname_parts:
+        return {"surname": "", "given": [], "forename": "", "uncertain": True,
+                "firm": firm, "key": ""}
+    surname = surname_parts[-1]
     forename = next((g for g in given if len(g) > 1), "")
     return {
         "surname": surname,
@@ -218,6 +310,48 @@ def rank_bearing_names(residents, voters, letters, candidates) -> list:
                         "surname": row["parsed"]["surname"],
                         "key": row["parsed"]["key"]})
     return sorted(out, key=lambda r: (r["pool"], r["name"]))
+
+
+def markup_bearing_names(residents, voters, letters, candidates) -> list:
+    """Every 1835 pool name whose reading turns on the marks or the comma (T-1119).
+
+    Derived, so the file can never disagree with what parse_name actually does.
+    """
+    out = []
+    for pool, rows in (("residents", residents), ("voter_lists", voters),
+                       ("newspapers", letters), ("census_1835_bridge_candidates",
+                                                 candidates)):
+        for row in rows:
+            name = row.get("name") or ""
+            head, comma, tail = unmarked(name).partition(",")
+            shape = None
+            if comma and not name_tokens(head) and name_tokens(tail):
+                shape = "unsupplied_name"
+            elif inverted(name_tokens(head), name_tokens(tail)):
+                shape = "surname_first"
+            elif "[uncertain:" in name:
+                shape = "wrapped_reading"
+            elif "[" in name:
+                shape = "supplied_letters"
+            if shape:
+                out.append({"pool": pool, "shape": shape, "name": name,
+                            "surname": row["parsed"]["surname"],
+                            "key": row["parsed"]["key"]})
+    return sorted(out, key=lambda r: (r["shape"], r["pool"], r["name"]))
+
+
+def markup_bearing_counts(residents, voters, letters, candidates) -> dict:
+    """How many pool names each shape reaches, by pool — the size of what T-1119 moved.
+
+    Counts and not the rows: `surname_first` alone is a thousand names, and a table
+    that long in a method note is a table nobody reads. The rows are one call away
+    (`markup_bearing_names`) and the self-test asserts the shapes on named examples.
+    """
+    out = {}
+    for row in markup_bearing_names(residents, voters, letters, candidates):
+        out.setdefault(row["shape"], {})
+        out[row["shape"]][row["pool"]] = out[row["shape"]].get(row["pool"], 0) + 1
+    return {shape: dict(sorted(pools.items())) for shape, pools in sorted(out.items())}
 
 
 def initials(given: list) -> list:
@@ -995,16 +1129,56 @@ def build() -> dict:
             "spellings": sorted(RANKS),
             "written_names_reached": rank_bearing_names(
                 residents, voters, letters, candidates),
-            # Naming what the rank rule does NOT fix, rather than letting a corrected
-            # key read as a correct one. T-1119 holds these.
-            "still_wrong_and_not_a_rank": "Three of the rows above parse badly for a "
-                "reason the rank rule does not own, and their keys are inert rather "
-                "than right: 'Taylor, Jumes lt.' is written surname-first and this "
-                "parser has no comma inversion, so it keys taylor|jumes; "
-                "'[uncertain: Lt. Allen]' keeps the transcriber's wrapper as a "
-                "forename and keys uncertain|allen; and '[…], Lieutenant, 5th "
-                "Infantry, Assistant Commissary of Subsistence' names nobody at all. "
-                "None can reach an 1840 head and none is claimed to.",
+            # T-1119 closed the three rows this note used to hold open. Kept as the
+            # record of what the rank rule does NOT own, because a corrected key must
+            # not read as one the rank rule corrected.
+            "still_wrong_and_not_a_rank": "None, since T-1119. Three of the rows above "
+                "used to parse badly for a reason the rank rule does not own, and each "
+                "is now read by a rule the corpus had already settled elsewhere: "
+                "'Taylor, Jumes lt.' is printed surname-first and now inverts on its "
+                "comma to jumes|taylor; '[uncertain: Lt. Allen]' has the transcriber's "
+                "wrapper stripped and gives a surname and no forename, instead of "
+                "keying uncertain|allen; and '[…], Lieutenant, 5th Infantry, Assistant "
+                "Commissary of Subsistence' names nobody, so it now parses to no name "
+                "at all rather than to th|subsistence. See markup_is_not_a_name.",
+        },
+        # T-1119. The three marks the extracted newspapers carry, and the comma the
+        # letter lists print, read here as the rest of the corpus already read them.
+        # DERIVED on every build, like the rank rows above, so the file cannot drift
+        # from what parse_name does.
+        "markup_is_not_a_name": {
+            "rule": "A written name is unmarked before it is split, and a comma can "
+                    "mark a surname-first entry. compile_gazetteer.py `unmarked` and "
+                    "`surname`/`initials` have read the corpus this way since the "
+                    "gazetteer existed, concord_letter_list_1834_01_01.py `fold` folds "
+                    "the same wrapper, and T-0299 ruled that the markup is not a word "
+                    "boundary. This tool alone flattened all of it to spaces.",
+            "the_comma_inverts": "The letter lists print surname-first — 'Aiker, "
+                    "Samuel'. Taking the last word as the surname read them backwards. "
+                    "A comma inverts only where the word before it is longer than one "
+                    "letter and something follows it, so an OCR comma standing for a "
+                    "period ('Augustus H, Conant') and a bare suffix tail ('E. "
+                    "Wentworth, Jr.') do not invert.",
+            "the_wrapper_is_stripped": "'[uncertain: Aaron Wallace]' is Aaron Wallace, "
+                    "read with doubt. The doubt is in the stored reading, which is "
+                    "where it belongs; the word 'uncertain' was becoming the forename.",
+            "an_unsupplied_name_is_no_name": "Where the side before the comma supplies "
+                    "no word, the printing gave no name and what follows is the office "
+                    "— refused here, as identity_master.json already refuses it under "
+                    "R5.",
+            "one_stored_name_the_rule_reads_wrongly": "T-1121. The comma inverts "
+                    "1,007 pool names and ONE of them is a stored name with the comma "
+                    "in the wrong place: the minted person hugunin_leonard_c carries "
+                    "name 'Leonard, C. Hugunin', which inverts to the surname leonard "
+                    "though the record's own id, and the gazetteer's other printing of "
+                    "the same man ('Hugunin, Leonard, C.'), both say Hugunin. The "
+                    "defect is in the minted name, not in the rule — refusing the "
+                    "inversion for a tail shaped 'initial then word' would take 16 "
+                    "correct readings down with it, John Dean Caton's among them — so "
+                    "it is named here rather than papered over. No 1840 head turns on "
+                    "it: the adjudication is identical with and without.",
+            "pool_names_reached": markup_bearing_counts(
+                residents, voters, letters, candidates),
         },
         "what_is_not_a_discriminator": "an appearance of the SAME NAME on a poll list, a "
             "tax list or a letter list. It is the same name again and cannot separate "
@@ -1291,13 +1465,73 @@ def self_test() -> int:
     expect("a rank left of initials does not become the forename",
            (parse_name("Lieut J L Thompson")["surname"], parse_name("Lieut J L Thompson")["key"]),
            ("thompson", ""))
-    # A rank is written trailing too, and there it landed in the surname slot.
-    expect("a trailing rank is not a surname", parse_name("Taylor, Jumes lt.")["surname"], "jumes")
+    # A rank is written trailing too, and there it landed in the surname slot. T-1119
+    # then gave the comma its meaning, so the surname is the printed one: the letter
+    # list prints `Taylor, Jumes lt.` surname-first, and Taylor is the surname.
+    expect("a trailing rank is not a surname", parse_name("Taylor, Jumes lt.")["surname"], "taylor")
     # None of these spellings is a surname this corpus bears, which is why they may be
     # dropped in any position; a real name that merely CONTAINS one is untouched.
     expect("Litt is not a rank", parse_name("John Litt")["key"], "john|litt")
     expect("Lieutenant is not stripped out of Lieutenantville",
            parse_name("John Lieutenantville")["surname"], "lieutenantville")
+
+    # T-1119. The three defects the rank rule does not own, each settled elsewhere in
+    # this corpus and never applied here.
+    #
+    # ONE — the comma inverts. The letter lists print surname-first and this parser took
+    # the last word as the surname, so 1,018 of 2,665 gazetteer names read backwards.
+    expect("the letter list's comma puts the surname first",
+           parse_name("Aiker, Samuel")["key"], "samuel|aiker")
+    expect("an inverted entry's surname is the printed one",
+           parse_name("Taylor, Jumes lt.")["key"], "jumes|taylor")
+    expect("initials after the comma give a surname and no forename",
+           (parse_name("Abbot, 8. G.")["surname"], parse_name("Abbot, 8. G.")["key"]),
+           ("abbot", ""))
+    # ...and a comma standing where a period belongs is NOT an inversion. The guard is
+    # the word before it: a bare initial is no surname, so `Augustus H, Conant` keeps
+    # the parse it already had rather than keying off the letter H.
+    expect("an OCR comma after an initial does not invert",
+           parse_name("Augustus H, Conant")["key"], "augustus|conant")
+    expect("a suffix tail is not a forename half",
+           parse_name("E. Wentworth, Jr.")["surname"], "wentworth")
+    expect("nothing after the comma is not an inversion",
+           parse_name("John Bates, jr.")["key"], "john|bates")
+    # The title still leads the given half after an inversion, and keeps its style.
+    expect("a married style survives the inversion",
+           parse_name("Howe, Miss Jane E,")["key"], "female|jane|howe")
+
+    # TWO — the `[uncertain: ...]` wrapper is markup, not a forename. compile_gazetteer
+    # `unmarked` and concord_letter_list_1834_01_01 `fold` both strip it and keep the
+    # reading; here the word `uncertain` became the forename of 119 gazetteer names.
+    expect("the wrapper is not a forename",
+           parse_name("[uncertain: Aaron Wallace]")["key"], "aaron|wallace")
+    expect("a wrapper round the surname alone leaves the forename where it is",
+           parse_name("Dani[e]l O. [uncertain: Robian]")["key"], "daniel|robian")
+    expect("a wrapped rank leaves a surname and no forename",
+           (parse_name("[uncertain: Lt. Allen]")["surname"],
+            parse_name("[uncertain: Lt. Allen]")["key"]), ("allen", ""))
+    # T-0299: the markup is not a word boundary. `[e]` supplies a letter INSIDE a word.
+    expect("a supplied letter does not split the word",
+           parse_name("Dani[e]l Robian")["forename"], "daniel")
+    expect("a supplied letter does not split a surname",
+           parse_name("[Fost]er, [Cal]eb")["key"], "caleb|foster")
+    # `[?]` stays an unread letter and still grades the name uncertain.
+    expect("[?] is still unreadable", parse_name("Cha[?]. M. Snow")["uncertain"], True)
+
+    # THREE — a line whose surname side is unsupplied names nobody. The office after
+    # the comma is not a name, and it was keying `th|subsistence`.
+    expect("an unsupplied name is no name",
+           parse_name("[\u2026], Lieutenant, 5th Infantry, "
+                      "Assistant Commissary of Subsistence")["key"], "")
+    expect("an unsupplied name has no surname to index",
+           parse_name("[\u2026], Lieutenant, 5th Infantry, "
+                      "Assistant Commissary of Subsistence")["surname"], "")
+    expect("an unsupplied name is graded unreadable",
+           parse_name("[\u2026], Lieutenant, 5th Infantry, "
+                      "Assistant Commissary of Subsistence")["uncertain"], True)
+    # An ellipsis that eats part of a name is NOT the same thing: something is read.
+    expect("a truncated surname is still a surname",
+           parse_name("[\u2026] Goodhue")["surname"], "goodhue")
     # T-0969's female style survives the new filter.
     expect("Mrs is still not Mary's forename", parse_name("Mrs. Mary Brown")["key"],
            "female|mary|brown")

@@ -90,20 +90,20 @@
       {
         "pool": "newspapers",
         "name": "Taylor, Jumes lt.",
-        "surname": "jumes",
-        "key": "taylor|jumes"
+        "surname": "taylor",
+        "key": "jumes|taylor"
       },
       {
         "pool": "newspapers",
         "name": "[uncertain: Lt. Allen]",
         "surname": "allen",
-        "key": "uncertain|allen"
+        "key": ""
       },
       {
         "pool": "newspapers",
         "name": "[…], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence",
-        "surname": "subsistence",
-        "key": "th|subsistence"
+        "surname": "",
+        "key": ""
       },
       {
         "pool": "residents",
@@ -136,7 +136,31 @@
         "key": ""
       }
     ],
-    "still_wrong_and_not_a_rank": "Three of the rows above parse badly for a reason the rank rule does not own, and their keys are inert rather than right: 'Taylor, Jumes lt.' is written surname-first and this parser has no comma inversion, so it keys taylor|jumes; '[uncertain: Lt. Allen]' keeps the transcriber's wrapper as a forename and keys uncertain|allen; and '[…], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence' names nobody at all. None can reach an 1840 head and none is claimed to."
+    "still_wrong_and_not_a_rank": "None, since T-1119. Three of the rows above used to parse badly for a reason the rank rule does not own, and each is now read by a rule the corpus had already settled elsewhere: 'Taylor, Jumes lt.' is printed surname-first and now inverts on its comma to jumes|taylor; '[uncertain: Lt. Allen]' has the transcriber's wrapper stripped and gives a surname and no forename, instead of keying uncertain|allen; and '[…], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence' names nobody, so it now parses to no name at all rather than to th|subsistence. See markup_is_not_a_name."
+  },
+  "markup_is_not_a_name": {
+    "rule": "A written name is unmarked before it is split, and a comma can mark a surname-first entry. compile_gazetteer.py `unmarked` and `surname`/`initials` have read the corpus this way since the gazetteer existed, concord_letter_list_1834_01_01.py `fold` folds the same wrapper, and T-0299 ruled that the markup is not a word boundary. This tool alone flattened all of it to spaces.",
+    "the_comma_inverts": "The letter lists print surname-first — 'Aiker, Samuel'. Taking the last word as the surname read them backwards. A comma inverts only where the word before it is longer than one letter and something follows it, so an OCR comma standing for a period ('Augustus H, Conant') and a bare suffix tail ('E. Wentworth, Jr.') do not invert.",
+    "the_wrapper_is_stripped": "'[uncertain: Aaron Wallace]' is Aaron Wallace, read with doubt. The doubt is in the stored reading, which is where it belongs; the word 'uncertain' was becoming the forename.",
+    "an_unsupplied_name_is_no_name": "Where the side before the comma supplies no word, the printing gave no name and what follows is the office — refused here, as identity_master.json already refuses it under R5.",
+    "one_stored_name_the_rule_reads_wrongly": "T-1121. The comma inverts 1,007 pool names and ONE of them is a stored name with the comma in the wrong place: the minted person hugunin_leonard_c carries name 'Leonard, C. Hugunin', which inverts to the surname leonard though the record's own id, and the gazetteer's other printing of the same man ('Hugunin, Leonard, C.'), both say Hugunin. The defect is in the minted name, not in the rule — refusing the inversion for a tail shaped 'initial then word' would take 16 correct readings down with it, John Dean Caton's among them — so it is named here rather than papered over. No 1840 head turns on it: the adjudication is identical with and without.",
+    "pool_names_reached": {
+      "supplied_letters": {
+        "census_1835_bridge_candidates": 40,
+        "newspapers": 211,
+        "residents": 7
+      },
+      "surname_first": {
+        "newspapers": 1000,
+        "residents": 7
+      },
+      "unsupplied_name": {
+        "newspapers": 2
+      },
+      "wrapped_reading": {
+        "newspapers": 95
+      }
+    }
   },
   "what_is_not_a_discriminator": "an appearance of the SAME NAME on a poll list, a tax list or a letter list. It is the same name again and cannot separate two people who share it, so it is recorded as same_name_support on every outcome and never promotes a candidate to matched.",
   "inputs": [
@@ -197,10 +221,10 @@
   },
   "counts_by_rule": {
     "L1 unreadable_name": 249,
-    "L2 no_surname_in_the_1835_pools": 415,
-    "L3 given_name_conflict": 190,
-    "L4 initial_only": 73,
-    "L5 name_is_not_unique": 7,
+    "L2 no_surname_in_the_1835_pools": 411,
+    "L3 given_name_conflict": 194,
+    "L4 initial_only": 72,
+    "L5 name_is_not_unique": 8,
     "L6 matched": 13,
     "L6a low_confidence_caps_at_candidate": 5,
     "L6b reached_through_a_card_merge_caps_at_candidate": 1,
@@ -862,6 +886,14 @@
       "surname": "smith",
       "forename": "thomas",
       "same_name_support": [
+        {
+          "pool": "letter_list",
+          "id": "person_s_m_ith_thomas",
+          "name": "S[m]ith, Thomas",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
         {
           "pool": "letter_list",
           "id": "person_thomas_smith",
@@ -1558,8 +1590,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'leonard' is carried by 2 person(s) of 1835 (Anson Leonard, N Leonard) and none of their given names is 'john'.",
+      "reason": "The surname 'leonard' is carried by 3 person(s) of 1835 (Leonard, C. Hugunin, Anson Leonard, N Leonard) and none of their given names is 'john'.",
       "surname_bearers_1835": [
+        "hugunin_leonard_c",
         "leonard_anson",
         "leonard_n"
       ]
@@ -3779,7 +3812,7 @@
       "normalized": "Elij[ah] S. Prescot",
       "name_confidence": "low",
       "surname": "prescot",
-      "forename": "elij",
+      "forename": "elijah",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -3811,7 +3844,7 @@
       "normalized": "Mad[ame] Sara L. Hoare",
       "name_confidence": "low",
       "surname": "hoare",
-      "forename": "mad",
+      "forename": "madame",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -5418,7 +5451,16 @@
       "name_confidence": "medium",
       "surname": "stewart",
       "forename": "alexander",
-      "same_name_support": [],
+      "same_name_support": [
+        {
+          "pool": "letter_list",
+          "id": "person_stewart_alexander",
+          "name": "Stewart, Alexander'",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        }
+      ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
       "reason": "The surname 'stewart' is carried by 2 person(s) of 1835 (James Stewart, R. Stewart) and none of their given names is 'alexander'.",
@@ -5471,6 +5513,14 @@
           "name": "Charles Hunt",
           "source_ids": [
             "chicago_american_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_hunt_c_harle_s",
+          "name": "Hunt, C[harle]s",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
           ]
         }
       ],
@@ -5892,6 +5942,14 @@
           "record_id": "tax_1833_051",
           "name": "Seth Johnson",
           "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "letter_list",
+          "id": "person_johnson_seth",
+          "name": "Johnson, Seth",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
@@ -7035,6 +7093,22 @@
           ]
         },
         {
+          "pool": "letter_list",
+          "id": "person_ta_y_lor_charles",
+          "name": "Ta[y]lor, Charles",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "letter_list",
+          "id": "person_taylor_charles",
+          "name": "Taylor, Charles",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
           "pool": "census_1835_bridge_candidates",
           "tier": "A — CONFIRMED 1835 VOTER",
           "name": "Charles Taylor",
@@ -7055,7 +7129,7 @@
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Chas Taylor = Charles H. Taylor) and the name is unique on both sides, but nothing independent of the name was found: taylor_charles carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 6 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (Chas Taylor = Charles H. Taylor) and the name is unique on both sides, but nothing independent of the name was found: taylor_charles carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 8 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33S7-9YYJ-JM",
@@ -7102,11 +7176,11 @@
       "normalized": "Nath[l?] Peck",
       "name_confidence": "medium",
       "surname": "peck",
-      "forename": "nath",
+      "forename": "nathaniel",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'peck' is carried by 1 person(s) of 1835 (Philip F. W. Peck) and none of their given names is 'nath'.",
+      "reason": "The surname 'peck' is carried by 1 person(s) of 1835 (Philip F. W. Peck) and none of their given names is 'nathaniel'.",
       "surname_bearers_1835": [
         "peck_philip"
       ]
@@ -7177,6 +7251,22 @@
         },
         {
           "pool": "newspapers",
+          "id": "person_bates_john",
+          "name": "Bates, John",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_bates_john_jr",
+          "name": "Bates, John, Jr.",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
           "id": "person_jno_bates_jr",
           "name": "Jno. Bates, Jr.",
           "source_ids": [
@@ -7212,7 +7302,7 @@
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (John Bates = John Bates Jr.) and the name is unique on both sides, but nothing independent of the name was found: bates_john_jr carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 5 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (John Bates = John Bates Jr.) and the name is unique on both sides, but nothing independent of the name was found: bates_john_jr carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 7 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33S7-9YYJ-JM",
@@ -7263,12 +7353,12 @@
       "as_read": "Jacob Cryee",
       "normalized": "Jacob Cry[ee?]",
       "name_confidence": "low",
-      "surname": "ee",
+      "surname": "cryee",
       "forename": "jacob",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ee'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'cryee'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-JM",
@@ -7382,12 +7472,12 @@
       "as_read": "Edward McCrary",
       "normalized": "Edward McCra[ry?]",
       "name_confidence": "medium",
-      "surname": "ry",
+      "surname": "mccrary",
       "forename": "edward",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ry'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'mccrary'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-JM",
@@ -7397,11 +7487,11 @@
       "normalized": "Al[ean?] D. Woodruff",
       "name_confidence": "low",
       "surname": "woodruff",
-      "forename": "al",
+      "forename": "alean",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'woodruff' is carried by 1 person(s) of 1835 (Alson Woodruff) and none of their given names is 'al'.",
+      "reason": "The surname 'woodruff' is carried by 1 person(s) of 1835 (Alson Woodruff) and none of their given names is 'alean'.",
       "surname_bearers_1835": [
         "woodruff_alson"
       ]
@@ -7815,7 +7905,16 @@
       "name_confidence": "medium",
       "surname": "allen",
       "forename": "william",
-      "same_name_support": [],
+      "same_name_support": [
+        {
+          "pool": "letter_list",
+          "id": "person_allen_william",
+          "name": "Allen, William",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        }
+      ],
       "person_id": "allen_william",
       "household_id": "hh_allen_william",
       "resident_name": "William Allen",
@@ -8215,12 +8314,12 @@
       "as_read": "Geo Delliker",
       "normalized": "Geo Dellike[r?]",
       "name_confidence": "low",
-      "surname": "r",
+      "surname": "delliker",
       "forename": "george",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'r'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'delliker'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-PC",
@@ -8229,12 +8328,12 @@
       "as_read": "Rebecca McComber",
       "normalized": "Rebecca McComb[er?]",
       "name_confidence": "low",
-      "surname": "er",
+      "surname": "mccomber",
       "forename": "rebecca",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'er'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'mccomber'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-PC",
@@ -8243,12 +8342,12 @@
       "as_read": "Mary Rhines",
       "normalized": "Mary Rhine[s?]",
       "name_confidence": "medium",
-      "surname": "s",
+      "surname": "rhines",
       "forename": "mary",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 's'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'rhines'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-PC",
@@ -8360,12 +8459,12 @@
       "as_read": "D. Moseley",
       "normalized": "D. Mose[l]ey",
       "name_confidence": "medium",
-      "surname": "ey",
-      "forename": "mose",
+      "surname": "moseley",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ey'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'moseley'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33S7-9YYJ-PC",
@@ -9362,6 +9461,14 @@
         },
         {
           "pool": "newspapers",
+          "id": "person_carpenter_philo",
+          "name": "Carpenter, Philo",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
           "id": "person_philo_carpenter",
           "name": "Philo Carpenter",
           "source_ids": [
@@ -9715,6 +9822,14 @@
         },
         {
           "pool": "newspapers",
+          "id": "person_davis_john",
+          "name": "Davis, John",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
           "id": "person_john_davis",
           "name": "John Davis",
           "source_ids": [
@@ -9819,6 +9934,14 @@
           "name": "Gurdon S. Hubbard",
           "source_ids": [
             "chicago_american_1835",
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_hubbard_gurdon_s",
+          "name": "Hubbard, Gurdon S.",
+          "source_ids": [
             "chicago_democrat_1833_1835"
           ]
         },
@@ -10073,6 +10196,14 @@
           "pool": "newspapers",
           "id": "person_john_s_kinzie",
           "name": "John S. Kinzie",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_kinzie_john_h",
+          "name": "Kinzie, John H.",
           "source_ids": [
             "chicago_democrat_1833_1835"
           ]
@@ -11313,8 +11444,24 @@
       "same_name_support": [
         {
           "pool": "newspapers",
+          "id": "person_byra_m_king",
+          "name": "Byra[m] King",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
           "id": "person_byram_king",
           "name": "Byram King",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_king_byram",
+          "name": "King, Byram",
           "source_ids": [
             "chicago_democrat_1833_1835"
           ]
@@ -11328,7 +11475,7 @@
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Byram King = Byram King) and the name is unique on both sides, but nothing independent of the name was found: king_byram carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 1 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (Byram King = Byram King) and the name is unique on both sides, but nothing independent of the name was found: king_byram carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 3 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",
@@ -11346,6 +11493,14 @@
           "record_id": "tax_1833_049",
           "name": "Samuel Jackson",
           "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "letter_list",
+          "id": "person_jackson_samuel",
+          "name": "Jackson, Samuel",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "letter_list",
@@ -11376,7 +11531,7 @@
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Samuel C. Jackson = Samuel Jackson) and the name is unique on both sides, but nothing independent of the name was found: jackson_samuel carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 4 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (Samuel C. Jackson = Samuel Jackson) and the name is unique on both sides, but nothing independent of the name was found: jackson_samuel carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 5 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",
@@ -11663,6 +11818,22 @@
           "pool": "newspapers",
           "id": "person_john_wright",
           "name": "John Wright",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_wright_john",
+          "name": "Wright, John",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "letter_list",
+          "id": "person_wright_john_d",
+          "name": "Wright, John D.",
           "source_ids": [
             "chicago_democrat_1833_1835"
           ]
@@ -11964,8 +12135,8 @@
       "as_read": "Rob[t] [Chase]",
       "normalized": "Rob[t] [?]",
       "name_confidence": "low",
-      "surname": "t",
-      "forename": "rob",
+      "surname": "robert",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L1 unreadable_name",
@@ -12049,7 +12220,7 @@
       "normalized": "W[m] C. Covington",
       "name_confidence": "medium",
       "surname": "covington",
-      "forename": null,
+      "forename": "william",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -12175,6 +12346,14 @@
       "same_name_support": [
         {
           "pool": "newspapers",
+          "id": "person_calhoun_john",
+          "name": "Calhoun, John",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
           "id": "person_john_calhoun",
           "name": "John Calhoun",
           "source_ids": [
@@ -12296,7 +12475,7 @@
       "normalized": "Sam[l] C. [?]",
       "name_confidence": "low",
       "surname": "c",
-      "forename": "sam",
+      "forename": "samuel",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L1 unreadable_name",
@@ -12365,7 +12544,7 @@
       "as_read": "[Gordon] Moore Jun[r]",
       "normalized": "[?] Moore Jun[r]",
       "name_confidence": "low",
-      "surname": "r",
+      "surname": "junr",
       "forename": "moore",
       "same_name_support": [],
       "outcome": "refused",
@@ -12394,7 +12573,7 @@
       "normalized": "Eno[s] Plummer",
       "name_confidence": "low",
       "surname": "plummer",
-      "forename": "eno",
+      "forename": "enos",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -12421,8 +12600,8 @@
       "as_read": "[A]. McCa[ff]rey",
       "normalized": "[?] McCa[ff]rey",
       "name_confidence": "low",
-      "surname": "rey",
-      "forename": "mcca",
+      "surname": "mccaffrey",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L1 unreadable_name",
@@ -12569,11 +12748,11 @@
       "normalized": "W[m] Berry",
       "name_confidence": "medium",
       "surname": "berry",
-      "forename": null,
+      "forename": "william",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L4 initial_only",
-      "reason": "The head is written 'W[m] Berry' — a surname and initials only — and 1 person(s) of 1835 carry the surname 'berry'. A surname and a letter is not an identity.",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'berry' is carried by 1 person(s) of 1835 (Benjamin / Berry) and none of their given names is 'william'.",
       "surname_bearers_1835": [
         "berry_benjamin"
       ]
@@ -12600,7 +12779,7 @@
       "normalized": "Nichol[l]s Rossiter",
       "name_confidence": "medium",
       "surname": "rossiter",
-      "forename": "nichol",
+      "forename": "nicholls",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -12614,11 +12793,11 @@
       "normalized": "Sa[m]l Baxter",
       "name_confidence": "medium",
       "surname": "baxter",
-      "forename": "sa",
+      "forename": "samuel",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'baxter' is carried by 1 person(s) of 1835 (Daniel Baxter) and none of their given names is 'sa'.",
+      "reason": "The surname 'baxter' is carried by 1 person(s) of 1835 (Daniel Baxter) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
         "baxter_daniel"
       ]
@@ -12650,11 +12829,20 @@
       "normalized": "Sam[l] Anderson",
       "name_confidence": "medium",
       "surname": "anderson",
-      "forename": "sam",
-      "same_name_support": [],
+      "forename": "samuel",
+      "same_name_support": [
+        {
+          "pool": "letter_list",
+          "id": "person_samuel_anderson",
+          "name": "Samuel Anderson",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        }
+      ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'anderson' is carried by 1 person(s) of 1835 (Eli F Anderson) and none of their given names is 'sam'.",
+      "reason": "The surname 'anderson' is carried by 1 person(s) of 1835 (Eli F Anderson) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
         "anderson_eli_f"
       ]
@@ -13309,6 +13497,14 @@
       "forename": "william",
       "same_name_support": [
         {
+          "pool": "letter_list",
+          "id": "person_brown_william",
+          "name": "Brown, William",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
           "pool": "newspapers",
           "id": "person_wm_h_brown",
           "name": "Wm. H. Brown",
@@ -13349,7 +13545,7 @@
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (William Brown = William H Brown) and the name is unique on both sides, but nothing independent of the name was found: brown_william_h carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 5 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (William Brown = William H Brown) and the name is unique on both sides, but nothing independent of the name was found: brown_william_h carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 6 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33SQ-GYYJ-992",
@@ -13473,12 +13669,12 @@
       "as_read": "Samuel Cha[p]in",
       "normalized": "Samuel Cha[p]in",
       "name_confidence": "low",
-      "surname": "in",
+      "surname": "chapin",
       "forename": "samuel",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'in'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'chapin'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13487,12 +13683,12 @@
       "as_read": "Chs. L. Drag[u]a",
       "normalized": "Chs. L. Drag[u]a",
       "name_confidence": "low",
-      "surname": "a",
+      "surname": "dragua",
       "forename": "chs",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'a'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'dragua'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13501,12 +13697,12 @@
       "as_read": "[W]il[lia]m Ta[f]f",
       "normalized": "[W]il[lia]m Ta[f]f",
       "name_confidence": "low",
-      "surname": "f",
-      "forename": "il",
+      "surname": "taff",
+      "forename": "william",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'f'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'taff'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13572,11 +13768,11 @@
       "normalized": "[Sam]l. J. Brown",
       "name_confidence": "low",
       "surname": "brown",
-      "forename": "sam",
+      "forename": "samuel",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'sam'.",
+      "reason": "The surname 'brown' is carried by 6 person(s) of 1835 (Hanna E Brown, Jesse B Brown, Lemuel Brown, Rufus Brown) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
         "brown_hanna_e",
         "brown_jesse_b",
@@ -13594,11 +13790,24 @@
       "normalized": "[H]enry Morrison",
       "name_confidence": "low",
       "surname": "morrison",
-      "forename": "enry",
-      "same_name_support": [],
+      "forename": "henry",
+      "same_name_support": [
+        {
+          "pool": "census_1835_bridge_candidates",
+          "tier": "D — 1840 BACKCAST CANDIDATE",
+          "name": "Henry Morrison",
+          "source_id": "resident_research_v4_1835_census_bridge"
+        },
+        {
+          "pool": "census_1835_bridge_candidates",
+          "tier": "D — 1840 BACKCAST CANDIDATE",
+          "name": "Henry Morrison",
+          "source_id": "resident_research_v4_1835_census_bridge"
+        }
+      ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'morrison' is carried by 5 person(s) of 1835 (Amanda Morrison, James M Morrison, Ordemus Morrison, Orsemus Morrison) and none of their given names is 'enry'.",
+      "reason": "The surname 'morrison' is carried by 5 person(s) of 1835 (Amanda Morrison, James M Morrison, Ordemus Morrison, Orsemus Morrison) and none of their given names is 'henry'.",
       "surname_bearers_1835": [
         "morrison_amanda",
         "morrison_james_m",
@@ -13614,12 +13823,12 @@
       "as_read": "Jas. W. Bend[l]ey",
       "normalized": "Jas. W. Bend[l]ey",
       "name_confidence": "low",
-      "surname": "ey",
+      "surname": "bendley",
       "forename": "james",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ey'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'bendley'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13628,12 +13837,12 @@
       "as_read": "Ge[o]. M[u]nn",
       "normalized": "Ge[o]. M[u]nn",
       "name_confidence": "low",
-      "surname": "nn",
-      "forename": "ge",
+      "surname": "munn",
+      "forename": "george",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'nn'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'munn'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13660,7 +13869,7 @@
       "normalized": "[Th]os. Ladd",
       "name_confidence": "medium",
       "surname": "ladd",
-      "forename": "th",
+      "forename": "thomas",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -13673,12 +13882,12 @@
       "as_read": "Ja[s]. [K]ean",
       "normalized": "Ja[s]. [K]ean",
       "name_confidence": "low",
-      "surname": "ean",
-      "forename": "ja",
+      "surname": "kean",
+      "forename": "james",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ean'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'kean'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13687,12 +13896,12 @@
       "as_read": "W. H. Bra[i]nbridge",
       "normalized": "W. H. Bra[i]nbridge",
       "name_confidence": "low",
-      "surname": "nbridge",
-      "forename": "bra",
+      "surname": "brainbridge",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'nbridge'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'brainbridge'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13701,12 +13910,15 @@
       "as_read": "[J]no. Mars[h] W. Cad[y]",
       "normalized": "[J]no. Mars[h] W. Cad[y]",
       "name_confidence": "low",
-      "surname": "y",
-      "forename": "no",
+      "surname": "cady",
+      "forename": "john",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'y'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'cady' is carried by 1 person(s) of 1835 (Levi Cady) and none of their given names is 'john'.",
+      "surname_bearers_1835": [
+        "cady_levi"
+      ]
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13715,12 +13927,15 @@
       "as_read": "[I]saac Stua[r]t",
       "normalized": "[I]saac Stua[r]t",
       "name_confidence": "low",
-      "surname": "t",
-      "forename": "saac",
+      "surname": "stuart",
+      "forename": "isaac",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 't'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'stuart' is carried by 1 person(s) of 1835 (Samuel Stuart) and none of their given names is 'isaac'.",
+      "surname_bearers_1835": [
+        "stuart_samuel"
+      ]
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13729,12 +13944,12 @@
       "as_read": "[J]os[eph] L. M[u]ll[i]n",
       "normalized": "[J]os[eph] L. M[u]ll[i]n",
       "name_confidence": "low",
-      "surname": "n",
-      "forename": "os",
+      "surname": "mullin",
+      "forename": "joseph",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'n'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'mullin'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13774,12 +13989,12 @@
       "as_read": "Ethan Bu[t]ler",
       "normalized": "Ethan Bu[t]ler",
       "name_confidence": "low",
-      "surname": "ler",
+      "surname": "butler",
       "forename": "ethan",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ler'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'butler'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13788,7 +14003,7 @@
       "as_read": "E[?]ra Wood[?]ur[y]",
       "normalized": "E[?]ra Wood[?]ur[y]",
       "name_confidence": "low",
-      "surname": "y",
+      "surname": "ury",
       "forename": "ra",
       "same_name_support": [],
       "outcome": "refused",
@@ -13802,12 +14017,15 @@
       "as_read": "[J]no. Sammon[s]",
       "normalized": "[J]no. Sammon[s]",
       "name_confidence": "low",
-      "surname": "s",
-      "forename": "no",
+      "surname": "sammons",
+      "forename": "john",
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 's'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'sammons' is carried by 1 person(s) of 1835 (Richard Sammons) and none of their given names is 'john'.",
+      "surname_bearers_1835": [
+        "sammons_richard"
+      ]
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13831,21 +14049,59 @@
       "normalized": "[W]m. Smith",
       "name_confidence": "medium",
       "surname": "smith",
-      "forename": null,
-      "same_name_support": [],
+      "forename": "william",
+      "same_name_support": [
+        {
+          "pool": "voter_lists",
+          "list": "poll_1835",
+          "record_id": "poll_1835_071",
+          "name": "William Smith",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "voter_lists",
+          "list": "poll_1835",
+          "record_id": "poll_1835_072",
+          "name": "William V. Smith",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "letter_list",
+          "id": "person_smith_william_t",
+          "name": "Smith, William T.",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "letter_list",
+          "id": "person_wm_v_smith",
+          "name": "Wm. V. Smith",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "census_1835_bridge_candidates",
+          "tier": "A — CONFIRMED 1835 VOTER",
+          "name": "William Smith",
+          "source_id": "resident_research_v4_1835_census_bridge"
+        },
+        {
+          "pool": "census_1835_bridge_candidates",
+          "tier": "A — CONFIRMED 1835 VOTER",
+          "name": "William Smith",
+          "source_id": "resident_research_v4_1835_census_bridge"
+        }
+      ],
       "outcome": "refused",
-      "rule": "L4 initial_only",
-      "reason": "The head is written '[W]m. Smith' — a surname and initials only — and 9 person(s) of 1835 carry the surname 'smith'. A surname and a letter is not an identity.",
-      "surname_bearers_1835": [
-        "smith_e_kirby",
-        "smith_elded",
-        "smith_george",
-        "smith_jeremiah",
-        "smith_l_w",
-        "smith_lawrence",
-        "smith_matthias",
-        "smith_william"
-      ]
+      "rule": "L5 name_is_not_unique",
+      "reason": "The name '[W]m. Smith' is borne by 2 person(s) of 1835 and appears on 1 named 1840 head line(s). A name that two people share cannot identify either of them, so the pair is refused by measurement rather than by anyone's list of common names.",
+      "candidates_1835": [
+        "smith_william",
+        "smith_william_v"
+      ],
+      "other_1840_lines_with_this_name": []
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13854,12 +14110,12 @@
       "as_read": "W. S. Lockrid[g]e",
       "normalized": "W. S. Lockrid[g]e",
       "name_confidence": "medium",
-      "surname": "e",
-      "forename": "lockrid",
+      "surname": "lockridge",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'e'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'lockridge'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13868,12 +14124,12 @@
       "as_read": "[M]. Worthingt[o]n",
       "normalized": "[M]. Worthingt[o]n",
       "name_confidence": "low",
-      "surname": "n",
-      "forename": "worthingt",
+      "surname": "worthington",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'n'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'worthington'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-BP",
@@ -13882,12 +14138,16 @@
       "as_read": "[P]. [R]. F[ie]ld",
       "normalized": "[P]. [R]. F[ie]ld",
       "name_confidence": "low",
-      "surname": "ld",
-      "forename": "ie",
+      "surname": "field",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
-      "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ld'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "rule": "L4 initial_only",
+      "reason": "The head is written '[P]. [R]. F[ie]ld' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'field'. A surname and a letter is not an identity.",
+      "surname_bearers_1835": [
+        "field_j_e",
+        "field_secretary"
+      ]
     },
     {
       "familysearch_id": "33SQ-GYYJ-CK",
@@ -14726,11 +14986,11 @@
       "normalized": "Phill[i]p Dean",
       "name_confidence": "medium",
       "surname": "dean",
-      "forename": "phill",
+      "forename": "phillip",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'dean' is carried by 1 person(s) of 1835 (James L.. Dean) and none of their given names is 'phill'.",
+      "reason": "The surname 'dean' is carried by 1 person(s) of 1835 (James L.. Dean) and none of their given names is 'phillip'.",
       "surname_bearers_1835": [
         "dean_james_l"
       ]
@@ -14795,12 +15055,12 @@
       "as_read": "Julius Ma[l]Kay",
       "normalized": "Julius Ma[l]Kay",
       "name_confidence": "low",
-      "surname": "kay",
+      "surname": "malkay",
       "forename": "julius",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'kay'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'malkay'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-P5",
@@ -14864,7 +15124,7 @@
       "normalized": "Benj[n]. Jacobs",
       "name_confidence": "medium",
       "surname": "jacobs",
-      "forename": "benjamin",
+      "forename": "benjn",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -14878,11 +15138,11 @@
       "normalized": "Sam[l]. J. W. Gilbert",
       "name_confidence": "low",
       "surname": "gilbert",
-      "forename": "sam",
+      "forename": "samuel",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'gilbert' is carried by 1 person(s) of 1835 (James Gilbert) and none of their given names is 'sam'.",
+      "reason": "The surname 'gilbert' is carried by 1 person(s) of 1835 (James Gilbert) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
         "gilbert_james"
       ]
@@ -14894,12 +15154,12 @@
       "as_read": "H. R. W[i]ll[i]s",
       "normalized": "H. R. W[i]ll[i]s",
       "name_confidence": "low",
-      "surname": "s",
-      "forename": "ll",
+      "surname": "willis",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 's'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'willis'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-P5",
@@ -14980,8 +15240,8 @@
       "as_read": "[?]o. [D]esthalai[s]",
       "normalized": "[?]o. [D]esthalai[s]",
       "name_confidence": "low",
-      "surname": "s",
-      "forename": "esthalai",
+      "surname": "desthalais",
+      "forename": null,
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L1 unreadable_name",
@@ -14994,12 +15254,12 @@
       "as_read": "B[a]rnihart [B]la[u]ey",
       "normalized": "B[a]rnihart [B]la[u]ey",
       "name_confidence": "low",
-      "surname": "ey",
-      "forename": "rnihart",
+      "surname": "blauey",
+      "forename": "barnihart",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ey'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'blauey'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-P5",
@@ -15008,12 +15268,12 @@
       "as_read": "Adolp[h] Micha[e]l",
       "normalized": "Adolp[h] Micha[e]l",
       "name_confidence": "low",
-      "surname": "l",
-      "forename": "adolp",
+      "surname": "michael",
+      "forename": "adolph",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'l'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'michael'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-P5",
@@ -15054,11 +15314,11 @@
       "normalized": "[J]ohn Case",
       "name_confidence": "medium",
       "surname": "case",
-      "forename": "ohn",
+      "forename": "john",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'case' is carried by 1 person(s) of 1835 (Nehemiah Case) and none of their given names is 'ohn'.",
+      "reason": "The surname 'case' is carried by 1 person(s) of 1835 (Nehemiah Case) and none of their given names is 'john'.",
       "surname_bearers_1835": [
         "case_nehemiah"
       ]
@@ -15098,12 +15358,12 @@
       "as_read": "Sherman Ho[e]r",
       "normalized": "Sherman Ho[e]r",
       "name_confidence": "low",
-      "surname": "r",
+      "surname": "hoer",
       "forename": "sherman",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'r'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'hoer'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-P5",
@@ -15113,7 +15373,7 @@
       "normalized": "Cale[b] Lyman",
       "name_confidence": "medium",
       "surname": "lyman",
-      "forename": "cale",
+      "forename": "caleb",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -15141,11 +15401,11 @@
       "normalized": "Sam[ue]l Cook",
       "name_confidence": "low",
       "surname": "cook",
-      "forename": "sam",
+      "forename": "samuel",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'cook' is carried by 5 person(s) of 1835 (J. B. Cook, John Cook, Josiah P Cook, Rowland I!. Cook) and none of their given names is 'sam'.",
+      "reason": "The surname 'cook' is carried by 5 person(s) of 1835 (J. B. Cook, John Cook, Josiah P Cook, Rowland I!. Cook) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
         "cook_j_b",
         "cook_john",
@@ -15161,12 +15421,12 @@
       "as_read": "Thomas Ett[e]y",
       "normalized": "Thomas Ett[e]y",
       "name_confidence": "low",
-      "surname": "y",
+      "surname": "ettey",
       "forename": "thomas",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'y'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'ettey'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-P5",
@@ -15175,7 +15435,7 @@
       "as_read": "[?]le[?] Ett[y]sen",
       "normalized": "[?]le[?] Ett[y]sen",
       "name_confidence": "low",
-      "surname": "y",
+      "surname": "ettysen",
       "forename": "le",
       "same_name_support": [],
       "outcome": "refused",
@@ -15203,12 +15463,12 @@
       "as_read": "[J]ohn Ba[r]qu[ee]",
       "normalized": "[J]ohn Ba[r]qu[ee]",
       "name_confidence": "low",
-      "surname": "ee",
-      "forename": "ohn",
+      "surname": "barquee",
+      "forename": "john",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'ee'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'barquee'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-P5",
@@ -15217,12 +15477,12 @@
       "as_read": "Thomas Sh[i]r[d]",
       "normalized": "Thomas Sh[i]r[d]",
       "name_confidence": "low",
-      "surname": "d",
+      "surname": "shird",
       "forename": "thomas",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
-      "reason": "No person in the residents layer carries the surname 'd'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
+      "reason": "No person in the residents layer carries the surname 'shird'. The 1840 book is five years of arrivals after the scene and most of its heads are not 1835 people; a surname absent from 1835 is evidence of that, not a gap in the reading."
     },
     {
       "familysearch_id": "33SQ-GYYJ-P5",
@@ -15232,7 +15492,7 @@
       "normalized": "[J]ohn Ellis",
       "name_confidence": "medium",
       "surname": "ellis",
-      "forename": "ohn",
+      "forename": "john",
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L2 no_surname_in_the_1835_pools",
@@ -15489,6 +15749,14 @@
           "record_id": "poll_1834_034",
           "name": "George W. Dole",
           "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_dole_geo_w",
+          "name": "Dole, Geo. W.",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "newspapers",
@@ -16533,6 +16801,14 @@
           "record_id": "poll_1834_032",
           "name": "John Davis",
           "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_davis_john",
+          "name": "Davis, John",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "newspapers",

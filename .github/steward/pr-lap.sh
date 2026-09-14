@@ -3,7 +3,9 @@
 # THE PR LAP. For every open PR into `dev` that is not a draft and not `hold`:
 # merge `dev` in, regenerate what a tool owns, and push. It does NOT gate — CI
 # does, on the push (see the long note above the push below) — and it does NOT
-# merge the PR.
+# merge the PR. The lap gating first cost ~7 minutes per PR and was why the
+# queue never converged; lap 310 took 23.2 min for three pushes and lap 313,
+# after the removal, took 37 SECONDS for four.
 #
 # WHAT DOES MERGE IT: `.github/steward/merge-ready.sh`. This line used to read
 # "auto-merge does that once `gate` goes green", and that was not true. Nothing
@@ -218,7 +220,10 @@ if [ -n "$ONLY" ]; then
   PRS="$MATCHED"
 fi
 
-PUSHED=0; SKIPPED=0; RED=0; NOOP=0
+PUSHED=0; SKIPPED=0; NOOP=0
+# No `RED` any more: the lap does not gate, so it has no red count to report.
+# Printing `red=0` from a lap that never looked would be the same false
+# reassurance as the blind lap's `pushed=0 ... red=0`.
 while IFS=$'\t' read -r N BR; do
   [ -n "${N:-}" ] || continue
   say "=== PR #$N  ($BR)"
@@ -266,9 +271,11 @@ while IFS=$'\t' read -r N BR; do
     # `rederive.mjs --resolvable` answers from tools/derived_manifest.json, which
     # ENUMERATES rather than pattern-matches, so what is in scope can be read.
     # It refuses the set as a whole if any member is unlisted or declares
-    # hand_authored — half a merge is not a merge. check.sh still runs after
-    # this and is what PROVES the rebuild; a wrong manifest entry makes the gate
-    # red and the branch is not pushed, so the worst case is the PR staying open.
+    # hand_authored — half a merge is not a merge. The gate is what PROVES the
+    # rebuild, and since the lap stopped running it itself (see the push below)
+    # that gate is CI's: a wrong manifest entry makes the PUSHED branch go red,
+    # so the worst case is a red pull request rather than a merged bad rebuild.
+    # Auto-merge fires on a green required check and on nothing else.
     if [ -n "$REAL" ] && [ -f chicago/4d/tools/rederive.mjs ] \
        && node chicago/4d/tools/rederive.mjs --resolvable $REAL >/tmp/lap-rederive.log 2>&1; then
       say "  $(echo "$REAL" | grep -c .) conflict(s) in the derived research layer — rebuilding from source"
@@ -376,10 +383,41 @@ in this branch's own diff was touched.
 Merge drivers registered from $BASE rather than from this branch, so a branch cut
 before T-0831 resolves the same way one cut after it does (T-0857)." 2>/dev/null
 
-  if ! ( cd chicago/4d && ./tools/check.sh ) >/tmp/lap-gate.log 2>&1; then
-    say "  GATE RED after the lap — not pushed"; tail -6 /tmp/lap-gate.log | sed 's/^/    /'
-    RED=$((RED+1)); continue
-  fi
+  # THE LAP NO LONGER GATES BEFORE PUSHING, AND THIS IS THE ROOT-CAUSE FIX.
+  #
+  # It used to run the whole of `check.sh` here — ~15 minutes — and push only on
+  # green. That is redundant and it is the reason the queue would not converge.
+  #
+  # REDUNDANT: chicago-4d-check.yml triggers on `push` to ANY branch under
+  # `chicago/4d/**` AND on `pull_request`. The moment this push lands, the same
+  # tree is gated by CI, and the PR's merge result is gated too. The lap was
+  # doing the identical work first, on the critical path, and CI then did it
+  # again.
+  #
+  # AND IT IS WHY THE QUEUE NEVER DRAINED. Every merge into `$BASE` re-dirties
+  # every other open PR, because GitHub recomputes mergeability without this
+  # repo's merge drivers (T-0857 above). The lap is the only cure — and it could
+  # only apply that cure to about ONE PR every fifteen minutes, because each one
+  # waited out a full gate. Measured 2026-09-14:
+  #
+  #   lap 297  42.1 min      lap 307  19.2 min, pushed=1
+  #   lap 309  14.4 min      laps 301/303/304  1.4 min each — they pushed
+  #                          NOTHING, so no gate ran, which is the tell
+  #
+  # Merges were landing every few minutes. A cure that takes fifteen minutes per
+  # patient, against a disease that reinfects every patient every few minutes,
+  # never catches up — and #1315 proved it: resolved by hand, gated green at 397
+  # steps, pushed, and back to `dirty` the moment the next PR merged.
+  #
+  # NOTHING UNSAFE CAN MERGE AS A RESULT. Auto-merge fires only on a green
+  # required check, so a bad merge pushed here becomes a RED pull request, which
+  # is visible and recoverable — not a merged one. The refusal path above is
+  # untouched: a conflict outside the generated set is still left alone, because
+  # that is a judgement and not a gate.
+  #
+  # The trade, stated plainly: a PR branch may briefly carry a merge whose gate
+  # then goes red. That is strictly better than the same PR sitting `dirty`
+  # forever with nobody told why.
 
   # SAY WHAT ACTUALLY HAPPENED. `git push` to a ref that is already at HEAD is
   # "Everything up-to-date" and exits 0, so the old form printed "pushed — gate
@@ -428,4 +466,5 @@ else
 fi
 
 say ""
-say "PR lap: pushed=$PUSHED already-current=$NOOP left-alone=$SKIPPED red=$RED"
+say "PR lap: pushed=$PUSHED already-current=$NOOP left-alone=$SKIPPED"
+say "  (gating is CI's — every push above re-runs the gate and the PR's merge result)"
