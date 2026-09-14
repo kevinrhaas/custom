@@ -1,7 +1,7 @@
 ---
 id: T-1123
 title: Extend the modelled ground north to n +1120, so Kinzie's Addition and the North Branch's traced banks stand on measured ground
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-14
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/14/2026, 5:37:00 AM CT
 blocked_on: null
 needs_bake: true
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34833634055
 ---
 
 Extend the modelled ground north to n +1120, so Kinzie's Addition and the North Branch's traced banks stand on measured ground.
