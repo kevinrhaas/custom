@@ -1,7 +1,7 @@
 ---
 id: T-1112
 title: generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-14
+pr: 1339
+claimed_by: run 9/14/2026, 2:06:32 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-14T19:36:07.426Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34884583792
 ---
 
 generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it.

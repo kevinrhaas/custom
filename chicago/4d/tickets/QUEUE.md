@@ -253,8 +253,7 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
 # --- re-deriving them.
 
-T-1112 — generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it
-T-1110 — st_marys_baptisms_crosswalk.json is hand-edited away from what read_st_marys_baptisms.py rebuilds
+T-1128 — Four adults of St Mary's register have an exact namesake in the residents layer and no ruling on either: Solomon Juneau, Josette Chevalier, Patrick Carroll and Mary Durbin
 T-1109 — pass_14_findings.json no longer matches what complete_resident_research_pass_14.py re-derives
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
