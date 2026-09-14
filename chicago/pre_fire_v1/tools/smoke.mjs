@@ -118,6 +118,51 @@ for (const [label, viewport] of [
   const imgs = await page.locator('tbody img').count();
   check(`${label}: building images render in the table`, imgs > 0, `${imgs} images`);
 
+  // 1834 must offer BOTH sheets, with Wright — the survey — selected ahead of
+  // Hathaway, the map drawn from it (T-0801). The mirror held only Hathaway for
+  // four months because there was no publish step; these checks are what notices.
+  const views1834 = await page.evaluate(async () => {
+    const el = document.querySelector('input[type=range]');
+    el.value = 1834;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    await new Promise((r) => setTimeout(r, 300));
+    const sel = document.getElementById('mapVariant');
+    return {
+      ids: [...sel.options].map((o) => o.value),
+      selected: sel.value,
+      note: document.getElementById('mapNote').textContent,
+      meta: document.getElementById('mapMeta').textContent,
+      src: document.getElementById('mapImage').getAttribute('src'),
+    };
+  });
+  check(`${label}: 1834 offers both sheets`,
+    views1834.ids.includes('MAP-1834-WRIGHT') && views1834.ids.includes('MAP-1834-HATHAWAY'),
+    views1834.ids.join(', '));
+  check(`${label}: Wright is 1834's default view`,
+    views1834.selected === 'MAP-1834-WRIGHT', views1834.selected);
+  check(`${label}: the Wright sheet carries its provenance`,
+    /National Archives/.test(views1834.meta) && /Historic Urban Plans/.test(views1834.meta)
+      && /Two portions are missing/.test(views1834.note),
+    `${views1834.meta.slice(0, 80)} | ${views1834.note.slice(0, 60)}`);
+
+  // Fetch the sheet by its own path, not by whatever the select happens to show:
+  // following views1834.src would pass on the Hathaway image if Wright were missing.
+  const WRIGHT_SRC = '../maps/images/1834-wright-map.jpg';
+  const wrightImg = await page.evaluate(async (src) =>
+    (await fetch(src, { method: 'HEAD' })).status, WRIGHT_SRC);
+  check(`${label}: the Wright sheet is served`, wrightImg === 200,
+    `status ${wrightImg} for ${WRIGHT_SRC}`);
+  check(`${label}: the Wright sheet is what 1834 shows`, views1834.src === WRIGHT_SRC,
+    views1834.src);
+
+  // put the year back where the checks below expect it
+  await page.evaluate(() => {
+    const el = document.querySelector('input[type=range]');
+    el.value = 1835;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  await page.waitForTimeout(300);
+
   // the new Kurz & Allison sheet must actually load, not 404
   const kurz = await page.evaluate(async () => {
     const r = await fetch('../media/images/buildings/chicago_early_days_kurz_allison.jpg',
