@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Thirty-six people whose answers no one could reproduce', kind: 'fix', ts: '',
+  { v: 881, title: 'Thirty-six people whose answers no one could reproduce', kind: 'fix', ts: '2026-09-14T23:26:36.761Z', date: 'Sep 14, 2026, 6:26 PM CT',
     items: [
       'Seventy-six of this town\u2019s residents were researched as one cohort, and that cohort was read TWICE \u2014 by two runs that could not see each other. The two readings disagreed about thirty-six of the people. A later pass sat down with all thirty-six, ruled each one, and wrote the discriminator that decided it: a church roll that opens in 1842 cannot corroborate a man listed in July 1835; an initial agreeing with an initial in a book printed nine years later is a candidate and not a fact. Fourteen of those rulings went AGAINST what the mechanical rule would have said, which is the point of having ruled them.',
       'The rulings were then typed into the ledger by hand, and nothing could get back to them. The tool that derives the ledger had never been told they existed, so re-running it produced the pre-ruling answers \u2014 and the file on disk, the one every later pass reads, was the only place the thirty-six rulings lived. Ask the tool to check its own output and it said, correctly, that the two did not match. Nothing had ever asked.',
