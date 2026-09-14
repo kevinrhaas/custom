@@ -4,16 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1299,
+  "town_people": 1308,
   "open_clusters": 19,
   "cards_in_open_clusters": 41,
   "rulings": {
    "distinct": 13,
-   "merge": 36,
+   "merge": 39,
    "undecided_rule": 12
   },
-  "landed_merges": 36,
-  "cards_folded": 55
+  "landed_merges": 39,
+  "cards_folded": 58
  },
  "landed": [
   {
@@ -165,6 +165,16 @@
   },
   {
    "cluster": "harmon-isaac",
+   "survivor": "harmon_charles_l",
+   "survivor_household": "hh_harmon_brothers",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "harmon_c_l"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "harmon-isaac",
    "survivor": "harmon_isaac_d",
    "survivor_household": "hh_harmon_brothers",
    "survivor_on_the_cards": true,
@@ -235,6 +245,16 @@
     "kennicott_w_l"
    ],
    "rule": "C4"
+  },
+  {
+   "cluster": "kennicott",
+   "survivor": "kennicott_william_h",
+   "survivor_household": "hh_kennicott_william_h",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "kennicott_w_h"
+   ],
+   "rule": "C2"
   },
   {
    "cluster": "kimberly",
@@ -394,6 +414,16 @@
     "vandenbogart_h"
    ],
    "rule": "C7"
+  },
+  {
+   "cluster": "wright",
+   "survivor": "wright_john_s",
+   "survivor_household": "hh_wright_john",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "wright_j_s"
+   ],
+   "rule": "C2"
   }
  ],
  "clusters": [
@@ -1272,9 +1302,10 @@
      "name": "John S. Wright",
      "anchor": true,
      "sources": [
-      "andreas_1884_v1"
+      "andreas_1884_v1",
+      "chicago_democrat_1833_1835"
      ],
-     "ruling": "distinct",
+     "ruling": "merge",
      "ruled_in": "wright"
     }
    ],

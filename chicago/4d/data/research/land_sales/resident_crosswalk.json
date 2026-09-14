@@ -2476,7 +2476,7 @@
       "resident_name": "Silas W Sherman",
       "household_id": "hh_sherman_silas_w",
       "match": "forename_agrees",
-      "rule": "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees in full.",
+      "rule": "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -2505,6 +2505,15 @@
           "middle_initial": "W",
           "reading_middle_initial": "W",
           "outcome": "survives"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "G",
+          "reading_middle_initial": "W",
+          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -6750,7 +6759,7 @@
       "resident_name": "Silas W Sherman",
       "household_id": "hh_sherman_silas_w",
       "match": "initial_agrees",
-      "rule": "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -6779,6 +6788,15 @@
           "middle_initial": "W",
           "reading_middle_initial": "W",
           "outcome": "survives"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
+          "reading_middle_initial": "W",
+          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -13898,8 +13916,8 @@
     },
     {
       "a": "SHERMAN FRANCIS C",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN FRANCIS C is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN FRANCIS C is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -13925,6 +13943,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "W",
+          "reading_middle_initial": "C",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "G",
           "reading_middle_initial": "C",
           "outcome": "refused_on_the_forename"
         }
@@ -17816,8 +17843,8 @@
     },
     {
       "a": "SHERMAN F C",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN F C is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN F C is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -17843,6 +17870,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "W",
+          "reading_middle_initial": "C",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
           "reading_middle_initial": "C",
           "outcome": "refused_on_the_forename"
         }
@@ -17856,8 +17892,8 @@
     },
     {
       "a": "SHERMAN F T",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN F T is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN F T is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -17883,6 +17919,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "W",
+          "reading_middle_initial": "T",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
           "reading_middle_initial": "T",
           "outcome": "refused_on_the_forename"
         }

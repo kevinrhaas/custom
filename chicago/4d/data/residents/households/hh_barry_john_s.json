@@ -104,6 +104,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1c"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "barry-j",
+     "weighed_against": [
+      "barry_j_r"
+     ],
+     "referred_to": "rule",
+     "for_merge": "`Barry, J. R.` of the 1834 poll list and `John S. Barry` of the letter list of 20 May 1835 share the surname and the forename initial, and the town holds no third Barry.",
+     "against_merge": "R and S are both printed and they disagree. Neither card is documented beyond a list — a poll roll and a letter list, no trade, no address, no arrival — so C4's anchor is missing and the contradiction has nothing to be weighed against. R3."
+    }
    ]
   }
  ],

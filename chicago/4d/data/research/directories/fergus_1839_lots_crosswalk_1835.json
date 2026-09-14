@@ -19,7 +19,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1297
+   "n": 1306
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -29,7 +29,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2620
+   "n": 2640
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -43,13 +43,13 @@
   "residents_matched_one_bidder": 18,
   "residents_ambiguous": 1,
   "residents_contested": 9,
-  "residents_surname_only_refused": 82,
+  "residents_surname_only_refused": 84,
   "voters_matched_one_bidder": 20,
   "voters_ambiguous": 1,
   "voters_surname_only_refused": 43,
-  "letter_list_matched_one_bidder": 54,
+  "letter_list_matched_one_bidder": 56,
   "letter_list_ambiguous": 0,
-  "letter_list_surname_only_refused": 190,
+  "letter_list_surname_only_refused": 193,
   "heads_1840_matched_one_bidder": 27,
   "heads_1840_ambiguous": 1,
   "heads_1840_surname_only_refused": 68
@@ -1878,6 +1878,11 @@
     "rule": "The surname 'Cobb' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'L' of 'L B Cobb'. A surname-only agreement is a refusal."
    },
    {
+    "name": "L Clarke",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Clarke' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'L' of 'L Clarke'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "L W Smith",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Smith' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'L' of 'L W Smith'. A surname-only agreement is a refusal."
@@ -2041,6 +2046,11 @@
     "name": "William F Lyon",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Lyon' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'William F Lyon'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William George Sherman",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Sherman' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'William George Sherman'. A surname-only agreement is a refusal."
    },
    {
     "name": "William H Taylor",
@@ -4386,6 +4396,36 @@
     ]
    },
    {
+    "name": "J. S. Wright",
+    "rule": "Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "John Wright",
+      "lots_bid": 1,
+      "amount_read_usd": 65,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0215",
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
+        "amount_usd": 65,
+        "as_printed": {
+         "block": null,
+         "lot": null,
+         "bidder": "John Wright,",
+         "amount": "65"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false,
+        "bidder_braced": false
+       }
+      ]
+     }
+    ]
+   },
+   {
     "name": "J. W. Smith",
     "rule": "Surname 'Smith' folds to the same string as the bidder's, and the given name of both begins J.",
     "bids_1839": [
@@ -4730,6 +4770,68 @@
          "lot": "13",
          "bidder": "J. M. Smith,",
          "amount": "435"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false,
+        "bidder_braced": false
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Jno. H. Kinzie",
+    "rule": "Surname 'Kinzie' folds to the same string as the bidder's, and the given name of both begins J.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "J. H. Kinzie",
+      "lots_bid": 3,
+      "amount_read_usd": 631,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0090",
+        "block": 7,
+        "block_carried": true,
+        "lot": 10,
+        "amount_usd": 273,
+        "as_printed": {
+         "block": null,
+         "lot": "IO",
+         "bidder": "J. H. Kinzie,",
+         "amount": "273"
+        },
+        "printed_page": 48,
+        "bidder_ditto": false,
+        "bidder_braced": false
+       },
+       {
+        "claim": "f1839_lot0091",
+        "block": 7,
+        "block_carried": true,
+        "lot": 11,
+        "amount_usd": 207,
+        "as_printed": {
+         "block": null,
+         "lot": "1 1",
+         "bidder": "II",
+         "amount": "207"
+        },
+        "printed_page": 48,
+        "bidder_ditto": true,
+        "bidder_braced": false
+       },
+       {
+        "claim": "f1839_lot0100",
+        "block": 7,
+        "block_carried": true,
+        "lot": 20,
+        "amount_usd": 151,
+        "as_printed": {
+         "block": null,
+         "lot": "20",
+         "bidder": "J. H. Kinzie,",
+         "amount": "151"
         },
         "printed_page": 48,
         "bidder_ditto": false,
@@ -6693,6 +6795,11 @@
     "rule": "The surname 'King' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'H' of 'King, Henry Won,'. A surname-only agreement is a refusal."
    },
    {
+    "name": "L. Clarke",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Clarke' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'L' of 'L. Clarke'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "L. F. Arnold",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Arnold' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'L' of 'L. F. Arnold'. A surname-only agreement is a refusal."
@@ -7043,6 +7150,11 @@
     "rule": "The surname 'Reed' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'W. Reed'. A surname-only agreement is a refusal."
    },
    {
+    "name": "W. Sherman",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Sherman' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'W. Sherman'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "W[i]lson, Walter",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'W[i]lson' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'W[i]lson, Walter'. A surname-only agreement is a refusal."
@@ -7131,6 +7243,11 @@
     "name": "Zimry Butterfield",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Butterfield' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'Z' of 'Zimry Butterfield'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Beaubien",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Beaubien' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial '-' of '[?] Beaubien'. A surname-only agreement is a refusal."
    },
    {
     "name": "[?]. Smith",
