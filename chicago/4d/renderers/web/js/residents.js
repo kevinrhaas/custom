@@ -65,6 +65,9 @@
  */
 
 import { citationItems, escapeHtml } from './citations.js';
+// The agency relation, rendered by the module that owns it — one rendering of a
+// holding for the building card and the person card both (T-1041).
+import { agencySectionHtml, loadAgencies } from './agencies.js';
 
 /** A closed-set token as a reader should see it: `tavern_keeper`. */
 export function words(token) {
@@ -687,7 +690,8 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 }
 
 /** The household record itself, rendered into an opened row. */
-export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules) {
+export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules,
+  agencies = null) {
   // T-0632's block on the record: `directories.note` states what a later volume is
   // worth and `directories.sources` names every one that met this household.
   const onRecord = hh.directories || {};
@@ -714,6 +718,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
     </dl>
     ${onRecord.note ? `<p class="res-why">${escapeHtml(onRecord.note)} Volumes cited on this record: ${
         escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
+    ${agencySectionHtml(agencies, 'household_id', hh.id, escapeHtml)}
     <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules)).join('')}</div>`;
 }
 
@@ -872,6 +877,11 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     if (!res.ok) throw new Error(`${rel}: ${res.status} ${res.statusText}`);
     return res.json();
   };
+
+  // The agency relation. A man who held one is named on his own town card, and a
+  // failure here leaves the block off rather than the card — `loadAgencies` returns
+  // null and `agencySectionHtml` renders nothing from a null.
+  const agencies = await loadAgencies({ dataBase, problems });
 
   let index;
   try {
@@ -1035,7 +1045,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
         if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson,
-          vocab.ladder_rules);
+          vocab.ladder_rules, agencies);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);
@@ -1087,7 +1097,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
  * @param {string} sceneId which scene's citation join to read
  * @param {string[]} [problems] the shared collector
  * @returns {Promise<{citationsById: Map, researchByPerson: Map, directoryByPerson: Map,
- *   ladderRules: object[], getJson: (rel: string) => Promise<any>}>}
+ *   ladderRules: object[], agencies: object|null, getJson: (rel: string) => Promise<any>}>}
  */
 const residentJoinCache = new Map();
 export function loadResidentJoins(dataBase, sceneId, problems = []) {
@@ -1103,7 +1113,7 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
     const researchByPerson = new Map();
     const directoryByPerson = new Map();
     let ladderRules = [];
-    const [joined, pilot, found, index] = await Promise.all([
+    const [joined, pilot, found, index, agencies] = await Promise.all([
       getJson(`sidecars/${sceneId}/residents_sources.json`).catch((err) => {
         problems.push(`people: ${err.message} — person cards are shown without their citations`);
         return null;
@@ -1120,6 +1130,9 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
         problems.push(`people: ${err.message} — the grading ladder's text is not shown on person cards`);
         return null;
       }),
+      // The agency relation. Its own loader, because it degrades the same way and
+      // pushes its own problem; a null here costs the block and not the card.
+      loadAgencies({ dataBase, problems }),
     ]);
     for (const [id, record] of Object.entries(joined?.citations || {})) citationsById.set(id, record);
     for (const review of pilot?.reviews || []) researchByPerson.set(review.person_id, review);
@@ -1127,7 +1140,7 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
       directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
     }
     ladderRules = index?.vocabulary?.ladder_rules || [];
-    return { citationsById, researchByPerson, directoryByPerson, ladderRules, getJson };
+    return { citationsById, researchByPerson, directoryByPerson, ladderRules, agencies, getJson };
   })();
   residentJoinCache.set(key, promise);
   return promise;

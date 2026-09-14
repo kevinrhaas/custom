@@ -35,6 +35,7 @@ import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
 import { loadOrdinanceLimits } from './ordinances.js';
+import { loadAgencies } from './agencies.js';
 import { createFencedGround } from './yards.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
@@ -1584,6 +1585,15 @@ async function boot() {
   // line it stood on. A failed fetch leaves the row off rather than guessing a side.
   api.ordinances = await loadOrdinanceLimits({ dataBase: bases.dataBase, problems });
   popup.setOrdinanceLimits(api.ordinances);
+
+  // And a relation, which belongs to no attribute at all. A house or a man could hold
+  // an agency for a company that never stood in this town — Hubbard & Co. insured
+  // property against loss by fire for the Howard of New-York, and three weeks before
+  // the scene date the agency left the house for one man. The register has held that
+  // since T-0410 and no surface read it; the card carries it now (T-1041). A failed
+  // fetch leaves the block off rather than claiming the house held nothing.
+  api.agencies = await loadAgencies({ dataBase: bases.dataBase, problems });
+  popup.setAgencies(api.agencies);
 
   // And what the GROUND claims, which no building can carry either: the surface
   // every one of them stands on is graded as carefully as they are, and said so
