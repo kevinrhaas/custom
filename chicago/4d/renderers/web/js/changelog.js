@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Two hundred and one voters who had reached nobody now reach somebody', kind: 'fix', ts: '',
+  { v: 873, title: 'Two hundred and one voters who had reached nobody now reach somebody', kind: 'fix', ts: '2026-09-14T16:52:16.074Z', date: 'Sep 14, 2026, 11:52 AM CT',
     items: [
       'Four voter and tax lists of 1833\u20131835 are read here in full \u2014 345 printed rows \u2014 and a derived file records, for each row, which person of 1835 it reaches. It was last written on 3 September, when this town had 849 resident cards, and has been read ever since as though it were current. The town has 1,284 cards now.',
       'So the file was answering a question about a town that no longer existed. Re-derived against the tree as it stands, 128 entries that it called unmatched reach a resident, and 73 more that it could only call candidates now resolve to one person: 99 matches become 300. Nothing moved the other way \u2014 no entry that had a match lost it \u2014 which is what you would expect from a layer that only gained people, and it is worth saying because the opposite would have meant the rules themselves had drifted.',
