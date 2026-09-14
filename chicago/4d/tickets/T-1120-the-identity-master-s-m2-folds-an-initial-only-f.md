@@ -1,5 +1,5 @@
 ---
-id: T-1118
+id: T-1120
 title: The identity master's M2 folds an initial-only forename onto a full one on the LEADING initial alone, so B. S. Sherman of the 1840 census attaches to Benjamin F. Sherman across a disagreeing middle initial
 state: open
 epic: META
