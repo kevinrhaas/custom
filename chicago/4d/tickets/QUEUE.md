@@ -145,7 +145,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
 # --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
 
-T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
 
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
@@ -197,6 +196,9 @@ T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad
 # --- order puts it third and it is left there — but a run taking T-0464 should READ it first rather
 # --- than size the field twice.
 
+
+
+T-1122 — Both back-projection passes call every householder 'this man' in generated prose, and one of the 57 is Rebecca Sherman
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
@@ -303,3 +305,4 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
+
