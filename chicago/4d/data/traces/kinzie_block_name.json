@@ -787,13 +787,13 @@
       ],
       "n": [
         -530.0,
-        400.0
+        1120.0
       ]
     },
-    "block_inside_the_box": false,
+    "block_inside_the_box": true,
     "block_south_face_n_m": 402.7,
-    "box_north_edge_n_m": 400.0,
-    "beyond_the_north_edge_m": 2.7,
+    "box_north_edge_n_m": 1120.0,
+    "beyond_the_north_edge_m": -717.3,
     "claim": "No. The whole of the Kinzie Block lies north of the modelled ground's edge.",
     "note": "The 1834 harbour-cut heightfield is boxed at n_max +400 m and the block's SOUTH face \u2014 its nearest edge \u2014 is at +402.72, so the block misses the modelled ground entirely, by 2.7 m at the near corner and by 70 m at the far one. Michigan Street, which forms that south face, is inside the box and dry: the heightfield reads +1.54 m above the summer-1835 water surface at the block's mid-face. That is why the viewpoint below stands on the street and looks north rather than standing on the block. Filed as its own ticket: this is the north counterpart of T-0219, which finishes the heightfield south."
   },

@@ -226,6 +226,12 @@ PUSHED=0; SKIPPED=0; NOOP=0
 # reassurance as the blind lap's `pushed=0 ... red=0`.
 while IFS=$'\t' read -r N BR; do
   [ -n "${N:-}" ] || continue
+  # Per-PR state, cleared HERE and not where it is set. A `continue` can leave
+  # the loop from a dozen places below, so anything set mid-body outlives this
+  # iteration unless it is reset at the top — and a stale REDERIVED would silently
+  # skip the derived-layer rebuild for the next PR, which is the exact fault the
+  # rebuild exists to prevent.
+  REDERIVED=
   say "=== PR #$N  ($BR)"
   git fetch origin "$BR" -q 2>/dev/null || { say "  fetch failed"; SKIPPED=$((SKIPPED+1)); continue; }
   git checkout -B "lap/$N" "origin/$BR" -q 2>/dev/null || { say "  checkout failed"; SKIPPED=$((SKIPPED+1)); continue; }
@@ -285,6 +291,7 @@ while IFS=$'\t' read -r N BR; do
         git merge --abort 2>/dev/null; SKIPPED=$((SKIPPED+1)); continue
       fi
       REAL=
+      REDERIVED=1
     fi
 
     if [ -n "$REAL" ]; then
@@ -362,6 +369,48 @@ while IFS=$'\t' read -r N BR; do
       git merge --abort 2>/dev/null; SKIPPED=$((SKIPPED+1)); continue
     fi
     grep -E '^ticket ids: T-' /tmp/lap-ids.log | sed 's/^/  /' || true
+  fi
+
+  # THE DERIVED LAYER IS REBUILT ON EVERY MERGE, NOT ONLY ON A CONFLICT — and the
+  # difference between those two is a whole class of red pull request.
+  #
+  # The block above rebuilds it when a conflicting file is one the manifest owns.
+  # That covers the case where BOTH sides re-derived the same file. It does not
+  # cover the one that actually bites: `$BASE` changes an INPUT to a derived file
+  # that this branch never touched. git has no conflict to report — there is no
+  # disagreement, only a new fact — so nothing triggered a rebuild, and the
+  # branch carried a derived file that no longer follows from its own inputs.
+  #
+  # CAUGHT LIVE on #1316, 2026-09-14. Lap 314 merged `dev` into it with ZERO
+  # conflicts and pushed. The gate then went red on one step of 397:
+  #
+  #   * …and the later HOME addresses re-derive through the residence clauses
+  #
+  # `dev` had just taken #1315 (T-1119), which added a fourth Sherman to the
+  # residents layer. `residence_back_projection.json` reads that layer, so the
+  # committed file said 57 addresses adjudicated where its own tool now derives
+  # 58. Nothing in the merge disagreed about anything; the answer had simply
+  # moved underneath it. Reproduced locally and confirmed: `rederive.mjs --run`
+  # turns that step green (`58 residence addresses adjudicated, 11 placed, 47
+  # refused`), and it is the ONLY file in the tree it changes.
+  #
+  # This is not new to the gate removal — the old lap hit the same stale file and
+  # simply declined to push, leaving the PR `dirty` with no explanation instead
+  # of red with one. Either way it did not merge. It is cheap to just fix:
+  # measured 19 SECONDS for all 28 steps on a real lapped tree, against ~7
+  # minutes for the gate this replaced.
+  #
+  # `--run` is idempotent by construction — every step re-derives from committed
+  # inputs — so running it on a branch that needed nothing costs those seconds
+  # and changes nothing, which is the right trade against a red PR nobody owns.
+  # `$REDERIVED` is set by the conflict path above, which has already run exactly
+  # this. Running it twice would only cost the same seconds again.
+  if [ -z "${REDERIVED:-}" ] && [ -f chicago/4d/tools/rederive.mjs ]; then
+    say "  rebuilding the derived layer against the merged inputs"
+    ( cd chicago/4d && node tools/rederive.mjs --run ) >>/tmp/lap-rederive.log 2>&1 || {
+      say "  the derived-layer rebuild failed — left alone:"
+      tail -6 /tmp/lap-rederive.log | sed 's/^/    /'
+      git merge --abort 2>/dev/null; SKIPPED=$((SKIPPED+1)); continue; }
   fi
 
   ( cd chicago/4d \
