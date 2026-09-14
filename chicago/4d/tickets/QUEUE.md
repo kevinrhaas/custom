@@ -159,9 +159,19 @@ T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad
 # --- ==========================================================================
 # --- 4. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
-# --- One ticket: the frontage layer leans on a confidence grade alone to keep street furniture off
-# --- an unoccupied invented building, because the hitching rule omits the anonymity clause the
-# --- signboard rule applies.
+# --- Owner, 2026-09-14, on Dearborn Street in the /dev/ walk: "we have a sign hovering and goods no
+# --- building, what happened to the building" — then, on a reload, "ok its there now must have been
+# --- a load anomaly". The building IS sound: the record, the footprint, both baked GLBs, the asset
+# --- manifest, the renderer's own index and the roof reconciliation were all checked before the
+# --- reload and all carry it, and it is in no exclusion list. What is WRONG is what the scene did
+# --- while the asset was missing. The signboard is a function of a wall — anchored on the east face
+# --- to the centimetre (E 679.70 + 7.62 depth = 687.32, the sign's own easting), 2.55 m up a wall
+# --- height taken "from the record", and moved 5.03 m along the front to clear the door and window.
+# --- When the wall did not arrive the board drew anyway, on nothing, and the goods with it. A failed
+# --- load degrades into a FALSE SCENE rather than an absence, and nothing reported the error — so
+# --- there is no way to know whether this is one building once or many buildings often.
+
+T-1126 — A building that fails to load leaves its signboard hanging in the air and its goods in the grass: the scene draws furniture whose host is missing, and nothing reports the error
 
 
 # --- ==========================================================================
@@ -304,4 +314,3 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
-
