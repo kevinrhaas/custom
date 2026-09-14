@@ -718,3 +718,24 @@ pass, on purpose and by assertion.
 both, and `tools/check.sh` re-derives all of it byte for byte. That is not tidiness: a
 refusal that vanishes from the record reads to the next run as an address nobody had
 looked at, and the next run does the work again.
+
+## Fergus's corrections are guarded against a lost judgement (T-1125)
+
+`fergus_1839_lots_corrections.json` is the only hand-authored file in this reading, and
+`read_fergus_1839_lots.py --build` applies it — so a correction that disappears does not
+make the build fail. It makes the build apply one fewer correction, and the printed numeral
+the OCR destroyed quietly comes back. Since T-1125 `tools/check_rulings_not_lost.py` (run
+by `check.sh`) holds the file to the MERGE BASE by identity and by count.
+
+**Three stores hold a judgement**: `lots` (113 corrections, keyed by lot id), `added_rows`
+(a row the OCR mapped no ink to at all) and `population` (six figures read off the page
+image). `lots` is a MAPPING rather than a list, and it is the reason the guard learned to
+read one: 113 of this file's 120 judgements sit in it, and a list-only registry would have
+guarded the seven and called the file covered.
+
+**Left out**: `what_the_image_could_not_settle` is a list of plain sentences — a written
+refusal to decide, with no entry to identify — and `read_off`, `grade_note`,
+`added_rows_note` and `bidder_note` are prose about the reading.
+
+**To remove a correction**, move it into `withdrawn[]` with a `reason` and the `ticket`
+that decided it. An entry that left `lots` states the lot id it had as `_key`.

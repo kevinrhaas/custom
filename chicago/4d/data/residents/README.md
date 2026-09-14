@@ -238,3 +238,33 @@ Two things worth knowing before adding a ruling:
   **id does not move**: `bowen_erastus_selden` is a key quoted in twenty-seven committed
   files, and renaming it is a mechanical change with nothing to do with which man is which.
   The disagreement between the id and the name is recorded on the card rather than hidden.
+
+## The merge rulings are guarded against a lost judgement (T-1125)
+
+`card_merge_rulings.json` carries the owner's 64 written rulings on which town cards are
+one person, nested one level inside the 50 clusters the surname test proposed.
+`consolidate_town_cards.py` reads them and WRITES
+`data/research/residents/card_merge_crosswalk.json` from them — so the crosswalk is the
+mirror and this is the original. A ruling that vanishes from here does not break the
+consolidation; it lands one fewer merge, and a resident silently re-splits into the several
+cards T-0839 joined.
+
+Since T-1125 `tools/check_rulings_not_lost.py` (run by `check.sh`) holds this file to the
+MERGE BASE. A judgement is `(the cluster it is about, the rule it applied)` — the cluster
+and not the ruling alone, because eleven clusters carry more than one ruling and a
+cluster-level count would not see one of them leave.
+
+**Left out**: `rules` is the rule text C0–C22 the rulings cite; `derived_candidate` and
+`why_not_derived` describe how a cluster was proposed rather than how it was decided; and
+`also_ruled_on` is a LOG OF PASSES — a date, a ticket and a sentence about what that pass
+decided — whose decisions are themselves in `clusters[].rulings`, so counting it would
+count the same judgement twice under a key that is a date.
+
+The two files the guard REFUSED entry, with the reason on record in the tool's `REFUSED`
+table: `card_merge_crosswalk.json` and `town_card_candidates.json`, both written by
+`consolidate_town_cards.py --apply`. The candidates file is a worklist that gets *smaller*
+as clusters are ruled on, so a floor under its count would be a gate against the work
+getting done.
+
+**To remove a ruling**, move it into a top-level `withdrawn[]` carrying the cluster `id`,
+the `rule`, a `reason` and the `ticket` that decided it.

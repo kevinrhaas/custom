@@ -125,6 +125,23 @@ console.log('pr-lap.sh — a lap that could not ask never reports that it found 
         !/LAP_ONLY=1257 matched no/.test(r.out));
 }
 
+/* 5. NO GRAPHQL-BACKED `gh` CALL SURVIVES IN THE LAP.
+ *
+ * A drift guard rather than a behaviour test, and it earns its place: the list
+ * was moved to REST because `gh pr list` is GraphQL and the steward PAT's
+ * GraphQL budget is the one that runs out — and lap 307 then refused five PRs
+ * correctly and told none of them why, because `gh pr view` and `gh pr comment`
+ * are GraphQL too. The budget is shared with the loop, the janitor and Manager,
+ * so one reintroduced `gh pr …` blinds the lap again on a busy afternoon.
+ * gh-rest.sh:18-30 lists which verbs go through GraphQL. */
+{
+  const src = readFileSync(LAP, 'utf8')
+    .split('\n').filter((l) => !l.trim().startsWith('#')).join('\n');
+  const graphql = /\bgh (pr|issue) (comment|create|merge|view|list|edit|close)\b/.exec(src);
+  check('no GraphQL-backed `gh pr|issue` call is left in the lap',
+        graphql === null, graphql ? graphql[0] : 'every gh call is `gh api`');
+}
+
 /* 6. THE LAP DOES NOT GATE — it pushes and lets CI do it.
  *
  * A drift guard for the root-cause fix. The lap used to run the whole of
