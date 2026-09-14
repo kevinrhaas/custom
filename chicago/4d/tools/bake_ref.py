@@ -335,6 +335,32 @@ def self_test():
     case("…and the bake arms auto-merge on the PR it opens",
          "gh pr merge" in live and "--auto" in live, True)
 
+    # A BAKE THAT IS NOT THIS BRANCH'S BUSINESS MUST NOT START, and the reason is
+    # arithmetic rather than tidiness. `on.push.paths` matches the files a PUSH
+    # carries, not the files a branch OWNS, and the PR lap merges `dev` into
+    # every open pull request — so one change under generators/ reaches every
+    # branch and every branch matches the filter. Measured 2026-09-14: #1319
+    # changed terrain_gen.py, the lap swept, and SEVEN ~20-minute Blender bakes
+    # started at once; `dev`'s own — the only authoritative one — sat QUEUED
+    # behind the branch copies, and the PR lap queued behind all of them while
+    # four pull requests waited `dirty` for exactly that lap.
+    #
+    # The `warranted` job asks what the filter cannot: does this branch's OWN
+    # diff against dev (`dev...HEAD`, three-dot) touch a trigger path? If a later
+    # edit drops that gate, the fan-out returns silently — it costs runner time
+    # and queue latency, neither of which turns anything red.
+    case("a push bake is gated on the branch's own diff, not just the push's",
+         "warranted" in live and "needs.warranted.outputs.bake == '1'" in live, True)
+    case("…and it asks with the three-dot form, which is what the branch OWNS",
+         'origin/$BASE...HEAD' in live, True)
+    case("…and it is a separate job, so the Blender runner is never claimed to skip",
+         "needs: warranted" in live, True)
+    # FAILING OPEN IS THE POINT: a redundant bake costs twenty minutes, a skipped
+    # one that was needed ships stale meshes and the staleness gate then blames
+    # the pull request instead of the missing bake.
+    case("…and an unanswerable diff bakes rather than skips",
+         'echo "bake=1" >> "$GITHUB_OUTPUT"' in live and "could not diff against" in wf, True)
+
     for ok, name, got, want in cases:
         if ok:
             print(f"  ok    {name}")
