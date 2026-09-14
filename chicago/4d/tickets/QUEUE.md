@@ -253,7 +253,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
 # --- re-deriving them.
 
-T-1128 — Four adults of St Mary's register have an exact namesake in the residents layer and no ruling on either: Solomon Juneau, Josette Chevalier, Patrick Carroll and Mary Durbin
 T-1129 — Four residents rest only on a Bear Creek, Sangamon County marriage, and their cards say the church list names them at Chicago
 T-1109 — pass_14_findings.json no longer matches what complete_resident_research_pass_14.py re-derives
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
