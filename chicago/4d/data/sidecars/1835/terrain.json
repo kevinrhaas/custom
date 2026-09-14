@@ -2,7 +2,7 @@
   "scene": "1835",
   "target_date": "1835-07-01",
   "epoch": "e1834_harbor_cut",
-  "scope": "The forks AND the harbour: the Chicago River from the North and South Branches at Wolf Point east down the main stem, through the 1834 cut, past the sand bar and the decaying old southward channel, to open Lake Michigan. Land is the three divisions the river separates, the Fort Dearborn reservation, the lakeshore sand-ridge belt east of State Street, and the bar itself.",
+  "scope": "The forks AND the harbour: the Chicago River from the North and South Branches at Wolf Point east down the main stem, through the 1834 cut, past the sand bar and the decaying old southward channel, to open Lake Michigan — and, since T-1123, the North Branch above the forks to the north line of Wright's survey. Land is the three divisions the river separates, the Fort Dearborn reservation, the lakeshore sand-ridge belt east of State Street, the North Division ground Kinzie's Addition is platted on, and the bar itself.",
   "standard": "No contour survey of the 1835 town site exists. The earliest systematic levels are the 1850s street-grade and Chesbrough sewerage surveys. Every land elevation below is a period narrative statement in feet, back-calculated from grade-raising records, or inferred from geology — so NO land elevation in this spec is better than 'inferred', and the generator refuses to emit a 'documented' confidence for any land vertex. The one documented surface is the water: the pre-reversal river was sluggish and outward-flowing with a near-zero surface gradient, standing at lake level through the whole downtown reach.",
   "context": [
     {
@@ -15,7 +15,7 @@
     },
     {
       "label": "The modelled box",
-      "text": "2020 x 930 m, 2.5 m cells (8.2 ft — inside the dossier's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. 809 x 373 = 301 757 samples, 590 KB. Row 0 is the SOUTH edge and column 0 the WEST edge, matching the renderer's Heightfield sampler. ONE uniform cell across the whole box, argued in docs/RESEARCH/terrain_east_1834.md: a coarser cell east of the built blocks would save about 150 KB against a 25 MB publish budget and would put the only part of the field outside the dossier's own 5-10 ft recommendation exactly where the shoreline — the most-cited line on the sheet — is drawn. The southern extension of 2026-09-13 (T-0219) added 52 rows on the SAME lattice, so every sample the field already carried keeps its own position and only its row index moves."
+      "text": "2020 x 1650 m, 2.5 m cells (8.2 ft — inside the dossier's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. 809 x 661 = 534 749 samples, 1.02 MB. Row 0 is the SOUTH edge and column 0 the WEST edge, matching the renderer's Heightfield sampler. ONE uniform cell across the whole box, argued in docs/RESEARCH/terrain_east_1834.md: a coarser cell east of the built blocks would save about 150 KB against a 25 MB publish budget and would put the only part of the field outside the dossier's own 5-10 ft recommendation exactly where the shoreline — the most-cited line on the sheet — is drawn. The southern extension of 2026-09-13 (T-0219) added 52 rows on the SAME lattice and the northern one of 2026-09-14 (T-1123) added 288 more at the other end, so every sample the field already carried keeps its own position and only its row index moves — twice now, and deliberately both times."
     },
     {
       "label": "Measured relief",
@@ -23,7 +23,7 @@
     },
     {
       "label": "Where the ground stops on the south",
-      "text": "The modelled box ends 530 m south of the forks, and that line falls inside Washington Street's own 80 ft corridor: 0.00 ha of the street's south half, over 0 m of its length, lies off the field. Madison Street — the 1830 town plat's south boundary, fixed here from the section corner at State and Madison — is -4.8 m further south again, so the plat's last tier of blocks, 6.31 ha on 48 lots between Market and State, is not modelled ground at all. Of the 14.55 ha of land the field does hold south of Washington's corridor, none is in the South Division: it is the far bank of the South Branch. Past every edge of the box the ground is a plain skirt carrying the edge heights outward, which claims nothing about 1835. Measured from the committed heightfield and the committed street lines, not asserted."
+      "text": "The modelled box ends 530 m south of the forks, and that line falls inside Washington Street's own 80 ft corridor: 0.00 ha of the street's south half, over 0 m of its length, lies off the field. Madison Street — the 1830 town plat's south boundary, fixed here from the section corner at State and Madison — is -4.8 m further south again, so the plat's last tier of blocks, 6.31 ha on 48 lots between Market and State, is not modelled ground at all. Of the 14.54 ha of land the field does hold south of Washington's corridor, none is in the South Division: it is the far bank of the South Branch. Past every edge of the box the ground is a plain skirt carrying the edge heights outward, which claims nothing about 1835. Measured from the committed heightfield and the committed street lines, not asserted."
     }
   ],
   "claims": [
@@ -402,7 +402,7 @@
       "sources": [],
       "citations": [],
       "notes": [
-        "The offshore lake bed, which the dossier tags conjectural outright: slope about 1:60 to 1:100, -10 ft at 600-1000 ft offshore. A -11 ft bed with a 130 m e-fold reproduces that band — about -8.7 ft at 200 m (656 ft) offshore and about -4 ft at 60 m — using the same law as every other reach rather than a second one. Three anchors down the box's east side, because one would let the old channel's -2.5 ft bleed into the lake south-east of the bar. Nobody sounded this water for this project and nobody sounded it in 1835; it is here so the harbour opens into a lake instead of into a wall."
+        "The offshore lake bed, which the dossier tags conjectural outright: slope about 1:60 to 1:100, -10 ft at 600-1000 ft offshore. A -11 ft bed with a 130 m e-fold reproduces that band — about -8.7 ft at 200 m (656 ft) offshore and about -4 ft at 60 m — using the same law as every other reach rather than a second one. Three anchors down the box's east side, because one would let the old channel's -2.5 ft bleed into the lake south-east of the bar. STILL THREE after T-1123 put 720 m of new open lake north of the harbour, and that was a measurement rather than an omission: three more up the east side moved 52 000 samples of the committed field, most of them under the town's own main stem, because the bed blend's support is unbounded. Without them the new northern rows fall 1:25 to 1:30 over the first 25 m and reach -9.7 ft some 370 m offshore, which is the same shape as the committed rows south of the harbour (1:10 to 1:25 at the beach, -9.4 ft at 320 m) and inside dossier zone 30's band. The blend already answers for this water; nothing needed adding to make it. Nobody sounded this water for this project and nobody sounded it in 1835; it is here so the harbour opens into a lake instead of into a wall."
       ]
     },
     {
@@ -433,7 +433,7 @@
       "sources": [],
       "citations": [],
       "notes": [
-        "Dossier zone 21 gives -6 to -10 ft for the branch beds above the forks, itself inferred. Midpoint taken. No sounding of either branch was located."
+        "Dossier zone 21 gives -6 to -10 ft for the branch beds above the forks, itself inferred. Midpoint taken. No sounding of either branch was located, and the trace cannot supply one: branches.geojson states in its own provenance that NO BED DEPTH IS CLAIMED THERE AT ALL, because a cadastral plat gives planform and not soundings. ONE ANCHOR, AND T-1123 TRIED NINE AND WITHDREW THEM. The northern extension carries about 320 m of this branch into the box above the forks, and nine mid-channel anchors up the traced polygon looked like the obvious way to keep the main stem's -12 ft out of it. Measured, they moved 11 405 samples of the committed field that the extension had no business moving — the bed is an inverse-square blend with unbounded support, so an anchor placed 700 m up a branch pulls on the town's own river — while the single anchor already models the new stretch at -6.5 ft mid-channel at N +500, inside zone 21's own range. Withdrawn on that measurement."
       ]
     },
     {
@@ -673,7 +673,7 @@
         }
       ],
       "notes": [
-        "Zone 19 gives the North Division +4 to +7 ft, rising to +9 near the lake; zone 13 gives the bank crest at the forks +2 to +4; zone 12 gives Swearingen's measured 6 ft north bank at the fort. The forks values (3.6 / 4.6) are held out to E +390, the east edge of the forks tracing window, so extending the box east does not move ground that was already modelled and already has buildings standing on it. East of there the crest rises to 6.0 ft at the fort reach — Swearingen's figure — and to 9.0 ft in the sand-ridge belt along the lake shore. There is NO break-of-slope on this side: the State Street break is a South Division feature (the dossier's modelling rule 3 makes State Street the drainage divide of the South Division), and zone 19 describes the north side as a gradual rise.",
+        "Zone 19 gives the North Division +4 to +7 ft, rising to +9 near the lake; zone 13 gives the bank crest at the forks +2 to +4; zone 12 gives Swearingen's measured 6 ft north bank at the fort. The forks values (3.6 / 4.6) are held out to E +390, the east edge of the forks tracing window, so extending the box east does not move ground that was already modelled and already has buildings standing on it. East of there the crest rises to 6.0 ft at the fort reach — Swearingen's figure — and to 9.0 ft in the sand-ridge belt along the lake shore. There is NO break-of-slope on this side: the State Street break is a South Division feature (the dossier's modelling rule 3 makes State Street the drainage divide of the South Division), and zone 19 describes the north side as a gradual rise. HELD NORTHWARD UNCHANGED BY T-1123, and that is a decision rather than an oversight. These profiles are functions of EASTING alone — the division's ground is described by how far east of the river it stands, because that is the only axis any source here speaks on. Zone 19 is a statement about the North Division as a whole ('+4 to +7 ft, rising to +9 near the lake'), not about its southern end, and no source reached states a north-south trend across it: Kinzie's Addition and the ground the harbour's north shore stands on are the same division. Inventing a fall or a rise up the 720 m the box now carries would be relief drawn from the absence of a statement. What DOES change up there is drawn from the trace and not from this block: the lake shore runs back west from E +1375 at N +400 to E +1225 at the wall, so the sand-ridge belt's own easting band meets the water further and further west, and the ridge follows the shore because both are read off the same sheet.",
         "3.6 -> 5.0 ft over 490 m is 0.26 ft per 300 ft and 5.0 -> 6.0 over 330 m is 0.28; both inside the rule. Only the last 120 m into the sand ridge is steeper, and that band is declared in relief_bands."
       ]
     },
@@ -724,7 +724,7 @@
         }
       ],
       "notes": [
-        "Unchanged by the eastward extension, and flat by construction: the West Division is west of the South Branch and none of it is east of E +13. Zone 18 gives the wet prairie +3 to +6 ft with 1-2 ft slough swales; zone 13 caps the bank at the point at +2 to +4. Reconciled as 3.2 ft at the bank rising to 4.3 ft at 300 m — 0.34 ft of fall across a 300 ft chord, inside the flatness rule with room for the micro-relief on top. The West Side is documented as open prairie entirely free from timber."
+        "Unchanged by the eastward extension, and flat by construction: the West Division is west of BOTH branches — of the South Branch below the forks and, since T-1123, of the North Branch above them — and none of it is east of E +13. The northern extension adds very little of it: the branch's west bank runs from E -219.6 at the forks out to E -486.9 at the survey line, so west of the channel there is a sliver of Wabansia river front between E -320 and about E -230 for the first 150 m and then nothing, the bank having crossed the box's own west wall. Zone 18 gives the wet prairie +3 to +6 ft with 1-2 ft slough swales; zone 13 caps the bank at the point at +2 to +4. Reconciled as 3.2 ft at the bank rising to 4.3 ft at 300 m — 0.34 ft of fall across a 300 ft chord, inside the flatness rule with room for the micro-relief on top. The West Side is documented as open prairie entirely free from timber."
       ]
     },
     {
@@ -1932,7 +1932,7 @@
     },
     {
       "dossier_zone": 28,
-      "why": "the fresh accretion wedge north of the north pier. The traced shore IS Wright's 1834 shore; adding a year of accretion on top of it would be editing the trace rather than reading it, and the wedge lies mostly north of N +400."
+      "why": "the fresh accretion wedge north of the north pier. The traced shore IS Wright's 1834 shore; adding a year of accretion on top of it would be editing the trace rather than reading it. It USED to be out of the box as well — 'the wedge lies mostly north of N +400' — and since T-1123 it is not: the box now reaches N +1120 and the whole of that shore is modelled ground. The reason it is not modelled is now the first sentence alone, which was always the load-bearing one."
     },
     {
       "dossier_zone": 29,
