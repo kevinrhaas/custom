@@ -557,5 +557,31 @@ jobs:
               exit 1
             fi
           fi
+
+          # ARM AUTO-MERGE, BECAUSE NOTHING ELSE WILL. The trailer above lets a
+          # bake PR go GREEN; it does not make anything merge it. A steward run
+          # arms its own PR and then merges it, and a bake has no run watching it
+          # — so a green bake PR just sat there. Measured 2026-09-14: of thirteen
+          # non-hold PRs open on this repo, the seven with auto-merge armed were
+          # all `T-xxxx` tickets and every bake had none.
+          #
+          # The janitor is not the safety net here either: its gate for this
+          # monorepo runs `check.sh` end to end, which does not fit inside its own
+          # `timeout-minutes: 55` (run 1047 spent 53m37s on ONE PR and was killed
+          # unfinished), so it has never merged a bake and cannot.
+          #
+          # Best-effort by design: `|| true`. Auto-merge can be refused for
+          # reasons that are not this bake's business — the repository setting
+          # turned off, a base with no required checks, a PR already mergeable —
+          # and none of them is a reason to fail a bake that has already produced
+          # good content and opened its PR. The PR stands either way.
+          PR_NUM=$(printf '%s\n' "$pr_output" | grep -oE '[0-9]+$' | tail -1)
+          if [ -n "$PR_NUM" ]; then
+            gh pr merge "$PR_NUM" --auto --squash \
+              && echo "::notice::auto-merge armed on #$PR_NUM — it lands when the gate is green" \
+              || echo "::warning::could not arm auto-merge on #$PR_NUM; the PR is open and needs a merge by hand"
+          else
+            echo "::warning::could not read a PR number out of gh's output, so auto-merge was not armed"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
