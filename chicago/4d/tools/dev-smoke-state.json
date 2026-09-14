@@ -18,10 +18,10 @@
         "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
       ],
       "wallSeconds": 496,
-      "takenAt": "2026-09-14T18:41:42.191Z",
+      "takenAt": "2026-09-14T18:43:33.638Z",
       "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "c31196bf968b",
-      "devCommit": "8cdb001f10f2",
+      "commit": "cd053e481ecf",
+      "devCommit": "a9d736e4718c",
       "treeHash": "sha256:d1904474edd9855d",
       "treeDirty": false,
       "changelogHash": "sha256:8a0f9ef6eb8fba5e",
@@ -30,9 +30,9 @@
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.8,
-          4.1,
-          3.7
+          0.6,
+          2.8,
+          3.3
         ]
       },
       "source": "/tmp/m14.log"
@@ -52,10 +52,10 @@
         "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
       ],
       "wallSeconds": 442,
-      "takenAt": "2026-09-14T18:33:20.902Z",
+      "takenAt": "2026-09-14T18:43:33.540Z",
       "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "c31196bf968b",
-      "devCommit": "8cdb001f10f2",
+      "commit": "cd053e481ecf",
+      "devCommit": "a9d736e4718c",
       "treeHash": "sha256:d1904474edd9855d",
       "treeDirty": false,
       "changelogHash": "sha256:8a0f9ef6eb8fba5e",
@@ -64,9 +64,9 @@
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.8,
-          4.1,
-          3.4
+          0.6,
+          2.8,
+          3.3
         ]
       },
       "source": "/tmp/d89.log"
@@ -86,10 +86,10 @@
         "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
       ],
       "wallSeconds": 475,
-      "takenAt": "2026-09-14T18:25:55.038Z",
+      "takenAt": "2026-09-14T18:43:33.444Z",
       "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "c31196bf968b",
-      "devCommit": "8cdb001f10f2",
+      "commit": "cd053e481ecf",
+      "devCommit": "a9d736e4718c",
       "treeHash": "sha256:d1904474edd9855d",
       "treeDirty": false,
       "changelogHash": "sha256:8a0f9ef6eb8fba5e",
@@ -98,9 +98,9 @@
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.5,
-          4.2,
-          2.9
+          0.6,
+          2.8,
+          3.3
         ]
       },
       "source": "/tmp/d23.log"
@@ -119,10 +119,10 @@
         "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
       ],
       "wallSeconds": 351,
-      "takenAt": "2026-09-14T18:17:52.476Z",
+      "takenAt": "2026-09-14T18:43:33.346Z",
       "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "c31196bf968b",
-      "devCommit": "8cdb001f10f2",
+      "commit": "cd053e481ecf",
+      "devCommit": "a9d736e4718c",
       "treeHash": "sha256:d1904474edd9855d",
       "treeDirty": false,
       "changelogHash": "sha256:8a0f9ef6eb8fba5e",
@@ -131,9 +131,9 @@
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.1,
-          3.3,
-          1.7
+          0.6,
+          2.8,
+          3.3
         ]
       },
       "source": "/tmp/d1.log"
