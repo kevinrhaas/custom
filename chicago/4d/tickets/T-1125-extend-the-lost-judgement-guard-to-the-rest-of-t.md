@@ -1,7 +1,7 @@
 ---
 id: T-1125
 title: Extend the lost-judgement guard to the rest of the hand-authored evidence in data/research/, one domain's arrays adjudicated at a time
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-0999
 opened: 2026-09-14
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/14/2026, 9:41:09 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34856777109
 ---
 
 Extend the lost-judgement guard to the rest of the hand-authored evidence in data/research/, one domain's arrays adjudicated at a time.
