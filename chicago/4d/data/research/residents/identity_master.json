@@ -31,9 +31,9 @@
   "identities_on_a_card": 1305,
   "identities_in_two_or_more_domains": 1501,
   "derived_refusals": 1873,
-  "declared_merges": 418,
+  "declared_merges": 419,
   "appearances_moved_by_a_landed_adjudication": 169,
-  "declared_refusals": 2270,
+  "declared_refusals": 2273,
   "appearances_taken_off_a_card_by_a_conflation_ruling": 3,
   "appearances_refused_as_out_of_town": 122,
   "identities_carrying_an_out_of_town_reading": 121
@@ -10290,7 +10290,8 @@
   {"a":"John Mary Irenaeus Saint Cyr","b":"Rev. John Mary Irenaeus St Cyr","rule":"D1","declared_in":"church/st_marys_baptisms_crosswalk.json#merges","evidence":["st_marys_bapt_1834_10_4_sponsor","st_marys_bapt_1834_19_4_godfather","st_marys_bapt_1835_09_5_godfather"]},
   {"a":"Doctor Egan","b":"Dr William Bradshaw Egan","rule":"D1","declared_in":"church/st_marys_baptisms_crosswalk.json#merges","evidence":["st_marys_bapt_1834_18_4_sponsor"]},
   {"a":"John Murphy","b":"John Murphy","rule":"D1","declared_in":"church/st_marys_baptisms_crosswalk.json#merges","evidence":["st_marys_bapt_1835_07_4_sponsor"]},
-  {"a":"Joseph Chandler","b":"Joseph Chandler","rule":"D1","declared_in":"church/st_marys_baptisms_crosswalk.json#merges","evidence":["st_marys_bapt_1835_13_4_godfather"]}
+  {"a":"Joseph Chandler","b":"Joseph Chandler","rule":"D1","declared_in":"church/st_marys_baptisms_crosswalk.json#merges","evidence":["st_marys_bapt_1835_13_4_godfather"]},
+  {"a":"Solomon Juneau","b":"Solomon Juneau","rule":"D1","declared_in":"church/st_marys_baptisms_crosswalk.json#merges","evidence":["st_marys_bapt_1833_05_2_father","st_marys_bapt_1833_08_4_godfather","st_marys_bapt_1833_10_4_godfather","st_marys_bapt_1834_17_4_sponsor"]}
  ],
  "declared_refusals": [
   {"a":"King, N. clerk, at T. King's, house 12 Lake st","b":"king_nehemiah","rule":"X2","declared_in":"residents/card_conflation_rulings.json#cards","evidence":"directories:n1844_e1022 was crossed onto king_nehemiah by directories/spend_crosswalk_1835.json#rulings; T-1004's conflation ruling takes it off that card and gives it to Nathaniel King. The entry's own qualifier expands its initial. Fergus 1839 prints `King, Nathaniel, clerk, Tuthill King` (leaf 020, the alphabetical run); Norris 1844 prints `King, N. clerk, at T. King's`. Same trade, same employer, and the volume five years earlier sets the forename in full. The town holds a card for Tuthill King, so the employer is not in doubt either."},
@@ -11129,6 +11130,9 @@
   {"a":"Bourrasso","b":"Léon Bourassa","rule":"D2","declared_in":"church/st_marys_baptisms_crosswalk.json#refusals","evidence":["data/research/church/records/st_marys_baptisms_1833_1835.json","data/residents/households/"]},
   {"a":"L. Chevalier","b":"Josette Chevalier","rule":"D2","declared_in":"church/st_marys_baptisms_crosswalk.json#refusals","evidence":["data/research/church/records/st_marys_baptisms_1833_1835.json","data/residents/households/"]},
   {"a":"Doctor Egan","b":"Emeline Egan","rule":"D2","declared_in":"church/st_marys_baptisms_crosswalk.json#refusals","evidence":["data/research/church/records/st_marys_baptisms_1833_1835.json","data/residents/households/"]},
+  {"a":"Josette Chevalier","b":"Josette Chevalier","rule":"D2","declared_in":"church/st_marys_baptisms_crosswalk.json#refusals","evidence":["data/research/church/records/st_marys_baptisms_1833_1835.json","data/residents/households/"]},
+  {"a":"Patrick Carroll","b":"Patrick Carroll","rule":"D2","declared_in":"church/st_marys_baptisms_crosswalk.json#refusals","evidence":["data/research/church/records/st_marys_baptisms_1833_1835.json","data/residents/households/"]},
+  {"a":"Mary Durbin","b":"Mary Durbin","rule":"D2","declared_in":"church/st_marys_baptisms_crosswalk.json#refusals","evidence":["data/research/church/records/st_marys_baptisms_1833_1835.json","data/residents/households/"]},
   {"a":"EZRA BOND","b":"H. Bond","rule":"D2","declared_in":"civic/crosswalk.json#refusals","evidence":[{"source_id":"blackhawk_war_chicago_enrollments_isa","locator":"blackhawk_war_1832_chicago entry 003"},{"source_id":"chicago_voter_lists_1833_1835_irad","locator":"poll_1835 line 293"}]},
   {"a":"WILLIAM BOND","b":"H. Bond","rule":"D2","declared_in":"civic/crosswalk.json#refusals","evidence":[{"source_id":"blackhawk_war_chicago_enrollments_isa","locator":"blackhawk_war_1832_chicago entry 005"},{"source_id":"chicago_voter_lists_1833_1835_irad","locator":"poll_1835 line 293"}]},
   {"a":"JESSE B BROWN","b":"Lemuel Brown","rule":"D2","declared_in":"civic/crosswalk.json#refusals","evidence":[{"source_id":"blackhawk_war_chicago_enrollments_isa","locator":"blackhawk_war_1832_chicago entry 008"},{"source_id":"chicago_voter_lists_1833_1835_irad","locator":"tax_1833 line 62"}]},
