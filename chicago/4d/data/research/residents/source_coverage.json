@@ -6,8 +6,8 @@
   "census_1840": {
    "names_read": 870,
    "identities": 856,
-   "appearances_on_an_identity_the_town_already_carries": 48,
-   "unmatched": 822
+   "appearances_on_an_identity_the_town_already_carries": 47,
+   "unmatched": 823
   },
   "church": {
    "names_read": 520,
@@ -22,28 +22,28 @@
    "unmatched": 114
   },
   "directories": {
-   "names_read": 4344,
+   "names_read": 4337,
    "identities": 2851,
-   "appearances_on_an_identity_the_town_already_carries": 289,
-   "unmatched": 4055
+   "appearances_on_an_identity_the_town_already_carries": 288,
+   "unmatched": 4049
   },
   "newspapers": {
-   "names_read": 2316,
-   "identities": 2111,
-   "appearances_on_an_identity_the_town_already_carries": 1221,
-   "unmatched": 1095
+   "names_read": 2329,
+   "identities": 2126,
+   "appearances_on_an_identity_the_town_already_carries": 1231,
+   "unmatched": 1098
   },
   "old_settlers": {
    "names_read": 744,
    "identities": 736,
-   "appearances_on_an_identity_the_town_already_carries": 53,
-   "unmatched": 691
+   "appearances_on_an_identity_the_town_already_carries": 51,
+   "unmatched": 693
   },
   "residents": {
-   "names_read": 1292,
-   "identities": 1292,
+   "names_read": 1305,
+   "identities": 1305,
    "appearances_on_an_identity_the_town_already_carries": 0,
-   "unmatched": 1292
+   "unmatched": 1305
   },
   "books": {
    "names_read": 0,
@@ -81,47 +81,51 @@
  "overlap": {
   "census_1840|census_1840": 856,
   "census_1840|church": 25,
-  "census_1840|civic": 27,
-  "census_1840|directories": 149,
-  "census_1840|newspapers": 52,
-  "census_1840|old_settlers": 14,
-  "census_1840|residents": 43,
+  "census_1840|civic": 26,
+  "census_1840|directories": 143,
+  "census_1840|newspapers": 49,
+  "census_1840|old_settlers": 13,
+  "census_1840|residents": 42,
   "church|church": 480,
   "church|civic": 3,
   "church|directories": 44,
-  "church|newspapers": 9,
+  "church|newspapers": 8,
   "church|old_settlers": 6,
   "church|residents": 40,
   "civic|civic": 375,
   "civic|directories": 80,
-  "civic|newspapers": 108,
-  "civic|old_settlers": 30,
+  "civic|newspapers": 106,
+  "civic|old_settlers": 29,
   "civic|residents": 263,
   "directories|directories": 2851,
-  "directories|newspapers": 161,
-  "directories|old_settlers": 31,
-  "directories|residents": 160,
-  "newspapers|newspapers": 2111,
-  "newspapers|old_settlers": 50,
-  "newspapers|residents": 1054,
+  "directories|newspapers": 158,
+  "directories|old_settlers": 29,
+  "directories|residents": 159,
+  "newspapers|newspapers": 2126,
+  "newspapers|old_settlers": 48,
+  "newspapers|residents": 1066,
   "old_settlers|old_settlers": 736,
-  "old_settlers|residents": 51,
-  "residents|residents": 1292
+  "old_settlers|residents": 49,
+  "residents|residents": 1305
  },
  "town_rows_this_tool_could_not_parse": {
-  "persons_in_the_layer": 1295,
-  "persons_this_tool_placed_on_an_identity": 1292,
+  "persons_in_the_layer": 1308,
+  "persons_this_tool_placed_on_an_identity": 1305,
   "why": "a card whose name is a surname alone, a firm style, or an honorific with no forename cannot be split into (surname, forename) and is refused by R1 like any other source reading. They are named in the master's refusals."
  },
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
-   "R1": 369,
-   "R5": 267,
+   "R1": 377,
+   "R5": 265,
    "R2": 979,
-   "R3": 120,
-   "R4": 77,
-   "R6": 9
+   "R3": 117,
+   "R4": 83,
+   "R6": 9,
+   "R7": 40,
+   "X1": 1,
+   "X2": 1,
+   "X3": 1
   },
-  "declared_refusals": 2323
+  "declared_refusals": 2326
  }
 }

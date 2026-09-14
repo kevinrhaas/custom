@@ -12,11 +12,11 @@
  "whole_name_rule": ". A printed forename and a reading of 1835 are THE SAME NAME when\nthey set the SAME NUMBER of words and agree word by word — each pair either\nletter for letter, or one of them the single initial the other begins with.\nWhere exactly ONE candidate is the same name in that sense, the page names\nthat one and no other. Where none is, or more than one is, nothing happens\nand the tie stands with the reason filed.",
  "wife_rule": "— the second clause, and it is R6 arriving where it\nwas always true. `tools/consolidate_resident_evidence.py` holds `Mrs Rufus\nBrown` apart from `Rufus Brown` (R6, T-0723) because the honorific strip leaves\nthe husband's forename tokens on both readings and folds a wife onto him. The\ncrosswalks strip titles the same way and had no such rule, so the town layer's\ntwo people met `Brown, Rufus B., warehouseman` together and were filed as a\nCONTEST — a man contesting a printed line with his own wife. Where one\ncandidate of 1835 carries a female honorific, its forename tokens are exactly\nthose of another candidate carried WITHOUT one, and the printed entry sets no\nfemale honorific of its own, the entry is the husband's and she is not named by\nit. The proof is the same proof R6 asks for and it is in the contest itself:\nthe town layer prints both readings, which is what put them here together.",
  "counts": {
-  "residents_considered": 1293,
-  "matched_one_1843_entry": 135,
+  "residents_considered": 1306,
+  "matched_one_1843_entry": 136,
   "matched_more_than_one_ambiguous": 15,
   "one_1843_entry_contested_by_two_residents": 2,
-  "surname_present_initial_absent_refused": 323,
+  "surname_present_initial_absent_refused": 326,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 12,
@@ -33,9 +33,9 @@
   "ties_narrowed_by_a_trade": 1,
   "of_those_contested": 0,
   "of_those_ambiguous": 1,
-  "could_carry_occupation": 74,
-  "could_carry_address": 90,
-  "could_carry_death_note": 90,
+  "could_carry_occupation": 76,
+  "could_carry_address": 92,
+  "could_carry_death_note": 91,
   "business_directory_notices_with_a_surname": 106,
   "notices_folded_onto_their_own_roll_entry": 82,
   "notices_standing_as_their_own_candidate": 24,
@@ -2183,7 +2183,7 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "Erastus Selden Bowen",
+   "resident": "Erastus Bowen",
    "person_id": "bowen_erastus_selden",
    "household_id": "hh_bowen_erastus_selden",
    "grade_1835": "attested",
@@ -2194,17 +2194,19 @@
    "rule": "Surname 'Bowen' folds to the same string as the 1843 entry's, and the given name of both begins E.",
    "entries_1843": [
     {
-     "claim": "f1843_e0391",
-     "as_printed": "Bowen, Erastus Selden [veterinary surgeon] [died Oct. 19,1888, a. 69]",
+     "claim": "f1843_e0390",
+     "as_printed": "Bowen, Erastus (B. & Cole), res 40 Michigan ave [died. Aurora, Kane Co.. Ill.]",
      "page": "fergus_1843_page_002",
      "section": "alphabetical directory",
      "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": null,
-     "death_note_1843": "died Oct. 19,1888, a. 69"
+     "occupation_1843": "(B. & Cole)",
+     "address_1843": "res 40 Michigan ave",
+     "death_note_1843": "died. Aurora, Kane Co.. Ill."
     }
    ],
    "could_carry": [
+    "occupation",
+    "address",
     "death_note"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
@@ -4919,6 +4921,36 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "William George Sherman",
+   "person_id": "sherman_william_george",
+   "household_id": "hh_sherman_william_george",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Sherman' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2251",
+     "as_printed": "Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "clerk, Sherman & Pitkin",
+     "address_1843": "bds Oren Sherman",
+     "death_note_1843": "died September 7, 1867, aged 41½."
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "William H Brown",
    "person_id": "brown_william_h",
    "household_id": "hh_brown_william_h",
@@ -5659,6 +5691,64 @@
    }
   },
   {
+   "resident": "J D King",
+   "person_id": "king_j_d",
+   "household_id": "hh_king_j_d",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'King' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1489",
+     "as_printed": "King, J., carpenter, bds Samuel Jackson, Fort Dearborn",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "carpenter",
+     "address_1843": "bds Samuel Jackson, Fort Dearborn",
+     "death_note_1843": null
+    },
+    {
+     "claim": "f1843_e1490",
+     "as_printed": "King, John, jr., fancy dry goods, 28 Dearborn, bds Mrs. Haight [died January 18, 1891, aged 85-9-13.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "fancy dry goods, 28 Dearborn",
+     "address_1843": "bds Mrs. Haight",
+     "death_note_1843": "died January 18, 1891, aged 85-9-13."
+    }
+   ],
+   "whole_name_declined": "the page sets a generational suffix (JR) on 1 of the 2 readings and 'J D King' carries none. Which man of the name is a thing the page distinguishes and this reading does not, so the comparison is declined and the tie stands.",
+   "could_carry": [
+    "occupation",
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true,
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "f1843_e1489",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "f1843_e1490",
+      "agrees": false,
+      "why": "no trade on one side"
+     }
+    ]
+   }
+  },
+  {
    "resident": "J. B. Cook",
    "person_id": "cook_j_b",
    "household_id": "hh_cook_j_b",
@@ -5833,64 +5923,6 @@
       "key": "f1843_e1501",
       "agrees": false,
       "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John Lyle King",
-   "person_id": "king_john_lyle",
-   "household_id": "hh_king_john_lyle",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'King' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1489",
-     "as_printed": "King, J., carpenter, bds Samuel Jackson, Fort Dearborn",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "carpenter",
-     "address_1843": "bds Samuel Jackson, Fort Dearborn",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1490",
-     "as_printed": "King, John, jr., fancy dry goods, 28 Dearborn, bds Mrs. Haight [died January 18, 1891, aged 85-9-13.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "fancy dry goods, 28 Dearborn",
-     "address_1843": "bds Mrs. Haight",
-     "death_note_1843": "died January 18, 1891, aged 85-9-13."
-    }
-   ],
-   "whole_name_declined": "the page sets a generational suffix (JR) on 1 of the 2 readings and 'John Lyle King' carries none. Which man of the name is a thing the page distinguishes and this reading does not, so the comparison is declined and the tie stands.",
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e1489",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e1490",
-      "agrees": false,
-      "why": "no trade on one side"
      }
     ]
    }
@@ -7384,18 +7416,18 @@
    "rule": "The surname 'Hill' is in Fergus 1843 and no entry under it carries the initial 'I' of 'Isaac L. Hill'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "J Ambrose Wight",
-   "person_id": "wight_j_ambrose",
-   "surname_in_1843": "Wight",
-   "candidates": 2,
-   "rule": "The surname 'Wight' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J Ambrose Wight'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "J B Barnard",
    "person_id": "barnard_j_b",
    "surname_in_1843": "Barnard",
    "candidates": 1,
    "rule": "The surname 'Barnard' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J B Barnard'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "J F Wight",
+   "person_id": "wight_j_f",
+   "surname_in_1843": "Wight",
+   "candidates": 2,
+   "rule": "The surname 'Wight' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J F Wight'. A surname-only agreement is a refusal."
   },
   {
    "resident": "J Green",
@@ -7405,11 +7437,25 @@
    "rule": "The surname 'Green' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J Green'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "J H Barnard",
+   "person_id": "barnard_j_h",
+   "surname_in_1843": "Barnard",
+   "candidates": 1,
+   "rule": "The surname 'Barnard' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J H Barnard'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "J K Palmer",
    "person_id": "palmer_j_k",
    "surname_in_1843": "Palmer",
    "candidates": 1,
    "rule": "The surname 'Palmer' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J K Palmer'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "J R Barry",
+   "person_id": "barry_j_r",
+   "surname_in_1843": "Barry",
+   "candidates": 3,
+   "rule": "The surname 'Barry' is in Fergus 1843 and no entry under it carries the initial 'J' of 'J R Barry'. A surname-only agreement is a refusal."
   },
   {
    "resident": "J. B. Tuttle",
@@ -7669,6 +7715,13 @@
    "surname_in_1843": "Cobb",
    "candidates": 2,
    "rule": "The surname 'Cobb' is in Fergus 1843 and no entry under it carries the initial 'L' of 'L B Cobb'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "L Clarke",
+   "person_id": "clarke_l",
+   "surname_in_1843": "Clarke",
+   "candidates": 6,
+   "rule": "The surname 'Clarke' is in Fergus 1843 and no entry under it carries the initial 'L' of 'L Clarke'. A surname-only agreement is a refusal."
   },
   {
    "resident": "L G Curtiss",
@@ -10538,20 +10591,20 @@
    }
   },
   {
-   "resident": "Erastus Selden Bowen",
+   "resident": "Erastus Bowen",
    "person_id": "bowen_erastus_selden",
    "grade_1835": "attested",
    "entry_1843": {
-    "claim": "f1843_e0390",
-    "as_printed": "Bowen, Erastus (B. & Cole), res 40 Michigan ave [died. Aurora, Kane Co.. Ill.]",
+    "claim": "f1843_e0391",
+    "as_printed": "Bowen, Erastus Selden [veterinary surgeon] [died Oct. 19,1888, a. 69]",
     "page": "fergus_1843_page_002",
     "section": "alphabetical directory",
     "trade_heading": null,
-    "occupation_1843": "(B. & Cole)",
-    "address_1843": "res 40 Michigan ave",
-    "death_note_1843": "died. Aurora, Kane Co.. Ill.",
+    "occupation_1843": null,
+    "address_1843": null,
+    "death_note_1843": "died Oct. 19,1888, a. 69",
     "clause": "the whole printed name, word for word",
-    "rule": "the page sets 'Erastus Selden' and exactly one of the 2 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+    "rule": "the page sets 'Erastus' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
    }
   },
   {

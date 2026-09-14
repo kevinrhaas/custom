@@ -58,6 +58,15 @@ outcome carries that rule's id. It is deliberately hard to get to `matched`.
                                Fergus 1843 or Norris 1844 directory entry adjudicated to
                                that person id), or an adjudicated 1840 bridge already
                                exists for them.
+    L6b reached_through_a_card_merge_caps_at_candidate
+                               the full name agrees, is unique on both sides, and a
+                               discriminator holds — but the spelling that agrees is one
+                               the residents layer no longer prints, and reaches this
+                               person only through a landed card-merge ruling. The merge
+                               supplied the agreement, so the merge may not also supply
+                               the match. Capped at `candidate`; a reading of the 1840
+                               line beside the survivor's live card is what promotes it.
+                               T-1003, and the reasoning is in the domain README.
     L7  candidate              the full name agrees and is unique on both sides, and
                                no independent discriminator was found.
 
@@ -124,7 +133,89 @@ ABBREV = {
 }
 SUFFIXES = {"jr", "sr", "jun", "sen", "2d", "3d", "ii", "iii", "esq"}
 TITLES = {"mrs", "mr", "miss", "ms", "capt", "dr", "rev", "col", "gen", "major", "maj", "hon"}
+# T-1116: TITLES strips a captain, a colonel and a general, and never stripped a
+# lieutenant — so `Lieut. James Allen` keyed as `lieut|allen` and the town's James
+# Allen sat indexed under a rank. The ruling is already settled twice (T-0969, a
+# courtesy title is not a forename; T-0987 stretch 8, a rank is not a name) and four
+# other tools here strip these spellings: consolidate_town_cards.py `RANKS`,
+# read_fergus_1843_civic.py, read_fergus_obits.py, survey_stated_kin.py.
+#
+# They are held APART from TITLES and filtered in ANY POSITION, because TITLES is
+# leading-only — it must be, since it carries the female-style distinction that keeps
+# Mrs Rufus Brown out of Rufus Brown's identity — and a rank is written trailing too
+# (`Taylor, Jumes lt.` in the letter lists, where the rank landed in the surname slot).
+# A rank carries no such distinction, and none of these four spellings is a surname
+# anyone in this corpus bears, so removing them wherever they stand is safe.
+# consolidate_town_cards.py sets the precedent: ranks are dropped from the name tokens
+# rather than treated as a leading style.
+RANKS = {"lieut", "lieutt", "lieuts", "lieutenant", "lt"}
 FIRM_TAIL = re.compile(r"\s*&\s*(co|son|sons|bro|bros|brother|brothers)\.?\s*$", re.I)
+
+# T-1119. THE TRANSCRIBER'S MARKS ARE ABOUT THE READING, NOT PART OF THE NAME, and
+# this tool was the one place in the corpus that had never been told. The extracted
+# newspapers carry three marks, all settled elsewhere: `[x]` around a letter supplied
+# for a recognition-class error, `[?]` where no letter could be supplied, and an
+# `[uncertain: ...]` wrapper where the printed form supports no confident reading.
+# compile_gazetteer.py `unmarked` reads them; concord_letter_list_1834_01_01.py folds
+# them; T-0299 ruled that the markup is NOT a word boundary. Here the generic cleaner
+# turned every bracket into a space, so `Dani[e]l O. Robian` parsed as the forenames
+# dani / e / l and `[uncertain: Aaron Wallace]` parsed with the word `uncertain` as
+# its forename — 119 gazetteer names carried that wrapper and every one of them keyed
+# under it.
+#
+# The wrapper is STRIPPED and the reading kept, which is what compile_gazetteer and the
+# concordance both do: the doubt belongs in the stored reading, where it is, and not in
+# the parse. Nothing here grades a name lower for carrying it.
+UNCERTAIN_PART = re.compile(r"\[uncertain:\s*(.*?)\]")
+
+
+def unmarked(raw: str) -> str:
+    """A written name with the transcriber's markup taken off (T-1119).
+
+    `[?]` becomes a space before the generic bracket strip, so it is not mistaken for a
+    supplied letter — which is the behaviour this tool already had, and `uncertain` is
+    read off the raw string before any of this runs.
+    """
+    text = UNCERTAIN_PART.sub(r"\1", raw or "")
+    text = text.replace("[?]", " ")
+    return re.sub(r"\[([^\]]*)\]", r"\1", text)
+
+
+def name_tokens(text: str) -> list:
+    """One side of a written name, as the words a parse may use.
+
+    Suffixes and ranks go here because they are dropped in ANY position (T-1116) and so
+    cannot help decide which side of a comma is the surname.
+    """
+    text = re.sub(r"[^A-Za-z0-9 .,'-]", " ", text)
+    text = text.replace(",", " ").replace(".", " ")
+    tokens = [t for t in text.split() if t]
+    tokens = [t for t in tokens if t.lower().strip("'-") not in SUFFIXES]
+    return [t for t in tokens if t.lower().strip("'-") not in RANKS]
+
+
+def inverted(head: list, tail: list) -> bool:
+    """Whether a comma marks a surname-first entry (T-1119).
+
+    THE LETTER LISTS ARE PRINTED SURNAME-FIRST — `Aiker, Samuel`, `Abbot, 8. G.`,
+    `Peterson, [uncertain: Isaac]` — and this parser flattened the comma to a space and
+    took the LAST word as the surname, so 1,018 of the 2,665 gazetteer names were read
+    backwards: Samuel became the surname and Aiker the forename. compile_gazetteer.py
+    has inverted on the comma since the gazetteer existed (`surname` splits on it,
+    `initials` reads the half after it); this tool never did.
+
+    A COMMA IS NOT ALWAYS AN INVERSION, and the guard is the surname side's last word.
+    `Augustus H, Conant` is an OCR comma standing where a period belongs — the word
+    before it is a bare initial, which no surname is — and inverting it would move a
+    correct parse onto the letter H. So the comma inverts only where the side before it
+    ENDS in a word of more than one letter, and where the side after it supplies
+    something: `E. Wentworth, Jr.` and `Hubbard & Brown,` both have nothing left after
+    their suffix and their trailing comma, and both stay forename-first.
+    """
+    if not head or not tail:
+        return False
+    return len(re.sub(r"[^A-Za-z]", "", head[-1].lower())) > 1
+
 
 
 def load(path: Path):
@@ -133,32 +224,60 @@ def load(path: Path):
 
 
 def parse_name(raw: str) -> dict:
-    """Split a written name into given tokens and a surname, and say how sure it is."""
+    """Split a written name into given tokens and a surname, and say how sure it is.
+
+    T-1119 put three things into this parse that the rest of the corpus had already
+    settled and this tool alone had not: the transcriber's markup comes off before the
+    words are counted (`unmarked`), a comma can mark a surname-first entry (`inverted`),
+    and a line whose surname side is UNSUPPLIED names nobody — see below.
+    """
     text = (raw or "").strip()
     uncertain = "[?]" in text
     firm = bool(FIRM_TAIL.search(text))
-    text = FIRM_TAIL.sub("", text)
-    text = text.replace("[?]", " ")
-    text = re.sub(r"[^A-Za-z0-9 .,'-]", " ", text)
-    text = text.replace(",", " ").replace(".", " ")
-    tokens = [t for t in text.split() if t]
-    tokens = [t for t in tokens if t.lower().strip("'-") not in SUFFIXES]
-    # T-0969: a courtesy title is not a forename. Retain the female style as
-    # an identity distinction: Mrs Rufus Brown must not become Rufus Brown.
-    female_style = False
-    while tokens and tokens[0].lower().strip("'-") in TITLES:
-        female_style |= tokens.pop(0).lower().strip("'-") in {"mrs", "miss", "ms"}
-    parts = []
-    for t in tokens:
-        low = re.sub(r"[^a-z]", "", t.lower())
-        if not low:
-            continue
-        parts.append(ABBREV.get(low, low))
-    if not parts:
+    text = unmarked(FIRM_TAIL.sub("", text))
+    head, comma, tail = text.partition(",")
+    head_tokens, tail_tokens = name_tokens(head), name_tokens(tail)
+
+    # T-1119: a name whose SURNAME SIDE is unsupplied is not a name at all. The
+    # Democrat of 28 May 1834 prints its beef contractor as
+    # `[...], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence` — the
+    # transcriber's ellipsis says the printing gave no name, and what follows the comma
+    # is the office, not the man. Flattened, it keyed `th|subsistence` off `5th` and
+    # `Subsistence`, which is a key for a regiment and a ration. identity_master.json
+    # already refuses this reading under R5; the parse now agrees with it.
+    if comma and not head_tokens and tail_tokens:
         return {"surname": "", "given": [], "forename": "", "uncertain": True,
                 "firm": firm, "key": ""}
-    surname = parts[-1]
-    given = parts[:-1]
+
+    # T-0969: a courtesy title is not a forename. Retain the female style as
+    # an identity distinction: Mrs Rufus Brown must not become Rufus Brown.
+    def style(tokens):
+        female = False
+        while tokens and tokens[0].lower().strip("'-") in TITLES:
+            female |= tokens.pop(0).lower().strip("'-") in {"mrs", "miss", "ms"}
+        return tokens, female
+
+    def fold(tokens):
+        out = []
+        for t in tokens:
+            low = re.sub(r"[^a-z]", "", t.lower())
+            if low:
+                out.append(ABBREV.get(low, low))
+        return out
+
+    if inverted(head_tokens, tail_tokens):
+        # The title still leads the GIVEN half, which after an inversion is the half
+        # after the comma: `Howe, Miss Jane E.` is a married style, not a Miss Howe.
+        given_tokens, female_style = style(tail_tokens)
+        surname_parts, given = fold(head_tokens), fold(given_tokens)
+    else:
+        tokens, female_style = style(head_tokens + tail_tokens)
+        parts = fold(tokens)
+        surname_parts, given = parts[-1:], parts[:-1]
+    if not surname_parts:
+        return {"surname": "", "given": [], "forename": "", "uncertain": True,
+                "firm": firm, "key": ""}
+    surname = surname_parts[-1]
     forename = next((g for g in given if len(g) > 1), "")
     return {
         "surname": surname,
@@ -168,6 +287,71 @@ def parse_name(raw: str) -> dict:
         "firm": firm,
         "key": (("female|" if female_style else "") + forename + "|" + surname) if forename else "",
     }
+
+
+def rank_bearing_names(residents, voters, letters, candidates) -> list:
+    """Every 1835 pool name written with a rank, and the key it parses to (T-1116).
+
+    Derived, so the file can never disagree with what parse_name actually does. A row
+    with an empty key gives a surname and no forename — which is what the page gives,
+    once the rank stops standing in for one.
+    """
+    token = re.compile(r"[^a-z]")
+    out = []
+    for pool, rows in (("residents", residents), ("voter_lists", voters),
+                       ("newspapers", letters), ("census_1835_bridge_candidates",
+                                                 candidates)):
+        for row in rows:
+            name = row.get("name") or ""
+            words = {token.sub("", w.lower()) for w in name.split()}
+            if not (words & RANKS):
+                continue
+            out.append({"pool": pool, "name": name,
+                        "surname": row["parsed"]["surname"],
+                        "key": row["parsed"]["key"]})
+    return sorted(out, key=lambda r: (r["pool"], r["name"]))
+
+
+def markup_bearing_names(residents, voters, letters, candidates) -> list:
+    """Every 1835 pool name whose reading turns on the marks or the comma (T-1119).
+
+    Derived, so the file can never disagree with what parse_name actually does.
+    """
+    out = []
+    for pool, rows in (("residents", residents), ("voter_lists", voters),
+                       ("newspapers", letters), ("census_1835_bridge_candidates",
+                                                 candidates)):
+        for row in rows:
+            name = row.get("name") or ""
+            head, comma, tail = unmarked(name).partition(",")
+            shape = None
+            if comma and not name_tokens(head) and name_tokens(tail):
+                shape = "unsupplied_name"
+            elif inverted(name_tokens(head), name_tokens(tail)):
+                shape = "surname_first"
+            elif "[uncertain:" in name:
+                shape = "wrapped_reading"
+            elif "[" in name:
+                shape = "supplied_letters"
+            if shape:
+                out.append({"pool": pool, "shape": shape, "name": name,
+                            "surname": row["parsed"]["surname"],
+                            "key": row["parsed"]["key"]})
+    return sorted(out, key=lambda r: (r["shape"], r["pool"], r["name"]))
+
+
+def markup_bearing_counts(residents, voters, letters, candidates) -> dict:
+    """How many pool names each shape reaches, by pool — the size of what T-1119 moved.
+
+    Counts and not the rows: `surname_first` alone is a thousand names, and a table
+    that long in a method note is a table nobody reads. The rows are one call away
+    (`markup_bearing_names`) and the self-test asserts the shapes on named examples.
+    """
+    out = {}
+    for row in markup_bearing_names(residents, voters, letters, candidates):
+        out.setdefault(row["shape"], {})
+        out[row["shape"]][row["pool"]] = out[row["shape"]].get(row["pool"], 0) + 1
+    return {shape: dict(sorted(pools.items())) for shape, pools in sorted(out.items())}
 
 
 def initials(given: list) -> list:
@@ -225,6 +409,78 @@ def read_residents() -> list:
                 "parsed": parse_name(name),
             })
     return people
+
+
+def merged_card_aliases(residents: list) -> list:
+    """The 1835 spellings a landed card merge took OUT of the layer, each standing for
+    the person it was RULED to be (T-1003).
+
+    A town card is spelled the way the list it was minted from spelled the man. Where two
+    of those spellings turned out to be one person, `data/residents/card_merge_rulings.json`
+    says so on a page and `tools/consolidate_town_cards.py --apply` lands it: the folded
+    card leaves `households/`, and `index.json`'s `merged` table keeps the NAME it carried.
+    That name is an adjudicated 1835 spelling of a person this town holds, so it gathers
+    him — otherwise an 1840 head this project has already reasoned about is refused against
+    nobody. `Ed. Kimberley`, printed page 234 line 3, is the head it was written for: when
+    `kimberley_ed` folded onto `kimberly_edmund_s` the layer's only Kimberley went with it
+    and the head fell to L2, whose text says a surname absent from 1835 is evidence rather
+    than a gap. It was not absent. It was folded.
+
+    Each alias is indexed under the FOLDED card's parsed name and carries the SURVIVOR's
+    id, live name, grade and attestations — gathered under one spelling, weighed as the
+    other, exactly as `tools/read_land_sales.py` `merged_card_surnames` does it.
+
+    THIS IS NOT A FOLD AND MUST NEVER BECOME ONE. Nothing here compares two spellings or
+    measures a distance between them; it reads a written ruling that a card of a specific
+    spelling names a specific person. `tools/measure_surname_fold.py` prices the mechanical
+    alternative, and it is refused.
+
+    Only a merge whose folded name gives a handle the live name does not is returned — a
+    different surname, or a different full-name key. Forty-three of the fifty-four landed
+    merges add nothing and are skipped.
+    """
+    index = load(ROOT / "data" / "residents" / "index.json")
+    table = index.get("merged") or []
+    forward = {e["person"]: e.get("merged_into_person") for e in table}
+
+    def survivor_of(pid, seen=None):
+        seen = seen or set()
+        while pid in forward and pid not in seen:
+            seen.add(pid)
+            pid = forward[pid]
+        return pid
+
+    by_person = {r["person_id"]: r for r in residents if r.get("person_id")}
+    out = []
+    for entry in table:
+        folded_name = entry.get("name") or ""
+        if not folded_name.strip():
+            continue
+        # A merge onto a card that was itself later folded is followed; a dangling one,
+        # or one whose survivor the layer no longer holds, is simply skipped.
+        survivor = by_person.get(survivor_of(entry.get("merged_into_person")))
+        if not survivor:
+            continue
+        folded = parse_name(folded_name)
+        live = survivor["parsed"]
+        if not folded["surname"] or folded["uncertain"]:
+            continue
+        # A handle the live name does not already give: a different surname bucket, or a
+        # different full-name key. A folded card written with initials only has no key at
+        # all (`E S Kimberly`), so it can only ever offer a surname — and where that
+        # surname is the live one too, it offers nothing and is skipped.
+        new_surname = folded["surname"] != live["surname"]
+        new_key = bool(folded["key"]) and folded["key"] != live["key"]
+        if not (new_surname or new_key):
+            continue
+        alias = dict(survivor)
+        alias["parsed"] = folded
+        alias["via_card_merge"] = entry.get("person")
+        alias["folded_card_name"] = folded_name
+        alias["card_merge_rule"] = entry.get("rule")
+        alias["card_merge_ticket"] = entry.get("ticket")
+        out.append(alias)
+    return out
 
 
 def read_voters() -> list:
@@ -344,11 +600,30 @@ def read_legacy_unmatched() -> list:
 # ------------------------------------------------------------------ adjudication
 
 def index_by(pool: list, attr: str) -> dict:
+    """Bucket a name pool by one parsed attribute.
+
+    T-1003: a person may stand in a bucket under more than one adjudicated spelling once
+    card-merge aliases are in the pool — `Ed S Kimberly` and the live `Dr Edmund Stoughton
+    Kimberly` are one man in the `kimberly` surname bucket. A bucket therefore holds each
+    `person_id` ONCE, live entry first, so that L5 cannot refuse a man for being
+    adjudicated twice and L3/L4 cannot count him twice among the bearers. Pools with no
+    person id (voters, the letter list, bridge candidates) are unaffected.
+    """
     idx = {}
     for item in pool:
         value = item["parsed"][attr]
         if value:
             idx.setdefault(value, []).append(item)
+    for value, bucket in idx.items():
+        seen, kept = set(), []
+        for item in sorted(bucket, key=lambda i: bool(i.get("via_card_merge"))):
+            pid = item.get("person_id")
+            if pid is not None:
+                if pid in seen:
+                    continue
+                seen.add(pid)
+            kept.append(item)
+        idx[value] = kept
     return idx
 
 
@@ -416,6 +691,21 @@ def later_census_block(head: dict, resident: dict, basis: str) -> dict:
     }
 
 
+def note_card_merge_bearers(out: dict, bearers: list) -> None:
+    """Name, on a refusal, any 1835 bearer the head reached through a folded card (T-1003).
+
+    A refusal that lists its bearers should say which of them the layer reaches under a
+    spelling it no longer prints, or the row cannot be audited against the merge table.
+    """
+    via = [{"folded_person_id": b["via_card_merge"],
+            "folded_card_name": b.get("folded_card_name"),
+            "survivor_person_id": b["person_id"],
+            "survivor_live_name": b["name"]}
+           for b in bearers if b.get("via_card_merge")]
+    if via:
+        out["surname_bearers_via_card_merge"] = via[:8]
+
+
 def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                voters_by_key, letters_by_key, cands_by_key,
                persistence, existing_bridges) -> dict:
@@ -469,6 +759,7 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                 "identity." % (head["normalized"], len(bearers), parsed["surname"])
             )
             out["surname_bearers_1835"] = [b["person_id"] for b in bearers][:8]
+            note_card_merge_bearers(out, bearers)
             return out
         initial_only_bearers = [b for b in bearers if not b["parsed"]["forename"]
                                 and initials(b["parsed"]["given"])[:1] == [parsed["forename"][0]]]
@@ -482,6 +773,7 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                                ", ".join(b["name"] for b in initial_only_bearers[:4]))
             )
             out["surname_bearers_1835"] = [b["person_id"] for b in initial_only_bearers][:8]
+            note_card_merge_bearers(out, initial_only_bearers)
             return out
         out["outcome"] = "refused"
         out["rule"] = "L3 given_name_conflict"
@@ -492,6 +784,7 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                                     parsed["forename"])
         )
         out["surname_bearers_1835"] = [b["person_id"] for b in bearers][:8]
+        note_card_merge_bearers(out, bearers)
         return out
 
     rival_heads = [h for h in heads_by_key.get(parsed["key"], []) if h is not head]
@@ -533,6 +826,7 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                               "withdrawn here — this file adjudicates lines, and "
                               "T-0515 owns the bridge table.")
         out["candidates_1835"] = [b["person_id"] for b in exact][:8]
+        note_card_merge_bearers(out, exact)
         out["other_1840_lines_with_this_name"] = [
             {"familysearch_id": h["familysearch_id"], "printed_page": h["printed_page"],
              "line": h["line"]} for h in rival_heads][:8]
@@ -543,6 +837,24 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
     out["household_id"] = resident["household_id"]
     out["resident_name"] = resident["name"]
     out["resident_grade_1835"] = resident["grade"]
+    # T-1003. The name that agreed may be a spelling the layer no longer prints, reached
+    # only through a landed card-merge ruling. Say so on the row whatever rung it lands on
+    # — the field name is the land crosswalk's, deliberately — and cap it at L6b below.
+    out["via_card_merge"] = resident.get("via_card_merge")
+    if resident.get("via_card_merge"):
+        out["reached_through_card_merge"] = {
+            "folded_person_id": resident["via_card_merge"],
+            "folded_card_name": resident.get("folded_card_name"),
+            "survivor_person_id": resident["person_id"],
+            "survivor_live_name": resident["name"],
+            "rule": resident.get("card_merge_rule"),
+            "ticket": resident.get("card_merge_ticket"),
+            "why": "the head agrees with %r, a spelling the residents layer no longer "
+                   "prints: that card was folded onto %s by a written ruling in "
+                   "data/residents/card_merge_rulings.json. The person is gathered under "
+                   "the folded spelling and weighed by his live card."
+                   % (resident.get("folded_card_name"), resident["person_id"]),
+        }
 
     discriminators = []
     for entry in persistence.get(resident["person_id"], []):
@@ -595,6 +907,29 @@ def adjudicate(head, residents_by_key, residents_by_surname, heads_by_key,
                 % (head["line"], head["familysearch_id"])
             )
             out["would_be_matched_on_a_firmer_read"] = True
+            if resident.get("via_card_merge"):
+                out["reason"] += (
+                    " The agreement is also with a spelling the layer no longer prints "
+                    "(%r, folded onto this card), which caps the row at candidate on its "
+                    "own account — see L6b." % resident.get("folded_card_name"))
+            return out
+        if resident.get("via_card_merge"):
+            out["outcome"] = "candidate"
+            out["rule"] = "L6b reached_through_a_card_merge_caps_at_candidate"
+            out["reason"] = (
+                basis + " But the name that agrees is %r — a spelling the residents layer "
+                "no longer prints, which reaches %s only through the card-merge ruling "
+                "that folded it onto him. L6 asks that the full name agree AND that "
+                "something independent of the name discriminate; here the merge supplied "
+                "the agreement, and the merge was a ruling about two 1835 cards that says "
+                "nothing whatever about an 1840 sheet. Letting it through would have a "
+                "card merge promote an 1840 identity as a side effect of tidying 1835. "
+                "What promotes this row is a reading: line %s of %s set beside %r by "
+                "somebody who looked. T-1003, and the ruling is in the domain README."
+                % (resident.get("folded_card_name"), resident["person_id"],
+                   head["line"], head["familysearch_id"], resident["name"])
+            )
+            out["would_be_matched_on_a_read_of_the_line"] = True
             return out
         out["outcome"] = "matched"
         out["rule"] = "L6 matched"
@@ -709,8 +1044,12 @@ def build() -> dict:
     persistence = read_persistence()
     existing = read_existing_bridges()
 
-    residents_by_key = index_by(residents, "key")
-    residents_by_surname = index_by(residents, "surname")
+    # T-1003. The spellings a landed card merge took out of the layer still gather the
+    # person they were ruled to be — but only to `candidate`, never to a match. See
+    # `merged_card_aliases` and the domain README's ruling.
+    pool = residents + merged_card_aliases(residents)
+    residents_by_key = index_by(pool, "key")
+    residents_by_surname = index_by(pool, "surname")
     heads_by_key = {}
     for head in heads:
         if head["parsed"]["key"]:
@@ -764,12 +1103,83 @@ def build() -> dict:
              "says": "the full name is borne by more than one person on a side"},
             {"rule": "L6a low_confidence_caps_at_candidate", "outcome": "candidate",
              "says": "the match would hold, but the reader graded this name low"},
+            {"rule": "L6b reached_through_a_card_merge_caps_at_candidate",
+             "outcome": "candidate",
+             "says": "the match would hold, but the name that agrees is a spelling the "
+                     "layer no longer prints and reaches the person only through a "
+                     "landed card-merge ruling. The merge supplied the agreement, so "
+                     "the merge may not also supply the match (T-1003)"},
             {"rule": "L6 matched", "outcome": "matched",
              "says": "unique full-name agreement, a read graded medium or better, AND "
                      "a discriminator independent of the name"},
             {"rule": "L7 candidate", "outcome": "candidate",
              "says": "unique full-name agreement and nothing independent of the name"},
         ],
+        # T-1116. A rank is not a name, and the pools write several — so the file says
+        # which written names this rule reaches, DERIVED on every build rather than
+        # counted once into a note that can go stale.
+        "ranks_are_not_names": {
+            "rule": "A rank token is dropped wherever it stands in a written name, "
+                    "leaving the surname and the forename the page actually gives. "
+                    "T-0969 ruled a courtesy title is not a forename and T-0987 stretch 8 "
+                    "applied it to the directories; this is the same ruling, and four "
+                    "other tools here already carried it (consolidate_town_cards.py, "
+                    "read_fergus_1843_civic.py, read_fergus_obits.py, "
+                    "survey_stated_kin.py).",
+            "spellings": sorted(RANKS),
+            "written_names_reached": rank_bearing_names(
+                residents, voters, letters, candidates),
+            # T-1119 closed the three rows this note used to hold open. Kept as the
+            # record of what the rank rule does NOT own, because a corrected key must
+            # not read as one the rank rule corrected.
+            "still_wrong_and_not_a_rank": "None, since T-1119. Three of the rows above "
+                "used to parse badly for a reason the rank rule does not own, and each "
+                "is now read by a rule the corpus had already settled elsewhere: "
+                "'Taylor, Jumes lt.' is printed surname-first and now inverts on its "
+                "comma to jumes|taylor; '[uncertain: Lt. Allen]' has the transcriber's "
+                "wrapper stripped and gives a surname and no forename, instead of "
+                "keying uncertain|allen; and '[…], Lieutenant, 5th Infantry, Assistant "
+                "Commissary of Subsistence' names nobody, so it now parses to no name "
+                "at all rather than to th|subsistence. See markup_is_not_a_name.",
+        },
+        # T-1119. The three marks the extracted newspapers carry, and the comma the
+        # letter lists print, read here as the rest of the corpus already read them.
+        # DERIVED on every build, like the rank rows above, so the file cannot drift
+        # from what parse_name does.
+        "markup_is_not_a_name": {
+            "rule": "A written name is unmarked before it is split, and a comma can "
+                    "mark a surname-first entry. compile_gazetteer.py `unmarked` and "
+                    "`surname`/`initials` have read the corpus this way since the "
+                    "gazetteer existed, concord_letter_list_1834_01_01.py `fold` folds "
+                    "the same wrapper, and T-0299 ruled that the markup is not a word "
+                    "boundary. This tool alone flattened all of it to spaces.",
+            "the_comma_inverts": "The letter lists print surname-first — 'Aiker, "
+                    "Samuel'. Taking the last word as the surname read them backwards. "
+                    "A comma inverts only where the word before it is longer than one "
+                    "letter and something follows it, so an OCR comma standing for a "
+                    "period ('Augustus H, Conant') and a bare suffix tail ('E. "
+                    "Wentworth, Jr.') do not invert.",
+            "the_wrapper_is_stripped": "'[uncertain: Aaron Wallace]' is Aaron Wallace, "
+                    "read with doubt. The doubt is in the stored reading, which is "
+                    "where it belongs; the word 'uncertain' was becoming the forename.",
+            "an_unsupplied_name_is_no_name": "Where the side before the comma supplies "
+                    "no word, the printing gave no name and what follows is the office "
+                    "— refused here, as identity_master.json already refuses it under "
+                    "R5.",
+            "one_stored_name_the_rule_reads_wrongly": "T-1121. The comma inverts "
+                    "1,007 pool names and ONE of them is a stored name with the comma "
+                    "in the wrong place: the minted person hugunin_leonard_c carries "
+                    "name 'Leonard, C. Hugunin', which inverts to the surname leonard "
+                    "though the record's own id, and the gazetteer's other printing of "
+                    "the same man ('Hugunin, Leonard, C.'), both say Hugunin. The "
+                    "defect is in the minted name, not in the rule — refusing the "
+                    "inversion for a tail shaped 'initial then word' would take 16 "
+                    "correct readings down with it, John Dean Caton's among them — so "
+                    "it is named here rather than papered over. No 1840 head turns on "
+                    "it: the adjudication is identical with and without.",
+            "pool_names_reached": markup_bearing_counts(
+                residents, voters, letters, candidates),
+        },
         "what_is_not_a_discriminator": "an appearance of the SAME NAME on a poll list, a "
             "tax list or a letter list. It is the same name again and cannot separate "
             "two people who share it, so it is recorded as same_name_support on every "
@@ -1040,6 +1450,92 @@ def self_test() -> int:
     for title in ("Mr", "Capt", "Dr", "Rev", "Col"):
         expect(title + " is not a forename", parse_name(title + ". John Smith")["key"], "john|smith")
 
+    # T-1116: a rank is not a name. The gap TITLES left — it stripped a captain, a
+    # colonel and a general and not a lieutenant — put the town's James Allen under
+    # the key `lieut|allen`, which no 1840 head written `James Allen` could reach.
+    for rank in ("Lieut", "Lieutt", "Lieuts", "Lieutenant", "Lt"):
+        expect(rank + " is not a forename", parse_name(rank + ". John Smith")["key"], "john|smith")
+    expect("Lieut. James Allen reaches the town's James Allen",
+           parse_name("Lieut. James Allen")["key"], "james|allen")
+    expect("the voter list's Lt. James Allen keys the same man",
+           parse_name("Lt. James Allen")["key"], "james|allen")
+    expect("a rank with no forename beside it gives a surname and no key",
+           (parse_name("Lt. Kingsbury")["surname"], parse_name("Lt. Kingsbury")["key"]),
+           ("kingsbury", ""))
+    expect("a rank left of initials does not become the forename",
+           (parse_name("Lieut J L Thompson")["surname"], parse_name("Lieut J L Thompson")["key"]),
+           ("thompson", ""))
+    # A rank is written trailing too, and there it landed in the surname slot. T-1119
+    # then gave the comma its meaning, so the surname is the printed one: the letter
+    # list prints `Taylor, Jumes lt.` surname-first, and Taylor is the surname.
+    expect("a trailing rank is not a surname", parse_name("Taylor, Jumes lt.")["surname"], "taylor")
+    # None of these spellings is a surname this corpus bears, which is why they may be
+    # dropped in any position; a real name that merely CONTAINS one is untouched.
+    expect("Litt is not a rank", parse_name("John Litt")["key"], "john|litt")
+    expect("Lieutenant is not stripped out of Lieutenantville",
+           parse_name("John Lieutenantville")["surname"], "lieutenantville")
+
+    # T-1119. The three defects the rank rule does not own, each settled elsewhere in
+    # this corpus and never applied here.
+    #
+    # ONE — the comma inverts. The letter lists print surname-first and this parser took
+    # the last word as the surname, so 1,018 of 2,665 gazetteer names read backwards.
+    expect("the letter list's comma puts the surname first",
+           parse_name("Aiker, Samuel")["key"], "samuel|aiker")
+    expect("an inverted entry's surname is the printed one",
+           parse_name("Taylor, Jumes lt.")["key"], "jumes|taylor")
+    expect("initials after the comma give a surname and no forename",
+           (parse_name("Abbot, 8. G.")["surname"], parse_name("Abbot, 8. G.")["key"]),
+           ("abbot", ""))
+    # ...and a comma standing where a period belongs is NOT an inversion. The guard is
+    # the word before it: a bare initial is no surname, so `Augustus H, Conant` keeps
+    # the parse it already had rather than keying off the letter H.
+    expect("an OCR comma after an initial does not invert",
+           parse_name("Augustus H, Conant")["key"], "augustus|conant")
+    expect("a suffix tail is not a forename half",
+           parse_name("E. Wentworth, Jr.")["surname"], "wentworth")
+    expect("nothing after the comma is not an inversion",
+           parse_name("John Bates, jr.")["key"], "john|bates")
+    # The title still leads the given half after an inversion, and keeps its style.
+    expect("a married style survives the inversion",
+           parse_name("Howe, Miss Jane E,")["key"], "female|jane|howe")
+
+    # TWO — the `[uncertain: ...]` wrapper is markup, not a forename. compile_gazetteer
+    # `unmarked` and concord_letter_list_1834_01_01 `fold` both strip it and keep the
+    # reading; here the word `uncertain` became the forename of 119 gazetteer names.
+    expect("the wrapper is not a forename",
+           parse_name("[uncertain: Aaron Wallace]")["key"], "aaron|wallace")
+    expect("a wrapper round the surname alone leaves the forename where it is",
+           parse_name("Dani[e]l O. [uncertain: Robian]")["key"], "daniel|robian")
+    expect("a wrapped rank leaves a surname and no forename",
+           (parse_name("[uncertain: Lt. Allen]")["surname"],
+            parse_name("[uncertain: Lt. Allen]")["key"]), ("allen", ""))
+    # T-0299: the markup is not a word boundary. `[e]` supplies a letter INSIDE a word.
+    expect("a supplied letter does not split the word",
+           parse_name("Dani[e]l Robian")["forename"], "daniel")
+    expect("a supplied letter does not split a surname",
+           parse_name("[Fost]er, [Cal]eb")["key"], "caleb|foster")
+    # `[?]` stays an unread letter and still grades the name uncertain.
+    expect("[?] is still unreadable", parse_name("Cha[?]. M. Snow")["uncertain"], True)
+
+    # THREE — a line whose surname side is unsupplied names nobody. The office after
+    # the comma is not a name, and it was keying `th|subsistence`.
+    expect("an unsupplied name is no name",
+           parse_name("[\u2026], Lieutenant, 5th Infantry, "
+                      "Assistant Commissary of Subsistence")["key"], "")
+    expect("an unsupplied name has no surname to index",
+           parse_name("[\u2026], Lieutenant, 5th Infantry, "
+                      "Assistant Commissary of Subsistence")["surname"], "")
+    expect("an unsupplied name is graded unreadable",
+           parse_name("[\u2026], Lieutenant, 5th Infantry, "
+                      "Assistant Commissary of Subsistence")["uncertain"], True)
+    # An ellipsis that eats part of a name is NOT the same thing: something is read.
+    expect("a truncated surname is still a surname",
+           parse_name("[\u2026] Goodhue")["surname"], "goodhue")
+    # T-0969's female style survives the new filter.
+    expect("Mrs is still not Mary's forename", parse_name("Mrs. Mary Brown")["key"],
+           "female|mary|brown")
+
     doc = build()
     expect("the recapitulation's page numbers are never household heads",
            any(h.get("familysearch_id") == "33SQ-GYYJ-PW" for h in doc["heads"]), False)
@@ -1069,6 +1565,48 @@ def self_test() -> int:
            len(doc["legacy_29_readjudicated"]["heads"]), 29)
     expect("no legacy head is left without a reason",
            all(h.get("reason") for h in doc["legacy_29_readjudicated"]["heads"]), True)
+
+    # T-1003 — the card-merge route, and the cap on it. These assertions are the rule:
+    # if one of them stops firing the ruling in the domain README has stopped being true
+    # of the code, which is the only way this cap can quietly come off.
+    aliases = merged_card_aliases(read_residents())
+    expect("a landed card merge whose folded name offers no handle the live name does "
+           "not is skipped, so the pool grows by rulings and not by every merge",
+           len(aliases) < len(load(ROOT / "data" / "residents" / "index.json")["merged"]),
+           True)
+    expect("every alias stands for a person the layer still holds, under the folded "
+           "card's parsed name and the survivor's live name",
+           all(a.get("via_card_merge") and a.get("person_id") and a.get("name")
+               and a["parsed"] != parse_name(a["name"]) for a in aliases), True)
+    expect("an alias is gathered under a handle its survivor's live name does not give",
+           all(a["parsed"]["surname"] != parse_name(a["name"])["surname"]
+               or (a["parsed"]["key"] and a["parsed"]["key"] != parse_name(a["name"])["key"])
+               for a in aliases), True)
+
+    merged_route = [r for r in doc["heads"] if r.get("via_card_merge")]
+    expect("the card-merge route reaches at least one head, so the cap below is tested "
+           "against a row and not against an empty list", bool(merged_route), True)
+    expect("NO HEAD IS EVER MATCHED THROUGH A CARD MERGE — the merge supplied the name "
+           "agreement, so it may not also supply the identity (the domain README's "
+           "ruling, and the whole point of L6b)",
+           [r["normalized"] for r in merged_route if r["outcome"] == "matched"], [])
+    expect("every merge-reached head says how it was reached",
+           all(r.get("reached_through_card_merge", {}).get("folded_person_id")
+               == r["via_card_merge"] for r in merged_route), True)
+    expect("every L6b row is a candidate and names the reading that would promote it",
+           all(r["outcome"] == "candidate"
+               and r.get("would_be_matched_on_a_read_of_the_line")
+               for r in doc["heads"] if r["rule"].startswith("L6b")), True)
+    expect("Ed. Kimberley, the head this rule was written for, is a candidate under L6b "
+           "and not the L2 refusal a folded card had left it as",
+           next(((r["outcome"], r["rule"], r["via_card_merge"]) for r in doc["heads"]
+                 if r["familysearch_id"] == "33S7-9YYJ-99F" and r["line"] == 3), None),
+           ("candidate", "L6b reached_through_a_card_merge_caps_at_candidate",
+            "kimberley_ed"))
+    expect("a survivor gathered under more than one adjudicated spelling is still ONE "
+           "person in a bucket, so L5 cannot refuse a man for being adjudicated twice",
+           [k for k, bucket in index_by(read_residents() + aliases, "surname").items()
+            if len({b["person_id"] for b in bucket}) != len(bucket)], [])
     for line in failures:
         print("FAIL: %s" % line)
     print("self-test: %d assertion(s) failed" % len(failures))

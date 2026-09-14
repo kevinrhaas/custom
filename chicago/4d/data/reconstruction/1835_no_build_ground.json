@@ -1,11 +1,12 @@
 {
-  "$schema_note": "AUTHORED, and it authors no coordinates. One entry per ground this project holds evidence was not private building ground in 1835 and is not a platted block. Each region names the COMMITTED geometry its boundary is resolved from, and tools/measure_no_build_ground.py resolves it — so the polygon re-derives from the traces the same way data/datum.json re-derives from the ground control, and a hand-typed vertex cannot drift away from the survey it claims to follow. The companion file for platted blocks is 1835_reserved_ground.json (ROADMAP T-A16), which withdraws a block's SUBDIVISION; this file refuses ground that was never subdivided at all.",
+  "$schema_note": "AUTHORED, and it authors no coordinates. One entry per ground this project holds evidence was not private building ground in 1835 and is not a platted block. Each region names the COMMITTED geometry its boundary is resolved from, and tools/measure_no_build_ground.py resolves it \u2014 from survey lines, from a committed polygon, or (T-0891) from the corner pixels and stated transform of a committed trace of a raster, which is how a parcel that exists only as ink on a plate enters this file without a hand-typed vertex — so the polygon re-derives from the traces the same way data/datum.json re-derives from the ground control, and a hand-typed vertex cannot drift away from the survey it claims to follow. The companion file for platted blocks is 1835_reserved_ground.json (ROADMAP T-A16), which withdraws a block's SUBDIVISION; this file refuses ground that was never subdivided at all.",
   "id": "no_build_ground_1835",
   "target_date": "1835-07-01",
   "authored_by": "ROADMAP T-E2",
   "why_this_file_exists": "The infill generators test a placement for clearance, for lot lines, for the platted roadway, for modelled terrain and for relief. Not one of those questions is whether the ground was ever open to a private builder. T-A16 found the same hole inside the plat — the public square was being dealt four invented dwellings — and closed it for blocks. Outside the plat the hole is larger and nobody had measured it: 26.5 % of every square metre of modelled ground above the water surface in this scene is the United States Reservation (22.57 ha) or the sand bar across the river mouth (9.53 ha), and both were open to anonymous infill.",
   "grades": "Each entry's `confidence` grades THE REFUSAL, not the feature. `documented` requires a source that states the ground was not private building ground; `inferred` requires the reasoning to be written out here.",
-  "the_refusal_is_not_the_boundary": "A region's confidence and its boundary are graded separately and they are not the same claim. The reservation's refusal is `documented` — Andreas gives its acreage, its section, and a pre-emption claim filed over the whole of it five weeks before the scene date. Its BOUNDARY as resolved here is `inferred`, and is a floor rather than the reservation: see `boundary.under_coverage` on that entry.",
+  "the_refusal_is_not_the_boundary": "A region's confidence and its boundary are graded separately and they are not the same claim. The reservation's refusal is `documented` — Andreas gives its acreage, its section, and a pre-emption claim filed over the whole of it five weeks before the scene date. Its BOUNDARY as resolved here is `inferred`, and is a floor rather than the reservation: see `boundary.under_coverage` on that entry. The Fort Cemetery is graded the same way and for the same reason: the sheet NAMES the parcel, which is the refusal, and its ring is a reading of ink at +/-25 m.",
+  "regions_may_overlap": "THE TOTAL IS A UNION AND NEVER A SUM. The Fort Cemetery stands wholly inside the United States Reservation, so adding it refuses no ground that was not already refused. The gate walks the heightfield once and asks every region of each cell, and it prints which regions are wholly inside which. A region that adds no acreage is not a fault \u2014 naming and grading a refusal separately is worth doing on its own \u2014 but a table that let it read as new acreage would be.",
   "regions": [
     {
       "id": "fort_dearborn_reservation",
@@ -77,6 +78,39 @@
       "refused": {
         "anonymous_infill": "Every family the 665-roof programme could deal here. No roof of it has ever been placed on this ground — the gate lands green on the day it is written — because every recipe so far has been keyed to a platted block, and the reservation was never platted. That is an accident of the order the work happened in, not a rule anything enforced.",
         "what_it_costs_the_programme": "Nothing that was owed. The 177 roofs in the schedule's `south_plat_beyond_committed_control` entry wait on street control reaching east of State and south of Washington. This parcel does not delay them; it removes an answer that was never available — the ground immediately east of State Street is not coming, at any date, because it is the reservation."
+      }
+    },
+    {
+      "id": "fort_cemetery",
+      "name": "The Fort Cemetery",
+      "aka": ["the fort's burying ground", "the garrison burying ground"],
+      "kind": "burial_ground",
+      "confidence": "documented",
+      "sources": ["harrison_1830_river_mouth"],
+      "note": "THE REFUSAL IS DOCUMENTED AND IT NEEDS NO ARGUMENT BEYOND WHAT THE SHEET SAYS. The 1830 Harrison plan of the river mouth letters a named parcel on the reservation, south-south-east of the fort between the road and the lake, with the words 'Fort Cemetery' written across the ground between its two boundary lines. A burying ground in use is not private building ground, and this one stood on ground the United States had not sold in any case — it lies wholly inside the reservation entry above, and is refused twice over. It is named here anyway, for the reason T-0882 wrote out when it declined to BUILD it: the parcel is a place this project can now cite, with an extent and a grade of its own, rather than an unnamed 1.45 acres inside a larger refusal. data/traces/harrison_1830_fort_burial_ground.json is the reading, and it carries what the sheet does and does not draw — no fence, no gate, no marker, no path, no count of burials and no extent of them. None of that is invented here either.",
+      "boundary": {
+        "method": "plate_reading",
+        "confidence": "inferred",
+        "control": "data/traces/harrison_1830_fort_burial_ground.json",
+        "ring": "fort_cemetery",
+        "derived_from": "The trace's four corner PIXELS on Internet Archive leaf n242 of historyofchicago01andr, rebuilt through the transform that same trace states: anchor pixel (1445, 644) hung on local ENU (1152.0, 221.0) by the committed palisade, 0.33528 m per pixel, +x east and +y south.",
+        "note": "READ OFF A PLATE, AND RE-DERIVED AT EVERY GATE RUN. The trace fitted the parcel's two boundaries over 33 and 53 sample columns and closed both ends on a third fitted line — the road's south-east edge — with 0.72, 0.46 and 0.17 px of scatter. The first and fourth corners are those two intersections; the second and third are where each boundary's ink runs out at the drawn shore, and are the softest numbers on the record at about +/-5 px (1.7 m) of their own. tools/measure_no_build_ground.py rebuilds the ring from the corner pixels and the stated transform and checks the trace's own ground corners against what it gets, so no vertex is authored in this file and none can drift out of step with the reading. T-0891 is the ticket that taught it to do that; until it did, the only way to put this parcel here was to hand-type the one thing this file exists to forbid.",
+        "confidence_note": "The plate carries NO SCALE BAR, and its source record says it is used for arrangement and proportion rather than absolute size, so this ring carries the +/-20 % on size and +/-25 m on position that every plate-derived record in this dataset carries. Nothing about the refusal depends on that: the parcel's nearest side stands some 230 m inside the reservation's own boundary, which is an order of magnitude more than the reading's uncertainty.",
+        "measured": {
+          "derived_area_acres": 1.45,
+          "derived_area_m2": 5886,
+          "documented_area_acres": null,
+          "note": "NO SOURCE STATES THIS PARCEL'S AREA. Unlike the reservation there is no second figure to disagree with, and none is claimed: 1.45 acres is what the four resolved corners enclose, and it inherits every uncertainty the reading carries."
+        },
+        "stands_inside": "fort_dearborn_reservation"
+      },
+      "what_may_stand_here": {
+        "rule": "Nothing — and the list below is empty rather than unwritten. No committed record stands inside this ring or within a 30 m skirt of it; T-0882 ran that test over every committed phase position and it returned nothing, which is why this region displaces no building and contradicts no placement. A record placed here later would need its own evidence for standing on a burying ground, which is a higher bar than the reservation's and one nothing in this project meets.",
+        "permitted": []
+      },
+      "refused": {
+        "anonymous_infill": "All of it, and it was already all of it: the parcel lies wholly inside the United States Reservation, which refuses the same ground. This region adds no acre to the refusal, and the gate's total is the union of the regions rather than their sum for exactly that reason. What it adds is a name on 1.45 acres, an extent, and a grade — so a slice that asks what stood south-south-east of the fort gets an answer instead of a silence.",
+        "what_is_not_claimed": "Where in the parcel anyone is buried, how many, under what, or when the ground stopped being used. The sheet gives a boundary and a name. The trace's `refused_as_fabric` lists the four kinds of record that would turn this from a polygon into a place — a post or quartermaster return, a chaplain's register, a later plat that draws the parcel again, or an 1840s removal record — and not one of them has reached this project."
       }
     },
     {

@@ -98,6 +98,9 @@ import { geometryMark } from './geometry.js';
 // the reason every other renderer thing here is shared: three surfaces naming one
 // building three ways is how a town becomes a spreadsheet.
 import { displayName } from './display-name.js';
+// The agency relation, rendered by the module that owns it so this card and the
+// household browser cannot describe one holding two ways (T-1041).
+import { agencySectionHtml } from './agencies.js';
 
 const CONF_ORDER = { attested: 0, inferred: 1, reconstructed: 2 };
 
@@ -1027,6 +1030,9 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
   let openQuestions = null;
   /** Null until the derived ordinance limits load; see `ordinanceSection`. */
   let ordinanceLimits = null;
+  /** Null until the compiled agency relation loads. Same rule as the liberties:
+   *  null means "not loaded", which is not the claim that this house held none. */
+  let agencies = null;
   let currentRecord = null;
 
   function close() {
@@ -1089,6 +1095,18 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
      */
     setOrdinanceLimits(limits) {
       ordinanceLimits = limits ?? null;
+      if (currentRecord) this.show(currentRecord);
+    },
+
+    /**
+     * Hand the popup the compiled agency relation once it loads. Redrawn like the
+     * liberties, for the same reason: a card already on screen showing fewer
+     * relations than the dataset holds is the one failure mode that matters.
+     *
+     * @param {object|null} doc  `loadAgencies()`'s handle, or null
+     */
+    setAgencies(doc) {
+      agencies = doc ?? null;
       if (currentRecord) this.show(currentRecord);
     },
 
@@ -1170,6 +1188,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
         ${leadHtml(s, called, p)}
         ${factsHtml(s)}
         ${residentsSection(s)}
+        ${agencySectionHtml(agencies, 'structure_id', record.id, escapeHtml)}
         ${tabsHtml({ liberties: libertyCount + questionCount })}
         ${paneHtml('evidence', evidencePane)}
         ${paneHtml('liberties', libertiesPane)}

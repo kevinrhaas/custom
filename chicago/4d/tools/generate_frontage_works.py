@@ -503,6 +503,42 @@ EDGE_FENCE_COURSES = 2
 #      exclusion — an anonymous slot has no name to paint — does NOT apply here
 #      and is deliberately not copied: a post carries no lettering. The clause
 #      that bites is the trade's grade, not its anonymity.
+#
+#      T-1052 ASKED WHETHER THAT OMISSION IS RIGHT — whether a rule with ONE
+#      clause where the signboard rule has two is short a clause, given that the
+#      one it has is a confidence field on a data record. The answer is that it is
+#      right: READING 1 of the two the ticket set out, adopted on this layer's own
+#      standing practice rather than on taste, and the paragraph above stands.
+#
+#      The signboard rule's clause 1 is a clause about NAMING. A board carries a
+#      proprietor's name; an anonymous slot has none; the board is refused for want
+#      of the very thing it would carry. A post carries nothing, and this generator
+#      ALREADY stands nameless furniture at anonymous slots in bulk, by rule, and
+#      always has — measured on dev, 29 of the town's 31 street-lining fence runs
+#      stand WHOLLY in front of anonymous slots and the other two in front of mixed
+#      lots, because the fence rule asks whether a lot is improved and set back and
+#      never who is inside it. A post refused for anonymity would be stricter than
+#      the fence standing three metres behind it, on the same lot, written into the
+#      same record, and nothing distinguishes the two but the lettering neither of
+#      them carries.
+#
+#      SO THE GRADE IS LOAD-BEARING, AND THIS IS WHAT IT HOLDS UP. Of the town's
+#      285 anonymous slots exactly TWO carry a PUBLIC_TRADES trade at all —
+#      `inf_grocery_west` (store_residence) and `physicians_office`
+#      (physicians_office) — and both are graded `reconstructed`, so clause 3
+#      refuses both and the post count is the same under either reading: 16, with
+#      no named, evidenced frontage touched by the question either way. The hole
+#      the ticket names is therefore not a post standing today but a grade moving
+#      tomorrow. What answers that is that the grade is not a dial. T-0230 put
+#      exactly that question to `physicians_office` and wrote the answer into the
+#      record's own note: the trade there CANNOT be graded better, because the
+#      trade is the argument that raised the roof rather than a reading of
+#      anything. A grade moves only when a source is read — `documented` requires
+#      a source record and `inferred` requires a note stating the reasoning, which
+#      is this project's first rule and not a courtesy — so the change that would
+#      stand a post at an invented roof is already refused where it would be made,
+#      at the field, and does not need catching a second time down here. The single
+#      clause is the whole rule.
 #   4. THE WALK WAS ACTUALLY LAID IN FRONT OF IT. A post stands in the verge
 #      OUTSIDE a walk, so where the march refused the boards there is no verge to
 #      measure from and no walk to stand beside. This also means every post
@@ -3482,6 +3518,12 @@ def street_edge_record(walks: list, fences: list, posts: list, refused: list,
                 f"{EDGE_TRACK_MARGIN_M} m. It stands at {EDGE_HITCH_ALONG:.2f} of the "
                 "BUILDING's own frontage — not the lot's, because two trades can "
                 f"share a lot — and {EDGE_HITCH_OFFSET_M:.2f} m out from the lot line. "
+                "ANONYMITY DOES NOT REFUSE A POST and is not an omission (T-1052): "
+                "the signboard rule refuses an anonymous slot because a board "
+                "carries a name and the slot has none, while a post carries no "
+                "lettering — and this same record already lines 29 of its 31 fence "
+                "runs wholly in front of anonymous slots on the same reasoning. The "
+                "clause that bites at an invented roof is the trade's grade. "
                 "Every refusal "
                 "below names the clause that refused it. Read them in "
                 "tools/generate_frontage_works.py."

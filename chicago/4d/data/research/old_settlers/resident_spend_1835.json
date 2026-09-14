@@ -19,8 +19,8 @@
   "grades_changed": 0,
   "carrying_a_date_of_death": 57,
   "carrying_a_birth_interval": 42,
-  "matched_on_initial_only": 8,
-  "the_1835_card_gives_no_forename": 7,
+  "matched_on_initial_only": 9,
+  "the_1835_card_gives_no_forename": 8,
   "the_list_prints_no_forename": 2,
   "died_outside_chicago": 34
  },
@@ -46,7 +46,7 @@
   },
   {
    "group": "refusals",
-   "rulings": 243,
+   "rulings": 245,
    "why": "the surname agrees and the given initial does not, or is absent — a surname-only agreement is a refusal however good it looks"
   },
   {
@@ -377,13 +377,13 @@
    "matched_on_initial_only": true
   },
   {
-   "household_id": "hh_king_john_lyle",
-   "person_id": "king_john_lyle",
+   "household_id": "hh_king_j_d",
+   "person_id": "king_j_d",
    "record_id": "fdn0362",
    "death_date": "1892-04-17",
    "birth_year_earliest": null,
    "birth_year_latest": null,
-   "matched_on_initial_only": false
+   "matched_on_initial_only": true
   },
   {
    "household_id": "hh_marshall_j_a",

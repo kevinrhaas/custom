@@ -11,20 +11,20 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1295,
-  "carried_by_the_civic_mint": 401,
+  "person_records": 1308,
+  "carried_by_the_civic_mint": 414,
   "rungs_spent": 812,
   "conflicts_for_the_owner": 79,
   "spent_by_rule": {
-   "G1a": 22,
-   "G1b": 91,
-   "G1c": 10,
-   "G2e": 48,
-   "G3": 641
+   "G1a": 21,
+   "G1b": 93,
+   "G1c": 9,
+   "G2e": 47,
+   "G3": 642
   },
   "conflicts_by_kind": {
-   "abstention": 45,
-   "downgrade": 34
+   "abstention": 44,
+   "downgrade": 35
   }
  },
  "refusal_kinds": {
@@ -483,15 +483,6 @@
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "barry_john_s",
-   "household_id": "hh_barry_john_s",
-   "name": "John S. Barry",
-   "identity": "id_barry_john_s",
-   "rule": "G1c",
-   "grade": "attested",
-   "resident_subtype": null
   },
   {
    "person_id": "bartlett_charles_h",
@@ -3077,6 +3068,15 @@
    "resident_subtype": "projected_resident"
   },
   {
+   "person_id": "harmon_charles_l",
+   "household_id": "hh_harmon_brothers",
+   "name": "Charles Loomis Harmon",
+   "identity": "id_harmon_charles_loomis",
+   "rule": "G1b",
+   "grade": "attested",
+   "resident_subtype": null
+  },
+  {
    "person_id": "harmon_isaac_d",
    "household_id": "hh_harmon_brothers",
    "name": "Isaac Dewey Harmon",
@@ -4542,15 +4542,6 @@
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "matthews_james_g",
-   "household_id": "hh_matthews_james_g",
-   "name": "James G. Matthews",
-   "identity": "id_matthews_james_g",
-   "rule": "G1a",
-   "grade": "attested",
-   "resident_subtype": null
   },
   {
    "person_id": "mattison_james",
@@ -6680,10 +6671,10 @@
    "person_id": "thompson_john",
    "household_id": "hh_thompson_john",
    "name": "John Thompson",
-   "identity": "id_thompson_john_leverett",
-   "rule": "G2e",
+   "identity": "id_thompson_john",
+   "rule": "G3",
    "grade": "inferred",
-   "resident_subtype": null
+   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "thrall_e_l",
@@ -7325,6 +7316,15 @@
    "resident_subtype": null
   },
   {
+   "person_id": "wright_john_s",
+   "household_id": "hh_wright_john",
+   "name": "John S. Wright",
+   "identity": "id_wright_john_s",
+   "rule": "G1b",
+   "grade": "attested",
+   "resident_subtype": null
+  },
+  {
    "person_id": "young_gideon",
    "household_id": "hh_young_gideon",
    "name": "Gideon Young",
@@ -7424,6 +7424,21 @@
    "household_id": "hh_barrows_mary",
    "name": "Mary Barrows",
    "identity": "id_barrows_mary",
+   "rule": "G3",
+   "grade": "attested",
+   "resident_subtype": null,
+   "kind": "downgrade",
+   "proposed": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
+  },
+  {
+   "person_id": "barry_john_s",
+   "household_id": "hh_barry_john_s",
+   "name": "John S. Barry",
+   "identity": "id_barry_john_s",
    "rule": "G3",
    "grade": "attested",
    "resident_subtype": null,
@@ -7885,21 +7900,6 @@
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   },
   {
-   "person_id": "harmon_charles_l",
-   "household_id": "hh_harmon_brothers",
-   "name": "Charles Loomis Harmon",
-   "identity": "id_harmon_charles_loomis",
-   "rule": "G2b",
-   "grade": "attested",
-   "resident_subtype": null,
-   "kind": "downgrade",
-   "proposed": {
-    "grade": "inferred",
-    "resident_subtype": null
-   },
-   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
    "person_id": "harmon_elijah_d",
    "household_id": "hh_harmon_elijah_d",
    "name": "Dr Elijah Dewey Harmon",
@@ -8078,6 +8078,21 @@
     "resident_subtype": null
    },
    "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+  },
+  {
+   "person_id": "matthews_james_g",
+   "household_id": "hh_matthews_james_g",
+   "name": "James G. Matthews",
+   "identity": "id_matthews_james_g",
+   "rule": "G3",
+   "grade": "attested",
+   "resident_subtype": null,
+   "kind": "downgrade",
+   "proposed": {
+    "grade": "inferred",
+    "resident_subtype": "projected_resident"
+   },
+   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
    "person_id": "mckee_david",
@@ -8513,21 +8528,6 @@
     "resident_subtype": null
    },
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
-  },
-  {
-   "person_id": "wright_john_s",
-   "household_id": "hh_wright_john",
-   "name": "John S. Wright",
-   "identity": "id_wright_john_s",
-   "rule": "G5",
-   "grade": "attested",
-   "resident_subtype": null,
-   "kind": "abstention",
-   "proposed": {
-    "grade": null,
-    "resident_subtype": null
-   },
-   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
   }
  ]
 }

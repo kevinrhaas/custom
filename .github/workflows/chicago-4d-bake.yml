@@ -114,6 +114,7 @@ jobs:
       changed: ${{ steps.push.outputs.changed }}
       sha: ${{ steps.baseref.outputs.sha }}
       base: ${{ steps.baseref.outputs.branch }}
+      base_live: ${{ steps.baseref.outputs.base_live }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -145,6 +146,11 @@ jobs:
       # from the result. The rule and its tiers live in tools/bake_ref.py.
       - name: Which ref does this bake build?
         id: baseref
+        env:
+          # --check-base asks the pulls API whether this ref still has an open PR.
+          # Read-only, and its absence is not fatal — bake_ref.py answers "live"
+          # when it cannot ask.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           # stdout is the branch, stderr is the reason, and --github also writes
@@ -155,6 +161,18 @@ jobs:
             git checkout -B "$BRANCH" "refs/remotes/origin/$BRANCH"
           fi
           echo "baking $BRANCH at $(git rev-parse --short HEAD)"
+          # IS THAT REF STILL GOING ANYWHERE? A bake runs the better part of an
+          # hour, and the branch can merge while it does — after which the PR
+          # opens into a branch nothing will ever merge again. Seven bakes were
+          # in that state on 2026-09-14 (#1283 #1285 #1286 #1288 #1292 #1293
+          # #1294), five of them already dead before the bake started. The rule,
+          # its three answers and that measurement live in tools/bake_ref.py.
+          # It fails safe: any doubt, including an unreachable API, answers 1.
+          BASE_LIVE=$(python3 chicago/4d/tools/bake_ref.py --check-base "$BRANCH")
+          echo "base_live=$BASE_LIVE" >> "$GITHUB_OUTPUT"
+          if [ "$BASE_LIVE" != "1" ]; then
+            echo "::notice::$BRANCH has no open pull request left, so a bake PR into it could never reach dev. The bake still runs and pushes its branch; open-pr will not open a PR. The next bake on dev regenerates this content from the sources that did merge."
+          fi
           # The exact commit the mirror was baked from. The smoke and open-pr jobs
           # check this out rather than the workflow ref, so all three jobs read the
           # same tools/ and the same tree — a bake that started before dev moved is
@@ -169,7 +187,7 @@ jobs:
         with:
           node-version: '22'
 
-      - run: pip install --quiet jsonschema pyproj openpyxl pypdf
+      - run: pip install --quiet jsonschema pyproj openpyxl pypdf numpy scipy Pillow
 
       # Playwright, because the LAST thing tools/bake.sh does is run the renderer
       # smoke against the mirror it has just published — and that step is the
@@ -290,7 +308,31 @@ jobs:
           # so there is nothing there to add and the bake's diff is the geometry and
           # the records it rebuilt rather than 30 MB of mirror beside them.
           git add -A chicago/4d
-          git commit -m "chore: content bake (run ${GITHUB_RUN_ID})"
+          # THE TRAILER IS WHY A BAKE CAN MERGE AT ALL, and without it none ever
+          # could. A bake rewrites ~196 files under chicago/4d/assets/, which is a
+          # WATCHED PATH, so check-changelog-entry.mjs demands an entry in
+          # renderers/web/js/changelog.js — and a bake, being a machine, never
+          # writes one. Every bake PR into dev therefore failed its gate:
+          #
+          #   changelog entry: MISSING.
+          #   196 file(s) under the watched paths changed and
+          #   chicago/4d/renderers/web/js/changelog.js did not
+          #
+          # measured on #1305 and #1284 on 2026-09-14. The branch's own `push`
+          # gate passed both times — the changelog check needs a base..head range,
+          # so it only runs on `pull_request` — which is why this looked like a
+          # flaky double gate rather than a wall. Ten bake PRs were open that
+          # night and not one of them had any route to merge.
+          #
+          # `Changelog: none` is the opt-out the gate documents, and this is
+          # precisely the case it exists for: a bake REGENERATES derived content
+          # from sources that have not changed. The town it describes is the same
+          # town; whatever moved it was the commit that changed the sources, and
+          # that commit carried its own entry. A bake that also changed the town
+          # would mean the generators changed, and that is a source change with a
+          # PR and an entry of its own.
+          git commit -m "chore: content bake (run ${GITHUB_RUN_ID})" \
+                     -m "Changelog: none — regenerated derived content. The glTF, web derivatives and sidecars are rebuilt from sources that did not change in this commit; nothing a visitor or the release feed would see is different that the source commit did not already describe."
           git push -u origin "$BRANCH"
           echo "changed=1" >> "$GITHUB_OUTPUT"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
@@ -447,7 +489,14 @@ jobs:
   # Only now. A bake whose mirror fails the smoke keeps its branch and gets no PR.
   open-pr:
     needs: [bake, smoke]
-    if: needs.bake.outputs.changed == '1'
+    # `base_live` is the second half of T-0454. `base` says which ref this bake
+    # was built from; `base_live` says whether that ref still has anywhere to go.
+    # A bake whose branch merged while it ran would otherwise open a 196-file PR
+    # into a branch nothing will ever merge again — and one that also matches the
+    # steward janitor's `steward/*` sweep, so it would cost a full check.sh gate
+    # every hour for a base that cannot move. The branch is still pushed; only
+    # the PR is withheld, and the next dev bake regenerates the content.
+    if: needs.bake.outputs.changed == '1' && needs.bake.outputs.base_live == '1'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -465,6 +514,33 @@ jobs:
           # would carry the branch's unmerged work with it. tools/bake_ref.py
           # refuses to resolve to the production tier, so this cannot become a PR
           # into main by any route.
+
+          # ASK AGAIN, HERE, AT THE MOMENT THE PR IS ACTUALLY OPENED.
+          #
+          # `needs.bake.outputs.base_live` was computed in the bake job's SECOND
+          # STEP, three quarters of an hour ago, and a base can die in between.
+          # #1303 is the proof: its bake started 02:37:50Z while
+          # `fix/bake-dead-base` still had an open PR, so base_live was correctly
+          # 1; that PR merged at 02:44:20Z, six minutes in; and this job opened a
+          # 196-file PR at 03:16Z into a branch nothing would ever merge again.
+          #
+          # When #1300 added the first check it recorded the mid-flight case as
+          # unfixable — "a bake cannot know at minute two what will merge at
+          # minute forty." That is true of the BAKE. It is not true of this job,
+          # which runs at minute forty and can simply ask. The cheap check was put
+          # in one place when it belonged in two.
+          #
+          # Both are kept. The job-start answer still gates this whole job (and
+          # under T-1118 will skip the bake itself), which is the cheap win on the
+          # bases that were already dead at the starting line; this one closes the
+          # window that one cannot see. Same rule, same script, same fail-safe:
+          # any doubt answers live.
+          LIVE=$(python3 chicago/4d/tools/bake_ref.py --check-base "$BASE")
+          if [ "$LIVE" != "1" ]; then
+            echo "::notice::$BASE stopped being a live base while this bake ran, so no PR is opened. The baked branch $BRANCH is pushed and keeps its content; the next bake on dev regenerates it from the sources that did merge."
+            exit 0
+          fi
+
           if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
             --base "$BASE" \
             --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. \`check.sh\` ran green at the end of the bake, and the published mirror passed the smoke at BOTH viewports in the \`smoke\` job before this PR was opened (T-0165). Targets \`$BASE\` — the ref this bake was built from (T-0454). Merging a \`dev\` bake publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
@@ -480,6 +556,32 @@ jobs:
               printf '%s\n' "$pr_output" >&2
               exit 1
             fi
+          fi
+
+          # ARM AUTO-MERGE, BECAUSE NOTHING ELSE WILL. The trailer above lets a
+          # bake PR go GREEN; it does not make anything merge it. A steward run
+          # arms its own PR and then merges it, and a bake has no run watching it
+          # — so a green bake PR just sat there. Measured 2026-09-14: of thirteen
+          # non-hold PRs open on this repo, the seven with auto-merge armed were
+          # all `T-xxxx` tickets and every bake had none.
+          #
+          # The janitor is not the safety net here either: its gate for this
+          # monorepo runs `check.sh` end to end, which does not fit inside its own
+          # `timeout-minutes: 55` (run 1047 spent 53m37s on ONE PR and was killed
+          # unfinished), so it has never merged a bake and cannot.
+          #
+          # Best-effort by design: `|| true`. Auto-merge can be refused for
+          # reasons that are not this bake's business — the repository setting
+          # turned off, a base with no required checks, a PR already mergeable —
+          # and none of them is a reason to fail a bake that has already produced
+          # good content and opened its PR. The PR stands either way.
+          PR_NUM=$(printf '%s\n' "$pr_output" | grep -oE '[0-9]+$' | tail -1)
+          if [ -n "$PR_NUM" ]; then
+            gh pr merge "$PR_NUM" --auto --squash \
+              && echo "::notice::auto-merge armed on #$PR_NUM — it lands when the gate is green" \
+              || echo "::warning::could not arm auto-merge on #$PR_NUM; the PR is open and needs a merge by hand"
+          else
+            echo "::warning::could not read a PR number out of gh's output, so auto-merge was not armed"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -5,11 +5,11 @@
  "unspent_ceiling": {
   "civic": 16,
   "census_1830": 0,
-  "census_1840": 85,
+  "census_1840": 284,
   "church": 505,
-  "books": 222,
-  "directories": 7279,
-  "newberry_index": 4219,
+  "books": 223,
+  "directories": 7315,
+  "newberry_index": 4914,
   "land_sales": 868,
   "old_settlers": 460
  },
@@ -23,24 +23,24 @@
    "spent": 0
   },
   "census_1840": {
-   "read": 1080,
-   "spent": 995
+   "read": 812,
+   "spent": 819
   },
   "church": {
    "read": 1743,
    "spent": 1238
   },
   "books": {
-   "read": 302,
+   "read": 303,
    "spent": 80
   },
   "directories": {
    "read": 8258,
-   "spent": 979
+   "spent": 943
   },
   "newberry_index": {
-   "read": 6658,
-   "spent": 2439
+   "read": 7005,
+   "spent": 2091
   },
   "land_sales": {
    "read": 1572,
@@ -495,7 +495,8 @@
    "from": 260,
    "to": 264,
    "date": "2026-09-11",
-   "why": "T-1018 repaired 46 Norris 1844 entries whose name ran past the end of the name into the trade and the street. The crosswalk now reaches 936 town people where it reached 928, and 672 cards carry a directory line where 668 did: every one of the four new MATCHES was spent onto a card in the same pass (Charles L. Harmon, Leonard C. Hugunin, Edmund S. Kimberly, John H. Kinzie). The residue of four is the new REFUSALS the repair made visible — a surname now legible with no agreeing initial, or two full forenames that disagree — and a refusal is not a card's to carry. No ruling went unspent for want of spending it."
+   "why": "T-1018 repaired 46 Norris 1844 entries whose name ran past the end of the name into the trade and the street. The crosswalk now reaches 936 town people where it reached 928, and 672 cards carry a directory line where 668 did: every one of the four new MATCHES was spent onto a card in the same pass (Charles L. Harmon, Leonard C. Hugunin, Edmund S. Kimberly, John H. Kinzie). The residue of four is the new REFUSALS the repair made visible — a surname now legible with no agreeing initial, or two full forenames that disagree — and a refusal is not a card's to carry. No ruling went unspent for want of spending it.",
+   "corrected": "CORRECTED 2026-09-13 by T-1025. The reason above does not re-derive, and the four it explains are not what it says they are. A REFUSAL IS NEVER COUNTED BY THIS HOP AT ALL: count_written() skips any ruling whose `outcome` falls outside WRITTEN_OUTCOMES (\"matched\", \"candidate\") unless the list it sits in is a MATCH_CONTAINER, and a refusal is neither — so the residue of four cannot be \"the new REFUSALS the repair made visible\". The four ARE the four matches this entry names as spent. hh_harmon_brothers, hh_pruyne_kimberly, hh_kinzie_john_h and hh_hugunin_leonard_c were each spent onto a card in the same pass and were unwritten anyway, because tools/spend_directories.py wrote the VOLUME into the card's `sources` and never the printed ENTRY, and a crosswalk's one file-level source id is shared by every ruling in the file, so the card had to name the unit adjudicated as well (T-0989, subject_of). They were four of a standing 264 with one cause between them, not a residue this repair created — re-running the walk by hand against dev at 19e0f249c gives 264, every one of them a `matches` row: 159 in Fergus 1839, 49 in Fergus 1843, 39 in Norris 1844 and 17 in the Norris 1844 advertising cards. T-0987 stretch 1 (PR #1116) fixed the cause — the block this pass writes now names the entries ruled onto the household — and took this ceiling 264 -> 0 the same day. The original sentence is kept rather than deleted: what a raise was BELIEVED to be for is part of the ledger, and the fault to repair is a raise nobody can re-derive, not a raise that was written down."
   },
   {
    "domain": "old_settlers",
@@ -568,6 +569,14 @@
    "to": 7315,
    "date": "2026-09-12",
    "why": "T-0987 stretch 9 withdrew 20 directory matches on a middle initial the rule had never compared — Edward Kendall Rogers is not Edward A. Rogers, Henry Wilcox Clarke is not H. B. Clarke — and ten printed entries stop being ruled on because the man they were ruled onto was the wrong man. The unspent count rises for a reading that got MORE careful, not for reading that outran the town: 7305 -> 7315, every one of the ten named in the crosswalks' middle_initial_refusals blocks with the letter it turned on."
+  },
+  {
+   "domain": "books",
+   "hop": "read",
+   "from": 222,
+   "to": 223,
+   "date": "2026-09-14",
+   "why": "bk_mose2_021 is READ and SPENT, but spent OUTSIDE this ledger. Moses & Kirkland vol. 2 page 367 prints Arthur Bronson one of 'two visitors to the settlement from New York' who sent the Lyceum two hundred volumes 'on their return home', and that reading is what struck the presence sentence from BRONSON ARTHUR's ruling in data/research/land_sales/resident_rulings.json — the auction's fourth-largest hand, read for T-1017. This instrument counts a books spend in books/crosswalk.json, so a books claim spent by a land_sales ruling is invisible to it and reads as one more unspent. The ceiling moves by exactly one, for exactly that claim."
   }
  ],
  "lowered": [
@@ -633,6 +642,14 @@
    "to": 867,
    "date": "2026-09-11",
    "why": "T-1034 cohort B: the twenty-four empty-rivals purchaser proposals adjudicated — ten upheld, fourteen refused, thirteen cards retracted. The crosswalk's ruled block reads 118/1/63/28."
+  },
+  {
+   "domain": "directories",
+   "hop": "write",
+   "from": 1,
+   "to": 0,
+   "date": "2026-09-13",
+   "why": "T-1025 measured this hop against dev and found it standing at zero: 895 directory rulings reach a town person and 895 reach that person's card. The 1 left here is T-1049's, raised on 2026-09-12 when the resolved place vocabulary un-minted a card a ruling had already been spent onto; re-deriving the crosswalks against the smaller town has since carried it, so the slack is stale and this takes it back. THE PASS THAT EARNED THE ZERO IS NOT THIS ONE — T-0987 stretch 1 (PR #1116) taught tools/spend_directories.py to name the printed ENTRY on the card and not only the volume, which cleared all 264 that T-1025 was filed against. What T-1025 adds is the thing that HOLDS it: spend_directories.py --self-test now asserts, per household and per entry, that a card this pass writes names every entry ruled onto it, and it fails on 231 households by name if the ruled-on sentence is taken away. Until now that repair was ratcheted only here, by one number over the whole town that can say some card is missing some entry and never which card or which entry."
   }
  ],
  "unwritten_ceiling": {

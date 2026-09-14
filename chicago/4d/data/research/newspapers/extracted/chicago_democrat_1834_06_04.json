@@ -1560,6 +1560,47 @@
         ]
       },
       "notes": "THE TOWN'S TRAFFIC IN ONE PARAGRAPH, a year before the scene date: a Buffalo steamer weekly until 25 August, the Pioneer opening a St. Joseph ferry the evening before this issue, four or five schooners in constant lake service, and a stage twice a week to Niles. The lines are woven with the editorial above and below them and the quote takes only the ones that carry this notice."
+    },
+    {
+      "id": "c030",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "@s DRANCRAID,\nHouse and Land figent.\nyee NOES ported and Bold, or by comniis-\ni23 Basing Lote for sale, in the town and\nite eee Ua, ov dad ths Office on",
+      "normalized": "[…] House and Land [A]gent. [L]O[T]S p[urchased] and [S]old, or by com[m]is-[sion.] 1[2]3 B[uildin]g Lot[s] for sale, in the town and [School section. … Houses to Let. Enquire at] the Office on […]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 4,
+        "column": 1,
+        "lines": [
+          2280,
+          2284
+        ],
+        "lines_of_claim": [
+          2280,
+          2281,
+          2282,
+          2283,
+          2284
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. THIS IS THE IMPRESSION c008's OWN NOTE ALREADY CITES WITHOUT CLAIMING IT: the display line reads '@s DRANCRAID,' (line 2280), and that setting is one of the two the 1834-06-11 reading weighed when it supplied 'Wm. G. Branchaud'. It is claimed here so that the reading stands in the record and not only in another claim's prose. Nothing is read off the display line. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. THE ADDRESS DOES NOT SURVIVE: the notice is cut at 'ths Office on' (line 2284) and neither the street nor the anchor is set, so this printing is recorded as silent about placement rather than given the address its neighbours print. The column is a Tesseract fallback (the flag is line 2279)."
     }
   ]
 }
