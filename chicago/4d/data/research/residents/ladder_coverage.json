@@ -5,7 +5,7 @@
  "states": {
   "rule_on_the_card": {
    "says": "The card carries a `ladder_rule`. The ladder has ruled and the ruling is written down where a reader of the card can see it.",
-   "people": 1213
+   "people": 1224
   },
   "proposed_not_written": {
    "says": "The ladder HAS ruled this person — the rung is in grading_proposal.json — and no pass has written it onto the card. A spend, not a reading.",
@@ -25,8 +25,8 @@
   }
  },
  "counts": {
-  "person_records": 1295,
-  "carry_a_rule": 1213,
+  "person_records": 1306,
+  "carry_a_rule": 1224,
   "carry_no_rule": 82,
   "proposed_not_written_by_rule": {},
   "ruled_but_disputed_by_rule": {
@@ -81,7 +81,7 @@
   {"person_id":"gale_stephen_f","household_id":"hh_gale_stephen_f","name":"Stephen F. Gale","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","calumet_club_early_chicago_1879","chicago_voter_lists_1833_1835_irad"],"identity":"id_gale_stephen_f","proposed_rule":"G2b","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2b disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"greene_john","household_id":"hh_greene_john","name":"Major John Greene","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","drloih_fort_dearborn"],"identity":"id_greene_major_john","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"handy_major","household_id":"hh_handy_major","name":"Major Handy","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":"id_handy_major","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
-  {"person_id":"harmon_charles_l","household_id":"hh_harmon_brothers","name":"Charles Loomis Harmon","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","chicago_democrat_1833_11_26","chicago_voter_lists_1833_1835_irad","fergus_chicago_directory_1839","isa_public_domain_land_tract_sales"],"identity":"id_harmon_charles_loomis","proposed_rule":"G2b","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2b disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
+  {"person_id":"harmon_charles_l","household_id":"hh_harmon_brothers","name":"Charles Loomis Harmon","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","chicago_democrat_1833_11_26","chicago_voter_lists_1833_1835_irad","isa_public_domain_land_tract_sales"],"identity":"id_harmon_charles_loomis","proposed_rule":"G2b","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2b disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"harmon_elijah_d","household_id":"hh_harmon_elijah_d","name":"Dr Elijah Dewey Harmon","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","isa_public_domain_land_tract_sales","second_presbyterian_chicago_1892"],"identity":"id_harmon_elijah_dewey","proposed_rule":"G2b","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2b disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"hathaway_joshua","household_id":"hh_hathaway_joshua","name":"Joshua Hathaway jr.","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","hathaway_1834"],"identity":"id_hathaway_joshua","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"heacock_household_unnamed","household_id":"hh_heacock_russel_e","name":"Heacock's wife and children, unnamed","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":null,"state":"refused_no_identity","refusal_rule":"R5","why":"the name joins two parties with 'and' — a firm style or a description of a household, not one person"},

@@ -10,11 +10,11 @@
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
  "counts": {
-  "residents_considered": 1293,
-  "matched_one_1843_entry": 118,
+  "residents_considered": 1304,
+  "matched_one_1843_entry": 117,
   "matched_more_than_one_ambiguous": 27,
-  "one_1843_entry_contested_by_two_residents": 13,
-  "surname_present_initial_absent_refused": 323,
+  "one_1843_entry_contested_by_two_residents": 18,
+  "surname_present_initial_absent_refused": 324,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 12,
@@ -26,8 +26,8 @@
   "of_those_contested": 1,
   "of_those_ambiguous": 3,
   "could_carry_occupation": 67,
-  "could_carry_address": 83,
-  "could_carry_death_note": 81,
+  "could_carry_address": 82,
+  "could_carry_death_note": 80,
   "business_directory_notices_with_a_surname": 106,
   "notices_folded_onto_their_own_roll_entry": 82,
   "notices_standing_as_their_own_candidate": 24,
@@ -1548,46 +1548,6 @@
    ],
    "could_carry": [
     "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "Charles Loomis Harmon",
-   "person_id": "harmon_charles_l",
-   "household_id": "hh_harmon_brothers",
-   "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": "harmon_loomis_store",
-   "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins C.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1206",
-     "as_printed": "Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "dry goods and groceries, 145 South Water. s.-w",
-     "address_1843": "cor Clark, res Dearborn, bet Washington and Madison",
-     "death_note_1843": "died November 2, 1868, aged 59-4.",
-     "also_printed": [
-      {
-       "claim": "f1843_e0072",
-       "as_printed": "C L. HARMON, commission merchant and wholesale grocer, corner South-Water and Clark streets, Chicago, Ill.",
-       "page": "fergus_1843_page_001",
-       "section": "business directory",
-       "trade_heading": "FORWARDING AND COMMISSION",
-       "occupation_1843": "commission merchant and wholesale grocer, corner South-Water and Clark streets, Chicago, Ill",
-       "address_1843": null
-      }
-     ]
-    }
-   ],
-   "could_carry": [
     "address",
     "death_note"
    ],
@@ -4474,25 +4434,25 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "William H Kennicott",
-   "person_id": "kennicott_william_h",
-   "household_id": "hh_kennicott_william_h",
+   "resident": "William George Sherman",
+   "person_id": "sherman_william_george",
+   "household_id": "hh_sherman_william_george",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": null,
-   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+   "rule": "Surname 'Sherman' folds to the same string as the 1843 entry's, and the given name of both begins W.",
    "entries_1843": [
     {
-     "claim": "f1843_e1467",
-     "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]",
-     "page": "fergus_1843_page_003",
+     "claim": "f1843_e2251",
+     "as_printed": "Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]",
+     "page": "fergus_1843_page_004",
      "section": "alphabetical directory",
      "trade_heading": null,
-     "occupation_1843": "dentist, 133 Lake",
-     "address_1843": "res same",
-     "death_note_1843": "died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6."
+     "occupation_1843": "clerk, Sherman & Pitkin",
+     "address_1843": "bds Oren Sherman",
+     "death_note_1843": "died September 7, 1867, aged 41½."
     }
    ],
    "could_carry": [
@@ -4783,6 +4743,127 @@
  ],
  "contested": [
   {
+   "resident": "C L Harmon",
+   "person_id": "harmon_c_l",
+   "household_id": "hh_harmon_c_l",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1206",
+     "as_printed": "Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "dry goods and groceries, 145 South Water. s.-w",
+     "address_1843": "cor Clark, res Dearborn, bet Washington and Madison",
+     "death_note_1843": "died November 2, 1868, aged 59-4.",
+     "also_printed": [
+      {
+       "claim": "f1843_e0072",
+       "as_printed": "C L. HARMON, commission merchant and wholesale grocer, corner South-Water and Clark streets, Chicago, Ill.",
+       "page": "fergus_1843_page_001",
+       "section": "business directory",
+       "trade_heading": "FORWARDING AND COMMISSION",
+       "occupation_1843": "commission merchant and wholesale grocer, corner South-Water and Clark streets, Chicago, Ill",
+       "address_1843": null
+      }
+     ]
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true,
+   "contested_with": [
+    "Charles Loomis Harmon"
+   ],
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "harmon_charles_l",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     },
+     {
+      "key": "harmon_c_l",
+      "agrees": false,
+      "why": "no trade on one side"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "Charles Loomis Harmon",
+   "person_id": "harmon_charles_l",
+   "household_id": "hh_harmon_brothers",
+   "grade_1835": "attested",
+   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": "harmon_loomis_store",
+   "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1206",
+     "as_printed": "Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "dry goods and groceries, 145 South Water. s.-w",
+     "address_1843": "cor Clark, res Dearborn, bet Washington and Madison",
+     "death_note_1843": "died November 2, 1868, aged 59-4.",
+     "also_printed": [
+      {
+       "claim": "f1843_e0072",
+       "as_printed": "C L. HARMON, commission merchant and wholesale grocer, corner South-Water and Clark streets, Chicago, Ill.",
+       "page": "fergus_1843_page_001",
+       "section": "business directory",
+       "trade_heading": "FORWARDING AND COMMISSION",
+       "occupation_1843": "commission merchant and wholesale grocer, corner South-Water and Clark streets, Chicago, Ill",
+       "address_1843": null
+      }
+     ]
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "contested_with": [
+    "C L Harmon"
+   ],
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "harmon_charles_l",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     },
+     {
+      "key": "harmon_c_l",
+      "agrees": false,
+      "why": "no trade on one side"
+     }
+    ]
+   }
+  },
+  {
    "resident": "Eli A Rider",
    "person_id": "rider_eli_a",
    "household_id": "hh_rider_eli_a",
@@ -4879,15 +4960,15 @@
    }
   },
   {
-   "resident": "J Wright",
-   "person_id": "wright_j",
-   "household_id": "hh_wright_j",
+   "resident": "J S Wright",
+   "person_id": "wright_j_s",
+   "household_id": "hh_wright_j_s",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": null,
-   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "entries_1843": [
     {
      "claim": "f1843_e2675",
@@ -4907,16 +4988,83 @@
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": true,
    "contested_with": [
+    "J Wright",
     "John Wright",
     "John S. Wright"
    ],
    "discriminator": {
     "kind": "trade",
     "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
+    "why": "the trade names 0 of the 4 sides, and a discriminator fires only when it names exactly one",
     "sides": [
      {
       "key": "wright_j",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "wright_j_s",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "wright_john",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     },
+     {
+      "key": "wright_john_s",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "J Wright",
+   "person_id": "wright_j",
+   "household_id": "hh_wright_j",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2675",
+     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "editor and proprietor Prairie Farmer",
+     "address_1843": null,
+     "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true,
+   "contested_with": [
+    "J S Wright",
+    "John Wright",
+    "John S. Wright"
+   ],
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 4 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "wright_j",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "wright_j_s",
       "agrees": false,
       "why": "no trade on one side"
      },
@@ -5055,7 +5203,7 @@
    "occupation_1835_confidence": "inferred",
    "lives_at_1835": null,
    "works_at_1835": null,
-   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "entries_1843": [
     {
      "claim": "f1843_e2675",
@@ -5075,15 +5223,21 @@
    "resident_given_is_initial_only": false,
    "contested_with": [
     "J Wright",
+    "J S Wright",
     "John Wright"
    ],
    "discriminator": {
     "kind": "trade",
     "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
+    "why": "the trade names 0 of the 4 sides, and a discriminator fires only when it names exactly one",
     "sides": [
      {
       "key": "wright_j",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "wright_j_s",
       "agrees": false,
       "why": "no trade on one side"
      },
@@ -5109,7 +5263,7 @@
    "occupation_1835_confidence": "attested",
    "lives_at_1835": null,
    "works_at_1835": null,
-   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
    "entries_1843": [
     {
      "claim": "f1843_e2675",
@@ -5129,15 +5283,21 @@
    "resident_given_is_initial_only": false,
    "contested_with": [
     "J Wright",
+    "J S Wright",
     "John S. Wright"
    ],
    "discriminator": {
     "kind": "trade",
     "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
+    "why": "the trade names 0 of the 4 sides, and a discriminator fires only when it names exactly one",
     "sides": [
      {
       "key": "wright_j",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "wright_j_s",
       "agrees": false,
       "why": "no trade on one side"
      },
@@ -5248,6 +5408,106 @@
      },
      {
       "key": "morrison_orsemus",
+      "agrees": false,
+      "why": "no trade on one side"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "W H Kennicott",
+   "person_id": "kennicott_w_h",
+   "household_id": "hh_kennicott_w_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1467",
+     "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "dentist, 133 Lake",
+     "address_1843": "res same",
+     "death_note_1843": "died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6."
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true,
+   "contested_with": [
+    "William H Kennicott"
+   ],
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "kennicott_w_h",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "kennicott_william_h",
+      "agrees": false,
+      "why": "no trade on one side"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "William H Kennicott",
+   "person_id": "kennicott_william_h",
+   "household_id": "hh_kennicott_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1467",
+     "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "dentist, 133 Lake",
+     "address_1843": "res same",
+     "death_note_1843": "died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6."
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "contested_with": [
+    "W H Kennicott"
+   ],
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "kennicott_w_h",
+      "agrees": false,
+      "why": "no trade on one side"
+     },
+     {
+      "key": "kennicott_william_h",
       "agrees": false,
       "why": "no trade on one side"
      }
@@ -7934,6 +8194,13 @@
    "surname_in_1843": "Thomas",
    "candidates": 6,
    "rule": "The surname 'Thomas' is in Fergus 1843 and no entry under it carries the initial 'F' of 'Frederick Thomas'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "G Loomis",
+   "person_id": "loomis_g",
+   "surname_in_1843": "Loomis",
+   "candidates": 2,
+   "rule": "The surname 'Loomis' is in Fergus 1843 and no entry under it carries the initial 'G' of 'G Loomis'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Gardner Brooks",

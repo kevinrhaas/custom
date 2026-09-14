@@ -12,20 +12,20 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 139,
-  "people_written": 103,
+  "matched_rulings": 137,
+  "people_written": 102,
   "households_touched": 101,
   "grades_changed": 0,
-  "entries_carried": 538,
-  "acres_carried": 15339.04,
-  "school_section_parcels_carried": 154,
-  "matched_more_than_once": 31
+  "entries_carried": 532,
+  "acres_carried": 15258.59,
+  "school_section_parcels_carried": 153,
+  "matched_more_than_once": 30
  },
  "not_written": [
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 508
+   "rulings": 510
   },
   {
    "rule": "L2",
@@ -4040,142 +4040,6 @@
   },
   {
    "household_id": "hh_harmon_brothers",
-   "person_id": "harmon_charles_l",
-   "name": "Charles Loomis Harmon",
-   "source_id": "isa_public_domain_land_tract_sales",
-   "purchaser_spellings": [
-    "HARMON CHARLES L",
-    "HARMON CHAS L"
-   ],
-   "rules": [
-    "HARMON CHARLES L matches Charles Loomis Harmon: the forename names Charles Loomis Harmon of the 5 people of this surname, and the forename agrees in full.",
-    "HARMON CHAS L matches Charles Loomis Harmon: the forename names Charles Loomis Harmon of the 5 people of this surname, and the forename agrees in full."
-   ],
-   "totals": {
-    "entries": 6,
-    "acres": 80.45,
-    "dollars": 5540.55,
-    "first_purchase": "1833-10-22",
-    "last_purchase": "1836-06-30",
-    "tracts": [
-     "NW sec 04 T39N R13E"
-    ],
-    "school_section": [
-     "BL137 of the school section (sec 16 T39N R14E), as read"
-    ],
-    "town_plat_lots": [
-     "lot 10 of block 20 in the town the register codes CHIV (L10BL20CHIV, as printed)",
-     "lot 7 of block 20 in the town the register codes CHIV (L7BL20CHIV, as printed)",
-     "lot 8 of block 20 in the town the register codes CHIV (L8BL20CHIV, as printed)",
-     "lot 9 of block 20 in the town the register codes CHIV (L9BL20CHIV, as printed)"
-    ],
-    "town_plat_dollars": 5310.0,
-    "residence_as_read": [
-     "UNKNOWN"
-    ]
-   },
-   "entries": [
-    {
-     "record_id": "ls0227",
-     "as_read": "HARMON CHARLES L",
-     "date_purchased": "1833-10-22",
-     "acres": "0000.00",
-     "total_price": "130.00",
-     "type_of_sale": "school section sale",
-     "residence_as_read": "UNKNOWN",
-     "county": "COOK",
-     "tract": "BL137 of the school section (sec 16 T39N R14E), as read",
-     "resolves": "unparsed",
-     "sale_kind": "school_section",
-     "purchase_no": "0369850",
-     "volume": "817",
-     "page": "029"
-    },
-    {
-     "record_id": "ls1210",
-     "as_read": "HARMON CHARLES L",
-     "date_purchased": "1836-06-30",
-     "acres": "0000.00",
-     "total_price": "1810.00",
-     "type_of_sale": "canal land sale",
-     "residence_as_read": "UNKNOWN",
-     "county": "COOK",
-     "tract": "lot 8 of block 20 in the town the register codes CHIV (L8BL20CHIV, as printed)",
-     "resolves": "town_plat_lot",
-     "sale_kind": "town_plat_lot",
-     "purchase_no": "0381035",
-     "volume": "L5A",
-     "page": "029"
-    },
-    {
-     "record_id": "ls1211",
-     "as_read": "HARMON CHARLES L",
-     "date_purchased": "1836-06-30",
-     "acres": "0000.00",
-     "total_price": "900.00",
-     "type_of_sale": "canal land sale",
-     "residence_as_read": "UNKNOWN",
-     "county": "COOK",
-     "tract": "lot 10 of block 20 in the town the register codes CHIV (L10BL20CHIV, as printed)",
-     "resolves": "town_plat_lot",
-     "sale_kind": "town_plat_lot",
-     "purchase_no": "0381038",
-     "volume": "L5A",
-     "page": "029"
-    },
-    {
-     "record_id": "ls1212",
-     "as_read": "HARMON CHARLES L",
-     "date_purchased": "1836-06-30",
-     "acres": "0000.00",
-     "total_price": "1700.00",
-     "type_of_sale": "canal land sale",
-     "residence_as_read": "UNKNOWN",
-     "county": "COOK",
-     "tract": "lot 9 of block 20 in the town the register codes CHIV (L9BL20CHIV, as printed)",
-     "resolves": "town_plat_lot",
-     "sale_kind": "town_plat_lot",
-     "purchase_no": "0381041",
-     "volume": "L5A",
-     "page": "029"
-    },
-    {
-     "record_id": "ls1213",
-     "as_read": "HARMON CHARLES L",
-     "date_purchased": "1836-06-30",
-     "acres": "0000.00",
-     "total_price": "900.00",
-     "type_of_sale": "canal land sale",
-     "residence_as_read": "UNKNOWN",
-     "county": "COOK",
-     "tract": "lot 7 of block 20 in the town the register codes CHIV (L7BL20CHIV, as printed)",
-     "resolves": "town_plat_lot",
-     "sale_kind": "town_plat_lot",
-     "purchase_no": "0381042",
-     "volume": "L5A",
-     "page": "029"
-    },
-    {
-     "record_id": "ls0751",
-     "as_read": "HARMON CHAS L",
-     "date_purchased": "1835-08-08",
-     "acres": "80.45",
-     "total_price": "100.55",
-     "type_of_sale": "federal land sale (cash entry)",
-     "residence_as_read": "UNKNOWN",
-     "county": "COOK",
-     "tract": "NW sec 04 T39N R13E",
-     "resolves": "quarter_section",
-     "sale_kind": "federal_entry",
-     "purchase_no": "0010606",
-     "volume": "687",
-     "page": "187"
-    }
-   ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 6 times, as “HARMON CHARLES L”, “HARMON CHAS L”, 1833-10-22 to 1836-06-30: 1 federal land entry — NW sec 04 T39N R13E and 4 lots in the platted town — lot 10 of block 20 in the town the register codes CHIV (L10BL20CHIV, as printed); lot 7 of block 20 in the town the register codes CHIV (L7BL20CHIV, as printed); lot 8 of block 20 in the town the register codes CHIV (L8BL20CHIV, as printed); lot 9 of block 20 in the town the register codes CHIV (L9BL20CHIV, as printed) and 1 parcel of the school section — BL137 of the school section (sec 16 T39N R14E), as read, 80.45 acres stated in all, for $5540.55 (ls0227, ls1210, ls1211, ls1212, ls1213, ls0751). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $5310.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HARMON CHARLES L matches Charles Loomis Harmon: the forename names Charles Loomis Harmon of the 5 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
-  },
-  {
-   "household_id": "hh_harmon_brothers",
    "person_id": "harmon_isaac_d",
    "name": "Isaac Dewey Harmon",
    "source_id": "isa_public_domain_land_tract_sales",
@@ -4183,7 +4047,7 @@
     "HARMON ISAAC D"
    ],
    "rules": [
-    "HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full."
+    "HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 6 people of this surname, and the forename agrees in full."
    ],
    "totals": {
     "entries": 1,
@@ -4219,7 +4083,7 @@
      "page": "029"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “HARMON ISAAC D”, 1833-10-22: 1 parcel of the school section — BL137 of the school section (sec 16 T39N R14E), as read, 0.00 acres stated in all, for $130.00 (ls0229). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “HARMON ISAAC D”, 1833-10-22: 1 parcel of the school section — BL137 of the school section (sec 16 T39N R14E), as read, 0.00 acres stated in all, for $130.00 (ls0229). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 6 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_heacock_russel_e",
@@ -6012,8 +5876,8 @@
     "SHERMAN S W"
    ],
    "rules": [
-    "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees in full.",
-    "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees as an initial only."
+    "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees in full.",
+    "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees as an initial only."
    ],
    "totals": {
     "entries": 2,
@@ -6067,7 +5931,7 @@
      "page": "012"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “SHERMAN SILAS W”, “SHERMAN S W”, 1833-10-24 to 1836-06-22: 1 lot in the platted town — lot 8 of block 34 in the town the register codes CHIOT (L8BL34CHIOT, as printed) and 1 parcel of the school section — BL98 of the school section (sec 16 T39N R14E), as read, 3.27 acres stated in all, for $9697.00 (ls0331, ls1452). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $9500.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “SHERMAN SILAS W”, “SHERMAN S W”, 1833-10-24 to 1836-06-22: 1 lot in the platted town — lot 8 of block 34 in the town the register codes CHIOT (L8BL34CHIOT, as printed) and 1 parcel of the school section — BL98 of the school section (sec 16 T39N R14E), as read, 3.27 acres stated in all, for $9697.00 (ls0331, ls1452). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $9500.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_snow_george_w",
@@ -6694,8 +6558,8 @@
     "WRIGHT TRUMAN G"
    ],
    "rules": [
-    "WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only.",
-    "WRIGHT TRUMAN G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees in full."
+    "WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 7 people of this surname, and the forename agrees as an initial only.",
+    "WRIGHT TRUMAN G matches Truman G Wright: the forename names Truman G Wright of the 7 people of this surname, and the forename agrees in full."
    ],
    "totals": {
     "entries": 11,
@@ -6903,7 +6767,7 @@
      "page": "272"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 11 times, as “WRIGHT T G”, “WRIGHT TRUMAN G”, 1833-10-22 to 1836-06-24: 2 federal land entries — SWFR sec 34 T40N R14E; W2NW sec 08 T40N R14E and 3 lots in the platted town — lot 1 of block 52 in the town the register codes CHIOTV (L1BL52CHIOTV, as printed); lot 2 of block 52 in the town the register codes CHIOTV (L2BL52CHIOTV, as printed); lot 7 of block 57 in the town the register codes CHIOT (L7BL57CHIOT, as printed) and 6 parcels of the school section — BL51 of the school section (sec 16 T39N R14E), as read; BL69 of the school section (sec 16 T39N R14E), as read; lot 1 of block 70 of the school section (sec 16 T39N R14E); lot 2 of block 70 of the school section (sec 16 T39N R14E); lot 3 of block 70 of the school section (sec 16 T39N R14E); lot 4 of block 70 of the school section (sec 16 T39N R14E), 90.61 acres stated in all, for $21482.00 (ls0393, ls0394, ls0395, ls0396, ls0397, ls0398, ls1569, ls1570, ls1571, ls0518, ls0566). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $20010.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 11 times, as “WRIGHT T G”, “WRIGHT TRUMAN G”, 1833-10-22 to 1836-06-24: 2 federal land entries — SWFR sec 34 T40N R14E; W2NW sec 08 T40N R14E and 3 lots in the platted town — lot 1 of block 52 in the town the register codes CHIOTV (L1BL52CHIOTV, as printed); lot 2 of block 52 in the town the register codes CHIOTV (L2BL52CHIOTV, as printed); lot 7 of block 57 in the town the register codes CHIOT (L7BL57CHIOT, as printed) and 6 parcels of the school section — BL51 of the school section (sec 16 T39N R14E), as read; BL69 of the school section (sec 16 T39N R14E), as read; lot 1 of block 70 of the school section (sec 16 T39N R14E); lot 2 of block 70 of the school section (sec 16 T39N R14E); lot 3 of block 70 of the school section (sec 16 T39N R14E); lot 4 of block 70 of the school section (sec 16 T39N R14E), 90.61 acres stated in all, for $21482.00 (ls0393, ls0394, ls0395, ls0396, ls0397, ls0398, ls1569, ls1570, ls1571, ls0518, ls0566). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $20010.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 7 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_brown_william_h",
@@ -7175,7 +7039,7 @@
     "HARMON ELIJAH D"
    ],
    "rules": [
-    "HARMON ELIJAH D matches Dr Elijah Dewey Harmon: the forename names Dr Elijah Dewey Harmon of the 5 people of this surname, and the forename agrees in full."
+    "HARMON ELIJAH D matches Dr Elijah Dewey Harmon: the forename names Dr Elijah Dewey Harmon of the 6 people of this surname, and the forename agrees in full."
    ],
    "totals": {
     "entries": 2,
@@ -7228,7 +7092,7 @@
      "page": "037"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “HARMON ELIJAH D”, 1834-10-02: 1 federal land entry — SWFR sec 22 T39N R14E, 276.48 acres stated in all, for $345.60 (ls0435, ls0436). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. Identity by the crosswalk's own rule: HARMON ELIJAH D matches Dr Elijah Dewey Harmon: the forename names Dr Elijah Dewey Harmon of the 5 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “HARMON ELIJAH D”, 1834-10-02: 1 federal land entry — SWFR sec 22 T39N R14E, 276.48 acres stated in all, for $345.60 (ls0435, ls0436). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. Identity by the crosswalk's own rule: HARMON ELIJAH D matches Dr Elijah Dewey Harmon: the forename names Dr Elijah Dewey Harmon of the 6 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_beaubien_jean_baptiste",

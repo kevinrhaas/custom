@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1293
+   "n": 1304
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -28,7 +28,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2645
+   "n": 2642
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -37,16 +37,16 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 89,
+  "residents_matched_one_entry": 88,
   "residents_ambiguous": 31,
-  "residents_contested": 18,
-  "residents_surname_only_refused": 217,
+  "residents_contested": 21,
+  "residents_surname_only_refused": 218,
   "residents_further_initial_disagreed_refused": 4,
   "residents_letter_list_bucket_refused": 1,
   "voters_matched_one_entry": 81,
   "voters_ambiguous": 38,
   "voters_surname_only_refused": 86,
-  "letter_list_matched_one_entry": 197,
+  "letter_list_matched_one_entry": 194,
   "letter_list_ambiguous": 62,
   "letter_list_surname_only_refused": 549,
   "heads_1840_matched_one_entry": 86,
@@ -250,28 +250,6 @@
     ],
     "person_id": "pettit_c",
     "household_id": "hh_pettit_c",
-    "grade_1835": "attested",
-    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
-   },
-   {
-    "name": "Charles Loomis Harmon",
-    "rule": "Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins C.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0709",
-      "as_printed": "Chas. L. Harmon",
-      "printed_page": 40,
-      "role": "nominee",
-      "ward_1837": 1,
-      "voted_for": null,
-      "party": "Whig",
-      "office": "alderman",
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ],
-    "person_id": "harmon_charles_l",
-    "household_id": "hh_harmon_brothers",
     "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
@@ -2016,8 +1994,82 @@
   ],
   "contested": [
    {
+    "name": "C L Harmon",
+    "rule": "Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0709",
+      "as_printed": "Chas. L. Harmon",
+      "printed_page": 40,
+      "role": "nominee",
+      "ward_1837": 1,
+      "voted_for": null,
+      "party": "Whig",
+      "office": "alderman",
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "harmon_c_l",
+    "household_id": "hh_harmon_c_l",
+    "grade_1835": "attested",
+    "contested_with": [
+     "Charles Loomis Harmon"
+    ]
+   },
+   {
+    "name": "Charles Loomis Harmon",
+    "rule": "Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0709",
+      "as_printed": "Chas. L. Harmon",
+      "printed_page": 40,
+      "role": "nominee",
+      "ward_1837": 1,
+      "voted_for": null,
+      "party": "Whig",
+      "office": "alderman",
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "harmon_charles_l",
+    "household_id": "hh_harmon_brothers",
+    "grade_1835": "attested",
+    "contested_with": [
+     "C L Harmon"
+    ]
+   },
+   {
+    "name": "J S Wright",
+    "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0088",
+      "as_printed": "John Wright,",
+      "printed_page": 41,
+      "role": "voter",
+      "ward_1837": 1,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "wright_j_s",
+    "household_id": "hh_wright_j_s",
+    "grade_1835": "attested",
+    "contested_with": [
+     "J Wright",
+     "John Wright",
+     "John S. Wright"
+    ]
+   },
+   {
     "name": "J Wright",
-    "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0088",
@@ -2036,6 +2088,7 @@
     "household_id": "hh_wright_j",
     "grade_1835": "attested",
     "contested_with": [
+     "J S Wright",
      "John Wright",
      "John S. Wright"
     ]
@@ -2162,7 +2215,7 @@
    },
    {
     "name": "John S. Wright",
-    "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0088",
@@ -2182,12 +2235,13 @@
     "grade_1835": "attested",
     "contested_with": [
      "J Wright",
+     "J S Wright",
      "John Wright"
     ]
    },
    {
     "name": "John Wright",
-    "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
+    "rule": "Surname 'Wright' folds to the same string as the 1837 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1837 entry on that rule, and at most one of them is the man who voted. The match is not made.",
     "entries_1837": [
      {
       "claim": "f1839_v0088",
@@ -2207,6 +2261,7 @@
     "grade_1835": "attested",
     "contested_with": [
      "J Wright",
+     "J S Wright",
      "John S. Wright"
     ]
    },
@@ -4541,6 +4596,11 @@
     "name": "William Bennett",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Bennett' stands in the 1837 poll and no man under it carries the initial 'W' of 'William Bennett'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William George Sherman",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Sherman' stands in the 1837 poll and no man under it carries the initial 'W' of 'William George Sherman'. A surname-only agreement is a refusal."
    },
    {
     "name": "William H Brown",
@@ -7911,24 +7971,6 @@
      {
       "claim": "f1839_v0044",
       "as_printed": "Augustin D. Taylor,",
-      "printed_page": 41,
-      "role": "voter",
-      "ward_1837": 1,
-      "voted_for": "William B. Ogden",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ]
-   },
-   {
-    "name": "A. N. Ful[lerton]",
-    "rule": "Surname 'Ful[lerton]' folds to the same string as the 1837 entry's, and the given name of both begins A.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0064",
-      "as_printed": "Alex. N. Fullerton,",
       "printed_page": 41,
       "role": "voter",
       "ward_1837": 1,
@@ -11355,42 +11397,6 @@
       "voted_for": "John H. Kinzie",
       "party": null,
       "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ]
-   },
-   {
-    "name": "[Gr]ant Goodrich",
-    "rule": "Surname 'Goodrich' folds to the same string as the 1837 entry's, and the given name of both begins G.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0655",
-      "as_printed": "Grant Goodrich",
-      "printed_page": 46,
-      "role": "voter",
-      "ward_1837": 6,
-      "voted_for": "John H. Kinzie",
-      "party": null,
-      "office": null,
-      "column_run_on": false,
-      "candidate_inferred": false
-     }
-    ]
-   },
-   {
-    "name": "[J]no. S. C. Hogan",
-    "rule": "Surname 'Hogan' folds to the same string as the 1837 entry's, and the given name of both begins J.",
-    "entries_1837": [
-     {
-      "claim": "f1839_v0726",
-      "as_printed": "John S. C. Hogan",
-      "printed_page": 40,
-      "role": "nominee",
-      "ward_1837": 2,
-      "voted_for": null,
-      "party": "Democratic",
-      "office": "alderman",
       "column_run_on": false,
       "candidate_inferred": false
      }

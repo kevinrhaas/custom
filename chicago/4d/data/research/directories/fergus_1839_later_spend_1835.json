@@ -15,13 +15,13 @@
   "city_register_1839": "What a match may carry, and it depends on WHICH TABLE it landed in. A match on printed page 38, or on any row of the mayors' table, is 1839-or-later evidence: it says the man held that office in that year and was therefore in Chicago in that year, it is written with the row's own describes_date and never as an 1835 fact, and the person's grade does not move on it alone — a later appearance is corroboration of CONTINUED RESIDENCE, not of July 1835. A match on the sheriffs' rows of 1831, 1832, 1834 or 1836 is different in kind: the office is contemporary with the town, the 1834 row's term covers the scene date outright, and such a match carries reaches_scene. Even there the SOURCE is a retrospect — a table running to 1874, set in 1876 out of Old Settlers' recollections per the compiler's warning on printed page 3 — so it may be cited as a contemporary office and may not be graded `documented` without a second, nearer record. The ward on printed page 38 is a ward of the CITY of 1839 and places no house in the town of 1835."
  },
  "counts": {
-  "matched_rulings": 107,
-  "people_written": 103,
+  "matched_rulings": 106,
+  "people_written": 102,
   "households_touched": 101,
   "grades_changed": 0,
-  "entries_carried": 107,
+  "entries_carried": 106,
   "per_list": {
-   "city_election_1837": 89,
+   "city_election_1837": 88,
    "city_register_1839": 18
   },
   "named_by_both_lists": 4
@@ -30,17 +30,17 @@
   {
    "rule": "F1",
    "why": "a `contested` or `ambiguous` row is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the volume anyway would print an undecided identity as a decided one",
-   "rulings": 60
+   "rulings": 63
   },
   {
    "rule": "F2",
    "why": "a surname-only agreement is a refusal in both crosswalks and in the newspapers' ratified rules, and refusals are not spent",
-   "rulings": 269
+   "rulings": 271
   },
   {
    "rule": "F3",
    "why": "the voter, letter-list and 1840-head pools match a row in ANOTHER reading rather than a person this town holds a card for. They are corroboration between readings and there is no card to write them onto; T-0515 is the pass that rules on the letter list",
-   "rulings": 428
+   "rulings": 431
   },
   {
    "rule": "F4",
@@ -255,29 +255,6 @@
     }
    ],
    "written": "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT. Fergus' Chicago Directory for 1839 names this person 1 time in its two later lists: the poll of Chicago's first city election, 2 May 1837 — “Charles Pettit” (f1839_v0642, printed page 45, ward 6, voting for John H. Kinzie). What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house. Identity by the crosswalk's own rule: Surname 'Pettit' folds to the same string as the 1837 entry's, and the given name of both begins C. (data/research/directories/fergus_1839_election_crosswalk_1835.json and fergus_1839_register_crosswalk_1835.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a poll twenty-two months after the scene date — or a register four years after it — is a second source about CONTINUED RESIDENCE rather than about July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
-  },
-  {
-   "household_id": "hh_harmon_brothers",
-   "person_id": "harmon_charles_l",
-   "name": "Charles Loomis Harmon",
-   "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "attested",
-   "rules": [
-    "Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins C."
-   ],
-   "entries": [
-    {
-     "claim_id": "f1839_v0709",
-     "list": "city_election_1837",
-     "as_printed": "Chas. L. Harmon",
-     "printed_page": 40,
-     "describes_date": "1837-05-02",
-     "ward": 1,
-     "voted_for": null,
-     "office": "alderman"
-    }
-   ],
-   "written": "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT. Fergus' Chicago Directory for 1839 names this person 1 time in its two later lists: the poll of Chicago's first city election, 2 May 1837 — “Chas. L. Harmon” (f1839_v0709, printed page 40, ward 1). What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house. Identity by the crosswalk's own rule: Surname 'Harmon' folds to the same string as the 1837 entry's, and the given name of both begins C. (data/research/directories/fergus_1839_election_crosswalk_1835.json and fergus_1839_register_crosswalk_1835.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a poll twenty-two months after the scene date — or a register four years after it — is a second source about CONTINUED RESIDENCE rather than about July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_chapman_chas_h",

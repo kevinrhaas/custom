@@ -245,7 +245,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_10_29.json",
-      "sha256": "ed5a32d18b85421b9da5a652aa468cf15ecf2ebfadab3f4930bba3e2684ff30a"
+      "sha256": "6b34f176acaad13c5f7663ab9783f0fbfe384fd29a26eea7f1abb9e386a185cb"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_11_05.json",
@@ -350,7 +350,7 @@
   ],
   "counts": {
     "claims": 1191,
-    "persons": 2690,
+    "persons": 2687,
     "places": 3,
     "businesses": 196,
     "agencies": 1
@@ -842,24 +842,6 @@
       ]
     },
     {
-      "id": "person_a_n_ful_lerton",
-      "name": "A. N. Ful[lerton]",
-      "variants": [
-        {
-          "as_printed": "A. Nv Ful",
-          "claim": "chicago_democrat_1834_10_29#c008"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_10_29#c008"
-      ],
-      "first_seen": "1834-10-29",
-      "last_seen": "1834-10-29",
-      "letter_list_only": false,
-      "occupations": [],
-      "associated_places": []
-    },
-    {
       "id": "person_a_n_fullerton",
       "name": "A. N. Fullerton",
       "variants": [
@@ -868,15 +850,20 @@
           "claim": "chicago_american_1835_06_13#c004"
         },
         {
+          "as_printed": "A. Nv Ful",
+          "claim": "chicago_democrat_1834_10_29#c008"
+        },
+        {
           "as_printed": "A. N. Fullerton",
           "claim": "chicago_democrat_1835_06_17#c002"
         }
       ],
       "mentions": [
         "chicago_american_1835_06_13#c004",
+        "chicago_democrat_1834_10_29#c008",
         "chicago_democrat_1835_06_17#c002"
       ],
-      "first_seen": "1835-06-13",
+      "first_seen": "1834-10-29",
       "last_seen": "1835-06-17",
       "letter_list_only": false,
       "occupations": [
@@ -18697,24 +18684,6 @@
       ]
     },
     {
-      "id": "person_gr_ant_goodrich",
-      "name": "[Gr]ant Goodrich",
-      "variants": [
-        {
-          "as_printed": "ant Goodrich,",
-          "claim": "chicago_democrat_1834_10_29#c007"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_10_29#c007"
-      ],
-      "first_seen": "1834-10-29",
-      "last_seen": "1834-10-29",
-      "letter_list_only": false,
-      "occupations": [],
-      "associated_places": []
-    },
-    {
       "id": "person_granger_trumble",
       "name": "[Granger], Trumble",
       "variants": [
@@ -25164,24 +25133,6 @@
       "associated_places": []
     },
     {
-      "id": "person_j_no_s_c_hogan",
-      "name": "[J]no. S. C. Hogan",
-      "variants": [
-        {
-          "as_printed": "no. SC. Hogav.",
-          "claim": "chicago_democrat_1834_10_29#c011"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_10_29#c011"
-      ],
-      "first_seen": "1834-10-29",
-      "last_seen": "1834-10-29",
-      "letter_list_only": false,
-      "occupations": [],
-      "associated_places": []
-    },
-    {
       "id": "person_j_o_y_h_avery",
       "name": "J[o]y H. Avery",
       "variants": [
@@ -29451,6 +29402,10 @@
           "claim": "chicago_democrat_1834_10_22#c008"
         },
         {
+          "as_printed": "no. SC. Hogav.",
+          "claim": "chicago_democrat_1834_10_29#c011"
+        },
+        {
           "as_printed": "J. S. C. HOGAN",
           "claim": "chicago_democrat_1835_05_20#c016"
         },
@@ -29474,6 +29429,7 @@
         "chicago_democrat_1834_08_13#c017",
         "chicago_democrat_1834_08_20#c007",
         "chicago_democrat_1834_10_22#c008",
+        "chicago_democrat_1834_10_29#c011",
         "chicago_democrat_1835_05_20#c016",
         "chicago_democrat_1835_05_27#c003"
       ],

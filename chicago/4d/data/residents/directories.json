@@ -48,35 +48,35 @@
   }
  ],
  "counts": {
-  "people_shown": 238,
-  "people_met_by_more_than_one_volume": 149,
+  "people_shown": 242,
+  "people_met_by_more_than_one_volume": 153,
   "carrying_an_occupation": 123,
-  "carrying_an_address": 156,
+  "carrying_an_address": 155,
   "line_held_but_parse_refused": 0,
   "split_refused_trades": 14,
-  "split_refused_addresses": 5,
+  "split_refused_addresses": 3,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 183,
-    "single_entry": 146,
-    "ambiguous": 25,
-    "contested": 12,
+    "people": 185,
+    "single_entry": 145,
+    "ambiguous": 26,
+    "contested": 14,
     "split_refused_fields": 1
    },
    "fergus_1843": {
-    "people": 158,
-    "single_entry": 118,
+    "people": 162,
+    "single_entry": 117,
     "ambiguous": 27,
-    "contested": 13,
-    "split_refused_fields": 3
+    "contested": 18,
+    "split_refused_fields": 2
    },
    "norris_1844": {
-    "people": 127,
-    "single_entry": 103,
+    "people": 130,
+    "single_entry": 102,
     "ambiguous": 14,
-    "contested": 10,
-    "split_refused_fields": 15
+    "contested": 14,
+    "split_refused_fields": 14
    },
    "norris_1844_advertiser": {
     "people": 29,
@@ -8374,6 +8374,66 @@
    ]
   },
   {
+   "person_id": "harmon_c_l",
+   "household_id": "hh_harmon_c_l",
+   "resident": "C L Harmon",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "appearances": [
+    {
+     "volume": "fergus_1843",
+     "title": "Fergus's Chicago directory of 1843",
+     "year": 1843,
+     "source_id": "fergus_chicago_directory_1843",
+     "match_status": "contested",
+     "match_rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1843_e1206",
+       "printed_page": "fergus_1843_page_003",
+       "as_printed": "Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e0795",
+       "printed_page": 38,
+       "as_printed": "Harmon Charles L. dry goods and groceries, cor Clark and South Water sts. res Dearborn st. b Wash and Mad sts (.See card)"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
+    }
+   ],
+   "occupation_later": null,
+   "address_later": null,
+   "holds_a_line_whose_parse_does_not_cross": false,
+   "sources": [
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
    "resident": "Charles Loomis Harmon",
@@ -8387,8 +8447,8 @@
      "title": "Fergus's Chicago directory of 1843",
      "year": 1843,
      "source_id": "fergus_chicago_directory_1843",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins C.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -8397,9 +8457,7 @@
        "as_printed": "Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]"
       }
      ],
-     "holds": [
-      "address"
-     ],
+     "holds": [],
      "split_refused": {},
      "sources": [
       "fergus_chicago_directory_1843"
@@ -8410,8 +8468,8 @@
      "title": "Norris's Chicago directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -8420,9 +8478,7 @@
        "as_printed": "Harmon Charles L. dry goods and groceries, cor Clark and South Water sts. res Dearborn st. b Wash and Mad sts (.See card)"
       }
      ],
-     "holds": [
-      "address"
-     ],
+     "holds": [],
      "split_refused": {},
      "sources": [
       "norris_directory_1844"
@@ -8452,19 +8508,7 @@
     }
    ],
    "occupation_later": null,
-   "address_later": {
-    "value": "cor Clark, res Dearborn, bet Washington and Madison",
-    "confidence": "attested",
-    "describes_date": 1843,
-    "sources": [
-     "fergus_chicago_directory_1843"
-    ],
-    "claim_id": "f1843_e1206",
-    "as_printed": "Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]",
-    "printed_fields": "f1843_e1206 | Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.] | fergus_1843_page_003 | alphabetical directory | dry goods and groceries, 145 South Water. s.-w | cor Clark, res Dearborn, bet Washington and Madison | died November 2, 1868, aged 59-4.",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
+   "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1843",
@@ -10711,6 +10755,88 @@
    ]
   },
   {
+   "person_id": "kennicott_w_h",
+   "household_id": "hh_kennicott_w_h",
+   "resident": "W H Kennicott",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "appearances": [
+    {
+     "volume": "fergus_1839",
+     "title": "Fergus's Chicago directory of 1839",
+     "year": 1839,
+     "source_id": "fergus_chicago_directory_1839",
+     "match_status": "contested",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1839_e0835",
+       "printed_page": 21,
+       "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ]
+    },
+    {
+     "volume": "fergus_1843",
+     "title": "Fergus's Chicago directory of 1843",
+     "year": 1843,
+     "source_id": "fergus_chicago_directory_1843",
+     "match_status": "contested",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1843_e1467",
+       "printed_page": "fergus_1843_page_003",
+       "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1006",
+       "printed_page": 43,
+       "as_printed": "Kennicott, Wm. H. dentist, 133 Lake st. house same"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
+    }
+   ],
+   "occupation_later": null,
+   "address_later": null,
+   "holds_a_line_whose_parse_does_not_cross": false,
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
    "person_id": "kennicott_william_h",
    "household_id": "hh_kennicott_william_h",
    "resident": "William H Kennicott",
@@ -10724,8 +10850,8 @@
      "title": "Fergus's Chicago directory of 1839",
      "year": 1839,
      "source_id": "fergus_chicago_directory_1839",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -10734,10 +10860,7 @@
        "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street"
       }
      ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
+     "holds": [],
      "split_refused": {},
      "sources": [
       "fergus_chicago_directory_1839"
@@ -10748,8 +10871,8 @@
      "title": "Fergus's Chicago directory of 1843",
      "year": 1843,
      "source_id": "fergus_chicago_directory_1843",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -10758,13 +10881,8 @@
        "as_printed": "Kennicott, William Henry [the pioneer], dentist, 133 Lake, res same [died at \"The Grove\" Cook Co., Ill., Oct. 22, 1862, aged 54-8-6.]"
       }
      ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "split_refused": {
-      "address": "address_is_a_backreference"
-     },
+     "holds": [],
+     "split_refused": {},
      "sources": [
       "fergus_chicago_directory_1843"
      ]
@@ -10774,8 +10892,8 @@
      "title": "Norris's Chicago directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Kennicott' folds to the same string as the 1844 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1844 entry on that rule, and at most one of them is the man printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -10784,44 +10902,15 @@
        "as_printed": "Kennicott, Wm. H. dentist, 133 Lake st. house same"
       }
      ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "split_refused": {
-      "address": "address_is_a_backreference"
-     },
+     "holds": [],
+     "split_refused": {},
      "sources": [
       "norris_directory_1844"
      ]
     }
    ],
-   "occupation_later": {
-    "value": "dentist",
-    "confidence": "attested",
-    "describes_date": 1839,
-    "sources": [
-     "fergus_chicago_directory_1839"
-    ],
-    "claim_id": "f1839_e0835",
-    "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street",
-    "printed_fields": "f1839_e0835 | Kennicott, Dr. Wm. H., dentist, Lake street | dentist | Lake street",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Kennicott, Dr. Wm. H., dentist, Lake street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "address_later": {
-    "value": "Lake street",
-    "confidence": "attested",
-    "describes_date": 1839,
-    "sources": [
-     "fergus_chicago_directory_1839"
-    ],
-    "claim_id": "f1839_e0835",
-    "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street",
-    "printed_fields": "f1839_e0835 | Kennicott, Dr. Wm. H., dentist, Lake street | dentist | Lake street",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Kennicott, Dr. Wm. H., dentist, Lake street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
+   "occupation_later": null,
+   "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
@@ -16243,6 +16332,96 @@
    ]
   },
   {
+   "person_id": "sherman_william_george",
+   "household_id": "hh_sherman_william_george",
+   "resident": "William George Sherman",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "appearances": [
+    {
+     "volume": "fergus_1843",
+     "title": "Fergus's Chicago directory of 1843",
+     "year": 1843,
+     "source_id": "fergus_chicago_directory_1843",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Sherman' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1843_e2251",
+       "printed_page": "fergus_1843_page_004",
+       "as_printed": "Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]"
+      }
+     ],
+     "holds": [
+      "address",
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Sherman' folds to the same string as the 1844 entry's, and the given name of both begins W.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1611",
+       "printed_page": 55,
+       "as_printed": "Sherman, W. G. clerk, at Sherman & Pitkin's, res O. Sherman's"
+      }
+     ],
+     "holds": [
+      "address",
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
+    }
+   ],
+   "occupation_later": {
+    "value": "clerk, Sherman & Pitkin",
+    "confidence": "attested",
+    "describes_date": 1843,
+    "sources": [
+     "fergus_chicago_directory_1843"
+    ],
+    "claim_id": "f1843_e2251",
+    "as_printed": "Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]",
+    "printed_fields": "f1843_e2251 | Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.] | fergus_1843_page_004 | alphabetical directory | clerk, Sherman & Pitkin | bds Oren Sherman | died September 7, 1867, aged 41½.",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1843 prints this trade against this person, in the entry quoted on the card: 'Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
+   "address_later": {
+    "value": "bds Oren Sherman",
+    "confidence": "attested",
+    "describes_date": 1843,
+    "sources": [
+     "fergus_chicago_directory_1843"
+    ],
+    "claim_id": "f1843_e2251",
+    "as_printed": "Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]",
+    "printed_fields": "f1843_e2251 | Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.] | fergus_1843_page_004 | alphabetical directory | clerk, Sherman & Pitkin | bds Oren Sherman | died September 7, 1867, aged 41½.",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
+   "holds_a_line_whose_parse_does_not_cross": false,
+   "sources": [
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
    "person_id": "simons_e",
    "household_id": "hh_simons_e",
    "resident": "E. Simons",
@@ -19248,7 +19427,72 @@
      "year": 1843,
      "source_id": "fergus_chicago_directory_1843",
      "match_status": "contested",
-     "match_rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1843_e2675",
+       "printed_page": "fergus_1843_page_004",
+       "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ]
+    }
+   ],
+   "occupation_later": null,
+   "address_later": null,
+   "holds_a_line_whose_parse_does_not_cross": false,
+   "sources": [
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
+   ]
+  },
+  {
+   "person_id": "wright_j_s",
+   "household_id": "hh_wright_j_s",
+   "resident": "J S Wright",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "appearances": [
+    {
+     "volume": "fergus_1839",
+     "title": "Fergus's Chicago directory of 1839",
+     "year": 1839,
+     "source_id": "fergus_chicago_directory_1839",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Wright' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1839_e1647",
+       "printed_page": 36,
+       "as_printed": "Wright, John, Michigan ave. cor. Madison st"
+      },
+      {
+       "claim_id": "f1839_e1648",
+       "printed_page": 36,
+       "as_printed": "Wright, John S., forwarding commission merchant, N. Water st"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ]
+    },
+    {
+     "volume": "fergus_1843",
+     "title": "Fergus's Chicago directory of 1843",
+     "year": 1843,
+     "source_id": "fergus_chicago_directory_1843",
+     "match_status": "contested",
+     "match_rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -19313,7 +19557,7 @@
      "year": 1843,
      "source_id": "fergus_chicago_directory_1843",
      "match_status": "contested",
-     "match_rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -19378,7 +19622,7 @@
      "year": 1843,
      "source_id": "fergus_chicago_directory_1843",
      "match_status": "contested",
-     "match_rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {

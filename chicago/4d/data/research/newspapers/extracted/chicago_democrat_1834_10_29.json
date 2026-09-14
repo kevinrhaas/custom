@@ -427,14 +427,9 @@
           "as_printed": "Hogan,",
           "normalized": "[?] Hogan",
           "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
-        },
-        {
-          "as_printed": "ant Goodrich,",
-          "normalized": "[Gr]ant Goodrich",
-          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
         }
       ],
-      "notes": "THE RIGHT-HAND PART OF THE LINES c006 QUOTES. The transcription's column-2 crop is a Tesseract fallback that straddles the gutter: every line of it carries the right edge of column 1 first and then column 2, so these spans name the column-1 half and the locator's column is the crop's own marker rather than the print's. The splice is not asserted, it is demonstrated: line 951's 'a commuttee of 70 he app' joins line 1090's 'einted' into one word, and line 963's 'Card, ine:' joins line 1100's 'ant Goodrich' into the Grant Goodrich the same page names again at c011. Line 1099 is not claimed because it carries no column-1 fragment at all. The names left unminted here are unminted because their surnames cannot be read, not because they were not printed: 'Hassleme' at c006 line 960, 'Mloed' at line 1101, 'H. Kee' at line 1097 and the 'Willia[m]' at line 1098 whose surname fell in the band between the two crops."
+      "notes": "THE RIGHT-HAND PART OF THE LINES c006 QUOTES. The transcription's column-2 crop is a Tesseract fallback that straddles the gutter: every line of it carries the right edge of column 1 first and then column 2, so these spans name the column-1 half and the locator's column is the crop's own marker rather than the print's. The splice is not asserted, it is demonstrated: line 951's 'a commuttee of 70 he app' joins line 1090's 'einted' into one word, and line 963's 'Card, ine:' joins line 1100's 'ant Goodrich' into the Grant Goodrich the same page names again at c011. Line 1099 is not claimed because it carries no column-1 fragment at all. The names left unminted here are unminted because their surnames cannot be read, not because they were not printed: 'Hassleme' at c006 line 960, 'Mloed' at line 1101, 'H. Kee' at line 1097 and the 'Willia[m]' at line 1098 whose surname fell in the band between the two crops. GOODRICH IS READ AND NOT MINTED. The line joins to '[Gr]ant Goodrich' and the same page names Grant Goodrich again at c011, but the 'Gr' itself is in the band between two crops and no reading here contains it. A resident card is not the place to spend a letter nothing read, so the name stands in this claim's reading and mints nobody; the page images would settle it in a line."
     },
     {
       "id": "c008",
@@ -544,7 +539,7 @@
         },
         {
           "as_printed": "A. Nv Ful",
-          "normalized": "A. N. Ful[lerton]",
+          "normalized": "A. N. Fullerton",
           "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
         },
         {
@@ -902,7 +897,7 @@
       "entities": [
         {
           "as_printed": "no. SC. Hogav.",
-          "normalized": "[J]no. S. C. Hogan",
+          "normalized": "John S. C. Hogan",
           "role": "named to the committee the chair appointed at the town meeting against gambling reported in the same column, which adjourned to Saturday 25 October 1834"
         },
         {
@@ -916,7 +911,7 @@
           "role": "named to the committee the chair appointed at the town meeting against gambling reported in the same column, which adjourned to Saturday 25 October 1834"
         }
       ],
-      "notes": "THE OTHER MEETING ON THIS PAGE, AND ITS COMMITTEE. Column 1 carries two town meetings against gambling, not one: the first adjourns to Saturday the 25th (lines 992-995) and the second is datelined 'Oct. 25th, 1834' at line 998, so everything above 998 belongs to the earlier meeting. These seven spans are that meeting's committee, in the column-1 half of the crop — the same half c007 reads lower down the column. The Vision reading of column 1 supplies the other half of line 986 as 'Willen Forsyth, Grant' (transcription line 875), which is what makes 'Goodiich' Grant Goodrich rather than a guess. NOT MINTED: 'H. G. Hub[bard]' (983), because the '3' before it is an initial nothing can read and G. Hubbard and E. K. Hubbard are both available on this page; 'Hon. R. J' (988) and 'E. K' (989), whose surnames fell in the band between the crops; 'G. Springs' (990), a surname the line breaks off rather than finishes. This claim is filed because leaving it out would have left the page half-read and the next run re-deriving the same two-meeting structure from scratch."
+      "notes": "THE OTHER MEETING ON THIS PAGE, AND ITS COMMITTEE. Column 1 carries two town meetings against gambling, not one: the first adjourns to Saturday the 25th (lines 992-995) and the second is datelined 'Oct. 25th, 1834' at line 998, so everything above 998 belongs to the earlier meeting. These seven spans are that meeting's committee, in the column-1 half of the crop — the same half c007 reads lower down the column. The Vision reading of column 1 supplies the other half of line 986 as 'Willen Forsyth, Grant' (transcription line 875), which is what makes 'Goodiich' Grant Goodrich rather than a guess. NOT MINTED: 'H. G. Hub[bard]' (983), because the '3' before it is an initial nothing can read and G. Hubbard and E. K. Hubbard are both available on this page; 'Hon. R. J' (988) and 'E. K' (989), whose surnames fell in the band between the crops; 'G. Springs' (990), a surname the line breaks off rather than finishes. This claim is filed because leaving it out would have left the page half-read and the next run re-deriving the same two-meeting structure from scratch. THE FORENAME AT LINE 984 IS EXPANDED AND SAID SO. The crop cuts the line's first letter, so what it holds is 'no. SC. Hogav.'; 'no.' is not a forename and 'Jno.' is the printer's ordinary contraction of John, which is how the town's own card for its postmaster already spells him. The normalized name is therefore John S. C. Hogan and the as-printed string keeps what the crop actually carries."
     }
   ]
 }

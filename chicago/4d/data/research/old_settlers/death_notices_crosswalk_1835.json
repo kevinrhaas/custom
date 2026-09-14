@@ -8,11 +8,11 @@
  "what_a_match_here_does_not_mean": "It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload.",
  "rule": "SURNAME must match after both are folded (case, punctuation and the transcriber's usual confusions removed), AND the first initial of the given name must match. A surname-only agreement is a REFUSAL, however good it looks. Where one 1835 person meets more than one entry the match is AMBIGUOUS and is filed as such; where two 1835 people meet one entry it is CONTESTED and no match is made.",
  "counts": {
-  "residents_considered": 1293,
+  "residents_considered": 1304,
   "matched_one_entry": 63,
-  "matched_more_than_one_ambiguous": 17,
+  "matched_more_than_one_ambiguous": 18,
   "one_entry_contested_by_two_residents": 17,
-  "surname_present_initial_absent_refused": 243,
+  "surname_present_initial_absent_refused": 245,
   "matches_carrying_a_birth_year": 42,
   "matches_carrying_a_date_of_death": 57
  },
@@ -2390,6 +2390,58 @@
    "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
   },
   {
+   "resident": "J S Wright",
+   "person_id": "wright_j_s",
+   "household_id": "hh_wright_j_s",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'Wright' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": true,
+   "entries": [
+    {
+     "record": "fdn0749",
+     "as_read": "Wright, James, undertaker, died February 16, 1880, aged 64.",
+     "trade_or_office": "undertaker",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1880-02-16",
+     "age_as_printed": "aged 64",
+     "birth_year_earliest": 1815,
+     "birth_year_latest": 1816,
+     "birth_year_arithmetic": "The page prints the death as 'February 16, 1880' and the age as 'aged 64'. An age of 64 completed years means at least 64 and less than 65, so the birth falls between 1815-02-17 and 1816-02-16: the birth year is 1815 or 1816. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0750",
+     "as_read": "Wright, John, died September 20, 1840, aged 57.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1840-09-20",
+     "age_as_printed": "aged 57",
+     "birth_year_earliest": 1782,
+     "birth_year_latest": 1783,
+     "birth_year_arithmetic": "The page prints the death as 'September 20, 1840' and the age as 'aged 57'. An age of 57 completed years means at least 57 and less than 58, so the birth falls between 1782-09-21 and 1783-09-20: the birth year is 1782 or 1783. The subtraction is this project's; the page states no year of birth."
+    },
+    {
+     "record": "fdn0751",
+     "as_read": "Wright, Dea. John, died September 20, 1840, aged 57.",
+     "trade_or_office": null,
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1840-09-20",
+     "age_as_printed": "aged 57",
+     "birth_year_earliest": 1782,
+     "birth_year_latest": 1783,
+     "birth_year_arithmetic": "The page prints the death as 'September 20, 1840' and the age as 'aged 57'. An age of 57 completed years means at least 57 and less than 58, so the birth falls between 1782-09-21 and 1783-09-20: the birth year is 1782 or 1783. The subtraction is this project's; the page states no year of birth."
+    }
+   ],
+   "could_carry": [
+    "birth_year",
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
    "resident": "J Wright",
    "person_id": "wright_j",
    "household_id": "hh_wright_j",
@@ -3164,6 +3216,13 @@
    "surname_in_the_list": "Goodrich",
    "candidates": 1,
    "rule": "The surname 'Goodrich' is in Fergus's death notices and no entry under it carries the initial 'C' of 'C Goodrich'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "C L Harmon",
+   "person_id": "harmon_c_l",
+   "surname_in_the_list": "Harmon",
+   "candidates": 2,
+   "rule": "The surname 'Harmon' is in Fergus's death notices and no entry under it carries the initial 'C' of 'C L Harmon'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Caleb Foster",
@@ -4592,6 +4651,13 @@
    "surname_in_the_list": "Clarke",
    "candidates": 5,
    "rule": "The surname 'Clarke' is in Fergus's death notices and no entry under it carries the initial 'W' of 'W B Clarke'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "W H Kennicott",
+   "person_id": "kennicott_w_h",
+   "surname_in_the_list": "Kennicott",
+   "candidates": 3,
+   "rule": "The surname 'Kennicott' is in Fergus's death notices and no entry under it carries the initial 'W' of 'W H Kennicott'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "W. Kimball",

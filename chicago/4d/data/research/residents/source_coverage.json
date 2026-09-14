@@ -23,15 +23,15 @@
   },
   "directories": {
    "names_read": 4343,
-   "identities": 2849,
-   "appearances_on_an_identity_the_town_already_carries": 283,
-   "unmatched": 4060
+   "identities": 2851,
+   "appearances_on_an_identity_the_town_already_carries": 284,
+   "unmatched": 4059
   },
   "newspapers": {
-   "names_read": 2332,
-   "identities": 2126,
-   "appearances_on_an_identity_the_town_already_carries": 1223,
-   "unmatched": 1109
+   "names_read": 2329,
+   "identities": 2123,
+   "appearances_on_an_identity_the_town_already_carries": 1234,
+   "unmatched": 1095
   },
   "old_settlers": {
    "names_read": 744,
@@ -40,10 +40,10 @@
    "unmatched": 692
   },
   "residents": {
-   "names_read": 1292,
-   "identities": 1292,
+   "names_read": 1303,
+   "identities": 1303,
    "appearances_on_an_identity_the_town_already_carries": 0,
-   "unmatched": 1292
+   "unmatched": 1303
   },
   "books": {
    "names_read": 0,
@@ -97,20 +97,20 @@
   "civic|newspapers": 109,
   "civic|old_settlers": 30,
   "civic|residents": 263,
-  "directories|directories": 2849,
+  "directories|directories": 2851,
   "directories|newspapers": 162,
   "directories|old_settlers": 32,
-  "directories|residents": 157,
-  "newspapers|newspapers": 2126,
+  "directories|residents": 159,
+  "newspapers|newspapers": 2123,
   "newspapers|old_settlers": 49,
-  "newspapers|residents": 1055,
+  "newspapers|residents": 1066,
   "old_settlers|old_settlers": 736,
   "old_settlers|residents": 50,
-  "residents|residents": 1292
+  "residents|residents": 1303
  },
  "town_rows_this_tool_could_not_parse": {
-  "persons_in_the_layer": 1295,
-  "persons_this_tool_placed_on_an_identity": 1292,
+  "persons_in_the_layer": 1306,
+  "persons_this_tool_placed_on_an_identity": 1303,
   "why": "a card whose name is a surname alone, a firm style, or an honorific with no forename cannot be split into (surname, forename) and is refused by R1 like any other source reading. They are named in the master's refusals."
  },
  "negative_searches_recorded": {
@@ -118,13 +118,13 @@
    "R1": 379,
    "R5": 267,
    "R2": 980,
-   "R3": 122,
+   "R3": 125,
    "R4": 77,
    "R6": 9,
    "X1": 1,
    "X2": 1,
    "X3": 1
   },
-  "declared_refusals": 2321
+  "declared_refusals": 2323
  }
 }

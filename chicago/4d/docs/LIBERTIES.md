@@ -10516,9 +10516,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 401 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 412 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 401 people
+**Scope:** `residents.persons[civic_mint]` — 412 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10706,6 +10706,24 @@ town. `data/residents/` grows from 7.2 MB to 13 MB on disk (2.7 MB of new record
 files) and `index.json` from 318 KB to 510 KB. No geometry moves, no triangle is added,
 and not one of the 531 is placed anywhere: `housed` in the town census does not move at all,
 which is the ruling's own condition, measured.
+
+**AND THE FIRST RISE THIS ENTRY RECORDS: 401 to 412, on 2026-09-14.** Every movement above
+this line is a FALL — a card folded onto another, or a man the papers printed who was never at
+this town. T-0997 moved it the other way, and the reason it could is the reason the ladder
+exists. The Chicago Democrat of 29 October 1834 prints the committee of seventy a town meeting
+appointed against gambling, and until that ticket nobody had read the page: its two columns are
+machine readings that straddle the gutter, so each line carries the right edge of one printed
+column and then the left of the next, and the names come out interleaved with a resolution
+printed a column away. Twenty-eight of the committee are now named in claims that cite the
+character ranges they were read from, eighteen of the twenty-eight were people this town did not
+hold, and eleven of those reach `attested` or `inferred` on the ladder and are minted here.
+The other seven do not, and the split is the point: a name the page prints as a bare surname,
+or with its initial inside the band of characters that is in no reading at all, mints nobody.
+Three names the reading CAN complete were deliberately not spent on a card either — Grant
+Goodrich, whose `Gr` is in that band; and the two the mint matched to people the town already
+carries. What this costs the reconstruction is unchanged in kind and eleven larger in count:
+eleven more households that exist because a name was printed, carrying no address, no trade and
+no figure, and `housed` in the town census still does not move.
 
 Related: **L214** (the pass beside this one) · **L213** (the test this disagrees with) ·
 **L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514**

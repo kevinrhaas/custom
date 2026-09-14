@@ -5,15 +5,15 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
-    "upheld": 135,
+    "upheld": 133,
     "named": 1,
     "refused": 69,
     "unruled": 3
   },
   "counts": {
     "purchasers": 647,
-    "matched": 139,
-    "refused": 508,
+    "matched": 137,
+    "refused": 510,
     "firms": 2,
     "bodies": 3
   },
@@ -1553,84 +1553,6 @@
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
-      "purchaser_as_read": "HARMON CHARLES L",
-      "record_ids": [
-        "ls0227",
-        "ls1210",
-        "ls1211",
-        "ls1212",
-        "ls1213"
-      ],
-      "resident_id": "harmon_charles_l",
-      "resident_name": "Charles Loomis Harmon",
-      "household_id": "hh_harmon_brothers",
-      "match": "forename_agrees",
-      "rule": "HARMON CHARLES L matches Charles Loomis Harmon: the forename names Charles Loomis Harmon of the 5 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "harmon_charles_l",
-          "name": "Charles Loomis Harmon",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": "L",
-          "reading_middle_initial": "L",
-          "outcome": "survives"
-        },
-        {
-          "key": "harmon_isaac_d",
-          "name": "Isaac Dewey Harmon",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
-          "reading_middle_initial": "L",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "harmon_d",
-          "name": "D Harmon",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "L",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "harmon_elijah_d",
-          "name": "Dr Elijah Dewey Harmon",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
-          "reading_middle_initial": "L",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "harmon_m_d",
-          "name": "M D Harmon",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "D",
-          "reading_middle_initial": "L",
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "fergus_chicago_directory_1843",
-          "norris_directory_1844"
-        ],
-        "reasoning": "MIDDLE INITIAL on both sides, and the register's two spellings of this man mirror the town's own two habits. The town prints 'Harmon, C. L.' on the poll of 1834 and 'Chas. L. Harmon' on the 1837 election return; Fergus 1843 prints both a business card, 'C L. HARMON, commission merchant and wholesale grocer', and the roll entry 'Harmon, Charles Loomis, dry goods and groceries, 145 South Water'; Norris 1844's advertiser pages print 'C. L. Harmon'. The poll of 1834 falls between the two register rows. A wholesale grocer and dry-goods merchant taking a town lot at the school-section sale of 22 October 1833 for $130 is the trade the card already asserts doing what the card says it did. The register holds five Harmon spellings and the layer three Harmons, and the L is what separates this one from both Deweys."
-      },
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
       "purchaser_as_read": "HARMON ISAAC D",
       "record_ids": [
         "ls0229"
@@ -1639,7 +1561,7 @@
       "resident_name": "Isaac Dewey Harmon",
       "household_id": "hh_harmon_brothers",
       "match": "forename_agrees",
-      "rule": "HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full.",
+      "rule": "HARMON ISAAC D matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 6 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -1659,6 +1581,15 @@
           "middle_initial": "D",
           "reading_middle_initial": "D",
           "outcome": "survives"
+        },
+        {
+          "key": "harmon_c_l",
+          "name": "C L Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "L",
+          "reading_middle_initial": "D",
+          "outcome": "refused_on_the_forename"
         },
         {
           "key": "harmon_d",
@@ -2476,7 +2407,7 @@
       "resident_name": "Silas W Sherman",
       "household_id": "hh_sherman_silas_w",
       "match": "forename_agrees",
-      "rule": "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees in full.",
+      "rule": "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -2505,6 +2436,15 @@
           "middle_initial": "W",
           "reading_middle_initial": "W",
           "outcome": "survives"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "G",
+          "reading_middle_initial": "W",
+          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -2780,7 +2720,7 @@
       "resident_name": "Truman G Wright",
       "household_id": "hh_wright_truman_g",
       "match": "initial_agrees",
-      "rule": "WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only.",
+      "rule": "WRIGHT T G matches Truman G Wright: the forename names Truman G Wright of the 7 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -2798,6 +2738,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": null,
+          "reading_middle_initial": "G",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "wright_j_s",
+          "name": "J S Wright",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "S",
           "reading_middle_initial": "G",
           "outcome": "refused_on_the_forename"
         },
@@ -3038,7 +2987,7 @@
       "resident_name": "Dr Elijah Dewey Harmon",
       "household_id": "hh_harmon_elijah_d",
       "match": "forename_agrees",
-      "rule": "HARMON ELIJAH D matches Dr Elijah Dewey Harmon: the forename names Dr Elijah Dewey Harmon of the 5 people of this surname, and the forename agrees in full.",
+      "rule": "HARMON ELIJAH D matches Dr Elijah Dewey Harmon: the forename names Dr Elijah Dewey Harmon of the 6 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -3056,6 +3005,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "D",
+          "reading_middle_initial": "D",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_c_l",
+          "name": "C L Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "L",
           "reading_middle_initial": "D",
           "outcome": "refused_on_the_forename"
         },
@@ -3568,7 +3526,7 @@
       "resident_name": "Truman G Wright",
       "household_id": "hh_wright_truman_g",
       "match": "forename_agrees",
-      "rule": "WRIGHT TRUMAN G matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees in full.",
+      "rule": "WRIGHT TRUMAN G matches Truman G Wright: the forename names Truman G Wright of the 7 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -3586,6 +3544,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": null,
+          "reading_middle_initial": "G",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "wright_j_s",
+          "name": "J S Wright",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "S",
           "reading_middle_initial": "G",
           "outcome": "refused_on_the_forename"
         },
@@ -4822,80 +4789,6 @@
           "chicago_voter_lists_1833_1835_irad"
         ],
         "reasoning": "The initial alone would not carry it. What carries it is that the SAME register spells him PEARSONS HIRAM on twenty-eight other rows, one of which states COOK, and that the seventeen H rows are one hand at work: sixteen of them fall on a single day, 26 June 1835, in one township, T39N R13E, and eight of those in one section. A speculator buying half of section 10 and all four eighths of section 14 in an afternoon is the man the town already holds buying at the ring, not a second Pearsons who happens to share the county, the month and the surname."
-      },
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "HARMON CHAS L",
-      "record_ids": [
-        "ls0751"
-      ],
-      "resident_id": "harmon_charles_l",
-      "resident_name": "Charles Loomis Harmon",
-      "household_id": "hh_harmon_brothers",
-      "match": "forename_agrees",
-      "rule": "HARMON CHAS L matches Charles Loomis Harmon: the forename names Charles Loomis Harmon of the 5 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "harmon_charles_l",
-          "name": "Charles Loomis Harmon",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — contraction (printed) (M1)",
-          "middle_initial": "L",
-          "reading_middle_initial": "L",
-          "outcome": "survives"
-        },
-        {
-          "key": "harmon_isaac_d",
-          "name": "Isaac Dewey Harmon",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
-          "reading_middle_initial": "L",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "harmon_d",
-          "name": "D Harmon",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "L",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "harmon_elijah_d",
-          "name": "Dr Elijah Dewey Harmon",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "D",
-          "reading_middle_initial": "L",
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "harmon_m_d",
-          "name": "M D Harmon",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": "D",
-          "reading_middle_initial": "L",
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-10",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "chicago_voter_lists_1833_1835_irad",
-          "fergus_chicago_directory_1843",
-          "norris_directory_1844"
-        ],
-        "reasoning": "Ruled with HARMON CHARLES L and it goes the same way, which is not the default — cohort C1's BROWN WM is what happens when a barer spelling is allowed to ride on a fuller one. It does not apply here because THIS SPELLING IS NOT BARER: CHAS L carries the middle initial, and the contraction 'Chas.' is precisely the form the 1837 election return and Norris 1844's advertiser card print for this man. The single row of 8 August 1835, 80.45 acres for $100.55, is upheld on the same middle initial and the same trade as the fuller spelling. Cohort A's abbreviated-and-full habit (HADDOCK E H / HADDOCK EDWARD H) is doing real work here rather than being assumed: the two spellings agree on the token that discriminates."
       },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
@@ -6615,7 +6508,7 @@
       "resident_name": "Silas W Sherman",
       "household_id": "hh_sherman_silas_w",
       "match": "initial_agrees",
-      "rule": "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -6644,6 +6537,15 @@
           "middle_initial": "W",
           "reading_middle_initial": "W",
           "outcome": "survives"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
+          "reading_middle_initial": "W",
+          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -7598,8 +7500,8 @@
     },
     {
       "a": "WRIGHT JOHN F",
-      "b": "6 residents named Wright",
-      "rule": "WRIGHT JOHN F is refused against 6 residents named Wright: the forename names 2 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named Wright",
+      "rule": "WRIGHT JOHN F is refused against 7 residents named Wright: the forename names 2 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "wright_amasa",
@@ -7618,6 +7520,15 @@
           "middle_initial": null,
           "reading_middle_initial": "F",
           "outcome": "survives"
+        },
+        {
+          "key": "wright_j_s",
+          "name": "J S Wright",
+          "forename_agrees": true,
+          "why": "the forenames agree and the middle initials do not — F against S (rule 2)",
+          "middle_initial": "S",
+          "reading_middle_initial": "F",
+          "outcome": "refused_on_the_middle_initial"
         },
         {
           "key": "wright_john",
@@ -8679,6 +8590,77 @@
       "was_proposed_as": "HALE JOHN matches John Hale: the forename names John Hale of the 1 person of this surname, and the forename agrees in full."
     },
     {
+      "a": "HARMON CHARLES L",
+      "b": "6 residents named Harmon",
+      "rule": "HARMON CHARLES L is refused against 6 residents named Harmon: the forename names 2 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "harmon_charles_l",
+          "name": "Charles Loomis Harmon",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": "L",
+          "reading_middle_initial": "L",
+          "outcome": "survives"
+        },
+        {
+          "key": "harmon_isaac_d",
+          "name": "Isaac Dewey Harmon",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "D",
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_c_l",
+          "name": "C L Harmon",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": "L",
+          "reading_middle_initial": "L",
+          "outcome": "survives"
+        },
+        {
+          "key": "harmon_d",
+          "name": "D Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_elijah_d",
+          "name": "Dr Elijah Dewey Harmon",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "D",
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_m_d",
+          "name": "M D Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "D",
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "record_ids": [
+        "ls0227",
+        "ls1210",
+        "ls1211",
+        "ls1212",
+        "ls1213"
+      ],
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
       "a": "HARMON ISAAC",
       "b": "Isaac Dewey Harmon",
       "rule": "Ruled beside HARMON ISAAC D and it goes the OTHER way, which is the point of ruling paired spellings together. This row of 24 October 1833 prints the forename bare, with no middle initial, and the town's own printed record holds TWO Isaac Harmons: Fergus 1839's 'Harmon, Isaac D., dry goods merchant, 8 Clark street' and Fergus 1843's 'Harmon, Isaac Newton, with C. L. Harmon [died Nov. 8, 1891]'. The card's own crosswalk already records the collision — its evidence_against reads 'CONTESTED: 2 residents of 1835 meet this one entry on that rule, and at most one of them is the person printed'. The layer holds one Isaac Harmon because the layer is THIN, not because the town had one, which is BROWN WM exactly. The argument that would have upheld it — that a man 'with C. L. Harmon' in 1843 was likely too young to buy a $163 town lot in 1833 — is not taken, because Fergus prints his death and no age, and an unprinted age is a guess. Refused; the fuller spelling stands.",
@@ -8690,7 +8672,7 @@
       ],
       "ruled_on": "2026-09-10",
       "ruled_under": "T-0990",
-      "was_proposed_as": "HARMON ISAAC matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 5 people of this surname, and the forename agrees in full."
+      "was_proposed_as": "HARMON ISAAC matches Isaac Dewey Harmon: the forename names Isaac Dewey Harmon of the 6 people of this surname, and the forename agrees in full."
     },
     {
       "a": "HILL IRAD",
@@ -9406,8 +9388,8 @@
     },
     {
       "a": "WRIGHT JOHN",
-      "b": "6 residents named Wright",
-      "rule": "WRIGHT JOHN is refused against 6 residents named Wright: the forename names 3 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named Wright",
+      "rule": "WRIGHT JOHN is refused against 7 residents named Wright: the forename names 4 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "wright_amasa",
@@ -9424,6 +9406,15 @@
           "forename_agrees": true,
           "why": "an initial standing for the forename (M2)",
           "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "wright_j_s",
+          "name": "J S Wright",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": "S",
           "reading_middle_initial": null,
           "outcome": "survives"
         },
@@ -12242,14 +12233,23 @@
     },
     {
       "a": "LOOMIS HORATIO G",
-      "b": "Amelizo Loomis",
-      "rule": "LOOMIS HORATIO G is refused against Amelizo Loomis: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "2 residents named Loomis",
+      "rule": "LOOMIS HORATIO G is refused against Amelizo Loomis and G Loomis: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "loomis_amelizo",
           "name": "Amelizo Loomis",
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "G",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "loomis_g",
+          "name": "G Loomis",
+          "forename_agrees": false,
+          "why": "the initials differ",
           "middle_initial": null,
           "reading_middle_initial": "G",
           "outcome": "refused_on_the_forename"
@@ -13478,6 +13478,73 @@
       ]
     },
     {
+      "a": "HARMON CHAS L",
+      "b": "6 residents named Harmon",
+      "rule": "HARMON CHAS L is refused against 6 residents named Harmon: the forename names 2 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "harmon_charles_l",
+          "name": "Charles Loomis Harmon",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — contraction (printed) (M1)",
+          "middle_initial": "L",
+          "reading_middle_initial": "L",
+          "outcome": "survives"
+        },
+        {
+          "key": "harmon_isaac_d",
+          "name": "Isaac Dewey Harmon",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "D",
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_c_l",
+          "name": "C L Harmon",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": "L",
+          "reading_middle_initial": "L",
+          "outcome": "survives"
+        },
+        {
+          "key": "harmon_d",
+          "name": "D Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_elijah_d",
+          "name": "Dr Elijah Dewey Harmon",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "D",
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_m_d",
+          "name": "M D Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "D",
+          "reading_middle_initial": "L",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "record_ids": [
+        "ls0751"
+      ],
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
       "a": "SOOMIS HORATIO G",
       "b": "0 residents named Soomis",
       "rule": "SOOMIS HORATIO G is refused against 0 residents named Soomis: the residents layer holds nobody of the surname.",
@@ -13879,8 +13946,8 @@
     },
     {
       "a": "SHERMAN FRANCIS C",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN FRANCIS C is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN FRANCIS C is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -13906,6 +13973,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "W",
+          "reading_middle_initial": "C",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "G",
           "reading_middle_initial": "C",
           "outcome": "refused_on_the_forename"
         }
@@ -16394,8 +16470,8 @@
     },
     {
       "a": "HARMON C S",
-      "b": "5 residents named Harmon",
-      "rule": "HARMON C S is refused against 5 residents named Harmon: the forename names 0 of the 5 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "6 residents named Harmon",
+      "rule": "HARMON C S is refused against 6 residents named Harmon: the forename names 0 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "harmon_charles_l",
@@ -16414,6 +16490,15 @@
           "middle_initial": "D",
           "reading_middle_initial": "S",
           "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_c_l",
+          "name": "C L Harmon",
+          "forename_agrees": true,
+          "why": "the forenames agree and the middle initials do not — S against L (rule 2)",
+          "middle_initial": "L",
+          "reading_middle_initial": "S",
+          "outcome": "refused_on_the_middle_initial"
         },
         {
           "key": "harmon_d",
@@ -16452,8 +16537,8 @@
     },
     {
       "a": "HARMON J D",
-      "b": "5 residents named Harmon",
-      "rule": "HARMON J D is refused against 5 residents named Harmon: the forename names 0 of the 5 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "6 residents named Harmon",
+      "rule": "HARMON J D is refused against 6 residents named Harmon: the forename names 0 of the 6 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "harmon_charles_l",
@@ -16470,6 +16555,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "D",
+          "reading_middle_initial": "D",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "harmon_c_l",
+          "name": "C L Harmon",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "L",
           "reading_middle_initial": "D",
           "outcome": "refused_on_the_forename"
         },
@@ -17160,12 +17254,21 @@
     },
     {
       "a": "LOOMIS H G",
-      "b": "Amelizo Loomis",
-      "rule": "LOOMIS H G is refused against Amelizo Loomis: the forename names 0 of the 1 person of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "2 residents named Loomis",
+      "rule": "LOOMIS H G is refused against Amelizo Loomis and G Loomis: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "loomis_amelizo",
           "name": "Amelizo Loomis",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": null,
+          "reading_middle_initial": "G",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "loomis_g",
+          "name": "G Loomis",
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": null,
@@ -17797,8 +17900,8 @@
     },
     {
       "a": "SHERMAN F C",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN F C is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN F C is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -17824,6 +17927,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "W",
+          "reading_middle_initial": "C",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
           "reading_middle_initial": "C",
           "outcome": "refused_on_the_forename"
         }
@@ -17837,8 +17949,8 @@
     },
     {
       "a": "SHERMAN F T",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN F T is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN F T is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -17864,6 +17976,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "W",
+          "reading_middle_initial": "T",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
           "reading_middle_initial": "T",
           "outcome": "refused_on_the_forename"
         }
@@ -18961,12 +19082,12 @@
       ],
       "ruled_on": "2026-09-12",
       "ruled_under": "T-1034",
-      "was_proposed_as": "WRIGHT A matches Amasa Wright: the forename names Amasa Wright of the 6 people of this surname, and the forename agrees as an initial only."
+      "was_proposed_as": "WRIGHT A matches Amasa Wright: the forename names Amasa Wright of the 7 people of this surname, and the forename agrees as an initial only."
     },
     {
       "a": "WRIGHT J S",
-      "b": "6 residents named Wright",
-      "rule": "WRIGHT J S is refused against 6 residents named Wright: the forename names 3 of the 6 people of this surname, and a reading is named onto exactly one or onto none (R3).",
+      "b": "7 residents named Wright",
+      "rule": "WRIGHT J S is refused against 7 residents named Wright: the forename names 4 of the 7 people of this surname, and a reading is named onto exactly one or onto none (R3).",
       "rivals": [
         {
           "key": "wright_amasa",
@@ -18983,6 +19104,15 @@
           "forename_agrees": true,
           "why": "an initial standing for the forename (M2)",
           "middle_initial": null,
+          "reading_middle_initial": "S",
+          "outcome": "survives"
+        },
+        {
+          "key": "wright_j_s",
+          "name": "J S Wright",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": "S",
           "reading_middle_initial": "S",
           "outcome": "survives"
         },
@@ -19044,7 +19174,7 @@
       ],
       "ruled_on": "2026-09-11",
       "ruled_under": "T-1034",
-      "was_proposed_as": "WRIGHT T matches Truman G Wright: the forename names Truman G Wright of the 6 people of this surname, and the forename agrees as an initial only."
+      "was_proposed_as": "WRIGHT T matches Truman G Wright: the forename names Truman G Wright of the 7 people of this surname, and the forename agrees as an initial only."
     },
     {
       "a": "YOUNG WILLIAM",

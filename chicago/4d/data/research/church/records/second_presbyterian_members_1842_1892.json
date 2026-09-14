@@ -42579,6 +42579,116 @@
     },
     {
       "id": "second_presb_0808",
+      "as_read": "Sabin, A. R. | Letter. | May 26, 1864. | Dismissed.",
+      "normalized": "Sabin, A. R.",
+      "locator": {
+        "page": "second_presbyterian_1892_printed_200",
+        "roll": "dismissed_deceased_or_ordained",
+        "text_file": "second_presbyterian_roll_1892.txt",
+        "spans": [
+          {
+            "line": 6384,
+            "from": 0,
+            "to": 12
+          },
+          {
+            "line": 6385,
+            "from": 0,
+            "to": 7
+          },
+          {
+            "line": 6386,
+            "from": 0,
+            "to": 13
+          },
+          {
+            "line": 6387,
+            "from": 0,
+            "to": 10
+          }
+        ],
+        "line": 6384,
+        "printed_page": 200,
+        "leaf": 286
+      },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "describes_date": "1864-05-26",
+      "cells": {
+        "role": "member",
+        "how_admitted": "letter",
+        "admitted": "1864-05-26",
+        "admitted_precision": "day",
+        "remark": "dismissed",
+        "title": null,
+        "entry_as_printed": "Sabin, A. R. | Letter. | May 26, 1864. | Dismissed.",
+        "congregation": "Second Presbyterian Church of Chicago",
+        "place": "Chicago"
+      },
+      "at_chicago": true,
+      "beyond_ticket_window": true,
+      "surname": "Sabin",
+      "forenames": "A. R.",
+      "forename_printed": true,
+      "notes": null
+    },
+    {
+      "id": "second_presb_0809",
+      "as_read": "Sabin, Mrs. Mary | Letter. | May 26, 1864. | Dismissed.",
+      "normalized": "Sabin, Mary",
+      "locator": {
+        "page": "second_presbyterian_1892_printed_200",
+        "roll": "dismissed_deceased_or_ordained",
+        "text_file": "second_presbyterian_roll_1892.txt",
+        "spans": [
+          {
+            "line": 6388,
+            "from": 0,
+            "to": 16
+          },
+          {
+            "line": 6389,
+            "from": 0,
+            "to": 7
+          },
+          {
+            "line": 6390,
+            "from": 0,
+            "to": 13
+          },
+          {
+            "line": 6391,
+            "from": 0,
+            "to": 10
+          }
+        ],
+        "line": 6388,
+        "printed_page": 200,
+        "leaf": 286
+      },
+      "reading": "transcription_mediated",
+      "confidence": "documented",
+      "describes_date": "1864-05-26",
+      "cells": {
+        "role": "member",
+        "how_admitted": "letter",
+        "admitted": "1864-05-26",
+        "admitted_precision": "day",
+        "remark": "dismissed",
+        "title": "Mrs",
+        "entry_as_printed": "Sabin, Mrs. Mary | Letter. | May 26, 1864. | Dismissed.",
+        "congregation": "Second Presbyterian Church of Chicago",
+        "place": "Chicago"
+      },
+      "at_chicago": true,
+      "beyond_ticket_window": true,
+      "surname": "Sabin",
+      "forenames": "Mary",
+      "forename_printed": true,
+      "notes": null
+    },
+    {
+      "id": "second_presb_0810",
       "as_read": "Sacket, Mrs. H. Louisa | Letter. | February 25, 1857. | Dismissed.",
       "normalized": "Sacket, H. Louisa",
       "locator": {
@@ -42633,7 +42743,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0809",
+      "id": "second_presb_0811",
       "as_read": "Scott, Charles G. | Letter. | April 4, 1884. | Dismissed.",
       "normalized": "Scott, Charles G.",
       "locator": {
@@ -42688,7 +42798,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0810",
+      "id": "second_presb_0812",
       "as_read": "Shaw, Mrs. H. M. | Letter. | September 3, 1847, | Deceased.",
       "normalized": "Shaw, H. M.",
       "locator": {
@@ -42743,7 +42853,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0811",
+      "id": "second_presb_0813",
       "as_read": "Sherman, Benjamin F. | Profession. | November 2, 1853. | Dismissed.",
       "normalized": "Sherman, Benjamin F.",
       "locator": {
@@ -42798,7 +42908,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0812",
+      "id": "second_presb_0814",
       "as_read": "Sherman, Howard | Letter. | December 29, 1852. | Dismissed.",
       "normalized": "Sherman, Howard",
       "locator": {
@@ -42853,7 +42963,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0813",
+      "id": "second_presb_0815",
       "as_read": "Sherman, James M. | Profession. | May I, 1864. | Dismissed.",
       "normalized": "Sherman, James M.",
       "locator": {
@@ -42908,7 +43018,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0814",
+      "id": "second_presb_0816",
       "as_read": "Sherman, Mrs. Jane Eliza | Profession. | November 2, 1853. | Dismissed.",
       "normalized": "Sherman, Jane Eliza",
       "locator": {
@@ -42963,7 +43073,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0815",
+      "id": "second_presb_0817",
       "as_read": "Sherman, Mrs. Louisa | Letter. | December 29, 1852. | Dismissed.",
       "normalized": "Sherman, Louisa",
       "locator": {
@@ -43018,7 +43128,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0816",
+      "id": "second_presb_0818",
       "as_read": "Sherman, Miss Louisa C. | Profession. | July 1, 1864. | Deceased.",
       "normalized": "Sherman, Louisa C.",
       "locator": {
@@ -43073,7 +43183,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0817",
+      "id": "second_presb_0819",
       "as_read": "Simpson, Mrs. WilhelminaG. | Profession. | January 12, 1877. | Dismissed.",
       "normalized": "Simpson, WilhelminaG.",
       "locator": {
@@ -43128,7 +43238,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0818",
+      "id": "second_presb_0820",
       "as_read": "Skinner, A. P. W. | Letter. | November 2, 1877. | Dismissed.",
       "normalized": "Skinner, A. P. W.",
       "locator": {
@@ -43183,7 +43293,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0819",
+      "id": "second_presb_0821",
       "as_read": "Skinner, Mrs. Eliza Ann | Letter. | October 25, 1843. | Dismissed.",
       "normalized": "Skinner, Eliza Ann",
       "locator": {
@@ -43238,7 +43348,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0820",
+      "id": "second_presb_0822",
       "as_read": "Skinner, Miss Elizabeth | Profession. | June 24, 1858. | Dismissed.",
       "normalized": "Skinner, Elizabeth",
       "locator": {
@@ -43293,7 +43403,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0821",
+      "id": "second_presb_0823",
       "as_read": "Skinner, Dr. E. M. | Letter. | February 25, 1868. | Dismissed.",
       "normalized": "Skinner, E. M.",
       "locator": {
@@ -43348,7 +43458,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0822",
+      "id": "second_presb_0824",
       "as_read": "Skinner, Mrs. E. M. | Letter. | February 25, 1868. | Dismissed.",
       "normalized": "Skinner, E. M.",
       "locator": {
@@ -43403,7 +43513,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0823",
+      "id": "second_presb_0825",
       "as_read": "Skinner, Mrs. Elizabeth W. | Letter. | January 4, 1856. | Dismissed.",
       "normalized": "Skinner, Elizabeth W.",
       "locator": {
@@ -43458,7 +43568,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0824",
+      "id": "second_presb_0826",
       "as_read": "Skinner, Miss Frederika | Profession. | June 28, 1864. | Dismissed.",
       "normalized": "Skinner, Frederika",
       "locator": {
@@ -43513,7 +43623,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0825",
+      "id": "second_presb_0827",
       "as_read": "Skinner, HoUis R. | Letter. | October 29, 1856. | Dismissed.",
       "normalized": "Skinner, HoUis R.",
       "locator": {
@@ -43568,7 +43678,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0826",
+      "id": "second_presb_0828",
       "as_read": "Skinner, Mark | Profession. | April 26, 1858. | Dismissed.",
       "normalized": "Skinner, Mark",
       "locator": {
@@ -43623,7 +43733,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0827",
+      "id": "second_presb_0829",
       "as_read": "Skinner, W. H. | Letter. | February 25, 1868. | Dismissed.",
       "normalized": "Skinner, W. H.",
       "locator": {
@@ -43678,7 +43788,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0828",
+      "id": "second_presb_0830",
       "as_read": "Smith, Miss Abby P. | Letter. | February 18, 1863. | Dismissed,",
       "normalized": "Smith, Abby P.",
       "locator": {
@@ -43733,7 +43843,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0829",
+      "id": "second_presb_0831",
       "as_read": "Smith, Abraham S. | Profession. | October 24, 1855. | Dismissed.",
       "normalized": "Smith, Abraham S.",
       "locator": {
@@ -43788,7 +43898,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0830",
+      "id": "second_presb_0832",
       "as_read": "Smith, Amos R. | Profession. | September 29, 1864. | Dismissed.",
       "normalized": "Smith, Amos R.",
       "locator": {
@@ -43843,7 +43953,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0831",
+      "id": "second_presb_0833",
       "as_read": "Smith, Mrs. Charlotte M. | Letter. | March 5, 1862. | Dismissed.",
       "normalized": "Smith, Charlotte M.",
       "locator": {
@@ -43898,7 +44008,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0832",
+      "id": "second_presb_0834",
       "as_read": "Smith, Mrs. Deborah | Letter. | November i, 1850. | Dismissed.",
       "normalized": "Smith, Deborah",
       "locator": {
@@ -43953,7 +44063,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0833",
+      "id": "second_presb_0835",
       "as_read": "Smith, E. B. | Letter. | January 10, 1878. | Dismissed.",
       "normalized": "Smith, E. B.",
       "locator": {
@@ -44008,7 +44118,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0834",
+      "id": "second_presb_0836",
       "as_read": "Smith, Mrs. E. B. | Letter. | January 10, 1878. | Dismissed.",
       "normalized": "Smith, E. B.",
       "locator": {
@@ -44063,7 +44173,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0835",
+      "id": "second_presb_0837",
       "as_read": "Smith, E. WiUard | Profession. | April 26, 1852. | Dismissed.",
       "normalized": "Smith, E. WiUard",
       "locator": {
@@ -44118,7 +44228,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0836",
+      "id": "second_presb_0838",
       "as_read": "Smith, Mrs. Emma | Letter. | June 29, 1874. | Dismissed.",
       "normalized": "Smith, Emma",
       "locator": {
@@ -44173,7 +44283,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0837",
+      "id": "second_presb_0839",
       "as_read": "Smith, Miss Helen M. | Letter. | December 21, 1870. | Dismissed.",
       "normalized": "Smith, Helen M.",
       "locator": {
@@ -44228,7 +44338,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0838",
+      "id": "second_presb_0840",
       "as_read": "Smith, Henry | Letter. | July 4, 1851. | Deceased.",
       "normalized": "Smith, Henry",
       "locator": {
@@ -44283,7 +44393,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0839",
+      "id": "second_presb_0841",
       "as_read": "Smith, Jacob G. | Profession. | March 2, 1877. | Dismissed.",
       "normalized": "Smith, Jacob G.",
       "locator": {
@@ -44338,7 +44448,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0840",
+      "id": "second_presb_0842",
       "as_read": "Smith, James A. | Letter. | January 5, 1849 | Deceased.",
       "normalized": "Smith, James A.",
       "locator": {
@@ -44393,7 +44503,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0841",
+      "id": "second_presb_0843",
       "as_read": "Smith, Mrs. J. A. | Letter. | January 5, 1849 | Deceased.",
       "normalized": "Smith, J. A.",
       "locator": {
@@ -44448,7 +44558,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0842",
+      "id": "second_presb_0844",
       "as_read": "Smith, Joseph Means | Profession. | June 24, 1 89 1. | Dismissed.",
       "normalized": "Smith, Joseph Means",
       "locator": {
@@ -44503,7 +44613,7 @@
       "notes": "the admission date is destroyed in the scan and is left null rather than recovered from the dates around it"
     },
     {
-      "id": "second_presb_0843",
+      "id": "second_presb_0845",
       "as_read": "Smith, Miss Juliette P. | Profession. | November 3, 1854. | Deceased.",
       "normalized": "Smith, Juliette P.",
       "locator": {
@@ -44558,7 +44668,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0844",
+      "id": "second_presb_0846",
       "as_read": "Smith, Mrs. Mary, | Letter. | December 31, 1844. | Dismissed.",
       "normalized": "Smith, Mary",
       "locator": {
@@ -44613,7 +44723,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0845",
+      "id": "second_presb_0847",
       "as_read": "Smith, Miss Mary A. | Profession. | June 27, 1853. | Dismissed.",
       "normalized": "Smith, Mary A.",
       "locator": {
@@ -44668,7 +44778,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0846",
+      "id": "second_presb_0848",
       "as_read": "Smith, Mrs. MeUnda W. | Letter. | March 4, 1853. | Dismissed.",
       "normalized": "Smith, MeUnda W.",
       "locator": {
@@ -44723,7 +44833,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0847",
+      "id": "second_presb_0849",
       "as_read": "Smith, Orren A. | Letter. | June 29, 1864. | Dismissed.",
       "normalized": "Smith, Orren A.",
       "locator": {
@@ -44778,7 +44888,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0848",
+      "id": "second_presb_0850",
       "as_read": "Smith, Miss Phebe | Letter. | July 4, 1851. | Deceased.",
       "normalized": "Smith, Phebe",
       "locator": {
@@ -44833,7 +44943,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0849",
+      "id": "second_presb_0851",
       "as_read": "Smith, Miss Rachel | Letter. | March 2, 1844. | Dismissed.",
       "normalized": "Smith, Rachel",
       "locator": {
@@ -44888,7 +44998,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0850",
+      "id": "second_presb_0852",
       "as_read": "Smith, Mrs. Sarah | Letter. | October 25, 1843. | Deceased.",
       "normalized": "Smith, Sarah",
       "locator": {
@@ -44943,7 +45053,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0851",
+      "id": "second_presb_0853",
       "as_read": "Snow, Mrs. Elizabeth A. | Profession. | April 26, 1858. | Deceased.",
       "normalized": "Snow, Elizabeth A.",
       "locator": {
@@ -44998,7 +45108,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0852",
+      "id": "second_presb_0854",
       "as_read": "Sprague, William | Profession. | June 24, 1858. | Dismissed,",
       "normalized": "Sprague, William",
       "locator": {
@@ -45053,7 +45163,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0853",
+      "id": "second_presb_0855",
       "as_read": "Sprague, Mrs. William | Letter. | October 29, 1862. | Dismissed.",
       "normalized": "Sprague, William",
       "locator": {
@@ -45108,7 +45218,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0854",
+      "id": "second_presb_0856",
       "as_read": "Stanley, Miss Nancy H. | Letter. | August 13, 1844. | Dismissed.",
       "normalized": "Stanley, Nancy H.",
       "locator": {
@@ -45163,7 +45273,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0855",
+      "id": "second_presb_0857",
       "as_read": "Starkweather, Charles R. | Letter. | June I, 1842. | Deceased.",
       "normalized": "Starkweather, Charles R.",
       "locator": {
@@ -45218,7 +45328,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0856",
+      "id": "second_presb_0858",
       "as_read": "Starkweather, Mrs. M. E. | Letter. | June I, 1842. | Deceased.",
       "normalized": "Starkweather, M. E.",
       "locator": {
@@ -45273,7 +45383,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0857",
+      "id": "second_presb_0859",
       "as_read": "Starkweather, Ralph E. | Profession. | April 27, 1859. | Dismissed.",
       "normalized": "Starkweather, Ralph E.",
       "locator": {
@@ -45328,7 +45438,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0858",
+      "id": "second_presb_0860",
       "as_read": "Steel, Mrs. Ann | Profession. | February 28. 1845. | Deceased.",
       "normalized": "Steel, Ann",
       "locator": {
@@ -45383,7 +45493,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0859",
+      "id": "second_presb_0861",
       "as_read": "Steel, George | Profession. | March 2, 1865. | Deceased.",
       "normalized": "Steel, George",
       "locator": {
@@ -45438,7 +45548,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0860",
+      "id": "second_presb_0862",
       "as_read": "Steel, Jonathan W. | Profession. | June 14, 1858. | Dismissed.",
       "normalized": "Steel, Jonathan W.",
       "locator": {
@@ -45493,7 +45603,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0861",
+      "id": "second_presb_0863",
       "as_read": "Steel, Mrs. Rebecca A. | Profession. | April 30, 1847. | Dismissed.",
       "normalized": "Steel, Rebecca A.",
       "locator": {
@@ -45548,7 +45658,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0862",
+      "id": "second_presb_0864",
       "as_read": "Steele, Mrs. Mary Mack | Letter. | October 29, 1862. | Deceased.",
       "normalized": "Steele, Mary Mack",
       "locator": {
@@ -45603,7 +45713,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0863",
+      "id": "second_presb_0865",
       "as_read": "Steele, William B. | Profession. | July 7, 1876. | Dismissed.",
       "normalized": "Steele, William B.",
       "locator": {
@@ -45658,7 +45768,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0864",
+      "id": "second_presb_0866",
       "as_read": "Steele, Mrs. William B. | Profession. | July 7, 1876. | Dismissed.",
       "normalized": "Steele, William B.",
       "locator": {
@@ -45713,7 +45823,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0865",
+      "id": "second_presb_0867",
       "as_read": "Stevens, Miss Mary | Profession. | November 5, 1852. | Deceased.",
       "normalized": "Stevens, Mary",
       "locator": {
@@ -45768,7 +45878,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0866",
+      "id": "second_presb_0868",
       "as_read": "Stewart, Mrs. Angelina | Profession. | June 24, 1858. | Dismissed.",
       "normalized": "Stewart, Angelina",
       "locator": {
@@ -45823,7 +45933,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0867",
+      "id": "second_presb_0869",
       "as_read": "Stewart, William W. | Profession. | June 24, 1858. | Dismissed.",
       "normalized": "Stewart, William W.",
       "locator": {
@@ -45878,7 +45988,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0868",
+      "id": "second_presb_0870",
       "as_read": "Stewart, Mrs. H. B. | Letter. | March i, 1850. | Deceased.",
       "normalized": "Stewart, H. B.",
       "locator": {
@@ -45933,7 +46043,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0869",
+      "id": "second_presb_0871",
       "as_read": "Stevens, Mrs. Diana | Letter, | November 3, 1848. | Deceased.",
       "normalized": "Stevens, Diana",
       "locator": {
@@ -45988,7 +46098,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0870",
+      "id": "second_presb_0872",
       "as_read": "Stevens, Miss Elizabeth | Profession. | November 5, 1852. | Deceased.",
       "normalized": "Stevens, Elizabeth",
       "locator": {
@@ -46043,7 +46153,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0871",
+      "id": "second_presb_0873",
       "as_read": "Stevens, George W. | Profession. | June 24, 1858. | Dismissed.",
       "normalized": "Stevens, George W.",
       "locator": {
@@ -46098,7 +46208,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0872",
+      "id": "second_presb_0874",
       "as_read": "Stimson, Alexander L. | Letter. | July 7, 1876. | Dismissed.",
       "normalized": "Stimson, Alexander L.",
       "locator": {
@@ -46153,7 +46263,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0873",
+      "id": "second_presb_0875",
       "as_read": "Stimson, Mrs. Alexander L. | Letter. | July 12, 1877. | Dismissed.",
       "normalized": "Stimson, Alexander L.",
       "locator": {
@@ -46213,7 +46323,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0874",
+      "id": "second_presb_0876",
       "as_read": "Strong, Mrs. Adaline S. | Letter. | October 20, 185 1. | Dismissed.",
       "normalized": "Strong, Adaline S.",
       "locator": {
@@ -46268,7 +46378,7 @@
       "notes": "the admission date is destroyed in the scan and is left null rather than recovered from the dates around it"
     },
     {
-      "id": "second_presb_0875",
+      "id": "second_presb_0877",
       "as_read": "Taylor, Mrs. Charle's | Letter. | Januarys, 1843. | Dismissed.",
       "normalized": "Taylor, Charle's",
       "locator": {
@@ -46323,7 +46433,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0876",
+      "id": "second_presb_0878",
       "as_read": "Taylor, Hudson K. | Profession. | April I, 1843. | Dismissed.",
       "normalized": "Taylor, Hudson K.",
       "locator": {
@@ -46378,7 +46488,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0877",
+      "id": "second_presb_0879",
       "as_read": "Taylor, Mrs. Laura M. | Letter. | October 30, 1872. | Deceased.",
       "normalized": "Taylor, Laura M.",
       "locator": {
@@ -46433,7 +46543,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0878",
+      "id": "second_presb_0880",
       "as_read": "Taylor, Mrs. M. | Letter. | January 3, 1843. | Dismissed.",
       "normalized": "Taylor, M.",
       "locator": {
@@ -46488,7 +46598,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0879",
+      "id": "second_presb_0881",
       "as_read": "Taylor, Matthias | Letter. | January 3, 1843. | Dismissed.",
       "normalized": "Taylor, Matthias",
       "locator": {
@@ -46543,7 +46653,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0880",
+      "id": "second_presb_0882",
       "as_read": "Taylor, Rodney L. | Profession. | March 3, 1876. | Dismissed.",
       "normalized": "Taylor, Rodney L.",
       "locator": {
@@ -46598,7 +46708,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0881",
+      "id": "second_presb_0883",
       "as_read": "Temple, Daniel H. | Letter. | April 30, 1849. | Dismissed.",
       "normalized": "Temple, Daniel H.",
       "locator": {
@@ -46653,7 +46763,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0882",
+      "id": "second_presb_0884",
       "as_read": "Temple, Mrs. Louisa M. | Letter. | March i, 1850. | Dismissed.",
       "normalized": "Temple, Louisa M.",
       "locator": {
@@ -46708,7 +46818,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0883",
+      "id": "second_presb_0885",
       "as_read": "Thomas, Miss Beryl | Letter. | November 25, 1890. | Dismissed.",
       "normalized": "Thomas, Beryl",
       "locator": {
@@ -46763,7 +46873,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0884",
+      "id": "second_presb_0886",
       "as_read": "Thomas, Mrs, Frances A. | Profession. | April 26, 1858. | Dismissed.",
       "normalized": "Thomas, Mrs, Frances A.",
       "locator": {
@@ -46818,7 +46928,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0885",
+      "id": "second_presb_0887",
       "as_read": "Thomas, Mrs. Lilian G. | Letter. | June 2, 1889. | Dismissed.",
       "normalized": "Thomas, Lilian G.",
       "locator": {
@@ -46873,7 +46983,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0886",
+      "id": "second_presb_0888",
       "as_read": "Thomas, Mrs. Maria S. | Letter. | July I, 1856. | Dismissed.",
       "normalized": "Thomas, Maria S.",
       "locator": {
@@ -46928,7 +47038,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0887",
+      "id": "second_presb_0889",
       "as_read": "Thompson, Mrs. Betsey | Letter. | October 30, 1846. | Deceased.",
       "normalized": "Thompson, Betsey",
       "locator": {
@@ -46983,7 +47093,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0888",
+      "id": "second_presb_0890",
       "as_read": "Thompson, Mrs. Cecile M | Letter. | May 4, 1877. | Dismissed.",
       "normalized": "Thompson, Cecile M",
       "locator": {
@@ -47038,7 +47148,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0889",
+      "id": "second_presb_0891",
       "as_read": "Thompson, Charles E. | Profession. | August 29, i860. | Dismissed.",
       "normalized": "Thompson, Charles E.",
       "locator": {
@@ -47093,7 +47203,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0890",
+      "id": "second_presb_0892",
       "as_read": "Thompson, Mrs. Hannah H. | Letter. | October 25, 1843. | Deceased.",
       "normalized": "Thompson, Hannah H.",
       "locator": {
@@ -47148,7 +47258,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0891",
+      "id": "second_presb_0893",
       "as_read": "Thompson, Harvey M. | Letter. | March 20, 1868. | Dismissed.",
       "normalized": "Thompson, Harvey M.",
       "locator": {
@@ -47203,7 +47313,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0892",
+      "id": "second_presb_0894",
       "as_read": "Thompson, Mrs. Jane L. | Letter. | January 2, 1869. | Dismissed.",
       "normalized": "Thompson, Jane L.",
       "locator": {
@@ -47258,7 +47368,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0893",
+      "id": "second_presb_0895",
       "as_read": "Thompson, Joseph | Letter. | January 2, 1869. | Dismissed.",
       "normalized": "Thompson, Joseph",
       "locator": {
@@ -47313,7 +47423,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0894",
+      "id": "second_presb_0896",
       "as_read": "Thompson, Mrs. Mary O. | Letter. | August 31, i860. | Dismissed.",
       "normalized": "Thompson, Mary O.",
       "locator": {
@@ -47368,7 +47478,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0895",
+      "id": "second_presb_0897",
       "as_read": "Thompson, Richard | Profession. | August 29, i860. | Deceased.",
       "normalized": "Thompson, Richard",
       "locator": {
@@ -47423,7 +47533,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0896",
+      "id": "second_presb_0898",
       "as_read": "Trowbridge, Mrs. Alice L. | Letter. | November 3, 1867. | Dismissed.",
       "normalized": "Trowbridge, Alice L.",
       "locator": {
@@ -47478,7 +47588,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0897",
+      "id": "second_presb_0899",
       "as_read": "Tuttle, Mrs. Charlotte L. | Profession. | June 7, 1858. | Deceased.",
       "normalized": "Tuttle, Charlotte L.",
       "locator": {
@@ -47533,7 +47643,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0898",
+      "id": "second_presb_0900",
       "as_read": "Tuttle, Mrs. Sarah * | Profession. | May 3, 1850. | Deceased.",
       "normalized": "Tuttle, Sarah *",
       "locator": {
@@ -47588,7 +47698,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0899",
+      "id": "second_presb_0901",
       "as_read": "Walker, Mrs. Alice | Letter. | May 2, 1856. | Dismissed.",
       "normalized": "Walker, Alice",
       "locator": {
@@ -47643,7 +47753,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0900",
+      "id": "second_presb_0902",
       "as_read": "Walker, Mrs. Sarah P. H. | Letter. | February 28, 185 1. | Deceased.",
       "normalized": "Walker, Sarah P. H.",
       "locator": {
@@ -47698,7 +47808,7 @@
       "notes": "the admission date is destroyed in the scan and is left null rather than recovered from the dates around it"
     },
     {
-      "id": "second_presb_0901",
+      "id": "second_presb_0903",
       "as_read": "Ward, George L. | Letter. | June 29, 1844. | Dismissed.",
       "normalized": "Ward, George L.",
       "locator": {
@@ -47753,7 +47863,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0902",
+      "id": "second_presb_0904",
       "as_read": "Ward, Mrs. Mary A. | Letter. | October 25, 1852. | Dismissed.",
       "normalized": "Ward, Mary A.",
       "locator": {
@@ -47808,7 +47918,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0903",
+      "id": "second_presb_0905",
       "as_read": "Ward, Samuel D. | Letter. | December 23, 1850. | Dismissed.",
       "normalized": "Ward, Samuel D.",
       "locator": {
@@ -47863,7 +47973,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0904",
+      "id": "second_presb_0906",
       "as_read": "Ward, Thomas W. | Profession. | October 21, 1857. | Dismissed.",
       "normalized": "Ward, Thomas W.",
       "locator": {
@@ -47918,7 +48028,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0905",
+      "id": "second_presb_0907",
       "as_read": "Wells, Miss Abigail G. | Letter. | December 28, 1870. | Deceased.",
       "normalized": "Wells, Abigail G.",
       "locator": {
@@ -47973,7 +48083,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0906",
+      "id": "second_presb_0908",
       "as_read": "Wells, John H. | Profession. | July 2, 1847. | Dismissed.",
       "normalized": "Wells, John H.",
       "locator": {
@@ -48028,7 +48138,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0907",
+      "id": "second_presb_0909",
       "as_read": "Wentworth, John T. | Letter. | March 4, 1853. | Dismissed.",
       "normalized": "Wentworth, John T.",
       "locator": {
@@ -48083,7 +48193,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0908",
+      "id": "second_presb_0910",
       "as_read": "Wentworth, Mrs. John T. | Letter. | March 4, 1S53. | Dismissed.",
       "normalized": "Wentworth, John T.",
       "locator": {
@@ -48138,7 +48248,7 @@
       "notes": "the admission date is destroyed in the scan and is left null rather than recovered from the dates around it"
     },
     {
-      "id": "second_presb_0909",
+      "id": "second_presb_0911",
       "as_read": "Wessencraft, Mrs. Jane | Letter. | January 3, 1843. | Deceased.",
       "normalized": "Wessencraft, Jane",
       "locator": {
@@ -48193,7 +48303,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0910",
+      "id": "second_presb_0912",
       "as_read": "Wheldon, Mrs. Delia M. | Profession. | November 3, 1867, | Dismissed,",
       "normalized": "Wheldon, Delia M.",
       "locator": {
@@ -48248,7 +48358,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0911",
+      "id": "second_presb_0913",
       "as_read": "Whiting, Samuel B. | Profession. | October 15, 1842. | Deceased.",
       "normalized": "Whiting, Samuel B.",
       "locator": {
@@ -48303,7 +48413,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0912",
+      "id": "second_presb_0914",
       "as_read": "Wight, Ambrose S. | Letter. | June 28, 1865, | Dismissed,",
       "normalized": "Wight, Ambrose S.",
       "locator": {
@@ -48358,7 +48468,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0913",
+      "id": "second_presb_0915",
       "as_read": "Wight, Mrs. Caroline E. | Letter. | October 25, 1843. | Dismissed.",
       "normalized": "Wight, Caroline E.",
       "locator": {
@@ -48413,7 +48523,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0914",
+      "id": "second_presb_0916",
       "as_read": "Wight, J. Ambrose | Letter. | October 28, 1843. Ordained | to Miniitry",
       "normalized": "Wight, J. Ambrose",
       "locator": {
@@ -48468,7 +48578,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0915",
+      "id": "second_presb_0917",
       "as_read": "Wilcox, Albert B. | Profession. | April 30, 1855. | Dismissed.",
       "normalized": "Wilcox, Albert B.",
       "locator": {
@@ -48523,7 +48633,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0916",
+      "id": "second_presb_0918",
       "as_read": "Wilcox, Edward | Profession. | April 26, 1852. | Dismissed,",
       "normalized": "Wilcox, Edward",
       "locator": {
@@ -48578,7 +48688,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0917",
+      "id": "second_presb_0919",
       "as_read": "Wilcox, Mrs. Mary E. | Letter. | November 3, 1876. | Deceased,",
       "normalized": "Wilcox, Mary E.",
       "locator": {
@@ -48633,7 +48743,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0918",
+      "id": "second_presb_0920",
       "as_read": "Williams, Edward M. | Profession. | April 30, 1852. | Dismissed.",
       "normalized": "Williams, Edward M.",
       "locator": {
@@ -48688,7 +48798,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0919",
+      "id": "second_presb_0921",
       "as_read": "Williams, John C. | Letter. | June I, 1842, | Deceased.",
       "normalized": "Williams, John C.",
       "locator": {
@@ -48743,7 +48853,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0920",
+      "id": "second_presb_0922",
       "as_read": "Williams, Mrs. John C. | Letter. | June I, 1842. | Deceased.",
       "normalized": "Williams, John C.",
       "locator": {
@@ -48798,7 +48908,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0921",
+      "id": "second_presb_0923",
       "as_read": "Williams, Mrs. Mary | Letter. | February 25, 1868. | Dismissed.",
       "normalized": "Williams, Mary",
       "locator": {
@@ -48853,7 +48963,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0922",
+      "id": "second_presb_0924",
       "as_read": "Williams, Mrs. Mary A. | Profession. | November 3, 1876. | Deceased.",
       "normalized": "Williams, Mary A.",
       "locator": {
@@ -48908,7 +49018,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0923",
+      "id": "second_presb_0925",
       "as_read": "Williams, Stephen B. | Letter. | December 7, 1856. | Dismissed.",
       "normalized": "Williams, Stephen B.",
       "locator": {
@@ -48963,7 +49073,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0924",
+      "id": "second_presb_0926",
       "as_read": "Williams, Mrs. Susan S. | Letter. | December 7, 1856. | Dismissed.",
       "normalized": "Williams, Susan S.",
       "locator": {
@@ -49018,7 +49128,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0925",
+      "id": "second_presb_0927",
       "as_read": "Wilson, Mrs. Agnes | Letter. | August 6, 1842. | Dismissed.",
       "normalized": "Wilson, Agnes",
       "locator": {
@@ -49073,7 +49183,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0926",
+      "id": "second_presb_0928",
       "as_read": "Wilson, Mrs. Clara J. | Letter, | March 28, 1883. | Dismissed.",
       "normalized": "Wilson, Clara J.",
       "locator": {
@@ -49128,7 +49238,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0927",
+      "id": "second_presb_0929",
       "as_read": "Wilson, Mrs. Martha | Profession. | May 3, 1857. | Dismissed.",
       "normalized": "Wilson, Martha",
       "locator": {
@@ -49183,7 +49293,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0928",
+      "id": "second_presb_0930",
       "as_read": "Wilson, Robert G. | Profession. | April I, 1885. | Dismissed.",
       "normalized": "Wilson, Robert G.",
       "locator": {
@@ -49238,7 +49348,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0929",
+      "id": "second_presb_0931",
       "as_read": "Wright, Daniel P. | Letter. | October 30, 1878. | Dismissed.",
       "normalized": "Wright, Daniel P.",
       "locator": {
@@ -49293,7 +49403,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0930",
+      "id": "second_presb_0932",
       "as_read": "Wright, Miss Frances S. | Letter. | June I, 1842. | Deceased.",
       "normalized": "Wright, Frances S.",
       "locator": {
@@ -49348,7 +49458,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0931",
+      "id": "second_presb_0933",
       "as_read": "Wright, Henry | Profession. | May 3, 187S. | Dismissed.",
       "normalized": "Wright, Henry",
       "locator": {
@@ -49403,7 +49513,7 @@
       "notes": "the admission date is destroyed in the scan and is left null rather than recovered from the dates around it"
     },
     {
-      "id": "second_presb_0932",
+      "id": "second_presb_0934",
       "as_read": "Wright, Mrs. Jessie Wilkes | Letter. | May 3, 1878. | Dismissed.",
       "normalized": "Wright, Jessie Wilkes",
       "locator": {
@@ -49458,7 +49568,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0933",
+      "id": "second_presb_0935",
       "as_read": "Wright, Mrs. Joanna H. | Letter. | June 25, 1852. | Deceased.",
       "normalized": "Wright, Joanna H.",
       "locator": {
@@ -49513,7 +49623,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0934",
+      "id": "second_presb_0936",
       "as_read": "Wright, Mrs. John | Letter. | June I, 1842. | Deceased.",
       "normalized": "Wright, John",
       "locator": {
@@ -49568,7 +49678,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0935",
+      "id": "second_presb_0937",
       "as_read": "Wright, John S. | Letter. | June I, 1842. | Deceased.",
       "normalized": "Wright, John S.",
       "locator": {
@@ -49623,7 +49733,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0936",
+      "id": "second_presb_0938",
       "as_read": "Wright, Lieut.-Col. Joseph C. | Profession. | April 23, 1858. | Deceased.",
       "normalized": "Wright, Lieut.-Col. Joseph C.",
       "locator": {
@@ -49678,7 +49788,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0937",
+      "id": "second_presb_0939",
       "as_read": "Woodworth, H. P. | Letter. | December 31, 1844. | Dismissed.",
       "normalized": "Woodworth, H. P.",
       "locator": {
@@ -49733,7 +49843,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0938",
+      "id": "second_presb_0940",
       "as_read": "Woodworth, Mrs. M. J. | Letter. | December 31, 1844. | Dismissed.",
       "normalized": "Woodworth, M. J.",
       "locator": {
@@ -49788,7 +49898,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0939",
+      "id": "second_presb_0941",
       "as_read": "Wood, Mrs. Margaret O. | Profession. | April 30, 1855. | Dismissed-",
       "normalized": "Wood, Margaret O.",
       "locator": {
@@ -49843,7 +49953,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0940",
+      "id": "second_presb_0942",
       "as_read": "Young, Mrs. Belle M. | Letter. | September 12, 1879. | Dismissed,",
       "normalized": "Young, Belle M.",
       "locator": {
@@ -49898,7 +50008,7 @@
       "notes": null
     },
     {
-      "id": "second_presb_0941",
+      "id": "second_presb_0943",
       "as_read": "Young, Mrs. Cornelia. | Letter. | February 6, 1870. | Dismissed,",
       "normalized": "Young, Cornelia.",
       "locator": {
@@ -49963,8 +50073,8 @@
       "dismissed_deceased_or_ordained": 1338
     },
     "distinct_surnames_on_the_roll": 962,
-    "records": 941,
-    "records_with_a_date": 915,
+    "records": 943,
+    "records_with_a_date": 917,
     "records_whose_date_the_scan_destroyed": 26,
     "earliest_admission": "1842-06-01",
     "scene_cutoff": "1835-07-01",

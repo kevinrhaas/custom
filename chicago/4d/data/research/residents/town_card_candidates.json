@@ -4,9 +4,9 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1295,
-  "open_clusters": 15,
-  "cards_in_open_clusters": 33,
+  "town_people": 1306,
+  "open_clusters": 17,
+  "cards_in_open_clusters": 38,
   "rulings": {
    "distinct": 13,
    "merge": 36,
@@ -605,6 +605,48 @@
    ]
   },
   {
+   "surname": "harmon",
+   "cards": [
+    {
+     "person": "harmon_c_l",
+     "household": "hh_harmon_c_l",
+     "name": "C L Harmon",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "fergus_chicago_directory_1843"
+     ],
+     "ruling": null,
+     "ruled_in": null
+    },
+    {
+     "person": "harmon_charles_l",
+     "household": "hh_harmon_brothers",
+     "name": "Charles Loomis Harmon",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26",
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
+     ],
+     "ruling": null,
+     "ruled_in": null
+    }
+   ],
+   "pairs": [
+    {
+     "a": "harmon_c_l",
+     "b": "harmon_charles_l",
+     "for": [
+      "an initial against its forename, 'c' and 'charles'",
+      "harmon_charles_l is an anchor — the town documents this person"
+     ],
+     "against": []
+    }
+   ]
+  },
+  {
    "surname": "hogan",
    "cards": [
     {
@@ -642,6 +684,49 @@
       "hogan_john_s_c is an anchor — the town documents this person"
      ],
      "against": []
+    }
+   ]
+  },
+  {
+   "surname": "kennicott",
+   "cards": [
+    {
+     "person": "kennicott_w_h",
+     "household": "hh_kennicott_w_h",
+     "name": "W H Kennicott",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": null,
+     "ruled_in": null
+    },
+    {
+     "person": "kennicott_william_h",
+     "household": "hh_kennicott_william_h",
+     "name": "William H Kennicott",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad",
+      "fergus_chicago_directory_1843",
+      "norris_directory_1844"
+     ],
+     "ruling": "merge",
+     "ruled_in": "kennicott"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "kennicott_w_h",
+     "b": "kennicott_william_h",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "an initial against its forename, 'w' and 'william'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
     }
    ]
   },
@@ -1087,6 +1172,17 @@
      "ruled_in": "wright"
     },
     {
+     "person": "wright_j_s",
+     "household": "hh_wright_j_s",
+     "name": "J S Wright",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": null,
+     "ruled_in": null
+    },
+    {
      "person": "wright_john",
      "household": "hh_wright_john",
      "name": "John Wright",
@@ -1113,6 +1209,16 @@
    "pairs": [
     {
      "a": "wright_j",
+     "b": "wright_j_s",
+     "for": [
+      "the same forename, 'j'"
+     ],
+     "against": [
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    },
+    {
+     "a": "wright_j",
      "b": "wright_john",
      "for": [
       "an initial against its forename, 'j' and 'john'",
@@ -1122,6 +1228,24 @@
     },
     {
      "a": "wright_j",
+     "b": "wright_john_s",
+     "for": [
+      "an initial against its forename, 'j' and 'john'",
+      "wright_john_s is an anchor — the town documents this person"
+     ],
+     "against": []
+    },
+    {
+     "a": "wright_j_s",
+     "b": "wright_john",
+     "for": [
+      "an initial against its forename, 'j' and 'john'",
+      "wright_john is an anchor — the town documents this person"
+     ],
+     "against": []
+    },
+    {
+     "a": "wright_j_s",
      "b": "wright_john_s",
      "for": [
       "an initial against its forename, 'j' and 'john'",

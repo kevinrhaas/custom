@@ -19,7 +19,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1293
+   "n": 1304
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -29,7 +29,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2645
+   "n": 2642
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -42,8 +42,8 @@
   "bidders_with_a_usable_surname": 96,
   "residents_matched_one_bidder": 18,
   "residents_ambiguous": 1,
-  "residents_contested": 9,
-  "residents_surname_only_refused": 82,
+  "residents_contested": 10,
+  "residents_surname_only_refused": 83,
   "voters_matched_one_bidder": 20,
   "voters_ambiguous": 1,
   "voters_surname_only_refused": 43,
@@ -1220,8 +1220,46 @@
     ]
    },
    {
+    "name": "J S Wright",
+    "rule": "Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "bids_1839": [
+     {
+      "bidder_as_printed": "John Wright",
+      "lots_bid": 1,
+      "amount_read_usd": 65,
+      "lots_whose_price_the_scan_destroyed": 0,
+      "lots": [
+       {
+        "claim": "f1839_lot0215",
+        "block": 11,
+        "block_carried": true,
+        "lot": 8,
+        "amount_usd": 65,
+        "as_printed": {
+         "block": null,
+         "lot": null,
+         "bidder": "John Wright,",
+         "amount": "65"
+        },
+        "printed_page": 49,
+        "bidder_ditto": false,
+        "bidder_braced": false
+       }
+      ]
+     }
+    ],
+    "person_id": "wright_j_s",
+    "household_id": "hh_wright_j_s",
+    "grade_1835": "attested",
+    "contested_with": [
+     "J Wright",
+     "John Wright",
+     "John S. Wright"
+    ]
+   },
+   {
     "name": "J Wright",
-    "rule": "Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "John Wright",
@@ -1252,6 +1290,7 @@
     "household_id": "hh_wright_j",
     "grade_1835": "attested",
     "contested_with": [
+     "J S Wright",
      "John Wright",
      "John S. Wright"
     ]
@@ -1433,7 +1472,7 @@
    },
    {
     "name": "John S. Wright",
-    "rule": "Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "John Wright",
@@ -1465,12 +1504,13 @@
     "grade_1835": "attested",
     "contested_with": [
      "J Wright",
+     "J S Wright",
      "John Wright"
     ]
    },
    {
     "name": "John Wright",
-    "rule": "Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
+    "rule": "Surname 'Wright' folds to the same string as the bidder's, and the given name of both begins J. CONTESTED: 4 residents of 1835 meet this one bidder on that rule, and at most one of them is the man who bid. The match is not made.",
     "bids_1839": [
      {
       "bidder_as_printed": "John Wright",
@@ -1502,6 +1542,7 @@
     "grade_1835": "attested",
     "contested_with": [
      "J Wright",
+     "J S Wright",
      "John S. Wright"
     ]
    },
@@ -2041,6 +2082,11 @@
     "name": "William F Lyon",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Lyon' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'William F Lyon'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William George Sherman",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Sherman' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'W' of 'William George Sherman'. A surname-only agreement is a refusal."
    },
    {
     "name": "William H Taylor",

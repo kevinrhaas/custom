@@ -24,7 +24,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1293
+   "n": 1304
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -34,7 +34,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2645
+   "n": 2642
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -43,14 +43,14 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 146,
-  "residents_ambiguous": 25,
-  "residents_contested": 12,
-  "residents_surname_only_refused": 260,
+  "residents_matched_one_entry": 145,
+  "residents_ambiguous": 26,
+  "residents_contested": 14,
+  "residents_surname_only_refused": 263,
   "voters_matched_one_entry": 122,
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 75,
-  "letter_list_matched_one_entry": 341,
+  "letter_list_matched_one_entry": 338,
   "letter_list_ambiguous": 93,
   "letter_list_surname_only_refused": 674,
   "heads_1840_matched_one_entry": 170,
@@ -67,9 +67,9 @@
   "of_those_contested": 0,
   "of_those_ambiguous": 4,
   "residents_narrowings_withdrawn_as_a_collision": 0,
-  "residents_ties_left_standing": 33,
-  "residents_could_carry_occupation": 79,
-  "residents_could_carry_street": 91
+  "residents_ties_left_standing": 36,
+  "residents_could_carry_occupation": 78,
+  "residents_could_carry_street": 90
  },
  "residents": {
   "matches": [
@@ -3755,34 +3755,6 @@
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
    {
-    "name": "William H Kennicott",
-    "rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0835",
-      "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street",
-      "printed_page": 21,
-      "occupation_1839": "dentist",
-      "address_1839": "Lake street",
-      "streets_1839": [
-       "Lake street"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "kennicott_william_h",
-    "household_id": "hh_kennicott_william_h",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation",
-     "street_1839"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
     "name": "William H. Stow",
     "rule": "Surname 'Stow' folds to the same string as the 1839 entry's, and the given name of both begins W.",
     "entries_1839": [
@@ -4599,6 +4571,102 @@
       }
      ]
     }
+   },
+   {
+    "name": "W H Kennicott",
+    "rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0835",
+      "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street",
+      "printed_page": 21,
+      "occupation_1839": "dentist",
+      "address_1839": "Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "kennicott_w_h",
+    "household_id": "hh_kennicott_w_h",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "could_carry": [
+     "occupation",
+     "street_1839"
+    ],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
+    "contested_with": [
+     "William H Kennicott"
+    ],
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "kennicott_w_h",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "kennicott_william_h",
+       "agrees": false,
+       "why": "no trade on one side"
+      }
+     ]
+    }
+   },
+   {
+    "name": "William H Kennicott",
+    "rule": "Surname 'Kennicott' folds to the same string as the 1839 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0835",
+      "as_printed": "Kennicott, Dr. Wm. H., dentist, Lake street",
+      "printed_page": 21,
+      "occupation_1839": "dentist",
+      "address_1839": "Lake street",
+      "streets_1839": [
+       "Lake street"
+      ],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "kennicott_william_h",
+    "household_id": "hh_kennicott_william_h",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "could_carry": [
+     "occupation",
+     "street_1839"
+    ],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
+    "contested_with": [
+     "W H Kennicott"
+    ],
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "kennicott_w_h",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "kennicott_william_h",
+       "agrees": false,
+       "why": "no trade on one side"
+      }
+     ]
+    }
    }
   ],
   "ambiguous": [
@@ -4948,6 +5016,58 @@
        "why": "no trade on one side",
        "outcome": "refused_by_discriminator",
        "refusal": "The trade printed against this name agrees with 'f1839_e0329' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
+      }
+     ]
+    }
+   },
+   {
+    "name": "J S Wright",
+    "rule": "Surname 'Wright' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1647",
+      "as_printed": "Wright, John, Michigan ave. cor. Madison st",
+      "printed_page": 36,
+      "occupation_1839": null,
+      "address_1839": "Michigan ave. cor. Madison st",
+      "streets_1839": [
+       "Michigan ave",
+       "Madison st"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1648",
+      "as_printed": "Wright, John S., forwarding commission merchant, N. Water st",
+      "printed_page": 36,
+      "occupation_1839": "forwarding commission merchant",
+      "address_1839": "N. Water st",
+      "streets_1839": [
+       "N. Water st"
+      ],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "wright_j_s",
+    "household_id": "hh_wright_j_s",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "f1839_e1647",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "f1839_e1648",
+       "agrees": false,
+       "why": "no trade on one side"
       }
      ]
     }
@@ -6032,6 +6152,11 @@
     "rule": "The surname 'Bennett' is in Fergus 1839 and no entry under it carries the initial 'C' of 'C H Bennett'. A surname-only agreement is a refusal."
    },
    {
+    "name": "C L Harmon",
+    "candidates_under_that_surname": 5,
+    "rule": "The surname 'Harmon' is in Fergus 1839 and no entry under it carries the initial 'C' of 'C L Harmon'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "C. George",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'George' is in Fergus 1839 and no entry under it carries the initial 'C' of 'C. George'. A surname-only agreement is a refusal."
@@ -6305,6 +6430,11 @@
     "name": "G G Trowbridge",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Trowbridge' is in Fergus 1839 and no entry under it carries the initial 'G' of 'G G Trowbridge'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "G Loomis",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'Loomis' is in Fergus 1839 and no entry under it carries the initial 'G' of 'G Loomis'. A surname-only agreement is a refusal."
    },
    {
     "name": "Gardner Brooks",
@@ -7110,6 +7240,11 @@
     "name": "William G Blair",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Blair' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William G Blair'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "William George Sherman",
+    "candidates_under_that_surname": 8,
+    "rule": "The surname 'Sherman' is in Fergus 1839 and no entry under it carries the initial 'W' of 'William George Sherman'. A surname-only agreement is a refusal."
    },
    {
     "name": "William H. Beach",
@@ -12523,23 +12658,6 @@
     ]
    },
    {
-    "name": "A. N. Ful[lerton]",
-    "rule": "Surname 'Ful[lerton]' folds to the same string as the 1839 entry's, and the given name of both begins A.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0508",
-      "as_printed": "Fullerton, Alex. N., lumber merchant, North Water st",
-      "printed_page": 14,
-      "occupation_1839": "lumber merchant",
-      "address_1839": "North Water st",
-      "streets_1839": [
-       "North Water st"
-      ],
-      "address_is_street_only": false
-     }
-    ]
-   },
-   {
     "name": "A. N. Fullerton",
     "rule": "Surname 'Fullerton' folds to the same string as the 1839 entry's, and the given name of both begins A.",
     "entries_1839": [
@@ -17845,40 +17963,6 @@
       "address_1839": "Michigan ave. cor. Madison",
       "streets_1839": [
        "Michigan ave"
-      ],
-      "address_is_street_only": false
-     }
-    ]
-   },
-   {
-    "name": "[Gr]ant Goodrich",
-    "rule": "Surname 'Goodrich' folds to the same string as the 1839 entry's, and the given name of both begins G.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0560",
-      "as_printed": "Goodrich, Grant, attorney and Counsellor at law, 107 Lake st",
-      "printed_page": 15,
-      "occupation_1839": "attorney and Counsellor at law",
-      "address_1839": "107 Lake st",
-      "streets_1839": [
-       "Lake st"
-      ],
-      "address_is_street_only": false
-     }
-    ]
-   },
-   {
-    "name": "[J]no. S. C. Hogan",
-    "rule": "Surname 'Hogan' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0706",
-      "as_printed": "Hogan, John S. C., dry goods and groceries, 236 Lake street",
-      "printed_page": 18,
-      "occupation_1839": "dry goods and groceries",
-      "address_1839": "236 Lake street",
-      "streets_1839": [
-       "Lake street"
       ],
       "address_is_street_only": false
      }
