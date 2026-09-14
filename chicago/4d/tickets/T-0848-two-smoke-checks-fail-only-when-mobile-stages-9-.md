@@ -1,7 +1,7 @@
 ---
 id: T-0848
 title: Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,20 +9,64 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1255
+claimed_by: run 9/13/2026, 9:43:43 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-13T15:07:36.565Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34763304736
 ---
 
 Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range.
 
-**Acceptance:** (state it before working — the definition of done, never weakened to pass)
+**Acceptance, stated before working, and met (2026-09-13, PR below):** part 9's two
+delta checks pass in a combined range AND alone, with the SAME reading, on an unchanged
+town; the cause is named rather than the symptom suppressed; neither threshold moves.
 
-`SMOKE_VIEWPORT=mobile SMOKE_STAGE=9-12 node tools/smoke_renderer.mjs --published` fails
+**THE CAUSE.** `streetLayer`, the shared street/flora/anchor reading, is guarded on
+`anyStage(7, 10, 11)` and opens by teleporting to a dry South Division stand
+(`local_e: 107, local_n: -103, yaw_deg: 180`). It never puts the visitor back. Its guard
+asks which parts were SELECTED, not which have run, and it sits ABOVE the staged body —
+so it is the one thing in the file that changes what a LATER part photographs according
+to what the range asked for. Part 9's facade-tone and shadow-reach deltas capture from
+wherever the visitor is standing, so alone they photographed the boot view their floors
+were measured at, and in a range they photographed that stand. The comment on the block
+claimed "it teleports to its own viewpoints, so it does not care what ran before it" —
+true, and beside the point: nothing cared what ran before IT.
+
+Under the 13-part numbering the ticket's `9-12` is any range carrying 9 with 7, 10 or 11;
+`9,11` is the cheapest reproducer at 2 m 36 s.
+
+**THE FIX.** The boot pose is read once immediately before the staged body, where nothing
+has yet moved the visitor, and each delta section teleports to it and states why
+(`standAtBootPose`). The view is part of the assertion now instead of an inheritance.
+
+**MEASURED, all four legs in the foreground on the steward runner:**
+
+| leg | tree | command | facade worst/mean | shadow worst | result |
+|---|---|---|---|---|---|
+| 1 | pristine `dev` a3c49b288 | mobile `9,11` | **2** / **0.01** | **2** | **FAIL ×2** — the ticket's numbers, reproduced |
+| 2 | this branch | mobile `9,11` | 10 / 0.19 | 6 | 36 passed, 0 failed |
+| 3 | this branch | mobile `9` alone | 10 / 0.19 | 6 | 23 passed, 0 failed |
+| 4 | this branch | desktop `9,11` | 10 / 0.27 | 7 | 36 passed, 0 failed |
+
+Legs 2 and 3 are bit-identical, which is the acceptance: the combined range and the
+isolated part now measure the same frame. Floors are untouched at `worst>=3, mean>=0.03`
+and `worst>=4`.
+
+Legs 1-4 were measured on `dev` a3c49b288. `dev` then advanced to 7b186cd0a under the
+branch, so leg 2 was re-run on the rebased tree — 10 / 0.19 and 6 again, 36 passed, 0
+failed, 2 m 26 s — and it is THAT reading that is filed in `tools/dev-smoke-state.json`,
+because the record stamps the tree a reading was actually taken on and a reading of a
+superseded tree filed under the new hash would be a claim the run did not make.
+
+`check.sh` is green but for one step, "…and the strip still reads the same off the sheet",
+which fails identically on pristine `dev` and is not this ticket's.
+
+---
+
+**The report as filed.** `SMOKE_VIEWPORT=mobile SMOKE_STAGE=9-12 node tools/smoke_renderer.mjs --published` fails
 two checks, and the SAME two, on a pristine `origin/dev` at b77b1ae14 as on a branch that
 touches only resident JSON:
 

@@ -1469,6 +1469,43 @@ for (const [label, viewport, touch] of [
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
 
+    // T-0848 — THE POSE EVERY DELTA CHECK IS CALIBRATED AT, read here because
+    // this is the last line before the stage-guarded body, and nothing above it
+    // has moved the visitor. A *reaches the render* check winds a shipped value
+    // off, photographs the frame and asserts the picture MOVED by at least so
+    // much; what it is actually measuring is whatever the camera happens to be
+    // pointed at, so its threshold is a number about a VIEW. The readings below
+    // teleport to their own viewpoints and do not put the visitor back, and the
+    // expensive ones are guarded on which PARTS were selected — so `SMOKE_STAGE=9`
+    // photographed the boot view and passed (worst cell 10 and 22), while
+    // `SMOKE_STAGE=9-12` photographed wherever part 10's shared street reading
+    // had left the visitor and collapsed to 2, on a tree where nothing about
+    // facades or shadows had changed. Since `smoke_budget.mjs --for-diff` packs
+    // parts into ranges precisely because that is what fits under the foreground
+    // ceiling, the packing the tooling recommends was the one packing those
+    // checks could not survive. A delta check now states the view it needs and
+    // takes it (`standAtBootPose`), which is the fix: the frame it photographs
+    // is the same frame whichever other parts are selected.
+    const bootPose = await page.evaluate(() => {
+      const st = window.__chicago4d.walker.state;
+      return {
+        local_e: st.e,
+        local_n: st.n,
+        yaw_deg: window.__chicago4d.walker.bearingDeg,
+        pitch_deg: (st.pitch * 180) / Math.PI,
+        altitude_m: st.flying ? st.altitude : null,
+      };
+    });
+    // Stand where the thresholds were measured. `step()` settles the walker the
+    // same way the readings above do, so the first capture is not of a frame
+    // caught mid-arrival.
+    const standAtBootPose = async () => {
+      await page.evaluate((pose) => {
+        window.__chicago4d.walker.teleport(pose);
+        window.__chicago4d.step();
+      }, bootPose);
+    };
+
     // ======================================================================
     // T-0060 — everything below, to the end of this viewport's body, runs in
     // four stages so each fits a ten-minute command. The sections are NOT
@@ -1522,6 +1559,13 @@ for (const [label, viewport, touch] of [
     // before the split — and skipped when neither runs, because it is the most
     // expensive single evaluate in the file. It teleports to its own
     // viewpoints, so it does not care what ran before it.
+    //
+    // T-0848: it does not put the visitor BACK, though, and that half matters as
+    // much. Because the guard is on which parts were SELECTED, this block runs
+    // for `SMOKE_STAGE=9-12` and not for `SMOKE_STAGE=9`, so it is the one thing
+    // in the file that can change what a LATER part photographs according to
+    // what a range asked for. Anything downstream that measures a frame must
+    // state its own view — see `standAtBootPose` above.
     //
     // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
     // actually read it: parts 9 and 11 hold no reference to `streetLayer`, and
@@ -8813,6 +8857,13 @@ for (const [label, viewport, touch] of [
     }
     const attested = facades.filter((r) => r.confidence === 'attested');
 
+    // THE VIEW THIS CHECK REQUIRES (T-0848): the boot pose. The three captures
+    // below are a delta measurement, and its floor — worst cell >=3, mean >=0.03
+    // — was measured from there. Taken from the South Division stand that part
+    // 10's street reading leaves behind, the same unchanged town moves the worst
+    // cell by 2, because far fewer painted walls are in frame. So the pose is
+    // part of the assertion and is taken here, not inherited.
+    await standAtBootPose();
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
     const toneOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const toneOff = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(0));
@@ -8906,6 +8957,13 @@ for (const [label, viewport, touch] of [
       + `per texel (want ±${want.reachM} m over ${want.mapSize}² = `
       + `${(want.texelM * 100).toFixed(1)} cm)`);
 
+    // THE VIEW THIS CHECK REQUIRES (T-0848): the boot pose again, and re-taken
+    // rather than assumed to have survived the facade section — the same reason.
+    // `worst >= 4` is a number about how much of the town the rig can reach IN
+    // FRAME; from a stand with little standing behind the visitor, winding the
+    // reach from its documented value back to +/-60 m moves almost nothing and
+    // the check silently becomes an assertion about the previous section.
+    await standAtBootPose();
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
     const reachFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const woundBack = await page.evaluate(() => window.__chicago4d.world.setShadowReach(60));

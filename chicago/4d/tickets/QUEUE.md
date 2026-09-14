@@ -136,8 +136,6 @@
 # --- tools/read_norris_1844.py, all found by T-1018, each separately evidenced. They are adjacent
 # --- rather than folded so one run carries the context of the last.
 
-T-1114 — Three hundred and four Norris 1844 entries print a business street inside the trade line with no place-abbreviation, and 'b' for between is being read as the start of an address rather than a qualifier on the street before it
-T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 
 # --- ==========================================================================
@@ -228,9 +226,8 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
 # --- re-deriving them.
 
-T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
+T-1125 — Extend the lost-judgement guard to the rest of the hand-authored evidence in data/research/, one domain's arrays adjudicated at a time
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
-T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
 T-1112 — generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it
 T-1111 — voter_crosswalk.json is stale against read_voter_lists.py, and 35 of 345 voters stand unmatched behind it
 T-1110 — st_marys_baptisms_crosswalk.json is hand-edited away from what read_st_marys_baptisms.py rebuilds
@@ -298,7 +295,9 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- John Vale, Mark Noble against Mary Noble. No distance separates the first kind from the
 # --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
-
