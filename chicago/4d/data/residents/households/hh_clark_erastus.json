@@ -175,7 +175,7 @@
      "sources": [
       "norris_directory_1844"
      ],
-     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Norris's Chicago directory of 1844 prints where this man lived in 1844 and this pass will not carry it back to 1835. The entry names the person this man boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
+     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Norris's Chicago directory of 1844 prints where this person lived in 1844 and this pass will not carry it back to 1835. The entry names the person the householder boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
     }
    }
   ]
