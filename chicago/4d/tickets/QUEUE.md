@@ -146,6 +146,30 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
 
 
+
+
+# --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
+# --- T-1067 LEADS this band now and is the largest hole in the modelled ground: it stops at n +400 m
+# --- and the whole of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks
+# --- on ground the heightfield does not cover. It is the north-bank twin of T-0219, which finished
+# --- the south side on 09-12 and unblocked the band above.
+
+
+# --- 4. VISIBLE REFINEMENT — the town changing rather than growing
+# --- Owner, 2026-09-14, on Dearborn Street in the /dev/ walk: "we have a sign hovering and goods no
+# --- building, what happened to the building" — then, on a reload, "ok its there now must have been
+# --- a load anomaly". The building IS sound: the record, the footprint, both baked GLBs, the asset
+# --- manifest, the renderer's own index and the roof reconciliation were all checked before the
+# --- reload and all carry it, and it is in no exclusion list. What is WRONG is what the scene did
+# --- while the asset was missing. The signboard is a function of a wall — anchored on the east face
+# --- to the centimetre (E 679.70 + 7.62 depth = 687.32, the sign's own easting), 2.55 m up a wall
+# --- height taken "from the record", and moved 5.03 m along the front to clear the door and window.
+# --- When the wall did not arrive the board drew anyway, on nothing, and the goods with it. A failed
+# --- load degrades into a FALSE SCENE rather than an absence, and nothing reported the error — so
+# --- there is no way to know whether this is one building once or many buildings often.
+
+T-1126 — A building that fails to load leaves its signboard hanging in the air and its goods in the grass: the scene draws furniture whose host is missing, and nothing reports the error
+
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
 # --- ==========================================================================
@@ -204,21 +228,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 
 
-
-# --- Owner, 2026-09-14, on Dearborn Street in the /dev/ walk: "we have a sign hovering and goods no
-# --- building, what happened to the building" — then, on a reload, "ok its there now must have been
-# --- a load anomaly". The building IS sound: the record, the footprint, both baked GLBs, the asset
-# --- manifest, the renderer's own index and the roof reconciliation were all checked before the
-# --- reload and all carry it, and it is in no exclusion list. What is WRONG is what the scene did
-# --- while the asset was missing. The signboard is a function of a wall — anchored on the east face
-# --- to the centimetre (E 679.70 + 7.62 depth = 687.32, the sign's own easting), 2.55 m up a wall
-# --- height taken "from the record", and moved 5.03 m along the front to clear the door and window.
-# --- When the wall did not arrive the board drew anyway, on nothing, and the goods with it. A failed
-# --- load degrades into a FALSE SCENE rather than an absence, and nothing reported the error — so
-# --- there is no way to know whether this is one building once or many buildings often.
-
-T-1126 — A building that fails to load leaves its signboard hanging in the air and its goods in the grass: the scene draws furniture whose host is missing, and nothing reports the error
-T-1122 — Both back-projection passes call every householder 'this man' in generated prose, and one of the 57 is Rebecca Sherman
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
@@ -316,5 +325,12 @@ T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot se
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
