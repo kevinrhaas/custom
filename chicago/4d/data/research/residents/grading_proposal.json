@@ -59,20 +59,20 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6815,
+  "identities": 6808,
   "by_grade": {
    "None": 45,
-   "not_1835_resident": 4460,
+   "not_1835_resident": 4453,
    "inferred": 1943,
    "attested": 367
   },
   "by_subtype": {
-   "None": 5101,
+   "None": 5094,
    "projected_resident": 1714
   },
   "by_rule": {
    "G5": 45,
-   "G0": 4460,
+   "G0": 4453,
    "G3": 1713,
    "G1b": 294,
    "G2b": 37,
@@ -1776,7 +1776,6 @@
   {"identity":"id_dobson_b_e","name":"B E Dobson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0822","directories:n1844_e0509"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_dobson_henry","name":"Henry Dobson","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0504"],"evidence_classes":["directory_1844"]},
   {"identity":"id_dodge_darwin_d","name":"Darwin D Dodge","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0823","directories:n1844_e0505"],"evidence_classes":["directory_1843","directory_1844"]},
-  {"identity":"id_dodge_gould_it","name":"Gould It Dodge","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0719"],"evidence_classes":["directory_1844"]},
   {"identity":"id_dodge_harry","name":"Harry Dodge","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0824"],"evidence_classes":["directory_1843"]},
   {"identity":"id_dodge_john_c","name":"John C Dodge","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0506"],"evidence_classes":["directory_1844"]},
   {"identity":"id_dodge_john_cabot","name":"John Cabot Dodge","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0825"],"evidence_classes":["directory_1843"]},
@@ -5446,7 +5445,6 @@
   {"identity":"id_sanger_james_young","name":"James Young Sanger","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2169","directories:n1844_e1553"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_sanger_lorenzo_p","name":"Lorenzo P Sanger","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2170"],"evidence_classes":["directory_1843"]},
   {"identity":"id_sanger_lucian_p","name":"Lucian P Sanger","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2171"],"evidence_classes":["directory_1843"]},
-  {"identity":"id_sanser_crauer_fc","name":"Crauer Fc Sanser","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0439"],"evidence_classes":["directory_1844"]},
   {"identity":"id_sanser_john_w","name":"John W Sanser","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e1555"],"evidence_classes":["directory_1844"]},
   {"identity":"id_santord_steplen_g","name":"Steplen G Santord","canonical_person_id":"santord_steplen_g","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_santord_steplen_g"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_sapin_richard","name":"Richard Sapin","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-99F:7"],"evidence_classes":["census_1840"]},
@@ -5639,10 +5637,7 @@
   {"identity":"id_sheridan_timothy","name":"Timothy Sheridan","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-2T:15"],"evidence_classes":["census_1840"]},
   {"identity":"id_sheriff_john","name":"John Sheriff","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2241","directories:n1844_e1601"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_sherman_alson_smith","name":"Alson Smith Sherman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2242","directories:n1844_e1602"],"evidence_classes":["directory_1843","directory_1844"]},
-  {"identity":"id_sherman_b_f","name":"B F Sherman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e0058","directories:n1844_e1603"],"evidence_classes":["directory_1843","directory_1844"]},
-  {"identity":"id_sherman_b_s","name":"B S Sherman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-9K3:2"],"evidence_classes":["census_1840"]},
-  {"identity":"id_sherman_ballentine_fc","name":"Ballentine Fc Sherman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0063"],"evidence_classes":["directory_1844"]},
-  {"identity":"id_sherman_benjamin_f","name":"Benjamin F Sherman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2243"],"evidence_classes":["directory_1843"]},
+  {"identity":"id_sherman_benjamin_f","name":"Benjamin F Sherman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2243","census_1840:33S7-9YYJ-9K3:2","directories:f1843_e0058","directories:n1844_e1603"],"evidence_classes":["census_1840","directory_1843","directory_1844"]},
   {"identity":"id_sherman_ezra_lewis","name":"Ezra Lewis Sherman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2244","directories:n1844_e1604"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_sherman_f_c","name":"F C Sherman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33SQ-GYYJ-RK:30","directories:n1844_e1605"],"evidence_classes":["census_1840","directory_1844"]},
   {"identity":"id_sherman_francis_c","name":"Francis C Sherman","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_francis_c_sherman"],"evidence_classes":["newspaper_letter_list"]},
@@ -6306,7 +6301,6 @@
   {"identity":"id_tuckerman_lucius","name":"Lucius Tuckerman","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2464"],"evidence_classes":["directory_1843"]},
   {"identity":"id_tuley_murray_floyd","name":"Murray Floyd Tuley","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2466"],"evidence_classes":["directory_1843"]},
   {"identity":"id_tuller_alden","name":"Alden Tuller","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_alden_tuller"],"evidence_classes":["newspaper_letter_list"]},
-  {"identity":"id_tuller_bracken_it","name":"Bracken It Tuller","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0180"],"evidence_classes":["directory_1844"]},
   {"identity":"id_tuller_elam","name":"Elam Tuller","canonical_person_id":"tuller_elam","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_elam_tuller"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_tuller_william_g","name":"William G Tuller","canonical_person_id":null,"rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["directories:f1843_e2467","directories:n1844_e1786","newspapers:person_wm_tuller"],"evidence_classes":["directory_1843","directory_1844","newspaper_letter_list"]},
   {"identity":"id_tully_letitia","name":"Letitia Tully","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_084_4"],"evidence_classes":["church_after_1835"]},
@@ -6651,7 +6645,6 @@
   {"identity":"id_white_edson","name":"Edson White","canonical_person_id":"white_edson","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_white_edson"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_white_frederick","name":"Frederick White","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e1882"],"evidence_classes":["directory_1844"]},
   {"identity":"id_white_george","name":"George White","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-2T:12"],"evidence_classes":["census_1840"]},
-  {"identity":"id_white_hamilton_fc","name":"Hamilton Fc White","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:n1844_e0787"],"evidence_classes":["directory_1844"]},
   {"identity":"id_white_isaac","name":"Isaac White","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2596","directories:n1844_e1883"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_white_john","name":"John White","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_065_1"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_white_julius","name":"Julius White","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0730"],"evidence_classes":["death_notice"]},
