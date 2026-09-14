@@ -604,9 +604,15 @@ def read_directories():
                 continue
             entry = appearance(
                 "directories", claim["id"], doc.get("source_id"), claim.get("quote"),
-                printed, norm.get("address") or norm.get("section"), when, klass)
+                printed, norm.get("address") or norm.get("place_of_business")
+                or norm.get("section"), when, klass)
             entry["occupation"] = norm.get("occupation")
             entry["address"] = norm.get("address")
+            # T-1114. Norris prints the place a trade is carried on inside the trade
+            # line and marks it with nothing, so the 1844 reading holds it in its own
+            # field. It is not a residence and must not be read as one — carried here
+            # so a place that used to reach the card inside `occupation` still does.
+            entry["place_of_business"] = norm.get("place_of_business")
             out.append(entry)
     return out
 
@@ -819,7 +825,7 @@ def compact(member) -> dict:
     }
     if member.get("normalized") and member.get("normalized") != member.get("as_read"):
         row["normalized"] = member["normalized"]
-    for field in ("occupation", "address"):
+    for field in ("occupation", "place_of_business", "address"):
         if member.get(field):
             row[field] = member[field]
     return row

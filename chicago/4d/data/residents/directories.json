@@ -51,7 +51,7 @@
   "people_shown": 239,
   "people_met_by_more_than_one_volume": 150,
   "carrying_an_occupation": 122,
-  "carrying_an_address": 155,
+  "carrying_an_address": 154,
   "line_held_but_parse_refused": 0,
   "split_refused_trades": 14,
   "split_refused_addresses": 5,
@@ -4298,7 +4298,7 @@
     }
    ],
    "occupation_later": {
-    "value": "dry goods and groceries, 154 Lake st",
+    "value": "dry goods and groceries",
     "confidence": "attested",
     "describes_date": 1844,
     "sources": [
@@ -4306,7 +4306,7 @@
     ],
     "claim_id": "n1844_e0349",
     "as_printed": "Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's",
-    "printed_fields": "n1844_e0349 | Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's | dry goods and groceries, 154 Lake st | residence Hum phrey Clark's",
+    "printed_fields": "n1844_e0349 | Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's | dry goods and groceries | 154 Lake st | residence Hum phrey Clark's",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: \"Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's\". It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
@@ -4319,7 +4319,7 @@
     ],
     "claim_id": "n1844_e0349",
     "as_printed": "Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's",
-    "printed_fields": "n1844_e0349 | Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's | dry goods and groceries, 154 Lake st | residence Hum phrey Clark's",
+    "printed_fields": "n1844_e0349 | Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's | dry goods and groceries | 154 Lake st | residence Hum phrey Clark's",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: \"Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's\". It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
@@ -8105,7 +8105,6 @@
       }
      ],
      "holds": [
-      "address",
       "occupation"
      ],
      "split_refused": {},
@@ -11567,7 +11566,7 @@
     ],
     "claim_id": "n1844_e1031",
     "as_printed": "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass",
-    "printed_fields": "n1844_e1031 | Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass | register land office, 82 Lake st | h c Mich dc Cass",
+    "printed_fields": "n1844_e1031 | Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass | register land office | 82 Lake st | h c Mich dc Cass",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
@@ -11676,7 +11675,6 @@
       }
      ],
      "holds": [
-      "address",
       "occupation"
      ],
      "split_refused": {},
@@ -11686,7 +11684,7 @@
     }
    ],
    "occupation_later": {
-    "value": "grocery and provisions, South Water st",
+    "value": "grocery and provisions",
     "confidence": "attested",
     "describes_date": 1844,
     "sources": [
@@ -11694,23 +11692,11 @@
     ],
     "claim_id": "n1844_e1039",
     "as_printed": "Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts",
-    "printed_fields": "n1844_e1039 | Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts | grocery and provisions, South Water st | b Dearborn and State sts",
+    "printed_fields": "n1844_e1039 | Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts | grocery and provisions | South Water st. b Dearborn and State sts",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: 'Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
-   "address_later": {
-    "value": "b Dearborn and State sts",
-    "confidence": "attested",
-    "describes_date": 1844,
-    "sources": [
-     "norris_directory_1844"
-    ],
-    "claim_id": "n1844_e1039",
-    "as_printed": "Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts",
-    "printed_fields": "n1844_e1039 | Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts | grocery and provisions, South Water st | b Dearborn and State sts",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
+   "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "norris_directory_1844"
@@ -11830,7 +11816,6 @@
       }
      ],
      "holds": [
-      "address",
       "occupation"
      ],
      "split_refused": {},

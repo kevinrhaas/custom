@@ -54,7 +54,13 @@ TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "
 #   `B.` of his employer and read a trade of "shoemaker, at J". 271 of the 2,073
 #   entries were cut at an initial. The abbreviation WORDS stay case-blind (`res`,
 #   `Res`); the three single letters do not.
-PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s")
+#
+#   AND `b` IS NOT ONE OF THEM. It stands for BETWEEN — Norris says so himself, in
+#   the REMARKS this pattern was built from: "b stands for between; Rand for
+#   Randolph; Mad for Madison; Wash for Washinglon". Between is a qualifier on the
+#   street already named, not a word that opens a place, and reading it as a starter
+#   cut 175 entries in the middle of their own location. See PLACE_B_AS_PLACE below.
+PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hr])\.?\s")
 
 # …AND `House` IS ALSO THE NAME OF A BUILDING, WHICH THIS RULE CANNOT SEE (T-1021,
 # found in passing and named here so the next run does not rediscover it). The word
@@ -77,13 +83,20 @@ PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s"
 # pattern and prices it against the committed one, which is the only form of the
 # claim that cannot go stale:
 #
-#   294  entries print an upper-case `H.`, `R.` or `B.` token at all
-#   275  of them have that capital as the FIRST place-shaped token in the line —
+#   185  entries print an upper-case `H.` or `R.` token at all
+#   140  of them have that capital as the FIRST place-shaped token in the line —
 #        usually inside the NAME, which the split never cuts at, so the reading stands
-#    95  entries have their occupation or address actually MOVE, and all 95 are the
+#    45  entries have their occupation or address actually MOVE, and all 45 are the
 #        defect exactly: under the case-blind pattern each one's address began at a
 #        one-letter initial. There is no other reason an entry moves, which is what
-#        makes every one of the 95 a repair rather than a trade.
+#        makes every one of the 45 a repair rather than a trade.
+#
+# THE NUMBERS WERE 294 / 275 / 95 UNTIL T-1114, and they fell because this pattern
+# stopped carrying `b`, not because the rule changed. The old superseded pattern
+# differed from the committed one in TWO things — case, and whether `b` opens a place
+# — so it priced neither cleanly, and half its moves were capital `B.` initials that
+# the between rule now accounts for on its own. Each pattern below differs from
+# `PLACE` in exactly one thing, and prices exactly that.
 #
 # Downstream, `crosswalk_norris_1844.py` carries `could_carry_address` 82 → 81. The
 # single match that stopped carrying one is Joseph Bradley (n1844_e0186, `clerk, at
@@ -91,8 +104,56 @@ PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s"
 # of his employer's firm and never a place. The lost match is a false one; nothing a
 # resident could stand on was given up. `could_carry_occupation` holds at 59 and
 # every other crosswalk count is unchanged.
-PLACE_CASE_BLIND = re.compile(r"\b(?:h|house|res|residence|r|boards|bds|b)\.?\s", re.I)
-CASE_RULE_MOVES = 95   # …and the price, held by --self-test against a re-read
+#
+# …and since T-1114 this pattern differs from the committed one in CASE ALONE. It
+# carried `b` as well, from the reading that `b` is a place mark; it is not, and that
+# is priced separately by PLACE_B_AS_PLACE below. A superseded pattern that differs in
+# two things prices neither, so the `b` came out and the count was re-measured: 45.
+PLACE_CASE_BLIND = re.compile(r"\b(?:h|house|res|residence|r|boards|bds)\.?\s", re.I)
+CASE_RULE_MOVES = 45   # …and the price, held by --self-test against a re-read
+
+# `b` IS BETWEEN, AND BETWEEN IS NOT A PLACE (T-1114).
+#
+# The pattern above opened an address at a lowercase `b`, on the reading that Norris's
+# three abbreviations are all place marks. Two of them are: `h` is house and `r` is
+# residence. The third is not, and the book says so on the first page of the directory
+# proper, in the REMARKS this whole band was read from:
+#
+#     "Abbreviations, which occur only in a very few words, will readily be
+#      understood; b stands for BETWEEN; Rand for Randolph; Mad for Madison …
+#      The word street, in some instances, is omitted. The place of business
+#      uniformly precedes the residence."   — leaf 31, printed page 21
+#
+# Between qualifies the street ALREADY NAMED. Cutting at it therefore severs a location
+# from its own street and hands half of each to a different field:
+#
+#     Wheeler, laborer, Washington st, b Wells and Franklin sts
+#        was  occupation "laborer, Washington st"   address "b Wells and Franklin sts"
+#        now  one location, entire, and no address at all
+#
+# 494 lowercase `b` tokens stand in this volume and every one of them is followed by a
+# street name — `Clark` 61 times, `Lake` 52, `Wolcott` and `Cass` 23 each. The two lines
+# in which a `b` precedes `at` (`Horton, B. at Mrs. Boyer's`) print it CAPITALISED,
+# because it is a man's initial, and the case rule above already keeps those out.
+#
+# THE PRICE, RE-MEASURED BY `--self-test` AGAINST THE SUPERSEDED PATTERN: 175 entries
+# move, and each one moves for this defect and no other — under the old pattern every
+# one of the 175 had an address beginning at `b `, which is asserted rather than
+# described. 164 of them lose an address that was only ever the tail of a location and
+# keep it whole in the trade line; the other 11 GAIN the residence the old cut buried,
+# because Norris had set a real `res` or `house` further along the line and the `b`
+# reached it first:
+#
+#     Bristol, tailor, Clark st. b Lake and Water sts. res Illinois st. b Clark …
+#        was  address "b Lake and Water sts. res Illinois st. b Clark and Dearborn sts"
+#        now  address "res Illinois st. b Clark and Dearborn sts" — his house, alone
+#
+# Those 11 are the plainest possible demonstration of the preface's other sentence: the
+# place of business uniformly precedes the residence, and the old rule read the join.
+PLACE_B_AS_PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hrb])\.?\s")
+B_RULE_MOVES = 175              # …and 11 of them recover a residence, asserted below
+B_RULE_RECOVERS_ADDRESS = 11
+
 
 # THE STREET NORRIS PRINTS WITH NO PLACE-ABBREVIATION BEFORE IT (T-1113).
 #
@@ -142,15 +203,25 @@ def street_ahead(toks, i: int) -> bool:
 # the same street in every one of them, so the street is the printed page's and not
 # this scan's OCR.
 STREET_IN_FORENAME = {
-    # id:            (given,        occupation,                      address)
-    "n1844_e0220": ("S. B", "Ohio st", "b Cass and Rush sts"),
-    "n1844_e0276": ("Dennis S", "Lake Street House, 135 Lake st (Sec card)", None),
-    "n1844_e0328": ("Thos", "Wolcott st", "b Illinois and Indiana sts"),
-    "n1844_e0567": ("George A", "Clark st market", "res Farmers' Exchange"),
-    "n1844_e0677": ("Mrs", "Wash. st", "b Frank, and Market sts"),
-    "n1844_e0807": ("Geo. W", "Water street", "house Wabash st"),
-    "n1844_e1993": (None, "Clark st. opposite Saloon, over J; B. F. Rus sell's Land "
-                          "Office", None),
+    # T-1114 added the fourth column: the street these entries were named for is now
+    # read out of the trade line into place_of_business, which is where five of the seven
+    # keep it. `Water street` is not a trade and never was.
+    # id:          (given,      occupation,  place_of_business,                  address)
+    "n1844_e0220": ("S. B", None,
+                    "Ohio st. b Cass and Rush sts", None),
+    "n1844_e0276": ("Dennis S", "Lake Street House",
+                    "135 Lake st (Sec card)", None),
+    "n1844_e0328": ("Thos", None,
+                    "Wolcott st. b Illinois and Indiana sts", None),
+    "n1844_e0567": ("George A", None,
+                    "Clark st market", "res Farmers' Exchange"),
+    "n1844_e0677": ("Mrs", None,
+                    "Wash. st. b Frank, and Market sts", None),
+    "n1844_e0807": ("Geo. W", None,
+                    "Water street", "house Wabash st"),
+    "n1844_e1993": (None, None,
+                    "Clark st. opposite Saloon, over J; B. F. Rus sell's Land Office",
+                    None),
 }
 
 # WHAT IT COSTS DOWNSTREAM, MEASURED (T-1113). `consolidate_resident_evidence.py`
@@ -207,9 +278,177 @@ ADDRESS_REFUSED = {
                     "Norris sets no h/res/b for the man"),
 }
 ADDRESS_REFUSED_NOTE = (
-    "address is a RESIDENCE in this reading, and Norris marks one with h, res or b. "
+    "address is a RESIDENCE in this reading, and Norris marks one with h or res. "
     "This entry names a street with no such mark, so the street is not read into "
-    "address. See tools/read_norris_1844.py, ADDRESS_REFUSED.")
+    "address; where the street is the place the trade is carried on it is read into "
+    "place_of_business instead (T-1114). See tools/read_norris_1844.py, ADDRESS_REFUSED.")
+
+
+# THE PLACE OF BUSINESS IS ITS OWN FIELD, AND NORRIS SAYS WHICH PLACE IT IS (T-1114).
+#
+# THE FIELD QUESTION, DECIDED FIRST. T-1113 ruled that a street with no dwelling mark is
+# not a residence and must not land in `address`, and refused five entries on it. That
+# ruling is right and it left 468 entries naming a street with nowhere to put it — a
+# shop's address IS its trade line, and Norris prints no `h` or `res` in front of one.
+# The question this ticket had to settle is whether the reading should hold a second
+# field for that place, and the book settles it in the same sentence that settles `b`:
+#
+#     "The place of business uniformly precedes the residence."   — leaf 31
+#
+# So the unmarked street is not an unclassified location the reading has to guess at.
+# It is the PLACE OF BUSINESS, named by the compiler's own convention, and it is a
+# different kind of fact from a residence: one is where a man could be found trading,
+# the other where he slept. They are therefore two fields and not one, and `address`
+# stays what T-1113 made it. `place_of_business` is `documented` in the same sense the
+# rest of this reading is — it is what the printed line says — and nothing in it may
+# ever be promoted into `address`, because the preface distinguishes them and this
+# reading is not entitled to collapse the distinction.
+#
+# AND A FIRM'S STREET IS THE FIRM'S. The ticket asked whether it belongs on a partner's
+# card. It does not, and the new field does not change that: `n1844_e0062` reads
+# `of B. & Sherman, Dearborn street bet Kinzie and Michigan`, whose place_of_business is
+# where the PARTNERSHIP stands. ADDRESS_REFUSED already refuses it as his residence;
+# place_of_business says whose place it is without claiming it is his home. The five
+# refusals are unchanged and still carry their reason.
+#
+# THE CUT — AN OPENER, NOT A GAZETTEER. The place begins at the first token that can
+# only open one, taken at a boundary the compositor's own comma marks:
+#
+#   * a house number followed by a capitalised word  — "156 Lake st"
+#   * `corner` / `cor` / `near` / `opposite` / `opp`  — "corner of Lake and Wells sts"
+#   * a street: an optional direction (`N.`, `So.`, `North`), a capitalised name of
+#     more than one letter, and a designator — "Clark st", "N. Water street"
+#   * …or that same street with the designator ABSENT, which the preface warns of
+#     ("The word street, in some instances, is omitted") and which is only read when a
+#     direction stands in front of it and a qualifier behind: "S. Water, b Clark and
+#     Dearborn". Both fences are needed; without them "Mansion House" reads as a street.
+#
+# TWO GUARDS, EACH PUT THERE BY AN ENTRY THAT BROKE WITHOUT IT:
+#
+#   `after_street` — what follows the designator may not be a fresh capitalised word.
+#   `Lake Street House, 135 Lake st` is a HOTEL named after a street, and without this
+#   the whole line reads as a location and Dennis S. Brainard loses his trade. With it
+#   the cut falls at the house number, where it belongs: trade "Lake Street House",
+#   place "135 Lake st".
+#
+#   the walk back — the comma is where the cut is LOOKED for, not where the place must
+#   start. `physician, office Clark street, opposite City Hotel` has no comma before
+#   `Clark`, so the scan first sees `opposite` and would cut a location in half again.
+#   From an accepted opener the rule walks back to the earliest street whose own tail
+#   reaches it, and takes that instead: trade "physician, office", place the whole of
+#   "Clark street, opposite City Hotel".
+#
+# THE PRICE, RE-MEASURED BY `--self-test` WITH THE RULE OFF: 503 entries carry a
+# place_of_business, and their `occupation` is the trade alone where it was the trade and
+# the location run together. No entry gains or loses an `address`; the rule reads only
+# the trade line. 20 of the 498 have no trade at all in front of the place, which is
+# Norris printing a location and nothing else, and those read an occupation of null.
+#
+# WHAT IS STILL REFUSED, COUNTED RATHER THAN HIDDEN. About 250 further entries name
+# something place-shaped that this rule will not cut, and they stay whole in
+# `occupation` on purpose. Three kinds, all seen: the scan's own damage inside the
+# street (`Clark st_.`, `betweeri`, `c W. Water`), a line with no comma anywhere to cut
+# at (`laborer 3d ward south of Jackson st`), and a ward or a landmark standing where a
+# street would (`2d ward, North of Jackson st`). Each would need either a gazetteer —
+# refused above, and by T-1113 before it — or a page-image read, and a wrong cut here
+# writes a false trade onto a card. They are left for the reading that can see the page.
+PLACE_OF_BUSINESS_RULE = True      # …turned off by --self-test, to re-read and price it
+PLACE_OF_BUSINESS_ENTRIES = 503
+PLACE_OF_BUSINESS_NOTE = (
+    "the place the trade is carried on, read out of the trade line Norris prints it "
+    "in. His preface: 'The place of business uniformly precedes the residence.' It is "
+    "NOT a residence and may not be read into address. See tools/read_norris_1844.py, "
+    "PLACE_OF_BUSINESS_RULE.")
+
+DESIGNATOR = re.compile(r"^(?:st|street|streets|sts|av|ave|avenue|alley|road|lane|court)$",
+                        re.I)
+DIRECTION = re.compile(r"^(?:n|s|e|w|no|so|north|south|east|west)$", re.I)
+PLACE_OPENER = re.compile(r"^(?:corner|cor|near|opposite|opp)$", re.I)
+HOUSE_NUMBER = re.compile(r"^\d+$")
+# Words that may stand inside a location between its street and a later opener.
+PLACE_PARTICLE = {"b", "bet", "between", "near", "cor", "corner", "opposite", "opp",
+                  "and", "of", "the", "no", "nos"}
+# …and the narrower set the omitted designator is read behind: a qualifier that can
+# only follow a street. `and` is not one of them — it joins two streets in a corner.
+STREET_QUALIFIER = {"b", "bet", "between", "near", "cor", "corner", "opposite", "opp"}
+
+
+def _bare(tok: str) -> str:
+    return tok.strip(".,;:'\"()-").lower()
+
+
+def _bp_capitalised(tok: str) -> bool:
+    s = tok.strip(".,;:'\"()-")
+    return bool(s) and s[:1].isupper()
+
+
+def _comma_closed(tok: str) -> bool:
+    """The compositor's comma, whatever punctuation he set after it."""
+    return tok.rstrip(".;:'\"()").endswith(",")
+
+
+def after_street(toks, j: int) -> bool:
+    """What follows a street designator may not be a fresh capitalised word — that is
+    a name the street is part of ("Lake Street House"), not a location."""
+    if j >= len(toks):
+        return True
+    if toks[j].startswith("("):
+        return True     # "(See card)" — Norris's cross-reference to an advertisement
+    b = _bare(toks[j])
+    if not b or b[:1].isdigit() or DIRECTION.match(b):
+        return True
+    return not _bp_capitalised(toks[j])
+
+
+def street_at(toks, i: int) -> int:
+    """Index just past the street beginning at toks[i], or 0 if none begins there."""
+    j = i
+    if DIRECTION.match(_bare(toks[j])) and j + 1 < len(toks) and _bp_capitalised(toks[j + 1]):
+        j += 1
+    s = toks[j].strip(".,;:'\"()-")
+    if len(s) < 2 or not s[:1].isupper() or _bare(toks[j]) in TITLES:
+        return 0
+    if j + 1 < len(toks) and DESIGNATOR.match(_bare(toks[j + 1])):
+        return j + 2
+    # The designator Norris's preface says he sometimes omits — read only behind a
+    # direction and in front of a qualifier, which is what keeps a name out.
+    if j > i and j + 1 < len(toks) and _bare(toks[j + 1]) in STREET_QUALIFIER:
+        return j + 1
+    return 0
+
+
+def place_opens_at(toks, i: int) -> bool:
+    if PLACE_OPENER.match(_bare(toks[i])) and i + 1 < len(toks) and (
+            _bp_capitalised(toks[i + 1]) or _bare(toks[i + 1]) == "of"):
+        return True
+    s = toks[i].strip(".,;:'\"()")
+    if HOUSE_NUMBER.fullmatch(s) and i + 1 < len(toks) and _bp_capitalised(toks[i + 1]):
+        return True
+    end = street_at(toks, i)
+    return bool(end) and after_street(toks, end)
+
+
+def split_place_of_business(occupation):
+    """(trade, place_of_business) — the place read out of the trade line, or None."""
+    if not PLACE_OF_BUSINESS_RULE or not occupation:
+        return occupation, None
+    toks = occupation.split()
+    for i in range(len(toks)):
+        if i and not _comma_closed(toks[i - 1]):
+            continue
+        if not place_opens_at(toks, i):
+            continue
+        for k in range(i):
+            end = street_at(toks, k)
+            if end and end <= i and after_street(toks, end) and all(
+                    _bare(t) in PLACE_PARTICLE or _capitalised(t) or not _bare(t)
+                    or _bare(t)[:1].isdigit() or DESIGNATOR.match(_bare(t))
+                    or DIRECTION.match(_bare(t)) for t in toks[end:i]):
+                i = k
+                break
+        return (" ".join(toks[:i]).strip(" ,.") or None,
+                " ".join(toks[i:]).strip(" ,.") or None)
+    return occupation, None
 
 # FIRM OR PERSON IS DECIDED ON THE LEADING TOKENS, NOT ON THE FIRST COMMA (T-1013).
 #
@@ -759,14 +998,20 @@ def split_entry(text: str):
         address = (tail[m.start():] if m else "").strip(" ,.")
     else:
         printed = surname + (", " + given_s if given_s else "")
+    # T-1114. The place of business stands inside the trade line, because Norris prints
+    # no mark in front of it; it is read out into its own field and never into address.
+    trade, place_of_business = split_place_of_business(occupation or None)
     out = {
         "printed_name": printed,
         "surname": None if firm else surname,
         "given": None if firm else (given_s or None),
         "firm": firm,
-        "occupation": occupation or None,
+        "occupation": trade,
         "address": address or None,
     }
+    if place_of_business:
+        out["place_of_business"] = place_of_business
+        out["place_of_business_note"] = PLACE_OF_BUSINESS_NOTE
     if head_repair:
         out["head_repair"] = head_repair
     if surname_repair:
@@ -1875,7 +2120,9 @@ def payload(claims):
                    "given_repairs": sum(1 for c in claims
                                         if "given_repair" in c["normalized"]),
                    "address_refusals": sum(1 for c in claims
-                                           if "address_refused" in c["normalized"])},
+                                           if "address_refused" in c["normalized"]),
+                   "places_of_business": sum(1 for c in claims
+                                          if "place_of_business" in c["normalized"])},
         "claims": claims,
     }
 
@@ -2138,7 +2385,9 @@ def self_test():
     # a rule proved on one entry and broken everywhere else reads green.
     SPLIT_CASES = {
         # the printed comma closes the name
-        "n1844_e0098": ("Morris", "Illinois street"),
+        # …its trade is empty since T-1114 moved the street into place_of_business, so
+        # the street it was asserted on is asserted there instead, just below.
+        "n1844_e0098": ("Morris", None),
         "n1844_e0791": ("Abraham", "Methodist clergymen"),
         # …and the comma set with no space after it is the same comma
         "n1844_e0367": ("T. B", "soap and oil factory"),
@@ -2163,6 +2412,12 @@ def self_test():
         if occupation is not None and got.get("occupation") != occupation:
             fired.append("%s reads a trade of %r, not %r — the split moved"
                          % (cid, got.get("occupation"), occupation))
+    if (by_id.get("n1844_e0098", {}).get("normalized", {}).get("place_of_business")
+            != "Illinois street, b Dearborn and Wolcott sts"):
+        fired.append("n1844_e0098 reads a place of business of %r — the printed comma "
+                     "that closes the name, or the place cut, moved"
+                     % (by_id.get("n1844_e0098", {}).get("normalized", {})
+                        .get("place_of_business")))
     for c in claims:
         n = c["normalized"]
         if re.match(r"^[A-Z]\.?\s", n.get("address") or ""):
@@ -2233,6 +2488,74 @@ def self_test():
                          "rule changed a reading for some reason other than the "
                          "defect, and that is a trade, not a repair" % (c["id"], was[:32]))
 
+    # T-1114. `b` IS BETWEEN — PRICED THE SAME WAY, by re-reading the whole volume with
+    # the superseded pattern and requiring every entry that moves to move for THIS
+    # defect: under the old rule its address began at a `b`, and under no other reading
+    # does one. The 11 that come out of it holding a residence are asserted separately,
+    # because they are the half of the repair a bare count cannot show.
+    kept = PLACE
+    try:
+        PLACE = PLACE_B_AS_PLACE
+        b_as_place = {c["id"]: c["normalized"] for c in build_claims()[0]}
+    finally:
+        PLACE = kept
+    b_moved = [c for c in claims
+               if (c["normalized"].get("occupation"), c["normalized"].get("address"))
+               != (b_as_place.get(c["id"], {}).get("occupation"),
+                   b_as_place.get(c["id"], {}).get("address"))]
+    if len(b_moved) != B_RULE_MOVES:
+        fired.append("the between rule moves %d entries, not the %d it is priced at — "
+                     "re-measure it and rewrite the band above PLACE_B_AS_PLACE rather "
+                     "than editing this number to pass" % (len(b_moved), B_RULE_MOVES))
+    for c in b_moved:
+        was = b_as_place.get(c["id"], {}).get("address") or ""
+        if not re.match(r"^b\b", was):
+            fired.append("%s moves under the between rule and its old address was %r, "
+                         "which does not begin at a `b` — the rule changed a reading "
+                         "for some reason other than the defect" % (c["id"], was[:32]))
+    recovered = [c for c in b_moved if c["normalized"].get("address")]
+    if len(recovered) != B_RULE_RECOVERS_ADDRESS:
+        fired.append("%d of the moved entries keep an address, not the %d priced — the "
+                     "residences the old cut buried are the point of the repair"
+                     % (len(recovered), B_RULE_RECOVERS_ADDRESS))
+    for c in recovered:
+        if not PLACE.match((c["normalized"]["address"] + " ")):
+            fired.append("%s keeps an address of %r, which does not open at one of "
+                         "Norris's own place marks" % (c["id"], c["normalized"]["address"]))
+
+    # T-1114. THE PLACE OF BUSINESS, PRICED WITH THE RULE OFF. It reads the trade line
+    # and nothing else, so the one thing that must not move is `address`: a business
+    # street reaching a residence field is the provenance defect T-1113 refused five
+    # entries to prevent, and it would be invisible downstream.
+    global PLACE_OF_BUSINESS_RULE
+    PLACE_OF_BUSINESS_RULE = False
+    try:
+        no_place = {c["id"]: c["normalized"] for c in build_claims()[0]}
+    finally:
+        PLACE_OF_BUSINESS_RULE = True
+    carried = [c for c in claims if c["normalized"].get("place_of_business")]
+    if len(carried) != PLACE_OF_BUSINESS_ENTRIES:
+        fired.append("%d entries carry a place of business, not the %d priced — re-measure "
+                     "it and rewrite the band above PLACE_OF_BUSINESS_RULE rather than "
+                     "editing this number to pass"
+                     % (len(carried), PLACE_OF_BUSINESS_ENTRIES))
+    for c in claims:
+        n, was = c["normalized"], no_place.get(c["id"], {})
+        if n.get("address") != was.get("address"):
+            fired.append("%s changes its address when the place-of-business rule is on — "
+                         "the rule reads the trade line and may not touch a residence"
+                         % c["id"])
+        letters = lambda t: re.sub(r"[^0-9A-Za-z]", "", t or "")
+        joined = letters(n.get("occupation")) + letters(n.get("place_of_business"))
+        if n.get("place_of_business") and joined != letters(was.get("occupation")):
+            fired.append("%s loses text at the place cut: %r + %r is not the trade line "
+                         "%r it was read from" % (c["id"], n.get("occupation"),
+                                                  n.get("place_of_business"),
+                                                  was.get("occupation")))
+        if n.get("place_of_business") and not n.get("place_of_business_note"):
+            fired.append("%s carries a place of business with no note saying it is not a "
+                         "residence" % c["id"])
+
     # T-1113. THE STREET RULE IS PRICED THE SAME WAY — re-read with it off, and every
     # entry that moves must have had a street inside its forename. The named readings
     # are asserted too, because a price with nothing behind it only says a number
@@ -2243,7 +2566,8 @@ def self_test():
         no_street = {c["id"]: c["normalized"] for c in build_claims()[0]}
     finally:
         STREET_RULE = True
-    shape = lambda n: (n.get("given"), n.get("occupation"), n.get("address"))
+    shape = lambda n: (n.get("given"), n.get("occupation"), n.get("place_of_business"),
+                       n.get("address"))
     street_moved = [c for c in claims
                     if shape(c["normalized"]) != shape(no_street.get(c["id"], {}))]
     if sorted(c["id"] for c in street_moved) != sorted(STREET_IN_FORENAME):
@@ -2262,20 +2586,20 @@ def self_test():
                          "at %r, which the printed line does not follow with a street "
                          "designator — the rule changed a reading for some reason "
                          "other than the defect" % (c["id"], was))
-    for cid, (given, occupation, address) in STREET_IN_FORENAME.items():
+    for cid, (given, occupation, place, address) in STREET_IN_FORENAME.items():
         c = by_id.get(cid)
         if c is None:
             fired.append("%s is named in STREET_IN_FORENAME and is not in the reading"
                          % cid)
             continue
         got = c["normalized"]
-        if (got.get("given"), got.get("occupation"), got.get("address")) != (
-                given, occupation, address):
-            fired.append("%s reads given=%r trade=%r address=%r, not %r/%r/%r — the "
-                         "street rule moved" % (cid, got.get("given"),
-                                                got.get("occupation"),
-                                                got.get("address"), given,
-                                                occupation, address))
+        if (got.get("given"), got.get("occupation"), got.get("place_of_business"),
+                got.get("address")) != (given, occupation, place, address):
+            fired.append("%s reads given=%r trade=%r place=%r address=%r, not "
+                         "%r/%r/%r/%r — the street rule moved"
+                         % (cid, got.get("given"), got.get("occupation"),
+                            got.get("place_of_business"), got.get("address"),
+                            given, occupation, place, address))
     # …and the refusals hold. A refusal that quietly starts landing an address is the
     # provenance defect the band exists to prevent, so it fails the build.
     STREET_TAIL = re.compile(r"\b(?:st|street|sts|streets|avenue|av)\b\.?", re.I)
@@ -2291,8 +2615,8 @@ def self_test():
                          % (cid, got["address"], why))
         if (got.get("address_refused") or {}).get("class") != cls:
             fired.append("%s does not carry its refusal on the claim" % cid)
-        if cls != "printed_line_short" and not STREET_TAIL.search(got.get("occupation")
-                                                                 or ""):
+        if cls != "printed_line_short" and not STREET_TAIL.search(
+                "%s %s" % (got.get("occupation") or "", got.get("place_of_business") or "")):
             fired.append("%s is refused because its street belongs to a firm, and its "
                          "trade line no longer prints a street at all — the refusal is "
                          "answering a line that moved" % cid)
@@ -2313,6 +2637,13 @@ def self_test():
     print("norris 1844 --self-test: the case rule re-read against the whole volume — "
           "%d of %d entries move and every one of them had a case-blind address "
           "beginning at a one-letter initial" % (CASE_RULE_MOVES, len(claims)))
+    print("norris 1844 --self-test: the between rule re-read against the whole volume — "
+          "%d entries move, every one of them had an address beginning at a `b`, and "
+          "%d of them recover the residence the old cut had buried"
+          % (B_RULE_MOVES, B_RULE_RECOVERS_ADDRESS))
+    print("norris 1844 --self-test: %d entries carry a place of business read out of the "
+          "trade line, none of them moves an address, and every one says on the claim "
+          "that it is not a residence" % PLACE_OF_BUSINESS_ENTRIES)
     print("norris 1844 --self-test: %d surnames read off the page image on their own "
           "word box, %d of them carrying the name separator away with them; %d places the second hand is "
           "wrong and the committed reading stands"

@@ -140,6 +140,13 @@ def main():
                 "as_printed": h["normalized"]["as_printed"],
                 "printed_page": h["locator"]["printed_page"],
                 "occupation_1844": h["normalized"]["occupation"],
+                # T-1114. The place the trade is carried on, which Norris prints inside
+                # the trade line and marks with nothing. It is carried here so the entry
+                # row still says where the man traded now that `occupation_1844` is the
+                # trade alone — and it is NOT offered in `could_carry`: spending a place
+                # of business onto an 1835 card is the spend layer's ruling to make, not
+                # this crosswalk's, and `address` on a card is a residence.
+                "place_of_business_1844": h["normalized"].get("place_of_business"),
                 "address_1844": h["normalized"]["address"],
             }
         # T-1038. THE CARD IS AN INITIAL THE LETTER LIST PRINTS TWICE. Refused
