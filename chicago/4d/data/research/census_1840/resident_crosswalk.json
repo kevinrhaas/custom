@@ -147,7 +147,7 @@
     "pool_names_reached": {
       "supplied_letters": {
         "census_1835_bridge_candidates": 40,
-        "newspapers": 211,
+        "newspapers": 218,
         "residents": 7
       },
       "surname_first": {
@@ -174,7 +174,7 @@
       "what": "residents layer, persons",
       "path": "data/residents/households/",
       "available": true,
-      "n": 1295
+      "n": 1308
     },
     {
       "what": "voter, poll and tax list entries (T-0493)",
@@ -186,7 +186,7 @@
       "what": "letter-list and newspaper persons",
       "path": "data/research/newspapers/gazetteer.json",
       "available": true,
-      "n": 2665
+      "n": 2685
     },
     {
       "what": "recovered v1 workbook bridge rows",
@@ -198,7 +198,7 @@
       "what": "Fergus 1843 and Norris 1844 directory adjudications — the independent discriminator",
       "path": "data/research/directories/",
       "available": true,
-      "n": 138
+      "n": 151
     },
     {
       "what": "the 1839 Chicago directory",
@@ -215,8 +215,8 @@
   ],
   "counts": {
     "named_heads": 965,
-    "matched": 13,
-    "candidate": 18,
+    "matched": 15,
+    "candidate": 16,
     "refused": 934
   },
   "counts_by_rule": {
@@ -225,10 +225,10 @@
     "L3 given_name_conflict": 194,
     "L4 initial_only": 72,
     "L5 name_is_not_unique": 8,
-    "L6 matched": 13,
-    "L6a low_confidence_caps_at_candidate": 5,
+    "L6 matched": 15,
+    "L6a low_confidence_caps_at_candidate": 6,
     "L6b reached_through_a_card_merge_caps_at_candidate": 1,
-    "L7 candidate": 12
+    "L7 candidate": 9
   },
   "printed_pages_read_here": [
     207,
@@ -651,7 +651,7 @@
       ],
       "outcomes": [
         "candidate",
-        "candidate"
+        "matched"
       ],
       "says": "The enumerator wrote Byram King and Samuel C. Jackson on consecutive lines on printed page 207. An 1840 enumerator walked a route, so lines that are adjacent were dwellings that were near each other IN 1840.",
       "what_it_does_not_say": "nothing about where either household stood in 1835, and nothing that may place a structure. Five years separate this order from the scene, and neither head is placed on the 1840 ground either."
@@ -674,7 +674,7 @@
         "chandler_joseph"
       ],
       "outcomes": [
-        "candidate",
+        "matched",
         "candidate"
       ],
       "says": "The enumerator wrote Samuel C. Jackson and Joseph M. Chandler on consecutive lines on printed page 207. An 1840 enumerator walked a route, so lines that are adjacent were dwellings that were near each other IN 1840.",
@@ -3386,11 +3386,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'B. S. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'B. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "sherman_h",
         "sherman_rebecca",
-        "sherman_silas_w"
+        "sherman_silas_w",
+        "sherman_william_george"
       ]
     },
     {
@@ -4576,9 +4577,10 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'thomas'.",
+      "reason": "The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'thomas'.",
       "surname_bearers_1835": [
         "clarke_h_b",
+        "clarke_l",
         "clarke_w_b"
       ]
     },
@@ -5317,9 +5319,10 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'samuel'.",
+      "reason": "The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'samuel'.",
       "surname_bearers_1835": [
         "clarke_h_b",
+        "clarke_l",
         "clarke_w_b"
       ]
     },
@@ -5981,11 +5984,23 @@
           "entry_carries_an_address": true,
           "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
           "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        },
+        {
+          "kind": "directory_persistence",
+          "year": 1843,
+          "source_id": "fergus_chicago_directory_1843",
+          "entries": [
+            "Johnson, Capt. Seth, deputy-collector and inspector Port of Chicago. res s.-w. cor Washington and LaSalle"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
         }
       ],
       "outcome": "candidate",
       "rule": "L6a low_confidence_caps_at_candidate",
-      "reason": "Full forename and surname agree (Seth Johnson = Seth Johnson), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name. The identity would hold, but the reader graded THIS name `low`, and a spelling that is not firm may not be asserted as an identity. Re-reading line 7 of 33S7-9YYJ-B3 is what promotes it.",
+      "reason": "Full forename and surname agree (Seth Johnson = Seth Johnson), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name. The identity would hold, but the reader graded THIS name `low`, and a spelling that is not firm may not be asserted as an identity. Re-reading line 7 of 33S7-9YYJ-B3 is what promotes it.",
       "would_be_matched_on_a_firmer_read": true
     },
     {
@@ -6692,7 +6707,7 @@
         "king_byram",
         "king_byron",
         "king_hyram",
-        "king_john_lyle",
+        "king_j_d",
         "king_nehemiah",
         "king_sherman",
         "king_tuthill"
@@ -7126,10 +7141,57 @@
       "resident_name": "Charles H. Taylor",
       "resident_grade_1835": "attested",
       "via_card_merge": null,
-      "discriminators": [],
-      "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Chas Taylor = Charles H. Taylor) and the name is unique on both sides, but nothing independent of the name was found: taylor_charles carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 8 1835 list(s), which is the same name again and does not discriminate."
+      "discriminators": [
+        {
+          "kind": "directory_persistence",
+          "year": 1844,
+          "source_id": "norris_directory_1844",
+          "entries": [
+            "Taylor, Charles H. currier, at Johonnett, Wells, & Co.'s"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": false,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        },
+        {
+          "kind": "directory_persistence",
+          "year": 1843,
+          "source_id": "fergus_chicago_directory_1843",
+          "entries": [
+            "Taylor, Charles H., currier, Johonnett, Wells & Co."
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": false,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        }
+      ],
+      "outcome": "matched",
+      "rule": "L6 matched",
+      "reason": "Full forename and surname agree (Chas Taylor = Charles H. Taylor), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "proposed_later_census": {
+        "year": 1840,
+        "source_id": "census_1840_chicago_familysearch_images",
+        "serial": null,
+        "serial_note": "no IPUMS serial is asserted: the page-to-serial fingerprint is T-0504 and is not landed. The head is located by image, printed page and line, which is what this project read.",
+        "head_name_transcribed": "Chas Taylor",
+        "head_name_normalized": "Chas Taylor",
+        "name_confidence": "high",
+        "identity_confidence": "provisional",
+        "bridge_status": "proposed",
+        "serial_mapping_confidence": null,
+        "census_page": 224,
+        "census_row": 13,
+        "source_image": "chicago/reference/census1840/33S7-9YYJ-JM.jpg",
+        "source_kind": "1840 left image, read line by line in this repo",
+        "household": {
+          "persons_columns_read": 0,
+          "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
+        },
+        "bridge_basis": "Full forename and surname agree (Chas Taylor = Charles H. Taylor), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+        "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
+      }
     },
     {
       "familysearch_id": "33S7-9YYJ-JM",
@@ -7197,11 +7259,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'J. S. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'J. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "sherman_h",
         "sherman_rebecca",
-        "sherman_silas_w"
+        "sherman_silas_w",
+        "sherman_william_george"
       ]
     },
     {
@@ -8551,9 +8614,10 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'S. M. Clarke' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'clarke'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'S. M. Clarke' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'clarke'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "clarke_h_b",
+        "clarke_l",
         "clarke_w_b"
       ]
     },
@@ -10185,6 +10249,14 @@
         },
         {
           "pool": "newspapers",
+          "id": "person_jno_h_kinzie",
+          "name": "Jno. H. Kinzie",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
+        },
+        {
+          "pool": "newspapers",
           "id": "person_john_h_kinzie",
           "name": "John H. Kinzie",
           "source_ids": [
@@ -10815,9 +10887,10 @@
       ],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'john'.",
+      "reason": "The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'john'.",
       "surname_bearers_1835": [
         "clarke_h_b",
+        "clarke_l",
         "clarke_w_b"
       ]
     },
@@ -11528,10 +11601,45 @@
       "resident_name": "Samuel Jackson",
       "resident_grade_1835": "attested",
       "via_card_merge": null,
-      "discriminators": [],
-      "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Samuel C. Jackson = Samuel Jackson) and the name is unique on both sides, but nothing independent of the name was found: jackson_samuel carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 5 1835 list(s), which is the same name again and does not discriminate."
+      "discriminators": [
+        {
+          "kind": "directory_persistence",
+          "year": 1844,
+          "source_id": "norris_directory_1844",
+          "entries": [
+            "Jackson, Samuel, overseer of harbor, res Fort Dearborn"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        }
+      ],
+      "outcome": "matched",
+      "rule": "L6 matched",
+      "reason": "Full forename and surname agree (Samuel C. Jackson = Samuel Jackson), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "proposed_later_census": {
+        "year": 1840,
+        "source_id": "census_1840_chicago_familysearch_images",
+        "serial": null,
+        "serial_note": "no IPUMS serial is asserted: the page-to-serial fingerprint is T-0504 and is not landed. The head is located by image, printed page and line, which is what this project read.",
+        "head_name_transcribed": "Samuel [C]. Jackson",
+        "head_name_normalized": "Samuel C. Jackson",
+        "name_confidence": "medium",
+        "identity_confidence": "provisional",
+        "bridge_status": "proposed",
+        "serial_mapping_confidence": null,
+        "census_page": 207,
+        "census_row": 5,
+        "source_image": "chicago/reference/census1840/33SQ-GYYJ-93G.jpg",
+        "source_kind": "1840 left image, read line by line in this repo",
+        "household": {
+          "persons_columns_read": 0,
+          "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
+        },
+        "bridge_basis": "Full forename and surname agree (Samuel C. Jackson = Samuel Jackson), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+        "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
+      }
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",
@@ -12369,6 +12477,18 @@
       "discriminators": [
         {
           "kind": "directory_persistence",
+          "year": 1844,
+          "source_id": "norris_directory_1844",
+          "entries": [
+            "* '.ilhoun, John, printer, house State st. b Wash and Madison sts"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        },
+        {
+          "kind": "directory_persistence",
           "year": 1843,
           "source_id": "fergus_chicago_directory_1843",
           "entries": [
@@ -12382,7 +12502,7 @@
       ],
       "outcome": "matched",
       "rule": "L6 matched",
-      "reason": "Full forename and surname agree (John Calhoun = John Calhoun), the name is unique on both sides, and the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "reason": "Full forename and surname agree (John Calhoun = John Calhoun), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
       "proposed_later_census": {
         "year": 1840,
         "source_id": "census_1840_chicago_familysearch_images",
@@ -12402,7 +12522,7 @@
           "persons_columns_read": 0,
           "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
         },
-        "bridge_basis": "Full forename and surname agree (John Calhoun = John Calhoun), the name is unique on both sides, and the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+        "bridge_basis": "Full forename and surname agree (John Calhoun = John Calhoun), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
         "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
       }
     },
@@ -12676,11 +12796,23 @@
           "entry_carries_an_address": true,
           "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
           "why": "the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        },
+        {
+          "kind": "directory_persistence",
+          "year": 1843,
+          "source_id": "fergus_chicago_directory_1843",
+          "entries": [
+            "Couch, Ira, proprietor Tremont House, s.e. cor Lake and Dearborn [died, Cuba, February 28, 1857, aged 50¼]"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
         }
       ],
       "outcome": "matched",
       "rule": "L6 matched",
-      "reason": "Full forename and surname agree (Ira Couch = Ira Couch), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "reason": "Full forename and surname agree (Ira Couch = Ira Couch), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
       "proposed_later_census": {
         "year": 1840,
         "source_id": "census_1840_chicago_familysearch_images",
@@ -12700,7 +12832,7 @@
           "persons_columns_read": 0,
           "note": "the left sheet's age/sex columns as read; the TOTAL and the employment columns sit on the paired continuation sheet, which T-0528 and T-0539 pair. No household count is asserted here."
         },
-        "bridge_basis": "Full forename and surname agree (Ira Couch = Ira Couch), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+        "bridge_basis": "Full forename and surname agree (Ira Couch = Ira Couch), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
         "note": "LATER EVIDENCE, NOT A BACK-PROJECTION. This is the 1840 federal census household, five years after the 1835-07-01 scene; its household composition is not asserted for 1835 without separate evidence. PROPOSED ONLY — T-0515 applies bridges."
       }
     },
@@ -13542,10 +13674,36 @@
       "resident_name": "William H Brown",
       "resident_grade_1835": "attested",
       "via_card_merge": null,
-      "discriminators": [],
+      "discriminators": [
+        {
+          "kind": "directory_persistence",
+          "year": 1844,
+          "source_id": "norris_directory_1844",
+          "entries": [
+            "Brown, William H. attorney, office Bank Building, res cor Illinois and P<ne sts"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        },
+        {
+          "kind": "directory_persistence",
+          "year": 1843,
+          "source_id": "fergus_chicago_directory_1843",
+          "entries": [
+            "Brown, William Hubbard, [cashier], 8 LaSalle, (A. G. Burley & Co.), res 301 Illinois, n.-w. cor Pine, school agent [died, Amsterdam, Holland, June 19, 1867, aged 72.]"
+          ],
+          "forename_written_out_in_the_entry": true,
+          "entry_carries_an_address": true,
+          "underlying_adjudication_strength": "the directory crosswalk's own matching rule is surname plus first given initial, so the LINK from the person to this entry is that strong and no stronger. What it supplies here is independent of the 1840 name either way: a person in Chicago after 1840.",
+          "why": "the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name."
+        }
+      ],
       "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (William Brown = William H Brown) and the name is unique on both sides, but nothing independent of the name was found: brown_william_h carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 6 1835 list(s), which is the same name again and does not discriminate."
+      "rule": "L6a low_confidence_caps_at_candidate",
+      "reason": "Full forename and surname agree (William Brown = William H Brown), the name is unique on both sides, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name. The identity would hold, but the reader graded THIS name `low`, and a spelling that is not firm may not be asserted as an identity. Re-reading line 24 of 33SQ-GYYJ-992 is what promotes it.",
+      "would_be_matched_on_a_firmer_read": true
     },
     {
       "familysearch_id": "33SQ-GYYJ-992",
@@ -16253,7 +16411,7 @@
         "king_byram",
         "king_byron",
         "king_hyram",
-        "king_john_lyle",
+        "king_j_d",
         "king_nehemiah",
         "king_sherman",
         "king_tuthill"
@@ -16589,11 +16747,12 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'F. C. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'F. C. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "sherman_h",
         "sherman_rebecca",
-        "sherman_silas_w"
+        "sherman_silas_w",
+        "sherman_william_george"
       ]
     },
     {

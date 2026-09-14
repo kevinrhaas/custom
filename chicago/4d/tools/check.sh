@@ -2563,6 +2563,19 @@ selftest "the printed-twice fold's own assertions still fire when broken" \
 selftest "…and the tie discriminator's do too" \
   python3 tools/tiebreak.py --self-test
 
+# T-0987 stretch 14. THE FOURTH RULE MODULE, and the one that reads the part of the
+# name the other three stop before: the crosswalks key on surname plus FIRST INITIAL,
+# so everything the compositor set after that letter was committed and never weighed.
+# It is gated here for the same reason its three siblings are — the whole of its
+# authority is the ranking (a spelling outranks an initial, or `Heacock, jr., R. E.`
+# takes his father's entry), the word-count test (fire on what a reading says, never on
+# what it omits), and three refusals that each cost more than they gave: a wife is not
+# her husband, a son is not his father, and a page setting fewer words than a reading
+# separates no two readings. Loosen any one of them and all four crosswalks re-derive
+# quietly, with a match on the face of them and a wrong man underneath.
+selftest "the whole-printed-name rule's own assertions still fire when broken" \
+  python3 tools/named_by_the_page.py --self-test
+
 # T-1038. THE THIRD RULE MODULE, and the one that answers a question the other two
 # cannot ask: is the 1835 person a PERSON at all, or the one card the letter-list
 # mint pass was allowed to seat over a surname the post office printed twice? An
@@ -3097,6 +3110,23 @@ step "St. Cyr's register reads 128 marriages against the article's own 22+18+87+
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_st_cyr_register.py --self-test
+
+# T-0503, gated by T-1110. The same priest's BAPTISMAL register, read off the eleven
+# deposited page images — the only primary record this project holds that names a family
+# together. Three assertions ride on this one `--check`: the book's own pencil tally for
+# each year (19 + 24 + 14) against the entries read, so a lost or invented entry shows;
+# every declared image reached and no image reached that the deposit does not hold; and
+# the three emitted JSONs still being exactly what the table in the tool says.
+#
+# WHY IT WAS NOT GATED UNTIL NOW, because the answer is the point. The crosswalk has a
+# SECOND input — data/residents/ — and that layer grew from 849 people to 1,308 after the
+# pass was written, so the committed file stopped matching a rebuild without anybody
+# touching either it or the tool. T-1110 read the diff, named the cause as staleness
+# rather than a hand edit, and rebuilt. This step is what stops it happening silently
+# again: the town gaining a resident now fails HERE, in the commit that adds them, and
+# the answer is `--build` in that same commit.
+step "the St Mary's baptismal register still rebuilds, tallies and all" \
+  python3 tools/read_st_marys_baptisms.py --check
 
 # T-0583. The 1842-1892 roll of the Second Presbyterian Church of Chicago — the work
 # fifty-four Newberry index cards cite and this project did not hold. Two things are

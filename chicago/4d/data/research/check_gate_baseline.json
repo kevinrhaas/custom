@@ -48,12 +48,6 @@
       "owner_ticket": "T-0856"
     },
     {
-      "tool": "tools/read_st_marys_baptisms.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1110. `--check` fails: st_marys_baptisms_crosswalk.json is not what the tool rebuilds. Gate it in the commit that makes it green.",
-      "owner_ticket": "T-1110"
-    },
-    {
       "tool": "tools/rename_household_ids.py",
       "other_modes_in_check_sh": [],
       "why_not_gated": "A spent one-shot. `--check` exits 2 refusing: no household carries a legacy hh_doc_/hh_placed_/hh_ll_ prefix any more, so the migration is done and there is no committed file left for it to re-derive. Retire the mode, or the tool, rather than gate it."

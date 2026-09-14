@@ -96,20 +96,20 @@
     },
     {
       "id": "L218",
-      "title": "Seventeen businesses stand on a street a directory printed after 1835",
+      "title": "Eighteen businesses stand on a street a directory printed after 1835",
       "section": "standing",
       "subjects": [],
       "covers": [],
       "scope": {
         "enumeration": "address_back_projection.positions[placed]",
-        "count": 17
+        "count": 18
       },
       "recorded": "2026-09-04",
       "revised": null,
       "fields": [
         {
           "label": "Scope",
-          "text": "`address_back_projection.positions[placed]` — 17 businesses"
+          "text": "`address_back_projection.positions[placed]` — 18 businesses"
         },
         {
           "label": "Decision",
@@ -121,11 +121,11 @@
         },
         {
           "label": "Consequence",
-          "text": "Chicago roughly quadrupled between 1835 and 1844, re-platted its river frontage and numbered its streets for the first time. Seventeen businesses therefore stand on a face on the authority of a volume printed four to nine years after the scene, and nine of those years are the widest gap in the set. Two are anchored on a crossing the directory names, one stands on a corner the volume prints, and the other fourteen have no point at all. A reader who thinks that is too far to carry a shop is reading the `reconstructed` chip exactly as intended."
+          "text": "Chicago roughly quadrupled between 1835 and 1844, re-platted its river frontage and numbered its streets for the first time. Eighteen businesses therefore stand on a face on the authority of a volume printed four to nine years after the scene, and nine of those years are the widest gap in the set. Two are anchored on a crossing the directory names, one stands on a corner the volume prints, and the other fifteen have no point at all. A reader who thinks that is too far to carry a shop is reading the `reconstructed` chip exactly as intended."
         },
         {
           "label": "What is NOT claimed, and this is the load-bearing half",
-          "text": "no lot, no roof, no door count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says dealing a business to one roof on a face is an allocation and not a reading; stacking that allocation on an address already read back would be two inventions under one chip. The refusals and stand-offs are on the record beside the seventeen, so the arithmetic is visible and not just the successes."
+          "text": "no lot, no roof, no door count, and **no `lives_at` or `works_at`**. `docs/STREET-FACE-ADOPTION.md` limit 3 says dealing a business to one roof on a face is an allocation and not a reading; stacking that allocation on an address already read back would be two inventions under one chip. The refusals and stand-offs are on the record beside the eighteen, so the arithmetic is visible and not just the successes."
         },
         {
           "label": "Where it reaches a reader",
@@ -154,6 +154,10 @@
         {
           "label": "Restated",
           "text": "2026-09-12 (T-0987 stretch 9), from eighteen to seventeen, and the loss is the whole point of the stretch. Until this date the surname-plus-initial rule compared the FIRST initial of a name and stopped, so a middle initial both readings print had never been weighed at all. **H. B. Clarke**, hardware merchant, stood on Clark Street on the authority of `Clarke, Henry Wilcox, attorney at law, 36 Clark, bds Mrs. Post` — a lawyer, whose middle initial the volume prints and prints differently. The stretch refuses that match, the face goes with it, and the one 1844 line that does name H. B. Clarke puts him on the lake shore below Michigan Avenue, ground the 1835 grid does not reach. Seventeen is therefore a truer eighteen: no placement was invented to hold the count, and the prose above that reasons from the number — two anchored on a crossing, one on a corner — now reads two, one and fourteen. Thirty-two matches across four volumes were withdrawn on the same clause and this is the only one that had reached the ground."
+        },
+        {
+          "label": "Restated",
+          "text": "2026-09-13 (T-0987 stretch 14), from seventeen to eighteen, and the gain is one man the tie pool had been holding for four stretches. **John S. Wright** — founder of the Prairie Farmer — reaches North Water Street off `Wright, John S., forwarding commission merchant, N. Water st`, carried four years, the narrowest gap in the set. He had stood in Fergus 1839's ambiguous pool against `Wright, John, Michigan ave. cor. Madison st` because the matching rule reads the first initial of a name and nothing after it, so the S the compositor set for one entry and not the other had never been weighed on this axis. `tools/named_by_the_ page.py` weighs it: the page sets `John S.` in two words and exactly one of the two entries is that name word for word. The town's bare **John Wright** takes the Michigan Avenue entry by the same clause, which is why the stretch adds one face rather than moving one. Nothing was regraded and no placement was invented; the prose above that reasons from the number — two anchored on a crossing, one on a corner — now reads two, one and fifteen."
         }
       ]
     },
