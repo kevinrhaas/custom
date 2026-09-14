@@ -150,7 +150,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
 # --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
 
-T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
 T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
 
 # --- ==========================================================================
