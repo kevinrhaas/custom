@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The auction\u2019s fourth-largest buyer was a visitor from New York', kind: 'fix', ts: '',
+  { v: 869, title: 'The auction\u2019s fourth-largest buyer was a visitor from New York', kind: 'fix', ts: '2026-09-14T14:51:47.212Z', date: 'Sep 14, 2026, 9:51 AM CT',
     items: [
       'A man who buys ground in a town is not thereby a man who lives in it. That sentence is now the town\u2019s rule, decided a few entries ago, and this is the one card that had been leaning on the opposite of it.',
       'Arthur Bronson entered thirteen blocks at the school-section auction of October 1833, and eight more rows under the register\u2019s own misspelling BROSON \u2014 the fourth-largest hand of the whole sale. The judgement that says which Bronson those rows belong to had argued, among its reasons, that \u201Ca town assessing a man and an auction of the town\u2019s own school section are the same twelve months and the same ground\u201D. That reads a purchase as evidence of being there, and a town taxes a non-resident on the ground he holds in it as readily as it taxes anybody else.',
