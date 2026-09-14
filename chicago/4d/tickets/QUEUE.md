@@ -299,4 +299,4 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
 T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
-T-1117 — Arthur Bronson's card says present on the scene, inferred from a tax list, for a man the town's own historians call a visitor from New York
+T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
