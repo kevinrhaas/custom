@@ -15,14 +15,14 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 1293,
-  "matched_one_card": 18,
+  "residents_considered": 1304,
+  "matched_one_card": 17,
   "matched_more_than_one_ambiguous": 3,
-  "one_printed_proprietor_contested_by_two_residents": 8,
-  "surname_present_initial_absent_refused": 124,
+  "one_printed_proprietor_contested_by_two_residents": 10,
+  "surname_present_initial_absent_refused": 125,
   "letter_list_bucket_refused": 1,
   "residents_that_refusal_reaches": 1,
-  "ties_offered_the_trade_discriminator": 11,
+  "ties_offered_the_trade_discriminator": 13,
   "ties_narrowed_by_a_trade": 0,
   "of_those_contested": 0,
   "of_those_ambiguous": 0,
@@ -126,29 +126,6 @@
      "trade_1844": "general dealers in dry goods, groceries, lumber and produce; cash paid for wheat",
      "address_1844": "South Water street, between Clark and Dearborn streets",
      "printed_page": 90
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
-  },
-  {
-   "resident": "Charles Loomis Harmon",
-   "person_id": "harmon_charles_l",
-   "household_id": "hh_harmon_brothers",
-   "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": "harmon_loomis_store",
-   "rule": "Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C.",
-   "cards_1844": [
-    {
-     "claim": "n1844_ad0071",
-     "proprietor_as_printed": "C. L. Harmon",
-     "firm": "C. L. Harmon",
-     "trade_1844": "commission merchant and wholesale grocer",
-     "address_1844": "corner South Water and Clark streets",
-     "printed_page": 94
     }
    ],
    "could_carry": [],
@@ -487,6 +464,52 @@
  "discriminated": [],
  "contested": [
   {
+   "resident": "C L Harmon",
+   "person_id": "harmon_c_l",
+   "household_id": "hh_harmon_c_l",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the printed name 'C. L. Harmon' on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0071",
+     "proprietor_as_printed": "C. L. Harmon",
+     "firm": "C. L. Harmon",
+     "trade_1844": "commission merchant and wholesale grocer",
+     "address_1844": "corner South Water and Clark streets",
+     "printed_page": 94
+    }
+   ],
+   "could_carry": [
+    "trade",
+    "place_of_business"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "Charles Loomis Harmon"
+   ],
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "harmon_charles_l",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     },
+     {
+      "key": "harmon_c_l",
+      "agrees": false,
+      "why": "no trade on one side"
+     }
+    ]
+   }
+  },
+  {
    "resident": "Charles H. Taylor",
    "person_id": "taylor_charles",
    "household_id": "hh_taylor_anson",
@@ -523,6 +546,49 @@
      },
      {
       "key": "taylor_c",
+      "agrees": false,
+      "why": "no trade on one side"
+     }
+    ]
+   }
+  },
+  {
+   "resident": "Charles Loomis Harmon",
+   "person_id": "harmon_charles_l",
+   "household_id": "hh_harmon_brothers",
+   "grade_1835": "attested",
+   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": "harmon_loomis_store",
+   "rule": "Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the printed name 'C. L. Harmon' on that rule, and at most one of them is the man who paid for it. The match is not made.",
+   "cards_1844": [
+    {
+     "claim": "n1844_ad0071",
+     "proprietor_as_printed": "C. L. Harmon",
+     "firm": "C. L. Harmon",
+     "trade_1844": "commission merchant and wholesale grocer",
+     "address_1844": "corner South Water and Clark streets",
+     "printed_page": 94
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835.",
+   "contested_with": [
+    "C L Harmon"
+   ],
+   "discriminator": {
+    "kind": "trade",
+    "named": null,
+    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+    "sides": [
+     {
+      "key": "harmon_charles_l",
+      "agrees": false,
+      "why": "two trades that do not agree"
+     },
+     {
+      "key": "harmon_c_l",
       "agrees": false,
       "why": "no trade on one side"
      }
@@ -1820,6 +1886,13 @@
    "surname_on_a_card": "Newberry",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Newberry' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Walter Loomis Newberry'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "William George Sherman",
+   "person_id": "sherman_william_george",
+   "surname_on_a_card": "Sherman",
+   "cards_under_that_surname": 4,
+   "rule": "The surname 'Sherman' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William George Sherman'. A surname-only agreement is a refusal."
   },
   {
    "resident": "William H Brown",

@@ -17726,7 +17726,7 @@
    "layer": "residents",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v02_0690",
     "nbi_v02_0691",
@@ -17748,6 +17748,11 @@
      "rule": "exact surname"
     },
     {
+     "id": "harmon_c_l",
+     "name": "C L Harmon",
+     "rule": "exact surname"
+    },
+    {
      "id": "harmon_d",
      "name": "D Harmon",
      "rule": "exact surname"
@@ -17766,6 +17771,7 @@
    "person_ids": [
     "harmon_charles_l",
     "harmon_isaac_d",
+    "harmon_c_l",
     "harmon_d",
     "harmon_elijah_d",
     "harmon_m_d"
@@ -21201,7 +21207,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 1 of the 1 card(s) heading 'Kennicott' do name Chicago or Cook County and the heading is the surname of M H Kennicott; William H Kennicott exactly, but the index files every family of a surname under one heading and gives no forename, so 'Kennicott' against M H Kennicott; William H Kennicott is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
+   "reason": "Refused. 1 of the 1 card(s) heading 'Kennicott' do name Chicago or Cook County and the heading is the surname of M H Kennicott; W H Kennicott; William H Kennicott exactly, but the index files every family of a surname under one heading and gives no forename, so 'Kennicott' against M H Kennicott; W H Kennicott; William H Kennicott is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold.",
    "record_ids": [
     "nbi_v02_1520"
    ],
@@ -21212,6 +21218,11 @@
      "rule": "exact surname"
     },
     {
+     "id": "kennicott_w_h",
+     "name": "W H Kennicott",
+     "rule": "exact surname"
+    },
+    {
      "id": "kennicott_william_h",
      "name": "William H Kennicott",
      "rule": "exact surname"
@@ -21219,6 +21230,7 @@
    ],
    "person_ids": [
     "kennicott_m_h",
+    "kennicott_w_h",
     "kennicott_william_h"
    ],
    "works_cited": [],
@@ -34410,7 +34422,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against J Ambrose Wight; Amasa Wright; J Wright; J S Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v04_0402"
    ],
@@ -34428,6 +34440,11 @@
     {
      "id": "wright_j",
      "name": "J Wright",
+     "rule": "exact surname"
+    },
+    {
+     "id": "wright_j_s",
+     "name": "J S Wright",
      "rule": "exact surname"
     },
     {
@@ -34455,6 +34472,7 @@
     "wight_j_ambrose",
     "wright_amasa",
     "wright_j",
+    "wright_j_s",
     "wright_john",
     "wright_john_s",
     "wright_robert_c",
@@ -46855,10 +46873,10 @@
   {
    "record_id": "nbi_v02_0690",
    "a": "Harmon | Chicago, Iii. (Andreas, A. T.) 1384-6, 1-3.",
-   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
+   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Harmon | Chicago, Iii. (Andreas, A. T.) 1384-6, 1-3.' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Harmon | Chicago, Iii. (Andreas, A. T.) 1384-6, 1-3.' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
    "layers": [
     "census_1840",
     "residents",
@@ -46872,6 +46890,7 @@
     "lead_v02_harmon_voters"
    ],
    "person_ids": [
+    "harmon_c_l",
     "harmon_charles_l",
     "harmon_d",
     "harmon_elijah_d",
@@ -46898,10 +46917,10 @@
   {
    "record_id": "nbi_v02_0691",
    "a": "Harmon | Ceok Ce,, III, (Andreat, A. T.) 1004",
-   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
+   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Harmon | Ceok Ce,, III, (Andreat, A. T.) 1004' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Harmon | Ceok Ce,, III, (Andreat, A. T.) 1004' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
    "layers": [
     "census_1840",
     "residents",
@@ -46915,6 +46934,7 @@
     "lead_v02_harmon_voters"
    ],
    "person_ids": [
+    "harmon_c_l",
     "harmon_charles_l",
     "harmon_d",
     "harmon_elijah_d",
@@ -46941,10 +46961,10 @@
   {
    "record_id": "nbi_v02_0692",
    "a": "Harmon r | 0uP e Co., III. (Blanchard, R.) 1382: '",
-   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
+   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Harmon r | 0uP e Co., III. (Blanchard, R.) 1382: '\" against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Harmon r | 0uP e Co., III. (Blanchard, R.) 1382: '\" against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
    "layers": [
     "census_1840",
     "residents",
@@ -46958,6 +46978,7 @@
     "lead_v02_harmon_voters"
    ],
    "person_ids": [
+    "harmon_c_l",
     "harmon_charles_l",
     "harmon_d",
     "harmon_elijah_d",
@@ -46984,10 +47005,10 @@
   {
    "record_id": "nbi_v02_0693",
    "a": "Harmon | Co., III. (leBoron.W.. k .ttCo., PublJIl",
-   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
+   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Harmon | Co., III. (leBoron.W.. k .ttCo., PublJIl' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Harmon | Co., III. (leBoron.W.. k .ttCo., PublJIl' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
    "layers": [
     "census_1840",
     "residents",
@@ -47001,6 +47022,7 @@
     "lead_v02_harmon_voters"
    ],
    "person_ids": [
+    "harmon_c_l",
     "harmon_charles_l",
     "harmon_d",
     "harmon_elijah_d",
@@ -47027,10 +47049,10 @@
   {
    "record_id": "nbi_v02_0694",
    "a": "Harmon | Ogle Co., III. (Kelt, H. F., 4 Co.) 1878: B47.",
-   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
+   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Harmon | Ogle Co., III. (Kelt, H. F., 4 Co.) 1878: B47.' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Harmon | Ogle Co., III. (Kelt, H. F., 4 Co.) 1878: B47.' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
    "layers": [
     "census_1840",
     "residents",
@@ -47044,6 +47066,7 @@
     "lead_v02_harmon_voters"
    ],
    "person_ids": [
+    "harmon_c_l",
     "harmon_charles_l",
     "harmon_d",
     "harmon_elijah_d",
@@ -47070,10 +47093,10 @@
   {
    "record_id": "nbi_v02_0695",
    "a": "Harmon | 'i Sangamon Co,, III. (Power, J. C.) 1876.",
-   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
+   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Harmon | 'i Sangamon Co,, III. (Power, J. C.) 1876.\" against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Harmon | 'i Sangamon Co,, III. (Power, J. C.) 1876.\" against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
    "layers": [
     "census_1840",
     "residents",
@@ -47087,6 +47110,7 @@
     "lead_v02_harmon_voters"
    ],
    "person_ids": [
+    "harmon_c_l",
     "harmon_charles_l",
     "harmon_d",
     "harmon_elijah_d",
@@ -47490,10 +47514,10 @@
   {
    "record_id": "nbi_v02_0900",
    "a": "J Harmon | _ _ Sangamon Co., III. (Power, J. C.) 1876.",
-   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
+   "b": "William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'J Harmon | _ _ Sangamon Co., III. (Power, J. C.) 1876.' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 7 card(s) heading 'Harmon/Harmon r/J Harmon' name Chicago or Cook County, the heading is the surname of William Harmon exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'J Harmon | _ _ Sangamon Co., III. (Power, J. C.) 1876.' against William Harmon; Charles Loomis Harmon; Isaac Dewey Harmon; C L Harmon; D Harmon; Dr Elijah Dewey Harmon; M D Harmon; Dr Elijah Harmon's Cabin; Isaac Harmon; C. L. Harmon; M. D. Harmon.",
    "layers": [
     "census_1840",
     "residents",
@@ -47507,6 +47531,7 @@
     "lead_v02_harmon_voters"
    ],
    "person_ids": [
+    "harmon_c_l",
     "harmon_charles_l",
     "harmon_d",
     "harmon_elijah_d",
@@ -73985,10 +74010,10 @@
   {
    "record_id": "nbi_v02_1520",
    "a": "Kennicott | Cook Co., Ill, (Andfrru, A..T.' 1384 , . „",
-   "b": "M H Kennicott; William H Kennicott; W. L. Kennicott",
+   "b": "M H Kennicott; W H Kennicott; William H Kennicott; W. L. Kennicott",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 1 of the 1 card(s) heading 'Kennicott' do name Chicago or Cook County and the heading is the surname of M H Kennicott; William H Kennicott exactly, but the index files every family of a surname under one heading and gives no forename, so 'Kennicott' against M H Kennicott; William H Kennicott is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card \"Kennicott | Cook Co., Ill, (Andfrru, A..T.' 1384 , . „\" against M H Kennicott; William H Kennicott; W. L. Kennicott.",
+   "rule": "Refused. 1 of the 1 card(s) heading 'Kennicott' do name Chicago or Cook County and the heading is the surname of M H Kennicott; W H Kennicott; William H Kennicott exactly, but the index files every family of a surname under one heading and gives no forename, so 'Kennicott' against M H Kennicott; W H Kennicott; William H Kennicott is a surname against a person. It waits on a work the citation table could not read off the card, which this project does not hold. Ruled on the card \"Kennicott | Cook Co., Ill, (Andfrru, A..T.' 1384 , . „\" against M H Kennicott; W H Kennicott; William H Kennicott; W. L. Kennicott.",
    "layers": [
     "residents",
     "voters"
@@ -73999,6 +74024,7 @@
    ],
    "person_ids": [
     "kennicott_m_h",
+    "kennicott_w_h",
     "kennicott_william_h"
    ],
    "person_id": null,
@@ -83978,10 +84004,10 @@
   {
    "record_id": "nbi_v04_0402",
    "a": "Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.",
-   "b": "Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright",
+   "b": "Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; J S Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against Thomas Wraight; John Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.' against Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright.",
+   "rule": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against Thomas Wraight; John Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.' against Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; J S Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright.",
    "layers": [
     "census_1840",
     "residents",
@@ -83998,6 +84024,7 @@
     "wight_j_ambrose",
     "wright_amasa",
     "wright_j",
+    "wright_j_s",
     "wright_john",
     "wright_john_s",
     "wright_robert_c",

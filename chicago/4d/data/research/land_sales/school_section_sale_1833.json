@@ -153,27 +153,27 @@
   "at_the_sale": {
    "purchaser_spellings": 105,
    "readings": {
-    "upheld": 50,
+    "upheld": 49,
     "named": 1,
     "match_refused": 0,
     "match_unruled": 0,
-    "refused_against_a_rival": 41,
+    "refused_against_a_rival": 42,
     "surname_absent": 13
    },
-   "share_upheld_pct": 47.6,
+   "share_upheld_pct": 46.7,
    "share_surname_absent_pct": 12.4
   },
   "everywhere_else": {
    "purchaser_spellings": 542,
    "readings": {
-    "upheld": 85,
+    "upheld": 84,
     "named": 0,
     "match_refused": 0,
     "match_unruled": 3,
-    "refused_against_a_rival": 244,
+    "refused_against_a_rival": 245,
     "surname_absent": 210
    },
-   "share_upheld_pct": 15.7,
+   "share_upheld_pct": 15.5,
    "share_surname_absent_pct": 38.7
   }
  },

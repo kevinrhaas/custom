@@ -93,7 +93,7 @@
       "regraded_on": "2026-09-04",
       "rule": "G2b",
       "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 4 thing(s) the consolidation did not read — andreas_1884_v1, chicago_democrat_1833_11_26, fergus_chicago_directory_1839, isa_public_domain_land_tract_sales. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+      "reason": "This card rests on 3 thing(s) the consolidation did not read — andreas_1884_v1, chicago_democrat_1833_11_26, isa_public_domain_land_tract_sales. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ],
     "summary": "The 1834 poll prints 'Harmon, C. L.' and the 1837 election return prints 'Chas. L. Harmon': the same two initials against a surname whose three bearers the voter crosswalk weighed before matching. Contemporary and independent of the post office."
@@ -248,7 +248,7 @@
   ]
  },
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. harmon_charles_l, Fergus's Chicago directory of 1843 — f1843_e1206 (contested, so nothing crossed); harmon_charles_l, Norris's Chicago directory of 1844 — n1844_e0795 (contested, so nothing crossed); harmon_charles_l, the advertising cards in Norris's directory of 1844 — n1844_ad0071 (a single entry); harmon_isaac_d, Fergus's Chicago directory of 1839 — f1839_e0641 (a single entry).",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. harmon_charles_l, Fergus's Chicago directory of 1843 — f1843_e1206 (contested, so nothing crossed); harmon_charles_l, Norris's Chicago directory of 1844 — n1844_e0795 (contested, so nothing crossed); harmon_charles_l, the advertising cards in Norris's directory of 1844 — n1844_ad0071 (contested, so nothing crossed); harmon_isaac_d, Fergus's Chicago directory of 1839 — f1839_e0641 (a single entry).",
   "sources": [
    "fergus_chicago_directory_1839",
    "fergus_chicago_directory_1843",
@@ -256,33 +256,7 @@
   ],
   "people": [
    {
-    "person_id": "harmon_charles_l",
-    "back_projection": {
-     "outcome": "already_better_placed",
-     "clause": "2",
-     "value": null,
-     "describes_date": 1843,
-     "read_back_years": 8,
-     "placement": null,
-     "position_local_enu_m": null,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ],
-     "note": "NOT READ BACK, BECAUSE SOMETHING BETTER ALREADY STANDS. Fergus's Chicago directory of 1843 prints an address against this name in 1843, and it is left where it is. An 1835 placement already stands: this household works at `harmon_loomis_store`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later. The later address stays on the record as 1843's evidence and moves nothing."
-    },
-    "residence_back_projection": {
-     "outcome": "refused",
-     "clause": "R4",
-     "kind": "resides",
-     "value": null,
-     "describes_date": 1843,
-     "read_back_years": 8,
-     "placement": null,
-     "sources": [
-      "fergus_chicago_directory_1843"
-     ],
-     "note": "REFUSED, AND THE REFUSAL IS THE RECORD. Fergus's Chicago directory of 1843 prints where this man lived in 1843 and this pass will not carry it back to 1835. The face resolves — Dearborn Street is 1835's — but the entry sets the house against a second street the town does not have: Madison Street bounds the 1830 plat on the south and the modelled town stops at it; the 1835 street layer carries no Madison. Taking the face and dropping the qualifier would put the home somewhere the address does not say it was. A refusal is written here rather than dropped so that a later run can see the address was read and ruled on, not missed (docs/RESIDENCE-BACK-PROJECTION.md, clause R4)."
-    }
+    "person_id": "harmon_charles_l"
    },
    {
     "person_id": "harmon_isaac_d",

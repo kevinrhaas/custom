@@ -2762,7 +2762,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 2 bearer(s) of 'kennicott', none with the forename initial 'j'; same surname, different forename initial never merges"
+    "why": "the residents layer has 3 bearer(s) of 'kennicott', none with the forename initial 'j'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -3065,7 +3065,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 1 bearer(s) of 'loomis', none with the forename initial 'h'; same surname, different forename initial never merges"
+    "why": "the residents layer has 2 bearer(s) of 'loomis', none with the forename initial 'h'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -4402,7 +4402,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'a'; same surname, different forename initial never merges"
+    "why": "the residents layer has 4 bearer(s) of 'sherman', none with the forename initial 'a'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -4435,7 +4435,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
+    "why": "the residents layer has 4 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -4468,7 +4468,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'o'; same surname, different forename initial never merges"
+    "why": "the residents layer has 4 bearer(s) of 'sherman', none with the forename initial 'o'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -7031,7 +7031,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 5 bearer(s) of 'harmon', none with the forename initial 'w'; same surname, different forename initial never merges"
+    "why": "the residents layer has 6 bearer(s) of 'harmon', none with the forename initial 'w'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -9938,7 +9938,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
+    "why": "the residents layer has 4 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",

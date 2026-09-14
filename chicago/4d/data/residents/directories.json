@@ -79,10 +79,10 @@
     "split_refused_fields": 14
    },
    "norris_1844_advertiser": {
-    "people": 29,
-    "single_entry": 18,
+    "people": 30,
+    "single_entry": 17,
     "ambiguous": 3,
-    "contested": 8,
+    "contested": 10,
     "split_refused_fields": 0
    }
   }
@@ -8423,6 +8423,28 @@
      "sources": [
       "norris_directory_1844"
      ]
+    },
+    {
+     "volume": "norris_1844_advertiser",
+     "title": "the advertising cards in Norris's directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "contested",
+     "match_rule": "Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the printed name 'C. L. Harmon' on that rule, and at most one of them is the man who paid for it. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_ad0071",
+       "printed_page": 94,
+       "as_printed": "C. L. Harmon",
+       "firm": "C. L. Harmon"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -8489,8 +8511,8 @@
      "title": "the advertising cards in Norris's directory of 1844",
      "year": 1844,
      "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C. CONTESTED: 2 residents of 1835 meet the printed name 'C. L. Harmon' on that rule, and at most one of them is the man who paid for it. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {

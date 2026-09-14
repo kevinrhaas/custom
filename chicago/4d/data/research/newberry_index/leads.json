@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "6fe10f477601a14f73326e0273c8ad341626dc3abdfddc279a347ef51ea052a1",
+    "fingerprint": "bbd8fbcff85cac5ab363e7bf9c5de50d669ffa9de76237e08784f64630a96499",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1295,
+      "residents": 1306,
       "structures": 384,
       "voters": 345
     }
@@ -14059,6 +14059,11 @@
           "rule": "exact surname"
         },
         {
+          "id": "harmon_c_l",
+          "name": "C L Harmon",
+          "rule": "exact surname"
+        },
+        {
           "id": "harmon_d",
           "name": "D Harmon",
           "rule": "exact surname"
@@ -16788,6 +16793,11 @@
         {
           "id": "kennicott_m_h",
           "name": "M H Kennicott",
+          "rule": "exact surname"
+        },
+        {
+          "id": "kennicott_w_h",
+          "name": "W H Kennicott",
           "rule": "exact surname"
         },
         {
@@ -27313,6 +27323,11 @@
         {
           "id": "wright_j",
           "name": "J Wright",
+          "rule": "exact surname"
+        },
+        {
+          "id": "wright_j_s",
+          "name": "J S Wright",
           "rule": "exact surname"
         },
         {

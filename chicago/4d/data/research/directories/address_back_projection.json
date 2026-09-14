@@ -7,12 +7,12 @@
  "scene_year": 1835,
  "street_layer": "data/streets/1835.json",
  "counts": {
-  "addresses_adjudicated": 156,
+  "addresses_adjudicated": 155,
   "placed": 17,
   "placed_as_a_face": 14,
   "placed_as_a_corner": 1,
   "placed_anchored_on_a_crossing": 2,
-  "already_better_placed": 27,
+  "already_better_placed": 26,
   "refused": 112,
   "refused_clause_1_no_1835_business": 98,
   "refused_clause_2_a_residence_not_a_shop": 8,
@@ -1424,27 +1424,6 @@
   },
   {
    "household_id": "hh_harmon_brothers",
-   "person_id": "harmon_charles_l",
-   "person": "Charles Loomis Harmon",
-   "address_as_printed": "cor Clark, res Dearborn, bet Washington and Madison",
-   "describes_date": 1843,
-   "read_back_years": 8,
-   "sources": [
-    "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "dry_goods_merchant",
-   "works_at_1835": "harmon_loomis_store",
-   "outcome": "already_better_placed",
-   "clause": "2",
-   "reason": "An 1835 placement already stands: this household works at `harmon_loomis_store`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_harmon_brothers",
    "person_id": "harmon_isaac_d",
    "person": "Isaac Dewey Harmon",
    "address_as_printed": "Clark street",
@@ -1833,27 +1812,6 @@
    "read_back_years": 8,
    "sources": [
     "fergus_chicago_directory_1843"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
-   "household_id": "hh_kennicott_william_h",
-   "person_id": "kennicott_william_h",
-   "person": "William H Kennicott",
-   "address_as_printed": "Lake street",
-   "describes_date": 1839,
-   "read_back_years": 4,
-   "sources": [
-    "fergus_chicago_directory_1839"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2904,6 +2862,27 @@
    "read_back_years": 4,
    "sources": [
     "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_sherman_william_george",
+   "person_id": "sherman_william_george",
+   "person": "William George Sherman",
+   "address_as_printed": "bds Oren Sherman",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,

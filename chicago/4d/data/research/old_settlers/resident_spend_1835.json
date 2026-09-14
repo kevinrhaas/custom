@@ -41,12 +41,12 @@
   },
   {
    "group": "ambiguous",
-   "rulings": 17,
+   "rulings": 18,
    "why": "one 1835 person meets more than one entry, so the list names a death and cannot say which one is this person's"
   },
   {
    "group": "refusals",
-   "rulings": 243,
+   "rulings": 245,
    "why": "the surname agrees and the given initial does not, or is absent — a surname-only agreement is a refusal however good it looks"
   },
   {
