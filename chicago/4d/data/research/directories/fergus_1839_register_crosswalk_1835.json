@@ -141,7 +141,7 @@
   {
    "what": "letter-list and newspaper persons",
    "path": "data/research/newspapers/gazetteer.json",
-   "n": 2620
+   "n": 2645
   },
   {
    "what": "1840 heads of household read in this repo",
@@ -163,9 +163,9 @@
   "voters_matched_one_entry": 14,
   "voters_ambiguous": 9,
   "voters_surname_only_refused": 21,
-  "letter_list_matched_one_entry": 34,
+  "letter_list_matched_one_entry": 35,
   "letter_list_ambiguous": 18,
-  "letter_list_surname_only_refused": 154,
+  "letter_list_surname_only_refused": 156,
   "heads_1840_matched_one_entry": 21,
   "heads_1840_ambiguous": 9,
   "heads_1840_surname_only_refused": 68
@@ -2554,6 +2554,31 @@
     "reaches_scene": []
    },
    {
+    "name": "J. Murphy",
+    "same_man_reprinted": false,
+    "rule": "Surname 'Murphy' folds to the same string as the register entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_r0017",
+      "as_printed": "John Murphy",
+      "printed_page": 38,
+      "role": "alderman",
+      "office": "alderman",
+      "body": "city_of_chicago",
+      "ward_1839": 4,
+      "year": null,
+      "ex_officio": false,
+      "column_run_on": false,
+      "year_ocr_repaired": false,
+      "reaches_scene": null
+     }
+    ],
+    "offices": [
+     "alderman"
+    ],
+    "reaches_scene": []
+   },
+   {
     "name": "J. W. Smith",
     "same_man_reprinted": false,
     "rule": "Surname 'Smith' folds to the same string as the register entry's, and the given name of both begins J.",
@@ -4523,6 +4548,11 @@
     "rule": "The surname 'Smith' stands on printed pages 38-39 and no man under it carries the initial 'T' of 'Thomas Smith'. A surname-only agreement is a refusal."
    },
    {
+    "name": "W. Sherman",
+    "candidates_under_that_surname": 6,
+    "rule": "The surname 'Sherman' stands on printed pages 38-39 and no man under it carries the initial 'W' of 'W. Sherman'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "W[i]lson, Walter",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'W[i]lson' stands on printed pages 38-39 and no man under it carries the initial 'W' of 'W[i]lson, Walter'. A surname-only agreement is a refusal."
@@ -4571,6 +4601,11 @@
     "name": "Zadoc Brown",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Brown' stands on printed pages 38-39 and no man under it carries the initial 'Z' of 'Zadoc Brown'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "[?] Kinzie",
+    "candidates_under_that_surname": 2,
+    "rule": "The surname 'Kinzie' stands on printed pages 38-39 and no man under it carries the initial '-' of '[?] Kinzie'. A surname-only agreement is a refusal."
    },
    {
     "name": "[?] Steele",

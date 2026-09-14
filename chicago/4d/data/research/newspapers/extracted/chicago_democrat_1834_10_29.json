@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "issue_id": "chicago_democrat_1834_10_29",
-  "extracted": "2026-08-28",
-  "extracted_by": "hand, T-0292 — the Democrat read, October 1834",
-  "note": "Vol. I No. 48. The town is on page 3. This issue completes the fire ordinance begun on 1834-10-01 — the trustees met at the Tremont House on 13 October and gave the wardens command at a fire, in force from 25 October — and it carries no Chicago letter list, only the Hennepin and Plainfield ones, which are recorded and not minted.",
+  "extracted": "2026-09-14",
+  "extracted_by": "hand, T-0292 — the Democrat read, October 1834; page 2's two gambling meetings added by hand, T-0997",
+  "note": "Vol. I No. 48. The town is on page 2 AND page 3. Page 3 completes the fire ordinance begun on 1834-10-01 — the trustees met at the Tremont House on 13 October and gave the wardens command at a fire, in force from 25 October — and it carries no Chicago letter list, only the Hennepin and Plainfield ones, which are recorded and not minted. PAGE 2 COLUMNS 1-2 ARE TWO TOWN MEETINGS AGAINST GAMBLING (T-0997), the second of which appointed a committee of seventy and is the largest single list of named townspeople in this corpus outside the post-office returns. Both are read through an interleaving the transcription does not resolve: the column-2 and column-3 crops are Tesseract fallbacks that straddle the gutter, so each of their lines carries the right edge of one printed column and then the left of the next. c006-c011 name the halves separately with `spans` and say per name which half a name came from; a narrow band of characters between two crops is in neither reading, and every name it swallowed is left `[?]` in the position it was printed rather than conjectured.",
   "claims": [
     {
       "id": "c001",
@@ -188,6 +188,735 @@
       },
       "entities": [],
       "notes": "NOT A CHICAGO LIST. This issue carries the Hennepin and P[l]ainfield lists and no Chicago one, and their names are deliberately NOT minted: ruling 1 mints a resident CANDIDATE off the Chicago post office's list, and a letter waiting at Hennepin says nothing about who lived in Chicago. Recorded so the reading's boundary is on the record rather than implied by an absence. The place name is cut to 'Hen' and read as Hennepin from the run."
+    },
+    {
+      "id": "c006",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "On notio\nhave lease to sitto ther\n[uncertain: a commuttee of 70 he app]\nit -hall he on all occasions\nand repurt to the\nfraction of the lawe agin\n[uncertain: honer a]\n[uncertain: Chu]\n[uncertain: following]\n[uncertain: Wan O se o0 ai]\n[uncertain: oelanns were]\n[uncertain: R 1 Hassleme, Bk]\nKingie,\n[uncertain: Habhard,]\n[uncertain: Card, ine:]\n[uncertain: Bryc, 23 Smil]",
+      "normalized": "On motio[n …] have le[a]ve to sit [?] / a comm[i]ttee of 70 [b]e app[ointed], it [s]hall [b]e on all occasions / and rep[o]rt to the / [in]fraction of the law[s] ag[a]in[st …] / [?] / [?] / following / [?] / [?] / R. [?] Ha[?]l[?], B[?] / K[i]n[z]ie, / H[u]b[b]ard, / [?] Card[?] / Bry[?], [?] Smi[?]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 1,
+        "lines": [
+          949,
+          964
+        ],
+        "lines_of_claim": [
+          949,
+          950,
+          951,
+          952,
+          953,
+          954,
+          955,
+          956,
+          957,
+          958,
+          959,
+          960,
+          961,
+          962,
+          963,
+          964
+        ],
+        "spans": [
+          {
+            "line": 949,
+            "from": 0,
+            "to": 8
+          },
+          {
+            "line": 950,
+            "from": 0,
+            "to": 24
+          },
+          {
+            "line": 951,
+            "from": 0,
+            "to": 37
+          },
+          {
+            "line": 952,
+            "from": 0,
+            "to": 28
+          },
+          {
+            "line": 953,
+            "from": 0,
+            "to": 17
+          },
+          {
+            "line": 954,
+            "from": 0,
+            "to": 25
+          },
+          {
+            "line": 955,
+            "from": 0,
+            "to": 20
+          },
+          {
+            "line": 956,
+            "from": 0,
+            "to": 16
+          },
+          {
+            "line": 957,
+            "from": 0,
+            "to": 22
+          },
+          {
+            "line": 958,
+            "from": 0,
+            "to": 27
+          },
+          {
+            "line": 959,
+            "from": 0,
+            "to": 25
+          },
+          {
+            "line": 960,
+            "from": 0,
+            "to": 29
+          },
+          {
+            "line": 961,
+            "from": 0,
+            "to": 7
+          },
+          {
+            "line": 962,
+            "from": 0,
+            "to": 21
+          },
+          {
+            "line": 963,
+            "from": 0,
+            "to": 23
+          },
+          {
+            "line": 964,
+            "from": 0,
+            "to": 26
+          }
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "Kingie,",
+          "normalized": "[?] Kinzie",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "Habhard,",
+          "normalized": "[?] Hubbard",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        }
+      ],
+      "notes": "THE COMMITTEE OF SEVENTY, AND WHERE IT BEGINS. This is the foot of page 2 column 1, as the Vision reading of that column caught it — and that reading is the LEFT-HAND PART of each printed line only. The right-hand part of these same lines was caught by the Tesseract crop that follows, and is quoted at c007; the two must be read together and neither is the line. A narrow band of characters between the two crops is in neither, which is why a surname can stand here with its initial unread and no conjecture can supply it. The resolution itself is legible: a committee of seventy appointed, whose duty it shall be on all occasions to take notice of and report to the authorities every infraction of the laws against gambling. The list starts in these last five lines and runs on into column 2 (c008)."
+    },
+    {
+      "id": "c007",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "committee of nine!\nr number, and that]\neinted, whose duty |\nto take notice of|\nithorities, every in-\nMgambing. The\nappointed by the|\n‘ommittee. - Ip\neden J, a. ‘\n+ V. Owes, H. kee\nHogan, Willism|\nant Goodrich, W.!\n+ J-H, Mloed.|",
+      "normalized": "committee of nine / [thei]r number, and that / [app]o[i]nted, whose duty / to take notice of / [au]thorities, every in- / [st] gamb[l]ing. The / appointed by the / [c]ommittee. — [?] / [?] J. [?] / [?] V. Owe[n], H. Kee[?] / Hogan, Willia[m] / [Gr]ant Goodrich, W. / [?] J. H. M[?]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 2,
+        "lines": [
+          1088,
+          1101
+        ],
+        "lines_of_claim": [
+          1088,
+          1089,
+          1090,
+          1091,
+          1092,
+          1093,
+          1094,
+          1095,
+          1096,
+          1097,
+          1098,
+          1100,
+          1101
+        ],
+        "spans": [
+          {
+            "line": 1088,
+            "from": 0,
+            "to": 18
+          },
+          {
+            "line": 1089,
+            "from": 0,
+            "to": 19
+          },
+          {
+            "line": 1090,
+            "from": 0,
+            "to": 20
+          },
+          {
+            "line": 1091,
+            "from": 0,
+            "to": 18
+          },
+          {
+            "line": 1092,
+            "from": 0,
+            "to": 21
+          },
+          {
+            "line": 1093,
+            "from": 0,
+            "to": 13
+          },
+          {
+            "line": 1094,
+            "from": 0,
+            "to": 17
+          },
+          {
+            "line": 1095,
+            "from": 0,
+            "to": 15
+          },
+          {
+            "line": 1096,
+            "from": 0,
+            "to": 12
+          },
+          {
+            "line": 1097,
+            "from": 0,
+            "to": 17
+          },
+          {
+            "line": 1098,
+            "from": 0,
+            "to": 15
+          },
+          {
+            "line": 1100,
+            "from": 0,
+            "to": 17
+          },
+          {
+            "line": 1101,
+            "from": 0,
+            "to": 14
+          }
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "V. Owes,",
+          "normalized": "V. Owen",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "Hogan,",
+          "normalized": "[?] Hogan",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "ant Goodrich,",
+          "normalized": "[Gr]ant Goodrich",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        }
+      ],
+      "notes": "THE RIGHT-HAND PART OF THE LINES c006 QUOTES. The transcription's column-2 crop is a Tesseract fallback that straddles the gutter: every line of it carries the right edge of column 1 first and then column 2, so these spans name the column-1 half and the locator's column is the crop's own marker rather than the print's. The splice is not asserted, it is demonstrated: line 951's 'a commuttee of 70 he app' joins line 1090's 'einted' into one word, and line 963's 'Card, ine:' joins line 1100's 'ant Goodrich' into the Grant Goodrich the same page names again at c011. Line 1099 is not claimed because it carries no column-1 fragment at all. The names left unminted here are unminted because their surnames cannot be read, not because they were not printed: 'Hassleme' at c006 line 960, 'Mloed' at line 1101, 'H. Kee' at line 1097 and the 'Willia[m]' at line 1098 whose surname fell in the band between the two crops."
+    },
+    {
+      "id": "c008",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "- Carey, §. Y?. Snow, h &\nDaniel Whittier, EB. Mosely |\n}. Ven De Bogart, A. Nv Ful\nAvery, J. Me Marksall, J. ?\nBeaubien, LC. Saxton, H\nC, L. Harmon, —— Minor, |\nWW. Sherwan, Isaac Harmon,\n4. Clybourn, Aapon Ruseell,\nG South, J. S. WrighteL. |\nClarke, A. Lloyd, M. MF Cle",
+      "normalized": "[?] Carey, [?]. [?]. Snow, [?] & [?] / Daniel Whittier, E[.] B. Mosely / [?]. Ven De Bogart, A. N. Ful[lerton] / [?] Avery, J. M[?] Mar[?]all, J. [?] / [?] Beaubien, L. C. Saxton, H[?] / C. L. Harmon, —— Minor, / W. Sherman, Isaac Harmon, / A. Clybourn, Aaron Russell, / G. South, J. S. Wright, L. [?] / Clarke, A. Lloyd, M. M'Cle[?]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 2,
+        "lines": [
+          968,
+          977
+        ],
+        "lines_of_claim": [
+          968,
+          969,
+          970,
+          971,
+          972,
+          973,
+          974,
+          975,
+          976,
+          977
+        ],
+        "spans": [
+          {
+            "line": 968,
+            "from": 12,
+            "to": 37
+          },
+          {
+            "line": 969,
+            "from": 19,
+            "to": 48
+          },
+          {
+            "line": 970,
+            "from": 14,
+            "to": 41
+          },
+          {
+            "line": 971,
+            "from": 32,
+            "to": 59
+          },
+          {
+            "line": 972,
+            "from": 22,
+            "to": 45
+          },
+          {
+            "line": 973,
+            "from": 20,
+            "to": 45
+          },
+          {
+            "line": 974,
+            "from": 19,
+            "to": 45
+          },
+          {
+            "line": 975,
+            "from": 20,
+            "to": 47
+          },
+          {
+            "line": 976,
+            "from": 19,
+            "to": 45
+          },
+          {
+            "line": 977,
+            "from": 0,
+            "to": 27
+          }
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "- Carey,",
+          "normalized": "[?] Carey",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "§. Y?. Snow,",
+          "normalized": "[?]. [?]. Snow",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "Daniel Whittier,",
+          "normalized": "Daniel Whittier",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "EB. Mosely",
+          "normalized": "E[.] B. Mosely",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "}. Ven De Bogart,",
+          "normalized": "[?]. Ven De Bogart",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "A. Nv Ful",
+          "normalized": "A. N. Ful[lerton]",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "Avery,",
+          "normalized": "[?] Avery",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "Beaubien,",
+          "normalized": "[?] Beaubien",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "LC. Saxton,",
+          "normalized": "L. C. Saxton",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "C, L. Harmon,",
+          "normalized": "C. L. Harmon",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "—— Minor,",
+          "normalized": "[?] Minor",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "WW. Sherwan,",
+          "normalized": "W. Sherman",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "Isaac Harmon,",
+          "normalized": "Isaac Harmon",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "4. Clybourn,",
+          "normalized": "A. Clybourn",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "Aapon Ruseell,",
+          "normalized": "Aaron Russell",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "G South,",
+          "normalized": "G. South",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "J. S. Wrighte",
+          "normalized": "J. S. Wright",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "Clarke,",
+          "normalized": "[?] Clarke",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "A. Lloyd,",
+          "normalized": "A. Lloyd",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        }
+      ],
+      "notes": "THE COMMITTEE OF SEVENTY, CONTINUED AT THE HEAD OF COLUMN 2 — the largest single list of named townspeople this corpus holds outside the post-office returns, and the first list in it that says these people were HERE, acting, on a stated evening. These spans name the column-2 half of each line of the same Tesseract crop c007 reads the other half of; the right edge of these very lines is a third fragment, quoted at c009 in the column-3 crop, and 'A. Nv Ful' + 'ilerton' is the join that proves the three crops are parts of one set of lines rather than three readings of different ones. WHAT IS NOT MINTED, and why: 'J. Me Marksall' (line 971) and 'M. MF Cle' + 'erke.' (line 977) are surnames no reading can settle — M'Clerke, M'Cleerke and M'Cleary are all available and none is supported; the 'J. [?]' ending line 971 and the 'L. [?]' ending line 976 are initials whose surnames fell in the band between two crops; the 'H[?]' ending line 972 is the same. C. L. Harmon is minted as printed and flagged: data/sources/chicago_democrat_1833_11_26.json records a scan read that caught 'C. & I. HARMON' where a transcription had 'C. & L. Harmon', and Isaac Harmon stands two lines below this one, so a later scan read may find this is the firm and not a man."
+    },
+    {
+      "id": "c009",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "W. Holliday,\nilerton, P. Joh oot}\nWright, J.B\n1. G. Loornis, |\nH, Sabin, 8.|\n, J Murphy,\nW. Biuskevs!\nRemril, W\nerke. ?",
+      "normalized": "W. Holliday, / [Ful]lerton, P. Joh[?] / [?] Wright, J. B[?] / [?]. G. Loomis, / H. Sabin, [?]. / [?] J. Murphy, / W. B[?] / [?] Remril, W. / [M'Cl]erke. [?]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 3,
+        "lines": [
+          1107,
+          1115
+        ],
+        "lines_of_claim": [
+          1107,
+          1108,
+          1109,
+          1110,
+          1111,
+          1112,
+          1113,
+          1114,
+          1115
+        ],
+        "spans": [
+          {
+            "line": 1107,
+            "from": 0,
+            "to": 12
+          },
+          {
+            "line": 1108,
+            "from": 12,
+            "to": 32
+          },
+          {
+            "line": 1109,
+            "from": 0,
+            "to": 11
+          },
+          {
+            "line": 1110,
+            "from": 0,
+            "to": 16
+          },
+          {
+            "line": 1111,
+            "from": 0,
+            "to": 13
+          },
+          {
+            "line": 1112,
+            "from": 0,
+            "to": 11
+          },
+          {
+            "line": 1113,
+            "from": 0,
+            "to": 12
+          },
+          {
+            "line": 1114,
+            "from": 0,
+            "to": 9
+          },
+          {
+            "line": 1115,
+            "from": 12,
+            "to": 19
+          }
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "W. Holliday,",
+          "normalized": "W. Holliday",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "1. G. Loornis,",
+          "normalized": "[?]. G. Loomis",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "H, Sabin,",
+          "normalized": "H. Sabin",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        },
+        {
+          "as_printed": "J Murphy,",
+          "normalized": "J. Murphy",
+          "role": "named to the committee of seventy the town meeting of 25 October 1834 appointed to take notice of and report every infraction of the laws against gambling"
+        }
+      ],
+      "notes": "THE THIRD FRAGMENT OF THE SAME LINES. The column-3 crop straddles the gutter the same way the column-2 one does, so its left-hand fragments are the RIGHT edge of column 2 — the outer end of the ten lines c008 quotes the inner end of. Line 1108's 'ilerton' completes line 970's 'A. Nv Ful' into A. N. Fullerton, which is what fixes the alignment for the whole block. 'W. Biuskevs' (1113) and 'Remril' (1114) are surnames no reading can settle and are left unminted; 'P. Joh' (1108) is a surname cut off mid-word, not a short one; 'Wright, J.B' (1109) is not minted because J. S. Wright stands six lines below it in the same list and a second Wright minted from an unread initial would be indistinguishable from a duplicate of him."
+    },
+    {
+      "id": "c010",
+      "kind": "event",
+      "reading": "transcription_mediated",
+      "quote": "Resolord, That the ‘Commi\nbe ond thry are hereby request\nspainat thote individuals who\ntast night engaye! in garobling,\nfull force of the law be madeto\nthem.\nResolced, The the editor of\nthe requested to publish the pt\nthis meeting, together with the\nState in relation to gambling.\nResoloed, That the commi\nhave power to.call a meeting of\nwhenever they may deem it ue\n3. H. KINZII\nHans Croxer, Sec'y.",
+      "normalized": "Resol[v]ed, That the Commi[ttee] / be and th[e]y are hereby request[ed …] / [ag]ainst tho[s]e individuals who / [l]ast night engage[d] in ga[m]bling, [and that the] / full force of the law be made to [bear against] / them. / Resol[v]ed, Th[at] the editor of / the [Democrat is] requested to publish the p[roceedings of] / this meeting, together with the [laws of the] / State in relation to gambling. / Resol[v]ed, That the commi[ttee …] / have power to call a meeting of [the citizens] / whenever they may deem it ne[cessary] / J. H. KINZI[E] / Hans Cro[ck]er, Sec'y.",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 2,
+        "lines": [
+          978,
+          992
+        ],
+        "lines_of_claim": [
+          978,
+          979,
+          980,
+          981,
+          982,
+          983,
+          984,
+          985,
+          986,
+          987,
+          988,
+          989,
+          990,
+          991,
+          992
+        ],
+        "spans": [
+          {
+            "line": 978,
+            "from": 22,
+            "to": 47
+          },
+          {
+            "line": 979,
+            "from": 20,
+            "to": 50
+          },
+          {
+            "line": 980,
+            "from": 20,
+            "to": 49
+          },
+          {
+            "line": 981,
+            "from": 21,
+            "to": 53
+          },
+          {
+            "line": 982,
+            "from": 0,
+            "to": 31
+          },
+          {
+            "line": 983,
+            "from": 18,
+            "to": 23
+          },
+          {
+            "line": 984,
+            "from": 17,
+            "to": 44
+          },
+          {
+            "line": 985,
+            "from": 18,
+            "to": 49
+          },
+          {
+            "line": 986,
+            "from": 19,
+            "to": 50
+          },
+          {
+            "line": 987,
+            "from": 0,
+            "to": 30
+          },
+          {
+            "line": 988,
+            "from": 15,
+            "to": 39
+          },
+          {
+            "line": 989,
+            "from": 17,
+            "to": 48
+          },
+          {
+            "line": 990,
+            "from": 21,
+            "to": 49
+          },
+          {
+            "line": 991,
+            "from": 0,
+            "to": 12
+          },
+          {
+            "line": 992,
+            "from": 18,
+            "to": 37
+          }
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "3. H. KINZII",
+          "normalized": "J. H. Kinzie",
+          "role": "chairman of the town meeting of 25 October 1834 against gambling"
+        },
+        {
+          "as_printed": "Hans Croxer,",
+          "normalized": "Hans Crocker",
+          "role": "secretary of the town meeting of 25 October 1834 against gambling"
+        }
+      ],
+      "notes": "THE THREE RESOLUTIONS THE COMMITTEE LIST ENDS IN, and the officers who signed them. The second is the one that put this meeting in the paper at all: the editor of the Democrat is requested to publish the proceedings together with the laws of the State in relation to gambling, which is why the Revised Laws' criminal code runs down the rest of this column. Line 991 carries no column-1 fragment and is claimed whole: the column-1 meeting signs off four lines below it at 994-995 ('KINZIE, Ch'n' / 'y-'), so the bare 'J. H. KINZII' on 991 is column 2's signature and not a doubled reading of that one. Lines 982 and 987 likewise carry no column-1 fragment."
+    },
+    {
+      "id": "c011",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "quote": "pine 3H. G. Hub-|\nno. SC. Hogav.|\nW. H. Kennicott, |\nGoodiich and Haux!\nive; Hon. R. J\nV.- Owen, E. K |\nzie, and G. Springs]",
+      "normalized": "[?] [?] H. G. Hub[bard] / [J]no. S. C. Hogan / W. H. Kennicott, / [Grant] Good[r]ich and Haux[hurst] / [?]ive; Hon. R. J[.] [?] / V. Owen, E. K[.] [?] / [Kin]zie, and G. Springs[?]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 2,
+        "column": 2,
+        "lines": [
+          983,
+          990
+        ],
+        "lines_of_claim": [
+          983,
+          984,
+          985,
+          986,
+          988,
+          989,
+          990
+        ],
+        "spans": [
+          {
+            "line": 983,
+            "from": 0,
+            "to": 17
+          },
+          {
+            "line": 984,
+            "from": 0,
+            "to": 15
+          },
+          {
+            "line": 985,
+            "from": 0,
+            "to": 18
+          },
+          {
+            "line": 986,
+            "from": 0,
+            "to": 18
+          },
+          {
+            "line": 988,
+            "from": 0,
+            "to": 14
+          },
+          {
+            "line": 989,
+            "from": 0,
+            "to": 16
+          },
+          {
+            "line": 990,
+            "from": 0,
+            "to": 20
+          }
+        ],
+        "interleaved": true
+      },
+      "entities": [
+        {
+          "as_printed": "no. SC. Hogav.",
+          "normalized": "[J]no. S. C. Hogan",
+          "role": "named to the committee the chair appointed at the town meeting against gambling reported in the same column, which adjourned to Saturday 25 October 1834"
+        },
+        {
+          "as_printed": "W. H. Kennicott,",
+          "normalized": "W. H. Kennicott",
+          "role": "named to the committee the chair appointed at the town meeting against gambling reported in the same column, which adjourned to Saturday 25 October 1834"
+        },
+        {
+          "as_printed": "V.- Owen,",
+          "normalized": "V. Owen",
+          "role": "named to the committee the chair appointed at the town meeting against gambling reported in the same column, which adjourned to Saturday 25 October 1834"
+        }
+      ],
+      "notes": "THE OTHER MEETING ON THIS PAGE, AND ITS COMMITTEE. Column 1 carries two town meetings against gambling, not one: the first adjourns to Saturday the 25th (lines 992-995) and the second is datelined 'Oct. 25th, 1834' at line 998, so everything above 998 belongs to the earlier meeting. These seven spans are that meeting's committee, in the column-1 half of the crop — the same half c007 reads lower down the column. The Vision reading of column 1 supplies the other half of line 986 as 'Willen Forsyth, Grant' (transcription line 875), which is what makes 'Goodiich' Grant Goodrich rather than a guess. NOT MINTED: 'H. G. Hub[bard]' (983), because the '3' before it is an initial nothing can read and G. Hubbard and E. K. Hubbard are both available on this page; 'Hon. R. J' (988) and 'E. K' (989), whose surnames fell in the band between the crops; 'G. Springs' (990), a surname the line breaks off rather than finishes. This claim is filed because leaving it out would have left the page half-read and the next run re-deriving the same two-meeting structure from scratch."
     }
   ]
 }
