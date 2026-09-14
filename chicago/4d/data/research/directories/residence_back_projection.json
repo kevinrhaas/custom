@@ -46,7 +46,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "reason": "The entry names a public house by its sign — where this person boarded, not a street they lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -90,7 +90,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with and not a street. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with and not a street. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -112,7 +112,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "reason": "The entry names a public house by its sign — where this person boarded, not a street they lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -134,7 +134,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the household this man boarded with, by its head, and not a street. Where that household is itself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the household this person boarded with, by its head, and not a street. Where that household is itself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -222,7 +222,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -244,7 +244,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with and not a street. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with and not a street. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -266,7 +266,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Lake Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Lake Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "lake",
    "face": "Lake Street",
    "placement": "face"
@@ -332,7 +332,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with and not a street. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with and not a street. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -354,7 +354,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Clark Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Clark Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "clark",
    "face": "Clark Street",
    "placement": "face"
@@ -376,7 +376,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Randolph Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Clark Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Randolph Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names Clark Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "randolph",
    "face": "Randolph Street",
    "placement": "face"
@@ -464,7 +464,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "reason": "The entry names a public house by its sign — where this person boarded, not a street they lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -486,7 +486,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Wells Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Washington Street and Randolph Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Wells Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names Washington Street and Randolph Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "wells",
    "face": "Wells Street",
    "placement": "face"
@@ -508,7 +508,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "reason": "The entry names a public house by its sign — where this person boarded, not a street they lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -530,7 +530,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -662,7 +662,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "reason": "The entry names a public house by its sign — where this person boarded, not a street they lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -684,7 +684,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with and not a street. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with and not a street. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -706,7 +706,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Washington Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names La Salle Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Washington Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names La Salle Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "washington",
    "face": "Washington Street",
    "placement": "face"
@@ -728,7 +728,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Washington Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Franklin Street and Market Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Washington Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names Franklin Street and Market Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "washington",
    "face": "Washington Street",
    "placement": "face"
@@ -750,7 +750,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the household this man boarded with, by its head, and not a street. Where that household is itself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the household this person boarded with, by its head, and not a street. Where that household is itself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -772,7 +772,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with in the possessive — whose house it is — and not a street; these volumes never print a street that way. It is tested before the street table because the householder's surname can be a street this town carries. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -794,7 +794,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Lake Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Lake Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "lake",
    "face": "Lake Street",
    "placement": "face"
@@ -838,7 +838,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "North Water Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Dearborn Street and Wolcott Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "North Water Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names Dearborn Street and Wolcott Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "north_water",
    "face": "North Water Street",
    "placement": "face"
@@ -860,7 +860,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Wells Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. The volume narrows it further — it names Lake Street and Randolph Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Wells Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names Lake Street and Randolph Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "wells",
    "face": "Wells Street",
    "placement": "face"
@@ -882,7 +882,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "North Water Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "North Water Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "north_water",
    "face": "North Water Street",
    "placement": "face"
@@ -904,7 +904,7 @@
    "lives_at_1835": null,
    "outcome": "placed",
    "clause": "R4 and R5",
-   "reason": "Market Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "reason": "Market Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "market",
    "face": "Market Street",
    "placement": "face"
@@ -970,7 +970,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with and not a street. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with and not a street. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -1036,7 +1036,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names a public house by its sign — where this man boarded, not a street he lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
+   "reason": "The entry names a public house by its sign — where this person boarded, not a street they lived on. A house of 1843 is a building, and resolving a building printed eight years after the scene onto 1835 ground is a second reading this pass does not make: it would have to identify the house, date it to 1835 and place it, and each of those is its own source question.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -1146,7 +1146,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with and not a street. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with and not a street. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
@@ -1300,7 +1300,7 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "The entry names the person this man boarded with, set with an initial, and not a street — and the surname is also a street this town carries, which is the collision this test is ordered in front of the street table to catch. Where that person is himself in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
+   "reason": "The entry names the person the householder boarded with, set with an initial, and not a street — and the surname is also a street this town carries, which is the collision this test is ordered in front of the street table to catch. Where that person is also in this town the two records could be joined, but that is a crosswalk between two people and not an address read backwards.",
    "street_id": null,
    "face": null,
    "placement": null
