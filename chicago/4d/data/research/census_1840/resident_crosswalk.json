@@ -53,6 +53,91 @@
       "says": "unique full-name agreement and nothing independent of the name"
     }
   ],
+  "ranks_are_not_names": {
+    "rule": "A rank token is dropped wherever it stands in a written name, leaving the surname and the forename the page actually gives. T-0969 ruled a courtesy title is not a forename and T-0987 stretch 8 applied it to the directories; this is the same ruling, and four other tools here already carried it (consolidate_town_cards.py, read_fergus_1843_civic.py, read_fergus_obits.py, survey_stated_kin.py).",
+    "spellings": [
+      "lieut",
+      "lieutenant",
+      "lieuts",
+      "lieutt",
+      "lt"
+    ],
+    "written_names_reached": [
+      {
+        "pool": "newspapers",
+        "name": "Lieut. Allen",
+        "surname": "allen",
+        "key": ""
+      },
+      {
+        "pool": "newspapers",
+        "name": "Lieut. J. Allen",
+        "surname": "allen",
+        "key": ""
+      },
+      {
+        "pool": "newspapers",
+        "name": "Lieut. J. L. Thompson",
+        "surname": "thompson",
+        "key": ""
+      },
+      {
+        "pool": "newspapers",
+        "name": "Lieut. James Allen",
+        "surname": "allen",
+        "key": "james|allen"
+      },
+      {
+        "pool": "newspapers",
+        "name": "Taylor, Jumes lt.",
+        "surname": "jumes",
+        "key": "taylor|jumes"
+      },
+      {
+        "pool": "newspapers",
+        "name": "[uncertain: Lt. Allen]",
+        "surname": "allen",
+        "key": "uncertain|allen"
+      },
+      {
+        "pool": "newspapers",
+        "name": "[…], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence",
+        "surname": "subsistence",
+        "key": "th|subsistence"
+      },
+      {
+        "pool": "residents",
+        "name": "Lieut J L Thompson",
+        "surname": "thompson",
+        "key": ""
+      },
+      {
+        "pool": "residents",
+        "name": "Lieut. James Allen",
+        "surname": "allen",
+        "key": "james|allen"
+      },
+      {
+        "pool": "voter_lists",
+        "name": "Lt. James Allen",
+        "surname": "allen",
+        "key": "james|allen"
+      },
+      {
+        "pool": "voter_lists",
+        "name": "Lt. Jameson",
+        "surname": "jameson",
+        "key": ""
+      },
+      {
+        "pool": "voter_lists",
+        "name": "Lt. Kingsbury",
+        "surname": "kingsbury",
+        "key": ""
+      }
+    ],
+    "still_wrong_and_not_a_rank": "Three of the rows above parse badly for a reason the rank rule does not own, and their keys are inert rather than right: 'Taylor, Jumes lt.' is written surname-first and this parser has no comma inversion, so it keys taylor|jumes; '[uncertain: Lt. Allen]' keeps the transcriber's wrapper as a forename and keys uncertain|allen; and '[…], Lieutenant, 5th Infantry, Assistant Commissary of Subsistence' names nobody at all. None can reach an 1840 head and none is claimed to."
+  },
   "what_is_not_a_discriminator": "an appearance of the SAME NAME on a poll list, a tax list or a letter list. It is the same name again and cannot separate two people who share it, so it is recorded as same_name_support on every outcome and never promotes a candidate to matched.",
   "inputs": [
     {
@@ -11395,10 +11480,25 @@
       "same_name_support": [
         {
           "pool": "voter_lists",
+          "list": "tax_1833",
+          "record_id": "tax_1833_001",
+          "name": "Lt. James Allen",
+          "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "voter_lists",
           "list": "poll_1834",
           "record_id": "poll_1834_005",
           "name": "James Allen",
           "source_id": "chicago_voter_lists_1833_1835_irad"
+        },
+        {
+          "pool": "newspapers",
+          "id": "person_lieut_james_allen",
+          "name": "Lieut. James Allen",
+          "source_ids": [
+            "chicago_democrat_1833_1835"
+          ]
         },
         {
           "pool": "census_1835_bridge_candidates",
@@ -11417,20 +11517,11 @@
       "household_id": "hh_allen_lieut_james",
       "resident_name": "Lieut. James Allen",
       "resident_grade_1835": "attested",
-      "via_card_merge": "allen_james",
-      "reached_through_card_merge": {
-        "folded_person_id": "allen_james",
-        "folded_card_name": "James Allen",
-        "survivor_person_id": "allen_lieut_james",
-        "survivor_live_name": "Lieut. James Allen",
-        "rule": "C0",
-        "ticket": "T-0839",
-        "why": "the head agrees with 'James Allen', a spelling the residents layer no longer prints: that card was folded onto allen_lieut_james by a written ruling in data/residents/card_merge_rulings.json. The person is gathered under the folded spelling and weighed by his live card."
-      },
+      "via_card_merge": null,
       "discriminators": [],
       "outcome": "candidate",
       "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (James P. Allen = Lieut. James Allen) and the name is unique on both sides, but nothing independent of the name was found: allen_lieut_james carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 3 1835 list(s), which is the same name again and does not discriminate."
+      "reason": "Full forename and surname agree (James P. Allen = Lieut. James Allen) and the name is unique on both sides, but nothing independent of the name was found: allen_lieut_james carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The same name appears on 5 1835 list(s), which is the same name again and does not discriminate."
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",

@@ -133,6 +133,22 @@ ABBREV = {
 }
 SUFFIXES = {"jr", "sr", "jun", "sen", "2d", "3d", "ii", "iii", "esq"}
 TITLES = {"mrs", "mr", "miss", "ms", "capt", "dr", "rev", "col", "gen", "major", "maj", "hon"}
+# T-1116: TITLES strips a captain, a colonel and a general, and never stripped a
+# lieutenant — so `Lieut. James Allen` keyed as `lieut|allen` and the town's James
+# Allen sat indexed under a rank. The ruling is already settled twice (T-0969, a
+# courtesy title is not a forename; T-0987 stretch 8, a rank is not a name) and four
+# other tools here strip these spellings: consolidate_town_cards.py `RANKS`,
+# read_fergus_1843_civic.py, read_fergus_obits.py, survey_stated_kin.py.
+#
+# They are held APART from TITLES and filtered in ANY POSITION, because TITLES is
+# leading-only — it must be, since it carries the female-style distinction that keeps
+# Mrs Rufus Brown out of Rufus Brown's identity — and a rank is written trailing too
+# (`Taylor, Jumes lt.` in the letter lists, where the rank landed in the surname slot).
+# A rank carries no such distinction, and none of these four spellings is a surname
+# anyone in this corpus bears, so removing them wherever they stand is safe.
+# consolidate_town_cards.py sets the precedent: ranks are dropped from the name tokens
+# rather than treated as a leading style.
+RANKS = {"lieut", "lieutt", "lieuts", "lieutenant", "lt"}
 FIRM_TAIL = re.compile(r"\s*&\s*(co|son|sons|bro|bros|brother|brothers)\.?\s*$", re.I)
 
 
@@ -152,6 +168,8 @@ def parse_name(raw: str) -> dict:
     text = text.replace(",", " ").replace(".", " ")
     tokens = [t for t in text.split() if t]
     tokens = [t for t in tokens if t.lower().strip("'-") not in SUFFIXES]
+    # T-1116: a rank is not a name, in any position. See RANKS above.
+    tokens = [t for t in tokens if t.lower().strip("'-") not in RANKS]
     # T-0969: a courtesy title is not a forename. Retain the female style as
     # an identity distinction: Mrs Rufus Brown must not become Rufus Brown.
     female_style = False
@@ -177,6 +195,29 @@ def parse_name(raw: str) -> dict:
         "firm": firm,
         "key": (("female|" if female_style else "") + forename + "|" + surname) if forename else "",
     }
+
+
+def rank_bearing_names(residents, voters, letters, candidates) -> list:
+    """Every 1835 pool name written with a rank, and the key it parses to (T-1116).
+
+    Derived, so the file can never disagree with what parse_name actually does. A row
+    with an empty key gives a surname and no forename — which is what the page gives,
+    once the rank stops standing in for one.
+    """
+    token = re.compile(r"[^a-z]")
+    out = []
+    for pool, rows in (("residents", residents), ("voter_lists", voters),
+                       ("newspapers", letters), ("census_1835_bridge_candidates",
+                                                 candidates)):
+        for row in rows:
+            name = row.get("name") or ""
+            words = {token.sub("", w.lower()) for w in name.split()}
+            if not (words & RANKS):
+                continue
+            out.append({"pool": pool, "name": name,
+                        "surname": row["parsed"]["surname"],
+                        "key": row["parsed"]["key"]})
+    return sorted(out, key=lambda r: (r["pool"], r["name"]))
 
 
 def initials(given: list) -> list:
@@ -940,6 +981,31 @@ def build() -> dict:
             {"rule": "L7 candidate", "outcome": "candidate",
              "says": "unique full-name agreement and nothing independent of the name"},
         ],
+        # T-1116. A rank is not a name, and the pools write several — so the file says
+        # which written names this rule reaches, DERIVED on every build rather than
+        # counted once into a note that can go stale.
+        "ranks_are_not_names": {
+            "rule": "A rank token is dropped wherever it stands in a written name, "
+                    "leaving the surname and the forename the page actually gives. "
+                    "T-0969 ruled a courtesy title is not a forename and T-0987 stretch 8 "
+                    "applied it to the directories; this is the same ruling, and four "
+                    "other tools here already carried it (consolidate_town_cards.py, "
+                    "read_fergus_1843_civic.py, read_fergus_obits.py, "
+                    "survey_stated_kin.py).",
+            "spellings": sorted(RANKS),
+            "written_names_reached": rank_bearing_names(
+                residents, voters, letters, candidates),
+            # Naming what the rank rule does NOT fix, rather than letting a corrected
+            # key read as a correct one. T-1119 holds these.
+            "still_wrong_and_not_a_rank": "Three of the rows above parse badly for a "
+                "reason the rank rule does not own, and their keys are inert rather "
+                "than right: 'Taylor, Jumes lt.' is written surname-first and this "
+                "parser has no comma inversion, so it keys taylor|jumes; "
+                "'[uncertain: Lt. Allen]' keeps the transcriber's wrapper as a "
+                "forename and keys uncertain|allen; and '[…], Lieutenant, 5th "
+                "Infantry, Assistant Commissary of Subsistence' names nobody at all. "
+                "None can reach an 1840 head and none is claimed to.",
+        },
         "what_is_not_a_discriminator": "an appearance of the SAME NAME on a poll list, a "
             "tax list or a letter list. It is the same name again and cannot separate "
             "two people who share it, so it is recorded as same_name_support on every "
@@ -1209,6 +1275,32 @@ def self_test() -> int:
            parse_name("Mrs Rufus Brown")["key"] == parse_name("Rufus Brown")["key"], False)
     for title in ("Mr", "Capt", "Dr", "Rev", "Col"):
         expect(title + " is not a forename", parse_name(title + ". John Smith")["key"], "john|smith")
+
+    # T-1116: a rank is not a name. The gap TITLES left — it stripped a captain, a
+    # colonel and a general and not a lieutenant — put the town's James Allen under
+    # the key `lieut|allen`, which no 1840 head written `James Allen` could reach.
+    for rank in ("Lieut", "Lieutt", "Lieuts", "Lieutenant", "Lt"):
+        expect(rank + " is not a forename", parse_name(rank + ". John Smith")["key"], "john|smith")
+    expect("Lieut. James Allen reaches the town's James Allen",
+           parse_name("Lieut. James Allen")["key"], "james|allen")
+    expect("the voter list's Lt. James Allen keys the same man",
+           parse_name("Lt. James Allen")["key"], "james|allen")
+    expect("a rank with no forename beside it gives a surname and no key",
+           (parse_name("Lt. Kingsbury")["surname"], parse_name("Lt. Kingsbury")["key"]),
+           ("kingsbury", ""))
+    expect("a rank left of initials does not become the forename",
+           (parse_name("Lieut J L Thompson")["surname"], parse_name("Lieut J L Thompson")["key"]),
+           ("thompson", ""))
+    # A rank is written trailing too, and there it landed in the surname slot.
+    expect("a trailing rank is not a surname", parse_name("Taylor, Jumes lt.")["surname"], "jumes")
+    # None of these spellings is a surname this corpus bears, which is why they may be
+    # dropped in any position; a real name that merely CONTAINS one is untouched.
+    expect("Litt is not a rank", parse_name("John Litt")["key"], "john|litt")
+    expect("Lieutenant is not stripped out of Lieutenantville",
+           parse_name("John Lieutenantville")["surname"], "lieutenantville")
+    # T-0969's female style survives the new filter.
+    expect("Mrs is still not Mary's forename", parse_name("Mrs. Mary Brown")["key"],
+           "female|mary|brown")
 
     doc = build()
     expect("the recapitulation's page numbers are never household heads",
