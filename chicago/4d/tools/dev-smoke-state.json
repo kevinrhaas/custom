@@ -2104,6 +2104,73 @@
         ]
       },
       "source": "/tmp/smoke-mobile-1213.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 171,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 508,
+      "takenAt": "2026-09-14T23:14:09.734Z",
+      "ref": "steward/t-1128-exact-namesake-rulings",
+      "commit": "09d399e72652",
+      "devCommit": "9b232f7baa62",
+      "treeHash": "sha256:0fe3791bb4ee81d8",
+      "treeDirty": false,
+      "changelogHash": "sha256:425f25472beaa143",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.2,
+          3.4
+        ]
+      },
+      "source": "/tmp/s2_m1213.txt"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 67,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 437,
+      "takenAt": "2026-09-14T23:05:35.172Z",
+      "ref": "steward/t-1128-exact-namesake-rulings",
+      "commit": "09d399e72652",
+      "devCommit": "9b232f7baa62",
+      "treeHash": "sha256:0fe3791bb4ee81d8",
+      "treeDirty": false,
+      "changelogHash": "sha256:425f25472beaa143",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.7,
+          2.7
+        ]
+      },
+      "source": "/tmp/s2_d12.txt"
     }
   ]
 }

@@ -12,16 +12,16 @@
     "distinct_adult_names": 143,
     "residents_examined": 1308,
     "all_places": {
-      "merged": 8,
-      "refused": 17,
-      "exact_name_unruled": 4,
+      "merged": 9,
+      "refused": 20,
+      "exact_name_unruled": 0,
       "refused_surname_only": 19,
       "no_candidate": 95
     },
     "chicago_entries_only": {
-      "merged": 8,
-      "refused": 17,
-      "exact_name_unruled": 3,
+      "merged": 9,
+      "refused": 19,
+      "exact_name_unruled": 0,
       "refused_surname_only": 4,
       "no_candidate": 79
     },
@@ -109,64 +109,13 @@
     "Victoire Madera",
     "William Dird"
   ],
-  "exact_name_unruled": [
-    {
-      "register_name": "Josette Chevalier",
-      "resident_names": [
-        "Josette Chevalier"
-      ],
-      "readings": 3,
-      "at_chicago": true,
-      "entries": [
-        "1833/11",
-        "1833/12",
-        "1834/12"
-      ]
-    },
-    {
-      "register_name": "Mary Durbin",
-      "resident_names": [
-        "Mary Durbin"
-      ],
-      "readings": 1,
-      "at_chicago": false,
-      "entries": [
-        "1834/8"
-      ]
-    },
-    {
-      "register_name": "Patrick Carroll",
-      "resident_names": [
-        "Patrick Carroll"
-      ],
-      "readings": 1,
-      "at_chicago": true,
-      "entries": [
-        "1835/1"
-      ]
-    },
-    {
-      "register_name": "Solomon Juneau",
-      "resident_names": [
-        "Solomon Juneau"
-      ],
-      "readings": 4,
-      "at_chicago": true,
-      "entries": [
-        "1833/10",
-        "1833/5",
-        "1833/8",
-        "1834/17"
-      ]
-    }
-  ],
+  "exact_name_unruled": [],
   "counts_by_ruling": {
     "child_not_crosswalked": 56,
-    "exact_name_unruled": 9,
-    "merged": 18,
+    "merged": 22,
     "no_candidate": 130,
     "not_a_person": 8,
-    "refused": 28,
+    "refused": 33,
     "refused_surname_only": 26
   },
   "merges": [
@@ -237,6 +186,17 @@
       "rule": "The register writes \"Joseph Chandler\" and the residents layer writes \"Joseph Chandler\": forename and surname agree exactly. The resident is known from one return of uncalled-for letters at the Chicago post office in April 1834, printed 'Joveph Chandler'; the register puts a Joseph Chandler at a Chicago font on 9 November 1835 as godfather to the daughter of Catherine Chandler, which establishes a Chandler household in the town and is exactly the second source a letter-list name has always lacked. Two independent agreements — the name and the town — plus a household the letter list could not show. THE RESIDUAL RISK IS STATED: the name is not rare and no third attribute agrees.",
       "evidence": [
         "st_marys_bapt_1835_13_4_godfather"
+      ]
+    },
+    {
+      "into": "Solomon Juneau",
+      "from": "Solomon Juneau",
+      "rule": "The register writes \"Salomon Juneau\" in 1833 entry 5 and 1834 entry 17 and \"Solomon Juneau\" in 1833 entries 8 and 10 — the French and the English form of one forename, in one hand — and the residents layer writes \"Solomon Juneau\". THE SURNAME IS RARE HERE: one Juneau among the people the layer holds and one across every adult reading of this book. Three agreements stand beyond the name, and the two sources did not copy each other. FIRST, THE FAMILY THE REGISTER ITSELF GIVES HIM: he is the father of Marguerite by 'Josette Vieau' (1833 entry 5), he stands godfather WITH Josette Vieau (1833 entry 10), and he stands godfather to the daughter of Jacob Vieau (1833 entry 8). A husband, his wife and her kin named together across three entries is not a surname match. SECOND, THE TRADE AND THE TWO TOWNS: the resident card is minted from the Chicago Democrat, and the newspaper gazetteer's entity for this name carries the occupation merchant and the associated places Chicago AND Milwaukee — while this book's own reading notes name him 'Salomon Juneau of Milwaukee'. Milwaukee is the agreement; it is the one attribute that would separate a second Solomon Juneau and instead it joins them. THIRD, THE WINDOW CLOSES: his last reading here is 29 June 1834, and his advertisement is dated over his own name 'Chicago, July 2, 1834' — three days later. RESIDENCE IS NOT CLAIMED AND IS NOT IMPLIED. Sponsorship at a font is not residence, and `at_chicago` on a reading is about the ENTRY, not the man: he had every reason to stand godfather at Chicago and the record gives him none to sleep there. His own advertisement is the proof of it — he offers a corner parcel of Block 18 on South Water Street to lease and sends enquiries 'to the Printing office', which is how an owner lets ground he is not in the town to show. The resident card already carries present_on_scene_date 'uncertain'; THIS PASS DOES NOT DISTURB IT, and what is merged is an IDENTITY, not a residence.",
+      "evidence": [
+        "st_marys_bapt_1833_05_2_father",
+        "st_marys_bapt_1833_08_4_godfather",
+        "st_marys_bapt_1833_10_4_godfather",
+        "st_marys_bapt_1834_17_4_sponsor"
       ]
     }
   ],
@@ -398,6 +358,33 @@
       "a": "Doctor Egan",
       "b": "Emeline Egan",
       "rule": "\"Doctor Egan\" is merged above to Dr William Bradshaw Egan and is here refused against \"Emeline Egan\", the layer's only other Egan. The refusal is written down because the merge above depends on it: the title separates them, and if it did not, neither identification could stand.",
+      "evidence": [
+        "data/research/church/records/st_marys_baptisms_1833_1835.json",
+        "data/residents/households/"
+      ]
+    },
+    {
+      "a": "Josette Chevalier",
+      "b": "Josette Chevalier",
+      "rule": "\"Josette Chevalier\" sponsors 1833 entries 11 and 12 and stands godmother at 1834 entry 12, and \"Josette Chevalier\" is in the residents layer as the bride of Mark Bourassa, married at Chicago in March 1835. THE NAMES AGREE EXACTLY AND THAT IS THE WHOLE OF WHAT AGREES. Everything else the pair shares — the parish, the priest, the town, the nineteen months — is a restatement of WHERE BOTH READINGS WERE FOUND, because both sides are ONE MANUSCRIPT: the layer's person is minted from st_cyr_marriage_005_2, the marriage list of the same Father St Cyr whose baptism book this is. That fails the test every merge above passes, which is two sources that did not copy each other. And this book holds a SECOND Chevalier presence — Joseph Chevalier, a child born at the Rivière au Sable and baptised at Chicago on 20 October 1833, and 'L. Chevalier', a witness of 6 June 1835 who is refused above — so a Chevalier kin group stands at Chicago from which a second Josette is not excluded by anything read here. SHE IS VERY PROBABLY ONE WOMAN. Probably is not a confidence grade, and writing the merge would put the word 'documented' over an inference. WHAT WOULD OVERTURN THIS: a source outside St Cyr's own register that names her, or an entry naming the same husband or household on both sides.",
+      "evidence": [
+        "data/research/church/records/st_marys_baptisms_1833_1835.json",
+        "data/residents/households/"
+      ]
+    },
+    {
+      "a": "Patrick Carroll",
+      "b": "Patrick Carroll",
+      "rule": "\"Patrick Carroll\" sponsors 1835 entry 1, the first entry of the scene year, and \"Patrick Carroll\" is in the residents layer as the groom of Mary Hogan, married at Chicago on 21 April 1835. Refused on the ground that refuses Josette Chevalier above, and more heavily. The names agree exactly and nothing else agrees that is independent of where the readings were found: the layer's person is minted from st_cyr_marriage_007_1, the marriage list of this book's own priest, so the shared parish and the eight weeks between 23 February and 21 April are ONE FACT and not two agreements. THE NAME IS ALSO A COMMON ONE: the layer holds six Patricks, and the priest's margin against this very entry reads one word, 'Irish' — this register exists to show that the Irish and French Catholic town was larger than the poll books knew, which is exactly why a second Patrick Carroll in it cannot be ruled out. John Murphy is MERGED above because a wife and a hotel stand beside his equally common name. Nothing stands beside this one.",
+      "evidence": [
+        "data/research/church/records/st_marys_baptisms_1833_1835.json",
+        "data/residents/households/"
+      ]
+    },
+    {
+      "a": "Mary Durbin",
+      "b": "Mary Durbin",
+      "rule": "\"Mary Durbin\" is the mother of 1834 entry 8 and \"Mary Durbin\" is in the residents layer. The names agree exactly and the two records CONTRADICT each other on the single attribute both carry — a husband. The register makes her the mother of Marguerite, daughter of Samuel Henriks, born 13 December 1833 and baptised on 25 May 1834; this register writes mothers under their MAIDEN names throughout (Josette Vieau, Adelaide Bouchard, Monique Nadeau), so its Mary Durbin is Samuel Henriks' wife. The layer's Mary Durbin is minted from st_cyr_marriage_002_2: the bride of JOHN SIMMONS, married five days earlier on 20 May 1834. One woman does not marry two men in five days and nothing read here widows her. NEITHER READING IS AT CHICAGO: the baptism is written at the South Fork of the Sangamon and the marriage at Bear Creek, Sangamon County, in the house the article's footnote calls Hy Durbin's — central Illinois, not Cook County. AND THE SURNAME IS THAT SETTLEMENT'S, NOT A PERSON'S: one week of the priest's journey names John, Philipp, Thomas, William, Elisabeth, Marguerite, Ann, Oro and Mary Durbin across six entries, and it repeats its forenames across generations — a Marguerite Durbin is BAPTISED AS A CHILD in 1834 entry 3 and a Marguerite Durbin stands as a MOTHER in 1834 entry 6. An exact name inside a clan that reuses its names, disagreeing on the husband, in a county this town is not in, is a refusal three times over. A SEPARATE FINDING, not this crosswalk's to fix: the layer's card reads that the church list 'names this person at Chicago by 20 May 1834' while the marriage record it cites says in capitals that it is not Chicago and 'is not evidence of anybody standing in Chicago'. That is a defect in the residents layer and it is filed as its own ticket.",
       "evidence": [
         "data/research/church/records/st_marys_baptisms_1833_1835.json",
         "data/residents/households/"
@@ -1670,7 +1657,7 @@
       "resident_exact_name_matches": [
         "Josette Chevalier"
       ],
-      "adjudication": "exact_name_unruled"
+      "adjudication": "refused"
     },
     {
       "name": "Josette Laframboise",
@@ -2157,7 +2144,7 @@
       "resident_exact_name_matches": [
         "Mary Durbin"
       ],
-      "adjudication": "exact_name_unruled"
+      "adjudication": "refused"
     },
     {
       "name": "Mary Murphy",
@@ -2408,7 +2395,7 @@
       "resident_exact_name_matches": [
         "Patrick Carroll"
       ],
-      "adjudication": "exact_name_unruled"
+      "adjudication": "refused"
     },
     {
       "name": "Patrick Wagon",
@@ -2543,7 +2530,7 @@
       "resident_exact_name_matches": [
         "Solomon Juneau"
       ],
-      "adjudication": "exact_name_unruled"
+      "adjudication": "merged"
     },
     {
       "name": "Susanna Johnson",
@@ -2860,8 +2847,8 @@
       "name": "Solomon Juneau",
       "role": "father",
       "at_chicago": true,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "merged",
+      "rule": "Merged to a person in the residents layer; the rule is in merges[] and names both spellings verbatim."
     },
     {
       "record_id": "st_marys_bapt_1833_05_3_mother",
@@ -2988,8 +2975,8 @@
       "name": "Solomon Juneau",
       "role": "godfather",
       "at_chicago": true,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "merged",
+      "rule": "Merged to a person in the residents layer; the rule is in merges[] and names both spellings verbatim."
     },
     {
       "record_id": "st_marys_bapt_1833_08_5_godmother",
@@ -3076,8 +3063,8 @@
       "name": "Solomon Juneau",
       "role": "godfather",
       "at_chicago": true,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "merged",
+      "rule": "Merged to a person in the residents layer; the rule is in merges[] and names both spellings verbatim."
     },
     {
       "record_id": "st_marys_bapt_1833_10_5_godmother",
@@ -3124,8 +3111,8 @@
       "name": "Josette Chevalier",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1833_12_1_child",
@@ -3164,8 +3151,8 @@
       "name": "Josette Chevalier",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1833_13_1_child",
@@ -3700,8 +3687,8 @@
       "name": "Mary Durbin",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1834_08_4_sponsor",
@@ -3868,8 +3855,8 @@
       "name": "Josette Chevalier",
       "role": "godmother",
       "at_chicago": true,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1834_13_1_subject",
@@ -4004,8 +3991,8 @@
       "name": "Solomon Juneau",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "merged",
+      "rule": "Merged to a person in the residents layer; the rule is in merges[] and names both spellings verbatim."
     },
     {
       "record_id": "st_marys_bapt_1834_17_5_sponsor",
@@ -4316,8 +4303,8 @@
       "name": "Patrick Carroll",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "exact_name_unruled",
-      "rule": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The residents layer holds a person whose name folds identically to this one, and neither merges[] nor refusals[] names the pair. It is NOT the standing surname-only refusal, whose ground is that no forename agrees — here one does. It is not merged either: a merge needs a written rule naming both spellings, and there is none. The pair is listed in exact_name_unruled[] for the pass that rules on it; until then this reading is crosswalked to nobody."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1835_01_5_sponsor",
