@@ -15,11 +15,11 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 1293,
+  "residents_considered": 1306,
   "matched_one_card": 18,
   "matched_more_than_one_ambiguous": 3,
   "one_printed_proprietor_contested_by_two_residents": 8,
-  "surname_present_initial_absent_refused": 124,
+  "surname_present_initial_absent_refused": 126,
   "letter_list_bucket_refused": 1,
   "residents_that_refusal_reaches": 1,
   "ties_offered_the_trade_discriminator": 11,
@@ -1549,6 +1549,13 @@
    "rule": "The surname 'Cobb' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'L B Cobb'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "L Clarke",
+   "person_id": "clarke_l",
+   "surname_on_a_card": "Clarke",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Clarke' stands on an 1844 advertising card and no proprietor under it carries the initial 'L' of 'L Clarke'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "L G Curtiss",
    "person_id": "curtiss_l_g",
    "surname_on_a_card": "Curtiss",
@@ -1820,6 +1827,13 @@
    "surname_on_a_card": "Newberry",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Newberry' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'Walter Loomis Newberry'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "William George Sherman",
+   "person_id": "sherman_william_george",
+   "surname_on_a_card": "Sherman",
+   "cards_under_that_surname": 4,
+   "rule": "The surname 'Sherman' stands on an 1844 advertising card and no proprietor under it carries the initial 'W' of 'William George Sherman'. A surname-only agreement is a refusal."
   },
   {
    "resident": "William H Brown",

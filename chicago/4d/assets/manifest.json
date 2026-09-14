@@ -3352,7 +3352,7 @@
       "baked_ao": false,
       "bytes": 7517420,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "218c111af3e216237eda53c1e29aee5098e4dd224e37aa0126449e3082b569c5",
+      "inputs_sha256": "14fd0f5ec952a2acccf91f70f1873bebf49ea56e586df36be9e510f64bb38c06",
       "kind": "generated",
       "layer": "ground",
       "mesh_vs_heightfield": {
@@ -3395,7 +3395,7 @@
       "baked_ao": false,
       "bytes": 1380,
       "generator": "generators/terrain_gen.py",
-      "inputs_sha256": "218c111af3e216237eda53c1e29aee5098e4dd224e37aa0126449e3082b569c5",
+      "inputs_sha256": "14fd0f5ec952a2acccf91f70f1873bebf49ea56e586df36be9e510f64bb38c06",
       "kind": "generated",
       "layer": "water",
       "terrain_epoch": "e1834_harbor_cut",
@@ -3467,5 +3467,5 @@
   },
   "blender": "4.5.3",
   "inputs_scheme": "resolved-params-v3",
-  "terrain_inputs_scheme": "resolved-spec-v4"
+  "terrain_inputs_scheme": "resolved-spec-v5"
 }
