@@ -1,7 +1,7 @@
 ---
 id: T-1041
 title: A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1299
+claimed_by: run 9/13/2026, 7:49:06 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-14T01:42:27.410Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34793545676
 ---
 
 A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation.
