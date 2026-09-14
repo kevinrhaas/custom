@@ -3467,5 +3467,5 @@
   },
   "blender": "4.5.3",
   "inputs_scheme": "resolved-params-v3",
-  "terrain_inputs_scheme": "resolved-spec-v4"
+  "terrain_inputs_scheme": "resolved-spec-v5"
 }
