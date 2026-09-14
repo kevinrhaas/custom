@@ -3322,5 +3322,17 @@ step "the 1835 hay-stacking limit still re-derives from committed street lines" 
 selftest "…and its own refusals still fire when broken" \
   python3 tools/derive_hay_limits.py --self-test
 
+# The agency relation the SAME card reads (T-1041), and gated the same way for the same
+# reason. This one is a relation between two records rather than a measurement, so what
+# a hand edit could do here is worse than a wrong number: it could hand a house a trade
+# it never had, or quietly drop the standing caveat that says a holding is only a
+# holding. Both are refusals in the tool, and the re-derivation is what keeps the card
+# showing the register rather than somebody's improvement on it.
+step "the agency relation still re-derives from the committed register" \
+  python3 tools/compile_agencies.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/compile_agencies.py --self-test
+
 check_summary
 exit $CHECK_FAILED

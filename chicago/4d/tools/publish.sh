@@ -160,6 +160,13 @@ cp -f data/town_census.json "$SITE/data/"
 mkdir -p "$SITE/data/reconstruction"
 cp -f data/reconstruction/1835_hay_limits.json "$SITE/data/reconstruction/"
 
+# And the compiled agency relation the same card reads (T-1041). Derived by
+# tools/compile_agencies.py and re-derived by tools/check.sh; agencies.js fetches it
+# at data/reconstruction/1835_agencies.json from BOTH the building card and the person
+# card, so leaving it behind is one 404 and two cards silently missing a relation the
+# register has held since T-0410.
+cp -f data/reconstruction/1835_agencies.json "$SITE/data/reconstruction/"
+
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —
 # publishing heightfield.json without heightfield.bin gives a flat world and a
