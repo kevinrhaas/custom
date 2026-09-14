@@ -145,7 +145,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
 # --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
 
-T-1122 — Both back-projection passes call every householder 'this man' in generated prose, and one of the 57 is Rebecca Sherman
 
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
@@ -199,13 +198,7 @@ T-1122 — Both back-projection passes call every householder 'this man' in gene
 
 
 
-
-
-
-
-
-
-T-1123 — Extend the modelled ground north to n +1120, so Kinzie's Addition and the North Branch's traced banks stand on measured ground
+T-1122 — Both back-projection passes call every householder 'this man' in generated prose, and one of the 57 is Rebecca Sherman
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
@@ -231,6 +224,8 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- #1055 lost forty hand-authored judgements under a green check.sh — the research band above
 # --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
 # --- re-deriving them.
+
+
 
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
 T-1112 — generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it
