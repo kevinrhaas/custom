@@ -2735,6 +2735,22 @@ step "the land tract sales re-derive from their committed deposit" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
 
+# T-1017. A ruling about a KIND OF ARGUMENT, and the only one in this domain that rests on a
+# measurement rather than on a page. T-0990 refused RUSSELL SAMUEL and SKINNER JOSEPH while
+# recording that the rows are at the town's own school-section sale — an argument it filed
+# rather than used. T-1017 answers it by counting, and the answer is no: the sale is enriched
+# in town-side names and cannot separate two bearers of one, so it is a prior over a
+# population and not a check on a row. The figures behind that move whenever a ruling is made
+# or the residents layer grows, which is exactly why they are asserted here and not merely
+# printed. If the sale ever ceases to be non-exclusive, ceases to be minority-upheld, or
+# ceases to print a surname twice, this step goes red naming the arm that failed and the
+# question reopens — rather than the ruling standing on a measurement that moved under it.
+step "the school-section sale still reads the way T-1017 ruled it" \
+  python3 tools/school_section_sale.py --check
+
+selftest "…and all three arms of that ruling still fail when broken" \
+  python3 tools/school_section_sale.py --self-test
+
 # T-1001. The surname fold is EXACT, and the measurement that says it should stay exact
 # is the only thing standing between this domain and a fold that looks kinder and costs
 # 24 correct matches. The counts move whenever the residents layer grows, so they are not
