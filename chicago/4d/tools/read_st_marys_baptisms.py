@@ -13,6 +13,14 @@ records and the claims and `--check` proving the emitted JSON is still exactly w
 this table says. A hand-edit of the JSON is therefore a gate failure, which is the
 point — the transcription and the artifact cannot drift apart.
 
+THE CROSSWALK HAS A SECOND INPUT and it moves: `data/residents/`. The records and
+the claims are this table alone, but the crosswalk holds the reading against the
+town, so it goes stale whenever the town gains people — which it did, 849 to 1,308,
+between T-0503 and T-1110. That is not a hand edit and not a changed tool, and
+`--check` now says which of the three it is (`_why_it_differs`) instead of naming two
+and leaving the reader to guess. Staleness is answered by `--build`; a hand edit
+would be a ruling a rebuild erases.
+
 THE GRADE. Every row here is `scan_verified`: read off the page image, not out of a
 transcription. That is the higher of the two readings this project recognises and it
 is why these rows outrank the marriage register's, which came through the Illinois
@@ -1554,10 +1562,19 @@ def crosswalk_doc():
         rowset = seen[name]
         at_chicago = any(r["at_chicago"] for r in rowset)
         candidates = by_surname.get(_surname(name), [])
+        # An EXACT name is not the surname-only case and must not be filed under its
+        # rule, whose whole ground is that no forename agrees. See T-1110: the
+        # residents layer grew from 849 people to over 1,300 after this pass was
+        # written, and four adults it had found no candidate for now have a namesake
+        # in it who folds identically. Saying "no forename agrees" over those would
+        # be a false statement in a provenance artifact.
+        exact = [c["name"] for c in candidates if _fold(c["name"]) == _fold(name)]
         if name in merged:
             outcome = "merged"
         elif name in refused:
             outcome = "refused"
+        elif exact:
+            outcome = "exact_name_unruled"
         elif candidates:
             outcome = "refused_surname_only"
         else:
@@ -1570,10 +1587,12 @@ def crosswalk_doc():
             "entries": sorted({"%s/%s" % (r["locator"]["year_series"], r["locator"]["entry"])
                                for r in rowset}),
             "resident_surname_candidates": [c["name"] for c in candidates],
+            "resident_exact_name_matches": exact,
             "adjudication": outcome,
         })
 
-    counted = {"merged": 0, "refused": 0, "refused_surname_only": 0, "no_candidate": 0}
+    counted = {"merged": 0, "refused": 0, "exact_name_unruled": 0,
+               "refused_surname_only": 0, "no_candidate": 0}
     chicago_counted = dict(counted)
     for o in outcomes:
         counted[o["adjudication"]] += 1
@@ -1582,6 +1601,14 @@ def crosswalk_doc():
 
     nowhere = sorted(o["name"] for o in outcomes
                      if o["at_chicago"] and o["adjudication"] == "no_candidate")
+
+    # The pairs the next pass owes a ruling. Listed by name so it is a worklist and
+    # not a count somebody has to go and reconstruct.
+    exact_unruled = [
+        {"register_name": o["name"], "resident_names": o["resident_exact_name_matches"],
+         "readings": o["readings"], "at_chicago": o["at_chicago"], "entries": o["entries"]}
+        for o in outcomes if o["adjudication"] == "exact_name_unruled"
+    ]
 
     # ONE RULING PER READING, anchored to the row it rules on. The summary above is
     # by NAME, and a name read in three entries is three readings; the spend gate
@@ -1603,6 +1630,17 @@ def crosswalk_doc():
                                         "layer holds this surname and no forename "
                                         "agrees, and a surname-only merge is always a "
                                         "refusal.",
+                "exact_name_unruled": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The "
+                                      "residents layer holds a person whose name folds "
+                                      "identically to this one, and neither merges[] nor "
+                                      "refusals[] names the pair. It is NOT the standing "
+                                      "surname-only refusal, whose ground is that no "
+                                      "forename agrees — here one does. It is not merged "
+                                      "either: a merge needs a written rule naming both "
+                                      "spellings, and there is none. The pair is listed "
+                                      "in exact_name_unruled[] for the pass that rules "
+                                      "on it; until then this reading is crosswalked to "
+                                      "nobody.",
                 "no_candidate": "NO CANDIDATE AT ALL — the residents layer holds no "
                                 "person of this surname. This is the finding, not a "
                                 "failure: it is the Catholic town the poll books and "
@@ -1648,12 +1686,19 @@ def crosswalk_doc():
         "source_id": SOURCE_ID,
         "pass": "T-0503",
         "what": "Every ADULT named in the eleven page images — parents, godparents, "
-                "sponsors, witnesses, spouses and the officiant — held against the 849 "
-                "people of data/residents/.",
+                "sponsors, witnesses, spouses and the officiant — held against the %d "
+                "people data/residents/ holds today. That count is DERIVED and it "
+                "moves: the layer stood at 849 when T-0503 wrote this pass, and a "
+                "crosswalk built against a layer that has since grown is stale rather "
+                "than wrong — which is what T-1110 found and why --check now says "
+                "which of the three it is." % len(people),
         "the_rule": "A merge needs a written rule naming BOTH spellings verbatim; a "
-                    "surname-only merge is always a refusal; a refusal is declared as "
-                    "explicitly as a merge. Nothing here mints or regrades a resident — "
-                    "T-0514 and T-0515 spend this file.",
+                    "surname-only merge is always a refusal; an EXACT name with no "
+                    "written rule is neither, and is held in exact_name_unruled[] "
+                    "rather than filed under a refusal whose stated ground is untrue "
+                    "of it; a refusal is declared as explicitly as a merge. Nothing "
+                    "here mints or regrades a resident — T-0514 and T-0515 spend this "
+                    "file.",
         "counts": {
             "adult_readings": sum(1 for r in rows if r["adult"]),
             "distinct_adult_names": len(outcomes),
@@ -1670,6 +1715,7 @@ def crosswalk_doc():
                        "owner's ask was for."
                        % (sum(1 for o in outcomes if o["at_chicago"]), len(nowhere)),
         "chicago_adults_present_nowhere_else": nowhere,
+        "exact_name_unruled": exact_unruled,
         "counts_by_ruling": {k: sum(1 for r in rulings if r["outcome"] == k)
                              for k in sorted({r["outcome"] for r in rulings})},
         "merges": [
@@ -1708,6 +1754,35 @@ def cmd_build():
         print("    %d: %d entries (the book's own pencil tally: %d)" % (y, t[y], BOOK_TALLY[y]))
 
 
+def _why_it_differs(path):
+    """Say WHICH of the three it is, rather than name two and leave the reader to guess.
+
+    T-1110 is the reason this exists. The old message offered a hand edit or a tool
+    change and could tell them apart from neither — and the actual cause was a THIRD
+    thing it did not name: the crosswalk's INPUT, data/residents/, had grown from 849
+    people to over 1,300 since the pass was written, while neither the file nor the
+    tool had been touched since the commit that landed both. That is staleness, and it
+    is answered by a rebuild that costs nothing; a hand edit is a ruling somebody made
+    that a rebuild would erase, and the two must not read alike.
+
+    The committed file records the count it was built against, so the input case can
+    be recognised for what it is instead of inferred.
+    """
+    if path != CROSSWALK:
+        return "It has been hand-edited or the tool has changed."
+    try:
+        was = json.loads(path.read_text(encoding="utf-8"))["counts"]["residents_examined"]
+    except Exception:
+        return "It has been hand-edited or the tool has changed."
+    now = len(_resident_people())
+    if was != now:
+        return ("Its INPUT moved: it was built against %d people in data/residents/ and "
+                "that layer holds %d today, so this is staleness and not a hand edit."
+                % (was, now))
+    return ("The residents layer still holds the %d people it was built against, so "
+            "this is a hand edit or a change to the tool, not staleness." % now)
+
+
 def cmd_check():
     bad = []
     for path, doc in ((RECORDS, records_doc()), (CLAIMS, claims_doc()),
@@ -1717,9 +1792,8 @@ def cmd_check():
             continue
         want = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
         if path.read_text(encoding="utf-8") != want:
-            bad.append("%s is not what tools/read_st_marys_baptisms.py says; it has been "
-                       "hand-edited or the tool has changed. Rebuild it."
-                       % path.relative_to(ROOT))
+            bad.append("%s is not what tools/read_st_marys_baptisms.py says. %s Rebuild it."
+                       % (path.relative_to(ROOT), _why_it_differs(path)))
 
     # The book's own arithmetic. A reading that misses it has lost or invented an entry.
     t = tallies()

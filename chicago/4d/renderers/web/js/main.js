@@ -805,6 +805,9 @@ const api = {
   // census resolves, and null forever if it could not be read — the smoke asserts
   // the DISPLAYED figures against this, so a silent failure reads as one.
   census: null,
+  // T-1126: the town's roll call — indexed, expected to draw, and actually
+  // standing, with every absentee named. Null until the buildings are batched.
+  roll: null,
 };
 window.__chicago4d = api;
 
@@ -936,6 +939,38 @@ async function boot() {
   problems.push(...buildings.problems);
   scene3d.add(buildings.group);
 
+  /**
+   * T-1126 — FURNITURE FOLLOWS ITS HOST, and the failure is SAID OUT LOUD.
+   *
+   * Everything a business hung on its wall or stood on its footway is derived
+   * from the structure record, not from the structure's geometry, so when a GLB
+   * failed to fetch the board and the crates went on drawing and the building
+   * did not. The owner found exactly that on Dearborn Street: J. BATES, JR. /
+   * AUCTIONEER floating at head height over a lot-line fence with two crates in
+   * the grass beside it and no auction room between them. A reload had it back,
+   * which is what says the record is sound and the SCENE is what misbehaved.
+   *
+   * Two things follow, and both are here rather than in the layers because only
+   * this file knows both halves:
+   *
+   *   1. The layers below take `hostMissing` and take their furniture down with
+   *      the building. A failed load then degrades into an ABSENCE — an empty
+   *      lot, which is honest — instead of into a false scene, which is not.
+   *   2. The shortfall is reported UNCONDITIONALLY, at error level, naming every
+   *      structure. Everything this renderer knew about its own failures was
+   *      already in `problems`, and `problems` is printed behind `?debug=1` —
+   *      so a visitor, and the owner, got a finished-looking walk and silence.
+   *      A load failure nobody is told about cannot be measured, and a rate
+   *      nobody can measure is indistinguishable from an anomaly.
+   */
+  const hostMissing = (id) => (!!id && buildings.missing.has(id));
+  api.roll = buildings.roll;
+  if (buildings.roll.missing.length) {
+    console.error(`[4D Chicago] ${buildings.roll.standing} of ${buildings.roll.expected} `
+      + 'structures drew; the walk is SHORT of the town it is claiming. Missing: '
+      + buildings.roll.missing.join(', '));
+  }
+
   const footprints = footprintsFrom(loaded.registry);
   // The bridge decks: a walkable surface the heightfield does not carry — the
   // wall you are kept out of and the deck you stand on are the same polygon read
@@ -1009,7 +1044,7 @@ async function boot() {
   // either (T-0039). Mounted after the buildings it hangs on, and its height is
   // measured from the same wall base `buildings.js` anchors them at.
   const signage = await createSignage({
-    dataBase: bases.dataBase, terrain, confidence, problems,
+    dataBase: bases.dataBase, terrain, confidence, problems, hostMissing,
   });
   scene3d.add(signage.group);
   api.signage = signage;
@@ -1023,7 +1058,7 @@ async function boot() {
   // from the other end. Unlike a board, a barrel stands on the TERRAIN rather
   // than on the building's wall base — it is resting on the ground it is on.
   const yard = await createYardGoods({
-    dataBase: bases.dataBase, terrain, confidence, problems,
+    dataBase: bases.dataBase, terrain, confidence, problems, hostMissing,
   });
   scene3d.add(yard.group);
   api.yard = yard;
@@ -1037,7 +1072,7 @@ async function boot() {
   // two divide one building's ground between them — the yard layer owns what
   // stands on its own lot and this owns what lies in the street outside it.
   const frontage = await createFrontage({
-    dataBase: bases.dataBase, terrain, confidence, problems,
+    dataBase: bases.dataBase, terrain, confidence, problems, hostMissing,
   });
   scene3d.add(frontage.group);
   api.frontage = frontage;
@@ -2275,6 +2310,10 @@ async function boot() {
         textures: info.memory.textures,
         batches: buildings.batches.length,
         structures: loaded.registry.size,
+        // T-1126 § 4: drawn against indexed. `structures` above counts what the
+        // scene was TOLD to place; these two count what it managed to.
+        structuresExpected: buildings.roll.expected,
+        structuresStanding: buildings.roll.standing,
         bytes: loaded.bytes,
         fps: Math.round(fps),
         // R-BUG1: the near plane is no longer a constant, so a harness asking
