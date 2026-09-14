@@ -25,7 +25,7 @@
  * the run immediately after the list is taken — everything this suite is about
  * has happened by then, and the lap's real body wants a repository.
  */
-import { mkdtempSync, mkdirSync, writeFileSync, chmodSync, rmSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, chmodSync, rmSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -123,6 +123,44 @@ console.log('pr-lap.sh — a lap that could not ask never reports that it found 
   const r = runLap({ ghExit: 0, ghOut: '1257\tsteward/t-0464\n1290\tsteward/other\n', only: '1257' });
   check('LAP_ONLY that matches proceeds past the guard',
         !/LAP_ONLY=1257 matched no/.test(r.out));
+}
+
+/* 5. NO GRAPHQL-BACKED `gh` CALL SURVIVES IN THE LAP.
+ *
+ * A drift guard rather than a behaviour test, and it earns its place: the list
+ * was moved to REST because `gh pr list` is GraphQL and the steward PAT's
+ * GraphQL budget is the one that runs out — and lap 307 then refused five PRs
+ * correctly and told none of them why, because `gh pr view` and `gh pr comment`
+ * are GraphQL too. The budget is shared with the loop, the janitor and Manager,
+ * so one reintroduced `gh pr …` blinds the lap again on a busy afternoon.
+ * gh-rest.sh:18-30 lists which verbs go through GraphQL. */
+{
+  const src = readFileSync(LAP, 'utf8')
+    .split('\n').filter((l) => !l.trim().startsWith('#')).join('\n');
+  const graphql = /\bgh (pr|issue) (comment|create|merge|view|list|edit|close)\b/.exec(src);
+  check('no GraphQL-backed `gh pr|issue` call is left in the lap',
+        graphql === null, graphql ? graphql[0] : 'every gh call is `gh api`');
+}
+
+/* 6. THE LAP DOES NOT GATE — it pushes and lets CI do it.
+ *
+ * A drift guard for the root-cause fix. The lap used to run the whole of
+ * `check.sh` before pushing, which is redundant — chicago-4d-check.yml fires on
+ * `push` to any branch under chicago/4d/** AND on `pull_request` — and it was
+ * why the queue never converged: ~15 minutes per PR, against merges landing
+ * every few minutes, each of which re-dirties every open PR (T-0857).
+ *
+ * Measured 2026-09-14: lap 297 42.1 min, lap 307 19.2 min for ONE push, while
+ * laps that pushed nothing took 1.4 min. #1315 and #1319 were each resolved,
+ * gated green, pushed, and `dirty` again before they could merge.
+ *
+ * Reinstating that gate would re-break it silently, so it is asserted here. */
+{
+  const src = readFileSync(LAP, 'utf8')
+    .split('\n').filter((l) => !l.trim().startsWith('#')).join('\n');
+  const gates = /\.\/tools\/check\.sh|tools\/check\.sh/.exec(src);
+  check('the lap does not run check.sh itself — CI gates the push',
+        gates === null, gates ? `found ${gates[0]}` : 'CI is the gate');
 }
 
 console.log(failures ? `\n${failures} FAILED` : '\nall passed');
