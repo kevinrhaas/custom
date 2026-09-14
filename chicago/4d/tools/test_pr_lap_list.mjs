@@ -142,5 +142,26 @@ console.log('pr-lap.sh — a lap that could not ask never reports that it found 
         graphql === null, graphql ? graphql[0] : 'every gh call is `gh api`');
 }
 
+/* 6. THE LAP DOES NOT GATE — it pushes and lets CI do it.
+ *
+ * A drift guard for the root-cause fix. The lap used to run the whole of
+ * `check.sh` before pushing, which is redundant — chicago-4d-check.yml fires on
+ * `push` to any branch under chicago/4d/** AND on `pull_request` — and it was
+ * why the queue never converged: ~15 minutes per PR, against merges landing
+ * every few minutes, each of which re-dirties every open PR (T-0857).
+ *
+ * Measured 2026-09-14: lap 297 42.1 min, lap 307 19.2 min for ONE push, while
+ * laps that pushed nothing took 1.4 min. #1315 and #1319 were each resolved,
+ * gated green, pushed, and `dirty` again before they could merge.
+ *
+ * Reinstating that gate would re-break it silently, so it is asserted here. */
+{
+  const src = readFileSync(LAP, 'utf8')
+    .split('\n').filter((l) => !l.trim().startsWith('#')).join('\n');
+  const gates = /\.\/tools\/check\.sh|tools\/check\.sh/.exec(src);
+  check('the lap does not run check.sh itself — CI gates the push',
+        gates === null, gates ? `found ${gates[0]}` : 'CI is the gate');
+}
+
 console.log(failures ? `\n${failures} FAILED` : '\nall passed');
 process.exit(failures ? 1 : 0);
