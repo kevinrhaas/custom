@@ -1469,6 +1469,43 @@ for (const [label, viewport, touch] of [
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
 
+    // T-0848 — THE POSE EVERY DELTA CHECK IS CALIBRATED AT, read here because
+    // this is the last line before the stage-guarded body, and nothing above it
+    // has moved the visitor. A *reaches the render* check winds a shipped value
+    // off, photographs the frame and asserts the picture MOVED by at least so
+    // much; what it is actually measuring is whatever the camera happens to be
+    // pointed at, so its threshold is a number about a VIEW. The readings below
+    // teleport to their own viewpoints and do not put the visitor back, and the
+    // expensive ones are guarded on which PARTS were selected — so `SMOKE_STAGE=9`
+    // photographed the boot view and passed (worst cell 10 and 22), while
+    // `SMOKE_STAGE=9-12` photographed wherever part 10's shared street reading
+    // had left the visitor and collapsed to 2, on a tree where nothing about
+    // facades or shadows had changed. Since `smoke_budget.mjs --for-diff` packs
+    // parts into ranges precisely because that is what fits under the foreground
+    // ceiling, the packing the tooling recommends was the one packing those
+    // checks could not survive. A delta check now states the view it needs and
+    // takes it (`standAtBootPose`), which is the fix: the frame it photographs
+    // is the same frame whichever other parts are selected.
+    const bootPose = await page.evaluate(() => {
+      const st = window.__chicago4d.walker.state;
+      return {
+        local_e: st.e,
+        local_n: st.n,
+        yaw_deg: window.__chicago4d.walker.bearingDeg,
+        pitch_deg: (st.pitch * 180) / Math.PI,
+        altitude_m: st.flying ? st.altitude : null,
+      };
+    });
+    // Stand where the thresholds were measured. `step()` settles the walker the
+    // same way the readings above do, so the first capture is not of a frame
+    // caught mid-arrival.
+    const standAtBootPose = async () => {
+      await page.evaluate((pose) => {
+        window.__chicago4d.walker.teleport(pose);
+        window.__chicago4d.step();
+      }, bootPose);
+    };
+
     // ======================================================================
     // T-0060 — everything below, to the end of this viewport's body, runs in
     // four stages so each fits a ten-minute command. The sections are NOT
@@ -1522,6 +1559,13 @@ for (const [label, viewport, touch] of [
     // before the split — and skipped when neither runs, because it is the most
     // expensive single evaluate in the file. It teleports to its own
     // viewpoints, so it does not care what ran before it.
+    //
+    // T-0848: it does not put the visitor BACK, though, and that half matters as
+    // much. Because the guard is on which parts were SELECTED, this block runs
+    // for `SMOKE_STAGE=9-12` and not for `SMOKE_STAGE=9`, so it is the one thing
+    // in the file that can change what a LATER part photographs according to
+    // what a range asked for. Anything downstream that measures a frame must
+    // state its own view — see `standAtBootPose` above.
     //
     // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
     // actually read it: parts 9 and 11 hold no reference to `streetLayer`, and
@@ -6678,6 +6722,68 @@ for (const [label, viewport, touch] of [
       && popLibOpen.evidenceBack,
       `pane shown ${popLibOpen.paneShown}, ${popLibOpen.before} -> ${popLibOpen.after}`);
 
+    // --- the agency held here, on the card --------------------------------
+    // T-1041. A HOLDING IS A RELATION, and the card had no place for one: the
+    // register has recorded since T-0410 that Hubbard & Co. of La Salle Street was
+    // appointed agent for the Howard Fire Insurance Company of New-York, and that
+    // three weeks before the scene date the identical notice starts running in the
+    // singular over one man. Nothing read it. Pinned on the RENDERED card for the
+    // same reason `documented_range` is: a compiled relation nothing renders is
+    // exactly the failure this ticket reports, and it is green everywhere else.
+    //
+    // Three reads, and the second and third are the discriminating ones. A card
+    // that printed the whole file would pass the first alone.
+    const popAgency = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = document.querySelector('#popup .pop-agency');
+        return {
+          present: !!sec,
+          text: sec?.textContent?.replace(/\s+/g, ' ').trim() ?? '',
+          refused: !!document.querySelector('#popup .pop-agency .agency-refused'),
+          cites: [...document.querySelectorAll('#popup .pop-agency .agency-cites code')]
+            .map((n) => n.textContent.trim()),
+        };
+      };
+      return {
+        hubbard: read('recon_1835_blk_randolph_wells_d2_07'),
+        jonesKing: read('recon_1835_blk_south_water_franklin_d5_01'),
+        sauganash: read('sauganash_hotel'),
+      };
+    });
+    check(`${label}: the card names the agency this house held, and its principal`,
+      popAgency.hubbard.present
+      && /Hubbard & Co\. held the agency for Howard Fire Insurance Company/.test(popAgency.hubbard.text)
+      && /city of New-York/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(0, 240));
+    // The window is printings and says so, and it is dated in words rather than ISO.
+    check(`${label}: it dates the holding by its printings and calls them printings`,
+      /printed from 2 July 1834 to 20 May 1835/.test(popAgency.hubbard.text)
+      && /first and last PRINTING/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(0, 400));
+    // Every other line on this card cites its source; so does this one.
+    check(`${label}: the holding cites the printings it rests on`,
+      popAgency.hubbard.cites.includes('chicago_democrat_1834_07_02#c048')
+      && popAgency.hubbard.cites.length === 3,
+      `got [${popAgency.hubbard.cites.join(', ')}]`);
+    // THE CAVEAT IS THE ACCEPTANCE CLAUSE. "Nothing on the card implies the holder
+    // traded in the principal's line, held a roof for it, or was a partner in any
+    // house he signed for." It is written in the compiled file beside the relation,
+    // so this pins the rendered text and `compile_agencies.py --check` pins the file.
+    check(`${label}: the card says a holding is only a holding`,
+      /A holding is a relation and nothing more/.test(popAgency.hubbard.text)
+      && /partner in any house that signed for it/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(-260));
+    // The REFUSED holding is legible, on the house the reading was made about.
+    check(`${label}: a refused holding is on the card of the house it was refused for`,
+      popAgency.jonesKing.present && popAgency.jonesKing.refused
+      && /Refused:/.test(popAgency.jonesKing.text),
+      popAgency.jonesKing.text.slice(0, 240));
+    // And the discriminating case: a building holding no agency shows no section.
+    check(`${label}: a house that held no agency says nothing about one`,
+      !popAgency.sauganash.present,
+      `sauganash got "${popAgency.sauganash.text.slice(0, 120)}"`);
+
     // --- was it here at all? ----------------------------------------------
     // The claim the whole scene rests on, and the last one to reach the card.
     // `popup.js` read `documented_range` from the moment it was written and
@@ -8751,6 +8857,13 @@ for (const [label, viewport, touch] of [
     }
     const attested = facades.filter((r) => r.confidence === 'attested');
 
+    // THE VIEW THIS CHECK REQUIRES (T-0848): the boot pose. The three captures
+    // below are a delta measurement, and its floor — worst cell >=3, mean >=0.03
+    // — was measured from there. Taken from the South Division stand that part
+    // 10's street reading leaves behind, the same unchanged town moves the worst
+    // cell by 2, because far fewer painted walls are in frame. So the pose is
+    // part of the assertion and is taken here, not inherited.
+    await standAtBootPose();
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
     const toneOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const toneOff = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(0));
@@ -8844,6 +8957,13 @@ for (const [label, viewport, touch] of [
       + `per texel (want ±${want.reachM} m over ${want.mapSize}² = `
       + `${(want.texelM * 100).toFixed(1)} cm)`);
 
+    // THE VIEW THIS CHECK REQUIRES (T-0848): the boot pose again, and re-taken
+    // rather than assumed to have survived the facade section — the same reason.
+    // `worst >= 4` is a number about how much of the town the rig can reach IN
+    // FRAME; from a stand with little standing behind the visitor, winding the
+    // reach from its documented value back to +/-60 m moves almost nothing and
+    // the check silently becomes an assertion about the previous section.
+    await standAtBootPose();
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
     const reachFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const woundBack = await page.evaluate(() => window.__chicago4d.world.setShadowReach(60));
@@ -11738,6 +11858,40 @@ for (const [label, viewport, touch] of [
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
+    // --- the agency on the PERSON'S card (T-1041) --------------------------
+    // The relation has two ends and they are two different surfaces: the house's
+    // end is on the building card in part 3, and the man's end is here, on his own
+    // town card in the drawer. The agency LEFT Hubbard & Co. for E. K. Hubbard three
+    // weeks before the scene date, so his card is the one where a visitor learns
+    // what was true on the day — and it is rendered by the same module, which is
+    // what stops the two ends describing one holding two ways.
+    const personAgency = await page.evaluate(async () => {
+      const mount = document.getElementById('residents');
+      const row = mount ? mount.querySelector('details.res-hh[data-id="hh_hubbard_elijah_kent"]') : null;
+      if (!row) return { found: false, text: '' };
+      row.open = true;
+      for (let i = 0; i < 100 && row.querySelector('.res-hh-body .legend-note'); i++) {
+        await new Promise((r) => setTimeout(r, 50));
+      }
+      const sec = row.querySelector('.pop-agency');
+      return {
+        found: true,
+        present: !!sec,
+        text: sec ? sec.textContent.replace(/\s+/g, ' ').trim() : '',
+      };
+    });
+    check(`${label}: a man who held an agency says so on his own card`,
+      personAgency.found && personAgency.present
+      && /E\. K\. Hubbard held the agency for Howard Fire Insurance Company/.test(personAgency.text)
+      && /printed from 20 June 1835 to 5 August 1835/.test(personAgency.text),
+      personAgency.found ? personAgency.text.slice(0, 260) : 'no hh_hubbard_elijah_kent row');
+    // …and the caveat travels with it, because it is the file's sentence and not
+    // the building card's.
+    check(`${label}: the person's card carries the same caveat as the house's`,
+      /A holding is a relation and nothing more/.test(personAgency.text)
+      && /the notice was running on the day you are standing in/.test(personAgency.text),
+      personAgency.text.slice(-260));
+
     // T-0524, and the shape every figure below now takes. These assertions carried
     // the layer's SIZE as a literal — 920 households, 956 people, 193 evidenced,
     // 764 off-card, 150 reviews — and a test that hardcodes a count rots the next
