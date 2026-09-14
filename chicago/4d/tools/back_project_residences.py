@@ -504,7 +504,7 @@ def self_test() -> int:
     # Norris's own shorthand for the same word, from his preface, and the population
     # this pass gained when T-0987 stretch 6 let that volume's parse cross: `h` is
     # house, `r` is residence, and the mis-set `hou.«e` is in the corpus as printed.
-    want("Norris's h is a home", one("h Clark st. b Mad. & Mon", year=1844),
+    want("Norris's h is a home", one("h Clark st", year=1844),
          "placed", "R4 and R5", "face")
     want("Norris's r is a home", one("r Clark", year=1844),
          "placed", "R4 and R5", "face")
@@ -556,6 +556,33 @@ def self_test() -> int:
          one("res LaSalle, bet Washington and Madison"), "refused", "R4")
     want("and so does Adams, which the ticket expected State to rescue",
          one("res 62 Adams near State"), "refused", "R4")
+    # ...AND SO DOES A QUALIFIER THE VOLUME CONTRACTED — T-1050. This is the case that
+    # found the hole: `h Clark st. b Mad. & Mon` is Rebecca Sherman's entry and it had
+    # been PLACED on Clark Street, because the street table knew `Madison` and not
+    # Norris's `Mad.`, so R4's second half never saw the qualifier. Two lines down the
+    # same column he sets John Rue's house the same place spelled out, and that one was
+    # refused. The assertion is therefore not just the outcome but that the two
+    # spellings of one address get one verdict, for one reason, word for word.
+    want("a contracted qualifier refuses the address too",
+         one("h Clark st. b Mad. & Mon", year=1844), "refused", "R4")
+    abbreviated = one("h Clark st. b Mad. & Mon", year=1844)
+    spelled_out = one("h Clark, b Madison and Monroe", year=1844)
+    if abbreviated["reason"] != spelled_out["reason"]:
+        fails.append("one address, two spellings, two reasons:\n"
+                     f"      abbreviated: {abbreviated['reason']}\n"
+                     f"      spelled out: {spelled_out['reason']}")
+    # The other entry the contractions reach, and the reason a refusal is not enough on
+    # its own: John Kinzie's `h c Mich dc Cass` was refused before this too, but for the
+    # wrong street — the table could not see `Mich`, so CASS became the head and the
+    # north-side Michigan Street his house actually stood on was never resolved.
+    r_kinzie = one("h c Mich dc Cass", year=1844)
+    if r_kinzie["face"] != "Michigan Street" or r_kinzie["outcome"] != "refused":
+        fails.append(f"h c Mich dc Cass: got {r_kinzie['outcome']} on "
+                     f"{r_kinzie['face']}, wanted refused on Michigan Street")
+    # And a contraction cannot turn an 1835 street off the grid: the head still places.
+    want("a contracted head street on the grid still places",
+         one("h Rand st. b Dear and Lake sts", year=1844),
+         "placed", "R4 and R5", "face")
     # R5 — a face, and never a point, even where the volume prints a corner.
     want("a bare street is a face", one("res Market"), "placed", "R4 and R5", "face")
     want("three 1835 streets are still one face",
