@@ -1,7 +1,7 @@
 ---
 id: T-1119
 title: Three gazetteer names parse to inert keys for a reason the rank rule does not own: a surname-first entry with no comma inversion, an [uncertain: …] wrapper read as a forename, and a rank-and-regiment line that names nobody
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
+closed: 2026-09-14
+pr: 1315
 claimed_by: run 9/14/2026, 1:35:56 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-14T07:22:08.242Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34813847248
 ---
 
