@@ -163,5 +163,48 @@ console.log('pr-lap.sh — a lap that could not ask never reports that it found 
         gates === null, gates ? `found ${gates[0]}` : 'CI is the gate');
 }
 
+/* 7. THE DERIVED LAYER IS REBUILT ON EVERY MERGE, NOT ONLY ON A CONFLICT.
+ *
+ * The case that is easy to lose, because it has no conflict to look at: `dev`
+ * changes an INPUT to a derived file that the branch never touched. git reports
+ * nothing — there is no disagreement, only a new fact — so a rebuild keyed to
+ * conflicts never fires, and the branch carries a file that no longer follows
+ * from its own inputs.
+ *
+ * CAUGHT LIVE on #1316, 2026-09-14: lap 314 merged `dev` in with ZERO conflicts
+ * and pushed; the gate went red on one step of 397, `…and the later HOME
+ * addresses re-derive through the residence clauses`. `dev` had just taken
+ * #1315, which added a fourth Sherman to the residents layer, and
+ * residence_back_projection.json said 57 adjudicated where its tool derives 58.
+ *
+ * These are source assertions rather than a behaviour run: the fakes stop the
+ * lap at the list, and reaching the rebuild wants a real repository and 19
+ * seconds of tools. What they pin is the SHAPE that was wrong — a rebuild
+ * reachable only from inside the conflict branch, and a per-PR flag that is not
+ * cleared per PR. */
+{
+  const raw = readFileSync(LAP, 'utf8');
+  const src = raw.split('\n').filter((l) => !l.trim().startsWith('#')).join('\n');
+
+  const runs = src.match(/rederive\.mjs --run/g) || [];
+  check('the lap still rebuilds the derived layer somewhere',
+        runs.length >= 1, `${runs.length} call site(s)`);
+
+  // The unconditional site is the one this case is about: guarded by the
+  // already-done flag rather than by `$REAL`, so a clean merge reaches it too.
+  check('…on a path a CLEAN merge reaches, not only inside the conflict branch',
+        /if \[ -z "\$\{REDERIVED:-\}" \][\s\S]{0,200}?rederive\.mjs --run/.test(src),
+        'guarded by REDERIVED, not by $REAL');
+
+  // A flag set mid-body outlives the iteration unless it is reset at the top —
+  // and a stale one would skip the rebuild for the NEXT PR, silently.
+  const loop = src.indexOf("while IFS=$'\\t' read -r N BR; do");
+  const reset = src.indexOf('REDERIVED=', loop);
+  const set = src.indexOf('REDERIVED=1', loop);
+  check('…and the per-PR flag is cleared at the top of the loop, before it is set',
+        loop !== -1 && reset !== -1 && reset < set,
+        loop === -1 ? 'loop head not found' : `reset@${reset} set@${set}`);
+}
+
 console.log(failures ? `\n${failures} FAILED` : '\nall passed');
 process.exit(failures ? 1 : 0);
