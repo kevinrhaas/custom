@@ -308,7 +308,31 @@ jobs:
           # so there is nothing there to add and the bake's diff is the geometry and
           # the records it rebuilt rather than 30 MB of mirror beside them.
           git add -A chicago/4d
-          git commit -m "chore: content bake (run ${GITHUB_RUN_ID})"
+          # THE TRAILER IS WHY A BAKE CAN MERGE AT ALL, and without it none ever
+          # could. A bake rewrites ~196 files under chicago/4d/assets/, which is a
+          # WATCHED PATH, so check-changelog-entry.mjs demands an entry in
+          # renderers/web/js/changelog.js — and a bake, being a machine, never
+          # writes one. Every bake PR into dev therefore failed its gate:
+          #
+          #   changelog entry: MISSING.
+          #   196 file(s) under the watched paths changed and
+          #   chicago/4d/renderers/web/js/changelog.js did not
+          #
+          # measured on #1305 and #1284 on 2026-09-14. The branch's own `push`
+          # gate passed both times — the changelog check needs a base..head range,
+          # so it only runs on `pull_request` — which is why this looked like a
+          # flaky double gate rather than a wall. Ten bake PRs were open that
+          # night and not one of them had any route to merge.
+          #
+          # `Changelog: none` is the opt-out the gate documents, and this is
+          # precisely the case it exists for: a bake REGENERATES derived content
+          # from sources that have not changed. The town it describes is the same
+          # town; whatever moved it was the commit that changed the sources, and
+          # that commit carried its own entry. A bake that also changed the town
+          # would mean the generators changed, and that is a source change with a
+          # PR and an entry of its own.
+          git commit -m "chore: content bake (run ${GITHUB_RUN_ID})" \
+                     -m "Changelog: none — regenerated derived content. The glTF, web derivatives and sidecars are rebuilt from sources that did not change in this commit; nothing a visitor or the release feed would see is different that the source commit did not already describe."
           git push -u origin "$BRANCH"
           echo "changed=1" >> "$GITHUB_OUTPUT"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
