@@ -12451,14 +12451,22 @@
    "reading": "transcription_mediated",
    "quote": "Densmore  Eleazer  W.,  clerk,  R.  P.  &  J.  II.  Woodworth",
    "normalized": {
-    "printed_name": "Densmore Eleazer W",
-    "surname": "Densmore Eleazer W",
-    "given": null,
+    "printed_name": "Densmore, Eleazer W",
+    "surname": "Densmore",
+    "given": "Eleazer W",
     "firm": false,
     "occupation": "clerk",
     "address": "R. P. & J. II. Woodworth",
     "streets": [],
     "number_is_1876": false,
+    "surname_repair": {
+     "as_read": "Densmore Eleazer W.",
+     "reading": "Densmore, Eleazer W.",
+     "shape": "comma_absent",
+     "confidence": "documented",
+     "witness": "Fergus 1843 through the printed volume's own OCR: `Densmore,  Eleazer \"Woodworth,  clerk.` — the comma printed, and the forename run out in full; and the Calumet Club's 1879 registry of old settlers, `Densmore, Eleazer W. | 1835, Sept. | Paris, N.Y.`",
+     "ticket": "T-0987 stretch 13"
+    },
     "as_printed": "Densmore Eleazer W., clerk, R. P. & J. II. Woodworth"
    },
    "locator": {
@@ -12472,7 +12480,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Densmore Eleazer W"
+    "Densmore, Eleazer W"
    ],
    "town_finding": false,
    "notes": null
@@ -18022,14 +18030,22 @@
    "reading": "transcription_mediated",
    "quote": "Gilbert  on,  Francis,  laborer,",
    "normalized": {
-    "printed_name": "Gilbert on, Francis",
-    "surname": "Gilbert on",
+    "printed_name": "Gilberton, Francis",
+    "surname": "Gilberton",
     "given": "Francis",
     "firm": false,
     "occupation": "laborer",
     "address": null,
     "streets": [],
     "number_is_1876": false,
+    "surname_repair": {
+     "as_read": "Gilbert on",
+     "reading": "Gilberton",
+     "shape": "scan_broke_the_surname",
+     "confidence": "documented",
+     "witness": "the same volume, leaf 27, the VERY NEXT LINE: `Gilberton,  Ralph,  laborer,` — one surname set twice on one page, broken once",
+     "ticket": "T-0987 stretch 13"
+    },
     "as_printed": "Gilbert on, Francis, laborer,"
    },
    "locator": {
@@ -18043,7 +18059,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Gilbert on, Francis"
+    "Gilberton, Francis"
    ],
    "town_finding": false,
    "notes": null
@@ -26241,14 +26257,22 @@
    "reading": "transcription_mediated",
    "quote": "Johnson  John,  blacksmith,  Joseph  Willemin",
    "normalized": {
-    "printed_name": "Johnson John",
-    "surname": "Johnson John",
-    "given": null,
+    "printed_name": "Johnson, John",
+    "surname": "Johnson",
+    "given": "John",
     "firm": false,
     "occupation": "blacksmith, Joseph Willemin",
     "address": null,
     "streets": [],
     "number_is_1876": false,
+    "surname_repair": {
+     "as_read": "Johnson John",
+     "reading": "Johnson, John",
+     "shape": "comma_absent",
+     "confidence": "inferred",
+     "witness": "no hand prints a separator for THIS line. The argument is the format and nothing else: the volume sets `Surname, Given` and sets the very same employer's other men that way three lines apart (`Matthews,  George,  blacksmith,  Joseph  Willemin`), and `Johnson, John` is printed with its comma by Fergus 1843 and Norris 1844 — of other men, which is why this row is inferred and not documented",
+     "ticket": "T-0987 stretch 13"
+    },
     "as_printed": "Johnson John, blacksmith, Joseph Willemin"
    },
    "locator": {
@@ -26262,7 +26286,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Johnson John"
+    "Johnson, John"
    ],
    "town_finding": false,
    "notes": null
@@ -42914,9 +42938,9 @@
    "reading": "transcription_mediated",
    "quote": "Scammon  J.  Young,  attorney  and  counsellor  at  law,  105  Lake  st",
    "normalized": {
-    "printed_name": "Scammon J. Young",
-    "surname": "Scammon J. Young",
-    "given": null,
+    "printed_name": "Scammon, J. Young",
+    "surname": "Scammon",
+    "given": "J. Young",
     "firm": false,
     "occupation": "attorney and counsellor at law",
     "address": "105 Lake st",
@@ -42924,6 +42948,14 @@
      "Lake st"
     ],
     "number_is_1876": false,
+    "surname_repair": {
+     "as_read": "Scammon J. Young",
+     "reading": "Scammon, J. Young",
+     "shape": "comma_absent",
+     "confidence": "documented",
+     "witness": "the same volume, leaf 54, which sets the name whole in a subscribers' list: `J.  Young  Scammon,` — and four further printings of `J. Y. Scammon` on leaves 34, 50 and 61. Surname and forename are the volume's own, in the volume's own type; only the comma is missing",
+     "ticket": "T-0987 stretch 13"
+    },
     "as_printed": "Scammon J. Young, attorney and counsellor at law, 105 Lake st"
    },
    "locator": {
@@ -42937,7 +42969,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Scammon J. Young"
+    "Scammon, J. Young"
    ],
    "town_finding": false,
    "notes": null
@@ -45690,14 +45722,22 @@
    "reading": "transcription_mediated",
    "quote": "Snow  hook,  Wm.  B.,  canal  sub-contractor",
    "normalized": {
-    "printed_name": "Snow hook, Wm. B",
-    "surname": "Snow hook",
+    "printed_name": "Snowhook, Wm. B",
+    "surname": "Snowhook",
     "given": "Wm. B",
     "firm": false,
     "occupation": "canal sub-contractor",
     "address": null,
     "streets": [],
     "number_is_1876": false,
+    "surname_repair": {
+     "as_read": "Snow hook",
+     "reading": "Snowhook",
+     "shape": "scan_broke_the_surname",
+     "confidence": "documented",
+     "witness": "Norris's Chicago directory of 1844, leaf 52 of the committed scan and the genealogytrails transcription of it, both `Snowhook, W.B., grocer`; and the volume sets the line between `Snow, Ira` and `Soden, William`, where Snowhook sorts and Snow does not",
+     "ticket": "T-0987 stretch 13"
+    },
     "as_printed": "Snow hook, Wm. B., canal sub-contractor"
    },
    "locator": {
@@ -45711,7 +45751,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Snow hook, Wm. B"
+    "Snowhook, Wm. B"
    ],
    "town_finding": false,
    "notes": null
@@ -46351,8 +46391,8 @@
    "reading": "transcription_mediated",
    "quote": "Stark weather,  Chas.  R.,  assist. -postmaster,  P.O.,  37  Clark  st",
    "normalized": {
-    "printed_name": "Stark weather, Chas. R",
-    "surname": "Stark weather",
+    "printed_name": "Starkweather, Chas. R",
+    "surname": "Starkweather",
     "given": "Chas. R",
     "firm": false,
     "occupation": "assist. -postmaster, P.O",
@@ -46361,6 +46401,14 @@
      "Clark st"
     ],
     "number_is_1876": true,
+    "surname_repair": {
+     "as_read": "Stark weather",
+     "reading": "Starkweather",
+     "shape": "scan_broke_the_surname",
+     "confidence": "documented",
+     "witness": "Fergus's directory of 1843 through the printed volume's own OCR (`fergus_historical_series_26_29`): `Starkweather,  Charles  Robert,  assistant  postma-ter,  res  120  State`; and Norris 1844, `Starkweather, C. Robt, ast P.M.` — the same assistant postmaster, printed whole by two later directories",
+     "ticket": "T-0987 stretch 13"
+    },
     "as_printed": "Stark weather, Chas. R., assist. -postmaster, P.O., 37 Clark st"
    },
    "locator": {
@@ -46374,7 +46422,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Stark weather, Chas. R"
+    "Starkweather, Chas. R"
    ],
    "town_finding": false,
    "notes": null
@@ -53147,14 +53195,22 @@
    "reading": "transcription_mediated",
    "quote": "Wick  wire,  Capt.  William,  schooner  Minerva  Smith",
    "normalized": {
-    "printed_name": "Wick wire, Capt. William",
-    "surname": "Wick wire",
+    "printed_name": "Wickwire, Capt. William",
+    "surname": "Wickwire",
     "given": "Capt. William",
     "firm": false,
     "occupation": "schooner Minerva Smith",
     "address": null,
     "streets": [],
     "number_is_1876": false,
+    "surname_repair": {
+     "as_read": "Wick wire",
+     "reading": "Wickwire",
+     "shape": "scan_broke_the_surname",
+     "confidence": "inferred",
+     "witness": "NO source committed here prints this surname, in any spelling — the one row of the seven with no witness but the page. What stands is the format and the alphabet: the comma is printed after `wire`, so the whole of `Wick wire` is the surname the volume set, and the line opens leaf 48 between `Wicker, Joel II.` at the foot of leaf 47 and `Wiggins, William` below it, which is where Wickwire sorts",
+     "ticket": "T-0987 stretch 13"
+    },
     "as_printed": "Wick wire, Capt. William, schooner Minerva Smith"
    },
    "locator": {
@@ -53168,7 +53224,7 @@
    },
    "describes_date": "1839",
    "entities": [
-    "Wick wire, Capt. William"
+    "Wickwire, Capt. William"
    ],
    "town_finding": false,
    "notes": null

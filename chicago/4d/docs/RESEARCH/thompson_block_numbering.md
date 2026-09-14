@@ -1,7 +1,7 @@
 # Thompson's block numbers, and the one address in the corpus that needed them
 
 **Investigated:** 2026-08-29 · **Re-read block by block:** 2026-09-06 ·
-**Tickets:** T-0358, then T-0788 (owner ask) ·
+**Tickets:** T-0358, then T-0788 (owner ask), T-1088, T-1094, T-1098, T-1099 ·
 **Record:** none — this is a memo about a *reading* and the count made from it ·
 **Data:** `data/traces/thompson_block_numbering.json` (authored),
 `data/traces/vectors/thompson_lots.json` (`plat_block_number`, `plat_lot_number`) ·
@@ -180,20 +180,89 @@ cut onto the wrong block, breaks that join. The tool asserts it and the gate run
 Eighteen boxes cut from committed lines, eighteen numerals landing inside them, **no overhang
 anywhere** — where the Washington–Madison tier had one block whose glyph ran past its own edge.
 
-### What is left: two blocks, and a collision
+## 0d. The last two, and the collision that was hiding them (T-1099)
 
-Fifty-six of fifty-eight. **14 and 15** remain, and T-1099 owns them. The Carroll–Fulton band does
-not stop at Canal Street, so 14 is the block east of 13, across the North Branch — and no committed
-line reaches it either: `market_north` and its six neighbours all stop between north +108 and
-+126 m, a hundred metres short of the band, and nothing carries Carroll or Fulton over the water.
+**2026-09-13.** § 0c closed at fifty-six of fifty-eight and handed on two blocks and a
+contradiction. Both are settled here, and they turned out to be the same thing.
 
-One thing found on the way is worth more than the numeral. A glyph reading as 14 stands at raster
-px 1464, 1697 — local east +24.6, north +83.8 — and that point is **inside the box § 0a cites for
-block 7** (`1376,1452,178,298`), whose own numeral was read two hundred pixels north of it. Two
-block numerals cannot stand in one block. Either that column is two blocks and § 0a's box is too
-tall, or one of the two readings is wrong; it is the one box in the North Division tier whose south
-side is not a street but "the southern endpoint of the flanking platted lines, where they stop at
-the river", and T-1099 is where it gets tested.
+### The contradiction
+
+A glyph reading 14 stands at raster px 1464, 1697 — local east **+24.6, north +83.8** — and that
+point lay **inside the box § 0a cites for block 7** (`1376,1452,178,298`), whose own numeral was
+read two hundred pixels north of it. Two block numerals cannot stand in one block. § 0c offered
+two ways out: the column is two blocks and § 0a's box is too tall, or one of the readings is
+wrong.
+
+**It is the first, and neither reading is wrong.** § 0a's south rule is *the southern endpoint of
+the flanking platted lines, where they stop at the river — taking the northern of the two so the
+box does not reach across the bank.* Block 7 is the one block in that tier with a **single**
+flank: its west side is the North Branch, not a street. With one endpoint there is no northern of
+the two, and the rule collapsed onto that one endpoint — Market Street's. Market is precisely the
+line that does **not** stop at this tier: `market_north` runs on south to the bank in the forks
+and ends at north **+46.35 m**, where `franklin_north` immediately beside it ends at **+151.61 m**,
+a whole tier higher. The box therefore ran **89 m past its own block** and took in the next one.
+
+This also corrects § 0c's own statement of the refusal, which said the North Division's streets
+"stop between north +108 and +126 m, a hundred metres short of the band". They do not. They stop
+at +46.35 (Market), +151.61 (Franklin), +126.06 (Wells) and +108 to +109 (La Salle east to
+Wolcott) — the north bank of the Main Branch, which runs *diagonally*. Market stops **below** the
+Carroll–Fulton band, not above it, and that is why a box hung from it reached down into 14.
+
+### The two blocks
+
+Wright draws them, and no new control was needed to cut them:
+
+| | 14 | 15 |
+|---|---|---|
+| west | the North Branch — Market stepped one module west | `market_north` |
+| east | `market_north` | the river's bend — Market stepped one module east |
+| north | Carroll continued east | Carroll continued east |
+| south | Market Street's southern endpoint, at the bank in the forks | the same |
+| box | `1376,1624,177,126` | `1552,1628,178,126` |
+| read at | `1458,1679,52,40` | `1592,1652,46,32` |
+
+**14** is the block between the two rivers and Market Street, the one the sheet draws with its
+south-east corner cut off along the bank. **15** is the small right triangle east of Market —
+vertical west side, horizontal north side, and a hypotenuse that is North Water Street following
+the bank round the bend. The stepped flank on each river side is block 7's own rule from § 0a and
+blocks 22, 51 and 52's from §§ 0b–0c; the module is the same 123.36 m.
+
+**The fourth side is the only thing here that is not committed ground.** Carroll Street is
+committed and stops at the North Branch's west bank, at (−104.96, +136.47). It is continued east
+along the bearing of its own committed path — T-1094's and T-1098's rule, turned east — 68 to
+192 m past that end for block 14, and 192 to 315 m for block 15. It is not carried further: east
+of Wells the bank runs south of Carroll's line and the tier has no room for another block, so
+nothing below § 0a's blocks 5 to 1 is cut from it.
+
+**What corroborates it.** Wright draws a street between the two tiers, and its block faces read
+off the sheet at local east +40 are north **+155.7** (block 7's south face) and **+130.5** (block
+14's north face); east of Market they are **+153.0** (block 6's south face) and about **+120**
+(block 15's north face). Carroll continued lands at **+135.5** and **+134.5** — inside the drawn
+street at both longitudes, and on the same side of its centre at both. That measurement is read by
+eye and so is stated here rather than gated.
+
+**And the boustrophedon is the check that is gated.** The Carroll–Fulton band runs 11 12 13 rising
+eastward; 14 and 15 are appended to that band's tail in `tools/read_west_division_numerals.py`, so
+the two numerals read here have to continue a run three other blocks already fix, with the band
+above (10 … 1) falling and the band below (25 24 23 22) falling. A numeral misread, or a box cut
+onto the wrong block, breaks it.
+
+**The glyphs.** 14's first mark is the plain flagged diagonal Wright writes for **1**; his **7**,
+one block north of it and again in block 47, carries a hooked top this diagonal does not. Its
+second mark is his **4** — narrow pointed loop, crossbar, descender below the line — the same
+figure as the 4 of block 47. 15's second mark carries a flag across its top, which is how this
+memo has twice before told Wright's **5** from his 6 (§ 0a, block 6).
+
+### The gate
+
+`tools/read_wolf_point_numerals.py --check` re-cuts both boxes from Market Street and Carroll
+continued, checks each read window lies inside the box it is cited under, and asserts directly
+that **neither block's numeral lies inside the other's crop** — the fault, named, so it cannot
+come back. `--self-test` breaks it by moving Carroll's east end 40 m. § 0a's tool now carries the
+same dependency and its self-test fires on it too.
+
+**Fifty-eight of fifty-eight.** Nothing on Wright's sheet is refused any longer for want of
+control.
 
 ## 0. Superseded in the best way: the numerals were there all along
 
@@ -428,7 +497,9 @@ it has not paid for.
   on a survey sheet, and everything that could not be counted is refused in writing.
 - **Not a cadastre.** No lot is owned and no lot is claimed to be the lot a particular building
   stood on. § 7 is a report of where this dataset's own buildings fall, not a title.
-- **Not the whole plat.** Fifty-six blocks of fifty-eight — six when this memo was written,
-  another eighteen read in § 0, the North Division's seven in § 0a, the Washington–Madison tier's
-  seven in § 0b and the West Division's eighteen in § 0c. The two still unread, 14 and 15, are
-  refused there, by name.
+- **The whole plat, as of 2026-09-13.** Fifty-eight blocks of fifty-eight — six when this memo
+  was written, another eighteen read in § 0, the North Division's seven in § 0a, the
+  Washington–Madison tier's seven in § 0b, the West Division's eighteen in § 0c and the last two
+  in § 0d. What is still refused is not a block but a question: where each tier's run begins and
+  ends, block 30 (which is water), and the confidence grade itself — all three in the trace's
+  `refused`, by name.

@@ -251,6 +251,30 @@ const boxes = [];
     markerSha(s.clones[1], s.origin, 'T-0001') !== '');
 }
 
+/* 9. `split` LETS GO TOO — the leak that put 19 markers on the remote.
+ *
+ * `done`, `block` and `withdraw` all released; `split` did not, and it is the
+ * commonest terminal state of the three by a distance — it is what a run does
+ * the moment it finds its ticket is bigger than one demonstration. Measured
+ * 2026-09-14: of nineteen markers standing on kevinrhaas/custom, THIRTEEN
+ * belonged to tickets in state `split`.
+ *
+ * Nothing else was ever going to collect them, which is why this is a leak and
+ * not untidiness: the janitor lists open PULL REQUESTS and a marker has none,
+ * and the staleness rule only lets the NEXT claim on that ticket steal it —
+ * which never comes for a ticket that is now closed and out of the queue. */
+{
+  const s = sandbox(); boxes.push(s.root);
+  claim(s.clones[0], 'T-0001');
+  check('the marker exists while the work is in flight',
+    markerSha(s.clones[0], s.origin, 'T-0001') !== '');
+  const r = spawnSync('node', [path.join(s.clones[0], 'chicago', '4d', 'tools', 'ticket.mjs'),
+    'split', 'T-0001', 'the first piece', 'the second piece'],
+    { cwd: s.clones[0], encoding: 'utf8' });
+  check('`split` succeeds', r.status === 0, (r.stderr || '').trim().split('\n').pop());
+  check('`split` releases the marker', markerSha(s.clones[0], s.origin, 'T-0001') === '');
+}
+
 for (const b of boxes) rmSync(b, { recursive: true, force: true });
 
 console.log(failures ? `\n${failures} FAILED` : '\nall passed');

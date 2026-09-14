@@ -32,6 +32,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
 sys.path.insert(0, str(ROOT / "tools"))
+from review_constraint import record_reason  # noqa: E402
 from tiers import tier_ladder, tier_label  # noqa: E402
 
 
@@ -1592,6 +1593,18 @@ def compile_scene(scene_id: str, sources: dict, exclusions: dict) -> int:
         # that this one is a rare exception rather than a per-record field: 330
         # sidecars carrying `drawn_by: null` would be 330 files of diff saying
         # nothing, in a mirror that is published byte-for-byte.
+        # AGENTS.md's standing constraint is the one rule this project puts above the
+        # work, and until T-0268 it reached a browser once, as a console line about the
+        # scene. The boolean above lets the card SAY a building is held; this says what
+        # it is held for, in the record's own words rather than a paraphrase — the same
+        # sentence `measure_review_constraint.py` assertion 6 judges, read by the module
+        # they share, and re-derived against these bytes by assertion 7. Written only on
+        # the records that carry the flag, like `drawn_by` below: nine files rather than
+        # 330 saying nothing in a mirror that is published byte-for-byte.
+        if sidecar["review_required"]:
+            reason = record_reason(st)
+            if reason:
+                sidecar["review_reason"] = reason
         if phase.get("drawn_by"):
             sidecar["drawn_by"] = phase["drawn_by"]["layer"]
         if st.get("reconstruction"):

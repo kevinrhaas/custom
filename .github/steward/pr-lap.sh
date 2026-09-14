@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 #
 # THE PR LAP. For every open PR into `dev` that is not a draft and not `hold`:
-# merge `dev` in, regenerate what a tool owns, gate it, and push. It does NOT
-# merge the PR — auto-merge does that once `gate` goes green on the new head.
+# merge `dev` in, regenerate what a tool owns, and push. It does NOT gate and it
+# does NOT merge the PR: CI gates every push (and the PR's merge result), and
+# auto-merge merges it once `gate` goes green on the new head. The lap gating
+# first cost ~15 minutes per PR and was the reason the queue never converged —
+# see the note at the push below.
 #
 # WHY THIS EXISTS (T-0857). GitHub's server-side merge NEVER runs a custom merge
 # driver. `.gitattributes` can name `merge=generated`; only a clone that has run
@@ -126,14 +129,91 @@ if [ -n "$MISSING" ]; then
   exit 1
 fi
 
-PRS=$(gh pr list --repo "$REPO" --base "$BASE" --state open --limit 100 \
-        --json number,headRefName,isDraft,labels \
-        --jq '.[] | select(.isDraft==false)
+# REST, NOT `gh pr list`, AND THE REASON IS A RATE LIMIT THAT ONLY BITES HERE.
+# `gh pr list` is a GRAPHQL call. GitHub budgets GraphQL separately from REST and
+# far more tightly, and on 2026-09-14 the steward's own PAT spent its GraphQL
+# allowance — the loop, the janitor and Manager all draw on it — while REST sat
+# untouched:
+#
+#   gh pr list (GraphQL, STEWARD_PAT)  GraphQL: API rate limit already exceeded
+#                                      for user ID 4193586
+#   every REST call in the same minute  answered normally
+#
+# Two full laps were dispatched against a queue of nine lappable PRs, seven of
+# them green and five with auto-merge armed and unable to fire, and both laps
+# reported `pushed=0 ... red=0` and exited green having listed nothing.
+#
+# The same question over REST costs one request against a 15,000/hour budget and
+# needs no GraphQL at all. The field names differ — REST spells them `draft` and
+# `head.ref` where gh's GraphQL layer spells them `isDraft` and `headRefName` —
+# and that is the whole of the change; the filter is the one it always was.
+PRS=$(gh api --paginate \
+        "repos/$REPO/pulls?state=open&base=$BASE&per_page=100" \
+        --jq '.[] | select(.draft==false)
                   | select([.labels[].name] | index("hold") | not)
-                  | "\(.number)\t\(.headRefName)"')
-[ -n "$ONLY" ] && PRS=$(echo "$PRS" | awk -v n="$ONLY" -F'\t' '$1==n')
+                  | "\(.number)\t\(.head.ref)"')
+# THE STATUS OF THAT CALL, BECAUSE AN EMPTY ANSWER AND A FAILED ONE LOOK
+# IDENTICAL FROM HERE. `PRS=$(cmd)` carries cmd's exit status, and this script
+# runs `set -uo pipefail` WITHOUT `-e`, so a failure does not stop it: PRS is
+# simply empty, the loop below runs zero times, and the lap prints
+#
+#   PR lap: pushed=0 already-current=0 left-alone=0 red=0
+#
+# which is EXACTLY what a healthy lap with nothing to do prints. It then exits 0
+# and the workflow goes green.
+#
+# Measured 2026-09-14 on run 301, dispatched with LAP_ONLY=1257 to lap a PR that
+# was 39 commits behind dev:
+#
+#   GraphQL: API rate limit already exceeded for user ID 4193586.
+#   PR lap: pushed=0 already-current=0 left-alone=0 red=0
+#
+# The run was GREEN. Nothing was lapped, nothing said so, and the only trace was
+# one line of gh's stderr in the middle of a successful log. Every lap inside
+# that rate-limit window reported clean while sweeping nothing — which is what a
+# stuck PR queue looks like from the outside when the workflow list looks
+# healthy.
+#
+# This is the same shape as the steward janitor's `set -e` abort (polecat-platform
+# #165): a failure wearing the costume of a clean run. The janitor at least went
+# RED. This went green, which is worse.
+#
+# So the lap now refuses to be quietly useless. If it cannot ASK, it fails, loudly
+# — the lap's whole job is the list, and a lap that cannot see its PRs has not
+# done that job. (If `set -e` is ever added to this script, this capture needs a
+# `set +e` around it or it becomes unreachable — which is precisely the bug #165
+# was.)
+LIST_RC=$?
+if [ "$LIST_RC" -ne 0 ]; then
+  echo "::error::the PR-list call failed (exit $LIST_RC) — the lap cannot see the pull requests it exists to lap."
+  echo "::error::A rate limit or an auth failure here is indistinguishable from an empty queue:"
+  echo "::error::both leave the list empty, and the lap would print 'pushed=0 ... red=0' and exit 0."
+  echo "::error::Failing instead, so a lap that swept nothing is never reported as a lap that found nothing."
+  exit 1
+fi
 
-PUSHED=0; SKIPPED=0; RED=0; NOOP=0
+if [ -n "$ONLY" ]; then
+  # A DISPATCH THAT NAMES A PR AND MATCHES NOTHING IS ALSO NOT "no work". The
+  # operator asked for something specific; silence is the wrong answer whether the
+  # number is wrong, the PR is closed, or — the case that cost an hour on
+  # 2026-09-14 — it carries `hold`, which the filter above removes BEFORE this
+  # line ever sees it.
+  MATCHED=$(echo "$PRS" | awk -v n="$ONLY" -F'\t' '$1==n')
+  if [ -z "$MATCHED" ]; then
+    echo "::error::LAP_ONLY=$ONLY matched no lappable pull request into $BASE."
+    echo "::error::The list above holds $(echo "$PRS" | grep -c . || true) PR(s). A PR is absent from it when it is"
+    echo "::error::closed, a draft, labelled 'hold', or targets another base — the 'hold' filter runs"
+    echo "::error::BEFORE this one, so a held PR can never be reached by naming it here. Remove the"
+    echo "::error::label first if that is what you meant."
+    exit 1
+  fi
+  PRS="$MATCHED"
+fi
+
+PUSHED=0; SKIPPED=0; NOOP=0
+# No `RED` any more: the lap does not gate, so it has no red count to report.
+# Printing `red=0` from a lap that never looked would be the same false
+# reassurance as the blind lap's `pushed=0 ... red=0`.
 while IFS=$'\t' read -r N BR; do
   [ -n "${N:-}" ] || continue
   say "=== PR #$N  ($BR)"
@@ -181,9 +261,11 @@ while IFS=$'\t' read -r N BR; do
     # `rederive.mjs --resolvable` answers from tools/derived_manifest.json, which
     # ENUMERATES rather than pattern-matches, so what is in scope can be read.
     # It refuses the set as a whole if any member is unlisted or declares
-    # hand_authored — half a merge is not a merge. check.sh still runs after
-    # this and is what PROVES the rebuild; a wrong manifest entry makes the gate
-    # red and the branch is not pushed, so the worst case is the PR staying open.
+    # hand_authored — half a merge is not a merge. The gate is what PROVES the
+    # rebuild, and since the lap stopped running it itself (see the push below)
+    # that gate is CI's: a wrong manifest entry makes the PUSHED branch go red,
+    # so the worst case is a red pull request rather than a merged bad rebuild.
+    # Auto-merge fires on a green required check and on nothing else.
     if [ -n "$REAL" ] && [ -f chicago/4d/tools/rederive.mjs ] \
        && node chicago/4d/tools/rederive.mjs --resolvable $REAL >/tmp/lap-rederive.log 2>&1; then
       say "  $(echo "$REAL" | grep -c .) conflict(s) in the derived research layer — rebuilding from source"
@@ -200,7 +282,17 @@ while IFS=$'\t' read -r N BR; do
       [ -s /tmp/lap-rederive.log ] && sed 's/^/      /' /tmp/lap-rederive.log | head -8
       git merge --abort 2>/dev/null
       MARK="PR lap: this branch disagrees with \`$BASE\` about content"
-      if ! gh pr view "$N" --repo "$REPO" --json comments --jq '.comments[].body' | grep -qF "$MARK"; then
+      # REST for both halves of this, for the reason the list above moved: `gh pr
+      # view` and `gh pr comment` are GRAPHQL, and the steward PAT's GraphQL
+      # budget is the one that runs out. Measured on lap 307, the first lap able
+      # to list anything all day — every REAL CONFLICT it found was followed by
+      #
+      #     GraphQL: API rate limit already exceeded for user ID 4193586.
+      #
+      # so five PRs were correctly refused and NOT ONE of them was told why. From
+      # GitHub they read as stuck pull requests with no explanation, which is the
+      # exact failure this whole comment exists to prevent.
+      if ! gh api --paginate "repos/$REPO/issues/$N/comments" --jq '.[].body' 2>/dev/null | grep -qF "$MARK"; then
         { printf '%s, not about bookkeeping, so the lap left it alone rather than pick a side.\n\n' "$MARK"
           printf 'Conflicting outside the generated set:\n\n```\n%s\n```\n\n' "$REAL"
           printf 'The generated files (build.json, the mirrors, the smoke ledger — and BOARD.md and\n'
@@ -209,7 +301,19 @@ while IFS=$'\t' read -r N BR; do
           printf 'run that owns the ticket — or closing and re-cutting on a current `%s`.\n\n' "$BASE"
           printf -- '---\n_Generated by [Claude Code](https://claude.ai/code)_\n'
         } > /tmp/lap-comment.md
-        gh pr comment "$N" --repo "$REPO" --body-file /tmp/lap-comment.md >/dev/null 2>&1 || true
+        # `jq -Rs` wraps the file as a JSON string so the body reaches the API
+        # intact — it carries backticks, a fenced block and the conflicting paths,
+        # and none of that survives being interpolated into a shell argument.
+        if jq -Rs '{body: .}' < /tmp/lap-comment.md \
+             | gh api -X POST "repos/$REPO/issues/$N/comments" --input - >/dev/null 2>/tmp/lap-comment.err; then
+          say "  said so on the PR"
+        else
+          # NOT silent, even though it is best-effort. A conflict the lap refused
+          # and could not explain is the worst of both: the PR does not move and
+          # nobody is told why.
+          say "  could not comment on #$N — $(tail -1 /tmp/lap-comment.err 2>/dev/null | cut -c1-120)"
+          say "  the conflict above stands; it is in this log and not on the PR"
+        fi
       fi
       SKIPPED=$((SKIPPED+1)); continue
     fi
@@ -269,10 +373,41 @@ in this branch's own diff was touched.
 Merge drivers registered from $BASE rather than from this branch, so a branch cut
 before T-0831 resolves the same way one cut after it does (T-0857)." 2>/dev/null
 
-  if ! ( cd chicago/4d && ./tools/check.sh ) >/tmp/lap-gate.log 2>&1; then
-    say "  GATE RED after the lap — not pushed"; tail -6 /tmp/lap-gate.log | sed 's/^/    /'
-    RED=$((RED+1)); continue
-  fi
+  # THE LAP NO LONGER GATES BEFORE PUSHING, AND THIS IS THE ROOT-CAUSE FIX.
+  #
+  # It used to run the whole of `check.sh` here — ~15 minutes — and push only on
+  # green. That is redundant and it is the reason the queue would not converge.
+  #
+  # REDUNDANT: chicago-4d-check.yml triggers on `push` to ANY branch under
+  # `chicago/4d/**` AND on `pull_request`. The moment this push lands, the same
+  # tree is gated by CI, and the PR's merge result is gated too. The lap was
+  # doing the identical work first, on the critical path, and CI then did it
+  # again.
+  #
+  # AND IT IS WHY THE QUEUE NEVER DRAINED. Every merge into `$BASE` re-dirties
+  # every other open PR, because GitHub recomputes mergeability without this
+  # repo's merge drivers (T-0857 above). The lap is the only cure — and it could
+  # only apply that cure to about ONE PR every fifteen minutes, because each one
+  # waited out a full gate. Measured 2026-09-14:
+  #
+  #   lap 297  42.1 min      lap 307  19.2 min, pushed=1
+  #   lap 309  14.4 min      laps 301/303/304  1.4 min each — they pushed
+  #                          NOTHING, so no gate ran, which is the tell
+  #
+  # Merges were landing every few minutes. A cure that takes fifteen minutes per
+  # patient, against a disease that reinfects every patient every few minutes,
+  # never catches up — and #1315 proved it: resolved by hand, gated green at 397
+  # steps, pushed, and back to `dirty` the moment the next PR merged.
+  #
+  # NOTHING UNSAFE CAN MERGE AS A RESULT. Auto-merge fires only on a green
+  # required check, so a bad merge pushed here becomes a RED pull request, which
+  # is visible and recoverable — not a merged one. The refusal path above is
+  # untouched: a conflict outside the generated set is still left alone, because
+  # that is a judgement and not a gate.
+  #
+  # The trade, stated plainly: a PR branch may briefly carry a merge whose gate
+  # then goes red. That is strictly better than the same PR sitting `dirty`
+  # forever with nobody told why.
 
   # SAY WHAT ACTUALLY HAPPENED. `git push` to a ref that is already at HEAD is
   # "Everything up-to-date" and exits 0, so the old form printed "pushed — gate
@@ -292,4 +427,34 @@ before T-0831 resolves the same way one cut after it does (T-0857)." 2>/dev/null
 done <<< "$PRS"
 
 say ""
-say "PR lap: pushed=$PUSHED already-current=$NOOP left-alone=$SKIPPED red=$RED"
+
+# --- claim markers nobody released ------------------------------------------
+# A claim is a branch, `claim/t-NNNN`, and NOTHING ELSE COLLECTS THEM. The
+# steward janitor sweeps open PULL REQUESTS and a marker has none; the 3h
+# staleness rule only lets the NEXT claim on that same ticket steal it, which
+# never comes once the ticket is closed and out of the queue.
+#
+# So they accumulated. Measured 2026-09-14: nineteen markers on the remote, the
+# oldest three days old, and seventeen of the nineteen belonging to tickets that
+# were no longer open. The largest single cause was `ticket.mjs split` never
+# releasing — fixed in the tool — but a run that DIES mid-work leaves one too,
+# and no fix in the tool can help there because the run is gone.
+#
+# The lap is the right broom: it already runs on every push to dev, it already
+# holds the credentials, and `claims --sweep` deletes only markers older than
+# RUN_HOURS — which the claim path itself already treats as dead and steals.
+# Best-effort, and never the lap's exit status: a marker is litter, not a block.
+# $WORK, not a relative path: the loop above walks in and out of checkouts, so
+# the only directory this script can name with confidence is the one it resolved
+# at the top.
+if [ -f "$WORK/chicago/4d/tools/ticket.mjs" ]; then
+  say "claim markers:"
+  ( cd "$WORK/chicago/4d" && node tools/ticket.mjs claims --sweep 2>&1 ) \
+    | tail -n 60 | while IFS= read -r line; do say "  $line"; done
+else
+  say "claim markers: tools/ticket.mjs is not in this checkout — not swept"
+fi
+
+say ""
+say "PR lap: pushed=$PUSHED already-current=$NOOP left-alone=$SKIPPED"
+say "  (gating is CI's — every push above re-runs the gate and the PR's merge result)"

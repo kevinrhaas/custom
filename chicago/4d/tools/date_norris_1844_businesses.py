@@ -38,12 +38,25 @@ owner's ask was to validate and confirm as well as to add, and because a reader
 who finds Newberry & Dole in both volumes should be able to see that this project
 noticed. The rule is the standing one, adapted from names to firm styles:
   A firm printing and an 1835 business agree when the SET of surnames printed in
-  the firm style is equal on both sides, and no given-name initial printed on both
-  sides for a shared surname contradicts. A ONE-surname firm additionally REQUIRES
-  an initial printed on both sides and agreeing — "B. Jones & Co." against a town
-  that holds a Jones is the eleven-Smiths refusal, however good it looks. Where a
-  firm meets more than one 1835 business on that rule the match is AMBIGUOUS and
-  is filed as such, not resolved.
+  the firm style is equal on both sides, and the given-name initials printed for a
+  shared surname AGREE AS FAR AS BOTH SIDES GO. A ONE-surname firm additionally
+  REQUIRES an initial printed on both sides and agreeing — "B. Jones & Co." against
+  a town that holds a Jones is the eleven-Smiths refusal, however good it looks.
+  Where a firm meets more than one 1835 business on that rule the match is
+  AMBIGUOUS and is filed as such, not resolved.
+
+  AS FAR AS BOTH SIDES GO means one side's initials must be CONTAINED IN the
+  other's, and it is the whole of what this rule can say about initials it holds as
+  a set rather than in the order printed. One man is printed with different NUMBERS
+  of initials from year to year — 'W. Adams' in one volume and 'W. H. Adams' in the
+  next — so a side printing FEWER is no evidence against him, and {W} against
+  {W, H} is admitted. But an initial printed on one side and absent from the other
+  WHILE THAT OTHER prints one this side lacks is two different men, and no amount of
+  overlap redeems it: {W, H} against {R, E, W} meets on W and is REFUSED. That pair
+  is real and is why this clause is written (T-1035) — Norris's boot and shoe firm
+  'Adams, W. H. & Co' was counted present in Fergus's 1843 directory through
+  'R. E. W. ADAMS, homoeopathic physician', on one shared initial out of three,
+  because the rule asked only whether ANY initial agreed and never how many did not.
 
 WHAT THIS WRITES INTO THE TOWN: nothing. That is the finding, not an omission —
 see the `written` block, which carries the reason in the file rather than only in
@@ -177,13 +190,22 @@ def year_at_or_before(text):
 
 
 def agree_rule(a_sur, a_ini, b_sur, b_ini):
-    """The continuity rule of the docstring. -> (True/False, why)."""
+    """The continuity rule of the docstring. -> (True/False, why).
+
+    The initials are held as a SET, not in the order printed, so the strongest thing
+    this can ask of them is CONTAINMENT: one side's initials must all be printed by
+    the other. That admits the side that prints fewer ({W} against {W, H} is one man
+    printed two ways) and refuses the side that prints a DIFFERENT one ({W, H}
+    against {R, E, W} — see the docstring, T-1035). Overlap alone is not agreement."""
     if not a_sur or a_sur != b_sur:
         return False, None
     for s in a_sur:
         ia, ib = a_ini.get(s) or set(), b_ini.get(s) or set()
         if ia and ib and not (ia & ib):
             return False, "an initial printed on both sides contradicts"
+        if ia and ib and not (ia <= ib or ib <= ia):
+            return False, ("the two sides print initials neither holds for the other, "
+                           "and agreeing on one of them is not agreeing")
     if len(a_sur) == 1:
         s = next(iter(a_sur))
         ia, ib = a_ini.get(s) or set(), b_ini.get(s) or set()
@@ -225,6 +247,14 @@ def self_test():
          agree_rule({"jones"}, {"jones": {"B"}}, {"jones"}, {"jones": {"B"}})[0], True)
     case("a contradicted initial is refused",
          agree_rule({"jones"}, {"jones": {"B"}}, {"jones"}, {"jones": {"W"}})[0], False)
+    case("a side printing FEWER initials than the other still agrees",
+         agree_rule({"adams"}, {"adams": {"W"}}, {"adams"}, {"adams": {"W", "H"}})[0], True)
+    case("...and the real Adams pair, agreeing on one initial out of three, does not",
+         agree_rule(*firm_names("Adams, W. H. & Co"),
+                    *firm_names("R. E. W. ADAMS"))[0], False)
+    case("...while the exact Adams firm pairing still stands",
+         agree_rule(*firm_names("Adams, W. H. & Co"),
+                    *firm_names("W. H. ADAMS & CO."))[0], True)
 
     case("the alphabetising comma's initial attaches to the surname before it",
          firm_names("Jones, B. & Co")[1], {"jones": {"B"}})

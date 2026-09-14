@@ -39,13 +39,13 @@
   "OS1": 39,
   "OS2A": 7,
   "OS2": 1,
-  "OS3": 117,
-  "OS4": 7,
+  "OS3": 116,
+  "OS4": 8,
   "OS5": 156,
   "merged": 46,
   "probable": 1,
-  "candidate": 7,
-  "refused": 117,
+  "candidate": 8,
+  "refused": 116,
   "unmatched": 156
  },
  "people": [
@@ -619,7 +619,7 @@
     "outcome": "merged",
     "person_id": "bowen_erastus_selden",
     "household_id": "hh_bowen_erastus_selden",
-    "resident_name": "Erastus Selden Bowen",
+    "resident_name": "Erastus Bowen",
     "resident_grade": "attested",
     "why": "surname and spelled-out forename agree, one bearer"
    },
@@ -1028,10 +1028,13 @@
    "places_in_1835": false,
    "places_in_1835_why": "the club's criterion is residence in Chicago before 1 January 1840 and majority by then, and the year in the DATE OF ARRIVAL column is what the man himself said in 1879. A self-reported arrival year at or before 1835 is a dated recollection and not a residence on 1 July 1835: under the ratified ladder (T-0513) it corroborates and enriches, and minting waits on a contemporary source (T-0514).",
    "residents_layer": {
-    "rule": "OS3",
-    "outcome": "refused",
+    "rule": "OS4",
+    "outcome": "candidate",
     "person_id": null,
-    "why": "the residents layer has 2 bearer(s) of 'clarke', none with the forename initial 'l'; same surname, different forename initial never merges"
+    "candidates": [
+     "clarke_l"
+    ],
+    "why": "1 bearers of 'clarke' share the forename initial 'l'; the roster does not discriminate between them"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -1100,7 +1103,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 2 bearer(s) of 'clarke', none with the forename initial 'n'; same surname, different forename initial never merges"
+    "why": "the residents layer has 3 bearer(s) of 'clarke', none with the forename initial 'n'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -4402,7 +4405,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'a'; same surname, different forename initial never merges"
+    "why": "the residents layer has 4 bearer(s) of 'sherman', none with the forename initial 'a'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -4435,7 +4438,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
+    "why": "the residents layer has 4 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -4468,7 +4471,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'o'; same surname, different forename initial never merges"
+    "why": "the residents layer has 4 bearer(s) of 'sherman', none with the forename initial 'o'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -9938,7 +9941,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 3 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
+    "why": "the residents layer has 4 bearer(s) of 'sherman', none with the forename initial 'e'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",

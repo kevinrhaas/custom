@@ -6,20 +6,20 @@
  "scene_date": "1835-07-01",
  "the_question": "and it is a dating question, not a matching one:\nof the firms Norris's 1844 volume prints, which ones does some printing put in the\ntown of 1 July 1835? Under the ratified ladder an 1844 listing alone never puts a\nbusiness in the 1835 town, so a firm reaches this scene only if a DATE reaches it,\nand the ticket names the three printings that could carry one — the Historical\nSketch, the firm's own advertising card, and Fergus's 1843 directory. This walks\nall three over every firm the volume prints and writes down what each one reached.",
  "the_three_routes": "SKETCH. The 65 town findings read out of Norris's own Historical Sketch and\n  Statistical Account (T-0567) carry a `describes_date`. A finding dated at or\n  before 1835 whose PRINTED QUOTE names every significant word of a firm's name is\n  a candidate dating; the reader's `normalized` gloss is deliberately NOT searched,\n  because it is this project's prose and finding this project's own words in it\n  would date nothing.\n  OWN CARD. A card in the Advertising Directory (T-0568) may print its own\n  founding — \"established 18xx\", \"since 18xx\", \"commenced business in 18xx\". The\n  card's `dated_statement`, and a scan of the card's printed text for founding\n  language beside a year, are both taken.\n  FERGUS 1843. Fergus's 1843 directory (T-0571) is a year nearer the scene and its\n  business entries are advertisements too. A Fergus entry matched to the firm and\n  carrying founding language beside a year at or before 1835 is a dating; a Fergus\n  entry with no such year is PRESENCE IN 1843 and is not one. Being in print in\n  1843 is not being in business in 1835, and this file never treats it as though\n  it were.",
- "continuity_rule": "A firm the 1835\nnewspapers already carry — the 206 businesses of `gazetteer.json` — and Norris\nstill prints in 1844 is corroborated as having survived nine years. That is\nCONTINUITY: it confirms a business the town already holds and it adds none, it\ncarries no founding date, and it moves no grade. It is recorded here because the\nowner's ask was to validate and confirm as well as to add, and because a reader\nwho finds Newberry & Dole in both volumes should be able to see that this project\nnoticed. The rule is the standing one, adapted from names to firm styles:\n  A firm printing and an 1835 business agree when the SET of surnames printed in\n  the firm style is equal on both sides, and no given-name initial printed on both\n  sides for a shared surname contradicts. A ONE-surname firm additionally REQUIRES\n  an initial printed on both sides and agreeing — \"B. Jones & Co.\" against a town\n  that holds a Jones is the eleven-Smiths refusal, however good it looks. Where a\n  firm meets more than one 1835 business on that rule the match is AMBIGUOUS and\n  is filed as such, not resolved.",
+ "continuity_rule": "A firm the 1835\nnewspapers already carry — the 206 businesses of `gazetteer.json` — and Norris\nstill prints in 1844 is corroborated as having survived nine years. That is\nCONTINUITY: it confirms a business the town already holds and it adds none, it\ncarries no founding date, and it moves no grade. It is recorded here because the\nowner's ask was to validate and confirm as well as to add, and because a reader\nwho finds Newberry & Dole in both volumes should be able to see that this project\nnoticed. The rule is the standing one, adapted from names to firm styles:\n  A firm printing and an 1835 business agree when the SET of surnames printed in\n  the firm style is equal on both sides, and the given-name initials printed for a\n  shared surname AGREE AS FAR AS BOTH SIDES GO. A ONE-surname firm additionally\n  REQUIRES an initial printed on both sides and agreeing — \"B. Jones & Co.\" against\n  a town that holds a Jones is the eleven-Smiths refusal, however good it looks.\n  Where a firm meets more than one 1835 business on that rule the match is\n  AMBIGUOUS and is filed as such, not resolved.\n\n  AS FAR AS BOTH SIDES GO means one side's initials must be CONTAINED IN the\n  other's, and it is the whole of what this rule can say about initials it holds as\n  a set rather than in the order printed. One man is printed with different NUMBERS\n  of initials from year to year — 'W. Adams' in one volume and 'W. H. Adams' in the\n  next — so a side printing FEWER is no evidence against him, and {W} against\n  {W, H} is admitted. But an initial printed on one side and absent from the other\n  WHILE THAT OTHER prints one this side lacks is two different men, and no amount of\n  overlap redeems it: {W, H} against {R, E, W} meets on W and is REFUSED. That pair\n  is real and is why this clause is written (T-1035) — Norris's boot and shoe firm\n  'Adams, W. H. & Co' was counted present in Fergus's 1843 directory through\n  'R. E. W. ADAMS, homoeopathic physician', on one shared initial out of three,\n  because the rule asked only whether ANY initial agreed and never how many did not.",
  "counts": {
-  "firm_printings_read": 246,
-  "firms_read": 231,
-  "firms_in_the_directory_proper": 89,
+  "firm_printings_read": 253,
+  "firms_read": 235,
+  "firms_in_the_directory_proper": 96,
   "firms_in_the_advertising_directory": 157,
   "sketch_findings_dated_at_or_before_1835": 25,
   "sketch_candidate_namings": 0,
   "advertising_cards_carrying_any_date": 7,
-  "firms_also_printed_in_fergus_1843": 163,
+  "firms_also_printed_in_fergus_1843": 165,
   "fergus_1843_entries_with_founding_language": 1,
   "firms_dated_at_or_before_1835": 0,
   "firms_written": 0,
-  "firms_refused_as_1844_evidence_only": 231,
+  "firms_refused_as_1844_evidence_only": 235,
   "continuity_with_a_business_the_town_already_holds": 2,
   "continuity_ambiguous": 2,
   "continuity_refused_on_a_surname_alone": 8
@@ -54,7 +54,7 @@
   },
   {
    "firm_1844": "Newberry & Dole",
-   "trade_1844": "for. and com. merchants, cor Clark & S. Water and North Water streets (See. card)",
+   "trade_1844": "for. and com. merchants",
    "business_1835": "business_newberry_dole",
    "name_1835": "Newberry & Dole",
    "proprietors_1835": [
@@ -383,7 +383,7 @@
      "printed_page": 21
     }
    ],
-   "trade": "boot and shoe dealers, 138 Lake st (See card)",
+   "trade": "boot and shoe dealers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -399,11 +399,6 @@
       "claim": "f1843_e0029",
       "founding_year_printed": null,
       "quote": "W. H. ADAMS & CO., manufacturers and wholesale and retail dealers in boots, shoes, leather, findings, etc.,\n138 Lake Street, Chicago, Ill."
-     },
-     {
-      "claim": "f1843_e0130",
-      "founding_year_printed": null,
-      "quote": "R. E. W. ADAMS, homoeopathic physician, office corner of Clark and Lake streets; residence, Clark Street, opposite\nthe public square."
      }
     ],
     "present_in_1843": true,
@@ -634,7 +629,7 @@
      "printed_page": 22
     }
    ],
-   "trade": "dry goods and groceries, S. Water st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -668,7 +663,7 @@
      "printed_page": 22
     }
    ],
-   "trade": "attorneys and counsellors at law, 120 Lake st",
+   "trade": "attorneys and counsellors at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -799,12 +794,17 @@
    "firm": "Ballentine & Sherman",
    "printed_in": [
     {
+     "printing": "n1844_e0063",
+     "section": "directory",
+     "printed_page": 22
+    },
+    {
      "printing": "n1844_ad0044",
      "section": "advertising_directory",
      "printed_page": 88
     }
    ],
-   "trade": "wholesale and retail dealers; cash paid for wheat and other country produce",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -838,7 +838,7 @@
      "printed_page": 23
     }
    ],
-   "trade": "confectioners, 147 Lake street (Sec card)",
+   "trade": "confectioners",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -872,7 +872,7 @@
      "printed_page": 23
     }
    ],
-   "trade": "attorneys at law, 92 Lake street (See card)",
+   "trade": "attorneys at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -973,7 +973,7 @@
      "printed_page": 25
     }
    ],
-   "trade": "stove and hardware, 109 Lake street (See card)",
+   "trade": "stove and hardware",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1004,15 +1004,54 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Bowen & Cole",
+   "printed_in": [
+    {
+     "printing": "n1844_e0168",
+     "section": "directory",
+     "printed_page": 25
+    }
+   ],
+   "trade": "dry goods and groceries",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [
+     {
+      "claim": "f1843_e0393",
+      "founding_year_printed": null,
+      "quote": "Bowen & Cole, dry goods and groceries, 86 Lake"
+     }
+    ],
+    "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Bracken & Tuller",
    "printed_in": [
+    {
+     "printing": "n1844_e0180",
+     "section": "directory",
+     "printed_page": 25
+    },
     {
      "printing": "n1844_ad0047",
      "section": "advertising_directory",
      "printed_page": 89
     }
    ],
-   "trade": "wholesale and retail dealers in dry goods, groceries, hardware, leather, boots, shoes and powder",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1085,7 +1124,7 @@
      "printed_page": 27
     }
    ],
-   "trade": "crockery store, 105 Lake st (See card)",
+   "trade": "crockery store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1119,7 +1158,7 @@
      "printed_page": 27
     }
    ],
-   "trade": "attorneys at law, 105 Lake street",
+   "trade": "attorneys at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1627,7 +1666,7 @@
      "printed_page": 29
     }
    ],
-   "trade": "carpenters, N. Water st",
+   "trade": "carpenters",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1700,7 +1739,7 @@
      "printed_page": 29
     }
    ],
-   "trade": "druggists, manufacturers of lard oil and candles, 102 Lake st. Indiana st",
+   "trade": "druggists, manufacturers of lard oil and candles",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1795,7 +1834,7 @@
      "printed_page": 29
     }
    ],
-   "trade": "Clark st and western markets",
+   "trade": null,
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1823,7 +1862,7 @@
      "printed_page": 30
     }
    ],
-   "trade": "boot, shoe, and leather store, 140 Lake st",
+   "trade": "boot, shoe, and leather store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1862,7 +1901,7 @@
      "printed_page": 89
     }
    ],
-   "trade": "dry goods and groceries, 82 Lake st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1906,7 +1945,7 @@
      "printed_page": 30
     }
    ],
-   "trade": "American Temperance House, Lake st. c Wabash",
+   "trade": "American Temperance House",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -1925,6 +1964,34 @@
      }
     ],
     "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Crauer & Sanser",
+   "printed_in": [
+    {
+     "printing": "n1844_e0439",
+     "section": "directory",
+     "printed_page": 31
+    }
+   ],
+   "trade": "builders",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
     "dates_the_founding_at_or_before_1835": false
    },
    "verdict": "1844_evidence_only",
@@ -2370,7 +2437,7 @@
      "printed_page": 33
     }
    ],
-   "trade": "painters, Clark st",
+   "trade": "painters",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2465,7 +2532,7 @@
      "printed_page": 89
     }
    ],
-   "trade": "dry goods and groceries, 103 Lake st (See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2538,7 +2605,7 @@
      "printed_page": 33
     }
    ],
-   "trade": "dealers in iron, stoves, and hardware, 96 Lake st",
+   "trade": "dealers in iron, stoves, and hardware",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2566,7 +2633,7 @@
      "printed_page": 33
     }
    ],
-   "trade": "book and job printers, Saloon Buildings, 3d story, Clark st. corner Lake st",
+   "trade": "book and job printers, Saloon Buildings, 3d story",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2684,7 +2751,7 @@
      "printed_page": 35
     }
    ],
-   "trade": "attorneys at law, Clark st. opposite City Hotel",
+   "trade": "attorneys at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2723,7 +2790,7 @@
      "printed_page": 35
     }
    ],
-   "trade": "stage proprietors, corner of Lake and Dear born sts",
+   "trade": "stage proprietors",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -2824,7 +2891,7 @@
      "printed_page": 36
     }
    ],
-   "trade": "book store, 106 Lake st",
+   "trade": "book store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3033,7 +3100,7 @@
      "printed_page": 36
     }
    ],
-   "trade": "dry goods and groceries, S. Water st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3081,6 +3148,34 @@
    "continuity_with_1835": null
   },
   {
+   "firm": "Gould & Dodge",
+   "printed_in": [
+    {
+     "printing": "n1844_e0719",
+     "section": "directory",
+     "printed_page": 37
+    }
+   ],
+   "trade": "ball alley and grocery",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [],
+    "present_in_1843": false,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
    "firm": "Gray & Butler",
    "printed_in": [
     {
@@ -3089,7 +3184,7 @@
      "printed_page": 37
     }
    ],
-   "trade": "livery stable, corner of Dearborn and Randolph sts",
+   "trade": "livery stable",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3123,7 +3218,7 @@
      "printed_page": 37
     }
    ],
-   "trade": "brokers, South Water st",
+   "trade": "brokers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3157,7 +3252,7 @@
      "printed_page": 38
     }
    ],
-   "trade": "groceries, hardware, and leather store, 116 Lake st",
+   "trade": "groceries, hardware, and leather store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3398,7 +3493,7 @@
      "printed_page": 80
     }
    ],
-   "trade": "attorneys at law, Clark st. opp. P. O",
+   "trade": "attorneys at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3427,12 +3522,17 @@
    "firm": "Hamilton & White",
    "printed_in": [
     {
+     "printing": "n1844_e0787",
+     "section": "directory",
+     "printed_page": 38
+    },
+    {
      "printing": "n1844_ad0081",
      "section": "advertising_directory",
      "printed_page": 97
     }
    ],
-   "trade": "dealers in groceries, provisions and produce, lard oil, stearine candles, dried fruit, sash, nails, glass, powder, shot, lead, wooden ware and clothing",
+   "trade": "dry goods and grocery store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3499,7 +3599,7 @@
      "printed_page": 39
     }
    ],
-   "trade": "ball alley and saloon, South Water st",
+   "trade": "ball alley and saloon",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3611,7 +3711,7 @@
      "printed_page": 113
     }
    ],
-   "trade": "tailors, South Water st",
+   "trade": "tailors",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3645,7 +3745,7 @@
      "printed_page": 40
     }
    ],
-   "trade": "dry goods and groceries, corner of Clark and South Water sts (See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3679,7 +3779,7 @@
      "printed_page": 40
     }
    ],
-   "trade": "Buffalo market, cor of Wolcott and N. Water",
+   "trade": "Buffalo market",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3814,7 +3914,7 @@
      "printed_page": 95
     }
    ],
-   "trade": "for. and com. merchants, S. Water street (See card)",
+   "trade": "for. and com. merchants",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -3881,7 +3981,7 @@
      "printed_page": 41
     }
    ],
-   "trade": "dry goods, groceries, Dearborn",
+   "trade": "dry goods, groceries, Dearborn, b Lake and S. Water (Sec card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4395,7 +4495,7 @@
      "printed_page": 41
     }
    ],
-   "trade": "blacksmiths, West Water",
+   "trade": "blacksmiths",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4423,7 +4523,7 @@
      "printed_page": 42
     }
    ],
-   "trade": "dry goods and groceries, S. Water street",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4700,7 +4800,7 @@
      "printed_page": 42
     }
    ],
-   "trade": "builders, Dearborn",
+   "trade": "builders, Dearborn, b Randolph and Washington",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4728,7 +4828,7 @@
      "printed_page": 42
     }
    ],
-   "trade": "barbers and hair dressers, Clark street",
+   "trade": "barbers and hair dressers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4812,7 +4912,7 @@
      "printed_page": 42
     }
    ],
-   "trade": "dry goods and groceries, S. Water",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -4880,7 +4980,7 @@
      "printed_page": 43
     }
    ],
-   "trade": "livery stable, Lake st",
+   "trade": "livery stable",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5044,7 +5144,7 @@
      "printed_page": 45
     }
    ],
-   "trade": "billiard saloon, corner S. Water and Dear born sts (See card)",
+   "trade": "billiard saloon",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5100,7 +5200,7 @@
      "printed_page": 45
     }
    ],
-   "trade": "dry goods and gro, 101 Lake st (Sec card)",
+   "trade": "dry goods and gro",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5252,7 +5352,7 @@
      "printed_page": 47
     }
    ],
-   "trade": "dry goods and groceries, 130 Lake street",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5285,7 +5385,7 @@
      "printed_page": 86
     }
    ],
-   "trade": "cabinet makers, 10 Clark st (See. card)",
+   "trade": "cabinet makers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5396,7 +5496,7 @@
      "printed_page": 49
     }
    ],
-   "trade": "grocers, Dearborn st",
+   "trade": "grocers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5430,7 +5530,7 @@
      "printed_page": 49
     }
    ],
-   "trade": "dry goods and groceries, 150 Lake st. (See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5621,7 +5721,7 @@
      "printed_page": 49
     }
    ],
-   "trade": "bankers, 97 Lake street",
+   "trade": "bankers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5660,7 +5760,7 @@
      "printed_page": 96
     }
    ],
-   "trade": "for. and com. merchants, cor Clark & S. Water and North Water streets (See. card)",
+   "trade": "for. and com. merchants",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5722,7 +5822,7 @@
      "printed_page": 50
     }
    ],
-   "trade": "dry goods and groceries, 80 Lake st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5761,7 +5861,7 @@
      "printed_page": 115
     }
    ],
-   "trade": "dry goods and groceries, 134 Lake st. ware",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5800,7 +5900,7 @@
      "printed_page": 50
     }
    ],
-   "trade": "forwarding and commission merchants, So. Water st. (See card)",
+   "trade": "forwarding and commission merchants",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -5834,7 +5934,7 @@
      "printed_page": 50
     }
    ],
-   "trade": "land agents, Kinzie st",
+   "trade": "land agents",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6053,7 +6153,7 @@
      "printed_page": 64
     }
    ],
-   "trade": "gunsmiths, 1554 Lake st",
+   "trade": "gunsmiths",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6087,7 +6187,7 @@
      "printed_page": 51
     }
    ],
-   "trade": "linseed oil factory, Madison st 2d ward",
+   "trade": "linseed oil factory",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6131,7 +6231,7 @@
      "printed_page": 116
     }
    ],
-   "trade": "wagon makers, Randolph st",
+   "trade": "wagon makers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6172,7 +6272,7 @@
      "printed_page": 51
     }
    ],
-   "trade": "bakers, Clark st",
+   "trade": "bakers",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6247,11 +6347,6 @@
    "fergus_1843": {
     "entries": [
      {
-      "claim": "f1843_e0029",
-      "founding_year_printed": null,
-      "quote": "W. H. ADAMS & CO., manufacturers and wholesale and retail dealers in boots, shoes, leather, findings, etc.,\n138 Lake Street, Chicago, Ill."
-     },
-     {
       "claim": "f1843_e0130",
       "founding_year_printed": null,
       "quote": "R. E. W. ADAMS, homoeopathic physician, office corner of Clark and Lake streets; residence, Clark Street, opposite\nthe public square."
@@ -6307,7 +6402,7 @@
      "printed_page": 52
     }
    ],
-   "trade": "boots, shoes, and leather, 133 Lake st",
+   "trade": "boots, shoes, and leather",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6335,7 +6430,7 @@
      "printed_page": 52
     }
    ],
-   "trade": "staple goods and groceries, corner South Water and State sts and 122 Lake st up stairs",
+   "trade": "staple goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6459,7 +6554,7 @@
      "printed_page": 53
     }
    ],
-   "trade": "tailors, Clark street, next door to Post Office",
+   "trade": "tailors",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6726,7 +6821,7 @@
      "printed_page": 54
     }
    ],
-   "trade": "hat, cap, and fur store, 110 Lake st",
+   "trade": "hat, cap, and fur store",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6795,7 +6890,7 @@
      "printed_page": 81
     }
    ],
-   "trade": "attorneys, 123 Lake st. 2d story, (See card)",
+   "trade": "attorneys",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6868,7 +6963,7 @@
      "printed_page": 55
     }
    ],
-   "trade": "dry goods and groceries, 107 Lake st",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6902,7 +6997,7 @@
      "printed_page": 55
     }
    ],
-   "trade": "groceries, and boarding house, N. Water st. n Dcarb",
+   "trade": "groceries, and boarding house",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -6946,6 +7041,45 @@
       "claim": "f1843_e0141",
       "founding_year_printed": null,
       "quote": "SILAS B. COBB, general dealer in saddles, harnesses, trunks, valises, collars, whips, carpet bags, etc., etc.;\n171 Lake Street, Chicago, Ill."
+     }
+    ],
+    "present_in_1843": true,
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "verdict": "1844_evidence_only",
+   "why": "No printing this project holds dates this firm's founding. An 1844 listing alone never puts a business in the 1835 town, so it is refused.",
+   "continuity_with_1835": null
+  },
+  {
+   "firm": "Skinner & Smith",
+   "printed_in": [
+    {
+     "printing": "n1844_e1629",
+     "section": "directory",
+     "printed_page": 55
+    }
+   ],
+   "trade": "Mansion",
+   "sketch": {
+    "candidates": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "own_card": {
+    "dated_statements": [],
+    "founding_years_printed": [],
+    "dates_the_founding_at_or_before_1835": false
+   },
+   "fergus_1843": {
+    "entries": [
+     {
+      "claim": "f1843_e0107",
+      "founding_year_printed": null,
+      "quote": "SKINNER & SMITH, Mansion House, 84 and 86 Lake Street, Chicago, Ill.; baggage taken to and from steamboats\nfree of charge."
+     },
+     {
+      "claim": "f1843_e2273",
+      "founding_year_printed": null,
+      "quote": "Skinner & Smith, proprietors Mansion House, 86-8 Lake"
      }
     ],
     "present_in_1843": true,
@@ -7086,7 +7220,7 @@
      "printed_page": 81
     }
    ],
-   "trade": "attornies at law, 124 L.ike st. 2d story(,S>e card)",
+   "trade": "attornies at law",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7164,7 +7298,7 @@
      "printed_page": 57
     }
    ],
-   "trade": "Columbian House, Wells st. b- S Water <5cLake",
+   "trade": "Columbian House",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7509,11 +7643,6 @@
       "claim": "f1843_e0029",
       "founding_year_printed": null,
       "quote": "W. H. ADAMS & CO., manufacturers and wholesale and retail dealers in boots, shoes, leather, findings, etc.,\n138 Lake Street, Chicago, Ill."
-     },
-     {
-      "claim": "f1843_e0130",
-      "founding_year_printed": null,
-      "quote": "R. E. W. ADAMS, homoeopathic physician, office corner of Clark and Lake streets; residence, Clark Street, opposite\nthe public square."
      }
     ],
     "present_in_1843": true,
@@ -7566,7 +7695,7 @@
      "printed_page": 59
     }
    ],
-   "trade": "dry goods, gro. leather, &c. S. Water st",
+   "trade": "dry goods, gro. leather, &c. S. Water st. b State and Dearborn sts (See card)",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7600,7 +7729,7 @@
      "printed_page": 60
     }
    ],
-   "trade": "tailors, Clark st",
+   "trade": "tailors",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7752,7 +7881,7 @@
      "printed_page": 60
     }
    ],
-   "trade": "forwarding and, commission merchants, N Water street (See card)",
+   "trade": "forwarding and, commission merchants",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7808,7 +7937,7 @@
      "printed_page": 61
     }
    ],
-   "trade": "dry goods and groceries, 94 Lake st.(See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false
@@ -7876,7 +8005,7 @@
      "printed_page": 59
     }
    ],
-   "trade": "dry goods and groceries, 113 Lake st (See card)",
+   "trade": "dry goods and groceries",
    "sketch": {
     "candidates": [],
     "dates_the_founding_at_or_before_1835": false

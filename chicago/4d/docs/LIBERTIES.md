@@ -10188,7 +10188,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 747 people
+**Scope:** `residents.persons[letter_list_only]` — 740 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
@@ -10213,8 +10213,9 @@ So each is a household of ONE, `division: unplaced`, `lives_at` and `works_at` u
 `occupation` recorded as none, `letter_list_only: true`, carrying `letter_list_returns` — the
 dated returns behind it — so a name printed on the scene date can be told from one printed
 eighteen months earlier. `--gate` refuses a roof, a trade, a second member, a manifest row that
-drops the flag and a structure record that names one of them; `--self-test` breaks each of those
-seven assertions and requires the gate to fire.
+disagrees with its card, a structure record that names one of them, and — since T-1005 — the
+flag itself on a person whose own `press_evidence` carries an ordinary reading of the papers;
+`--self-test` breaks each of those ten assertions and requires the gate to fire.
 
 **And twenty-two have joined it, off a line nothing had ever read (T-1011).** The 1 January
 1834 return prints 170 lines. The extraction this pass minted that cohort from is two segmenter
@@ -10237,6 +10238,21 @@ he is the one Norton of that initial the town holds. The record is not deleted; 
 onto him, kept whole under `data/residents/merged/`, and its letter becomes a second source for
 a man the town already documents. That is the only way a name leaves this set — a ruling that
 says who it already was, never a quiet withdrawal — and it takes the count from 727 to 726.
+
+**And seven have left it the other way — the record contradicting its own flag (T-1005).** The
+flag is written at MINT time, when a list of uncalled-for letters is all there is. The
+consolidation passes then add `press_evidence` to a card and never looked at the flag again, so
+seven cards reached `dev` asserting *known only from the post office* while carrying, on the same
+record, an ordinary reading of the papers — Chas. H. Chapman carried three. Each was adjudicated
+against the newspaper register, which marks those press-persons `letter_list_only: false`, and
+against the claims themselves, which are entered as business, building, event and notice rather
+than as the `person`-kind claim a letter list is. The flag is cleared on all seven and the notes
+that said *nothing else in the corpus names this person* now name what does. Nobody leaves the
+TOWN by this: they are the same seven residents, read on better evidence than the set they were
+counted in. What left is the claim that the post office was all there was, and the count goes
+from 747 to 740. The rule is one line — a person may not carry the flag while a press row on the
+same record is not a letter list — it is one-directional, so it may refuse the flag and never
+grant it, and it is now the gate's own assertion.
 
 **What the refusals still take, and they are the only thing between a post-office list and this
 town's population.** 1,181 of the 1,908 names in the pool are refused, in order: 454 garbled by
@@ -10500,9 +10516,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 401 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 414 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 401 people
+**Scope:** `residents.persons[civic_mint]` — 414 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10604,9 +10620,17 @@ identities whose ONLY evidence inside the scene window was such a reading: with 
 the ladder reaches nothing, and a container the ladder cannot reach is not minted. The
 refusals are not dropped — each is carried in `identity_master.json` under evidence class
 `newspaper_out_of_town`, with the printed place that decided it, so the arithmetic is on the
-record and a later page that puts one of these men at Chicago after all can overturn it. The number
-this liberty declares is the number of containers standing, and it will fall again as the
-remaining rulings are made.
+record and a later page that puts one of these men at Chicago after all can overturn it. T-1120 took it to 405 on 2026-09-14, and it is the FIRST RISE this entry records: every move above it was a card the town was holding twice, or a man who was never here. This one is a man the town was holding once and should have been holding twice. M2 — the rule that attaches an initial-only forename to the one full forename of that surname — compared the LEADING initial and nothing else, so `B. S. Sherman` of the 1840 census went onto `Sherman, Benj. F.` across a middle initial both readings print and neither shares. Forty readings folded that way; R7 refuses them now, on R4's own reasoning one position to the right, and four of the forty were the only evidence inside the scene window that reached a minted container, so four containers stand where one did. Two of the four cost a NAME to gain a man: the 1835 poll list's `King, J. D.` had been carrying John Lyle King into the town, and the newspapers' `J. F. Wight` had been carrying J. Ambrose Wight, so each of those two now stands under the initials his own source prints instead of under a fuller name a fold supplied. That is the trade this liberty is declaring, and it is the conservative direction: a name the page does not set is not an improvement on one it does. The number this liberty declares is the number of containers standing, and it will move again as the remaining rulings are made.
+
+**And nine more, on an 1834 committee roll (T-0997, 2026-09-13).** The Chicago Democrat of 29 October 1834 prints the roll of a committee a town meeting appointed against gambling, and the column it stands in is the worst OCR in the run — two printed columns cut and interleaved line by line — so no reading pass had ever taken a claim off that page. Read at the character level, it names twenty-one men in the roll and fourteen more in the report around it. Nine of them the ladder had never seen, so this entry's count rises from 405 to 414 — the same conservative direction as T-1120's four, and for the same reason: men the town was not holding at all. Daniel Whittier, E. B. Mosely, H. Ven de Bogart, L. C. Saxton, L. Clarke, G. South, G. Springs, J. M. Marksall and William George Sherman each get a container here and nowhere else. Three others the town already carried under fuller names and were folded on written rulings the same day — W. H. Kennicott onto the surgeon dentist, C. L. Harmon onto Charles Loomis Harmon of the dry-goods house, J. S. Wright onto John S. Wright — so the rise is nine and not twelve. AND FIVE MORE NAMES ON THAT ROLL ARE DELIBERATELY NOT HERE: the crop
+cuts `A. N. Ful…`, `M. M'Cle…`, `H. G. Hub…`, `… Hau…` and `Hon. R. J. …` in the middle of
+the surname, and a name the page stops halfway through is recorded as a position in the
+claim and given no entity, so it mints nobody. That refusal is not only editorial. It was
+measured: `tools/consolidate_resident_evidence.py` splits a name into surname and forename
+with the brackets already stripped, so `H. G. Hub[…]` reaches `mint_civic_residents.py` as
+the plain name `H G Hub`, its own bracketed-as-uncertain refusal cannot fire on it, and the
+town gains a card headed `The Hub household`. Five such cards were minted and deleted while
+this ticket was being written.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
@@ -10887,7 +10911,7 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Recorded:** 2026-09-04.
 
 ### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 12 households
+**Scope:** `residence_back_projection.positions[placed]` — 11 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds`, or
 `house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
@@ -11001,6 +11025,31 @@ being read properly rather than a clause being relaxed:
 
 Nothing was regraded and no placement was invented. Twenty of 825 households carried a real
 `lives_at` before this restatement and twenty carry one after.
+
+**Restated to eleven on 2026-09-14 (T-1050), and this one is the READING — the fourth
+restatement, and the first of the four that is not the town moving.** Norris prints two
+houses at the same place on Clark Street, three lines apart in the same column: John C.
+Rue's at `h Clark, b Madison and Monroe` and Rebecca Sherman's at `h Clark st. b Mad. &
+Mon`. Rue was refused under clause R4's second half — a qualifier naming a street the
+town does not have refuses the whole address, and the 1835 layer carries neither Madison
+nor Monroe. **Sherman was placed on Clark Street**, and for no reason in the policy: the
+shared street table knew `Madison` spelled out and not the contraction Norris declares on
+his own REMARKS page ("Abbreviations, which occur only in a very few words, will readily
+be understood; b stands for between; Rand for Randolph; Mad for Madison; Wash for
+Washinglon, &c.", printed page 21), so R4's second half never saw a qualifier to refuse.
+One address, two spellings, two verdicts — and the spelling the pass could read was the
+one that claimed MORE. Fourteen contractions are now expanded before either street table
+is consulted, three of them named by that preface and eleven covered by its `&c.`, each
+unique on the 1844 street list and each attested in every one of its occurrences across
+the 4,235 addresses the four volumes print. Sherman's face is withdrawn and **Dearborn
+Street is no longer a face this entry claims** — Clark survives it, on William Bradshaw
+Egan. A refusal also stopped reasoning off the wrong street without changing its verdict:
+John Harris Kinzie's `h c Mich dc Cass` had made **Cass** the head street, because `Mich`
+was invisible, so the north-side Michigan Street his house stood on was never resolved;
+the refusal now resolves it and declines the Cass qualifier. The business pass's ledger is
+byte-identical across the change, which is the measurement that says no shop moved.
+Nothing was regraded, nothing was invented, and twenty of 825 households carry a real
+`lives_at` before and after.
 
 ### L224 — A house the paper measured, on a corner the paper did not
 **Decision:** `lasalle_lake_house` — the 16-by-30-foot dwelling the *Chicago Democrat*
@@ -11586,3 +11635,152 @@ place) · **L229** (the grave's fence, a hand-authored record of one small thing
 drawn, which is why nobody stands at the curb) · tickets **T-0887** (this), **T-0881** (the
 measurement), **T-0592** (the class this refuses to mint).
 **Recorded:** 2026-09-12 (T-0887).
+
+### L235 — A plant whose record states no width is measured, for the far band's species mix, at the footprint the placer already gives it
+**Decision:** the far band's grass-or-flower split is dealt on a quantity summed over each
+stratum's own records — **areal ground cover** from T-0280 to T-1106, and each stratum's
+**silhouette area** since (L236) — and where a species' record states no `width_m`, the clump
+width that quantity needs is the footprint the renderer is **already drawing the plant at**: `min(0.35 m, 0.16 × the record's own mid height)` as a clump radius,
+`renderers/web/js/flora.js` `clumpRadiusOf`, the rule `crowdsTheWalker` has used to keep a
+prairie dock out of the visitor's body since the timber critic's note. Fifty of the sward
+records are in that case, including **every forb of the wet prairie, the mesic prairie and the
+sand prairie**, and both marsh forbs.
+
+**Why:** the alternative is not a smaller number, it is an absent stratum. A sum taken over
+recorded widths alone returns 0.0000 for the sand prairie and 0.0000 for the marsh, and the far
+band would then deal both communities as pure grass on the strength of a field their records
+simply do not carry — a rendering decision made by a gap. The fallback is not invented here:
+it is read out of the placer, it is what those plants occupy on screen today, and the plants
+themselves are drawn from their own recorded densities either way.
+
+**What it is NOT:** it is not a width claim about any species, and no record gains a `width_m`.
+Nothing is written to `data/flora`. It is a derived quantity used inside one ratio, and
+`flora.communities()` exports `forbCoverFallbacks` per community so a reader can see exactly
+how much of a cover figure came from the fallback rather than from a stated width —
+`tools/measure_far_split.mjs` prints it in its own column.
+
+**What bounds it:** the ratio, not the geometry. This number decides **which plant a far card
+stands for**, never how many cards are dealt or how big they are, so the worst a wrong
+footprint can do is mis-colour an aggregate card. The card count, the instance count and the
+triangles are what they were.
+
+**How to resolve:** a `width_m` on the fifty records that lack one — most are prairie forbs
+whose clump diameter modern floras state directly — at which point the fallback stops firing
+and `forbCoverFallbacks` reads zero without a line of code changing.
+Related: **L185** (the forb abundances this cover is summed from, read at the top of their
+ranges) · **L32** (the same warning one stratum up: the grass is a modern remnant reading) ·
+**L236** (the silhouette
+the same fallback width now feeds) · tickets **T-0280** (this), **T-0019** (the lattice ceiling
+that had been deciding the split), **T-0209** (the split itself), **T-1106** (the change of
+unit).
+**Recorded:** 2026-09-13 (T-0280).
+**Revised:** 2026-09-13 (T-1106) — the split moved from ground cover to silhouette area, so the
+fallback width is now one of the two factors of `w × h` rather than the radius of a disc. The
+fallback itself, the fifty records it fires on and everything this entry says about it are
+unchanged; only the ratio it feeds has changed unit.
+
+### L236 — The far band's species mix is dealt on a SILHOUETTE, and the silhouette of a clump is taken as its bounding rectangle
+**Decision:** the far band's grass-or-flower split is dealt on each stratum's **silhouette-area
+density** — `stems × w × h` per m² of ground, `silhouetteOf` in
+`renderers/web/js/flora.js` — and the silhouette of one clump is taken as the **rectangle**
+`w × h`: its recorded mid height by its drawn clump diameter, with no shape factor of any kind.
+The matrix side of the ratio is the record's own `cover.matrix_fraction` multiplied by the
+graminoid stratum's own measured aspect `sil / cover`, so the authored figure is converted
+rather than replaced. No constant enters the split that is not summed off `data/flora`.
+
+**Why:** the far band's nearest card stands 34 m from the visitor and its furthest 95 m. At
+fifty metres a 1.7 m eye looks 1.9 degrees below horizontal, so the sward is seen **edge-on, as
+a wall**, and the plant that fills a pixel is the first element the ray meets — which is
+governed by projected area per element times elements per unit ground, and not by how much
+ground each holds. The depth of the wall cancels out of a ratio between two strata standing in
+it. This is not a new model in this project: `tools/measure_far_bloom.mjs` §1 has priced the
+BLOOM share on exactly this bridge since T-0209 and states its own liberty for it, so between
+T-0280 and T-1106 the module was reading one wall in two different units one field apart.
+
+**What it is NOT:** it is not a claim that any plant is rectangular, and no record gains a
+shape. It is also not a back door to more flowers: the quantity is two-sided and it moves both
+ways. Measured over the ten communities, the forb share of the far cards **falls** at
+`z03_sedge_meadow` (11.51 % → 8.25 %, 0.717×) because that community's sedges are the taller
+narrower stratum, and rises where the forbs are — most at `z10_settled_town` (46.75 % →
+72.72 %) and `z05_riverbank_timber` (5.26 % → 10.39 %). `z04_marsh` moves by 0.01 of a
+percentage point, because its two strata happen to share an aspect of 3.98.
+
+**What bounds it:** the same bound L235 states, and for the same reason — this number decides
+**which plant a far card stands for**, never how many cards are dealt, how large they are, or
+where. The far card's own geometry is untouched: its height is still the plant's own drawn
+height and its width still `band.wide`, the aggregate width L137 gives it, so `w × h` here is
+the clump's bounding rectangle and NOT a description of the quad on screen. Card count,
+instance count, draw calls and triangles are what they were; measured at the three gate stands,
+the drawn far cards are 226 / 241 / 28 before and after.
+
+**How to resolve:** a measured vertical profile — a silhouette coefficient per growth form,
+from a canopy study or from photographs of the living remnant communities — at which point the
+rectangle becomes a coefficient times the rectangle, and where the two strata share a form it
+cancels out of the ratio again and nothing moves. Until there is one, a shape factor applied to
+only one side would be a thumb on the scale and applied to both would be arithmetic with no
+content.
+Related: **L235** (the fallback width this silhouette's `w` is read from where a record states
+none) · **L137** (the far card's aggregate width, which this deliberately does NOT read) ·
+**L185** (the abundances both sides are summed from) · tickets **T-1106** (this), **T-0280**
+(the ground-cover reading this replaces), **T-0209** (the split, and the bloom's own silhouette
+model this is brought into line with).
+**Recorded:** 2026-09-13 (T-1106).
+
+### L237 — The town is drawn past the edge of the ground it is drawn on: one street ribbon runs 630 m on a constant, and two thirds of the box's edge is a door that only opens outward
+**Decision:** the modelled ground for `e1834_harbor_cut` is a box, and the committed town is
+not confined to it. Where a record stands outside the box the renderer does not refuse it: the
+`Heightfield` in `renderers/web/js/terrain.js` answers `sample()` with `fallbackY` — the
+constant **0**, the summer-1835 water surface — at any position its `contains()` refuses, and
+every module that seats geometry on the ground seats it on that constant out there. Measured by
+`tools/measure_north_of_box.mjs` and committed at `data/terrain/north_of_box_reading.json`:
+
+- **One drawn ribbon leaves the ground.** Wolcott Street is committed from N +108 to
+  N +1029.71 and the box stops at N +400, so **629.72 m of its 921.73 m** — 68.3 % — is drawn
+  at y = 0 rather than on a measurement. It is the only one: the other 27 drawn streets are
+  inside the box to within a sub-cell sliver of kerb.
+- **Nothing else north of the wall is drawn at all**, and that is the half a reader would
+  otherwise assume wrongly. Kinzie's Addition's streets were committed by T-1060 as
+  `opened: false, track_width_m: 0` — platted, unopened, unworn — and `streets.js`
+  § `createStreets` filters exactly those records out before it builds anything. 47 of the 49
+  such records stand off the modelled ground, 47 512 m of line, and every one of them draws
+  nothing. The Addition is a claim about ground this scene does not model, not a fiction it
+  paints.
+- **The edge is a one-way door.** `walker.js` allows a 0.35 m step up and charges nothing for a
+  step down, so where the modelled ground stands more than 0.35 m above the constant a visitor
+  may walk out of the box and may not walk back. That is **3 958 m of the box's 5 900 m
+  perimeter (67.1 %)**: 79.5 % of the north wall, 70.4 % of the south, all of the west, and
+  none of the east, which is the lake and stands below the constant. The deepest is 2.775 m.
+
+**Why:** because the alternative is a worse liberty, and this is the honest order. The scene
+grows by having its research committed first and its ground caught up afterwards — the box's
+own `n_min` moved from −400 to −530 only once the South Branch had been traced past it — so a
+street layer that reached further than the field has been the normal state of this project, not
+a fault in it. A renderer that refused to draw a record off the field would silently delete
+committed research; a renderer that extrapolated the field would manufacture ground out of
+nothing, which is the one thing this project may never do. A flat constant at a stated datum is
+the only third option, and `streets.js` already refuses to *refine* a panel against it for
+exactly that reason: "refining against a constant would manufacture cliffs at the map border."
+
+**What it is NOT:** it is not a claim that the land north of Kinzie Street was flat, or at lake
+level, or under water. `isWater()` tests the same sample against −0.10 m, so the constant reads
+as dry land rather than as lake, and the Addition is therefore drawn — where anything is drawn
+at all — standing on nothing that was measured. No elevation anywhere outside the box is
+evidence, and none of it is exported: `heightfield.bin` carries samples only for the box, and
+the ground mesh ends at its skirt.
+
+**What bounds it:** the reading is gated. `tools/check.sh` runs
+`tools/measure_north_of_box.mjs --gate`, which holds the committed numbers against a
+re-derivation, so neither the box nor the street layer can move underneath this entry without
+the gate going red. The gate deliberately asserts **agreement and not smallness** — nothing in
+the repo today makes these numbers small, and a gate that demanded it would only ever be red.
+
+**How to resolve:** extend the box. `terrain_spec.json` § `box_derivation.n_max` now argues the
+number this would take — **+1120**, from the North Branch's banks and the lake shore, both now
+traced to N +1075…+1121, past the trace end that set +400 — and states its cost: a 77 % larger
+field, and 288 new rows of ground for which the spec carries no micro-relief, no substrate zone,
+no shore run and no flora belt. That is a build, not a number change, and it is its own ticket.
+Related: **L9** (the walker's other unreachable edge, the channel barrier) · tickets **T-1067**
+(this), **T-1060** and **T-1061** (the Addition's streets and blocks), **T-1062** (the viewpoint
+that found it), **T-0219** (the southern extension, the same move on the other wall), **T-0110**
+(the refusal to refine a panel against the constant).
+**Recorded:** 2026-09-14 (T-1067).

@@ -2076,7 +2076,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 2 card(s) heading 'Barnard' name Illinois and neither Chicago nor Cook County, so the lead against J B Barnard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 2 card(s) heading 'Barnard' name Illinois and neither Chicago nor Cook County, so the lead against J B Barnard; J H Barnard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_0308",
     "nbi_v01_0309"
@@ -2086,10 +2086,16 @@
      "id": "barnard_j_b",
      "name": "J B Barnard",
      "rule": "exact surname"
+    },
+    {
+     "id": "barnard_j_h",
+     "name": "J H Barnard",
+     "rule": "exact surname"
     }
    ],
    "person_ids": [
-    "barnard_j_b"
+    "barnard_j_b",
+    "barnard_j_h"
    ],
    "works_cited": [],
    "held_works": [],
@@ -2141,7 +2147,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Barr' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Barr' at all. And if it were, a heading against John S. Barre; John S. Barry; William Barry would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Barr' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Barr' at all. And if it were, a heading against John S. Barre; J R Barry; John S. Barry; William Barry would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_0324"
    ],
@@ -2150,6 +2156,11 @@
      "id": "barre_john_s",
      "name": "John S. Barre",
      "rule": "OCR variant (0.89 similarity to 'barre')"
+    },
+    {
+     "id": "barry_j_r",
+     "name": "J R Barry",
+     "rule": "OCR variant (0.89 similarity to 'barry')"
     },
     {
      "id": "barry_john_s",
@@ -2164,6 +2175,7 @@
    ],
    "person_ids": [
     "barre_john_s",
+    "barry_j_r",
     "barry_john_s",
     "barry_william"
    ],
@@ -2238,13 +2250,18 @@
    "layer": "residents",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Barry' name Chicago or Cook County, the heading is the surname of John S. Barry; William Barry exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Barry' name Chicago or Cook County, the heading is the surname of J R Barry; John S. Barry; William Barry exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v01_0334",
     "nbi_v01_0335",
     "nbi_v01_0336"
    ],
    "candidates": [
+    {
+     "id": "barry_j_r",
+     "name": "J R Barry",
+     "rule": "exact surname"
+    },
     {
      "id": "barry_john_s",
      "name": "John S. Barry",
@@ -2257,6 +2274,7 @@
     }
    ],
    "person_ids": [
+    "barry_j_r",
     "barry_john_s",
     "barry_william"
    ],
@@ -4258,7 +4276,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of air. Bowen; Erastus Selden Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against air. Bowen; Erastus Selden Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold.",
+   "reason": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of air. Bowen; Erastus Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against air. Bowen; Erastus Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold.",
    "record_ids": [
     "nbi_v01_0720",
     "nbi_v01_0721",
@@ -4272,7 +4290,7 @@
     },
     {
      "id": "bowen_erastus_selden",
-     "name": "Erastus Selden Bowen",
+     "name": "Erastus Bowen",
      "rule": "exact surname"
     }
    ],
@@ -4465,7 +4483,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against air. Bowen; Erastus Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_0744"
    ],
@@ -4477,7 +4495,7 @@
     },
     {
      "id": "bowen_erastus_selden",
-     "name": "Erastus Selden Bowen",
+     "name": "Erastus Bowen",
      "rule": "OCR variant (0.89 similarity to 'bowen')"
     },
     {
@@ -4619,7 +4637,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Bownen' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bownen' at all. And if it were, a heading against air. Bowen; Erastus Selden Bowen would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Bownen' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bownen' at all. And if it were, a heading against air. Bowen; Erastus Bowen would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_0742"
    ],
@@ -4631,7 +4649,7 @@
     },
     {
      "id": "bowen_erastus_selden",
-     "name": "Erastus Selden Bowen",
+     "name": "Erastus Bowen",
      "rule": "OCR variant (0.91 similarity to 'bowen')"
     }
    ],
@@ -6897,7 +6915,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Carlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Carlin' at all. And if it were, a heading against Paul J Carli would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Carlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Carlin' at all. And if it were, a heading against P S Carli; Paul J Carli would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v01_1159",
     "nbi_v01_1160",
@@ -6905,12 +6923,18 @@
    ],
    "candidates": [
     {
+     "id": "carli_p_s",
+     "name": "P S Carli",
+     "rule": "OCR variant (0.91 similarity to 'carli')"
+    },
+    {
      "id": "carli_paul_j",
      "name": "Paul J Carli",
      "rule": "OCR variant (0.91 similarity to 'carli')"
     }
    ],
    "person_ids": [
+    "carli_p_s",
     "carli_paul_j"
    ],
    "works_cited": [
@@ -8605,6 +8629,11 @@
      "rule": "OCR variant (0.91 similarity to 'clarke')"
     },
     {
+     "id": "clarke_l",
+     "name": "L Clarke",
+     "rule": "OCR variant (0.91 similarity to 'clarke')"
+    },
+    {
      "id": "clarke_w_b",
      "name": "W B Clarke",
      "rule": "OCR variant (0.91 similarity to 'clarke')"
@@ -8616,6 +8645,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "works_cited": [
@@ -8703,7 +8733,7 @@
    "layer": "residents",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of H. B. Clarke; W B Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of H. B. Clarke; L Clarke; W B Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v01_1377",
     "nbi_v01_1378",
@@ -8737,6 +8767,11 @@
      "rule": "exact surname"
     },
     {
+     "id": "clarke_l",
+     "name": "L Clarke",
+     "rule": "exact surname"
+    },
+    {
      "id": "clarke_w_b",
      "name": "W B Clarke",
      "rule": "exact surname"
@@ -8748,6 +8783,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "works_cited": [
@@ -21643,7 +21679,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Byra King; Byram King; Byron King; Hyram King; John Lyle King; Nehemiah King; Sherman King; Tuthill King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v02_1574",
     "nbi_v02_1578"
@@ -21670,8 +21706,8 @@
      "rule": "exact surname"
     },
     {
-     "id": "king_john_lyle",
-     "name": "John Lyle King",
+     "id": "king_j_d",
+     "name": "J D King",
      "rule": "exact surname"
     },
     {
@@ -21695,7 +21731,7 @@
     "king_byram",
     "king_byron",
     "king_hyram",
-    "king_john_lyle",
+    "king_j_d",
     "king_nehemiah",
     "king_sherman",
     "king_tuthill"
@@ -23733,11 +23769,16 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Mathews' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mathews' at all. And if it were, a heading against James G. Matthews would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Mathews' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mathews' at all. And if it were, a heading against J D Matthews; James G. Matthews would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v03_0509"
    ],
    "candidates": [
+    {
+     "id": "matthews_j_d",
+     "name": "J D Matthews",
+     "rule": "OCR variant (0.93 similarity to 'matthews')"
+    },
     {
      "id": "matthews_james_g",
      "name": "James G. Matthews",
@@ -23745,6 +23786,7 @@
     }
    ],
    "person_ids": [
+    "matthews_j_d",
     "matthews_james_g"
    ],
    "works_cited": [],
@@ -23785,11 +23827,16 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Matthew' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Matthew' at all. And if it were, a heading against James G. Matthews would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Matthew' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Matthew' at all. And if it were, a heading against J D Matthews; James G. Matthews would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v03_0519"
    ],
    "candidates": [
+    {
+     "id": "matthews_j_d",
+     "name": "J D Matthews",
+     "rule": "OCR variant (0.93 similarity to 'matthews')"
+    },
     {
      "id": "matthews_james_g",
      "name": "James G. Matthews",
@@ -23797,6 +23844,7 @@
     }
    ],
    "person_ids": [
+    "matthews_j_d",
     "matthews_james_g"
    ],
    "works_cited": [],
@@ -23863,12 +23911,17 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 2 card(s) heading 'Matthews' name Illinois and neither Chicago nor Cook County, so the lead against James G. Matthews stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 2 card(s) heading 'Matthews' name Illinois and neither Chicago nor Cook County, so the lead against J D Matthews; James G. Matthews stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v03_0520",
     "nbi_v03_0524"
    ],
    "candidates": [
+    {
+     "id": "matthews_j_d",
+     "name": "J D Matthews",
+     "rule": "exact surname"
+    },
     {
      "id": "matthews_james_g",
      "name": "James G. Matthews",
@@ -23876,6 +23929,7 @@
     }
    ],
    "person_ids": [
+    "matthews_j_d",
     "matthews_james_g"
    ],
    "works_cited": [],
@@ -34410,14 +34464,14 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against J F Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v04_0402"
    ],
    "candidates": [
     {
-     "id": "wight_j_ambrose",
-     "name": "J Ambrose Wight",
+     "id": "wight_j_f",
+     "name": "J F Wight",
      "rule": "OCR variant (0.91 similarity to 'wight')"
     },
     {
@@ -34452,7 +34506,7 @@
     }
    ],
    "person_ids": [
-    "wight_j_ambrose",
+    "wight_j_f",
     "wright_amasa",
     "wright_j",
     "wright_john",
@@ -36316,10 +36370,10 @@
   {
    "record_id": "nbi_v01_0334",
    "a": "Barry | — Chicago, lil. (Andreas, A. T.) 1834-81 3. Soo",
-   "b": "John S. Barry; William Barry; J. R. Barry",
+   "b": "J R Barry; John S. Barry; William Barry; J. R. Barry",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Barry' name Chicago or Cook County, the heading is the surname of John S. Barry; William Barry exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Barry | — Chicago, lil. (Andreas, A. T.) 1834-81 3. Soo' against John S. Barry; William Barry; J. R. Barry.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Barry' name Chicago or Cook County, the heading is the surname of J R Barry; John S. Barry; William Barry exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Barry | — Chicago, lil. (Andreas, A. T.) 1834-81 3. Soo' against J R Barry; John S. Barry; William Barry; J. R. Barry.",
    "layers": [
     "residents",
     "voters"
@@ -36329,6 +36383,7 @@
     "lead_v01_barry_voters"
    ],
    "person_ids": [
+    "barry_j_r",
     "barry_john_s",
     "barry_william"
    ],
@@ -36352,10 +36407,10 @@
   {
    "record_id": "nbi_v01_0335",
    "a": "Barry | (Arnold I . i Chicago, III, (KOSJ:, J . J ^ I I Irklann, J.I 1395",
-   "b": "John S. Barry; William Barry; J. R. Barry",
+   "b": "J R Barry; John S. Barry; William Barry; J. R. Barry",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Barry' name Chicago or Cook County, the heading is the surname of John S. Barry; William Barry exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Barry | (Arnold I . i Chicago, III, (KOSJ:, J . J ^ I I Irklann, J.I 1395' against John S. Barry; William Barry; J. R. Barry.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Barry' name Chicago or Cook County, the heading is the surname of J R Barry; John S. Barry; William Barry exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Barry | (Arnold I . i Chicago, III, (KOSJ:, J . J ^ I I Irklann, J.I 1395' against J R Barry; John S. Barry; William Barry; J. R. Barry.",
    "layers": [
     "residents",
     "voters"
@@ -36365,6 +36420,7 @@
     "lead_v01_barry_voters"
    ],
    "person_ids": [
+    "barry_j_r",
     "barry_john_s",
     "barry_william"
    ],
@@ -36388,10 +36444,10 @@
   {
    "record_id": "nbi_v01_0336",
    "a": "Barry | (Arnold, J.' —Pike Co, III. (Chxpman, C C S Co, P11M.I 1880:",
-   "b": "John S. Barry; William Barry; J. R. Barry",
+   "b": "J R Barry; John S. Barry; William Barry; J. R. Barry",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Barry' name Chicago or Cook County, the heading is the surname of John S. Barry; William Barry exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Barry | (Arnold, J.' —Pike Co, III. (Chxpman, C C S Co, P11M.I 1880:\" against John S. Barry; William Barry; J. R. Barry.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 3 card(s) heading 'Barry' name Chicago or Cook County, the heading is the surname of J R Barry; John S. Barry; William Barry exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Barry | (Arnold, J.' —Pike Co, III. (Chxpman, C C S Co, P11M.I 1880:\" against J R Barry; John S. Barry; William Barry; J. R. Barry.",
    "layers": [
     "residents",
     "voters"
@@ -36401,6 +36457,7 @@
     "lead_v01_barry_voters"
    ],
    "person_ids": [
+    "barry_j_r",
     "barry_john_s",
     "barry_william"
    ],
@@ -40307,10 +40364,10 @@
   {
    "record_id": "nbi_v01_1361",
    "a": "Clark | _ _ Illinois, (Moses, 1.) 1868-52. 2v. See M e >",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | _ _ Illinois, (Moses, 1.) 1868-52. 2v. See M e >' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | _ _ Illinois, (Moses, 1.) 1868-52. 2v. See M e >' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40325,6 +40382,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40347,10 +40405,10 @@
   {
    "record_id": "nbi_v01_1362",
    "a": "Clark | , Oa, III. [Brink, tkOeneurh It Ct,, J V M I87B,",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | , Oa, III. [Brink, tkOeneurh It Ct,, J V M I87B,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | , Oa, III. [Brink, tkOeneurh It Ct,, J V M I87B,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40365,6 +40423,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40387,10 +40446,10 @@
   {
    "record_id": "nbi_v01_1363",
    "a": "Clark | .Bureau Co., III. (Kelt 4 Co,, Pub.) 1877, 3 i r , ,",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | .Bureau Co., III. (Kelt 4 Co,, Pub.) 1877, 3 i r , ,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | .Bureau Co., III. (Kelt 4 Co,, Pub.) 1877, 3 i r , ,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40405,6 +40464,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40427,10 +40487,10 @@
   {
    "record_id": "nbi_v01_1364",
    "a": "Clark | Adame C o . , 1 1 1 . (Hurray, WUliamaon",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Adame C o . , 1 1 1 . (Hurray, WUliamaon' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Adame C o . , 1 1 1 . (Hurray, WUliamaon' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40445,6 +40505,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40467,10 +40528,10 @@
   {
    "record_id": "nbi_v01_1365",
    "a": "Clark | Chicago, l i l , ( A n d r e « , A. T.) ,?31-6i 1-3. *",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Chicago, l i l , ( A n d r e « , A. T.) ,?31-6i 1-3. *' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Chicago, l i l , ( A n d r e « , A. T.) ,?31-6i 1-3. *' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40485,6 +40546,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40507,10 +40569,10 @@
   {
    "record_id": "nbi_v01_1366",
    "a": "Clark | Chicago, III. ( K o s a S i U > _ KVxIanj , J.) 1893:",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Chicago, III. ( K o s a S i U > _ KVxIanj , J.) 1893:' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Chicago, III. ( K o s a S i U > _ KVxIanj , J.) 1893:' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40525,6 +40587,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40547,10 +40610,10 @@
   {
    "record_id": "nbi_v01_1367",
    "a": "I Clark, | '.-go, III, Socond Presb. Ch , Í842-92, (Grant",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"I Clark, | '.-go, III, Socond Presb. Ch , Í842-92, (Grant\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"I Clark, | '.-go, III, Socond Presb. Ch , Í842-92, (Grant\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40565,6 +40628,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40587,10 +40651,10 @@
   {
    "record_id": "nbi_v01_1368",
    "a": "Clark | Christian C o , I I I , d r i n k , 1,1-Donougb dt C * .",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Christian C o , I I I , d r i n k , 1,1-Donougb dt C * .' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Christian C o , I I I , d r i n k , 1,1-Donougb dt C * .' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40605,6 +40669,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40627,10 +40692,10 @@
   {
    "record_id": "nbi_v01_1369",
    "a": "Clark | Cook C o , I I I . (Anircr.:, A. T.) 1884 :546.",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Cook C o , I I I . (Anircr.:, A. T.) 1884 :546.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Cook C o , I I I . (Anircr.:, A. T.) 1884 :546.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40645,6 +40710,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40667,10 +40733,10 @@
   {
    "record_id": "nbi_v01_1370",
    "a": "Clark | _Cook C o , 111. (La Salle Book C o , Pub.) 1900.",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | _Cook C o , 111. (La Salle Book C o , Pub.) 1900.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | _Cook C o , 111. (La Salle Book C o , Pub.) 1900.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40685,6 +40751,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40707,10 +40774,10 @@
   {
    "record_id": "nbi_v01_1371",
    "a": "Clark | DuPage Co, III, ' B l o e + a r d , R.) IB82: P t,2:",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clark | DuPage Co, III, ' B l o e + a r d , R.) IB82: P t,2:\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clark | DuPage Co, III, ' B l o e + a r d , R.) IB82: P t,2:\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40725,6 +40792,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40747,10 +40815,10 @@
   {
    "record_id": "nbi_v01_1372",
    "a": "f Clark | ' Fulton Co , III. (Chapman, C. C. t Co.) 18791",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"f Clark | ' Fulton Co , III. (Chapman, C. C. t Co.) 18791\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"f Clark | ' Fulton Co , III. (Chapman, C. C. t Co.) 18791\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40765,6 +40833,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40787,10 +40856,10 @@
   {
    "record_id": "nbi_v01_1373",
    "a": "Clark | - — O g l e Co, III. (Kett, H, F . , - * Co.) 1878i 6-*,",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | - — O g l e Co, III. (Kett, H, F . , - * Co.) 1878i 6-*,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | - — O g l e Co, III. (Kett, H, F . , - * Co.) 1878i 6-*,' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40805,6 +40874,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40827,10 +40897,10 @@
   {
    "record_id": "nbi_v01_1376",
    "a": "Clark | Wlnsebago Co., III. (Kott, H. F., 4, Co., Pub.)",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Wlnsebago Co., III. (Kott, H. F., 4, Co., Pub.)' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 2 of the 14 card(s) heading 'Clark/I Clark,/f Clark' name Chicago or Cook County, the heading is the surname of J. D. Clark; J. E. Clark; H. R. Clark Jr. exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clark | Wlnsebago Co., III. (Kott, H. F., 4, Co., Pub.)' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40845,6 +40915,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40867,10 +40938,10 @@
   {
    "record_id": "nbi_v01_1377",
    "a": "Clarke | Illinois. (MosesyJ.) 1888-92. 2v. Sec Irder",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clarke | Illinois. (MosesyJ.) 1888-92. 2v. Sec Irder' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clarke | Illinois. (MosesyJ.) 1888-92. 2v. Sec Irder' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40885,6 +40956,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40907,10 +40979,10 @@
   {
    "record_id": "nbi_v01_1378",
    "a": "Clarke | Chicago, II., , f „...-, t , .„ , .'. 13951",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clarke | Chicago, II., , f „...-, t , .„ , .'. 13951\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clarke | Chicago, II., , f „...-, t , .„ , .'. 13951\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40925,6 +40997,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40947,10 +41020,10 @@
   {
    "record_id": "nbi_v01_1379",
    "a": "Clarke | Chicago, III., Directory, 1839. {fe'_ Clarke",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clarke | Chicago, III., Directory, 1839. {fe'_ Clarke\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Clarke | Chicago, III., Directory, 1839. {fe'_ Clarke\" against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -40965,6 +41038,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -40987,10 +41061,10 @@
   {
    "record_id": "nbi_v01_1380",
    "a": "Clarke | Chicago, lil, (Andreas, A. T.) 1804-61 2-3.",
-   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke",
+   "b": "Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clarke | Chicago, lil, (Andreas, A. T.) 1804-61 2-3.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; W B Clarke.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 3 of the 4 card(s) heading 'Clarke' name Chicago or Cook County, the heading is the surname of Thomas Clarke; Samuel E. Clarke; S. M. Clarke; John Clarke exactly, and the cards under it cite andreas_history_of_chicago, fergus_chicago_directory_1839, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Clarke | Chicago, lil, (Andreas, A. T.) 1804-61 2-3.' against Thomas Clarke; Samuel E. Clarke; J. D. Clark; J. E. Clark; S. M. Clarke; John Clarke; H. R. Clark Jr.; Erastus Clark; John A Clark; John K Clark; Timothy J Clark; H. B. Clarke; L Clarke; W B Clarke.",
    "layers": [
     "census_1840",
     "residents"
@@ -41005,6 +41079,7 @@
     "clark_john_k",
     "clark_timothy_j",
     "clarke_h_b",
+    "clarke_l",
     "clarke_w_b"
    ],
    "person_id": null,
@@ -58805,10 +58880,10 @@
   {
    "record_id": "nbi_v01_0308",
    "a": "Barnard | DuPage Co., III. (Blanchard, R,) 1302t „ t . 2 ,",
-   "b": "J B Barnard",
+   "b": "J B Barnard; J H Barnard",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Barnard' name Illinois and neither Chicago nor Cook County, so the lead against J B Barnard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Barnard | DuPage Co., III. (Blanchard, R,) 1302t „ t . 2 ,' against J B Barnard.",
+   "rule": "Refused. All 2 card(s) heading 'Barnard' name Illinois and neither Chicago nor Cook County, so the lead against J B Barnard; J H Barnard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Barnard | DuPage Co., III. (Blanchard, R,) 1302t „ t . 2 ,' against J B Barnard; J H Barnard.",
    "layers": [
     "residents"
    ],
@@ -58816,9 +58891,10 @@
     "lead_v01_barnard_residents"
    ],
    "person_ids": [
-    "barnard_j_b"
+    "barnard_j_b",
+    "barnard_j_h"
    ],
-   "person_id": "barnard_j_b",
+   "person_id": null,
    "evidence": [
     "nbi_v01_0308",
     "data/research/newberry_index/leads.json"
@@ -58838,10 +58914,10 @@
   {
    "record_id": "nbi_v01_0309",
    "a": "Barnard | Fulton Co , III. (Chapman, C. C. 6 Co.) 1879:",
-   "b": "J B Barnard",
+   "b": "J B Barnard; J H Barnard",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Barnard' name Illinois and neither Chicago nor Cook County, so the lead against J B Barnard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Barnard | Fulton Co , III. (Chapman, C. C. 6 Co.) 1879:' against J B Barnard.",
+   "rule": "Refused. All 2 card(s) heading 'Barnard' name Illinois and neither Chicago nor Cook County, so the lead against J B Barnard; J H Barnard stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Barnard | Fulton Co , III. (Chapman, C. C. 6 Co.) 1879:' against J B Barnard; J H Barnard.",
    "layers": [
     "residents"
    ],
@@ -58849,9 +58925,10 @@
     "lead_v01_barnard_residents"
    ],
    "person_ids": [
-    "barnard_j_b"
+    "barnard_j_b",
+    "barnard_j_h"
    ],
-   "person_id": "barnard_j_b",
+   "person_id": null,
    "evidence": [
     "nbi_v01_0309",
     "data/research/newberry_index/leads.json"
@@ -58995,10 +59072,10 @@
   {
    "record_id": "nbi_v01_0324",
    "a": "Barr | _laSafle Co, III. (Cildwln, E.) 1877: 296.",
-   "b": "John S. Barre; John S. Barry; William Barry; J. R. Barry",
+   "b": "John S. Barre; J R Barry; John S. Barry; William Barry; J. R. Barry",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Barr' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Barr' at all. And if it were, a heading against John S. Barre; John S. Barry; William Barry would still be a surname against a person, which is always a refusal here. Ruled on the card 'Barr | _laSafle Co, III. (Cildwln, E.) 1877: 296.' against John S. Barre; John S. Barry; William Barry; J. R. Barry.",
+   "rule": "Refused twice over. No candidate reaches 'Barr' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Barr' at all. And if it were, a heading against John S. Barre; J R Barry; John S. Barry; William Barry would still be a surname against a person, which is always a refusal here. Ruled on the card 'Barr | _laSafle Co, III. (Cildwln, E.) 1877: 296.' against John S. Barre; J R Barry; John S. Barry; William Barry; J. R. Barry.",
    "layers": [
     "residents",
     "voters"
@@ -59009,6 +59086,7 @@
    ],
    "person_ids": [
     "barre_john_s",
+    "barry_j_r",
     "barry_john_s",
     "barry_william"
    ],
@@ -60439,10 +60517,10 @@
   {
    "record_id": "nbi_v01_0720",
    "a": "Bowen | E 65.05 _ C m o l l Co,, 111. (Ke",
-   "b": "Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen",
+   "b": "Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | E 65.05 _ C m o l l Co,, 111. (Ke' against Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen.",
+   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | E 65.05 _ C m o l l Co,, 111. (Ke' against Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -60477,10 +60555,10 @@
   {
    "record_id": "nbi_v01_0721",
    "a": "Bowen | John E l i o t B . (Bowen, C.W., and j .Chicago, III. (",
-   "b": "Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen",
+   "b": "Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | John E l i o t B . (Bowen, C.W., and j .Chicago, III. (' against Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen.",
+   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | John E l i o t B . (Bowen, C.W., and j .Chicago, III. (' against Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -60515,10 +60593,10 @@
   {
    "record_id": "nbi_v01_0722",
    "a": "Bowen | horooe.1780. l f l B l . Seo i n d o x . J Chicago, III",
-   "b": "Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen",
+   "b": "Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | horooe.1780. l f l B l . Seo i n d o x . J Chicago, III' against Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen.",
+   "rule": "Refused. 2 of the 3 card(s) heading 'Bowen' do name Chicago or Cook County and the heading is the surname of Henry Bowen exactly, but the index files every family of a surname under one heading and gives no forename, so 'Bowen' against Henry Bowen is a surname against a person. It waits on county_histories_kett_and_co, which this project does not hold. Ruled on the card 'Bowen | horooe.1780. l f l B l . Seo i n d o x . J Chicago, III' against Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -60653,10 +60731,10 @@
   {
    "record_id": "nbi_v01_0742",
    "a": "Bownen | Fulton Co , III, (Chapman, C. C, Í: Co.) IB79i",
-   "b": "Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen",
+   "b": "Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Bownen' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bownen' at all. And if it were, a heading against Henry Bowen would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bownen | Fulton Co , III, (Chapman, C. C, Í: Co.) IB79i' against Henry Bowen; air. Bowen; Erastus Selden Bowen; Erastus Bowen; Erastus Bowen.",
+   "rule": "Refused twice over. No candidate reaches 'Bownen' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bownen' at all. And if it were, a heading against Henry Bowen would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bownen | Fulton Co , III, (Chapman, C. C, Í: Co.) IB79i' against Henry Bowen; air. Bowen; Erastus Bowen; Erastus Bowen; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -60691,10 +60769,10 @@
   {
    "record_id": "nbi_v01_0744",
    "a": "Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"'* . _",
-   "b": "Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen",
+   "b": "Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"\\'* . _' against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Selden Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen.",
+   "rule": "Refused twice over. No candidate reaches 'Bown' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Bown' at all. And if it were, a heading against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown would still be a surname against a person, which is always a refusal here. Ruled on the card 'Bown | _l*ln,*. Co., III. (UBxror, W., k- k Co, ElSJd\"\\'* . _' against Charles Brown; Michael Brown; Thomas Brown; Henry Bowen; Stephen Brown Jr.; Geo. Brown; Amy Brown; Joseph Brown; William Brown; [Sam]l. J. Brown; Mrs. Mary Brown; [?] W. Brown; air. Bowen; Erastus Bowen; Hanna E Brown; Jesse B Brown; Lemuel Brown; Rufus Brown; Mrs Rufus Brown; William H Brown; Rufus Brown's Boarding House; Erastus Bowen; Lemuel Brown; Erastus Bowen.",
    "layers": [
     "census_1840",
     "residents",
@@ -62868,10 +62946,10 @@
   {
    "record_id": "nbi_v01_1159",
    "a": "Carlin | Illinois. (Moser, J.1 1888-92. TV Ser Mes",
-   "b": "Martin Carolin; Paul J Carli",
+   "b": "Martin Carolin; P S Carli; Paul J Carli",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Carlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Carlin' at all. And if it were, a heading against Martin Carolin would still be a surname against a person, which is always a refusal here. Ruled on the card 'Carlin | Illinois. (Moser, J.1 1888-92. TV Ser Mes' against Martin Carolin; Paul J Carli.",
+   "rule": "Refused twice over. No candidate reaches 'Carlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Carlin' at all. And if it were, a heading against Martin Carolin would still be a surname against a person, which is always a refusal here. Ruled on the card 'Carlin | Illinois. (Moser, J.1 1888-92. TV Ser Mes' against Martin Carolin; P S Carli; Paul J Carli.",
    "layers": [
     "census_1840",
     "residents"
@@ -62881,9 +62959,10 @@
     "lead_v01_carlin_residents"
    ],
    "person_ids": [
+    "carli_p_s",
     "carli_paul_j"
    ],
-   "person_id": "carli_paul_j",
+   "person_id": null,
    "evidence": [
     "nbi_v01_1159",
     "data/research/newberry_index/leads.json"
@@ -62903,10 +62982,10 @@
   {
    "record_id": "nbi_v01_1160",
    "a": "Carlin | Illinolr, Pioneer hist. of. (Reynolds, I.) 1887.",
-   "b": "Martin Carolin; Paul J Carli",
+   "b": "Martin Carolin; P S Carli; Paul J Carli",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Carlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Carlin' at all. And if it were, a heading against Martin Carolin would still be a surname against a person, which is always a refusal here. Ruled on the card 'Carlin | Illinolr, Pioneer hist. of. (Reynolds, I.) 1887.' against Martin Carolin; Paul J Carli.",
+   "rule": "Refused twice over. No candidate reaches 'Carlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Carlin' at all. And if it were, a heading against Martin Carolin would still be a surname against a person, which is always a refusal here. Ruled on the card 'Carlin | Illinolr, Pioneer hist. of. (Reynolds, I.) 1887.' against Martin Carolin; P S Carli; Paul J Carli.",
    "layers": [
     "census_1840",
     "residents"
@@ -62916,9 +62995,10 @@
     "lead_v01_carlin_residents"
    ],
    "person_ids": [
+    "carli_p_s",
     "carli_paul_j"
    ],
-   "person_id": "carli_paul_j",
+   "person_id": null,
    "evidence": [
     "nbi_v01_1160",
     "data/research/newberry_index/leads.json"
@@ -62938,10 +63018,10 @@
   {
    "record_id": "nbi_v01_1161",
    "a": "Carlin | Fulton Co , III. (Chap.-un, C. C. í Co.) 1879: - {",
-   "b": "Martin Carolin; Paul J Carli",
+   "b": "Martin Carolin; P S Carli; Paul J Carli",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Carlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Carlin' at all. And if it were, a heading against Martin Carolin would still be a surname against a person, which is always a refusal here. Ruled on the card 'Carlin | Fulton Co , III. (Chap.-un, C. C. í Co.) 1879: - {' against Martin Carolin; Paul J Carli.",
+   "rule": "Refused twice over. No candidate reaches 'Carlin' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Carlin' at all. And if it were, a heading against Martin Carolin would still be a surname against a person, which is always a refusal here. Ruled on the card 'Carlin | Fulton Co , III. (Chap.-un, C. C. í Co.) 1879: - {' against Martin Carolin; P S Carli; Paul J Carli.",
    "layers": [
     "census_1840",
     "residents"
@@ -62951,9 +63031,10 @@
     "lead_v01_carlin_residents"
    ],
    "person_ids": [
+    "carli_p_s",
     "carli_paul_j"
    ],
-   "person_id": "carli_paul_j",
+   "person_id": null,
    "evidence": [
     "nbi_v01_1161",
     "data/research/newberry_index/leads.json"
@@ -74209,10 +74290,10 @@
   {
    "record_id": "nbi_v02_1574",
    "a": "King | _Madlson Co., III. (Brink, W. R. ft Co., Pubs.) tttlno",
-   "b": "Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; John Lyle King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King",
+   "b": "Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'King | _Madlson Co., III. (Brink, W. R. ft Co., Pubs.) tttlno' against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; John Lyle King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King.",
+   "rule": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'King | _Madlson Co., III. (Brink, W. R. ft Co., Pubs.) tttlno' against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King.",
    "layers": [
     "census_1840",
     "residents",
@@ -74228,7 +74309,7 @@
     "king_byram",
     "king_byron",
     "king_hyram",
-    "king_john_lyle",
+    "king_j_d",
     "king_nehemiah",
     "king_sherman",
     "king_tuthill"
@@ -74253,10 +74334,10 @@
   {
    "record_id": "nbi_v02_1578",
    "a": "King | Wilbnu, y-oeh. (WrlcH. G. H.) nut, ill.",
-   "b": "Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; John Lyle King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King",
+   "b": "Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'King | Wilbnu, y-oeh. (WrlcH. G. H.) nut, ill.' against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; John Lyle King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King.",
+   "rule": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'King | Wilbnu, y-oeh. (WrlcH. G. H.) nut, ill.' against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King.",
    "layers": [
     "census_1840",
     "residents",
@@ -74272,7 +74353,7 @@
     "king_byram",
     "king_byron",
     "king_hyram",
-    "king_john_lyle",
+    "king_j_d",
     "king_nehemiah",
     "king_sherman",
     "king_tuthill"
@@ -76482,10 +76563,10 @@
   {
    "record_id": "nbi_v03_0509",
    "a": "Mathews | — vnampal^n Co., III. Mnl;, UcOxnaragk ^ t«-> 1876,",
-   "b": "James G. Matthews; J. D. Matthews",
+   "b": "J D Matthews; James G. Matthews; J. D. Matthews",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Mathews' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mathews' at all. And if it were, a heading against James G. Matthews would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mathews | — vnampal^n Co., III. Mnl;, UcOxnaragk ^ t«-> 1876,' against James G. Matthews; J. D. Matthews.",
+   "rule": "Refused twice over. No candidate reaches 'Mathews' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Mathews' at all. And if it were, a heading against J D Matthews; James G. Matthews would still be a surname against a person, which is always a refusal here. Ruled on the card 'Mathews | — vnampal^n Co., III. Mnl;, UcOxnaragk ^ t«-> 1876,' against J D Matthews; James G. Matthews; J. D. Matthews.",
    "layers": [
     "residents",
     "voters"
@@ -76495,9 +76576,10 @@
     "lead_v03_mathews_voters"
    ],
    "person_ids": [
+    "matthews_j_d",
     "matthews_james_g"
    ],
-   "person_id": "matthews_james_g",
+   "person_id": null,
    "evidence": [
     "nbi_v03_0509",
     "data/research/newberry_index/leads.json"
@@ -76616,10 +76698,10 @@
   {
    "record_id": "nbi_v03_0519",
    "a": "Matthew | Christian Co., III. (Brink, McDonough 4 Co..-",
-   "b": "James G. Matthews; J. D. Matthews",
+   "b": "J D Matthews; James G. Matthews; J. D. Matthews",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Matthew' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Matthew' at all. And if it were, a heading against James G. Matthews would still be a surname against a person, which is always a refusal here. Ruled on the card 'Matthew | Christian Co., III. (Brink, McDonough 4 Co..-' against James G. Matthews; J. D. Matthews.",
+   "rule": "Refused twice over. No candidate reaches 'Matthew' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Matthew' at all. And if it were, a heading against J D Matthews; James G. Matthews would still be a surname against a person, which is always a refusal here. Ruled on the card 'Matthew | Christian Co., III. (Brink, McDonough 4 Co..-' against J D Matthews; James G. Matthews; J. D. Matthews.",
    "layers": [
     "residents",
     "voters"
@@ -76629,9 +76711,10 @@
     "lead_v03_matthew_voters"
    ],
    "person_ids": [
+    "matthews_j_d",
     "matthews_james_g"
    ],
-   "person_id": "matthews_james_g",
+   "person_id": null,
    "evidence": [
     "nbi_v03_0519",
     "data/research/newberry_index/leads.json"
@@ -76651,10 +76734,10 @@
   {
    "record_id": "nbi_v03_0520",
    "a": "Matthews | ILLINOIS. Mat",
-   "b": "William Matthes; James G. Matthews; J. D. Matthews",
+   "b": "William Matthes; J D Matthews; James G. Matthews; J. D. Matthews",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Matthews' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Matthews' at all. And if it were, a heading against William Matthes would still be a surname against a person, which is always a refusal here. Ruled on the card 'Matthews | ILLINOIS. Mat' against William Matthes; James G. Matthews; J. D. Matthews.",
+   "rule": "Refused twice over. No candidate reaches 'Matthews' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Matthews' at all. And if it were, a heading against William Matthes would still be a surname against a person, which is always a refusal here. Ruled on the card 'Matthews | ILLINOIS. Mat' against William Matthes; J D Matthews; James G. Matthews; J. D. Matthews.",
    "layers": [
     "census_1840",
     "residents",
@@ -76666,9 +76749,10 @@
     "lead_v03_matthews_voters"
    ],
    "person_ids": [
+    "matthews_j_d",
     "matthews_james_g"
    ],
-   "person_id": "matthews_james_g",
+   "person_id": null,
    "evidence": [
     "nbi_v03_0520",
     "data/research/newberry_index/leads.json"
@@ -76688,10 +76772,10 @@
   {
    "record_id": "nbi_v03_0524",
    "a": "Matthews | Sangamon Co., 111. (Power, J. C.) 1876.",
-   "b": "William Matthes; James G. Matthews; J. D. Matthews",
+   "b": "William Matthes; J D Matthews; James G. Matthews; J. D. Matthews",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Matthews' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Matthews' at all. And if it were, a heading against William Matthes would still be a surname against a person, which is always a refusal here. Ruled on the card 'Matthews | Sangamon Co., 111. (Power, J. C.) 1876.' against William Matthes; James G. Matthews; J. D. Matthews.",
+   "rule": "Refused twice over. No candidate reaches 'Matthews' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Matthews' at all. And if it were, a heading against William Matthes would still be a surname against a person, which is always a refusal here. Ruled on the card 'Matthews | Sangamon Co., 111. (Power, J. C.) 1876.' against William Matthes; J D Matthews; James G. Matthews; J. D. Matthews.",
    "layers": [
     "census_1840",
     "residents",
@@ -76703,9 +76787,10 @@
     "lead_v03_matthews_voters"
    ],
    "person_ids": [
+    "matthews_j_d",
     "matthews_james_g"
    ],
-   "person_id": "matthews_james_g",
+   "person_id": null,
    "evidence": [
     "nbi_v03_0524",
     "data/research/newberry_index/leads.json"
@@ -83978,10 +84063,10 @@
   {
    "record_id": "nbi_v04_0402",
    "a": "Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.",
-   "b": "Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright",
+   "b": "Thomas Wraight; John Wright; J F Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against Thomas Wraight; John Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.' against Thomas Wraight; John Wright; J Ambrose Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright.",
+   "rule": "Refused. All 1 card(s) heading 'Wright' name Illinois and neither Chicago nor Cook County, so the lead against Thomas Wraight; John Wright stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Wright | — Sangamon Co,, Ill, (Power, J, C,) locu.' against Thomas Wraight; John Wright; J F Wight; Amasa Wright; J Wright; John Wright; John S. Wright; Robert C Wright; Truman G Wright; John Wright's Building to Let (a); John Wright's Building to Let (b); John Wright; Amasa Wright; John Wright; T. G. Wright; T. G. Wright; Robert Wright.",
    "layers": [
     "census_1840",
     "residents",
@@ -83995,7 +84080,7 @@
     "lead_v04_wright_voters"
    ],
    "person_ids": [
-    "wight_j_ambrose",
+    "wight_j_f",
     "wright_amasa",
     "wright_j",
     "wright_john",

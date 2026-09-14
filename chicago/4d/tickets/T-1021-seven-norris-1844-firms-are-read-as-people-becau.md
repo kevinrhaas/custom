@@ -1,7 +1,7 @@
 ---
 id: T-1021
 title: Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-13
+pr: 1276
+claimed_by: run 9/13/2026, 8:58:49 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-14T02:40:37.077Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34797498709
 ---
 
 Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired.

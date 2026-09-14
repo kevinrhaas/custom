@@ -48,32 +48,32 @@
   }
  ],
  "counts": {
-  "people_shown": 238,
-  "people_met_by_more_than_one_volume": 147,
-  "carrying_an_occupation": 123,
-  "carrying_an_address": 156,
+  "people_shown": 239,
+  "people_met_by_more_than_one_volume": 150,
+  "carrying_an_occupation": 122,
+  "carrying_an_address": 154,
   "line_held_but_parse_refused": 0,
   "split_refused_trades": 14,
   "split_refused_addresses": 5,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 183,
-    "single_entry": 146,
-    "ambiguous": 25,
-    "contested": 12,
+    "people": 184,
+    "single_entry": 144,
+    "ambiguous": 26,
+    "contested": 14,
     "split_refused_fields": 1
    },
    "fergus_1843": {
-    "people": 156,
-    "single_entry": 115,
-    "ambiguous": 26,
-    "contested": 15,
+    "people": 159,
+    "single_entry": 119,
+    "ambiguous": 27,
+    "contested": 13,
     "split_refused_fields": 3
    },
    "norris_1844": {
-    "people": 127,
-    "single_entry": 103,
+    "people": 128,
+    "single_entry": 104,
     "ambiguous": 14,
     "contested": 10,
     "split_refused_fields": 15
@@ -2090,7 +2090,7 @@
   {
    "person_id": "bowen_erastus_selden",
    "household_id": "hh_bowen_erastus_selden",
-   "resident": "Erastus Selden Bowen",
+   "resident": "Erastus Bowen",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -3292,6 +3292,29 @@
      "sources": [
       "fergus_chicago_directory_1843"
      ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Calhoun' folds to the same string as the 1844 entry's, and the given name of both begins J.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e0278",
+       "printed_page": 27,
+       "as_printed": "* '.ilhoun, John, printer, house State st. b Wash and Madison sts"
+      }
+     ],
+     "holds": [
+      "address"
+     ],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
     }
    ],
    "occupation_later": null,
@@ -3311,7 +3334,8 @@
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839",
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
    ]
   },
   {
@@ -3390,6 +3414,44 @@
    ]
   },
   {
+   "person_id": "carli_p_s",
+   "household_id": "hh_carli_p_s",
+   "resident": "P S Carli",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "appearances": [
+    {
+     "volume": "fergus_1839",
+     "title": "Fergus's Chicago directory of 1839",
+     "year": 1839,
+     "source_id": "fergus_chicago_directory_1839",
+     "match_status": "contested",
+     "match_rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1839_e0234",
+       "printed_page": 9,
+       "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells"
+      }
+     ],
+     "holds": [],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ]
+    }
+   ],
+   "occupation_later": null,
+   "address_later": null,
+   "holds_a_line_whose_parse_does_not_cross": false,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ]
+  },
+  {
    "person_id": "carli_paul_j",
    "household_id": "hh_carli_paul_j",
    "resident": "Paul J Carli",
@@ -3403,8 +3465,8 @@
      "title": "Fergus's Chicago directory of 1839",
      "year": 1839,
      "source_id": "fergus_chicago_directory_1839",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P.",
+     "match_status": "contested",
+     "match_rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -3413,42 +3475,15 @@
        "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells"
       }
      ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
+     "holds": [],
      "split_refused": {},
      "sources": [
       "fergus_chicago_directory_1839"
      ]
     }
    ],
-   "occupation_later": {
-    "value": "candies and notions",
-    "confidence": "attested",
-    "describes_date": 1839,
-    "sources": [
-     "fergus_chicago_directory_1839"
-    ],
-    "claim_id": "f1839_e0234",
-    "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells",
-    "printed_fields": "f1839_e0234 | Carli, Paul, candies and notions, South Water st. near Wells | candies and notions | South Water st. near Wells",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Carli, Paul, candies and notions, South Water st. near Wells'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "address_later": {
-    "value": "South Water st. near Wells",
-    "confidence": "attested",
-    "describes_date": 1839,
-    "sources": [
-     "fergus_chicago_directory_1839"
-    ],
-    "claim_id": "f1839_e0234",
-    "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells",
-    "printed_fields": "f1839_e0234 | Carli, Paul, candies and notions, South Water st. near Wells | candies and notions | South Water st. near Wells",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this address against this person, in the entry quoted on the card: 'Carli, Paul, candies and notions, South Water st. near Wells'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
+   "occupation_later": null,
+   "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "fergus_chicago_directory_1839"
@@ -4287,7 +4322,7 @@
     }
    ],
    "occupation_later": {
-    "value": "dry goods and groceries, 154 Lake st",
+    "value": "dry goods and groceries",
     "confidence": "attested",
     "describes_date": 1844,
     "sources": [
@@ -4295,7 +4330,7 @@
     ],
     "claim_id": "n1844_e0349",
     "as_printed": "Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's",
-    "printed_fields": "n1844_e0349 | Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's | dry goods and groceries, 154 Lake st | residence Hum phrey Clark's",
+    "printed_fields": "n1844_e0349 | Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's | dry goods and groceries | 154 Lake st | residence Hum phrey Clark's",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: \"Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's\". It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
@@ -4308,7 +4343,7 @@
     ],
     "claim_id": "n1844_e0349",
     "as_printed": "Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's",
-    "printed_fields": "n1844_e0349 | Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's | dry goods and groceries, 154 Lake st | residence Hum phrey Clark's",
+    "printed_fields": "n1844_e0349 | Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's | dry goods and groceries | 154 Lake st | residence Hum phrey Clark's",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: \"Clark, E. P. dry goods and groceries, 154 Lake st. residence Hum phrey Clark's\". It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
@@ -5084,14 +5119,19 @@
      "title": "Fergus's Chicago directory of 1843",
      "year": 1843,
      "source_id": "fergus_chicago_directory_1843",
-     "match_status": "contested",
-     "match_rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_status": "ambiguous",
+     "match_rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J.",
      "reading": "transcription_mediated",
      "entries": [
       {
        "claim_id": "f1843_e0695",
        "printed_page": "fergus_1843_page_002",
        "as_printed": "Cook, John, tailor, res Jefferson, bet W. Randolph and Washington"
+      },
+      {
+       "claim_id": "f1843_e0696",
+       "printed_page": "fergus_1843_page_002",
+       "as_printed": "Cook. Josiah P., baker, res Michigan ave"
       }
      ],
      "holds": [],
@@ -5176,8 +5216,8 @@
      "title": "Fergus's Chicago directory of 1843",
      "year": 1843,
      "source_id": "fergus_chicago_directory_1843",
-     "match_status": "contested",
-     "match_rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J.",
      "reading": "transcription_mediated",
      "entries": [
       {
@@ -5186,7 +5226,10 @@
        "as_printed": "Cook, John, tailor, res Jefferson, bet W. Randolph and Washington"
       }
      ],
-     "holds": [],
+     "holds": [
+      "address",
+      "occupation"
+     ],
      "split_refused": {},
      "sources": [
       "fergus_chicago_directory_1843"
@@ -5220,28 +5263,28 @@
    "occupation_later": {
     "value": "tailor",
     "confidence": "attested",
-    "describes_date": 1844,
+    "describes_date": 1843,
     "sources": [
-     "norris_directory_1844"
+     "fergus_chicago_directory_1843"
     ],
-    "claim_id": "n1844_e0404",
-    "as_printed": "Cook, John, tailor, res Jefferson st. b Randolph and \\Vashington sts",
-    "printed_fields": "n1844_e0404 | Cook, John, tailor, res Jefferson st. b Randolph and \\Vashington sts | tailor | res Jefferson st. b Randolph and \\Vashington sts",
+    "claim_id": "f1843_e0695",
+    "as_printed": "Cook, John, tailor, res Jefferson, bet W. Randolph and Washington",
+    "printed_fields": "f1843_e0695 | Cook, John, tailor, res Jefferson, bet W. Randolph and Washington | fergus_1843_page_002 | alphabetical directory | tailor | res Jefferson, bet W. Randolph and Washington",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: 'Cook, John, tailor, res Jefferson st. b Randolph and \\\\Vashington sts'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+    "note": "Fergus's Chicago directory of 1843 prints this trade against this person, in the entry quoted on the card: 'Cook, John, tailor, res Jefferson, bet W. Randolph and Washington'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
    "address_later": {
-    "value": "res Jefferson st. b Randolph and \\Vashington sts",
+    "value": "res Jefferson, bet W. Randolph and Washington",
     "confidence": "attested",
-    "describes_date": 1844,
+    "describes_date": 1843,
     "sources": [
-     "norris_directory_1844"
+     "fergus_chicago_directory_1843"
     ],
-    "claim_id": "n1844_e0404",
-    "as_printed": "Cook, John, tailor, res Jefferson st. b Randolph and \\Vashington sts",
-    "printed_fields": "n1844_e0404 | Cook, John, tailor, res Jefferson st. b Randolph and \\Vashington sts | tailor | res Jefferson st. b Randolph and \\Vashington sts",
+    "claim_id": "f1843_e0695",
+    "as_printed": "Cook, John, tailor, res Jefferson, bet W. Randolph and Washington",
+    "printed_fields": "f1843_e0695 | Cook, John, tailor, res Jefferson, bet W. Randolph and Washington | fergus_1843_page_002 | alphabetical directory | tailor | res Jefferson, bet W. Randolph and Washington",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Cook, John, tailor, res Jefferson st. b Randolph and \\\\Vashington sts'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+    "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Cook, John, tailor, res Jefferson, bet W. Randolph and Washington'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
@@ -5259,6 +5302,30 @@
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
+    {
+     "volume": "fergus_1843",
+     "title": "Fergus's Chicago directory of 1843",
+     "year": 1843,
+     "source_id": "fergus_chicago_directory_1843",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Cook' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1843_e0696",
+       "printed_page": "fergus_1843_page_002",
+       "as_printed": "Cook. Josiah P., baker, res Michigan ave"
+      }
+     ],
+     "holds": [
+      "address",
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ]
+    },
     {
      "volume": "norris_1844",
      "title": "Norris's Chicago directory of 1844",
@@ -5287,31 +5354,32 @@
    "occupation_later": {
     "value": "baker",
     "confidence": "attested",
-    "describes_date": 1844,
+    "describes_date": 1843,
     "sources": [
-     "norris_directory_1844"
+     "fergus_chicago_directory_1843"
     ],
-    "claim_id": "n1844_e0405",
-    "as_printed": "Cook, Josiah P. baker, res Michigan avenue",
-    "printed_fields": "n1844_e0405 | Cook, Josiah P. baker, res Michigan avenue | baker | res Michigan avenue",
+    "claim_id": "f1843_e0696",
+    "as_printed": "Cook. Josiah P., baker, res Michigan ave",
+    "printed_fields": "f1843_e0696 | Cook. Josiah P., baker, res Michigan ave | fergus_1843_page_002 | alphabetical directory | baker | res Michigan ave",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: 'Cook, Josiah P. baker, res Michigan avenue'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+    "note": "Fergus's Chicago directory of 1843 prints this trade against this person, in the entry quoted on the card: 'Cook. Josiah P., baker, res Michigan ave'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
    "address_later": {
-    "value": "res Michigan avenue",
+    "value": "res Michigan ave",
     "confidence": "attested",
-    "describes_date": 1844,
+    "describes_date": 1843,
     "sources": [
-     "norris_directory_1844"
+     "fergus_chicago_directory_1843"
     ],
-    "claim_id": "n1844_e0405",
-    "as_printed": "Cook, Josiah P. baker, res Michigan avenue",
-    "printed_fields": "n1844_e0405 | Cook, Josiah P. baker, res Michigan avenue | baker | res Michigan avenue",
+    "claim_id": "f1843_e0696",
+    "as_printed": "Cook. Josiah P., baker, res Michigan ave",
+    "printed_fields": "f1843_e0696 | Cook. Josiah P., baker, res Michigan ave | fergus_1843_page_002 | alphabetical directory | baker | res Michigan ave",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Cook, Josiah P. baker, res Michigan avenue'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+    "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Cook. Josiah P., baker, res Michigan ave'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
+    "fergus_chicago_directory_1843",
     "norris_directory_1844"
    ]
   },
@@ -7184,7 +7252,7 @@
    "person_id": "forsyth_william",
    "household_id": "hh_forsyth_william",
    "resident": "William Forsyth",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -8061,7 +8129,6 @@
       }
      ],
      "holds": [
-      "address",
       "occupation"
      ],
      "split_refused": {},
@@ -8688,6 +8755,29 @@
      "sources": [
       "fergus_chicago_directory_1839"
      ]
+    },
+    {
+     "volume": "fergus_1843",
+     "title": "Fergus's Chicago directory of 1843",
+     "year": 1843,
+     "source_id": "fergus_chicago_directory_1843",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Herrick' folds to the same string as the 1843 entry's, and the given name of both begins I.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1843_e1256",
+       "printed_page": "fergus_1843_page_003",
+       "as_printed": "Herrick. Ira N.. contractor. [d. Park Manor, Ill., Jan. 17, 1890, a. 68.]"
+      }
+     ],
+     "holds": [
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ]
     }
    ],
    "occupation_later": {
@@ -8706,7 +8796,8 @@
    "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
-    "fergus_chicago_directory_1839"
+    "fergus_chicago_directory_1839",
+    "fergus_chicago_directory_1843"
    ]
   },
   {
@@ -11075,9 +11166,9 @@
    ]
   },
   {
-   "person_id": "king_john_lyle",
-   "household_id": "hh_king_john_lyle",
-   "resident": "John Lyle King",
+   "person_id": "king_j_d",
+   "household_id": "hh_king_j_d",
+   "resident": "J D King",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
@@ -11088,7 +11179,7 @@
      "title": "Fergus's Chicago directory of 1839",
      "year": 1839,
      "source_id": "fergus_chicago_directory_1839",
-     "match_status": "single_entry",
+     "match_status": "ambiguous",
      "match_rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins J.",
      "reading": "transcription_mediated",
      "entries": [
@@ -11096,11 +11187,19 @@
        "claim_id": "f1839_e0852",
        "printed_page": 21,
        "as_printed": "King, jr. , John, merchant, bds. Lake House"
+      },
+      {
+       "claim_id": "f1839_e0853",
+       "printed_page": 21,
+       "as_printed": "King, Joe, (pork an’ a bean) restaurant, South Water near Clark"
+      },
+      {
+       "claim_id": "f1839_e0854",
+       "printed_page": 21,
+       "as_printed": "King, Joseph, drayman,"
       }
      ],
-     "holds": [
-      "occupation"
-     ],
+     "holds": [],
      "split_refused": {},
      "sources": [
       "fergus_chicago_directory_1839"
@@ -11158,17 +11257,17 @@
     }
    ],
    "occupation_later": {
-    "value": "merchant",
+    "value": "carpenter",
     "confidence": "attested",
-    "describes_date": 1839,
+    "describes_date": 1844,
     "sources": [
-     "fergus_chicago_directory_1839"
+     "norris_directory_1844"
     ],
-    "claim_id": "f1839_e0852",
-    "as_printed": "King, jr. , John, merchant, bds. Lake House",
-    "printed_fields": "f1839_e0852 | King, jr. , John, merchant, bds. Lake House | merchant | bds. Lake House",
+    "claim_id": "n1844_e1021",
+    "as_printed": "King, J. carpenter, res S. Jackson's",
+    "printed_fields": "n1844_e1021 | King, J. carpenter, res S. Jackson's | carpenter | res S. Jackson's",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'King, jr. , John, merchant, bds. Lake House'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+    "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: \"King, J. carpenter, res S. Jackson's\". It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
    "address_later": {
     "value": "res S. Jackson's",
@@ -11491,7 +11590,7 @@
     ],
     "claim_id": "n1844_e1031",
     "as_printed": "Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass",
-    "printed_fields": "n1844_e1031 | Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass | register land office, 82 Lake st | h c Mich dc Cass",
+    "printed_fields": "n1844_e1031 | Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass | register land office | 82 Lake st | h c Mich dc Cass",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Kinzie. John H. register land office, 82 Lake st. h c Mich dc Cass'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
@@ -11600,7 +11699,6 @@
       }
      ],
      "holds": [
-      "address",
       "occupation"
      ],
      "split_refused": {},
@@ -11610,7 +11708,7 @@
     }
    ],
    "occupation_later": {
-    "value": "grocery and provisions, South Water st",
+    "value": "grocery and provisions",
     "confidence": "attested",
     "describes_date": 1844,
     "sources": [
@@ -11618,23 +11716,11 @@
     ],
     "claim_id": "n1844_e1039",
     "as_printed": "Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts",
-    "printed_fields": "n1844_e1039 | Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts | grocery and provisions, South Water st | b Dearborn and State sts",
+    "printed_fields": "n1844_e1039 | Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts | grocery and provisions | South Water st. b Dearborn and State sts",
     "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
     "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: 'Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
    },
-   "address_later": {
-    "value": "b Dearborn and State sts",
-    "confidence": "attested",
-    "describes_date": 1844,
-    "sources": [
-     "norris_directory_1844"
-    ],
-    "claim_id": "n1844_e1039",
-    "as_printed": "Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts",
-    "printed_fields": "n1844_e1039 | Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts | grocery and provisions, South Water st | b Dearborn and State sts",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: 'Knickerbacker, A. V. grocery and provisions, South Water st. b Dearborn and State sts'. It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
+   "address_later": null,
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
     "norris_directory_1844"
@@ -11754,7 +11840,6 @@
       }
      ],
      "holds": [
-      "address",
       "occupation"
      ],
      "split_refused": {},
@@ -16186,6 +16271,96 @@
    ]
   },
   {
+   "person_id": "sherman_william_george",
+   "household_id": "hh_sherman_william_george",
+   "resident": "William George Sherman",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "appearances": [
+    {
+     "volume": "fergus_1843",
+     "title": "Fergus's Chicago directory of 1843",
+     "year": 1843,
+     "source_id": "fergus_chicago_directory_1843",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Sherman' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1843_e2251",
+       "printed_page": "fergus_1843_page_004",
+       "as_printed": "Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]"
+      }
+     ],
+     "holds": [
+      "address",
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ]
+    },
+    {
+     "volume": "norris_1844",
+     "title": "Norris's Chicago directory of 1844",
+     "year": 1844,
+     "source_id": "norris_directory_1844",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Sherman' folds to the same string as the 1844 entry's, and the given name of both begins W.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "n1844_e1611",
+       "printed_page": 55,
+       "as_printed": "Sherman, W. G. clerk, at Sherman & Pitkin's, res O. Sherman's"
+      }
+     ],
+     "holds": [
+      "address",
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "norris_directory_1844"
+     ]
+    }
+   ],
+   "occupation_later": {
+    "value": "clerk, Sherman & Pitkin",
+    "confidence": "attested",
+    "describes_date": 1843,
+    "sources": [
+     "fergus_chicago_directory_1843"
+    ],
+    "claim_id": "f1843_e2251",
+    "as_printed": "Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]",
+    "printed_fields": "f1843_e2251 | Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.] | fergus_1843_page_004 | alphabetical directory | clerk, Sherman & Pitkin | bds Oren Sherman | died September 7, 1867, aged 41½.",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1843 prints this trade against this person, in the entry quoted on the card: 'Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
+   "address_later": {
+    "value": "bds Oren Sherman",
+    "confidence": "attested",
+    "describes_date": 1843,
+    "sources": [
+     "fergus_chicago_directory_1843"
+    ],
+    "claim_id": "f1843_e2251",
+    "as_printed": "Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]",
+    "printed_fields": "f1843_e2251 | Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.] | fergus_1843_page_004 | alphabetical directory | clerk, Sherman & Pitkin | bds Oren Sherman | died September 7, 1867, aged 41½.",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1843 prints this address against this person, in the entry quoted on the card: 'Sherman, Wm. George, clerk, Sherman & Pitkin, bds Oren Sherman [died September 7, 1867, aged 41½.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
+   "holds_a_line_whose_parse_does_not_cross": false,
+   "sources": [
+    "fergus_chicago_directory_1843",
+    "norris_directory_1844"
+   ]
+  },
+  {
    "person_id": "simons_e",
    "household_id": "hh_simons_e",
    "resident": "E. Simons",
@@ -18594,71 +18769,6 @@
    ]
   },
   {
-   "person_id": "wight_j_ambrose",
-   "household_id": "hh_wight_j_ambrose",
-   "resident": "J Ambrose Wight",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "appearances": [
-    {
-     "volume": "norris_1844",
-     "title": "Norris's Chicago directory of 1844",
-     "year": 1844,
-     "source_id": "norris_directory_1844",
-     "match_status": "single_entry",
-     "match_rule": "Surname 'Wight' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-     "reading": "transcription_mediated",
-     "entries": [
-      {
-       "claim_id": "n1844_e1895",
-       "printed_page": 61,
-       "as_printed": "v Wight, J. Ambrose, ast. editor Prairie Fanner, res Mrs. Wright's"
-      }
-     ],
-     "holds": [
-      "address",
-      "occupation"
-     ],
-     "split_refused": {},
-     "sources": [
-      "norris_directory_1844"
-     ]
-    }
-   ],
-   "occupation_later": {
-    "value": "ast. editor Prairie Fanner",
-    "confidence": "attested",
-    "describes_date": 1844,
-    "sources": [
-     "norris_directory_1844"
-    ],
-    "claim_id": "n1844_e1895",
-    "as_printed": "v Wight, J. Ambrose, ast. editor Prairie Fanner, res Mrs. Wright's",
-    "printed_fields": "n1844_e1895 | v Wight, J. Ambrose, ast. editor Prairie Fanner, res Mrs. Wright's | ast. editor Prairie Fanner | res Mrs. Wright's",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Norris's Chicago directory of 1844 prints this trade against this person, in the entry quoted on the card: \"v Wight, J. Ambrose, ast. editor Prairie Fanner, res Mrs. Wright's\". It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "address_later": {
-    "value": "res Mrs. Wright's",
-    "confidence": "attested",
-    "describes_date": 1844,
-    "sources": [
-     "norris_directory_1844"
-    ],
-    "claim_id": "n1844_e1895",
-    "as_printed": "v Wight, J. Ambrose, ast. editor Prairie Fanner, res Mrs. Wright's",
-    "printed_fields": "n1844_e1895 | v Wight, J. Ambrose, ast. editor Prairie Fanner, res Mrs. Wright's | ast. editor Prairie Fanner | res Mrs. Wright's",
-    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
-    "note": "Norris's Chicago directory of 1844 prints this address against this person, in the entry quoted on the card: \"v Wight, J. Ambrose, ast. editor Prairie Fanner, res Mrs. Wright's\". It is evidence about 1844, written here as 1844's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
-   },
-   "holds_a_line_whose_parse_does_not_cross": false,
-   "sources": [
-    "norris_directory_1844"
-   ]
-  },
-  {
    "person_id": "williams_charles_c",
    "household_id": "hh_williams_charles_c",
    "resident": "Charles C. Williams",
@@ -19197,7 +19307,7 @@
       {
        "claim_id": "f1843_e2675",
        "printed_page": "fergus_1843_page_004",
-       "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged"
+       "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]"
       }
      ],
      "holds": [],
@@ -19262,7 +19372,7 @@
       {
        "claim_id": "f1843_e2675",
        "printed_page": "fergus_1843_page_004",
-       "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged"
+       "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]"
       }
      ],
      "holds": [],
@@ -19327,7 +19437,7 @@
       {
        "claim_id": "f1843_e2675",
        "printed_page": "fergus_1843_page_004",
-       "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged"
+       "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]"
       }
      ],
      "holds": [],

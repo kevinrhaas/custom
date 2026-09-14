@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "5bb6644768732ae0da1d0eb0b6f37bbdf5b98f1f169e101a19d9166fdc10406b",
+    "fingerprint": "1b95947fa759941ea0646f4371039e55c15dbb7511a2230447db70c7b62489c5",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1295,
+      "residents": 1308,
       "structures": 384,
       "voters": 345
     }
@@ -1667,6 +1667,11 @@
           "id": "barnard_j_b",
           "name": "J B Barnard",
           "rule": "exact surname"
+        },
+        {
+          "id": "barnard_j_h",
+          "name": "J H Barnard",
+          "rule": "exact surname"
         }
       ],
       "entries": [
@@ -1720,6 +1725,11 @@
           "id": "barre_john_s",
           "name": "John S. Barre",
           "rule": "OCR variant (0.89 similarity to 'barre')"
+        },
+        {
+          "id": "barry_j_r",
+          "name": "J R Barry",
+          "rule": "OCR variant (0.89 similarity to 'barry')"
         },
         {
           "id": "barry_john_s",
@@ -1791,6 +1801,11 @@
       ],
       "layer": "residents",
       "candidates": [
+        {
+          "id": "barry_j_r",
+          "name": "J R Barry",
+          "rule": "exact surname"
+        },
         {
           "id": "barry_john_s",
           "name": "John S. Barry",
@@ -3403,7 +3418,7 @@
         },
         {
           "id": "bowen_erastus_selden",
-          "name": "Erastus Selden Bowen",
+          "name": "Erastus Bowen",
           "rule": "exact surname"
         }
       ],
@@ -3580,7 +3595,7 @@
         },
         {
           "id": "bowen_erastus_selden",
-          "name": "Erastus Selden Bowen",
+          "name": "Erastus Bowen",
           "rule": "OCR variant (0.89 similarity to 'bowen')"
         },
         {
@@ -3705,7 +3720,7 @@
         },
         {
           "id": "bowen_erastus_selden",
-          "name": "Erastus Selden Bowen",
+          "name": "Erastus Bowen",
           "rule": "OCR variant (0.91 similarity to 'bowen')"
         }
       ],
@@ -5530,6 +5545,11 @@
       "layer": "residents",
       "candidates": [
         {
+          "id": "carli_p_s",
+          "name": "P S Carli",
+          "rule": "OCR variant (0.91 similarity to 'carli')"
+        },
+        {
           "id": "carli_paul_j",
           "name": "Paul J Carli",
           "rule": "OCR variant (0.91 similarity to 'carli')"
@@ -6874,6 +6894,11 @@
           "rule": "OCR variant (0.91 similarity to 'clarke')"
         },
         {
+          "id": "clarke_l",
+          "name": "L Clarke",
+          "rule": "OCR variant (0.91 similarity to 'clarke')"
+        },
+        {
           "id": "clarke_w_b",
           "name": "W B Clarke",
           "rule": "OCR variant (0.91 similarity to 'clarke')"
@@ -6991,6 +7016,11 @@
         {
           "id": "clarke_h_b",
           "name": "H. B. Clarke",
+          "rule": "exact surname"
+        },
+        {
+          "id": "clarke_l",
+          "name": "L Clarke",
           "rule": "exact surname"
         },
         {
@@ -17161,8 +17191,8 @@
           "rule": "exact surname"
         },
         {
-          "id": "king_john_lyle",
-          "name": "John Lyle King",
+          "id": "king_j_d",
+          "name": "J D King",
           "rule": "exact surname"
         },
         {
@@ -18769,6 +18799,11 @@
       "layer": "residents",
       "candidates": [
         {
+          "id": "matthews_j_d",
+          "name": "J D Matthews",
+          "rule": "OCR variant (0.93 similarity to 'matthews')"
+        },
+        {
           "id": "matthews_james_g",
           "name": "James G. Matthews",
           "rule": "OCR variant (0.93 similarity to 'matthews')"
@@ -18808,6 +18843,11 @@
       ],
       "layer": "residents",
       "candidates": [
+        {
+          "id": "matthews_j_d",
+          "name": "J D Matthews",
+          "rule": "OCR variant (0.93 similarity to 'matthews')"
+        },
         {
           "id": "matthews_james_g",
           "name": "James G. Matthews",
@@ -18869,6 +18909,11 @@
       ],
       "layer": "residents",
       "candidates": [
+        {
+          "id": "matthews_j_d",
+          "name": "J D Matthews",
+          "rule": "exact surname"
+        },
         {
           "id": "matthews_james_g",
           "name": "James G. Matthews",
@@ -27301,8 +27346,8 @@
       "layer": "residents",
       "candidates": [
         {
-          "id": "wight_j_ambrose",
-          "name": "J Ambrose Wight",
+          "id": "wight_j_f",
+          "name": "J F Wight",
           "rule": "OCR variant (0.91 similarity to 'wight')"
         },
         {
