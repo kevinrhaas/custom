@@ -150,6 +150,7 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
 
 T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
+T-1122 — Both back-projection passes call every householder 'this man' in generated prose, and one of the 57 is Rebecca Sherman
 
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
