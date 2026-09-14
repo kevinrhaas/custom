@@ -90,15 +90,16 @@ NAMED_PLACE = (
      "on a street face and has no grammar for a reservation, so it refuses rather than "
      "reaching for the nearest street name."),
     (re.compile(r"\b(house|hotel|refectory|tavern|saloon|exchange)\b", re.I),
-     "The entry names a public house by its sign — where this man boarded, not a street "
-     "he lived on. A house of 1843 is a building, and resolving a building printed eight "
-     "years after the scene onto 1835 ground is a second reading this pass does not make: "
-     "it would have to identify the house, date it to 1835 and place it, and each of "
-     "those is its own source question."),
+     "The entry names a public house by its sign — where this person boarded, not a "
+     "street they lived on. A house of 1843 is a building, and resolving a building "
+     "printed eight years after the scene onto 1835 ground is a second reading this pass "
+     "does not make: it would have to identify the house, date it to 1835 and place it, "
+     "and each of those is its own source question."),
     (re.compile(r"\b(mrs|mr|miss|dr|capt|col|maj|rev)\b\.?\s+[A-Z]", re.I),
-     "The entry names the household this man boarded with, by its head, and not a street. "
-     "Where that household is itself in this town the two records could be joined, but "
-     "that is a crosswalk between two people and not an address read backwards."),
+     "The entry names the household this person boarded with, by its head, and not a "
+     "street. Where that household is itself in this town the two records could be "
+     "joined, but that is a crosswalk between two people and not an address read "
+     "backwards."),
     (re.compile(r"\b\d(?:st|d|nd|rd|th)\s+ward\b", re.I),
      "The entry gives a WARD, which is a division of the Chicago of 1843 and not a "
      "street. The town's 1835 wards are not these wards — the city was not incorporated "
@@ -207,11 +208,11 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
 
     if POSSESSIVE_HOST.search(body):
         row.update(outcome="refused", clause="R4",
-                   reason="The entry names the person this man boarded with in the "
-                          "possessive — whose house it is — and not a street; these "
+                   reason="The entry names the person the householder boarded with in "
+                          "the possessive — whose house it is — and not a street; these "
                           "volumes never print a street that way. It is tested before "
                           "the street table because the householder's surname can be a "
-                          "street this town carries. Where that person is himself in "
+                          "street this town carries. Where that person is also in "
                           "this town the two records could be joined, but that is a "
                           "crosswalk between two people and not an address read "
                           "backwards.")
@@ -219,23 +220,23 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
 
     if INITIALLED_PERSON.match(body):
         row.update(outcome="refused", clause="R4",
-                   reason="The entry names the person this man boarded with, set with an "
-                          "initial, and not a street — and the surname is also a street "
-                          "this town carries, which is the collision this test is ordered "
-                          "in front of the street table to catch. Where that person is "
-                          "himself in this town the two records could be joined, but that "
-                          "is a crosswalk between two people and not an address read "
-                          "backwards.")
+                   reason="The entry names the person the householder boarded with, set "
+                          "with an initial, and not a street — and the surname is also a "
+                          "street this town carries, which is the collision this test is "
+                          "ordered in front of the street table to catch. Where that "
+                          "person is also in this town the two records could be joined, "
+                          "but that is a crosswalk between two people and not an address "
+                          "read backwards.")
         return row
 
     names = street_words(printed)
     if not names:
         if BARE_PERSON.match(body):
             row.update(outcome="refused", clause="R4",
-                       reason="The entry names the person this man boarded with and not a "
-                              "street. Where that person is himself in this town the two "
-                              "records could be joined, but that is a crosswalk between "
-                              "two people and not an address read backwards.")
+                       reason="The entry names the person the householder boarded with "
+                              "and not a street. Where that person is also in this town "
+                              "the two records could be joined, but that is a crosswalk "
+                              "between two people and not an address read backwards.")
         else:
             row.update(outcome="refused", clause="R4",
                        reason="The address names no street at all, so there is nothing to "
@@ -278,7 +279,7 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
     row.update(
         outcome="placed", clause="R4 and R5", placement="face",
         reason=(f"{street['name_1835']} stands in 1835 under that name and in that place, "
-                f"and the entry prints it as this man's "
+                f"and the entry prints it as this person's "
                 f"{'lodging' if row['kind'] == 'boards' else 'home'}. "
                 + (f"The volume narrows it further — it names "
                    f"{' and '.join(narrower)} — and clause R5 declines to take the point: "
@@ -323,9 +324,9 @@ def note_for(row: dict) -> str:
     if row["outcome"] == "placed":
         return (
             f"A LATER HOME ADDRESS, READ BACKWARDS {back} YEARS. The street is not an "
-            f"1835 reading: {volume} printed where this man {word} in "
+            f"1835 reading: {volume} printed where this person {word} in "
             f"{row['describes_date']}, and this pass carries it back to the scene date "
-            f"because nothing in the 1835 corpus says where his house stood. What is "
+            f"because nothing in the 1835 corpus says where the house stood. What is "
             f"claimed is the street FACE and nothing narrower — no lot, no roof, no door "
             f"count, and no corner even where the volume prints one — and the grade is "
             f"`reconstructed`, this dataset's word for a figure the reconstruction "
@@ -343,8 +344,9 @@ def note_for(row: dict) -> str:
             f"it is. {row['reason']} The later address stays on the record as "
             f"{row['describes_date']}'s evidence and moves nothing.")
     return (
-        f"REFUSED, AND THE REFUSAL IS THE RECORD. {volume} prints where this man {word} "
-        f"in {row['describes_date']} and this pass will not carry it back to 1835. "
+        f"REFUSED, AND THE REFUSAL IS THE RECORD. {volume} prints where this person "
+        f"{word} in {row['describes_date']} and this pass will not carry it back to "
+        f"1835. "
         f"{row['reason']} A refusal is written here rather than dropped so that a later "
         f"run can see the address was read and ruled on, not missed "
         f"(docs/RESIDENCE-BACK-PROJECTION.md, clause {row['clause']}).")
@@ -634,6 +636,17 @@ def self_test() -> int:
         if r["outcome"] == "placed":
             fails.append(f"{r['person_id']}: the business pass PLACED an address "
                          f"printed as a residence, which only this pass may do")
+
+    # T-1122: NEITHER PASS'S GENERATED PROSE ASSUMES THE HOUSEHOLDER'S SEX. Both are
+    # asserted from here as well as from the business pass's own self-test, because the
+    # two share their tables and are held word-for-word to each other — a phrase can be
+    # introduced on either side of that import and must fail on both.
+    fails.extend(business.sexed_prose("back_project_residences",
+        business.generated_prose(ledger["rows"], note_for,
+            [(f"NAMED_PLACE[{i}]", why) for i, (_, why) in enumerate(NAMED_PLACE)]
+            + [(f"NOT_1835[{k}]", v) for k, v in NOT_1835.items()])))
+    fails.extend(business.sexed_prose("back_project_addresses",
+        business.generated_prose(biz["rows"], business.note_for)))
 
     for f in fails:
         print(f"   {f}")

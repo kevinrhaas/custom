@@ -541,6 +541,52 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
     return row
 
 
+# T-1122 — THE HOUSEHOLDER'S SEX IS NOT A READING, AND BOTH PASSES USED TO ASSERT IT.
+# These two passes write the prose a reader sees on a household card, and every one of
+# the residence pass's templates said "this man": 28 of its 57 rulings carried the
+# phrase in their `reason` and the notes carried it again. One of the 57 is Rebecca
+# Sherman, so the record as published told a reader that Norris printed where *this man*
+# lived. Nothing about the reading was wrong — the prose was asserting a fact about a
+# person that the source does not give and that happens to be false, which is the one
+# word on that card a reader did not ask for.
+#
+# So the templates say "this person", "the householder", or the name; and this is what
+# holds them there. It is an assertion over the strings the passes actually GENERATE —
+# every static reason template, plus the `reason` and the note written for every row
+# adjudicated — and not a one-time sweep of the source, because the fault is a template
+# being reached for and not a line of code being present. Whole words, so `this house`
+# is not read as `his house`; and the printed address and the person's own name are not
+# scanned, because those are what the volume set and not what this pass says.
+SEXED_OF_THE_SUBJECT = (
+    "this man", "this woman", "this gentleman", "this lady",
+    "his house", "her house", "his home", "her home", "his lodging", "her lodging",
+    "he lived", "she lived", "he boarded", "she boarded",
+    "himself", "herself", "his host", "her host",
+)
+
+_SEXED = re.compile(r"\b(?:" + "|".join(re.escape(w) for w in SEXED_OF_THE_SUBJECT)
+                    + r")\b", re.I)
+
+
+def generated_prose(rows, note_of, tables=()) -> list[tuple[str, str]]:
+    """Every string a pass generates: its static templates, and what it wrote per row."""
+    pairs = list(tables)
+    for row in rows:
+        pairs.append((f"{row['person_id']} reason", row.get("reason") or ""))
+        pairs.append((f"{row['person_id']} note", note_of(row) or ""))
+    return pairs
+
+
+def sexed_prose(label: str, pairs) -> list[str]:
+    """T-1122's assertion: no generated string assumes the householder's sex."""
+    out = []
+    for where, text in pairs:
+        for hit in dict.fromkeys(m.group(0) for m in _SEXED.finditer(text or "")):
+            out.append(f"{label}: {where} says {hit!r} of a person the source does "
+                       f"not sex")
+    return out
+
+
 def note_for(row: dict) -> str:
     """The plain words clause 4 requires, on the record itself."""
     back = row["read_back_years"]
@@ -891,6 +937,13 @@ def self_test() -> int:
             bp = person.get("back_projection")
             if bp and set(bp) & {"lives_at", "works_at"}:
                 fails.append(f"{hh['id']}: a back_projection block writing an 1835 link")
+
+    # T-1122: nothing this pass generates assumes the householder's sex — the static
+    # refusal templates keyed on a street the town does not carry, and the `reason` and
+    # note written for every row actually adjudicated.
+    fails.extend(sexed_prose("back_project_addresses", generated_prose(
+        ledger["rows"], note_for,
+        [(f"NOT_1835[{k}]", v) for k, v in NOT_1835.items()])))
 
     for f in fails:
         print(f"   {f}")
