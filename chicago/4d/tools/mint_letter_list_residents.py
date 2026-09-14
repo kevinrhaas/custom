@@ -126,6 +126,10 @@ PREFIX = "hh_ll_"
 PERSON_PREFIX = "ll_"
 DIVISION = "unplaced"
 
+# The `list` a press row carries when it IS a return of uncalled-for letters. Every
+# other value on that block is an ordinary reading of the papers.
+LETTER_LIST_CLASS = "newspaper_letter_list"
+
 # The gap that separates one return of uncalled-for letters from the next. The
 # Democrat reprinted a list over two and three consecutive weekly issues, so
 # anything at a week's distance is the SAME return read twice; the returns
@@ -1125,6 +1129,30 @@ def scale_report() -> None:
 
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
+
+def press_contradicting(person: dict) -> list[dict]:
+    """The rows of this person's `press_evidence[]` that are NOT letter lists.
+
+    T-1005. `letter_list_only` is not decoration: `renderers/web/js/residents.js`
+    prints a whole paragraph off it — "Only from the post office's lists of
+    uncalled-for letters … it is the weakest evidence this project accepts for a
+    resident" — and the land-sale ruling rule reads the flag as the written form
+    of its own refusal test. The flag is written at MINT time, when a letter list
+    is all there is; the consolidation passes add `press_evidence` to a card
+    afterwards and never looked at it again. So seven cards reached dev asserting
+    "known only from the post office" while carrying, on the same record, an
+    ordinary reading of the papers — the exact confusion the flag exists to
+    prevent, stated backwards.
+
+    The test is one line, and it is one-directional on purpose. A person whose
+    press block holds no letter list at all is not this pass's business, and 678
+    of the cohort carry the reading in `letter_list_returns` and the note with no
+    press block at all — so this may never SET the flag, only refuse it where the
+    record itself contradicts it.
+    """
+    return [row for row in (person.get("press_evidence") or [])
+            if row.get("list") != LETTER_LIST_CLASS]
+
 # The two rules T-0425 allows an arrival note to open on, in the order
 # `bound_for()` chooses between them: the return where the return is dated,
 # the printing where it is not.
@@ -1157,12 +1185,25 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                             f"person and this pass may not invent a household around them")
         for person in persons:
             pid = person.get("id")
-            if person.get("letter_list_only") is not True:
+            # T-1005. The flag's own justification is the test: it is what keeps a
+            # letter list and a shopkeeper's advertisement from reading as the same
+            # claim, so a person carrying BOTH may not carry the flag. This pass
+            # mints the flag and this gate keeps it honest in both directions.
+            contradicting = press_contradicting(person)
+            if contradicting:
+                if person.get("letter_list_only"):
+                    where = ", ".join(sorted({str(r.get("locator")) for r in contradicting}))
+                    problems.append(f"{hid}/{pid}: letter_list_only is true and "
+                                    f"{len(contradicting)} press reading(s) on this same "
+                                    f"record are not letter lists — {where}. The flag says "
+                                    f"'known only from the post office' and the evidence "
+                                    f"beside it says otherwise; one of the two is wrong")
+            elif person.get("letter_list_only") is not True:
                 problems.append(f"{hid}/{pid}: letter_list_only is "
                                 f"{person.get('letter_list_only')!r} and must be true — it "
                                 f"is what keeps this evidence and a shopkeeper's "
                                 f"advertisement from reading as the same claim")
-            else:
+            if person.get("letter_list_only"):
                 flagged_persons += 1
             dates = person.get("letter_list_returns")
             if not isinstance(dates, list) or not dates:
@@ -1226,10 +1267,15 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
         row = rows.get(hid)
         if row is None:
             problems.append(f"{hid}: no manifest row")
-        elif row.get("letter_list_only") is not True:
-            problems.append(f"{hid}: the manifest row does not carry letter_list_only, "
-                            f"so the Evidence panel cannot hold this row apart from the "
-                            f"town's evidenced households without fetching every record")
+        elif bool(row.get("letter_list_only")) != any(p.get("letter_list_only")
+                                                      for p in persons):
+            # The row must say what the card says — T-1005 cleared the flag on seven
+            # cards and the row has to follow, or the Evidence panel holds a household
+            # apart from the town's evidenced ones on a flag its own record dropped.
+            problems.append(f"{hid}: the manifest row says letter_list_only="
+                            f"{bool(row.get('letter_list_only'))!r} and the card says "
+                            f"{any(p.get('letter_list_only') for p in persons)!r} — the "
+                            f"Evidence panel reads the row and the card is the master")
 
     mine_ids = {p.stem for p in mine_paths}
     for hid, row in rows.items():
@@ -1457,8 +1503,11 @@ def self_test() -> int:
     if gate_problems(docs, index, structures):
         print("   the committed tree does not pass its own gate; fix that first")
         return 1
+    # A victim that still CARRIES the flag: T-1005 cleared it on seven cards, and a
+    # mutation that drops a flag off a card which no longer has one asserts nothing.
     victim = next(p for p, doc in sorted(docs.items())
-                 if minted_by(p, doc, "letter_list", PREFIX))
+                 if minted_by(p, doc, "letter_list", PREFIX)
+                 and (doc.get("persons") or [{}])[0].get("letter_list_only"))
 
     def broken(mutate):
         d = json.loads(json.dumps({str(k): v for k, v in docs.items()}))
@@ -1507,6 +1556,20 @@ def self_test() -> int:
     def blur_the_precision(d, i, s):
         d[victim]["arrival"]["precision"] = "exact"
 
+    # T-1005. The eighth card: a flagged person gains an ordinary reading of the
+    # papers — a shopkeeper's advertisement beside "known only from the post office".
+    # This is how the seven arrived, one consolidation pass at a time.
+    def advertise_a_shop(d, i, s):
+        d[victim]["persons"][0].setdefault("press_evidence", []).append({
+            "list": "newspaper_1833_1835",
+            "as_read": "a shopkeeper's advertisement",
+            "locator": "chicago_democrat_1834_08_13#c012",
+            "record_id": "person_invented",
+            "describes_date": "1834-08-13",
+            "source": "chicago_democrat_1833_1835",
+            "rule": "G1b",
+        })
+
     cases = [
         ("a person loses letter_list_only", drop_flag, "letter_list_only"),
         ("a person loses its returns' dates", drop_dates, "letter_list_returns"),
@@ -1518,6 +1581,8 @@ def self_test() -> int:
         ("a bound is dated by the impression, not the return", date_the_impression,
          "T-0425"),
         ("a bound stops being not_later_than", blur_the_precision, "precision"),
+        ("a flagged person gains an ordinary press reading", advertise_a_shop,
+         "not letter lists"),
     ]
     failed = 0
     for label, mutate, expect in cases:
