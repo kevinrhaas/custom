@@ -1,7 +1,7 @@
 ---
 id: T-1128
 title: Four adults of St Mary's register have an exact namesake in the residents layer and no ruling on either: Solomon Juneau, Josette Chevalier, Patrick Carroll and Mary Durbin
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-14
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/14/2026, 5:03:19 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34901836035
 ---
 
 Four adults of St Mary's register have an exact namesake in the residents layer and no ruling on either: Solomon Juneau, Josette Chevalier, Patrick Carroll and Mary Durbin.
