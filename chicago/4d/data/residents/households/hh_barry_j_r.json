@@ -1,8 +1,8 @@
 {
- "id": "hh_borland_andrew_w",
- "name": "The Borland household — a name the town's own records carry",
+ "id": "hh_barry_j_r",
+ "name": "The Barry household — a name the town's own records carry",
  "division": "unplaced",
- "head": "borland_andrew_w",
+ "head": "barry_j_r",
  "source_pass": "civic",
  "arrival": {
   "value": "1834-12-31",
@@ -48,8 +48,8 @@
  },
  "persons": [
   {
-   "id": "borland_andrew_w",
-   "name": "Andrew W Borland",
+   "id": "barry_j_r",
+   "name": "J R Barry",
    "relationship": "head",
    "grade": "inferred",
    "civic_mint": true,
@@ -60,32 +60,22 @@
     "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
    },
    "sources": [
-    "chicago_democrat_1833_1835",
-    "chicago_voter_lists_1833_1835_irad"
+    "chicago_voter_lists_1833_1835_irad",
+    "isa_public_domain_land_tract_sales"
    ],
-   "note": "PROJECTED RESIDENT. Documented once and corroborated by nothing else, so the weakest rung of `inferred` the owner's ladder defines. A SINGLE APPEARANCE AND NOTHING ELSE. Read from poll_1834. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G3), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1834 names this person at Chicago by 31 December 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "PROJECTED RESIDENT. Documented once and corroborated by nothing else, so the weakest rung of `inferred` the owner's ladder defines. A SINGLE APPEARANCE AND NOTHING ELSE. Read from poll_1834. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G3), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. poll_1834 names this person at Chicago by 31 December 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “BARRY JOHN R”, 1835-06-26: 1 federal land entry — W2SW sec 20 T39N R13E, 80.00 acres stated in all, for $100.00 (ls0813). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BARRY JOHN R matches J R Barry: the forename names J R Barry of the 3 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
    "civic_evidence": [
     {
      "list": "poll_1834",
-     "as_read": "Borland, Andrew W.",
+     "as_read": "Barry, J. R.",
      "locator": "poll_1834",
-     "record_id": "poll_1834_016",
+     "record_id": "poll_1834_007",
      "describes_date": "1834",
      "source": "chicago_voter_lists_1833_1835_irad",
      "rule": "G3"
     }
    ],
-   "resident_subtype": "projected_resident",
-   "resident_research": {
-    "refusals": [
-     {
-      "regraded_on": "2026-09-04",
-      "rule": "G3",
-      "withheld": "the downgrade to inferred",
-      "reason": "This card rests on 1 thing(s) the consolidation did not read — chicago_democrat_1833_1835. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
-     }
-    ]
-   }
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

@@ -24,7 +24,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1293
+   "n": 1297
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -43,10 +43,10 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 146,
-  "residents_ambiguous": 25,
-  "residents_contested": 12,
-  "residents_surname_only_refused": 260,
+  "residents_matched_one_entry": 144,
+  "residents_ambiguous": 26,
+  "residents_contested": 14,
+  "residents_surname_only_refused": 261,
   "voters_matched_one_entry": 122,
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 75,
@@ -58,7 +58,7 @@
   "heads_1840_surname_only_refused": 223,
   "residents_further_initial_disagreed_refused": 6,
   "residents_that_further_initial_refusal_reaches": 6,
-  "residents_initial_agreed_forenames_disagreed_refused": 68,
+  "residents_initial_agreed_forenames_disagreed_refused": 66,
   "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_entry_by_that_refusal": 36,
   "residents_letter_list_bucket_refused": 1,
@@ -67,9 +67,9 @@
   "of_those_contested": 0,
   "of_those_ambiguous": 4,
   "residents_narrowings_withdrawn_as_a_collision": 0,
-  "residents_ties_left_standing": 33,
-  "residents_could_carry_occupation": 79,
-  "residents_could_carry_street": 91
+  "residents_ties_left_standing": 36,
+  "residents_could_carry_occupation": 77,
+  "residents_could_carry_street": 90
  },
  "residents": {
   "matches": [
@@ -2478,31 +2478,6 @@
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
    {
-    "name": "John Lyle King",
-    "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins J.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0852",
-      "as_printed": "King, jr. , John, merchant, bds. Lake House",
-      "printed_page": 21,
-      "occupation_1839": "merchant",
-      "address_1839": "bds. Lake House",
-      "streets_1839": [],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "king_john_lyle",
-    "household_id": "hh_king_john_lyle",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
     "name": "John Miller",
     "rule": "Surname 'Miller' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -2914,34 +2889,6 @@
     "lives_at_1835": null,
     "could_carry": [
      "occupation"
-    ],
-    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
-   },
-   {
-    "name": "Paul J Carli",
-    "rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P.",
-    "entries_1839": [
-     {
-      "claim": "f1839_e0234",
-      "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells",
-      "printed_page": 9,
-      "occupation_1839": "candies and notions",
-      "address_1839": "South Water st. near Wells",
-      "streets_1839": [
-       "South Water st"
-      ],
-      "address_is_street_only": false
-     }
-    ],
-    "person_id": "carli_paul_j",
-    "household_id": "hh_carli_paul_j",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null,
-    "could_carry": [
-     "occupation",
-     "street_1839"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
@@ -4558,6 +4505,102 @@
     }
    },
    {
+    "name": "P S Carli",
+    "rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0234",
+      "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells",
+      "printed_page": 9,
+      "occupation_1839": "candies and notions",
+      "address_1839": "South Water st. near Wells",
+      "streets_1839": [
+       "South Water st"
+      ],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "carli_p_s",
+    "household_id": "hh_carli_p_s",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "could_carry": [
+     "occupation",
+     "street_1839"
+    ],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
+    "contested_with": [
+     "Paul J Carli"
+    ],
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "carli_p_s",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "carli_paul_j",
+       "agrees": false,
+       "why": "no trade on one side"
+      }
+     ]
+    }
+   },
+   {
+    "name": "Paul J Carli",
+    "rule": "Surname 'Carli' folds to the same string as the 1839 entry's, and the given name of both begins P. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0234",
+      "as_printed": "Carli, Paul, candies and notions, South Water st. near Wells",
+      "printed_page": 9,
+      "occupation_1839": "candies and notions",
+      "address_1839": "South Water st. near Wells",
+      "streets_1839": [
+       "South Water st"
+      ],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "carli_paul_j",
+    "household_id": "hh_carli_paul_j",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "could_carry": [
+     "occupation",
+     "street_1839"
+    ],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only.",
+    "contested_with": [
+     "P S Carli"
+    ],
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "carli_p_s",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "carli_paul_j",
+       "agrees": false,
+       "why": "no trade on one side"
+      }
+     ]
+    }
+   },
+   {
     "name": "Rufus Brown",
     "rule": "Surname 'Brown' folds to the same string as the 1839 entry's, and the given name of both begins R. CONTESTED: 2 residents of 1835 meet this one 1839 entry on that rule, and at most one of them is the person printed. The match is not made.",
     "entries_1839": [
@@ -4948,6 +4991,67 @@
        "why": "no trade on one side",
        "outcome": "refused_by_discriminator",
        "refusal": "The trade printed against this name agrees with 'f1839_e0329' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
+      }
+     ]
+    }
+   },
+   {
+    "name": "J D King",
+    "rule": "Surname 'King' folds to the same string as the 1839 entry's, and the given name of both begins J.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0852",
+      "as_printed": "King, jr. , John, merchant, bds. Lake House",
+      "printed_page": 21,
+      "occupation_1839": "merchant",
+      "address_1839": "bds. Lake House",
+      "streets_1839": [],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0853",
+      "as_printed": "King, Joe, (pork an’ a bean) restaurant, South Water near Clark",
+      "printed_page": 21,
+      "occupation_1839": "(pork an’ a bean) restaurant, South Water near Clark",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e0854",
+      "as_printed": "King, Joseph, drayman,",
+      "printed_page": 21,
+      "occupation_1839": "drayman",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "king_j_d",
+    "household_id": "hh_king_j_d",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "discriminator": {
+     "kind": "trade",
+     "named": null,
+     "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
+     "sides": [
+      {
+       "key": "f1839_e0852",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "f1839_e0853",
+       "agrees": false,
+       "why": "no trade on one side"
+      },
+      {
+       "key": "f1839_e0854",
+       "agrees": false,
+       "why": "no trade on one side"
       }
      ]
     }
@@ -6470,6 +6574,11 @@
     "name": "Issac Stevens",
     "candidates_under_that_surname": 4,
     "rule": "The surname 'Stevens' is in Fergus 1839 and no entry under it carries the initial 'I' of 'Issac Stevens'. A surname-only agreement is a refusal."
+   },
+   {
+    "name": "J D Matthews",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Matthews' is in Fergus 1839 and no entry under it carries the initial 'J' of 'J D Matthews'. A surname-only agreement is a refusal."
    },
    {
     "name": "J Green",
@@ -8318,50 +8427,6 @@
     },
     "person_id": "knight_john",
     "household_id": "hh_knight_john",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "John Lyle King",
-    "entry_1839": {
-     "claim": "f1839_e0853",
-     "as_printed": "King, Joe, (pork an’ a bean) restaurant, South Water near Clark",
-     "printed_page": 21,
-     "occupation_1839": "(pork an’ a bean) restaurant, South Water near Clark",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "John",
-     "forename_printed": "Joe",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'John' against 'Joe'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "king_john_lyle",
-    "household_id": "hh_king_john_lyle",
-    "grade_1835": "attested",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "John Lyle King",
-    "entry_1839": {
-     "claim": "f1839_e0854",
-     "as_printed": "King, Joseph, drayman,",
-     "printed_page": 21,
-     "occupation_1839": "drayman",
-     "address_1839": null,
-     "streets_1839": [],
-     "address_is_street_only": false,
-     "forename_1835": "John",
-     "forename_printed": "Joseph",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'John' against 'Joseph'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "king_john_lyle",
-    "household_id": "hh_king_john_lyle",
     "grade_1835": "attested",
     "occupation_1835": "none_recorded",
     "occupation_1835_confidence": "reconstructed",

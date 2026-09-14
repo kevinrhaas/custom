@@ -19,7 +19,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1293
+   "n": 1297
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -1823,6 +1823,11 @@
     "rule": "The surname 'King' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'H' of 'Hyram King'. A surname-only agreement is a refusal."
    },
    {
+    "name": "J D King",
+    "candidates_under_that_surname": 1,
+    "rule": "The surname 'King' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'J' of 'J D King'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "J. A. Marshall",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Marshall' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'J' of 'J. A. Marshall'. A surname-only agreement is a refusal."
@@ -1856,11 +1861,6 @@
     "name": "John Burton",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Burton' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'J' of 'John Burton'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "John Lyle King",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'King' stands among the Fort Dearborn Addition bidders and no bidder under it carries the initial 'J' of 'John Lyle King'. A surname-only agreement is a refusal."
    },
    {
     "name": "John Thompson",

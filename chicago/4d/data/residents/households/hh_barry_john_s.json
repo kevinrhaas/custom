@@ -52,7 +52,6 @@
    "name": "John S. Barry",
    "relationship": "head",
    "grade": "attested",
-   "ladder_rule": "G1c",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
@@ -74,7 +73,15 @@
     "reviewed_on": "2026-09-02",
     "asserted_identity": false,
     "regraded_on": "2026-09-04",
-    "rule": "G1c"
+    "rule": "G1c",
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G3",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — chicago_voter_lists_1833_1835_irad. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
    },
    "civic_evidence": [
     {
