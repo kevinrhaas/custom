@@ -2014,27 +2014,6 @@
    "position_local_enu_m": null
   },
   {
-   "household_id": "hh_knickerbacker_a_v",
-   "person_id": "knickerbacker_a_v",
-   "person": "A V Knickerbacker",
-   "address_as_printed": "b Dearborn and State sts",
-   "describes_date": 1844,
-   "read_back_years": 9,
-   "sources": [
-    "norris_directory_1844"
-   ],
-   "occupation_1835": "none_recorded",
-   "works_at_1835": null,
-   "outcome": "refused",
-   "clause": "1",
-   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
-   "street_id": null,
-   "face": null,
-   "placement": null,
-   "qualifier_as_printed": null,
-   "position_local_enu_m": null
-  },
-  {
    "household_id": "hh_knight_john",
    "person_id": "knight_john",
    "person": "John Knight",
@@ -2883,6 +2862,27 @@
    "read_back_years": 4,
    "sources": [
     "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_sherman_william_george",
+   "person_id": "sherman_william_george",
+   "person": "William George Sherman",
+   "address_as_printed": "bds Oren Sherman",
+   "describes_date": 1843,
+   "read_back_years": 8,
+   "sources": [
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,

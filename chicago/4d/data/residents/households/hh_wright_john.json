@@ -107,6 +107,7 @@
    "name": "John S. Wright",
    "relationship": "son",
    "grade": "attested",
+   "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
     "value": "clerk",
@@ -117,7 +118,8 @@
     "note": "NO TRADE IS RECORDED FOR HIM IN 1833-35 and this value is a reconstruction. Andreas calls him 'John S. Wright, then a minor, afterward editor of Prairie Farmer, and one of the most meritorious pioneers of Chicago, came in 1832'. A minor in his merchant father's business is a clerk on the ordinary reading of the period; the source says only that he was young and that he came."
    },
    "sources": [
-    "andreas_1884_v1"
+    "andreas_1884_v1",
+    "chicago_democrat_1833_1835"
    ],
    "note": "A MINOR IN 1833 AND A FOUNDING MEMBER OF THE FIRST PRESBYTERIAN CHURCH IN JUNE OF THAT YEAR - his name is in the list of nine village citizens alongside his father's. He would have been about twenty in 1835. THE RELATIONSHIP IS THIS RECORD'S READING: Andreas lists the two Wrights separately and never says they are father and son, and 'John Wright, came in 1832, a merchant' and 'John S. Wright, then a minor ... came in 1832' arriving in the same year with the same surname and joining the same church on the same day is a strong reading and not a statement.",
    "resident_research": {
@@ -147,6 +149,28 @@
      "referred_to": "rule",
      "for_merge": "'J. Wright' in the American of 11 July 1835 is a Wright in the town in the scene year.",
      "against_merge": "The initial J has two rivals — the father and the son, who share a forename. R2 refuses. Refused by a ratified rule; no ballot needed."
+    }
+   ],
+   "press_evidence": [
+    {
+     "list": "newspaper_1833_1835",
+     "as_read": "J. S. Wright",
+     "locator": "chicago_democrat_1834_10_29#c006",
+     "record_id": "person_j_s_wright",
+     "describes_date": "1834-10-29",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1b"
+    }
+   ],
+   "merged_from": [
+    {
+     "ticket": "T-0997",
+     "rule": "C2",
+     "cluster": "wright",
+     "cards": [
+      "wright_j_s"
+     ],
+     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
     }
    ]
   }

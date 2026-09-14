@@ -1,7 +1,7 @@
 ---
 id: T-0999
 title: Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-10
-closed: null
+closed: 2026-09-14
 pr: null
-claimed_by: null
+claimed_by: run 9/14/2026, 8:07:06 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-14T13:07:18.364Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34846525716
 ---
 
 Nothing in the gate can see a ruling that is simply GONE: a smaller

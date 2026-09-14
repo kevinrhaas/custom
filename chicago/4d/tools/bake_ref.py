@@ -324,6 +324,16 @@ def self_test():
     # runs before the work cannot see a base die during it.
     case("…and it asks AGAIN at the moment the PR is opened, not only at job start",
          live.count("--check-base") >= 2, True)
+    # A GREEN BAKE PR THAT NOTHING MERGES IS STILL A BAKE PR NOBODY MERGED. The
+    # liveness rule above decides whether to OPEN one; this asserts the workflow
+    # then arms auto-merge on it. A steward run arms its own PR and merges it
+    # inside the run — a bake has no run watching it, and the janitor's gate for
+    # this monorepo does not fit inside its own timeout (run 1047: 53m37s on one
+    # PR, killed unfinished), so without this nothing merges a bake at all.
+    # Measured 2026-09-14: of thirteen non-hold PRs open, the seven carrying
+    # auto-merge were every one a T-xxxx ticket and no bake had it.
+    case("…and the bake arms auto-merge on the PR it opens",
+         "gh pr merge" in live and "--auto" in live, True)
 
     for ok, name, got, want in cases:
         if ok:

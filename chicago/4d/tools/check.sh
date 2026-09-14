@@ -1670,6 +1670,19 @@ step "the ground mesh still meets the heightfield the walker samples" \
 step "the shipped ground stands where the master does, and inside the road lift" \
   node tools/measure_terrain_horizontal.mjs --gate
 
+# T-1067. The two gates above measure the ground against the mesh drawn FROM it,
+# which cannot see the town standing where there is no ground at all. The box
+# stops at n +400 and Kinzie's Addition was committed running to n +1029.71, so
+# Wolcott Street's ribbon leaves the modelled ground and is draped on the
+# renderer's fallback constant for 629.72 m, and 79.5 % of the north wall is a
+# one-way door under the walker's 0.35 m step-up rule. None of that is asserted
+# to be SMALL — no setting of this repo makes it small today, and a gate that
+# demanded one would only ever be red. What is asserted is that the committed
+# reading still matches a re-derivation, so the number cannot drift while the
+# box or the street layer moves and nobody notices.
+step "the town off the modelled ground is still the town the reading measured" \
+  node tools/measure_north_of_box.mjs --gate
+
 # The shrub archetype's own bounds, which are the only two numbers in it the
 # RESEARCH owns: the clump keeps the half-width its record states, and a leaf
 # spray stays a mass of leaves rather than shrinking towards a single leaf it
@@ -1848,6 +1861,16 @@ step "new --after places directly under the named ticket and moves nothing else"
 # that it had won. That is the exact case the lock exists to decide.
 step "a claim is a lock on the remote, and two runs cannot hold one ticket" \
   node tools/test_ticket_claim_lock.mjs
+
+# AND THE LAP THAT CARRIES ALL OF IT MUST NEVER BE QUIETLY USELESS. On
+# 2026-09-14 `gh pr list` hit a rate limit, pr-lap.sh's `PRS=$(...)` took the
+# failure without `-e` to stop it, and the run printed
+# `PR lap: pushed=0 already-current=0 left-alone=0 red=0` — what a healthy idle
+# lap prints — and exited GREEN having lapped nothing. Every lap in that window
+# read clean while sweeping nothing, which is what a stuck PR queue looks like
+# from outside. This runs the REAL script against a faked `gh`.
+step "a lap that could not ask never reports that it found nothing" \
+  node tools/test_pr_lap_list.mjs
 
 # AND THE QUESTION THE LOCK CANNOT ANSWER: has this ticket's PR already MERGED?
 # Everything here squash-merges, so a merged branch never becomes an ancestor of
@@ -2734,6 +2757,24 @@ step "the land tract sales re-derive from their committed deposit" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
+
+# T-1124. …AND THE ONE QUESTION EVERY STEP ABOVE IS STRUCTURALLY UNABLE TO ASK: is a
+# judgement simply GONE? `--check` above asks whether each surviving ruling is WELL
+# FORMED, and on #1055 they all were — the eight that were left after a merge lap ate
+# forty re-derived perfectly into a crosswalk perfectly consistent with them, and this
+# gate was green on that commit and on every commit after it. A smaller rulings file is
+# a legal rulings file. Twelve resident cards silently got back a federal land purchase
+# each had been ruled it could not have, and the only witness was prose.
+#
+# So this compares the tree against the MERGE BASE rather than against anything the tree
+# carries, by identity and by count, with `ruled[]` and `retired[]` counted together so a
+# retirement is a move rather than a loss. A deliberate removal is still possible and
+# states itself: the entry moves into `withdrawn[]` carrying its reason and its ticket.
+step "no land-sale ruling has left the file without saying so" \
+  python3 tools/check_rulings_not_lost.py
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_rulings_not_lost.py --self-test
 
 # T-1017. A ruling about a KIND OF ARGUMENT, and the only one in this domain that rests on a
 # measurement rather than on a page. T-0990 refused RUSSELL SAMUEL and SKINNER JOSEPH while

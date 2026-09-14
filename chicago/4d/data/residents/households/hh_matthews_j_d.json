@@ -73,6 +73,20 @@
      "source": "chicago_voter_lists_1833_1835_irad",
      "rule": "G2a"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "matthews-j",
+     "weighed_against": [
+      "matthews_james_g"
+     ],
+     "referred_to": "rule",
+     "for_merge": "`Matthews, J. D.` stands on the 1835 poll list and `James G. Matthews` on the letter list of 20 May 1835 — the same town, the same year, one surname, one forename initial.",
+     "against_merge": "D against G, both printed, and a poll roll and a letter list are exactly the two kinds of source R3 describes as 'no further than a list'. Neither card knows a trade, a dwelling or an arrival. R3."
+    }
    ]
   }
  ],
