@@ -161,7 +161,6 @@ T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad
 # --- the south side on 09-12 and unblocked the band above.
 
 T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
-T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
 
 # --- ==========================================================================
 # --- 4. VISIBLE REFINEMENT — the town changing rather than growing
@@ -301,3 +300,4 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- John Vale, Mark Noble against Mary Noble. No distance separates the first kind from the
 # --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
+
