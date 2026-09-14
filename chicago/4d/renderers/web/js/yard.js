@@ -1507,6 +1507,11 @@ function readForm(record) {
  */
 export async function createYardGoods({
   dataBase, terrain, confidence = null, problems = [],
+  /** T-1126: does this structure's geometry exist in the scene? Goods stand on
+   *  the footway of a building that is there; when the building is not, the
+   *  crates in the grass are the only thing left saying it was, which is worse
+   *  than an empty lot. See `createSignage` for the whole argument. */
+  hostMissing = () => false,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'yard';
@@ -1520,7 +1525,7 @@ export async function createYardGoods({
     sheds: [],
     census: { records: 0, frontages: 0, objects: 0, barrels: 0, crates: 0, wagons: 0,
       byKind: {}, benches: 0, sheds: 0, refused: 0, wagonsRefused: 0, chunks: 0,
-      marked: 0, markCells: 0, lots: 0, piles: 0, byMaterial: {} },
+      marked: 0, markCells: 0, lots: 0, piles: 0, orphaned: 0, byMaterial: {} },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -1672,6 +1677,7 @@ export async function createYardGoods({
     const form = readForm(record);
     const level = LEVEL[record.existence?.confidence] ?? 1;
     for (const frontage of record.frontages ?? []) {
+      if (hostMissing(frontage.structure_id)) { out.census.orphaned += 1; continue; }
       const anchor = anchorOf(frontage.items ?? []);
       if (!anchor) continue;
       const chunk = chunkAt(anchor[0], anchor[1]);
@@ -1700,6 +1706,7 @@ export async function createYardGoods({
      * a shop's barrels do.
      */
     for (const lot of record.lots ?? []) {
+      if (hostMissing(lot.structure_id)) { out.census.orphaned += 1; continue; }
       const anchor = anchorOf(lot.items ?? []);
       if (!anchor) continue;
       const chunk = chunkAt(anchor[0], anchor[1]);
@@ -1721,6 +1728,10 @@ export async function createYardGoods({
       out.census.lots += 1;
     }
     for (const wagon of record.wagons ?? []) {
+      // A wagon in a yard goes with the yard's building; one standing in a public
+      // street names no owner, so `hostMissing` is never asked about it and it
+      // stays. That is the right answer both ways round — the street is there.
+      if (hostMissing(wagon.belongs_to)) { out.census.orphaned += 1; continue; }
       const at = wagon.at_local_enu_m;
       if (!Array.isArray(at) || at.length !== 2) continue;
       // A CART IS NOT A WAGON WITH TWO WHEELS MISSING, so the record's `kind`
