@@ -57,8 +57,40 @@ skip as a pass:
     WARNING that names what went unasked, and the gate goes on.
 
 REGISTRY, below: one entry per guarded file. The mechanism is already general; what
-each new file needs is a READING of which of its arrays hold a judgement and which
-hold a transcription. That reading is T-1125 and is deliberately not done here.
+each new file needs is a READING of which of its stores hold a judgement and which
+hold a transcription. T-1124 shipped the mechanism with land sales alone in it and
+left that reading to T-1125.
+
+T-1125 DID THE READING, on the nine files `grep -rl 'hand_authored|do not hand-edit'
+data/research/` found on dev, and on one file that grep could not have found. Five are
+guarded and five are REFUSED — refusals are in `REFUSED` below with the reason each was
+turned away, because a file left silently out of a registry reads exactly like a file
+nobody has looked at yet. The refusals are not a backlog: four of the five are DERIVED,
+and guarding a derivation against shrinking is the gate that cries wolf the moment its
+generator legitimately derives less.
+
+The one file the grep could not find: `card_merge_crosswalk.json` carries the
+`hand_authored` marks, but `consolidate_town_cards.py` WRITES it from
+`data/residents/card_merge_rulings.json`, and that — outside data/research/ entirely —
+is where the owner's 64 written merge rulings actually live. So the crosswalk is refused
+and the store behind it is guarded. A registry that had taken the crosswalk at its word
+would have guarded a mirror and left the original open.
+
+THREE STORE SHAPES, because the evidence files have three and a guard that only reads
+lists would have had to skip the largest hand-authored correction file in the tree:
+
+    "added_rows"            a list of objects — the common case
+    "lots"                  a MAPPING keyed by what it rules on (fergus's 113 lot
+                            corrections); the key is offered to `identity` as `_key`
+    "clusters[].rulings"    a list nested one level in (the 64 merge rulings sit inside
+                            50 clusters); a row reaches its parent's fields with `^`
+
+IDENTITY IS A UNION ACROSS A FILE'S STORES, never per-store: the key of a judgement has
+to mean the same thing in every array it could sit in, or moving one from `ruled` to
+`withdrawn` would read as a loss and an arrival. So `identity` names every field that
+identifies a judgement ANYWHERE in the file and each entry fills the ones it carries.
+The self-test asserts the result is still unique per file — a collision would let a loss
+hide behind a duplicate, so the union is checked and not assumed.
 """
 import argparse
 import json
@@ -76,12 +108,126 @@ REPO = ROOT.parent.parent  # chicago/4d -> the monorepo root, which git speaks i
 #   stated  : the array a deliberate withdrawal moves INTO, counted with the rest.
 #   requires: the fields a `stated` entry must carry for the removal to have stated itself.
 REGISTRY = {
+    # T-1124. 49 adjudications of who bought federal land; #1055 lost forty of them.
     "chicago/4d/data/research/land_sales/resident_rulings.json": {
         "arrays": ["ruled", "retired", "withdrawn"],
         "identity": ["purchaser_as_read", "resident_id"],
         "stated": "withdrawn",
         "requires": ["reason", "ticket"],
+        "reading": "T-1124. `ruled` and `retired` are the judgement; a retirement is a "
+                   "move between them and not a loss.",
     },
+    # T-1125, file 1 of 5. `hand_authored: true`, and its five judgement stores say
+    # what the December 1835 trade census counted and who in the town answers to it.
+    # LEFT OUT: `occupation_classes` maps the residents vocabulary onto a census word
+    # and is a transcription of that vocabulary; `open_questions` is the opposite of a
+    # judgement — it is what this pass declined to decide, and it SHOULD be able to
+    # shrink, because a question leaves by being answered.
+    "chicago/4d/data/research/books/trade_census_1835_spend_rulings.json": {
+        "arrays": ["classes_ruled", "practitioners", "institutions",
+                   "documented_absences", "register_records_not_assigned", "withdrawn"],
+        "identity": ["class", "key", "id", "business_id"],
+        "stated": "withdrawn",
+        "requires": ["reason", "ticket"],
+        "reading": "T-1125. A class ruled, a practitioner placed under it, an "
+                   "institution present, an absence documented and a register record "
+                   "deliberately not assigned are five ways of saying the same thing: "
+                   "somebody decided. `occupation_classes` and `open_questions` are not.",
+    },
+    # T-1125, file 2 of 5. `generated_by: hand-authored (T-1006)`. 145 trade rulings and
+    # four per-business overrides — the census class of every business in the register.
+    # LEFT OUT: `vocabulary` transcribes the eighteen printed count-lines and its
+    # `compared` flag is recomputed by `trade_census_1835.py --check`; `register_cautions`
+    # is prose about the register, not a ruling on it; `boundaries` is the rule text the
+    # rulings cite, and a rule is not one of the things it rules on.
+    "chicago/4d/data/research/newspapers/trade_class_rulings.json": {
+        "arrays": ["trade_rulings", "business_overrides", "withdrawn"],
+        "identity": ["trade", "scope", "business_id"],
+        "stated": "withdrawn",
+        "requires": ["reason", "ticket"],
+        "reading": "T-1125. `scope` is part of the identity because the same trade is "
+                   "ruled twice, once inside the town and once outside it.",
+    },
+    # T-1125, file 3 of 5. `generated_by: hand-authored rulings (T-1048)`. 128 places the
+    # newspapers name, each resolved inside or outside the committed town.
+    # LEFT OUT: `counts` is recomputed field by field by `resolve_place_vocabulary.py
+    # --check` from the gazetteer and these rulings, and the file says so itself; the
+    # `derived` block inside each place is rewritten by the same tool, which is why the
+    # identity is the `place` and not anything under it.
+    "chicago/4d/data/research/newspapers/place_vocabulary.json": {
+        "arrays": ["places", "withdrawn"],
+        "identity": ["place"],
+        "stated": "withdrawn",
+        "requires": ["reason", "ticket"],
+        "reading": "T-1125. A place resolved is a judgement; the counts over them are "
+                   "arithmetic and are gated by recomputation already.",
+    },
+    # T-1125, file 4 of 5. "HAND-AUTHORED, and the only hand-authored file in this
+    # reading" — 113 lot corrections keyed by lot id, a row the OCR gathered no ink for
+    # at all, and six population figures read off the page image.
+    # LEFT OUT: `what_the_image_could_not_settle` is a list of plain strings — a written
+    # refusal to decide, with no entry to identify — and `read_off`, `grade_note` and
+    # `bidder_note` are prose about the reading. The `lots` MAPPING is the reason this
+    # guard grew a mapping shape: 113 of this file's 120 judgements sit in it, and a
+    # list-only registry would have guarded the seven and called the file covered.
+    "chicago/4d/data/research/directories/fergus_1839_lots_corrections.json": {
+        "arrays": ["lots", "added_rows", "population", "withdrawn"],
+        "identity": ["_key", "leaf", "half", "y", "column_first_year"],
+        "stated": "withdrawn",
+        "requires": ["reason", "ticket"],
+        "reading": "T-1125. A correction is identified by the lot it corrects, or — for "
+                   "a row and a population figure the printed page carries no id for — "
+                   "by where on the leaf it was read.",
+    },
+    # T-1125, file 5 of 5, and NOT under data/research/. The owner's 64 written rulings
+    # on which town cards are one person, nested one level inside the 50 clusters a
+    # surname test proposed. `card_merge_crosswalk.json` is the landed mirror of this and
+    # is refused below; this is the original. Losing one re-splits a resident.
+    # LEFT OUT: `rules` is the rule text C0..C22 the rulings cite; `clusters[].
+    # derived_candidate` and `why_not_derived` describe how the cluster was proposed; and
+    # `also_ruled_on` is a LOG OF PASSES — a date, a ticket and a sentence about what that
+    # pass decided — whose decisions are themselves in `clusters[].rulings`. Counting it
+    # would be counting the same judgement twice under a key that is a date.
+    "chicago/4d/data/residents/card_merge_rulings.json": {
+        "arrays": ["clusters[].rulings", "deferred", "withdrawn"],
+        "identity": ["^id", "rule"],
+        "stated": "withdrawn",
+        "requires": ["reason", "ticket"],
+        "reading": "T-1125. A ruling is (the cluster it is about, the rule it applied). "
+                   "`^id` reaches the parent cluster, because eleven clusters carry more "
+                   "than one ruling and a cluster-level count would not see one leave.",
+    },
+}
+
+# Refused entry, with the reason. A file left silently out of a registry reads like a
+# file nobody has looked at; these have been looked at. T-1125's acceptance: "a file
+# whose arrays are legitimately re-derivable is REFUSED entry to the registry with that
+# stated, rather than added for completeness".
+REFUSED = {
+    "chicago/4d/data/research/residents/card_merge_crosswalk.json":
+        "DERIVED. `consolidate_town_cards.py --apply` writes it from "
+        "data/residents/card_merge_rulings.json, which IS in the registry above. "
+        "Guarding the mirror as well would fire every time the generator legitimately "
+        "lands fewer merges than the last run, and would still not protect the rulings.",
+    "chicago/4d/data/research/residents/town_card_candidates.json":
+        "DERIVED, and deliberately shrinking. The same tool writes it, and its `clusters` "
+        "list is a WORKLIST that the tool's own docstring says is never a merge list — it "
+        "gets SMALLER as clusters are ruled on, so a floor under its count would be a "
+        "gate against the work getting done.",
+    "chicago/4d/data/research/residents/scene_window_trade_audit.json":
+        "DERIVED, and shrinking is the goal. `audit_scene_window_trades.py` rebuilds it, "
+        "and every row is a person whose trade is cited by nothing yet; six rows today, "
+        "and the ticket that owns it wants zero.",
+    "chicago/4d/data/research/church/st_marys_baptisms_crosswalk.json":
+        "DERIVED. `read_st_marys_baptisms.py --build` rebuilds all four of its "
+        "judgement-shaped stores from the page readings. It is ALSO known to have drifted "
+        "off what that tool rebuilds — T-1110 owns that, and the fix there is to make the "
+        "tool and the file agree, not to freeze a count under the drift.",
+    "chicago/4d/data/research/land_sales/school_section_sale_1833.json":
+        "NOT A RULING FILE, and it says so: `the_ruling_is_not_here` points at "
+        "land_sales/resident_rulings.json, which is registry entry one. "
+        "`school_section_sale.py --build` recomputes every figure in it from the tract "
+        "register; it is arithmetic over a source, and arithmetic has no judgements to lose.",
 }
 
 
@@ -128,12 +274,61 @@ def in_tree(path):
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def rows(doc, name):
+    """every judgement-bearing object in the store `name` names.
+
+    Three shapes, because the evidence files have three (T-1125):
+      * `added_rows`         — a list of objects, the common case;
+      * `lots`               — a MAPPING keyed by the thing it rules on, whose key is the
+                               identity and is offered to `identity` as `_key`;
+      * `clusters[].rulings` — a list nested one level inside another, whose rows carry
+                               their parent under `_parent` so `^field` can reach it.
+    A store the file does not carry yields nothing: `withdrawn` is absent until the first
+    stated removal, and a registry entry may name an array a future commit adds.
+    """
+    if "[]." in name:
+        outer, inner = name.split("[].", 1)
+        for parent in doc.get(outer) or []:
+            if not isinstance(parent, dict):
+                continue
+            for child in parent.get(inner) or []:
+                if isinstance(child, dict):
+                    yield dict(child, _parent=parent)
+        return
+    store = doc.get(name)
+    if isinstance(store, dict):
+        for key, value in store.items():
+            yield dict(value if isinstance(value, dict) else {}, _key=key)
+        return
+    for entry in store or []:
+        if isinstance(entry, dict):
+            yield entry
+
+
+def field(entry, name):
+    """one identity field. `^x` reads x from the row's parent, `_key` from its map key."""
+    if name.startswith("^"):
+        parent = entry.get("_parent")
+        if isinstance(parent, dict) and name[1:] in parent:
+            return str(parent[name[1:]])
+        # No parent: a withdrawal leaving a nested store lands in a FLAT array, and has
+        # to be able to state the identity it had. It does so by carrying the field
+        # itself, and the key it produces is the same one.
+        return str(entry.get(name[1:], ""))
+    return str(entry.get(name, ""))
+
+
 def adjudications(doc, spec):
-    """every judgement in `doc`, as key -> the array it sits in."""
+    """every judgement in `doc`, as key -> the store it sits in.
+
+    The identity is a UNION across the file's stores and never per-store, so that a
+    judgement moving between them — ruled to retired, ruled to withdrawn — keeps the
+    same key and reads as a move rather than a loss and an arrival.
+    """
     found = {}
     for name in spec["arrays"]:
-        for entry in doc.get(name) or []:
-            key = tuple(str(entry.get(f, "")) for f in spec["identity"])
+        for entry in rows(doc, name):
+            key = tuple(field(entry, f) for f in spec["identity"])
             found.setdefault(key, name)
     return found
 
@@ -141,9 +336,9 @@ def adjudications(doc, spec):
 def malformed_withdrawals(doc, spec):
     """a withdrawal that does not say why is not a stated removal."""
     out = []
-    for entry in doc.get(spec["stated"]) or []:
-        key = " / ".join(str(entry.get(f, "?")) for f in spec["identity"])
-        missing = [f for f in spec["requires"] if not str(entry.get(f, "")).strip()]
+    for entry in rows(doc, spec["stated"]):
+        key = " / ".join(field(entry, f) or "?" for f in spec["identity"])
+        missing = [f for f in spec["requires"] if not field(entry, f).strip()]
         if missing:
             out.append(f"{key} — no {', '.join(missing)}")
     return out
@@ -248,6 +443,29 @@ INCIDENT = {
 LAND_SALES = "chicago/4d/data/research/land_sales/resident_rulings.json"
 
 
+def drop_one(doc, spec):
+    """the same tree with exactly ONE judgement taken out, whatever shape holds it.
+
+    Returns (tree, the store it came out of), or (None, None) if the file carries no
+    judgement at all — which is itself a failure, and the caller says so.
+    """
+    cut = json.loads(json.dumps(doc))
+    for name in spec["arrays"]:
+        if "[]." in name:
+            outer, inner = name.split("[].", 1)
+            for parent in cut.get(outer) or []:
+                if isinstance(parent, dict) and parent.get(inner):
+                    parent[inner] = parent[inner][1:]
+                    return cut, name
+        elif isinstance(cut.get(name), dict) and cut[name]:
+            del cut[name][next(iter(cut[name]))]
+            return cut, name
+        elif cut.get(name):
+            cut[name] = cut[name][1:]
+            return cut, name
+    return None, None
+
+
 def _pair(base_ref, head_ref):
     spec = REGISTRY[LAND_SALES]
     return compare(LAND_SALES, spec, at_ref(LAND_SALES, base_ref), at_ref(LAND_SALES, head_ref))[0]
@@ -315,18 +533,67 @@ def self_test():
     check(compare(LAND_SALES, spec, base, silent)[0],
           "a withdrawal that states nothing was accepted as a stated removal")
 
-    print("   ok: the identity fields still name a unique judgement on dev")
-    check(len(adjudications(base, spec))
-          == sum(len(base.get(a) or []) for a in spec["arrays"]),
-          "two judgements share an identity key, so a loss could hide behind a duplicate")
-
-    print("   ok: every registered file's arrays and identity fields exist in it")
+    # EVERY REGISTERED FILE, on its own tree (T-1125). The land-sales fixtures above are
+    # the #1055 incident itself and cannot be written for a file that has not had one; so
+    # each entry earns its place by the same four demonstrations against the committed
+    # tree — a removal fires, a stated withdrawal of the SAME judgement does not, the same
+    # withdrawal with nothing written does, and the identity is unique so a loss cannot
+    # hide behind a duplicate.
     for path, s in REGISTRY.items():
+        print(f"   — {path.split('/')[-1]}")
         doc = in_tree(path)
-        check(any(isinstance(doc.get(a), list) for a in s["arrays"]),
-              f"{path} carries none of the arrays the registry names")
+        found = adjudications(doc, s)
+        total = sum(1 for a in s["arrays"] for _ in rows(doc, a))
+        check(total > 0, f"{path} carries none of the stores the registry names")
         check(s["stated"] in s["arrays"],
               f"{path}: the stated-withdrawal array is not one of the counted ones")
+        # The trap this registry fell into while it was being written: `ticket` named
+        # both the ruling and the withdrawal, so writing the withdrawal's own ticket
+        # CHANGED the identity and a stated removal read as a loss. A field cannot be
+        # both what a judgement is and what its removal has to say.
+        check(not (set(f.lstrip("^") for f in s["identity"]) & set(s["requires"])),
+              f"{path}: an identity field is also a required withdrawal field, so a "
+              f"stated removal cannot keep the identity it had")
+        check(len(found) == total,
+              f"{path}: two judgements share an identity key, so a loss could hide "
+              f"behind a duplicate ({len(found)} keys over {total} rows)")
+
+        cut, store = drop_one(doc, s)
+        check(cut is not None, f"{path}: no store to take a judgement out of")
+        if cut is None:
+            continue
+        print(f"     fires: one judgement out of {store}[]  "
+              f"({total} adjudication(s) registered)")
+        check(compare(path, s, doc, cut)[0],
+              f"{path}: a removed judgement was not a failure")
+
+        left = sorted(set(found) - set(adjudications(cut, s)))
+        check(len(left) == 1, f"{path}: dropping one row moved {len(left)} keys")
+        if len(left) != 1:
+            continue
+        stated = {f.lstrip("^"): v for f, v in zip(s["identity"], left[0])}
+        stated.update(reason="the self-test's own withdrawal", ticket="T-1125")
+        spoken = json.loads(json.dumps(cut))
+        spoken[s["stated"]] = list(spoken.get(s["stated"]) or []) + [stated]
+        print(f"     passes: the same judgement withdrawn into {s['stated']}[] with a reason")
+        check(not compare(path, s, doc, spoken)[0],
+              f"{path}: a stated withdrawal could not reproduce the identity it had")
+        print("     fires: the same withdrawal with nothing written")
+        silent = json.loads(json.dumps(spoken))
+        silent[s["stated"]][-1] = {k: v for k, v in stated.items() if k != "reason"}
+        check(compare(path, s, doc, silent)[0],
+              f"{path}: a withdrawal that states nothing was accepted")
+
+    # A REFUSAL ROTS TOO. A file turned away for being derived may stop being derived, or
+    # may simply be renamed, and either way the reason on record stops being about
+    # anything. T-1125's acceptance asks for the reason to be written down; this asks for
+    # it to still be attached to something.
+    print("   ok: every refused file is still in the tree, and refused for one reason")
+    for path, why in REFUSED.items():
+        check((REPO / path).exists(),
+              f"{path} is REFUSED entry to the registry but is no longer in the tree")
+        check(path not in REGISTRY, f"{path} is both registered and refused")
+        check(len(why) > 60, f"{path}: the refusal does not say why")
 
     # THE WORKFLOW IS HALF OF THIS CHECK, so it is asserted rather than assumed —
     # check_gate_readers.py's rule, for the same reason. The comparison needs a base
