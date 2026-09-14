@@ -1285,3 +1285,45 @@ kbd {
     top: calc(58px + var(--safe-t));
   }
 }
+
+/* An agency held here (T-1041). A HOLDING IS A RELATION, and the styling has one job
+   beyond legibility: it must not read as a second trade. So the lead sits in --ink like
+   any other finding, the standing caveat under it drops to --ink-dim and stays visible
+   rather than folding away — a caveat behind a disclosure is a caveat nobody reads —
+   and a REFUSED holding is marked by a rule down its left edge in the same accent the
+   card already uses for something it is telling you NOT to believe. Tokens only, so
+   both themes come out of the same variables. The same three rules dress this section
+   on the person card in the drawer, because one relation is rendered once. */
+.pop-agency .agency { margin: 0 0 10px; }
+.pop-agency .agency:last-of-type { margin-bottom: 8px; }
+.agency-lead {
+  margin: 0 0 4px;
+  font-size: 12.5px; line-height: 1.5;
+  color: var(--ink);
+}
+.agency-refused {
+  padding-left: 8px;
+  border-left: 2px solid rgb(127 127 127 / 38%);
+}
+.agency-why { margin: 0 0 4px; }
+.agency-why > summary {
+  cursor: pointer;
+  font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.agency-why > p {
+  margin: 4px 0 0;
+  font-size: 12px; line-height: 1.5;
+  color: var(--ink-dim);
+}
+.agency-cites {
+  margin: 0;
+  font-size: 11px; line-height: 1.6;
+  color: var(--ink-dim);
+  word-break: break-word;
+}
+.agency-caveat {
+  margin: 6px 0 0;
+  font-size: 12px; line-height: 1.5;
+  color: var(--ink-dim);
+}

@@ -9,42 +9,91 @@
   "steps": [
     {
       "why": "The directory crosswalks: each reads its own transcribed claims file and adjudicates it against the residents layer. Two runs that both touch the residents layer both re-derive all of these, which is why they conflict so readily.",
-      "command": ["python3", "tools/crosswalk_fergus_1839.py"],
-      "resolves": ["chicago/4d/data/research/directories/fergus_1839_crosswalk_1835.json"]
+      "command": [
+        "python3",
+        "tools/crosswalk_fergus_1839.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/fergus_1839_crosswalk_1835.json"
+      ]
     },
     {
-      "command": ["python3", "tools/crosswalk_fergus_1839_election.py"],
-      "resolves": ["chicago/4d/data/research/directories/fergus_1839_election_crosswalk_1835.json"]
+      "command": [
+        "python3",
+        "tools/crosswalk_fergus_1839_election.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/fergus_1839_election_crosswalk_1835.json"
+      ]
     },
     {
-      "command": ["python3", "tools/crosswalk_fergus_1839_lots.py"],
-      "resolves": ["chicago/4d/data/research/directories/fergus_1839_lots_crosswalk_1835.json"]
+      "command": [
+        "python3",
+        "tools/crosswalk_fergus_1839_lots.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/fergus_1839_lots_crosswalk_1835.json"
+      ]
     },
     {
-      "command": ["python3", "tools/crosswalk_fergus_1839_register.py"],
-      "resolves": ["chicago/4d/data/research/directories/fergus_1839_register_crosswalk_1835.json"]
+      "command": [
+        "python3",
+        "tools/crosswalk_fergus_1839_register.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/fergus_1839_register_crosswalk_1835.json"
+      ]
     },
     {
-      "command": ["python3", "tools/crosswalk_fergus_1843.py"],
-      "resolves": ["chicago/4d/data/research/directories/fergus_1843_crosswalk_1835.json"]
+      "command": [
+        "python3",
+        "tools/crosswalk_fergus_1843.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/fergus_1843_crosswalk_1835.json"
+      ]
     },
     {
-      "command": ["python3", "tools/crosswalk_norris_1844.py"],
-      "resolves": ["chicago/4d/data/research/directories/norris_1844_crosswalk_1835.json"]
+      "command": [
+        "python3",
+        "tools/crosswalk_norris_1844.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/norris_1844_crosswalk_1835.json"
+      ]
     },
     {
       "why": "The church rolls, rebuilt from their transcribed records. T-0962 found second_presbyterian's 83 matched rows this morning; the count moves whenever the town gains a card the roll reaches, which is exactly the kind of drift two slices produce.",
-      "command": ["python3", "tools/read_second_presbyterian.py", "--build"],
-      "resolves": ["chicago/4d/data/research/church/second_presbyterian_crosswalk.json"]
+      "command": [
+        "python3",
+        "tools/read_second_presbyterian.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/church/second_presbyterian_crosswalk.json"
+      ]
     },
     {
       "why": "The Second Presbyterian roll's spend, after the crosswalk it spends.",
-      "command": ["python3", "tools/spend_second_presbyterian_roll.py"],
-      "resolves": ["chicago/4d/data/research/church/second_presbyterian_roll_spend_1835.json"],
-      "verify": ["python3", "tools/spend_second_presbyterian_roll.py", "--check"]
+      "command": [
+        "python3",
+        "tools/spend_second_presbyterian_roll.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/church/second_presbyterian_roll_spend_1835.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_second_presbyterian_roll.py",
+        "--check"
+      ]
     },
     {
-      "command": ["python3", "tools/read_st_cyr_register.py", "--build"],
+      "command": [
+        "python3",
+        "tools/read_st_cyr_register.py",
+        "--build"
+      ],
       "resolves": [
         "chicago/4d/data/research/church/st_cyr_crosswalk.json",
         "chicago/4d/data/research/church/crosswalk.json",
@@ -53,13 +102,26 @@
     },
     {
       "why": "The land-sale crosswalk folds resident_rulings.json — HAND-AUTHORED, and refused above — onto the deposit. The crosswalk is a derivation of the two; the rulings are not.",
-      "command": ["python3", "tools/read_land_sales.py", "--build"],
-      "resolves": ["chicago/4d/data/research/land_sales/resident_crosswalk.json"],
-      "verify": ["python3", "tools/read_land_sales.py", "--check"]
+      "command": [
+        "python3",
+        "tools/read_land_sales.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/land_sales/resident_crosswalk.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/read_land_sales.py",
+        "--check"
+      ]
     },
     {
       "why": "The spends run AFTER their crosswalks, because a spend reads the crosswalk it is spending.",
-      "command": ["python3", "tools/spend_directories.py"],
+      "command": [
+        "python3",
+        "tools/spend_directories.py"
+      ],
       "resolves": [
         "chicago/4d/data/research/directories/spend_crosswalk_1835.json",
         "chicago/4d/data/residents/directories.json"
@@ -67,103 +129,250 @@
     },
     {
       "why": "Norris's 1844 businesses, dated back to the window.",
-      "command": ["python3", "tools/date_norris_1844_businesses.py"],
-      "resolves": ["chicago/4d/data/research/directories/norris_1844_businesses_1835.json"],
-      "verify": ["python3", "tools/date_norris_1844_businesses.py", "--check"]
+      "command": [
+        "python3",
+        "tools/date_norris_1844_businesses.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/norris_1844_businesses_1835.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/date_norris_1844_businesses.py",
+        "--check"
+      ]
     },
     {
       "why": "The later Fergus lists' spend, after the directory crosswalks it reads.",
-      "command": ["python3", "tools/spend_fergus_1839_later_lists.py"],
-      "resolves": ["chicago/4d/data/research/directories/fergus_1839_later_spend_1835.json"],
-      "verify": ["python3", "tools/spend_fergus_1839_later_lists.py", "--check"]
+      "command": [
+        "python3",
+        "tools/spend_fergus_1839_later_lists.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/fergus_1839_later_spend_1835.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_fergus_1839_later_lists.py",
+        "--check"
+      ]
     },
     {
-      "command": ["python3", "tools/spend_land_sales.py"],
-      "resolves": ["chicago/4d/data/research/land_sales/resident_spend_1835.json"],
-      "verify": ["python3", "tools/spend_land_sales.py", "--check"]
+      "command": [
+        "python3",
+        "tools/spend_land_sales.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/land_sales/resident_spend_1835.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_land_sales.py",
+        "--check"
+      ]
     },
     {
       "why": "The obituary crosswalk: the old-settlers death notices adjudicated against the residents layer, on the same footing as the directory crosswalks above.",
-      "command": ["python3", "tools/read_fergus_obits.py", "--build"],
-      "resolves": ["chicago/4d/data/research/old_settlers/death_notices_crosswalk_1835.json"],
-      "verify": ["python3", "tools/read_fergus_obits.py", "--check"]
+      "command": [
+        "python3",
+        "tools/read_fergus_obits.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/old_settlers/death_notices_crosswalk_1835.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/read_fergus_obits.py",
+        "--check"
+      ]
     },
     {
       "why": "The 1835 business register, compiled from the newspaper corpus.",
-      "command": ["python3", "tools/compile_register.py", "--build"],
-      "resolves": ["chicago/4d/data/research/newspapers/register_1835.json"],
-      "verify": ["python3", "tools/compile_register.py", "--check"]
+      "command": [
+        "python3",
+        "tools/compile_register.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/newspapers/register_1835.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/compile_register.py",
+        "--check"
+      ]
     },
     {
       "why": "The resident-research synthesis, downstream of the crosswalks and read by the ladder.",
-      "command": ["python3", "tools/synthesize_resident_research.py"],
+      "command": [
+        "python3",
+        "tools/synthesize_resident_research.py"
+      ],
       "resolves": [
         "chicago/4d/data/research/residents/synthesis_2026_09_02.json",
         "chicago/4d/docs/RESEARCH/resident-household-synthesis-2026-09-02.md"
       ],
-      "verify": ["python3", "tools/synthesize_resident_research.py", "--check"]
+      "verify": [
+        "python3",
+        "tools/synthesize_resident_research.py",
+        "--check"
+      ]
     },
     {
       "why": "The cross-domain consolidation reads every crosswalk above, so it runs after all of them.",
-      "command": ["python3", "tools/consolidate_resident_evidence.py", "--build"],
+      "command": [
+        "python3",
+        "tools/consolidate_resident_evidence.py",
+        "--build"
+      ],
       "resolves": [
         "chicago/4d/data/research/residents/identity_master.json",
         "chicago/4d/data/research/residents/source_coverage.json",
         "chicago/4d/data/research/residents/grading_proposal.json",
         "chicago/4d/data/research/residents/ladder_coverage.json"
       ],
-      "verify": ["python3", "tools/consolidate_resident_evidence.py", "--check"]
+      "verify": [
+        "python3",
+        "tools/consolidate_resident_evidence.py",
+        "--check"
+      ]
     },
     {
       "why": "REBUILD ONLY, resolves nothing — and the ordering here was learned the hard way on PR #1055. mint_civic_residents writes 486 resident CARDS from the ladder, and consolidate moves the inputs it reads: built before consolidate it still differed on two cards, and only converged when re-run after it. Its outputs are resident cards, which a run may have meant to change by hand, so a conflict in one is never cleared by this file.",
-      "command": ["python3", "tools/mint_civic_residents.py", "--build"],
+      "command": [
+        "python3",
+        "tools/mint_civic_residents.py",
+        "--build"
+      ],
       "resolves": [],
-      "verify": ["python3", "tools/mint_civic_residents.py", "--check"]
+      "verify": [
+        "python3",
+        "tools/mint_civic_residents.py",
+        "--check"
+      ]
     },
     {
       "why": "The duplicate-cluster ledger, rebuilt from the town and the merge rulings — it runs after mint because it reads the cards mint writes. `--candidates` and NOT `--apply`: --apply performs the card merges and rewrites resident cards (tested on a clean dev, it modified hh_kinzie_john_h.json), which is a judgement being carried out and never something a merge resolution may do on its own. --candidates writes this one ledger and nothing else. Added after the first real use of this manifest left check.sh red on `town_card_candidates.json does not re-derive`.",
-      "command": ["python3", "tools/consolidate_town_cards.py", "--candidates"],
-      "resolves": ["chicago/4d/data/research/residents/town_card_candidates.json"],
-      "verify": ["python3", "tools/consolidate_town_cards.py", "--check"]
+      "command": [
+        "python3",
+        "tools/consolidate_town_cards.py",
+        "--candidates"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/residents/town_card_candidates.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/consolidate_town_cards.py",
+        "--check"
+      ]
     },
     {
       "why": "data/residents/index.json — the town's index and its `merged` redirect table, rebuilt from the cards. The single most frequent blocker in the laps of 2026-09-10/11: it was named in nine of the five laps' refusals, more than any other file.",
-      "command": ["python3", "tools/rebuild_resident_index.py", "--write"],
-      "resolves": ["chicago/4d/data/residents/index.json"],
-      "verify": ["python3", "tools/rebuild_resident_index.py", "--check"]
+      "command": [
+        "python3",
+        "tools/rebuild_resident_index.py",
+        "--write"
+      ],
+      "resolves": [
+        "chicago/4d/data/residents/index.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/rebuild_resident_index.py",
+        "--check"
+      ]
     },
     {
       "why": "The ladder's spend, which reads the consolidated evidence above it.",
-      "command": ["python3", "tools/spend_ladder_rungs.py", "--build"],
-      "resolves": ["chicago/4d/data/research/residents/ladder_spend.json"],
-      "verify": ["python3", "tools/spend_ladder_rungs.py", "--check"]
+      "command": [
+        "python3",
+        "tools/spend_ladder_rungs.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/residents/ladder_spend.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_ladder_rungs.py",
+        "--check"
+      ]
     },
     {
       "why": "The liberties register, compiled from the sidecars and the town — every liberty the reconstruction takes, with its reason.",
-      "command": ["python3", "tools/compile_liberties.py"],
-      "resolves": ["chicago/4d/data/liberties.json"],
-      "verify": ["python3", "tools/compile_liberties.py", "--check"]
+      "command": [
+        "python3",
+        "tools/compile_liberties.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/liberties.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/compile_liberties.py",
+        "--check"
+      ]
     },
     {
       "why": "The scene compiles from the residents layer, so it runs last but one.",
-      "command": ["python3", "tools/compile_scene.py", "--all"],
-      "resolves": ["chicago/4d/data/sidecars/1835/people.json"]
+      "command": [
+        "python3",
+        "tools/compile_scene.py",
+        "--all"
+      ],
+      "resolves": [
+        "chicago/4d/data/sidecars/1835/people.json"
+      ]
     },
     {
       "why": "The town census counts what stands and who is housed, and it is its OWN tool — compile_scene --all does not write it. Found by --prove, which is the only thing that asks whether a step writes what it claims.",
-      "command": ["python3", "tools/town_census.py"],
-      "resolves": ["chicago/4d/data/town_census.json"],
-      "verify": ["python3", "tools/town_census.py", "--check"]
+      "command": [
+        "python3",
+        "tools/town_census.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/town_census.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/town_census.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The agency relation compiles from the gazetteer, the street-face adoptions and the households, so it runs after the residents layer is rebuilt and before the audit that reads none of it. The card fetches the output, so a stale one is a relation missing from two cards rather than a number being wrong.",
+      "command": [
+        "python3",
+        "tools/compile_agencies.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_agencies.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/compile_agencies.py",
+        "--check"
+      ]
     },
     {
       "why": "The final audit package re-derives from the residents layer and is the last thing downstream of all of it.",
-      "command": ["python3", "tools/export_resident_audit.py", "--build"],
+      "command": [
+        "python3",
+        "tools/export_resident_audit.py",
+        "--build"
+      ],
       "resolves": [
         "chicago/reference/resident-research/final/audit/resident_audit_master.xlsx",
         "chicago/reference/resident-research/final/audit/resident_audit_master.csv",
         "chicago/reference/resident-research/final/audit/README.md"
       ],
-      "verify": ["python3", "tools/export_resident_audit.py", "--check"]
+      "verify": [
+        "python3",
+        "tools/export_resident_audit.py",
+        "--check"
+      ]
     }
   ]
 }
