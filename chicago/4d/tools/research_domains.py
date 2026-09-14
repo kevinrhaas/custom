@@ -167,9 +167,21 @@ DOMAINS = {
 # need and the papers never did: `landscape` for what a reminiscence says the ground
 # looked like, `appearance` for what a building or a person looked like, `household`
 # for a census line's composition, and `civic` for an office, a poll or an ordinance.
+#
+# AND ONE THAT NAMES NO SUBJECT AT ALL (T-1023). `turned_line` is a printed line that
+# is part of the record ABOVE it and not a record — the tail of an entry too long for
+# the measure, which this scan un-indented so the reader took it for an entry of its
+# own and filed `. -house Clark street (See card)` as a man's surname. Its claim exists
+# for one reason: claim ids are allocated by position, they are cited by id from the
+# identity layer and from the second-hand comparison, and folding the line away would
+# renumber every entry after it. So the id keeps its place, the line is read with the
+# entry above, and the claim says what it is. A pass that reads people must skip it,
+# and the vocabulary is where it learns to. There is exactly one in the corpus and the
+# reading tool's --self-test holds it to the text.
 KINDS = ("person", "business", "building", "street", "infrastructure",
          "event", "shipping", "price", "notice",
-         "landscape", "appearance", "household", "civic")
+         "landscape", "appearance", "household", "civic",
+         "turned_line")
 
 # Ruling 2, unchanged from the papers. `transcription_mediated` is a reading made
 # through somebody else's transcription; `scan_verified` is a reading made off the

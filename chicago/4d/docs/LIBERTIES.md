@@ -10516,9 +10516,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 405 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 414 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 405 people
+**Scope:** `residents.persons[civic_mint]` — 414 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10621,6 +10621,16 @@ the ladder reaches nothing, and a container the ladder cannot reach is not minte
 refusals are not dropped — each is carried in `identity_master.json` under evidence class
 `newspaper_out_of_town`, with the printed place that decided it, so the arithmetic is on the
 record and a later page that puts one of these men at Chicago after all can overturn it. T-1120 took it to 405 on 2026-09-14, and it is the FIRST RISE this entry records: every move above it was a card the town was holding twice, or a man who was never here. This one is a man the town was holding once and should have been holding twice. M2 — the rule that attaches an initial-only forename to the one full forename of that surname — compared the LEADING initial and nothing else, so `B. S. Sherman` of the 1840 census went onto `Sherman, Benj. F.` across a middle initial both readings print and neither shares. Forty readings folded that way; R7 refuses them now, on R4's own reasoning one position to the right, and four of the forty were the only evidence inside the scene window that reached a minted container, so four containers stand where one did. Two of the four cost a NAME to gain a man: the 1835 poll list's `King, J. D.` had been carrying John Lyle King into the town, and the newspapers' `J. F. Wight` had been carrying J. Ambrose Wight, so each of those two now stands under the initials his own source prints instead of under a fuller name a fold supplied. That is the trade this liberty is declaring, and it is the conservative direction: a name the page does not set is not an improvement on one it does. The number this liberty declares is the number of containers standing, and it will move again as the remaining rulings are made.
+
+**And nine more, on an 1834 committee roll (T-0997, 2026-09-13).** The Chicago Democrat of 29 October 1834 prints the roll of a committee a town meeting appointed against gambling, and the column it stands in is the worst OCR in the run — two printed columns cut and interleaved line by line — so no reading pass had ever taken a claim off that page. Read at the character level, it names twenty-one men in the roll and fourteen more in the report around it. Nine of them the ladder had never seen, so this entry's count rises from 405 to 414 — the same conservative direction as T-1120's four, and for the same reason: men the town was not holding at all. Daniel Whittier, E. B. Mosely, H. Ven de Bogart, L. C. Saxton, L. Clarke, G. South, G. Springs, J. M. Marksall and William George Sherman each get a container here and nowhere else. Three others the town already carried under fuller names and were folded on written rulings the same day — W. H. Kennicott onto the surgeon dentist, C. L. Harmon onto Charles Loomis Harmon of the dry-goods house, J. S. Wright onto John S. Wright — so the rise is nine and not twelve. AND FIVE MORE NAMES ON THAT ROLL ARE DELIBERATELY NOT HERE: the crop
+cuts `A. N. Ful…`, `M. M'Cle…`, `H. G. Hub…`, `… Hau…` and `Hon. R. J. …` in the middle of
+the surname, and a name the page stops halfway through is recorded as a position in the
+claim and given no entity, so it mints nobody. That refusal is not only editorial. It was
+measured: `tools/consolidate_resident_evidence.py` splits a name into surname and forename
+with the brackets already stripped, so `H. G. Hub[…]` reaches `mint_civic_residents.py` as
+the plain name `H G Hub`, its own bracketed-as-uncertain refusal cannot fire on it, and the
+town gains a card headed `The Hub household`. Five such cards were minted and deleted while
+this ticket was being written.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
