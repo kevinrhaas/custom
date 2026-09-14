@@ -233,5 +233,32 @@ console.log('merge-ready.sh — merges what GitHub calls clean, and nothing else
   check('…and still offers a manual dispatch', /^\s{2}workflow_dispatch:/m.test(y));
 }
 
+/* 12. THE WATCH LOOP MUST SURVIVE A SETTLED QUEUE, which is the success case.
+ *
+ * GitHub runs a `run:` block as `bash --noprofile --norc -eo pipefail {0}`, so
+ * `-e` is on before the script's first line and a `set -uo pipefail` inside does
+ * NOT turn it off. The loop counts how many pull requests are still `blocked`
+ * with `grep -c`, and `grep -c` exits 1 when it counts nothing — so the step
+ * died exactly when nothing was left waiting.
+ *
+ * Runs 2 and 3 on 2026-09-14 did their whole job, printed
+ * `merged=0 waiting-on-checks=0 needs-a-lap=3`, and THEN exited 1. Run 1 passed
+ * only because something was still gating. A failure that fires on success and
+ * hides on failure is the worst shape available, so it is asserted here.
+ *
+ * Third time this GitHub default has bitten in one day: polecat-platform #165
+ * aborted a janitor sweep on it, and pr-lap.sh's `PRS=$(...)` is its mirror. */
+{
+  const wf = path.resolve(path.dirname(new URL(import.meta.url).pathname),
+                          '..', '..', '..', '.github', 'workflows',
+                          'chicago-4d-merge-ready.yml');
+  const y = readFileSync(wf, 'utf8');
+  const body = y.split('\n').filter((l) => !/^\s*#/.test(l)).join('\n');
+  check('the watch loop disarms the -e GitHub turns on for it',
+        /^\s*set \+e\s*$/m.test(body));
+  check('…and the blocked-count never fails the step when it counts nothing',
+        /grep -c '\^blocked\$' \|\| true/.test(body));
+}
+
 console.log(failures ? `\n${failures} FAILED` : '\nall passed');
 process.exit(failures ? 1 : 0);
