@@ -198,6 +198,36 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# --- Owner, 2026-09-14, on Dearborn Street in the /dev/ walk: "we have a sign hovering and goods no
+# --- building, what happened to the building" — then, on a reload, "ok its there now must have been
+# --- a load anomaly". The building IS sound: the record, the footprint, both baked GLBs, the asset
+# --- manifest, the renderer's own index and the roof reconciliation were all checked before the
+# --- reload and all carry it, and it is in no exclusion list. What is WRONG is what the scene did
+# --- while the asset was missing. The signboard is a function of a wall — anchored on the east face
+# --- to the centimetre (E 679.70 + 7.62 depth = 687.32, the sign's own easting), 2.55 m up a wall
+# --- height taken "from the record", and moved 5.03 m along the front to clear the door and window.
+# --- When the wall did not arrive the board drew anyway, on nothing, and the goods with it. A failed
+# --- load degrades into a FALSE SCENE rather than an absence, and nothing reported the error — so
+# --- there is no way to know whether this is one building once or many buildings often.
+
+T-1126 — A building that fails to load leaves its signboard hanging in the air and its goods in the grass: the scene draws furniture whose host is missing, and nothing reports the error
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
@@ -226,9 +256,7 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 
 
 
-T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
 T-1112 — generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it
-T-1111 — voter_crosswalk.json is stale against read_voter_lists.py, and 35 of 345 voters stand unmatched behind it
 T-1110 — st_marys_baptisms_crosswalk.json is hand-edited away from what read_st_marys_baptisms.py rebuilds
 T-1109 — pass_14_findings.json no longer matches what complete_resident_research_pass_14.py re-derives
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
@@ -305,3 +333,4 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
 T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
+

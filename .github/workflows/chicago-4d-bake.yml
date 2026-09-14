@@ -106,7 +106,101 @@ permissions:
 # a bake whose mirror fails the smoke leaves its work recoverable on a branch
 # without ever advertising it as ready to merge.
 jobs:
+  # IS THIS BAKE THIS BRANCH'S BUSINESS? A path filter cannot ask that, and the
+  # difference is seven simultaneous Blender bakes.
+  #
+  # `on.push.paths` matches the files a PUSH carries, not the files a branch
+  # OWNS. The PR lap merges `dev` into every open pull request, so the moment
+  # `dev` takes one change under `chicago/4d/generators/**`, the lap posts that
+  # same change to every branch and each push matches the filter. Measured
+  # 2026-09-14: #1319 changed generators/terrain_gen.py, dev took it, the lap
+  # swept, and SEVEN bakes started at once — 567 through 572 plus dev's own —
+  # each a full ~20-minute Blender run rebuilding the same assets. Six were
+  # cancelled by hand; `dev`'s own bake, the only authoritative one, sat QUEUED
+  # behind the branch copies, and PR lap 320 queued behind all of them while
+  # four pull requests sat `dirty` waiting for exactly that lap.
+  #
+  # This is the failure the header above records from 2026-08-14 — "Seven
+  # accumulated in one morning ... each a complete regeneration of the same
+  # binary assets, mutually conflicting" — arriving through a different door.
+  # `data/**` was removed from the trigger then. The door left open was the lap,
+  # and it only became load-bearing when the lap got fast: while a lap took ~7
+  # minutes per PR a generators change reached branches in a trickle, and since
+  # #1329 it reaches all of them in under a minute.
+  #
+  # THE QUESTION THE FILTER CANNOT ASK, asked here instead: does this branch's
+  # OWN diff against `dev` touch a trigger path? `git diff dev...HEAD` is the
+  # three-dot form — what this branch changed since it diverged, which is the
+  # branch's business and not what the lap posted to it. Verified against the
+  # live queue the day this was written:
+  #
+  #   #1257  2 files (generators/terrain_gen.py, terrain_inputs.py)  -> bakes
+  #   #1242  0                                                       -> skips
+  #   #1268  0                                                       -> skips
+  #   #1330  0                                                       -> skips
+  #
+  # and #1257 is exactly the one that needs it: it regenerated a heightfield and
+  # its meshes cannot be rebuilt anywhere else.
+  #
+  # IT IS A SEPARATE JOB SO THE EXPENSIVE ONE NEVER STARTS. A step inside `bake`
+  # would already hold a runner, which is the resource this exists to protect.
+  warranted:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      bake: ${{ steps.q.outputs.bake }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: q
+        env:
+          BASE: dev
+          EV: ${{ github.event_name }}
+          REF: ${{ github.ref_name }}
+        run: |
+          set -uo pipefail
+          # An explicit ask is always honoured: a dispatch names what it wants and
+          # the nightly schedule is the whole point of the workflow. Only `push`
+          # is filtered, because only `push` fans out.
+          if [ "$EV" != "push" ]; then
+            echo "bake=1" >> "$GITHUB_OUTPUT"
+            echo "::notice::baking — event is $EV, not a push"; exit 0
+          fi
+          # `dev` itself always bakes. It is the authoritative copy, and it is the
+          # run whose output every branch would otherwise duplicate.
+          if [ "$REF" = "$BASE" ]; then
+            echo "bake=1" >> "$GITHUB_OUTPUT"
+            echo "::notice::baking — this is $BASE"; exit 0
+          fi
+          git fetch origin "$BASE" -q || true
+          CHANGED=$(git diff --name-only "origin/$BASE...HEAD" -- \
+                      'chicago/4d/generators/**' \
+                      'chicago/4d/tools/bake.sh' \
+                      '.github/workflows/chicago-4d-bake.yml' 2>/dev/null)
+          RC=$?
+          # FAIL OPEN, the same way --check-base does. If the diff cannot be taken
+          # — a shallow clone, a base that never fetched — the safe answer is to
+          # bake: a redundant bake costs twenty minutes, a skipped one that was
+          # needed ships stale meshes and the staleness gate then blames the PR.
+          if [ "$RC" -ne 0 ]; then
+            echo "bake=1" >> "$GITHUB_OUTPUT"
+            echo "::warning::baking — could not diff against $BASE (exit $RC), so not skipping"; exit 0
+          fi
+          if [ -n "$CHANGED" ]; then
+            echo "bake=1" >> "$GITHUB_OUTPUT"
+            echo "::notice::baking — this branch's own diff against $BASE touches:"
+            printf '%s\n' "$CHANGED" | sed 's/^/  /'
+          else
+            echo "bake=0" >> "$GITHUB_OUTPUT"
+            echo "::notice::SKIPPING — nothing this branch owns under generators/, tools/bake.sh"
+            echo "::notice::or this workflow differs from $BASE. Any generators change here came"
+            echo "::notice::in with the PR lap's merge, and $BASE's own bake covers it."
+          fi
+
   bake:
+    needs: warranted
+    if: needs.warranted.outputs.bake == '1'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     outputs:

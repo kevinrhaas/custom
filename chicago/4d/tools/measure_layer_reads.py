@@ -121,6 +121,30 @@ FIVE ASSERTIONS.
     in the tree fails until it is un-banked with `--update` in the same commit,
     because a repair here is a claim and recording it is part of making it.
 
+6.  **The banked record COUNT is held for flora and fauna and not for residents**
+    (T-1029). Assertion 4 banks each path with the number of records carrying it,
+    and that number went ungated from the day it was written — which is how
+    `residents/manifest:households[].head` came to say 1,338 against a tree of
+    1,284, and `merged[]` 42 against 57, for as long as nobody looked.
+
+    THE DECISION THIS FILE MAKES, because the ticket asked for one either way. A
+    count is a TALLY, not a claim: the claim is assertion 4's, that this figure
+    reaches nothing, and the tally only says how widely. Gating it exactly would
+    fire on every ticket that mints, folds or merges a resident card — 61 of the 94
+    banked paths are `residents/` and the layer is the one thing this project is
+    still actively writing — and the whole remedy for that failure is `--update`. A
+    gate whose only possible response is to re-bank is not a gate; it is a chore
+    that trains people to re-bank without reading, and it would drag a 61-line
+    diff of somebody else's measurement into every research PR, which is the
+    unread-change laundering T-1029 exists to stop.
+
+    `data/flora/` and `data/fauna/` are the opposite case. They are finished
+    research datasets — 154 plant and 139 animal records, unchanged since the day
+    they were banked — so a count that moves there is not growth, it is an edit to
+    a dataset nobody is editing, and it should have to say so. Those counts are
+    held exactly. `COUNTS_NOT_HELD` is where that line is drawn, and a layer that
+    stops being written should come out of it.
+
 WHAT THIS DOES NOT DECIDE. Whether an unread figure should be deleted, wired up
 or declared is three different answers for three different findings, and none of
 them is this parcel's to make — except where somebody has made it, which is what
@@ -145,6 +169,14 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RENDERER = ROOT / "renderers" / "web" / "js"
 BASELINE = ROOT / "tools" / "layer_reads_baseline.json"
+
+# T-1029. The layers whose banked record COUNTS are a dated tally rather than a held
+# number. `data/residents/` is the one layer this project is still writing — cards are
+# minted, folded and merged most weeks — so every one of its 61 banked paths moves for a
+# reason that has nothing to do with what this file asserts. `data/flora/` and
+# `data/fauna/` are finished research datasets: their counts have not moved since the
+# day they were banked, and a move there IS a finding.
+COUNTS_NOT_HELD = {"residents"}
 
 # The renderer, minus the two files that are not renderer code: the changelog is
 # authored prose that happens to be JavaScript (and quotes field names by the
@@ -811,6 +843,19 @@ RECORD_KINDS = ("zone", "manifest", "palette", "household")
 # assertion 4 still fails if a new one appears, and assertion 5 still fails if
 # one of these leaves the data.
 REFUSALS: dict[str, str] = {
+    # T-1056, recovered by T-1029. This refusal was written straight into
+    # layer_reads_baseline.json and never into this table, so `--update` — which
+    # rebuilds the bank from `state["unread"]` and re-attaches a refusal only if it
+    # is HERE — deleted it the first time anybody re-derived the file. Nothing
+    # noticed for two days because nothing re-derived it. A stated refusal is a
+    # judgement somebody made; losing one silently is the expensive direction, so it
+    # is restored here verbatim and the table is now the only place one is authored.
+    "flora/zone:woody_stratum.measured_from": (
+        "A units declaration, not a figure. It states what woody_stratum.establishes_m's "
+        "metres are measured from, for a reader of the record and for tools/validate.py, "
+        "which requires it. A renderer that read it would be a renderer able to convert "
+        "between datums; if it ever disagreed with the heightfield's own, the right "
+        "outcome is this gate failing rather than a silent conversion. T-1056."),
     "residents/manifest:counts.households": (
         "The panel renders one row per household and counts the rows. A tally shown "
         "beside a list it might disagree with is worse than no tally; validate.py holds "
@@ -1230,6 +1275,22 @@ def evaluate(state: dict, bank: dict[str, dict]) -> list[str]:
             f"up, deleted or renamed. Re-run with --update in the commit that did it, so "
             f"the bank records the repair rather than keeping its ghost")
 
+    # 6 — T-1029. THE BANKED RECORD COUNT, held for the two layers that are
+    # finished and deliberately NOT for the one still being written. See assertion 6
+    # in the module docstring for the reasoning; the short of it is that a count is a
+    # tally, not a claim, and gating a tally that moves for a legitimate reason
+    # teaches people to re-bank without reading.
+    for key in sorted(set(bank) & set(state["unread"])):
+        if key.split("/", 1)[0] in COUNTS_NOT_HELD:
+            continue
+        banked, measured = bank[key].get("records"), state["unread"][key]["records"]
+        if banked != measured:
+            problems.append(
+                f"{key} is banked on {banked} record(s) and is on {measured}. This layer is "
+                f"not being written any more, so its unread population moving is a finding "
+                f"and not bookkeeping: say what changed, then re-bank it with --update in "
+                f"the commit that changed it")
+
     # 1 — absolute: assertion 1 is structural. Every figure is either declared or
     # banked, so an unbanked one is assertion 4 above; what is left to check is
     # that the map was applied to something at all.
@@ -1287,6 +1348,9 @@ def self_test() -> int:
 
     clean = evaluate(state, bank)
     cases: list[tuple[str, dict, dict]] = []
+    # Cases that must NOT fire — a deliberate exemption is a claim too, and an
+    # exemption nothing exercises is how one silently stops applying (T-1029).
+    silent: list[tuple[str, dict, dict]] = []
 
     s2 = copy.deepcopy(state)
     s2["ghosts"].append(("flora/zone:cover.matrix_fraction", "zone.coverFractionNobodyWrote"))
@@ -1303,6 +1367,22 @@ def self_test() -> int:
     b5 = copy.deepcopy(bank)
     b5["flora/zone:a_figure_that_left"] = {"records": 1}
     cases.append(("5 a banked figure that left the data", state, b5))
+
+    # T-1029. Assertion 6 is a DECISION as much as an assertion, so both halves of
+    # it are exercised: the held layer must fire and the unheld one must stay
+    # silent. A count gate that quietly spread to `residents/` would be a
+    # 61-path false alarm on every research ticket, and nothing else would notice.
+    held = next(k for k in sorted(bank) if k.split("/", 1)[0] not in COUNTS_NOT_HELD)
+    b6 = copy.deepcopy(bank)
+    b6[held] = {**b6[held], "records": b6[held]["records"] + 7}
+    cases.append((f"6 a banked count that moved in a finished layer ({held})", state, b6))
+
+    unheld = next((k for k in sorted(bank) if k.split("/", 1)[0] in COUNTS_NOT_HELD), None)
+    if unheld:
+        b6b = copy.deepcopy(bank)
+        b6b[unheld] = {**b6b[unheld], "records": b6b[unheld]["records"] + 7}
+        silent.append((f"6 a banked count that moved in a layer still being written "
+                       f"({unheld})", state, b6b))
 
     # A layer nothing declares a read for, opened by the renderer. It used to be
     # `fauna` and ROADMAP K51 gave that layer a read map, at which point the case
@@ -1323,6 +1403,10 @@ def self_test() -> int:
         fired = len(evaluate(s, b)) > len(clean)
         print(f"  {'fires' if fired else 'SILENT'}  {label}")
         ok = ok and fired
+    for label, s, b in silent:
+        fired = len(evaluate(s, b)) > len(clean)
+        print(f"  {'FIRES' if fired else 'quiet'}  {label} — must not fire")
+        ok = ok and not fired
 
     # The two scans are the load-bearing part of assertions 2 and 3, so they are
     # exercised directly: each must be able to say yes AND no.
@@ -1402,7 +1486,12 @@ def main() -> int:
                     "K42 before adding a line. `refused_because` is a STATED REFUSAL "
                     "(T-0021): somebody decided this figure should not reach a visitor "
                     "and wrote down why. It is not a permission and it does not soften "
-                    "any assertion — the entry is banked exactly like every other.",
+                    "any assertion — the entry is banked exactly like every other. The `records` "
+                    "count is HELD EXACTLY for flora and fauna, which are finished "
+                    "datasets, and is a dated tally for residents, which is the layer "
+                    "this project is still writing — see assertion 6 in "
+                    "tools/measure_layer_reads.py for why the line is drawn there "
+                    "(T-1029).",
             "entries": {k: ({**state["unread"][k], "refused_because": REFUSALS[k]}
                              if k in REFUSALS else state["unread"][k])
                         for k in sorted(state["unread"])},
