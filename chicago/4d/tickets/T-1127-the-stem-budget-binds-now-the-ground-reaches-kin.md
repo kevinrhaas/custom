@@ -48,3 +48,9 @@ and a check that the north edge is thinned and not truncated.
 **Acceptance:** the loader check passes at both viewports; the wood reaches the north edge
 of the enlarged field; the stem budget is unchanged; and the smoke says which level bound,
 as it does now.
+
+**Seen again by T-0987 stretch 14's lap, 2026-09-14**, on a third branch and a different tree
+(`sha256:f5bbf9a390817b94`), so it is dev's and not any one branch's: mobile part 3 and desktop
+parts 3, 12 and 13 all carry it, the message word for word — mobile `the light stem budget
+bound at 1110 trees`, desktop `the full stem budget bound at 3030 trees`. It is the only red on
+those three legs; 511 other checks pass. The readings are filed in `tools/dev-smoke-state.json`.

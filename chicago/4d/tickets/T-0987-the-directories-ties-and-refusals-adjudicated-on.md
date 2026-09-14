@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-09
 closed: null
 pr: null
-claimed_by: run 9/13/2026, 8:50:01 AM CT
+claimed_by: run 9/13/2026, 1:20:54 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34760796797
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34773945767
 ---
 
 **OWNER, 2026-09-10: "Directories as a succession ticket at the end of band 1."** This is the
@@ -1729,6 +1729,198 @@ whose scan is best. No successor ticket is filed: `tickets/README.md` puts the s
 the run that CLOSES the programme, and the pools are not empty. This ticket stays open and
 is its own cursor.
 
+
+## Stretch 14 — the whole printed name, which nothing had ever read past its first letter (T-0987, 2026-09-13)
+
+Stretch 13 named this stretch: "the 112 ties first — 37 in Fergus 1839, 40 in Fergus 1843, 24
+in Norris 1844, 11 in the advertiser — and a tie is one page-read from a match." **No page was
+read.** Every one of the 112 could be ruled off text this repository has held since the volumes
+were transcribed, and the reason they were standing is the same in all four files.
+
+### The hole, stated once
+
+The crosswalks make a candidate on SURNAME PLUS FIRST INITIAL. Everything the compositor set
+after that letter — `Byram` against a `Byra`, `John S. C.` against a bare `John`, `Elston,
+Daniel T.` beside `Elston, Daniel` — was read, transcribed, committed and never weighed. Two
+shapes of tie come out of that, and they are one piece of arithmetic with the arguments
+swapped:
+
+* **AMBIGUOUS** — one person of 1835, several printed entries under the initial.
+* **CONTESTED** — one printed entry, several people of 1835 under the initial.
+
+T-0987 stretch 9 built the further-initial comparison **for the first of the two only**, and it
+compares only the initials BOTH readings set, so a reading that stops early is a silence and
+refuses nothing: `H. B. Clarke` against `Clarke, Dr. Henry` and `Clarke, Henry B.` sets a B that
+neither entry contradicts, because the first prints no second word at all. **Nothing in the
+chain had ever run on the contest axis.** Not one line in four crosswalks asks which of two
+people of 1835 a printed entry names; the collision is detected, filed, and answered "neither".
+
+### The ruling — `tools/named_by_the_page.py`, imported by all four
+
+A printed forename and a reading of 1835 are THE SAME NAME when they set the SAME NUMBER OF
+WORDS and agree word by word. Where exactly one candidate is that name, and more closely than
+any rival, the page names it. The fits are RANKED, and the ranking is the whole of it:
+
+```
+  0  letter for letter                     Byram against a printed Byram
+  1  a contraction or a one-letter         Russel against Russell, Byra against Byram
+     spelling variant — na.agrees' own
+     tolerance, not a new one
+  2  a single initial for a whole word     R. against Russell
+```
+
+An initial is the weakest because an initial fits every man of the letter. Run without the
+ranking the clause named `Heacock, jr., R. E., civil engineer, on the canal` for **Russel E.
+Heacock** — the attorney, Chicago's first lawyer — over `Heacock, Russell E., att'y, justice of
+peace, Adams cor. Clark`, on nothing but a doubled L. It was caught before it landed and the
+ranking is what fixes it.
+
+**The word-count test makes the rule fire on what a reading SAYS and never on what it omits.**
+`Hogan, John S. C.` sets three words, the town's John S. C. Hogan sets those three and its bare
+John Hogan sets one: the fit is the reading that SPOKE and was right, never the one that was
+silent. That is the safe direction of stretch 9's own warning. `Cook, John, tailor` against
+`J. B. Cook`, baker, still decides nothing — one word against two, no fit, the tie stands.
+
+**It is not a discriminator.** T-0696 rules that a trade may narrow a tie, a premises may not,
+and a narrowed tie is filed `discriminated` and never promoted. Nothing here weighs a trade, a
+premises or a year. This is the MATCHING RULE, which was always about the name, applied to the
+whole of the name instead of its first letter — so a single survivor is a match by the
+crosswalk's own rule, exactly as `narrow_by_further_initials` already works.
+
+### Three things it refuses to do, and each cost more than it gave
+
+1. **A WIFE IS NOT HER HUSBAND — R6 arriving where it was always true.** The identity layer
+   holds `Mrs Rufus Brown` apart from `Rufus Brown` (R6, T-0723) because the honorific strip
+   leaves the husband's forename tokens on both readings. The crosswalks strip titles the same
+   way and had no such rule, so the town's wife and the town's husband met `Brown, Rufus B.,
+   warehouseman, Bristol & Porter` together and were filed as a CONTEST — a man contesting a
+   printed line with his own wife. **R6's guard is kept as it stands: one body has to set both
+   readings.** Fergus 1843 prints `Brown, Rufus B.` at e0458 and `Brown, Mrs. Rufus B., dress
+   and cloak maker, 189 Lake, up stairs` at e0459, so the volume separates them and each takes
+   her own; **Mrs Seth Johnson** keeps her boarding-house and **Capt. Seth Johnson** the custom
+   house. Where no candidate agrees the clause refuses NOTHING, which is what keeps it off
+   `Taylor, Mrs. C.` — T-0960 has already ruled that no page holds her pair, and her tie stands.
+2. **A SON IS NOT HIS FATHER.** `name_agreement.tokens` strips `jr.` before anything is
+   compared, so Fergus 1843's `Heacock, Russel E., jr., clerk, Charles Walker & Co.` arrived
+   letter for letter identical to the town's Russel E. Heacock and beat `Heacock, Russel
+   Easton` on the spelling. Where the page separates two generations and the reading of 1835
+   says nothing about which it holds, the comparison DECLINES — choosing the unsuffixed one on
+   the town's silence is the move stretch 9 refuses by name. Heacock keeps no 1843 line rather
+   than his son's; `King, John, jr., fancy dry goods` is left standing for the same reason.
+   Only JR/SR are weighed: `namesake.suffix_of` reads ESQ and 2D as well, and neither separates
+   a father from a son.
+3. **A PAGE THAT SETS FEWER WORDS THAN A READING SEPARATES NO TWO READINGS** — and this is the
+   one place the two axes are not the same rule. Where the candidates are the entries of ONE
+   VOLUME, a word one sets and another does not is the volume's own distinction: R6 states the
+   principle and this borrows it, *a directory does not enter one person twice under two
+   spellings*, so Fergus 1839 printing both `Elston, Daniel, brickmaker, Elston road` and
+   `Elston, Daniel T., student` has separated two men and the town's bare Daniel Elston is the
+   bare entry. Where the candidates are READINGS OF 1835 that guarantee is gone, and **this
+   programme is the reason** — the town demonstrably holds one man on two cards, `Byra` and
+   `Byram` King, `Ordemus` and `Orsemus` Morrison. So on the contest axis a page setting fewer
+   words than some reading decides nothing: Norris's advertising card for `E. Smith` fits
+   **Elded Smith** exactly and **E. Kirby Smith** not at all, and the only thing standing
+   between them is a word the compositor did not set. Caught and refused before it landed.
+
+And the unreadable stops everything: stretch 9's stroke artefacts (`Collins, Jas. PL`, `Anson
+IT`) make the whole comparison DECLINE rather than fail, which is the direction that invents
+nobody.
+
+### Measured, before and after
+
+| | 1839 | 1843 | 1844 | 1844 ad | total |
+|---|---|---|---|---|---|
+| matches | 146 → **165** | 118 → **135** | 103 → **112** | 18 → **19** | 385 → **431** |
+| ambiguous | 25 → **10** | 27 → **15** | 14 → **9** | 3 → **3** | 69 → **37** |
+| contested | 12 → **2** | 13 → **2** | 10 → **2** | 8 → **6** | 43 → **12** |
+| **ties standing** | 37 → **12** | 40 → **17** | 24 → **11** | 11 → **9** | **112 → 49** |
+| initial-absent refusals | 260 | 323 | 315 | 124 | 1,022 — **unmoved** |
+
+**Forty-six matches, and not one of them is a new reading**: every one is a printed line this
+repository already held, ruled onto the person it already named. The refusals are filed in full
+— `whole_name_refusals`, `female_honorific_refusals`, `not_named_by_the_page`,
+`held_off_a_husbands_entry` — each naming its clause, and a declined comparison is recorded on
+the tie as `whole_name_declined` so that a decision NOT to act reads like the reading it is.
+
+### What a reader can see
+
+**John S. Wright**, founder of the Prairie Farmer, takes his forwarding business onto **North
+Water Street** off `Wright, John S., forwarding commission merchant, N. Water st` — the
+eighteenth business standing on a back-projected face, carried four years, the narrowest gap in
+the set, and **L218 is restated 17 → 18** with the reason. The town's bare **John Wright** takes
+`Wright, John, Michigan ave. cor. Madison st` by the same clause, which is why the stretch adds
+one face rather than moving one. On the cards: **Henry B. Clarke** at Michigan Avenue and 16th,
+against a `Clarke, Dr. Henry` of 159 Lake; **Ira Couch** the hotel-keeper at the Tremont House,
+against his son boarding there; **Major James B. Campbell**'s real-estate office on North Clark
+against two other James Campbells of the same page; **William Hubbard Brown**, cashier at 8
+LaSalle and school agent, whose 1843 and 1844 entries had both been ambiguous three ways.
+
+**And two heads on the 1840 sheets stop being guesses.** `crosswalk_census_1840_heads.py`
+adjudicates against these same pools, so **Samuel C. Jackson** (printed 207, line 5) and **Chas
+Taylor** (printed 224, line 13) move `candidate → matched`: 13 matched → 15. Nothing was
+back-projected from 1840 and no grade moved.
+
+### Clause 3, the write ceiling
+
+`measure_research_spend.py`, whole town: directories **987 reached, 987 judgeable, 987 on a
+card, 0 unwritten** (dev: 941/941/941/0 measured on the same tree before the chain ran), town
+total **0 unwritten**. The `unwritten_ceiling` for directories is tightened 1 → 0 in the same
+commit so it cannot regrow, and the unspent ceiling 7,315 → 7,279. The chain was iterated to a
+fixed point behind the readings: `spend_directories`, `consolidate_resident_evidence --build`,
+`mint_civic_residents --build` and `--regrade`, the six other spend passes,
+`spend_ladder_rungs --build`, `qualify_later_trades`, both back-projections,
+`crosswalk_census_1840_heads --build`, `consolidate_town_cards --apply`,
+`synthesize_resident_research`, `export_resident_audit --build` and `compile_scene --all`.
+**0 regraded** (`mint_civic_residents --regrade`), nothing minted, `docs/LIBERTIES.md` gains
+nothing invented.
+
+### The gates
+
+`tools/named_by_the_page.py --self-test` is NEW and wired into `check.sh`: 22 printed names
+weighed word for word, the ranking that keeps the attorney off his son's entry, the two-fits
+refusal, both directions of R6, both directions of the suffix clause, and the one-body guard in
+both of its states. `./tools/check.sh` — **382 steps, none red**.
+
+### The pools after this stretch
+
+```
+                        1839        1843        1844      1844 ad     total
+  ties                37 -> 12    40 -> 17    24 -> 11    11 ->  9   112 -> 49
+  initial-absent     260 -> 260  323 -> 323  315 -> 315  124 -> 124  1022 -> 1022
+  matches            146 -> 165  118 -> 135  103 -> 112   18 ->  19   385 -> 431
+```
+
+**Stretch 15 is the 1,022 initial-absent refusals, beginning with Fergus 1843**, whose scan is
+the best of the four and for which stretch 12's second hand — the Internet Archive's OCR of the
+printed volume — is already committed and already used twice. Those 1,022 are now the largest
+pool in the programme by a factor of twenty, and the 49 ties that remain are each one of three
+things the page cannot settle: two entries fitting equally (`Noble, Mark` twice, `Cook, John`
+twice), a page saying less than the readings offered it (`Clark, John` between a John A. and a
+John K.), or a generational suffix this town's record does not answer. No successor ticket is
+filed: `tickets/README.md` puts the succession on the run that CLOSES the programme, and the
+pools are not empty. This ticket stays open and is its own cursor.
+
+### Stretch 14 re-measured on the merged tree (the lap of 2026-09-14)
+
+The table above is a reading of the tree the stretch was worked on. `dev` moved seventy-odd
+commits under the branch before it landed — T-1110, T-1122 and T-1123 among them — and the
+residents layer gained cards, so the crosswalks were re-derived on the merged tree and the
+pools are restated here rather than edited above:
+
+```
+                        1839        1843        1844      1844 ad     total
+  matched              165 -> 163  135 -> 136  112 -> 113   19 -> 19   431 -> 431
+  ambiguous             10 ->  11   15 ->  15    9 ->   9    3 ->  3    37 ->  38
+  contested              2 ->   4    2 ->   2    2 ->   2    6 ->  6    12 ->  14
+  ties standing         12 ->  15   17 ->  17   11 ->  11    9 ->  9    49 ->  52
+```
+
+**The total of matches does not move**: 431 before, 431 after. What moved is the distribution,
+and in the direction a new card is supposed to move it — two 1839 entries that named exactly
+one person now name two, so they go back to the tie pool, and one entry each in 1843 and 1844
+that named nobody now names somebody. Nothing was regraded to hold the number still. The
+figure the next stretch works from is **52 ties, 1,022 initial-absent refusals**; the stretch
+named for it is unchanged, the 1843 initial-absent pool.
 
 ---
 

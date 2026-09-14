@@ -11,11 +11,11 @@
       "heads_adjudicated": 965,
       "outcomes": {
         "named_heads": 965,
-        "matched": 13,
-        "candidate": 18,
+        "matched": 15,
+        "candidate": 16,
         "refused": 934
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 18 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -30,6 +30,20 @@
         "fergus_chicago_directory_1843"
       ],
       "person_id": "stow_william_h",
+      "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
+    },
+    {
+      "from": "Chas Taylor",
+      "into": "Charles H. Taylor",
+      "rule": "The 1840 head written 'Chas Taylor' at printed page 224 line 13 (33S7-9YYJ-JM) and the 1835 person 'Charles H. Taylor' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "evidence": [
+        "33S7-9YYJ-JM",
+        "T-0505",
+        "data/research/census_1840/resident_crosswalk.json",
+        "norris_directory_1844",
+        "fergus_chicago_directory_1843"
+      ],
+      "person_id": "taylor_charles",
       "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
     },
     {
@@ -130,13 +144,27 @@
       "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
     },
     {
+      "from": "Samuel C. Jackson",
+      "into": "Samuel Jackson",
+      "rule": "The 1840 head written 'Samuel C. Jackson' at printed page 207 line 5 (33SQ-GYYJ-93G) and the 1835 person 'Samuel Jackson' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "data/research/census_1840/resident_crosswalk.json",
+        "norris_directory_1844"
+      ],
+      "person_id": "jackson_samuel",
+      "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
+    },
+    {
       "from": "John Calhoun",
       "into": "John Calhoun",
-      "rule": "The 1840 head written 'John Calhoun' at printed page 209 line 16 (33SQ-GYYJ-93Y) and the 1835 person 'John Calhoun' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "rule": "The 1840 head written 'John Calhoun' at printed page 209 line 16 (33SQ-GYYJ-93Y) and the 1835 person 'John Calhoun' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
       "evidence": [
         "33SQ-GYYJ-93Y",
         "T-0505",
         "data/research/census_1840/resident_crosswalk.json",
+        "norris_directory_1844",
         "fergus_chicago_directory_1843"
       ],
       "person_id": "calhoun_john",
@@ -145,12 +173,13 @@
     {
       "from": "Ira Couch",
       "into": "Ira Couch",
-      "rule": "The 1840 head written 'Ira Couch' at printed page 211 line 3 (33SQ-GYYJ-97P) and the 1835 person 'Ira Couch' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
+      "rule": "The 1840 head written 'Ira Couch' at printed page 211 line 3 (33SQ-GYYJ-97P) and the 1835 person 'Ira Couch' are one man: forename and surname agree in full, the name is unique both among the 498 named heads read here and among the 1835 persons, and the same person is separately adjudicated into the 1844 directory, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.; the same person is separately adjudicated into the 1843 directory, which writes the forename out in full, at a stated address, so they were still in Chicago after the 1840 book was taken. That is evidence about the PERSON, not about the spelling of the name.",
       "evidence": [
         "33SQ-GYYJ-97P",
         "T-0505",
         "data/research/census_1840/resident_crosswalk.json",
-        "norris_directory_1844"
+        "norris_directory_1844",
+        "fergus_chicago_directory_1843"
       ],
       "person_id": "couch_ira",
       "scene_relation": "later evidence only — the merge joins an 1840 line to an 1835 person and asserts nothing about 1835."
@@ -1281,7 +1310,7 @@
     {
       "a": "B. S. Sherman",
       "b": "Mrs. H. Sherman",
-      "rule": "'B. S. Sherman' at printed page 219 line 2 (33S7-9YYJ-9K3) is NOT 'Mrs. H. Sherman': The head is written 'B. S. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'B. S. Sherman' at printed page 219 line 2 (33S7-9YYJ-9K3) is NOT 'Mrs. H. Sherman': The head is written 'B. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1291,7 +1320,7 @@
     {
       "a": "B. S. Sherman",
       "b": "Rebecca Sherman",
-      "rule": "'B. S. Sherman' at printed page 219 line 2 (33S7-9YYJ-9K3) is NOT 'Rebecca Sherman': The head is written 'B. S. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'B. S. Sherman' at printed page 219 line 2 (33S7-9YYJ-9K3) is NOT 'Rebecca Sherman': The head is written 'B. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1301,7 +1330,17 @@
     {
       "a": "B. S. Sherman",
       "b": "Silas W Sherman",
-      "rule": "'B. S. Sherman' at printed page 219 line 2 (33S7-9YYJ-9K3) is NOT 'Silas W Sherman': The head is written 'B. S. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'B. S. Sherman' at printed page 219 line 2 (33S7-9YYJ-9K3) is NOT 'Silas W Sherman': The head is written 'B. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33S7-9YYJ-9K3",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "B. S. Sherman",
+      "b": "William George Sherman",
+      "rule": "'B. S. Sherman' at printed page 219 line 2 (33S7-9YYJ-9K3) is NOT 'William George Sherman': The head is written 'B. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-9K3",
         "T-0505",
@@ -1721,7 +1760,17 @@
     {
       "a": "Thomas Clarke",
       "b": "H. B. Clarke",
-      "rule": "'Thomas Clarke' at printed page None line 12 (33S7-9YYJ-9MX) is NOT 'H. B. Clarke': The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'thomas'.",
+      "rule": "'Thomas Clarke' at printed page None line 12 (33S7-9YYJ-9MX) is NOT 'H. B. Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'thomas'.",
+      "evidence": [
+        "33S7-9YYJ-9MX",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Thomas Clarke",
+      "b": "L Clarke",
+      "rule": "'Thomas Clarke' at printed page None line 12 (33S7-9YYJ-9MX) is NOT 'L Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'thomas'.",
       "evidence": [
         "33S7-9YYJ-9MX",
         "T-0505",
@@ -1731,7 +1780,7 @@
     {
       "a": "Thomas Clarke",
       "b": "W B Clarke",
-      "rule": "'Thomas Clarke' at printed page None line 12 (33S7-9YYJ-9MX) is NOT 'W B Clarke': The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'thomas'.",
+      "rule": "'Thomas Clarke' at printed page None line 12 (33S7-9YYJ-9MX) is NOT 'W B Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'thomas'.",
       "evidence": [
         "33S7-9YYJ-9MX",
         "T-0505",
@@ -1981,7 +2030,17 @@
     {
       "a": "Samuel E. Clarke",
       "b": "H. B. Clarke",
-      "rule": "'Samuel E. Clarke' at printed page 210 line 30 (33S7-9YYJ-9RG) is NOT 'H. B. Clarke': The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'samuel'.",
+      "rule": "'Samuel E. Clarke' at printed page 210 line 30 (33S7-9YYJ-9RG) is NOT 'H. B. Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'samuel'.",
+      "evidence": [
+        "33S7-9YYJ-9RG",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Samuel E. Clarke",
+      "b": "L Clarke",
+      "rule": "'Samuel E. Clarke' at printed page 210 line 30 (33S7-9YYJ-9RG) is NOT 'L Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'samuel'.",
       "evidence": [
         "33S7-9YYJ-9RG",
         "T-0505",
@@ -1991,7 +2050,7 @@
     {
       "a": "Samuel E. Clarke",
       "b": "W B Clarke",
-      "rule": "'Samuel E. Clarke' at printed page 210 line 30 (33S7-9YYJ-9RG) is NOT 'W B Clarke': The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'samuel'.",
+      "rule": "'Samuel E. Clarke' at printed page 210 line 30 (33S7-9YYJ-9RG) is NOT 'W B Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'samuel'.",
       "evidence": [
         "33S7-9YYJ-9RG",
         "T-0505",
@@ -2650,8 +2709,8 @@
     },
     {
       "a": "Nathaniel A. King",
-      "b": "John Lyle King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'John Lyle King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "b": "J D King",
+      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'J D King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2941,7 +3000,7 @@
     {
       "a": "J. S. Sherman",
       "b": "Mrs. H. Sherman",
-      "rule": "'J. S. Sherman' at printed page 224 line 17 (33S7-9YYJ-JM) is NOT 'Mrs. H. Sherman': The head is written 'J. S. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'J. S. Sherman' at printed page 224 line 17 (33S7-9YYJ-JM) is NOT 'Mrs. H. Sherman': The head is written 'J. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2951,7 +3010,7 @@
     {
       "a": "J. S. Sherman",
       "b": "Rebecca Sherman",
-      "rule": "'J. S. Sherman' at printed page 224 line 17 (33S7-9YYJ-JM) is NOT 'Rebecca Sherman': The head is written 'J. S. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'J. S. Sherman' at printed page 224 line 17 (33S7-9YYJ-JM) is NOT 'Rebecca Sherman': The head is written 'J. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -2961,7 +3020,17 @@
     {
       "a": "J. S. Sherman",
       "b": "Silas W Sherman",
-      "rule": "'J. S. Sherman' at printed page 224 line 17 (33S7-9YYJ-JM) is NOT 'Silas W Sherman': The head is written 'J. S. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'J. S. Sherman' at printed page 224 line 17 (33S7-9YYJ-JM) is NOT 'Silas W Sherman': The head is written 'J. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33S7-9YYJ-JM",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "J. S. Sherman",
+      "b": "William George Sherman",
+      "rule": "'J. S. Sherman' at printed page 224 line 17 (33S7-9YYJ-JM) is NOT 'William George Sherman': The head is written 'J. S. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-JM",
         "T-0505",
@@ -3261,7 +3330,17 @@
     {
       "a": "S. M. Clarke",
       "b": "H. B. Clarke",
-      "rule": "'S. M. Clarke' at printed page 218 line 29 (33S7-9YYJ-PC) is NOT 'H. B. Clarke': The head is written 'S. M. Clarke' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'clarke'. A surname and a letter is not an identity.",
+      "rule": "'S. M. Clarke' at printed page 218 line 29 (33S7-9YYJ-PC) is NOT 'H. B. Clarke': The head is written 'S. M. Clarke' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'clarke'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33S7-9YYJ-PC",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "S. M. Clarke",
+      "b": "L Clarke",
+      "rule": "'S. M. Clarke' at printed page 218 line 29 (33S7-9YYJ-PC) is NOT 'L Clarke': The head is written 'S. M. Clarke' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'clarke'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -3271,7 +3350,7 @@
     {
       "a": "S. M. Clarke",
       "b": "W B Clarke",
-      "rule": "'S. M. Clarke' at printed page 218 line 29 (33S7-9YYJ-PC) is NOT 'W B Clarke': The head is written 'S. M. Clarke' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'clarke'. A surname and a letter is not an identity.",
+      "rule": "'S. M. Clarke' at printed page 218 line 29 (33S7-9YYJ-PC) is NOT 'W B Clarke': The head is written 'S. M. Clarke' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'clarke'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYJ-PC",
         "T-0505",
@@ -4151,7 +4230,17 @@
     {
       "a": "John Clarke",
       "b": "H. B. Clarke",
-      "rule": "'John Clarke' at printed page 239 line 25 (33S7-9YYN-3CDH) is NOT 'H. B. Clarke': The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'john'.",
+      "rule": "'John Clarke' at printed page 239 line 25 (33S7-9YYN-3CDH) is NOT 'H. B. Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'john'.",
+      "evidence": [
+        "33S7-9YYN-3CDH",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "John Clarke",
+      "b": "L Clarke",
+      "rule": "'John Clarke' at printed page 239 line 25 (33S7-9YYN-3CDH) is NOT 'L Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'john'.",
       "evidence": [
         "33S7-9YYN-3CDH",
         "T-0505",
@@ -4161,7 +4250,7 @@
     {
       "a": "John Clarke",
       "b": "W B Clarke",
-      "rule": "'John Clarke' at printed page 239 line 25 (33S7-9YYN-3CDH) is NOT 'W B Clarke': The surname 'clarke' is carried by 2 person(s) of 1835 (H. B. Clarke, W B Clarke) and none of their given names is 'john'.",
+      "rule": "'John Clarke' at printed page 239 line 25 (33S7-9YYN-3CDH) is NOT 'W B Clarke': The surname 'clarke' is carried by 3 person(s) of 1835 (H. B. Clarke, L Clarke, W B Clarke) and none of their given names is 'john'.",
       "evidence": [
         "33S7-9YYN-3CDH",
         "T-0505",
@@ -5870,8 +5959,8 @@
     },
     {
       "a": "Nathan E. King",
-      "b": "John Lyle King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'John Lyle King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "b": "J D King",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'J D King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5951,7 +6040,7 @@
     {
       "a": "F. C. Sherman",
       "b": "Mrs. H. Sherman",
-      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Mrs. H. Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Mrs. H. Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5961,7 +6050,7 @@
     {
       "a": "F. C. Sherman",
       "b": "Rebecca Sherman",
-      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Rebecca Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Rebecca Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5971,7 +6060,17 @@
     {
       "a": "F. C. Sherman",
       "b": "Silas W Sherman",
-      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Silas W Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'Silas W Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
+      "evidence": [
+        "33SQ-GYYJ-RK",
+        "T-0505",
+        "L4 initial_only"
+      ]
+    },
+    {
+      "a": "F. C. Sherman",
+      "b": "William George Sherman",
+      "rule": "'F. C. Sherman' at printed page 213 line 30 (33SQ-GYYJ-RK) is NOT 'William George Sherman': The head is written 'F. C. Sherman' — a surname and initials only — and 4 person(s) of 1835 carry the surname 'sherman'. A surname and a letter is not an identity.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",

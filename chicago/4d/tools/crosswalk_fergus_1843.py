@@ -48,6 +48,7 @@ import printed_twice as pt  # one man, two printings (T-0987 stretch 7), likewis
 import tiebreak            # the tie discriminator (T-0696), likewise
 import trade_recorded     # "does the layer hold a trade?" (T-0867), likewise
 import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
+import named_by_the_page as nbp  # the whole printed name (T-0987 stretch 14), likewise
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/fergus_1843_directory_entries.json")
@@ -172,6 +173,8 @@ def main():
 
     matches, ambiguous, refusals, forename_refusals = [], [], [], []
     middle_initial_refusals = []
+    page_name_refusals = []
+    wife_axis_refusals = []
     bucket_refusals = []
     ll_index = llb.buckets(llb.pool())
     people = residents()
@@ -234,6 +237,45 @@ def main():
         kept = [(h, None) for h in survivors]
         if not kept:
             continue
+        # T-0987 stretch 14. THE WHOLE PRINTED NAME, WORD FOR WORD. The clause
+        # above weighs only the initials BOTH readings set, so an entry that
+        # STOPS EARLY is a silence and refuses nothing. This one asks whether the
+        # page sets THIS NAME and no other — the same number of words, word for
+        # word, and the closest fit of the candidates or none at all.
+        # tools/named_by_the_page.py carries the rule and its refusals.
+        page_declined = None
+        if len(kept) > 1:
+            # R6 first, on this axis too: Fergus 1843 prints `Brown, Rufus B.`
+            # at 458 and `Brown, Mrs. Rufus B.` at 459, so the volume separates
+            # the pair itself and each reading takes its own.
+            survivors, honorific = nbp.honorific_must_agree(
+                r["name"], [h for h, _ in kept],
+                lambda h: h["normalized"]["printed_name"])
+            for h, note in honorific:
+                row = row_of(h, also)
+                row.update({"clause": note["clause"], "rule": note["why"],
+                            "honorific": note["honorific"]})
+                wife_axis_refusals.append({
+                    "resident": r["name"], "person_id": r["person_id"],
+                    "grade_1835": r["grade"], "entry_1843": row})
+            kept = [(h, None) for h in survivors]
+        if len(kept) > 1:
+            winner, note = nbp.decide(
+                r["given"], [h for h, _ in kept],
+                lambda h: h["normalized"]["given"], reading_name=r["name"],
+                name_of=lambda h: h["normalized"]["printed_name"])
+            if winner is not None:
+                for h, _ in kept:
+                    if h is winner:
+                        continue
+                    row = row_of(h, also)
+                    row.update({"clause": note["clause"], "rule": note["why"]})
+                    page_name_refusals.append({
+                        "resident": r["name"], "person_id": r["person_id"],
+                        "grade_1835": r["grade"], "entry_1843": row})
+                kept = [(winner, None)]
+            else:
+                page_declined = note["why"]
         rows = [row_of(h, also) for h, _ in kept]
         rec = {
             "resident": r["name"], "person_id": r["person_id"],
@@ -247,6 +289,8 @@ def main():
         }
         if mi_declined:
             rec["further_initials_declined"] = mi_declined
+        if page_declined:
+            rec["whole_name_declined"] = page_declined
         carries = []
         # `none_recorded` IS NO OCCUPATION (T-0867). The residents layer writes
         # that sentinel where a person's trade was never attested, and the
@@ -276,6 +320,55 @@ def main():
     claimed = defaultdict(list)
     for m in matches:
         claimed[m["entries_1843"][0]["claim"]].append(m)
+
+    # T-0987 stretch 14. THE SAME CLAUSE ON THE OTHER AXIS. The collision below
+    # asks which of two people of 1835 a printed line names and has only the
+    # first initial that put them both there, so it answers "neither" and files
+    # a contest. The page usually says: `Hogan, John Stephen Coates` sets three
+    # words and the town's `John S. C. Hogan` sets those three, `Morrison,
+    # Orsemus` is the tax list's Orsemus and not the poll list's Ordemus, and
+    # `Wright, John Stephen` is the Prairie Farmer's John S. Wright and not the
+    # town's bare John. R6 runs FIRST: a wife standing on her husband's own name
+    # is not a rival to be weighed against him, she is not in the contest at all.
+    given_1843 = {c["id"]: c["normalized"]["given"] for c in entries}
+    given_1835 = {p["person_id"]: p["given"] for p in people}
+    printed_name_1843 = {c["id"]: c["normalized"]["printed_name"] for c in entries}
+    page_named, wife_refused = [], []
+    for cid, rivals in sorted(claimed.items()):
+        if len(rivals) < 2:
+            continue
+        printed = given_1843.get(cid, "")
+        given_of = lambda m: given_1835.get(m["person_id"], "")
+        kept_r, wives = nbp.honorific_must_agree(
+            printed, rivals, lambda m: m["resident"])
+        for m, note in wives:
+            wife_refused.append({"resident": m["resident"], "person_id": m["person_id"],
+                                 "entry_1843": m["entries_1843"][0], **note})
+        if len(kept_r) > 1:
+            winner, note = nbp.decide(
+                printed, kept_r, given_of,
+                reading_name=printed_name_1843.get(cid, ""),
+                name_of=lambda m: m["resident"], one_body=False)
+        elif kept_r:
+            winner, note = kept_r[0], {"clause": nbp.WIFE_CLAUSE, "named": None,
+                                       "why": "the only reading left after R6"}
+        else:
+            winner, note = None, None
+        if winner is None:
+            continue
+        for m in rivals:
+            if m is winner:
+                continue
+            page_named.append({"resident": m["resident"], "person_id": m["person_id"],
+                               "entry_1843": m["entries_1843"][0],
+                               "named_instead": winner["resident"],
+                               "clause": note["clause"], "rule": note["why"]})
+            m["_not_named"] = True
+        winner["named_by_the_page"] = {
+            "over": [m["resident"] for m in rivals if m is not winner], **note}
+        claimed[cid] = [winner]
+    matches = [m for m in matches if not m.pop("_not_named", False)]
+
     contested = []
     for _, rivals in sorted(claimed.items()):
         if len(rivals) > 1:
@@ -352,6 +445,10 @@ def main():
         "discriminator_rule": tiebreak.__doc__.split("THE RULING")[1].split(
             "Run it directly")[0].strip(),
         "refused_discriminators": tiebreak.REFUSED_DISCRIMINATORS,
+        "whole_name_rule": nbp.__doc__.split("THE RULING")[1].split(
+            "WHAT THE WORD-COUNT TEST IS FOR")[0].strip(),
+        "wife_rule": nbp.__doc__.split("A WIFE IS NOT HER HUSBAND")[1].split(
+            "The honorific must stand")[0].strip(),
         "counts": {
             "residents_considered": len(people),
             "matched_one_1843_entry": len(matches),
@@ -369,6 +466,14 @@ def main():
             "residents_left_with_no_1843_entry_by_that_refusal": len(
                 {f["person_id"] for f in forename_refusals}
                 - {m["person_id"] for m in matches + ambiguous + contested}),
+            "entries_the_whole_name_refused": len(page_name_refusals),
+            "residents_that_whole_name_refusal_reaches": len(
+                {f["person_id"] for f in page_name_refusals}),
+            "contests_the_page_named": len(
+                {n["entry_1843"]["claim"] for n in page_named}),
+            "residents_not_named_by_a_contested_entry": len(page_named),
+            "residents_held_off_a_husbands_entry": len(wife_refused),
+            "entries_a_female_honorific_refused": len(wife_axis_refusals),
             "ties_narrowed_by_a_trade": len(discriminated),
             "of_those_contested": sum(1 for d in discriminated if d["tie"] == "contested"),
             "of_those_ambiguous": sum(1 for d in discriminated if d["tie"] == "ambiguous"),
@@ -397,6 +502,14 @@ def main():
                                           key=lambda x: x["resident"]),
         "forename_refusals": sorted(forename_refusals,
                                     key=lambda m: (m["resident"], m["entry_1843"]["claim"])),
+        "whole_name_refusals": sorted(
+            page_name_refusals, key=lambda m: (m["resident"], m["entry_1843"]["claim"])),
+        "not_named_by_the_page": sorted(
+            page_named, key=lambda m: (m["entry_1843"]["claim"], m["resident"])),
+        "held_off_a_husbands_entry": sorted(
+            wife_refused, key=lambda m: (m["entry_1843"]["claim"], m["resident"])),
+        "female_honorific_refusals": sorted(
+            wife_axis_refusals, key=lambda m: (m["resident"], m["entry_1843"]["claim"])),
     }
     if "--check" in sys.argv:
         if json.load(open(OUT, encoding="utf-8")) != doc:
