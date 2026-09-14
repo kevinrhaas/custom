@@ -5261,6 +5261,40 @@
         ]
       },
       "source": "/tmp/s_d7.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 157,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 612,
+      "takenAt": "2026-09-14T11:48:03.760Z",
+      "ref": "steward/t-1123-north-ground-kinzie",
+      "commit": "c9933dfa046a",
+      "devCommit": "ee71cd2ae5c6",
+      "treeHash": "sha256:c858de2756a6ab75",
+      "treeDirty": false,
+      "changelogHash": "sha256:03df904d1cb890d0",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0,
+          1.5,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
     }
   ]
 }

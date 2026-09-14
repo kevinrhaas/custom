@@ -14698,7 +14698,7 @@
         },
         {
           "label": "Recorded",
-          "text": "2026-09-14 (T-1067)."
+          "text": "2026-09-14 (T-1067). **PARTLY SETTLED, 2026-09-14 (T-1123) — the half that was DRAWN is settled and the entry stands for the half that is not.** T-1123 moved the box's north wall from N +400 to **N +1120** and the field regenerated at 809 x 661 = 534 749 samples. Re-derived by the same tool this entry is measured with: - **No drawn ribbon leaves the ground any more.** Wolcott Street's 629.72 m on the constant is **0 m**; all 28 drawn streets are on modelled ground, 14 938 m of them. - **The Addition's platted records stand mostly on measurement now**, though they still draw nothing: 47 512 m off the grid became **41 852 m**, 34 of the 49 records rather than 47, and on-grid line went 1 795 m to 7 456 m. What remains off the grid is west and south of this box, not north of it. - **The one-way door is narrower as a fraction and longer in metres**, because the box itself is bigger: 4 490 m of a 7 340 m perimeter (**61.2 %**, from 67.1 %), and the north wall's own share fell from 79.5 % to 76.2 %. The east wall is still the lake and still none of it. - **The viewpoint that found this** — the Kinzie Block from Michigan Street — stood 9.5 m short of the wall and now stands **729.5 m** short of it. The entry is NOT moved to `## Resolved`, because its first sentence is still true of the box that remains: the committed town is not confined to the modelled ground, the renderer still answers `sample()` with the constant outside it, and 41 852 m of platted line still stands out there. What is resolved is the part that was drawn — the one ribbon on a constant — and the north wall that carried it."
         }
       ]
     },
