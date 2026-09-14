@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The printer of the town\u2019s first paper had no name', kind: 'fix', ts: '', date: '',
+  { v: 868, title: 'The printer of the town\u2019s first paper had no name', kind: 'fix', ts: '2026-09-14T13:59:47.074Z', date: 'Sep 14, 2026, 8:59 AM CT',
     items: [
       'Norris\u2019s 1844 directory of Chicago is read here from a scan whose left margin collects ink \u2014 a speck, a stray quote, a lone letter \u2014 and the specks land in front of the surname. Five entries had lost so much of their first word that the reading could not tell where the name ended, refused to guess, and left them with no surname at all. An entry with no surname is skipped by the pass that meets 1835 residents, and skipped in silence, so five men in the book simply were not in it.',
       'One of them is John Calhoun, who printed the Chicago Democrat \u2014 the town\u2019s first newspaper, and the first Chicago document this reconstruction can cite that was printed in Chicago. The scan set his surname as \u2018* \u2018.ilhoun\u2019. His 1844 entry now stands on his card beside his 1839 and 1843 ones: printer, house State Street between Washington and Madison.',
