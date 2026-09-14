@@ -1,7 +1,7 @@
 ---
 id: T-1126
 title: A building that fails to load leaves its signboard hanging in the air and its goods in the grass: the scene draws furniture whose host is missing, and nothing reports the error
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-14
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-14
+pr: 1338
+claimed_by: run 9/14/2026, 12:57:25 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-14T18:43:32.425Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34877560228
 ---
 
 **The owner, 2026-09-14**, on Dearborn Street in the `/dev/` walk at `?year=1835`: *"we have a

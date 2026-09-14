@@ -611,6 +611,46 @@ export function createBuildings({ registry, confidence, terrain }) {
     return weathering;
   }
 
+  /**
+   * THE TOWN'S ROLL CALL — T-1126. Which structures actually put geometry into
+   * a batch, and which were supposed to and did not.
+   *
+   * `localBoxes` is the honest answer to "is this building standing" and the
+   * only one in this file: it is filled where a mesh enters a batch, so a
+   * record that has a sidecar, a placement matrix and a manifest entry but
+   * whose GLB never arrived is simply not in it. `placements` is NOT that
+   * answer — it is filled for every record in the registry before a single
+   * triangle is read, from the sidecar alone.
+   *
+   * The distinction is the whole ticket. On 14 September 2026 one auction room
+   * failed to fetch and the scene drew its signboard 2.55 m up on nothing and
+   * its crates in the grass beside it, because every layer that hangs furniture
+   * off a wall derives its geometry from the RECORD and never asked whether the
+   * wall arrived. A failed load has to degrade into an absence; what it must
+   * never do is degrade into a false scene, where furniture is presented as if
+   * its host were standing and a visitor has no way to read the difference.
+   *
+   * `missing` is deliberately a set of ids rather than a count, and it is
+   * consulted rather than inverted: a dependent layer asks "is my host MISSING",
+   * so an id this file has never heard of — a street edge, a wharf, a chunk name
+   * — answers no and draws, which is what it should do. Asking the opposite
+   * question against `standing` would silently delete every piece of furniture
+   * whose owner is not a structure at all.
+   */
+  const expected = [];
+  const missing = new Set();
+  for (const record of registry.values()) {
+    // A record with no asset is drawn by another layer (the estray pen's fence)
+    // and the loader has already reported it if it names no layer at all.
+    if (!record.sidecar?.asset) continue;
+    expected.push(record.id);
+    if (!localBoxes.has(record.id)) missing.add(record.id);
+  }
+  if (missing.size) {
+    problems.push(`${missing.size} of ${expected.length} structures drew no geometry — `
+      + `${[...missing].join(', ')}`);
+  }
+
   const raycaster = new THREE.Raycaster();
   raycaster.far = 400;
 
@@ -619,6 +659,26 @@ export function createBuildings({ registry, confidence, terrain }) {
     batches,
     problems,
     triangles: totalTris,
+
+    /**
+     * The structures that were told to draw and did not. Read by main.js to
+     * report the shortfall, and handed to the furniture layers so a board does
+     * not hang on a wall that is not there. See the roll call above.
+     */
+    missing,
+
+    /**
+     * Drawn against indexed, as one line, once per load (T-1126 § 4). If
+     * `standing` is ever short of `expected`, the walk is claiming a town it did
+     * not draw, and this is the figure that says whether that is one anomaly or
+     * a rate.
+     */
+    roll: {
+      indexed: registry.size,
+      expected: expected.length,
+      standing: expected.length - missing.size,
+      missing: [...missing],
+    },
     /** Draw calls these buildings cost in the colour pass. */
     get drawCalls() { return batches.length; },
 

@@ -168,7 +168,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- load degrades into a FALSE SCENE rather than an absence, and nothing reported the error — so
 # --- there is no way to know whether this is one building once or many buildings often.
 
-T-1126 — A building that fails to load leaves its signboard hanging in the air and its goods in the grass: the scene draws furniture whose host is missing, and nothing reports the error
 
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
