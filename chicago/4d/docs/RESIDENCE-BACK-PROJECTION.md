@@ -116,39 +116,73 @@ R4's second half is the business rule verbatim, and it is where the ticket's own
 was wrong: **a qualifier naming a street the town does not have refuses the whole
 address**, not just the qualifier. Giles Spring's `res 62 Adams near State` was expected
 to survive on State. It does not, and it should not: the volume says his house was on
-Adams, and moving him to State would place him where it does not say he was. Three
-addresses resolve a head street and are then refused on a qualifier — Henry G. Hubbard on
-La Salle (Madison), Hibbard Porter on Clark (Adams), and John P. Simpson on Canal (Adams
-and Jackson).
+Adams, and moving him to State would place him where it does not say he was. **Nine**
+addresses resolve a head street and are then refused on a qualifier — Henry G. Hubbard
+and William Hanford Adams on La Salle (Madison), Charles Loomis Harmon on Dearborn
+(Madison), Hibbard Porter on Clark (Adams), George W. Snow on State (Jackson), John P.
+Simpson on Canal (Adams and Jackson), John Harris Kinzie on Michigan Street (Cass), and
+John C. Rue and Rebecca Sherman on Clark (Madison and Monroe). The last two of those nine
+are one address printed twice, and until T-1050 only one of them was refused.
+
+**And that clause could not read a contraction, which is T-1050.** `PRINTED_ABBREVIATION`
+in the business pass is the fix and `docs/ADDRESS-BACK-PROJECTION.md` clause 3 states it;
+what it cost HERE is the point. Norris prints Rebecca Sherman's house at `h Clark st. b
+Mad. & Mon` and John C. Rue's at `h Clark, b Madison and Monroe`. They are the same
+address. Rue was refused, on the clause above; Sherman was **placed on Clark Street**,
+because the street table knew `Madison` and not Norris's `Mad.`, so R4's second half
+never saw a qualifier to refuse. One address, two spellings, two verdicts — and the
+spelling the pass could read was the one that claimed LESS. A pass that adjudicates 57
+addresses and writes 46 refusals is only worth its refusals if it can see what it is
+refusing, so `--self-test` now asserts the two spellings produce one verdict for one
+reason, word for word.
+
+The same contraction moved a second entry without moving its outcome, which is the more
+easily missed half. John Harris Kinzie's `h c Mich dc Cass` was refused before this and
+is refused after, but for the wrong street: the table could not see `Mich`, so **Cass**
+became the head, and the north-side Michigan Street his house actually stood on was never
+resolved at all. The refusal now resolves Michigan Street and declines it on the Cass
+qualifier, which is the ruling the volume actually supports. A refusal is the record here
+(L223), so a refusal reasoning off the wrong street is a defect in the record even when
+the verdict is right.
 
 **R5 — the grade is `reconstructed`, the note says how many years back, the placement is
 a face, and no `lives_at` is written.** `tools/back_project_residences.py --self-test`
 asserts all four rather than the prose promising them.
 
-## What it reaches, measured 2026-09-05
+## What it reaches, measured 2026-09-14
 
 | outcome | count |
 |---|---|
-| residence addresses adjudicated | **61** — 47 printed as a residence, 14 printed `bds` |
-| **placed on a face** | **14**, of which 9 are people with no 1835 trade |
+| residence addresses adjudicated | **57** — 45 printed as a residence, 12 printed `bds` |
+| **placed on a face** | **11**, of which 7 are people with no 1835 trade |
 | already better placed (R3) | 0 |
-| refused | 47 |
+| refused | **46** |
 
-Eight faces are reached — **Clark, Dearborn, Lake, Market, North Water, Randolph,
-Washington and Wells** — and the fourteen are J. H. Collins and Nehemiah King on Lake,
-Dr William Bradshaw Egan, Samuel Mills and Rebecca Sherman on Clark, L. W. Montgomery on
-Market, J. B. Jordan and Seth Johnson on Washington, John W. Eldredge on Randolph,
-Absolom Funk and Alexander Lloyd on Wells, Charles Loomis Harmon on Dearborn, and J. S.
-Lacey and Silvester Marsh on North Water. Eight of the fourteen are Norris's, carried
-nine years, and they are the reason three of those streets are reached at all: he prints
-a man's house far oftener than his shop.
+Seven faces are reached — **Clark, Lake, Market, North Water, Randolph, Washington and
+Wells** — and the eleven are J. H. Collins and Nehemiah King on Lake, Dr William
+Bradshaw Egan on Clark, L. W. Montgomery on Market, J. B. Jordan and Seth Johnson on
+Washington, John W. Eldredge on Randolph, Absolom Funk and Alexander Lloyd on Wells, and
+J. S. Lacey and Silvester Marsh on North Water. Five of the eleven are Norris's, carried
+nine years, and he is the reason ONE of those seven streets is reached at all — Randolph,
+where John W. Eldredge stands alone — because he prints a man's house far oftener than
+his shop. Six are Fergus's of 1843, carried eight.
 
-**`lives_at` real values before 7 placements: 20. After: 20.** It did not move and was not
-meant to, for the reason `docs/STREET-FACE-ADOPTION.md` limit 3 gives and L218 repeats:
-dealing a household to one roof on a face is an allocation, not a reading, and stacking
-that on an address already carried back eight years would be two inventions under one
-chip. `works_at` is untouched at 50. What seven households gained is a face, on the
-record, graded and dated and reversible — and thirty-six gained a written refusal where
+**The count has been restated four times since the table above first read fourteen, and
+L223 is where each is argued.** Three of the four were the TOWN moving rather than the
+reading: `hh_mills_samuel` and `hh_smith_d_a` were minted on press notices printed
+against places the resolved place vocabulary refuses as Chicago appearances, so Samuel
+Mills came off Clark Street and D. S. Smith's La Salle Street face was never claimed;
+`harmon_charles_l` came off Dearborn Street when T-0987 stretch 7 read Fergus's
+spelled-out `bet Washington and Madison`. The fourth is T-1050, and it is the reading:
+Rebecca Sherman came off Clark Street because this pass can now read the contraction
+Norris set her qualifier in. Dearborn Street is no longer a face this policy claims.
+
+**`lives_at` real values before 11 placements: 20. After: 20.** It did not move and was
+not meant to, for the reason `docs/STREET-FACE-ADOPTION.md` limit 3 gives and L218
+repeats: dealing a household to one roof on a face is an allocation, not a reading, and
+stacking that on an address already carried back eight years would be two inventions
+under one chip. `works_at` is untouched at 50. What eleven households gained is a face,
+on the record, graded and dated and reversible — and 46 gained a written refusal where
 they previously had a business pass's ruling on a question nobody had asked about them.
 
 ## The two passes may both rule, and may never both place
