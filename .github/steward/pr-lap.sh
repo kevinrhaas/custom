@@ -126,11 +126,29 @@ if [ -n "$MISSING" ]; then
   exit 1
 fi
 
-PRS=$(gh pr list --repo "$REPO" --base "$BASE" --state open --limit 100 \
-        --json number,headRefName,isDraft,labels \
-        --jq '.[] | select(.isDraft==false)
+# REST, NOT `gh pr list`, AND THE REASON IS A RATE LIMIT THAT ONLY BITES HERE.
+# `gh pr list` is a GRAPHQL call. GitHub budgets GraphQL separately from REST and
+# far more tightly, and on 2026-09-14 the steward's own PAT spent its GraphQL
+# allowance — the loop, the janitor and Manager all draw on it — while REST sat
+# untouched:
+#
+#   gh pr list (GraphQL, STEWARD_PAT)  GraphQL: API rate limit already exceeded
+#                                      for user ID 4193586
+#   every REST call in the same minute  answered normally
+#
+# Two full laps were dispatched against a queue of nine lappable PRs, seven of
+# them green and five with auto-merge armed and unable to fire, and both laps
+# reported `pushed=0 ... red=0` and exited green having listed nothing.
+#
+# The same question over REST costs one request against a 15,000/hour budget and
+# needs no GraphQL at all. The field names differ — REST spells them `draft` and
+# `head.ref` where gh's GraphQL layer spells them `isDraft` and `headRefName` —
+# and that is the whole of the change; the filter is the one it always was.
+PRS=$(gh api --paginate \
+        "repos/$REPO/pulls?state=open&base=$BASE&per_page=100" \
+        --jq '.[] | select(.draft==false)
                   | select([.labels[].name] | index("hold") | not)
-                  | "\(.number)\t\(.headRefName)"')
+                  | "\(.number)\t\(.head.ref)"')
 # THE STATUS OF THAT CALL, BECAUSE AN EMPTY ANSWER AND A FAILED ONE LOOK
 # IDENTICAL FROM HERE. `PRS=$(cmd)` carries cmd's exit status, and this script
 # runs `set -uo pipefail` WITHOUT `-e`, so a failure does not stop it: PRS is

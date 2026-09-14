@@ -45,10 +45,14 @@ function runLap({ ghExit = 0, ghOut = '', only = '' }) {
   const bin = path.join(box, 'bin');
   mkdirSync(bin, { recursive: true });
 
-  // `gh pr list` is the call under test. Everything else gh is asked for later
-  // is irrelevant: the lap does not reach it in these cases.
+  // The PR-list call is what is under test; everything else gh is asked for
+  // later is irrelevant, because the lap does not reach it in these cases.
+  // `gh api`, not `gh pr list`: the list moved to REST because `gh pr list` is a
+  // GraphQL call and the steward PAT's GraphQL budget is what ran out on
+  // 2026-09-14 while REST answered normally. Matching on `api` here means a
+  // silent revert to the GraphQL form fails this suite rather than the fleet.
   writeFileSync(path.join(bin, 'gh'), `#!/usr/bin/env bash
-if [ "$1" = "pr" ] && [ "$2" = "list" ]; then
+if [ "$1" = "api" ]; then
   # %b, NOT %s: the list is TAB-separated and newline-delimited, and %s would
   # emit the escapes literally. awk -F'\\t' would then find no tab, put the whole
   # line in $1, and every --only match would fail — making this suite pass case 3
@@ -91,7 +95,7 @@ console.log('pr-lap.sh — a lap that could not ask never reports that it found 
 /* 1. THE FAULT. gh fails; the lap must NOT exit 0 having swept nothing. */
 {
   const r = runLap({ ghExit: 1, ghOut: '' });
-  check('a failed `gh pr list` fails the lap', r.code !== 0, `exit ${r.code}`);
+  check('a failed PR-list call fails the lap', r.code !== 0, `exit ${r.code}`);
   check('…and says the lap could not see its PRs',
         /cannot see the pull requests/i.test(r.out));
   check('…and never claims it found nothing to do',
