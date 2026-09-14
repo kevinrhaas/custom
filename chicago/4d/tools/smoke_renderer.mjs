@@ -6709,7 +6709,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: the card names the agency this house held, and its principal`,
       popAgency.hubbard.present
-      && /Hubbard & Co\. held the agency for the Howard Fire Insurance Company/.test(popAgency.hubbard.text)
+      && /Hubbard & Co\. held the agency for Howard Fire Insurance Company/.test(popAgency.hubbard.text)
       && /city of New-York/.test(popAgency.hubbard.text),
       popAgency.hubbard.text.slice(0, 240));
     // The window is printings and says so, and it is dated in words rather than ISO.
@@ -11824,7 +11824,7 @@ for (const [label, viewport, touch] of [
     });
     check(`${label}: a man who held an agency says so on his own card`,
       personAgency.found && personAgency.present
-      && /E\. K\. Hubbard held the agency for the Howard Fire Insurance Company/.test(personAgency.text)
+      && /E\. K\. Hubbard held the agency for Howard Fire Insurance Company/.test(personAgency.text)
       && /printed from 20 June 1835 to 5 August 1835/.test(personAgency.text),
       personAgency.found ? personAgency.text.slice(0, 260) : 'no hh_hubbard_elijah_kent row');
     // …and the caveat travels with it, because it is the file's sentence and not
