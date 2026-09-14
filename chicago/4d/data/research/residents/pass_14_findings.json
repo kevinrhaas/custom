@@ -367,6 +367,7 @@
    ],
    "refusals_seen": [
     "address_backproj",
+    "fergus_1839",
     "fergus_1843",
     "norris_1844",
     "spend_crosswalk"
@@ -791,6 +792,8 @@
     "spend_crosswalk"
    ],
    "refusals_seen": [
+    "fergus_1843",
+    "norris_1844",
     "spend_crosswalk"
    ],
    "reconciliation": {
@@ -1461,6 +1464,7 @@
     "spend_crosswalk"
    ],
    "refusals_seen": [
+    "fergus_1839",
     "spend_crosswalk"
    ],
    "reconciliation": {
@@ -1616,6 +1620,7 @@
     "voter_lists"
    ],
    "refusals_seen": [
+    "fergus_1843",
     "old_settler_deaths",
     "spend_crosswalk"
    ]
