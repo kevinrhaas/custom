@@ -159,7 +159,6 @@ T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad
 # --- on ground the heightfield does not cover. It is the north-bank twin of T-0219, which finished
 # --- the south side on 09-12 and unblocked the band above.
 
-T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
 T-1123 — Extend the modelled ground north to n +1120, so Kinzie's Addition and the North Branch's traced banks stand on measured ground
 
 # --- ==========================================================================

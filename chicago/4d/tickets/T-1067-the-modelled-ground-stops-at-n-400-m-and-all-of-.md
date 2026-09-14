@@ -1,7 +1,7 @@
 ---
 id: T-1067
 title: The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-12
-closed: null
-pr: null
+closed: 2026-09-14
+pr: 1317
 claimed_by: run 9/14/2026, 3:04:32 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-14T08:53:47.622Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34820520379
 ---
 
