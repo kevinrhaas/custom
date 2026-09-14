@@ -82,6 +82,20 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "carli-p",
+     "weighed_against": [
+      "carli_paul_j"
+     ],
+     "referred_to": "rule",
+     "for_merge": "Paul J. Carli is the only Carli the town documents at all, and `P. S. Carli` is printed in the same paper inside the same four months — 9 July and 10 September 1834 against his own 18 June and 8 October.",
+     "against_merge": "THE SAME PAPER SETS BOTH MIDDLE INITIALS AND SETS THEM APART: `P. J. Carli` on 18 June 1834 stands on the Paul J. Carli card, and `P. S. Carli` is a second reading, twice, under a different letter. A compositor's slip would have to have been made twice and never made in the other direction. Nothing else is recorded of either — no trade, no address — so there is no evidence beyond the initials to settle it. R3."
+    }
    ]
   }
  ],

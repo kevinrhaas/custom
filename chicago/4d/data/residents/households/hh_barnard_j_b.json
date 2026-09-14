@@ -74,6 +74,20 @@
      "source": "chicago_american_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "barnard-j",
+     "weighed_against": [
+      "barnard_j_h"
+     ],
+     "referred_to": "rule",
+     "for_merge": "One surname, one forename initial, and nine days apart in the same newspaper: the Chicago Democrat prints `J. H. Barnard` on 4 June 1835 and `J. B. Barnard` on 13 June 1835. A compositor who set B for H once would produce exactly this pair.",
+     "against_merge": "The middle initials are B and H, both printed, and neither card carries a trade, an address, an arrival or any source that is not a notice — so there is no anchor to attach the other to and nothing reached decides which reading is the man's. R3: either two men or one man mis-set. Until T-1120 the pair was invisible, because M2 folded `J. H. Barnard` onto `J. B. Barnard` on the leading initial alone."
+    }
    ]
   }
  ],

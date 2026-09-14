@@ -1,16 +1,16 @@
 {
- "id": "hh_barnard_j_h",
- "name": "The Barnard household — a name the town's own records carry",
+ "id": "hh_marksall_j_m",
+ "name": "The Marksall household — a name the town's own records carry",
  "division": "unplaced",
- "head": "barnard_j_h",
+ "head": "marksall_j_m",
  "source_pass": "civic",
  "arrival": {
-  "value": "1835-06-04",
+  "value": "1834-10-29",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 4 June 1835 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
+  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 29 October 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -48,8 +48,8 @@
  },
  "persons": [
   {
-   "id": "barnard_j_h",
-   "name": "J H Barnard",
+   "id": "marksall_j_m",
+   "name": "J M Marksall",
    "relationship": "head",
    "grade": "attested",
    "civic_mint": true,
@@ -62,30 +62,16 @@
    "sources": [
     "chicago_democrat_1833_1835"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 4 June 1835 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 29 October 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
    "press_evidence": [
     {
      "list": "newspaper_1833_1835",
-     "as_read": "J. H. Barnard",
-     "locator": "chicago_democrat_1835_06_04#c006",
-     "record_id": "person_j_h_barnard",
-     "describes_date": "1835-06-04",
+     "as_read": "J. M. Marksall",
+     "locator": "chicago_democrat_1834_10_29#c006",
+     "record_id": "person_j_m_marksall",
+     "describes_date": "1834-10-29",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
-    }
-   ],
-   "merge_ruling": [
-    {
-     "ticket": "T-0839",
-     "verdict": "undecided",
-     "rule": "R3",
-     "cluster": "barnard-j",
-     "weighed_against": [
-      "barnard_j_b"
-     ],
-     "referred_to": "rule",
-     "for_merge": "One surname, one forename initial, and nine days apart in the same newspaper: the Chicago Democrat prints `J. H. Barnard` on 4 June 1835 and `J. B. Barnard` on 13 June 1835. A compositor who set B for H once would produce exactly this pair.",
-     "against_merge": "The middle initials are B and H, both printed, and neither card carries a trade, an address, an arrival or any source that is not a notice — so there is no anchor to attach the other to and nothing reached decides which reading is the man's. R3: either two men or one man mis-set. Until T-1120 the pair was invisible, because M2 folded `J. H. Barnard` onto `J. B. Barnard` on the leading initial alone."
     }
    ]
   }

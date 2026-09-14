@@ -23,14 +23,14 @@
   },
   "directories": {
    "names_read": 4338,
-   "identities": 2858,
-   "appearances_on_an_identity_the_town_already_carries": 280,
-   "unmatched": 4058
+   "identities": 2857,
+   "appearances_on_an_identity_the_town_already_carries": 283,
+   "unmatched": 4055
   },
   "newspapers": {
-   "names_read": 2316,
-   "identities": 2115,
-   "appearances_on_an_identity_the_town_already_carries": 1218,
+   "names_read": 2329,
+   "identities": 2126,
+   "appearances_on_an_identity_the_town_already_carries": 1231,
    "unmatched": 1098
   },
   "old_settlers": {
@@ -40,10 +40,10 @@
    "unmatched": 693
   },
   "residents": {
-   "names_read": 1296,
-   "identities": 1296,
+   "names_read": 1305,
+   "identities": 1305,
    "appearances_on_an_identity_the_town_already_carries": 0,
-   "unmatched": 1296
+   "unmatched": 1305
   },
   "books": {
    "names_read": 0,
@@ -94,31 +94,31 @@
   "church|residents": 40,
   "civic|civic": 375,
   "civic|directories": 80,
-  "civic|newspapers": 104,
+  "civic|newspapers": 106,
   "civic|old_settlers": 29,
   "civic|residents": 263,
-  "directories|directories": 2858,
-  "directories|newspapers": 155,
+  "directories|directories": 2857,
+  "directories|newspapers": 156,
   "directories|old_settlers": 30,
-  "directories|residents": 156,
-  "newspapers|newspapers": 2115,
+  "directories|residents": 157,
+  "newspapers|newspapers": 2126,
   "newspapers|old_settlers": 48,
-  "newspapers|residents": 1054,
+  "newspapers|residents": 1066,
   "old_settlers|old_settlers": 736,
   "old_settlers|residents": 49,
-  "residents|residents": 1296
+  "residents|residents": 1305
  },
  "town_rows_this_tool_could_not_parse": {
-  "persons_in_the_layer": 1299,
-  "persons_this_tool_placed_on_an_identity": 1296,
+  "persons_in_the_layer": 1308,
+  "persons_this_tool_placed_on_an_identity": 1305,
   "why": "a card whose name is a surname alone, a firm style, or an honorific with no forename cannot be split into (surname, forename) and is refused by R1 like any other source reading. They are named in the master's refusals."
  },
  "negative_searches_recorded": {
   "derived_refusals_by_rule": {
-   "R1": 370,
+   "R1": 377,
    "R5": 265,
-   "R2": 978,
-   "R3": 118,
+   "R2": 979,
+   "R3": 117,
    "R4": 83,
    "R6": 9,
    "R7": 40,
