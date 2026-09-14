@@ -317,6 +317,13 @@ def self_test():
          "--check-base" in live, True)
     case("…and open-pr refuses to open a PR into a base that is not",
          "needs.bake.outputs.base_live == '1'" in live, True)
+    # ASKED TWICE, AND THE SECOND TIME IS THE ONE #1303 NEEDED. The job-start
+    # answer is three quarters of an hour stale by the time the PR is opened;
+    # #1303's base was live at 02:37:50 and merged at 02:44:20, and the PR opened
+    # at 03:16 into a branch nothing would ever merge again. A guard that only
+    # runs before the work cannot see a base die during it.
+    case("…and it asks AGAIN at the moment the PR is opened, not only at job start",
+         live.count("--check-base") >= 2, True)
 
     for ok, name, got, want in cases:
         if ok:

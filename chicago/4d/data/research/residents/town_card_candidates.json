@@ -4,16 +4,16 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1295,
-  "open_clusters": 15,
-  "cards_in_open_clusters": 33,
+  "town_people": 1308,
+  "open_clusters": 19,
+  "cards_in_open_clusters": 41,
   "rulings": {
    "distinct": 13,
-   "merge": 36,
-   "undecided_rule": 8
+   "merge": 39,
+   "undecided_rule": 12
   },
-  "landed_merges": 36,
-  "cards_folded": 55
+  "landed_merges": 39,
+  "cards_folded": 58
  },
  "landed": [
   {
@@ -165,6 +165,16 @@
   },
   {
    "cluster": "harmon-isaac",
+   "survivor": "harmon_charles_l",
+   "survivor_household": "hh_harmon_brothers",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "harmon_c_l"
+   ],
+   "rule": "C2"
+  },
+  {
+   "cluster": "harmon-isaac",
    "survivor": "harmon_isaac_d",
    "survivor_household": "hh_harmon_brothers",
    "survivor_on_the_cards": true,
@@ -235,6 +245,16 @@
     "kennicott_w_l"
    ],
    "rule": "C4"
+  },
+  {
+   "cluster": "kennicott",
+   "survivor": "kennicott_william_h",
+   "survivor_household": "hh_kennicott_william_h",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "kennicott_w_h"
+   ],
+   "rule": "C2"
   },
   {
    "cluster": "kimberly",
@@ -394,9 +414,104 @@
     "vandenbogart_h"
    ],
    "rule": "C7"
+  },
+  {
+   "cluster": "wright",
+   "survivor": "wright_john_s",
+   "survivor_household": "hh_wright_john",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "wright_j_s"
+   ],
+   "rule": "C2"
   }
  ],
  "clusters": [
+  {
+   "surname": "barnard",
+   "cards": [
+    {
+     "person": "barnard_j_b",
+     "household": "hh_barnard_j_b",
+     "name": "J B Barnard",
+     "anchor": false,
+     "sources": [
+      "chicago_american_1835",
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "barnard-j"
+    },
+    {
+     "person": "barnard_j_h",
+     "household": "hh_barnard_j_h",
+     "name": "J H Barnard",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "barnard-j"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "barnard_j_b",
+     "b": "barnard_j_h",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "the same forename, 'j'"
+     ],
+     "against": [
+      "the middle initial contradicts: 'b' against 'h'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "barry",
+   "cards": [
+    {
+     "person": "barry_j_r",
+     "household": "hh_barry_j_r",
+     "name": "J R Barry",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad",
+      "isa_public_domain_land_tract_sales"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "barry-j"
+    },
+    {
+     "person": "barry_john_s",
+     "household": "hh_barry_john_s",
+     "name": "John S. Barry",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "barry-j"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "barry_j_r",
+     "b": "barry_john_s",
+     "for": [
+      "share 1 source(s): chicago_voter_lists_1833_1835_irad",
+      "an initial against its forename, 'j' and 'john'"
+     ],
+     "against": [
+      "the middle initial contradicts: 'r' against 's'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
+    }
+   ]
+  },
   {
    "surname": "brown",
    "cards": [
@@ -436,6 +551,47 @@
      ],
      "against": [
       "both stand on one household record, hh_brown_rufus — the sources name them together, not twice"
+     ]
+    }
+   ]
+  },
+  {
+   "surname": "carli",
+   "cards": [
+    {
+     "person": "carli_p_s",
+     "household": "hh_carli_p_s",
+     "name": "P S Carli",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "carli-p"
+    },
+    {
+     "person": "carli_paul_j",
+     "household": "hh_carli_paul_j",
+     "name": "Paul J Carli",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "carli-p"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "carli_p_s",
+     "b": "carli_paul_j",
+     "for": [
+      "share 1 source(s): chicago_democrat_1833_1835",
+      "an initial against its forename, 'p' and 'paul'"
+     ],
+     "against": [
+      "the middle initial contradicts: 's' against 'j'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
      ]
     }
    ]
@@ -642,6 +798,48 @@
       "hogan_john_s_c is an anchor — the town documents this person"
      ],
      "against": []
+    }
+   ]
+  },
+  {
+   "surname": "matthews",
+   "cards": [
+    {
+     "person": "matthews_j_d",
+     "household": "hh_matthews_j_d",
+     "name": "J D Matthews",
+     "anchor": false,
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "matthews-j"
+    },
+    {
+     "person": "matthews_james_g",
+     "household": "hh_matthews_james_g",
+     "name": "James G. Matthews",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "matthews-j"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "matthews_j_d",
+     "b": "matthews_james_g",
+     "for": [
+      "share 1 source(s): chicago_voter_lists_1833_1835_irad",
+      "an initial against its forename, 'j' and 'james'"
+     ],
+     "against": [
+      "the middle initial contradicts: 'd' against 'g'",
+      "neither card is an anchor: nothing here documents the person beyond a list"
+     ]
     }
    ]
   },
@@ -1104,9 +1302,10 @@
      "name": "John S. Wright",
      "anchor": true,
      "sources": [
-      "andreas_1884_v1"
+      "andreas_1884_v1",
+      "chicago_democrat_1833_1835"
      ],
-     "ruling": "distinct",
+     "ruling": "merge",
      "ruled_in": "wright"
     }
    ],

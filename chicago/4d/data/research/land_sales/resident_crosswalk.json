@@ -8,12 +8,12 @@
     "upheld": 135,
     "named": 1,
     "refused": 69,
-    "unruled": 3
+    "unruled": 5
   },
   "counts": {
     "purchasers": 647,
-    "matched": 139,
-    "refused": 508,
+    "matched": 141,
+    "refused": 506,
     "firms": 2,
     "bodies": 3
   },
@@ -2476,7 +2476,7 @@
       "resident_name": "Silas W Sherman",
       "household_id": "hh_sherman_silas_w",
       "match": "forename_agrees",
-      "rule": "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees in full.",
+      "rule": "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -2505,6 +2505,15 @@
           "middle_initial": "W",
           "reading_middle_initial": "W",
           "outcome": "survives"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "G",
+          "reading_middle_initial": "W",
+          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -4138,6 +4147,96 @@
       "what_it_evidences": "The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town."
     },
     {
+      "purchaser_as_read": "KING JEREMIAH",
+      "record_ids": [
+        "ls0569"
+      ],
+      "resident_id": "king_j_d",
+      "resident_name": "J D King",
+      "household_id": "hh_king_j_d",
+      "match": "initial_agrees",
+      "rule": "KING JEREMIAH matches J D King: the forename names J D King of the 8 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "king_byra",
+          "name": "Byra King",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "king_byram",
+          "name": "Byram King",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "king_byron",
+          "name": "Byron King",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "king_hyram",
+          "name": "Hyram King",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "king_j_d",
+          "name": "J D King",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": "D",
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "king_nehemiah",
+          "name": "Nehemiah King",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "king_sherman",
+          "name": "Sherman King",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "king_tuthill",
+          "name": "Tuthill King",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
       "purchaser_as_read": "NEWBERRY WALTER L",
       "record_ids": [
         "ls0596",
@@ -4897,6 +4996,51 @@
         ],
         "reasoning": "Ruled with HARMON CHARLES L and it goes the same way, which is not the default — cohort C1's BROWN WM is what happens when a barer spelling is allowed to ride on a fuller one. It does not apply here because THIS SPELLING IS NOT BARER: CHAS L carries the middle initial, and the contraction 'Chas.' is precisely the form the 1837 election return and Norris 1844's advertiser card print for this man. The single row of 8 August 1835, 80.45 acres for $100.55, is upheld on the same middle initial and the same trade as the fuller spelling. Cohort A's abbreviated-and-full habit (HADDOCK E H / HADDOCK EDWARD H) is doing real work here rather than being assumed: the two spellings agree on the token that discriminates."
       },
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "BARRY JOHN R",
+      "record_ids": [
+        "ls0813"
+      ],
+      "resident_id": "barry_j_r",
+      "resident_name": "J R Barry",
+      "household_id": "hh_barry_j_r",
+      "match": "initial_agrees",
+      "rule": "BARRY JOHN R matches J R Barry: the forename names J R Barry of the 3 people of this surname, and the forename agrees as an initial only.",
+      "via_card_merge": null,
+      "rivals": [
+        {
+          "key": "barry_j_r",
+          "name": "J R Barry",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": "R",
+          "reading_middle_initial": "R",
+          "outcome": "survives"
+        },
+        {
+          "key": "barry_john_s",
+          "name": "John S. Barry",
+          "forename_agrees": true,
+          "why": "the forenames agree and the middle initials do not — R against S (rule 2)",
+          "middle_initial": "S",
+          "reading_middle_initial": "R",
+          "outcome": "refused_on_the_middle_initial"
+        },
+        {
+          "key": "barry_william",
+          "name": "William Barry",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": null,
+          "reading_middle_initial": "R",
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": null,
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
     {
@@ -6044,11 +6188,11 @@
           "outcome": "refused_on_the_forename"
         },
         {
-          "key": "king_john_lyle",
-          "name": "John Lyle King",
+          "key": "king_j_d",
+          "name": "J D King",
           "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "L",
+          "why": "the initials differ",
+          "middle_initial": "D",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -6615,7 +6759,7 @@
       "resident_name": "Silas W Sherman",
       "household_id": "hh_sherman_silas_w",
       "match": "initial_agrees",
-      "rule": "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees as an initial only.",
+      "rule": "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -6644,6 +6788,15 @@
           "middle_initial": "W",
           "reading_middle_initial": "W",
           "outcome": "survives"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
+          "reading_middle_initial": "W",
+          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -9549,11 +9702,11 @@
           "outcome": "refused_on_the_forename"
         },
         {
-          "key": "king_john_lyle",
-          "name": "John Lyle King",
+          "key": "king_j_d",
+          "name": "J D King",
           "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "L",
+          "why": "the initials differ",
+          "middle_initial": "D",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -10521,11 +10674,11 @@
           "outcome": "refused_on_the_forename"
         },
         {
-          "key": "king_john_lyle",
-          "name": "John Lyle King",
+          "key": "king_j_d",
+          "name": "J D King",
           "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "L",
+          "why": "the initials differ",
+          "middle_initial": "D",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -11591,91 +11744,6 @@
       ]
     },
     {
-      "a": "KING JEREMIAH",
-      "b": "8 residents named King",
-      "rule": "KING JEREMIAH is refused against 8 residents named King: the forename names 0 of the 8 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "king_byra",
-          "name": "Byra King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "king_byram",
-          "name": "Byram King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "king_byron",
-          "name": "Byron King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "king_hyram",
-          "name": "Hyram King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "king_john_lyle",
-          "name": "John Lyle King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "L",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "king_nehemiah",
-          "name": "Nehemiah King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "king_sherman",
-          "name": "Sherman King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "king_tuthill",
-          "name": "Tuthill King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "record_ids": [
-        "ls0569"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "KING JOHN R",
       "b": "8 residents named King",
       "rule": "KING JOHN R is refused against 8 residents named King: the forename names 0 of the 8 people of this surname, and a reading is named onto exactly one or onto none.",
@@ -11717,11 +11785,11 @@
           "outcome": "refused_on_the_forename"
         },
         {
-          "key": "king_john_lyle",
-          "name": "John Lyle King",
+          "key": "king_j_d",
+          "name": "J D King",
           "forename_agrees": true,
-          "why": "the forenames agree and the middle initials do not — R against L (rule 2)",
-          "middle_initial": "L",
+          "why": "the forenames agree and the middle initials do not — R against D (rule 2)",
+          "middle_initial": "D",
           "reading_middle_initial": "R",
           "outcome": "refused_on_the_middle_initial"
         },
@@ -13776,37 +13844,6 @@
       ]
     },
     {
-      "a": "BARRY JOHN R",
-      "b": "2 residents named Barry",
-      "rule": "BARRY JOHN R is refused against John S. Barry and William Barry: the forename names 0 of the 2 people of this surname, and a reading is named onto exactly one or onto none.",
-      "rivals": [
-        {
-          "key": "barry_john_s",
-          "name": "John S. Barry",
-          "forename_agrees": true,
-          "why": "the forenames agree and the middle initials do not — R against S (rule 2)",
-          "middle_initial": "S",
-          "reading_middle_initial": "R",
-          "outcome": "refused_on_the_middle_initial"
-        },
-        {
-          "key": "barry_william",
-          "name": "William Barry",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "R",
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "record_ids": [
-        "ls0813"
-      ],
-      "evidence": [
-        "data/residents/index.json"
-      ]
-    },
-    {
       "a": "BEERS CYRENIUS",
       "b": "0 residents named Beers",
       "rule": "BEERS CYRENIUS is refused against 0 residents named Beers: the residents layer holds nobody of the surname.",
@@ -13879,8 +13916,8 @@
     },
     {
       "a": "SHERMAN FRANCIS C",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN FRANCIS C is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN FRANCIS C is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -13906,6 +13943,15 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "W",
+          "reading_middle_initial": "C",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "G",
           "reading_middle_initial": "C",
           "outcome": "refused_on_the_forename"
         }
@@ -16947,11 +16993,11 @@
           "outcome": "survives"
         },
         {
-          "key": "king_john_lyle",
-          "name": "John Lyle King",
+          "key": "king_j_d",
+          "name": "J D King",
           "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "L",
+          "why": "the initials differ",
+          "middle_initial": "D",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -17032,11 +17078,11 @@
           "outcome": "refused_on_the_forename"
         },
         {
-          "key": "king_john_lyle",
-          "name": "John Lyle King",
+          "key": "king_j_d",
+          "name": "J D King",
           "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "L",
+          "why": "the initials differ",
+          "middle_initial": "D",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -17797,8 +17843,8 @@
     },
     {
       "a": "SHERMAN F C",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN F C is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN F C is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -17824,6 +17870,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "W",
+          "reading_middle_initial": "C",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
           "reading_middle_initial": "C",
           "outcome": "refused_on_the_forename"
         }
@@ -17837,8 +17892,8 @@
     },
     {
       "a": "SHERMAN F T",
-      "b": "3 residents named Sherman",
-      "rule": "SHERMAN F T is refused against Mrs. H. Sherman and Rebecca Sherman and Silas W Sherman: the forename names 0 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Sherman",
+      "rule": "SHERMAN F T is refused against 4 residents named Sherman: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "sherman_h",
@@ -17864,6 +17919,15 @@
           "forename_agrees": false,
           "why": "the initials differ",
           "middle_initial": "W",
+          "reading_middle_initial": "T",
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "sherman_william_george",
+          "name": "William George Sherman",
+          "forename_agrees": false,
+          "why": "the initials differ",
+          "middle_initial": "G",
           "reading_middle_initial": "T",
           "outcome": "refused_on_the_forename"
         }

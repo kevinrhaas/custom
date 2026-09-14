@@ -490,6 +490,33 @@ jobs:
           # would carry the branch's unmerged work with it. tools/bake_ref.py
           # refuses to resolve to the production tier, so this cannot become a PR
           # into main by any route.
+
+          # ASK AGAIN, HERE, AT THE MOMENT THE PR IS ACTUALLY OPENED.
+          #
+          # `needs.bake.outputs.base_live` was computed in the bake job's SECOND
+          # STEP, three quarters of an hour ago, and a base can die in between.
+          # #1303 is the proof: its bake started 02:37:50Z while
+          # `fix/bake-dead-base` still had an open PR, so base_live was correctly
+          # 1; that PR merged at 02:44:20Z, six minutes in; and this job opened a
+          # 196-file PR at 03:16Z into a branch nothing would ever merge again.
+          #
+          # When #1300 added the first check it recorded the mid-flight case as
+          # unfixable — "a bake cannot know at minute two what will merge at
+          # minute forty." That is true of the BAKE. It is not true of this job,
+          # which runs at minute forty and can simply ask. The cheap check was put
+          # in one place when it belonged in two.
+          #
+          # Both are kept. The job-start answer still gates this whole job (and
+          # under T-1118 will skip the bake itself), which is the cheap win on the
+          # bases that were already dead at the starting line; this one closes the
+          # window that one cannot see. Same rule, same script, same fail-safe:
+          # any doubt answers live.
+          LIVE=$(python3 chicago/4d/tools/bake_ref.py --check-base "$BASE")
+          if [ "$LIVE" != "1" ]; then
+            echo "::notice::$BASE stopped being a live base while this bake ran, so no PR is opened. The baked branch $BRANCH is pushed and keeps its content; the next bake on dev regenerates it from the sources that did merge."
+            exit 0
+          fi
+
           if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
             --base "$BASE" \
             --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. \`check.sh\` ran green at the end of the bake, and the published mirror passed the smoke at BOTH viewports in the \`smoke\` job before this PR was opened (T-0165). Targets \`$BASE\` — the ref this bake was built from (T-0454). Merging a \`dev\` bake publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \

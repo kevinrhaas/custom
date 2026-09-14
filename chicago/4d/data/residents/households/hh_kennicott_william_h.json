@@ -124,6 +124,15 @@
     },
     {
      "list": "newspaper_1833_1835",
+     "as_read": "W. H. Kennicott",
+     "locator": "chicago_democrat_1834_10_29#c008",
+     "record_id": "person_w_h_kennicott",
+     "describes_date": "1834-10-29",
+     "source": "chicago_democrat_1833_1835",
+     "rule": "G1a"
+    },
+    {
+     "list": "newspaper_1833_1835",
      "as_read": "Kennicott, Wm. H.",
      "locator": "chicago_democrat_1835_08_05#c021",
      "record_id": "person_kennicott_wm_h",
