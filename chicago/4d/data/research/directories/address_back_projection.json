@@ -7,16 +7,16 @@
  "scene_year": 1835,
  "street_layer": "data/streets/1835.json",
  "counts": {
-  "addresses_adjudicated": 154,
-  "placed": 17,
-  "placed_as_a_face": 14,
+  "addresses_adjudicated": 163,
+  "placed": 18,
+  "placed_as_a_face": 15,
   "placed_as_a_corner": 1,
   "placed_anchored_on_a_crossing": 2,
-  "already_better_placed": 27,
-  "refused": 110,
-  "refused_clause_1_no_1835_business": 96,
+  "already_better_placed": 29,
+  "refused": 116,
+  "refused_clause_1_no_1835_business": 101,
   "refused_clause_2_a_residence_not_a_shop": 8,
-  "refused_clause_3_not_on_the_1835_grid": 6,
+  "refused_clause_3_not_on_the_1835_grid": 7,
   "faces_reached": [
    "Canal Street",
    "Clark Street",
@@ -388,6 +388,27 @@
    "position_local_enu_m": null
   },
   {
+   "household_id": "hh_brookes_samuel",
+   "person_id": "brookes_samuel",
+   "person": "Samuel Brookes",
+   "address_as_printed": "Adams street near Dearborn",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
    "household_id": "hh_brown_hanna_e",
    "person_id": "brown_hanna_e",
    "person": "Hanna E Brown",
@@ -510,6 +531,27 @@
    "outcome": "already_better_placed",
    "clause": "2",
    "reason": "An 1835 placement already stands: this household works at `chicago_democrat_office`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_campbell_james_b",
+   "person_id": "campbell_james_b",
+   "person": "James B Campbell",
+   "address_as_printed": "North Clark street",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -667,17 +709,17 @@
    "household_id": "hh_clarke_h_b",
    "person_id": "clarke_h_b",
    "person": "H. B. Clarke",
-   "address_as_printed": "cor 16th Street",
-   "describes_date": 1843,
-   "read_back_years": 8,
+   "address_as_printed": "Michigan ave",
+   "describes_date": 1839,
+   "read_back_years": 4,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1839"
    ],
    "occupation_1835": "hardware_merchant",
    "works_at_1835": null,
    "outcome": "refused",
    "clause": "3",
-   "reason": "The address names no street at all — it names a house or a person to board with — so there is nothing to resolve onto the 1835 grid.",
+   "reason": "Michigan Avenue is the lakefront street south of the river and is NOT the 1835 layer's Michigan Street, which runs east from La Salle on the north side. Two streets, one word, and the 1839 directory prints both.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -825,6 +867,27 @@
    "outcome": "refused",
    "clause": "1",
    "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_couch_ira",
+   "person_id": "couch_ira",
+   "person": "Ira Couch",
+   "address_as_printed": "Lake sts",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "hotel_keeper",
+   "works_at_1835": "tremont_house_1",
+   "outcome": "already_better_placed",
+   "clause": "2",
+   "reason": "An 1835 placement already stands: this household works at `tremont_house_1`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -1045,17 +1108,17 @@
    "household_id": "hh_elston_daniel",
    "person_id": "elston_daniel",
    "person": "Daniel Elston",
-   "address_as_printed": "res North Branch",
-   "describes_date": 1843,
-   "read_back_years": 8,
+   "address_as_printed": "Elston road",
+   "describes_date": 1839,
+   "read_back_years": 4,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1839"
    ],
    "occupation_1835": "soap_and_candle_maker",
    "works_at_1835": "elston_soap_candle_manufactory",
    "outcome": "already_better_placed",
    "clause": "2",
-   "reason": "An 1835 placement already stands: this household works at `elston_soap_candle_manufactory`, and clause 2 says an attested 1835 placement always beats a door printed 8 years later.",
+   "reason": "An 1835 placement already stands: this household works at `elston_soap_candle_manufactory`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later.",
    "street_id": null,
    "face": null,
    "placement": null,
@@ -1465,6 +1528,27 @@
    "position_local_enu_m": null
   },
   {
+   "household_id": "hh_hogan_john_s_c",
+   "person_id": "hogan_john_s_c",
+   "person": "John S. C. Hogan",
+   "address_as_printed": "236 Lake street",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "postmaster",
+   "works_at_1835": "hogan_store",
+   "outcome": "already_better_placed",
+   "clause": "2",
+   "reason": "An 1835 placement already stands: this household works at `hogan_store`, and clause 2 says an attested 1835 placement always beats a door printed 4 years later.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
    "household_id": "hh_holbrook_john",
    "person_id": "holbrook_john",
    "person": "John Holbrook",
@@ -1699,6 +1783,27 @@
    ]
   },
   {
+   "household_id": "hh_jackson_samuel",
+   "person_id": "jackson_samuel",
+   "person": "Samuel Jackson",
+   "address_as_printed": "res Fort Dearborn",
+   "describes_date": 1844,
+   "read_back_years": 9,
+   "sources": [
+    "norris_directory_1844"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
    "household_id": "hh_johnson_sanford",
    "person_id": "johnson_sanford",
    "person": "Sanford Johnson",
@@ -1723,11 +1828,11 @@
    "household_id": "hh_johnson_seth",
    "person_id": "johnson_seth",
    "person": "Seth Johnson",
-   "address_as_printed": "house cor Washington and Lasalle sts",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "address_as_printed": "res s.-w. cor Washington and LaSalle",
+   "describes_date": 1843,
+   "read_back_years": 8,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1843"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2206,11 +2311,11 @@
    "household_id": "hh_merrill_george_w",
    "person_id": "merrill_george_w",
    "person": "George W Merrill",
-   "address_as_printed": "cor LaSalle",
-   "describes_date": 1843,
-   "read_back_years": 8,
+   "address_as_printed": "166 Lake st",
+   "describes_date": 1839,
+   "read_back_years": 4,
    "sources": [
-    "fergus_chicago_directory_1843"
+    "fergus_chicago_directory_1839"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2291,6 +2396,27 @@
    "person_id": "morrison_james_m",
    "person": "James M Morrison",
    "address_as_printed": "Clark street",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_morrison_orsemus",
+   "person_id": "morrison_orsemus",
+   "person": "Orsemus Morrison",
+   "address_as_printed": "Clark st",
    "describes_date": 1839,
    "read_back_years": 4,
    "sources": [
@@ -2773,11 +2899,11 @@
    "household_id": "hh_rue_john_c",
    "person_id": "rue_john_c",
    "person": "John C Rue",
-   "address_as_printed": "h Clark, b Madison and Monroe",
-   "describes_date": 1844,
-   "read_back_years": 9,
+   "address_as_printed": "Clark st",
+   "describes_date": 1839,
+   "read_back_years": 4,
    "sources": [
-    "norris_directory_1844"
+    "fergus_chicago_directory_1839"
    ],
    "occupation_1835": "none_recorded",
    "works_at_1835": null,
@@ -2976,6 +3102,27 @@
    "street_id": "north_water",
    "face": "North Water Street",
    "placement": "face",
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_smith_william",
+   "person_id": "smith_william",
+   "person": "William Smith",
+   "address_as_printed": "Adams st. bet. State and Dearborn",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "none_recorded",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "1",
+   "reason": "The 1835 record prints no trade for this person, so there is no 1835 business for a later door to position. Minting one out of a directory printed after the scene date is the one thing this pass may never do.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
    "qualifier_as_printed": null,
    "position_local_enu_m": null
   },
@@ -3270,6 +3417,48 @@
    "street_id": null,
    "face": null,
    "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_wright_john",
+   "person_id": "wright_john",
+   "person": "John Wright",
+   "address_as_printed": "Michigan ave. cor. Madison st",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "merchant",
+   "works_at_1835": null,
+   "outcome": "refused",
+   "clause": "3",
+   "reason": "Michigan Avenue is the lakefront street south of the river and is NOT the 1835 layer's Michigan Street, which runs east from La Salle on the north side. Two streets, one word, and the 1839 directory prints both.",
+   "street_id": null,
+   "face": null,
+   "placement": null,
+   "qualifier_as_printed": null,
+   "position_local_enu_m": null
+  },
+  {
+   "household_id": "hh_wright_john",
+   "person_id": "wright_john_s",
+   "person": "John S. Wright",
+   "address_as_printed": "N. Water st",
+   "describes_date": 1839,
+   "read_back_years": 4,
+   "sources": [
+    "fergus_chicago_directory_1839"
+   ],
+   "occupation_1835": "clerk",
+   "works_at_1835": null,
+   "outcome": "placed",
+   "clause": "3 and 4",
+   "reason": "North Water Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt.",
+   "street_id": "north_water",
+   "face": "North Water Street",
+   "placement": "face",
    "qualifier_as_printed": null,
    "position_local_enu_m": null
   }

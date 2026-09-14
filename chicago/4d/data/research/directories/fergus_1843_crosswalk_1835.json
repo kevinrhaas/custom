@@ -9,11 +9,13 @@
   "premises": "The 1835 layer records a premises as a structure id and the directories print a later street address, or a person to board with. They are not comparable, so what the test measures is which rival the town has already placed on the ground — and preferring the better-documented record is how a reconstruction invents a fact.",
   "year": "Neither side of any live tie carries a birth year in the 1835 layer, so there is nothing to compare. Fergus's bracketed death notes are T-0574's to read."
  },
+ "whole_name_rule": ". A printed forename and a reading of 1835 are THE SAME NAME when\nthey set the SAME NUMBER of words and agree word by word — each pair either\nletter for letter, or one of them the single initial the other begins with.\nWhere exactly ONE candidate is the same name in that sense, the page names\nthat one and no other. Where none is, or more than one is, nothing happens\nand the tie stands with the reason filed.",
+ "wife_rule": "— the second clause, and it is R6 arriving where it\nwas always true. `tools/consolidate_resident_evidence.py` holds `Mrs Rufus\nBrown` apart from `Rufus Brown` (R6, T-0723) because the honorific strip leaves\nthe husband's forename tokens on both readings and folds a wife onto him. The\ncrosswalks strip titles the same way and had no such rule, so the town layer's\ntwo people met `Brown, Rufus B., warehouseman` together and were filed as a\nCONTEST — a man contesting a printed line with his own wife. Where one\ncandidate of 1835 carries a female honorific, its forename tokens are exactly\nthose of another candidate carried WITHOUT one, and the printed entry sets no\nfemale honorific of its own, the entry is the husband's and she is not named by\nit. The proof is the same proof R6 asks for and it is in the contest itself:\nthe town layer prints both readings, which is what put them here together.",
  "counts": {
   "residents_considered": 1306,
-  "matched_one_1843_entry": 119,
-  "matched_more_than_one_ambiguous": 27,
-  "one_1843_entry_contested_by_two_residents": 13,
+  "matched_one_1843_entry": 136,
+  "matched_more_than_one_ambiguous": 15,
+  "one_1843_entry_contested_by_two_residents": 2,
   "surname_present_initial_absent_refused": 326,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
@@ -22,12 +24,18 @@
   "initial_agreed_forenames_disagreed_refused": 81,
   "of_those_a_garbled_printed_forename": 0,
   "residents_left_with_no_1843_entry_by_that_refusal": 41,
-  "ties_narrowed_by_a_trade": 4,
-  "of_those_contested": 1,
-  "of_those_ambiguous": 3,
-  "could_carry_occupation": 68,
-  "could_carry_address": 84,
-  "could_carry_death_note": 82,
+  "entries_the_whole_name_refused": 11,
+  "residents_that_whole_name_refusal_reaches": 9,
+  "contests_the_page_named": 5,
+  "residents_not_named_by_a_contested_entry": 6,
+  "residents_held_off_a_husbands_entry": 0,
+  "entries_a_female_honorific_refused": 3,
+  "ties_narrowed_by_a_trade": 1,
+  "of_those_contested": 0,
+  "of_those_ambiguous": 1,
+  "could_carry_occupation": 76,
+  "could_carry_address": 92,
+  "could_carry_death_note": 91,
   "business_directory_notices_with_a_surname": 106,
   "notices_folded_onto_their_own_roll_entry": 82,
   "notices_standing_as_their_own_candidate": 24,
@@ -1555,6 +1563,32 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "household_id": "hh_taylor_anson",
+   "grade_1835": "attested",
+   "occupation_1835": "carpenter",
+   "occupation_1835_confidence": "inferred",
+   "lives_at_1835": null,
+   "works_at_1835": "south_branch_raft_bridge",
+   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins C.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2412",
+     "as_printed": "Taylor, Charles H., currier, Johonnett, Wells & Co.",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "currier, Johonnett, Wells & Co",
+     "address_1843": null,
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Charles Loomis Harmon",
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
@@ -2025,6 +2059,42 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Eli A Rider",
+   "person_id": "rider_eli_a",
+   "household_id": "hh_rider_eli_a",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Rider' folds to the same string as the 1843 entry's, and the given name of both begins E.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2096",
+     "as_printed": "Rider, Eli A., clerk, Charles L. P. Hogan [went to Aurora, Ill.]",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "clerk, Charles L. P. Hogan",
+     "address_1843": null,
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "occupation"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "Elia Rider"
+    ],
+    "clause": "the whole printed name, word for word",
+    "named": "elia",
+    "why": "the page sets 'Eli A' and exactly one of the 2 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
    "resident": "Eli B Williams",
    "person_id": "williams_eli_b",
    "household_id": "hh_williams_eli_b",
@@ -2102,6 +2172,36 @@
      "occupation_1843": "watchmaker and jeweler, 195 Lake",
      "address_1843": "res Madison near Wells",
      "death_note_1843": "died August 25, 1889, aged 71"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Erastus Bowen",
+   "person_id": "bowen_erastus_selden",
+   "household_id": "hh_bowen_erastus_selden",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Bowen' folds to the same string as the 1843 entry's, and the given name of both begins E.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0390",
+     "as_printed": "Bowen, Erastus (B. & Cole), res 40 Michigan ave [died. Aurora, Kane Co.. Ill.]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "(B. & Cole)",
+     "address_1843": "res 40 Michigan ave",
+     "death_note_1843": "died. Aurora, Kane Co.. Ill."
     }
    ],
    "could_carry": [
@@ -2655,6 +2755,34 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Ira Couch",
+   "person_id": "couch_ira",
+   "household_id": "hh_couch_ira",
+   "grade_1835": "attested",
+   "occupation_1835": "hotel_keeper",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": "tremont_house_1",
+   "works_at_1835": "tremont_house_1",
+   "rule": "Surname 'Couch' folds to the same string as the 1843 entry's, and the given name of both begins I.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0710",
+     "as_printed": "Couch, Ira, proprietor Tremont House, s.e. cor Lake and Dearborn [died, Cuba, February 28, 1857, aged 50¼]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "proprietor Tremont House, s.e",
+     "address_1843": "cor Lake and Dearborn",
+     "death_note_1843": "died, Cuba, February 28, 1857, aged 50¼"
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Ira Herrick",
    "person_id": "herrick_ira",
    "household_id": "hh_herrick_ira",
@@ -2763,6 +2891,45 @@
    ],
    "could_carry": [
     "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": true
+  },
+  {
+   "resident": "J. Curtiss",
+   "person_id": "curtiss_j",
+   "household_id": "hh_curtiss_j",
+   "grade_1835": "attested",
+   "occupation_1835": "attorney",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Curtiss' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0751",
+     "as_printed": "Curtiss, James, State's attorney, 136 Lake, res W. Randolph, bet May and Ann [9th mayor, died, Joliet, Ill, November 2, 1859, aged 56]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "State's attorney, 136 Lake",
+     "address_1843": "res W. Randolph, bet May and Ann",
+     "death_note_1843": null,
+     "also_printed": [
+      {
+       "claim": "f1843_e0005",
+       "as_printed": "JAMES CURTISS, attorney and counsellor at law, office 136 Lake Street.",
+       "page": "fergus_1843_page_001",
+       "section": "business directory",
+       "trade_heading": "ATTORNEYS",
+       "occupation_1843": "attorney and counsellor at law, office 136 Lake Street",
+       "address_1843": null
+      }
+     ]
+    }
+   ],
+   "could_carry": [
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
@@ -3266,6 +3433,34 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "John Dean Caton",
+   "person_id": "caton_john_dean",
+   "household_id": "hh_caton_john_dean",
+   "grade_1835": "attested",
+   "occupation_1835": "attorney",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": "temple_lake_st_building",
+   "rule": "Surname 'Caton' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0578",
+     "as_printed": "Caton, John Dean, attorney, [died July 30, 1895, aged 88-4-11]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "attorney",
+     "address_1843": null,
+     "death_note_1843": "died July 30, 1895, aged 88-4-11"
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "John Fitzsimmons",
    "person_id": "fitzsimmons_john",
    "household_id": "hh_fitzsimmons_john",
@@ -3381,6 +3576,80 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "John S. C. Hogan",
+   "person_id": "hogan_john_s_c",
+   "household_id": "hh_hogan_john_s_c",
+   "grade_1835": "attested",
+   "occupation_1835": "postmaster",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": "hogan_store",
+   "rule": "Surname 'Hogan' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1294",
+     "as_printed": "Hogan, John Stephen Coates, ex-postmaster, bds Charles L. P. Hogan [died, Boonville, Mo., December 2, 1868, aged 63 2/3 ]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "ex-postmaster",
+     "address_1843": "bds Charles L. P. Hogan",
+     "death_note_1843": "died, Boonville, Mo., December 2, 1868, aged 63 2/3"
+    }
+   ],
+   "could_carry": [
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "John Hogan"
+    ],
+    "clause": "the whole printed name, word for word",
+    "named": "johnsc",
+    "why": "the page sets 'John Stephen Coates' and exactly one of the 2 readings is that name word for word and most closely: 3 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "John S. Wright",
+   "person_id": "wright_john_s",
+   "household_id": "hh_wright_john",
+   "grade_1835": "attested",
+   "occupation_1835": "clerk",
+   "occupation_1835_confidence": "inferred",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2675",
+     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "editor and proprietor Prairie Farmer",
+     "address_1843": null,
+     "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "J Wright",
+     "John Wright"
+    ],
+    "clause": "the whole printed name, word for word",
+    "named": "johns",
+    "why": "the page sets 'John Stephen' and exactly one of the 3 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+   }
   },
   {
    "resident": "John Scott",
@@ -3768,6 +4037,34 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Mrs Rufus Brown",
+   "person_id": "brown_mrs_rufus",
+   "household_id": "hh_brown_rufus",
+   "grade_1835": "inferred",
+   "occupation_1835": "boarding_house_keeper",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": "brown_boarding_house",
+   "works_at_1835": "brown_boarding_house",
+   "rule": "Surname 'Brown' folds to the same string as the 1843 entry's, and the given name of both begins R.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0459",
+     "as_printed": "Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "dress and cloak maker, 189 Lake, up stairs",
+     "address_1843": null,
+     "death_note_1843": "died February 2, 1890, aged 73."
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Nathan Christy",
    "person_id": "christy_nathan",
    "household_id": "hh_christy_nathan",
@@ -3796,6 +4093,44 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Orsemus Morrison",
+   "person_id": "morrison_orsemus",
+   "household_id": "hh_morrison_orsemus",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Morrison' folds to the same string as the 1843 entry's, and the given name of both begins O.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1847",
+     "as_printed": "Morrison, Orsemus, carpenter, res 153 Clark [died Jan. 4,1864, a. 58½]",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "carpenter",
+     "address_1843": "res 153 Clark",
+     "death_note_1843": "died Jan. 4,1864, a. 58½"
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "Ordemus Morrison"
+    ],
+    "clause": "the whole printed name, word for word",
+    "named": "orsemus",
+    "why": "the page sets 'Orsemus' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
   },
   {
    "resident": "Parker M. Cole",
@@ -3999,6 +4334,34 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "Rufus Brown",
+   "person_id": "brown_rufus",
+   "household_id": "hh_brown_rufus",
+   "grade_1835": "attested",
+   "occupation_1835": "boarding_house_keeper",
+   "occupation_1835_confidence": "inferred",
+   "lives_at_1835": "brown_boarding_house",
+   "works_at_1835": "brown_boarding_house",
+   "rule": "Surname 'Brown' folds to the same string as the 1843 entry's, and the given name of both begins R.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0458",
+     "as_printed": "Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "warehouse man, John P. Chapin & Co",
+     "address_1843": "res 189 Lake",
+     "death_note_1843": "died, Burlington, Wis., September 2, 1872, aged 69"
+    }
+   ],
+   "could_carry": [
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "S. Foot",
    "person_id": "foot_s",
    "household_id": "hh_foot_s",
@@ -4028,6 +4391,35 @@
    "resident_given_is_initial_only": true
   },
   {
+   "resident": "Samuel Brookes",
+   "person_id": "brookes_samuel",
+   "household_id": "hh_brookes_samuel",
+   "grade_1835": "inferred",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Brookes' folds to the same string as the 1843 entry's, and the given name of both begins S.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0442",
+     "as_printed": "Brookes, Samuel, florist, res Clark, bet Madison and Monroe [died September 2, 1875, aged 81 2/3 .",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "florist",
+     "address_1843": "res Clark, bet Madison and Monroe [died September 2, 1875, aged 81 2/3",
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "Sanford Johnson",
    "person_id": "johnson_sanford",
    "household_id": "hh_johnson_sanford",
@@ -4053,6 +4445,35 @@
     "occupation",
     "address",
     "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Seth Johnson",
+   "person_id": "johnson_seth",
+   "household_id": "hh_johnson_seth",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Johnson' folds to the same string as the 1843 entry's, and the given name of both begins S.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1413",
+     "as_printed": "Johnson, Capt. Seth, deputy-collector and inspector Port of Chicago. res s.-w. cor Washington and LaSalle",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "deputy-collector and inspector Port of Chicago",
+     "address_1843": "res s.-w. cor Washington and LaSalle",
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
@@ -4206,6 +4627,32 @@
    "could_carry": [
     "death_note"
    ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "Stephen F. Gale",
+   "person_id": "gale_stephen_f",
+   "household_id": "hh_gale_stephen_f",
+   "grade_1835": "attested",
+   "occupation_1835": "merchant",
+   "occupation_1835_confidence": "attested",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Gale' folds to the same string as the 1843 entry's, and the given name of both begins S.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1042",
+     "as_printed": "Gale, Stephen F. & Co. (A. H. Burley), books and stationery, 106 Lake",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "& Co. (A. H. Burley), books and stationery, 106 Lake",
+     "address_1843": null,
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
   },
@@ -4504,6 +4951,36 @@
    "resident_given_is_initial_only": false
   },
   {
+   "resident": "William H Brown",
+   "person_id": "brown_william_h",
+   "household_id": "hh_brown_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Brown' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e0468",
+     "as_printed": "Brown, William Hubbard, [cashier], 8 LaSalle, (A. G. Burley & Co.), res 301 Illinois, n.-w. cor Pine, school agent [died, Amsterdam, Holland, June 19, 1867, aged 72.]",
+     "page": "fergus_1843_page_002",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "8 LaSalle, (A. G. Burley & Co.)",
+     "address_1843": "res 301 Illinois, n.-w. cor Pine, school agent",
+     "death_note_1843": "died, Amsterdam, Holland, June 19, 1867, aged 72."
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address",
+    "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
    "resident": "William H Kennicott",
    "person_id": "kennicott_william_h",
    "household_id": "hh_kennicott_william_h",
@@ -4532,6 +5009,42 @@
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "William H Taylor",
+   "person_id": "taylor_william_h",
+   "household_id": "hh_taylor_william_h",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e2423",
+     "as_printed": "Taylor, William Hartt, agent, Dan. Taylor, 120 Lake",
+     "page": "fergus_1843_page_004",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "agent, Dan. Taylor, 120 Lake",
+     "address_1843": null,
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "occupation"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false,
+   "named_by_the_page": {
+    "over": [
+     "William Taylor"
+    ],
+    "clause": "the whole printed name, word for word",
+    "named": "williamh",
+    "why": "the page sets 'William Hartt' and exactly one of the 2 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+   }
   },
   {
    "resident": "William H. Stow",
@@ -4587,6 +5100,35 @@
     "occupation",
     "address",
     "death_note"
+   ],
+   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
+   "resident_given_is_initial_only": false
+  },
+  {
+   "resident": "William Jones",
+   "person_id": "jones_william",
+   "household_id": "hh_jones_william",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
+   "lives_at_1835": null,
+   "works_at_1835": null,
+   "rule": "Surname 'Jones' folds to the same string as the 1843 entry's, and the given name of both begins W.",
+   "entries_1843": [
+    {
+     "claim": "f1843_e1433",
+     "as_printed": "Jones, William [Golden]. (B. J. & Co.), res 94 Randolph, s.e. cor Dearborn, member of Board of Health [died",
+     "page": "fergus_1843_page_003",
+     "section": "alphabetical directory",
+     "trade_heading": null,
+     "occupation_1843": "(B. J. & Co.)",
+     "address_1843": "res 94 Randolph, s.e. cor Dearborn, member of Board of Health [died",
+     "death_note_1843": null
+    }
+   ],
+   "could_carry": [
+    "occupation",
+    "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
    "resident_given_is_initial_only": false
@@ -4681,38 +5223,6 @@
  "discriminated": [
   {
    "tie": "ambiguous",
-   "resident": "John Dean Caton",
-   "person_id": "caton_john_dean",
-   "entries": 2,
-   "named": "Caton, John Dean, attorney, [died July 30, 1895, aged 88-4-11]",
-   "claim": "f1843_e0578",
-   "discriminator": {
-    "kind": "trade",
-    "named": "f1843_e0578",
-    "confidence": "reconstructed",
-    "occupation_1835": "attorney",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "f1843_e0577",
-      "agrees": false,
-      "why": "two trades that do not agree",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'f1843_e0578' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     },
-     {
-      "key": "f1843_e0578",
-      "agrees": true,
-      "why": "the same trade word",
-      "outcome": "named_by_discriminator"
-     }
-    ]
-   }
-  },
-  {
-   "tie": "ambiguous",
    "resident": "J. B. Cook",
    "person_id": "cook_j_b",
    "entries": 2,
@@ -4742,596 +5252,9 @@
      }
     ]
    }
-  },
-  {
-   "tie": "ambiguous",
-   "resident": "J. Curtiss",
-   "person_id": "curtiss_j",
-   "entries": 2,
-   "named": "Curtiss, James, State's attorney, 136 Lake, res W. Randolph, bet May and Ann [9th mayor, died, Joliet, Ill, November 2, 1859, aged 56]",
-   "claim": "f1843_e0751",
-   "discriminator": {
-    "kind": "trade",
-    "named": "f1843_e0751",
-    "confidence": "reconstructed",
-    "occupation_1835": "attorney",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "f1843_e0751",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
-     },
-     {
-      "key": "f1843_e0752",
-      "agrees": false,
-      "why": "two trades that do not agree",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'f1843_e0751' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     }
-    ]
-   }
-  },
-  {
-   "tie": "contested",
-   "entry_1843": "Hogan, John Stephen Coates, ex-postmaster, bds Charles L. P. Hogan [died, Boonville, Mo., December 2, 1868, aged 63 2/3 ]",
-   "claim": "f1843_e1294",
-   "rivals": [
-    "John Hogan",
-    "John S. C. Hogan"
-   ],
-   "named": "John S. C. Hogan",
-   "person_id": "hogan_john_s_c",
-   "discriminator": {
-    "kind": "trade",
-    "named": "hogan_john_s_c",
-    "confidence": "reconstructed",
-    "occupation_1835": "postmaster",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "hogan_john",
-      "agrees": false,
-      "why": "no trade on one side",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'hogan_john_s_c' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     },
-     {
-      "key": "hogan_john_s_c",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
-     }
-    ]
-   }
   }
  ],
  "contested": [
-  {
-   "resident": "Eli A Rider",
-   "person_id": "rider_eli_a",
-   "household_id": "hh_rider_eli_a",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Rider' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2096",
-     "as_printed": "Rider, Eli A., clerk, Charles L. P. Hogan [went to Aurora, Ill.]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "clerk, Charles L. P. Hogan",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Elia Rider"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "rider_eli_a",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "rider_elia",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Elia Rider",
-   "person_id": "rider_elia",
-   "household_id": "hh_rider_elia",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Rider' folds to the same string as the 1843 entry's, and the given name of both begins E. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2096",
-     "as_printed": "Rider, Eli A., clerk, Charles L. P. Hogan [went to Aurora, Ill.]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "clerk, Charles L. P. Hogan",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Eli A Rider"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "rider_eli_a",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "rider_elia",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "J Wright",
-   "person_id": "wright_j",
-   "household_id": "hh_wright_j",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2675",
-     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "editor and proprietor Prairie Farmer",
-     "address_1843": null,
-     "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "contested_with": [
-    "John Wright",
-    "John S. Wright"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "wright_j",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "wright_john",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "wright_john_s",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John Hogan",
-   "person_id": "hogan_john",
-   "household_id": "hh_hogan_john",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Hogan' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1294",
-     "as_printed": "Hogan, John Stephen Coates, ex-postmaster, bds Charles L. P. Hogan [died, Boonville, Mo., December 2, 1868, aged 63 2/3 ]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "ex-postmaster",
-     "address_1843": "bds Charles L. P. Hogan",
-     "death_note_1843": "died, Boonville, Mo., December 2, 1868, aged 63 2/3"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "John S. C. Hogan"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": "hogan_john_s_c",
-    "confidence": "reconstructed",
-    "occupation_1835": "postmaster",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "hogan_john",
-      "agrees": false,
-      "why": "no trade on one side",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'hogan_john_s_c' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     },
-     {
-      "key": "hogan_john_s_c",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John S. C. Hogan",
-   "person_id": "hogan_john_s_c",
-   "household_id": "hh_hogan_john_s_c",
-   "grade_1835": "attested",
-   "occupation_1835": "postmaster",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": "hogan_store",
-   "rule": "Surname 'Hogan' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1294",
-     "as_printed": "Hogan, John Stephen Coates, ex-postmaster, bds Charles L. P. Hogan [died, Boonville, Mo., December 2, 1868, aged 63 2/3 ]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "ex-postmaster",
-     "address_1843": "bds Charles L. P. Hogan",
-     "death_note_1843": "died, Boonville, Mo., December 2, 1868, aged 63 2/3"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "John Hogan"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": "hogan_john_s_c",
-    "confidence": "reconstructed",
-    "occupation_1835": "postmaster",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "hogan_john",
-      "agrees": false,
-      "why": "no trade on one side",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'hogan_john_s_c' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     },
-     {
-      "key": "hogan_john_s_c",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John S. Wright",
-   "person_id": "wright_john_s",
-   "household_id": "hh_wright_john",
-   "grade_1835": "attested",
-   "occupation_1835": "clerk",
-   "occupation_1835_confidence": "inferred",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2675",
-     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "editor and proprietor Prairie Farmer",
-     "address_1843": null,
-     "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "J Wright",
-    "John Wright"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "wright_j",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "wright_john",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "wright_john_s",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John Wright",
-   "person_id": "wright_john",
-   "household_id": "hh_wright_john",
-   "grade_1835": "attested",
-   "occupation_1835": "merchant",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Wright' folds to the same string as the 1843 entry's, and the given name of both begins J. CONTESTED: 3 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2675",
-     "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "editor and proprietor Prairie Farmer",
-     "address_1843": null,
-     "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "J Wright",
-    "John S. Wright"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "wright_j",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "wright_john",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "wright_john_s",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Ordemus Morrison",
-   "person_id": "morrison_ordemus",
-   "household_id": "hh_morrison_ordemus",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Morrison' folds to the same string as the 1843 entry's, and the given name of both begins O. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1847",
-     "as_printed": "Morrison, Orsemus, carpenter, res 153 Clark [died Jan. 4,1864, a. 58½]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "carpenter",
-     "address_1843": "res 153 Clark",
-     "death_note_1843": "died Jan. 4,1864, a. 58½"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Orsemus Morrison"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "morrison_ordemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "morrison_orsemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Orsemus Morrison",
-   "person_id": "morrison_orsemus",
-   "household_id": "hh_morrison_orsemus",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Morrison' folds to the same string as the 1843 entry's, and the given name of both begins O. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1847",
-     "as_printed": "Morrison, Orsemus, carpenter, res 153 Clark [died Jan. 4,1864, a. 58½]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "carpenter",
-     "address_1843": "res 153 Clark",
-     "death_note_1843": "died Jan. 4,1864, a. 58½"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "Ordemus Morrison"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "morrison_ordemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "morrison_orsemus",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "William H Taylor",
-   "person_id": "taylor_william_h",
-   "household_id": "hh_taylor_william_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2423",
-     "as_printed": "Taylor, William Hartt, agent, Dan. Taylor, 120 Lake",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "agent, Dan. Taylor, 120 Lake",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "William Taylor"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "taylor_william",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "taylor_william_h",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
   {
    "resident": "William Smith",
    "person_id": "smith_william",
@@ -5376,54 +5299,6 @@
      },
      {
       "key": "smith_william_v",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "William Taylor",
-   "person_id": "taylor_william",
-   "household_id": "hh_taylor_william",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins W. CONTESTED: 2 residents of 1835 meet this one 1843 entry on that rule, and at most one of them is the person printed. The match is not made.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2423",
-     "as_printed": "Taylor, William Hartt, agent, Dan. Taylor, 120 Lake",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "agent, Dan. Taylor, 120 Lake",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "contested_with": [
-    "William H Taylor"
-   ],
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "taylor_william",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "taylor_william_h",
       "agrees": false,
       "why": "no trade on one side"
      }
@@ -5524,6 +5399,7 @@
      "death_note_1843": "died, Sherman House, November 30, 1848, aged 47"
     }
    ],
+   "whole_name_declined": "the page sets 'A' and 2 of the 3 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "address",
     "death_note"
@@ -5585,6 +5461,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "the page sets 'Charles C' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address"
@@ -5605,72 +5482,6 @@
       "key": "f1843_e2627",
       "agrees": false,
       "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Charles H. Taylor",
-   "person_id": "taylor_charles",
-   "household_id": "hh_taylor_anson",
-   "grade_1835": "attested",
-   "occupation_1835": "carpenter",
-   "occupation_1835_confidence": "inferred",
-   "lives_at_1835": null,
-   "works_at_1835": "south_branch_raft_bridge",
-   "rule": "Surname 'Taylor' folds to the same string as the 1843 entry's, and the given name of both begins C.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e2411",
-     "as_printed": "Taylor, Charles, merchant tailor, 42 Clark, res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "merchant tailor, 42 Clark",
-     "address_1843": "res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8",
-     "death_note_1843": null,
-     "also_printed": [
-      {
-       "claim": "f1843_e0152",
-       "as_printed": "CHAS. TAYLOR, fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly.",
-       "page": "fergus_1843_page_001",
-       "section": "business directory",
-       "trade_heading": "TAILORS AND DRAPERS",
-       "occupation_1843": "fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly",
-       "address_1843": null
-      }
-     ]
-    },
-    {
-     "claim": "f1843_e2412",
-     "as_printed": "Taylor, Charles H., currier, Johonnett, Wells & Co.",
-     "page": "fergus_1843_page_004",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "currier, Johonnett, Wells & Co",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e2411",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "f1843_e2412",
-      "agrees": false,
-      "why": "two trades that do not agree"
      }
     ]
    }
@@ -5718,6 +5529,7 @@
     }
    ],
    "further_initials_declined": "A further initial refuses 2 of the 3 printings under this name, and the one left standing prints fewer initials than the 1835 reading does — it is silent where the refused rival spoke. Promoting a silence to a match on the strength of a rival's refusal would decide this tie on the weaker of the two readings, so nothing is refused and the tie stands.",
+   "whole_name_declined": "the page sets 'D E' and 0 of the 3 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address",
@@ -5780,6 +5592,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "the page sets 'Edward W' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "address",
     "death_note"
@@ -5800,63 +5613,6 @@
       "key": "f1843_e0563",
       "agrees": false,
       "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Erastus Bowen",
-   "person_id": "bowen_erastus_selden",
-   "household_id": "hh_bowen_erastus_selden",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Bowen' folds to the same string as the 1843 entry's, and the given name of both begins E.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0390",
-     "as_printed": "Bowen, Erastus (B. & Cole), res 40 Michigan ave [died. Aurora, Kane Co.. Ill.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(B. & Cole)",
-     "address_1843": "res 40 Michigan ave",
-     "death_note_1843": "died. Aurora, Kane Co.. Ill."
-    },
-    {
-     "claim": "f1843_e0391",
-     "as_printed": "Bowen, Erastus Selden [veterinary surgeon] [died Oct. 19,1888, a. 69]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": null,
-     "death_note_1843": "died Oct. 19,1888, a. 69"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0390",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e0391",
-      "agrees": false,
-      "why": "no trade on one side"
      }
     ]
    }
@@ -5903,6 +5659,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "the page sets 'H' and 2 of the 3 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address",
@@ -5929,61 +5686,6 @@
       "key": "f1843_e0378",
       "agrees": false,
       "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Ira Couch",
-   "person_id": "couch_ira",
-   "household_id": "hh_couch_ira",
-   "grade_1835": "attested",
-   "occupation_1835": "hotel_keeper",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": "tremont_house_1",
-   "works_at_1835": "tremont_house_1",
-   "rule": "Surname 'Couch' folds to the same string as the 1843 entry's, and the given name of both begins I.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0709",
-     "as_printed": "Couch, Ira Howes, [1812 veteran], bds Tremont House [died July 25, 1845, aged 82]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": "bds Tremont House",
-     "death_note_1843": "died July 25, 1845, aged 82"
-    },
-    {
-     "claim": "f1843_e0710",
-     "as_printed": "Couch, Ira, proprietor Tremont House, s.e. cor Lake and Dearborn [died, Cuba, February 28, 1857, aged 50¼]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "proprietor Tremont House, s.e",
-     "address_1843": "cor Lake and Dearborn",
-     "death_note_1843": "died, Cuba, February 28, 1857, aged 50¼"
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0709",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e0710",
-      "agrees": false,
-      "why": "two trades that do not agree"
      }
     ]
    }
@@ -6020,6 +5722,7 @@
      "death_note_1843": "died January 18, 1891, aged 85-9-13."
     }
    ],
+   "whole_name_declined": "the page sets a generational suffix (JR) on 1 of the 2 readings and 'J D King' carries none. Which man of the name is a thing the page distinguishes and this reading does not, so the comparison is declined and the tie stands.",
    "could_carry": [
     "occupation",
     "address",
@@ -6078,6 +5781,7 @@
     }
    ],
    "further_initials_declined": "A further initial refuses 1 of the 2 printings under this name, and the one left standing prints fewer initials than the 1835 reading does — it is silent where the refused rival spoke. Promoting a silence to a match on the strength of a rival's refusal would decide this tie on the weaker of the two readings, so nothing is refused and the tie stands.",
+   "whole_name_declined": "the page sets 'J B' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "address"
    ],
@@ -6104,79 +5808,6 @@
       "agrees": true,
       "why": "the same trade word",
       "outcome": "named_by_discriminator"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "J. Curtiss",
-   "person_id": "curtiss_j",
-   "household_id": "hh_curtiss_j",
-   "grade_1835": "attested",
-   "occupation_1835": "attorney",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Curtiss' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0751",
-     "as_printed": "Curtiss, James, State's attorney, 136 Lake, res W. Randolph, bet May and Ann [9th mayor, died, Joliet, Ill, November 2, 1859, aged 56]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "State's attorney, 136 Lake",
-     "address_1843": "res W. Randolph, bet May and Ann",
-     "death_note_1843": null,
-     "also_printed": [
-      {
-       "claim": "f1843_e0005",
-       "as_printed": "JAMES CURTISS, attorney and counsellor at law, office 136 Lake Street.",
-       "page": "fergus_1843_page_001",
-       "section": "business directory",
-       "trade_heading": "ATTORNEYS",
-       "occupation_1843": "attorney and counsellor at law, office 136 Lake Street",
-       "address_1843": null
-      }
-     ]
-    },
-    {
-     "claim": "f1843_e0752",
-     "as_printed": "Curtiss, J. W., gunsmith, res cor North Water and Wolcott",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "gunsmith",
-     "address_1843": "res cor North Water and Wolcott",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": true,
-   "discriminator": {
-    "kind": "trade",
-    "named": "f1843_e0751",
-    "confidence": "reconstructed",
-    "occupation_1835": "attorney",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "f1843_e0751",
-      "agrees": true,
-      "why": "the 1835 trade stands inside the printed line",
-      "outcome": "named_by_discriminator"
-     },
-     {
-      "key": "f1843_e0752",
-      "agrees": false,
-      "why": "two trades that do not agree",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'f1843_e0751' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
      }
     ]
    }
@@ -6213,6 +5844,7 @@
      "death_note_1843": "died, St. Louis, Mo., November 8, 1875, aged 65."
     }
    ],
+   "whole_name_declined": "the page sets 'James B' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address",
@@ -6234,69 +5866,6 @@
       "key": "f1843_e0536",
       "agrees": false,
       "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "John Dean Caton",
-   "person_id": "caton_john_dean",
-   "household_id": "hh_caton_john_dean",
-   "grade_1835": "attested",
-   "occupation_1835": "attorney",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": "temple_lake_st_building",
-   "rule": "Surname 'Caton' folds to the same string as the 1843 entry's, and the given name of both begins J.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0577",
-     "as_printed": "Caton, John, laborer, res Lake",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "laborer",
-     "address_1843": "res Lake",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0578",
-     "as_printed": "Caton, John Dean, attorney, [died July 30, 1895, aged 88-4-11]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "attorney",
-     "address_1843": null,
-     "death_note_1843": "died July 30, 1895, aged 88-4-11"
-    }
-   ],
-   "could_carry": [
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": "f1843_e0578",
-    "confidence": "reconstructed",
-    "occupation_1835": "attorney",
-    "occupation_1835_confidence": "attested",
-    "test": "substring either way, coarse by admission (T-0661 is the trade vocabulary)",
-    "rule": "T-0696. A trade may NARROW a tie and never make a match: this tie is filed as discriminated, stays out of `matches`, and moves no grade. The narrowing is reconstructed — no source says these readings are one person, the trade agreement is the reasoning — and it carries the confidence 'attested' of the 1835 trade it leaned on. A premises and a year are refused discriminators; the reasons are in tools/tiebreak.py.",
-    "sides": [
-     {
-      "key": "f1843_e0577",
-      "agrees": false,
-      "why": "two trades that do not agree",
-      "outcome": "refused_by_discriminator",
-      "refusal": "The trade printed against this name agrees with 'f1843_e0578' and not with this side. SILENT, NOT CONTRADICTED: the directory does not say this is not the person, it says nothing about them. The match is still not made — a narrowed tie is filed, never matched."
-     },
-     {
-      "key": "f1843_e0578",
-      "agrees": true,
-      "why": "the same trade word",
-      "outcome": "named_by_discriminator"
      }
     ]
    }
@@ -6333,6 +5902,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "the page sets a generational suffix (JR) on 1 of the 2 readings and 'John Harris Kinzie' carries none. Which man of the name is a thing the page distinguishes and this reading does not, so the comparison is declined and the tie stands.",
    "could_carry": [
     "address",
     "death_note"
@@ -6400,6 +5970,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "the page sets 'John' and 2 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "death_note"
    ],
@@ -6455,6 +6026,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "the page sets 'John' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address",
@@ -6522,6 +6094,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "the page sets 'James' and 0 of the 3 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "address",
     "death_note"
@@ -6545,61 +6118,6 @@
      },
      {
       "key": "f1843_e0196",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Mrs Rufus Brown",
-   "person_id": "brown_mrs_rufus",
-   "household_id": "hh_brown_rufus",
-   "grade_1835": "inferred",
-   "occupation_1835": "boarding_house_keeper",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": "brown_boarding_house",
-   "works_at_1835": "brown_boarding_house",
-   "rule": "Surname 'Brown' folds to the same string as the 1843 entry's, and the given name of both begins R.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0458",
-     "as_printed": "Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "warehouse man, John P. Chapin & Co",
-     "address_1843": "res 189 Lake",
-     "death_note_1843": "died, Burlington, Wis., September 2, 1872, aged 69"
-    },
-    {
-     "claim": "f1843_e0459",
-     "as_printed": "Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "dress and cloak maker, 189 Lake, up stairs",
-     "address_1843": null,
-     "death_note_1843": "died February 2, 1890, aged 73."
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0458",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "f1843_e0459",
       "agrees": false,
       "why": "two trades that do not agree"
      }
@@ -6649,6 +6167,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "'Mrs. C. Taylor' carries a female honorific and no reading offered against it does. The honorific says the name under it may not be her own, so it is not hers to weigh: the comparison is declined and the tie stands.",
    "could_carry": [
     "occupation",
     "address"
@@ -6669,61 +6188,6 @@
       "key": "f1843_e2412",
       "agrees": false,
       "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Rufus Brown",
-   "person_id": "brown_rufus",
-   "household_id": "hh_brown_rufus",
-   "grade_1835": "attested",
-   "occupation_1835": "boarding_house_keeper",
-   "occupation_1835_confidence": "inferred",
-   "lives_at_1835": "brown_boarding_house",
-   "works_at_1835": "brown_boarding_house",
-   "rule": "Surname 'Brown' folds to the same string as the 1843 entry's, and the given name of both begins R.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0458",
-     "as_printed": "Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "warehouse man, John P. Chapin & Co",
-     "address_1843": "res 189 Lake",
-     "death_note_1843": "died, Burlington, Wis., September 2, 1872, aged 69"
-    },
-    {
-     "claim": "f1843_e0459",
-     "as_printed": "Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "dress and cloak maker, 189 Lake, up stairs",
-     "address_1843": null,
-     "death_note_1843": "died February 2, 1890, aged 73."
-    }
-   ],
-   "could_carry": [
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0458",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "f1843_e0459",
-      "agrees": false,
-      "why": "two trades that do not agree"
      }
     ]
    }
@@ -6770,6 +6234,7 @@
      "death_note_1843": null
     }
    ],
+   "whole_name_declined": "the page sets a generational suffix (JR) on 1 of the 3 readings and 'Russel E. Heacock' carries none. Which man of the name is a thing the page distinguishes and this reading does not, so the comparison is declined and the tie stands.",
    "could_carry": [
     "death_note"
    ],
@@ -6794,63 +6259,6 @@
       "key": "f1843_e1243",
       "agrees": false,
       "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Samuel Brookes",
-   "person_id": "brookes_samuel",
-   "household_id": "hh_brookes_samuel",
-   "grade_1835": "inferred",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Brookes' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0442",
-     "as_printed": "Brookes, Samuel, florist, res Clark, bet Madison and Monroe [died September 2, 1875, aged 81 2/3 .",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "florist",
-     "address_1843": "res Clark, bet Madison and Monroe [died September 2, 1875, aged 81 2/3",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0443",
-     "as_printed": "Brookes, Samuel Marsden, portr. & landsca. artist, bds Sam'l Brookes [died. San Francisco, Cal., January 31, 1892, aged 76.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "portr. & landsca. artist",
-     "address_1843": "bds Sam'l Brookes",
-     "death_note_1843": "died. San Francisco, Cal., January 31, 1892, aged 76."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0442",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e0443",
-      "agrees": false,
-      "why": "no trade on one side"
      }
     ]
    }
@@ -6887,6 +6295,7 @@
      "death_note_1843": "died, Bowrnanville, Ill., March 18, 1876, aged 52-6-25."
     }
    ],
+   "whole_name_declined": "the page sets 'Samuel' and 0 of the 2 readings fit it equally closely, so the page names no one of them in particular.",
    "could_carry": [
     "occupation",
     "address",
@@ -6906,259 +6315,6 @@
      },
      {
       "key": "f1843_e1376",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Seth Johnson",
-   "person_id": "johnson_seth",
-   "household_id": "hh_johnson_seth",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Johnson' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1413",
-     "as_printed": "Johnson, Capt. Seth, deputy-collector and inspector Port of Chicago. res s.-w. cor Washington and LaSalle",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "deputy-collector and inspector Port of Chicago",
-     "address_1843": "res s.-w. cor Washington and LaSalle",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1414",
-     "as_printed": "Johnson, Mrs. Seth, boarding-house, sw cor Washington and LaSalle",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "boarding-house, sw",
-     "address_1843": "cor Washington and LaSalle",
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e1413",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e1414",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "Stephen F. Gale",
-   "person_id": "gale_stephen_f",
-   "household_id": "hh_gale_stephen_f",
-   "grade_1835": "attested",
-   "occupation_1835": "merchant",
-   "occupation_1835_confidence": "attested",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Gale' folds to the same string as the 1843 entry's, and the given name of both begins S.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1042",
-     "as_printed": "Gale, Stephen F. & Co. (A. H. Burley), books and stationery, 106 Lake",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "& Co. (A. H. Burley), books and stationery, 106 Lake",
-     "address_1843": null,
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1043",
-     "as_printed": "Gale, Stephen Francis (S. F. Gale & Co.), 103 Dearborn",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(S. F. Gale & Co.), 103 Dearborn",
-     "address_1843": null,
-     "death_note_1843": null
-    }
-   ],
-   "could_carry": [],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 2 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e1042",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     },
-     {
-      "key": "f1843_e1043",
-      "agrees": false,
-      "why": "two trades that do not agree"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "William H Brown",
-   "person_id": "brown_william_h",
-   "household_id": "hh_brown_william_h",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Brown' folds to the same string as the 1843 entry's, and the given name of both begins W.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e0466",
-     "as_printed": "Brown, William, grocer, res N. Water, bet Clark and Dearborn",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "grocer",
-     "address_1843": "res N. Water, bet Clark and Dearborn",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e0467",
-     "as_printed": "Brown, Wm., bds Sauganash [died, Nevada City, Cal, Dec. 3, 1850.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": null,
-     "address_1843": "bds Sauganash",
-     "death_note_1843": "died, Nevada City, Cal, Dec. 3, 1850."
-    },
-    {
-     "claim": "f1843_e0468",
-     "as_printed": "Brown, William Hubbard, [cashier], 8 LaSalle, (A. G. Burley & Co.), res 301 Illinois, n.-w. cor Pine, school agent [died, Amsterdam, Holland, June 19, 1867, aged 72.]",
-     "page": "fergus_1843_page_002",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "8 LaSalle, (A. G. Burley & Co.)",
-     "address_1843": "res 301 Illinois, n.-w. cor Pine, school agent",
-     "death_note_1843": "died, Amsterdam, Holland, June 19, 1867, aged 72."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e0466",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e0467",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e0468",
-      "agrees": false,
-      "why": "no trade on one side"
-     }
-    ]
-   }
-  },
-  {
-   "resident": "William Jones",
-   "person_id": "jones_william",
-   "household_id": "hh_jones_william",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Jones' folds to the same string as the 1843 entry's, and the given name of both begins W.",
-   "entries_1843": [
-    {
-     "claim": "f1843_e1433",
-     "as_printed": "Jones, William [Golden]. (B. J. & Co.), res 94 Randolph, s.e. cor Dearborn, member of Board of Health [died",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(B. J. & Co.)",
-     "address_1843": "res 94 Randolph, s.e. cor Dearborn, member of Board of Health [died",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1435",
-     "as_printed": "Jones, William Edwin (Ogden & J.). bds Wllliam B. Ogden [died March 9, 1851. aged 34.",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "(Ogden & J.)",
-     "address_1843": "bds Wllliam B. Ogden [died March 9, 1851. aged 34",
-     "death_note_1843": null
-    },
-    {
-     "claim": "f1843_e1436",
-     "as_printed": "Jones, William Harrison, clerk, H. W. Bigelow, bds William Jones [died, Aiken. S.C.. April 25,. 1850. aged 23.]",
-     "page": "fergus_1843_page_003",
-     "section": "alphabetical directory",
-     "trade_heading": null,
-     "occupation_1843": "clerk, H. W. Bigelow",
-     "address_1843": "bds William Jones",
-     "death_note_1843": "died, Aiken. S.C.. April 25,. 1850. aged 23."
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address",
-    "death_note"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1843 evidence with describes_date 1843 on the note, never as an 1835 fact, and the grade of the person does not move. The death note is T-0574's, not this file's.",
-   "resident_given_is_initial_only": false,
-   "discriminator": {
-    "kind": "trade",
-    "named": null,
-    "why": "the trade names 0 of the 3 sides, and a discriminator fires only when it names exactly one",
-    "sides": [
-     {
-      "key": "f1843_e1433",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e1435",
-      "agrees": false,
-      "why": "no trade on one side"
-     },
-     {
-      "key": "f1843_e1436",
       "agrees": false,
       "why": "no trade on one side"
      }
@@ -11402,6 +10558,367 @@
     "forename_printed": "Willis",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Willinm' against 'Willis'. An initial standing against a full name is a match; two full names that differ are not."
+   }
+  }
+ ],
+ "whole_name_refusals": [
+  {
+   "resident": "Charles H. Taylor",
+   "person_id": "taylor_charles",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e2411",
+    "as_printed": "Taylor, Charles, merchant tailor, 42 Clark, res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8",
+    "page": "fergus_1843_page_004",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "merchant tailor, 42 Clark",
+    "address_1843": "res Canal, bet Wash, and Mad., alderman 3d ward [d., Indianola, Tex., Sept. 28, 1867, a. 65 5/8",
+    "death_note_1843": null,
+    "also_printed": [
+     {
+      "claim": "f1843_e0152",
+      "as_printed": "CHAS. TAYLOR, fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly.",
+      "page": "fergus_1843_page_001",
+      "section": "business directory",
+      "trade_heading": "TAILORS AND DRAPERS",
+      "occupation_1843": "fashionable tailor, Clark Street, between Lake St. and post-office, Chicago, Ill.; would most respectfully solicit a continuance of the liberal patronage hitherto extended to him, assuring his customers and the public that he uses Francis H. Taylor's \"mathematical principle of cutting garments,\" which is true in theory and application, and produces better-fitting garments than can by any possibility be cut by any-other system. N.B.- The French and New York fashions will be received monthly",
+      "address_1843": null
+     }
+    ],
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'Charles H' and exactly one of the 2 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "Erastus Bowen",
+   "person_id": "bowen_erastus_selden",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0391",
+    "as_printed": "Bowen, Erastus Selden [veterinary surgeon] [died Oct. 19,1888, a. 69]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": null,
+    "address_1843": null,
+    "death_note_1843": "died Oct. 19,1888, a. 69",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'Erastus' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "Ira Couch",
+   "person_id": "couch_ira",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0709",
+    "as_printed": "Couch, Ira Howes, [1812 veteran], bds Tremont House [died July 25, 1845, aged 82]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": null,
+    "address_1843": "bds Tremont House",
+    "death_note_1843": "died July 25, 1845, aged 82",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'Ira' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "J. Curtiss",
+   "person_id": "curtiss_j",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0752",
+    "as_printed": "Curtiss, J. W., gunsmith, res cor North Water and Wolcott",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "gunsmith",
+    "address_1843": "res cor North Water and Wolcott",
+    "death_note_1843": null,
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'J' and exactly one of the 2 readings is that name word for word and most closely: 1 word, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "John Dean Caton",
+   "person_id": "caton_john_dean",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0577",
+    "as_printed": "Caton, John, laborer, res Lake",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "laborer",
+    "address_1843": "res Lake",
+    "death_note_1843": null,
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'John Dean' and exactly one of the 2 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "Samuel Brookes",
+   "person_id": "brookes_samuel",
+   "grade_1835": "inferred",
+   "entry_1843": {
+    "claim": "f1843_e0443",
+    "as_printed": "Brookes, Samuel Marsden, portr. & landsca. artist, bds Sam'l Brookes [died. San Francisco, Cal., January 31, 1892, aged 76.]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "portr. & landsca. artist",
+    "address_1843": "bds Sam'l Brookes",
+    "death_note_1843": "died. San Francisco, Cal., January 31, 1892, aged 76.",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'Samuel' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "Stephen F. Gale",
+   "person_id": "gale_stephen_f",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e1043",
+    "as_printed": "Gale, Stephen Francis (S. F. Gale & Co.), 103 Dearborn",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "(S. F. Gale & Co.), 103 Dearborn",
+    "address_1843": null,
+    "death_note_1843": null,
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'Stephen F' and exactly one of the 2 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "William H Brown",
+   "person_id": "brown_william_h",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0466",
+    "as_printed": "Brown, William, grocer, res N. Water, bet Clark and Dearborn",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "grocer",
+    "address_1843": "res N. Water, bet Clark and Dearborn",
+    "death_note_1843": null,
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'William H' and exactly one of the 3 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "William H Brown",
+   "person_id": "brown_william_h",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0467",
+    "as_printed": "Brown, Wm., bds Sauganash [died, Nevada City, Cal, Dec. 3, 1850.]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": null,
+    "address_1843": "bds Sauganash",
+    "death_note_1843": "died, Nevada City, Cal, Dec. 3, 1850.",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'William H' and exactly one of the 3 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "William Jones",
+   "person_id": "jones_william",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e1435",
+    "as_printed": "Jones, William Edwin (Ogden & J.). bds Wllliam B. Ogden [died March 9, 1851. aged 34.",
+    "page": "fergus_1843_page_003",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "(Ogden & J.)",
+    "address_1843": "bds Wllliam B. Ogden [died March 9, 1851. aged 34",
+    "death_note_1843": null,
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'William' and exactly one of the 3 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  },
+  {
+   "resident": "William Jones",
+   "person_id": "jones_william",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e1436",
+    "as_printed": "Jones, William Harrison, clerk, H. W. Bigelow, bds William Jones [died, Aiken. S.C.. April 25,. 1850. aged 23.]",
+    "page": "fergus_1843_page_003",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "clerk, H. W. Bigelow",
+    "address_1843": "bds William Jones",
+    "death_note_1843": "died, Aiken. S.C.. April 25,. 1850. aged 23.",
+    "clause": "the whole printed name, word for word",
+    "rule": "the page sets 'William' and exactly one of the 3 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+   }
+  }
+ ],
+ "not_named_by_the_page": [
+  {
+   "resident": "John Hogan",
+   "person_id": "hogan_john",
+   "entry_1843": {
+    "claim": "f1843_e1294",
+    "as_printed": "Hogan, John Stephen Coates, ex-postmaster, bds Charles L. P. Hogan [died, Boonville, Mo., December 2, 1868, aged 63 2/3 ]",
+    "page": "fergus_1843_page_003",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "ex-postmaster",
+    "address_1843": "bds Charles L. P. Hogan",
+    "death_note_1843": "died, Boonville, Mo., December 2, 1868, aged 63 2/3"
+   },
+   "named_instead": "John S. C. Hogan",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'John Stephen Coates' and exactly one of the 2 readings is that name word for word and most closely: 3 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+  },
+  {
+   "resident": "Ordemus Morrison",
+   "person_id": "morrison_ordemus",
+   "entry_1843": {
+    "claim": "f1843_e1847",
+    "as_printed": "Morrison, Orsemus, carpenter, res 153 Clark [died Jan. 4,1864, a. 58½]",
+    "page": "fergus_1843_page_003",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "carpenter",
+    "address_1843": "res 153 Clark",
+    "death_note_1843": "died Jan. 4,1864, a. 58½"
+   },
+   "named_instead": "Orsemus Morrison",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'Orsemus' and exactly one of the 2 readings is that name word for word and most closely: 1 word, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+  },
+  {
+   "resident": "Elia Rider",
+   "person_id": "rider_elia",
+   "entry_1843": {
+    "claim": "f1843_e2096",
+    "as_printed": "Rider, Eli A., clerk, Charles L. P. Hogan [went to Aurora, Ill.]",
+    "page": "fergus_1843_page_004",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "clerk, Charles L. P. Hogan",
+    "address_1843": null,
+    "death_note_1843": null
+   },
+   "named_instead": "Eli A Rider",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'Eli A' and exactly one of the 2 readings is that name word for word and most closely: 2 words, letter for letter. The rest set a different number of words, a different word, or the same name less closely."
+  },
+  {
+   "resident": "William Taylor",
+   "person_id": "taylor_william",
+   "entry_1843": {
+    "claim": "f1843_e2423",
+    "as_printed": "Taylor, William Hartt, agent, Dan. Taylor, 120 Lake",
+    "page": "fergus_1843_page_004",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "agent, Dan. Taylor, 120 Lake",
+    "address_1843": null,
+    "death_note_1843": null
+   },
+   "named_instead": "William H Taylor",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'William Hartt' and exactly one of the 2 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+  },
+  {
+   "resident": "J Wright",
+   "person_id": "wright_j",
+   "entry_1843": {
+    "claim": "f1843_e2675",
+    "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
+    "page": "fergus_1843_page_004",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "editor and proprietor Prairie Farmer",
+    "address_1843": null,
+    "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
+   },
+   "named_instead": "John S. Wright",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'John Stephen' and exactly one of the 3 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+  },
+  {
+   "resident": "John Wright",
+   "person_id": "wright_john",
+   "entry_1843": {
+    "claim": "f1843_e2675",
+    "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
+    "page": "fergus_1843_page_004",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "editor and proprietor Prairie Farmer",
+    "address_1843": null,
+    "death_note_1843": "died, Philadelphia, Pa., Sept. 26, 1874, aged 59"
+   },
+   "named_instead": "John S. Wright",
+   "clause": "the whole printed name, word for word",
+   "rule": "the page sets 'John Stephen' and exactly one of the 3 readings is that name word for word and most closely: 2 words, an initial standing for a word. The rest set a different number of words, a different word, or the same name less closely."
+  }
+ ],
+ "held_off_a_husbands_entry": [],
+ "female_honorific_refusals": [
+  {
+   "resident": "Mrs Rufus Brown",
+   "person_id": "brown_mrs_rufus",
+   "grade_1835": "inferred",
+   "entry_1843": {
+    "claim": "f1843_e0458",
+    "as_printed": "Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "warehouse man, John P. Chapin & Co",
+    "address_1843": "res 189 Lake",
+    "death_note_1843": "died, Burlington, Wis., September 2, 1872, aged 69",
+    "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+    "rule": "'Brown, Rufus B' and 'Mrs Rufus Brown' disagree about a female honorific, and another reading in this tie agrees with 'Mrs Rufus Brown' about it. A wife is not her husband — the identity layer already holds that pair apart by R6 — and the body that sets both readings is what says so.",
+    "honorific": "MRS"
+   }
+  },
+  {
+   "resident": "Rufus Brown",
+   "person_id": "brown_rufus",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e0459",
+    "as_printed": "Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]",
+    "page": "fergus_1843_page_002",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "dress and cloak maker, 189 Lake, up stairs",
+    "address_1843": null,
+    "death_note_1843": "died February 2, 1890, aged 73.",
+    "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+    "rule": "'Brown, Mrs. Rufus B' and 'Rufus Brown' disagree about a female honorific, and another reading in this tie agrees with 'Rufus Brown' about it. A wife is not her husband — the identity layer already holds that pair apart by R6 — and the body that sets both readings is what says so.",
+    "honorific": "MRS"
+   }
+  },
+  {
+   "resident": "Seth Johnson",
+   "person_id": "johnson_seth",
+   "grade_1835": "attested",
+   "entry_1843": {
+    "claim": "f1843_e1414",
+    "as_printed": "Johnson, Mrs. Seth, boarding-house, sw cor Washington and LaSalle",
+    "page": "fergus_1843_page_003",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "boarding-house, sw",
+    "address_1843": "cor Washington and LaSalle",
+    "death_note_1843": null,
+    "clause": "a female honorific standing on a man's own name (R6, T-0723)",
+    "rule": "'Johnson, Mrs. Seth' and 'Seth Johnson' disagree about a female honorific, and another reading in this tie agrees with 'Seth Johnson' about it. A wife is not her husband — the identity layer already holds that pair apart by R6 — and the body that sets both readings is what says so.",
+    "honorific": "MRS"
    }
   }
  ]

@@ -57,6 +57,7 @@ import trade_recorded     # "does the layer hold a trade?" (T-0867), imported no
 import tiebreak            # the tie discriminator (T-0696), likewise
 import name_agreement as na  # the forename rule (T-0670), likewise
 import letter_list_bucket as llb  # the letter-list bucket refusal (T-1038)
+import named_by_the_page as nbp  # the whole printed name (T-0987 stretch 14), likewise
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRIES = os.path.join(ROOT, "data/research/directories/claims/fergus_1839_directory_entries.json")
@@ -187,7 +188,8 @@ def index(entries):
 
 
 def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None,
-               bucket_refusals=None, middle_initial_refusals=None):
+               bucket_refusals=None, middle_initial_refusals=None,
+               page_name_refusals=None, wife_axis_refusals=None):
     """One pool against the index. Returns (matched, ambiguous, refused).
 
     T-0670's forename rule is applied where the CALLER hands in a list to file
@@ -200,6 +202,7 @@ def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None,
     ll_index = llb.buckets(llb.pool())
     matched, ambiguous, refused = [], [], []
     for r in pool:
+        page_declined = None
         f, i = fold(r["surname"]), initial(r["given"])
         hits = by_key.get((f, i), []) if i else []
         if not hits:
@@ -269,12 +272,55 @@ def match_pool(pool, by_key, surnames, extra=None, forename_refusals=None,
             hits = survivors
             if not hits:
                 continue
+            # T-0987 stretch 14. THE WHOLE PRINTED NAME, WORD FOR WORD. The clause
+            # above weighs only the initials BOTH readings set, so an entry that
+            # STOPS EARLY is a silence and refuses nothing: `H. B. Clarke` stood
+            # against `Clarke, Dr. Henry` and `Clarke, Henry B.` with the tie
+            # unbroken, because the first prints no second word to disagree with.
+            # This one asks the other question — does the page set THIS NAME and no
+            # other, same number of words and word for word — and where exactly one
+            # entry does, that entry is the match and the rest are refused with the
+            # clause. tools/named_by_the_page.py carries the rule.
+            if page_name_refusals is not None and len(hits) > 1:
+                # R6 first, on this axis too: where the volume prints the pair
+                # itself, each reading takes its own and neither is a rival of
+                # the other's entry. Where it does not, nothing is refused.
+                hits, honorific = nbp.honorific_must_agree(
+                    r["name"], hits, lambda h: h["normalized"]["printed_name"])
+                for h, note in honorific:
+                    row = row_of(h)
+                    row.update({"clause": note["clause"], "rule": note["why"],
+                                "honorific": note["honorific"]})
+                    hrec = {"name": r["name"], "entry_1839": row}
+                    if extra:
+                        hrec.update(extra(r))
+                    wife_axis_refusals.append(hrec)
+            if page_name_refusals is not None and len(hits) > 1:
+                winner, note = nbp.decide(
+                    r["given"], hits, lambda h: h["normalized"]["given"],
+                    reading_name=r["name"],
+                    name_of=lambda h: h["normalized"]["printed_name"])
+                if winner is not None:
+                    for h in hits:
+                        if h is winner:
+                            continue
+                        row = row_of(h)
+                        row.update({"clause": note["clause"], "rule": note["why"]})
+                        prec = {"name": r["name"], "entry_1839": row}
+                        if extra:
+                            prec.update(extra(r))
+                        page_name_refusals.append(prec)
+                    hits = [winner]
+                else:
+                    page_declined = note["why"]
         rec = {"name": r["name"],
                "rule": "Surname %r folds to the same string as the 1839 entry's, and the "
                        "given name of both begins %s." % (r["surname"], i.upper()),
                "entries_1839": [row_of(h) for h in hits]}
         if forename_refusals is not None and mi_declined:
             rec["further_initials_declined"] = mi_declined
+        if page_declined:
+            rec["whole_name_declined"] = page_declined
         if extra:
             rec.update(extra(r))
         (matched if len(hits) == 1 else ambiguous).append(rec)
@@ -289,11 +335,15 @@ def main():
     res_forename_refused = []
     res_bucket_refused = []
     res_middle_initial_refused = []
+    res_page_name_refused = []
+    res_wife_axis_refused = []
     res_matched, res_ambiguous, res_refused = match_pool(
         people, by_key, surnames,
         forename_refusals=res_forename_refused,
         middle_initial_refusals=res_middle_initial_refused,
         bucket_refusals=res_bucket_refused,
+        page_name_refusals=res_page_name_refused,
+        wife_axis_refusals=res_wife_axis_refused,
         extra=lambda r: {"person_id": r["person_id"], "household_id": r["household_id"],
                          "grade_1835": r["grade"], "occupation_1835": r["occupation"],
                          "occupation_1835_confidence": r["occupation_confidence"],
@@ -320,6 +370,54 @@ def main():
     claimed = defaultdict(list)
     for m in res_matched:
         claimed[m["entries_1839"][0]["claim"]].append(m)
+
+    # T-0987 stretch 14. THE SAME CLAUSE ON THE OTHER AXIS, and nothing in this
+    # chain had ever run it here: the collision below asks which of two people of
+    # 1835 a printed line names and then answers "neither", because the only rule
+    # it has is the first initial that put them both there. The page usually says.
+    # `King, Byram` is the town's Byram King and not its Byra; `Hogan, John S. C.`
+    # sets three words and the town's John S. C. Hogan sets those three; `Morrison,
+    # Orsemus` is the tax list's Orsemus and not the poll list's Ordemus. Exactly
+    # one fit or nothing happens, so `Clark, John` still chooses between no John A.
+    # and no John K. R6 runs FIRST, because a wife standing on her husband's own
+    # name is not a rival to be weighed against him — she is not in the contest.
+    given_1839 = {c["id"]: c["normalized"]["given"] for c in entries}
+    printed_name_1839 = {c["id"]: c["normalized"]["printed_name"] for c in entries}
+    page_named, wife_refused = [], []
+    for cid, rivals in sorted(claimed.items()):
+        if len(rivals) < 2:
+            continue
+        printed = given_1839.get(cid, "")
+        kept, wives = nbp.honorific_must_agree(printed, rivals, lambda m: m["name"])
+        for m, note in wives:
+            wife_refused.append({"name": m["name"], "person_id": m["person_id"],
+                                 "household_id": m["household_id"],
+                                 "entry_1839": m["entries_1839"][0], **note})
+        if len(kept) > 1:
+            winner, note = nbp.decide(
+                printed, kept, lambda m: split_name(m["name"])[1],
+                reading_name=printed_name_1839.get(cid, ""),
+                name_of=lambda m: m["name"], one_body=False)
+        elif kept:
+            winner, note = kept[0], {"clause": nbp.WIFE_CLAUSE, "named": None,
+                                     "why": "the only reading left after R6"}
+        else:
+            winner, note = None, None
+        losers = [m for m in rivals if m is not winner]
+        if winner is None:
+            continue
+        for m in losers:
+            page_named.append({"name": m["name"], "person_id": m["person_id"],
+                               "household_id": m["household_id"],
+                               "entry_1839": m["entries_1839"][0],
+                               "named_instead": winner["name"],
+                               "clause": note["clause"], "rule": note["why"]})
+        winner["named_by_the_page"] = {"over": [m["name"] for m in losers], **note}
+        claimed[cid] = [winner]
+        for m in losers:
+            m["_not_named"] = True
+    res_matched = [m for m in res_matched if not m.pop("_not_named", False)]
+
     contested = []
     for _, rivals in sorted(claimed.items()):
         if len(rivals) > 1:
@@ -455,6 +553,10 @@ def main():
         "discriminator_rule": tiebreak.__doc__.split("THE RULING")[1].split(
             "Run it directly")[0].strip(),
         "refused_discriminators": tiebreak.REFUSED_DISCRIMINATORS,
+        "whole_name_rule": nbp.__doc__.split("THE RULING")[1].split(
+            "WHAT THE WORD-COUNT TEST IS FOR")[0].strip(),
+        "wife_rule": nbp.__doc__.split("A WIFE IS NOT HER HUSBAND")[1].split(
+            "The honorific must stand")[0].strip(),
         "forename_rule": na.__doc__.split("The tightening, written out")[1].split(
             "This module is the rule")[0].strip(),
         "forename_rule_scope": "T-0670's forename rule is applied to the residents pool "
@@ -514,6 +616,14 @@ def main():
                 - {m["person_id"] for m in res_matched + res_ambiguous + contested}),
             "residents_letter_list_bucket_refused": len(res_bucket_refused),
             "residents_that_refusal_reaches": len({b["person_id"] for b in res_bucket_refused}),
+            "residents_entries_the_whole_name_refused": len(res_page_name_refused),
+            "residents_that_whole_name_refusal_reaches": len(
+                {f["person_id"] for f in res_page_name_refused}),
+            "residents_contests_the_page_named": len(
+                {n["entry_1839"]["claim"] for n in page_named}),
+            "residents_not_named_by_a_contested_entry": len(page_named),
+            "residents_held_off_a_husbands_entry": len(wife_refused),
+            "entries_a_female_honorific_refused": len(res_wife_axis_refused),
             "residents_ties_narrowed_by_a_trade": len(discriminated),
             "of_those_contested": sum(1 for d in discriminated if d["tie"] == "contested"),
             "of_those_ambiguous": sum(1 for d in discriminated if d["tie"] == "ambiguous"),
@@ -540,6 +650,16 @@ def main():
             "letter_list_bucket_refusals": sorted(
                 res_bucket_refused, key=lambda m: (m["name"], m["entry_1839"]["claim"])),
             "narrowings_withdrawn_as_a_collision": collisions,
+            "whole_name_refusals": sorted(
+                res_page_name_refused,
+                key=lambda m: (m["name"], m["entry_1839"]["claim"])),
+            "not_named_by_the_page": sorted(
+                page_named, key=lambda m: (m["entry_1839"]["claim"], m["name"])),
+            "held_off_a_husbands_entry": sorted(
+                wife_refused, key=lambda m: (m["entry_1839"]["claim"], m["name"])),
+            "female_honorific_refusals": sorted(
+                res_wife_axis_refused,
+                key=lambda m: (m["name"], m["entry_1839"]["claim"])),
         },
         "voters": {"matches": sorted(v_matched, key=lambda m: m["name"]),
                    "ambiguous": sorted(v_ambiguous, key=lambda m: m["name"]),
