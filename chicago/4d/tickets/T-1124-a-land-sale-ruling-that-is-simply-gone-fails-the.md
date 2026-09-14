@@ -1,7 +1,7 @@
 ---
 id: T-1124
 title: A land-sale ruling that is simply GONE fails the gate: resident_rulings.json counted and identified against the merge base, with a stated withdrawal the only way a judgement may leave
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0999
 opened: 2026-09-14
-closed: null
-pr: null
+closed: 2026-09-14
+pr: 1322
 claimed_by: run 9/14/2026, 8:07:57 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-14T13:36:26.304Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34846525716
 ---
 

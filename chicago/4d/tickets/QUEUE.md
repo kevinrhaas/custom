@@ -228,7 +228,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
 # --- re-deriving them.
 
-T-1124 — A land-sale ruling that is simply GONE fails the gate: resident_rulings.json counted and identified against the merge base, with a stated withdrawal the only way a judgement may leave
 T-1125 — Extend the lost-judgement guard to the rest of the hand-authored evidence in data/research/, one domain's arrays adjudicated at a time
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
 T-1112 — generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it
