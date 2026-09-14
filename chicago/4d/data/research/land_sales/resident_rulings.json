@@ -179,9 +179,10 @@
    "checked_against": [
     "isa_public_domain_land_tract_sales",
     "chicago_voter_lists_1833_1835_irad",
-    "fergus_1843_old_settler_death_notices"
+    "fergus_1843_old_settler_death_notices",
+    "moses_kirkland_history_of_chicago_v2"
    ],
-   "reasoning": "Thirteen parcels over the three days of the school-section auction, 22-24 October 1833, and the town's own tax list of 1833 names an Arthur Bronson in the same year. A town assessing a man and an auction of the town's own school section are the same twelve months and the same ground. The forename is also doing real work in this register rather than riding on a rare surname: BRONSON FREDERIC and BRONSON FREDERICK stand beside him on other rows, and the layer holds only the Arthur. The old-settler death notices are the second document."
+   "reasoning": "Thirteen parcels over the three days of the school-section auction, 22-24 October 1833, and the town's own tax list of 1833 names an Arthur Bronson in the same year. The forename is doing real work in this register rather than riding on a rare surname: BRONSON FREDERIC and BRONSON FREDERICK stand beside him on other rows, and the layer holds only the Arthur. The old-settler death notices are the second document. UPHELD ON THOSE TWO ARMS AND ON NOTHING ELSE. A SENTENCE WAS STRUCK FROM THIS RULING on 14 September 2026, under the answer T-1017 records at `questions_ruled`. It had argued that “a town assessing a man and an auction of the town's own school section are the same twelve months and the same ground”, which reads the purchase as evidence of PRESENCE. It is not: a town taxes a non-resident on the ground he holds in it, and T-1017 refused exactly that inference. The buyer is also the auction's fourth largest hand, and the town's own historians print him as one of “two visitors to the settlement from New York — Charles Butler and Arthur Bronson”, who sent the Chicago Lyceum two hundred volumes “on their return home” (Moses & Kirkland, History of Chicago vol. 2, printed page 367, claim bk_mose2_021). The ruling is an IDENTITY ruling and stands: it says which Bronson the register's rows belong to, not that he lived here. What his card says about residence is a separate question, filed as T-1117."
   },
   {
    "purchaser_as_read": "CARVER DAVID",
