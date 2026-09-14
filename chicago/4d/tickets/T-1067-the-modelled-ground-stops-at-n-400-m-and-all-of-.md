@@ -1,7 +1,7 @@
 ---
 id: T-1067
 title: The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-12
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/14/2026, 3:04:32 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34820520379
 ---
 
 The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover.
@@ -43,4 +43,25 @@ Street. Two things are worth measuring before anything is built:
   of its four numbers from evidence; `n_max` would need the same treatment, and
   Wright's sheet covers the Addition whole.
 
-**Acceptance:** (state it before working — one demonstration, never weakened to pass)
+**Acceptance:** (stated before working — one demonstration, never weakened to pass)
+
+This ticket is the MEASUREMENT the body above asks for, and the derivation of the number.
+The extension itself is a build — a 77 % larger field and 288 rows of ground this spec carries
+no micro-relief, substrate, shore or flora for — and is filed as its own ticket rather than
+smuggled in under a ticket that opened by asking what is there.
+
+1. What the renderer does north of +400 is MEASURED and committed, not described: every street
+   record walked against the renderer's own sampler, with the drawn population separated from
+   the platted-and-unopened one, because a record that compiles to no geometry cannot be
+   draped on anything and counting the two together would overstate the artefact by two orders
+   of magnitude.
+2. The box's edge is measured as a walker meets it — metres of perimeter the 0.35 m step-up
+   rule will not let a visitor back across — because that is the part of this a visitor can
+   find without reading JSON.
+3. The reading is re-derivable and gated, so it cannot rot while the box or the street layer
+   moves. The gate asserts agreement, never that the gap is small.
+4. `n_max` is argued from evidence in `terrain_spec.json` § `box_derivation`, in the same form
+   as the other three numbers, including what it costs.
+5. What the scene draws off the modelled ground is on the record for a visitor in
+   `docs/LIBERTIES.md`.
+6. `bash tools/check.sh` green. No bake: no geometry moves.
