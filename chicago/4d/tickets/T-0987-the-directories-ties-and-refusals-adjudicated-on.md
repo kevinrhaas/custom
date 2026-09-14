@@ -1970,6 +1970,150 @@ named for it is unchanged, the 1843 initial-absent pool.
 
 ---
 
+## Stretch 15 — the page had already been read, and what the pool turned out to be a symptom of (T-0987, 2026-09-13→14)
+
+Stretch 14 named this stretch and the owner's amendment of 2026-09-14 set its method:
+**the 1,032 initial-absent refusals, beginning with Fergus 1843 whose scan is the best of
+the four, and A STRETCH AGAINST THAT POOL READS A PAGE, NOT A NAME** — because one image
+carries dozens of entries and one read per refusal is what made the pool cost two hundred
+runs. That is what was done, and the answer came back in the direction nobody had priced.
+
+### The page was read. It overturned nothing, and that is the finding
+
+The whole alphabetical directory of the PRINTED volume — pages 31 to 103 of Fergus'
+Historical Series No. 28, the Internet Archive's own OCR of the Allen County copy at
+`data/research/books/text/fergus_26_29.txt`, committed here since T-0499 and set against
+Torp's transcription twice before (stretch 12) — was put against all **326** initial-absent
+refusals of `fergus_1843_crosswalk_1835.json`, over **252** surnames. 2,194 entry heads came
+off those pages; 1,201 of them carry a surname this repository's reading already holds
+letter for letter, and the rest carry the OCR's own damage to a surname it also holds.
+
+**Not one printed entry sets a surname-plus-initial that the committed reading lacks.**
+Three looked at first as though they might — `Carpenter, AVilliam`, `Day. AVilliam`,
+`Goodrich, Crrant` — and all three are the second hand's own damage to a letter, not a
+name: AV is how this OCR sets a W.
+
+So the initial-absent pool of Fergus 1843 is **NOT a transcription defect**. Where the
+volume is silent about a person of 1835, both hands are silent together, and no amount of
+further page-reading will change that. This is the one thing the owner's amendment could
+not know when it set the method, and it is worth more than the stretch it ends: the
+1,032 are not unread pages. They are people the directories do not print.
+
+### What the pool DOES hide — the surname one letter away
+
+`crosswalk_fergus_1843.py` reaches a person of 1835 through the folded surname and then
+compares it EXACTLY, while `name_agreement.agrees` allows a FORENAME one letter of
+variation (`Russel` against `Russell`, minimum length five) and states why. Nothing allows
+a surname any. So an entry the volume sets one letter off the town's spelling is invisible
+to the join, while the resident's own surname bucket — populated by other families — makes
+the refusal read `surname present, initial absent`.
+
+**Twelve entries of Fergus 1843 are one letter from a refused resident's surname and carry
+that resident's own initial. They reach fifteen residents, sixteen times.**
+`tools/surname_one_letter_away.py` is new, enumerates them, and **refuses all sixteen**:
+
+1. **The volume sets both spellings, and sets them apart.** Brooks (2 entries) beside
+   Brookes (6), Pearson (2) beside Pearsons (1), Harman (1) beside Harmon (6), Barnard
+   beside Bernard, Barry (3) beside Berry, Walker (9) beside Walter, David beside Davis
+   (6), Clarke (8) beside Clark (16), Green (4) beside Breen, Wight (2) beside Wright (6),
+   Bates (6) beside Yates and Barnes (4). *A directory does not enter one person twice
+   under two spellings* — R6's principle, borrowed by stretch 14's clause 3 and borrowed
+   again — so a one-letter distance between two surnames the volume itself distinguishes
+   is its distinction and not its damage.
+2. **And the second hand sets the same letters.** Every one of the twelve was looked up in
+   the printed volume line by line — thirteen lines, the extra one the business-directory
+   notice `L. W. CLARK` that stretch 7 folds onto Lewis W. Clark's roll entry — and it
+   reads Torp's spelling every time: `Pearsons, Hiram, speculator, l)ds Trejnont House`,
+   `Harmon. Isaac Xewton`, `Clark, Lewis AY.`, `Bernard, Jacob, teamster`, `Walter, Joel
+   Clarke`, `Davis, John, tailor`, `Breen, John. ])ackcr`, `Ihookes, George`. The one
+   repair stretch 12 had — the second hand reading what Torp could not — is unavailable
+   here, in all thirteen. The lines are carried verbatim in `SECOND_HAND`, OCR damage left
+   in, and `--self-test` fails if one stops being findable at its line.
+3. **And eight of the sixteen would have been contests anyway** — two residents reach
+   `Bernard, Jacob`, two `Berry, Joseph`, two `Walter, Joel Clarke`, two `Brookes, George`.
+
+Nothing is promoted. No fold is widened, no confidence raised; the crosswalk's matches,
+ties and refusals are unchanged to the entry across this stretch (136 / 15 / 2 / 326, the
+same numbers as the tree it was worked on). The sixteen are filed under
+`surname_one_letter_away` with the clause and the printed line on each.
+
+### The one thing worth carrying, and it is not in this domain
+
+`Hiram Pearson` is refused by Fergus 1843 because the volume prints `Pearsons, Hiram,
+speculator, bds Tremont House`. The volume is not at fault. **The town is.** It holds
+BOTH: `hh_pearsons_hiram`, Andreas's man, `attested`, came in the spring of 1833, city
+treasurer 1837-9 — whose own card note quotes the roster printing **`Hiram Pearson`** — and
+`hh_pearson_hiram`, a civic-mint card off the 1833 poll list, `unplaced`,
+`occupation: none_recorded`, `present_on_scene_date: uncertain`. One man, minted twice by
+two of this project's own passes, under the two spellings one source sets.
+
+`surname_one_letter_away.town_pairs` puts that test over the whole resident layer: **22**
+cards stand one letter apart in the surname and identical in the forename, and **19 have
+never been put to the merge machinery at all** (T-0839, T-0844, T-0993, T-1001, T-1002).
+`compatible()` in `consolidate_town_cards.py` buckets the surname as one string, so two
+spellings never meet — the hole T-1002 found by hand one bucket along — and T-1001 already
+answered NO to the blanket fold, so each is a hand ruling. **Filed as T-1130**, under this
+ticket, sized as more than one run. No card is touched here.
+
+### Clause 7 fires, on its first test: THIS TICKET CLOSES
+
+The owner's amendment of 2026-09-14 replaced the closing condition: *close when a stretch
+carries fewer than five new facts onto cards, because an unemptied pool is a stated
+liberty and not a silence.* **This stretch carried NONE.** It took the stretch its
+predecessor named, by the method the amendment prescribed, against the largest pool in the
+programme and the volume with the best scan — and the page was already read. So the
+programme closes here rather than spending another two hundred runs proving it again.
+
+**The final counts**, re-derived on this tree across all four volumes:
+
+```
+                        1839        1843        1844      1844 ad     total
+  matched                163         136         113          19        431
+  ambiguous               11          15           9           3         38
+  contested                4           2           2           6         14
+  ties standing           15          17          11           9         52
+  initial-absent         263         326         317         126      1,032
+  forename-disagreed      66          81          47           0        194
+```
+
+**The unspent remainder, stated as a liberty and not left as a silence** — this is what
+clause 7 asks for, each pool named with its size and its reason:
+
+* **1,032 initial-absent refusals, not individually overturned, and the reason is
+  measured rather than assumed.** For Fergus 1843's 326 the printed volume was read
+  entry-head by entry-head against the whole pool and overturned none, so the refusals are
+  the volumes' own silence and not this repository's. For the other 706 the same reading
+  was not made volume by volume, and that — not the refusals — is the liberty: the class
+  is judged on one volume of four. Each of the 1,032 already names its clause on its own
+  row and none is a silence.
+* **52 ties standing.** Stretch 14 left them as three things a page cannot settle: two
+  entries fitting equally, a page saying less than the readings offered it, or a
+  generational suffix this town's record does not answer. Every one carries
+  `whole_name_declined` with the reason.
+* **194 forename-disagreed refusals.** Ordered last by this ticket's own yield rule from
+  the day it was filed, on T-0670's judgement that the refusal is usually right. The pool
+  GREW across stretches 10-14 (142 → 194) because reading a page better finds more
+  disagreements than it settles, which is the arithmetic the amendment was written on.
+* **7,229 unspent directory entries.** Not a backlog and never was: entries whose surname
+  has no 1835 counterpart, people who arrived after the scene date, unreachable by
+  construction. `measure_research_spend.py` counts them and says so.
+
+**What the programme carried, over fifteen stretches:** 431 of the town's people take a
+line from a printed directory, 987 directory rulings reach a card with **0 unwritten**,
+the write debt of 263 was paid to zero and its ceiling tightened so it cannot regrow, and
+eighteen businesses stand on back-projected street faces. The method is closed; the
+result stays.
+
+### The gates
+
+`tools/surname_one_letter_away.py --self-test` is NEW and wired into `check.sh`: the
+distance test in both directions, the five-letter floor that keeps `Cook`/`Cool` apart,
+the refusal's only outcome being a refusal, the contest sentence firing only on a contest,
+the town-pair test needing an identical forename, and all thirteen second-hand lines
+re-read at the line they were read on. `./tools/check.sh` green.
+
+---
+
 ## Added on the way past by T-1035 (2026-09-12): the initial rule the FIRM route now states does not reach the PERSON route, and cannot
 
 T-1035 asked how much initial agreement a one-surname join needs when both sides print
