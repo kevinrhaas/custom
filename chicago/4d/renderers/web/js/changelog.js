@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The record called every householder \u2018this man\u2019', kind: 'fix', ts: '',
+  { v: 874, title: 'The record called every householder \u2018this man\u2019', kind: 'fix', ts: '2026-09-14T17:43:54.630Z', date: 'Sep 14, 2026, 12:43 PM CT',
     items: [
       'Fifty-eight people in this town have had a later directory\u2019s address read against their name \u2014 a street printed in 1839, 1843 or 1844, carried back to 1835 or refused, with the reasoning written on the card in plain words. Those words come from a template, and every one of the templates said \u2018this man\u2019. \u2018Norris\u2019s Chicago directory of 1844 prints where this man lived in 1844.\u2019 Twenty-nine of the rulings carried the phrase in their reasoning and all fifty-eight carried it again in the note on the record.',
       'One of the fifty-eight is Rebecca Sherman, so her card told a reader that Norris printed where this man lived. Nothing about the reading was wrong \u2014 hers is the Clark Street entry refused a few entries ago for a contracted qualifier, and it is still refused for exactly that. But the sentence asserted something about her that the source does not say and that happens to be false, and it is the only word on that card a reader did not ask for.',
