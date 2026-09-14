@@ -202,5 +202,36 @@ console.log('merge-ready.sh — merges what GitHub calls clean, and nothing else
         /^\s*clean\)/m.test(src) && !/blocked\|.*\)\s*$/m.test(src.replace(/blocked\|unstable\|has_hooks\)/, '')));
 }
 
+/* 11. THE WORKFLOW'S TRIGGER MUST BE ONE THAT FIRES FROM A NON-DEFAULT BRANCH.
+ *
+ * `schedule` and `workflow_run` fire ONLY from the repository's DEFAULT branch.
+ * This repo's default is `main`; this workflow lives on `dev` and reaches `main`
+ * only through promote-to-prod. A `schedule` written here would never fire once
+ * — not late, not rarely: never — and the failure is SILENT, which is the whole
+ * reason it is asserted rather than trusted to a comment.
+ *
+ * Checked 2026-09-14 rather than assumed: `main` carries 8 workflows and
+ * chicago-4d-pr-lap.yml is not among them, yet the lap runs many times a day,
+ * because `push:` triggers DO fire from the pushed branch's own copy; and every
+ * scheduled run of chicago-4d-bake.yml reports `head_branch: main`.
+ *
+ * The first draft of this workflow had `schedule` and `workflow_run` and would
+ * have merged nothing, ever, while looking entirely reasonable in review. */
+{
+  const wf = path.resolve(path.dirname(new URL(import.meta.url).pathname),
+                          '..', '..', '..', '.github', 'workflows',
+                          'chicago-4d-merge-ready.yml');
+  const y = readFileSync(wf, 'utf8')
+    .split('\n').filter((l) => !/^\s*#/.test(l)).join('\n');
+
+  check('the workflow triggers on a push to dev — a trigger that fires from dev',
+        /^on:[\s\S]*?^\s{2}push:\s*$[\s\S]*?branches:\s*\[\s*dev\s*\]/m.test(y));
+  check('…and carries no `schedule`, which would never fire from a non-default branch',
+        !/^\s{2}schedule:/m.test(y));
+  check('…nor `workflow_run`, which has the same default-branch restriction',
+        !/^\s{2}workflow_run:/m.test(y));
+  check('…and still offers a manual dispatch', /^\s{2}workflow_dispatch:/m.test(y));
+}
+
 console.log(failures ? `\n${failures} FAILED` : '\nall passed');
 process.exit(failures ? 1 : 0);
