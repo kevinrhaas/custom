@@ -1,7 +1,7 @@
 ---
 id: T-1116
 title: The 1840 head crosswalk reads a military rank as a forename: Lieut. James Allen is indexed under the key 'lieut|allen', and five other tools in this repo already strip lieut as a rank
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-13
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/13/2026, 9:46:02 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34800062273
 ---
 
 The 1840 head crosswalk reads a military rank as a forename: Lieut. James Allen is indexed under the key 'lieut|allen', and five other tools in this repo already strip lieut as a rank.
