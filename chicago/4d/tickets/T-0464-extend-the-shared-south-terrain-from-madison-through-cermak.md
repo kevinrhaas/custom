@@ -1,7 +1,7 @@
 ---
 id: T-0464
 title: Extend the shared south terrain from Madison through Cermak
-state: claimed
+state: done
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-01
-closed: null
-pr: null
+closed: 2026-09-14
+pr: 1257
 claimed_by: run 9/13/2026, 10:21:08 AM CT
 blocked_on: T-0219
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-14T22:42:53.145Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34765142411
 ---
 
