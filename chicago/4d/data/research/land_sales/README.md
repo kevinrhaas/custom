@@ -1617,3 +1617,57 @@ the counter is printed at zero, so it is a standing check rather than a dead bra
 **The other silence is the source's rather than the tool's.** 254 of the structures stand
 in the SOUTH-EAST QUARTER OF SECTION 9 — the original town — and get nothing, because the
 canal commissioners sold those lots and this database does not hold them.
+
+## Buying at the town's own sale is not a check on a town-side name (T-1017)
+
+**T-0990 refused RUSSELL SAMUEL and SKINNER JOSEPH and wrote the same reservation into both:
+the rows are at the town's OWN school-section sale, a man on the town's 1833 tax list is the
+kind of man who bought there, and that argument is none of the rule's four arms.** It filed the
+question rather than deciding it mid-cohort, because fifty rulings across four tickets name this
+sale and deciding it by momentum would have moved all fifty. T-1017 decides it by counting.
+`tools/school_section_sale.py` is the arithmetic, `school_section_sale_1833.json` the
+measurement, `docs/RESEARCH/school_section_sale_1833.md` the reasoning, and the ruling itself is
+in `resident_rulings.json` → `questions_ruled` → `T-1017`, where the rulings live.
+
+**THE ANSWER IS NO, AND NOTHING RETRACTS** — which is the outcome T-0990 feared and the one it
+got. All ten refusals that name the sale stand; all 39 upholds that name it stand, because in an
+uphold it is corroboration beside an office, a middle initial or a trade and never the ground.
+
+**WHAT ARGUES THE OTHER WAY IS REAL AND IS MEASURED FIRST.** Set the sale's 105 buyers against
+the 542 purchaser spellings found only elsewhere in the register: **47.6%** of the sale's carry
+an upheld match to a town card against **15.7%** elsewhere, and only **12.4%** carry a surname
+this layer holds nobody of against **38.7%** elsewhere. The second comparison uses no
+adjudication at all — only whether the layer holds the surname — so it cannot be an echo of
+rulings already made. The town's own men did buy at the town's own sale.
+
+**IT IS NOT EXCLUSIVE.** Thirteen buyers carry a surname the layer holds nobody of, BROSON
+ARTHUR and HUQUEUIN HIRAM among them. And the ground went at auction prices: the 85 rows that
+state an acreage fetched **$51.49 an acre** against **$1.45** for the 592 federal rows in the
+same register. A sale at thirty-six times the government minimum is one capital could reach from
+anywhere.
+
+**IT CANNOT CARRY A NAME ON ITS OWN.** Fifty of the 105 buyer spellings hold an upheld match and
+fifty-five do not. A criterion wrong more often than it is right is not what a row is checked
+against; 47.6 per cent is a prior over a population, and the rule is applied one proposal at a
+time.
+
+**AND THE ARM THAT DECIDES IT: IT CANNOT SEPARATE TWO BEARERS OF A NAME.** Attendance is a
+property of the ROW and is identical for every buyer at the sale; a middle initial, a trade, a
+street or the Residence column are properties of the NAME, which is exactly why they can tell one
+claimant from another. **Twenty surnames are printed at this sale under more than one spelling** —
+the two Hales on the same twenty-six parcels, HARMON three ways, JONES three ways, PRUYNE as P, P
+AND CO and PETER, WRIGHT JOHN beside WRIGHT T G. That is the WENTWORTH reasoning of cohort C3
+turned on the sale instead of on the register as a whole: a source that sells to two men of a
+surname has told you there are two. Admitting the sale would lift SKINNER JOSEPH and RUSSELL
+SAMUEL and, by exactly the same amount, the 41 buyers refused against a rival and the 13 the town
+has never held a surname for.
+
+**THE RULING IS GATED, SO IT CAN BE WRONG OUT LOUD.** The residents layer grows every week and
+the crosswalk re-derives from it, so all three of those figures can move. `check.sh` asserts them
+rather than printing them: some buyer's surname absent from the layer, upheld matches in the
+minority, some surname printed twice. If one flips, the build goes red naming the arm that failed
+and T-1017 reopens — instead of a ruling standing on a measurement that has moved underneath it.
+`--self-test` breaks each of the three on purpose and requires the failure.
+
+**The enrichment is recorded as a measured prior and expressly NOT admitted as a fifth arm.** It
+may be quoted in a ruling as context — it already is — and it may never decide one.
