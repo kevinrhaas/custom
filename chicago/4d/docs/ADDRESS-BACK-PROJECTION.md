@@ -75,6 +75,22 @@ each refusal written out:
   face resolves and the address is still refused**, because taking Clark and dropping the
   qualifier would put the shop somewhere the directory does not say it was.
 
+- **A name the volume CONTRACTED is still that name** (T-1050). Norris's REMARKS page
+  says so — "Abbreviations, which occur only in a very few words, will readily be
+  understood; b stands for between; Rand for Randolph; Mad for Madison; Wash for
+  Washinglon, &c." (printed page 21) — and his `&c.` covers eleven more the page never
+  lists: `Ran`, `Dear`, `Wol`, `Frank`, `Kin`, `Clin`, `Mich`, `Mon`, `Jack`, `Ind`,
+  `Wab` and `Ad`. `PRINTED_ABBREVIATION` expands them once, before either table is
+  consulted, so a refusal is still written out exactly once. Each expansion is unique on
+  the 1844 street list and every occurrence of every token, across all 4,235 addresses
+  the four volumes print, is that street. Two consequences worth naming: a contraction
+  hides a NOT_1835 name as well as an 1835 one, which is the fault T-1050 was filed for;
+  and the scanner's word-splits fall out of the same table, because the first half of a
+  broken `Wash ington` looks exactly like the contraction Norris declares. `Wat` is the
+  one left unread — North or South Water, and the token cannot decide — and a
+  contraction is read only where the page sets it as a word of its own, because this OCR
+  sets `and` as `;ind` and a damaged conjunction must not become Indiana Street.
+
 Two 1835 streets that never meet cannot be a corner either, however the directory phrased
 it: the tool intersects the two committed centrelines and refuses when they do not cross.
 

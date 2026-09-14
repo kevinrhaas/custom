@@ -10911,7 +10911,7 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Recorded:** 2026-09-04.
 
 ### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 12 households
+**Scope:** `residence_back_projection.positions[placed]` — 11 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds`, or
 `house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
@@ -11025,6 +11025,31 @@ being read properly rather than a clause being relaxed:
 
 Nothing was regraded and no placement was invented. Twenty of 825 households carried a real
 `lives_at` before this restatement and twenty carry one after.
+
+**Restated to eleven on 2026-09-14 (T-1050), and this one is the READING — the fourth
+restatement, and the first of the four that is not the town moving.** Norris prints two
+houses at the same place on Clark Street, three lines apart in the same column: John C.
+Rue's at `h Clark, b Madison and Monroe` and Rebecca Sherman's at `h Clark st. b Mad. &
+Mon`. Rue was refused under clause R4's second half — a qualifier naming a street the
+town does not have refuses the whole address, and the 1835 layer carries neither Madison
+nor Monroe. **Sherman was placed on Clark Street**, and for no reason in the policy: the
+shared street table knew `Madison` spelled out and not the contraction Norris declares on
+his own REMARKS page ("Abbreviations, which occur only in a very few words, will readily
+be understood; b stands for between; Rand for Randolph; Mad for Madison; Wash for
+Washinglon, &c.", printed page 21), so R4's second half never saw a qualifier to refuse.
+One address, two spellings, two verdicts — and the spelling the pass could read was the
+one that claimed MORE. Fourteen contractions are now expanded before either street table
+is consulted, three of them named by that preface and eleven covered by its `&c.`, each
+unique on the 1844 street list and each attested in every one of its occurrences across
+the 4,235 addresses the four volumes print. Sherman's face is withdrawn and **Dearborn
+Street is no longer a face this entry claims** — Clark survives it, on William Bradshaw
+Egan. A refusal also stopped reasoning off the wrong street without changing its verdict:
+John Harris Kinzie's `h c Mich dc Cass` had made **Cass** the head street, because `Mich`
+was invisible, so the north-side Michigan Street his house stood on was never resolved;
+the refusal now resolves it and declines the Cass qualifier. The business pass's ledger is
+byte-identical across the change, which is the measurement that says no shop moved.
+Nothing was regraded, nothing was invented, and twenty of 825 households carry a real
+`lives_at` before and after.
 
 ### L224 — A house the paper measured, on a corner the paper did not
 **Decision:** `lasalle_lake_house` — the 16-by-30-foot dwelling the *Chicago Democrat*
