@@ -1,7 +1,7 @@
 ---
 id: T-1114
 title: Three hundred and four Norris 1844 entries print a business street inside the trade line with no place-abbreviation, and 'b' for between is being read as the start of an address rather than a qualifier on the street before it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
+closed: 2026-09-13
+pr: 1290
 claimed_by: run 9/13/2026, 5:44:03 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-14T00:08:31.437Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34787535409
 ---
 
