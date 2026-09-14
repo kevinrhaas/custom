@@ -62,6 +62,20 @@ TITLES = {"mrs", "miss", "mr", "dr", "capt", "col", "rev", "gen", "maj", "jr", "
 #   cut 175 entries in the middle of their own location. See PLACE_B_AS_PLACE below.
 PLACE = re.compile(r"\b(?<!-)(?:(?i:house|residence|res|boards|bds)|[hr])\.?\s")
 
+# …AND `House` IS ALSO THE NAME OF A BUILDING, WHICH THIS RULE CANNOT SEE (T-1021,
+# found in passing and named here so the next run does not rediscover it). The word
+# is matched case-blind, so a capitalised `House` standing inside a hotel's proper
+# name opens the address at the wrong word. It is four entries, all of them printed:
+#
+#     n1844_e0402  Cook, Geo. barkeeper, at American Temperance House res same
+#     n1844_e0849  Hisiley, Geo. House of Entertainment, S. Water st.'near Lasalle st
+#     n1844_e1629  Skinner & Smith, Mansion House. 6G Lake street
+#     n1844_e1764  Thomas & Wheelock, Washington Coffee House, Tremont House
+#
+# Norris prints his abbreviation lower case — `house Adams st.` — which is the same
+# tell the single letters already use, so the repair is narrow. It is a separate
+# ruling about the PLACE rule and is not made here.
+
 # …AND THE SUPERSEDED PATTERN IS KEPT SO THE RULE CAN BE RE-MEASURED, NOT ASSERTED
 # (T-1022). The case rule above landed inside another ticket's stretch and was never
 # priced, so the count that mattered — how many entries' READING it moves — was
@@ -513,6 +527,159 @@ WELDED_OF = [
 ]
 
 
+# THE SCANNER'S AMPERSAND, AND THE SEVEN FIRMS THAT READ AS MEN (T-1021).
+#
+# `FIRM` needs a real `&`. archive.org sets this volume's ampersand as `<fc`, `6c`
+# or `it` in seven entries, so the test never fires and each reads as a man whose
+# surname is the whole partnership — seven Lake, Water and Clark street TRADES,
+# with printed addresses, filed under a name no compositor set:
+#
+#     Ballentine <fc Sherman, dry goods and groceries, 122 Lake street
+#     Bowen 6c Cole, dry goods and groceries, 66 Lake street
+#     Bracken it Tuller, dry goods and groceries, 161 Lake st
+#     Crauer <fc Sanser, builders, Clark st. b Randolph and Michigan sts
+#     Gould it Dodge, ball alley and grocery, South Water st. b State and Dearborn
+#     Hamilton <fc White, dry goods and grocery store, 139 Lake st
+#     Skinner 6c .Smith, Mansion House. 6G Lake street
+#
+# T-1018 REFUSED them rather than damage them — capping the comma-derived name at
+# the prefix would have truncated `Bowen 6c Cole` to `Bowen` and minted a man who
+# is not in the book — and left the ruling to this ticket. Here it is made.
+#
+# THE RULING IS THE BOOK'S OWN, NOT THIS TOOL'S GUESS. Norris prints every one of
+# the seven partnerships a SECOND time, in a partner's own entry or a clerk's, and
+# on those lines the scanner set the ampersand correctly:
+#
+#     n1844_e0062  Ballentine, David, of B. & Sherman, Dearborn street bet Kinzie…
+#     n1844_e0167  Bowen, Erastus, of B. & Cole, house Michigan avenue
+#     n1844_e0179  Bracken, John, of Bracken & Tuller, res Wabash avenue
+#     n1844_e1555  Sanser, John W. of Cruver & S. house cor Clark and Michigan sts
+#     n1844_e0507  Dodge, Martin, of Gould & Dodge, res N. Gould's
+#     n1844_e0783  Hamilton, Robert P. of H. & White, res T. E. Hamilton's
+#     n1844_e1654  Smith, J. F. of Skinner & S., Mansion House
+#
+# So the question each row answers is not "is this a firm" — the volume says it is,
+# twice — but "which character did the compositor set", and the second hand (Kim
+# Torp's transcription, cited by file and line) answers that off the printed page.
+# Where SHE disagrees with this reading she is quoted in `second_hand_disagrees`
+# and nothing here is moved to match her: Crauer/Cruver is a SURNAME disagreement
+# this repair does not touch, and it stands unresolved.
+#
+# THE TRAP, AND WHY THIS IS A TABLE. `it` is an English word and `6c` is how this
+# scanner sets `&c.` — `Surdam. S. J. stoves, &c. 132 Lake st`. A rule loose enough
+# to read those three tokens as ampersands wherever they stand would weld `stoves
+# it` into a partnership, so this is a table of NAMED SPANS, exactly as WELDED_OF
+# above is a table and not a wider OF_STOP. It touches seven entries and can touch
+# no eighth, which `--self-test` asserts from both ends: each span matches exactly
+# one entry, and any entry the `Name <conj> Name` SHAPE still reaches with no row
+# here stays a T-1018 refusal and fails the OVERRUN_CLASSES ratchet.
+#
+# The reading moves and the quote keeps the damage, the standing convention. One
+# row lifts a second character with the ampersand and says so.
+CONJ_AMPERSAND = [
+    {"span": "Ballentine <fc Sherman", "reading": "Ballentine & Sherman",
+     "as_read": "<fc", "printed_page": 22,
+     "same_volume": ("n1844_e0062", "Ballentine, David, of B. & Sherman, Dearborn "
+                     "street bet Kinzie and Michigan"),
+     "second_reading": "Ballentine & Sherman, dry goods & groceries, 122 Lake st",
+     "file": "1844directory.txt", "line": 88, "second_hand_disagrees": None},
+    {"span": "Bowen 6c Cole", "reading": "Bowen & Cole",
+     "as_read": "6c", "printed_page": 25,
+     "same_volume": ("n1844_e0167", "Bowen, Erastus, of B. & Cole, house Michigan avenue"),
+     "second_reading": "Bowen & Cole, dry goods & groceries, 66 Lake st",
+     "file": "1844directory.txt", "line": 196, "second_hand_disagrees": None},
+    {"span": "Bracken it Tuller", "reading": "Bracken & Tuller",
+     "as_read": "it", "printed_page": 25,
+     "same_volume": ("n1844_e0179", "Bracken, John, of Bracken & Tuller, res Wabash avenue"),
+     "second_reading": "Bracken & Tuller, dry goods and groceries, 161 Lake st",
+     "file": "1844directory.txt", "line": 208, "second_hand_disagrees": None},
+    {"span": "Crauer <fc Sanser", "reading": "Crauer & Sanser",
+     "as_read": "<fc", "printed_page": 31,
+     "same_volume": ("n1844_e1555", "Sanser, John W. of Cruver & S. house cor Clark "
+                     "and Michigan sts"),
+     "second_reading": "Cruver & Sanser, builders, Clark st. b Randolph & Michigan sts",
+     "file": "1844directory.txt", "line": 474,
+     "second_hand_disagrees": "Kim Torp reads the first partner's surname CRUVER, and "
+                              "so does this volume's own second printing of the firm "
+                              "(n1844_e1555, n1844_e0993, n1844_e1778). The ampersand "
+                              "is the only character this row lifts: the u/a of the "
+                              "surname is a separate reading, it needs the page image, "
+                              "and it is left standing as the scanner set it."},
+    {"span": "Gould it Dodge", "reading": "Gould & Dodge",
+     "as_read": "it", "printed_page": 37,
+     "same_volume": ("n1844_e0507", "Dodge, Martin, of Gould & Dodge, res N. Gould's"),
+     "second_reading": "Gould & Dodge, ball alley and grocery, South Water st. b State "
+                       "& Dearborn sts",
+     "file": "1844directory.txt", "line": 759, "second_hand_disagrees": None},
+    {"span": "Hamilton <fc White", "reading": "Hamilton & White",
+     "as_read": "<fc", "printed_page": 38,
+     "same_volume": ("n1844_e0783", "Hamilton, Robert P. of H. & White, res T. E. "
+                     "Hamilton's"),
+     "second_reading": "Hamilton & White, dry goods and grocery store, 139 Lake st",
+     "file": "1844directory.txt", "line": 828, "second_hand_disagrees": None},
+    {"span": "Skinner 6c .Smith", "reading": "Skinner & Smith",
+     "as_read": "6c", "printed_page": 55,
+     "same_volume": ("n1844_e1654", "Smith, J. F. of Skinner & S., Mansion House"),
+     "second_reading": "Skinner & Smith, Mansion house, 86 Lake st",
+     "file": "1844dir2.txt", "line": 513,
+     "also_lifts": ("the stray full stop the scanner set before Smith. It is the same "
+                    "line and the same sort, both witnesses print the partner's name "
+                    "clean, and left standing it would name the firm `Skinner & "
+                    ".Smith`. The quote keeps it."),
+     "second_hand_disagrees": None},
+]
+
+# …AND EVERY OTHER ENTRY IN THE VOLUME THAT CARRIES ONE OF THESE TOKENS (T-1021).
+#
+# This is the trap, enumerated. Twenty-one entries print `<fc`, `6c`, `&c` or a bare
+# `it` outside the seven spans above, and not one of them is a partnership the firm
+# test is missing. They fall into four kinds:
+#
+#   a PERSON naming somebody else's firm      `Parker, John, of P. 6c Dpdge, ho Dearborn`
+#   `&c.` closing a stock list                `hardware, iron, nails, &c. 128 Lake st`
+#   the scanner's `at`, set as `;it`          `cabinet maker ;it J. B. Weir's`
+#   a firm already read as one, on `& Co.`    `Wheeler, Wm. & Co. hardwaid, &c. 145 Lake st`
+#
+# A rule that read those tokens as ampersands wherever they stood would take all
+# twenty-one — welding `nails &c` and `maker ;it` into partnerships. The table above
+# cannot reach them, because it matches a whole span at the head of an entry, and this
+# asserts it: by id, by the printed line, and by what each must READ as. Three of them
+# are firms and stay firms; the other eighteen are men and stay men. A re-read that
+# moves one fails here rather than silently widening what the repair touches.
+#
+# The value is (firm, as printed).
+CONJ_UNTOUCHED = {
+    "n1844_e0191": (False, "Brand, Alexander, of Murray <fc Brand, res cor Illinois aud Cass "
+                           "sts"),
+    "n1844_e0268": (False, "Buuerfield, Justin, of B. <fc Collins, res c Michigan and Rush "
+                           "sts"),
+    "n1844_e0350": (False, "Clark, F. of C. Haines, &c Co. res American Temperance House"),
+    "n1844_e0355": (False, "Clark, L. W. hardware, iron, nails, &c. 128 Lake st. cor Clark "
+                           "st. (See card)"),
+    "n1844_e0366": (False, "Cleaver, Joseph, cabinet maker ;it J. B. Weir's"),
+    "n1844_e0496": (False, "Dike, Henry, of Morey &c D. res Isaac Dike's"),
+    "n1844_e0652": (False, "Frink. John, of F. Walker <fc Co. h Rand. st. b Clark and "
+                           "Dearborn"),
+    "n1844_e0710": (False, "Goodrich, Grant, of Spr'mjr <fc G. h Illinois st. b Cass and Rush "
+                           "sts"),
+    "n1844_e0713": (False, "Goodsell, L. B. dry goods, &c. Dearborn st. b Lake & S. Water'"),
+    "n1844_e0716": (True, "Goss, S. W. & Co. dry goods, &c. !J8 Lake st"),
+    "n1844_e1024": (False, "King. Tuthill, clothing, dry goods, &c., 115 Lake st. h Clark st"),
+    "n1844_e1095": (False, "Leonard, J. W. clerk, ;it Clark, Haines & Co.'s"),
+    "n1844_e1103": (False, "Lill, V/m. of L. & Diversy, brewers, n Sand <fc Chicago Avenue"),
+    "n1844_e1334": (False, "Nauberger, Hugh, at P. Fund 6c Co.'s"),
+    "n1844_e1393": (False, "Parker, John, of P. 6c Dpdge, ho Dearborn st. b Wash & Monroe"),
+    "n1844_e1493": (False, "Roberts, D. L. Chicago Temperance House, Lasalle b Lake <fc'S. "
+                           "Water sts (bee card)"),
+    "n1844_e1693": (False, "Stearns, M. Grdry goods, &c. 136 Lake st"),
+    "n1844_e1695": (False, "Stein, Charles, of Sirausel &c S. h Lasalle st near Lake"),
+    "n1844_e1734": (False, "Surdam. S. J. stoves, &c. 132 Lake st"),
+    "n1844_e1828": (True, "Walker, C. & Co. dry goods, gro. leather, &c. S. Water st. b State "
+                          "and Dearborn sts (See card)"),
+    "n1844_e1877": (True, "Wheeler, Wm. & Co. hardwaid, &c. 145 Lake st. (See card)"),
+}
+
+
 # HEALED AT THE SOURCE (T-0987 stretch 10). Three of T-1018's sixty-nine no longer
 # read past the end of their name, because the reason they did was a destroyed
 # surname and SURNAME_IMAGE_REPAIRS lifts it before the comma is ever walked. They
@@ -528,6 +695,15 @@ OVERRUN_HEALED = {
     "n1844_e1075": "split_surname",       # Lurk in         -> Larkin
     "n1844_e1872": "split_surname",       # Went worth      -> Wentworth
     "n1844_e1937": "split_surname",       # Woi thinglnm    -> Worthingham
+    # T-1021 — the whole firm_conj class, ruled firms on the volume's own second
+    # printing of each partnership and healed by CONJ_AMPERSAND lifting the character.
+    "n1844_e0063": "firm_conj",           # Ballentine <fc Sherman -> Ballentine & Sherman
+    "n1844_e0168": "firm_conj",           # Bowen 6c Cole          -> Bowen & Cole
+    "n1844_e0180": "firm_conj",           # Bracken it Tuller      -> Bracken & Tuller
+    "n1844_e0439": "firm_conj",           # Crauer <fc Sanser      -> Crauer & Sanser
+    "n1844_e0719": "firm_conj",           # Gould it Dodge         -> Gould & Dodge
+    "n1844_e0787": "firm_conj",           # Hamilton <fc White     -> Hamilton & White
+    "n1844_e1629": "firm_conj",           # Skinner 6c .Smith      -> Skinner & Smith
 }
 
 def header_like(line: str) -> bool:
@@ -583,7 +759,16 @@ def clean_head(text: str) -> str:
 #                      `Name <conj> Name`, which is what this refusal tests. Widening
 #                      FIRM to read those three tokens as ampersands is a separate
 #                      ruling about firm/person classification, and `it` is an English
-#                      word, so it is filed as its own ticket rather than smuggled in.
+#                      word, so it was filed as its own ticket rather than smuggled in.
+#                      THAT TICKET IS MADE (T-1021, CONJ_AMPERSAND above): all seven
+#                      are ruled firms on the book's own second printing of each
+#                      partnership, the character is lifted by named span, and with it
+#                      lifted there is no overrun left — the name and the prefix are
+#                      the same three tokens — so the seven move to OVERRUN_HEALED.
+#                      The refusal is kept and now stands EMPTY on this reading: it is
+#                      the net under the table, so an eighth span of this shape is
+#                      refused rather than read, and fails the ratchet below for having
+#                      no row in OVERRUN_CLASSES.
 #
 #   split_surname (4)  The comma IS Norris's name comma and the prefix stops INSIDE a
 #                      surname the scanner broke in two: `Went worth, Geo. W.`,
@@ -660,14 +845,10 @@ OVERRUN_CLASSES = {
     "n1844_e1623": "firm_branch",         # Sicar & Co. groceries
     "n1844_e1817": "firm_branch",         # WTadsworth. E. S. & J. dry goods and groceries
     "n1844_e1892": "firm_branch",         # Wicker. C. G. & Co. dry goods and groceries
-    # --- firm_conj
-    "n1844_e0063": "firm_conj",           # Ballentine <fc Sherman
-    "n1844_e0168": "firm_conj",           # Bowen 6c Cole
-    "n1844_e0180": "firm_conj",           # Bracken it Tuller
-    "n1844_e0439": "firm_conj",           # Crauer <fc Sanser
-    "n1844_e0719": "firm_conj",           # Gould it Dodge
-    "n1844_e0787": "firm_conj",           # Hamilton <fc White
-    "n1844_e1629": "firm_conj",           # Skinner 6c .Smith
+    # --- firm_conj: RULED, AND HEALED AT THE SOURCE (T-1021). The seven rows moved
+    # to OVERRUN_HEALED below. They no longer read past the end of their name at all:
+    # with the ampersand lifted, the comma-derived name and the prefix are the same
+    # three tokens, so there is no overrun left to refuse.
     # --- split_surname
     #     T-1018 named four here and refused to cap them, which was the right refusal
     #     and not a reading. T-0987 stretch 11 read all four off the page image, so
@@ -731,6 +912,7 @@ def split_entry(text: str):
     """name / occupation / address, best effort, out of one printed entry."""
     text, surname_repair = repair_surname(text)
     head, head_repair = repair_welded_of(clean_head(text))
+    head, conj_repair = repair_conj_ampersand(head)
     prefix = name_prefix(head)
     firm = bool(FIRM.search(" ".join(prefix) + ","))
     if "," in head:
@@ -834,6 +1016,8 @@ def split_entry(text: str):
         out["head_repair"] = head_repair
     if surname_repair:
         out["surname_repair"] = surname_repair
+    if conj_repair:
+        out["conj_repair"] = conj_repair
     if overrun:
         out["name_overrun"] = overrun
     return out
@@ -1743,6 +1927,48 @@ def repair_welded_of(head):
     return head, None
 
 
+def repair_conj_ampersand(head):
+    """Lift an ampersand the scanner set as `<fc`, `6c` or `it`, BEFORE the prefix
+    walk and the firm test, so a partnership is read as one. Returns (head, repair
+    record or None) — the caller keeps the damaged text in `quote` and `as_printed`.
+
+    Matched on the whole printed span, never on the conjunction alone: see
+    CONJ_AMPERSAND for why the loose rule is the wrong one."""
+    for row in CONJ_AMPERSAND:
+        if head.startswith(row["span"]):
+            evidence = {
+                "and_the_same_volume_prints_the_partnership": {
+                    "claim": row["same_volume"][0],
+                    "reads": row["same_volume"][1],
+                    "note": "Norris sets the ampersand correctly on this line, so the "
+                            "firm is ruled on the book's own second printing of it.",
+                },
+                "second_hand": {
+                    "source": REPAIR_SOURCE,
+                    "file": "data/research/genealogytrails/text/" + row["file"],
+                    "line": row["line"],
+                    "reads": row["second_reading"],
+                },
+            }
+            if row.get("second_hand_disagrees"):
+                evidence["and_where_the_second_hand_disagrees"] = row["second_hand_disagrees"]
+            if row.get("also_lifts"):
+                evidence["this_row_also_lifts"] = row["also_lifts"]
+            return head.replace(row["span"], row["reading"], 1), {
+                "as_read": row["as_read"],
+                "reading": "&",
+                "span_as_read": row["span"],
+                "span_reading": row["reading"],
+                "printed_page": row["printed_page"],
+                "why": "The scanner set this firm's ampersand as %r, so the firm test "
+                       "never fired and the partnership read as a man whose surname was "
+                       "the whole firm; the quote keeps the damage." % row["as_read"],
+                "evidence": evidence,
+                "ticket": "T-1021",
+            }
+    return head, None
+
+
 def apply_repair(norm):
     """Repair a garbled forename READING in place, and say so. Returns the row."""
     for row in REPAIRS:
@@ -2030,6 +2256,86 @@ def self_test():
         if OF_STOP.search(row["as_read"]):
             fired.append("welded-`of` repair %r repairs a token OF_STOP already sees, "
                          "so the table is doing the regex's work" % row["as_read"])
+    # T-1021. THE SCANNER'S AMPERSAND, AND THE TRAP EITHER SIDE OF IT.
+    #
+    # CONJ_AMPERSAND reads `<fc`, `6c` and `it` as `&` in seven NAMED SPANS. The whole
+    # risk is the other direction: `it` is an English word and `6c` is how this scanner
+    # sets `&c.`, so a rule that read those tokens wherever they stood would weld
+    # `stoves it` into a partnership and mint firms out of grocers' stock lists. The
+    # table cannot do that — it matches a whole span at the head of the entry — and
+    # this asserts it from both ends.
+    #
+    # FIRST, EACH ROW. Exactly one entry, ruled a firm, named as the row reads it, and
+    # the damage still standing in the quote. Each row's ruling rests on Norris's OWN
+    # second printing of the partnership, so that line is asserted present with a real
+    # ampersand in it: if a re-read moves it, the evidence for the repair is gone and
+    # this fails rather than the repair quietly carrying on without it.
+    conj_by_id = {c["id"]: c for c in claims}
+    for row in CONJ_AMPERSAND:
+        hits = [c for c in claims
+                if c["normalized"].get("conj_repair", {}).get("span_as_read") == row["span"]]
+        if len(hits) != 1:
+            fired.append("conj-ampersand repair %r fired on %d entries, not 1"
+                         % (row["span"], len(hits)))
+            continue
+        c = hits[0]
+        if row["span"] not in c["quote"]:
+            fired.append("conj-ampersand repair %r tidied the quote — the damage must "
+                         "stand there" % row["span"])
+        if not c["normalized"]["firm"]:
+            fired.append("%s carries the conj-ampersand repair %r and still reads as a "
+                         "person — the firm test did not fire on the lifted `&`"
+                         % (c["id"], row["span"]))
+        if c["normalized"]["printed_name"] != row["reading"]:
+            fired.append("%s is repaired to %r and names itself %r"
+                         % (c["id"], row["reading"], c["normalized"]["printed_name"]))
+        witness = conj_by_id.get(row["same_volume"][0])
+        if witness is None:
+            fired.append("the same-volume witness %s for %r is not in the reading"
+                         % (row["same_volume"][0], row["span"]))
+        elif " & " not in witness["normalized"]["as_printed"]:
+            fired.append("the same-volume witness %s for %r no longer prints a plain "
+                         "ampersand, so the ruling has lost its evidence"
+                         % (row["same_volume"][0], row["span"]))
+    # SECOND, THE TRAP. Every entry in the volume that carries one of these tokens
+    # ANYWHERE is enumerated here with what it must read as, and only the seven may
+    # carry the repair. Nineteen of them are the trap in person: `&c.` closing a
+    # grocer's stock list, and the conjunction standing inside a partner's or a
+    # clerk's entry — `of P. 6c Dpdge`, `at P. Fund 6c Co.'s` — where the man, not the
+    # firm, is the entry. All of them must stay people.
+    conj_seen = {c["id"] for c in claims if c["normalized"].get("conj_repair")}
+    conj_want = set()
+    for row in CONJ_AMPERSAND:
+        conj_want |= {c["id"] for c in claims
+                      if c["normalized"].get("conj_repair", {}).get("span_as_read") == row["span"]}
+    for cid in sorted(conj_seen - conj_want):
+        fired.append("%s carries a conj-ampersand repair with no row in CONJ_AMPERSAND"
+                     % cid)
+    if len(conj_seen) != len(CONJ_AMPERSAND):
+        fired.append("%d entries carry a conj-ampersand repair and the table has %d rows"
+                     % (len(conj_seen), len(CONJ_AMPERSAND)))
+    for cid, (firm, printed) in CONJ_UNTOUCHED.items():
+        c = conj_by_id.get(cid)
+        if c is None:
+            fired.append("%s is named in CONJ_UNTOUCHED and is not in the reading" % cid)
+            continue
+        if c["normalized"]["as_printed"] != printed:
+            fired.append("%s is named in CONJ_UNTOUCHED and its printed text moved — the "
+                         "witness is stale: %r" % (cid, c["normalized"]["as_printed"][:60]))
+        if c["normalized"].get("conj_repair"):
+            fired.append("%s carries one of these tokens in a stock list, an address or "
+                         "a partner's entry and the repair reached it: %r"
+                         % (cid, printed[:60]))
+        if c["normalized"]["firm"] != firm:
+            fired.append("%s must read firm=%s and reads firm=%s — the conjunction "
+                         "rule moved a man into a firm or a firm out of one: %r"
+                         % (cid, firm, c["normalized"]["firm"], printed[:60]))
+    tokened = {c["id"] for c in claims
+               if re.search(r"<fc|6c|&c|\bit\b", c["normalized"]["as_printed"])}
+    for cid in sorted(tokened - set(CONJ_UNTOUCHED) - conj_want):
+        fired.append("%s prints a scanner conjunction and has no row in CONJ_AMPERSAND "
+                     "or CONJ_UNTOUCHED: %r"
+                     % (cid, conj_by_id[cid]["normalized"]["as_printed"][:60]))
     # The two readings of a firm cannot disagree: the name is the run the test was
     # decided on, so a business whose name carries no firm marker is a contradiction.
     for c in claims:
@@ -2062,8 +2368,9 @@ def self_test():
         if c is None:
             fired.append("%s is named in OVERRUN_HEALED and is not in the reading" % cid)
         elif c["normalized"].get("name_overrun"):
-            fired.append("%s was %s by T-1018 and healed by the surname read off the "
-                         "page image; it reads past the end of its name again"
+            fired.append("%s was %s by T-1018 and healed at the source — by the "
+                         "surname read off the page image, or by the ampersand "
+                         "CONJ_AMPERSAND lifts; it reads past the end of its name again"
                          % (cid, was))
     seen = {c["id"] for c in claims if c["normalized"].get("name_overrun")}
     for cid in sorted(seen - set(OVERRUN_CLASSES)):

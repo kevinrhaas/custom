@@ -12,12 +12,12 @@
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "carry_rule": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
  "counts": {
-  "matched_rulings": 139,
-  "people_written": 103,
-  "households_touched": 101,
+  "matched_rulings": 141,
+  "people_written": 105,
+  "households_touched": 103,
   "grades_changed": 0,
-  "entries_carried": 538,
-  "acres_carried": 15339.04,
+  "entries_carried": 540,
+  "acres_carried": 15444.92,
   "school_section_parcels_carried": 154,
   "matched_more_than_once": 31
  },
@@ -25,7 +25,7 @@
   {
    "rule": "L1",
    "why": "a refusal is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the register anyway would print an undecided identity as a decided one",
-   "rulings": 508
+   "rulings": 506
   },
   {
    "rule": "L2",
@@ -6012,8 +6012,8 @@
     "SHERMAN S W"
    ],
    "rules": [
-    "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees in full.",
-    "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees as an initial only."
+    "SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees in full.",
+    "SHERMAN S W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees as an initial only."
    ],
    "totals": {
     "entries": 2,
@@ -6067,7 +6067,7 @@
      "page": "012"
     }
    ],
-   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “SHERMAN SILAS W”, “SHERMAN S W”, 1833-10-24 to 1836-06-22: 1 lot in the platted town — lot 8 of block 34 in the town the register codes CHIOT (L8BL34CHIOT, as printed) and 1 parcel of the school section — BL98 of the school section (sec 16 T39N R14E), as read, 3.27 acres stated in all, for $9697.00 (ls0331, ls1452). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $9500.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 3 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “SHERMAN SILAS W”, “SHERMAN S W”, 1833-10-24 to 1836-06-22: 1 lot in the platted town — lot 8 of block 34 in the town the register codes CHIOT (L8BL34CHIOT, as printed) and 1 parcel of the school section — BL98 of the school section (sec 16 T39N R14E), as read, 3.27 acres stated in all, for $9697.00 (ls0331, ls1452). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $9500.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: SHERMAN SILAS W matches Silas W Sherman: the forename names Silas W Sherman of the 4 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_snow_george_w",
@@ -8339,6 +8339,53 @@
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “HUNTER EDWARD E”, “HUNTER E E”, 1834-11-15: 2 federal land entries — E2SW sec 02 T38N R14E; NE sec 13 T40N R13E, 320.00 acres stated in all, for $400.00 (ls0567, ls0568, ls0920, ls0919). THE REGISTER'S OWN RESIDENCE COLUMN READS COOK, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. The register states this purchaser's residence as COOK, so the sale is contemporary evidence that a man of this name lived in Cook County on the date of sale. It is not evidence that he lived in the town. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: HUNTER EDWARD E matches Edward E Hunter: the forename names Edward E Hunter of the 5 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
+   "household_id": "hh_king_j_d",
+   "person_id": "king_j_d",
+   "name": "J D King",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "KING JEREMIAH"
+   ],
+   "rules": [
+    "KING JEREMIAH matches J D King: the forename names J D King of the 8 people of this surname, and the forename agrees as an initial only."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 25.88,
+    "dollars": 32.35,
+    "first_purchase": "1835-06-05",
+    "last_purchase": "1835-06-05",
+    "tracts": [
+     "SEFR sec 02 T38N R14E"
+    ],
+    "school_section": [],
+    "town_plat_lots": [],
+    "town_plat_dollars": 0,
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0569",
+     "as_read": "KING JEREMIAH",
+     "date_purchased": "1835-06-05",
+     "acres": "25.88",
+     "total_price": "32.35",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "SEFR sec 02 T38N R14E",
+     "resolves": "quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0016746",
+     "volume": "687",
+     "page": "260"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “KING JEREMIAH”, 1835-06-05: 1 federal land entry — SEFR sec 02 T38N R14E, 25.88 acres stated in all, for $32.35 (ls0569). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: KING JEREMIAH matches J D King: the forename names J D King of the 8 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
    "household_id": "hh_newberry_walter_loomis",
    "person_id": "newberry_walter_loomis",
    "name": "Walter Loomis Newberry",
@@ -10355,6 +10402,53 @@
     }
    ],
    "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 2 times, as “JAMISON LOUIS T”, 1835-12-17 to 1836-01-09: 2 federal land entries — E2NW sec 31 T38N R15E; W2NE sec 05 T39N R13E, 158.66 acres stated in all, for $198.32 (ls0733, ls0757). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: JAMISON LOUIS T matches L T Jamison: the forename names L T Jamison of the 1 person of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
+  },
+  {
+   "household_id": "hh_barry_j_r",
+   "person_id": "barry_j_r",
+   "name": "J R Barry",
+   "source_id": "isa_public_domain_land_tract_sales",
+   "purchaser_spellings": [
+    "BARRY JOHN R"
+   ],
+   "rules": [
+    "BARRY JOHN R matches J R Barry: the forename names J R Barry of the 3 people of this surname, and the forename agrees as an initial only."
+   ],
+   "totals": {
+    "entries": 1,
+    "acres": 80.0,
+    "dollars": 100.0,
+    "first_purchase": "1835-06-26",
+    "last_purchase": "1835-06-26",
+    "tracts": [
+     "W2SW sec 20 T39N R13E"
+    ],
+    "school_section": [],
+    "town_plat_lots": [],
+    "town_plat_dollars": 0,
+    "residence_as_read": [
+     "UNKNOWN"
+    ]
+   },
+   "entries": [
+    {
+     "record_id": "ls0813",
+     "as_read": "BARRY JOHN R",
+     "date_purchased": "1835-06-26",
+     "acres": "80.00",
+     "total_price": "100.00",
+     "type_of_sale": "federal land sale (cash entry)",
+     "residence_as_read": "UNKNOWN",
+     "county": "COOK",
+     "tract": "W2SW sec 20 T39N R13E",
+     "resolves": "half_quarter_section",
+     "sale_kind": "federal_entry",
+     "purchase_no": "0029243",
+     "volume": "687",
+     "page": "188"
+    }
+   ],
+   "written": "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 1 time, as “BARRY JOHN R”, 1835-06-26: 1 federal land entry — W2SW sec 20 T39N R13E, 80.00 acres stated in all, for $100.00 (ls0813). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BARRY JOHN R matches J R Barry: the forename names J R Barry of the 3 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict."
   },
   {
    "household_id": "hh_archer_william_b",

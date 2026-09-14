@@ -815,9 +815,23 @@ function takeClaimLock(id, by, run, { steal = false } = {}) {
 }
 
 /** Give the claim back. Best-effort by design: a marker nobody released is
- *  litter, never a block, because a stale one is stolen on the next claim. */
+ *  litter, never a block, because a stale one is stolen on the next claim.
+ *
+ *  Best-effort is not the same as SILENT, which is what this was. Every caller
+ *  ignores the boolean, so a delete that failed looked exactly like one that
+ *  worked — and three `done` tickets carried a marker for days with nothing
+ *  anywhere saying so. A missing ref is the one failure that is not news: it
+ *  means the marker was already gone, which is the state we wanted. */
 function releaseClaimLock(id) {
-  return gitTry(['push', 'origin', '--delete', claimBranch(id)]).ok;
+  const r = gitTry(['push', 'origin', '--delete', claimBranch(id)]);
+  const alreadyGone = /remote ref does not exist|unable to delete/i.test(r.err || '');
+  if (!r.ok && !alreadyGone) {
+    const why = (r.err || '').trim().split('\n').filter(Boolean).pop() || 'no reason given';
+    console.warn(`  NOTE: the claim marker ${claimBranch(id)} was not released — ${why}\n`
+      + `        That is litter, not a block: a marker older than ${RUN_HOURS}h is stolen by the\n`
+      + `        next claim, and \`ticket.mjs claims --sweep\` clears it.`);
+  }
+  return r.ok;
 }
 
 function find(tickets, id) {
@@ -1366,6 +1380,18 @@ switch (cmd) {
     queueReplace(t.id, rows, t.title);
     t.state = 'split'; t.closed = today(); t.closed_at = nowIso();
     writeTicket(t); generateBoard(loadAll());
+    // SPLIT IS A TERMINAL STATE AND MUST GIVE THE CLAIM BACK, exactly as `done`,
+    // `block` and `withdraw` do. It did not, and splitting is not a rare path —
+    // it is what a run does the moment it finds its ticket is bigger than one
+    // demonstration. Measured 2026-09-14: nineteen claim markers stood on the
+    // remote, and THIRTEEN of them belonged to tickets in state `split`. Every
+    // one was a run that finished its work correctly and left a lock behind.
+    //
+    // Nothing else collects them. The janitor lists open PULL REQUESTS, and a
+    // marker has no pull request; the 3h staleness rule only lets the NEXT claim
+    // on that same ticket steal it, which never comes for a ticket that is now
+    // closed and out of the queue.
+    releaseClaimLock(t.id);
     console.log(`${t.id} → split into ${titles.length}; children hold its place in QUEUE`);
     break;
   }
