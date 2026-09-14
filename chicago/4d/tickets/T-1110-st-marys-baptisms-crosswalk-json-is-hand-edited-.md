@@ -1,7 +1,7 @@
 ---
 id: T-1110
 title: st_marys_baptisms_crosswalk.json is hand-edited away from what read_st_marys_baptisms.py rebuilds
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-13
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/14/2026, 2:55:34 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34888726286
 ---
 
 st_marys_baptisms_crosswalk.json is hand-edited away from what read_st_marys_baptisms.py rebuilds.
