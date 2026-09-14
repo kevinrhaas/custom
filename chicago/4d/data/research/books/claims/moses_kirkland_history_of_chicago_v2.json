@@ -586,6 +586,33 @@
       "town_finding": true,
       "notes": "THE LEAD SURNAME IS `caton`. A LAW PARTNERSHIP — Caton & Collins — that the project does not hold, and an arrival the compiler leaves open: Collins agreed in 1834 to come to Chicago when his frozen feet mended, and the sentence never says when he came. So this is a CANDIDATE for the town of July 1835 and not a resident of it, and the honest reading is that the partnership existed at some point between 1834 and about 1836. Recorded so that a later run with a dated source can close it rather than re-read the volume.",
       "quote": "to  Illinois  in  1833  and  set- \ntled on  a  \"claim\"  (pre-emption)  at  Holder- \nman's  grove,  some  sixty  or  seventy  miles \nsouthwest  of  Chicago.  In  1834  his  former \nstudent,  Caton,  found  him  in  great  distress, \nand  arranged  with  him  that  as  soon  as  he \nshould  recover  the  use  of  his  feet,  then  badly \nfrozen,  he  should  come  to  Chicago  and  join \nCaton  in  the  practice  of  law.  The  partner- \nship lasted  but  about  a  year  and  Collins  then \nformed  another  with  Justin  Butterfield.  The "
+    },
+    {
+      "id": "bk_mose2_021",
+      "kind": "person",
+      "reading": "transcription_mediated",
+      "locator": {
+        "lines": [
+          42755,
+          42761
+        ],
+        "page": 367,
+        "original": "Moses and Kirkland, History of Chicago, Illinois, vol. 2, printed page 367, read off the recto head at line 42676 by tools/derive_book_folios.py --at 42757, the same derivation T-1024 rebuilt for this volume. THE VOLUME'S OWN INDEX AGREES AND WAS NOT USED TO GET THERE: its entry at line 97449 reads “Bronson, Arthur, 159. 367.”, and 367 is the page this passage stands on.",
+        "text_file": "moses_kirkland_history_of_chicago_v2.txt",
+        "url": "https://archive.org/download/historyofchicagov2mose/historyofchicagov2mose_djvu.txt",
+        "list": "moses_kirkland_v2_lead_surname_sweep"
+      },
+      "normalized": "The Chicago Lyceum's library, kept in a room over P. F. W. Peck's store, held about twenty volumes. Two visitors to the settlement from New York, Charles Butler and Arthur Bronson, were moved by the sight of it and on their return home sent a donation of two hundred volumes.",
+      "describes_date": "The Lyceum's early years, which the chapter sets in the first half of the 1830s; the visit itself is NOT dated by this passage. What it does fix is the pair's relation to the town — visitors from New York who went home — and not a day.",
+      "entities": [
+        "Charles Butler",
+        "Arthur Bronson",
+        "P. F. W. Peck",
+        "John S. Wright"
+      ],
+      "town_finding": true,
+      "notes": "READ FOR T-1017, which asked whether buying at the town's own school-section sale of October 1833 is itself a check that a name belonged to the town. ARTHUR BRONSON IS THE FOURTH LARGEST HAND AT THAT AUCTION — thirteen blocks under BRONSON and eight more under the register's spelling BROSON — and this is the town's own historians calling him a VISITOR FROM NEW YORK who went home again. That is what the ticket turned on: a sale whose biggest buyers travelled from New York to attend it cannot certify residence, so the purchase is corroboration and never an arm of the ruling rule (data/research/land_sales/resident_rulings.json, `the_school_section_answer`). WHAT IT DOES NOT SAY, and the ruling does not make it say: it does not date the visit, it does not say Bronson was never at Chicago on 1 July 1835, and it does not identify this Arthur Bronson with the register's purchaser by anything but the name — that identification rests where it already rested, on the register's own BRONSON FREDERIC(K) beside him and on the old-settler death notices. It is evidence about the SALE, not about a card.",
+      "quote": "in  his  pocket  handkerchief.  Two  visitors  to \nthe  settlement  from  New  York — Charles \nButler  and  Arthur  Bronson — were  so  moved \nwith  commiseration  at  the  sight  of  this \napology  for  a  library,  that  on  their  return \nhome  they  sent  on  a  donation  of  two  hun- \ndred volumes. "
     }
   ]
 }

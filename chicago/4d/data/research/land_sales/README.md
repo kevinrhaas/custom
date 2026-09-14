@@ -605,6 +605,89 @@ belongs in the same pass. The gate reports them one failing step at a time.
 widened has been adjudicated by hand, and T-0990 closes on that number rather than on an
 absence.
 
+## Is the town's OWN sale a check on a town-side name? No (T-1017)
+
+**C3 filed this rather than deciding it, because deciding it would have reopened rulings
+already made.** SKINNER JOSEPH and RUSSELL SAMUEL both turn on it: each is a bare name on
+the town's side, each bought at the school-section auction of 22-25 October 1833, and the
+argument for upholding them was that a man the town taxed in 1833 is the kind of man who
+stood at the town's own sale. **The answer is no**, and it is written into
+`resident_rulings.json` -> `the_school_section_answer` so the next cohort applies it rather
+than re-arguing it. A school-section purchase CORROBORATES a proposal one of the four arms
+already carries; it is never itself an arm.
+
+**THE ARGUMENT FOR IT, PUT AT ITS STRONGEST AND COUNTED.** The auction sold section 16 in
+337 rows to 105 purchaser spellings. Run the same mechanical rule over the same register,
+with every hand ruling switched off so nothing this file has already decided can bias it:
+
+| the cohort | purchaser spellings | reaching a town card | |
+|---|---|---|---|
+| the school section, 22-25 Oct 1833 | 105 | **65** | **61.9%** |
+| the canal rows (`CN`) | 263 | 99 | 37.6% |
+| the federal cash entries (`FD`) | 332 | 82 | 24.7% |
+
+A school-section purchaser is **two and a half times** as likely to name somebody the town
+holds as a federal-sale purchaser is. A spelling that bought in two cohorts is counted in
+both. The sale IS town-leaning, and that is a real finding rather than a nothing — it is
+also the whole of the case, and it does not reach.
+
+**IT FAILS ON THE SALE'S OWN BOOK: the auction was not closed to the town.** Its largest
+single taking is **Ebenezer and John Hale** — the 26 parcels each of them enters, 52 rows
+and $4,648.00 — and the town's whole record holds ONE Hale card, which this file already
+refuses. The fourth hand is **Arthur Bronson**, thirteen blocks under `BRONSON` and eight
+more under the register's `BROSON`, and the town's own historians print him as one of
+
+> *"Two visitors to the settlement from New York — Charles Butler and Arthur Bronson —
+> were so moved with commiseration at the sight of this apology for a library, that on
+> their return home they sent on a donation of two hundred volumes."*
+> — Moses & Kirkland, *History of Chicago*, vol. 2, printed page 367
+> (`moses_kirkland_history_of_chicago_v2`, claim `bk_mose2_021`)
+
+read for this ticket. The volume's own index agrees and was not used to find it: it lists
+*Bronson, Arthur, 159. 367.* An auction the biggest buyers travelled from New York to
+attend cannot certify that a name on its rolls belonged to the town.
+
+**AND IT FAILS ON WHAT A CHECK IS.** Even closed, the sale would check PRESENCE and not
+IDENTITY. The rule asks what the register's row can be checked AGAINST — a middle initial
+that could disagree, a trade that could be the wrong trade, a second document that could
+name somebody else. *He bought at the town's own sale* is the row restated: **all 337 rows
+pass it and not one could fail it.** That is the WENTWORTH test, and it has to fail as
+readily as it passes.
+
+**WHAT ADMITTING IT WOULD HAVE COST, ENUMERATED RATHER THAN WAVED AT.** Fifteen
+school-section purchasers carry a refusal in this file — 61 rows and **$7,056.50** of
+section 16: HALE JOHN, RUSSELL SAMUEL, KINGSTON PAUL, GOODRICH CHAUNCEY, TAYLOR CHARLES,
+SPENCE JAMES, DAVIS JOHN, WESSENCRAFT CHARLES, JACKSON SAMUEL, SKINNER JOSEPH, HARMON
+ISAAC, JONES WILLIAM, STANLEY JOSEPH, VANDERBOGERT HENRY and CHANDLER JOSEPH. All fifteen
+would reopen, and **four are the shape C1 refused by name**: HALE JOHN, TAYLOR CHARLES,
+JONES WILLIAM and HARMON ISAAC were refused because the town's PRINTED record holds a
+second claimant of the name. An arm that says only *he stood at the auction* cannot choose
+between two claimants who could both have stood there — it would hand a contested name to
+one of them on evidence that fits the other equally well.
+
+**WHAT THE ANSWER DOES NOT DISTURB, AND THE ONE SENTENCE IT MOVES.** Fifty upheld rulings
+and one `named` cite this sale. Every one of them rests on an arm and says so in its own
+words — OWEN THOMAS J V is upheld *"on the initials and the office together"*, SNOW
+GEORGE W *"on the initial, the bracket and the office"* — so in all fifty the sale is the
+narrative around the arm and not the arm. **One sentence moves.** BRONSON ARTHUR's
+reasoning had argued that *"a town assessing a man and an auction of the town's own school
+section are the same twelve months and the same ground"*, which is exactly the presence
+inference refused here; a town taxes a non-resident on the ground he holds in it. **The
+ruling stands unchanged** on the arms it also states — the register's own BRONSON FREDERIC
+and FREDERICK beside him, so the forename discriminates, and the old-settler death notices
+as the second document — and the presence sentence is struck. That the one ruling to lean
+on this argument belongs to the New Yorker who disproves it is the finding in miniature.
+
+**SKINNER JOSEPH and RUSSELL SAMUEL stay REFUSED**, now on a decided question rather than a
+filed one, and both rulings are re-stated to say so. No grade moved, no card changed, no
+row moved on or off anybody: this pass ruled on the RULE.
+
+**Filed on the way past: T-1117.** `hh_bronson_arthur` reads `present_on_scene_date:
+present`, inferred from the 1833 tax list bracketing the scene date — and the passage above
+is the town's own historians calling the man a visitor from New York who went home again.
+Whether that tax list is a residence check at all is a question about the CARD, not about
+this register, so it is filed rather than answered here.
+
 ## Forty rulings were reverted, and restored (#1073, T-1000)
 
 **For part of 10 September 2026 this file's rulings block held eight entries and its own
