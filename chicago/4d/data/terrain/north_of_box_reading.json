@@ -9,7 +9,7 @@
    1700
   ],
   "n": [
-   -530,
+   -3800,
    1120
   ]
  },
@@ -30,38 +30,38 @@
    },
    "n_min": {
     "length_m": 2020,
-    "one_way_m": 1422.5,
-    "one_way_fraction": 0.7042,
-    "walkable_both_ways_m": 30,
-    "refuses_the_way_out_m": 567.5,
-    "step_down_max_m": 2.49,
-    "step_down_min_m": -2.917,
-    "step_down_mean_m": 0.289
+    "one_way_m": 1665,
+    "one_way_fraction": 0.8243,
+    "walkable_both_ways_m": 2.5,
+    "refuses_the_way_out_m": 352.5,
+    "step_down_max_m": 2.895,
+    "step_down_min_m": -2.91,
+    "step_down_mean_m": 0.747
    },
    "e_max": {
-    "length_m": 1650,
+    "length_m": 4920,
     "one_way_m": 0,
     "one_way_fraction": 0,
     "walkable_both_ways_m": 0,
-    "refuses_the_way_out_m": 1650,
+    "refuses_the_way_out_m": 4920,
     "step_down_max_m": -2.635,
     "step_down_min_m": -3.005,
-    "step_down_mean_m": -2.866
+    "step_down_mean_m": -2.883
    },
    "e_min": {
-    "length_m": 1650,
-    "one_way_m": 1527.5,
-    "one_way_fraction": 0.9258,
+    "length_m": 4920,
+    "one_way_m": 4797.5,
+    "one_way_fraction": 0.9751,
     "walkable_both_ways_m": 10,
     "refuses_the_way_out_m": 112.5,
     "step_down_max_m": 1.325,
     "step_down_min_m": -2.187,
-    "step_down_mean_m": 1.019
+    "step_down_mean_m": 1.211
    }
   },
-  "total_m": 7340,
-  "one_way_m": 4490,
-  "one_way_fraction": 0.6117
+  "total_m": 13880,
+  "one_way_m": 8002.5,
+  "one_way_fraction": 0.5765
  },
  "viewpoint": {
   "id": "kinzie_block",
@@ -85,168 +85,14 @@
   },
   "platted_only": {
    "streets": 49,
-   "partly_off_grid": 34,
-   "on_grid_m": 7455.74,
-   "off_grid_m": 41852.16,
-   "off_grid_fraction": 0.8488
+   "partly_off_grid": 23,
+   "on_grid_m": 35160.86,
+   "off_grid_m": 14147.04,
+   "off_grid_fraction": 0.2869
   }
  },
  "drawn": [],
  "platted_only": [
-  {
-   "id": "monroe",
-   "name_1835": "Monroe Street",
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -655.83,
-   "crossings": []
-  },
-  {
-   "id": "adams",
-   "name_1835": "Adams Street",
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -797.2,
-   "crossings": []
-  },
-  {
-   "id": "jackson",
-   "name_1835": "Jackson Boulevard",
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -940.09,
-   "crossings": []
-  },
-  {
-   "id": "school_section_tier_4_south_of_madison",
-   "name_1835": null,
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -1085.12,
-   "crossings": []
-  },
-  {
-   "id": "school_section_tier_5_south_of_madison",
-   "name_1835": null,
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -1231.73,
-   "crossings": []
-  },
-  {
-   "id": "school_section_tier_6_south_of_madison",
-   "name_1835": null,
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -1346.84,
-   "crossings": []
-  },
-  {
-   "id": "school_section_tier_7_south_of_madison",
-   "name_1835": null,
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -1488.78,
-   "crossings": []
-  },
-  {
-   "id": "school_section_tier_8_south_of_madison",
-   "name_1835": null,
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -1600.6,
-   "crossings": []
-  },
-  {
-   "id": "school_section_tier_9_south_of_madison",
-   "name_1835": null,
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -1743.94,
-   "crossings": []
-  },
-  {
-   "id": "school_section_tier_10_south_of_madison",
-   "name_1835": null,
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -1856.54,
-   "crossings": []
-  },
-  {
-   "id": "school_section_tier_11_south_of_madison",
-   "name_1835": null,
-   "on_grid_m": 0,
-   "off_grid_m": 1609.35,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "e_min",
-    "n_min"
-   ],
-   "north_end_n_m": -2005.13,
-   "crossings": []
-  },
   {
    "id": "school_section_line_0",
    "name_1835": null,
@@ -255,8 +101,7 @@
    "off_grid_fraction": 1,
    "track_edge_off_grid_m": 0,
    "leaves_through": [
-    "e_min",
-    "n_min"
+    "e_min"
    ],
    "north_end_n_m": -519.05,
    "crossings": []
@@ -269,8 +114,7 @@
    "off_grid_fraction": 1,
    "track_edge_off_grid_m": 0,
    "leaves_through": [
-    "e_min",
-    "n_min"
+    "e_min"
    ],
    "north_end_n_m": -519.05,
    "crossings": []
@@ -283,8 +127,7 @@
    "off_grid_fraction": 1,
    "track_edge_off_grid_m": 0,
    "leaves_through": [
-    "e_min",
-    "n_min"
+    "e_min"
    ],
    "north_end_n_m": -519.05,
    "crossings": []
@@ -297,218 +140,10 @@
    "off_grid_fraction": 1,
    "track_edge_off_grid_m": 0,
    "leaves_through": [
-    "e_min",
-    "n_min"
+    "e_min"
    ],
    "north_end_n_m": -519.05,
    "crossings": []
-  },
-  {
-   "id": "clinton_school_section",
-   "name_1835": "Clinton Street",
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": -267.9,
-     "n": -530,
-     "ground_inside_m": 1.25,
-     "drawn_outside_m": 0,
-     "step_m": 1.25,
-     "return_refused": true
-    }
-   ]
-  },
-  {
-   "id": "canal_school_section",
-   "name_1835": "Canal Street",
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": -144.86,
-     "n": -530,
-     "ground_inside_m": 1.11,
-     "drawn_outside_m": 0,
-     "step_m": 1.11,
-     "return_refused": true
-    }
-   ]
-  },
-  {
-   "id": "school_section_line_6",
-   "name_1835": null,
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": -38.29,
-     "n": -530,
-     "ground_inside_m": 0.987,
-     "drawn_outside_m": 0,
-     "step_m": 0.987,
-     "return_refused": true
-    }
-   ]
-  },
-  {
-   "id": "school_section_line_8",
-   "name_1835": null,
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": 208.38,
-     "n": -530,
-     "ground_inside_m": 0.83,
-     "drawn_outside_m": 0,
-     "step_m": 0.83,
-     "return_refused": true
-    }
-   ]
-  },
-  {
-   "id": "wells_school_section",
-   "name_1835": "Wells Street",
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": 351.4,
-     "n": -530,
-     "ground_inside_m": 0.88,
-     "drawn_outside_m": 0,
-     "step_m": 0.88,
-     "return_refused": true
-    }
-   ]
-  },
-  {
-   "id": "school_section_line_10",
-   "name_1835": null,
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": 465.08,
-     "n": -530,
-     "ground_inside_m": 0.875,
-     "drawn_outside_m": 0,
-     "step_m": 0.875,
-     "return_refused": true
-    }
-   ]
-  },
-  {
-   "id": "clark_school_section",
-   "name_1835": "Clark Street",
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": 583.54,
-     "n": -530,
-     "ground_inside_m": 0.9,
-     "drawn_outside_m": 0,
-     "step_m": 0.9,
-     "return_refused": true
-    }
-   ]
-  },
-  {
-   "id": "school_section_line_12",
-   "name_1835": null,
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": 705.12,
-     "n": -530,
-     "ground_inside_m": 0.89,
-     "drawn_outside_m": 0,
-     "step_m": 0.89,
-     "return_refused": true
-    }
-   ]
-  },
-  {
-   "id": "state_school_section",
-   "name_1835": "State Street",
-   "on_grid_m": 10.95,
-   "off_grid_m": 1598.4,
-   "off_grid_fraction": 0.9932,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": 841.86,
-     "n": -530,
-     "ground_inside_m": 1.761,
-     "drawn_outside_m": 0,
-     "step_m": 1.761,
-     "return_refused": true
-    }
-   ]
   },
   {
    "id": "madison",
@@ -529,6 +164,259 @@
      "ground_inside_m": 1.29,
      "drawn_outside_m": 0,
      "step_m": 1.29,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "monroe",
+   "name_1835": "Monroe Street",
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -655.83,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -655.83,
+     "ground_inside_m": 1.295,
+     "drawn_outside_m": 0,
+     "step_m": 1.295,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "adams",
+   "name_1835": "Adams Street",
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -797.2,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -797.2,
+     "ground_inside_m": 1.29,
+     "drawn_outside_m": 0,
+     "step_m": 1.29,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "jackson",
+   "name_1835": "Jackson Boulevard",
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -940.09,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -940.09,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "school_section_tier_4_south_of_madison",
+   "name_1835": null,
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -1085.12,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -1085.12,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "school_section_tier_5_south_of_madison",
+   "name_1835": null,
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -1231.73,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -1231.73,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "school_section_tier_6_south_of_madison",
+   "name_1835": null,
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -1346.84,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -1346.84,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "school_section_tier_7_south_of_madison",
+   "name_1835": null,
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -1488.78,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -1488.78,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "school_section_tier_8_south_of_madison",
+   "name_1835": null,
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -1600.6,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -1600.6,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "school_section_tier_9_south_of_madison",
+   "name_1835": null,
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -1743.94,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -1743.94,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "school_section_tier_10_south_of_madison",
+   "name_1835": null,
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -1856.54,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -1856.54,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
+     "return_refused": true
+    }
+   ]
+  },
+  {
+   "id": "school_section_tier_11_south_of_madison",
+   "name_1835": null,
+   "on_grid_m": 1161.86,
+   "off_grid_m": 447.49,
+   "off_grid_fraction": 0.2781,
+   "track_edge_off_grid_m": 0,
+   "leaves_through": [
+    "e_min"
+   ],
+   "north_end_n_m": -2005.13,
+   "crossings": [
+    {
+     "leaving": false,
+     "e": -320,
+     "n": -2005.13,
+     "ground_inside_m": 1.31,
+     "drawn_outside_m": 0,
+     "step_m": 1.31,
      "return_refused": true
     }
    ]
@@ -594,42 +482,6 @@
    ],
    "north_end_n_m": 390.63,
    "crossings": []
-  },
-  {
-   "id": "market_school_section_south",
-   "name_1835": "Market Street",
-   "on_grid_m": 0,
-   "off_grid_m": 271.86,
-   "off_grid_fraction": 1,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -1856.54,
-   "crossings": []
-  },
-  {
-   "id": "market_school_section",
-   "name_1835": "Market Street",
-   "on_grid_m": 10.95,
-   "off_grid_m": 267.2,
-   "off_grid_fraction": 0.9606,
-   "track_edge_off_grid_m": 0,
-   "leaves_through": [
-    "n_min"
-   ],
-   "north_end_n_m": -519.05,
-   "crossings": [
-    {
-     "leaving": true,
-     "e": 71.34,
-     "n": -530,
-     "ground_inside_m": 0.76,
-     "drawn_outside_m": 0,
-     "step_m": 0.76,
-     "return_refused": true
-    }
-   ]
   },
   {
    "id": "trade",

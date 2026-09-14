@@ -15,7 +15,7 @@
     },
     {
       "label": "The modelled box",
-      "text": "2020 x 1650 m, 2.5 m cells (8.2 ft — inside the dossier's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. 809 x 661 = 534 749 samples, 1.02 MB. Row 0 is the SOUTH edge and column 0 the WEST edge, matching the renderer's Heightfield sampler. ONE uniform cell across the whole box, argued in docs/RESEARCH/terrain_east_1834.md: a coarser cell east of the built blocks would save about 150 KB against a 25 MB publish budget and would put the only part of the field outside the dossier's own 5-10 ft recommendation exactly where the shoreline — the most-cited line on the sheet — is drawn. The southern extension of 2026-09-13 (T-0219) added 52 rows on the SAME lattice and the northern one of 2026-09-14 (T-1123) added 288 more at the other end, so every sample the field already carried keeps its own position and only its row index moves — twice now, and deliberately both times."
+      "text": "2020 x 4920 m, 2.5 m cells (8.2 ft — inside the dossier's 5-10 ft), quantised at 5 mm, which is 1/15 of the 0.25 ft the dossier asks for. 809 x 1969 = 1 592 921 samples, 3.19 MB. Row 0 is the SOUTH edge. This box is the union of two extensions that were open at once and could not be merged: T-0464 carried the south wall from Madison Street to Twenty-Second (N -530 -> -3800) and T-1123 carried the north wall from the North Branch's old traced end to the north line of Wright's survey (N +400 -> +1120). Two heightfields cannot be merged, so the field below is regenerated once against both walls rather than reconciled."
     },
     {
       "label": "Measured relief",
@@ -23,7 +23,7 @@
     },
     {
       "label": "Where the ground stops on the south",
-      "text": "The modelled box ends 530 m south of the forks, and that line falls inside Washington Street's own 80 ft corridor: 0.00 ha of the street's south half, over 0 m of its length, lies off the field. Madison Street — the 1830 town plat's south boundary, fixed here from the section corner at State and Madison — is -4.8 m further south again, so the plat's last tier of blocks, 6.31 ha on 48 lots between Market and State, is not modelled ground at all. Of the 14.54 ha of land the field does hold south of Washington's corridor, none is in the South Division: it is the far bank of the South Branch. Past every edge of the box the ground is a plain skirt carrying the edge heights outward, which claims nothing about 1835. Measured from the committed heightfield and the committed street lines, not asserted."
+      "text": "The modelled box ends 3800 m south of the forks, and that line falls inside Washington Street's own 80 ft corridor: 0.00 ha of the street's south half, over 0 m of its length, lies off the field. Madison Street — the 1830 town plat's south boundary, fixed here from the section corner at State and Madison — is -3274.8 m further south again, so the plat's last tier of blocks, 6.31 ha on 48 lots between Market and State, is not modelled ground at all. Of the 551.79 ha of land the field does hold south of Washington's corridor, none is in the South Division: it is the far bank of the South Branch. Past every edge of the box the ground is a plain skirt carrying the edge heights outward, which claims nothing about 1835. Measured from the committed heightfield and the committed street lines, not asserted."
     }
   ],
   "claims": [
@@ -1564,13 +1564,18 @@
           "key": "applies_to",
           "value": "land above the waterline, faded out across the bank face",
           "mesh": "restated_in_code"
+        },
+        {
+          "key": "south_limit_n_m",
+          "value": -530.0
         }
       ],
       "sources": [],
       "citations": [],
       "notes": [
         "Two octaves of value noise at +/- 0.10 ft (30 mm) — below the 0.25 ft the dossier asks the heightmap to be quantised at, and far below the resolution of any statement in the record. It exists so that a surface the sources describe as dead flat still reads as ground rather than as a rendering error, and so that walking gives motion parallax. It is a texture, not a claim. Set amplitude_ft to 0 for a perfectly flat plain.",
-        "Where the noise applies is decided in terrain_gen.py — it is faded across the bank ramp and excluded from water — and this sentence describes that code path rather than driving it."
+        "Where the noise applies is decided in terrain_gen.py — it is faded across the bank ramp and excluded from water — and this sentence describes that code path rather than driving it.",
+        "And it stops at Madison Street, which is where the town stops (T-0464). The note above states the two things this texture is for — that ground the sources call dead flat should still read as ground rather than as a rendering error, and that walking should give motion parallax — and neither of them survives south of the plat. Nobody walks there: there is no street, no structure and no scene south of Madison, and the field below it is the frame the 1812 and 1880s epochs will stand in. Nobody can see it either, in the only sense that matters to a +/- 0.10 ft texture: 30 mm at the 500 m where this ground starts subtends 0.0034 deg, against 0.06 deg for one pixel of a 60 deg field across 1000 px, so the texture is an order of magnitude under a pixel at the NEAREST it is ever drawn and falls away from there until world.js's haze closes at 1550 m. What it is NOT under is the planar dissolve: noise is the only thing making this surface non-planar, and carrying it over the extension costs 9.10 MB of master and 807 KiB of published payload — measured, 27,019,736 bytes of master against 17,919,344 and 2,646,392 of derivative against 1,819,896 — against a site budget this extension already had to raise once (tools/validate.py SITE_BUDGET_MB). Inside the plat nothing changes — the whole field north of -530 is bit-identical across this change."
       ]
     },
     {

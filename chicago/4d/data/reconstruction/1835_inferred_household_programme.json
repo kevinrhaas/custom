@@ -2302,7 +2302,7 @@
       "position": [
         "reconstructed",
         null,
-        "OUTSIDE THE MODELLED GROUND, AND THE DATE OF THE MOVE IS UNKNOWN. Two things are invented here. First, WHICH STREET IT STOOD ON on 1 July 1835: Andreas gives no date for the removal, so the house may have been on Monroe or already on Adams. This record puts it on Monroe, where it was built, because that is the position the source actually states. Second, WHERE ON MONROE: nothing says. The northing is estimated from the plat module - the block pitch implied by the reconstruction recipes' Randolph-to-Washington bands, carried two blocks further south - and lands about 215 m beyond the southern edge of the e1834_harbor_cut heightfield, so the phase declares ground_contact: outside_modelled_ground. THE BUILDING IS IN THE DATASET AND NOT UNDER THE WALKER'S FEET until the terrain extends south."
+        "OUTSIDE THE MODELLED GROUND, AND THE DATE OF THE MOVE IS UNKNOWN. Two things are invented here. First, WHICH STREET IT STOOD ON on 1 July 1835: Andreas gives no date for the removal, so the house may have been on Monroe or already on Adams. This record puts it on Monroe, where it was built, because that is the position the source actually states. Second, WHERE ON MONROE: nothing says. The northing is estimated from the plat module - the block pitch implied by the reconstruction recipes' Randolph-to-Washington bands, carried two blocks further south - and landed about 215 m beyond the southern edge of the e1834_harbor_cut heightfield, so the phase declared ground_contact: outside_modelled_ground. IT NO LONGER DOES: T-0464 carried the heightfield south from Madison Street to Twenty-Second, the outline now stands within 0.35 m of the terrain under it, and the declaration is dropped. The northing is still an estimate from the plat module and the street is still undecided between Monroe and Adams - what changed is only that there is ground."
       ],
       "footprint": "PLACEHOLDER - NO DIMENSION IS ATTESTED. 22 x 30 ft is the schedule's D5 deep-plan frame cottage, sized for the largest documented household in the residents layer: a wife and five sons, the youngest born in this house. Every number is invented.",
       "occupants": [
@@ -2323,11 +2323,7 @@
         "bays": 3,
         "chimneys": 1,
         "paint": "unpainted"
-      },
-      "ground_contact": [
-        "outside_modelled_ground",
-        "Monroe Street lies about 215 m south of the southern edge of the e1834_harbor_cut heightfield (local N -400). There is no ground under any part of this building's outline, so whether it lands has no answer. The record is correct and the terrain has not reached it - the same state docs/LIBERTIES.md L40 recorded for two thirds of the town before the eastward extension."
-      ]
+      }
     },
     "wright_building_to_let_b": {
       "occupants_value": "To let - the tenant is not named",

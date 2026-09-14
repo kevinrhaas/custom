@@ -94,7 +94,7 @@ SKIRT_MARGIN_MIN_M = 1500.0
 INT16_FULL_SCALE = 32767
 
 
-def skirt_margin_m(e_span_m: float, cell_m: float) -> tuple[float, int]:
+def skirt_margin_m(span_m: float, cell_m: float) -> tuple[float, int]:
     """The apron's width, DERIVED so the publish step's lattice divides the grid.
 
     THE ARTEFACT THIS ENDS (T-0152). `tools/web_derivatives.sh` quantises the
@@ -124,8 +124,25 @@ def skirt_margin_m(e_span_m: float, cell_m: float) -> tuple[float, int]:
 
     The margin is what buys that, because the margin is what sets the scale:
 
-        rung   = (e_span + 2 * margin) / 2 / 32767
-        margin = 32767 * cell / k - e_span / 2      for rung = cell / k
+        rung   = (span + 2 * margin) / 2 / 32767
+        margin = 32767 * cell / k - span / 2        for rung = cell / k
+
+    `span` is the box's WIDEST horizontal side, because that is the axis
+    `gltf-transform` takes its uniform scale from. It was written as the
+    east-west side until T-0464, which is not the same thing and only looked
+    like it while the box was wider than it was tall: 2 020 x 930 m. The
+    southern extension makes the box 2 020 x 4 200 m, so north-south is now the
+    widest side and the margin has to be bought against IT or the rung stops
+    dividing the grid and the plan displacement T-0152 abolished comes back.
+    Taking the widest side costs a coarser rung — the apron has to reach the
+    haze on the long axis, so `k` halves once, 32 to 16, and the rung goes
+    78.125 mm to 156.25 mm. That costs nothing measurable, and this
+    is why: the rung's job here is to DIVIDE 2.5 m, not to be small. 2.5 / 16 is
+    exact, so every ground vertex still stands on a rung and the quantiser still
+    rounds it to itself — plan displacement 0.0 mm at either rung. Height is not
+    at risk either way, because terrain.js conforms the drawn ground to the
+    field at the vertex's shipped (E, N); it is the PLAN position that has to be
+    right, and it is.
 
     `k` is a POWER OF TWO, which is one more constraint than commensurability
     needs and is worth the metre or two it costs. `gltf-transform` quantises to a
@@ -140,7 +157,7 @@ def skirt_margin_m(e_span_m: float, cell_m: float) -> tuple[float, int]:
     Returns the margin and the `k` it was derived from; the caller ASSERTS the
     result on the vertices themselves rather than trusting this arithmetic.
     """
-    half = 0.5 * e_span_m
+    half = 0.5 * span_m
     k = 1
     while INT16_FULL_SCALE * cell_m / (k * 2) >= half + SKIRT_MARGIN_MIN_M:
         k *= 2
@@ -181,13 +198,19 @@ def check_quantisation_lattice(verts, e0, e1, n0, n1, margin_m, cell_m, k):
     ns = [v[1] for v in verts]
     ys = [v[2] for v in verts]
     spans = (max(es) - min(es), max(ns) - min(ns), max(ys) - min(ys))
-    if spans[0] != max(spans):
+    # The quantiser takes its uniform scale from the widest axis, so the margin
+    # must have been bought against whichever of E and N that is — which is the
+    # north-south side since T-0464 and was the east-west side before it. What
+    # would break the derivation outright is HEIGHT becoming the widest axis:
+    # skirt_margin_m() knows nothing about relief, so a box taller than it is
+    # wide would set the rung off an axis no apron can reach.
+    if spans[2] >= max(spans[0], spans[1]):
         raise SystemExit(
-            f"REFUSING: the ground's widest axis is no longer east-west "
+            f"REFUSING: the ground's widest axis is vertical "
             f"({spans[0]:.3f} x {spans[1]:.3f} x {spans[2]:.3f} m). The quantiser takes its "
             f"uniform scale from the widest axis, so skirt_margin_m() would be deriving the "
-            f"apron against an axis that no longer sets the rung. See T-0152.")
-    rung = 0.5 * spans[0] / INT16_FULL_SCALE
+            f"apron against an axis it cannot reach. See T-0152.")
+    rung = 0.5 * max(spans[0], spans[1]) / INT16_FULL_SCALE
     centre = (0.5 * (min(es) + max(es)), 0.5 * (min(ns) + max(ns)))
     worst, worst_at = 0.0, None
     for e, n, _y in verts:
@@ -618,6 +641,39 @@ def build_field(spec, feats, origin):
                     continue
                 t = (N[sel, 0] - y1) / (y2 - y1)
                 east_edge[sel] = np.maximum(east_edge[sel], x1 + t * (x2 - x1))
+        # And south of where the trace itself stops. The shore run is the east
+        # edge of Fractional Section 15 carried to the foot of Wright's sheet,
+        # and the sheet ends: below its last vertex every row's east_edge is
+        # -inf, the rule cannot fire, and the box's whole eastern half comes out
+        # as dry land. That is the same false coast the rule above exists to
+        # prevent, 355 m wide and as long as the extension — so the southern
+        # extension of T-0464 could not be taken without answering it. The
+        # answer is the smallest one available: hold the trace's own last
+        # easting. Extrapolating its bearing was refused — the run's last 40 m
+        # swing 78 m west, which is picking noise on a 1.6 km lever — and a
+        # held easting claims only that the lake did not move, which is also
+        # what the modern shore south of Twelfth Street looks like. It is
+        # CONJECTURAL, it is recorded in docs/LIBERTIES.md, and T-0465 replaces
+        # it with a trace.
+        #
+        # SOUTHERN ONLY, AND THE GUARD IS NOT DECORATION. This block was written
+        # against a standalone `south_rule` before T-1123 folded the two ends
+        # into the loop above; the merge of the two branches was CLEAN and left
+        # it reading a name that no longer existed (`NameError: south_rule`).
+        # Renaming it to `rule` is most of the fix, and not all of it: the tail
+        # below is the SOUTHERNMOST vertex (`min` on northing) and `unreached`
+        # looks for rows BELOW it, so run against `northern_lake` it would hold
+        # the wrong end of the trace and flood rows the north wall never reaches.
+        # Only `southern_lake` declares `beyond_the_trace` today, so the key test
+        # alone would not fire — but a future northern one would fail silently,
+        # and this whole block exists because a silent flood of dry land is the
+        # most expensive mistake available in this quadrant.
+        if sign < 0 and rule.get("beyond_the_trace"):
+            tail_n, tail_e = min((p[1], p[0])
+                                 for rid in rule["shore_runs"]
+                                 for p in shore_runs[rid])
+            unreached = (N[:, 0] < min(tail_n, n_cap)) & ~np.isfinite(east_edge)
+            east_edge[unreached] = tail_e
         in_water |= (E > east_edge[:, None]) & np.isfinite(east_edge)[:, None]
 
     # THE SPLICES — where two tracing windows are declared to abut and the
@@ -713,6 +769,19 @@ def build_field(spec, feats, origin):
                            for s in spec["shore_runs"] if s["division"] == div["id"]])
         for div in divisions])
     nearest = np.argmin(dists, axis=0)
+    # South of the evidence there is no traced shore to be nearest TO, so this
+    # becomes a Voronoi diagram of two trace ENDPOINTS and it flips: at E +405
+    # the ground steps 1.4 ft between N -2900 and N -3100 because the West
+    # Division's endpoint became the closer one. A division is a thing the RIVER
+    # makes, and the river is not down there. Every row below the limit takes the
+    # division map of the last row the evidence reaches, so the relief bands each
+    # division declares carry south with it rather than being cut off from the
+    # ground they explain. See T-0464 and the carry below.
+    ev_limit = spec.get("evidence_limit")
+    ev_below = N[:, 0] < float(ev_limit["south_of_n_m"]) if ev_limit else None
+    if ev_below is not None and ev_below.any() and not ev_below.all():
+        ev_ref = int(np.argmax(~ev_below))
+        nearest = np.where(ev_below[:, None], nearest[ev_ref][None, :], nearest)
 
     level_ft = np.zeros(E.shape)
     face = np.full(E.shape, float(spec["bank"]["face_m"]))
@@ -740,6 +809,32 @@ def build_field(spec, feats, origin):
             lo, hi = rb["e_range"]
             band.setdefault(rb["id"], np.zeros(E.shape, bool))
             band[rb["id"]] |= mine & (E >= float(lo)) & (E <= float(hi))
+
+    # ---- south of the evidence, the land surface is CARRIED, not computed --
+    # Every profile above is a function of E and of distance to a traced shore,
+    # and south of Twelfth Street there is no traced shore: the South Branch
+    # stops at N -2149.6 and south_shore_harbor_reach at N -2159.9, both at the
+    # foot of Wright's sheet. Below that `nearest` becomes a Voronoi diagram of
+    # two trace ENDPOINTS, and it flips — at E +405 the ground steps 1.4 ft
+    # between N -2900 and N -3100 because the West Division's endpoint became the
+    # closer one. That step is an artefact of where two tracings happened to
+    # stop, it breaks the dossier's own flatness rule, and it is a relief claim
+    # made by arithmetic rather than by a source.
+    #
+    # So the surface is carried south instead, exactly as the skirt carries a
+    # boundary vertex outward at its own height: every row below the limit takes
+    # the land level and the bank face of the last row the evidence reaches. The
+    # north-south gradient of the frame is then zero by construction, which is
+    # the honest answer — this ground is a container for the 1812 and 1880s
+    # epochs, not a reconstruction of 1835, and evidence_limit marks every
+    # vertex of it conjectural. The WATER is not carried: it is left to the
+    # traced polygons and to southern_lake's rules, so nothing here invents a
+    # river running due south. See T-0464.
+    if ev_below is not None and ev_below.any() and not ev_below.all():
+        level_ft = np.where(ev_below[:, None], level_ft[ev_ref][None, :], level_ft)
+        face = np.where(ev_below[:, None], face[ev_ref][None, :], face)
+        for _m in band.values():
+            _m[ev_below] = _m[ev_ref]
 
     # ---- islands: land the water goes round ------------------------------
     conj_land = np.zeros(E.shape, bool)
@@ -816,6 +911,24 @@ def build_field(spec, feats, origin):
         for k, wl in enumerate(waves):
             micro += value_noise(E, N, float(wl), seed + 977 * k) / (k + 1)
         micro *= amp / max(1e-9, sum(1.0 / (k + 1) for k in range(len(waves))))
+    # ...but NOT over the carried frame. The noise is declared in the spec as "a
+    # texture, not a claim" — it exists so ground the sources call dead flat
+    # still reads as ground under a walker's feet, and so walking gives motion
+    # parallax. South of evidence_limit there are no sources and there is no
+    # walker: the nearest a camera gets is the town, 1.6 km north, which is past
+    # the distance at which world.js's haze is total. So the texture buys nothing
+    # down there and costs a great deal, because it is what stops the planar
+    # dissolve collapsing a surface that is otherwise EXACTLY planar — one
+    # evidenced row repeated 661 times. Measured on this bake: with the texture
+    # everywhere the extension ships a 27,019,736-byte master and a 2,646,392-byte
+    # web derivative; stopped at Madison it ships 17,919,344 and 1,819,896 — 9.10
+    # MB of master and 807 KiB of published payload, for ground nothing walks on
+    # and no camera resolves. That is the measured storage reason the ticket asks
+    # for before the field is allowed to change, and the 2.5 m cell is preserved
+    # either way (T-0464).
+    south_limit = mr.get("south_limit_n_m")
+    if amp > 0 and south_limit is not None:
+        micro = np.where(N < float(south_limit), 0.0, micro)
 
     # ---- assemble ---------------------------------------------------------
     # The bank ramp is an ease-OUT (steepest at the waterline, flattening into
@@ -884,6 +997,14 @@ def build_field(spec, feats, origin):
 
     conf = np.where(water, CONF_CONJECTURAL, CONF_INFERRED)
     conf = np.where(conj_land & ~water, CONF_CONJECTURAL, conf)
+    # The box is a FRAME and the frame now reaches a mile and a half past the
+    # last thing this corpus says about ground (T-0464). Extending a division's
+    # plain profile into that is not an inference from a source, it is the
+    # generator having nowhere to stop, so every vertex down there is marked
+    # conjectural rather than carrying the inferred grade its neighbours earn.
+    ev = spec.get("evidence_limit")
+    if ev:
+        conf = np.where(N < float(ev["south_of_n_m"]), CONF_CONJECTURAL, conf)
 
     meta = {
         "cols": cols, "rows": rows, "cell_m": cell,
@@ -933,7 +1054,18 @@ def gradient_audit(h_m, water, geom, spec):
     relief_any = np.zeros(h_m.shape, bool)
     for m in bands.values():
         relief_any |= m
-    ok = (~water) & (~relief_any) & (geom["d_land"] >= marsh_m)
+    # The carried frame is not audited as plain, and is reported on its own line
+    # instead. The dossier's modelling rule is a statement about the town's
+    # ground; south of evidence_limit there is no reconstruction for it to be a
+    # statement about, only the last evidenced row carried south (T-0464). Its
+    # north-south gradient is the micro-relief texture and nothing else, and its
+    # east-west gradient is that one row's, so auditing it as plain would report
+    # the SAME east-west slope 660 more times and call each repeat a separate
+    # failure. The skirt, which is the same idea one step further out, has never
+    # been audited either.
+    ev = spec.get("evidence_limit")
+    frame = (geom["N"] < float(ev["south_of_n_m"])) if ev else np.zeros(h_m.shape, bool)
+    ok = (~water) & (~relief_any) & (geom["d_land"] >= marsh_m) & (~frame)
 
     de = (h_m[:, k:] - h_m[:, :-k]) / FT
     dn = (h_m[k:, :] - h_m[:-k, :]) / FT
@@ -947,6 +1079,21 @@ def gradient_audit(h_m, water, geom, spec):
     rough = slope[ok] if ok.any() else np.zeros(1)
     relief = (~water) & ~ok
     rel = slope[relief] if relief.any() else np.zeros(1)
+
+    fr = frame & (~water) & (~relief_any)
+    fde = np.abs(de)[fr[:, k:] & fr[:, :-k]]
+    fdn = np.abs(dn)[fr[k:, :] & fr[:-k, :]]
+    carried = {
+        "cells": int(fr.sum()),
+        "block_max": round(float(max(fde.max() if fde.size else 0.0,
+                                     fdn.max() if fdn.size else 0.0)), 3),
+        "north_south_block_max": round(float(fdn.max()) if fdn.size else 0.0, 3),
+        "note": "the ground carried south of evidence_limit, excluded from the plain "
+                "audit and measured here instead. The surface is one evidenced row "
+                "repeated, so north_south_block_max is the micro-relief texture and "
+                "nothing else (the spec's own +/- 0.10 ft, two octaves), and the "
+                "east-west figure is that row's own, already audited where it stands.",
+    }
 
     per_zone = {}
     for name, m in sorted(bands.items()):
@@ -962,6 +1109,7 @@ def gradient_audit(h_m, water, geom, spec):
                               round(float((2.5 * geom["face"]).max()), 1)],
         "marsh_exclusion_m": round(marsh_m, 1),
         "plain_cells_audited": int(ok.sum()),
+        "carried_frame": carried,
         "plain_block_max": round(float(block.max()), 3),
         "plain_block_mean": round(float(block.mean()), 4),
         "passes": bool(block.max() <= 0.5),
@@ -1083,7 +1231,7 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float,
     # skirt: carry each boundary vertex outward to a larger rectangle, keeping
     # its own height, so the channel continues past the box instead of stopping.
     # The width is DERIVED rather than round — see skirt_margin_m(), T-0152.
-    m, lattice_k = skirt_margin_m(e1 - e0, cell)
+    m, lattice_k = skirt_margin_m(max(e1 - e0, n1 - n0), cell)
     # Clockwise seen from above, each corner listed exactly once — a repeated
     # index here produces a degenerate quad, which from_pydata accepts and the
     # decimate modifier then segfaults on.
@@ -1412,7 +1560,8 @@ def main() -> int:
     # renderers/web/js/terrain.js's conformGroundToField() from having to know
     # about islands, or to drift away from this generator's answer.
     _g = spec["grid"]
-    _margin, _k = skirt_margin_m(float(_g["e_max_m"]) - float(_g["e_min_m"]),
+    _margin, _k = skirt_margin_m(max(float(_g["e_max_m"]) - float(_g["e_min_m"]),
+                                     float(_g["n_max_m"]) - float(_g["n_min_m"])),
                                  float(_g["cell_m"]))
     _rung = float(_g["cell_m"]) / _k
     meta["skirt"] = {

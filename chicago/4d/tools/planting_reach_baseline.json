@@ -7,7 +7,7 @@
       1696.0
     ],
     "sweep_n_m": [
-      -526.0,
+      -3796.0,
       1116.0
     ],
     "dry_margin_m": 0.2,
@@ -32,22 +32,22 @@
   },
   "ground": {
     "dry_floor_m": 0.2,
-    "nodes_above_floor": 409213,
-    "inside_planter": 405619,
-    "outside_planter": 3594,
-    "inside_pct": 99.12,
-    "outside_ha": 2.2,
+    "nodes_above_floor": 1267872,
+    "inside_planter": 1261470,
+    "outside_planter": 6402,
+    "inside_pct": 99.5,
+    "outside_ha": 4.0,
     "field_e_m": [
       -320.0,
       1700.0
     ],
     "field_n_m": [
-      -530.0,
+      -3800.0,
       1120.0
     ],
     "east_limit_m": 825.8,
-    "reached_east_of_limit": 129473,
-    "reached_east_of_limit_ha": 80.9
+    "reached_east_of_limit": 400561,
+    "reached_east_of_limit_ha": 250.4
   },
   "zone_boxes": {
     "z05_riverbank_timber": {

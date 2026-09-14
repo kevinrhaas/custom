@@ -153,7 +153,43 @@ WIDE_RANGE_YEARS = 12
 # this raise buys. Neither is answered here: a re-budget buys the time to answer them
 # and is not an answer, and folding either into a ticket about a dwelling on Lake Street
 # would be two units in one revert.
-SITE_BUDGET_MB = 36
+# AND 36 IS SPENT, ON THE GROUND ITSELF — T-0464, 2026-09-13, the fourth run to hit the
+# wall after T-0317 at 25, T-0379 at 28 and T-0593 at 32. The pattern is the same and so
+# is the test: say what the unit adds, show it cannot be trimmed, and name what will
+# exhaust the next one.
+#
+# WHAT THIS UNIT ADDS. The owner asked for the shared south terrain to reach modern
+# Cermak Road so the 1812 evacuation corridor and the Prairie Avenue district have ground
+# to stand on. The box goes from 2 020 x 930 m to 2 020 x 4 200 m and the field from
+# 301 757 samples to 1 359 929, which publishes 2 116 344 more bytes of heightfield.bin
+# and 1 018 468 more of the terrain derivative: 2.99 MiB, and it is the GROUND. There is
+# no prose in it and no duplicate.
+#
+# WHY IT CANNOT BE TRIMMED. The ticket's acceptance is that a baked epoch covers
+# Madison-to-Cermak WITHOUT out-of-bounds fallback, so the field has to reach there at
+# the cell the renderer's sampler indexes; the apron, which is free, is exactly the
+# fallback the acceptance excludes. Two trims were made before asking for this raise and
+# they are already in the number above: the micro-relief texture is switched off south of
+# Madison Street, where nothing walks and 30 mm subtends a hundredth of a pixel, which
+# returned 807 KiB of payload and 9.10 MB of master; and the surface below Twelfth Street
+# is one evidenced row carried, not a computed one, which is what lets the planar dissolve
+# collapse it at all. What is left over the budget is 0.73 MB, and the cheapest thing that
+# could pay it is the changelog this tree still ships twice (2.04 MB in the walk copy's
+# place) — which is T-0364, open, and folding it into a ticket about terrain would be two
+# units in one revert, exactly as the 32 -> 36 note refused.
+#
+# WHAT SUPPORTS 40. Unchanged from the last raise and still the real constraint: the
+# clause at the top is about FORMAT, not size, and the tree holds plain binaries at 40 MiB
+# as it did at 25. Pages allows 1 GB a site; docs/RENDERING.md's gate table has recorded a
+# sanctioned raise to ~100 MB at H2 since the rendering plan was written. This restores
+# 3.27 MiB of headroom, in the band the last three raises bought (2.85, 3.52, 3.98).
+#
+# WHAT WILL EXHAUST IT AGAIN. T-0364's duplicated changelog, still the fastest-growing
+# item in the tree because it grows on every release; T-0438's letter-list cohort; and now
+# a third, which this unit created and should be said plainly: T-0466, the south-terrain
+# tiling and culling plan, is what makes a four-kilometre field affordable, and it sits
+# BELOW this ticket in the queue. The field arrived before the plan for carrying it.
+SITE_BUDGET_MB = 40
 # Warn at 90 % of it. See run_site_check for why this band exists (T-0722).
 SITE_WARN_FRACTION = 0.90
 # Identical files smaller than this are not worth a merge refusal (T-0722).
