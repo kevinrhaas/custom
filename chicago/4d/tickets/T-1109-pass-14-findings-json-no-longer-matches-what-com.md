@@ -1,7 +1,7 @@
 ---
 id: T-1109
 title: pass_14_findings.json no longer matches what complete_resident_research_pass_14.py re-derives
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
+closed: 2026-09-14
+pr: 1341
 claimed_by: run 9/14/2026, 3:25:36 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-14T21:07:03.590Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34892468308
 ---
 
