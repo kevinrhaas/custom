@@ -2748,6 +2748,24 @@ step "the land tract sales re-derive from their committed deposit" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
 
+# T-1124. …AND THE ONE QUESTION EVERY STEP ABOVE IS STRUCTURALLY UNABLE TO ASK: is a
+# judgement simply GONE? `--check` above asks whether each surviving ruling is WELL
+# FORMED, and on #1055 they all were — the eight that were left after a merge lap ate
+# forty re-derived perfectly into a crosswalk perfectly consistent with them, and this
+# gate was green on that commit and on every commit after it. A smaller rulings file is
+# a legal rulings file. Twelve resident cards silently got back a federal land purchase
+# each had been ruled it could not have, and the only witness was prose.
+#
+# So this compares the tree against the MERGE BASE rather than against anything the tree
+# carries, by identity and by count, with `ruled[]` and `retired[]` counted together so a
+# retirement is a move rather than a loss. A deliberate removal is still possible and
+# states itself: the entry moves into `withdrawn[]` carrying its reason and its ticket.
+step "no land-sale ruling has left the file without saying so" \
+  python3 tools/check_rulings_not_lost.py
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_rulings_not_lost.py --self-test
+
 # T-1017. A ruling about a KIND OF ARGUMENT, and the only one in this domain that rests on a
 # measurement rather than on a page. T-0990 refused RUSSELL SAMUEL and SKINNER JOSEPH while
 # recording that the rows are at the town's own school-section sale — an argument it filed
