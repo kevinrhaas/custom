@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The directories printed the whole name, and only the first letter was ever read', kind: 'change', ts: '',
+  { v: 873, title: 'The directories printed the whole name, and only the first letter was ever read', kind: 'change', ts: '2026-09-14T17:06:42.690Z', date: 'Sep 14, 2026, 12:06 PM CT',
     items: [
       'Three Chicago directories \u2014 Fergus\u2019s of 1839 and 1843 and Norris\u2019s of 1844, with its advertising cards \u2014 are the nearest thing this reconstruction has to a census of trades and addresses. Matching a person of 1835 to a line in one of them was done on the surname and the FIRST LETTER of the forename, and on nothing else. Everything the compositor set after that letter was read, transcribed, committed, and then never looked at.',
       'So the volumes kept arriving at a tie. `King, Byram, Jones, King & Co.` was offered to the town\u2019s Byram King and to its Byra King together and, unable to choose, named neither. `Hogan, John S. C., dry goods and groceries, 236 Lake street` was offered to John S. C. Hogan and to a bare John Hogan. `Morrison, Orsemus` was offered to Orsemus Morrison and to Ordemus Morrison, a spelling off a poll list. In every case the page says which man it means, in plain type, and nobody had asked it.',
