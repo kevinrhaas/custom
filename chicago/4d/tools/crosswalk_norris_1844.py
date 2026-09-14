@@ -98,6 +98,28 @@ def residents():
 
 def main():
     entries = json.load(open(ENTRIES, encoding="utf-8"))["claims"]
+    # THE ENTRIES THIS PASS NEVER LOOKS AT, SAID OUT LOUD (T-1023).
+    #
+    # An entry with no surname is skipped here, and until T-1023 it was skipped in
+    # silence — which is the whole reason five men the reader had refused to cap
+    # (T-1018's `empty_prefix`) could leave the town's reach without anything
+    # printing a number. A reading fault upstream showed up downstream as nothing
+    # at all. So the skip is now a LIST, written into the output beside the counts,
+    # and a name-less entry has to say why it holds no name.
+    set_aside = []
+    for c in entries:
+        n = c["normalized"]
+        if n["firm"] or n["surname"]:
+            continue
+        why = "no surname, and the reading does not say why"
+        if n.get("turned_line"):
+            why = ("a turned line read with %s, not a name — %s"
+                   % (n["turned_line"]["joins"], n["turned_line"]["why"]))
+        elif n.get("name_overrun", {}).get("refused"):
+            why = ("the reader refused to cap the comma span: %s"
+                   % n["name_overrun"]["why"])
+        set_aside.append({"entry_id": c["id"], "kind": c["kind"],
+                          "as_printed": n.get("as_printed"), "why": why})
     by_key = defaultdict(list)
     for c in entries:
         n = c["normalized"]
@@ -140,6 +162,13 @@ def main():
                 "as_printed": h["normalized"]["as_printed"],
                 "printed_page": h["locator"]["printed_page"],
                 "occupation_1844": h["normalized"]["occupation"],
+                # T-1114. The place the trade is carried on, which Norris prints inside
+                # the trade line and marks with nothing. It is carried here so the entry
+                # row still says where the man traded now that `occupation_1844` is the
+                # trade alone — and it is NOT offered in `could_carry`: spending a place
+                # of business onto an 1835 card is the spend layer's ruling to make, not
+                # this crosswalk's, and `address` on a card is a residence.
+                "place_of_business_1844": h["normalized"].get("place_of_business"),
                 "address_1844": h["normalized"]["address"],
             }
         # T-1038. THE CARD IS AN INITIAL THE LETTER LIST PRINTS TWICE. Refused
@@ -300,6 +329,8 @@ def main():
         "refused_discriminators": tiebreak.REFUSED_DISCRIMINATORS,
         "counts": {
             "residents_considered": len(people),
+            "1844_entries_read": len(entries),
+            "1844_entries_set_aside_for_want_of_a_surname": len(set_aside),
             "matched_one_1844_entry": len(matches),
             "matched_more_than_one_ambiguous": len(ambiguous),
             "one_1844_entry_contested_by_two_residents": len(contested),
@@ -321,6 +352,8 @@ def main():
             "could_carry_occupation": sum(1 for m in matches if "occupation" in m["could_carry"]),
             "could_carry_address": sum(1 for m in matches if "address" in m["could_carry"]),
         },
+        "set_aside_for_want_of_a_surname": sorted(set_aside,
+                                                  key=lambda e: e["entry_id"]),
         "matches": sorted(matches, key=lambda m: m["resident"]),
         "discriminated": sorted(discriminated, key=lambda d: (d["tie"], d["claim"])),
         "contested": sorted(contested, key=lambda m: m["resident"]),
