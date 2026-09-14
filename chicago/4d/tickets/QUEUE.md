@@ -136,7 +136,6 @@
 # --- tools/read_norris_1844.py, all found by T-1018, each separately evidenced. They are adjacent
 # --- rather than folded so one run carries the context of the last.
 
-T-1119 — Three gazetteer names parse to inert keys for a reason the rank rule does not own: a surname-first entry with no comma inversion, an [uncertain: …] wrapper read as a forename, and a rank-and-regiment line that names nobody
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 
 # --- ==========================================================================
@@ -298,4 +297,6 @@ T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot se
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
+T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
+
