@@ -2123,11 +2123,82 @@ export async function createTrees({
   // navigable channels. Nobody draws a polygon: the river already divides the
   // box the way 1835 Chicago was divided, and the documented shallow slough on
   // the north side is above CHANNEL_Y so it does not cut the North Division.
+  //
+  // ...AND IT DIVIDES ONLY THE GROUND THE RIVER IS TRACED ACROSS. The sentence
+  // above is true exactly as far south as the South Branch is traced, and no
+  // further. Below its last traced row there is no channel in the field, so the
+  // land wraps underneath the branch and the West and South Divisions come back
+  // as ONE component — measured on the T-0464 box: 4 components, WEST=1,
+  // NORTH=3, SOUTH=1. The three-way test below then fails and NOTHING is
+  // planted anywhere, including the town, which is how a box that reaches
+  // Twenty-Second Street emptied the whole scene of trees.
+  //
+  // That is not a fault in the flood. Below the evidence limit the corpus says
+  // nothing about this ground — terrain_spec.json's `evidence_limit` is the
+  // line, every vertex under it is written CONF_CONJECTURAL, and "which bank is
+  // this point on" has no answer there because there is no bank. So the flood
+  // stops at that line: above it the divisions separate exactly as they always
+  // did, below it no cell is labelled and nothing plants on ground nobody
+  // described. The line is read from the heightfield's own runtime meta rather
+  // than written here, so it cannot drift from the spec that sets it.
+  // THE FLOOR IS FOUND, NOT DECLARED, and every declared line that was tried
+  // for it was wrong. The spec's `evidence_limit` (N -2149.4, Twelfth Street) is
+  // a SURVEY line and sits ~20 m south of where the traced water actually stops,
+  // so a flood bounded there still joins the banks: WEST=1 NORTH=3 SOUTH=1,
+  // measured. A cheaper proxy — "the southernmost row holding water with land
+  // on both sides" — answers N -2140 where the flood itself answers -2130,
+  // because enclosed water elsewhere in the box satisfies it without dividing
+  // anything. Neither is the question; the question is where THIS flood stops
+  // separating these three probes, so it is asked directly.
+  //
+  // Binary search over the cut row: the predicate is monotone in the direction
+  // that matters — cutting further north can only remove connections, never add
+  // one — so ~11 floods settle a 1 969-row field. Each is the same typed-array
+  // pass that runs below.
+  let divideFloorRow = 0;
+  const floodSeparates = (cutRow) => {
+    const d = new Int8Array(cells).fill(-1);
+    const st = new Int32Array(cells);
+    let lab = 0;
+    for (let s = cutRow * cols; s < cells; s++) {
+      if (data[s] < CHANNEL_Y || d[s] >= 0) continue;
+      let sp = 0; st[sp++] = s; d[s] = lab;
+      while (sp > 0) {
+        const j = st[--sp];
+        const c = j % cols;
+        const r = (j - c) / cols;
+        if (c > 0 && d[j - 1] < 0 && data[j - 1] >= CHANNEL_Y) { d[j - 1] = lab; st[sp++] = j - 1; }
+        if (c < cols - 1 && d[j + 1] < 0 && data[j + 1] >= CHANNEL_Y) { d[j + 1] = lab; st[sp++] = j + 1; }
+        if (r > cutRow && d[j - cols] < 0 && data[j - cols] >= CHANNEL_Y) { d[j - cols] = lab; st[sp++] = j - cols; }
+        if (r < rows - 1 && d[j + cols] < 0 && data[j + cols] >= CHANNEL_Y) { d[j + cols] = lab; st[sp++] = j + cols; }
+      }
+      lab++;
+    }
+    const pick = (e, n) => {
+      const c = Math.round((e - originE) / cellM);
+      const r = Math.round((n - originN) / cellM);
+      if (c < 0 || r < cutRow || c >= cols || r >= rows) return -1;
+      return d[r * cols + c];
+    };
+    const w = pick(-300, 0), nn = pick(200, 250), s2 = pick(200, -250);
+    return w >= 0 && nn >= 0 && s2 >= 0 && w !== nn && nn !== s2 && w !== s2 ? d : null;
+  };
+  {
+    let lo = 0, hi = rows - 1;
+    if (!floodSeparates(0)) {
+      while (lo < hi) {
+        const mid = (lo + hi) >> 1;
+        if (floodSeparates(mid)) hi = mid; else lo = mid + 1;
+      }
+      divideFloorRow = lo;
+    }
+  }
+  const divisible = (s) => ((s - (s % cols)) / cols) >= divideFloorRow;
   const div = new Int8Array(cells).fill(-1);
   const stack = new Int32Array(cells);
   let labels = 0;
   for (let s = 0; s < cells; s++) {
-    if (data[s] < CHANNEL_Y || div[s] >= 0) continue;
+    if (data[s] < CHANNEL_Y || div[s] >= 0 || !divisible(s)) continue;
     let sp = 0;
     stack[sp++] = s;
     div[s] = labels;
@@ -2135,10 +2206,16 @@ export async function createTrees({
       const j = stack[--sp];
       const c = j % cols;
       const r = (j - c) / cols;
-      if (c > 0 && div[j - 1] < 0 && data[j - 1] >= CHANNEL_Y) { div[j - 1] = labels; stack[sp++] = j - 1; }
-      if (c < cols - 1 && div[j + 1] < 0 && data[j + 1] >= CHANNEL_Y) { div[j + 1] = labels; stack[sp++] = j + 1; }
-      if (r > 0 && div[j - cols] < 0 && data[j - cols] >= CHANNEL_Y) { div[j - cols] = labels; stack[sp++] = j - cols; }
-      if (r < rows - 1 && div[j + cols] < 0 && data[j + cols] >= CHANNEL_Y) { div[j + cols] = labels; stack[sp++] = j + cols; }
+      // `divisible` is tested on every neighbour and not only on the seed. Row 0
+      // is the SOUTH edge, so `j - cols` walks south: a component seeded north of
+      // the evidence limit would otherwise flood straight under it, rejoin the
+      // far bank below the traced river, and put West and South back into one
+      // label — the exact fault the limit is here to prevent, reintroduced by
+      // the one step that was not guarded.
+      if (c > 0 && div[j - 1] < 0 && data[j - 1] >= CHANNEL_Y && divisible(j - 1)) { div[j - 1] = labels; stack[sp++] = j - 1; }
+      if (c < cols - 1 && div[j + 1] < 0 && data[j + 1] >= CHANNEL_Y && divisible(j + 1)) { div[j + 1] = labels; stack[sp++] = j + 1; }
+      if (r > 0 && div[j - cols] < 0 && data[j - cols] >= CHANNEL_Y && divisible(j - cols)) { div[j - cols] = labels; stack[sp++] = j - cols; }
+      if (r < rows - 1 && div[j + cols] < 0 && data[j + cols] >= CHANNEL_Y && divisible(j + cols)) { div[j + cols] = labels; stack[sp++] = j + cols; }
     }
     labels++;
   }
