@@ -66,6 +66,48 @@
       "note": "The North Branch above the forks window: from that window's own north edge (BPL master row 1252, a declared splice rather than a tolerance — see docs/RESEARCH/north_branch_wabansia.md) up to the north line Wright ruled across the top of his sheet. It abuts river.geojson and moves no vertex of it. Only the reach below about N +720 is inside this box: the branch runs north-west and crosses the box's west wall at E -320 there, so what the field carries is roughly 320 m of channel above the forks and the two banks either side of it. The polygon's northern edge at N +1079.21 is the edge of a survey and not the end of a river — its own provenance says so — and it lies outside the box, so nothing here has to answer for it."
     }
   ],
+  "splices": [
+    {
+      "id": "forks_to_north_branch",
+      "n_range": [
+        402.0,
+        403.2
+      ],
+      "west_runs": [
+        "west_division_shore",
+        "north_branch_west_bank"
+      ],
+      "east_runs": [
+        "north_division_shore",
+        "north_branch_east_bank"
+      ],
+      "confidence": "reconstructed",
+      "sources": [
+        "wright_1834"
+      ],
+      "note": "The forks window and the North Branch window are declared to ABUT on BPL master row 1252 — a splice and not a tolerance, so neither polygon moves a vertex of the other. As RINGS they do not quite close over each other: each ends in its own slanted chord across the channel, the forks at (E -214.7, N +401.38) to (-128.8, +403.15) and the branch at (-219.6, +402.0) through (-170.7, +403.01) to (-144.2, +403.56), and the lens between the two chords belongs to neither. At the one sampled row inside it, N +402.5, the forks ring covers E -160.3 to -128.6 and the branch ring E -219.7 to -195.4, leaving 35 m of mid-channel dry: a bar 2.5 m wide and 1.0 m high standing across the North Branch, and a sixth four-connected piece of land in a field that has four. Spanned from the BANKS instead — the two runs that meet on each side, each contributing the vertex nearest the band — which is where the trace actually speaks. The hull is E -219.59 to -128.81, 90.8 m against 86.0 m of traced channel at N +400 and 75.8 m at +405, so it is the wider of the two readings across one row and cannot remove a cell either ring claims."
+    },
+    {
+      "id": "forks_to_south_branch",
+      "n_range": [
+        -405.97,
+        -404.33
+      ],
+      "west_runs": [
+        "west_division_shore",
+        "south_branch_west_bank"
+      ],
+      "east_runs": [
+        "south_division_shore",
+        "south_branch_east_bank"
+      ],
+      "confidence": "reconstructed",
+      "sources": [
+        "wright_1834"
+      ],
+      "note": "The same seam at the other end, and the same bar: 12 cells of dry ground at E +5 to +32.5 on row N -405, standing across the South Branch since T-0219 spliced these two windows together. It went unseen because nothing looked — the field's dry land was counted in four connected pieces and a twelve-cell bar is not one of them at the threshold that count uses. T-1123 built the northern twin of it and found both. The geometry is the mirror image: the forks ring closes on the chord (E +35.9, N -404.33) to (-8.1, -405.24) and the South Branch ring opens on (-8.1, -405.97) to (+35.9, -405.06). The bank hull here is E -8.08 to +35.92, 44.0 m, which is the traced channel width at N -402.5 (43.9 m) and at N -407.5 (43.9 m) to a decimetre — the two windows agree at this splice and only the sampling fell between them."
+    }
+  ],
   "open_lake": {
     "rule": "east of the easternmost traced water in each row, water continues",
     "east_of_m": 1200.0,

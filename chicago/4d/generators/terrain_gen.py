@@ -620,6 +620,32 @@ def build_field(spec, feats, origin):
                 east_edge[sel] = np.maximum(east_edge[sel], x1 + t * (x2 - x1))
         in_water |= (E > east_edge[:, None]) & np.isfinite(east_edge)[:, None]
 
+    # THE SPLICES — where two tracing windows are declared to abut and the
+    # sampled row between them falls inside neither ring. The windows meet on a
+    # shared map row, but each closes with its own SLANTED chord across the
+    # channel and the two chords are neither parallel nor coincident: at the
+    # forks/North-Branch splice the forks polygon reaches E -160.3 at N +402.5
+    # and the branch polygon starts at -195.4, so 35 m of channel belongs to
+    # neither and stands as a 2.5 m-wide, 1.0 m-high weir across the river. The
+    # southern splice carries the identical bar at N -405 (E +5 to +32.5) and
+    # has done since T-0219 committed it; T-1123 built the northern twin and
+    # this repairs both, because it is one seam mechanism and not two.
+    #
+    # The water is spanned from the traced BANKS either side of the seam rather
+    # than from either polygon: the runs that meet at a splice are named in the
+    # spec, the vertex of each nearest the band is its tip, and the span is the
+    # hull of the west tips to the hull of the east tips. It is a union and can
+    # only ADD water, never take a traced cell away, and it reaches one sampled
+    # row per splice.
+    for sp in spec.get("splices", []):
+        lo, hi = sorted(float(x) for x in sp["n_range"])
+        mid = 0.5 * (lo + hi)
+        def tip(rid, at=mid):
+            return min(shore_runs[rid], key=lambda q: abs(q[1] - at))
+        west = min(tip(r)[0] for r in sp["west_runs"])
+        east = max(tip(r)[0] for r in sp["east_runs"])
+        in_water |= ((N >= lo) & (N <= hi) & (E >= west) & (E <= east))
+
     in_water &= ~islands
 
     # ---- the waterline ----------------------------------------------------

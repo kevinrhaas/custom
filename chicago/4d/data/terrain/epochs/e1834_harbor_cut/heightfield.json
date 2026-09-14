@@ -86,7 +86,7 @@
     "cell_max": 171.698
    },
    "bank_face": {
-    "cells": 35909,
+    "cells": 35902,
     "cell_max": 188.858
    },
    "fort_dearborn_mound": {
@@ -94,7 +94,7 @@
     "cell_max": 188.858
    },
    "marsh_strip": {
-    "cells": 5671,
+    "cells": 5662,
     "cell_max": 148.58
    },
    "north_sand_ridge": {
@@ -130,5 +130,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "5e4b8318762caee67bc965938c4ea5816224798180d51cf4045de6429d09ee56"
+ "inputs_sha256": "d2112dcac2f0b0bfdb0d21d9c21a92af179316d5cf9c396207b1a1bd909df5f3"
 }
