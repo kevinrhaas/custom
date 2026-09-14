@@ -280,7 +280,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 
 
 T-1129 — Four residents rest only on a Bear Creek, Sangamon County marriage, and their cards say the church list names them at Chicago
-T-1109 — pass_14_findings.json no longer matches what complete_resident_research_pass_14.py re-derives
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
@@ -356,4 +355,3 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-

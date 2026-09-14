@@ -30,6 +30,13 @@ A newspaper-register row is enrichment, not corroboration, when the paper is alr
 person's seed source: the Chicago Democrat cannot corroborate a man it is the sole
 witness to.  It still supplies dates and a trade, and those are written into the row.
 
+T-0816 READ THIS COHORT A SECOND TIME and ruled the 36 people the two readings
+disagreed on.  Those rulings are evidence, not a hand edit of the output: they live in
+data/research/residents/pass_14_reconciliation.json and this tool READS them, so the
+ruled outcome and the discriminator that decided it re-derive like everything else.
+Fourteen of the 36 went against the mechanical rule below; the rule still produces what
+T-0816 called the ledger of record, and the ruling is what is carried.
+
 Run with no arguments to write; `--check` re-derives and compares.
 """
 from __future__ import annotations
@@ -48,10 +55,17 @@ DATA = ROOT / "data"
 RESEARCH = DATA / "research"
 COHORT = RESEARCH / "residents" / "pass_14_76_cohort.json"
 FINDINGS = RESEARCH / "residents" / "pass_14_findings.json"
+RECONCILIATION = RESEARCH / "residents" / "pass_14_reconciliation.json"
 PACKAGE = CHICAGO / "reference" / "resident-research" / "T-0509"
 SOURCES = DATA / "sources"
 TICKET = "T-0509"
 REVIEWED_ON = "2026-09-05"
+
+# The ladder rule an outcome sits on.  T-0816's rulings name an outcome and not a rung,
+# and on the ledger of record the two have always agreed: every one of the 76 rows carries
+# the rung this map gives its outcome.
+LADDER_OF = {"corroborated": "R2", "corroborated_enrichment": "R1",
+             "candidate_identity": "R3", "no_corroboration": "R4"}
 
 NEWSPAPER_SOURCES = {"chicago_democrat_1833_1835", "chicago_american_1835",
                      "chicago_democrat_1833_11_26"}
@@ -429,6 +443,9 @@ def build():
              for tag in ("pilot", "pass_02", "pass_03")
              if (RESEARCH / "residents" / f"{tag}_findings.json").exists()}
 
+    reconciliation = json.loads(RECONCILIATION.read_text())
+    ruled = {r["person_id"]: r for r in reconciliation["rulings"]}
+
     overrides, rows, counts = {}, [], Counter()
     for person in people:
         pid = person["person_id"]
@@ -458,6 +475,14 @@ def build():
                           | set(person.get("sources", [])))
             summary = describe(person, cand, neg, hits[pid])
 
+        # T-0816's ruling is the last word on the 36 people two readings disagreed on.
+        # It is applied here, from the committed ruling file, so that the outcome it
+        # decided re-derives instead of surviving only as an edit nothing can reproduce.
+        verdict = ruled.get(pid)
+        if verdict:
+            outcome = verdict["ruled"]
+            rule = LADDER_OF[outcome]
+
         counts[outcome] += 1
         overrides[pid] = {
             "outcome": outcome, "ladder_note": rule, "summary": summary,
@@ -466,6 +491,13 @@ def build():
             "evidence_seen": sorted({h["tag"] for h in hits[pid]}),
             "refusals_seen": sorted({h["tag"] for h in neg}),
         }
+        if verdict:
+            overrides[pid]["reconciliation"] = {
+                "ticket": reconciliation["ticket"],
+                "was": verdict["ledger_of_record"], "rival": verdict["rival"],
+                "ruled": verdict["ruled"], "upheld": verdict["upheld"],
+                "discriminator": verdict["discriminator"],
+            }
         rows.append({
             "ticket": TICKET, "cohort": "pass_14", "person_id": pid,
             "household_id": person["household_id"],

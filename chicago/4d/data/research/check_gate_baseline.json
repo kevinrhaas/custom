@@ -10,12 +10,6 @@
   },
   "ungated": [
     {
-      "tool": "tools/complete_resident_research_pass_14.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1109. `--check` fails: pass_14_findings.json does not match a re-derivation. Gate it in the commit that makes it green.",
-      "owner_ticket": "T-1109"
-    },
-    {
       "tool": "tools/generate_inferred_households.py",
       "other_modes_in_check_sh": [],
       "why_not_gated": "RED — T-1108. Refuses on the same line as generate_inferred_names.py and replace_invented_residents.py: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor. One ruling makes three gates possible; gate all three in the commit that settles it.",
