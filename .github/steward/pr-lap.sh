@@ -261,9 +261,11 @@ while IFS=$'\t' read -r N BR; do
     # `rederive.mjs --resolvable` answers from tools/derived_manifest.json, which
     # ENUMERATES rather than pattern-matches, so what is in scope can be read.
     # It refuses the set as a whole if any member is unlisted or declares
-    # hand_authored — half a merge is not a merge. check.sh still runs after
-    # this and is what PROVES the rebuild; a wrong manifest entry makes the gate
-    # red and the branch is not pushed, so the worst case is the PR staying open.
+    # hand_authored — half a merge is not a merge. The gate is what PROVES the
+    # rebuild, and since the lap stopped running it itself (see the push below)
+    # that gate is CI's: a wrong manifest entry makes the PUSHED branch go red,
+    # so the worst case is a red pull request rather than a merged bad rebuild.
+    # Auto-merge fires on a green required check and on nothing else.
     if [ -n "$REAL" ] && [ -f chicago/4d/tools/rederive.mjs ] \
        && node chicago/4d/tools/rederive.mjs --resolvable $REAL >/tmp/lap-rederive.log 2>&1; then
       say "  $(echo "$REAL" | grep -c .) conflict(s) in the derived research layer — rebuilding from source"
