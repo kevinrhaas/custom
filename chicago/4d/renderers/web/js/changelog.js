@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'One house on Clark Street, printed twice, ruled two different ways', kind: 'fix', ts: '',
+  { v: 871, title: 'One house on Clark Street, printed twice, ruled two different ways', kind: 'fix', ts: '2026-09-14T16:12:35.689Z', date: 'Sep 14, 2026, 11:12 AM CT',
     items: [
       'This reconstruction knows where a few people lived because a directory printed years later says so, and it carries that street back to 1835 with the years of distance written on the record. The rule is strict about one thing: if the entry sets the house between two streets and either is a street the town of 1835 did not have, the whole address is refused. The town stops at Madison, so a house on Clark between Madison and Monroe says nothing this reconstruction may use.',
       'Norris prints that same address twice, three lines apart in the same column. John C. Rue\u2019s reads \u2018h Clark, b Madison and Monroe\u2019 and was refused. Rebecca Sherman\u2019s reads \u2018h Clark st. b Mad. & Mon\u2019 \u2014 and stood on Clark Street, because the table of street names knew Madison spelled out and had never been taught Norris\u2019s shorthand for it. The rule never saw a second street to object to. One address, two spellings, two verdicts, and the spelling the reading could not follow was the one that claimed more.',
