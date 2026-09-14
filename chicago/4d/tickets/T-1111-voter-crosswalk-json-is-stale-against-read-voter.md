@@ -1,7 +1,7 @@
 ---
 id: T-1111
 title: voter_crosswalk.json is stale against read_voter_lists.py, and 35 of 345 voters stand unmatched behind it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
+closed: 2026-09-14
+pr: 1332
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-14T16:23:42.455Z
 claimed_run: null
 ---
 
