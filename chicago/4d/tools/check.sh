@@ -650,6 +650,14 @@ selftest "…and that ratchet fires in both directions" \
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
 
+# The renderer-track fixture. It is the only asset in the tree whose job is to be
+# the thing the confidence view is TESTED against, so it has to carry all three
+# levels on real vertices — and it stopped doing that when the record grew a mass
+# the placeholder did not model. T-1112 owns the repair; this is the gate that
+# keeps it repaired, and it also re-checks the sidecar against the record.
+step "the confidence fixture carries all three levels, and agrees with its record" \
+  python3 generators/placeholder.py --check
+
 # The clapboard stock, both halves of it. The named deal re-derives its own 24 records
 # (T-0049) — that half was never gated, so a hand-edited board width would have sat in
 # the tree looking exactly like a dealt one. The recipes deal the other 131 and their

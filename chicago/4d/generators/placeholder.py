@@ -17,7 +17,10 @@ script writes the glTF binary by hand and satisfies the contract exactly:
   * one node per structure phase, named `<structure_id>__<phase_id>`, carrying
     `extras.structure_id` / `extras.phase_id` / `extras.scene_ids`;
   * a `_CONFIDENCE` SCALAR float attribute (componentType 5126) on every vertex,
-    exercising all three levels — 0.0 documented, 0.5 derived, 1.0 inferred;
+    exercising all three levels — 0.0 attested, 0.5 inferred, 1.0 reconstructed.
+    ALL THREE, because the asset's one job is to be the fixture the confidence
+    view is tested against, and a level with no vertices behind it is a level the
+    view's rendering of it cannot be demonstrated on (T-1112);
   * one material, one primitive, so it drops into a `BatchedMesh` as a single
     geometry; flat per-part colours come from a 4x1 palette texture the way
     `gltf-transform palette` would produce them.
@@ -38,6 +41,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import struct
 import sys
 import zlib
@@ -62,7 +66,8 @@ WORST_FIRST = ("reconstructed", "inferred", "attested")
 # wins. A wall whose height is a guess is a guessed wall.
 PART_DRIVERS = {
     "walls": ["stories", "wall_height_m"],
-    "roof": ["roof_type"],
+    "roof": ["roof_type", "roof_pitch_deg"],
+    "cross_wing": ["cross_wing", "cross_wing_end", "cross_wing_depth_m"],
     "log_wing": ["log_wing"],
     "shutters": ["shutters"],
 }
@@ -74,7 +79,8 @@ PALETTE = [
     ("#f2efe6", "walls", "white — documented (Wau-Bun: 'a pretentious white two-story building')"),
     ("#2f5fb0", "shutters", "bright blue — documented (Wau-Bun: 'with bright-blue wooden shutters')"),
     ("#6b5334", "log_wing", "PLACEHOLDER colour; no source attests the wing's finish"),
-    ("#4a4640", "roof", "PLACEHOLDER colour; roof_type itself is conjectural"),
+    ("#4a4640", "roof", "PLACEHOLDER colour; no source attests any roof finish, and "
+                        "roof_type itself is only inferred"),
 ]
 PALETTE_INDEX = {name: i for i, (_hex, name, _note) in enumerate(PALETTE)}
 
@@ -181,7 +187,11 @@ def build_mesh(phase: dict, conf: dict[str, tuple[str, float]]) -> tuple[Mesh, d
     depth = max(ys) - min(ys)        # metres north-south
     wall_h = phase["form"]["wall_height_m"]["value"]
     stories = phase["form"]["stories"]["value"]
+    pitch_deg = phase["form"]["roof_pitch_deg"]["value"]
     has_wing = bool(phase["form"]["log_wing"]["value"])
+    has_cross = bool(phase["form"]["cross_wing"]["value"])
+    cross_end = phase["form"]["cross_wing_end"]["value"]
+    cross_depth = phase["form"]["cross_wing_depth_m"]["value"]
 
     # The contract says the mesh is authored about "its own local origin, at
     # ground level". It does not say WHERE in plan that origin sits. This
@@ -198,8 +208,11 @@ def build_mesh(phase: dict, conf: dict[str, tuple[str, float]]) -> tuple[Mesh, d
     # main block — walls
     m.box(-hx, 0.0, -hz, hx, wall_h, hz, "walls", c_walls, skip=("py",))
 
-    # gable roof, ridge running east-west
-    rise = 2.2   # conjectural, like roof_type itself
+    # Gable roof, ridge running east-west, spanning the block's DEPTH. The rise
+    # is no longer a round number picked here: it falls out of the record's own
+    # roof_pitch_deg over the half-span, which is what lets the cross wing below
+    # stand at one ridge height with this block instead of merely near it.
+    rise = hz * math.tan(math.radians(pitch_deg))
     ridge_y = wall_h + rise
     a = (-hx, wall_h, hz)
     b = (hx, wall_h, hz)
@@ -243,9 +256,58 @@ def build_mesh(phase: dict, conf: dict[str, tuple[str, float]]) -> tuple[Mesh, d
                     m.box(x0, sy, z0, x0 + sw, sy + sh, z1, "shutters", c_shut)
                     n_shutters += 1
 
+    # THE CROSS WING — the second two-storey mass, and the only part of this
+    # massing graded `reconstructed`.
+    #
+    # The record carries it as three rows and they do not agree in confidence:
+    # `cross_wing` is inferred off Braunhold's plate (two ridges meeting at one
+    # apex, proved by arithmetic in tools/sauganash_apex_lines.py), `cross_wing_end`
+    # is inferred by elimination off the plat, and `cross_wing_depth_m` is
+    # INVENTED within a bound — docs/LIBERTIES.md L217 owns it. Least confident
+    # wins, so the whole mass renders at 1.0, and that is the third level this
+    # fixture exists to give the confidence view something to hide.
+    #
+    # Two gable ridges of one wall height and one pitch meet at a point only when
+    # they span the same width, so the wing's span is this block's own depth; it
+    # runs BACK from the rear elevation by the record's depth. It is painted out
+    # of the same texels as the block — the paint row covers the structure, and
+    # colour is not confidence; the channel carries that.
+    cross = None
+    if has_cross:
+        half = hz                                   # the shared-apex span, halved
+        if cross_end == "x_max":
+            cx0, cx1 = hx - depth, hx
+        elif cross_end == "x_min":
+            cx0, cx1 = -hx, -hx + depth
+        else:
+            raise SystemExit(
+                f"cross_wing_end is {cross_end!r}; the placeholder knows x_max and "
+                f"x_min and refuses to guess an end.")
+        cxr = (cx0 + cx1) / 2.0
+        cz0, cz1 = -hz - cross_depth, -hz        # back is -Z, as the shutters read it
+        c_cross = conf["cross_wing"][1]
+
+        # walls: open where it meets the block, open at the top under its roof
+        m.box(cx0, 0.0, cz0, cx1, wall_h, cz1, "walls", c_cross, skip=("pz", "py"))
+
+        # roof: two slopes along the wing's own ridge, plus the rear gable. The
+        # front gable is omitted — that end is inside the main block.
+        m.quad((cx1, wall_h, cz1), (cx1, wall_h, cz0), (cxr, ridge_y, cz0),
+               (cxr, ridge_y, cz1), norm((rise, half, 0)), "roof", c_cross)
+        m.quad((cx0, wall_h, cz0), (cx0, wall_h, cz1), (cxr, ridge_y, cz1),
+               (cxr, ridge_y, cz0), norm((-rise, half, 0)), "roof", c_cross)
+        m.tri((cx1, wall_h, cz0), (cx0, wall_h, cz0), (cxr, ridge_y, cz0),
+              (0, 0, -1), "roof", c_cross)
+        cross = (cx0, cz0, cx1, cz1)
+
     stats = {
         "width_m": width, "depth_m": depth, "wall_height_m": wall_h,
-        "stories": stories, "ridge_height_m": ridge_y, "log_wing": has_wing,
+        "stories": stories, "roof_pitch_deg": pitch_deg, "ridge_height_m": ridge_y,
+        "log_wing": has_wing,
+        "cross_wing": None if cross is None else {
+            "end": cross_end, "span_m": depth, "depth_m": cross_depth,
+            "ridge_height_m": ridge_y,
+        },
         "shutter_leaves": n_shutters,
         "vertices": len(m.pos) // 3, "triangles": len(m.idx) // 3,
     }
@@ -452,10 +514,25 @@ def main() -> int:
         print(json.dumps(gltf, indent=2))
         return 0
 
+    # The fixture's one job. `renderers/web/js/confidence.js` reads the channel
+    # back through levelOf() — >= 0.75 reconstructed, >= 0.25 inferred, else
+    # attested — so it is not enough for three distinct numbers to be present:
+    # each has to land in the band the view will read it as, on real vertices.
+    # Checked here rather than asserted in a comment, because this asset exists
+    # for no other reason (T-1112).
     present = sorted({round(v, 3) for v in mesh.conf})
     if present != [0.0, 0.5, 1.0]:
         print(f"FAIL  _CONFIDENCE carries {present}, not all three levels — "
               f"the confidence view would not be testable against this asset")
+        return 1
+    bands = {"attested": 0, "inferred": 0, "reconstructed": 0}
+    for v in mesh.conf:
+        bands["reconstructed" if v >= 0.75 else "inferred" if v >= 0.25 else "attested"] += 1
+    missing = [lvl for lvl, n in bands.items() if n == 0]
+    if missing:
+        print(f"FAIL  no vertex reads back as {', '.join(missing)} through "
+              f"confidence.js levelOf() — the view's rendering of that level has "
+              f"no fixture behind it")
         return 1
 
     print(f"Sauganash Hotel, phase {PHASE_ID} — placeholder massing")
@@ -465,6 +542,14 @@ def main() -> int:
     print(f"  {stats['vertices']} vertices, {stats['triangles']} triangles, "
           f"{stats['shutter_leaves']} shutter leaves, "
           f"log wing {'attached' if stats['log_wing'] else 'absent'}")
+    cw = stats["cross_wing"]
+    if cw:
+        print(f"  cross wing at {cw['end']}: {cw['span_m']:.0f} m span x "
+              f"{cw['depth_m']:.0f} m back, ridge {cw['ridge_height_m']:.1f} m — "
+              f"one apex height with the block")
+    print("  _CONFIDENCE as confidence.js levelOf() reads it back:")
+    for level in ("attested", "inferred", "reconstructed"):
+        print(f"    {level:<14} {bands[level]:>4} vertices")
     print("  _CONFIDENCE by part (worst driving attribute wins):")
     for part, (level, value) in sorted(conf.items()):
         drivers = ", ".join(PART_DRIVERS[part])
