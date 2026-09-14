@@ -11,11 +11,11 @@
   "addresses_adjudicated": 58,
   "printed_as_a_residence": 45,
   "printed_as_a_lodging": 13,
-  "placed": 12,
-  "placed_as_a_face": 12,
-  "placed_with_no_1835_trade": 8,
+  "placed": 11,
+  "placed_as_a_face": 11,
+  "placed_with_no_1835_trade": 7,
   "already_better_placed": 0,
-  "refused": 46,
+  "refused": 47,
   "faces_reached": [
    "Clark Street",
    "Lake Street",
@@ -816,9 +816,9 @@
    "lives_at_1835": null,
    "outcome": "refused",
    "clause": "R4",
-   "reason": "Cass Street is a north-side name the 1835 street layer does not carry.",
-   "street_id": null,
-   "face": null,
+   "reason": "The face resolves — Michigan Street is 1835's — but the entry sets the house against a second street the town does not have: Cass Street is a north-side name the 1835 street layer does not carry. Taking the face and dropping the qualifier would put the home somewhere the address does not say it was.",
+   "street_id": "michigan_north",
+   "face": "Michigan Street",
    "placement": null
   },
   {
@@ -1122,12 +1122,12 @@
    "occupation_1835": null,
    "trade_not_required": true,
    "lives_at_1835": null,
-   "outcome": "placed",
-   "clause": "R4 and R5",
-   "reason": "Clark Street stands in 1835 under that name and in that place, and the entry prints it as this man's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
+   "outcome": "refused",
+   "clause": "R4",
+   "reason": "The face resolves — Clark Street is 1835's — but the entry sets the house against a second street the town does not have: Madison Street bounds the 1830 plat on the south and the modelled town stops at it; the 1835 street layer carries no Madison. Taking the face and dropping the qualifier would put the home somewhere the address does not say it was.",
    "street_id": "clark",
    "face": "Clark Street",
-   "placement": "face"
+   "placement": null
   },
   {
    "household_id": "hh_sherman_william_george",
