@@ -603,6 +603,15 @@ selftest "…and its own assertions still fire when broken" \
 step "the residents manifest re-derives from the household cards" \
   python3 tools/rebuild_resident_index.py --check
 
+# T-0871. It was the only re-derivation gate in this tree whose own assertions had
+# never been shown to fire, and its argument list was read as `"--write" in argv` and
+# nothing else - so `--wrtie` typed for `--write` fell through to the compare path,
+# printed that the manifest re-derives, wrote nothing and exited 0. The parser refuses
+# an unrecognised flag now, and this proves both: every refusal above broken on
+# purpose, and the typo answered with a non-zero exit rather than a green check.
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/rebuild_resident_index.py --self-test
+
 # The kinship the corpus already states (T-0734). The audit that opened that ticket
 # found 14 of 1,404 people related to anybody at all, and the reason was never that
 # the sources were silent: the register marries couples this town holds both halves
@@ -956,6 +965,15 @@ step "nothing unpermitted stands on reserved ground" \
 # are resolved from the traces, so a terrain extension that outruns them fails here.
 step "nothing unpermitted stands on refused ground, and the refusal still reaches it" \
   python3 tools/measure_no_build_ground.py --gate
+
+# T-0891. The gate above now resolves a third KIND of ring: one read off a plate, rebuilt
+# from the corner pixels and the transform a committed trace records rather than authored
+# as vertices. Its worth is what it refuses — a ground corner edited without its pixel, a
+# transform swapped under a reading taken before it — and not one of those is reachable
+# from the committed data, so nothing would ever run them. This does, against fabricated
+# copies of the real reading, so the refusals cannot rot into passes unnoticed.
+selftest "…and the plate-reading resolver’s refusals still fire when broken" \
+  python3 tools/measure_no_build_ground.py --self-test
 
 # T-0436. The other kind of line over the same ground: not who could build on it, but
 # whose by-laws reached it. The Trustees walked the corporate boundary on 7 November 1833
@@ -1651,6 +1669,19 @@ step "the ground mesh still meets the heightfield the walker samples" \
 # bytes rather than the arithmetic on the generator's side of the bake (T-0152).
 step "the shipped ground stands where the master does, and inside the road lift" \
   node tools/measure_terrain_horizontal.mjs --gate
+
+# T-1067. The two gates above measure the ground against the mesh drawn FROM it,
+# which cannot see the town standing where there is no ground at all. The box
+# stops at n +400 and Kinzie's Addition was committed running to n +1029.71, so
+# Wolcott Street's ribbon leaves the modelled ground and is draped on the
+# renderer's fallback constant for 629.72 m, and 79.5 % of the north wall is a
+# one-way door under the walker's 0.35 m step-up rule. None of that is asserted
+# to be SMALL — no setting of this repo makes it small today, and a gate that
+# demanded one would only ever be red. What is asserted is that the committed
+# reading still matches a re-derivation, so the number cannot drift while the
+# box or the street layer moves and nobody notices.
+step "the town off the modelled ground is still the town the reading measured" \
+  node tools/measure_north_of_box.mjs --gate
 
 # The shrub archetype's own bounds, which are the only two numbers in it the
 # RESEARCH owns: the clump keeps the half-width its record states, and a leaf
@@ -2510,6 +2541,23 @@ selftest "…and every garbled forename in them is repaired, cited, and none is 
 step "…and the 1835 crosswalk re-derives from those entries" \
   python3 tools/crosswalk_norris_1844.py --check
 
+# T-0896. The advertising directory's READING, which its crosswalk above stands on and
+# which nothing re-derived. 38 pages of display cards, sliced out of the committed page
+# text at each card's own line range, so the failure this catches is a quote that has
+# stopped coming from the page it cites — the one fault the crosswalk gate cannot see,
+# because the crosswalk re-derives from the reading and would follow it wherever it went.
+step "…and the advertising directory's cards re-derive from the committed page text" \
+  python3 tools/read_norris_1844_advertiser.py --check
+
+# T-0896. AND THE SECOND READING OF THE SAME VOLUME. T-0566 read the Internet Archive
+# scan; Kim Torp read the printed book independently onto genealogytrails.com. The
+# committed file is the MATCH between the two hands, and it is the only thing in this
+# project that says where our reading of Norris disagrees with somebody else's. It ran
+# once, in 2026-09-03, and was never asked again: a re-read entry on either side, or a
+# blocking rule changed under the matcher, moves the disagreements and nothing noticed.
+step "…and our reading of Norris still disagrees with Torp's in exactly the places recorded" \
+  python3 tools/compare_norris_1844_readings.py --check
+
 # T-0867. The ADVERTISING directory's crosswalk beside it, which was the only one of
 # the four with a committed output and no gate — so it sat at the residents layer of
 # 4 September while the layer moved under it, and a regeneration on this ticket moved
@@ -2699,6 +2747,22 @@ step "the land tract sales re-derive from their committed deposit" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_land_sales.py --self-test
+
+# T-1017. A ruling about a KIND OF ARGUMENT, and the only one in this domain that rests on a
+# measurement rather than on a page. T-0990 refused RUSSELL SAMUEL and SKINNER JOSEPH while
+# recording that the rows are at the town's own school-section sale — an argument it filed
+# rather than used. T-1017 answers it by counting, and the answer is no: the sale is enriched
+# in town-side names and cannot separate two bearers of one, so it is a prior over a
+# population and not a check on a row. The figures behind that move whenever a ruling is made
+# or the residents layer grows, which is exactly why they are asserted here and not merely
+# printed. If the sale ever ceases to be non-exclusive, ceases to be minority-upheld, or
+# ceases to print a surname twice, this step goes red naming the arm that failed and the
+# question reopens — rather than the ruling standing on a measurement that moved under it.
+step "the school-section sale still reads the way T-1017 ruled it" \
+  python3 tools/school_section_sale.py --check
+
+selftest "…and all three arms of that ruling still fail when broken" \
+  python3 tools/school_section_sale.py --self-test
 
 # T-1001. The surname fold is EXACT, and the measurement that says it should stay exact
 # is the only thing standing between this domain and a fold that looks kinder and costs
@@ -3270,6 +3334,18 @@ step "the 1835 hay-stacking limit still re-derives from committed street lines" 
 
 selftest "…and its own refusals still fire when broken" \
   python3 tools/derive_hay_limits.py --self-test
+
+# The agency relation the SAME card reads (T-1041), and gated the same way for the same
+# reason. This one is a relation between two records rather than a measurement, so what
+# a hand edit could do here is worse than a wrong number: it could hand a house a trade
+# it never had, or quietly drop the standing caveat that says a holding is only a
+# holding. Both are refusals in the tool, and the re-derivation is what keeps the card
+# showing the register rather than somebody's improvement on it.
+step "the agency relation still re-derives from the committed register" \
+  python3 tools/compile_agencies.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/compile_agencies.py --self-test
 
 check_summary
 exit $CHECK_FAILED

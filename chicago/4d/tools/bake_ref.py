@@ -99,6 +99,81 @@ def resolve(event, ref, dev_exists, integration="dev", production="main"):
     return name, f"baking {name}, the ref this run was started on"
 
 
+def base_is_live(base, pr_states, integration="dev", production="main"):
+    """Can a bake PR into `base` ever reach the integration tier?
+
+    `resolve` above answers "which tree does this bake build". It cannot answer
+    "is that tree still going anywhere", because a bake takes the better part of
+    an hour and the branch can merge while it runs. When it does, the PR opens
+    into a branch nothing will ever merge again: 196 regenerated assets with
+    nowhere to land, sitting in the open-PR count forever.
+
+    Measured on 2026-09-14 between 23:15 and 00:41 — seven bakes in that state:
+
+        bake   opened   base                                parent merged
+        #1283  23:15    fix/queue-ratchet                   22:27  (before)
+        #1285  23:49    steward/t-1004-two-men-one-card     23:09  (before)
+        #1286  23:51    steward/t-0995-shared-roll-lines    22:48  (before)
+        #1288  00:05    steward/t-0896-drain-check-capable  23:05  (before)
+        #1292  00:20    steward/t-0266-phone-picket-moire   23:50  (before)
+        #1293  00:31    steward/t-0809-rotting-pr-rule      01:18  (after)
+        #1294  00:40    steward/t-0801-prefire-viewer-wright 02:06 (after)
+
+    FIVE of the seven were built against a branch that had ALREADY MERGED before
+    the bake opened its PR — the run spent its whole bake on a dead tree. They
+    also sit in the janitor's path: `steward/bake-*` matches its sweep pattern,
+    so each one costs a full check.sh gate every hour against a base that cannot
+    move.
+
+    `pr_states` is every pull request ever opened FROM `base`, as
+    "open"/"merged"/"closed". The three answers are deliberately distinct:
+
+      * a pipeline tier is always live — the nightly bakes `dev` and PRs into it,
+        and `dev` has no pull request of its own;
+      * NO pull request at all is live, and this is the case that makes the rule
+        safe. A dispatch may bake a branch before its PR exists — that is exactly
+        the T-0454 scenario this whole script was written for, and refusing it
+        would trade one silent discard for another;
+      * every pull request merged or closed is DEAD. The branch had its say and
+        the tree moved on.
+
+    Returns (live, reason).
+    """
+    if base in (integration, production):
+        return True, f"{base} is a pipeline tier, which is always a live base"
+    states = [s.lower() for s in pr_states]
+    if not states:
+        return True, (f"{base} has no pull request yet — a dispatch may bake a branch "
+                      f"before it opens one (T-0454), so this is not a dead base")
+    if "open" in states:
+        return True, f"{base} still has an open pull request"
+    return False, (f"every pull request from {base} is already merged or closed, so a bake "
+                   f"PR into it could never reach {integration}")
+
+
+def pr_states_for(base, repo=None):
+    """Every PR state ever recorded for head branch `base`. [] when unknown."""
+    import json as _json
+    import urllib.error
+    import urllib.request
+
+    repo = repo or os.environ.get("GITHUB_REPOSITORY", "")
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
+    if not repo or not token:
+        raise RuntimeError("GITHUB_REPOSITORY and a token are both needed to ask")
+    owner = repo.split("/")[0]
+    url = (f"https://api.github.com/repos/{repo}/pulls"
+           f"?state=all&head={owner}:{base}&per_page=100")
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "chicago-4d-bake-ref",
+    })
+    with urllib.request.urlopen(req, timeout=30) as fh:
+        data = _json.load(fh)
+    return ["merged" if p.get("merged_at") else p.get("state", "") for p in data]
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--event", default=os.environ.get("GITHUB_EVENT_NAME", ""))
@@ -106,10 +181,31 @@ def main(argv=None):
     ap.add_argument("--dev-exists", choices=["0", "1"])
     ap.add_argument("--github", action="store_true")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--check-base", metavar="BRANCH",
+                    help="is a bake PR into BRANCH still able to reach the integration "
+                         "tier? prints 1 or 0")
     args = ap.parse_args(argv)
 
     if args.self_test:
         return self_test()
+
+    if args.check_base:
+        integration, production = tiers()
+        # FAIL SAFE, AND IN ONE DIRECTION ONLY. A bake that ran for 45 minutes is
+        # not thrown away because the API was briefly unreachable, so every error
+        # here answers LIVE and says so. The cost of a wrong "live" is one PR
+        # somebody closes; the cost of a wrong "dead" is a lost bake.
+        try:
+            states = pr_states_for(args.check_base)
+        except Exception as exc:                                   # noqa: BLE001
+            print(f"could not ask GitHub about {args.check_base} ({exc}) — "
+                  f"treating the base as live", file=sys.stderr)
+            print("1")
+            return 0
+        live, reason = base_is_live(args.check_base, states, integration, production)
+        print(reason, file=sys.stderr)
+        print("1" if live else "0")
+        return 0
 
     integration, production = tiers()
     if args.dev_exists is not None:
@@ -176,6 +272,31 @@ def self_test():
     # The tiers come from the manifest every other reader uses.
     case("the tiers are read from .github/pipeline.json", tiers(), ("dev", "main"))
 
+    # --- is the baked ref still going anywhere? ----------------------------
+    # THE FAULT: seven bakes on 2026-09-14 opened into a branch that had already
+    # merged. Five of them were dead before the bake even started.
+    case("a base whose PR has merged is dead",
+         base_is_live("steward/t-0809-rotting-pr-rule", ["merged"])[0], False)
+    case("…and so is one whose only PR was closed unmerged",
+         base_is_live("steward/abandoned", ["closed"])[0], False)
+    case("…and one with several, all finished",
+         base_is_live("fix/queue-ratchet", ["merged", "merged"])[0], False)
+
+    # The other three answers, each of which must stay true or the rule starts
+    # discarding legitimate bakes — the exact failure T-0454 was written about.
+    case("a base with an open PR is live",
+         base_is_live("steward/t-0848-part9-frame-independence", ["open"])[0], True)
+    case("…even when an earlier PR from it was closed",
+         base_is_live("steward/reopened", ["closed", "open"])[0], True)
+    case("a branch that has NOT opened its PR yet is live — the T-0454 dispatch",
+         base_is_live("steward/t-0429-south-water-lasalle", [])[0], True)
+    case("dev is live and has no PR of its own — the nightly must never be skipped",
+         base_is_live("dev", [])[0], True)
+    case("main is a tier too, so the rule never calls the production tier dead",
+         base_is_live("main", [])[0], True)
+    case("the states are read case-insensitively, as the API spells them",
+         base_is_live("steward/x", ["MERGED"])[0], False)
+
     # --- the drift guards --------------------------------------------------
     # Comments stripped first: the workflow step quotes the line it replaced, and
     # a guard that reads prose cannot tell a fix from a description of one.
@@ -189,6 +310,20 @@ def self_test():
          "--base dev" in live, False)
     case("…and the base comes from the bake job's own output",
          "needs.bake.outputs.base" in live, True)
+
+    # A correct rule the workflow has stopped consulting is the same bug in a
+    # different hat — the guard the original T-0454 drift checks above exist for.
+    case("the workflow asks whether the baked ref is still live",
+         "--check-base" in live, True)
+    case("…and open-pr refuses to open a PR into a base that is not",
+         "needs.bake.outputs.base_live == '1'" in live, True)
+    # ASKED TWICE, AND THE SECOND TIME IS THE ONE #1303 NEEDED. The job-start
+    # answer is three quarters of an hour stale by the time the PR is opened;
+    # #1303's base was live at 02:37:50 and merged at 02:44:20, and the PR opened
+    # at 03:16 into a branch nothing would ever merge again. A guard that only
+    # runs before the work cannot see a base die during it.
+    case("…and it asks AGAIN at the moment the PR is opened, not only at job start",
+         live.count("--check-base") >= 2, True)
 
     for ok, name, got, want in cases:
         if ok:

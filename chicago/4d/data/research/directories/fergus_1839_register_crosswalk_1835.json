@@ -131,7 +131,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1302
+   "n": 1306
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -289,7 +289,7 @@
     "carry_rule": "What a match may carry, and it depends on WHICH TABLE it landed in. A match on printed page 38, or on any row of the mayors' table, is 1839-or-later evidence: it says the man held that office in that year and was therefore in Chicago in that year, it is written with the row's own describes_date and never as an 1835 fact, and the person's grade does not move on it alone — a later appearance is corroboration of CONTINUED RESIDENCE, not of July 1835. A match on the sheriffs' rows of 1831, 1832, 1834 or 1836 is different in kind: the office is contemporary with the town, the 1834 row's term covers the scene date outright, and such a match carries reaches_scene. Even there the SOURCE is a retrospect — a table running to 1874, set in 1876 out of Old Settlers' recollections per the compiler's warning on printed page 3 — so it may be cited as a contemporary office and may not be graded `documented` without a second, nearer record. The ward on printed page 38 is a ward of the CITY of 1839 and places no house in the town of 1835."
    },
    {
-    "name": "Erastus Selden Bowen",
+    "name": "Erastus Bowen",
     "same_man_reprinted": false,
     "rule": "Surname 'Bowen' folds to the same string as the register entry's, and the given name of both begins E.",
     "entries_1839": [

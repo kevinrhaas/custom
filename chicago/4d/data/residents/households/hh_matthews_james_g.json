@@ -52,7 +52,6 @@
    "name": "James G. Matthews",
    "relationship": "head",
    "grade": "attested",
-   "ladder_rule": "G1a",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-05-20"
@@ -78,7 +77,15 @@
      "chicago_democrat_1833_1835"
     ],
     "regraded_on": "2026-09-04",
-    "rule": "G1a"
+    "rule": "G1a",
+    "refusals": [
+     {
+      "regraded_on": "2026-09-04",
+      "rule": "G3",
+      "withheld": "the downgrade to inferred",
+      "reason": "This card rests on 1 thing(s) the consolidation did not read — chicago_voter_lists_1833_1835_irad. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
+     }
+    ]
    },
    "civic_evidence": [
     {
@@ -100,6 +107,20 @@
      "describes_date": "1835-05-20",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1a"
+    }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R3",
+     "cluster": "matthews-j",
+     "weighed_against": [
+      "matthews_j_d"
+     ],
+     "referred_to": "rule",
+     "for_merge": "`Matthews, J. D.` stands on the 1835 poll list and `James G. Matthews` on the letter list of 20 May 1835 — the same town, the same year, one surname, one forename initial.",
+     "against_merge": "D against G, both printed, and a poll roll and a letter list are exactly the two kinds of source R3 describes as 'no further than a list'. Neither card knows a trade, a dwelling or an arrival. R3."
     }
    ]
   }

@@ -14,10 +14,10 @@
   ],
   "counts": {
     "roll_records": 941,
-    "residents_considered": 1302,
+    "residents_considered": 1306,
     "residents_matched_one_line": 81,
     "residents_ambiguous": 36,
-    "residents_surname_only_refused": 321
+    "residents_surname_only_refused": 323
   },
   "matched": [
     {
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "name": "Erastus Selden Bowen",
+      "name": "Erastus Bowen",
       "person_id": "bowen_erastus_selden",
       "household_id": "hh_bowen_erastus_selden",
       "grade": "attested",
@@ -1425,9 +1425,9 @@
       ]
     },
     {
-      "name": "J Ambrose Wight",
-      "person_id": "wight_j_ambrose",
-      "household_id": "hh_wight_j_ambrose",
+      "name": "J F Wight",
+      "person_id": "wight_j_f",
+      "household_id": "hh_wight_j_f",
       "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "rule": "Surname 'Wight' folds to the same string as the roll line's, and the given name of both begins J.",
@@ -2118,7 +2118,7 @@
       "name": "E F Skinner",
       "person_id": "skinner_e_f",
       "household_id": "hh_skinner_e_f",
-      "grade": "attested",
+      "grade": "inferred",
       "source_id": "second_presbyterian_chicago_1892",
       "rule": "Surname 'Skinner' folds to the same string as the roll line's, and the given name of both begins E.",
       "roll_lines": [
@@ -2900,6 +2900,24 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 5,
       "rule": "The surname 'Barnard' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'J B Barnard'. A surname-only agreement is a refusal."
+    },
+    {
+      "name": "J H Barnard",
+      "person_id": "barnard_j_h",
+      "household_id": "hh_barnard_j_h",
+      "grade": "attested",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 5,
+      "rule": "The surname 'Barnard' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'J H Barnard'. A surname-only agreement is a refusal."
+    },
+    {
+      "name": "J R Barry",
+      "person_id": "barry_j_r",
+      "household_id": "hh_barry_j_r",
+      "grade": "inferred",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 1,
+      "rule": "The surname 'Barry' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'J R Barry'. A surname-only agreement is a refusal."
     },
     {
       "name": "John S. Barry",
@@ -4252,13 +4270,13 @@
       "rule": "The surname 'King' stands on the Second Presbyterian roll and no line under it carries the initial 'B' of 'Byron King'. A surname-only agreement is a refusal."
     },
     {
-      "name": "John Lyle King",
-      "person_id": "king_john_lyle",
-      "household_id": "hh_king_john_lyle",
+      "name": "J D King",
+      "person_id": "king_j_d",
+      "household_id": "hh_king_j_d",
       "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 8,
-      "rule": "The surname 'King' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'John Lyle King'. A surname-only agreement is a refusal."
+      "rule": "The surname 'King' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'J D King'. A surname-only agreement is a refusal."
     },
     {
       "name": "Nehemiah King",

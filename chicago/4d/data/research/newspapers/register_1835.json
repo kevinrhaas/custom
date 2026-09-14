@@ -12,7 +12,7 @@
     "structures": 384,
     "structures_sharing_a_name": 37,
     "streets": 77,
-    "resident_persons": 1304
+    "resident_persons": 1308
   },
   "counts": {
     "businesses": {
@@ -48,9 +48,9 @@
     "persons": {
       "total": 2685,
       "by_action": {
-        "enrich": 1356,
-        "new_resident": 1302,
-        "replace_invented": 27
+        "enrich": 1360,
+        "new_resident": 1300,
+        "replace_invented": 25
       },
       "letter_list_only": 1970
     },
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 876,
+        "none_recorded": 880,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 882,
+      "households_total": 886,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -9161,7 +9161,7 @@
       "last_seen": "1834-07-16",
       "action": "enrich",
       "action_target": "borland_andrew_w",
-      "action_note": "data/residents/ already holds this person as borland_andrew_w (hh_borland_andrew_w, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_note": "data/residents/ already holds this person as borland_andrew_w (hh_borland_andrew_w, inferred) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_a_n_fullerton",
@@ -12690,9 +12690,9 @@
       "letter_list_only": false,
       "first_seen": "1834-09-10",
       "last_seen": "1834-09-17",
-      "action": "replace_invented",
-      "action_target": "merchant",
-      "action_note": "A documented merchant. The town invented 1 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "carli_p_s",
+      "action_note": "data/residents/ already holds this person as carli_p_s (hh_carli_p_s, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
     },
     {
       "id": "person_carlton_francis",
@@ -21006,9 +21006,9 @@
       "letter_list_only": false,
       "first_seen": "1834-06-11",
       "last_seen": "1834-06-18",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "wight_j_f",
+      "action_note": "data/residents/ already holds this person as wight_j_f (hh_wight_j_f, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
     },
     {
       "id": "person_j_farson",
@@ -21061,9 +21061,9 @@
       "letter_list_only": false,
       "first_seen": "1835-06-04",
       "last_seen": "1835-06-04",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
+      "action": "enrich",
+      "action_target": "barnard_j_h",
+      "action_note": "data/residents/ already holds this person as barnard_j_h (hh_barnard_j_h, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
     },
     {
       "id": "person_j_h_collins",
@@ -23724,8 +23724,8 @@
       "first_seen": "1834-09-10",
       "last_seen": "1834-12-24",
       "action": "enrich",
-      "action_target": "king_john_lyle",
-      "action_note": "data/residents/ already holds this person as king_john_lyle (hh_king_john_lyle, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "king_j_d",
+      "action_note": "data/residents/ already holds this person as king_j_d (hh_king_j_d, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_jones_mr",
@@ -28706,9 +28706,9 @@
       "letter_list_only": false,
       "first_seen": "1834-07-09",
       "last_seen": "1834-07-09",
-      "action": "replace_invented",
-      "action_target": "tavern_keeper",
-      "action_note": "A documented tavern_keeper. The town invented 2 household(s) of this trade because no documented person was available; this is a candidate to retire one."
+      "action": "enrich",
+      "action_target": "carli_p_s",
+      "action_note": "data/residents/ already holds this person as carli_p_s (hh_carli_p_s, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
     },
     {
       "id": "person_p_t_russell",

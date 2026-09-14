@@ -49,6 +49,7 @@ const COPIES = [
   ['data/liberties.json', 'data/liberties.json'],
   ['data/town_census.json', 'data/town_census.json'],
   ['data/reconstruction/1835_hay_limits.json', 'data/reconstruction/1835_hay_limits.json'],
+  ['data/reconstruction/1835_agencies.json', 'data/reconstruction/1835_agencies.json'],
   ['data/terrain/', 'data/terrain/'],
   ['data/sidecars/', 'data/sidecars/'],
   ['data/residents/', 'data/residents/'],

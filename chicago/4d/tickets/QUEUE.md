@@ -137,13 +137,8 @@
 # --- rather than folded so one run carries the context of the last.
 
 T-1114 — Three hundred and four Norris 1844 entries print a business street inside the trade line with no place-abbreviation, and 'b' for between is being read as the start of an address rather than a qualifier on the street before it
-T-1025 — The directories spend writes the SOURCE onto a card and not the ENTRY, so all 264 of that domain's unwritten rulings are matches that reached a card which cannot say which printed line it rests on
-T-1021 — Seven Norris 1844 firms are read as people because the scanner set their ampersand as '<fc', '6c' or 'it', and the firm test never fired
 T-1023 — Five Norris 1844 entries begin at the trade with no name at all — turned lines the entry-boundary rule mis-cut, and margin droppings, needing a ruling each
-T-1004 — Four cards each gather two men the corpus itself distinguishes by a forename or an initial — Bowen, King, Taylor, Thompson
-T-1005 — Seven cards are flagged letter_list_only while carrying press readings that are not letter lists — Chas. H. Chapman carries three
-T-1003 — The 1840 head crosswalk gathers its 1835 bearers by surname and folds it exactly, so a ruled card merge is invisible to it: Ed. Kimberley fell to L2 when T-1001 landed
-T-1017 — Is buying at the town's OWN school-section sale a check on a town-side name, or still a bare name? SKINNER JOSEPH and RUSSELL SAMUEL both turn on it
+T-1119 — Three gazetteer names parse to inert keys for a reason the rank rule does not own: a surname-first entry with no comma inversion, an [uncertain: …] wrapper read as a forename, and a rank-and-regiment line that names nobody
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 
 # --- ==========================================================================
@@ -153,7 +148,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
 # --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
 
-T-1041 — A house's agency reaches no card: the walkthrough shows trades and proprietors and has no place for a relation
 T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
 
 # --- ==========================================================================
@@ -164,9 +158,7 @@ T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad
 # --- on ground the heightfield does not cover. It is the north-bank twin of T-0219, which finished
 # --- the south side on 09-12 and unblocked the band above.
 
-T-1067 — The modelled ground stops at n +400 m and all of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield does not cover
-T-0801 — The pre-fire viewer at /chicago/pre-fire/viewer/ shows 1834 through Hathaway only: put the Wright sheet beside it as the year's second view, with its provenance row, its checksum, and the mirror re-copied
-T-0891 — The Fort Cemetery's polygon cannot enter 1835_no_build_ground.json until measure_no_build_ground.py can resolve a ring read off a plate
+T-1123 — Extend the modelled ground north to n +1120, so Kinzie's Addition and the North Branch's traced banks stand on measured ground
 
 # --- ==========================================================================
 # --- 4. VISIBLE REFINEMENT — the town changing rather than growing
@@ -239,9 +231,11 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 T-0999 — Nothing in the gate can see a ruling that is simply GONE: a smaller resident_rulings.json is a legal one, and #1055 lost forty judgements under a green check.sh
 T-1029 — Three derived artefacts are stale on dev and nothing re-derives them: civic/crosswalk.json, civic/voter_crosswalk.json and layer_reads_baseline.json's record counts
 T-0848 — Two smoke checks fail only when mobile stages 9-12 run together — the facade-tone and shadow-reach sensitivity deltas collapse in a combined range
-T-0809 — The janitor gates the branch un-merged and drops a conflict in silence, and the lane outruns its own merge lap
-T-0871 — The residents-manifest rebuild has no self-test and silently accepts any flag: nothing proves its assertions fire, and --write typo'd is a green check
-T-0896 — Drain the 18 --check-capable tools tools/check.sh never runs: gate each or record why it cannot be gated
+T-1112 — generators/placeholder.py --check is red: _CONFIDENCE carries two levels, so the confidence view is untestable against the asset built to test it
+T-1111 — voter_crosswalk.json is stale against read_voter_lists.py, and 35 of 345 voters stand unmatched behind it
+T-1110 — st_marys_baptisms_crosswalk.json is hand-edited away from what read_st_marys_baptisms.py rebuilds
+T-1109 — pass_14_findings.json no longer matches what complete_resident_research_pass_14.py re-derives
+T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
@@ -305,4 +299,4 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
 T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
-
+T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
