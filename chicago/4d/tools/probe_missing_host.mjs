@@ -65,7 +65,12 @@ const server = http.createServer((req, res) => {
 await new Promise((r) => { server.listen(PORT, r); });
 const base = `http://127.0.0.1:${PORT}/walk/?year=${YEAR}`;
 
-const browser = await chromium.launch();
+// The same launch tools/smoke_renderer.mjs uses: without PW_EXECUTABLE this
+// tool can only run on a machine carrying the exact browser build Playwright
+// installed for itself, which is not the runner this project gates on.
+const browser = await chromium.launch({
+  executablePath: process.env.PW_EXECUTABLE || undefined,
+});
 
 /** Boot once, optionally refusing one structure's asset, and read the scene. */
 async function boot(blockId) {
