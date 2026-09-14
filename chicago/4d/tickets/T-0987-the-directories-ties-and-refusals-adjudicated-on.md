@@ -24,6 +24,44 @@ and **the run that closes a stretch files the next one's ticket before it closes
 the worked example). It never closes on "there was nothing left" — it closes when the pools
 below are empty, and says so with the counts.
 
+**OWNER, 2026-09-14, AMENDING BOTH HALVES OF THAT — the closing condition and the unit of
+work.** Asked how many more runs this would take, the answer was measured rather than
+estimated, and it was bad: fourteen stretches in, the pools stand at 1,807 and the largest
+has moved 6 %.
+
+| pool | at filing | 2026-09-14 | change |
+|---|---|---|---|
+| ties the rule cannot decide | 196 | **52** | −144 |
+| initial-absent refusals | 1,100 | **1,032** | −68 |
+| forename-disagreed refusals | 142 | **194** | **+52** |
+| could-carry trades and addresses | — | **529** | — |
+
+The ties pool is nearly spent and that is the programme working. The other three are not,
+and one of them GREW: stretches 10-14 were reader repairs — the surname the crosswalk
+cannot see, the separator set as a point, the age read as a surname, the whole printed name
+nothing had read past its first letter — and reading the page better finds more
+disagreements than it settles. A programme that can add to its own backlog faster than it
+drains it does not close on an empty pool, however long it runs. At the observed rate the
+initial-absent pool alone is about two hundred more stretches.
+
+It is still WORTH DOING, and that was measured too: **1,175 of the town's 1,308 people
+(90 %) carry `occupation: none_recorded`**. The directories are the source that can fix
+that, and 483 rulings have already carried 212 facts onto 234 people. The value is real;
+the METHOD was the grind. So two things change and the goal does not:
+
+**1. IT CLOSES ON YIELD, NOT ON AN EMPTY POOL.** When a stretch carries fewer than **five**
+new facts onto cards, the seam is exhausted: close this ticket and write the final counts
+and the unspent remainder into it, exactly as clause 4 already requires. An unemptied pool
+is then a STATED liberty and not a silence — "surname present, printed initial absent:
+N refusals not individually overturned, and why" — which is the answer this repository
+prefers to an absence anyway.
+
+**2. THE UNIT OF WORK IS A PAGE, NOT A NAME.** One page-image read per refusal is what
+makes the initial-absent pool cost two hundred runs; the same image carries dozens of
+entries. A stretch against that pool reads a PAGE and overturns every refusal on it,
+reporting how many the page settled. Nothing about the evidence standard changes — each
+overturn is still `scan_verified` and still names its leaf.
+
 ## What the directories are, measured, so the work is the right work
 
 Fergus 1839, Fergus 1843 and Norris 1844 are **transcribed in full** — 8,258 claims across
@@ -78,9 +116,17 @@ refusal is usually right.
 5. Gates green; the changelog entry says what a visitor can now see — a trade on a card, a
    business on a face — or states plainly that this stretch placed nothing and why.
 6. **Before closing, file the next stretch with `ticket.mjs new "…" --after T-0987`**, naming
-   its pool and its count from step 4. If every pool above reads 0, close this ticket instead
-   and write the final counts into it. Do not file more than the next stretch; this ticket is
+   its pool and its count from step 4. Do not file more than the next stretch; this ticket is
    the programme and the next stretch is its cursor.
+7. **THE CLOSING TEST IS YIELD** (owner, 2026-09-14, amended at the head of this ticket).
+   Close this ticket instead of filing another stretch when EITHER every pool reads 0 — the
+   original condition, still good — OR this stretch carried **fewer than five** new facts
+   onto cards. Write the final counts AND the unspent remainder into it: a pool left
+   standing is a stated liberty, named with its size and its reason, never a silence.
+8. **A STRETCH AGAINST THE INITIAL-ABSENT POOL READS A PAGE, NOT A NAME.** The same image
+   carries dozens of entries; one read per refusal is what made that pool cost two hundred
+   runs. Report how many refusals the page settled. The evidence standard is unchanged —
+   each overturn is `scan_verified` and names its leaf, per clause 2.
 
 ## What this is not
 

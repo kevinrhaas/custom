@@ -168,7 +168,6 @@
 # --- namesake in the residents layer and no ruling on either, which is the state a
 # --- consolidation cannot use, because an absent merge reads exactly like a pair nobody has
 # --- looked at.
-T-1128 — Four adults of St Mary's register have an exact namesake in the residents layer and no ruling on either: Solomon Juneau, Josette Chevalier, Patrick Carroll and Mary Durbin
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
 
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
@@ -278,6 +277,9 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
 # --- re-deriving them.
 
+
+
+T-1129 — Four residents rest only on a Bear Creek, Sangamon County marriage, and their cards say the church list names them at Chicago
 T-1109 — pass_14_findings.json no longer matches what complete_resident_research_pass_14.py re-derives
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
@@ -354,3 +356,4 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+
