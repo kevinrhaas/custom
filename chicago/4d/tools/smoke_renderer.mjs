@@ -6678,6 +6678,68 @@ for (const [label, viewport, touch] of [
       && popLibOpen.evidenceBack,
       `pane shown ${popLibOpen.paneShown}, ${popLibOpen.before} -> ${popLibOpen.after}`);
 
+    // --- the agency held here, on the card --------------------------------
+    // T-1041. A HOLDING IS A RELATION, and the card had no place for one: the
+    // register has recorded since T-0410 that Hubbard & Co. of La Salle Street was
+    // appointed agent for the Howard Fire Insurance Company of New-York, and that
+    // three weeks before the scene date the identical notice starts running in the
+    // singular over one man. Nothing read it. Pinned on the RENDERED card for the
+    // same reason `documented_range` is: a compiled relation nothing renders is
+    // exactly the failure this ticket reports, and it is green everywhere else.
+    //
+    // Three reads, and the second and third are the discriminating ones. A card
+    // that printed the whole file would pass the first alone.
+    const popAgency = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = document.querySelector('#popup .pop-agency');
+        return {
+          present: !!sec,
+          text: sec?.textContent?.replace(/\s+/g, ' ').trim() ?? '',
+          refused: !!document.querySelector('#popup .pop-agency .agency-refused'),
+          cites: [...document.querySelectorAll('#popup .pop-agency .agency-cites code')]
+            .map((n) => n.textContent.trim()),
+        };
+      };
+      return {
+        hubbard: read('recon_1835_blk_randolph_wells_d2_07'),
+        jonesKing: read('recon_1835_blk_south_water_franklin_d5_01'),
+        sauganash: read('sauganash_hotel'),
+      };
+    });
+    check(`${label}: the card names the agency this house held, and its principal`,
+      popAgency.hubbard.present
+      && /Hubbard & Co\. held the agency for the Howard Fire Insurance Company/.test(popAgency.hubbard.text)
+      && /city of New-York/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(0, 240));
+    // The window is printings and says so, and it is dated in words rather than ISO.
+    check(`${label}: it dates the holding by its printings and calls them printings`,
+      /printed from 2 July 1834 to 20 May 1835/.test(popAgency.hubbard.text)
+      && /first and last PRINTING/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(0, 400));
+    // Every other line on this card cites its source; so does this one.
+    check(`${label}: the holding cites the printings it rests on`,
+      popAgency.hubbard.cites.includes('chicago_democrat_1834_07_02#c048')
+      && popAgency.hubbard.cites.length === 3,
+      `got [${popAgency.hubbard.cites.join(', ')}]`);
+    // THE CAVEAT IS THE ACCEPTANCE CLAUSE. "Nothing on the card implies the holder
+    // traded in the principal's line, held a roof for it, or was a partner in any
+    // house he signed for." It is written in the compiled file beside the relation,
+    // so this pins the rendered text and `compile_agencies.py --check` pins the file.
+    check(`${label}: the card says a holding is only a holding`,
+      /A holding is a relation and nothing more/.test(popAgency.hubbard.text)
+      && /partner in any house that signed for it/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(-260));
+    // The REFUSED holding is legible, on the house the reading was made about.
+    check(`${label}: a refused holding is on the card of the house it was refused for`,
+      popAgency.jonesKing.present && popAgency.jonesKing.refused
+      && /Refused:/.test(popAgency.jonesKing.text),
+      popAgency.jonesKing.text.slice(0, 240));
+    // And the discriminating case: a building holding no agency shows no section.
+    check(`${label}: a house that held no agency says nothing about one`,
+      !popAgency.sauganash.present,
+      `sauganash got "${popAgency.sauganash.text.slice(0, 120)}"`);
+
     // --- was it here at all? ----------------------------------------------
     // The claim the whole scene rests on, and the last one to reach the card.
     // `popup.js` read `documented_range` from the moment it was written and
@@ -11738,6 +11800,40 @@ for (const [label, viewport, touch] of [
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
+    // --- the agency on the PERSON'S card (T-1041) --------------------------
+    // The relation has two ends and they are two different surfaces: the house's
+    // end is on the building card in part 3, and the man's end is here, on his own
+    // town card in the drawer. The agency LEFT Hubbard & Co. for E. K. Hubbard three
+    // weeks before the scene date, so his card is the one where a visitor learns
+    // what was true on the day — and it is rendered by the same module, which is
+    // what stops the two ends describing one holding two ways.
+    const personAgency = await page.evaluate(async () => {
+      const mount = document.getElementById('residents');
+      const row = mount ? mount.querySelector('details.res-hh[data-id="hh_hubbard_elijah_kent"]') : null;
+      if (!row) return { found: false, text: '' };
+      row.open = true;
+      for (let i = 0; i < 100 && row.querySelector('.res-hh-body .legend-note'); i++) {
+        await new Promise((r) => setTimeout(r, 50));
+      }
+      const sec = row.querySelector('.pop-agency');
+      return {
+        found: true,
+        present: !!sec,
+        text: sec ? sec.textContent.replace(/\s+/g, ' ').trim() : '',
+      };
+    });
+    check(`${label}: a man who held an agency says so on his own card`,
+      personAgency.found && personAgency.present
+      && /E\. K\. Hubbard held the agency for the Howard Fire Insurance Company/.test(personAgency.text)
+      && /printed from 20 June 1835 to 5 August 1835/.test(personAgency.text),
+      personAgency.found ? personAgency.text.slice(0, 260) : 'no hh_hubbard_elijah_kent row');
+    // …and the caveat travels with it, because it is the file's sentence and not
+    // the building card's.
+    check(`${label}: the person's card carries the same caveat as the house's`,
+      /A holding is a relation and nothing more/.test(personAgency.text)
+      && /the notice was running on the day you are standing in/.test(personAgency.text),
+      personAgency.text.slice(-260));
+
     // T-0524, and the shape every figure below now takes. These assertions carried
     // the layer's SIZE as a literal — 920 households, 956 people, 193 evidenced,
     // 764 off-card, 150 reviews — and a test that hardcodes a count rots the next
