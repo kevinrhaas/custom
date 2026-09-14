@@ -1,7 +1,7 @@
 ---
 id: T-1120
 title: The identity master's M2 folds an initial-only forename onto a full one on the LEADING initial alone, so B. S. Sherman of the 1840 census attaches to Benjamin F. Sherman across a disagreeing middle initial
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-14
+pr: 1314
+claimed_by: run 9/13/2026, 11:29:57 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-14T06:30:55.028Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34806090302
 ---
 
 The identity master's M2 folds an initial-only forename onto a full one on the LEADING initial alone, so B. S. Sherman of the 1840 census attaches to Benjamin F. Sherman across a disagreeing middle initial.

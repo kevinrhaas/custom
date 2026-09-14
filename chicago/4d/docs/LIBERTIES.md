@@ -10516,9 +10516,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 401 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 414 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 401 people
+**Scope:** `residents.persons[civic_mint]` — 414 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10620,9 +10620,17 @@ identities whose ONLY evidence inside the scene window was such a reading: with 
 the ladder reaches nothing, and a container the ladder cannot reach is not minted. The
 refusals are not dropped — each is carried in `identity_master.json` under evidence class
 `newspaper_out_of_town`, with the printed place that decided it, so the arithmetic is on the
-record and a later page that puts one of these men at Chicago after all can overturn it. The number
-this liberty declares is the number of containers standing, and it will fall again as the
-remaining rulings are made.
+record and a later page that puts one of these men at Chicago after all can overturn it. T-1120 took it to 405 on 2026-09-14, and it is the FIRST RISE this entry records: every move above it was a card the town was holding twice, or a man who was never here. This one is a man the town was holding once and should have been holding twice. M2 — the rule that attaches an initial-only forename to the one full forename of that surname — compared the LEADING initial and nothing else, so `B. S. Sherman` of the 1840 census went onto `Sherman, Benj. F.` across a middle initial both readings print and neither shares. Forty readings folded that way; R7 refuses them now, on R4's own reasoning one position to the right, and four of the forty were the only evidence inside the scene window that reached a minted container, so four containers stand where one did. Two of the four cost a NAME to gain a man: the 1835 poll list's `King, J. D.` had been carrying John Lyle King into the town, and the newspapers' `J. F. Wight` had been carrying J. Ambrose Wight, so each of those two now stands under the initials his own source prints instead of under a fuller name a fold supplied. That is the trade this liberty is declaring, and it is the conservative direction: a name the page does not set is not an improvement on one it does. The number this liberty declares is the number of containers standing, and it will move again as the remaining rulings are made.
+
+**And nine more, on an 1834 committee roll (T-0997, 2026-09-13).** The Chicago Democrat of 29 October 1834 prints the roll of a committee a town meeting appointed against gambling, and the column it stands in is the worst OCR in the run — two printed columns cut and interleaved line by line — so no reading pass had ever taken a claim off that page. Read at the character level, it names twenty-one men in the roll and fourteen more in the report around it. Nine of them the ladder had never seen, so this entry's count rises from 405 to 414 — the same conservative direction as T-1120's four, and for the same reason: men the town was not holding at all. Daniel Whittier, E. B. Mosely, H. Ven de Bogart, L. C. Saxton, L. Clarke, G. South, G. Springs, J. M. Marksall and William George Sherman each get a container here and nowhere else. Three others the town already carried under fuller names and were folded on written rulings the same day — W. H. Kennicott onto the surgeon dentist, C. L. Harmon onto Charles Loomis Harmon of the dry-goods house, J. S. Wright onto John S. Wright — so the rise is nine and not twelve. AND FIVE MORE NAMES ON THAT ROLL ARE DELIBERATELY NOT HERE: the crop
+cuts `A. N. Ful…`, `M. M'Cle…`, `H. G. Hub…`, `… Hau…` and `Hon. R. J. …` in the middle of
+the surname, and a name the page stops halfway through is recorded as a position in the
+claim and given no entity, so it mints nobody. That refusal is not only editorial. It was
+measured: `tools/consolidate_resident_evidence.py` splits a name into surname and forename
+with the brackets already stripped, so `H. G. Hub[…]` reaches `mint_civic_residents.py` as
+the plain name `H G Hub`, its own bracketed-as-uncertain refusal cannot fire on it, and the
+town gains a card headed `The Hub household`. Five such cards were minted and deleted while
+this ticket was being written.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
@@ -11692,3 +11700,62 @@ none) · **L137** (the far card's aggregate width, which this deliberately does 
 (the ground-cover reading this replaces), **T-0209** (the split, and the bloom's own silhouette
 model this is brought into line with).
 **Recorded:** 2026-09-13 (T-1106).
+
+### L237 — The town is drawn past the edge of the ground it is drawn on: one street ribbon runs 630 m on a constant, and two thirds of the box's edge is a door that only opens outward
+**Decision:** the modelled ground for `e1834_harbor_cut` is a box, and the committed town is
+not confined to it. Where a record stands outside the box the renderer does not refuse it: the
+`Heightfield` in `renderers/web/js/terrain.js` answers `sample()` with `fallbackY` — the
+constant **0**, the summer-1835 water surface — at any position its `contains()` refuses, and
+every module that seats geometry on the ground seats it on that constant out there. Measured by
+`tools/measure_north_of_box.mjs` and committed at `data/terrain/north_of_box_reading.json`:
+
+- **One drawn ribbon leaves the ground.** Wolcott Street is committed from N +108 to
+  N +1029.71 and the box stops at N +400, so **629.72 m of its 921.73 m** — 68.3 % — is drawn
+  at y = 0 rather than on a measurement. It is the only one: the other 27 drawn streets are
+  inside the box to within a sub-cell sliver of kerb.
+- **Nothing else north of the wall is drawn at all**, and that is the half a reader would
+  otherwise assume wrongly. Kinzie's Addition's streets were committed by T-1060 as
+  `opened: false, track_width_m: 0` — platted, unopened, unworn — and `streets.js`
+  § `createStreets` filters exactly those records out before it builds anything. 47 of the 49
+  such records stand off the modelled ground, 47 512 m of line, and every one of them draws
+  nothing. The Addition is a claim about ground this scene does not model, not a fiction it
+  paints.
+- **The edge is a one-way door.** `walker.js` allows a 0.35 m step up and charges nothing for a
+  step down, so where the modelled ground stands more than 0.35 m above the constant a visitor
+  may walk out of the box and may not walk back. That is **3 958 m of the box's 5 900 m
+  perimeter (67.1 %)**: 79.5 % of the north wall, 70.4 % of the south, all of the west, and
+  none of the east, which is the lake and stands below the constant. The deepest is 2.775 m.
+
+**Why:** because the alternative is a worse liberty, and this is the honest order. The scene
+grows by having its research committed first and its ground caught up afterwards — the box's
+own `n_min` moved from −400 to −530 only once the South Branch had been traced past it — so a
+street layer that reached further than the field has been the normal state of this project, not
+a fault in it. A renderer that refused to draw a record off the field would silently delete
+committed research; a renderer that extrapolated the field would manufacture ground out of
+nothing, which is the one thing this project may never do. A flat constant at a stated datum is
+the only third option, and `streets.js` already refuses to *refine* a panel against it for
+exactly that reason: "refining against a constant would manufacture cliffs at the map border."
+
+**What it is NOT:** it is not a claim that the land north of Kinzie Street was flat, or at lake
+level, or under water. `isWater()` tests the same sample against −0.10 m, so the constant reads
+as dry land rather than as lake, and the Addition is therefore drawn — where anything is drawn
+at all — standing on nothing that was measured. No elevation anywhere outside the box is
+evidence, and none of it is exported: `heightfield.bin` carries samples only for the box, and
+the ground mesh ends at its skirt.
+
+**What bounds it:** the reading is gated. `tools/check.sh` runs
+`tools/measure_north_of_box.mjs --gate`, which holds the committed numbers against a
+re-derivation, so neither the box nor the street layer can move underneath this entry without
+the gate going red. The gate deliberately asserts **agreement and not smallness** — nothing in
+the repo today makes these numbers small, and a gate that demanded it would only ever be red.
+
+**How to resolve:** extend the box. `terrain_spec.json` § `box_derivation.n_max` now argues the
+number this would take — **+1120**, from the North Branch's banks and the lake shore, both now
+traced to N +1075…+1121, past the trace end that set +400 — and states its cost: a 77 % larger
+field, and 288 new rows of ground for which the spec carries no micro-relief, no substrate zone,
+no shore run and no flora belt. That is a build, not a number change, and it is its own ticket.
+Related: **L9** (the walker's other unreachable edge, the channel barrier) · tickets **T-1067**
+(this), **T-1060** and **T-1061** (the Addition's streets and blocks), **T-1062** (the viewpoint
+that found it), **T-0219** (the southern extension, the same move on the other wall), **T-0110**
+(the refusal to refine a panel against the constant).
+**Recorded:** 2026-09-14 (T-1067).

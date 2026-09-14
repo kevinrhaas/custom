@@ -8,11 +8,11 @@
  "what_a_match_here_does_not_mean": "It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload.",
  "rule": "SURNAME must match after both are folded (case, punctuation and the transcriber's usual confusions removed), AND the first initial of the given name must match. A surname-only agreement is a REFUSAL, however good it looks. Where one 1835 person meets more than one entry the match is AMBIGUOUS and is filed as such; where two 1835 people meet one entry it is CONTESTED and no match is made.",
  "counts": {
-  "residents_considered": 1293,
+  "residents_considered": 1306,
   "matched_one_entry": 63,
   "matched_more_than_one_ambiguous": 17,
   "one_entry_contested_by_two_residents": 17,
-  "surname_present_initial_absent_refused": 243,
+  "surname_present_initial_absent_refused": 245,
   "matches_carrying_a_birth_year": 42,
   "matches_carrying_a_date_of_death": 57
  },
@@ -984,6 +984,33 @@
    "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
   },
   {
+   "resident": "J D King",
+   "person_id": "king_j_d",
+   "household_id": "hh_king_j_d",
+   "grade_1835": "attested",
+   "occupation_1835": "none_recorded",
+   "rule": "Surname 'King' folds to the same string as the entry's, and the given name of both begins J.",
+   "resident_given_is_initial_only": true,
+   "entries": [
+    {
+     "record": "fdn0362",
+     "as_read": "King, John Lyle, lawyer, died April 17, 1892",
+     "trade_or_office": "lawyer",
+     "manner_of_death": "died",
+     "place_of_death": null,
+     "death_date": "1892-04-17",
+     "age_as_printed": null,
+     "birth_year_earliest": null,
+     "birth_year_latest": null,
+     "birth_year_arithmetic": null
+    }
+   ],
+   "could_carry": [
+    "date_of_death"
+   ],
+   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
+  },
+  {
    "resident": "J. A. Marshall",
    "person_id": "marshall_j_a",
    "household_id": "hh_marshall_j_a",
@@ -1174,33 +1201,6 @@
    ],
    "could_carry": [
     "birth_year",
-    "date_of_death"
-   ],
-   "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
-  },
-  {
-   "resident": "John Lyle King",
-   "person_id": "king_john_lyle",
-   "household_id": "hh_king_john_lyle",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "rule": "Surname 'King' folds to the same string as the entry's, and the given name of both begins J.",
-   "resident_given_is_initial_only": false,
-   "entries": [
-    {
-     "record": "fdn0362",
-     "as_read": "King, John Lyle, lawyer, died April 17, 1892",
-     "trade_or_office": "lawyer",
-     "manner_of_death": "died",
-     "place_of_death": null,
-     "death_date": "1892-04-17",
-     "age_as_printed": null,
-     "birth_year_earliest": null,
-     "birth_year_latest": null,
-     "birth_year_arithmetic": null
-    }
-   ],
-   "could_carry": [
     "date_of_death"
    ],
    "carry_rule": "Whatever is carried is carried as evidence of a DEATH and of an interval the birth falls in, never as an 1835 fact and never as a grade. T-0513 consolidates and T-0514/T-0515 apply; this file changes no record."
@@ -3670,6 +3670,13 @@
    "rule": "The surname 'Green' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J Green'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
+   "resident": "J R Barry",
+   "person_id": "barry_j_r",
+   "surname_in_the_list": "Barry",
+   "candidates": 1,
+   "rule": "The surname 'Barry' is in Fergus's death notices and no entry under it carries the initial 'J' of 'J R Barry'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
    "resident": "J V Owen",
    "person_id": "owen_j_v",
    "surname_in_the_list": "Owen",
@@ -3955,6 +3962,13 @@
    "surname_in_the_list": "Cobb",
    "candidates": 5,
    "rule": "The surname 'Cobb' is in Fergus's death notices and no entry under it carries the initial 'L' of 'L B Cobb'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "L Clarke",
+   "person_id": "clarke_l",
+   "surname_in_the_list": "Clarke",
+   "candidates": 5,
+   "rule": "The surname 'Clarke' is in Fergus's death notices and no entry under it carries the initial 'L' of 'L Clarke'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "L F Spalding",

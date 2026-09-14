@@ -1670,6 +1670,19 @@ step "the ground mesh still meets the heightfield the walker samples" \
 step "the shipped ground stands where the master does, and inside the road lift" \
   node tools/measure_terrain_horizontal.mjs --gate
 
+# T-1067. The two gates above measure the ground against the mesh drawn FROM it,
+# which cannot see the town standing where there is no ground at all. The box
+# stops at n +400 and Kinzie's Addition was committed running to n +1029.71, so
+# Wolcott Street's ribbon leaves the modelled ground and is draped on the
+# renderer's fallback constant for 629.72 m, and 79.5 % of the north wall is a
+# one-way door under the walker's 0.35 m step-up rule. None of that is asserted
+# to be SMALL — no setting of this repo makes it small today, and a gate that
+# demanded one would only ever be red. What is asserted is that the committed
+# reading still matches a re-derivation, so the number cannot drift while the
+# box or the street layer moves and nobody notices.
+step "the town off the modelled ground is still the town the reading measured" \
+  node tools/measure_north_of_box.mjs --gate
+
 # The shrub archetype's own bounds, which are the only two numbers in it the
 # RESEARCH owns: the clump keeps the half-width its record states, and a leaf
 # spray stays a mass of leaves rather than shrinking towards a single leaf it

@@ -382,6 +382,27 @@
   },
   {
    "outcome": "merged",
+   "person_id": "harmon_charles_l",
+   "folded_person_id": "harmon_c_l",
+   "rule": "C2",
+   "cluster": "harmon-isaac",
+   "record_ids": [
+    "f1843_e0072",
+    "person_c_l_harmon"
+   ],
+   "domains": [
+    "directories",
+    "newspapers",
+    "old_settlers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "fergus_chicago_directory_1843"
+   ],
+   "evidence": "T-0997: 'harmon_c_l' and 'harmon_charles_l' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'harmon-isaac'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "harmon_isaac_d",
    "folded_person_id": "harmon_isaac",
    "rule": "C3",
@@ -566,6 +587,23 @@
     "chicago_voter_lists_1833_1835_irad"
    ],
    "evidence": "T-0844: 'kennicott_w_l' and 'kennicott_william_h' are one person under rule C4; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'kennicott'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "kennicott_william_h",
+   "folded_person_id": "kennicott_w_h",
+   "rule": "C2",
+   "cluster": "kennicott",
+   "record_ids": [
+    "person_w_h_kennicott"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-0997: 'kennicott_w_h' and 'kennicott_william_h' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'kennicott'."
   },
   {
    "outcome": "merged",
@@ -985,6 +1023,23 @@
    "domains": [],
    "sources": [],
    "evidence": "T-0842: 'vanderbogart_h' and 'vanderbogart_henry' are one person under rule C7; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'vanderbogart'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "wright_john_s",
+   "folded_person_id": "wright_j_s",
+   "rule": "C2",
+   "cluster": "wright",
+   "record_ids": [
+    "person_j_s_wright"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-0997: 'wright_j_s' and 'wright_john_s' are one person under rule C2; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'wright'."
   }
  ]
 }
