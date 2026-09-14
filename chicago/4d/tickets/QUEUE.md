@@ -26,6 +26,27 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-14  WHAT THE GROUND LEFT BEHIND, on the owner's instruction after the day's merges:
+#               "can you move any necessary tickets up like T-1127. or other of those merged
+#               tickets that are important". Three lines moved, all of them findings FILED BY
+#               work that landed today rather than new asks:
+#                 T-1127 -> band 4, the only line in it. The wood is cut off in a straight line
+#                          at the new north edge — a VISIBLE regression from ground that shipped
+#                          hours ago, and it sat in band 6, whose own header says "invisible, and
+#                          none of it blocks a visible ticket". It is not invisible.
+#                 T-1117 -> band 1. Arthur Bronson's card says present on the scene date on the
+#                          1833 tax list alone while the town's own historians print him a
+#                          visitor; it reaches every card resting on that list.
+#                 T-1128 -> band 1. Four adults of St Mary's register with an exact namesake in
+#                          the residents layer and no ruling on either.
+#               T-0464 CLOSED in the same pass and removed: its work merged as #1257 and the
+#               ticket was left `claimed` — the ground reaches Twenty-Second Street, the box is
+#               one 2 020 x 4 920 m field, and the drawn street standing off it is 0 m. 61 lines
+#               in, 60 out; one closed with a receipt, three moved, none added, none dropped.
+#               A duplicated band-3/4 comment block (21 lines, no ticket lines, no ==== borders)
+#               was deleted as merge litter, and band 3's lead prose — which still named T-1067's
+#               "largest hole in the modelled ground" — rewritten, since T-1067, T-1123 and
+#               T-0464 have all landed and the hole is filled.
 #   2026-09-13  SOUTH THROUGH TIME BACK BELOW THE VISIBLE BANDS — the owner, hours after the
 #               pass below put it on top: "Move south through time so it is just before the
 #               number 6 loop improvements". So it sits between VISIBLE REFINEMENT and THE
@@ -135,6 +156,19 @@
 # --- THE THREE NORRIS TICKETS RUN TOGETHER (T-1022, T-1021, T-1023): three distinct faults in
 # --- tools/read_norris_1844.py, all found by T-1018, each separately evidenced. They are adjacent
 # --- rather than folded so one run carries the context of the last.
+# ---
+# --- Owner, 2026-09-14: "can you move any necessary tickets up like T-1127. or other of those
+# --- merged tickets that are important". These two arrived at the head of this band from band 6
+# --- under that instruction, and both are findings the day's merges FILED rather than new asks.
+# --- T-1117 is the one with reach: #1323 struck the presence sentence from BRONSON ARTHUR's
+# --- ruling because the town's own historians print him a visitor from New York who went home,
+# --- and left the general question open — whether the 1833 tax list is evidence of LIVING
+# --- somewhere or only of OWNING something there. Every card resting on that list alone turns
+# --- on it. T-1128 is the same shape one register over: four adults of St Mary's with an exact
+# --- namesake in the residents layer and no ruling on either, which is the state a
+# --- consolidation cannot use, because an absent merge reads exactly like a pair nobody has
+# --- looked at.
+T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
 
 T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 
@@ -148,42 +182,33 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 
 
-# --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
-# --- T-1067 LEADS this band now and is the largest hole in the modelled ground: it stops at n +400 m
-# --- and the whole of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks
-# --- on ground the heightfield does not cover. It is the north-bank twin of T-0219, which finished
-# --- the south side on 09-12 and unblocked the band above.
-
-
-# --- 4. VISIBLE REFINEMENT — the town changing rather than growing
-# --- Owner, 2026-09-14, on Dearborn Street in the /dev/ walk: "we have a sign hovering and goods no
-# --- building, what happened to the building" — then, on a reload, "ok its there now must have been
-# --- a load anomaly". The building IS sound: the record, the footprint, both baked GLBs, the asset
-# --- manifest, the renderer's own index and the roof reconciliation were all checked before the
-# --- reload and all carry it, and it is in no exclusion list. What is WRONG is what the scene did
-# --- while the asset was missing. The signboard is a function of a wall — anchored on the east face
-# --- to the centimetre (E 679.70 + 7.62 depth = 687.32, the sign's own easting), 2.55 m up a wall
-# --- height taken "from the record", and moved 5.03 m along the front to clear the door and window.
-# --- When the wall did not arrive the board drew anyway, on nothing, and the goods with it. A failed
-# --- load degrades into a FALSE SCENE rather than an absence, and nothing reported the error — so
-# --- there is no way to know whether this is one building once or many buildings often.
-
-
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
 # --- ==========================================================================
-# --- T-1067 LEADS this band now and is the largest hole in the modelled ground: it stops at n +400 m
-# --- and the whole of Kinzie's Addition stands north of it — eleven committed streets and 54 blocks
-# --- on ground the heightfield does not cover. It is the north-bank twin of T-0219, which finished
-# --- the south side on 09-12 and unblocked the band above.
+# --- THE HOLE THIS BAND LED WITH IS FILLED, 2026-09-14. It read "T-1067 LEADS this band now and is
+# --- the largest hole in the modelled ground: it stops at n +400 m and the whole of Kinzie's
+# --- Addition stands north of it — eleven committed streets and 54 blocks on ground the heightfield
+# --- does not cover." T-1067 landed (#1317), then T-1123 carried the north wall to n +1120 (#1319)
+# --- and T-0464 the south wall to Twenty-Second Street (#1257). The modelled ground is now one box
+# --- 2 020 x 4 920 m, Cermak to Kinzie's Addition, and the drawn street standing off it is 0 m.
+# --- What the extension LEFT is the next work, and it is visible rather than structural: T-1127,
+# --- moved into band 4 below, is the wood cut off in a straight line at the new north edge.
 
 
 # --- ==========================================================================
 # --- 4. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
-# --- One ticket: the frontage layer leans on a confidence grade alone to keep street furniture off
-# --- an unoccupied invented building, because the hitching rule omits the anonymity clause the
-# --- signboard rule applies.
+# --- Owner, 2026-09-14: "can you move any necessary tickets up like T-1127. or other of those
+# --- merged tickets that are important". T-1127 leads this band and is the newest visible fault
+# --- in the town: the ground reached Kinzie's Addition hours ago (T-1123, #1319) and the stem
+# --- budget now binds against a wider field, so the wood stops dead in a straight line at the
+# --- north edge. It was filed into band 6 — "invisible, and none of it blocks a visible ticket"
+# --- — which is the one thing it is not. A straight edge on the timber is what a visitor sees.
+# ---
+# --- Also standing: the frontage layer leans on a confidence grade alone to keep street furniture
+# --- off an unoccupied invented building, because the hitching rule omits the anonymity clause
+# --- the signboard rule applies.
+T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
 
 
 # --- ==========================================================================
@@ -227,7 +252,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 
 
 
-T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
 T-0467 — Add south-scene camera anchors, navigation and map extents
@@ -252,8 +276,6 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- #1055 lost forty hand-authored judgements under a green check.sh — the research band above
 # --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
 # --- re-deriving them.
-
-
 
 
 
@@ -330,8 +352,6 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
-T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
