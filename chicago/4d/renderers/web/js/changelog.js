@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The ground now reaches Twenty-Second Street', kind: 'change', ts: '',
+  { v: 878, title: 'The ground now reaches Twenty-Second Street', kind: 'change', ts: '2026-09-14T20:34:28.813Z', date: 'Sep 14, 2026, 3:34 PM CT',
     items: [
       'The modelled ground used to stop at Madison Street, because that is where the 1830 plat stops. It now runs a further mile and a half south, to Twenty-Second Street \u2014 Cermak Road \u2014 so that the two places this project has been asked to build next have ground to stand on: the corridor the Fort Dearborn garrison marched down in August 1812, and the Prairie Avenue district of the 1880s. Both lie between Twelfth Street and Twenty-Second, inside the new edge.',
       'Where the edge goes is derived rather than chosen. Two survey corners this project already holds fix it: State and Madison, and State and Roosevelt \u2014 Twelfth Street \u2014 which are the north and south lines of the School Section and a statute mile apart. Twenty-Second is the next mile line south of them. The edge is set 41 m beyond it, which also clears the reading you get if you carry the surveyed spacing of those corners instead of the statute mile, and clears the 17 m spread of the crossings themselves.',
