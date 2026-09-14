@@ -145,7 +145,6 @@ T-0987 — The directories' ties and refusals, adjudicated one stretch per run �
 # --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
 # --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
 
-T-1050 — One back-projected home stands on Clark Street off 'h Clark st. b Mad. & Mon', where the R4 qualifier clause cannot read Norris's abbreviation of a street the town does not have
 
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
@@ -209,6 +208,9 @@ T-1126 — A building that fails to load leaves its signboard hanging in the air
 
 
 
+
+
+T-1122 — Both back-projection passes call every householder 'this man' in generated prose, and one of the 57 is Rebecca Sherman
 T-1123 — Extend the modelled ground north to n +1120, so Kinzie's Addition and the North Branch's traced banks stand on measured ground
 T-0464 — Extend the shared south terrain from Madison through Cermak
 T-0465 — Trace the South Branch and early lakefront through the expanded field
@@ -314,3 +316,4 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
+
