@@ -167,7 +167,6 @@ T-1123 — Extend the modelled ground north to n +1120, so Kinzie's Addition and
 # --- an unoccupied invented building, because the hitching rule omits the anonymity clause the
 # --- signboard rule applies.
 
-T-1052 — In the frontage layer a confidence grade is the only thing keeping street furniture off an unoccupied invented building, because the hitching rule deliberately omits the anonymity clause the signboard rule applies
 
 # --- ==========================================================================
 # --- 5. SOUTH THROUGH TIME — owner epic, 2026-09-01; PROMOTED, and it sits below the 1835 town
