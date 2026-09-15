@@ -8,12 +8,12 @@
  "street_layer": "data/streets/1835.json",
  "business_pass": "tools/back_project_addresses.py",
  "counts": {
-  "addresses_adjudicated": 57,
-  "printed_as_a_residence": 44,
+  "addresses_adjudicated": 56,
+  "printed_as_a_residence": 43,
   "printed_as_a_lodging": 13,
-  "placed": 11,
-  "placed_as_a_face": 11,
-  "placed_with_no_1835_trade": 7,
+  "placed": 10,
+  "placed_as_a_face": 10,
+  "placed_with_no_1835_trade": 6,
   "already_better_placed": 0,
   "refused": 46,
   "faces_reached": [
@@ -21,7 +21,6 @@
    "Lake Street",
    "Market Street",
    "North Water Street",
-   "Randolph Street",
    "Washington Street",
    "Wells Street"
   ],
@@ -357,28 +356,6 @@
    "reason": "Clark Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. So the placement is the FACE and nothing narrower, and no roof is dealt.",
    "street_id": "clark",
    "face": "Clark Street",
-   "placement": "face"
-  },
-  {
-   "household_id": "hh_eldredge_john_w",
-   "person_id": "eldredge_john_w",
-   "person": "John W Eldredge",
-   "address_as_printed": "res Randolph st. east of Clark st",
-   "address_read_as_the_home": null,
-   "kind": "resides",
-   "describes_date": 1844,
-   "read_back_years": 9,
-   "sources": [
-    "norris_directory_1844"
-   ],
-   "occupation_1835": null,
-   "trade_not_required": true,
-   "lives_at_1835": null,
-   "outcome": "placed",
-   "clause": "R4 and R5",
-   "reason": "Randolph Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names Clark Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt.",
-   "street_id": "randolph",
-   "face": "Randolph Street",
    "placement": "face"
   },
   {

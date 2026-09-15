@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "wesencraft_charlotte",
+   "relation": "daughter",
+   "household": "hh_wesencraft_charles",
+   "value": "wesencraft_charles",
+   "confidence": "attested",
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "note": "THE NOTICE NAMES THE FATHER, AND THAT IS THE WHOLE OF WHAT IS CLAIMED. The Chicago Democrat of 3 December 1833, column 7: 'Mark Nobles, Esq. of this place, to Miss CHARLOTTE, only daughter of Mr. Charles Wesencraft, late of Buffalo'. Both cards were minted from that same reading of that same notice, so nothing is being identified by name here. 'Only daughter' is the paper's own word and no second daughter is implied. Ruled in data/residents/kin_rulings.json under 'hh_wesencraft_charles__daughter__charlotte' (T-1134)."
+  }
+ ],
  "persons": [
   {
    "id": "wesencraft_charlotte",

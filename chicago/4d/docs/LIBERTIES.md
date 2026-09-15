@@ -10204,7 +10204,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 738 people
+**Scope:** `residents.persons[letter_list_only]` — 736 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
@@ -10214,10 +10214,14 @@ set and re-derives it on every commit; `--gate` proves what it is not allowed to
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no confidence
 was upgraded to allow it: every one of them is printed by name in a list headed as letters
 remaining in the Post Office at Chicago and uncalled-for, at the issue and column its own record
-cites. 726 were minted; 725 stand, because T-0842 ruled on 2026-09-10 that the letter list's
+cites. 726 were minted; 723 stand. T-0842 ruled on 2026-09-10 that the letter list's
 `H. Vanderbogart` of 20 May 1835 is Dr Henry Van der Bogart, whom the town already carried on a
 card citing that same printed line — the plainest duplicate there is, two cards on one return —
-and folded it onto him. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now
+and folded it onto him. T-1134 folded two more on 2026-09-15, and neither was a duplicate
+inside the lists: `anight_clark` is the K section of the return of 30 June 1835 read as an A,
+and `scarritt_isaac` is the man the same paper printed on the county's commissioner slate six
+months later under a different last letter. A letter-list card can be one the TOWN already
+held under another spelling, and this liberty's count falls when it is found. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now
 known from that and from nothing else — no trade, no street, no household, no arrival — against
 6 per cent the day before. A reader who counts this town's people is counting a post-office list
 with a town attached, and no single record says so, because no single record is wrong.
@@ -10554,7 +10558,7 @@ lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading
 
 ### L220 — 413 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 413 people
+**Scope:** `residents.persons[civic_mint]` — 411 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10565,8 +10569,8 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **479
-today**, and the figure has moved eight times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **477
+today**, and the figure has moved nine times, twice for opposite reasons. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
@@ -10574,7 +10578,11 @@ the town gained the card it had been folding away. T-0842 read the page on 2026-
 back to 485: the Chicago Democrat sets that one man's particle three ways inside sixteen months —
 `Van Den` on 4 February 1834, `Ven De` on 29 October 1834, `Vanderbogart` on 20 May 1835 — so the
 DEN/DER difference the split turned on is one the printer himself does not hold to, and the whole
-1833-1835 corpus carries exactly one bearer of the stem at this town. The pass
+1833-1835 corpus carries exactly one bearer of the stem at this town. T-1134 took it to 477 on
+2026-09-15, folding two civic mints onto cards the town already held under one letter more or
+less of surname — `eldredge_john_w` onto `eldridge_john_w` and `salsbury_stephen_m` onto
+`salisbury_stephen_m`, both on the Chicago Democrat being caught setting the two spellings
+itself. The pass
 minted a card for every identity the ladder graded and the town did not already carry, and
 its test for "already carry" was the name as the source printed it — so Gurdon Saltonstall
 Hubbard, who is printed G., G. S., Gurdon S., Gordon S. and G. T., was minted five times
@@ -10949,7 +10957,7 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Recorded:** 2026-09-04.
 
 ### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 11 households
+**Scope:** `residence_back_projection.positions[placed]` — 10 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds`, or
 `house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
@@ -10973,7 +10981,12 @@ eight without a directory page being read: T-1011 lifted 54 lines of the 1 Janua
 letter list that no transcription carried, the mint took J. S. Lacey into the town off one
 of them, and the Fergus residence this pass had already adjudicated then had a card to
 reach — the count moves when the TOWN grows as well as when the reading does. It came back
-to six when T-0987's second stretch put Fergus 1839's ties through T-0670's forename rule,
+to ten on 2026-09-15 when T-1134 ruled John W Eldredge and John W Eldridge one man: the town
+was standing ONE physician on Randolph Street TWICE, once on Fergus 1843's 'res Randolph,
+first door west of City Hotel' and once on Norris 1844's 'res Randolph st. east of Clark st',
+because the two directories spell the surname differently — so a merge in the residents layer
+is a house taken off a street here, and that is the shape this count should be read for. It
+came back to six when T-0987's second stretch put Fergus 1839's ties through T-0670's forename rule,
 and two of the eight were standing on a reading that rule refuses:
 
 - **`jones_es_high`** stood on Randolph Street on the authority of `Jones, Hiram, bds.
