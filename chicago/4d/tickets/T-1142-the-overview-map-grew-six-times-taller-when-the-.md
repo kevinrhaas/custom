@@ -1,7 +1,7 @@
 ---
 id: T-1142
 title: The overview map grew six times taller when the ground did: a fixed frame, a window that moves with you, and a pop-out for the whole field
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
-pr: null
+closed: 2026-09-15
+pr: 1354
 claimed_by: run 9/15/2026, 8:17:38 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-15T14:03:04.678Z
 claimed_run: null
 ---
 

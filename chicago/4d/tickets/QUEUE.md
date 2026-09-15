@@ -261,7 +261,6 @@ T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave
 # --- the signboard rule applies.
 
 T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
-T-1142 — The overview map grew six times taller when the ground did: a fixed frame, a window that moves with you, and a pop-out for the whole field
 
 
 # --- ==========================================================================
