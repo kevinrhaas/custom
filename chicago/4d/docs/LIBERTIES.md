@@ -10204,7 +10204,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 738 people
+**Scope:** `residents.persons[letter_list_only]` — 736 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
@@ -10214,14 +10214,18 @@ set and re-derives it on every commit; `--gate` proves what it is not allowed to
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no confidence
 was upgraded to allow it: every one of them is printed by name in a list headed as letters
 remaining in the Post Office at Chicago and uncalled-for, at the issue and column its own record
-cites. 726 were minted; 723 stand. T-0842 ruled on 2026-09-10 that the letter list's
-`H. Vanderbogart` of 20 May 1835 is Dr Henry Van der Bogart, whom the town already carried on a
-card citing that same printed line — the plainest duplicate there is, two cards on one return —
-and folded it onto him. T-1134 folded two more on 2026-09-15, and neither was a duplicate
-inside the lists: `anight_clark` is the K section of the return of 30 June 1835 read as an A,
-and `scarritt_isaac` is the man the same paper printed on the county's commissioner slate six
-months later under a different last letter. A letter-list card can be one the TOWN already
-held under another spelling, and this liberty's count falls when it is found. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now
+cites. 726 were minted, and SIX letter-list cards have since been folded onto somebody the town
+already held — `vanderbogart_h`, `norton_n_r`, `frazer_wm_h`, `vandine_john`, `anight_clark` and
+`scarritt_isaac`. The first was the plainest duplicate there is, two cards on one printed line:
+T-0842 ruled on 2026-09-10 that the letter list's `H. Vanderbogart` of 20 May 1835 is Dr Henry
+Van der Bogart, whom the town carried on a card citing that same line. T-1133 folded two on
+2026-09-15 for the same reason one layer down — one LINE of one return, set two ways by two
+impressions of the Democrat. T-1134 folded two more the same night for a different reason
+entirely, and neither is a duplicate inside the lists: `anight_clark` is the K section of the
+return of 30 June 1835 read as an A, and `scarritt_isaac` is the man the same paper printed on
+the county's commissioner slate six months later under a different last letter. A letter-list
+card can be one the TOWN already held under another spelling, and this liberty's count falls
+when it is found. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now
 known from that and from nothing else — no trade, no street, no household, no arrival — against
 6 per cent the day before. A reader who counts this town's people is counting a post-office list
 with a town attached, and no single record says so, because no single record is wrong.

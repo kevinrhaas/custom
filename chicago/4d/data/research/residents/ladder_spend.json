@@ -11,16 +11,16 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1303,
+  "person_records": 1301,
   "carried_by_the_civic_mint": 411,
-  "rungs_spent": 810,
+  "rungs_spent": 808,
   "conflicts_for_the_owner": 79,
   "spent_by_rule": {
    "G1a": 21,
    "G1b": 93,
    "G1c": 9,
    "G2e": 47,
-   "G3": 640
+   "G3": 638
   },
   "conflicts_by_kind": {
    "abstention": 44,
@@ -2667,15 +2667,6 @@
    "household_id": "hh_fraser_wm_h",
    "name": "Wm. H. Fraser",
    "identity": "id_fraser_william_h",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "frazer_wm_h",
-   "household_id": "hh_frazer_wm_h",
-   "name": "Wm. H. Frazer",
-   "identity": "id_frazer_william_h",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -6798,15 +6789,6 @@
    "household_id": "hh_vandeventer_wm",
    "name": "Wm. Vandeventer",
    "identity": "id_vandeventer_william",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "vandine_john",
-   "household_id": "hh_vandine_john",
-   "name": "John Vandine",
-   "identity": "id_vandine_john",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
