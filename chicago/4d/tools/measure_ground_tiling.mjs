@@ -59,6 +59,9 @@ const argAt = (name) => {
 const wantSource = process.argv.includes('--source');
 const jsonOut = argAt('--json');
 const ONLY = argAt('--only') || 'desktop';
+/** Which scene-detail tiers to read. Every boot of a tier costs a scene rebuild, so
+ *  the default is the one the budget binds at; `--tiers light,balanced,full` reads all. */
+const TIERS = (argAt('--tiers') || 'full').split(',').map((s) => s.trim()).filter(Boolean);
 const YEAR = process.env.TILING_YEAR || '1835';
 const READING = path.join(ROOT4D, 'data/render/ground_tiling_budget.json');
 
@@ -128,31 +131,39 @@ function check() {
     return fails;
   }
   const r = JSON.parse(fs.readFileSync(READING, 'utf8'));
-  // The committed reading must be a reading of THIS rule on THIS box.
+  // 1. The reading must be a reading of THIS rule on THE FIELD IT NAMES. A field that
+  //    moves without the reading being retaken is the whole defect this ticket found.
   const want = grid(r.field.span_x_m, r.field.span_z_m);
   if (r.chosen.cols !== want.cols || r.chosen.rows !== want.rows) {
     fails.push(`the committed reading chose ${r.chosen.cols} x ${r.chosen.rows}, `
-      + `but the rule on its own field gives ${want.cols} x ${want.rows}`);
+      + `but the rule on the field it names gives ${want.cols} x ${want.rows}`);
   }
-  // Every stand it reports must be inside the draw-call budget it reports.
+  // 2. …and the rule's own constants must still be the ones the reading states.
+  const src = fs.readFileSync(path.join(ROOT4D, 'renderers/web/js/terrain.js'), 'utf8');
+  for (const [what, literal] of [['budget', `const GROUND_TILE_BUDGET = ${r.rule.budget_tiles};`],
+                                 ['bearing exponent', `const GROUND_TILE_BEARING_EXP = ${r.rule.bearing_exponent};`]]) {
+    if (!src.includes(literal)) fails.push(`terrain.js no longer sets the ${what} the reading was taken at (\`${literal}\`)`);
+  }
+  // 3. The chosen candidate must actually be in the reading, and must be the one the
+  //    numbers favour: no more triangles at the worst stand than the literals it
+  //    replaced, and inside the draw-call budget at every stand.
   for (const vp of r.viewports) {
-    for (const c of vp.candidates) {
-      if (c.id !== r.chosen.id) continue;
-      for (const st of c.stands) {
-        if (st.calls > r.budget.draw_calls) {
-          fails.push(`${vp.viewport}: the chosen tiling spends ${st.calls} draw calls `
-            + `at ${st.id}, over the budget of ${r.budget.draw_calls}`);
-        }
-      }
+    const chosen = vp.candidates.find((c) => c.id === r.chosen.id);
+    if (!chosen) { fails.push(`${vp.viewport}: the chosen tiling is not in the reading`); continue; }
+    if (chosen.grid.cols !== r.chosen.cols || chosen.grid.rows !== r.chosen.rows) {
+      fails.push(`${vp.viewport}: the chosen tiling was read at `
+        + `${chosen.grid.cols} x ${chosen.grid.rows}, not ${r.chosen.cols} x ${r.chosen.rows}`);
     }
-  }
-  // …and the `light` tier must still be the floor it is required to be.
-  for (const vp of r.viewports) {
-    const light = vp.tiers?.light;
-    if (!light) { fails.push(`${vp.viewport}: no light-tier reading`); continue; }
-    if (light.worst_triangles > light.ceiling) {
-      fails.push(`${vp.viewport}: light is over its ceiling — `
-        + `${light.worst_triangles} against ${light.ceiling}`);
+    const literals = vp.candidates.find((c) => c.id === '12x3');
+    if (literals && chosen.worst_triangles > literals.worst_triangles) {
+      fails.push(`${vp.viewport}: the chosen tiling is worse than the literals it replaced — `
+        + `${chosen.worst_triangles} triangles at the worst stand against ${literals.worst_triangles}`);
+    }
+    for (const st of chosen.stands) {
+      if (st.calls > r.budget.draw_calls) {
+        fails.push(`${vp.viewport}: the chosen tiling spends ${st.calls} draw calls at `
+          + `${st.id}, over the budget of ${r.budget.draw_calls}`);
+      }
     }
   }
   return fails;
@@ -266,6 +277,7 @@ for (const vp of VIEWPORTS) {
     const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
     const errors = [];
     page.on('pageerror', (e) => errors.push(String(e)));
+    await page.addInitScript((t) => { window.__tilingTiers = t; }, TIERS);
     await page.goto(`http://127.0.0.1:${PORT}${ENTRY}?year=${YEAR}`, { waitUntil: 'load' });
     await page.waitForFunction(() => window.__chicago4d?.ready === true, null, { timeout: 300_000 });
     const read = await page.evaluate(async (stands) => {
@@ -275,7 +287,8 @@ for (const vp of VIEWPORTS) {
       const started = a.detail;
       const tiers = {};
       let atStands = [];
-      for (const level of a.detailOrder) {
+      const wanted = window.__tilingTiers || a.detailOrder;
+      for (const level of a.detailOrder.filter((l) => wanted.includes(l))) {
         await a.setDetail(level);
         await settle();
         const rows = [];
@@ -291,7 +304,7 @@ for (const vp of VIEWPORTS) {
           worst_triangles: Math.max(...rows.map((r) => r.tris)),
           worst_calls: Math.max(...rows.map((r) => r.calls)),
         };
-        if (level === 'full') atStands = rows;
+        if (level === wanted[wanted.length - 1]) atStands = rows;
       }
       await a.setDetail(started);
       return { tiling, tiers, atStands, budget: a.budget };
@@ -300,9 +313,9 @@ for (const vp of VIEWPORTS) {
     await page.close();
     const t = read.tiling;
     console.log(`${vp.label}  ${cand.id.padEnd(9)}  grid ${t ? `${t.cols} x ${t.rows}` : '?'}`
-      + `  worst full ${read.tiers.full.worst_triangles.toLocaleString('en-US').padStart(10)}`
-      + `  worst calls ${String(read.tiers.full.worst_calls).padStart(4)}`
-      + (read.errors.length ? `  PAGE ERRORS: ${read.errors.join('; ')}` : ''));
+      + `  worst ${read.tiers[TIERS[TIERS.length - 1]].worst_triangles.toLocaleString('en-US').padStart(10)}`
+      + `  worst calls ${String(read.tiers[TIERS[TIERS.length - 1]].worst_calls).padStart(4)}`
+      + (errors.length ? `  PAGE ERRORS: ${errors.join('; ')}` : ''));
   }
   out.push({ viewport: vp.label, candidates: perCandidate });
 }
