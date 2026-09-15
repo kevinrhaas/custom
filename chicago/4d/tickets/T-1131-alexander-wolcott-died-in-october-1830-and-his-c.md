@@ -1,7 +1,7 @@
 ---
 id: T-1131
 title: Alexander Wolcott died in October 1830 and his card reads present on 1 July 1835: the bracket's at-or-before leg is his own death notice
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-14
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/14/2026, 10:42:28 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34925802959
 ---
 
 Alexander Wolcott died in October 1830 and his card reads present on 1 July 1835: the bracket's at-or-before leg is his own death notice.
