@@ -196,6 +196,30 @@ MUSTER_CLASS = "muster_1832"
 # master keeps the row under its own class; this pass simply does not spend it.
 REFUSED_CLASSES = {"newspaper_out_of_town"}
 NO_DATE = "not read from this record"
+
+# THE PROPERTY REFUSAL (T-1117), and it is a different refusal from the place one above.
+# A tax list is a roll of what the town ASSESSED, and a town assesses GROUND: the
+# non-resident owner of a town lot stands on it for the lot, and so does a dead man's
+# estate. The 1833 list proves that out of its own membership rather than out of an
+# argument — entry 110 is "Wolcott, Alexander", and this project's own source
+# (fergus_1843_old_settler_death_notices, fdn0742) prints "Wolcott, Dr. Alexander,
+# Indian agent, died Oct. 25, 1830, aged 40; his will was the first probated in Cook
+# County." A man three years dead was not in the town; his estate was, and the probate
+# is how it got onto the roll. On its own face the list settles nothing either way:
+# the published transcription is names only — no valuation, no lot, no amount, no
+# residence column (civic claims v001) — so it marks no payer resident and no payer
+# non-resident, and the distinction it would have to draw is not on the page.
+# So it cannot carry the one claim that is about a BODY ON A DAY. It is no leg of the
+# presence bracket. What it still does is date and corroborate a NAME in the town's own
+# paper, which is the whole of what the owner's ratified ladder spends it on at G2b, so
+# no grade moves here and the arrival bound stands as a bound on the RECORD — restated
+# in those words rather than withdrawn. docs/RESEARCH/tax_list_1833_not_a_residence_check.md
+# is the reading and the count.
+NOT_A_PRESENCE_CLASS = {"tax_1833"}
+PROPERTY_ROLL_NOTE = ("THE 1833 TAX LIST IS A PROPERTY ROLL, NOT A RESIDENCE CHECK (T-1117): "
+                      "it names the owner of ground inside the town, resident or not, and its "
+                      "own entry 110 is a man three years dead. It bounds the town's RECORD of "
+                      "this name and not the day this person reached Chicago")
 MUSTER_LADDER = ("An 1832 enrollment is EARLIER evidence and never an 1835 residence on "
                  "its own: it places the man in this town in 1832, which is why it dates "
                  "and corroborates rather than mints")
@@ -372,13 +396,28 @@ def arrival_block(appearances: list, sources: list) -> dict:
                     if (b := bound_of(a.get("describes_date")))), key=lambda t: t[:2])
     value, _rid, app = dated[0]
     late = value > SCENE_DATE
-    note = (f"A BOUND FROM THE RECORD, NOT AN ARRIVAL. {app.get('list') or app.get('evidence_class')} "
-            f"names this person at Chicago by {pretty(value)} and nothing says when they came. ")
+    cls = app.get("evidence_class")
+    roll = cls in NOT_A_PRESENCE_CLASS
+    names = ("stands against this person's name by "
+             if roll else "names this person at Chicago by ")
+    note = (f"A BOUND FROM THE RECORD, NOT AN ARRIVAL. {app.get('list') or cls} "
+            f"{names}{pretty(value)} and nothing says when they came. ")
     if late:
         note += ("THE BOUND FALLS AFTER THE SCENE DATE and the record says so rather than "
                  "narrowing it: the earliest source that names this person is later than "
                  "1 July 1835, so they may have arrived after the day this scene models. "
                  "present_on_scene_date is `uncertain` for that reason.")
+    elif roll:
+        # The bound stands and its CLAIM shrinks (T-1117). `arrival` is structurally a
+        # dated `not_later_than` on every household the validator will accept, and this
+        # record does give one honestly: the town's assessor had this name on his roll by
+        # then. What it does not give is the man at Chicago, so the sentence that used to
+        # say so is gone rather than softened, and the claim about the day now lives only
+        # in present_on_scene_date — which this same refusal has withdrawn to `uncertain`.
+        note += (PROPERTY_ROLL_NOTE + ". The bound is at or before the scene date, so the "
+                 "town's own paper carries this name by 1 July 1835; whether the man it "
+                 "names was standing in the town is a claim this record cannot make, and "
+                 "present_on_scene_date says `uncertain` for that reason.")
     else:
         note += ("The bound is at or before the scene date, so the person was at Chicago "
                  "by 1 July 1835 on this record's own evidence.")
@@ -392,9 +431,15 @@ def arrival_block(appearances: list, sources: list) -> dict:
 
 
 def presence_block(appearances: list, sources: list) -> dict:
-    before = [a for a in appearances
+    # Only a record that says where the PERSON was can be a leg of this bracket. The
+    # property refusal (T-1117) keeps the 1833 tax list out of both legs: it is a roll of
+    # ground assessed inside the town, it names owners and estates rather than people at
+    # the place, and it draws no line between a resident payer and a non-resident one.
+    placing = [a for a in appearances
+               if a.get("evidence_class") not in NOT_A_PRESENCE_CLASS]
+    before = [a for a in placing
               if (b := bound_of(a.get("describes_date"))) and b <= SCENE_DATE]
-    after = [a for a in appearances
+    after = [a for a in placing
              if (b := bound_of(a.get("describes_date"))) and b >= SCENE_DATE]
     if before and after:
         return {
@@ -406,14 +451,25 @@ def presence_block(appearances: list, sources: list) -> dict:
                      "reach across the scene date rather than stopping at one side of it. "
                      "Inferred, not documented: no source says where they were on the day."),
         }
+    refused = sorted({a.get("evidence_class") for a in appearances
+                      if a.get("evidence_class") in NOT_A_PRESENCE_CLASS})
+    note = ("THE RECORD DOES NOT REACH THE DAY. Every source that names this person "
+            "falls on one side of 1 July 1835, and nothing follows them to it or says "
+            "they left. `uncertain` rather than dropped — the distinction index.json "
+            "draws for Jeremiah Porter, and a finding, not a gap.")
+    if refused:
+        note += (" AND THE BRACKET THIS CARD ONCE HAD IS WITHDRAWN, NOT LOST: its "
+                 f"at-or-before leg was {', '.join(refused)} alone. "
+                 + PROPERTY_ROLL_NOTE + ", so it cannot say this person was here to be "
+                 "followed across the day. Withdrawn to `uncertain` and not to `absent` — "
+                 "no source places this person anywhere else on 1 July 1835 either, and a "
+                 "man who was taxed for ground in the town may perfectly well have been "
+                 "standing on it.")
     return {
         "value": "uncertain",
         "confidence": "inferred",
         "sources": sources,
-        "note": ("THE RECORD DOES NOT REACH THE DAY. Every source that names this person "
-                 "falls on one side of 1 July 1835, and nothing follows them to it or says "
-                 "they left. `uncertain` rather than dropped — the distinction index.json "
-                 "draws for Jeremiah Porter, and a finding, not a gap."),
+        "note": note,
     }
 
 
@@ -1178,6 +1234,21 @@ def gate_problems(docs: dict, index: dict) -> list:
         if (doc.get("present_on_scene_date") or {}).get("value") == "present" \
                 and not (doc.get("present_on_scene_date") or {}).get("note"):
             problems.append(f"{where}: present_on_scene_date without its reasoning")
+        # THE PROPERTY REFUSAL, PROVED ON THE CARD (T-1117). presence_block keeps the
+        # 1833 tax list out of the bracket, but a refusal that lives only in the code
+        # that writes the file can be undone without anything going red. So the tree is
+        # asked directly: a household that says `present` must own a record which places
+        # the PERSON at or before the day, and a tax roll is not one — it names the
+        # owner of ground inside the town, resident, absent or three years dead.
+        if (doc.get("present_on_scene_date") or {}).get("value") == "present":
+            legs = [e for p in people for k in BLOCK_KEYS for e in p.get(k) or []
+                    if e.get("list") not in NOT_A_PRESENCE_CLASS
+                    and (b := bound_of(e.get("describes_date"))) and b <= SCENE_DATE]
+            if not legs:
+                problems.append(f"{where}: reads `present` with no at-or-before leg but a "
+                                f"property roll. The 1833 tax list names owners and "
+                                f"estates, not people at the place (T-1117), so it cannot "
+                                f"carry a claim about where a man stood on 1 July 1835")
         row = rows.get(where)
         if row is None:
             problems.append(f"{where}: minted here and absent from the manifest")
@@ -1320,6 +1391,43 @@ def self_test() -> int:
         if not cond:
             failed += 1
             print(f"   FAIL {label}")
+
+    # THE PROPERTY REFUSAL STILL FIRES (T-1117). A tax roll may not bracket the day, and
+    # the same evidence on a poll list still may — otherwise the refusal would be a
+    # blanket that quietly emptied the bracket for everyone.
+    taxed = record(_row(), [_app(describes_date="1833", evidence_class="tax_1833",
+                                 record_id="tax_1833_999", locator="tax_1833"),
+                            _app(domain="directories", describes_date="1843",
+                                 evidence_class="directory_1843",
+                                 record_id="f1843_999", locator="F",
+                                 source_id="fergus_chicago_directory_1843")], {}, set())
+    if taxed["present_on_scene_date"]["value"] != "uncertain":
+        failed += 1
+        print("   FAIL the 1833 tax list brackets the scene date again; it is a property "
+              "roll and names no person at the place (T-1117)")
+    if "PROPERTY ROLL" not in taxed["present_on_scene_date"]["note"]:
+        failed += 1
+        print("   FAIL a withdrawn bracket does not say what withdrew it")
+    if "PROPERTY ROLL" not in taxed["arrival"]["note"]:
+        failed += 1
+        print("   FAIL an arrival bound off a tax roll still reads as a man at Chicago")
+    polled = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
+                                  record_id="poll_1834_999", locator="poll_1834"),
+                             _app(domain="directories", describes_date="1843",
+                                  evidence_class="directory_1843",
+                                  record_id="f1843_999", locator="F",
+                                  source_id="fergus_chicago_directory_1843")], {}, set())
+    if polled["present_on_scene_date"]["value"] != "present":
+        failed += 1
+        print("   FAIL the property refusal has swallowed the poll lists too")
+    forced = json.loads(json.dumps(taxed))
+    forced["present_on_scene_date"]["value"] = "present"
+    if not any("property roll" in p for p in gate_problems(
+            {pathlib.Path("hh_fixture.json"): forced},
+            {"households": [{"id": forced["id"], "civic_mint": True,
+                             "present_on_scene_date": "present"}]})):
+        failed += 1
+        print("   FAIL the gate accepts `present` carried by a tax roll alone")
 
     # a foreign block on one of this pass's cards survives a re-derivation
     base = record(_row(), [_app()], {}, set())

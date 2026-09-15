@@ -168,7 +168,7 @@
 # --- namesake in the residents layer and no ruling on either, which is the state a
 # --- consolidation cannot use, because an absent merge reads exactly like a pair nobody has
 # --- looked at.
-T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
+T-1131 — Alexander Wolcott died in October 1830 and his card reads present on 1 July 1835: the bracket's at-or-before leg is his own death notice
 
 T-1130 — Nineteen town cards stand one letter apart in the surname and identical in the forename, and the merge machinery has never been shown one of them
 

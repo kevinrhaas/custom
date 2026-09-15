@@ -83,6 +83,26 @@
       "entities": [],
       "town_finding": true,
       "notes": "WHAT WAS READ, all of it negative. The Chicago Democrat did not exist on 10 August 1833 — its first number is 26 November 1833 — so the poll has no contemporary newspaper report, and the whole run to August 1835 was searched for a retrospective count of it and carries none. The first issue does print an election notice, over the name of a Judge of Election, for the choice of one Constable for the Chicago Magistrates District at the house of Chester Ingersoll; that is a magistrates-district office and not a town one, and it is noted only because it is the nearest thing the corpus holds. The board's own proceedings, printed in the Democrat of 31 December 1833, are ordinances and name no judges or clerks of the August poll. WHAT CAN BE SAID WITHOUT A NEW SOURCE is a point of source criticism, and it is offered as that and not as a resolution: Andreas's sentence is prefaced 'It is believed', it counts the LEGAL VOTERS of the town rather than the enrolments in the poll book, and it was written in 1884; the poll list is the record of who signed. On weight the thirty stand and the twenty-eight is an 1884 belief about an 1833 electorate. The 'judges and clerks among the voters' hypothesis is the weaker of the two the ticket offered: judges and clerks of an Illinois poll were themselves electors who voted, so their names belong in a poll book. Neither count is repaired and neither man is added or removed."
+    },
+    {
+      "id": "v005",
+      "kind": "civic",
+      "reading": "transcription_mediated",
+      "quote": "Williams, John L.\nWolcott, Alexander\nWoodworth, W.",
+      "normalized": "THE 1833 TAX LIST OF THE TOWN OF CHICAGO IS A PROPERTY ROLL AND NOT A CHECK ON RESIDENCE, and the list settles it out of its own membership. Entry 110 is 'Wolcott, Alexander'. This project's own reading of Fergus's old-settler death notices (fergus_1843_old_settler_death_notices, fdn0742) prints 'Wolcott, Dr. Alexander, Indian agent, died Oct. 25, 1830, aged 40; his will was the first probated in Cook County', and Andreas has his house on the north bank 'left unoccupied by the death of Dr. Wolcott'. A man three years dead was not taxed as a person in the town of 1833; the ground he left was, under the name the probate carried. The list therefore names OWNERS AND ESTATES, of whom some lived in the town and some did not, and it draws no line between them: v001 already established that the published transcription carries no valuation, no lot, no amount and no residence column, so the distinction is not on the page for any of the 115. Two further entries stand on this list and on no poll list of 1833, 1834 or 1835 — 'Allen, Lt. James' (entry 1) and 'Hunter, David' (entry 47) — and a third, 'Bronson, Arthur' (entry 9), is the New York capitalist whom Moses and Kirkland print a VISITOR to the settlement (bk_mose2_021). NOTHING HERE MAKES ANY OF THEM ABSENT: the list is simply silent on where its payers were, which is the finding.",
+      "locator": {
+        "list": "tax_1833",
+        "line": 162,
+        "lines": [
+          161,
+          163
+        ],
+        "text_file": "voter_lists_1833_1835.txt"
+      },
+      "describes_date": "1833",
+      "entities": [],
+      "town_finding": true,
+      "notes": "T-1117 asked whether the 1833 tax list distinguishes resident from non-resident payers, because thirteen cards rested their whole claim of presence on 1 July 1835 on its at-or-before leg. The answer reached by reading the list rather than by reasoning about tax law: it does not distinguish, and it demonstrably admits a man who was not there. THE OVERLAP TEST WAS TRIED AND IT DECIDES NOTHING, which is recorded rather than dropped — folding on surname and first initial, 15 of the 29 distinct names on the 1833 poll list also stand on this tax list, while only 13 of the same 29 stand on the 1834 poll list, so the tax list of that year captures the town's own voters BETTER than the next year's poll book does. These lists overlap each other poorly (18 of the 84 on the 1835 list are on the 1834 one) and no argument about who is a stranger can be built on them. The refutation is Wolcott alone. What this changes is presence and only presence: tools/mint_civic_residents.py refuses tax_1833 as a leg of the presence bracket, thirteen households move from `present` to `uncertain`, and no grade moves — the owner's ratified ladder spends this list at G2b to date and corroborate a NAME, which is exactly what it can still do. docs/RESEARCH/tax_list_1833_not_a_residence_check.md carries the reading, the count and what was NOT done."
     }
   ]
 }
