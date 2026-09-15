@@ -11,13 +11,13 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1305,
-  "carried_by_the_civic_mint": 413,
+  "person_records": 1304,
+  "carried_by_the_civic_mint": 412,
   "rungs_spent": 810,
   "conflicts_for_the_owner": 79,
   "spent_by_rule": {
-   "G1a": 21,
-   "G1b": 93,
+   "G1a": 22,
+   "G1b": 92,
    "G1c": 9,
    "G2e": 47,
    "G3": 640
@@ -5484,7 +5484,7 @@
    "household_id": "hh_pruyne_kimberly",
    "name": "Peter Pruyne",
    "identity": "id_pruyne_peter",
-   "rule": "G1b",
+   "rule": "G1a",
    "grade": "attested",
    "resident_subtype": null
   },

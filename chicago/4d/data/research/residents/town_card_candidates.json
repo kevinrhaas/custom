@@ -4,18 +4,17 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1305,
+  "town_people": 1304,
   "open_clusters": 19,
   "cards_in_open_clusters": 41,
   "rulings": {
    "distinct": 18,
-   "merge": 42,
-   "undecided_T-1135": 1,
+   "merge": 43,
    "undecided_T-1138": 1,
    "undecided_rule": 12
   },
-  "landed_merges": 42,
-  "cards_folded": 61
+  "landed_merges": 43,
+  "cards_folded": 62
  },
  "landed": [
   {
@@ -363,6 +362,16 @@
     "peck_p_f_w"
    ],
    "rule": "C4"
+  },
+  {
+   "cluster": "pruyne-pryne",
+   "survivor": "pruyne_peter",
+   "survivor_household": "hh_pruyne_kimberly",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "pryne_peter"
+   ],
+   "rule": "C13"
   },
   {
    "cluster": "snow",
