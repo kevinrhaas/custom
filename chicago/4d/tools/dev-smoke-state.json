@@ -2,6 +2,40 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "3,10",
+      "parts": [
+        3,
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 112,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 270,
+      "takenAt": "2026-09-15T06:35:32.913Z",
+      "ref": "steward/t-1133-post-office-one-letter-pairs",
+      "commit": "d555787e79ff",
+      "devCommit": "017b1b696f33",
+      "treeHash": "sha256:3b948e8bdc474868",
+      "treeDirty": false,
+      "changelogHash": "sha256:f8692cb7159b241a",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.1,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_rebased.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "13",
       "parts": [
@@ -1362,40 +1396,6 @@
         ]
       },
       "source": "/tmp/smoke-mobile-13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1-2",
-      "parts": [
-        1,
-        2
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 157,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 612,
-      "takenAt": "2026-09-14T11:48:03.760Z",
-      "ref": "steward/t-1123-north-ground-kinzie",
-      "commit": "c9933dfa046a",
-      "devCommit": "ee71cd2ae5c6",
-      "treeHash": "sha256:c858de2756a6ab75",
-      "treeDirty": false,
-      "changelogHash": "sha256:03df904d1cb890d0",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0,
-          1.5,
-          1.8
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
     },
     {
       "viewport": "desktop",
