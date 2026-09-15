@@ -1,7 +1,7 @@
 ---
 id: T-1132
 title: The three one-letter town pairs an anchor reaches: David/Davis, Pearson/Pearsons, Pruyne/Pryne
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1130
 opened: 2026-09-14
-closed: null
-pr: null
+closed: 2026-09-14
+pr: 1347
 claimed_by: run 9/14/2026, 8:46:44 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-15T03:27:00.177Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34918213509
 ---
 
