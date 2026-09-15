@@ -1,7 +1,7 @@
 ---
 id: T-1148
 title: The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
-pr: null
+closed: 2026-09-15
+pr: 1366
 claimed_by: run 9/15/2026, 3:39:54 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-15T21:32:26.551Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35020673344
 ---
 

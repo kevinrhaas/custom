@@ -312,7 +312,6 @@
 
 
 
-T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
 
 
 
