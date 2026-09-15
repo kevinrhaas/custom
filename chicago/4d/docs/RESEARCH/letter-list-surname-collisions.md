@@ -60,7 +60,7 @@ rules for. `carries` is what a retirement would strand.
 
 ## The committed cohort against its own derivation
 
-The tree holds **747** letter-list households. The pass, run today
+The tree holds **745** letter-list households. The pass, run today
 against that same tree, derives **714**. `check.sh` runs this pass's
 `--gate` and not its `--check`, so the gap has never been red. Split by cause:
 

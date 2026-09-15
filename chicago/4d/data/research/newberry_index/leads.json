@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "04bf6cd30ff59c1113f4c719a3c2a2c89eb643e06e2689f7c0b734910fa88695",
+    "fingerprint": "cd56f37010b8f386fcf799cd4fd259fa02ed23367a0e586cda8364cbc409813e",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1307,
+      "residents": 1303,
       "structures": 384,
       "voters": 345
     }
@@ -21,10 +21,10 @@
   "counts": {
     "cards": 6635,
     "distinct_surname_keys": 4530,
-    "leads": 1009,
+    "leads": 1008,
     "leads_by_layer": {
       "census_1840": 355,
-      "residents": 467,
+      "residents": 466,
       "structures": 36,
       "voters": 151
     }
@@ -10916,26 +10916,6 @@
       "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
     },
     {
-      "id": "lead_v01_eldredpe_residents",
-      "surname_key": "eldredpe",
-      "spellings_as_printed": [
-        "Eldredpe"
-      ],
-      "layer": "residents",
-      "candidates": [
-        {
-          "id": "eldredge_john_w",
-          "name": "John W Eldredge",
-          "rule": "OCR variant (0.88 similarity to 'eldredge')"
-        }
-      ],
-      "entries": [
-        "nbi_v01_2198"
-      ],
-      "works_cited": [],
-      "note": "A LEAD, never a match. The index files every family of this surname together and this project's person is one of them at most; the card is worth following only into the work it cites."
-    },
-    {
       "id": "lead_v01_eldridge_census_1840",
       "surname_key": "eldridge",
       "spellings_as_printed": [
@@ -10963,11 +10943,6 @@
       ],
       "layer": "residents",
       "candidates": [
-        {
-          "id": "eldredge_john_w",
-          "name": "John W Eldredge",
-          "rule": "OCR variant (0.88 similarity to 'eldredge')"
-        },
         {
           "id": "eldridge_john_w",
           "name": "John W Eldridge",
@@ -24592,11 +24567,6 @@
           "id": "salisbury_stephen_m",
           "name": "Stephen M. Salisbury",
           "rule": "exact surname"
-        },
-        {
-          "id": "salsbury_stephen_m",
-          "name": "Stephen M Salsbury",
-          "rule": "OCR variant (0.94 similarity to 'salsbury')"
         }
       ],
       "entries": [

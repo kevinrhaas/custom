@@ -12,10 +12,10 @@
  "whole_name_rule": ". A printed forename and a reading of 1835 are THE SAME NAME when\nthey set the SAME NUMBER of words and agree word by word — each pair either\nletter for letter, or one of them the single initial the other begins with.\nWhere exactly ONE candidate is the same name in that sense, the page names\nthat one and no other. Where none is, or more than one is, nothing happens\nand the tie stands with the reason filed.",
  "wife_rule": "— the second clause, and it is R6 arriving where it\nwas always true. `tools/consolidate_resident_evidence.py` holds `Mrs Rufus\nBrown` apart from `Rufus Brown` (R6, T-0723) because the honorific strip leaves\nthe husband's forename tokens on both readings and folds a wife onto him. The\ncrosswalks strip titles the same way and had no such rule, so the town layer's\ntwo people met `Brown, Rufus B., warehouseman` together and were filed as a\nCONTEST — a man contesting a printed line with his own wife. Where one\ncandidate of 1835 carries a female honorific, its forename tokens are exactly\nthose of another candidate carried WITHOUT one, and the printed entry sets no\nfemale honorific of its own, the entry is the husband's and she is not named by\nit. The proof is the same proof R6 asks for and it is in the contest itself:\nthe town layer prints both readings, which is what put them here together.",
  "counts": {
-  "residents_considered": 1305,
+  "residents_considered": 1301,
   "1844_entries_read": 2073,
   "1844_entries_set_aside_for_want_of_a_surname": 1,
-  "matched_one_1844_entry": 113,
+  "matched_one_1844_entry": 112,
   "matched_more_than_one_ambiguous": 9,
   "one_1844_entry_contested_by_two_residents": 2,
   "surname_present_initial_absent_refused": 317,
@@ -35,8 +35,8 @@
   "ties_narrowed_by_a_trade": 2,
   "of_those_contested": 0,
   "of_those_ambiguous": 2,
-  "could_carry_occupation": 64,
-  "could_carry_address": 84
+  "could_carry_occupation": 63,
+  "could_carry_address": 83
  },
  "set_aside_for_want_of_a_surname": [
   {
@@ -1957,33 +1957,6 @@
      "occupation_1844": "carpenter",
      "place_of_business_1844": null,
      "address_1844": "house Canal st. 3d ward"
-    }
-   ],
-   "could_carry": [
-    "occupation",
-    "address"
-   ],
-   "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
-   "resident_given_is_initial_only": false
-  },
-  {
-   "resident": "John W Eldredge",
-   "person_id": "eldredge_john_w",
-   "household_id": "hh_eldredge_john_w",
-   "grade_1835": "attested",
-   "occupation_1835": "none_recorded",
-   "occupation_1835_confidence": "reconstructed",
-   "lives_at_1835": null,
-   "works_at_1835": null,
-   "rule": "Surname 'Eldredge' folds to the same string as the 1844 entry's, and the given name of both begins J.",
-   "entries_1844": [
-    {
-     "claim": "n1844_e0564",
-     "as_printed": "Eldredge, John W. physician, res Randolph st. east of Clark st",
-     "printed_page": 33,
-     "occupation_1844": "physician",
-     "place_of_business_1844": null,
-     "address_1844": "res Randolph st. east of Clark st"
     }
    ],
    "could_carry": [

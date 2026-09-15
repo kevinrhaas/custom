@@ -193,13 +193,41 @@ def ledger_conflicts() -> dict[str, list[str]]:
     the newest override only and the audit reported conflicts against 68 people where the
     ledgers hold them against 96; the twenty-eight in the gap were not resolved, they were
     overwritten, and T-0733 never ruled on them because nothing could see them."""
+    survivor = folded_onto()
     out: dict[str, list[str]] = {}
     for path in sorted(RESEARCH.glob("pass_*_findings.json")):
         doc = json.loads(path.read_text())
         for person_id, override in (doc.get("overrides") or {}).items():
+            # A CONFLICT FOLLOWS ITS CARD (T-1134). The ledgers are written once and never
+            # rewritten, so a conflict recorded against a card a later ruling folded away is
+            # still recorded against the id it was written under — and that id is on no card,
+            # so nothing downstream could count it. The audit's own assertion caught it: the
+            # ledgers held conflicts against 96 people and the sample could only see 95, the
+            # missing one being `scarritt_isaac`, folded onto `scarrett_isaac` under C9. The
+            # redirect table is the project's standing answer to exactly this — 'a person_id
+            # a crosswalk cites would stop resolving' is what consolidate_town_cards --check
+            # refuses — so the conflict is carried to the survivor rather than the ledger
+            # being rewritten. The RULING moves with it, by hand, in conflict_rulings.json.
+            person_id = survivor.get(person_id, person_id)
             for candidate in (override.get("candidates") or []):
                 for conflict in (candidate.get("conflicts") or []):
                     out.setdefault(person_id, []).append(conflict)
+    return out
+
+
+def folded_onto() -> dict[str, str]:
+    """folded person id -> the person the redirect table lands them on, chains followed."""
+    doc = json.loads(INDEX.read_text())
+    direct = {row["person"]: row["merged_into_person"]
+              for row in (doc.get("merged") or [])
+              if row.get("person") and row.get("merged_into_person")}
+    out = {}
+    for start in direct:
+        seen, here = {start}, direct[start]
+        while here in direct and here not in seen:
+            seen.add(here)
+            here = direct[here]
+        out[start] = here
     return out
 
 

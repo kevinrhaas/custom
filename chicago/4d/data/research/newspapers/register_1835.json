@@ -12,7 +12,7 @@
     "structures": 384,
     "structures_sharing_a_name": 37,
     "streets": 77,
-    "resident_persons": 1307
+    "resident_persons": 1303
   },
   "counts": {
     "businesses": {
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2685,
       "by_action": {
-        "enrich": 1360,
-        "new_resident": 1300,
+        "enrich": 1356,
+        "new_resident": 1304,
         "replace_invented": 25
       },
       "letter_list_only": 1970
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 879,
+        "none_recorded": 876,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 885,
+      "households_total": 882,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -10182,9 +10182,9 @@
       "letter_list_only": true,
       "first_seen": "1835-07-01",
       "last_seen": "1835-07-01",
-      "action": "enrich",
-      "action_target": "anight_clark",
-      "action_note": "data/residents/ already holds this person as anight_clark (hh_anight_clark, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_ann_bandle",
@@ -20687,9 +20687,9 @@
       "letter_list_only": true,
       "first_seen": "1834-01-28",
       "last_seen": "1834-01-28",
-      "action": "enrich",
-      "action_target": "scarritt_isaac",
-      "action_note": "data/residents/ already holds this person as scarritt_isaac (hh_scarritt_isaac, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_isaac_stevens",
@@ -21424,9 +21424,9 @@
       "letter_list_only": false,
       "first_seen": "1835-05-20",
       "last_seen": "1835-05-20",
-      "action": "enrich",
-      "action_target": "eldredge_john_w",
-      "action_note": "data/residents/ already holds this person as eldredge_john_w (hh_eldredge_john_w, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_j_w_fell",
@@ -33007,9 +33007,9 @@
       "letter_list_only": false,
       "first_seen": "1834-08-06",
       "last_seen": "1834-08-13",
-      "action": "enrich",
-      "action_target": "salsbury_stephen_m",
-      "action_note": "data/residents/ already holds this person as salsbury_stephen_m (hh_salsbury_stephen_m, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_stephen_mack",

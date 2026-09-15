@@ -40,6 +40,11 @@
         "name": "Tho's Allison"
       },
       {
+        "person_id": "anight_clark",
+        "outcome": "no_corroboration_yet",
+        "name": "Clark Anight"
+      },
+      {
         "person_id": "b_merrich_j",
         "outcome": "no_corroboration",
         "name": ""
@@ -163,6 +168,11 @@
         "person_id": "s_page_elisha",
         "outcome": "no_corroboration_yet",
         "name": "Page Elisha S."
+      },
+      {
+        "person_id": "scarritt_isaac",
+        "outcome": "candidate_identity",
+        "name": "Isaac Scarritt"
       },
       {
         "person_id": "selden_sam_l_l",
@@ -1014,13 +1024,13 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1283,
-    "persons": 1307,
-    "attested": 419,
-    "inferred": 888,
+    "households": 1279,
+    "persons": 1303,
+    "attested": 418,
+    "inferred": 885,
     "reconstructed": 0,
-    "letter_list_only": 740,
-    "projected_residents": 735,
+    "letter_list_only": 738,
+    "projected_residents": 732,
     "census_1840_linked": 3
   },
   "retirement": {

@@ -73,6 +73,19 @@
      "source": "chicago_voter_lists_1833_1835_irad",
      "rule": "G2a"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1134",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "bread-breed",
+     "weighed_against": [
+      "breed_a_o_t"
+     ],
+     "for_merge": "THREE INITIALS AGREEING IN ORDER IS AS DISTINCTIVE AS A FORENAME GETS. 'A. O. T.' is not J. or W. H.; the corpus holds no second bearer of those three initials under any surname. A. O. T. Breed is a documented man of the county: the Democrat prints a writ 'dated the 20th day of [March, A.] D. 1834, at the suit of A. O. T. Bre[ed, of the said] county of Cook, and State of Illinois' against an estate in the Territory of Michigan for $1,014; it prints 'Cook Circuit Court, May Term, 1834. Bristol, Howard & Wadham[s] vs. A. O. T. Breed'; the letter list of 1 January 1834 carries him; the Second Presbyterian roll carries the surname. A man suing and sued in the county's own court in 1834 is a man who could be expected on the town's poll of 1835, and the only entry on that poll that could be him is 'Bread, A.O.T.'",
+     "against_merge": "NO TITLE REACHED SETS BOTH SPELLINGS, AND ONE OF THEM IS SET EXACTLY ONCE IN THE WHOLE CORPUS. Searched word-boundary over every deposited text and every extracted claim: 'Bread' occurs as a SURNAME in exactly one place — the 1835 poll list, 'Bread, A.O.T.' (voter_lists_1833_1835.txt lines 289 and 294, the transcription printing the page twice) — and every other hit in the corpus is the common noun, including Moses & Kirkland's index entry 'Bread, limitation of, price'. 'Breed' is set by the Democrat, by the Second Presbyterian roll ('Breed, Mrs. Amanda'), by genealogytrails' cemetery history and by Moses & Kirkland — and never beside 'Bread'. The two bodies of evidence do not touch: the town's own roll knows only Bread, and the press, the church and the books know only Breed. Folding on what is left — one letter — is what T-1001 measured and refused. D6, and the cards stay two. WHAT WOULD SETTLE IT IS NOT A PAGE BUT A COUNT, in C12's shape moved from the forename to the surname — the closed roll leaves the documented man exactly one entry he can be, and the exhaustion is worked over the whole roll and printed rather than asserted. C12 as written reaches a FORENAME only, so firing it on a surname is itself a rule to write. T-1135 owns that question for Pruyne/Pryne and the rule it writes is the one this pair waits on."
+    }
    ]
   }
  ],
