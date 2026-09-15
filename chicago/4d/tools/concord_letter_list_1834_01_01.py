@@ -64,6 +64,16 @@ WHERE THE TWO READINGS OF A NAME DISAGREE, the row carries both (`printed_as` ag
 `extracted_as`) under `name_differs`, and where the line reached a card the card's own
 spelling stands beside them. A corrected claim over an uncorrected card is worse than
 neither (T-1008), and this is the list of the places where that could be true.
+
+AND SINCE T-1139 EVERY ONE OF THOSE ROWS IS RULED ON.
+`letter_list_1834_01_01_name_rulings.json` adjudicates each disagreement — the card takes
+the image's reading, or it keeps its own and that file names the source outside this
+return which outranks the image there — and this pass reads the rulings back onto the
+rows. A row ruled ONTO THE IMAGE moves out of `name_differs` and into `name_ruled`: it is
+a settled question and no longer one of the places a card may be wrong. The rows that
+remain under `name_differs` are the ones where a card deliberately spells something the
+ninth impression does not, which is exactly what a reader must go on seeing. An UNRULED
+disagreement fails `--check`, so a row cannot appear here and go unweighed again.
 """
 from __future__ import annotations
 
@@ -87,6 +97,7 @@ IDENTITY = DATA / "research" / "newspapers" / "identity.json"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 HOUSEHOLDS = DATA / "residents" / "households"
 OUT = DATA / "research" / "newspapers" / "letter_list_1834_01_01_concordance.json"
+NAME_RULINGS = DATA / "research" / "newspapers" / "letter_list_1834_01_01_name_rulings.json"
 
 # The claims this project has extracted from the nine impressions of this one return.
 # Two of the nine were extracted as name lists; the other seven were recorded as
@@ -513,7 +524,23 @@ def build() -> dict:
                        "does not resolve the reading to a person, so nothing "
                        "downstream of it reaches a card either"}
 
-    lines, name_differs = [], []
+    ruling_by_line = {}
+    if NAME_RULINGS.exists():
+        for r in load(NAME_RULINGS)["rulings"]:
+            ruling_by_line[r["n"]] = r
+
+    def rule_for(differ: dict) -> dict:
+        """The T-1139 adjudication of this line, read back onto the row."""
+        r = ruling_by_line.get(differ["n"])
+        if not r:
+            return differ
+        differ["ruled"] = {"ticket": "T-1139", "rule": r["rule"], "takes": r["takes"],
+                           "because": r["because"]}
+        if r.get("card"):
+            differ["ruled"]["card"] = r["card"]
+        return differ
+
+    lines, name_differs, name_ruled = [], [], []
     for row in rows:
         readings = tied.get(row["n"]) or []
         out = dict(row)
@@ -568,7 +595,8 @@ def build() -> dict:
                 differ["card_name"] = card
                 differ["card_follows"] = follows(card, bracketed)
             out["name_differs"] = True
-            name_differs.append(differ)
+            (name_ruled if rule_for(differ).get("ruled", {}).get("takes")
+             == "the page image" else name_differs).append(differ)
         if disagree:
             card = out["reaches"].get("card_name")
             differ = {"n": row["n"], "printed_as": row["as_printed"],
@@ -580,7 +608,8 @@ def build() -> dict:
                 differ["card_name"] = card
                 differ["card_follows"] = follows(card, disagree)
             out["name_differs"] = True
-            name_differs.append(differ)
+            (name_ruled if rule_for(differ).get("ruled", {}).get("takes")
+             == "the page image" else name_differs).append(differ)
         lines.append(out)
 
     tally: dict[str, int] = {}
@@ -627,6 +656,9 @@ def build() -> dict:
             "reaches_a_card": tally.get("minted", 0) + tally.get("held_already", 0),
             "refused_by_reason": refusal_tally,
             "readings_that_disagree": len(name_differs),
+            "readings_ruled_onto_the_page_image": len(name_ruled),
+            "readings_unruled": sum(
+                1 for d in name_differs + name_ruled if "ruled" not in d),
             "extracted_names_no_line_carries": len(untied),
             "extracted_names_no_line_carries_by_why": untied_tally,
             "extracted_names_ruled_on_in_identity_json": sum(
@@ -634,6 +666,7 @@ def build() -> dict:
         },
         "lines": lines,
         "name_differs": name_differs,
+        "name_ruled": name_ruled,
         "extracted_names_no_line_carries": [
             classify_untied(e, rows, signed, ruled)
             for e in sorted(untied, key=lambda e: (e["claim"], e["normalized"] or ""))
@@ -659,7 +692,17 @@ def report(doc: dict) -> None:
         print("\n  the refusals, as the mint applies them")
         for reason, n in sorted(c["refused_by_reason"].items(), key=lambda kv: -kv[1]):
             print(f"    {n:4d}  {reason}")
-    print(f"\n  readings that disagree      {c['readings_that_disagree']:4d}")
+    print(f"\n  readings ruled onto the image {c.get('readings_ruled_onto_the_page_image', 0):3d}"
+          f"  (T-1139)")
+    for d in doc.get("name_ruled", []):
+        r = d.get("ruled", {})
+        card = (f"  card: {r['card']['displayed_name_was']} -> "
+                f"{r['card']['displayed_name_is']}"
+                if (r.get("card") or {}).get("displayed_name_is") else "")
+        print(f"    line {d['n']:3d}  {r.get('rule')}  {d['printed_as']!r}"
+              f"  over {', '.join(repr(x) for x in d['extracted_as'])}{card}")
+    print(f"\n  readings that disagree      {c['readings_that_disagree']:4d}"
+          f"  (still, after the rulings)")
     for d in doc["name_differs"]:
         card = f"  card: {d['card_name']} ({d['card_follows']})" if d.get("card_name") else ""
         print(f"    line {d['n']:3d}  printed {d['printed_as']!r}  "
@@ -777,6 +820,27 @@ def self_test() -> int:
     want("…and the reading is listed as untied", len(untied2), 1)
     want("…and the ambiguity is written down", len(amb2), 1)
 
+    # T-1139. The rulings are read back onto the rows, and the partition they drive is
+    # the whole use of them: a row ruled onto the image is settled and leaves
+    # `name_differs`, a row whose card keeps its own spelling stays there to be seen.
+    # Broken here by withholding a ruling, which is the shape a new roster line would
+    # arrive in.
+    doc = build()
+    ruled, differs = doc["name_ruled"], doc["name_differs"]
+    want("every disagreement carries a ruling",
+         [d["n"] for d in ruled + differs if "ruled" not in d], [])
+    want("…and the unruled count says so", doc["counts"]["readings_unruled"], 0)
+    want("a row ruled onto the image leaves name_differs",
+         sorted({d.get("ruled", {}).get("takes") for d in ruled}), ["the page image"])
+    want("…and the rows that stay are the ones ruled otherwise",
+         sorted(d.get("ruled", {}).get("takes") or "UNRULED" for d in differs),
+         ["neither — the line names a firm and the card names the man in it",
+          "the card's held spelling", "the card's held spelling"])
+    want("a rename carries the id unchanged",
+         sorted(d["ruled"]["card"]["person"] for d in ruled
+                if (d.get("ruled", {}).get("card") or {}).get("id_unchanged")),
+         ["fraser_wm_h", "provis_joshua", "vandino_john"])
+
     print("FAIL" if bad else "OK — the concordance's own assertions hold")
     return 1 if bad else 0
 
@@ -807,8 +871,20 @@ def main() -> int:
                   f"`python3 tools/concord_letter_list_1834_01_01.py`")
             return 1
         c = doc["counts"]
+        # T-1139. A disagreement that nothing has weighed is the defect this ledger was
+        # built to make visible, so it may not sit here silently once the rulings exist.
+        if c.get("readings_unruled"):
+            unruled = [d["n"] for d in doc["name_differs"] + doc.get("name_ruled", [])
+                       if "ruled" not in d]
+            print(f"FAIL {c['readings_unruled']} reading(s) disagree and are not ruled on "
+                  f"in {NAME_RULINGS.relative_to(ROOT)} — line(s) "
+                  f"{', '.join(str(n) for n in unruled)}. T-1139's acceptance is that "
+                  f"none is left silent")
+            return 1
         print(f"OK  {c['printed_lines']} printed lines, {c['reaches_a_card']} reaching "
-              f"a card, {c['reaches'].get('unread', 0)} unread")
+              f"a card, {c['reaches'].get('unread', 0)} unread, "
+              f"{c.get('readings_ruled_onto_the_page_image', 0)} readings ruled onto the "
+              f"image and {c['readings_that_disagree']} still disagreeing")
         return 0
 
     OUT.write_text(dumps(doc))

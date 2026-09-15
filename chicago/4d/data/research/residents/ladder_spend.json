@@ -2674,8 +2674,8 @@
   {
    "person_id": "fraser_wm_h",
    "household_id": "hh_fraser_wm_h",
-   "name": "Wm. H. Fraser",
-   "identity": "id_fraser_william_h",
+   "name": "Wm. H. Frazer",
+   "identity": "id_frazer_william_h",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -5473,8 +5473,8 @@
   {
    "person_id": "provis_joshua",
    "household_id": "hh_provis_joshua",
-   "name": "Joshua Provis",
-   "identity": "id_provis_joshua",
+   "name": "Joshua Pruvis",
+   "identity": "id_pruvis_joshua",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -6814,8 +6814,8 @@
   {
    "person_id": "vandino_john",
    "household_id": "hh_vandino_john",
-   "name": "John Vandino",
-   "identity": "id_vandino_john",
+   "name": "John Vandine",
+   "identity": "id_vandine_john",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
