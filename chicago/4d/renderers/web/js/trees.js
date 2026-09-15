@@ -2409,7 +2409,8 @@ export async function createTrees({
   /**
    * `keep` — THE DETAIL CONTROL, AND IT IS A THINNING RATHER THAN A CAP.
    *
-   * ROADMAP K45(b3). A fraction on the acceptance roll thins the wood UNIFORMLY:
+   * ROADMAP K45(b3), RE-CUT BY T-1127 FOR THE FIELD T-1123 ENLARGED. A fraction
+   * on the acceptance roll thins the wood UNIFORMLY:
    * every cell of the swept field is offered the same reduced chance, so a phone
    * gets the same wood at a lower density — same species, same mix, same rules
    * about where a stem may stand, fewer stems everywhere. A cap cannot do that.
@@ -2417,25 +2418,54 @@ export async function createTrees({
    * and leaves a straight edge across the town: the same number of stems, and
    * three quarters of a wood rather than a whole thinner one.
    *
-   * WHERE THE NUMBERS COME FROM, because they are a choice and not a source.
-   * They are the levels' OWN triangle ceilings in `main.js` — 1,000,000 /
-   * 800,000 / 600,000 — read as a ratio. That is the only live per-level
-   * statement this renderer makes about how much geometry a level is for, and
-   * the release smoke holds each level to it. The obvious alternative, the ratio
-   * of the pre-K45(b2) caps (820/520/300 = 1 / 0.634 / 0.366), is NOT used: those
+   * WHERE THE RATIO COMES FROM, because it is a choice and not a source.
+   * It is the levels' OWN triangle ceilings in `main.js`, read as a ratio. That
+   * is the only live per-level statement this renderer makes about how much
+   * geometry a level is for, and the release smoke holds each level to it
+   * (`BUDGET.triangles` follows the tier the visitor is on). K45(b3) read them
+   * as 1,000,000 / 800,000 / 600,000 = 1 / 0.8 / 0.6; the ceilings have since
+   * moved to **1,460,000 / 1,280,000 / 825,000**, so the ratio is refreshed here
+   * to **1 / 0.877 / 0.565**. The obvious alternative, the ratio of the
+   * pre-K45(b2) caps (820/520/300 = 1 / 0.634 / 0.366), is still NOT used: those
    * were a backstop that never bound, so they are an intent nothing ever
    * executed, and K45(b2) then multiplied them by 3.70. A number that has never
-   * had an effect is not evidence of what a level should draw.
+   * had an effect is not evidence of what a level should draw — and a backstop
+   * that has STARTED to bind is a defect (below), not a promotion to a control.
+   *
+   * WHERE THE SCALE COMES FROM, which is what T-1127 changed. The ratio says how
+   * the levels stand to each other; one factor says how thin the whole wood is.
+   * Until T-1123 that factor was 1 and nothing bound. T-1123 carried the modelled
+   * ground north into Kinzie's Addition, which is Andreas's "body of thrifty
+   * heavy growth of timber" and takes the TOP of ZONE 5's range, and the wood the
+   * record asks for grew with it. MEASURED on this tree, 2026-09-15, with the
+   * caps lifted so the loop could finish: the field wants **4,052** stems at
+   * `full`'s step, 3,981 at `balanced`'s and 3,970 at `light`'s — one wood
+   * counted three ways, which is `step` count-neutrality doing what it says. The
+   * caps are 3,030 / 1,920 / 1,110, so at 1 / 0.8 / 0.6 ALL THREE bound and all
+   * three woods stopped partway north: the planted maxima were N +949.8 /
+   * +803.3 / +722.6 m against a field that runs to N +1,117.8 m.
+   *
+   * The scale is therefore set by the level with the least room — `light`, whose
+   * cap is the smallest fraction of the wood — at 80 % of that cap, which leaves
+   * the backstop a fifth of headroom rather than a rounding error:
+   *
+   *     lambda = (1,110 x 0.80) / (3,970 x 0.565) = 0.396  ->  0.400
+   *
+   * and the three fractions are `lambda` times the ceiling ratio. They plant a
+   * measured 1,621 / 1,393 / 893 stems against caps of 3,030 / 1,920 / 1,110, and
+   * every level reaches the north end of the field.
    *
    * This is a RENDERING density, not a claim about the town: `perHa`, the mixes,
    * `edgeFade`, `clearedFactor`, the waterline gate and the east limits are
-   * untouched, and `full` — what the gates and every published figure measure —
-   * keeps every stem it had. Recorded in docs/LIBERTIES.md.
+   * untouched, and the record's own stand is what the roll would accept at
+   * `keep = 1`. What changed at T-1127 is that `full` is no longer that stand —
+   * it is 40 % of it — because the enlarged field's wood does not fit the
+   * geometry any level of this renderer is for. Recorded in docs/LIBERTIES.md.
    */
   const STEMS = {
-    full:     { step: 4.0, keep: 1.00, trees: 3030, thickets: 1550 },
-    balanced: { step: 4.7, keep: 0.80, trees: 1920, thickets: 1000 },
-    light:    { step: 5.6, keep: 0.60, trees: 1110, thickets: 630 },
+    full:     { step: 4.0, keep: 0.400, trees: 3030, thickets: 1550 },
+    balanced: { step: 4.7, keep: 0.350, trees: 1920, thickets: 1000 },
+    light:    { step: 5.6, keep: 0.225, trees: 1110, thickets: 630 },
   };
   const stems = STEMS[level] ?? STEMS.full;
   const step = stems.step;

@@ -11861,3 +11861,56 @@ the committed town is not confined to the modelled ground, the renderer still an
 with the constant outside it, and 41 852 m of platted line still stands out there. What is
 resolved is the part that was drawn — the one ribbon on a constant — and the north wall that
 carried it.
+
+
+### L238 — `full` no longer draws the stand the records ask for: the whole wood is thinned to two fifths of it
+
+**Decision:** the woody layer's detail fractions in `renderers/web/js/trees.js` are **0.400 /
+0.350 / 0.225** at `full` / `balanced` / `light`, where L121 set them at 1.00 / 0.80 / 0.60. The
+fraction multiplies the per-cell acceptance roll, so at `full` the renderer now plants **two
+fifths of the stems the recorded densities would accept**, uniformly over the whole field. Until
+today `full` was the record's own stand, to the stem, and L121's closing sentence said so.
+
+**Why the ratio moved, which is a measurement and not a preference.** T-1123 carried the modelled
+ground north into Kinzie's Addition — Andreas's "body of thrifty heavy growth of timber", which
+takes the TOP of ZONE 5's 50–78/ha range — and the wood the records ask for grew with it. Measured
+2026-09-15 with the stem caps lifted so the planting loop could finish: the field accepts **4,052**
+stems at `full`'s sampling step, 3,981 at `balanced`'s and 3,970 at `light`'s. The banked figure
+for `full` on 2026-08-17 was **472**. The caps — 3,030 / 1,920 / 1,110, a backstop K45(b2) sized at
+3.70× the pre-sweep numbers — therefore bound at **all three levels**, and a bound cap on a
+south-to-north loop is not a thinning: the planted maxima were N +949.8 / +803.3 / +722.6 m against
+a field that runs to N +1,117.8 m, so the wood ended in a straight horizontal cut across the town.
+
+**What was chosen between.** Three things could have moved, and only one of them is honest:
+(a) raise the caps, which abandons the one statement this renderer makes about how much geometry a
+level is for and puts `full` past its own triangle ceiling; (b) leave the caps binding and call the
+cut a rendering choice, which is the defect being repaired; (c) thin the whole wood so that it
+fits, which draws every part of the field at one honest, stated density. (c) is taken. The scale is
+set by the level with the least room — `light`, at 80 % of its 1,110 cap — and the RATIO between
+the levels is still L121's rule, the live per-level triangle ceilings in `main.js` read as a ratio:
+those have moved from 1,000,000 / 800,000 / 600,000 to **1,460,000 / 1,280,000 / 825,000**, so the
+ratio is refreshed here from 1 / 0.8 / 0.6 to **1 / 0.877 / 0.565**.
+
+**What is NOT changed, and it bounds the liberty.** `perHa`, the community mixes, the North/South
+gallery split, `edgeFade`, `clearedFactor`, the waterline gate, the east limits and the
+sandbar-willow point-bar screen are all untouched. Nothing in `data/` moved. The recorded stand is
+still what the roll would accept at a fraction of 1, and this file is the only place the difference
+between that stand and the drawn one is stated. Measured after the change: **1,529 / 1,408 / 885**
+trees against caps of 3,030 / 1,920 / 1,110, every level reaching N +1,113 m or better.
+
+**Consequence, and it overturns half of L121's.** L121 ended "every banked measurement, every gate
+and every published number is `full`… `full` keeps 100 % of its stems". The first clause still
+holds; **the second does not**, and any figure quoted from before 2026-09-15 that counts drawn
+stems is a count of a denser wood. `tools/measure_timber_detail.mjs --gate` now holds the levels to
+each other by ratio rather than by `full` being whole, and holds all three to the north end of the
+field.
+
+**How to resolve:** a wood drawn at its recorded density needs geometry this renderer does not have
+for it — an impostor or billboard band for the far timber, so that the stems close to the visitor
+can be the record's own while the distance costs a fraction of a stem each. That instrument does
+not exist here. Until it does, the fraction is the honest stand-in and this entry is where it is
+counted.
+
+Related: **L121**, which this entry supersedes on the value and keeps on the method, and **L120**
+and **L114**, the other entries about this wood. Ticket **T-1127**; ROADMAP **K45(b3)**.
+**Recorded:** 2026-09-15.

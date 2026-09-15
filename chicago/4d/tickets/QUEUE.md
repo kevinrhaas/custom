@@ -259,7 +259,6 @@ T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1
 # --- off an unoccupied invented building, because the hitching rule omits the anonymity clause
 # --- the signboard rule applies.
 
-T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
 
 
 # --- ==========================================================================
@@ -424,3 +423,4 @@ T-1137 — A change to the civic mint's derived note silently deletes every othe
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
+
