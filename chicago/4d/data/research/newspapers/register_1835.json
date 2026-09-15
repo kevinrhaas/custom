@@ -12,7 +12,7 @@
     "structures": 384,
     "structures_sharing_a_name": 37,
     "streets": 77,
-    "resident_persons": 1307
+    "resident_persons": 1305
   },
   "counts": {
     "businesses": {
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2685,
       "by_action": {
-        "enrich": 1360,
-        "new_resident": 1300,
+        "enrich": 1358,
+        "new_resident": 1302,
         "replace_invented": 25
       },
       "letter_list_only": 1970
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 879,
+        "none_recorded": 877,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 885,
+      "households_total": 883,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2
@@ -23349,9 +23349,9 @@
       "letter_list_only": true,
       "first_seen": "1834-03-04",
       "last_seen": "1834-03-04",
-      "action": "enrich",
-      "action_target": "vandine_john",
-      "action_note": "data/residents/ already holds this person as vandine_john (hh_vandine_john, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_john_vandino",
@@ -37869,9 +37869,9 @@
       "letter_list_only": true,
       "first_seen": "1834-03-04",
       "last_seen": "1834-03-04",
-      "action": "enrich",
-      "action_target": "frazer_wm_h",
-      "action_note": "data/residents/ already holds this person as frazer_wm_h (hh_frazer_wm_h, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_wm_h_goddard",
