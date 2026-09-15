@@ -1937,6 +1937,23 @@ step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" 
 step "a claim that outlived the window is work, and a merged branch is still litter" \
   node tools/test_ticket_inflight.mjs
 
+# A QUEUE LINE THAT STILL NAMES A FINISHED BLOCKER. T-0464 closed on 2026-09-14
+# (#1257) and the three lines that LEAD South Through Time — T-0465, T-0466,
+# T-0467 — all went on reading `blocked_on: T-0464` the next day. Nothing had to
+# consume the field for it to cost a run: a steward picking work opens the top
+# line, sees another ticket's id in `blocked_on`, and steps over it. On
+# 2026-09-15 the band's lead sat unclaimed while the line below it was taken, and
+# the owner is the one who noticed. The blocker's own state is the receipt, so
+# `check` asks it rather than trusting the field to be swept by hand.
+#
+# SCOPED TO TICKETS STILL IN THE QUEUE, and the harness asserts the scope as hard
+# as the fault: 16 tickets on dev named a finished blocker and only THREE were
+# workable. The other 13 are themselves done or withdrawn, where the field is
+# honest history nobody chooses work from — failing on those would be noise
+# guarding nothing, and noise is what gets a check weakened later.
+step "a queue line blocked on a finished ticket is refused, and a closed one's is not" \
+  node tools/test_ticket_stale_block.mjs
+
 # And the collision the lane's parallelism makes inevitable. `nextIdNum` scans
 # every origin ref before it mints, so a duplicate id is not a missing guard but
 # the window between minting and pushing — on 2026-09-10 PRs #1048 and #1049 each
