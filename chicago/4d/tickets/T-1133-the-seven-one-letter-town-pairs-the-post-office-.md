@@ -1,7 +1,7 @@
 ---
 id: T-1133
 title: The seven one-letter town pairs the post office alone prints
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1130
 opened: 2026-09-14
-closed: null
-pr: null
+closed: 2026-09-15
+pr: 1349
 claimed_by: run 9/15/2026, 12:03:04 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-15T06:36:10.976Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34930533221
 ---
 
