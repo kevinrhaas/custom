@@ -2414,6 +2414,22 @@ selftest "…and its own assertions still fire when broken" \
 selftest "…and its tie rules still refuse the ambiguities they are meant to" \
   python3 tools/concord_letter_list_1834_01_01.py --self-test
 
+# T-1141. And the SAME ledger for the 1 April 1834 return, whose 193 printed lines were
+# counted off the 8 April impression after T-1138's three-line read found five things
+# wrong in the twenty lines it happened to look at. It has the same three masters as the
+# January one and one more that is specific to it: the tie is an ORDER-PRESERVING
+# alignment of each claim onto its sub-column, so a name added to, removed from or
+# re-read in any of the six claims re-shuffles which printed line every later entity of
+# that claim lands on, silently and plausibly. The two figures this defends are the ones
+# the ticket exists for — thirty lines dropped by the transcription the cohort was minted
+# from, and two of them dropped by every claim the corpus holds — plus the return's own
+# length, which is what the printed total at the foot of the column agrees with.
+step "the 1 April 1834 return's 193 lines still reach what the concordance says they reach" \
+  python3 tools/concord_letter_list_1834_04_01.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/concord_letter_list_1834_04_01.py --self-test
+
 # And the fourth pass, BESIDE the letter-list one rather than above it (T-0514). The
 # owner ratified a grading ladder for resident evidence on 2026-09-03 and T-0513 spent it
 # into a proposal; nothing in that proposal had ever been written onto a card, and only 37
