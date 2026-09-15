@@ -1,7 +1,7 @@
 ---
 id: T-1137
 title: A change to the civic mint's derived note silently deletes every other pass's findings appended to the same card
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-14
-closed: null
-pr: null
+closed: 2026-09-15
+pr: 1364
 claimed_by: Codex 9/15/2026, 2:49:01 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-15T20:25:51.900Z
 claimed_run: null
 ---
 
