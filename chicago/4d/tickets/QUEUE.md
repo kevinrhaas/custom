@@ -210,7 +210,6 @@ T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave
 # --- off an unoccupied invented building, because the hitching rule omits the anonymity clause
 # --- the signboard rule applies.
 
-T-1131 — Alexander Wolcott died in October 1830 and his card reads present on 1 July 1835: the bracket's at-or-before leg is his own death notice
 T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
 
 
