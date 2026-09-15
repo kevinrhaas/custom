@@ -5525,15 +5525,6 @@
    "resident_subtype": "projected_resident"
   },
   {
-   "person_id": "raymore_ira",
-   "household_id": "hh_raymore_ira",
-   "name": "Ira Raymore",
-   "identity": "id_raymore_ira",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
    "person_id": "reeder_henry",
    "household_id": "hh_reeder_henry",
    "name": "Henry Reeder",
@@ -5871,6 +5862,15 @@
    "household_id": "hh_savage_david",
    "name": "David Savage",
    "identity": "id_savage_david",
+   "rule": "G3",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident"
+  },
+  {
+   "person_id": "saymore_ira",
+   "household_id": "hh_saymore_ira",
+   "name": "Ira Saymore",
+   "identity": "id_saymore_ira",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -6263,10 +6263,10 @@
    "resident_subtype": null
   },
   {
-   "person_id": "square_geo",
-   "household_id": "hh_square_geo",
-   "name": "Geo. Square",
-   "identity": "id_square_george",
+   "person_id": "squar_geo",
+   "household_id": "hh_squar_geo",
+   "name": "Geo. Squar",
+   "identity": "id_squar_george",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"

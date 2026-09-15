@@ -1256,23 +1256,28 @@
    ]
   },
   {
-   "id": "square-squire",
+   "id": "squar-squire",
    "surname": "squire",
    "rulings": [
     {
-     "state": "undecided",
-     "referred_to": "T-1138",
-     "rule": "U1",
-     "ticket": "T-1133",
+     "state": "distinct",
+     "rule": "D6",
+     "ticket": "T-1138",
      "on": "2026-09-15",
      "members": [
-      "square_geo",
+      "squar_geo",
       "squire_george"
      ],
+     "settled_from": {
+      "ticket": "T-1133",
+      "state_was": "undecided",
+      "rule_was": "U1",
+      "by": "the page images of the 1 April 1834 return, read at T-1138",
+      "roster": "data/research/newspapers/letter_list_1834_04_01_contested_lines.json"
+     },
      "for_merge": "“Geo.” is the ordinary abbreviation of “George”, Square and Squire differ by one letter, and the resident layer holds one card of each and no other bearer of either stem. Pass 06 of the resident-research programme reached the pair and wrote it down as a possible duplicate: “Geo. Square may be a transcription/duplicate relation to George Squire”.",
-     "against_merge": "THE QUESTION CANNOT BE ASKED YET, BECAUSE ONE OF THE TWO PRINTED LINES IS ITSELF CONTESTED — and this corpus contests it in its own committed words. `square_geo` is minted from the Democrat of 1 April 1834, whose line reads “3. Geo. Square t 3 first rate”: an S-run line with an advertisement's column bleeding through it. The extraction of the 16 April 1834 impression — which that file's own note calls “the best witness to the J-W half of the 1 April 1834 list that the corpus holds” — reads the SAME three consecutive lines as “Benjarnin Smith”, “Ira Saymoro” and “GEO. SAVER” where 1 April reads “Benjamin Reed”, “Ira Raymore” and “Geo. Square”, and records that “the alphabetical position is with this printing and against 1834-04-01's” while declining to rewrite a minted name on a second transcription of equal rank. So the town does not yet know whether it holds a Square at all. A merge cannot be tested against a line nobody has settled — R5's principle, moved from a garbled forename to a garbled surname — and a REFUSAL cannot honestly be entered either, because the refusal would rest on the same unread line. Neither D6 nor C9 is reached for: both ask what the returns print, and one of these two returns has two readings.",
-     "what_would_settle_it": "The page image of the 1 April 1834 return at the three lines in question, read the way T-0424 read the 1 January 1834 return — which is the whole of T-1138. If the image sets SAVER then square_geo is not a Square, this cluster dissolves rather than merges, and two other cards (Benjamin Reed, Ira Raymore) move with it. If it sets SQUARE then the pair is a clean two-return case and D6 rules it, because the return of 1 April 1834 and the return of 31 March 1835 that prints “Squire, George” are eleven months apart and neither sets both.",
-     "note": "U1 rather than a refusal is the deliberate choice here, and it is the difference between this cluster and the four above it: those four are refused because the evidence was reached and does not join the cards, and this one is undecided because the evidence has not been reached. Pass 06 also raised competing geography — a George Squire is a plausible Joliet regional candidate — which would argue against a Chicago fold if the reading ever settles in Square's favour."
+     "against_merge": "THE LINE IS READ, AND IT MOVED THE CARD BEFORE IT COULD BE WEIGHED. T-1133 left this pair UNDECIDED under U1 because one of its two printed lines had two readings: the extraction of the Democrat of 1 April 1834 set it “3. Geo. Square t 3 first rate” and the extraction of the 16 April impression set the same position “Geo. Saver”, and a merge cannot be tested against a line nobody has settled. T-1138 read all THREE impressions the paper printed of that one return — 1 April, 8 April and 16 April, at the scan the deposit manifest names — and all three set the same five letters: “Geo. Squar”. `Saver` is not on the page; the second letter is a q with its descender. And `Square` is one letter too long: there is no final e on any impression, and on two of the three the line ends in clean paper where an e would have to stand. So the card the mint carried as `square_geo` is withdrawn and the same person stands as `squar_geo`, under the name the page sets. THAT ALONE WOULD ANSWER THE CLUSTER — Squar and Squire are not one letter apart, so the one-letter test that raised this pair no longer reaches it — but the refusal is not rested on the spelling alone, because the spelling is exactly what was in doubt. D6 is reached on the evidence's shape, which the reading did not change: neither card is an anchor, the town's whole knowledge of both is the post office's returns, `Squar` stands on the return of 1 April 1834 and `Squire` on the return of 31 March 1835, and NO single return sets both spellings — so C9's demonstration is absent and D5's counter-demonstration is absent with it. The roll is serial; it was never asked the question. The cards stay two, and that is NOT a claim that the town held two men of the name.",
+     "note": "What the image cost the merge case is worth stating plainly, because it is the whole movement of this ticket: the pair looked mergeable on a one-letter distance that the page does not support. Two letters now separate the printed names, and the only reading that would have DISSOLVED the pair outright — `Saver`, which would have made `square_geo` no Square at all — is the one the page refutes hardest. A source outside the post office naming either man, or a single return that sets both spellings, reopens this at once."
     }
    ]
   }
@@ -1322,6 +1327,11 @@
    "ticket": "T-1133",
    "on": "2026-09-15",
    "what": "The seven one-letter town pairs the post office alone prints, the second piece of T-1130. Of the 22 pairs `surname_one_letter_away.town_pairs` joins, seven have BOTH cards minted from the Chicago post office's lists of letters uncalled-for and nothing else — no anchor, no trade, no second body of evidence. They are ruled here on a test no merge pass had used: WHICH RETURN each card stands on, which tools/mint_letter_list_residents.py writes onto every card it mints and which is not the same thing as the issue the name was read in. TWO OF THE SEVEN TURNED OUT TO STAND ON ONE LINE OF ONE RETURN. Fraser/Frazer is line 55 and Vandine/Vandino line 158 of the return of 1 January 1834, each tied to both of its readings by T-1010's concordance of T-0424's reading of the ninth impression at the page image — two impressions of one return, set differently by the Democrat's compositor between 28 January and 4 March 1834, and minted as two cards apiece. Both fold under C9 at its strongest demonstration. The town's cards fall by two. FOUR STAND ON TWO DIFFERENT RETURNS and are refused under D6, a new rule written here for the shape C9 and D5 both miss: Babeu/Babeue, Beech/Bench, Hussey/Hussy, Murray/Murry. ONE IS UNDECIDED under U1 — Square/Squire, because the 1 April 1834 line that mints square_geo is read “Geo. Saver” by a better impression of the same return and this corpus already records the disagreement; T-1138 owns the page. T-1139 is filed for the nineteen `name_differs` rows the concordance holds, of which the two merged pairs are the two that were minted twice. The remaining ten pairs are T-1134 and no card of theirs is touched here."
+  },
+  {
+   "ticket": "T-1138",
+   "on": "2026-09-15",
+   "what": "The square-squire cluster, re-ruled from UNDECIDED (U1, T-1133) to DISTINCT (D6) on the page images of the 1 April 1834 return. The cluster id moves with the card: `square_geo` is withdrawn at the image and the same person stands as `squar_geo`, so the cluster is `squar-squire`."
   }
  ]
 }

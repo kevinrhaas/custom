@@ -125,7 +125,7 @@
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_04_01.json",
-      "sha256": "b66efc8497cc01cae2cc0c0969d5b67f9a30a6dbe3b06b420f3c1b3b05815aca"
+      "sha256": "af6355c556ef5bfbba20bb38cc0acbf65ac1d57ad5104da7ce85cb193a140686"
     },
     {
       "file": "chicago/4d/data/research/newspapers/extracted/chicago_democrat_1834_04_08.json",
@@ -5008,24 +5008,6 @@
       "associated_places": []
     },
     {
-      "id": "person_benjamin_reed",
-      "name": "Benjamin Reed",
-      "variants": [
-        {
-          "as_printed": "Benjamin Reed, the,",
-          "claim": "chicago_democrat_1834_04_01#c002"
-        }
-      ],
-      "mentions": [
-        "chicago_democrat_1834_04_01#c002"
-      ],
-      "first_seen": "1834-04-01",
-      "last_seen": "1834-04-01",
-      "letter_list_only": true,
-      "occupations": [],
-      "associated_places": []
-    },
-    {
       "id": "person_benjamin_richardson",
       "name": "Benjamin Richardson",
       "variants": [
@@ -5086,6 +5068,24 @@
           "merge_rule": "\"Benjamin Sloat\" and \"Benjamin Sloas\" are one entry of the list of letters remaining in the Post Office at Chicago on 1 July 1834, which the Democrat printed three times — 1834-07-02, 1834-07-09 and 1834-07-16. They stand at the same place in the list in each of the printings that carry them (1834-07-02 and 1834-07-09 and 1834-07-16), and the reading kept here is the one 1834-07-16 prints. The readings differ by Sloas against Sloat: a recognition-class difference in one printing's type, not two names."
         }
       ]
+    },
+    {
+      "id": "person_benjamin_smith",
+      "name": "Benjamin Smith",
+      "variants": [
+        {
+          "as_printed": "Benjamin Reed, the,",
+          "claim": "chicago_democrat_1834_04_01#c002"
+        }
+      ],
+      "mentions": [
+        "chicago_democrat_1834_04_01#c002"
+      ],
+      "first_seen": "1834-04-01",
+      "last_seen": "1834-04-01",
+      "letter_list_only": true,
+      "occupations": [],
+      "associated_places": []
     },
     {
       "id": "person_benjamin_swena",
@@ -17520,8 +17520,8 @@
       "associated_places": []
     },
     {
-      "id": "person_geo_square",
-      "name": "Geo. Square",
+      "id": "person_geo_squar",
+      "name": "Geo. Squar",
       "variants": [
         {
           "as_printed": "3. Geo. Square t 3 first rate",
@@ -23454,8 +23454,8 @@
       "associated_places": []
     },
     {
-      "id": "person_ira_raymore",
-      "name": "Ira Raymore",
+      "id": "person_ira_saymore",
+      "name": "Ira Saymore",
       "variants": [
         {
           "as_printed": "Ira Raymore apy’",
