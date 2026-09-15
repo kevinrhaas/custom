@@ -25,7 +25,7 @@
  "max_m": 3.7446,
  "quantisation_error_m": 0.0025,
  "water_surface_m": 0.0,
- "water_fraction": 0.2101,
+ "water_fraction": 0.2122,
  "relief_ft": {
   "land_min": -1.978,
   "land_max": 12.285,
@@ -38,15 +38,15 @@
    62.5
   ],
   "marsh_exclusion_m": 48.0,
-  "plain_cells_audited": 528144,
+  "plain_cells_audited": 528081,
   "carried_frame": {
-   "cells": 265061,
-   "block_max": 0.829,
+   "cells": 254856,
+   "block_max": 1.836,
    "north_south_block_max": 0.0,
    "note": "the ground carried south of evidence_limit, excluded from the plain audit and measured here instead. The surface is one evidenced row repeated, so north_south_block_max is the micro-relief texture and nothing else (the spec's own +/- 0.10 ft, two octaves), and the east-west figure is that row's own, already audited where it stands."
   },
   "plain_block_max": 0.468,
-  "plain_block_mean": 0.096,
+  "plain_block_mean": 0.0962,
   "passes": true,
   "plain_cell_roughness_max": 55.913,
   "shore_and_swale_cell_max": 346.516,
@@ -92,7 +92,7 @@
     "cell_max": 171.698
    },
    "bank_face": {
-    "cells": 69579,
+    "cells": 71836,
     "cell_max": 287.712
    },
    "fort_dearborn_mound": {
@@ -100,7 +100,7 @@
     "cell_max": 188.858
    },
    "marsh_strip": {
-    "cells": 20761,
+    "cells": 22008,
     "cell_max": 148.58
    },
    "north_sand_ridge": {
@@ -136,5 +136,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "7cc206c3247b1f7818a2c571cbc4a72b4015b6818f902074f3a985c608c5c0c6"
+ "inputs_sha256": "c2a0d77c01c0e61186645229f731b97eb51deb31698d77c685c7ad1f18d22766"
 }
