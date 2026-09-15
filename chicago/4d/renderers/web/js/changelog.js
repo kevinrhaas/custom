@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The wood stopped in a straight line across the north of town', kind: 'fix', ts: '',
+  { v: 891, title: 'The wood stopped in a straight line across the north of town', kind: 'fix', ts: '2026-09-15T15:47:08.592Z', date: 'Sep 15, 2026, 10:47 AM CT',
     items: [
       'The timber ended at a clean horizontal edge somewhere north of the river, with bare ground beyond it. That is not how a wood ends, and it was not a decision anybody made \u2014 it was the trees running out.',
       'The planter carries a stem budget, written as a safety net rather than a setting: a ceiling high enough that it should never be reached, so that a bug cannot drown the scene in trees. It plants from the south end of the field to the north end. Two days ago the modelled ground grew north into Kinzie\u2019s Addition, which the county\u2019s own early description calls a body of thrifty heavy growth of timber and which this project therefore plants at the top of its recorded density. The wood the records ask for went from about four hundred stems to about four thousand. The safety net was suddenly the lowest thing in the room, and the planter hit it before it reached the new ground \u2014 so the last stretch of field simply got nothing, and the cut showed as a line.',
