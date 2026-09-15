@@ -1,18 +1,21 @@
 ---
 id: T-0466
 title: Build a south-terrain tiling and culling plan for a four-kilometre field
-state: open
+state: done
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
 effort: S
 legacy_id: null
+parent: null
 opened: 2026-09-01
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-15
+pr: 1360
+claimed_by: run 9/15/2026, 11:14:22 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-15T17:10:04.161Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34991605762
 ---
 
 **Unblocked 2026-09-15.** This ticket carried `blocked_on: T-0464` from the day it was

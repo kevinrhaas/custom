@@ -1691,6 +1691,21 @@ step "the shipped ground stands where the master does, and inside the road lift"
 step "the town off the modelled ground is still the town the reading measured" \
   node tools/measure_north_of_box.mjs --gate
 
+# T-0466. The ground's culling grid used to be the literals 12 x 3, and those two
+# numbers were a measurement of a 2,020 x 800 m box with its long axis east-west.
+# The southern field turned the box's long axis north-south and the literals could
+# not see it: three rows over the mesh's 10,240 m is a tile 3,413 m deep, a strip
+# that is in the frustum from anywhere on it and can therefore never be culled.
+# The grid is a function of the box now, and these two hold it there — the rule
+# still reproduces the 12 x 3 the budget was measured at, tileGround() still ASKS
+# it rather than carrying literals again, and the committed reading is still a
+# reading of this rule on the field it names.
+step "the ground's culling grid is still derived from its box" \
+  node tools/measure_ground_tiling.mjs --check
+
+selftest "…and its own assertions still fire when broken" \
+  node tools/measure_ground_tiling.mjs --self-test
+
 # The shrub archetype's own bounds, which are the only two numbers in it the
 # RESEARCH owns: the clump keeps the half-width its record states, and a leaf
 # spray stays a mass of leaves rather than shrinking towards a single leaf it
