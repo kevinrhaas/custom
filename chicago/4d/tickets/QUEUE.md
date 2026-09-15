@@ -312,7 +312,6 @@
 
 
 
-T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
 T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
 
 
