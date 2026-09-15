@@ -1,7 +1,7 @@
 ---
 id: T-1127
 title: The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-14
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/15/2026, 10:06:17 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34985754597
 ---
 
 The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge.
