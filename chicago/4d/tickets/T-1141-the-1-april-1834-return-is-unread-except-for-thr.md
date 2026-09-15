@@ -62,7 +62,6 @@ hundred and fifty lines, it is not zero.
 T-0424 (the January read this is the April twin of) · T-0321 (the note that first recorded
 the disagreement) · `data/research/newspapers/letter_list_1834_04_01_contested_lines.json`
 
----
 
 ## What was done, against each acceptance clause (2026-09-15)
 
