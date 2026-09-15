@@ -312,7 +312,6 @@
 
 
 
-T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
 T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
 
 
@@ -433,6 +432,8 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 # --- a finding that belongs to an OPEN ticket goes onto that ticket under rule (a), which is
 # --- still the preferred answer; and a finding that is not research at all is banded normally.
 # --- Empty is the correct state of this section.
+
+T-1153 — Rule the 28 readings of the 1 April 1834 return where the page and the extraction set a name differently, and lift the two lines no claim carries
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
