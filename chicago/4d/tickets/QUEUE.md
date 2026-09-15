@@ -424,3 +424,23 @@ T-1137 — A change to the civic mint's derived note silently deletes every othe
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
 
+# --- ==========================================================================
+# --- FINAL RESEARCH SPEND — owner review and executable closeout, 2026-09-15
+# --- ==========================================================================
+# --- Owner: finish spending the completed research before reconstruction begins. This band is
+# --- deliberately at the bottom for review. It is executable, not PARKED: when the queue reaches
+# --- it, work top-down. Each ticket is one bounded demonstration and later tickets consume the
+# --- ledgers/gates produced above them. Completion means zero UNCLASSIFIED research, not zero
+# --- refusals or later/out-of-town evidence; accuracy forbids buying a lower count with invention.
+# ---
+# --- Existing tickets keep their questions and must land before the closeout step that names them:
+# --- T-1129, T-0662/T-0691, T-1115, T-1121, T-1136/T-1137 and T-0991 on residents/roles;
+# --- T-0392/T-1027 on identities; T-0251/T-0305/T-0386/T-1087 on locations. These five tickets
+# --- do not duplicate those readings. They establish the complete ledger, migration and final
+# --- proof that lets the research phase end without throwing away a fact.
+
+T-1143 — Build a closed research-spend ledger: every committed research unit is asserted, later-only, outside Chicago, aggregate, refused, unresolved or linked to its owning ticket
+T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
+T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
+T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
+T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
