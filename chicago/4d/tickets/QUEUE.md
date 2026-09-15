@@ -169,7 +169,10 @@
 # --- consolidation cannot use, because an absent merge reads exactly like a pair nobody has
 # --- looked at.
 
-T-1133 — The seven one-letter town pairs the post office alone prints
+
+
+T-1139 — Nineteen minted cards wear the transcription's spelling where the 1 January 1834 page image sets another
+T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1834 return need the page image before any card on them can be ruled
 T-1134 — The ten one-letter town pairs the town's own lists print with no anchor on either card
 T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
 
@@ -363,3 +366,4 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
 T-1137 — A change to the civic mint's derived note silently deletes every other pass's findings appended to the same card
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
+

@@ -10274,6 +10274,26 @@ from 747 to 740. The rule is one line — a person may not carry the flag while 
 same record is not a letter list — it is one-directional, so it may refuse the flag and never
 grant it, and it is now the gate's own assertion.
 
+**And two more have left it the Norton way — not two men, but one printed line read twice
+(T-1133).** The pairs are `Wm. H. Fraser` / `Wm. H. Frazer` and `John Vandino` / `John Vandine`,
+and both stand on the return of 1 January 1834 — line 55 and line 158 of the 170 T-0424 read at
+the page image. The Democrat reprinted that one return over nine impressions and reset it
+between them: the impression of 28 January 1834 sets Fraser and Vandino, the impression of
+4 March 1834 sets Frazer and Vandine, and this project minted a card from each reading. T-1010's
+concordance had already tied both readings of each line to the line itself and recorded the other
+as `also_resolved_to`; nothing had folded the cards. They are folded now, under rule C9, kept
+whole under `data/residents/merged/`, and the count goes from 740 to 738. **What that says about
+the set is worth more than the two records.** A cohort minted name-by-name out of several
+impressions of one serial roll can hold the same person twice whenever two impressions disagree
+in a letter, and the mint cannot see it — refusal 8 seats one household per SURNAME STRING, so
+two spellings are two surnames and never meet. The reason the number is not larger is the
+concordance: T-1010 counts nineteen lines of this one return whose readings disagree in their
+letters, and these two are the only ones that were minted twice. The other seventeen reach one
+card each, wearing whichever reading the mint saw first, which is T-1139. The eight other
+returns of this corpus have no concordance at all, so this correction has been made for one
+return of nine and the rest is unmeasured — that, and not the two records, is what is admitted
+here.
+
 **What the refusals still take, and they are the only thing between a post-office list and this
 town's population.** 1,181 of the 1,908 names in the pool are refused, in order: 454 garbled by
 the transcription, 310 whose first evidence falls after the scene date, 243 for a surname this

@@ -77,7 +77,20 @@
      "chicago_democrat_1833_1835"
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1133",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "hussey-hussy",
+     "weighed_against": [
+      "hussy_robert"
+     ],
+     "for_merge": "One letter, “Robert” on both, and the two returns bracket the scene date: “Hussy, Robert 2” on the return of 1 October 1834 and “Hussey, Robert” on the return of 1 July 1835, the scene date itself. A man with two letters waiting in the autumn of 1834 and another the following summer is a plausible single correspondent, and the surname is one whose two spellings were both current.",
+     "against_merge": "TWO RETURNS, NINE MONTHS APART, NEITHER SETTING BOTH. “Hussy, Robert 2” is printed in the Democrat of 22 October 1834, seated between “Williams, Charles C.” and “Winters, Moses” in a surname-first list; “Hussey, Robert” in the Democrat of 1 July 1835, between “Phillips James” and “Park Hezekiah”. Each reading is clean in its own impression and neither return carries the other spelling. Neither card is an anchor; the gazetteer holds these two and no third bearer; nothing outside the post office names either man. C9's page does not exist and D5's roll does not either. D6."
+    }
+   ]
   }
  ],
  "touches_removal": false,

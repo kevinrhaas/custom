@@ -193,41 +193,43 @@ def ledger_conflicts() -> dict[str, list[str]]:
     the newest override only and the audit reported conflicts against 68 people where the
     ledgers hold them against 96; the twenty-eight in the gap were not resolved, they were
     overwritten, and T-0733 never ruled on them because nothing could see them."""
-    survivor = folded_onto()
     out: dict[str, list[str]] = {}
     for path in sorted(RESEARCH.glob("pass_*_findings.json")):
         doc = json.loads(path.read_text())
         for person_id, override in (doc.get("overrides") or {}).items():
-            # A CONFLICT FOLLOWS ITS CARD (T-1134). The ledgers are written once and never
-            # rewritten, so a conflict recorded against a card a later ruling folded away is
-            # still recorded against the id it was written under — and that id is on no card,
-            # so nothing downstream could count it. The audit's own assertion caught it: the
-            # ledgers held conflicts against 96 people and the sample could only see 95, the
-            # missing one being `scarritt_isaac`, folded onto `scarrett_isaac` under C9. The
-            # redirect table is the project's standing answer to exactly this — 'a person_id
-            # a crosswalk cites would stop resolving' is what consolidate_town_cards --check
-            # refuses — so the conflict is carried to the survivor rather than the ledger
-            # being rewritten. The RULING moves with it, by hand, in conflict_rulings.json.
-            person_id = survivor.get(person_id, person_id)
             for candidate in (override.get("candidates") or []):
                 for conflict in (candidate.get("conflicts") or []):
                     out.setdefault(person_id, []).append(conflict)
-    return out
+    return redirect_merged(out)
 
 
-def folded_onto() -> dict[str, str]:
-    """folded person id -> the person the redirect table lands them on, chains followed."""
-    doc = json.loads(INDEX.read_text())
-    direct = {row["person"]: row["merged_into_person"]
-              for row in (doc.get("merged") or [])
-              if row.get("person") and row.get("merged_into_person")}
-    out = {}
-    for start in direct:
-        seen, here = {start}, direct[start]
-        while here in direct and here not in seen:
-            seen.add(here)
-            here = direct[here]
-        out[start] = here
+def redirect_merged(conflicts: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Carry a merged card's recorded conflicts onto the card it was folded into.
+
+    T-1133. A pass ledger names the person it reviewed and cannot know that a later merge
+    ruling folded that card onto another — index.json's `merged` table is what every other
+    reader here follows for exactly this reason, and this one did not. Leave it unfollowed
+    and the ledgers name a person the audit's table cannot hold a row for, which reads as a
+    conflict the audit has stopped counting: the fault T-0845 wrote the count assertion to
+    catch, arriving from the other direction. Fraser/Frazer is the case that found it — pass
+    11 recorded the same conflict against both cards and T-1133 merged them.
+
+    A conflict string the survivor ALREADY records is not appended twice. The string is the
+    pin a ruling is made against, and one pin is one pin; two copies of it would make every
+    ruling on a merged survivor un-cover itself on exact-list equality. Anything the survivor
+    does not already say is appended, in the order the ledgers state it, and the ruling on
+    that survivor has to reach it like any other."""
+    redirects = {row["person"]: row["merged_into_person"]
+                 for row in (json.loads(INDEX.read_text()).get("merged") or [])}
+    if not redirects:
+        return conflicts
+    out: dict[str, list[str]] = {}
+    for person_id, rows in conflicts.items():
+        seen = person_id
+        while seen in redirects:
+            seen = redirects[seen]
+        here = out.setdefault(seen, [])
+        here.extend(c for c in rows if c not in here)
     return out
 
 
@@ -636,9 +638,12 @@ def render_readme(table: list[dict], cache: dict) -> str:
     add("adjudication: a verdict, the conflict text it was made against, and the record")
     add("that would reopen it.")
     add("")
-    add("**Every verdict is a decline, and no candidate is adopted here.** The decline is")
-    add("what the layer already did silently — the candidate was never asserted and the")
-    add("card carries no identity on its strength. What was missing was the writing down.")
+    add("**No candidate is adopted here.** Every verdict is a decline or a refusal, and")
+    add("the decline is what the layer already did silently — the candidate was never")
+    add("asserted and the card carries no identity on its strength. What was missing was")
+    add("the writing down. An `answered_` verdict is the one exception and it adopts")
+    add("nothing either: it records that the conflict has since been decided elsewhere in")
+    add("the tree and names the file and rule that decided it.")
     add("")
     add("| verdict | people | what it means |")
     add("| --- | ---: | --- |")
@@ -923,8 +928,16 @@ def cmd_self_test() -> bool:
     # A CANDIDATE, and a refusal is further from adoption than a decline, not nearer: a
     # decline says the bridge was not found, a refusal says it cannot exist. One verdict
     # is a refusal — `refused_date_excludes`, on a candidate born after the letter.
-    want(all(v.startswith(("declined_", "refused_")) for v in ruled_doc["verdicts"]), True,
-         "no ruling adopts a candidate: every verdict declines or refuses")
+    # T-1133 widens it again, to `answered_`, and the assertion is unchanged rather than
+    # relaxed. An `answered_` verdict adopts nothing HERE: it records that the conflict
+    # this file was pinned to has since been decided somewhere else in the tree and names
+    # the file and the rule that decided it. The alternative was to leave a decline
+    # standing after it had stopped being true, which is the fault this file exists to
+    # close, one step further along.
+    want(all(v.startswith(("declined_", "refused_", "answered_"))
+             for v in ruled_doc["verdicts"]), True,
+         "no ruling adopts a candidate: every verdict declines, refuses or points at "
+         "the ruling that answered it")
     want(all(r["conflict_recorded"] for r in sample if r["conflict_ruling"]), True,
          "a ruling only ever lands on a person who has a conflict on record")
     want(all(not (r["conflict_ruling"] and r["flag_conflicting_evidence"])
