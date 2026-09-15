@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Three lines of one list, and the page that settles them', kind: 'change', ts: '',
+  { v: 893, title: 'Three lines of one list, and the page that settles them', kind: 'change', ts: '2026-09-15T18:42:08.267Z', date: 'Sep 15, 2026, 1:42 PM CT',
     items: [
       'Last night’s pass through the town’s one-letter name pairs could rule six of seven and had to leave the seventh open, because one of its two printed lines had two readings and nobody had looked at the page. Geo. Square stands on the Chicago post office’s list of letters uncalled-for on 1 April 1834, in a run of the S names that an auction advertisement in the next column bleeds straight through. The transcription of that issue reads three consecutive lines there as Benjamin Reed, Ira Raymore and Geo. Square; the transcription of a later impression of the SAME list reads the same three positions as Benjarnin Smith, Ira Saymoro and Geo. Saver. Three town names, and two readings of equal rank disagreeing about every one.',
       'The page images answer it, and all three impressions the paper printed of that one return were read rather than one — 1 April, 8 April and 16 April 1834, the list reset in fresh type each time. They agree with each other line for line, and they go against both transcriptions.',
