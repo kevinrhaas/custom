@@ -312,7 +312,6 @@
 
 
 
-T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
 T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
 
 
@@ -436,6 +435,9 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+
+
+T-1153 — Rule the 28 readings of the 1 April 1834 return where the page and the extraction set a name differently, and lift the two lines no claim carries
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
 
 # --- ==========================================================================
@@ -464,3 +466,4 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
+
