@@ -77,20 +77,7 @@
      "chicago_democrat_1833_1835"
     ]
    },
-   "resident_subtype": "projected_resident",
-   "read_at_image": {
-    "ticket": "T-1138",
-    "read_on": "2026-09-15",
-    "roster": "data/research/newspapers/letter_list_1834_04_01_contested_lines.json",
-    "impressions_read": [
-     "chicago_democrat_1834_04_01",
-     "chicago_democrat_1834_04_08",
-     "chicago_democrat_1834_04_16"
-    ],
-    "as_printed_at_image": "Ira Saymore",
-    "was_minted_as": "Ira Raymore",
-    "withdrawn_card": "hh_raymore_ira"
-   }
+   "resident_subtype": "projected_resident"
   }
  ],
  "touches_removal": false,

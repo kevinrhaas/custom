@@ -107,20 +107,7 @@
      "for_merge": "“Geo.” is the ordinary abbreviation of “George”, Square and Squire differ by one letter, and the resident layer holds one card of each and no other bearer of either stem. Pass 06 of the resident-research programme reached the pair and wrote it down as a possible duplicate: “Geo. Square may be a transcription/duplicate relation to George Squire”.",
      "against_merge": "THE QUESTION CANNOT BE ASKED YET, BECAUSE ONE OF THE TWO PRINTED LINES IS ITSELF CONTESTED — and this corpus contests it in its own committed words. `square_geo` is minted from the Democrat of 1 April 1834, whose line reads “3. Geo. Square t 3 first rate”: an S-run line with an advertisement's column bleeding through it. The extraction of the 16 April 1834 impression — which that file's own note calls “the best witness to the J-W half of the 1 April 1834 list that the corpus holds” — reads the SAME three consecutive lines as “Benjarnin Smith”, “Ira Saymoro” and “GEO. SAVER” where 1 April reads “Benjamin Reed”, “Ira Raymore” and “Geo. Square”, and records that “the alphabetical position is with this printing and against 1834-04-01's” while declining to rewrite a minted name on a second transcription of equal rank. So the town does not yet know whether it holds a Square at all. A merge cannot be tested against a line nobody has settled — R5's principle, moved from a garbled forename to a garbled surname — and a REFUSAL cannot honestly be entered either, because the refusal would rest on the same unread line. Neither D6 nor C9 is reached for: both ask what the returns print, and one of these two returns has two readings."
     }
-   ],
-   "read_at_image": {
-    "ticket": "T-1138",
-    "read_on": "2026-09-15",
-    "roster": "data/research/newspapers/letter_list_1834_04_01_contested_lines.json",
-    "impressions_read": [
-     "chicago_democrat_1834_04_01",
-     "chicago_democrat_1834_04_08",
-     "chicago_democrat_1834_04_16"
-    ],
-    "as_printed_at_image": "Geo. Squar",
-    "was_minted_as": "Geo. Square",
-    "withdrawn_card": "hh_square_geo"
-   }
+   ]
   }
  ],
  "touches_removal": false,

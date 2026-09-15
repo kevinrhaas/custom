@@ -44,14 +44,14 @@
   }
  ],
  "counts": {
-  "leads_ruled": 1009,
-  "cards_ruled": 1417,
+  "leads_ruled": 1010,
+  "cards_ruled": 1418,
   "by_outcome": {
-   "refused": 748,
+   "refused": 749,
    "candidate": 261
   },
   "by_class": {
-   "ocr_variant_only": 360,
+   "ocr_variant_only": 361,
    "testable_in_a_held_work": 261,
    "locality_absent": 288,
    "surname_only_chicago": 100
@@ -32141,6 +32141,33 @@
    ],
    "person_ids": [
     "stringer_john"
+   ],
+   "works_cited": [],
+   "held_works": [],
+   "discriminators": []
+  },
+  {
+   "lead_id": "lead_v04_sqular_residents",
+   "surname_key": "sqular",
+   "spellings_as_printed": [
+    "Sqular"
+   ],
+   "layer": "residents",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Sqular' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Sqular' at all. And if it were, a heading against Geo. Squar would still be a surname against a person, which is always a refusal here.",
+   "record_ids": [
+    "nbi_v04_0126"
+   ],
+   "candidates": [
+    {
+     "id": "squar_geo",
+     "name": "Geo. Squar",
+     "rule": "OCR variant (0.91 similarity to 'squar')"
+    }
+   ],
+   "person_ids": [
+    "squar_geo"
    ],
    "works_cited": [],
    "held_works": [],
@@ -82484,6 +82511,39 @@
     ],
     "index_page": 235,
     "column": 2
+   },
+   "ticket": "T-0590"
+  },
+  {
+   "record_id": "nbi_v04_0126",
+   "a": "Sqular | —— Cook Coy bik taiviiacy Ac iv WUE y599,",
+   "b": "Geo. Squar",
+   "outcome": "refused",
+   "class": "ocr_variant_only",
+   "rule": "Refused twice over. No candidate reaches 'Sqular' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Sqular' at all. And if it were, a heading against Geo. Squar would still be a surname against a person, which is always a refusal here. Ruled on the card 'Sqular | —— Cook Coy bik taiviiacy Ac iv WUE y599,' against Geo. Squar.",
+   "layers": [
+    "residents"
+   ],
+   "leads": [
+    "lead_v04_sqular_residents"
+   ],
+   "person_ids": [
+    "squar_geo"
+   ],
+   "person_id": "squar_geo",
+   "evidence": [
+    "nbi_v04_0126",
+    "data/research/newberry_index/leads.json"
+   ],
+   "locator": {
+    "list": "vol_04",
+    "text_file": "vol_04_locality_cards.txt",
+    "lines": [
+     257,
+     258
+    ],
+    "index_page": 238,
+    "column": 0
    },
    "ticket": "T-0590"
   },

@@ -1333,5 +1333,19 @@
    "on": "2026-09-15",
    "what": "The square-squire cluster, re-ruled from UNDECIDED (U1, T-1133) to DISTINCT (D6) on the page images of the 1 April 1834 return. The cluster id moves with the card: `square_geo` is withdrawn at the image and the same person stands as `squar_geo`, so the cluster is `squar-squire`."
   }
+ ],
+ "withdrawn": [
+  {
+   "id": "square-squire",
+   "rule": "U1",
+   "ticket": "T-1138",
+   "on": "2026-09-15",
+   "reason": "SUPERSEDED BY THE PAGE, NOT DELETED. T-1133 left this cluster UNDECIDED under U1 and referred the question to T-1138, which is the ticket that reads the line. The reading is made: all three impressions of the 1 April 1834 return set `Geo. Squar`, so the card the U1 ruling was about — `square_geo` — is withdrawn at the image and the same person stands as `squar_geo`. The cluster moved with its card and is now `squar-squire`, ruled DISTINCT under D6. A U1 ruling is a question with a ticket on it; this one has its answer, and the answer is in the cluster that replaced it rather than here.",
+   "superseded_by": {
+    "cluster": "squar-squire",
+    "rule": "D6",
+    "ticket": "T-1138"
+   }
+  }
  ]
 }
