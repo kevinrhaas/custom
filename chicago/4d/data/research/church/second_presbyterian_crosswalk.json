@@ -14,7 +14,7 @@
   ],
   "counts": {
     "roll_records": 941,
-    "residents_considered": 1302,
+    "residents_considered": 1298,
     "residents_matched_one_line": 81,
     "residents_ambiguous": 36,
     "residents_surname_only_refused": 323
@@ -4318,7 +4318,7 @@
       "name": "Clark Knight",
       "person_id": "knight_clark",
       "household_id": "hh_knight_clark",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 2,
       "rule": "The surname 'Knight' stands on the Second Presbyterian roll and no line under it carries the initial 'C' of 'Clark Knight'. A surname-only agreement is a refusal."

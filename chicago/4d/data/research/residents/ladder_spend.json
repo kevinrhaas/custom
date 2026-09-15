@@ -11,16 +11,16 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1304,
-  "carried_by_the_civic_mint": 412,
-  "rungs_spent": 810,
+  "person_records": 1300,
+  "carried_by_the_civic_mint": 410,
+  "rungs_spent": 808,
   "conflicts_for_the_owner": 79,
   "spent_by_rule": {
    "G1a": 22,
    "G1b": 92,
    "G1c": 9,
    "G2e": 47,
-   "G3": 640
+   "G3": 638
   },
   "conflicts_by_kind": {
    "abstention": 44,
@@ -210,15 +210,6 @@
    "household_id": "hh_andress_stephen",
    "name": "Stephen Andress",
    "identity": "id_andress_stephen",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "anight_clark",
-   "household_id": "hh_anight_clark",
-   "name": "Clark Anight",
-   "identity": "id_anight_clark",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -5871,15 +5862,6 @@
    "household_id": "hh_savage_david",
    "name": "David Savage",
    "identity": "id_savage_david",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "scarritt_isaac",
-   "household_id": "hh_scarritt_isaac",
-   "name": "Isaac Scarritt",
-   "identity": "id_scarritt_isaac",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"

@@ -23,13 +23,13 @@
   },
   "directories": {
    "names_read": 4337,
-   "identities": 2851,
+   "identities": 2850,
    "appearances_on_an_identity_the_town_already_carries": 288,
    "unmatched": 4049
   },
   "newspapers": {
    "names_read": 2329,
-   "identities": 2126,
+   "identities": 2123,
    "appearances_on_an_identity_the_town_already_carries": 1229,
    "unmatched": 1100
   },
@@ -40,10 +40,10 @@
    "unmatched": 693
   },
   "residents": {
-   "names_read": 1301,
-   "identities": 1301,
+   "names_read": 1297,
+   "identities": 1297,
    "appearances_on_an_identity_the_town_already_carries": 0,
-   "unmatched": 1301
+   "unmatched": 1297
   },
   "books": {
    "names_read": 0,
@@ -94,23 +94,23 @@
   "church|residents": 40,
   "civic|civic": 374,
   "civic|directories": 80,
-  "civic|newspapers": 107,
+  "civic|newspapers": 108,
   "civic|old_settlers": 30,
   "civic|residents": 262,
-  "directories|directories": 2851,
-  "directories|newspapers": 158,
+  "directories|directories": 2850,
+  "directories|newspapers": 157,
   "directories|old_settlers": 29,
-  "directories|residents": 159,
-  "newspapers|newspapers": 2126,
+  "directories|residents": 158,
+  "newspapers|newspapers": 2123,
   "newspapers|old_settlers": 48,
-  "newspapers|residents": 1064,
+  "newspapers|residents": 1061,
   "old_settlers|old_settlers": 736,
   "old_settlers|residents": 49,
-  "residents|residents": 1301
+  "residents|residents": 1297
  },
  "town_rows_this_tool_could_not_parse": {
-  "persons_in_the_layer": 1304,
-  "persons_this_tool_placed_on_an_identity": 1301,
+  "persons_in_the_layer": 1300,
+  "persons_this_tool_placed_on_an_identity": 1297,
   "why": "a card whose name is a surname alone, a firm style, or an honorific with no forename cannot be split into (surname, forename) and is refused by R1 like any other source reading. They are named in the master's refusals."
  },
  "negative_searches_recorded": {
@@ -126,6 +126,6 @@
    "X2": 1,
    "X3": 1
   },
-  "declared_refusals": 2272
+  "declared_refusals": 2271
  }
 }

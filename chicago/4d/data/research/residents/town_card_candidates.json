@@ -4,17 +4,17 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1304,
+  "town_people": 1300,
   "open_clusters": 19,
   "cards_in_open_clusters": 41,
   "rulings": {
-   "distinct": 18,
-   "merge": 43,
+   "distinct": 24,
+   "merge": 47,
    "undecided_T-1138": 1,
    "undecided_rule": 12
   },
-  "landed_merges": 43,
-  "cards_folded": 62
+  "landed_merges": 47,
+  "cards_folded": 66
  },
  "landed": [
   {
@@ -129,6 +129,16 @@
     "dole_g_w"
    ],
    "rule": "C2"
+  },
+  {
+   "cluster": "eldredge-eldridge",
+   "survivor": "eldridge_john_w",
+   "survivor_household": "hh_eldridge_john_w",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "eldredge_john_w"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "fraser-frazer",
@@ -320,6 +330,16 @@
    "rule": "C2"
   },
   {
+   "cluster": "anight-knight",
+   "survivor": "knight_clark",
+   "survivor_household": "hh_knight_clark",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "anight_clark"
+   ],
+   "rule": "C13"
+  },
+  {
    "cluster": "norton",
    "survivor": "norton_nelson_r",
    "survivor_household": "hh_norton_nelson_r",
@@ -371,7 +391,27 @@
    "folded": [
     "pryne_peter"
    ],
-   "rule": "C13"
+   "rule": "C14"
+  },
+  {
+   "cluster": "salsbury-salisbury",
+   "survivor": "salisbury_stephen_m",
+   "survivor_household": "hh_salisbury_stephen_m",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "salsbury_stephen_m"
+   ],
+   "rule": "C9"
+  },
+  {
+   "cluster": "scarrett-scarritt",
+   "survivor": "scarrett_isaac",
+   "survivor_household": "hh_scarrett_isaac",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "scarritt_isaac"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "snow",

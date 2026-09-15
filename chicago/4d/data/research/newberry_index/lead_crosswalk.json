@@ -44,14 +44,14 @@
   }
  ],
  "counts": {
-  "leads_ruled": 1009,
-  "cards_ruled": 1417,
+  "leads_ruled": 1008,
+  "cards_ruled": 1416,
   "by_outcome": {
-   "refused": 748,
+   "refused": 747,
    "candidate": 261
   },
   "by_class": {
-   "ocr_variant_only": 360,
+   "ocr_variant_only": 359,
    "testable_in_a_held_work": 261,
    "locality_absent": 288,
    "surname_only_chicago": 100
@@ -13737,33 +13737,6 @@
    "discriminators": []
   },
   {
-   "lead_id": "lead_v01_eldredpe_residents",
-   "surname_key": "eldredpe",
-   "spellings_as_printed": [
-    "Eldredpe"
-   ],
-   "layer": "residents",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Eldredpe' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Eldredpe' at all. And if it were, a heading against John W Eldredge would still be a surname against a person, which is always a refusal here.",
-   "record_ids": [
-    "nbi_v01_2198"
-   ],
-   "candidates": [
-    {
-     "id": "eldredge_john_w",
-     "name": "John W Eldredge",
-     "rule": "OCR variant (0.88 similarity to 'eldredge')"
-    }
-   ],
-   "person_ids": [
-    "eldredge_john_w"
-   ],
-   "works_cited": [],
-   "held_works": [],
-   "discriminators": []
-  },
-  {
    "lead_id": "lead_v01_eldridge_census_1840",
    "surname_key": "eldridge",
    "spellings_as_printed": [
@@ -13797,16 +13770,11 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Eldridge' name Illinois and neither Chicago nor Cook County, so the lead against John W Eldredge; John W Eldridge stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Eldridge' name Illinois and neither Chicago nor Cook County, so the lead against John W Eldridge stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_2199"
    ],
    "candidates": [
-    {
-     "id": "eldredge_john_w",
-     "name": "John W Eldredge",
-     "rule": "OCR variant (0.88 similarity to 'eldredge')"
-    },
     {
      "id": "eldridge_john_w",
      "name": "John W Eldridge",
@@ -13814,7 +13782,6 @@
     }
    ],
    "person_ids": [
-    "eldredge_john_w",
     "eldridge_john_w"
    ],
    "works_cited": [],
@@ -30980,7 +30947,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'n family, Salisbury' name Illinois and neither Chicago nor Cook County, so the lead against Stephen M. Salisbury; Stephen M Salsbury stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'n family, Salisbury' name Illinois and neither Chicago nor Cook County, so the lead against Stephen M. Salisbury stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v03_1971"
    ],
@@ -30989,16 +30956,10 @@
      "id": "salisbury_stephen_m",
      "name": "Stephen M. Salisbury",
      "rule": "exact surname"
-    },
-    {
-     "id": "salsbury_stephen_m",
-     "name": "Stephen M Salsbury",
-     "rule": "OCR variant (0.94 similarity to 'salsbury')"
     }
    ],
    "person_ids": [
-    "salisbury_stephen_m",
-    "salsbury_stephen_m"
+    "salisbury_stephen_m"
    ],
    "works_cited": [],
    "held_works": [],
@@ -67899,45 +67860,12 @@
    "ticket": "T-0590"
   },
   {
-   "record_id": "nbi_v01_2198",
-   "a": "Eldredpe | thinrrrkx, Co., 111. (LeBwoo. W . I , . , 4 Co., Pub«. 11878: Eldrodge",
-   "b": "John W Eldredge",
-   "outcome": "refused",
-   "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Eldredpe' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Eldredpe' at all. And if it were, a heading against John W Eldredge would still be a surname against a person, which is always a refusal here. Ruled on the card 'Eldredpe | thinrrrkx, Co., 111. (LeBwoo. W . I , . , 4 Co., Pub«. 11878: Eldrodge' against John W Eldredge.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v01_eldredpe_residents"
-   ],
-   "person_ids": [
-    "eldredge_john_w"
-   ],
-   "person_id": "eldredge_john_w",
-   "evidence": [
-    "nbi_v01_2198",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_01",
-    "text_file": "vol_01_locality_cards.txt",
-    "lines": [
-     4401,
-     4402
-    ],
-    "index_page": 884,
-    "column": 2
-   },
-   "ticket": "T-0590"
-  },
-  {
    "record_id": "nbi_v01_2199",
    "a": "Eldridge | Di.Pago Co., III. (Ciancl: rd.T,.l 1832: P - ' 1 2",
-   "b": "W. J. H. Eldridge; John W Eldredge; John W Eldridge",
+   "b": "W. J. H. Eldridge; John W Eldridge",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Eldridge' name Illinois and neither Chicago nor Cook County, so the lead against W. J. H. Eldridge stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Eldridge | Di.Pago Co., III. (Ciancl: rd.T,.l 1832: P - ' 1 2\" against W. J. H. Eldridge; John W Eldredge; John W Eldridge.",
+   "rule": "Refused. All 1 card(s) heading 'Eldridge' name Illinois and neither Chicago nor Cook County, so the lead against W. J. H. Eldridge stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"Eldridge | Di.Pago Co., III. (Ciancl: rd.T,.l 1832: P - ' 1 2\" against W. J. H. Eldridge; John W Eldridge.",
    "layers": [
     "census_1840",
     "residents"
@@ -67947,10 +67875,9 @@
     "lead_v01_eldridge_residents"
    ],
    "person_ids": [
-    "eldredge_john_w",
     "eldridge_john_w"
    ],
-   "person_id": null,
+   "person_id": "eldridge_john_w",
    "evidence": [
     "nbi_v01_2199",
     "data/research/newberry_index/leads.json"
@@ -81885,10 +81812,10 @@
   {
    "record_id": "nbi_v03_1971",
    "a": "n family, Salisbury | , Fulton CtJ', III, l",
-   "b": "J. W. Salisbury; Stephen M. Salisbury; Stephen M Salsbury",
+   "b": "J. W. Salisbury; Stephen M. Salisbury",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'n family, Salisbury' name Illinois and neither Chicago nor Cook County, so the lead against J. W. Salisbury stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"n family, Salisbury | , Fulton CtJ', III, l\" against J. W. Salisbury; Stephen M. Salisbury; Stephen M Salsbury.",
+   "rule": "Refused. All 1 card(s) heading 'n family, Salisbury' name Illinois and neither Chicago nor Cook County, so the lead against J. W. Salisbury stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card \"n family, Salisbury | , Fulton CtJ', III, l\" against J. W. Salisbury; Stephen M. Salisbury.",
    "layers": [
     "census_1840",
     "residents"
@@ -81898,10 +81825,9 @@
     "lead_v03_salisbury_residents"
    ],
    "person_ids": [
-    "salisbury_stephen_m",
-    "salsbury_stephen_m"
+    "salisbury_stephen_m"
    ],
-   "person_id": null,
+   "person_id": "salisbury_stephen_m",
    "evidence": [
     "nbi_v03_1971",
     "data/research/newberry_index/leads.json"

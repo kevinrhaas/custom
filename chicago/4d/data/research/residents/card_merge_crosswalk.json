@@ -258,6 +258,27 @@
   },
   {
    "outcome": "merged",
+   "person_id": "eldridge_john_w",
+   "folded_person_id": "eldredge_john_w",
+   "rule": "C9",
+   "cluster": "eldredge-eldridge",
+   "record_ids": [
+    "n1844_e0564",
+    "person_j_w_eldredge"
+   ],
+   "domains": [
+    "directories",
+    "newspapers",
+    "old_settlers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835",
+    "norris_directory_1844"
+   ],
+   "evidence": "T-1134: 'eldredge_john_w' and 'eldridge_john_w' are one person under rule C9; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'eldredge-eldridge'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "fraser_wm_h",
    "folded_person_id": "frazer_wm_h",
    "rule": "C9",
@@ -744,6 +765,23 @@
   },
   {
    "outcome": "merged",
+   "person_id": "knight_clark",
+   "folded_person_id": "anight_clark",
+   "rule": "C13",
+   "cluster": "anight-knight",
+   "record_ids": [
+    "person_anight_clark"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-1134: 'anight_clark' and 'knight_clark' are one person under rule C13; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'anight-knight'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "norton_nelson_r",
    "folded_person_id": "norton_n_r",
    "rule": "C2",
@@ -891,7 +929,7 @@
    "outcome": "merged",
    "person_id": "pruyne_peter",
    "folded_person_id": "pryne_peter",
-   "rule": "C13",
+   "rule": "C14",
    "cluster": "pruyne-pryne",
    "record_ids": [
     "poll_1834_091",
@@ -904,7 +942,41 @@
    "sources": [
     "chicago_voter_lists_1833_1835_irad"
    ],
-   "evidence": "T-1135: 'pryne_peter' and 'pruyne_peter' are one person under rule C13; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'pruyne-pryne'."
+   "evidence": "T-1135: 'pryne_peter' and 'pruyne_peter' are one person under rule C14; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'pruyne-pryne'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "salisbury_stephen_m",
+   "folded_person_id": "salsbury_stephen_m",
+   "rule": "C9",
+   "cluster": "salsbury-salisbury",
+   "record_ids": [
+    "person_stephen_m_salsbury"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-1134: 'salsbury_stephen_m' and 'salisbury_stephen_m' are one person under rule C9; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'salsbury-salisbury'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "scarrett_isaac",
+   "folded_person_id": "scarritt_isaac",
+   "rule": "C9",
+   "cluster": "scarrett-scarritt",
+   "record_ids": [
+    "person_isaac_scarritt"
+   ],
+   "domains": [
+    "newspapers"
+   ],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-1134: 'scarritt_isaac' and 'scarrett_isaac' are one person under rule C9; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'scarrett-scarritt'."
   },
   {
    "outcome": "merged",

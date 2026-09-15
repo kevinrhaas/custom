@@ -366,6 +366,76 @@ body.is-touch .gate-touch { display: block; }
   box-shadow: var(--shadow);
 }
 .overview-map canvas { display: block; opacity: .94; }
+/* The inset IS the control that opens the whole field (T-1142): a transparent
+   button laid over it, so the target is the map itself rather than a separate
+   affordance crowding a 248x98 frame. `.navigation-stack` is pointer-events:
+   none, so this has to claim them back. */
+.overview-open {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.overview-open:hover { background: rgba(244, 181, 79, .1); }
+.overview-open:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* The pop-out. A dialog over the scene, not a second HUD layer — it sits above
+   the drawer so opening it from the menu cannot bury it. */
+.overview-full {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  background: rgba(8, 8, 7, .62);
+  pointer-events: auto;
+}
+.overview-full[hidden] { display: none; }
+.overview-full-card {
+  display: grid;
+  gap: 8px;
+  max-width: min(100%, 820px);
+  max-height: 100%;
+  padding: 12px 14px 10px;
+  border: 1px solid var(--edge);
+  border-radius: var(--r);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+}
+.overview-full-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.overview-full-head strong { color: var(--ink); font-size: 13.5px; }
+.overview-full-close {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-dim);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+.overview-full-close:hover { color: var(--ink); }
+.overview-full-canvas, .overview-full canvas {
+  display: block;
+  justify-self: center;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  background: #696546;
+}
+.overview-full-foot { margin: 0; color: var(--ink-dim); font-size: 11px; text-align: center; }
 .overview-north, .overview-caption {
   position: absolute;
   padding: 1px 5px;

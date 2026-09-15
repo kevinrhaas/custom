@@ -816,14 +816,17 @@
    ],
    "reopens_on": "a Chicago residence record; the candidate's Aux Sable / Grundy County residence is explicitly documented."
   },
-  "scarritt_isaac": {
+  "scarrett_isaac": {
    "verdict": "declined_no_bridge",
    "cohort_ticket": "T-0481",
    "research_outcome": "candidate_identity",
    "ruled_conflicts": [
     "No proof of Chicago household at the 1834 postal date."
    ],
-   "reopens_on": "proof of a Chicago household at the 1834 postal date."
+   "reopens_on": "proof of a Chicago household at the 1834 postal date.",
+   "moved_from": "scarritt_isaac",
+   "moved_by": "T-1134",
+   "moved_note": "The card this ruling stood on was folded on 2026-09-15: T-1134 ruled scarritt_isaac and scarrett_isaac one man under C9, on the Chicago Democrat setting the surname three ways for one Isaac — 'Teanc Scarritt' in the list of letters uncalled-for of 28 January 1834, 'Scaredi' and 'Isaac Scarret' on the county's commissioner slate of 6 and 13 August 1834. The ruling MOVES rather than retires, and its verdict is unchanged: what it declined was an OUTSIDE candidate identity, and the fold says nothing about that candidate. NOR IS ITS REOPENING CONDITION MET — it asks for proof of a Chicago HOUSEHOLD at the 1834 postal date, and a candidacy for County Commissioner is a presence in the county's public life and not a roof. The decline stands, on the surviving card."
   },
   "selden_saml_l": {
    "verdict": "declined_competing_residence",

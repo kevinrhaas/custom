@@ -134,7 +134,7 @@
    "merged_from": [
     {
      "ticket": "T-1135",
-     "rule": "C13",
+     "rule": "C14",
      "cluster": "pruyne-pryne",
      "cards": [
       "pryne_peter"

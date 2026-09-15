@@ -3,7 +3,7 @@
 **Ruled:** 2026-09-15 · **Ticket:** T-1135 · **Domain:** `residents` ·
 **Tool:** `tools/exhaust_tax_1833.py` · **Measurement:**
 `data/research/civic/tax_1833_exhaustion.json` · **Ruling:**
-`data/residents/card_merge_rulings.json` → `clusters` → `pruyne-pryne` · **Rule:** C13
+`data/residents/card_merge_rulings.json` → `clusters` → `pruyne-pryne` · **Rule:** C14
 
 Re-derivable end to end:
 
@@ -124,11 +124,23 @@ The same split is what left C9 with no page. It cuts both ways and both are reco
 
 ## 3. What the rule is, and what it is not
 
-C13 is C12 with its two halves swapped — there the surname agrees and the forename
+C14 is C12 with its two halves swapped — there the surname agrees and the forename
 varies, here the forename agrees and the surname varies. Four conditions, and dropping
 any one leaves the card where it is. It is written rather than stretched out of C12
 because C12's text reaches a forename only, and quietly reading it wider would have been
 a rule change made by application.
+
+**This is D7's answer, and D7 is where the pair otherwise lands.** T-1134 wrote D7 the
+night before this ruling: the standing refusal for two cards one letter apart in the
+surname with an identical forename, the corpus searched, and the two spellings standing on
+instruments that never touch — *"a tax roll against a newspaper"* in its own words, which
+is this pair precisely. All three of its conditions hold here. It is not applied because
+D7's own reasoning says what displaces it — it refuses on the ground that *nothing reached
+folds them*, and it says *"a later page reopens it"*. No page has turned up and none is
+claimed. What reopens it is a count, which is admissible where a page is not for the same
+reason it is admissible at all: it never weighs how alike the two strings look. **C14 says
+to reach for D7 first**, and it requires a closed roll *and* a re-derivable fact putting
+the survivor on it. Most one-letter pairs have neither and stay D7's.
 
 **The argument this ruling does not use.** "He bought at the town's own school-section
 sale, so he is the kind of man its tax roll carries" is T-1017's question, and T-1017
@@ -181,7 +193,7 @@ build goes red and names which, and T-1135 reopens.
 - **No page was found and none is claimed.** C9 does not fire here and is not invoked.
 - **`compatible()` is not widened.** T-1001's measurement of a blanket one-letter surname
   fold stands untouched, and nothing here is a licence to fold on a distance.
-- **The other seventeen one-letter pairs are not ruled by this.** C13 needs a closed roll
+- **The other seventeen one-letter pairs are not ruled by this.** C14 needs a closed roll
   and a fact that puts a man on it; most pairs have neither.
 - **`PRUYNE P AND CO` is not adjudicated.** The firm's row falls inside the line too and
   is printed, but the ruling rests on `PRUYNE P`, which carries an upheld reading already.
