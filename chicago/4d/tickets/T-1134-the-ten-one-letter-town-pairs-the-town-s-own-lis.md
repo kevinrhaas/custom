@@ -1,7 +1,7 @@
 ---
 id: T-1134
 title: The ten one-letter town pairs the town's own lists print with no anchor on either card
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1130
 opened: 2026-09-14
-closed: null
-pr: null
+closed: 2026-09-15
+pr: 1353
 claimed_by: run 9/15/2026, 1:42:28 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-15T13:25:58.675Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34937778308
 ---
 
