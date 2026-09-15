@@ -1,6 +1,6 @@
 {
  "id": "hh_provis_joshua",
- "name": "The Provis household — a name from the post office's letter lists",
+ "name": "The Pruvis household — a name from the post office's letter lists",
  "division": "unplaced",
  "head": "provis_joshua",
  "source_pass": "letter_list",
@@ -49,7 +49,18 @@
  "persons": [
   {
    "id": "provis_joshua",
-   "name": "Joshua Provis",
+   "name": "Joshua Pruvis",
+   "name_ruling": {
+    "displayed_name_was": "Joshua Provis",
+    "ruled_by": "T-1139",
+    "rule": "N3",
+    "printed_line": 118,
+    "takes": "the reading T-0424 made at the page image of the ninth impression, which sets 'Joshua Pruvis'",
+    "over": "the reading chicago_democrat_1834_01_28#c001 made from a transcription, which set 'Joshua Provis' and was normalized to 'Joshua Provis'",
+    "reasoning": "Both readings set plain, complete letters and they disagree — two impressions of one return, re-keyed by the compositor. The roster is `scan_verified` and the transcription `transcription_mediated`, and tools/read_letter_list_1834_image.py already rules that the image OVERTURNS an uncut transcription reading the printed line contradicts. Nothing outside this return carries the overturned letters.",
+    "the_id_did_not_move": "person_id 'provis_joshua' and household 'hh_provis_joshua' are cited by the crosswalks, identity_master.json, the smoke cohorts and card_merge_rulings.json. An id is a handle, not a claim, so the displayed name moves and the id stands (T-1139 rule N5).",
+    "ruling": "data/research/newspapers/letter_list_1834_01_01_name_rulings.json"
+   },
    "relationship": "head",
    "grade": "inferred",
    "ladder_rule": "G3",

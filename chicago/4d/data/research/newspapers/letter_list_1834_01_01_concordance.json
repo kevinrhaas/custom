@@ -1247,7 +1247,7 @@
     "kind": "minted",
     "person": "person_wm_h_fraser",
     "household": "hh_fraser_wm_h",
-    "card_name": "Wm. H. Fraser",
+    "card_name": "Wm. H. Frazer",
     "by": "tools/mint_letter_list_residents.py",
     "also_resolved_to": [
      "person_wm_h_frazer"
@@ -2601,7 +2601,7 @@
     "kind": "minted",
     "person": "person_joshua_provis",
     "household": "hh_provis_joshua",
-    "card_name": "Joshua Provis",
+    "card_name": "Joshua Pruvis",
     "by": "tools/mint_letter_list_residents.py",
     "also_resolved_to": [
      "person_joshua_pruvis"
@@ -3514,7 +3514,7 @@
     "kind": "minted",
     "person": "person_john_vandino",
     "household": "hh_vandino_john",
-    "card_name": "John Vandino",
+    "card_name": "John Vandine",
     "by": "tools/mint_letter_list_residents.py",
     "also_resolved_to": [
      "person_john_vandine"
@@ -4010,8 +4010,8 @@
    ],
    "reaches": "minted",
    "kind": "the two readings disagree in their letters",
-   "card_name": "Wm. H. Fraser",
-   "card_follows": "the transcription",
+   "card_name": "Wm. H. Frazer",
+   "card_follows": "the page image",
    "ruled": {
     "ticket": "T-1139",
     "rule": "N3",
@@ -4091,8 +4091,8 @@
    ],
    "reaches": "minted",
    "kind": "the two readings disagree in their letters",
-   "card_name": "Joshua Provis",
-   "card_follows": "the transcription",
+   "card_name": "Joshua Pruvis",
+   "card_follows": "the page image",
    "ruled": {
     "ticket": "T-1139",
     "rule": "N3",
@@ -4178,8 +4178,8 @@
    ],
    "reaches": "minted",
    "kind": "the two readings disagree in their letters",
-   "card_name": "John Vandino",
-   "card_follows": "the transcription",
+   "card_name": "John Vandine",
+   "card_follows": "the page image",
    "ruled": {
     "ticket": "T-1139",
     "rule": "N3",

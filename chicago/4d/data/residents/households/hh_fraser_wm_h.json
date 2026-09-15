@@ -1,6 +1,6 @@
 {
  "id": "hh_fraser_wm_h",
- "name": "The Fraser household — a name from the post office's letter lists",
+ "name": "The Frazer household — a name from the post office's letter lists",
  "division": "unplaced",
  "head": "fraser_wm_h",
  "source_pass": "letter_list",
@@ -49,7 +49,18 @@
  "persons": [
   {
    "id": "fraser_wm_h",
-   "name": "Wm. H. Fraser",
+   "name": "Wm. H. Frazer",
+   "name_ruling": {
+    "displayed_name_was": "Wm. H. Fraser",
+    "ruled_by": "T-1139",
+    "rule": "N3",
+    "printed_line": 55,
+    "takes": "the reading T-0424 made at the page image of the ninth impression, which sets 'Wm. H. Frazer'",
+    "over": "the reading chicago_democrat_1834_01_28#c001 made from a transcription, which set 'Wm. H. Fraser' and was normalized to 'Wm. H. Fraser'",
+    "reasoning": "Both readings set plain, complete letters and they disagree — two impressions of one return, re-keyed by the compositor. The roster is `scan_verified` and the transcription `transcription_mediated`, and tools/read_letter_list_1834_image.py already rules that the image OVERTURNS an uncut transcription reading the printed line contradicts. Nothing outside this return carries the overturned letters.",
+    "the_id_did_not_move": "person_id 'fraser_wm_h' and household 'hh_fraser_wm_h' are cited by the crosswalks, identity_master.json, the smoke cohorts and card_merge_rulings.json. An id is a handle, not a claim, so the displayed name moves and the id stands (T-1139 rule N5).",
+    "ruling": "data/research/newspapers/letter_list_1834_01_01_name_rulings.json"
+   },
    "relationship": "head",
    "grade": "inferred",
    "ladder_rule": "G3",
