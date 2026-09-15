@@ -32,9 +32,9 @@
   },
   "ground": {
     "dry_floor_m": 0.2,
-    "nodes_above_floor": 1255221,
-    "inside_planter": 1248857,
-    "outside_planter": 6364,
+    "nodes_above_floor": 1252105,
+    "inside_planter": 1245754,
+    "outside_planter": 6351,
     "inside_pct": 99.49,
     "outside_ha": 4.0,
     "field_e_m": [

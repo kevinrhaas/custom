@@ -11983,3 +11983,30 @@ trace exists below it: the spec block is deleted, not amended.
 Related: **L14**, the conjectural micro-relief under every terrain claim. Tickets **T-1149**
 (this), **T-0465** (the parent, now split), **T-0464** (the box this stands in).
 **Recorded:** 2026-09-15.
+**Revised:** 2026-09-15, T-1150. **THE RIVER'S HALF OF THIS ENTRY IS GONE.** The paragraph above
+says the answer needs "a period map that reaches that far south" and that the three sheets this
+corpus holds all stop in the same place. One was found the same day: **Rees & Rucker, Map of
+Chicago and Vicinity, 1849** — 4,973 x 6,601 px, North Avenue to below Thirty-First Street, the
+lake to Western Avenue, public domain, pinned as `rees_rucker_1849` with the raster's sha256 and
+georeferenced against fourteen section corners of the Chicago mile grid at RMS 25.0 m
+(`data/traces/gcp/rees_rucker_1849_gcps.json`). `southern_branch` is **DELETED** from the terrain
+spec — the rule and the code that read it, not merely disabled — and the channel below Twelfth
+Street is now an ordinary traced water polygon with two ordinary bank runs
+(`south_branch_below_twelfth.geojson`, `tools/trace_south_branch_rees_1849.py`). It bends east to
+about E +567 near Sixteenth Street and swings south-west toward the portage, crossing the box floor
+with its centre **521 m west** of where the held easting stood it; its width is read row by row off
+the sheet at 23.4-67.2 m, median 49.9, rather than carried. What was "about 120 m" of estimated
+error in the paragraph above was, measured, more than four times that. THE SEAM IS THE CHECK: at N −2110
+Wright stands the banks at E +293.2 and +338.5 and this sheet stands them at +287.1 and +319.1 —
+6.1 m and 19.4 m, inside the fit's own 25.0 m RMS, from two surveys fifteen years and two
+institutions apart.
+
+**What is NOT resolved, and why this entry stays open.** The **lake's** half — `southern_lake`'s
+`beyond_the_trace`, the shore edge held at E +1347.4 below N −2159.9 — is untouched and still
+stands exactly as recorded above. The same 1849 sheet draws the pre-fill shore beside this reach
+and it has not been read: that is **T-1151**, and this entry moves to Resolved when it lands. The
+river half is also not upgraded in confidence by any of this. The sheet is fourteen years later
+than the scene, so the trace is written `inferred` and never `documented`, and `evidence_limit`
+still writes every vertex below N −2149.4 `CONF_CONJECTURAL` regardless — the field carries the
+more conservative of the two labels, exactly as it did before.
+

@@ -6,8 +6,6 @@
   "grid": {
     "e_min_m": -320.0,
     "e_max_m": 1700.0,
-"e_min_m": -320.0,
-    "e_max_m": 1700.0,
     "n_min_m": -3800.0,
     "n_max_m": 1120.0,
     "cell_m": 2.5,
@@ -17,9 +15,6 @@
   },
   "box_derivation": {
     "_doc": "Why these four numbers, each from evidence rather than from a round figure.",
-    "e_max": "+1700. The easternmost thing this scene contains is the north pier's 1835 head at about E +1510 (root E +1243.5 / N +311.9, bearing 103.36 deg, 900 ft adopted — docs/RESEARCH/north_pier.md sections 2 and 4), with a +/-30 m band on the length. The easternmost traced LAND is the sand bar's east edge at E +1497.5, and the traced water stops at E +1573.6, which is the edge of the tracing window and not a shore. +1700 clears the pier head by 190 m and its error bar by 160 m, clears the traced window by 126 m so the whole traced water body is inside the box, and stands 203 m (665 ft) off the bar — inside dossier zone 30's 600-1000 ft, where the lake reaches about -10 ft. It is deliberately NOT taken from the drafted pier ends at E +1588.8: Wright draws both piers at about 1165 ft, longer than the north pier was in 1834 and longer than the south pier ever was before 1837, so the drafted extent is an AUTHORISATION and not a length at any date this project models.",
-    "e_min": "-320. Unchanged. The forks trace's own western window.",
-"_doc": "Why these four numbers, each from evidence rather than from a round figure.",
     "e_max": "+1700. The easternmost thing this scene contains is the north pier's 1835 head at about E +1510 (root E +1243.5 / N +311.9, bearing 103.36 deg, 900 ft adopted — docs/RESEARCH/north_pier.md sections 2 and 4), with a +/-30 m band on the length. The easternmost traced LAND is the sand bar's east edge at E +1497.5, and the traced water stops at E +1573.6, which is the edge of the tracing window and not a shore. +1700 clears the pier head by 190 m and its error bar by 160 m, clears the traced window by 126 m so the whole traced water body is inside the box, and stands 203 m (665 ft) off the bar — inside dossier zone 30's 600-1000 ft, where the lake reaches about -10 ft. It is deliberately NOT taken from the drafted pier ends at E +1588.8: Wright draws both piers at about 1165 ft, longer than the north pier was in 1834 and longer than the south pier ever was before 1837, so the drafted extent is an AUTHORISATION and not a length at any date this project models.",
     "e_min": "-320. Unchanged. The forks trace's own western window.",
     "n_min": "-3800. Was -530, and -530 was the PLAT's south line: Madison Street, where T-0219 stopped because the plat stopped. This box is no longer only the plat's. T-0464 carries it south far enough to CONTAIN the ground the 1812 and 1880s scene tickets stand on — the evacuation corridor and the Prairie Avenue district, both of them between Twelfth Street and Twenty-Second — so the bound is set on Twenty-Second Street (Cermak Road) and derived from the PLSS rather than from a round figure.\nTHE DERIVATION. Two committed section corners fix the mile. G1 of data/traces/gcp/wright_1834_gcps.json is State & Madison, the corner of sections 9/10/15/16, at local N -525.27. S-SE of data/traces/gcp/wright_1834_nara_hup_section_corners.json is State & Roosevelt — Twelfth Street — the corner of sections 15/16/21/22, at local N -2149.40. Those are the north and south lines of the School Section, one statute mile apart, and Twenty-Second Street is the next mile line south: the south line of sections 21/22. One statute mile (1609.344 m) below S-SE puts it at local N -3758.74.\nTHE BUFFER, MEASURED. -3800 stands 41.3 m south of that line. The uncertainty it has to clear is stated by the control itself: the square those OSM crossings make measures 1620.09 to 1624.23 m against the mile, a mean 12.73 m long, because Halsted and Twelfth were both widened after 1834 and a one-sided widening moves a centreline. Carry that measured spacing instead of the statute mile and Twenty-Second falls at N -3773.5; -3800 clears that reading too, by 26.5 m, and clears the picking spread (16.95 m at Halsted & Roosevelt) as well. So the street is inside the box on either derivation, which is what 'through Cermak' has to mean. -3800 also lands on the existing 2.5 m lattice (1308 rows below -530), so no sample the field already carried moves.\nWHAT IS DOWN THERE, AND IT IS NOT RECONSTRUCTION. Nothing in this corpus states ground south of Twelfth Street. The terrain dossier's own scope is 'south to about Van Buren/Madison'; its one southern statement is zone 3, the lakeshore sand-ridge belt, given as Chicago Ave to 12th St; Wright's sheet ends there; and both traced lines — the South Branch in branches.geojson and south_shore_harbor_reach — stop within 15 m of the same section line. So the 1650 m below it is FRAME, not reconstruction: evidence_limit marks every vertex there conjectural, southern_lake's beyond_the_trace keeps the lake from coming out as dry land, and T-0465 is the ticket that carries the river and the shore down into it. Until it lands, the South Branch in this box ends at Twelfth Street.",
@@ -69,6 +64,11 @@
     {
       "feature": "north_branch_wabansia",
       "note": "The North Branch above the forks window: from that window's own north edge (BPL master row 1252, a declared splice rather than a tolerance — see docs/RESEARCH/north_branch_wabansia.md) up to the north line Wright ruled across the top of his sheet. It abuts river.geojson and moves no vertex of it. Only the reach below about N +720 is inside this box: the branch runs north-west and crosses the box's west wall at E -320 there, so what the field carries is roughly 320 m of channel above the forks and the two banks either side of it. The polygon's northern edge at N +1079.21 is the edge of a survey and not the end of a river — its own provenance says so — and it lies outside the box, so nothing here has to answer for it."
+    },
+    {
+      "feature": "south_branch_below_twelfth_water",
+      "from": "south_branch_below_twelfth.geojson",
+      "note": "The South Branch from Twelfth Street to the box floor, traced from REES & RUCKER 1849 by tools/trace_south_branch_rees_1849.py. THIS ENTRY REPLACES THE `southern_branch` RULE, which held a 45.3 m channel at a constant easting from N -2110 due south to the box wall because no sheet in the corpus reached past the School Section's south line. It is a trace and not a rule: the branch bends east to E +567 about Sixteenth Street and then swings south-west toward the portage, and by the box floor its centre stands 521 m west of where the held easting put it. The window's north edge is the declared row N -2110.0 -- the row the held rule carried from, and the last row Wright's trace draws two banks on rather than its closing hook -- so the two windows abut on a row both of them name, the same construction as the splice at map row 2372. Its south edge is 40 m PAST the box floor so that both perpendicular offsets cross the wall. Every vertex is INFERRED, and every vertex is also below `evidence_limit`, which writes it conjectural: the field carries the more conservative of the two."
     }
   ],
   "splices": [
@@ -151,21 +151,6 @@
     ],
     "note": "southern_lake's sentence at the other end of the same trace, and it exists for the identical reason: open_lake's per-row test measures from the traced WATER WASH, and at the very top of the harbour-reach polygon that wash frays. Its north edge runs (E +1288.1, N +1120.11) -> (+1311.2, +1114.79) -> (+1327.2, +1118.02) -> (+1344.0, +1113.3): two lobes with a notch between them, so at N +1117.5 the traced water reads as E +1222.0 to +1299.4 and again +1324.6 to +1329.1, and the 25 m between them is not east of the row's easternmost water. It stood as LAND — one cell of row, 8.2 ft of North Division sand-ridge crest standing in Lake Michigan a hundred metres off the beach, between lake floor at -1.71 m to its south and -1.73 m to its north. A causeway invented out of the top edge of a sheet. What the trace DOES carry up there is the SHORE: north_shore_harbor_reach runs unbroken to N +1117.30, so east of it there is water, and the rule is stated on that instead. Applied north of +1112.5 — the last row at which the polygon's north edge is a single unbroken span — and no further south, because every row below it is already covered by open_lake and this rule must not move a sample the field has already committed. It is a RULE and not a waterline: terrain_gen.py measures shore distance to the run itself, which is a traced bank. Above N +1117.30 the run has ended and this rule is silent; the box's last row is covered by open_lake, whose test the polygon's own north tip satisfies there."
   },
-  "southern_branch": {
-    "rule": "south of the row where the South Branch trace last draws two banks, the channel continues between that row's own two banks, each held at its own easting",
-    "from_n_m": -2110.0,
-    "banks": {
-      "west": "south_branch_west_bank",
-      "east": "south_branch_east_bank"
-    },
-    "min_width_m": 25.0,
-    "confidence": "conjectural",
-    "sources": [
-      "wright_1834"
-    ],
-    "beyond_the_trace": true,
-    "note": "southern_lake's sentence said about the RIVER, and the larger of the two claims it answers. branches.geojson ends on the School Section's south line because Wright's sheet does \u2014 docs/RESEARCH/south_branch_school_section.md \u00a7 6 calls that edge 'the limit of the survey, not a river end' \u2014 and the committed field read it as one: measured before this rule, the channel is 7 cells wide at N -2140, nought at N -2160, and nought on all 656 rows below that to the box wall. 1 650 m of dry prairie down the middle of a river whose existence here is not in question. WHY A ROW AND NOT THE TIP: the trace does not thin out at its terminus, it CLOSES \u2014 both bank runs turn across the channel onto the section's boundary and meet 7.0 m apart, at (E +302.58, N -2149.58) and (+309.56, -2148.71). That is a drawn boundary, not a river narrowing to a creek, and holding it would carry a 7 m channel 1.6 km south. N -2110.0 is the last row above that closing hook at which the trace still draws two banks: the east bank's last clean vertex is (+338.69, -2114.05) and the west bank's is (+297.67, -2144.61) with a straight 147 m run above it, so the row falls on drawn line on both sides and the derived cross-section is E +293.2 to +338.5, 45.3 m \u2014 which is the channel's own traced width here (46 m at N -2100, 42 m at N -2000). The two eastings are DERIVED from the runs at that row, never written down, so a re-trace moves them; min_width_m is the guard that refuses the closure if from_n_m is ever moved down into it. WHY HELD AND NOT EXTRAPOLATED: the same answer trace_carries gives at the north wall. The two banks' last clean segments bear apart; over the 1 690 m to the box floor they would stand the channel 210 m wide, which is a claim about where the branch bends below the sheet made out of the tail of a trace. A held easting claims only that the river did not stop. The union can only ADD water, and one thing it adds above the cap is the 40 m of taper inside the closing hook \u2014 which is water the section line was drawn across, not land. CONJECTURAL, recorded in docs/LIBERTIES.md as L239, and it cannot launder itself: evidence_limit already writes every vertex below N -2149.4 conjectural, land and water alike. The PLANFORM \u2014 where the branch actually bends below Twelfth Street, and where the pre-fill lake shore ran \u2014 is T-1150's, and it needs a source this corpus does not hold."
-  },
   "trace_carries": [
     {
       "run": "north_branch_west_bank",
@@ -235,6 +220,18 @@
       "id": "north_branch_east_bank",
       "division": "north_division",
       "note": "The North Branch's east bank picked up where north_division_shore stops at N +403.2 and carried north to N +1076.41. This is the run that puts Kinzie's Addition — its eleven committed streets and 54 blocks — in the North Division rather than leaving that ground to the nearest bank of a different one, and it is the bank the Addition's water lots front on."
+    },
+    {
+      "id": "south_branch_west_bank_below_twelfth",
+      "from": "south_branch_below_twelfth.geojson",
+      "division": "west_division",
+      "note": "The South Branch's west bank picked up at N -2110.0, where south_branch_west_bank's Wright window stops drawing two banks, and carried to past the box floor. Rees & Rucker 1849; the two sheets put this bank 6.1 m apart at the seam. Before T-1150 the waterline here was measured from a bank held at a constant easting for 1 690 m."
+    },
+    {
+      "id": "south_branch_east_bank_below_twelfth",
+      "from": "south_branch_below_twelfth.geojson",
+      "division": "south_division",
+      "note": "The same seam on the east bank: picked up at N -2110.0 where south_branch_east_bank stops, and carried to past the box floor. The two sheets put this bank 19.4 m apart at the seam, on a fit whose own RMS is 25.0 m."
     }
   ],
   "shore_runs_note": "These runs, plus the island rings, ARE the waterline. Distance is never measured to the water polygons' own boundaries, because those close across the tracing windows and a window edge is where the tracing stopped, not a bank: measuring to one would raise a bank across open water at E +314, E +390 and out in the lake. Since T-0219 a division may also own a run from branches.geojson: the South Branch's two banks continue the forks window's two runs south of N -404.3, and division membership south of the forks is decided by them.",

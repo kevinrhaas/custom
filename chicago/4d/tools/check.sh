@@ -102,6 +102,14 @@ step "the traced forks still carry what their generator writes" \
 step "the traced South Branch still carries what its generator writes" \
   python3 tools/trace_south_branch.py --check-properties
 
+# ...and for the South Branch BELOW TWELFTH STREET, which is the only trace in
+# the corpus not taken from Wright (T-1150). It has the same offline half and one
+# assertion the others cannot make: that both banks still meet the Wright window
+# at the declared splice row and still cross the box floor, because the banks are
+# a perpendicular offset and a re-trace moves both ends.
+step "the South Branch below Twelfth still carries what its generator writes" \
+  python3 tools/trace_south_branch_rees_1849.py --check-properties
+
 # ...and for the North Branch north of it (T-1072). Two tools write one
 # branches.geojson through tools/branches_file.py, and each of these two steps
 # also holds the collection's shared fields and its declared feature order, so
