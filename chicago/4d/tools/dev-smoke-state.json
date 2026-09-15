@@ -2,6 +2,103 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 68,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 400,
+      "takenAt": "2026-09-15T23:25:32.244Z",
+      "ref": "HEAD",
+      "commit": "7e906c12e7f2",
+      "devCommit": "80328f4bf830",
+      "treeHash": "sha256:af52700d8adee99e",
+      "treeDirty": false,
+      "changelogHash": "sha256:b96c89ef299ce2e1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.7,
+          2.6,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3-4",
+      "parts": [
+        3,
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 110,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: triangles under budget at the reference stand — 1237040 tris (budget 825000) — the gate is the worst-stand check below"
+      ],
+      "wallSeconds": 201,
+      "takenAt": "2026-09-15T23:25:32.148Z",
+      "ref": "HEAD",
+      "commit": "7e906c12e7f2",
+      "devCommit": "80328f4bf830",
+      "treeHash": "sha256:af52700d8adee99e",
+      "treeDirty": false,
+      "changelogHash": "sha256:b96c89ef299ce2e1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.7,
+          2.6,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke_m34.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 167,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 510,
+      "takenAt": "2026-09-15T23:25:32.054Z",
+      "ref": "HEAD",
+      "commit": "7e906c12e7f2",
+      "devCommit": "80328f4bf830",
+      "treeHash": "sha256:af52700d8adee99e",
+      "treeDirty": false,
+      "changelogHash": "sha256:b96c89ef299ce2e1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.7,
+          2.6,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke_d23.log"
+    },
+    {
       "viewport": "mobile",
       "stage": "9",
       "parts": [
@@ -1318,39 +1415,6 @@
     },
     {
       "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 113,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 507,
-      "takenAt": "2026-09-15T01:31:50.404Z",
-      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
-      "commit": "1e8bf1a44d12",
-      "devCommit": "de79c0f0699a",
-      "treeHash": "sha256:65969ad2d95d7aa6",
-      "treeDirty": false,
-      "changelogHash": "sha256:ed22c003547df009",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.9,
-          4.6,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "desktop",
       "stage": "1",
       "parts": [
         1
@@ -1451,40 +1515,6 @@
         ]
       },
       "source": "/tmp/d89.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2-3",
-      "parts": [
-        2,
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 166,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 475,
-      "takenAt": "2026-09-14T18:43:33.444Z",
-      "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "cd053e481ecf",
-      "devCommit": "a9d736e4718c",
-      "treeHash": "sha256:d1904474edd9855d",
-      "treeDirty": false,
-      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.8,
-          3.3
-        ]
-      },
-      "source": "/tmp/d23.log"
     },
     {
       "viewport": "desktop",
@@ -1709,39 +1739,6 @@
         ]
       },
       "source": "/tmp/smoke_d_11.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2-3,12",
-      "parts": [
-        2,
-        3,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 215,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 463,
-      "takenAt": "2026-09-13T09:34:20.983Z",
-      "ref": "steward/t-0332-brick-row-name",
-      "commit": "787edc7df017",
-      "devCommit": "1ced9343e20d",
-      "treeHash": "sha256:03e1f7c868f1416f",
-      "treeDirty": false,
-      "changelogHash": "sha256:d53f6aebd08ed9e1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          4.2,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke_db.log"
     },
     {
       "viewport": "mobile",
