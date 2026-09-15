@@ -1,0 +1,189 @@
+{
+  "source": "stand.scad",
+  "models": [
+    {
+      "file": "stand_rail.stl",
+      "sha256": "544960f316cbb04ebae20bd2893ce9209f91c237f744d3d1b57cdd3a8a6ac8c1",
+      "triangles": 15584,
+      "watertight": true,
+      "bounds_mm": {
+        "min": [
+          -90.0,
+          -11.0,
+          0.0
+        ],
+        "max": [
+          90.0,
+          11.0,
+          26.0
+        ],
+        "size": [
+          180.0,
+          22.0,
+          26.0
+        ]
+      }
+    },
+    {
+      "file": "stand_axle.stl",
+      "sha256": "9053fb05195c660b5989ed6061abd02d690f7deefcf0953f2dd0b0214e61010d",
+      "triangles": 1532,
+      "watertight": true,
+      "bounds_mm": {
+        "min": [
+          -11.0,
+          -11.0,
+          0.0
+        ],
+        "max": [
+          11.0,
+          11.0,
+          103.6
+        ],
+        "size": [
+          22.0,
+          22.0,
+          103.6
+        ]
+      }
+    },
+    {
+      "file": "stand_cap.stl",
+      "sha256": "ae817528127b3c39c4e038dfaa829d8133a377235f1991d8b3a003a4dad8e1f3",
+      "triangles": 960,
+      "watertight": true,
+      "bounds_mm": {
+        "min": [
+          -11.0,
+          -11.0,
+          0.0
+        ],
+        "max": [
+          11.0,
+          11.0,
+          7.5
+        ],
+        "size": [
+          22.0,
+          22.0,
+          7.5
+        ]
+      }
+    },
+    {
+      "file": "stand_spacer.stl",
+      "sha256": "77555a6225647ed1b4cbd9a88238579fc7777111aae1a7cda964b648a2e3fbbb",
+      "triangles": 768,
+      "watertight": true,
+      "bounds_mm": {
+        "min": [
+          -10.0,
+          -10.0,
+          0.0
+        ],
+        "max": [
+          10.0,
+          10.0,
+          4.0
+        ],
+        "size": [
+          20.0,
+          20.0,
+          4.0
+        ]
+      }
+    },
+    {
+      "file": "stand_stop_pin.stl",
+      "sha256": "68877538cba6d1cbf89242910dc07110d9f2d40d8fb71402a162f5c63e0e9059",
+      "triangles": 1148,
+      "watertight": true,
+      "bounds_mm": {
+        "min": [
+          -7.5,
+          -7.5,
+          0.0
+        ],
+        "max": [
+          7.5,
+          7.5,
+          44.0
+        ],
+        "size": [
+          15.0,
+          15.0,
+          44.0
+        ]
+      }
+    },
+    {
+      "file": "stand_fit_test.stl",
+      "sha256": "6550e1cea212ca53a6027ee0fa56f901d3ed531ef82968a24baf72ae993644de",
+      "triangles": 2888,
+      "watertight": true,
+      "bounds_mm": {
+        "min": [
+          -20.0,
+          -36.0,
+          0.0
+        ],
+        "max": [
+          38.0,
+          23.0,
+          10.0
+        ],
+        "size": [
+          58.0,
+          59.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "file": "stand_rails_x3.stl",
+      "sha256": "1a6348aec0c0541b123636389e2b62bf2ebc6d81a9d959c648ec2ec15053e1ad",
+      "triangles": 46752,
+      "watertight": true,
+      "bounds_mm": {
+        "min": [
+          -90.0,
+          -39.0,
+          0.0
+        ],
+        "max": [
+          90.0,
+          39.0,
+          26.0
+        ],
+        "size": [
+          180.0,
+          78.0,
+          26.0
+        ]
+      }
+    },
+    {
+      "file": "stand_hardware_set.stl",
+      "sha256": "f57f5451d51e4972cd02b9fd099e8fb65cc860474447fcf29f66db4e33df57f7",
+      "triangles": 10156,
+      "watertight": true,
+      "bounds_mm": {
+        "min": [
+          -59.0,
+          -11.0,
+          0.0
+        ],
+        "max": [
+          56.0,
+          61.0,
+          103.6
+        ],
+        "size": [
+          115.0,
+          72.0,
+          103.6
+        ]
+      }
+    }
+  ]
+}
