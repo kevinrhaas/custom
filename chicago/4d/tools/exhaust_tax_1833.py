@@ -66,7 +66,7 @@ ROLL = "tax_1833"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from consolidate_town_cards import (  # noqa: E402
-    compatible, forename_tokens, read_town,
+    MERGED, compatible, forename_tokens, read_town,
 )
 from measure_corporation_limits import inside, limits_ring  # noqa: E402
 
@@ -74,6 +74,32 @@ from measure_corporation_limits import inside, limits_ring  # noqa: E402
 # two spellings in dispute: gate C is a search for a clerk who distinguished them, and
 # a search that only looks for what it expects to find has not searched.
 STEM = re.compile(r"\bPr[uy]?[uy]?ne?s?\b", re.IGNORECASE)
+
+
+def town_cards() -> list:
+    """Every person on a card, INCLUDING the cards this project has already folded.
+
+    Read from `data/residents/merged/` as well as the index, because the count this
+    tool prints must mean the same thing on both sides of its own ruling. A card that
+    has been folded onto another still ACCOUNTS FOR the roll entry it was minted from —
+    nothing about that entry became unexplained when the fold landed — and a measurement
+    that quietly lost a bearer of the stem the moment the merge it argues for went in
+    would be a gate that cannot be run twice.
+    """
+    rows = list(read_town())
+    for path in sorted(MERGED.glob("*.json")):
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        # A folded card is kept as `superseded_record` under a `merged_into` header,
+        # so the persons are one level in. A card folded by an older pass that wrote
+        # the record at the top level is read the same way by the fallback.
+        card = doc.get("superseded_record") or doc
+        for person in card.get("persons") or []:
+            rows.append({"household": doc["id"], "person": person["id"],
+                         "name": person.get("name") or "", "folded": True})
+    for row in rows:
+        row.setdefault("folded", False)
+        row["parsed"] = forename_tokens(row["name"])
+    return rows
 
 
 def levenshtein(a: str, b: str) -> int:
@@ -158,9 +184,7 @@ def gate_a() -> dict:
 def gate_b() -> dict:
     records = json.loads(RECORDS.read_text(encoding="utf-8"))["records"]
     roll = [r for r in records if r["locator"]["list"] == ROLL]
-    town = read_town()
-    for row in town:
-        row["parsed"] = forename_tokens(row["name"])
+    town = town_cards()
 
     scored = []
     for entry in roll:
@@ -249,11 +273,10 @@ def gate_c() -> dict:
 
 def bearers_of_the_stem() -> list:
     out = []
-    for row in read_town():
-        parsed = forename_tokens(row["name"])
-        if parsed and STEM.fullmatch(parsed[0]):
+    for row in town_cards():
+        if row["parsed"] and STEM.fullmatch(row["parsed"][0]):
             out.append({"person": row["person"], "name": row["name"],
-                        "household": row["household"]})
+                        "household": row["household"], "folded": row["folded"]})
     return sorted(out, key=lambda r: r["person"])
 
 
@@ -294,7 +317,8 @@ def invariants(doc: dict) -> list:
         ("some 1833 row of his falls OUTSIDE the limits, so the test discriminates",
          a["rows_outside_the_limits"] >= 1),
         ("no committed source text prints both spellings", c["holds"]),
-        ("the layer holds exactly two bearers of the stem",
+        ("the corpus holds exactly two bearers of the stem, folded cards included — a "
+         "third would reopen the ruling at its one-bearer clause",
          len(doc["the_pair"]["bearers_of_the_stem_in_the_layer"]) == 2),
     ]
 
