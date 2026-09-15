@@ -2400,6 +2400,17 @@ step "…and none of them claims more than a person and a reading" \
 selftest "…and that pass's own refusals still fire when broken" \
   python3 tools/mint_civic_residents.py --self-test
 
+# T-1117. The 1833 tax list is a PROPERTY ROLL: the town assessed ground, so its 115
+# names are owners and estates rather than people at the place, and it draws no line
+# between a resident payer and a non-resident one — the published transcription has no
+# column that could. Thirteen households rested their whole claim of presence on 1 July
+# 1835 on that list's at-or-before leg, and the refutation is the list's own entry 110.
+# The refusal lives in the pass above; this holds the two readings it stands on, so a
+# transcription that moves reopens the ruling instead of leaving it citing a page that
+# no longer says it. docs/RESEARCH/tax_list_1833_not_a_residence_check.md is the reading.
+step "the 1833 tax roll still admits the man who proves it is not a residence check" \
+  python3 tools/assert_tax_roll_ruling.py
+
 # T-0720, the third spend of the same proposal. The two modes above own the 531 cards
 # that carry a `ladder_rule`; nothing owned the other 873, and T-0692's --coverage
 # measured 864 of them carrying a rung the ladder HAD ruled and no pass had ever
