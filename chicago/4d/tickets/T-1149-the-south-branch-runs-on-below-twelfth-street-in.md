@@ -1,7 +1,7 @@
 ---
 id: T-1149
 title: The South Branch runs on below Twelfth Street instead of ending in 1,650 m of dry prairie
-state: claimed
+state: done
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: T-0465
 opened: 2026-09-15
-closed: null
-pr: null
+closed: 2026-09-15
+pr: 1362
 claimed_by: run 9/15/2026, 12:32:27 PM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-15T18:20:10.697Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34999688630
 ---
 
