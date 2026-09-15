@@ -171,7 +171,6 @@
 
 T-1139 — Nineteen minted cards wear the transcription's spelling where the 1 January 1834 page image sets another
 T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
-T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1834 return need the page image before any card on them can be ruled
 T-1134 — The ten one-letter town pairs the town's own lists print with no anchor on either card
 T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
 
