@@ -652,6 +652,11 @@ def measure() -> list[dict]:
     records = resident_records()
     rows = []
     for entry in registry["domains"]:
+        # T-1143 preserves this instrument's historical 21,419-unit baseline.
+        # Newly registered domains enter the closed ledger below, not this older
+        # read-versus-ruling comparison.
+        if entry.get("legacy_measure") is False:
+            continue
         domain_dir = ROOT / entry["path"]
         if not domain_dir.is_dir():
             raise SystemExit(f"registered domain has no directory: {entry['path']}")
@@ -673,9 +678,9 @@ def measure() -> list[dict]:
 def unregistered() -> list[str]:
     """Domain directories on disk that the registry does not name.
 
-    Not a failure: `newspapers` is registered nowhere on purpose (domains.json
-    says "beside the newspapers") and `residents` is the destination layer, not
-    a source. Printed so a NEW domain cannot be read into existence unmeasured.
+    T-1143 made this a failure. Newspapers, Genealogy Trails and the resident
+    research passes are now registered alongside the original nine domains, so
+    any directory left over is research that no ledger pattern can disposition.
     """
     registry = read_json(REGISTRY) or {}
     known = {Path(d["path"]).name for d in registry.get("domains", [])}
@@ -743,7 +748,22 @@ def report() -> str:
     extra = unregistered()
     if extra:
         out.append("")
-        out.append("not registered in domains.json (not measured): " + ", ".join(extra))
+        out.append("UNREGISTERED research domain(s): " + ", ".join(extra))
+    # The closed ledger is a second, unit-level accounting surface. Keep it in the
+    # ordinary report so a reader sees the historical measure and dispositions in
+    # one command, while the dated Markdown report remains the review artifact.
+    try:
+        from research_spend_ledger import read_ledger, LEDGER, DISPOSITIONS
+        ledger = read_ledger(LEDGER)
+    except (ImportError, OSError):
+        ledger = None
+    if isinstance(ledger, dict):
+        out.append("")
+        out.append("closed ledger dispositions:")
+        for domain, counts in ledger.get("domains", {}).items():
+            summary = ", ".join(f"{name} {counts.get(name, 0)}" for name in DISPOSITIONS)
+            out.append(f"  {domain}: {summary}")
+        out.append(f"  TOTAL: {ledger.get('unit_count', 0)}; unclassified 0")
     return "\n".join(out)
 
 
@@ -755,6 +775,8 @@ def gate(quiet: bool = False) -> int:
     ceilings = baseline.get("unspent_ceiling", {})
     rows = measure()
     faults = []
+    for domain in unregistered():
+        faults.append(f"{domain}: research directory is not registered in domains.json")
     for r in rows:
         if r["domain"] not in ceilings:
             faults.append(f"{r['domain']}: no ceiling recorded — a new domain must "
@@ -1528,10 +1550,36 @@ def main() -> int:
                              "name ONE domain to reclaim only that domain's slack on --hop, "
                              "which records itself in lowered[] and needs --why")
     parser.add_argument("--self-test", action="store_true", dest="self_test")
+    parser.add_argument("--ledger-build", action="store_true",
+                        help="write the closed unit ledger and dated research report")
+    parser.add_argument("--ledger-self-test", action="store_true",
+                        help="mutate the closed-ledger contract in memory")
+    parser.add_argument("--check", action="store_true",
+                        help="run the historical ratchet and closed-ledger gate")
     parser.add_argument("--quiet", action="store_true")
     args = parser.parse_args()
     if args.self_test:
         return self_test()
+    if args.ledger_self_test:
+        from research_spend_ledger import self_test as ledger_self_test
+        return ledger_self_test()
+    if args.ledger_build:
+        from research_spend_ledger import build as build_ledger
+        faults = build_ledger(measure())
+        for fault in faults:
+            print("   FAIL: " + fault)
+        if not faults and not args.quiet:
+            print("OK: closed research-spend ledger and report written")
+        return 1 if faults else 0
+    if args.check:
+        from research_spend_ledger import check as check_ledger
+        old = gate(quiet=True)
+        faults = check_ledger(measure())
+        for fault in faults:
+            print("   FAIL: " + fault)
+        if not old and not faults and not args.quiet:
+            print("OK: historical research ratchet and closed ledger")
+        return 1 if old or faults else 0
     if args.raise_domain:
         return raise_ceiling(args.raise_domain, args.why, args.hop)
     if args.tighten:

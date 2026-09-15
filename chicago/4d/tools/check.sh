@@ -2237,11 +2237,14 @@ selftest "…and the audit's own assertions still fire when broken" \
 # 82 reached and 0 on a card — confirmed independently, no resident record in the town
 # cites `second_presbyterian_chicago_1892` at all. The ceiling below records that true 82
 # rather than hiding it; T-0992 pays it down.
-step "no research domain reads further ahead of the town than its baseline" \
-  python3 tools/measure_research_spend.py --gate --quiet
+step "research stays inside its historical ratchet and closed unit ledger" \
+  python3 tools/measure_research_spend.py --check --quiet
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/measure_research_spend.py --self-test
+
+selftest "…and closed-ledger mutations cannot pass silently" \
+  python3 tools/measure_research_spend.py --ledger-self-test
 
 # T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
 # RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
