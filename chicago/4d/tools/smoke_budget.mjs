@@ -170,6 +170,14 @@ const COVERAGE = [
   ['generators/', NONE, 'the bake\'s generators — their output is the data rows below'],
   ['patches/', NONE, 'vendored patches applied at build time, not at run time'],
   ['tickets/', NONE, 'the backlog'],
+  // T-1148. Committed READINGS — what an instrument saw, on a day, on a tree.
+  // `tools/publish.sh` copies no part of this directory into the mirror and no
+  // module under `renderers/` fetches a path in it, so the scene cannot load one
+  // however wrong it is; `tools/check.sh` is what holds them, by re-deriving the
+  // rule each one was taken for. Without this row a new reading is an unmapped
+  // path, and an unmapped path prices at the whole gate — which is thirteen parts
+  // per viewport to cover a JSON file nothing reads.
+  ['data/render/', NONE, 'committed instrument readings — neither published nor fetched'],
   ['docs/', NONE, 'prose — except docs/LIBERTIES.md, which compiles into the scene'],
   ['README.md', NONE, 'prose'],
   ['AGENTS.md', NONE, 'prose'],

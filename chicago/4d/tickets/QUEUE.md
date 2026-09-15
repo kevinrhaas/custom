@@ -312,7 +312,6 @@
 
 
 
-T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
 
 
 
@@ -467,3 +466,6 @@ T-1146 — Spend matched household and person-profile research into structured r
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
 
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1154 — The five downtown stands are over every scene-detail ceiling at both viewports, and the town has been over since some point after 6 September
