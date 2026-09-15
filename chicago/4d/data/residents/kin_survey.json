@@ -13,13 +13,13 @@
   "the_1840_census_households": "The densest kinship the corpus holds, and its crosswalk is 235 named heads stale on dev (T-0714) and derived against 849 residents where the town now holds 1,404 (T-0698). Kin read off it would land on the wrong people. Deliberately out of this pass."
  },
  "counts": {
-  "statements_read": 259,
-  "both_ends_in_town": 31,
-  "landable": 18,
-  "same_household": 2,
+  "statements_read": 263,
+  "both_ends_in_town": 34,
+  "landable": 20,
+  "same_household": 3,
   "ambiguous": 1,
   "identity_not_asserted": 10,
-  "other_not_in_town": 11,
+  "other_not_in_town": 12,
   "subject_unresolved": 217,
   "relation_undeclared": 0
  },
@@ -227,6 +227,81 @@
     }
    ],
    "outcome": "ambiguous"
+  },
+  {
+   "id": "hh_wesencraft_charles__daughter__charlotte",
+   "source": "card_prose",
+   "locator": "hh_wesencraft_charles",
+   "as_read": " place, to Miss CHARLOTTE, only daughter of Mr. Charles Wesencraft, late of Buffalo', and his daughter Charlotte stands on her own card; Fergus 1843 prints 'Wesencraft, Cha",
+   "subject_as_read": "Charles Wesencraft",
+   "relation": "daughter",
+   "other_as_read": "Charlotte",
+   "subject_record": null,
+   "other_record": null,
+   "other_read_with_subject_surname": true,
+   "subject": [
+    {
+     "household": "hh_wesencraft_charles",
+     "person": "wesencraft_charles"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_wesencraft_charlotte",
+     "person": "wesencraft_charlotte"
+    }
+   ],
+   "outcome": "landable"
+  },
+  {
+   "id": "hh_wesencraft_charles__daughter__mr_charles_wesencraft",
+   "source": "card_prose",
+   "locator": "hh_wesencraft_charles",
+   "as_read": "olumn 7, prints the marriage of 'Mark Nobles, Esq. of this place, to Miss CHARLOTTE, only daughter of Mr. Charles Wesencraft, late of Buffalo', and his daughter Charlotte stands on her",
+   "subject_as_read": "Charles Wesencraft",
+   "relation": "daughter",
+   "other_as_read": "Mr. Charles Wesencraft",
+   "subject_record": null,
+   "other_record": null,
+   "other_read_with_subject_surname": true,
+   "subject": [
+    {
+     "household": "hh_wesencraft_charles",
+     "person": "wesencraft_charles"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_wesencraft_charles",
+     "person": "wesencraft_charles"
+    }
+   ],
+   "outcome": "same_household"
+  },
+  {
+   "id": "hh_wessencraft_charles__daughter__mr_charles_wesencraft",
+   "source": "card_prose",
+   "locator": "hh_wessencraft_charles",
+   "as_read": "olumn 7, prints the marriage of 'Mark Nobles, Esq. of this place, to Miss CHARLOTTE, only daughter of Mr. Charles Wesencraft, late of Buffalo', and his daughter Charlotte stands on her",
+   "subject_as_read": "Charles Wessencraft",
+   "relation": "daughter",
+   "other_as_read": "Mr. Charles Wesencraft",
+   "subject_record": null,
+   "other_record": null,
+   "other_read_with_subject_surname": true,
+   "subject": [
+    {
+     "household": "hh_wessencraft_charles",
+     "person": "wessencraft_charles"
+    }
+   ],
+   "other": [
+    {
+     "household": "hh_wesencraft_charles",
+     "person": "wesencraft_charles"
+    }
+   ],
+   "outcome": "landable"
   },
   {
    "id": "read_harmon_charles_l__son__harmon_elijah_d",

@@ -2848,7 +2848,7 @@
     "kind": "minted",
     "person": "person_isaac_scarritt",
     "household": "hh_scarritt_isaac",
-    "card_name": "Isaac Scarritt",
+    "card_name": null,
     "by": "tools/mint_letter_list_residents.py"
    }
   },

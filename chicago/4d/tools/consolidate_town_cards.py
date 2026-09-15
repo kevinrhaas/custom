@@ -73,6 +73,7 @@ INDEX = RESIDENTS / "index.json"
 RULINGS = RESIDENTS / "card_merge_rulings.json"
 LEDGER = ROOT / "data" / "research" / "residents" / "town_card_candidates.json"
 CROSSWALK = ROOT / "data" / "research" / "residents" / "card_merge_crosswalk.json"
+IDENTITY_MASTER = ROOT / "data" / "research" / "residents" / "identity_master.json"
 
 GENERATED_BY = "tools/consolidate_town_cards.py --apply"
 TICKET = "T-0839"
@@ -400,6 +401,107 @@ def ledger_doc(town: list, rulings: dict) -> dict:
     }
 
 
+def landed_record_ids(folded: str) -> list:
+    """What a PREVIOUS write of this crosswalk already declared for a folded card.
+
+    THE FIXED POINT, and without it this pass oscillates. `appearances_of` finds a
+    letter-list card's appearance on the ORPHAN identity the fold leaves behind — and the
+    moment `consolidate_resident_evidence.py` reads this crosswalk and honours it, that
+    appearance MOVES onto the survivor's identity and the orphan is gone. The next write
+    would then find nothing, empty the row, and the appearance would move back: the two
+    passes would trade the same fact back and forth for ever and `--check` would never be
+    green twice running. Measured on T-1134, which is where it was found.
+
+    So a declaration is KEPT. That is not a cache and it is not a hand edit — it is what a
+    LANDED adjudication means here: this pass has already said, in a committed file, which
+    records the folded card brought to the merge, and the evidence for that statement is
+    consumed by the act of honouring it. The row is still fully derived in the sense that
+    matters: it exists only while `merges()` holds the ruling, so withdrawing a ruling
+    still deletes the row outright, and nothing stale can outlive its merge.
+    """
+    if not CROSSWALK.exists():
+        return []
+    try:
+        doc = json.loads(CROSSWALK.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return []
+    for row in doc.get("merges") or []:
+        if row.get("folded_person_id") != folded:
+            continue
+        domains = [d for d in (row.get("domains") or []) if isinstance(d, str)]
+        return [{"domain": domain, "record_id": rid}
+                for rid in (row.get("record_ids") or []) if isinstance(rid, str)
+                for domain in domains]
+    return []
+
+
+def appearances_of(person_id: str, name: str) -> list:
+    """The identity master's own (domain, record_id) rows for a card this pass folded away.
+
+    THE HOLE THIS CLOSES, and the gate has only ever seen it once (T-1134). A LETTER-LIST
+    card carries no evidence block at all: `mint_letter_list_residents.py` writes
+    `letter_list_returns` — bare dates — where every other pass writes `press_evidence`
+    rows with a `record_id`. So the loop in `crosswalk_doc` gathers NOTHING from one,
+    `declared_anchors()` has no (domain, record_id) to key on, the folded appearance never
+    moves onto the survivor's identity, and a CIVIC survivor — which `apply()` deliberately
+    does not hand-write the union onto, because the next mint would revert it — never
+    learns the source. Four of the 63 landed folds are letter-list cards and three of them
+    hid it: `norton_n_r`, `vanderbogart_h` and `scarritt_isaac` fold onto survivors that
+    already cite the same paper for reasons of their own, so 'a merge loses nothing' held
+    by luck. `anight_clark` onto `knight_clark` is the first whose survivor cites no paper
+    at all, and --check said so.
+
+    HOW A FOLDED CARD IS FOUND IN THE MASTER, and why it is a match and not a guess. The
+    fold removes the card, so the identity it was minted from is left with NO
+    `canonical_person_id` — an orphan, one of several thousand. The name is what joins
+    them, and it is an EXACT join: the master keys an identity on the surname and the
+    forename tokens `split_name_or_reason` reads, this pass parses the folded card's own
+    name with the same function, and the match must be on both AND be UNIQUE among the
+    orphans. Anything else — no orphan of that name, or two — returns nothing and the
+    behaviour is exactly what it was, which is what `norton_n_r` and `vanderbogart_h` do
+    today: their printed names ('N. R. Norton', 'H. Vanderbogart') parse to forenames the
+    master does not carry, and neither needs this, because neither's survivor lost a source.
+
+    The master is written at step 20 of `tools/rederive.mjs --run` and this pass is step
+    23, so a chain run has it on disk before this reads it; a NEW fold reaches the
+    crosswalk on the second pass, which is what 'iterated to a fixed point' has always
+    meant here. Missing or unreadable, this returns nothing.
+    """
+    if not IDENTITY_MASTER.exists():
+        return []
+    try:
+        doc = json.loads(IDENTITY_MASTER.read_text(encoding="utf-8"))
+    except (ValueError, OSError):
+        return []
+    rows = [r for r in (doc if isinstance(doc, list) else doc.get("identities") or [])
+            if isinstance(r, dict)]
+    held = [r for r in rows
+            if r.get("canonical_person_id") == person_id
+            or person_id in (r.get("town_person_ids") or [])]
+    if held:
+        found = held
+    else:
+        parsed, _ = split_name_or_reason(name or "")
+        if not parsed:
+            return []
+        surname, given = parsed
+        key = (surname, " ".join(given))
+        found = [r for r in rows
+                 if not r.get("canonical_person_id")
+                 and (r.get("surname"), r.get("forename")) == key]
+        if len(found) != 1:
+            return []
+    out = []
+    for row in found:
+        for appearance in row.get("appearances") or []:
+            domain = appearance.get("domain")
+            rid = appearance.get("record_id")
+            if not domain or not rid or domain == "residents" or rid == person_id:
+                continue
+            out.append({"domain": domain, "record_id": rid})
+    return out
+
+
 def crosswalk_doc(rulings: dict) -> dict:
     """THE LANDED ADJUDICATION, in the shape consolidate_resident_evidence.py reads.
 
@@ -426,6 +528,9 @@ def crosswalk_doc(rulings: dict) -> dict:
                             continue
                         for domain in BLOCK_DOMAINS[key]:
                             record_ids.append({"domain": domain, "record_id": rid})
+                if not record_ids:
+                    record_ids += (appearances_of(folded, person.get("name") or "")
+                                   or landed_record_ids(folded))
             rows.append({
                 "outcome": "merged",
                 "person_id": ruling["survivor"],

@@ -221,7 +221,6 @@
 # --- band is EMPTY, and the cursor moves on: T-1127, then SOUTH THROUGH TIME.
 
 T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1834 return need the page image before any card on them can be ruled
-T-1134 — The ten one-letter town pairs the town's own lists print with no anchor on either card
 T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
 
 # --- ==========================================================================
@@ -422,3 +421,4 @@ T-1137 — A change to the civic mint's derived note silently deletes every othe
 # --- a finding that belongs to an OPEN ticket goes onto that ticket under rule (a), which is
 # --- still the preferred answer; and a finding that is not research at all is banded normally.
 # --- Empty is the correct state of this section.
+T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
