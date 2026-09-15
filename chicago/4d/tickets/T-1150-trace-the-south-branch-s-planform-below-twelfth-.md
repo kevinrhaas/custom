@@ -1,7 +1,7 @@
 ---
 id: T-1150
 title: Trace the South Branch's planform below Twelfth Street from a source that reaches Cermak
-state: open
+state: claimed
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: T-0465
 opened: 2026-09-15
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/15/2026, 4:36:33 PM CT
 blocked_on: null
 needs_bake: true
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35026266671
 ---
 
 Trace the South Branch's planform below Twelfth Street from a source that reaches Cermak.
