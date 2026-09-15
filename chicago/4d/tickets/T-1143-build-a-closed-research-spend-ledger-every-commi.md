@@ -1,7 +1,7 @@
 ---
 id: T-1143
 title: Build a closed research-spend ledger: every committed research unit is asserted, later-only, outside Chicago, aggregate, refused, unresolved or linked to its owning ticket
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-15
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/15/2026, 1:25:24 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
