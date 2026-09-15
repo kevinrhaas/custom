@@ -313,8 +313,30 @@
 
 
 T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
-T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+T-1149 — The South Branch runs on below Twelfth Street instead of ending in 1,650 m of dry prairie
+T-1150 — Trace the South Branch's planform below Twelfth Street from a source that reaches Cermak
+T-1151 — Trace the pre-fill lake shore below Twelfth Street and retire the held-easting carry
+T-1152 — Keep the 1812, 1835 and 1880s shoreline states separable, with a band where the sources disagree
 T-0467 — Add south-scene camera anchors, navigation and map extents
 T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
@@ -445,3 +467,4 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
+

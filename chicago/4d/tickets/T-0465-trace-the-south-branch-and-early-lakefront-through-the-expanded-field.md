@@ -1,18 +1,21 @@
 ---
 id: T-0465
 title: Trace the South Branch and early lakefront through the expanded field
-state: open
+state: split
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
 effort: M
 legacy_id: null
+parent: null
 opened: 2026-09-01
-closed: null
+closed: 2026-09-15
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: true
+closed_at: 2026-09-15T17:32:20.448Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34999688630
 ---
 
 **Unblocked 2026-09-15.** This ticket carried `blocked_on: T-0464` from the day it was

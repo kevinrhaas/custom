@@ -11914,3 +11914,72 @@ counted.
 Related: **L121**, which this entry supersedes on the value and keeps on the method, and **L120**
 and **L114**, the other entries about this wood. Ticket **T-1127**; ROADMAP **K45(b3)**.
 **Recorded:** 2026-09-15.
+
+### L239 — Below Twelfth Street the field carries the river and the lake on held eastings, because the sheet ends and the water does not
+
+**Decision:** in `data/terrain/epochs/e1834_harbor_cut/terrain_spec.json`, the block
+`southern_branch` continues the **South Branch** below the last row at which the trace draws two
+banks — N −2110.0 — between that row's own two bank eastings, **E +293.2 and +338.5**, held due
+south to the box floor at N −3800. Its companion `southern_lake.beyond_the_trace` does the same
+thing for the **lake**: below the shore trace's last vertex at N −2159.9 the row's lake edge holds
+that vertex's easting, **E +1347.4**. Both are tagged `conjectural`. The second has been in the
+field since T-0464 and its own note has said all along that it is "recorded in docs/LIBERTIES.md";
+it was not. This entry records both, because they are one decision about one piece of ground.
+
+**Why the river needed it, and it is the larger of the two claims.** `branches.geojson` ends on the
+School Section's south line because **Wright's 1834 sheet** ends there;
+`docs/RESEARCH/south_branch_school_section.md` § 6 calls that edge "the limit of the survey, not a
+river end". The committed field read it as a river end. Measured on the heightfield before this
+change: the channel is **7 cells wide at N −2140, nought at N −2160, and nought on every one of the
+656 rows below that** to the box wall — 1,650 m of dry prairie down the middle of a watercourse
+whose existence here is not in question at all. T-0464 cut the box south to Cermak and answered the
+lake's half of that fault; the river's half was left standing.
+
+**Why a declared row and not the trace's tip.** The trace does not thin out at its terminus, it
+**closes**: both bank runs turn across the channel onto the section's own boundary and meet 7.0 m
+apart, at (E +302.58, N −2149.58) and (+309.56, −2148.71). That is a drawn boundary, not a river
+narrowing to a creek, and holding the tip would have carried a 7 m channel 1.6 km south. N −2110.0
+is the last row above that closing hook on which both runs are still drawn line — the east bank's
+last clean vertex is (+338.69, −2114.05), the west bank's is (+297.67, −2144.61) with a straight
+147 m run above it — and the cross-section it yields, **45.3 m**, is the channel's own traced width
+there (46 m at N −2100, 42 m at N −2000). The two eastings are **derived from the runs at that
+row**, never written into the spec, so a re-trace moves them; `min_width_m: 25.0` is the guard that
+refuses the carry outright if `from_n_m` is ever moved down into the closure.
+
+**Why held and not extrapolated.** The same answer `trace_carries` gives at the north wall, and the
+same one `southern_lake` gives for the lake: a bearing is a claim about where a line bends past the
+edge of the sheet. The two banks' last clean segments bear apart, and over the 1,690 m to the box
+floor they would stand the channel 210 m wide. A held easting claims only that **the river did not
+stop** — which is the whole of what is being asserted, and it is assuredly true.
+
+**What it is not, and where the real answer lies.** This is a channel of constant width running due
+south. The South Branch below Twelfth Street does not run due south: it bends west toward the
+portage, and by Cermak the drawn planform would stand something like 120 m west of where this
+carry puts it. That planform, and the pre-fill lake shore beside it, are **T-1150** and **T-1151**,
+and they are not blocked on effort but on a **source**: Wright 1834, Hathaway 1834 and the Thompson
+1830 plat are the three georeferenced sheets this corpus holds and all three end on the School
+Section's south line. Measured while sizing this run, the obvious acquisition — the 1821 GLO
+township plat of T39N R14E, which covers the whole six miles — is behind a login at
+`glorecords.blm.gov` and cannot be fetched by an unattended run. Until one of those tickets lands,
+the honest reading of the ground below Twelfth Street is *a river runs through here, about this
+wide, about this deep, and we do not yet know where it bends*.
+
+**Consequence:** the union can only ADD water, and one thing it adds above the cap is the 40 m of
+taper inside the closing hook — water the section line was drawn across, not land. Nothing above
+N −2107.5 moved: the regenerated field differs from the committed one in 116,279 cells, all of them
+between N −3800 and −2107.5 and between E −2.5 and +635. The channel comes out 45 m wide and
+3.5 ft deep at the thalweg against 3.8 ft on the last traced row above it, so it joins the traced
+reach without a step. The master mesh grows 72,560 bytes (22,054,628 → 22,127,188) and the
+published derivative 9,800 (2,215,816 → 2,225,616). This cannot launder its own confidence:
+`evidence_limit` already writes every vertex below N −2149.4 `CONF_CONJECTURAL`, land and water
+alike, and `terrain_gen.py` writes ALL water conjectural in any case, so the confidence view
+dithers the whole of it.
+
+**How to resolve:** land **T-1150** and **T-1151** — a period sheet that reaches Cermak,
+georeferenced the way Wright was, and the two runs traced onto it. **T-1152** then holds the 1812
+and 1880s shore states apart from the 1835 one where they differ. The carry retires the moment a
+trace exists below it: the spec block is deleted, not amended.
+
+Related: **L14**, the conjectural micro-relief under every terrain claim. Tickets **T-1149**
+(this), **T-0465** (the parent, now split), **T-0464** (the box this stands in).
+**Recorded:** 2026-09-15.
