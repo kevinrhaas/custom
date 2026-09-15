@@ -168,6 +168,7 @@ MASTER = DATA / "research" / "residents" / "identity_master.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     FIRM, PAPERS, SCENE_DATE, UNCERTAIN, display, dumps, household_id, load,
     minted_by, plain_fragment, slug, surname, words,
@@ -617,90 +618,21 @@ def unattested(note: str) -> dict:
 
 
 def carry_over(doc: dict, prior: dict | None, retracted: set | None = None) -> dict:
-    """Keep what ANOTHER pass wrote onto one of this pass's cards.
+    """Keep what another pass wrote, at that writer's marker boundary (T-1137).
 
-    A minted household is not this tool's private file once it is in the tree: the
-    directory spend (T-0632) writes a `directories` block onto the card, the old-settlers
-    roll writes a citation, the research passes write a `resident_research` block. This
-    pass owns the keys it writes and re-derives them every run; everything else that is
-    on the record is somebody else's finding and is preserved verbatim, at the end of the
-    record and of the person, where a stable order keeps `--check` byte-identical.
-
-    TWO WAYS A CARD COULD NOT GET SMALLER, both found by T-1049 and both the same
-    mistake — "keep what is not derived" reading a key this pass DOES derive as
-    somebody else's:
-
-    * A BLOCK KEY. `{k: v for k, v in blocks.items() if v}` drops an evidence block that
-      has gone empty, and the loop below then restored it from the previous derivation,
-      so `press_evidence` could be added and never removed. The blocks are this pass's
-      own output; an absent one is an answer. They are excluded by name.
-    * A SOURCE THIS PASS RETRACTED. The union below exists because `old_settlers.py
-      --apply-citations` adds a source this pass does not derive, and dropping it would
-      break that pass's gate. But a source the card cites ONLY because of a reading this
-      pass has now REFUSED is not another pass's finding — it is this pass's own earlier
-      answer. `retracted` names those, and they are removed from the union unless the
-      derivation still cites them for some other reading.
+    ``BLOCK_KEYS`` and ``resident_subtype`` are this mint's optional answers: if the
+    new derivation omits one, an old card may not put it back.  ``retracted`` has the
+    same ownership rule for a source this pass used to derive.  Everything else is
+    carried by the shared four-mint contract, including a foreign note suffix even
+    when this mint's own prose changed.
     """
-    retracted = set(retracted or ())
     if not prior or prior.get("source_pass") != PASS_NAME:
         return doc
-    for key, value in prior.items():
-        if key not in doc:
-            doc[key] = value
-    # `kin` HAS A SLOT, AND IT IS NOT THE END (T-0597, T-0734). Every other key
-    # another pass adds is a block this record simply also carries, so the end is
-    # as good a place as any; a kinship is part of the household's own account of
-    # itself and the two hand-authored records that had one put it immediately
-    # before `persons`. Carrying it to the end would give the layer two orders for
-    # one key, decided by which pass happened to mint the card.
-    if "kin" in doc:
-        kin = doc.pop("kin")
-        rebuilt = {}
-        for key, value in doc.items():
-            if key == "persons":
-                rebuilt["kin"] = kin
-            rebuilt[key] = value
-        doc.clear()
-        doc.update(rebuilt)
-    by_id = {p.get("id"): p for p in prior.get("persons") or []}
-    for person in doc["persons"]:
-        old = by_id.get(person["id"]) or {}
-        for key, value in old.items():
-            if key not in person and key not in BLOCK_KEYS:
-                person[key] = value
-        # Two keys this pass DOES write are also written to by other passes, and both
-        # are additive there. `tools/old_settlers.py --apply-citations` puts the roll's
-        # source on the person and APPENDS its sentence to the note, marker-guarded, and
-        # its own gate then requires both to be on the record. So the union of the
-        # sources is kept, and any tail another pass appended after this pass's own note
-        # is kept with it — recognised as a tail precisely because this pass's note is
-        # re-derived and is therefore the prefix it was appended to. If the derivation
-        # ever changes the note out from under a tail, the prefix stops matching, the
-        # tail is dropped, and that pass's own `--check` says so rather than the sentence
-        # disappearing quietly.
-        # THE LATER-TRADE POINTER IS INSIDE A KEY THIS PASS WRITES (T-0693). The loop
-        # above saves a key another pass added to the PERSON; `occupation` is this
-        # pass's own, so a `later_occupation` written into it by
-        # `tools/qualify_later_trades.py` would be re-derived away. It is carried here
-        # instead, back into the slot it is written in, after `confidence`. It says
-        # nothing about 1835 — it points at the `directories` block above, which this
-        # pass is already carrying over for exactly the same reason.
-        pointer = (old.get("occupation") or {}).get("later_occupation")
-        if pointer is not None and isinstance(person.get("occupation"), dict):
-            occ = person["occupation"]
-            rebuilt = {}
-            for key, value in occ.items():
-                rebuilt[key] = value
-                if key == "confidence":
-                    rebuilt["later_occupation"] = pointer
-            person["occupation"] = rebuilt
-        derived = set(person["sources"])
-        person["sources"] = sorted(
-            derived | (set(old.get("sources") or []) - (retracted - derived)))
-        was = (old.get("note") or "")
-        if was.startswith(person["note"]) and len(was) > len(person["note"]):
-            person["note"] = person["note"] + was[len(person["note"]):]
-    return doc
+    return carry_resident_mint(
+        doc, prior,
+        owned_person_keys=BLOCK_KEYS + ("resident_subtype",),
+        retracted_sources=retracted,
+    )
 
 
 def record(row: dict, appearances: list, docs: dict, taken_ids: set,
@@ -1664,6 +1596,19 @@ def self_test() -> int:
             or not kept["persons"][0]["note"].endswith("THE ROLL IS WORTH THIS."):
         failed += 1
         print("   FAIL a citation another pass wrote onto the card does not survive")
+
+    # T-1137's exact failure: changing one character of this mint's prefix used to
+    # make the startswith() carry fail and silently cut every marked paragraph after
+    # it.  The appended finding owns its marker, so the derived prose may now move.
+    marked = json.loads(json.dumps(base))
+    marked["persons"][0]["note"] += " OLD SETTLERS, 1882 — THE ROLL IS WORTH THIS."
+    changed = record(_row(), [_app()], {}, set())
+    changed["persons"][0]["note"] += " DERIVED PROSE CHANGED."
+    survived = carry_over(changed, marked)
+    if not survived["persons"][0]["note"].endswith(
+            "OLD SETTLERS, 1882 — THE ROLL IS WORTH THIS."):
+        failed += 1
+        print("   FAIL changed derived prose silently deletes another pass's finding")
     if carry_over(record(_row(), [_app()], {}, set()),
                   dict(prior, source_pass="letter_list")).get("directories"):
         failed += 1

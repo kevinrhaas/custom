@@ -107,6 +107,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
 from identity_master_guard import (  # noqa: E402  (T-0843; refusal 9)
     IdentityGuard, blind_person_ids, refusal as guard_refusal,
 )
@@ -587,6 +588,13 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
     return doc
 
 
+def carry_over(doc: dict, existing: dict) -> dict:
+    """Keep later passes' findings when this newspaper mint rebuilds its card."""
+    # A title is this pass's evidence for ``sex``.  If the reading changes and the
+    # title vanishes, an old derivation may not silently put that optional field back.
+    return carry_resident_mint(doc, existing, owned_person_keys=("sex",))
+
+
 def build(preload: dict | None = None):
     docs = ({p: json.loads(t) for p, t in preload.items() if p != INDEX}
             if preload is not None
@@ -601,6 +609,8 @@ def build(preload: dict | None = None):
     seen: set[str] = set()
     for cand, gaz in accepted:
         doc = record(cand, gaz, docs, seen)
+        existing = docs.get(HOUSEHOLDS / f"{doc['id']}.json") or {}
+        carry_over(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])

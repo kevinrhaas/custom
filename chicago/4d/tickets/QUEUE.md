@@ -433,10 +433,11 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 # --- still the preferred answer; and a finding that is not research at all is banded normally.
 # --- Empty is the correct state of this section.
 
-T-1153 — Rule the 28 readings of the 1 April 1834 return where the page and the extraction set a name differently, and lift the two lines no claim carries
-
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+
+
+T-1153 — Rule the 28 readings of the 1 April 1834 return where the page and the extraction set a name differently, and lift the two lines no claim carries
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
 
 # --- ==========================================================================
@@ -454,7 +455,6 @@ T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SU
 # --- T-0251/T-0305/T-0386/T-1087 remain explicit ledger dispositions unless their evidence or
 # --- owner ruling changes. The EPIC and PARKED sections above remain unpromoted.
 
-T-1137 — A change to the civic mint's derived note silently deletes every other pass's findings appended to the same card
 T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
 T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
