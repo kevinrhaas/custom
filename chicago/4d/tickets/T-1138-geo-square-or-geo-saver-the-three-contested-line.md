@@ -1,7 +1,7 @@
 ---
 id: T-1138
 title: Geo. Square or Geo. Saver: the three contested lines of the 1 April 1834 return need the page image before any card on them can be ruled
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-15
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/15/2026, 6:01:35 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34960673645
 ---
 
 Geo. Square or Geo. Saver: the three contested lines of the 1 April 1834 return need the
