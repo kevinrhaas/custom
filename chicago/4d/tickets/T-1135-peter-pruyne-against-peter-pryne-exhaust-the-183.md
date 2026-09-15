@@ -1,7 +1,7 @@
 ---
 id: T-1135
 title: Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-14
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-15
+pr: 1356
+claimed_by: run 9/15/2026, 8:33:03 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-15T14:27:56.238Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34975284349
 ---
 
 Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem.

@@ -10204,7 +10204,7 @@ tickets **T-0373** (this), **T-0368**, **T-0376**, **T-0378**, **T-0374**, **T-0
 **Recorded:** 2026-08-29.
 
 ### L214 — Three quarters of this town's people are a name on a post-office list and nothing else
-**Scope:** `residents.persons[letter_list_only]` — 738 people
+**Scope:** `residents.persons[letter_list_only]` — 736 people
 **Decision:** on 2026-08-30 the owner ruled that EVERY name the post office's lists of
 uncalled-for letters yield, and the mint's refusals admit, joins the town. 712 names were
 minted on that ruling, beside the 15 L207 already held, and the reconstruction went from 244
@@ -10214,10 +10214,14 @@ set and re-derives it on every commit; `--gate` proves what it is not allowed to
 **Why this is a liberty and not a dataset growing.** Nothing here is invented and no confidence
 was upgraded to allow it: every one of them is printed by name in a list headed as letters
 remaining in the Post Office at Chicago and uncalled-for, at the issue and column its own record
-cites. 726 were minted; 725 stand, because T-0842 ruled on 2026-09-10 that the letter list's
+cites. 726 were minted; 723 stand. T-0842 ruled on 2026-09-10 that the letter list's
 `H. Vanderbogart` of 20 May 1835 is Dr Henry Van der Bogart, whom the town already carried on a
 card citing that same printed line — the plainest duplicate there is, two cards on one return —
-and folded it onto him. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now
+and folded it onto him. T-1134 folded two more on 2026-09-15, and neither was a duplicate
+inside the lists: `anight_clark` is the K section of the return of 30 June 1835 read as an A,
+and `scarritt_isaac` is the man the same paper printed on the county's commissioner slate six
+months later under a different last letter. A letter-list card can be one the TOWN already
+held under another spelling, and this liberty's count falls when it is found. The liberty is one of SCALE. About 76 per cent of the people a visitor can open are now
 known from that and from nothing else — no trade, no street, no household, no arrival — against
 6 per cent the day before. A reader who counts this town's people is counting a post-office list
 with a town attached, and no single record says so, because no single record is wrong.
@@ -10552,9 +10556,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 413 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 410 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 413 people
+**Scope:** `residents.persons[civic_mint]` — 410 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10565,8 +10569,8 @@ list had even a surname in the residents layer. `tools/mint_civic_residents.py` 
 rest: every identity the ladder grades `attested` or `inferred` that the town did not
 already carry, on the evidence of the civic lists, the parish register, the contemporary
 press, the two printed directories with the old settlers' death notices, and the 1840
-census. 531 of them, in 531 households of one when this liberty was first written; **479
-today**, and the figure has moved eight times, twice for opposite reasons. T-0839 took it to 489, because
+census. 531 of them, in 531 households of one when this liberty was first written; **477
+today**, and the figure has moved nine times, twice for opposite reasons. T-0839 took it to 489, because
 it found that some of those containers held one man twice. T-0724 took it to 490, because the
 compound-surname rule stopped reading `H. Van Den Bogart` and `Dr Henry Van der Bogart` as one
 `bogart` — a merge nobody had ruled on, made by taking the last token of a printed name — and
@@ -10574,7 +10578,11 @@ the town gained the card it had been folding away. T-0842 read the page on 2026-
 back to 485: the Chicago Democrat sets that one man's particle three ways inside sixteen months —
 `Van Den` on 4 February 1834, `Ven De` on 29 October 1834, `Vanderbogart` on 20 May 1835 — so the
 DEN/DER difference the split turned on is one the printer himself does not hold to, and the whole
-1833-1835 corpus carries exactly one bearer of the stem at this town. The pass
+1833-1835 corpus carries exactly one bearer of the stem at this town. T-1134 took it to 477 on
+2026-09-15, folding two civic mints onto cards the town already held under one letter more or
+less of surname — `eldredge_john_w` onto `eldridge_john_w` and `salsbury_stephen_m` onto
+`salisbury_stephen_m`, both on the Chicago Democrat being caught setting the two spellings
+itself. The pass
 minted a card for every identity the ladder graded and the town did not already carry, and
 its test for "already carry" was the name as the source printed it — so Gurdon Saltonstall
 Hubbard, who is printed G., G. S., Gurdon S., Gordon S. and G. T., was minted five times
@@ -10669,6 +10677,8 @@ town gains a card headed `The Hub household`. Five such cards were minted and de
 this ticket was being written.
 
 **And one fewer, on the land register's own inconsistency (T-1132, 2026-09-15).** `pearson_hiram` was minted here off the poll and tax lists of 1833 while the town already held `pearsons_hiram`, Andreas's attested speculator who became the city's treasurer, so this entry's count falls from 414 to 413. It is the same class of fold as T-1001's Kimberley and T-1002's Clybourn — one letter of a SURNAME, which the candidate test buckets as a whole word and therefore cannot see — and it is ruled the same way, on a page rather than on the distance. The Illinois State Archives' land tract register enters this buyer as `PEARSONS H` and as `PEARSON H` inside the same week of June 1835, and as `PEARSON HIRAM` beside `PEARSONS HIRAM` at the town lots of 1836; the town's own rolls spell him Pearson in 1833 and Pearsons in 1834 and no single roll spells him both ways; and the page Andreas's card is built on prints `Hiram Pearson, came in spring of 1833` for the man this project was carrying as Pearsons. WHAT MAKES IT A RULING RATHER THAN A RESEMBLANCE is that the same pass weighed a pair of the same shape and REFUSED it: John David and John Davis stand one letter apart with an identical forename, and the tax list of 1833 — a closed roll of 115 enumerated taxpayers — prints them on consecutive lines as its entries 23 and 24. A roll that enters each taxpayer once and enters both is the document counting to two, which is now written down as D5. A third pair, Peter Pruyne against Peter Pryne, is left undecided under U1 because no source reached is caught setting both spellings at all; T-1135 owns it. Seventeen further one-letter pairs stand in the town and are T-1133 and T-1134.
+
+**And one fewer again, on where the ground is rather than on how the name looks (T-1135, 2026-09-15).** The Pruyne/Pryne pair the paragraph above left undecided is decided, and this entry's count falls from 411 to 410. `pryne_peter` was minted here off the town's own tax list of 1833 and poll lists of 1834 and 1835 — three appearances, a name and nothing else — while the town already held Peter Pruyne the druggist, who with E. S. Kimberly opened Chicago's second drug store early in 1833. NO PAGE SETTLES IT AND NONE IS CLAIMED TO: the IRAD rolls print Pryne three times and Pruyne never, the deposited Democrat run prints the stem 239 times and every one of them Pruyne, and the two bodies of evidence never touch — which is exactly why C9 could not fire, and why T-1134's D7, written the night before, describes this pair in its own words as the shape it refuses. WHAT DISPLACES THAT REFUSAL IS NOT A PAGE BUT A COUNT, under a new rule C14 that is C12's exhaustion with its two halves swapped so that it reaches a surname. The 1833 tax list is a roll of the owners and estates of ground inside the town — this project's own finding, settled out of the list's own membership, its entry 110 being a man three years dead whose estate was taxed. The land tract register enters PRUYNE P for lot 3 of block 119 of the school section on 25 October 1833, and that block's polygon falls with all four corners inside the ring the Trustees walked in their first village ordinance of 7 November 1833. Then every one of the roll's 115 entries is scored by the letters between its surname and `pruyne`: one entry stands at one letter, and it is number 86, `Pryne, Peter`; the next nearest on the whole roll is `Price, Jeremiah` at three, with a forename that is not Peter and a card of its own. Nothing stands in the gap. THE RULE NEVER FOLDS ON THE RESEMBLANCE — it excludes on the difference, which is the direction T-1001's measurement permits, and it would read the same way if the two strings looked nothing alike. TWO THINGS ARE DELIBERATELY NOT LEANED ON. His own fullest rows — lots 1 and 8 of block 23, bought under the spelling PRUYNE PETER — fall OUTSIDE that ring, west of Jefferson, and are printed as the control that makes the geometry a test rather than a gesture. And the weaker argument one step along — that a man who bought at the town's own auction is the kind of man its tax roll carries — is T-1017's, which measured it and refused it, PRUYNE being one of the twenty surnames that sale itself prints more than one way. The whole count is at `tools/exhaust_tax_1833.py` and its seven invariants are asserted by the gate, so the ruling goes red out loud if the roll, the ground or the corpus moves under it.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
@@ -10949,7 +10959,7 @@ re-dealt id) · **L143** (the same re-deal argument on this same block) · ticke
 **Recorded:** 2026-09-04.
 
 ### L223 — Fourteen houses stand on a street a directory printed eight or nine years after 1835
-**Scope:** `residence_back_projection.positions[placed]` — 11 households
+**Scope:** `residence_back_projection.positions[placed]` — 10 households
 **Decision:** where no source of the scene year says where a person's house stood, a
 **street** printed as that person's residence — the volume's own `res` or `bds`, or
 `house`, `h` and `r`, which is Norris's shorthand for the same word and is declared in
@@ -10973,7 +10983,12 @@ eight without a directory page being read: T-1011 lifted 54 lines of the 1 Janua
 letter list that no transcription carried, the mint took J. S. Lacey into the town off one
 of them, and the Fergus residence this pass had already adjudicated then had a card to
 reach — the count moves when the TOWN grows as well as when the reading does. It came back
-to six when T-0987's second stretch put Fergus 1839's ties through T-0670's forename rule,
+to ten on 2026-09-15 when T-1134 ruled John W Eldredge and John W Eldridge one man: the town
+was standing ONE physician on Randolph Street TWICE, once on Fergus 1843's 'res Randolph,
+first door west of City Hotel' and once on Norris 1844's 'res Randolph st. east of Clark st',
+because the two directories spell the surname differently — so a merge in the residents layer
+is a house taken off a street here, and that is the shape this count should be read for. It
+came back to six when T-0987's second stretch put Fergus 1839's ties through T-0670's forename rule,
 and two of the eight were standing on a reading that rule refuses:
 
 - **`jones_es_high`** stood on Randolph Street on the authority of `Jones, Hiram, bds.
@@ -11846,3 +11861,56 @@ the committed town is not confined to the modelled ground, the renderer still an
 with the constant outside it, and 41 852 m of platted line still stands out there. What is
 resolved is the part that was drawn — the one ribbon on a constant — and the north wall that
 carried it.
+
+
+### L238 — `full` no longer draws the stand the records ask for: the whole wood is thinned to two fifths of it
+
+**Decision:** the woody layer's detail fractions in `renderers/web/js/trees.js` are **0.400 /
+0.350 / 0.225** at `full` / `balanced` / `light`, where L121 set them at 1.00 / 0.80 / 0.60. The
+fraction multiplies the per-cell acceptance roll, so at `full` the renderer now plants **two
+fifths of the stems the recorded densities would accept**, uniformly over the whole field. Until
+today `full` was the record's own stand, to the stem, and L121's closing sentence said so.
+
+**Why the ratio moved, which is a measurement and not a preference.** T-1123 carried the modelled
+ground north into Kinzie's Addition — Andreas's "body of thrifty heavy growth of timber", which
+takes the TOP of ZONE 5's 50–78/ha range — and the wood the records ask for grew with it. Measured
+2026-09-15 with the stem caps lifted so the planting loop could finish: the field accepts **4,052**
+stems at `full`'s sampling step, 3,981 at `balanced`'s and 3,970 at `light`'s. The banked figure
+for `full` on 2026-08-17 was **472**. The caps — 3,030 / 1,920 / 1,110, a backstop K45(b2) sized at
+3.70× the pre-sweep numbers — therefore bound at **all three levels**, and a bound cap on a
+south-to-north loop is not a thinning: the planted maxima were N +949.8 / +803.3 / +722.6 m against
+a field that runs to N +1,117.8 m, so the wood ended in a straight horizontal cut across the town.
+
+**What was chosen between.** Three things could have moved, and only one of them is honest:
+(a) raise the caps, which abandons the one statement this renderer makes about how much geometry a
+level is for and puts `full` past its own triangle ceiling; (b) leave the caps binding and call the
+cut a rendering choice, which is the defect being repaired; (c) thin the whole wood so that it
+fits, which draws every part of the field at one honest, stated density. (c) is taken. The scale is
+set by the level with the least room — `light`, at 80 % of its 1,110 cap — and the RATIO between
+the levels is still L121's rule, the live per-level triangle ceilings in `main.js` read as a ratio:
+those have moved from 1,000,000 / 800,000 / 600,000 to **1,460,000 / 1,280,000 / 825,000**, so the
+ratio is refreshed here from 1 / 0.8 / 0.6 to **1 / 0.877 / 0.565**.
+
+**What is NOT changed, and it bounds the liberty.** `perHa`, the community mixes, the North/South
+gallery split, `edgeFade`, `clearedFactor`, the waterline gate, the east limits and the
+sandbar-willow point-bar screen are all untouched. Nothing in `data/` moved. The recorded stand is
+still what the roll would accept at a fraction of 1, and this file is the only place the difference
+between that stand and the drawn one is stated. Measured after the change: **1,529 / 1,408 / 885**
+trees against caps of 3,030 / 1,920 / 1,110, every level reaching N +1,113 m or better.
+
+**Consequence, and it overturns half of L121's.** L121 ended "every banked measurement, every gate
+and every published number is `full`… `full` keeps 100 % of its stems". The first clause still
+holds; **the second does not**, and any figure quoted from before 2026-09-15 that counts drawn
+stems is a count of a denser wood. `tools/measure_timber_detail.mjs --gate` now holds the levels to
+each other by ratio rather than by `full` being whole, and holds all three to the north end of the
+field.
+
+**How to resolve:** a wood drawn at its recorded density needs geometry this renderer does not have
+for it — an impostor or billboard band for the far timber, so that the stems close to the visitor
+can be the record's own while the distance costs a fraction of a stem each. That instrument does
+not exist here. Until it does, the fraction is the honest stand-in and this entry is where it is
+counted.
+
+Related: **L121**, which this entry supersedes on the value and keeps on the method, and **L120**
+and **L114**, the other entries about this wood. Ticket **T-1127**; ROADMAP **K45(b3)**.
+**Recorded:** 2026-09-15.

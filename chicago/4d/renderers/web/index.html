@@ -135,11 +135,12 @@
       <kbd>W A S D</kbd><span>walk</span><kbd>mouse</kbd><span>look around</span>
       <kbd>Shift</kbd><span>run</span><kbd>click / E</kbd><span>inspect a building</span>
       <kbd>F</kbd><span>fly or walk</span><kbd>H</kbd><span>the menu</span>
-      <kbd>G</kbd><span>go to a place</span>
+      <kbd>G</kbd><span>go to a place</span><kbd>M</kbd><span>the whole map</span>
     </div>
     <div id="control-help-touch" class="control-help-grid" hidden>
       <kbd>left stick</kbd><span>walk</span><kbd>drag right</kbd><span>look around</span>
       <kbd>tap</kbd><span>inspect</span><kbd>Fly</kbd><span>switch walk / aerial view</span>
+      <kbd>tap the map</kbd><span>see the whole field</span>
     </div>
     <button class="control-help-gotit" id="control-help-gotit" type="button">Got it</button>
   </div>
@@ -157,12 +158,32 @@
       <canvas id="overview-map-canvas" aria-hidden="true"></canvas>
       <span class="overview-north" aria-hidden="true">N</span>
       <span class="overview-caption" aria-hidden="true">map</span>
+      <button type="button" class="overview-open" id="overview-open"
+        aria-label="Open the whole map"></button>
     </div>
     <div id="street-readout" class="street-readout" aria-live="polite" hidden>
       <span class="street-mode" id="street-mode">On street</span>
       <strong id="street-historic"></strong>
       <span class="street-modern" id="street-modern"></span>
       <span class="street-approach" id="street-approach" hidden></span>
+    </div>
+  </div>
+
+  <!-- THE WHOLE FIELD, ON DEMAND (T-1142). The inset beside the compass is a
+       WINDOW — a fixed frame at a fixed scale that travels with the visitor,
+       so extending the ground no longer stretches the widget. This is the
+       other half of that bargain: the entire heightfield fitted to the screen,
+       carrying the visitor's arrow and a box marking what the inset shows. -->
+  <div id="overview-full" class="overview-full" role="dialog" aria-modal="true"
+    aria-labelledby="overview-full-title" hidden>
+    <div class="overview-full-card">
+      <header class="overview-full-head">
+        <strong id="overview-full-title">The whole field</strong>
+        <button type="button" class="overview-full-close" id="overview-full-close"
+          aria-label="Close the whole map">×</button>
+      </header>
+      <canvas id="overview-full-canvas" aria-hidden="true"></canvas>
+      <p class="overview-full-foot" id="overview-full-foot"></p>
     </div>
   </div>
 
@@ -479,6 +500,7 @@
         <dt><kbd>F</kbd></dt><dd>free-fly — rise above the town</dd>
         <dt><kbd>Space</kbd> <kbd>Q</kbd></dt><dd>up / down <em>(while flying)</em></dd>
         <dt><kbd>G</kbd></dt><dd>go to a viewpoint, a building or a street corner</dd>
+        <dt><kbd>M</kbd></dt><dd>the whole map — the small one shows the ground around you</dd>
         <dt><kbd>N</kbd></dt><dd>what's new</dd>
         <dt><kbd>H</kbd></dt><dd>this menu</dd>
         <dt><kbd>Esc</kbd></dt><dd>release the cursor</dd>
@@ -488,6 +510,7 @@
         <dt>push it fully</dt><dd>run</dd>
         <dt>drag right</dt><dd>look around</dd>
         <dt>tap</dt><dd>inspect a building</dd>
+        <dt>tap the map</dt><dd>the whole field — the small one shows the ground around you</dd>
         <dt>Go to</dt><dd>the tab beside this one — every viewpoint, building and corner</dd>
         <dt>Fly</dt><dd>rise above the town — ▲ ▼ appear bottom-right</dd>
       </dl>

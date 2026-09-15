@@ -100,7 +100,20 @@
    "resident_research": {
     "regraded_on": "2026-09-04",
     "rule": "G1b"
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-1134",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "forsyth-forsythe",
+     "weighed_against": [
+      "forsythe_william"
+     ],
+     "for_merge": "THE TOWN'S OWN ROLLS CARRY ONE WILLIAM OF THE STEM AND SPELL HIM TWO WAYS, A YEAR APART AND NEVER ON ONE ROLL — which is the exact shape the Pearson fold rested part of its weight on. The tax list of the Town of Chicago for 1833 prints 'Forsyth, William' (voter_lists_1833_1835.txt line 84); the poll filed 11 August 1834 prints 'Forsythe, William' (line 210). Each of those rolls enters a man once, neither enters both spellings, and the spelling changes between them. The Chicago Democrat of 29 October 1834 then prints 'William Forsyth' in the town. The town holds exactly one William of each spelling and no other bearer of either stem.",
+     "against_merge": "THE ONE DOCUMENT THAT SETS BOTH IS A TRANSCRIPTION OF TWO ORIGINALS, WHICH IS THE THING C9 REFUSES TO COUNT. IRAD's 'Early Chicago Voters' PDF holds the 1833 tax list and the 1834 poll between one pair of covers, so a reader can point at one file and see both spellings — but the Pruyne ruling one cluster's-worth of reasoning above already drew this line, and it draws it the same way here: a republisher's inconsistency across two documents is not a printer's inconsistency inside one. Outside the rolls the corpus only ever sets the short form for this man: the Democrat prints Forsyth eleven times across the 1833-1835 run and Forsythe never, and Fergus 1839 prints Forsyth alone. AND ONE TITLE IS CAUGHT TREATING THE TWO AS TWO SURNAMES: the Second Presbyterian Church roll of 1892 populates both, 'Forsyth, Benjamin H. / Daniel S. / Logan Wallace / Robert / Mrs. Kate / Miss Minnie L.' and 'Forsythe, Mrs. Fannie E. / Geo. A. / Frank W. / Miss Jennie / John / Mrs. John' — thirteen people, not one William among them, and the volume alphabetises them as two names. That is not D5 (no closed roll enters both as separate entries for this forename) but it is the corpus declining to hand over the demonstration. D7, and the cards stay two. WHAT WOULD SETTLE IT IS NOT A PAGE BUT A COUNT, in C12's shape moved from the forename to the surname — the closed roll leaves the documented man exactly one entry he can be, and the exhaustion is worked over the whole roll and printed rather than asserted. C12 as written reaches a FORENAME only, so firing it on a surname is itself a rule to write. T-1135 owns that question for Pruyne/Pryne and the rule it writes is the one this pair waits on."
+    }
+   ]
   }
  ],
  "touches_removal": false,

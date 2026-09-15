@@ -5,11 +5,11 @@
   "source_id": "chicago_voter_lists_1833_1835_irad",
   "publication_source_id": "chicago_genealogist_1993_voter_lists",
   "crosswalk_target": "data/residents/households/*.json",
-  "residents_compared": 1305,
+  "residents_compared": 1300,
   "counts": {
     "entries": 345,
-    "matched": 298,
-    "candidate": 11,
+    "matched": 295,
+    "candidate": 14,
     "unmatched": 36,
     "per_list": {
       "poll_1833": {
@@ -20,20 +20,20 @@
       },
       "tax_1833": {
         "entries": 115,
-        "matched": 92,
-        "candidate": 1,
+        "matched": 91,
+        "candidate": 2,
         "unmatched": 22
       },
       "poll_1834": {
         "entries": 115,
-        "matched": 104,
-        "candidate": 2,
+        "matched": 103,
+        "candidate": 3,
         "unmatched": 9
       },
       "poll_1835": {
         "entries": 85,
-        "matched": 77,
-        "candidate": 7,
+        "matched": 76,
+        "candidate": 8,
         "unmatched": 1
       }
     }
@@ -1543,13 +1543,19 @@
       "list": "tax_1833",
       "as_read": "Pryne, Peter",
       "normalized": "Peter Pryne",
-      "outcome": "matched",
-      "matched_resident": "pryne_peter",
-      "household_id": "hh_pryne_peter",
-      "discriminator": "forenames agree initial for initial: entry 'Peter Pryne' against resident 'Peter Pryne'",
-      "candidate": null,
+      "outcome": "candidate",
+      "matched_resident": null,
+      "household_id": null,
+      "discriminator": null,
+      "candidate": {
+        "source": "census_1835_bridge_candidates.json",
+        "row": 70,
+        "preferred_name": "Peter Pryne",
+        "tier": "A — CONFIRMED 1835 VOTER",
+        "recommendation": "INCLUDE"
+      },
       "rivals": [],
-      "rule": "one resident of the surname 'Pryne' agrees with the entry's forenames; 1 bearer(s) of the surname were considered."
+      "rule": "no resident of the surname 'Pryne' agrees with the entry's forenames (0 bearer(s) considered), and the v1 workbook's bridge rows carry the entry verbatim."
     },
     {
       "record_id": "tax_1833_087",
@@ -3117,13 +3123,19 @@
       "list": "poll_1834",
       "as_read": "Pryne, Peter",
       "normalized": "Peter Pryne",
-      "outcome": "matched",
-      "matched_resident": "pryne_peter",
-      "household_id": "hh_pryne_peter",
-      "discriminator": "forenames agree initial for initial: entry 'Peter Pryne' against resident 'Peter Pryne'",
-      "candidate": null,
+      "outcome": "candidate",
+      "matched_resident": null,
+      "household_id": null,
+      "discriminator": null,
+      "candidate": {
+        "source": "census_1835_bridge_candidates.json",
+        "row": 70,
+        "preferred_name": "Peter Pryne",
+        "tier": "A — CONFIRMED 1835 VOTER",
+        "recommendation": "INCLUDE"
+      },
       "rivals": [],
-      "rule": "one resident of the surname 'Pryne' agrees with the entry's forenames; 1 bearer(s) of the surname were considered."
+      "rule": "no resident of the surname 'Pryne' agrees with the entry's forenames (0 bearer(s) considered), and the v1 workbook's bridge rows carry the entry verbatim."
     },
     {
       "record_id": "poll_1834_092",
@@ -4233,13 +4245,19 @@
       "list": "poll_1835",
       "as_read": "Pryne, Peter",
       "normalized": "Peter Pryne",
-      "outcome": "matched",
-      "matched_resident": "pryne_peter",
-      "household_id": "hh_pryne_peter",
-      "discriminator": "forenames agree initial for initial: entry 'Peter Pryne' against resident 'Peter Pryne'",
-      "candidate": null,
+      "outcome": "candidate",
+      "matched_resident": null,
+      "household_id": null,
+      "discriminator": null,
+      "candidate": {
+        "source": "census_1835_bridge_candidates.json",
+        "row": 70,
+        "preferred_name": "Peter Pryne",
+        "tier": "A — CONFIRMED 1835 VOTER",
+        "recommendation": "INCLUDE"
+      },
       "rivals": [],
-      "rule": "one resident of the surname 'Pryne' agrees with the entry's forenames; 1 bearer(s) of the surname were considered."
+      "rule": "no resident of the surname 'Pryne' agrees with the entry's forenames (0 bearer(s) considered), and the v1 workbook's bridge rows carry the entry verbatim."
     },
     {
       "record_id": "poll_1835_061",

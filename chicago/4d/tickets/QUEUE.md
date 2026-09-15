@@ -19,6 +19,11 @@
 #   c. If finishing it would take more than five tickets, it is an EPIC: one ticket under
 #      EPICS at the foot of this file, carrying the list. The loop does not work an epic
 #      until the owner promotes it out of that band.
+#   d. BAND 1 IS CLOSED TO SUCCESSORS (owner, 2026-09-15 — see the ledger). A finding from a
+#      research run does NOT go into band 1 under (b), however well it belongs beside its
+#      parent. It goes to PARKED RESEARCH at the foot of this file. Case (a) is unaffected —
+#      adding a finding to the open ticket that owns it is still right, and is preferred.
+#      This clause lapses when the owner reopens the band.
 #   Only the owner moves an existing line.
 #
 # `needs_bake: true` marks a ticket whose merge changes baked geometry. Labels regenerate from
@@ -26,6 +31,53 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-15  RESEARCH COMPLETION GROUPED AT THE BOTTOM, on the owner's instruction after
+#               reviewing the post-South Through Time queue: "go ahead and group those together
+#               in queue in the research completion section at the bottom ... and then claim
+#               and work the first ticket". T-1143 remains first. T-1137 moves ahead of every
+#               mint repair because its defect can delete other passes' findings; T-1115,
+#               T-1121, T-1136 and T-1129 follow as the resident truth repairs; T-0662 and
+#               T-0856 close the generator drift; T-1145/T-1144/T-1146 spend roles, converge
+#               residents and structure profiles; T-1108 precedes T-1147's final location
+#               closure. The blocked T-0660 -> T-0691 decision, T-0991 role resolution and the
+#               identity/location blockers travel as named prerequisites rather than queue lines
+#               whose state says they cannot be worked. No EPIC or parked research was promoted.
+#   2026-09-15  THE RESEARCH BAND IS CLOSED TO SUCCESSORS, on the owner's instruction: "Lots of
+#               research tickets keep getting created and worked which is fine but we seem to
+#               stay there, I am wondering how much more of that you will do before getting to
+#               south through time , we want research to wrap soon and finish up so we can make
+#               progress on south through time but I don't want you to abort the research if
+#               you are close".
+#               WHAT WAS MEASURED, before anything moved. Band 1 has never been empty and has
+#               never been long: across the last 25 commits that touched this file it held 1, 2,
+#               3 or 4 lines and never 0. It is not a backlog being worked down, it is a
+#               TREADMILL — each research run closes one line and files one or two successors
+#               into the same band under FILING RULE (b), which says a one-run piece goes
+#               directly under the ticket it serves, INSIDE THAT BAND. So the cursor never
+#               reaches band 5. T-0987, the succession programme that was the band's large sink,
+#               CLOSED on its own yield rule on 2026-09-14 (#1345) and the band refilled the
+#               same day anyway. The queue below band 1 is nearly empty: band 2 has 0 lines,
+#               band 3 has 0, band 4 has 1 (T-1127). SOUTH THROUGH TIME IS FOUR TICKETS AWAY,
+#               and always has been — the distance was never the length of the research, it was
+#               the refill.
+#               WHAT CHANGED. Nothing moved between bands; no line was added or dropped (64 in,
+#               64 out, asserted). One RULE was added — FILING RULE (d): a finding from a
+#               research run no longer enters band 1, it goes to PARKED RESEARCH at the foot of
+#               this file. Case (a) is untouched and still preferred: a finding that belongs to
+#               an OPEN ticket is added to it and nothing is filed.
+#               WHAT IS NOT ABORTED, per the second half of the instruction. The three lines
+#               standing in band 1 are worked to the end, because each is genuinely close and
+#               each already carries its own stopping condition: T-1138 needs one page image and
+#               rules three lines on it; T-1134 is piece 3 OF 3 of T-1130 and ends it; T-1135
+#               exhausts one tax roll and is allowed to end `undecided` under U1 if the roll
+#               does not carry it — "or leave the town two men of one stem" is in its own title.
+#               None of them opens a programme. When they land, band 1 is EMPTY, and the next
+#               line in rank order is T-1127 (band 4, the wood cut off at the new north edge),
+#               then T-0465 and SOUTH THROUGH TIME.
+#               T-1027, the one-letter-pairs EPIC, stays in band 6 where it already sits. It is
+#               the engine that has been feeding band 1 one cluster at a time; under EPIC rule
+#               (c) the loop does not work it until the owner promotes it, and this pass does
+#               not promote it.
 #   2026-09-14  WHAT THE GROUND LEFT BEHIND, on the owner's instruction after the day's merges:
 #               "can you move any necessary tickets up like T-1127. or other of those merged
 #               tickets that are important". Three lines moved, all of them findings FILED BY
@@ -168,11 +220,17 @@
 # --- namesake in the residents layer and no ruling on either, which is the state a
 # --- consolidation cannot use, because an absent merge reads exactly like a pair nobody has
 # --- looked at.
+# ---
+# --- THIS BAND IS CLOSING, 2026-09-15 (owner: "we want research to wrap soon and finish up so
+# --- we can make progress on south through time but I don't want you to abort the research if
+# --- you are close"). The three lines below ARE the band — worked to the end, none of them
+# --- abandoned, each stopped by its own written condition rather than by this instruction:
+# --- T-1138 needs one page image and rules three lines on it; T-1134 is piece 3 OF 3 of T-1130
+# --- and ends it; T-1135 exhausts one tax roll and may end `undecided` under U1, which its own
+# --- title already allows. Nothing new joins them — FILING RULE (d) sends a research run's
+# --- successors to PARKED RESEARCH at the foot of this file instead. When these three land the
+# --- band is EMPTY, and the cursor moves on: T-1127, then SOUTH THROUGH TIME.
 
-T-1139 — Nineteen minted cards wear the transcription's spelling where the 1 January 1834 page image sets another
-T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
-T-1134 — The ten one-letter town pairs the town's own lists print with no anchor on either card
-T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
 
 # --- ==========================================================================
 # --- 2. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
@@ -211,7 +269,6 @@ T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave
 # --- off an unoccupied invented building, because the hitching rule omits the anonymity clause
 # --- the signboard rule applies.
 
-T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
 
 
 # --- ==========================================================================
@@ -255,6 +312,7 @@ T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so th
 
 
 
+T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
 T-0467 — Add south-scene camera anchors, navigation and map extents
@@ -274,18 +332,10 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- ==========================================================================
 # --- Ordering rule 4 in the other direction: nothing here outranks the bands above.
 # ---
-# --- T-0999 LEADS IT, and it is the one entry here that guards another band's work: nothing in the
-# --- gate can see a ruling that is simply GONE. A smaller resident_rulings.json is a legal one, and
-# --- #1055 lost forty hand-authored judgements under a green check.sh — the research band above
-# --- writes exactly that file. T-1029 follows: three derived artefacts stale on dev with nothing
-# --- re-deriving them.
+# --- The resident-truth, resident-generator and location-integrity lines formerly leading this
+# --- band moved together into RESEARCH COMPLETION below on the owner's 2026-09-15 instruction.
+# --- The remaining lines are loop/release machinery and follow that completion programme.
 
-
-
-T-1129 — Four residents rest only on a Bear Creek, Sangamon County marriage, and their cards say the church list names them at Chicago
-T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
-T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
-T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
@@ -349,17 +399,50 @@ T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot se
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
+# --- ==========================================================================
+# --- PARKED RESEARCH — filed after the wrap, worked only when the owner reopens band 1
+# --- ==========================================================================
+# --- FILING RULE (d), owner 2026-09-15. Band 1 kept refilling from itself: a research run
+# --- would close one line and file its successors directly beneath, under rule (b), so the
+# --- queue cursor never left the band. Successors land HERE now. This is a park, not a
+# --- deletion and not a ranking — the findings keep their evidence and their acceptance, and
+# --- they are worked when the owner says research reopens. Two things still do NOT come here:
+# --- a finding that belongs to an OPEN ticket goes onto that ticket under rule (a), which is
+# --- still the preferred answer; and a finding that is not research at all is banded normally.
+# --- Empty is the correct state of this section.
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
 
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
-T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
+# --- ==========================================================================
+# --- RESEARCH COMPLETION — owner-ranked, executable closeout, 2026-09-15
+# --- ==========================================================================
+# --- Owner: group the recommended resident-integrity and final-spend work here, then work its
+# --- first ticket. This band is executable, not PARKED or an EPIC. Work top-down. The closed
+# --- ledger comes first; writer safety precedes every mint repair; convergence waits for all
+# --- truth and gate repairs; locations close last. Completion means zero UNCLASSIFIED research,
+# --- not zero refusals or later/out-of-town evidence. Accuracy forbids lowering a count by invention.
+# ---
+# --- BLOCKED DECISIONS TRAVEL WITH THIS BAND BUT ARE NOT FALSELY OFFERED AS WORKABLE LINES:
+# --- T-0660's evidence-preserving survivorship ruling releases T-0691 before T-0662/T-1144;
+# --- T-0991 is resolved by T-1145's dated plural roles. T-0392/T-1027 and the location questions
+# --- T-0251/T-0305/T-0386/T-1087 remain explicit ledger dispositions unless their evidence or
+# --- owner ruling changes. The EPIC and PARKED sections above remain unpromoted.
+
+T-1143 — Build a closed research-spend ledger: every committed research unit is asserted, later-only, outside Chicago, aggregate, refused, unresolved or linked to its owning ticket
 T-1137 — A change to the civic mint's derived note silently deletes every other pass's findings appended to the same card
+T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
+T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
+T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
+T-1129 — Four residents rest only on a Bear Creek, Sangamon County marriage, and their cards say the church list names them at Chicago
+T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
+T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
+T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
+T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
+T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
+T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
+T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
+

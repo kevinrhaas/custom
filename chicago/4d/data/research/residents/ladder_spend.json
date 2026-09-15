@@ -11,16 +11,16 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1305,
-  "carried_by_the_civic_mint": 413,
-  "rungs_spent": 810,
+  "person_records": 1300,
+  "carried_by_the_civic_mint": 410,
+  "rungs_spent": 808,
   "conflicts_for_the_owner": 79,
   "spent_by_rule": {
-   "G1a": 21,
-   "G1b": 93,
+   "G1a": 22,
+   "G1b": 92,
    "G1c": 9,
    "G2e": 47,
-   "G3": 640
+   "G3": 638
   },
   "conflicts_by_kind": {
    "abstention": 44,
@@ -210,15 +210,6 @@
    "household_id": "hh_andress_stephen",
    "name": "Stephen Andress",
    "identity": "id_andress_stephen",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "anight_clark",
-   "household_id": "hh_anight_clark",
-   "name": "Clark Anight",
-   "identity": "id_anight_clark",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -2674,8 +2665,8 @@
   {
    "person_id": "fraser_wm_h",
    "household_id": "hh_fraser_wm_h",
-   "name": "Wm. H. Fraser",
-   "identity": "id_fraser_william_h",
+   "name": "Wm. H. Frazer",
+   "identity": "id_frazer_william_h",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -5473,8 +5464,8 @@
   {
    "person_id": "provis_joshua",
    "household_id": "hh_provis_joshua",
-   "name": "Joshua Provis",
-   "identity": "id_provis_joshua",
+   "name": "Joshua Pruvis",
+   "identity": "id_pruvis_joshua",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -5484,7 +5475,7 @@
    "household_id": "hh_pruyne_kimberly",
    "name": "Peter Pruyne",
    "identity": "id_pruyne_peter",
-   "rule": "G1b",
+   "rule": "G1a",
    "grade": "attested",
    "resident_subtype": null
   },
@@ -5871,15 +5862,6 @@
    "household_id": "hh_saymore_ira",
    "name": "Ira Saymore",
    "identity": "id_saymore_ira",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "scarritt_isaac",
-   "household_id": "hh_scarritt_isaac",
-   "name": "Isaac Scarritt",
-   "identity": "id_scarritt_isaac",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -6814,8 +6796,8 @@
   {
    "person_id": "vandino_john",
    "household_id": "hh_vandino_john",
-   "name": "John Vandino",
-   "identity": "id_vandino_john",
+   "name": "John Vandine",
+   "identity": "id_vandine_john",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"

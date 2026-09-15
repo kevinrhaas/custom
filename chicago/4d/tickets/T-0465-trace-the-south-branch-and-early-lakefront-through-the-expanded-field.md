@@ -11,9 +11,15 @@ opened: 2026-09-01
 closed: null
 pr: null
 claimed_by: null
-blocked_on: T-0464
+blocked_on: null
 needs_bake: true
 ---
+
+**Unblocked 2026-09-15.** This ticket carried `blocked_on: T-0464` from the day it was
+filed. T-0464 CLOSED on 2026-09-14 as #1257 — the ground now reaches Twenty-Second
+Street and the modelled field is one box 2 020 x 4 920 m — so the dependency is
+SATISFIED, not dropped. The field was left stale for a day, which reads to anything
+picking work off this queue as "blocked" and is the state a run steps over.
 
 The present terrain stops because the committed South Branch trace stops near N -405. Continue the river banks and the pre-fill Lake Michigan shoreline through the new southern frame, including the shoreline geometry needed to understand the Fort Dearborn evacuation/battle corridor.
 

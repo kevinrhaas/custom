@@ -227,10 +227,17 @@ for (const r of rows) {
   check(`${r.level}: declares the keep fraction the baseline banks`,
     r.keep !== null && Math.abs(r.keep - b.keep) < 1e-9,
     `trees.js says ${r.keep}, baseline ${b.keep}`);
+  //    Against FULL'S share, not against the keep fraction itself. Until T-1127
+  //    `full`'s keep was 1.00, so "40 % of the roll" and "40 % of full's trees"
+  //    were the same number and the check could read either. They are not the
+  //    same number any more: T-1127 scaled all three fractions down together so
+  //    the enlarged field's wood fits the caps, and what the levels still owe
+  //    each other is the RATIO — `keep` over `full`'s keep.
+  const nominal = base.levels.full.keep ? b.keep / base.levels.full.keep : 0;
   const treeShare = full.trees ? r.trees / full.trees : 0;
-  check(`${r.level}: plants ${(b.keep * 100).toFixed(0)} % of full's TREES`,
-    Math.abs(treeShare - b.keep) <= base.tolerance.tree_share,
-    `${(treeShare * 100).toFixed(1)} % against ${(b.keep * 100).toFixed(0)} % ± `
+  check(`${r.level}: plants ${(nominal * 100).toFixed(1)} % of full's TREES`,
+    Math.abs(treeShare - nominal) <= base.tolerance.tree_share,
+    `${(treeShare * 100).toFixed(1)} % against ${(nominal * 100).toFixed(1)} % ± `
     + `${(base.tolerance.tree_share * 100).toFixed(0)}`);
   // 2. IT THINS, IT DOES NOT TRUNCATE — the question a stem count cannot answer.
   //    The wood reaches the same latitude at every level and its northernmost
