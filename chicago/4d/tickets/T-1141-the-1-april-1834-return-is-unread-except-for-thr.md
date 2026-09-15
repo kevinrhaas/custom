@@ -1,7 +1,7 @@
 ---
 id: T-1141
 title: The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-15
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/15/2026, 2:30:03 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35013649321
 ---
 
 The 1 April 1834 return is unread except for three lines, and the reading of those three
