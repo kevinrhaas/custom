@@ -303,7 +303,7 @@ T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1
 
 
 T-0465 — Trace the South Branch and early lakefront through the expanded field
-T-1143 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
+T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
 T-0467 — Add south-scene camera anchors, navigation and map extents
 T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
@@ -423,3 +423,4 @@ T-1137 — A change to the civic mint's derived note silently deletes every othe
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
+T-1143 — Build a closed research-spend ledger: every committed research unit is asserted, later-only, outside Chicago, aggregate, refused, unresolved or linked to its owning ticket
