@@ -11353,17 +11353,6 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_benjamin_reed",
-      "name": "Benjamin Reed",
-      "occupation": null,
-      "letter_list_only": true,
-      "first_seen": "1834-04-01",
-      "last_seen": "1834-04-01",
-      "action": "new_resident",
-      "action_target": null,
-      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
-    },
-    {
       "id": "person_benjamin_richardson",
       "name": "Benjamin Richardson",
       "occupation": null,
@@ -11384,6 +11373,17 @@
       "action": "enrich",
       "action_target": "sloat_benjamin",
       "action_note": "data/residents/ already holds this person as sloat_benjamin (hh_sloat_benjamin, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+    },
+    {
+      "id": "person_benjamin_smith",
+      "name": "Benjamin Smith",
+      "occupation": null,
+      "letter_list_only": true,
+      "first_seen": "1834-04-01",
+      "last_seen": "1834-04-01",
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_benjamin_swena",
@@ -17546,15 +17546,15 @@
       "action_note": "data/residents/ already holds this person as powell_geo_n (hh_powell_geo_n, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
     },
     {
-      "id": "person_geo_square",
-      "name": "Geo. Square",
+      "id": "person_geo_squar",
+      "name": "Geo. Squar",
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "square_geo",
-      "action_note": "data/residents/ already holds this person as square_geo (hh_square_geo, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_target": "squar_geo",
+      "action_note": "data/residents/ already holds this person as squar_geo (hh_squar_geo, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
     },
     {
       "id": "person_geo_w_laird",
@@ -20560,15 +20560,15 @@
       "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
-      "id": "person_ira_raymore",
-      "name": "Ira Raymore",
+      "id": "person_ira_saymore",
+      "name": "Ira Saymore",
       "occupation": null,
       "letter_list_only": true,
       "first_seen": "1834-04-01",
       "last_seen": "1834-04-01",
       "action": "enrich",
-      "action_target": "raymore_ira",
-      "action_note": "data/residents/ already holds this person as raymore_ira (hh_raymore_ira, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_target": "saymore_ira",
+      "action_note": "data/residents/ already holds this person as saymore_ira (hh_saymore_ira, inferred) — the letter_list pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
     },
     {
       "id": "person_isaa_c_w_m_c_clure",

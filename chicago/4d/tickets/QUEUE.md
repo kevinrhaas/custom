@@ -231,7 +231,6 @@
 # --- successors to PARKED RESEARCH at the foot of this file instead. When these three land the
 # --- band is EMPTY, and the cursor moves on: T-1127, then SOUTH THROUGH TIME.
 
-T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1834 return need the page image before any card on them can be ruled
 
 # --- ==========================================================================
 # --- 2. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
@@ -313,6 +312,7 @@ T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1
 
 
 
+T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
 T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
 T-0467 — Add south-scene camera anchors, navigation and map extents
@@ -445,4 +445,3 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
-

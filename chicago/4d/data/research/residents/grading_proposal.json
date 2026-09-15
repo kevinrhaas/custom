@@ -59,26 +59,26 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6844,
+  "identities": 6843,
   "by_grade": {
    "None": 44,
-   "not_1835_resident": 4479,
+   "not_1835_resident": 4478,
    "inferred": 1946,
    "attested": 375
   },
   "by_subtype": {
    "None": 5118,
-   "projected_resident": 1726
+   "projected_resident": 1725
   },
   "by_rule": {
    "G5": 44,
-   "G0": 4479,
-   "G3": 1725,
+   "G0": 4478,
+   "G3": 1724,
    "G1b": 305,
    "G2b": 34,
    "G1a": 50,
    "G1c": 20,
-   "G2e": 118,
+   "G2e": 119,
    "G2c": 34,
    "G2a": 34,
    "G4": 1
@@ -5150,7 +5150,6 @@
   {"identity":"id_raymond_george_wright","name":"George Wright Raymond","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2066","directories:n1844_e1470"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_raymond_lewis","name":"Lewis Raymond","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0535"],"evidence_classes":["death_notice"]},
   {"identity":"id_raymond_william","name":"William Raymond","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33SQ-GYYJ-RY:9"],"evidence_classes":["census_1840"]},
-  {"identity":"id_raymore_ira","name":"Ira Raymore","canonical_person_id":"raymore_ira","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_ira_raymore"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_read_leander","name":"Leander Read","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0536"],"evidence_classes":["death_notice"]},
   {"identity":"id_read_william","name":"William Read","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_031_1"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_receiversoffice_u_s","name":"U S Receiversoffice","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2068"],"evidence_classes":["directory_1843"]},
@@ -5158,7 +5157,6 @@
   {"identity":"id_redbird_d","name":"D Redbird","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0537"],"evidence_classes":["death_notice"]},
   {"identity":"id_redin_edward","name":"Edward Redin","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33S7-9YYJ-2T:22"],"evidence_classes":["census_1840"]},
   {"identity":"id_reed_alanson","name":"Alanson Reed","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0538"],"evidence_classes":["death_notice"]},
-  {"identity":"id_reed_benjamin","name":"Benjamin Reed","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_benjamin_reed"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_reed_charles_manning","name":"Charles Manning Reed","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0539"],"evidence_classes":["death_notice"]},
   {"identity":"id_reed_frederick","name":"Frederick Reed","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2070","directories:n1844_e1471"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_reed_george","name":"George Reed","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["newspapers:person_george_reed"],"evidence_classes":["newspaper_out_of_town"]},
@@ -5496,6 +5494,7 @@
   {"identity":"id_sawyer_sidney","name":"Sidney Sawyer","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2180","directories:f1843_e0042","directories:n1844_e1560"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_sawyer_william_henry","name":"William Henry Sawyer","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2181"],"evidence_classes":["directory_1843"]},
   {"identity":"id_saxton_l_c","name":"L C Saxton","canonical_person_id":"saxton_l_c","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_l_c_saxton"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
+  {"identity":"id_saymore_ira","name":"Ira Saymore","canonical_person_id":"saymore_ira","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_ira_saymore"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_scales_charles_rich","name":"Charles Rich Scales","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2182"],"evidence_classes":["directory_1843"]},
   {"identity":"id_scaly_george","name":"George Scaly","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_072_3"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_scammon_charles_t","name":"Charles T Scammon","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0572"],"evidence_classes":["death_notice"]},
@@ -5783,7 +5782,7 @@
   {"identity":"id_smith_barme","name":"Barme Smith","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_031_3"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_smith_barney","name":"Barney Smith","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["census_1840:33SQ-GYYJ-93G:15","directories:f1843_e2283","directories:n1844_e2052"],"evidence_classes":["census_1840","directory_1843","directory_1844"]},
   {"identity":"id_smith_ben_amin","name":"Ben Amin Smith","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_smith_ben_j_amin"],"evidence_classes":["newspaper_letter_list"]},
-  {"identity":"id_smith_benjamin","name":"Benjamin Smith","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2284","directories:n1844_e1638"],"evidence_classes":["directory_1843","directory_1844"]},
+  {"identity":"id_smith_benjamin","name":"Benjamin Smith","canonical_person_id":null,"rule":"G2e","grade":"inferred","resident_subtype":null,"evidence":["directories:f1843_e2284","directories:n1844_e1638","newspapers:person_benjamin_smith"],"evidence_classes":["directory_1843","directory_1844","newspaper_letter_list"]},
   {"identity":"id_smith_bernard","name":"Bernard Smith","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["church:st_cyr_marriage_104_3"],"evidence_classes":["church_after_1835"]},
   {"identity":"id_smith_c_d","name":"C D Smith","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2288","directories:n1844_e1643"],"evidence_classes":["directory_1843","directory_1844"]},
   {"identity":"id_smith_charles_a","name":"Charles A Smith","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2285","directories:n1844_e1641"],"evidence_classes":["directory_1843","directory_1844"]},
@@ -5923,7 +5922,7 @@
   {"identity":"id_sproat_grenville_temple","name":"Grenville Temple Sproat","canonical_person_id":"sproat_grenville","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_g_n_sproat","newspapers:person_g_t_sproat"],"evidence_classes":["newspaper_1833_1835","town_layer"]},
   {"identity":"id_spry_john","name":"John Spry","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2338"],"evidence_classes":["directory_1843"]},
   {"identity":"id_squam_kai_bai","name":"Kai Bai Squam","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["civic:blackhawk_1832_037"],"evidence_classes":["muster_1832"]},
-  {"identity":"id_square_george","name":"George Square","canonical_person_id":"square_geo","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_geo_square"],"evidence_classes":["newspaper_letter_list","town_layer"]},
+  {"identity":"id_squar_george","name":"George Squar","canonical_person_id":"squar_geo","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_geo_squar"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_squire_george","name":"George Squire","canonical_person_id":"squire_george","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_george_squire"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_squires_collins_s","name":"Collins S Squires","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0621"],"evidence_classes":["death_notice"]},
   {"identity":"id_squires_nathan","name":"Nathan Squires","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["directories:f1843_e2339","directories:n1844_e1686"],"evidence_classes":["directory_1843","directory_1844"]},

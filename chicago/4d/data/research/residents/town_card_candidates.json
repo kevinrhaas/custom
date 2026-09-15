@@ -8,9 +8,8 @@
   "open_clusters": 19,
   "cards_in_open_clusters": 41,
   "rulings": {
-   "distinct": 24,
+   "distinct": 25,
    "merge": 47,
-   "undecided_T-1138": 1,
    "undecided_rule": 12
   },
   "landed_merges": 47,

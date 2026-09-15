@@ -85,6 +85,17 @@
    "resident_subtype": "projected_resident",
    "merge_ruling": [
     {
+     "ticket": "T-1138",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "squar-squire",
+     "weighed_against": [
+      "squar_geo"
+     ],
+     "for_merge": "“Geo.” is the ordinary abbreviation of “George”, Square and Squire differ by one letter, and the resident layer holds one card of each and no other bearer of either stem. Pass 06 of the resident-research programme reached the pair and wrote it down as a possible duplicate: “Geo. Square may be a transcription/duplicate relation to George Squire”.",
+     "against_merge": "THE LINE IS READ, AND IT MOVED THE CARD BEFORE IT COULD BE WEIGHED. T-1133 left this pair UNDECIDED under U1 because one of its two printed lines had two readings: the extraction of the Democrat of 1 April 1834 set it “3. Geo. Square t 3 first rate” and the extraction of the 16 April impression set the same position “Geo. Saver”, and a merge cannot be tested against a line nobody has settled. T-1138 read all THREE impressions the paper printed of that one return — 1 April, 8 April and 16 April, at the scan the deposit manifest names — and all three set the same five letters: “Geo. Squar”. `Saver` is not on the page; the second letter is a q with its descender. And `Square` is one letter too long: there is no final e on any impression, and on two of the three the line ends in clean paper where an e would have to stand. So the card the mint carried as `square_geo` is withdrawn and the same person stands as `squar_geo`, under the name the page sets. THAT ALONE WOULD ANSWER THE CLUSTER — Squar and Squire are not one letter apart, so the one-letter test that raised this pair no longer reaches it — but the refusal is not rested on the spelling alone, because the spelling is exactly what was in doubt. D6 is reached on the evidence's shape, which the reading did not change: neither card is an anchor, the town's whole knowledge of both is the post office's returns, `Squar` stands on the return of 1 April 1834 and `Squire` on the return of 31 March 1835, and NO single return sets both spellings — so C9's demonstration is absent and D5's counter-demonstration is absent with it. The roll is serial; it was never asked the question. The cards stay two, and that is NOT a claim that the town held two men of the name."
+    },
+    {
      "ticket": "T-1133",
      "verdict": "undecided",
      "rule": "U1",

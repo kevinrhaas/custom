@@ -53,8 +53,8 @@
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 75,
   "letter_list_matched_one_entry": 340,
-  "letter_list_ambiguous": 92,
-  "letter_list_surname_only_refused": 671,
+  "letter_list_ambiguous": 93,
+  "letter_list_surname_only_refused": 670,
   "heads_1840_matched_one_entry": 170,
   "heads_1840_ambiguous": 56,
   "heads_1840_surname_only_refused": 223,
@@ -17982,6 +17982,45 @@
     ]
    },
    {
+    "name": "Benjamin Smith",
+    "rule": "Surname 'Smith' folds to the same string as the 1839 entry's, and the given name of both begins B.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e1354",
+      "as_printed": "Smith, Barney, butcher, h lake shore, cor. Madison st",
+      "printed_page": 31,
+      "occupation_1839": "butcher",
+      "address_1839": "h lake shore, cor. Madison st",
+      "streets_1839": [
+       "Madison st"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1355",
+      "as_printed": "Smith, Benjamin, tailoi*, Deai'born street, cor. Washington",
+      "printed_page": 31,
+      "occupation_1839": "tailoi*",
+      "address_1839": "Deai'born street, cor. Washington",
+      "streets_1839": [
+       "Deai'born street"
+      ],
+      "address_is_street_only": false
+     },
+     {
+      "claim": "f1839_e1356",
+      "as_printed": "Smith, Bradner, cai'penter, North State st",
+      "printed_page": 31,
+      "occupation_1839": "cai'penter",
+      "address_1839": "North State st",
+      "streets_1839": [
+       "North State st"
+      ],
+      "address_is_street_only": false
+     }
+    ]
+   },
+   {
     "name": "Brown, John",
     "rule": "Surname 'Brown' folds to the same string as the 1839 entry's, and the given name of both begins J.",
     "entries_1839": [
@@ -20890,11 +20929,6 @@
     "name": "Benjamin Church",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'Church' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Benjamin Church'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Benjamin Reed",
-    "candidates_under_that_surname": 4,
-    "rule": "The surname 'Reed' is in Fergus 1839 and no entry under it carries the initial 'B' of 'Benjamin Reed'. A surname-only agreement is a refusal."
    },
    {
     "name": "Benjamin Thomp[s]on",

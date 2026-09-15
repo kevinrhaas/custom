@@ -98,7 +98,7 @@
   "civic|old_settlers": 30,
   "civic|residents": 262,
   "directories|directories": 2850,
-  "directories|newspapers": 157,
+  "directories|newspapers": 158,
   "directories|old_settlers": 29,
   "directories|residents": 158,
   "newspapers|newspapers": 2123,
@@ -126,6 +126,6 @@
    "X2": 1,
    "X3": 1
   },
-  "declared_refusals": 2271
+  "declared_refusals": 2272
  }
 }

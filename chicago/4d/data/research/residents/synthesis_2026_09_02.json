@@ -170,6 +170,11 @@
         "name": "Norton N. R."
       },
       {
+        "person_id": "raymore_ira",
+        "outcome": "no_corroboration_yet",
+        "name": "Ira Raymore"
+      },
+      {
         "person_id": "s_page_elisha",
         "outcome": "no_corroboration_yet",
         "name": "Page Elisha S."
@@ -183,6 +188,11 @@
         "person_id": "selden_sam_l_l",
         "outcome": "candidate_identity",
         "name": "Sam'l. L. Selden"
+      },
+      {
+        "person_id": "square_geo",
+        "outcome": "candidate_identity",
+        "name": "Geo. Square"
       },
       {
         "person_id": "t_orinsbey_martin",
@@ -231,6 +241,8 @@
       "levi_hills_2",
       "loose_jacob",
       "makio_james",
+      "saymore_ira",
+      "squar_geo",
       "stafford_b_p"
     ],
     "letter_list_deferred_to_ladder": [

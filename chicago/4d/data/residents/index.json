@@ -15116,22 +15116,6 @@
    "review_required": false
   },
   {
-   "id": "hh_raymore_ira",
-   "file": "households/hh_raymore_ira.json",
-   "letter_list_only": true,
-   "head": "raymore_ira",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "inferred": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false,
-   "projected_resident": true
-  },
-  {
    "id": "hh_reed_s_w",
    "file": "households/hh_reed_s_w.json",
    "civic_mint": true,
@@ -16096,6 +16080,22 @@
    "works_at": null,
    "present_on_scene_date": "uncertain",
    "review_required": false
+  },
+  {
+   "id": "hh_saymore_ira",
+   "file": "households/hh_saymore_ira.json",
+   "letter_list_only": true,
+   "head": "saymore_ira",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "inferred": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false,
+   "projected_resident": true
   },
   {
    "id": "hh_scarrett_isaac",
@@ -17179,10 +17179,10 @@
    "review_required": false
   },
   {
-   "id": "hh_square_geo",
-   "file": "households/hh_square_geo.json",
+   "id": "hh_squar_geo",
+   "file": "households/hh_squar_geo.json",
    "letter_list_only": true,
-   "head": "square_geo",
+   "head": "squar_geo",
    "division": "unplaced",
    "persons": 1,
    "grades": {

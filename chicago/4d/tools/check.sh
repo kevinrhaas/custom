@@ -2352,6 +2352,20 @@ step "the 1834 letter list's crop entities still point at the printed lines the 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/read_letter_list_1834_image.py --self-test
 
+# T-1138. And the three lines of the 1 APRIL 1834 return that two transcriptions of one
+# return read differently, settled at three impressions of the page. What rots here is
+# specific and would be invisible: `normalized` is what the town mints from, so a later
+# concordance pass that "repairs" one of these three back to the impression it came from
+# silently resurrects a card the image withdrew — a Raymore, or a Square with an e the
+# type never set. --check holds the reading onto the three entities, refuses to let the
+# other seventy-nine of the claim borrow their `scan_verified`, and asserts the withdrawal
+# on disk: the two cards the image overturned are gone and the two it sets are committed.
+step "the 1 April 1834 return's three contested lines still carry the reading the page made" \
+  python3 tools/read_letter_list_1834_04_01_image.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/read_letter_list_1834_04_01_image.py --self-test
+
 step "the letter-list cohort is what the owner's ruling permits" \
   python3 tools/mint_letter_list_residents.py --gate
 

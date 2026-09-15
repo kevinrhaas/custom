@@ -46,7 +46,7 @@
   "voters_matched_one_entry": 81,
   "voters_ambiguous": 38,
   "voters_surname_only_refused": 86,
-  "letter_list_matched_one_entry": 194,
+  "letter_list_matched_one_entry": 195,
   "letter_list_ambiguous": 64,
   "letter_list_surname_only_refused": 545,
   "heads_1840_matched_one_entry": 86,
@@ -8086,6 +8086,24 @@
       "printed_page": 45,
       "role": "voter",
       "ward_1837": 6,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ]
+   },
+   {
+    "name": "Benjamin Smith",
+    "rule": "Surname 'Smith' folds to the same string as the 1837 entry's, and the given name of both begins B.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0041",
+      "as_printed": "Barney Smith,",
+      "printed_page": 41,
+      "role": "voter",
+      "ward_1837": 1,
       "voted_for": "William B. Ogden",
       "party": null,
       "office": null,
