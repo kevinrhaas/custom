@@ -1063,6 +1063,29 @@ function check(tickets) {
     if (t.state?.startsWith('blocked') && !t.blocked_on) {
       problems.push(`${at}: ${t.state} without blocked_on — a block with no stated question is an abandonment`);
     }
+    // …AND THE OTHER HALF: a `blocked_on` that names a ticket which has FINISHED.
+    // T-0465, T-0466 and T-0467 all read `blocked_on: T-0464` on the day after
+    // T-0464 closed (#1257), and they are the first three lines of SOUTH THROUGH
+    // TIME. Nothing had to read the field for it to do damage: a run picking work
+    // off this queue opens the top ticket, sees another ticket's id in
+    // `blocked_on`, and steps over it — which is how the band's lead sat unclaimed
+    // while the run below it was taken. The blocker's own state is the receipt, so
+    // ask it here rather than trusting the field to be swept by hand.
+    // SCOPED TO TICKETS STILL IN THE QUEUE, and the scope is the whole point.
+    // 16 tickets on dev named a finished blocker and only THREE of them were
+    // workable — the three above. The other 13 sit on tickets that are themselves
+    // `done` or `withdrawn`, where the field is honest history nobody chooses
+    // work from; failing the gate on those would be 13 lines of noise guarding
+    // nothing, and the next person would weaken the whole check to shut it up.
+    if (WORKABLE.includes(t.state) && t.blocked_on
+        && /^T-\d+$/.test(String(t.blocked_on).trim())) {
+      const on = tickets.find((x) => x.id === String(t.blocked_on).trim());
+      if (on && !WORKABLE.includes(on.state)) {
+        problems.push(`${at}: in the queue, blocked_on ${on.id}, which is ${on.state}`
+          + `${on.pr ? ` (PR #${on.pr})` : ''} — the dependency is SATISFIED, so clear the `
+          + 'field. A stale one reads as a live block to anything choosing work.');
+      }
+    }
     if (!t.body?.trim()) problems.push(`${at}: empty body — a ticket with no ask or acceptance is a title`);
     if (!Object.keys(EFFORT).includes(t.effort)) {
       problems.push(`${at}: effort "${t.effort}" is not one of ${Object.keys(EFFORT).join('/')} `
