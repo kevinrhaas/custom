@@ -93,7 +93,20 @@
       ]
      }
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-1133",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "murray-murry",
+     "weighed_against": [
+      "murray_alonzo"
+     ],
+     "for_merge": "Murray and Murry differ by one letter and both cards read “Alonzo”, which is an uncommon forename — the town holds one other Alonzo in the whole resident layer. Two uncommon forenames on one stem inside a year is the shape a duplicate usually takes.",
+     "against_merge": "THREE THINGS, AND THE FIRST TWO WOULD BE ENOUGH. (1) TWO RETURNS, AND THE EARLIER IS SET THREE TIMES. “Alonzo Murray” stands on the return of 1 July 1834 and is printed in the impressions of 2, 9 and 16 July 1834, all three reading “Alonzo Murray”; “Murry, Alanzo 2” stands on the return of 31 March 1835, printed 20 May 1835. No return sets both. (2) THE FORENAMES ARE NOT IDENTICAL AS PRINTED. The 1835 line reads ALANZO, not Alonzo; the cards agree only after this project's own normalizer folded the o/a. So the pair that town_pairs joined on an identical forename does not have one on the page, and a merge would be folding two letters, not one. (3) MURRAY IS A POPULATED SURNAME AT THIS TOWN WHERE MURRY IS NOT. The corpus carries Nelson Murray (return of 1 April 1834), “A, MURRAY” in the Democrat of 24 September 1834 and James H. Murray in the American of 20 June 1835, and the resident layer carries a Patrick Murray card besides; the only Murry of any forename is this one. A surname several families bear is not a slip for a surname one man bears, and the direction of the supposed error is therefore unargued. D6, and the cards stay two."
+    }
+   ]
   }
  ],
  "touches_removal": false,

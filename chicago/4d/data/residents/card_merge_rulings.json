@@ -26,7 +26,8 @@
   "C10": "ONE FORENAME, TWO SPELLINGS OF IT, DEMONSTRATED IN ONE TITLE. C9's shape moved from the surname to the forename, and drawn to the same four conditions. All four of: the SURNAME agrees letter for letter and every middle initial agrees on every printing, so nothing but the spelling of the forename stands between the cards; the SAME publication is caught setting both spellings for that one man inside the window, so the variation is the printer's and is demonstrated rather than supposed; the whole corpus holds exactly ONE bearer of that surname-and-middle-initial at this town, and no source places two such people here at once; and the folded card carries no fact the survivor's record contradicts. The demonstration is the load-bearing clause, exactly as it is in C7 and C9 — a merge across two printed forenames needs the printer's own inconsistency in evidence, not a reader's willingness to believe in it. Written for T-1002's Heacock row. A ONE-LETTER RESEMBLANCE IS NEVER ENOUGH ON ITS OWN and this rule is not a licence to fold on distance: tools/measure_card_fuzzy_candidates.py puts one letter of slack over the town's own cards and it proposes 71 pairs the exact test does not, among them John Hale against John Vale, Mark Noble against Mary Noble and James Sheldon against James Wheldon. A distance cannot tell those from this one. That is why the rule asks for a page, and why it is applied one cluster at a time.",
   "C11": "TWO SPELLINGS DISCHARGING ONE DOCUMENTED OFFICE, WITH A NON-NAME DISCRIMINATOR. The shape C10 cannot reach: two spellings of one forename that NO single title is caught setting both ways, where the printings are nevertheless tied together by an office the town's own record holds. All four of: the surname agrees letter for letter and the middle initial or middle name agrees, so nothing but the forename's spelling separates the cards; BOTH spellings are printed in the discharge of ONE seat that only one person can hold at a time, so a second bearer is not merely unattested but impossible against the record; an INDEPENDENT NON-NAME DISCRIMINATOR ties the two printings to that one seat — a vote tally, a term of office, a signature on an instrument — and not the name, which is the thing in dispute; and the folded card carries no fact the survivor's record contradicts. Written for T-1002's Beaubien row, where the discriminator is an election return: two histories print the same five names and the same five vote tallies for the town's first board of trustees and spell the third man's forename two ways, and the town's own ordinance then names four of those five, under the second spelling, as the committee the board appointed. THE OFFICE IS THE LOAD-BEARING CLAUSE and it is narrower than a trade or an address: a trade two men can share and a street two men can live on, so neither would satisfy this rule. Drop any one of the four conditions and the card stays where it is.",
   "C12": "TWO SPELLINGS ON ONE CLOSED ROLL, RESOLVED BY EXHAUSTION OVER THE ROLL. The shape C10 and C11 both leave standing: two spellings of one forename that no single title is caught setting both ways for one man, and that no single seat is caught holding both — where a CLOSED ROLL nevertheless leaves the survivor exactly one entry he can be. All four of: the surname agrees letter for letter and no middle initial or middle name DISAGREES on any printing of either card; a CLOSED ROLL inside the window — a list the document itself bounds and enumerates — does NOT print the survivor's spelling while an INDEPENDENT NON-NAME FACT puts him on it, the roll being the poll of the election that returned him, or the register of a body he is documented to have belonged to; EVERY OTHER bearer of the surname on that roll is accounted for by a card of its own that the survivor is not, so the folded spelling is the only entry left for him, and the exhaustion is WORKED OVER THE WHOLE ROLL AND PRINTED rather than asserted; and no source reached prints the two spellings as separate entries, which is D3's discriminator, while the folded card carries no fact the survivor's record contradicts. THE EXHAUSTION IS THE LOAD-BEARING CLAUSE, and it is what makes this a count and not a resemblance: the rule never weighs how alike the two spellings are and would fire the same way on two that look nothing alike — which is the only reason it may be applied at three letters of difference, where C9 and C10 are held to one. Written for T-1026's Medard row, where the roll is the thirty-name poll of 10 August 1833. IT IS NARROWER THAN IT READS. A roll whose membership the document does not bound — a newspaper's prose, a subscription list, a trade's advertisers, a directory — is NOT a closed roll and cannot be exhausted, because absence from it means nothing; and a roll that does not itself state the ground on which the survivor must appear cannot supply the second condition, since 'he ought to be here somewhere' is the reader's expectation and not the document's. Drop any one of the four and the card stays where it is.",
-  "D5": "ONE CLOSED ROLL ENTERS BOTH SPELLINGS, SIDE BY SIDE. The exact converse of C12's exhaustion, and the refusal C9 needs when the page it asks for turns up and says the opposite. All three of: a CLOSED ROLL inside the window — a list the document itself bounds and enumerates — prints BOTH spellings as SEPARATE ENTRIES; the roll is one that enters a person ONCE, so a second entry is the document's own count and not its hand wavering; and no other source is caught setting the two spellings for one man. Where C9 folds on a printer caught varying, this refuses on a clerk caught distinguishing: the same instrument that would have demonstrated the variation demonstrates the opposite, and it outranks any resemblance between the two strings. A ROLL OF TRANSACTIONS IS NOT SUCH A ROLL and cannot fire this rule — the land register enters one buyer once per parcel and one man 47 times, so two spellings inside one week there are the clerk's hand, which is why the Pearson cluster below folds on the same kind of evidence this one stands on. Written for T-1132's David/Davis row, where the roll is the 115-name tax list of the Town of Chicago for 1833 and the two entries are its numbers 23 and 24."
+  "D5": "ONE CLOSED ROLL ENTERS BOTH SPELLINGS, SIDE BY SIDE. The exact converse of C12's exhaustion, and the refusal C9 needs when the page it asks for turns up and says the opposite. All three of: a CLOSED ROLL inside the window — a list the document itself bounds and enumerates — prints BOTH spellings as SEPARATE ENTRIES; the roll is one that enters a person ONCE, so a second entry is the document's own count and not its hand wavering; and no other source is caught setting the two spellings for one man. Where C9 folds on a printer caught varying, this refuses on a clerk caught distinguishing: the same instrument that would have demonstrated the variation demonstrates the opposite, and it outranks any resemblance between the two strings. A ROLL OF TRANSACTIONS IS NOT SUCH A ROLL and cannot fire this rule — the land register enters one buyer once per parcel and one man 47 times, so two spellings inside one week there are the clerk's hand, which is why the Pearson cluster below folds on the same kind of evidence this one stands on. Written for T-1132's David/Davis row, where the roll is the 115-name tax list of the Town of Chicago for 1833 and the two entries are its numbers 23 and 24.",
+  "D6": "TWO RETURNS OF ONE SERIAL ROLL, AND NEITHER OF THEM SETS BOTH SPELLINGS. The refusal for a pair whose ONLY witness is a SERIAL closed roll — a list one office re-compiles and re-publishes on a schedule, the Chicago post office's returns of letters uncalled-for being this corpus's one example of the shape. All four of: neither card is an anchor, so anchored() finds no trade, no dwelling and no research behind either; every appearance either card carries stands on that roll and on nothing else, so there is no second body of evidence to ask; NO SINGLE return sets both spellings, which is C9's demonstration absent; and the two spellings stand on returns the office closed on different days, so the roll never had the occasion to enter one man twice and D5's counter-demonstration is absent with it. Where C9 folds on a printer caught varying and D5 refuses on a clerk caught distinguishing, D6 rules the case where the instrument was never asked the question: the roll is serial, so its silence is neither evidence for the fold nor against it, and a one-letter distance is all that would be left to fold on — which is what T-1001 measured over the land register's 427 purchaser spellings and refused. It is D4's answer in another domain: the cards stay two because nothing reached joins them, and that is NOT a claim that the town held two men of the name. `for_merge` is kept verbatim so the argument survives its refusal. TWO THINGS DEFEAT IT, and both are live. If one return is shown to set both spellings the ruling becomes C9's or D5's. And if the two cards prove to stand on ONE PRINTED LINE of one return, read two ways by two impressions of it, then they were never two printings at all and C9 fires at its strongest — which is what happened to Fraser/Frazer and Vandine/Vandino in the same pass that wrote this rule, and it is why the return a card stands on is checked before D6 is reached for. Written for T-1133."
  },
  "deferred": [],
  "clusters": [
@@ -1137,6 +1138,143 @@
      "note": "pryne_peter is graded attested on the 1835 poll with a second list behind it, and pruyne_peter is attested on Andreas and the history of medicine, so neither card is weak — which is why this one is worth deciding rather than leaving to the next candidate sweep to re-ask."
     }
    ]
+  },
+  {
+   "id": "fraser-frazer",
+   "surname": "fraser",
+   "rulings": [
+    {
+     "state": "merge",
+     "rule": "C9",
+     "ticket": "T-1133",
+     "on": "2026-09-15",
+     "survivor": "fraser_wm_h",
+     "folded": [
+      "frazer_wm_h"
+     ],
+     "for": "ONE PRINTED LINE, READ TWO WAYS, AND THIS PROJECT MINTED A CARD FROM EACH READING. It is not two printings of one man's name. It is one line. Both cards' own arrival blocks already say, in the same words, that they stand on the SAME return — the Chicago post office's list of letters remaining on 1 January 1834 — which the Democrat reprinted over nine impressions. hh_fraser_wm_h is minted from the impression of 28 January 1834, column 1, which sets “Wm. H. Fraser”. hh_frazer_wm_h is minted from the impression of 4 March 1834, column 26, whose line is damaged and reads “il. Frazer”, normalized “Wm. H. Frazer”. T-0424 read the NINTH impression at the page image and set the return down in printed order — 170 lines, data/research/newspapers/letter_list_1834_01_01_printed.json — and T-1010's concordance then tied every extracted name to its line. LINE 55 CARRIES BOTH: `tied_by: image` to chicago_democrat_1834_03_04#c026 (“il. Frazer”) and `tied_by: spelling` to chicago_democrat_1834_01_28#c001 (“Wm. H. Fraser”), and the row already records `also_resolved_to: [person_wm_h_frazer]` beside the person it reaches. So the demonstration C9 asks for stands at its maximum: not a printer varying between two lines, but ONE line of one roll that two impressions of one paper read differently — tied together at the scan, and committed in this tree since T-1010, while the two cards went on standing apart. The forename and middle initial agree on both readings and on the image; the whole corpus holds exactly one bearer of “Wm. H.” on the stem and the gazetteer carries no other; the resident layer holds one card of each spelling and nothing else; and the folded card carries no fact the survivor contradicts — both are letter-list-only, no trade, no street, no household, present_on_scene_date `uncertain`.",
+     "against": "THE STEM IS NOT UNIQUE AT THIS TOWN, and that is said here rather than left out. The raw OCR of the Democrat of 29 July 1835 carries “Jobo Frazer” — almost certainly John Frazer — in a later return this project has never extracted, so a Frazer who is not this man was at the office eighteen months on. C9 asks for one bearer of the FORENAME AND MIDDLE INITIAL, not one bearer of the stem, and “Wm. H.” has one; were a second Wm. H. of either spelling ever read at this town in this window, this is the ruling to reopen. THE SECOND ARGUMENT IS ABOUT THE SURVIVOR'S NAME AND NOT ABOUT THE FOLD: the image is a witness of higher rank than either transcription and it sets FRAZER, so the surviving card wears the weaker reading's spelling. That is a real defect, and it is deliberately NOT repaired here — it is a question about what the line says, not about how many men it names, T-1010's concordance already records it as one of nineteen `name_differs` rows, and T-1139 owns the class. Nothing here widens compatible(): this is one cluster, ruled at the page, and T-1001's refusal of a blanket one-letter fold stands.",
+     "survivor_note": "The survivor is the card the concordance's own tie already points at — line 55 `reaches` person_wm_h_fraser / hh_fraser_wm_h, with person_wm_h_frazer named as the reading it also resolved to — so the merge lands where this project's committed reading of the page already put the line and nothing downstream has to be re-pointed. What the folded card brings is the impression of 4 March 1834, which is the reading the page image agrees with; the survivor held only the 28 January one.",
+     "note": "Found by putting `surname_one_letter_away.town_pairs` over the letter-list cohort and then asking, for each pair, WHICH RETURN each card stands on — a question the mint answers on every card it writes and which no merge pass had ever read. Five of T-1133's seven pairs stand on two different returns and are refused under D6; this pair and Vandine/Vandino stand on one, and one is enough."
+    }
+   ]
+  },
+  {
+   "id": "vandine-vandino",
+   "surname": "vandino",
+   "rulings": [
+    {
+     "state": "merge",
+     "rule": "C9",
+     "ticket": "T-1133",
+     "on": "2026-09-15",
+     "survivor": "vandino_john",
+     "folded": [
+      "vandine_john"
+     ],
+     "for": "THE SAME SHAPE AS FRASER/FRAZER, ON THE SAME RETURN, AND IT IS THE SAME TWO IMPRESSIONS THAT DISAGREE. Both cards' arrival blocks stand on the Chicago post office's return of 1 January 1834. hh_vandino_john is minted from the impression of 28 January 1834, column 1, which sets “John Vandino”; hh_vandine_john from the impression of 4 March 1834, column 27, whose line prints the surname alone — as_printed “Vandine”, normalized “John Vandine”. T-1010's concordance of the return ties BOTH to LINE 158 of T-0424's reading of the ninth impression at the page image: `tied_by: image` to chicago_democrat_1834_03_04#c027 and `tied_by: spelling` to chicago_democrat_1834_01_28#c001, with `also_resolved_to: [person_john_vandine]` on the row. One line, two readings, two cards. The forename agrees wherever it is printed — the 28 January impression and the image both set “John”, and the 4 March impression prints no forename at all, so nothing contradicts; the gazetteer holds no other bearer of the stem, and the nearest names on the 28 January line-run are different stems entirely (Adam Vandorwerk, Vanderwerker, Vanzandt); and the folded card carries no fact the survivor contradicts, both being letter-list-only with no trade, no street and present_on_scene_date `uncertain`.",
+     "against": "The 4 March impression prints no forename, so strictly what it sets is a SURNAME, and a surname with no forename is what R1 refuses to attach to anybody. R1 does not reach this cluster, and the reason is the line number rather than the letters: the forename on that card is not an inference from the other card, it is T-0424's reading of the same line at the page image, which sets “John Vandine” in full. Take the image away and this is R1 and the cards stay two. AND THE SURVIVOR'S SPELLING IS THE WEAKER ONE HERE TOO: the image reads VANDINE where the surviving card reads Vandino. As at line 55, that is T-1139's question and not this one's — the fold is about how many men line 158 names, and the answer does not depend on which of two readings of it the card wears.",
+     "survivor_note": "The survivor is again the card the concordance's tie names — line 158 `reaches` person_john_vandino / hh_vandino_john — so the landed merge agrees with the committed reading and the redirect table carries vandine_john onto it. The folded card brings the 4 March 1834 impression, the one the image agrees with.",
+     "note": "That BOTH of T-1133's merges are the same two impressions of one return is the pass's second finding and is worth keeping: the Democrat's compositor reset this return between 28 January and 4 March 1834, and the two settings differ in at least two names out of 170. T-1010's `name_differs` list counts nineteen rows of that kind over the whole return, of which these two had been minted twice; the rest reach one card each and are T-1139's."
+    }
+   ]
+  },
+  {
+   "id": "babeu-babeue",
+   "surname": "babeu",
+   "rulings": [
+    {
+     "state": "distinct",
+     "rule": "D6",
+     "ticket": "T-1133",
+     "on": "2026-09-15",
+     "members": [
+      "babeu_joseph",
+      "babeue_joseph"
+     ],
+     "for_merge": "One letter at the end of a French-Canadian surname, an identical forename, one office, one paper and one kind of list. Babeu and Babeue are the same word with and without its terminal e, the Chicago post office held a letter for each inside six months, and the town's whole knowledge of both is those two lines. On resemblance alone this is the most merge-like pair of the seven.",
+     "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. “Joseph Babeu” is LINE 10 of the return of 1 January 1834, read at the page image by T-0424 and tied there by T-1010's concordance to the one impression that carries it, the Democrat of 4 March 1834, column 33 — a single tie, no second reading, no disagreement on the row. “Joseph Babeue” stands on the return of 1 July 1834, printed in the impressions of 9 July (“oseph Babeue”, the initial lost) and 16 July 1834 (“Joseph Babeue”) — two impressions of that later return, agreeing with each other and both against the January spelling. So the office closed two returns six months apart, entered one spelling on each, and was never asked to set them together: C9's demonstration is absent and D5's is absent with it. Neither card is an anchor — no trade, no dwelling, no research on either — and neither name appears anywhere else in the corpus; the gazetteer holds these two and no other bearer of the stem. What is left to fold on is one letter, which is what T-1001 measured and refused. D6, and the cards stay two.",
+     "note": "The two returns are the pair's whole discriminator and it cuts both ways: six months is long enough for a second Joseph of a French-Canadian name to reach a town that was taking in hundreds, and short enough for one man to have two letters waiting. Nothing decides it, which is what D6 says. A tenth impression of either return, or any source outside the post office naming either man, reopens this at once."
+    }
+   ]
+  },
+  {
+   "id": "beech-bench",
+   "surname": "beech",
+   "rulings": [
+    {
+     "state": "distinct",
+     "rule": "D6",
+     "ticket": "T-1133",
+     "on": "2026-09-15",
+     "members": [
+      "beech_reuben",
+      "bench_reuben"
+     ],
+     "for_merge": "An interior letter, e against n, in a five-letter surname, with “Reuben” identical on both. e and n are neighbours in worn type and in OCR alike, and the town holds nothing of either man but a name on a post office list — the classic shape of one record minted twice.",
+     "against_merge": "TWO RETURNS NINE MONTHS APART, EACH INTERNALLY CONSISTENT. “Reuben Beech” stands on the return of 1 July 1834 and is printed TWICE, in the impressions of 9 July 1834 (“leaben Beech”, the forename wrecked, the surname clean) and 16 July 1834 (“Reuben Beech”): two settings of that return, and both set BEECH. “Bench, Reuben” stands on the return of 31 March 1835, printed in the Democrat of 20 May 1835, clean and alphabetically seated between “Beaubien” and “Bennet” in the B run. Two impressions on one side and a clean line on the other means the one-letter difference is NOT a damaged impression that a better one repairs — the readings are stable within each return and differ only between them. No return sets both, neither card is an anchor, and the gazetteer holds no third bearer of either stem. D6.",
+     "note": "The alphabetical seat is worth recording and is not decisive: BENCH is correctly placed in the 20 May 1835 B run, so the compositor set the letters he meant to set, and BEECH is correctly placed in its own. Two correctly-alphabetised entries nine months apart are exactly what two men look like and exactly what one man written to twice by two correspondents looks like. Note also that the return of 31 March 1835 supplies the second spelling of THREE of T-1133's pairs — Bench, Murry and Squire — against the return of 1 July 1834's Beech and Murray; a reader tempted to treat that as a house style should weigh that the same 1835 return also sets Hussey against the 1834 return's Hussy, which is the opposite direction."
+    }
+   ]
+  },
+  {
+   "id": "hussey-hussy",
+   "surname": "hussey",
+   "rulings": [
+    {
+     "state": "distinct",
+     "rule": "D6",
+     "ticket": "T-1133",
+     "on": "2026-09-15",
+     "members": [
+      "hussey_robert",
+      "hussy_robert"
+     ],
+     "for_merge": "One letter, “Robert” on both, and the two returns bracket the scene date: “Hussy, Robert 2” on the return of 1 October 1834 and “Hussey, Robert” on the return of 1 July 1835, the scene date itself. A man with two letters waiting in the autumn of 1834 and another the following summer is a plausible single correspondent, and the surname is one whose two spellings were both current.",
+     "against_merge": "TWO RETURNS, NINE MONTHS APART, NEITHER SETTING BOTH. “Hussy, Robert 2” is printed in the Democrat of 22 October 1834, seated between “Williams, Charles C.” and “Winters, Moses” in a surname-first list; “Hussey, Robert” in the Democrat of 1 July 1835, between “Phillips James” and “Park Hezekiah”. Each reading is clean in its own impression and neither return carries the other spelling. Neither card is an anchor; the gazetteer holds these two and no third bearer; nothing outside the post office names either man. C9's page does not exist and D5's roll does not either. D6.",
+     "note": "This pair carries the strongest single argument FOR a merge in the seven and it still does not reach: the 1835 return is the one dated 1 July 1835, the scene date, so a fold would move a man from `uncertain` to the day the reconstruction stands on. That is a reason to want the merge and not a reason to make it, and the ruling is written down here so the next pass does not mistake the appetite for the evidence."
+    }
+   ]
+  },
+  {
+   "id": "murray-murry",
+   "surname": "murray",
+   "rulings": [
+    {
+     "state": "distinct",
+     "rule": "D6",
+     "ticket": "T-1133",
+     "on": "2026-09-15",
+     "members": [
+      "murray_alonzo",
+      "murry_alonzo"
+     ],
+     "for_merge": "Murray and Murry differ by one letter and both cards read “Alonzo”, which is an uncommon forename — the town holds one other Alonzo in the whole resident layer. Two uncommon forenames on one stem inside a year is the shape a duplicate usually takes.",
+     "against_merge": "THREE THINGS, AND THE FIRST TWO WOULD BE ENOUGH. (1) TWO RETURNS, AND THE EARLIER IS SET THREE TIMES. “Alonzo Murray” stands on the return of 1 July 1834 and is printed in the impressions of 2, 9 and 16 July 1834, all three reading “Alonzo Murray”; “Murry, Alanzo 2” stands on the return of 31 March 1835, printed 20 May 1835. No return sets both. (2) THE FORENAMES ARE NOT IDENTICAL AS PRINTED. The 1835 line reads ALANZO, not Alonzo; the cards agree only after this project's own normalizer folded the o/a. So the pair that town_pairs joined on an identical forename does not have one on the page, and a merge would be folding two letters, not one. (3) MURRAY IS A POPULATED SURNAME AT THIS TOWN WHERE MURRY IS NOT. The corpus carries Nelson Murray (return of 1 April 1834), “A, MURRAY” in the Democrat of 24 September 1834 and James H. Murray in the American of 20 June 1835, and the resident layer carries a Patrick Murray card besides; the only Murry of any forename is this one. A surname several families bear is not a slip for a surname one man bears, and the direction of the supposed error is therefore unargued. D6, and the cards stay two.",
+     "note": "Pass 02 of the resident-research programme reached this pair from the other side and recorded the same answer — “strong duplicate candidates from one-letter variants in consecutive-year Chicago returns; no independent identity record resolves them”, and “remain separate until a record or scan links the spellings”. Pass 13 adds that St Cyr's 1837 “S. Murry” is refused on the forename and so does not supply the link. This ruling agrees with both and adds the return test and the Alanzo reading, which neither pass had."
+    }
+   ]
+  },
+  {
+   "id": "square-squire",
+   "surname": "squire",
+   "rulings": [
+    {
+     "state": "undecided",
+     "referred_to": "T-1138",
+     "rule": "U1",
+     "ticket": "T-1133",
+     "on": "2026-09-15",
+     "members": [
+      "square_geo",
+      "squire_george"
+     ],
+     "for_merge": "“Geo.” is the ordinary abbreviation of “George”, Square and Squire differ by one letter, and the resident layer holds one card of each and no other bearer of either stem. Pass 06 of the resident-research programme reached the pair and wrote it down as a possible duplicate: “Geo. Square may be a transcription/duplicate relation to George Squire”.",
+     "against_merge": "THE QUESTION CANNOT BE ASKED YET, BECAUSE ONE OF THE TWO PRINTED LINES IS ITSELF CONTESTED — and this corpus contests it in its own committed words. `square_geo` is minted from the Democrat of 1 April 1834, whose line reads “3. Geo. Square t 3 first rate”: an S-run line with an advertisement's column bleeding through it. The extraction of the 16 April 1834 impression — which that file's own note calls “the best witness to the J-W half of the 1 April 1834 list that the corpus holds” — reads the SAME three consecutive lines as “Benjarnin Smith”, “Ira Saymoro” and “GEO. SAVER” where 1 April reads “Benjamin Reed”, “Ira Raymore” and “Geo. Square”, and records that “the alphabetical position is with this printing and against 1834-04-01's” while declining to rewrite a minted name on a second transcription of equal rank. So the town does not yet know whether it holds a Square at all. A merge cannot be tested against a line nobody has settled — R5's principle, moved from a garbled forename to a garbled surname — and a REFUSAL cannot honestly be entered either, because the refusal would rest on the same unread line. Neither D6 nor C9 is reached for: both ask what the returns print, and one of these two returns has two readings.",
+     "what_would_settle_it": "The page image of the 1 April 1834 return at the three lines in question, read the way T-0424 read the 1 January 1834 return — which is the whole of T-1138. If the image sets SAVER then square_geo is not a Square, this cluster dissolves rather than merges, and two other cards (Benjamin Reed, Ira Raymore) move with it. If it sets SQUARE then the pair is a clean two-return case and D6 rules it, because the return of 1 April 1834 and the return of 31 March 1835 that prints “Squire, George” are eleven months apart and neither sets both.",
+     "note": "U1 rather than a refusal is the deliberate choice here, and it is the difference between this cluster and the four above it: those four are refused because the evidence was reached and does not join the cards, and this one is undecided because the evidence has not been reached. Pass 06 also raised competing geography — a George Squire is a plausible Joliet regional candidate — which would argue against a Chicago fold if the reading ever settles in Square's favour."
+    }
+   ]
   }
  ],
  "also_ruled_on": [
@@ -1179,6 +1317,11 @@
    "ticket": "T-1132",
    "on": "2026-09-15",
    "what": "The three one-letter town pairs an anchor reaches, the first piece of T-1130. tools/surname_one_letter_away.py's town_pairs test joins 20 pairs of cards one letter apart in the surname and identical in the forename, which compatible() cannot see because it buckets the surname as one string; consolidate_town_cards.py's own anchored() test says only three of the 20 have a card that DOCUMENTS its person rather than listing them, and those three are ruled here. Pearson folds under C9 on the land register's own inconsistency, David and Davis stand apart under D5 — a new rule, written here — because the 1833 tax roll enters both one line apart, and Pruyne/Pryne is undecided under U1 with the count that would settle it named. The town's cards fall by one. The other 17 pairs are T-1133 and T-1134 and no card of theirs is touched here."
+  },
+  {
+   "ticket": "T-1133",
+   "on": "2026-09-15",
+   "what": "The seven one-letter town pairs the post office alone prints, the second piece of T-1130. Of the 22 pairs `surname_one_letter_away.town_pairs` joins, seven have BOTH cards minted from the Chicago post office's lists of letters uncalled-for and nothing else — no anchor, no trade, no second body of evidence. They are ruled here on a test no merge pass had used: WHICH RETURN each card stands on, which tools/mint_letter_list_residents.py writes onto every card it mints and which is not the same thing as the issue the name was read in. TWO OF THE SEVEN TURNED OUT TO STAND ON ONE LINE OF ONE RETURN. Fraser/Frazer is line 55 and Vandine/Vandino line 158 of the return of 1 January 1834, each tied to both of its readings by T-1010's concordance of T-0424's reading of the ninth impression at the page image — two impressions of one return, set differently by the Democrat's compositor between 28 January and 4 March 1834, and minted as two cards apiece. Both fold under C9 at its strongest demonstration. The town's cards fall by two. FOUR STAND ON TWO DIFFERENT RETURNS and are refused under D6, a new rule written here for the shape C9 and D5 both miss: Babeu/Babeue, Beech/Bench, Hussey/Hussy, Murray/Murry. ONE IS UNDECIDED under U1 — Square/Squire, because the 1 April 1834 line that mints square_geo is read “Geo. Saver” by a better impression of the same return and this corpus already records the disagreement; T-1138 owns the page. T-1139 is filed for the nineteen `name_differs` rows the concordance holds, of which the two merged pairs are the two that were minted twice. The remaining ten pairs are T-1134 and no card of theirs is touched here."
   }
  ]
 }

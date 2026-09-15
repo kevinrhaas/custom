@@ -4,17 +4,18 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1307,
+  "town_people": 1305,
   "open_clusters": 19,
   "cards_in_open_clusters": 41,
   "rulings": {
-   "distinct": 14,
-   "merge": 40,
+   "distinct": 18,
+   "merge": 42,
    "undecided_T-1135": 1,
+   "undecided_T-1138": 1,
    "undecided_rule": 12
   },
-  "landed_merges": 40,
-  "cards_folded": 59
+  "landed_merges": 42,
+  "cards_folded": 61
  },
  "landed": [
   {
@@ -129,6 +130,16 @@
     "dole_g_w"
    ],
    "rule": "C2"
+  },
+  {
+   "cluster": "fraser-frazer",
+   "survivor": "fraser_wm_h",
+   "survivor_household": "hh_fraser_wm_h",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "frazer_wm_h"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "fullerton",
@@ -425,6 +436,16 @@
     "vandenbogart_h"
    ],
    "rule": "C7"
+  },
+  {
+   "cluster": "vandine-vandino",
+   "survivor": "vandino_john",
+   "survivor_household": "hh_vandino_john",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "vandine_john"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "wright",
