@@ -676,6 +676,89 @@ def build_field(spec, feats, origin):
             east_edge[unreached] = tail_e
         in_water |= (E > east_edge[:, None]) & np.isfinite(east_edge)[:, None]
 
+    # AND THE RIVER DOES NOT END AT TWELFTH STREET EITHER. `southern_lake`
+    # above is this same sentence said about the lake, and the South Branch
+    # needs it for the same reason and more sharply. `branches.geojson` stops
+    # on the School Section's south line because WRIGHT'S SHEET stops there —
+    # docs/RESEARCH/south_branch_school_section.md § 6 says so in as many
+    # words, "the limit of the survey, not a river end" — and below it the
+    # field came out as 1 650 m of DRY PRAIRIE straight down the middle of a
+    # river that runs on past the portage. Measured on the committed
+    # heightfield before this rule: at N -2140 the channel is 7 cells wide, at
+    # N -2160 it is nought, and it is nought on every one of the 656 rows below
+    # that to the box wall. The lake's half of this fault was answered when
+    # T-0464 cut the box; the river's half was left, and it is the larger claim
+    # of the two, because a dry riverbed is a statement about a watercourse
+    # whose existence here is not in question at all.
+    #
+    # WHAT IS HELD, AND WHY IT IS NOT THE TIP. The trace does not thin out at
+    # its terminus, it CLOSES: both bank runs turn across the channel onto the
+    # section's own boundary line and meet 7.0 m apart, which is the drawn
+    # boundary and not a river narrowing to a creek. Holding the tip would
+    # carry that 7 m closure 1.6 km south. So the rule is stated against a
+    # declared ROW instead — the last row at which the trace still draws two
+    # banks rather than a closure — and the two eastings are DERIVED from the
+    # runs at that row rather than written down, so a re-trace moves them and
+    # this cannot drift into a pair of literals about a channel that has since
+    # been re-fit. The run is cut at that row and carried due south from it at
+    # its own easting: the minimal continuation, exactly as `trace_carries`
+    # states it at the north wall, and for the same stated reason — a bearing
+    # is a claim about where the line bends below the sheet, and over a 1.6 km
+    # lever the two banks' last clean segments would swing the channel 210 m
+    # apart. A held easting claims only that the river did not stop.
+    #
+    # It is CONJECTURAL and it is recorded in docs/LIBERTIES.md. It cannot
+    # launder itself: `evidence_limit` already writes every vertex below
+    # N -2149.4 CONF_CONJECTURAL, land and water alike. The PLANFORM below
+    # Twelfth Street — where the branch actually bends, and where the lake
+    # shore ran before the fills — is what T-0465's child ticket owes, and it
+    # needs a source this corpus does not hold: Wright, Hathaway and Thompson
+    # all end on the School Section's south line.
+    branch = spec.get("southern_branch")
+    if branch:
+        row_n = float(branch["from_n_m"])
+
+        def bank_e_at(rid):
+            pts = shore_runs[rid]
+            hits = [x1 + (row_n - y1) / (y2 - y1) * (x2 - x1)
+                    for (x1, y1), (x2, y2) in zip(pts, pts[1:])
+                    if y1 != y2 and min(y1, y2) <= row_n <= max(y1, y2)]
+            if not hits:
+                raise SystemExit(
+                    f"southern_branch: run '{rid}' never crosses N {row_n}. The "
+                    f"row the channel is held at has to be a row the trace draws "
+                    f"two banks on, or the carry is not derived from anything.")
+            return hits
+
+        west_e = min(bank_e_at(branch["banks"]["west"]))
+        east_e = max(bank_e_at(branch["banks"]["east"]))
+        width = east_e - west_e
+        floor_m = float(branch["min_width_m"])
+        if width < floor_m:
+            raise SystemExit(
+                f"southern_branch: the two banks stand {width:.1f} m apart at "
+                f"N {row_n}, under the stated {floor_m} m floor — that is the "
+                f"terminus CLOSURE and not a cross-section. Move from_n_m north "
+                f"of the closing hook rather than carrying a 7 m river.")
+        in_water |= (N < row_n) & (E >= west_e) & (E <= east_e)
+        # The banks themselves, so the waterline beside the carried channel is
+        # measured from a bank that keeps going instead of from the run's last
+        # VERTEX — the fault `trace_carries` is declared against at the north
+        # wall, and here it would stand 1 650 m of ground off a cliff.
+        for side in ("west", "east"):
+            rid = branch["banks"][side]
+            held = west_e if side == "west" else east_e
+            pts = shore_runs[rid]
+            i = min(range(len(pts)), key=lambda k: pts[k][1])
+            if i not in (0, len(pts) - 1):
+                raise ValueError(
+                    f"southernmost vertex {i} of {len(pts)} of '{rid}' is not an "
+                    f"end of the run, so it is a bend and not the end of a "
+                    f"tracing window; refusing to carry it south")
+            kept = [p for p in pts if p[1] >= row_n]
+            tail = [(held, row_n), (held, float(N.min()))]
+            shore_runs[rid] = (tail[::-1] + kept) if i == 0 else (kept + tail)
+
     # THE SPLICES — where two tracing windows are declared to abut and the
     # sampled row between them falls inside neither ring. The windows meet on a
     # shared map row, but each closes with its own SLANTED chord across the

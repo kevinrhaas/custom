@@ -313,8 +313,29 @@
 
 
 T-1141 — The 1 April 1834 return is unread except for three lines, and the reading of those three found a name the extraction drops entirely
-T-0465 — Trace the South Branch and early lakefront through the expanded field
 T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+T-1150 — Trace the South Branch's planform below Twelfth Street from a source that reaches Cermak
+T-1151 — Trace the pre-fill lake shore below Twelfth Street and retire the held-easting carry
+T-1152 — Keep the 1812, 1835 and 1880s shoreline states separable, with a band where the sources disagree
 T-0467 — Add south-scene camera anchors, navigation and map extents
 T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
