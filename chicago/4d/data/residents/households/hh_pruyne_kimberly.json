@@ -86,7 +86,21 @@
     "source_ids": [
      "history_medicine_chicago_kimberly_maxwell"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-1132",
+     "verdict": "undecided",
+     "rule": "U1",
+     "cluster": "pruyne-pryne",
+     "weighed_against": [
+      "pryne_peter"
+     ],
+     "referred_to": "T-1135",
+     "for_merge": "Peter Pruyne is one of the better-documented men in the town — with Edmund Stoughton Kimberly he opened Chicago's second drug store early in 1833; he bought lot 1 of block 23 and lot 3 of block 119 of the school section on 24 and 25 October 1833 and town lots after; he married Rebecca Sherman on 20 August 1835; he polled in ward 1 at the first city election of 2 May 1837; Genealogy Trails' early-settler death notices print 'Pruyne, Peter, died November, 1839'. A man of that standing is one the town's own tax and poll rolls should carry, and the only entry of the stem on any of them is “Pryne, Peter” — tax_1833_086 (line 138), poll_1834_091 (line 260) and poll_1835_060 (line 347). The resident layer holds exactly one card of each spelling and no other bearer of the stem at all.",
+     "against_merge": "THE PAGE C9 ASKS FOR DOES NOT EXIST, and C9's demonstration is its load-bearing clause. No publication reached is caught setting both spellings. The IRAD rolls print Pryne three times and Pruyne never. The ISA land register prints 'PRUYNE P', 'PRUYNE P AND CO' and 'PRUYNE PETER' eighteen times and Pryne never. The whole deposited 1833-1835 newspaper run prints the stem 239 times, every one of them Pruyne. Moses & Kirkland print Pruyne and Pruyn; Fergus prints Pruyne. The two bodies of evidence never touch: the town's rolls know only Pryne, and the books, the press and the register know only Pruyne. Folding on what is left — one letter — is precisely what T-1001 measured and refused. AND THE TWO SPELLINGS APPEAR ON ONE SITE WITHOUT MEETING ON ONE PAGE: Genealogy Trails carries 'Pruyne, Peter' in earlysettlerobits and 'Pryne, Peter' in polllist, but those are its transcriptions of two different ORIGINALS, and a republisher's inconsistency across two documents is not a printer's inconsistency inside one, which is the thing C9 asks for."
+    }
+   ]
   },
   {
    "id": "kimberly_edmund_s",

@@ -7,19 +7,19 @@
  "reads": "data/research/civic/voter_crosswalk.json",
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "counts": {
-  "matched_rulings": 300,
-  "people_written": 239,
-  "households_touched": 238,
+  "matched_rulings": 298,
+  "people_written": 238,
+  "households_touched": 237,
   "grades_changed": 0,
   "per_list": {
-   "poll_1833": 26,
+   "poll_1833": 25,
    "poll_1835": 77,
-   "tax_1833": 93,
+   "tax_1833": 92,
    "poll_1834": 104
   },
   "crosswalk_entries": 345,
   "candidate_not_written": 11,
-  "unmatched": 34
+  "unmatched": 36
  },
  "refusals": [
   {
@@ -574,33 +574,6 @@
      "line": 42,
      "rule": "one resident of the surname 'Owen' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Col. T. J. V. Owen' against resident 'Thomas Jefferson Vance Owen'"
-    }
-   ]
-  },
-  {
-   "household_id": "hh_pearson_hiram",
-   "person_id": "pearson_hiram",
-   "source_id": "chicago_voter_lists_1833_1835_irad",
-   "entries": [
-    {
-     "record_id": "poll_1833_022",
-     "list": "poll_1833",
-     "list_title": "Poll list of the first election of the Board of Trustees of the Town of Chicago, 10 August 1833",
-     "list_date": "1833-08-10",
-     "as_read": "Pearson, Hiram",
-     "line": 43,
-     "rule": "one resident of the surname 'Pearson' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
-     "discriminator": "forenames agree initial for initial: entry 'Hiram Pearson' against resident 'Hiram Pearson'"
-    },
-    {
-     "record_id": "tax_1833_082",
-     "list": "tax_1833",
-     "list_title": "Tax list of the Town of Chicago, 1833",
-     "list_date": "1833",
-     "as_read": "Pearson, Hiram",
-     "line": 134,
-     "rule": "one resident of the surname 'Pearson' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
-     "discriminator": "forenames agree initial for initial: entry 'Hiram Pearson' against resident 'Hiram Pearson'"
     }
    ]
   },

@@ -10,7 +10,7 @@
   "books": 223,
   "directories": 7315,
   "newberry_index": 4914,
-  "land_sales": 868,
+  "land_sales": 869,
   "old_settlers": 460
  },
  "witness": {
@@ -44,7 +44,7 @@
   },
   "land_sales": {
    "read": 1572,
-   "spent": 704
+   "spent": 703
   },
   "old_settlers": {
    "read": 1094,
@@ -577,6 +577,14 @@
    "to": 223,
    "date": "2026-09-14",
    "why": "bk_mose2_021 is READ and SPENT, but spent OUTSIDE this ledger. Moses & Kirkland vol. 2 page 367 prints Arthur Bronson one of 'two visitors to the settlement from New York' who sent the Lyceum two hundred volumes 'on their return home', and that reading is what struck the presence sentence from BRONSON ARTHUR's ruling in data/research/land_sales/resident_rulings.json — the auction's fourth-largest hand, read for T-1017. This instrument counts a books spend in books/crosswalk.json, so a books claim spent by a land_sales ruling is invisible to it and reads as one more unspent. The ceiling moves by exactly one, for exactly that claim."
+  },
+  {
+   "domain": "land_sales",
+   "hop": "read",
+   "from": 868,
+   "to": 869,
+   "date": "2026-09-15",
+   "why": "T-1132 folded pearson_hiram onto pearsons_hiram under C9, and the land register's crosswalk followed it: PEARSON HIRAM's four rows of 28 June 1836 stop being a refusal and become a match (matched 141 -> 142, refused 506 -> 505), reaching the card through via_card_merge. The domain therefore rules on MORE of what it has read, not less. The counter falls all the same, because a refusal carried its own anchor by position in the refused list while the match it became dedupes into the purchaser's existing record anchors — so one distinct anchor leaves the set and the read total does not move. This raise is that arithmetic and nothing else: no reading went unruled, and the same pass moved the withdrawn T-1034 judgement into withdrawn[] rather than deleting it, which check_rulings_not_lost.py confirms at 212 -> 213."
   }
  ],
  "lowered": [

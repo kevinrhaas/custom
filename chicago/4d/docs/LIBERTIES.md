@@ -10532,9 +10532,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 414 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 413 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 414 people
+**Scope:** `residents.persons[civic_mint]` — 413 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10647,6 +10647,8 @@ with the brackets already stripped, so `H. G. Hub[…]` reaches `mint_civic_resi
 the plain name `H G Hub`, its own bracketed-as-uncertain refusal cannot fire on it, and the
 town gains a card headed `The Hub household`. Five such cards were minted and deleted while
 this ticket was being written.
+
+**And one fewer, on the land register's own inconsistency (T-1132, 2026-09-15).** `pearson_hiram` was minted here off the poll and tax lists of 1833 while the town already held `pearsons_hiram`, Andreas's attested speculator who became the city's treasurer, so this entry's count falls from 414 to 413. It is the same class of fold as T-1001's Kimberley and T-1002's Clybourn — one letter of a SURNAME, which the candidate test buckets as a whole word and therefore cannot see — and it is ruled the same way, on a page rather than on the distance. The Illinois State Archives' land tract register enters this buyer as `PEARSONS H` and as `PEARSON H` inside the same week of June 1835, and as `PEARSON HIRAM` beside `PEARSONS HIRAM` at the town lots of 1836; the town's own rolls spell him Pearson in 1833 and Pearsons in 1834 and no single roll spells him both ways; and the page Andreas's card is built on prints `Hiram Pearson, came in spring of 1833` for the man this project was carrying as Pearsons. WHAT MAKES IT A RULING RATHER THAN A RESEMBLANCE is that the same pass weighed a pair of the same shape and REFUSED it: John David and John Davis stand one letter apart with an identical forename, and the tax list of 1833 — a closed roll of 115 enumerated taxpayers — prints them on consecutive lines as its entries 23 and 24. A roll that enters each taxpayer once and enters both is the document counting to two, which is now written down as D5. A third pair, Peter Pruyne against Peter Pryne, is left undecided under U1 because no source reached is caught setting both spellings at all; T-1135 owns it. Seventeen further one-letter pairs stand in the town and are T-1133 and T-1134.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught

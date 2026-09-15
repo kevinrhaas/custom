@@ -5,15 +5,15 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
-    "upheld": 135,
+    "upheld": 136,
     "named": 1,
-    "refused": 69,
+    "refused": 68,
     "unruled": 5
   },
   "counts": {
     "purchasers": 647,
-    "matched": 141,
-    "refused": 506,
+    "matched": 142,
+    "refused": 505,
     "firms": 2,
     "bodies": 3
   },
@@ -6719,6 +6719,36 @@
           "norris_directory_1844"
         ],
         "reasoning": "UPHELD. The register prints WILLIAM B and Fergus 1843 prints 'Ogden, William Butler (O. & Jones)' — the forename whole and the middle initial expanded — with Norris 1844 reading 'Ogden, Wm. B. of O. & Jones' in between, which is the nine-of-twelve discriminator of T-0990 cohort B. The American of 20 June 1835 sets 'W. B. Ogden' in the town twelve months before the purchase, so a second document brackets the scene date. The corpus's other Ogdens are a Mahlon D. and a Wm. L., neither reachable from WILLIAM B. Lot 3 of block 6, 21 June 1836, $6,790."
+      },
+      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
+    },
+    {
+      "purchaser_as_read": "PEARSON HIRAM",
+      "record_ids": [
+        "ls1402",
+        "ls1403",
+        "ls1404",
+        "ls1405"
+      ],
+      "resident_id": "pearsons_hiram",
+      "resident_name": "Hiram Pearsons",
+      "household_id": "hh_pearsons_hiram",
+      "match": "forename_agrees",
+      "rule": "PEARSON HIRAM matches Hiram Pearsons: the forename names Hiram Pearsons of the 1 person of this surname, and the forename agrees in full. The surname reaches him through a ruled card merge and not off his card: the town held pearson_hiram until data/residents/card_merge_rulings.json folded it onto this person, and the register's spelling is the one that card carried.",
+      "via_card_merge": "pearson_hiram",
+      "rivals": [],
+      "residence_column": "UNKNOWN",
+      "evidence_grade": "inferred",
+      "ruling": {
+        "ruling": "upheld",
+        "ruled_on": "2026-09-15",
+        "ticket": "T-1132",
+        "checked_against": [
+          "isa_public_domain_land_tract_sales",
+          "andreas_1884_v1",
+          "chicago_voter_lists_1833_1835_irad"
+        ],
+        "reasoning": "UPHELD, REVERSING T-1034's REFUSAL OF 2026-09-11 ON THE GROUND THAT REFUSAL ITSELF NAMED. T-1034 refused these four lots because 'the likelier reading is the register dropping the S' and the town's Hiram PEARSON was 'a surname fold away from the other man' — a fold nobody had ruled, so the retraction was the conservative reading of an open question. T-1132 has now ruled it: `pearson_hiram` folds onto `pearsons_hiram` under C9, on this same register's own inconsistency — it enters PEARSONS H and PEARSON H inside the same week of June 1835, and PEARSON HIRAM here six days after PEARSONS HIRAM took lot 8 of block 36 and lot 8 of block 37 in the same town sale. With one man where there were two, the rival reading T-1034 weighed against has become the same man, and the only question left is whether these rows are his. They are: four lots of block 1, 28 June 1836, $22,410, in the sale the upheld spelling is buying through on either side of them. The retraction T-1034 called 'the largest in the cohort' is given back to the card that should have carried it."
       },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
@@ -17597,23 +17627,6 @@
       "evidence": [
         "data/residents/index.json"
       ]
-    },
-    {
-      "a": "PEARSON HIRAM",
-      "b": "Hiram Pearson",
-      "rule": "REFUSED, and this one is refused with a positive reason rather than for want of evidence. The register itself is the rival reading: it enters PEARSONS HIRAM and PEARSONS H forty-four times — including lot 8 of block 36 and lot 8 of block 37 in this same June 1836 town sale, six days before these rows — and that spelling is upheld to Hiram Pearsons, whom the corpus prints as one of the town's largest buyers. Against that, the town's record of a Hiram PEARSON is two bare lines, the poll and the tax list of 1833, and a surname fold away from the other man; the likelier reading is the register dropping the S. Four lots of block 1, 28 June 1836, $22,410 — the largest retraction in the cohort, and it comes off a card that should probably not have carried it.",
-      "record_ids": [
-        "ls1402",
-        "ls1403",
-        "ls1404",
-        "ls1405"
-      ],
-      "evidence": [
-        "data/research/land_sales/resident_rulings.json"
-      ],
-      "ruled_on": "2026-09-11",
-      "ruled_under": "T-1034",
-      "was_proposed_as": "PEARSON HIRAM matches Hiram Pearson: the forename names Hiram Pearson of the 1 person of this surname, and the forename agrees in full."
     },
     {
       "a": "PECK EBNER",

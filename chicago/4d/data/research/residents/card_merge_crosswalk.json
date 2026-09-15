@@ -820,6 +820,24 @@
   },
   {
    "outcome": "merged",
+   "person_id": "pearsons_hiram",
+   "folded_person_id": "pearson_hiram",
+   "rule": "C9",
+   "cluster": "pearson-pearsons",
+   "record_ids": [
+    "poll_1833_022",
+    "tax_1833_082"
+   ],
+   "domains": [
+    "civic"
+   ],
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence": "T-1132: 'pearson_hiram' and 'pearsons_hiram' are one person under rule C9; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'pearson-pearsons'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "peck_philip",
    "folded_person_id": "peck_p_f",
    "rule": "C4",

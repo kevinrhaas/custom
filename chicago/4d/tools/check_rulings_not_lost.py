@@ -522,9 +522,16 @@ def self_test():
 
     print("   passes: a ruling WITHDRAWN with a reason and the ticket that decided it")
     withdrawn = json.loads(json.dumps(base))
-    withdrawn["withdrawn"] = [dict(withdrawn["ruled"][0],
-                                   reason="the register row was a second hand's marginal",
-                                   ticket="T-1124")]
+    # APPEND, exactly as the `retired` fixture above does. Assigning the list
+    # outright was fine only while the tree's own `withdrawn[]` was empty, and the
+    # moment a real judgement was withdrawn — T-1132, the land register's
+    # PEARSON HIRAM — the fixture deleted it and this assertion failed for a
+    # withdrawal the tool had in fact accepted. A fixture must move ONE judgement,
+    # never clear an array it does not own.
+    withdrawn["withdrawn"] = withdrawn.get("withdrawn", []) + [
+        dict(withdrawn["ruled"][0],
+             reason="the register row was a second hand's marginal",
+             ticket="T-1124")]
     withdrawn["ruled"] = withdrawn["ruled"][1:]
     check(not compare(LAND_SALES, spec, base, withdrawn)[0],
           "a stated withdrawal was refused")

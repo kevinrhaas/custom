@@ -173,6 +173,7 @@ T-1117 — Arthur Bronson's card says present on the scene date, inferred from t
 T-1132 — The three one-letter town pairs an anchor reaches: David/Davis, Pearson/Pearsons, Pruyne/Pryne
 T-1133 — The seven one-letter town pairs the post office alone prints
 T-1134 — The ten one-letter town pairs the town's own lists print with no anchor on either card
+T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
 
 # --- ==========================================================================
 # --- 2. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
