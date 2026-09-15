@@ -210,7 +210,6 @@ T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave
 # --- off an unoccupied invented building, because the hitching rule omits the anonymity clause
 # --- the signboard rule applies.
 
-T-1131 — Alexander Wolcott died in October 1830 and his card reads present on 1 July 1835: the bracket's at-or-before leg is his own death notice
 T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
 
 
@@ -359,3 +358,7 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
+T-1137 — A change to the civic mint's derived note silently deletes every other pass's findings appended to the same card
