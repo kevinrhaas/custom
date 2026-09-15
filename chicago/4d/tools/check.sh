@@ -2548,6 +2548,18 @@ step "the research domains hold one shape" \
 step "the four voter lists, their crosswalk and their refusals re-derive" \
   python3 tools/read_voter_lists.py --check
 
+# T-1135. The Pruyne/Pryne ruling is a COUNT over that 1833 tax roll and not a reading of
+# a page, and every figure it turns on can move underneath it: the roll is re-derived by
+# the step above, the ground it stands on is re-derived by the corporation-limits tool,
+# and the corpus it searches grows every week. Gated for the same reason T-1017's three
+# figures are — a ruling that stands on a measurement should go RED OUT LOUD when the
+# measurement moves, rather than quietly keeping a verdict the arithmetic no longer gives.
+step "the 1833 tax roll still leaves Peter Pruyne one entry, and it is Pryne" \
+  python3 tools/exhaust_tax_1833.py --check --quiet
+
+selftest "…and each of that count's own assertions still fires when broken" \
+  python3 tools/exhaust_tax_1833.py --self-test
+
 # T-0566, T-0569. Norris's 1844 directory arrived as three generated files that no
 # gate re-derived: the 2,073 entries, the crosswalk that proposes which of them meet
 # the people of 1835, and the layer the panel renders those meetings from. A hand-edit

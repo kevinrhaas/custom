@@ -7,25 +7,25 @@
  "reads": "data/research/civic/voter_crosswalk.json",
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "counts": {
-  "matched_rulings": 298,
-  "people_written": 238,
-  "households_touched": 237,
+  "matched_rulings": 295,
+  "people_written": 237,
+  "households_touched": 236,
   "grades_changed": 0,
   "per_list": {
    "poll_1833": 25,
-   "poll_1835": 77,
-   "tax_1833": 92,
-   "poll_1834": 104
+   "poll_1835": 76,
+   "tax_1833": 91,
+   "poll_1834": 103
   },
   "crosswalk_entries": 345,
-  "candidate_not_written": 11,
+  "candidate_not_written": 14,
   "unmatched": 36
  },
  "refusals": [
   {
    "rule": "V1",
    "why": "a `candidate` row is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the roll anyway would print an undecided identity as a decided one",
-   "rulings": 11
+   "rulings": 14
   },
   {
    "rule": "V2",
@@ -1909,43 +1909,6 @@
      "line": 137,
      "rule": "one resident of the surname 'Price' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Jeremiah Price' against resident 'Jeremiah Price'"
-    }
-   ]
-  },
-  {
-   "household_id": "hh_pryne_peter",
-   "person_id": "pryne_peter",
-   "source_id": "chicago_voter_lists_1833_1835_irad",
-   "entries": [
-    {
-     "record_id": "tax_1833_086",
-     "list": "tax_1833",
-     "list_title": "Tax list of the Town of Chicago, 1833",
-     "list_date": "1833",
-     "as_read": "Pryne, Peter",
-     "line": 138,
-     "rule": "one resident of the surname 'Pryne' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
-     "discriminator": "forenames agree initial for initial: entry 'Peter Pryne' against resident 'Peter Pryne'"
-    },
-    {
-     "record_id": "poll_1834_091",
-     "list": "poll_1834",
-     "list_title": "Election returns — poll list of 1834, filed 11 August 1834",
-     "list_date": "1834-08-11",
-     "as_read": "Pryne, Peter",
-     "line": 260,
-     "rule": "one resident of the surname 'Pryne' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
-     "discriminator": "forenames agree initial for initial: entry 'Peter Pryne' against resident 'Peter Pryne'"
-    },
-    {
-     "record_id": "poll_1835_060",
-     "list": "poll_1835",
-     "list_title": "Poll list of 1835",
-     "list_date": "1835",
-     "as_read": "Pryne, Peter",
-     "line": 347,
-     "rule": "one resident of the surname 'Pryne' agrees with the entry's forenames; 1 bearer(s) of the surname were considered.",
-     "discriminator": "forenames agree initial for initial: entry 'Peter Pryne' against resident 'Peter Pryne'"
     }
    ]
   },

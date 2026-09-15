@@ -221,7 +221,6 @@
 # --- band is EMPTY, and the cursor moves on: T-1127, then SOUTH THROUGH TIME.
 
 T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1834 return need the page image before any card on them can be ruled
-T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
 
 # --- ==========================================================================
 # --- 2. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood

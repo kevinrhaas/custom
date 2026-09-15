@@ -927,6 +927,25 @@
   },
   {
    "outcome": "merged",
+   "person_id": "pruyne_peter",
+   "folded_person_id": "pryne_peter",
+   "rule": "C14",
+   "cluster": "pruyne-pryne",
+   "record_ids": [
+    "poll_1834_091",
+    "poll_1835_060",
+    "tax_1833_086"
+   ],
+   "domains": [
+    "civic"
+   ],
+   "sources": [
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "evidence": "T-1135: 'pryne_peter' and 'pruyne_peter' are one person under rule C14; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'pruyne-pryne'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "salisbury_stephen_m",
    "folded_person_id": "salsbury_stephen_m",
    "rule": "C9",
