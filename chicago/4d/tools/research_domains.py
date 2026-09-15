@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One home and one gate for the six source domains beside the newspapers.
+"""One registry and one gate for every committed research domain.
 
     tools/research_domains.py --build       write/normalise each domain's scaffold
     tools/research_domains.py --check       the gate
@@ -60,7 +60,14 @@ RESEARCH = ROOT / "data" / "research"
 SOURCES = ROOT / "data" / "sources"
 MANIFEST = RESEARCH / "domains.json"
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+
+DECLARED_UNITS = [{
+    "glob": "**/*.json",
+    "containers": "$declared",
+    "id": "row.id || file-relative JSON pointer",
+    "name_fields": ["normalized", "as_read", "quote"],
+}]
 
 # The six domains, in the order the owner named them, with what each is FOR. The
 # order is the manifest's order and the READMEs' order; it is not alphabetical on
@@ -72,6 +79,7 @@ DOMAINS = {
         "what": "The town's own lists of its own people — the poll books and voter "
                 "rolls of 1833-1835, and the officers, jurors and subscribers printed "
                 "beside them.",
+        "ledger_units": DECLARED_UNITS,
     },
     "census_1830": {
         "title": "The 1830 federal census",
@@ -79,30 +87,35 @@ DOMAINS = {
         "what": "Chicago was enumerated in Peoria County in 1830. The named schedule "
                 "is the object; the county aggregates this project already holds are "
                 "not it.",
+        "ledger_units": DECLARED_UNITS,
     },
     "census_1840": {
         "title": "The 1840 federal census",
         "holds": "records",
         "what": "Seventy-five page images and a head-of-household index. 1840 is "
                 "LATER EVIDENCE and never an 1835 household fact on its own.",
+        "ledger_units": DECLARED_UNITS,
     },
     "church": {
         "title": "Church registers",
         "holds": "records",
         "what": "Baptisms, marriages and burials — St Mary's 1833-1835 first, because "
                 "eleven images of its register are already deposited and unread.",
+        "ledger_units": DECLARED_UNITS,
     },
     "books": {
         "title": "Books and reminiscences",
         "holds": "claims",
         "what": "Prose: Fergus' Historical Series, Hubbard's autobiography, H. H. "
                 "Porter's Short Autobiography, and the memoirs printed beside them.",
+        "ledger_units": DECLARED_UNITS,
     },
     "directories": {
         "title": "Directories",
         "holds": "claims",
         "what": "The 1839 Chicago directory and its successors — entry by entry, "
                 "structured, and crosswalked rather than quoted at second hand.",
+        "ledger_units": DECLARED_UNITS,
     },
     # The seventh, added by T-0562 when the owner put the Newberry Library's
     # genealogical index on the Internet Archive. It is not one of his six original
@@ -125,6 +138,7 @@ DOMAINS = {
                 "read for the townships around Chicago through 1836. A sale is a "
                 "transaction, never a residence; the register's own Residence column is "
                 "the only thing here that speaks to where a purchaser lived.",
+        "ledger_units": DECLARED_UNITS,
     },
     # The ninth, registered by T-0678 — and the last domain in this directory that was
     # not. It has been read since T-0574 and T-0577 and adjudicated since, and the
@@ -150,6 +164,7 @@ DOMAINS = {
                 "directory. Every one of them is LATER EVIDENCE about a person, and the "
                 "obituary list's own header admits it also names citizens who arrived "
                 "after 1843 — so a name here is never an 1835 residence.",
+        "ledger_units": DECLARED_UNITS,
     },
     "newberry_index": {
         "title": "The Newberry genealogical index",
@@ -158,6 +173,52 @@ DOMAINS = {
                 "index (G. K. Hall, 1960), read for the cards whose citation names "
                 "Chicago, Cook County or Illinois. A card says where a genealogy IS; "
                 "it never places a person, and nothing here may grade one.",
+        "ledger_units": DECLARED_UNITS,
+    },
+    # These three domains predate this scaffold and retain their domain-owned
+    # validators. T-1143 nevertheless registers the actual reading files and the
+    # stable row identifiers that enter the closed spend ledger.
+    "genealogytrails": {
+        "title": "Genealogy Trails transcriptions",
+        "holds": "claims",
+        "what": "Hand-read transcriptions of Chicago church and civic records; a later "
+                "primary-source reading may supersede a claim but never erase it.",
+        "managed": False,
+        "legacy_measure": False,
+        "ledger_units": [{
+            "glob": "claims/*.json", "containers": ["claims"],
+            "id": "row.id", "name_fields": ["normalized", "quote"],
+        }],
+    },
+    "newspapers": {
+        "title": "Chicago newspapers",
+        "holds": "claims",
+        "what": "Claims read from the committed Chicago Democrat and Chicago American "
+                "corpus; gazetteers and registers are generated from these units.",
+        "managed": False,
+        "legacy_measure": False,
+        "ledger_units": [{
+            "glob": "extracted/*.json", "containers": ["claims"],
+            "id": "row.id", "name_fields": ["normalized", "quote"],
+        }],
+    },
+    "residents": {
+        "title": "Resident research passes",
+        "holds": "research_passes",
+        "what": "Named resident cohorts and focused audits whose positive and negative "
+                "findings must survive regeneration of the public resident cards.",
+        "managed": False,
+        "legacy_measure": False,
+        "ledger_units": [
+            {"glob": "pass_*_cohort.json", "containers": ["people"],
+             "id": "row.person_id"},
+            {"glob": "pilot_75_cohort.json", "containers": ["people"],
+             "id": "row.person_id"},
+            {"glob": "scene_window_trade_audit.json", "containers": ["rows"],
+             "id": "row.person_id || file-relative JSON pointer"},
+            {"glob": "letter_list_reading_suspicions.json", "containers": ["rows"],
+             "id": "row.person_id || file-relative JSON pointer"},
+        ],
     },
 }
 
@@ -714,6 +775,9 @@ def build(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
     """Write the scaffold. Idempotent, and it never overwrites a hand-authored file."""
     for name, spec in DOMAINS.items():
         d = research / name
+        d.mkdir(parents=True, exist_ok=True)
+        if not spec.get("managed", True):
+            continue
         (d / "records").mkdir(parents=True, exist_ok=True)
         (d / "claims").mkdir(parents=True, exist_ok=True)
         (d / "text").mkdir(parents=True, exist_ok=True)
@@ -750,9 +814,9 @@ def build(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
             })
     manifest = {
         "schema": SCHEMA_VERSION,
-        "_doc": "GENERATED by tools/research_domains.py --build. The source domains "
-                "beside the newspapers, their shape and their home. Hand-edit and the "
-                "gate says so.",
+        "_doc": "GENERATED by tools/research_domains.py --build. Every committed "
+                "research domain, its reading-unit patterns and stable unit-id rule. "
+                "Hand-edit and the gate says so.",
         "generated_by": "tools/research_domains.py --build",
         "kinds": list(KINDS),
         "readings": list(READINGS),
@@ -762,7 +826,9 @@ def build(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
         "claim_fields": list(CLAIM_FIELDS),
         "domains": [
             {"id": name, "title": spec["title"], "holds": spec["holds"], "what": spec["what"],
-             "path": "data/research/%s/" % name}
+             "path": "data/research/%s/" % name,
+             "legacy_measure": spec.get("legacy_measure", True),
+             "ledger_units": spec["ledger_units"]}
             for name, spec in DOMAINS.items()
         ],
     }
@@ -777,6 +843,10 @@ def check(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
     known = source_ids(sources)
     totals = {"records": 0, "claims": 0, "declared": 0, "inventoried": 0}
     for name, spec in DOMAINS.items():
+        if not spec.get("managed", True):
+            if not (research / name).is_dir():
+                bad.append("%s: the registered research domain has no directory" % name)
+            continue
         counts = check_domain(name, spec, research, known, bad)
         for k in totals:
             totals[k] += counts[k]
@@ -797,7 +867,9 @@ def check(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
             "confidences": list(CONFIDENCES), "coverage_units": list(COVERAGE_UNITS),
             "record_fields": list(RECORD_FIELDS), "claim_fields": list(CLAIM_FIELDS),
             "domains": [{"id": n, "title": s["title"], "holds": s["holds"],
-                         "what": s["what"], "path": "data/research/%s/" % n}
+                         "what": s["what"], "path": "data/research/%s/" % n,
+                         "legacy_measure": s.get("legacy_measure", True),
+                         "ledger_units": s["ledger_units"]}
                         for n, s in DOMAINS.items()],
         }))
         got = load(manifest_path)
