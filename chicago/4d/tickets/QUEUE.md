@@ -19,6 +19,11 @@
 #   c. If finishing it would take more than five tickets, it is an EPIC: one ticket under
 #      EPICS at the foot of this file, carrying the list. The loop does not work an epic
 #      until the owner promotes it out of that band.
+#   d. BAND 1 IS CLOSED TO SUCCESSORS (owner, 2026-09-15 — see the ledger). A finding from a
+#      research run does NOT go into band 1 under (b), however well it belongs beside its
+#      parent. It goes to PARKED RESEARCH at the foot of this file. Case (a) is unaffected —
+#      adding a finding to the open ticket that owns it is still right, and is preferred.
+#      This clause lapses when the owner reopens the band.
 #   Only the owner moves an existing line.
 #
 # `needs_bake: true` marks a ticket whose merge changes baked geometry. Labels regenerate from
@@ -26,6 +31,42 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-15  THE RESEARCH BAND IS CLOSED TO SUCCESSORS, on the owner's instruction: "Lots of
+#               research tickets keep getting created and worked which is fine but we seem to
+#               stay there, I am wondering how much more of that you will do before getting to
+#               south through time , we want research to wrap soon and finish up so we can make
+#               progress on south through time but I don't want you to abort the research if
+#               you are close".
+#               WHAT WAS MEASURED, before anything moved. Band 1 has never been empty and has
+#               never been long: across the last 25 commits that touched this file it held 1, 2,
+#               3 or 4 lines and never 0. It is not a backlog being worked down, it is a
+#               TREADMILL — each research run closes one line and files one or two successors
+#               into the same band under FILING RULE (b), which says a one-run piece goes
+#               directly under the ticket it serves, INSIDE THAT BAND. So the cursor never
+#               reaches band 5. T-0987, the succession programme that was the band's large sink,
+#               CLOSED on its own yield rule on 2026-09-14 (#1345) and the band refilled the
+#               same day anyway. The queue below band 1 is nearly empty: band 2 has 0 lines,
+#               band 3 has 0, band 4 has 1 (T-1127). SOUTH THROUGH TIME IS FOUR TICKETS AWAY,
+#               and always has been — the distance was never the length of the research, it was
+#               the refill.
+#               WHAT CHANGED. Nothing moved between bands; no line was added or dropped (64 in,
+#               64 out, asserted). One RULE was added — FILING RULE (d): a finding from a
+#               research run no longer enters band 1, it goes to PARKED RESEARCH at the foot of
+#               this file. Case (a) is untouched and still preferred: a finding that belongs to
+#               an OPEN ticket is added to it and nothing is filed.
+#               WHAT IS NOT ABORTED, per the second half of the instruction. The three lines
+#               standing in band 1 are worked to the end, because each is genuinely close and
+#               each already carries its own stopping condition: T-1138 needs one page image and
+#               rules three lines on it; T-1134 is piece 3 OF 3 of T-1130 and ends it; T-1135
+#               exhausts one tax roll and is allowed to end `undecided` under U1 if the roll
+#               does not carry it — "or leave the town two men of one stem" is in its own title.
+#               None of them opens a programme. When they land, band 1 is EMPTY, and the next
+#               line in rank order is T-1127 (band 4, the wood cut off at the new north edge),
+#               then T-0465 and SOUTH THROUGH TIME.
+#               T-1027, the one-letter-pairs EPIC, stays in band 6 where it already sits. It is
+#               the engine that has been feeding band 1 one cluster at a time; under EPIC rule
+#               (c) the loop does not work it until the owner promotes it, and this pass does
+#               not promote it.
 #   2026-09-14  WHAT THE GROUND LEFT BEHIND, on the owner's instruction after the day's merges:
 #               "can you move any necessary tickets up like T-1127. or other of those merged
 #               tickets that are important". Three lines moved, all of them findings FILED BY
@@ -168,6 +209,16 @@
 # --- namesake in the residents layer and no ruling on either, which is the state a
 # --- consolidation cannot use, because an absent merge reads exactly like a pair nobody has
 # --- looked at.
+# ---
+# --- THIS BAND IS CLOSING, 2026-09-15 (owner: "we want research to wrap soon and finish up so
+# --- we can make progress on south through time but I don't want you to abort the research if
+# --- you are close"). The three lines below ARE the band — worked to the end, none of them
+# --- abandoned, each stopped by its own written condition rather than by this instruction:
+# --- T-1138 needs one page image and rules three lines on it; T-1134 is piece 3 OF 3 of T-1130
+# --- and ends it; T-1135 exhausts one tax roll and may end `undecided` under U1, which its own
+# --- title already allows. Nothing new joins them — FILING RULE (d) sends a research run's
+# --- successors to PARKED RESEARCH at the foot of this file instead. When these three land the
+# --- band is EMPTY, and the cursor moves on: T-1127, then SOUTH THROUGH TIME.
 
 T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1834 return need the page image before any card on them can be ruled
 T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
@@ -356,9 +407,18 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
 T-1137 — A change to the civic mint's derived note silently deletes every other pass's findings appended to the same card
+
+# --- ==========================================================================
+# --- PARKED RESEARCH — filed after the wrap, worked only when the owner reopens band 1
+# --- ==========================================================================
+# --- FILING RULE (d), owner 2026-09-15. Band 1 kept refilling from itself: a research run
+# --- would close one line and file its successors directly beneath, under rule (b), so the
+# --- queue cursor never left the band. Successors land HERE now. This is a park, not a
+# --- deletion and not a ranking — the findings keep their evidence and their acceptance, and
+# --- they are worked when the owner says research reopens. Two things still do NOT come here:
+# --- a finding that belongs to an OPEN ticket goes onto that ticket under rule (a), which is
+# --- still the preferred answer; and a finding that is not research at all is banded normally.
+# --- Empty is the correct state of this section.
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
