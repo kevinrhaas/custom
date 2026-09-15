@@ -62,23 +62,70 @@ const SHORE_Y = -0.10;
  *  step-up rule refuses it from any bank in the dataset. */
 const WATER_BARRIER_Y = 4.0;
 
-/** How finely the ground is cut for frustum culling — a trade between triangles
- *  saved and draw calls spent, both of which main.js budgets (600 000 and 80).
- *  Measured end to end through the smoke at 1280×800, against 58 draw calls and
- *  550 513 triangles untiled:
+/** How many ground tiles the culling grid is allowed, and how much finer it cuts
+ *  ACROSS the long axis than a square grid would. Both come from the measurement
+ *  that chose 12 × 3, made end to end through the smoke at 1280×800 on the
+ *  2,020 × 800 m box the town then stood on, against 58 draw calls and 550,513
+ *  triangles untiled:
  *
  *      8 × 4   71 calls   488 405 tris
- *     12 × 3   71 calls   461 112 tris   <- here
+ *     12 × 3   71 calls   461 112 tris   <- chosen
  *     12 × 6   79 calls   434 516 tris
  *
- *  12 × 3 is strictly better than 8 × 4: the same draw calls for 27 000 fewer
- *  triangles. 12 × 6 buys another 26 000 and costs eight more calls, which would
+ *  12 × 3 is strictly better than 8 × 4: the same draw calls for 27,000 fewer
+ *  triangles. 12 × 6 buys another 26,000 and costs eight more calls, which would
  *  leave ONE of headroom — a gate that fails on the next building batch is not
- *  headroom. Columns outnumber rows 4:1 rather than the 2.5:1 the box's own
- *  2 km × 800 m shape suggests because culling here is mostly by BEARING: a walker
- *  looks along the box, so cuts across the long axis are the ones that pay. */
-const GROUND_TILE_COLS = 12;
-const GROUND_TILE_ROWS = 3;
+ *  headroom. So 36 tiles is the BUDGET, and the 4:1 column-to-row ratio it was
+ *  spent at is the BIAS. A grid of square tiles would have spent that box's own
+ *  2.525:1 shape at 2.525:1; the measurement spent it at 4:1, because culling here
+ *  is mostly by BEARING — a walker looks along the box, so cuts ACROSS the long
+ *  axis are the ones that pay. Written as an exponent on the box's ratio,
+ *  ln 4 / ln 2.525 = 1.4965, the bias is r^1.5 against a square grid's r^1. An
+ *  exponent rather than a multiplier because it has to vanish where there is no
+ *  long axis: on a square box r^1.5 is 1 and the grid comes out square, where a
+ *  constant multiplier would still privilege east-west for no reason at all. */
+/** The grid the last ground build actually used, for the harness to read back.
+ *  Written by tileGround(); read by `groundTiling()` and by nothing in the scene. */
+let lastGroundTiling = null;
+
+/** The culling grid the ground currently stands on, or null before one is built. */
+export function groundTiling() { return lastGroundTiling; }
+
+const GROUND_TILE_BUDGET = 36;
+const GROUND_TILE_BEARING_EXP = 1.5;
+
+/**
+ * The culling grid for a ground of this shape (T-0466).
+ *
+ * The grid used to be the two literals `12` and `3`, and those two numbers were a
+ * measurement of ONE box: 2,020 m east-west by 800 m north-south, long axis
+ * east-west. The southern field makes that box 2,020 × 4,920 m — deeper than it is
+ * wide, long axis north-south — and the literals do not know it. Left alone they
+ * cut the long axis into THREE, so a tile becomes 168 × 1,640 m: a strip that runs
+ * from the walker's feet to the far end of the town, is in the frustum from
+ * anywhere on it, and can therefore never be culled. The grid has to be a function
+ * of the box or it is a measurement of a box that no longer exists.
+ *
+ * So: spend the same tile BUDGET, at the same BEARING BIAS, on whatever shape the
+ * ground actually is. With `r` the box's long-to-short ratio, the long axis takes
+ * `sqrt(budget · r^1.5)` cuts and the short axis takes the rest. On the box the
+ * measurement was made on this returns 12 × 3 exactly, which is the check
+ * `tools/measure_ground_tiling.mjs --self-test` holds it to: a rule that does not
+ * reproduce the reading it is derived from is a different rule.
+ *
+ * @param {number} spanX  the ground's east-west extent, metres
+ * @param {number} spanZ  its north-south extent, metres
+ * @returns {{cols: number, rows: number}} cuts along X and along Z
+ */
+export function groundTileGrid(spanX, spanZ,
+  budget = GROUND_TILE_BUDGET, exp = GROUND_TILE_BEARING_EXP) {
+  if (!(spanX > 0) || !(spanZ > 0)) return { cols: 1, rows: 1 };
+  const long = Math.max(spanX, spanZ);
+  const short = Math.min(spanX, spanZ);
+  const nLong = Math.max(1, Math.round(Math.sqrt(budget * (long / short) ** exp)));
+  const nShort = Math.max(1, Math.round(budget / nLong));
+  return spanX >= spanZ ? { cols: nLong, rows: nShort } : { cols: nShort, rows: nLong };
+}
 
 /** local ENU metres -> three world position. */
 export function enuToWorld(e, n, y = 0, target = new THREE.Vector3()) {
@@ -297,7 +344,7 @@ export async function createTerrain({
   // or throw the floor away by mistake. True of one mesh; not true of the ground.
   // Cut it into tiles and the half of the world behind you stops being drawn —
   // see tileGround() for the measurements behind the grid below.
-  const tiles = tileGround(ground, GROUND_TILE_COLS, GROUND_TILE_ROWS);
+  const tiles = tileGround(ground, groundTileGrid);
   if (tiles) {
     for (const tile of tiles) {
       group.add(tile);
@@ -439,25 +486,36 @@ async function fetchOk(url) {
  * Looking straight down from the `from_above` anchor — where culling helps least and
  * costs most, because nearly everything is on screen — 12×6 still culls 54 % and
  * leaves 26 tiles visible. Tiles are cheap draw calls (one shared material, no state
- * change between them) but they are NOT free, and `main.js` budgets 80. The grid
- * finally chosen is at GROUND_TILE_COLS, with the end-to-end numbers beside it;
- * the per-tile percentages here are what made it worth trying at all.
+ * change between them) but they are NOT free, and `main.js` budgets them. The grid
+ * is asked for at GROUND_TILE_BUDGET, with the end-to-end numbers beside it; the
+ * per-tile percentages here are what made it worth trying at all. They are readings
+ * of the 2,020 x 800 m box, which is why the grid itself is no longer a pair of
+ * literals but a function of whatever box the ground turns out to cover (T-0466).
  *
  * The split is by triangle CENTROID, so no triangle is duplicated and no seam is
  * introduced: every triangle lands in exactly one tile and the surface is the same
  * surface. Every attribute travels with it — `_confidence` included, which the
  * confidence view reads, and which a naive position-only split would silently drop.
  */
-function tileGround(mesh, cols, rows) {
+function tileGround(mesh, grid) {
   const geo = mesh.geometry;
   const pos = geo.attributes.position;
   if (!pos) return null;
   const index = geo.index ? geo.index.array : null;
   const triCount = index ? index.length / 3 : pos.count / 3;
-  if (triCount < cols * rows * 4) return null;   // too coarse to be worth splitting
 
   geo.computeBoundingBox();
   const bb = geo.boundingBox;
+  // The grid is asked for AFTER the box is known, because it is a function of the
+  // box — see groundTileGrid(). `lastGroundTiling` is what the measurement harness
+  // and `?debug=1` read back; nothing in the scene depends on it.
+  const { cols, rows } = grid(bb.max.x - bb.min.x, bb.max.z - bb.min.z);
+  lastGroundTiling = { cols, rows,
+                       spanX: bb.max.x - bb.min.x, spanZ: bb.max.z - bb.min.z,
+                       tileX: (bb.max.x - bb.min.x) / cols,
+                       tileZ: (bb.max.z - bb.min.z) / rows };
+  if (triCount < cols * rows * 4) return null;   // too coarse to be worth splitting
+
   const spanX = (bb.max.x - bb.min.x) / cols;
   const spanZ = (bb.max.z - bb.min.z) / rows;
   if (!(spanX > 0) || !(spanZ > 0)) return null;

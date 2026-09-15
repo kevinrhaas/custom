@@ -1,18 +1,21 @@
 ---
 id: T-0466
 title: Build a south-terrain tiling and culling plan for a four-kilometre field
-state: open
+state: claimed
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
 effort: S
 legacy_id: null
+parent: null
 opened: 2026-09-01
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/15/2026, 11:14:22 AM CT
 blocked_on: T-0464
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34991605762
 ---
 
 The renderer's 12 x 3 ground tiling was tuned for the present roughly 2,020 x 800 m terrain. A Madison-to-Cermak field is several times deeper north-south and must not simply multiply visible triangles and draw calls without measurement.
