@@ -2576,6 +2576,18 @@ selftest "…and the tie discriminator's do too" \
 selftest "the whole-printed-name rule's own assertions still fire when broken" \
   python3 tools/named_by_the_page.py --self-test
 
+# T-0987 stretch 15. THE FOURTH RULE MODULE, and the only one whose whole output is a
+# REFUSAL — it promotes nothing, so what this gate protects is the discipline rather
+# than a match. Two things would rot quietly without it: the five-letter floor, which
+# is `name_agreement.agrees`'s own number and is what keeps `Cook`/`Cool` and `Hall`/
+# `Ball` from becoming spelling variants of each other; and the thirteen second-hand
+# lines, quoted verbatim off the printed volume's OCR with its damage left in, which
+# are the whole evidence that the sixteen one-letter candidates are the volume's own
+# distinction and not this transcription's. A quote that stops being findable at its
+# line means the second hand moved under the ruling, and the ruling has to be re-read.
+selftest "…and the one-letter surname clause's, whose only outcome is a refusal" \
+  python3 tools/surname_one_letter_away.py --self-test
+
 # T-1038. THE THIRD RULE MODULE, and the one that answers a question the other two
 # cannot ask: is the 1835 person a PERSON at all, or the one card the letter-list
 # mint pass was allowed to seat over a surname the post office printed twice? An

@@ -17,6 +17,9 @@
   "matched_more_than_one_ambiguous": 15,
   "one_1843_entry_contested_by_two_residents": 2,
   "surname_present_initial_absent_refused": 326,
+  "of_those_an_entry_one_letter_off_the_surname": 15,
+  "entries_one_letter_off_a_refused_surname": 12,
+  "of_those_overturned": 0,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 12,
@@ -8606,6 +8609,301 @@
    "rule": "The surname 'Gray' is in Fergus 1843 and no entry under it carries the initial 'D' of 'dane Gray'. A surname-only agreement is a refusal."
   }
  ],
+ "surname_one_letter_away": {
+  "rule": "1. THE VOLUME'S OWN DISTINCTION. A directory does not enter one person twice\n     under two spellings — R6's principle, borrowed by T-0987 stretch 14 clause\n     3 and borrowed again here. In every one of the sixteen, BOTH spellings\n     stand in the volume as separately populated surnames: Brooks (2 entries)\n     beside Brookes (6), Pearson (2) beside Pearsons (1), Harman (1) beside\n     Harmon (6), Barnard beside Bernard, Barry (3) beside Berry, Walker (9)\n     beside Walter, David beside Davis (6), Clarke (8) beside Clark (16), Green\n     (4) beside Breen, Wight (2) beside Wright (6), Bates (6) beside Yates and\n     Barnes (4). The compositor set both and set them apart. A one-letter\n     distance between two surnames a volume itself distinguishes is the\n     volume's distinction, not its damage.\n\n  2. AND THE SECOND HAND SETS THE SAME LETTERS. Each of the twelve entries was\n     looked up in the printed volume's own OCR, line by line — thirteen lines,\n     the extra one the business-directory notice `L. W. CLARK` that T-0987\n     stretch 7 folds onto Lewis W. Clark's roll entry — and it reads Torp's\n     spelling every time — `Pearsons, Hiram, speculator, l)ds Trejnont\n     House`, `Harmon. Isaac Xewton`, `Clark, Lewis AY.`, `Bernard, Jacob,\n     teamster`, `Walter, Joel Clarke`, `Davis, John, tailor`. Two independent\n     extractions of one printing, one spelling, sixteen times. So the variant\n     is not this transcription's damage either, and the one repair stretch 12\n     had — the second hand reading what Torp could not — is unavailable here.\n     `SECOND_HAND` carries every line verbatim, its own OCR damage left in, so\n     the comparison re-runs; `--self-test` fails if one stops being findable.\n\n  3. AND EIGHT OF THE SIXTEEN WOULD HAVE BEEN CONTESTS ANYWAY. Two residents\n     reach `Bernard, Jacob`, two reach `Berry, Joseph`, two reach `Walter, Joel\n     Clarke`, two reach `Brookes, George`. A clause that cannot choose between\n     two people of 1835 decides nothing even where the spelling is allowed,\n     which is T-0987 stretch 14's contest axis arriving at the same answer from\n     the other side.",
+  "what_this_is_not": "Not a change to the matching rule: no surname fold is\nwidened, no candidate is admitted, no confidence is raised, and the crosswalk's\ncounts of matches, ties and refusals are byte-identical across this change. It\nis the pool saying what it is made of. T-1001 asked the fold question once\nalready, over the land register's 427 purchaser spellings, and answered NO with\na count; nothing here reopens it.",
+  "second_hand": "fergus_historical_series_26_29",
+  "refusals": [
+   {
+    "resident": "Gardner Brooks",
+    "surname_1835": "Brooks",
+    "entry_surname": "Brookes",
+    "printed_name": "Brookes, George",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 2 entries under 'Brooks' and 6 under 'Brookes', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Brookes' on that line too, so the variant is not this transcription's damage either. And 2 people of 1835 reach 'Brookes, George' by this route, so the clause could not choose between them even where the spelling were allowed.",
+    "person_id": "brooks_gardner",
+    "claim": "f1843_e0439",
+    "as_printed": "Brookes, George, clerk, bds Samuel Brookes [died, Cleaverville, Ill., September 27, 1854, aged 37.]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 2950,
+     "reads": "Ihookes,  George,  clerk,  Ixls  Samuel  13rookes"
+    }
+   },
+   {
+    "resident": "George M Brooks",
+    "surname_1835": "Brooks",
+    "entry_surname": "Brookes",
+    "printed_name": "Brookes, George",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 2 entries under 'Brooks' and 6 under 'Brookes', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Brookes' on that line too, so the variant is not this transcription's damage either. And 2 people of 1835 reach 'Brookes, George' by this route, so the clause could not choose between them even where the spelling were allowed.",
+    "person_id": "brooks_george_m",
+    "claim": "f1843_e0439",
+    "as_printed": "Brookes, George, clerk, bds Samuel Brookes [died, Cleaverville, Ill., September 27, 1854, aged 37.]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 2950,
+     "reads": "Ihookes,  George,  clerk,  Ixls  Samuel  13rookes"
+    }
+   },
+   {
+    "resident": "Harriet Ellen Bates",
+    "surname_1835": "Bates",
+    "entry_surname": "Barnes",
+    "printed_name": "Barnes, Hamilton",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 4 entries under 'Bates' and 4 under 'Barnes', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Barnes' on that line too, so the variant is not this transcription's damage either.",
+    "person_id": "bates_harriet_ellen",
+    "claim": "f1843_e0274",
+    "as_printed": "Barnes, Hamilton, carpenter, Randolph, bet Clark and LaSalle, res 72 W. Madison [d. at hospital, Nashville, Tenn., Feb. 22,1862, a. 56-2-4. ]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 2812,
+     "reads": "Barnes,  Hamilton,  car[)enter."
+    }
+   },
+   {
+    "resident": "Harriet Ellen Bates",
+    "surname_1835": "Bates",
+    "entry_surname": "Yates",
+    "printed_name": "Yates, Horace Harris",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 4 entries under 'Bates' and 1 under 'Yates', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Yates' on that line too, so the variant is not this transcription's damage either.",
+    "person_id": "bates_harriet_ellen",
+    "claim": "f1843_e2686",
+    "as_printed": "Yates, Horace Harris, family grocer, 39 Clark, res Clark, bet Madison and Monroe",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 4549,
+     "reads": "Yates,  Horace  Harris,  family  grocer,  39  Clark"
+    }
+   },
+   {
+    "resident": "Hiram Pearson",
+    "surname_1835": "Pearson",
+    "entry_surname": "Pearsons",
+    "printed_name": "Pearsons, Hiram",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 2 entries under 'Pearson' and 1 under 'Pearsons', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Pearsons' on that line too, so the variant is not this transcription's damage either.",
+    "person_id": "pearson_hiram",
+    "claim": "f1843_e1971",
+    "as_printed": "Pearsons, Hiram, speculator, bds Tremont House [died, Almeda, Cal, August 11, 1868. aged 57]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 4042,
+     "reads": "Pearsons,  Hiram,  speculator,  l)ds  Trejnont  House"
+    }
+   },
+   {
+    "resident": "Isaac Harman",
+    "surname_1835": "Harman",
+    "entry_surname": "Harmon",
+    "printed_name": "Harmon, Isaac Newton",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 1 entry under 'Harman' and 5 under 'Harmon', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Harmon' on that line too, so the variant is not this transcription's damage either.",
+    "person_id": "harman_isaac",
+    "claim": "f1843_e1209",
+    "as_printed": "Harmon, Isaac Newton, with C. L. Harmon [died Nov. 8, 1891]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 3544,
+     "reads": "Isaac  Xewton,  -uitli  C.  L.  Harmon"
+    }
+   },
+   {
+    "resident": "J B Barnard",
+    "surname_1835": "Barnard",
+    "entry_surname": "Bernard",
+    "printed_name": "Bernard, Jacob",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 1 entry under 'Barnard' and 1 under 'Bernard', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Bernard' on that line too, so the variant is not this transcription's damage either. And 2 people of 1835 reach 'Bernard, Jacob' by this route, so the clause could not choose between them even where the spelling were allowed.",
+    "person_id": "barnard_j_b",
+    "claim": "f1843_e0339",
+    "as_printed": "Bernard, Jacob, teamster",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 2858,
+     "reads": "Bernard,  Jacob,  teamster"
+    }
+   },
+   {
+    "resident": "J F Wight",
+    "surname_1835": "Wight",
+    "entry_surname": "Wright",
+    "printed_name": "Wright, John Stephen",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 2 entries under 'Wight' and 6 under 'Wright', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Wright' on that line too, so the variant is not this transcription's damage either.",
+    "person_id": "wight_j_f",
+    "claim": "f1843_e2675",
+    "as_printed": "Wright, John Stephen,, editor and proprietor Prairie Farmer [died, Philadelphia, Pa., Sept. 26, 1874, aged 59]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 4541,
+     "reads": "Jobn  Stepbeiiv  editor  and  ])voprietor"
+    }
+   },
+   {
+    "resident": "J Green",
+    "surname_1835": "Green",
+    "entry_surname": "Breen",
+    "printed_name": "Breen, John",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 4 entries under 'Green' and 1 under 'Breen', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Breen' on that line too, so the variant is not this transcription's damage either.",
+    "person_id": "green_j",
+    "claim": "f1843_e0423",
+    "as_printed": "Breen, John, packer, Arthur G. Burley & Co.",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 2940,
+     "reads": "Breen,  John.  ])ackcr,  Arthur  G.  Burley"
+    }
+   },
+   {
+    "resident": "J H Barnard",
+    "surname_1835": "Barnard",
+    "entry_surname": "Bernard",
+    "printed_name": "Bernard, Jacob",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 1 entry under 'Barnard' and 1 under 'Bernard', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Bernard' on that line too, so the variant is not this transcription's damage either. And 2 people of 1835 reach 'Bernard, Jacob' by this route, so the clause could not choose between them even where the spelling were allowed.",
+    "person_id": "barnard_j_h",
+    "claim": "f1843_e0339",
+    "as_printed": "Bernard, Jacob, teamster",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 2858,
+     "reads": "Bernard,  Jacob,  teamster"
+    }
+   },
+   {
+    "resident": "J R Barry",
+    "surname_1835": "Barry",
+    "entry_surname": "Berry",
+    "printed_name": "Berry, Joseph",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 3 entries under 'Barry' and 1 under 'Berry', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Berry' on that line too, so the variant is not this transcription's damage either. And 2 people of 1835 reach 'Berry, Joseph' by this route, so the clause could not choose between them even where the spelling were allowed.",
+    "person_id": "barry_j_r",
+    "claim": "f1843_e0340",
+    "as_printed": "Berry, Joseph, laborer, Gurdon S. Hubbard",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 2858,
+     "reads": "Berry.  Jo<e])h,  laborer,  Gurdon  S.  Hubbard"
+    }
+   },
+   {
+    "resident": "James Walker",
+    "surname_1835": "Walker",
+    "entry_surname": "Walter",
+    "printed_name": "Walter, Joel Clarke",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 8 entries under 'Walker' and 3 under 'Walter', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Walter' on that line too, so the variant is not this transcription's damage either. And 2 people of 1835 reach 'Walter, Joel Clarke' by this route, so the clause could not choose between them even where the spelling were allowed.",
+    "person_id": "walker_james",
+    "claim": "f1843_e2525",
+    "as_printed": "Walter, Joel Clarke (Horace Norton & Co.), bds Ethan Walter [died March 14, 1891, aged 80]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 4430,
+     "reads": "Walter,  Joel  Clarke  (Horace  Norton  S:  Co.)"
+    }
+   },
+   {
+    "resident": "Jeremiah Walker",
+    "surname_1835": "Walker",
+    "entry_surname": "Walter",
+    "printed_name": "Walter, Joel Clarke",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 8 entries under 'Walker' and 3 under 'Walter', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Walter' on that line too, so the variant is not this transcription's damage either. And 2 people of 1835 reach 'Walter, Joel Clarke' by this route, so the clause could not choose between them even where the spelling were allowed.",
+    "person_id": "walker_jeremiah",
+    "claim": "f1843_e2525",
+    "as_printed": "Walter, Joel Clarke (Horace Norton & Co.), bds Ethan Walter [died March 14, 1891, aged 80]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 4430,
+     "reads": "Walter,  Joel  Clarke  (Horace  Norton  S:  Co.)"
+    }
+   },
+   {
+    "resident": "John David",
+    "surname_1835": "David",
+    "entry_surname": "Davis",
+    "printed_name": "Davis, John",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 1 entry under 'David' and 6 under 'Davis', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Davis' on that line too, so the variant is not this transcription's damage either.",
+    "person_id": "david_john",
+    "claim": "f1843_e0776",
+    "as_printed": "Davis, John, tailor. North Water, near Kinzie [d. Apr. 28, 1883, a. 68.]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 3244,
+     "reads": "Davis,  John,  tailor.  North  Water,  near  Kinzie"
+    }
+   },
+   {
+    "resident": "John S. Barry",
+    "surname_1835": "Barry",
+    "entry_surname": "Berry",
+    "printed_name": "Berry, Joseph",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 3 entries under 'Barry' and 1 under 'Berry', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Berry' on that line too, so the variant is not this transcription's damage either. And 2 people of 1835 reach 'Berry, Joseph' by this route, so the clause could not choose between them even where the spelling were allowed.",
+    "person_id": "barry_john_s",
+    "claim": "f1843_e0340",
+    "as_printed": "Berry, Joseph, laborer, Gurdon S. Hubbard",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 2858,
+     "reads": "Berry.  Jo<e])h,  laborer,  Gurdon  S.  Hubbard"
+    }
+   },
+   {
+    "resident": "L Clarke",
+    "surname_1835": "Clarke",
+    "entry_surname": "Clark",
+    "printed_name": "Clark, Lewis W",
+    "clause": "the volume sets both spellings",
+    "outcome": "refused",
+    "rule": "Fergus 1843 prints 6 entries under 'Clarke' and 14 under 'Clark', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Clark' on that line too, so the variant is not this transcription's damage either.",
+    "person_id": "clarke_l",
+    "claim": "f1843_e0630",
+    "as_printed": "Clark, Lewis W., hardware, iron, nails, etc., 128 Lake [died March 31, 1855, aged 45]",
+    "second_hand": {
+     "source_id": "fergus_historical_series_26_29",
+     "text": "data/research/books/text/fergus_26_29.txt",
+     "line": 3127,
+     "reads": "Clark,  Lewis  AY.,  hardware,  iron,  nails,  etc.,  128  Lake"
+    }
+   }
+  ]
+ },
  "letter_list_bucket_refusals": [
   {
    "outcome": "refused_letter_list_bucket",
