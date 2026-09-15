@@ -170,7 +170,6 @@
 # --- looked at.
 T-1117 — Arthur Bronson's card says present on the scene date, inferred from the 1833 tax list, and the town's own historians print him a visitor from New York who went home
 
-T-0987 — The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
 T-1130 — Nineteen town cards stand one letter apart in the surname and identical in the forename, and the merge machinery has never been shown one of them
 
 # --- ==========================================================================

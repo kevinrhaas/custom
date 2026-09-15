@@ -1,7 +1,7 @@
 ---
 id: T-0987
 title: The directories' ties and refusals, adjudicated one stretch per run — the 196 ties surname-plus-initial cannot decide, the 1,100 initial-absent refusals a page image can overturn, and every trade and 1839-44 address that lands spent onto the card and the street face; the run that closes this files the next stretch before it closes
-state: claimed
+state: done
 epic: PAPERS
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-09
-closed: null
-pr: null
+closed: 2026-09-14
+pr: 1345
 claimed_by: run 9/14/2026, 6:28:50 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-15T00:25:23.155Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34908758559
 ---
 
