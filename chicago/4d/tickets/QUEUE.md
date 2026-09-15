@@ -432,7 +432,6 @@ T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SU
 # --- T-0251/T-0305/T-0386/T-1087 remain explicit ledger dispositions unless their evidence or
 # --- owner ruling changes. The EPIC and PARKED sections above remain unpromoted.
 
-T-1143 — Build a closed research-spend ledger: every committed research unit is asserted, later-only, outside Chicago, aggregate, refused, unresolved or linked to its owning ticket
 T-1137 — A change to the civic mint's derived note silently deletes every other pass's findings appended to the same card
 T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
 T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
