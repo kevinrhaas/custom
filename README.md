@@ -26,6 +26,7 @@ The published site is only the `site/` folder (curated web content) — the CAD 
 | [gridfinity-rationell](gridfinity-rationell/) | Gridfinity adapter for IKEA Rationell drawer organizers |
 | [ordovician-sandstone](ordovician-sandstone/) | Parametric sandstone strata lamp shade generator — organic geology-inspired cylindrical forms with a Python/OpenSCAD pipeline |
 | [peachtree-city-bowl](peachtree-city-bowl/) | Parametric wavy-rim decorative bowl designed in OpenSCAD |
+| [stand](stand/) | Parametric three-rail adjustable display stand with removable axle and locking pins |
 | [porchfest](porchfest/) | Uptown Porchfest 2026 walking-route planner — 91 bands rated across ten dimensions, an orienteering solver over the real street grid, self-contained map, and shareable plans. Builds `site/porchfest/app/` |
 | [pentaho](pentaho/) | Pentaho logo 3D prints, modeled in Blender from SVG source |
 | [stay](stay/) | Stay Finder — 168 houses, estates and inn buyouts across Tampa Bay, the Gulf beaches, the Nature Coast and inland ranch country for Dec 19–27, 2026, ranked for a party of nine wanting five or six rooms and three kings, and mapped on a coastline built from US Census TIGERweb. Builds `site/stay/` |
