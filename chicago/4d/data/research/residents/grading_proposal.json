@@ -59,22 +59,22 @@
   "persons": 848
  },
  "counts": {
-  "identities": 6845,
+  "identities": 6844,
   "by_grade": {
    "None": 44,
    "not_1835_resident": 4479,
    "inferred": 1946,
-   "attested": 376
+   "attested": 375
   },
   "by_subtype": {
-   "None": 5119,
+   "None": 5118,
    "projected_resident": 1726
   },
   "by_rule": {
    "G5": 44,
    "G0": 4479,
    "G3": 1725,
-   "G1b": 306,
+   "G1b": 305,
    "G2b": 34,
    "G1a": 50,
    "G1c": 20,
@@ -5096,8 +5096,7 @@
   {"identity":"id_provis_joshua","name":"Joshua Provis","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_joshua_provis"],"evidence_classes":["newspaper_letter_list"]},
   {"identity":"id_prussing_ernst","name":"Ernst Prussing","canonical_person_id":null,"rule":"G0","grade":"not_1835_resident","resident_subtype":null,"evidence":["old_settlers:fdn0530"],"evidence_classes":["death_notice"]},
   {"identity":"id_pruvis_joshua","name":"Joshua Pruvis","canonical_person_id":"provis_joshua","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_joshua_pruvis"],"evidence_classes":["newspaper_letter_list","town_layer"]},
-  {"identity":"id_pruyne_peter","name":"Peter Pruyne","canonical_person_id":"pruyne_peter","rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["old_settlers:fdn0531","newspapers:person_peter_pruyne","newspapers:person_pruyne_peter","newspapers:person_p_pruyne"],"evidence_classes":["death_notice","newspaper_1833_1835","town_layer"]},
-  {"identity":"id_pryne_peter","name":"Peter Pryne","canonical_person_id":"pryne_peter","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["civic:tax_1833_086","civic:poll_1834_091","civic:poll_1835_060"],"evidence_classes":["poll_1834","poll_1835","tax_1833","town_layer"]},
+  {"identity":"id_pruyne_peter","name":"Peter Pruyne","canonical_person_id":"pruyne_peter","rule":"G1a","grade":"attested","resident_subtype":null,"evidence":["old_settlers:fdn0531","newspapers:person_peter_pruyne","newspapers:person_pruyne_peter","newspapers:person_p_pruyne","civic:tax_1833_086","civic:poll_1834_091","civic:poll_1835_060"],"evidence_classes":["death_notice","newspaper_1833_1835","poll_1834","poll_1835","tax_1833","town_layer"]},
   {"identity":"id_ps_emily_a","name":"Emily A Ps","canonical_person_id":null,"rule":"G1b","grade":"attested","resident_subtype":null,"evidence":["newspapers:person_emily_c_a_p_ps"],"evidence_classes":["newspaper_1833_1835"]},
   {"identity":"id_pugsley_john_k","name":"John K Pugsley","canonical_person_id":"pugsley_john_k","rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_pugsley_john_k"],"evidence_classes":["newspaper_letter_list","town_layer"]},
   {"identity":"id_pullen_udwell","name":"Udwell Pullen","canonical_person_id":null,"rule":"G3","grade":"inferred","resident_subtype":"projected_resident","evidence":["newspapers:person_l_udwell_pullen"],"evidence_classes":["newspaper_letter_list"]},
