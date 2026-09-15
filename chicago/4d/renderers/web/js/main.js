@@ -20,7 +20,7 @@ const DEG = Math.PI / 180;
 
 import { loadScene, resolveBases } from './scene-loader.js';
 import { createWorld } from './world.js';
-import { createTerrain, enuToWorld } from './terrain.js';
+import { createTerrain, enuToWorld, groundTiling } from './terrain.js';
 import { createBuildings } from './buildings.js';
 import { createConfidenceView } from './confidence.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
@@ -2300,6 +2300,9 @@ async function boot() {
       });
       return true;
     },
+    /** The culling grid the ground was cut on, and the box it was derived from
+     *  (T-0466). A reading, not a setting: `terrain.js` owns the rule. */
+    groundTiling,
     stats() {
       const info = renderer.info;
       return {

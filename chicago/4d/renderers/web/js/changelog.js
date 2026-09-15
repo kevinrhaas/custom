@@ -1,4 +1,13 @@
 export const CHANGELOG = [ // newest first
+  { v: 892, title: 'The ground was being cut up for a town that has moved', kind: 'fix', ts: '2026-09-15T16:56:14.528Z', date: 'Sep 15, 2026, 11:56 AM CT',
+    items: [
+      'The ground under you is not drawn as one piece. It is cut into tiles, and a tile you are not looking at is not drawn at all \u2014 which is most of them, most of the time, and is a large part of why the town runs on a phone.',
+      'How finely it was cut was two numbers, and those two numbers were measured once, on the ground as it stood then: about two kilometres east to west and eight hundred metres north to south, wider than it was deep. Twelve cuts across the wide way, three across the narrow. That was the right answer to the shape it was measured on.',
+      'The ground has since grown north into Kinzie\u2019s Addition and south to Twenty-Second Street, and it is now deeper than it is wide \u2014 the long way round has turned through a right angle. The two numbers could not tell. They went on cutting the short way finely and the long way into three, which made each tile a strip running from your feet to the far end of the world. A strip like that is always partly in view, so it can never be skipped, and the saving quietly went away in the direction the town was growing.',
+      'The cut is now worked out from the shape of the ground itself, so it follows the field wherever the field goes next. It still gives exactly the old twelve-by-three on the old ground, which is how we know it is the same judgement and not a new guess.',
+      'Measured at eight places \u2014 four in town, four down the new southern field, which nothing had ever been measured at before \u2014 the worst view now carries seventy-six thousand fewer triangles than it did, for one extra draw call out of two hundred and fifteen. A finer cut still was tried and turned down: it saved a little more and cost fifteen more calls.',
+      'The same measurement turned up something larger that this change does not fix, and it is written down rather than left: standing well south of the town and looking back at it, the whole town is in view at once, and that view is over every quality setting\u2019s budget. No amount of cutting the ground helps there \u2014 nothing is off-screen to skip. It has its own ticket.'
+    ] },
   { v: 891, title: 'The wood stopped in a straight line across the north of town', kind: 'fix', ts: '2026-09-15T15:47:08.592Z', date: 'Sep 15, 2026, 10:47 AM CT',
     items: [
       'The timber ended at a clean horizontal edge somewhere north of the river, with bare ground beyond it. That is not how a wood ends, and it was not a decision anybody made \u2014 it was the trees running out.',

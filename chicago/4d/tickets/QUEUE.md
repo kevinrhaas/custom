@@ -314,7 +314,7 @@ T-1138 — Geo. Square or Geo. Saver: the three contested lines of the 1 April 1
 
 
 T-0465 — Trace the South Branch and early lakefront through the expanded field
-T-0466 — Build a south-terrain tiling and culling plan for a four-kilometre field
+T-1148 — The southern stands stand over every scene-detail ceiling, and no ground tiling moves it
 T-0467 — Add south-scene camera anchors, navigation and map extents
 T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
@@ -445,3 +445,4 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
+
