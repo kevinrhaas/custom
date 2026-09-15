@@ -137,6 +137,7 @@ EXTRACTED = DATA / "research" / "newspapers" / "extracted"
 
 sys.path.insert(0, str(ROOT / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     BARE_TOWN, FEMALE_TITLES, FIRM, MALE_TITLES, PAPERS, SCENE_DATE, UNCERTAIN,
     cited, display, dumps, household_id, in_town_places, issue_of, load,
@@ -556,105 +557,28 @@ def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours,
     return doc
 
 
-# T-0634. What the civic spend writes onto a person, named here so this mint can carry it
-# over without importing the pass: the source id it cites and the first words of the
-# paragraph it appends. Both are checked against the pass's own constants by
-# `tools/spend_civic_voter_lists.py --self-test`'s sibling assertion in check.sh, and a
-# drift in either shows up immediately as this mint deleting a citation.
+# T-0634. The civic writer's self-test pins these literals here, while T-1137's shared
+# contract discovers the writer-owned marker without importing the pass as executable
+# code. A drift in either still shows up in the writer's own assertion.
 CIVIC_ROLLS_SOURCE = "chicago_voter_lists_1833_1835_irad"
 CIVIC_ROLLS_MARKER = "THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE."
 
-# T-0635, consolidation pass 2, and the same arrangement one pass later. The list is what
-# grew: a second spend now writes onto these records, so the carry is a loop over the
-# (source id, marker) pairs rather than one hard-wired pair, and adding a third pass means
-# adding a row here and an assertion in that pass's --self-test.
+# T-0635, consolidation pass 2.  This writer's self-test pins the source and marker
+# literals here; the shared carry contract discovers that marker from the writer itself.
 FERGUS_1839_SOURCE = "fergus_chicago_directory_1839"
 FERGUS_1839_MARKER = "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT."
 
-# T-0697, and the third row the arrangement above anticipated. The land-sales crosswalk
-# stopped counting namesakes and started putting the reading to every person of the
-# surname, so consolidation pass 3 now reaches 124 cards where it reached 34 — and one of
-# them, J. K. Boyer, is a record THIS mint rebuilds. Without the row the mint deletes the
-# register's citation on every rebuild, which is the exact failure T-0634 wrote the carry
-# for. `tools/spend_land_sales.py --self-test` holds both constants against this file.
+# T-0697. The land-sales crosswalk stopped counting namesakes and started putting the
+# reading to every person of the surname.  The writer's self-test holds both constants
+# against this file while the shared contract preserves the resulting finding.
 LAND_SALES_SOURCE = "isa_public_domain_land_tract_sales"
 LAND_SALES_MARKER = "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE."
 
-CARRIED_SPENDS = ((CIVIC_ROLLS_SOURCE, CIVIC_ROLLS_MARKER),
-                  (FERGUS_1839_SOURCE, FERGUS_1839_MARKER),
-                  (LAND_SALES_SOURCE, LAND_SALES_MARKER))
-
-
-def carry_civic_rolls(doc: dict, existing: dict) -> None:
-    """Re-attach every consolidation pass's citation to a record this mint has rebuilt."""
-    was = {p.get("id"): p for p in existing.get("persons") or []}
-    for person in doc.get("persons") or []:
-        before = was.get(person.get("id"))
-        if not before:
-            continue
-        for source, marker in CARRIED_SPENDS:
-            if source in (before.get("sources") or []):
-                if source not in (person.get("sources") or []):
-                    person["sources"] = (person.get("sources") or []) + [source]
-            note = before.get("note") or ""
-            if marker in note and marker not in (person.get("note") or ""):
-                tail = note[note.index(marker):].strip()
-                person["note"] = ((person.get("note") or "").strip() + " " + tail).strip()
-
-
-def carry_later_trade(doc: dict, existing: dict) -> None:
-    """Keep the later-trade pointer another pass wrote INSIDE this pass's occupation.
-
-    T-0693. `carry_research` above saves a key another pass added to the PERSON, and the
-    `directories` block is carried over whole for the same reason. `occupation` is this
-    pass's own key, though, so the `later_occupation` that
-    `tools/qualify_later_trades.py` writes into it — the pointer that stops "no trade
-    anywhere" and "no trade for 1835, one printed in 1839" being the same record — is
-    inside something this mint re-derives, and would be deleted every run. It is put back
-    where it is written, after `confidence`, so `--check` stays byte-identical. It is
-    derived from the `directories` block and asserts nothing about the scene date.
-    """
-    by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
-    for person in doc.get("persons") or []:
-        pointer = ((by_id.get(person.get("id")) or {}).get("occupation") or {}).get(
-            "later_occupation")
-        occ = person.get("occupation")
-        if pointer is None or not isinstance(occ, dict):
-            continue
-        rebuilt = {}
-        for key, value in occ.items():
-            rebuilt[key] = value
-            if key == "confidence":
-                rebuilt["later_occupation"] = pointer
-        person["occupation"] = rebuilt
-
-
-def carry_research(doc: dict, existing: dict) -> None:
-    """Keep what another pass wrote onto one of these people: the `resident_research`
-    block, and the `ladder_rule` `tools/spend_ladder_rungs.py` spends onto the card.
-
-    T-0720. The rung is the REASON for a grade this pass already wrote and asserts
-    nothing this pass derives, so it survives a re-mint the way the research block does.
-    It goes back immediately after `grade`, which is where the spend writes it and where
-    the civic mint writes its own, so `--check` stays byte-identical either way round.
-    """
-    by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
-    for person in doc.get("persons") or []:
-        prior = by_id.get(person.get("id")) or {}
-        if prior.get("resident_research") and "resident_research" not in person:
-            person["resident_research"] = prior["resident_research"]
-        rung = prior.get("ladder_rule")
-        if not rung or "ladder_rule" in person:
-            continue
-        rebuilt = {}
-        for key, value in person.items():
-            rebuilt[key] = value
-            if key == "grade":
-                rebuilt["ladder_rule"] = rung
-        if "ladder_rule" not in rebuilt:
-            rebuilt["ladder_rule"] = rung
-        person.clear()
-        person.update(rebuilt)
+def carry_over(doc: dict, existing: dict) -> dict:
+    """Keep every sibling pass's finding through the shared marker contract (T-1137)."""
+    # ``sex`` is the one optional person field this mint derives from a printed title.
+    # Its absence is therefore a new answer, not a foreign field to restore.
+    return carry_resident_mint(doc, existing, owned_person_keys=("sex",))
 
 
 def build(preload: dict | None = None):
@@ -671,37 +595,8 @@ def build(preload: dict | None = None):
     seen: set = set()
     for cand, gaz, inside, addressed, issues, neighbours in accepted:
         doc = record(cand, gaz, inside, addressed, issues, neighbours, docs, seen)
-        # THE LATER-EVIDENCE BLOCK IS NOT THIS PASS'S AND IS CARRIED OVER (T-0632).
-        # `tools/spend_directories.py` writes a `directories` key onto the households a
-        # Chicago directory of 1839, 1843 or 1844 meets, holding what those volumes
-        # print beside the person and citing the source. It states nothing about 1835
-        # and this mint derives nothing about it, so re-deriving the record must not
-        # silently delete it — which is what this byte-for-byte gate would otherwise
-        # turn into: the spend pass writes the block, this pass rebuilds without it,
-        # and whichever ran last wins.
         existing = docs.get(HOUSEHOLDS / f"{doc['id']}.json") or {}
-        if existing.get("directories"):
-            doc["directories"] = existing["directories"]
-        # AND THE TOWN'S OWN ROLLS, CARRIED THE SAME WAY AND FOR THE SAME REASON
-        # (T-0634). `tools/spend_civic_voter_lists.py` writes the 1833-1835 poll and tax
-        # lists onto the people its crosswalk matched, as a citation and a paragraph on
-        # the PERSON rather than as a block on the household. This mint derives a person's
-        # sources and note from the newspaper register alone, so rebuilding a record the
-        # rolls have reached would delete the citation and leave two byte-for-byte gates
-        # fighting over the same file — whichever ran last winning, which is not a gate.
-        carry_civic_rolls(doc, existing)
-        # AND THE RESEARCH BLOCK, FOR THE THIRD TIME AND THE SAME REASON (T-0515).
-        # `tools/synthesize_resident_research.py` writes an adjudicated research
-        # outcome onto a person, and the regrade mode of `mint_civic_residents.py`
-        # writes into the same block the rule and date of a grade the ladder moved —
-        # or, on this pass's cards, the REFUSAL that kept a grade where it was. Both
-        # are findings about the person and neither is derived here, so rebuilding
-        # the record must not delete them. Mark Nobles is the one that found this:
-        # his card is the single downgrade the ladder proposes on a residency-tested
-        # person, refused in writing because the card rests on a dated Democrat issue
-        # the consolidation never read, and the refusal is the whole point of it.
-        carry_research(doc, existing)
-        carry_later_trade(doc, existing)
+        carry_over(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])

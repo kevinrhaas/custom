@@ -2128,6 +2128,17 @@ step "the residency-tested residents re-derive from the register" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/mint_placed_residents.py --self-test
 
+# T-1137. A resident card becomes shared state after a mint writes it: research,
+# directory, census, civic, church, land and old-settler passes append findings to
+# the same household and person.  The civic mint used to call its entire derived
+# note the boundary, so changing one character of that prefix silently cut roughly
+# 6,000 characters from Alexander Wolcott's card.  Every appending pass already
+# owns a stable marker for its once-each gate; this proves all four mints use that
+# marker boundary, and changes the derived prose in memory to prove the foreign
+# suffix, citation, blocks, rung and later-trade pointer survive.
+selftest "all four resident mints preserve findings across a derived-note change" \
+  python3 tools/resident_mint_carry.py --self-test
+
 # And the pass beside it, on the other half of `new_resident` (T-0378, T-0379). A person
 # the register reads ONLY from the post office's lists of uncalled-for letters has no
 # trade, so the pass above cannot reach him. It used to take only the names held in more
