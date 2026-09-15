@@ -61,3 +61,45 @@ hundred and fifty lines, it is not zero.
 **Links:** T-1138 (the three lines, and the roster this starts from) · T-1010 (the shape) ·
 T-0424 (the January read this is the April twin of) · T-0321 (the note that first recorded
 the disagreement) · `data/research/newspapers/letter_list_1834_04_01_contested_lines.json`
+
+---
+
+## What was done, against each acceptance clause (2026-09-15)
+
+1. **DONE.** `data/research/newspapers/letter_list_1834_04_01_printed.json` — all 193
+   printed lines of the return, in printed order, read at the 8 April impression (leaf
+   0006, page 3, printed column 3), in T-0424's shape. The 8 April setting was chosen
+   because T-1138 had already established that the 1 April one has the next column's
+   auction advertisement bleeding through its S run and the 16 April one is a narrower
+   reset that loses the tail of most surnames.
+   `letter_list_1834_04_01_concordance.json` is the ledger: one row per printed line, tied
+   to the entity that carries it or recorded as carried by none, derived by
+   `tools/concord_letter_list_1834_04_01.py` and gated by its `--check`.
+2. **DONE, and the page agrees with itself.** 193 lines — 97 in the left sub-column and 96
+   in the right, not the 82 + 81 the 1 April transcription reads — carrying 218 letters
+   once the trailing count digits are added. The office set its own total at the foot of
+   the column: `21[8]`, its last digit inked thin against the column rule. The tally is
+   the measurement and the printed figure agrees with it.
+3. **DONE for 28 of the 30 dropped lines; the rule is named for all 30.** The 1 April
+   transcription drops THIRTY printed lines. Twenty-eight are carried by another
+   impression's claim and enter the mint's pool through it — the ledger names which claim
+   and what each reaches. Two are carried by no claim of any impression and the rule that
+   leaves them outside the pool is stated on their rows: the pool is built of ENTITIES and
+   these two lines are not one. They are `P. Cook` (line 48) and `Jeter Foster` (line 68),
+   and putting them INSIDE the rules needs T-1011's lift, which is on T-1153 — see below.
+   The five findings T-1138 recorded in passing are rows of the ledger rather than notes
+   beside it: `Mason B. Smith` (151) and `Robt. Strong` (158) are both tied to the 16
+   April claim that carries them, and `Orin R. Stevens` (164), `Peter Schauder` (165) and
+   `Stephen M. Salsby` (166) stand under `name_differs` with the other 25.
+4. **CARRIED TO T-1153, and not silently.** 28 lines disagree between the page and an
+   extraction. Moving them is T-1139's kind of work rather than T-1010's — the card takes
+   the image's reading or keeps its own and the ruling names the source that outranks the
+   image there — and at least one of the 28 plainly needs the second answer: line 64 sets
+   `Pierce Dowaer` where the town holds `hh_downer_pierce` on evidence outside this return.
+   Both that adjudication and the lift in clause 3 end in ONE run of
+   `tools/mint_letter_list_residents.py`, and that writer rewrites **744 files with 25,932
+   deletions on the committed tree with no edit at all** — measured this run, filed onto
+   **T-1137**, which owns the question under FILING RULE (a). Neither tail can be shipped
+   honestly until that is fixed, so both are on T-1153, parked under FILING RULE (d).
+5. **DONE.** `./tools/check.sh` green, with the concordance gated the way T-1010's is —
+   `--check` and `--self-test`, wired beside the January pair.
