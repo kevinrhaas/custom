@@ -424,3 +424,7 @@ T-1137 — A change to the civic mint's derived note silently deletes every othe
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
 T-1143 — Build a closed research-spend ledger: every committed research unit is asserted, later-only, outside Chicago, aggregate, refused, unresolved or linked to its owning ticket
+T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
+T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
+T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
+T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
