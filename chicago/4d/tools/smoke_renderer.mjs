@@ -8535,6 +8535,13 @@ for (const [label, viewport, touch] of [
           (id) => [id, document.getElementById(id)?.textContent?.trim() ?? null]),
         units: document.getElementById('s-units')?.value,
         mapSize: [mapCanvas.width, mapCanvas.height],
+        // T-1142. The BACKING store is CSS px x dpr and so differs between the
+        // two viewports for reasons that are not the frame; the box is what the
+        // visitor sees, and it is the box that must not move when ground does.
+        mapBox: (() => {
+          const b = mapCanvas.getBoundingClientRect();
+          return { w: Math.round(b.width), h: Math.round(b.height) };
+        })(),
         east,
         first,
         second: signature(),
@@ -8544,13 +8551,29 @@ for (const [label, viewport, touch] of [
     check(`${label}: compass shows the live heading`,
       nav.compassShown && nav.east.direction === 'E' && nav.east.bearing === '090°',
       `${nav.east.direction} ${nav.east.bearing}`);
-    check(`${label}: overview map renders the whole heightfield`,
+    check(`${label}: the overview map is shown, captioned and read in imperial`,
       nav.mapShown && nav.mapSize[0] >= 188 && nav.mapSize[1] >= 76
       && nav.east.snapshot.bounds.eMax - nav.east.snapshot.bounds.eMin > 1900
       && nav.mapCaption === 'map' && nav.units === 'imperial'
       && /feet|ft/.test(nav.mapAria ?? ''),
       `${nav.mapSize.join('x')}, caption ${nav.mapCaption}, aria ${nav.mapAria}, `
       + `E ${nav.east.snapshot.bounds.eMin}…${nav.east.snapshot.bounds.eMax}`);
+    // T-1142. THE FRAME IS A CONSTANT, and this is the assertion that keeps it
+    // one. It used to be the field's own aspect ratio —
+    //   logicalHeight = round(logicalWidth * (nMax - nMin) / (eMax - eMin))
+    // — so the widget was the ground's shadow, and when T-1067, T-1123 and
+    // T-0464 grew the field in two days the inset went 248x98 -> 248x604, more
+    // than half a phone screen, with the town smeared across the top of it.
+    // These numbers are what that formula PRODUCED on the 2026-09-12 field, so
+    // an edit that re-derives the height from `bounds` fails HERE rather than
+    // shipping — which matters because T-0466 widens the field to four
+    // kilometres and would walk the whole fault back in.
+    const frame = touch ? { w: 188, h: 76 } : { w: 248, h: 98 };
+    check(`${label}: the overview inset is a fixed ${frame.w}x${frame.h} frame, not the field's shape`,
+      Math.abs(nav.mapBox.w - frame.w) <= 1 && Math.abs(nav.mapBox.h - frame.h) <= 1,
+      `inset ${nav.mapBox.w}x${nav.mapBox.h} css px (expected ${frame.w}x${frame.h}), `
+      + `backing ${nav.mapSize.join('x')}, field `
+      + `${Math.round(nav.east.snapshot.bounds.nMax - nav.east.snapshot.bounds.nMin)} m deep`);
     // T-1081. The readout is `gait · speed` — "walk · 3.2 mph" — since T-0823 gave
     // each pace a named gait, and this assertion's `^`-anchored bare-number pattern
     // had called dev red on that prefix on both viewports for a week, which is a
@@ -8573,6 +8596,125 @@ for (const [label, viewport, touch] of [
       nav.first !== nav.second && Math.abs(nav.moved.e - 180) < 0.1
       && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
       `canvas ${nav.first} -> ${nav.second}; ${JSON.stringify(nav.moved)}`);
+
+    // T-1142. The inset is a WINDOW on the field, so the three things that make
+    // it one are read off `snapshot().viewport` — it travels with the visitor,
+    // it carries the pre-growth scale, and it stops at the field's edge instead
+    // of running off into ground that does not exist. Read as numbers rather
+    // than pixels, because "the picture changed" cannot tell a window that
+    // moved from a marker sliding over a static image of everything.
+    const win = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const b = api.navigation.snapshot().bounds;
+      const mapCanvas = document.getElementById('overview-map-canvas');
+      const signature = () => {
+        const p = mapCanvas.getContext('2d').getImageData(0, 0, mapCanvas.width, mapCanvas.height).data;
+        let hash = 2166136261;
+        for (let i = 0; i < p.length; i += 37) hash = Math.imul(hash ^ p[i], 16777619) >>> 0;
+        return hash;
+      };
+      const at = (n) => {
+        api.walker.teleport({ local_e: 20, local_n: n, yaw_deg: 0 });
+        api.step();
+        const s = api.navigation.snapshot();
+        return { n, view: s.viewport, inset: s.inset, sig: signature() };
+      };
+      const mid = (b.nMin + b.nMax) / 2;
+      const low = at(mid);
+      const high = at(mid + 1000);
+      const south = at(b.nMin + 5);
+      const north = at(b.nMax - 5);
+      // Hand the walker back where the checks above left it, so nothing after
+      // this reading inherits a visitor standing 3.8 km out of town.
+      api.walker.teleport({ local_e: 180, local_n: 90, yaw_deg: 225 });
+      api.step();
+      return { b, low, high, south, north };
+    });
+    const spanN = win.low.view.nMax - win.low.view.nMin;
+    const spanE = win.low.view.eMax - win.low.view.eMin;
+    check(`${label}: the overview window travels with the visitor at the scale it had before`,
+      win.low.sig !== win.high.sig
+      && Math.abs((win.high.view.nMin - win.low.view.nMin) - 1000) < 1
+      && Math.abs(spanN - win.low.inset.h * win.low.inset.mPerPx) < 1
+      && Math.abs(spanE - win.low.inset.w * win.low.inset.mPerPx) < 1
+      && Math.abs(win.low.inset.mPerPx - 2020 / 248) < 0.01,
+      `window ${Math.round(spanE)}x${Math.round(spanN)} m at `
+      + `${win.low.inset.mPerPx.toFixed(3)} m/px; a 1 000 m step north moved nMin `
+      + `${(win.high.view.nMin - win.low.view.nMin).toFixed(1)} m; `
+      + `signature ${win.low.sig} -> ${win.high.sig}`);
+    check(`${label}: the overview window clamps to the field instead of running past it`,
+      Math.abs(win.south.view.nMin - win.b.nMin) < 0.5
+      && win.south.view.nMax <= win.b.nMax + 0.5
+      && Math.abs(win.north.view.nMax - win.b.nMax) < 0.5
+      && win.north.view.nMin >= win.b.nMin - 0.5,
+      `field N ${Math.round(win.b.nMin)}…${Math.round(win.b.nMax)}; `
+      + `at the south edge the window is ${Math.round(win.south.view.nMin)}…`
+      + `${Math.round(win.south.view.nMax)}, at the north edge `
+      + `${Math.round(win.north.view.nMin)}…${Math.round(win.north.view.nMax)}`);
+
+    // The other half of the bargain: the whole field is still reachable, it has
+    // just moved to a pop-out. This is where "renders the whole heightfield"
+    // now lives. Opened through the real control with a real hit test, because
+    // the opener is a transparent button laid over the inset and "covered by
+    // something else" is exactly how that fails.
+    await clickChrome('#overview-open');
+    const pop = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const el = document.getElementById('overview-full');
+      const c = document.getElementById('overview-full-canvas');
+      const box = c.getBoundingClientRect();
+      const p = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
+      let ink = 0;
+      for (let i = 3; i < p.length; i += 404) if (p[i] > 0) ink++;
+      return {
+        open: !el.hasAttribute('hidden'),
+        apiOpen: api.navigation.fullOpen,
+        w: Math.round(box.width),
+        h: Math.round(box.height),
+        onScreen: box.width > 0 && box.height > 0
+          && box.top >= -1 && box.bottom <= window.innerHeight + 1,
+        ink,
+        foot: document.getElementById('overview-full-foot')?.textContent?.trim() ?? '',
+        focus: document.activeElement?.id ?? '',
+      };
+    });
+    const fieldAspect = (win.b.nMax - win.b.nMin) / (win.b.eMax - win.b.eMin);
+    check(`${label}: the pop-out renders the whole heightfield`,
+      pop.open && pop.apiOpen && pop.ink > 0 && pop.onScreen
+      && Math.abs(pop.h / pop.w - fieldAspect) < 0.05
+      // The foot says how far across the field is, in the visitor's own units —
+      // `formatDistance` abbreviates, so this reads the abbreviations it emits
+      // rather than the words it does not ("1.3 mi", not "1.3 miles").
+      && /\b(ft|feet|yd|mi|miles?)\b/.test(pop.foot),
+      `${pop.w}x${pop.h} px, aspect ${(pop.h / pop.w).toFixed(3)} against the field's `
+      + `${fieldAspect.toFixed(3)}, ${pop.ink} inked samples, foot ${JSON.stringify(pop.foot)}`);
+    await page.keyboard.press('Escape');
+    const shut = await page.evaluate(() => ({
+      hidden: document.getElementById('overview-full').hasAttribute('hidden'),
+      apiOpen: window.__chicago4d.navigation.fullOpen,
+      focus: document.activeElement?.id ?? '',
+    }));
+    check(`${label}: Escape puts the pop-out away and hands focus back to the map`,
+      shut.hidden && !shut.apiOpen && shut.focus === 'overview-open',
+      `hidden ${shut.hidden}, api ${shut.apiOpen}, focus ${JSON.stringify(shut.focus)} `
+      + `(was ${JSON.stringify(pop.focus)} while open)`);
+    // And the settings toggle owns BOTH of them: a pop-out standing over a map
+    // the visitor has switched off is the setting not being obeyed.
+    const offWhileHidden = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      api.navigation.setMapVisible(false);
+      const refused = api.navigation.setFullVisible(true);
+      const state = {
+        refused,
+        hidden: document.getElementById('overview-full').hasAttribute('hidden'),
+      };
+      api.navigation.setMapVisible(true);
+      return state;
+    });
+    check(`${label}: the pop-out cannot be opened while the map is switched off`,
+      offWhileHidden.refused === false && offWhileHidden.hidden,
+      `setFullVisible answered ${offWhileHidden.refused}, `
+      + `overlay hidden ${offWhileHidden.hidden}`);
 
     // (The street-layer reading that lived here moved above the stage split —
     // T-0060 — because its checks span stages 3 and 4.)

@@ -261,6 +261,7 @@ T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave
 # --- the signboard rule applies.
 
 T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
+T-1142 — The overview map grew six times taller when the ground did: a fixed frame, a window that moves with you, and a pop-out for the whole field
 
 
 # --- ==========================================================================
@@ -421,4 +422,7 @@ T-1137 — A change to the civic mint's derived note silently deletes every othe
 # --- a finding that belongs to an OPEN ticket goes onto that ticket under rule (a), which is
 # --- still the preferred answer; and a finding that is not research at all is banded normally.
 # --- Empty is the correct state of this section.
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
