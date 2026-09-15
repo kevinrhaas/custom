@@ -4,16 +4,17 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1308,
+  "town_people": 1307,
   "open_clusters": 19,
   "cards_in_open_clusters": 41,
   "rulings": {
-   "distinct": 13,
-   "merge": 39,
+   "distinct": 14,
+   "merge": 40,
+   "undecided_T-1135": 1,
    "undecided_rule": 12
   },
-  "landed_merges": 39,
-  "cards_folded": 58
+  "landed_merges": 40,
+  "cards_folded": 59
  },
  "landed": [
   {
@@ -330,6 +331,16 @@
     "owen_thomas"
    ],
    "rule": "C0"
+  },
+  {
+   "cluster": "pearson-pearsons",
+   "survivor": "pearsons_hiram",
+   "survivor_household": "hh_pearsons_hiram",
+   "survivor_on_the_cards": true,
+   "folded": [
+    "pearson_hiram"
+   ],
+   "rule": "C9"
   },
   {
    "cluster": "peck",

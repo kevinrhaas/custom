@@ -168,9 +168,10 @@
 # --- namesake in the residents layer and no ruling on either, which is the state a
 # --- consolidation cannot use, because an absent merge reads exactly like a pair nobody has
 # --- looked at.
-T-1131 — Alexander Wolcott died in October 1830 and his card reads present on 1 July 1835: the bracket's at-or-before leg is his own death notice
 
-T-1130 — Nineteen town cards stand one letter apart in the surname and identical in the forename, and the merge machinery has never been shown one of them
+T-1133 — The seven one-letter town pairs the post office alone prints
+T-1134 — The ten one-letter town pairs the town's own lists print with no anchor on either card
+T-1135 — Peter Pruyne against Peter Pryne: exhaust the 1833 tax roll, or leave the town two men of one stem
 
 # --- ==========================================================================
 # --- 2. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
@@ -208,6 +209,8 @@ T-1130 — Nineteen town cards stand one letter apart in the surname and identic
 # --- Also standing: the frontage layer leans on a confidence grade alone to keep street furniture
 # --- off an unoccupied invented building, because the hitching rule omits the anonymity clause
 # --- the signboard rule applies.
+
+T-1131 — Alexander Wolcott died in October 1830 and his card reads present on 1 July 1835: the bracket's at-or-before leg is his own death notice
 T-1127 — The stem budget binds now the ground reaches Kinzie's Addition, so the wood is cut off in a straight line at the north edge
 
 
@@ -355,3 +358,4 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
+

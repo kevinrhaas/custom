@@ -5,24 +5,24 @@
   "source_id": "chicago_voter_lists_1833_1835_irad",
   "publication_source_id": "chicago_genealogist_1993_voter_lists",
   "crosswalk_target": "data/residents/households/*.json",
-  "residents_compared": 1308,
+  "residents_compared": 1307,
   "counts": {
     "entries": 345,
-    "matched": 300,
+    "matched": 298,
     "candidate": 11,
-    "unmatched": 34,
+    "unmatched": 36,
     "per_list": {
       "poll_1833": {
         "entries": 30,
-        "matched": 26,
+        "matched": 25,
         "candidate": 1,
-        "unmatched": 3
+        "unmatched": 4
       },
       "tax_1833": {
         "entries": 115,
-        "matched": 93,
+        "matched": 92,
         "candidate": 1,
-        "unmatched": 21
+        "unmatched": 22
       },
       "poll_1834": {
         "entries": 115,
@@ -317,13 +317,13 @@
       "list": "poll_1833",
       "as_read": "Pearson, Hiram",
       "normalized": "Hiram Pearson",
-      "outcome": "matched",
-      "matched_resident": "pearson_hiram",
-      "household_id": "hh_pearson_hiram",
-      "discriminator": "forenames agree initial for initial: entry 'Hiram Pearson' against resident 'Hiram Pearson'",
+      "outcome": "unmatched",
+      "matched_resident": null,
+      "household_id": null,
+      "discriminator": null,
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Pearson' agrees with the entry's forenames; 1 bearer(s) of the surname were considered."
+      "rule": "no resident of the surname 'Pearson' agrees with the entry's forenames (0 bearer(s) of the surname considered), and no bridge row carries the entry."
     },
     {
       "record_id": "poll_1833_023",
@@ -1491,13 +1491,13 @@
       "list": "tax_1833",
       "as_read": "Pearson, Hiram",
       "normalized": "Hiram Pearson",
-      "outcome": "matched",
-      "matched_resident": "pearson_hiram",
-      "household_id": "hh_pearson_hiram",
-      "discriminator": "forenames agree initial for initial: entry 'Hiram Pearson' against resident 'Hiram Pearson'",
+      "outcome": "unmatched",
+      "matched_resident": null,
+      "household_id": null,
+      "discriminator": null,
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Pearson' agrees with the entry's forenames; 1 bearer(s) of the surname were considered."
+      "rule": "no resident of the surname 'Pearson' agrees with the entry's forenames (0 bearer(s) of the surname considered), and no bridge row carries the entry."
     },
     {
       "record_id": "tax_1833_083",

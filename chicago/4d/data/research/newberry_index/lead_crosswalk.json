@@ -51,9 +51,9 @@
    "candidate": 261
   },
   "by_class": {
-   "ocr_variant_only": 359,
+   "ocr_variant_only": 360,
    "testable_in_a_held_work": 261,
-   "locality_absent": 289,
+   "locality_absent": 288,
    "surname_only_chicago": 100
   },
   "matched": 0,
@@ -28010,17 +28010,12 @@
    ],
    "layer": "residents",
    "outcome": "refused",
-   "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Pearson' name Illinois and neither Chicago nor Cook County, so the lead against Hiram Pearson; Hiram Pearsons stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "class": "ocr_variant_only",
+   "reason": "Refused twice over. No candidate reaches 'Pearson' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Pearson' at all. And if it were, a heading against Hiram Pearsons would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v03_1211"
    ],
    "candidates": [
-    {
-     "id": "pearson_hiram",
-     "name": "Hiram Pearson",
-     "rule": "exact surname"
-    },
     {
      "id": "pearsons_hiram",
      "name": "Hiram Pearsons",
@@ -28028,7 +28023,6 @@
     }
    ],
    "person_ids": [
-    "pearson_hiram",
     "pearsons_hiram"
    ],
    "works_cited": [],
@@ -79378,10 +79372,10 @@
   {
    "record_id": "nbi_v03_1211",
    "a": "Pearson | \"•amaeTajteyaa. mm ... j , , , ,U, L 1 1 ,„ L",
-   "b": "John Pearson; William Pearson; Hiram Pearson; Hiram Pearsons; Hiram Pearson; Hiram Pearson; Hiram Pearsons",
+   "b": "John Pearson; William Pearson; Hiram Pearsons; Hiram Pearson; Hiram Pearson; Hiram Pearsons",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Pearson' name Illinois and neither Chicago nor Cook County, so the lead against John Pearson; William Pearson stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Pearson | \"•amaeTajteyaa. mm ... j , , , ,U, L 1 1 ,„ L' against John Pearson; William Pearson; Hiram Pearson; Hiram Pearsons; Hiram Pearson; Hiram Pearson; Hiram Pearsons.",
+   "rule": "Refused. All 1 card(s) heading 'Pearson' name Illinois and neither Chicago nor Cook County, so the lead against John Pearson; William Pearson stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Pearson | \"•amaeTajteyaa. mm ... j , , , ,U, L 1 1 ,„ L' against John Pearson; William Pearson; Hiram Pearsons; Hiram Pearson; Hiram Pearson; Hiram Pearsons.",
    "layers": [
     "census_1840",
     "residents",
@@ -79393,10 +79387,9 @@
     "lead_v03_pearson_voters"
    ],
    "person_ids": [
-    "pearson_hiram",
     "pearsons_hiram"
    ],
-   "person_id": null,
+   "person_id": "pearsons_hiram",
    "evidence": [
     "nbi_v03_1211",
     "data/research/newberry_index/leads.json"

@@ -12,13 +12,13 @@
  "whole_name_rule": ". A printed forename and a reading of 1835 are THE SAME NAME when\nthey set the SAME NUMBER of words and agree word by word — each pair either\nletter for letter, or one of them the single initial the other begins with.\nWhere exactly ONE candidate is the same name in that sense, the page names\nthat one and no other. Where none is, or more than one is, nothing happens\nand the tie stands with the reason filed.",
  "wife_rule": "— the second clause, and it is R6 arriving where it\nwas always true. `tools/consolidate_resident_evidence.py` holds `Mrs Rufus\nBrown` apart from `Rufus Brown` (R6, T-0723) because the honorific strip leaves\nthe husband's forename tokens on both readings and folds a wife onto him. The\ncrosswalks strip titles the same way and had no such rule, so the town layer's\ntwo people met `Brown, Rufus B., warehouseman` together and were filed as a\nCONTEST — a man contesting a printed line with his own wife. Where one\ncandidate of 1835 carries a female honorific, its forename tokens are exactly\nthose of another candidate carried WITHOUT one, and the printed entry sets no\nfemale honorific of its own, the entry is the husband's and she is not named by\nit. The proof is the same proof R6 asks for and it is in the contest itself:\nthe town layer prints both readings, which is what put them here together.",
  "counts": {
-  "residents_considered": 1306,
+  "residents_considered": 1305,
   "matched_one_1843_entry": 136,
   "matched_more_than_one_ambiguous": 15,
   "one_1843_entry_contested_by_two_residents": 2,
-  "surname_present_initial_absent_refused": 326,
-  "of_those_an_entry_one_letter_off_the_surname": 15,
-  "entries_one_letter_off_a_refused_surname": 12,
+  "surname_present_initial_absent_refused": 325,
+  "of_those_an_entry_one_letter_off_the_surname": 14,
+  "entries_one_letter_off_a_refused_surname": 11,
   "of_those_overturned": 0,
   "letter_list_bucket_refused": 2,
   "residents_that_refusal_reaches": 2,
@@ -7377,13 +7377,6 @@
    "rule": "The surname 'Hugunin' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Hiram Hugunin'. A surname-only agreement is a refusal."
   },
   {
-   "resident": "Hiram Pearson",
-   "person_id": "pearson_hiram",
-   "surname_in_1843": "Pearson",
-   "candidates": 2,
-   "rule": "The surname 'Pearson' is in Fergus 1843 and no entry under it carries the initial 'H' of 'Hiram Pearson'. A surname-only agreement is a refusal."
-  },
-  {
    "resident": "Hugh Todd",
    "person_id": "todd_hugh",
    "surname_in_1843": "Todd",
@@ -8684,24 +8677,6 @@
      "text": "data/research/books/text/fergus_26_29.txt",
      "line": 4549,
      "reads": "Yates,  Horace  Harris,  family  grocer,  39  Clark"
-    }
-   },
-   {
-    "resident": "Hiram Pearson",
-    "surname_1835": "Pearson",
-    "entry_surname": "Pearsons",
-    "printed_name": "Pearsons, Hiram",
-    "clause": "the volume sets both spellings",
-    "outcome": "refused",
-    "rule": "Fergus 1843 prints 2 entries under 'Pearson' and 1 under 'Pearsons', so the compositor set both spellings and set them apart: a directory does not enter one person twice under two spellings, and a one-letter distance between two surnames the volume itself distinguishes is its distinction and not its damage. The printed volume's own OCR reads 'Pearsons' on that line too, so the variant is not this transcription's damage either.",
-    "person_id": "pearson_hiram",
-    "claim": "f1843_e1971",
-    "as_printed": "Pearsons, Hiram, speculator, bds Tremont House [died, Almeda, Cal, August 11, 1868. aged 57]",
-    "second_hand": {
-     "source_id": "fergus_historical_series_26_29",
-     "text": "data/research/books/text/fergus_26_29.txt",
-     "line": 4042,
-     "reads": "Pearsons,  Hiram,  speculator,  l)ds  Trejnont  House"
     }
    },
    {

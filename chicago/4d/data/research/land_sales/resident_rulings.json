@@ -2452,15 +2452,16 @@
   },
   {
    "purchaser_as_read": "PEARSON HIRAM",
-   "resident_id": "pearson_hiram",
-   "ruling": "refused",
-   "ruled_on": "2026-09-11",
-   "ticket": "T-1034",
+   "resident_id": "pearsons_hiram",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-15",
+   "ticket": "T-1132",
    "checked_against": [
     "isa_public_domain_land_tract_sales",
+    "andreas_1884_v1",
     "chicago_voter_lists_1833_1835_irad"
    ],
-   "reasoning": "REFUSED, and this one is refused with a positive reason rather than for want of evidence. The register itself is the rival reading: it enters PEARSONS HIRAM and PEARSONS H forty-four times — including lot 8 of block 36 and lot 8 of block 37 in this same June 1836 town sale, six days before these rows — and that spelling is upheld to Hiram Pearsons, whom the corpus prints as one of the town's largest buyers. Against that, the town's record of a Hiram PEARSON is two bare lines, the poll and the tax list of 1833, and a surname fold away from the other man; the likelier reading is the register dropping the S. Four lots of block 1, 28 June 1836, $22,410 — the largest retraction in the cohort, and it comes off a card that should probably not have carried it."
+   "reasoning": "UPHELD, REVERSING T-1034's REFUSAL OF 2026-09-11 ON THE GROUND THAT REFUSAL ITSELF NAMED. T-1034 refused these four lots because 'the likelier reading is the register dropping the S' and the town's Hiram PEARSON was 'a surname fold away from the other man' — a fold nobody had ruled, so the retraction was the conservative reading of an open question. T-1132 has now ruled it: `pearson_hiram` folds onto `pearsons_hiram` under C9, on this same register's own inconsistency — it enters PEARSONS H and PEARSON H inside the same week of June 1835, and PEARSON HIRAM here six days after PEARSONS HIRAM took lot 8 of block 36 and lot 8 of block 37 in the same town sale. With one man where there were two, the rival reading T-1034 weighed against has become the same man, and the only question left is whether these rows are his. They are: four lots of block 1, 28 June 1836, $22,410, in the sale the upheld spelling is buying through on either side of them. The retraction T-1034 called 'the largest in the cohort' is given back to the card that should have carried it."
   },
   {
    "purchaser_as_read": "ROBERTS E",
@@ -3046,6 +3047,23 @@
    "retired_on": "2026-09-10",
    "retired_under": "T-0851",
    "retired_because": "The same absorption as GARRETT A ET CO above, and this ruling's own reasoning said so before the rule existed: 'Refused for the reason T-0700 refused GARRETT A ET CO … AND CO is the page saying the buyer was a PARTNERSHIP.' T-0851's namesake.firm_style() now reads that partnership style off the register and build_resident_crosswalk() refuses every firm against every person BY RULE, before the surname gathers anybody — so the crosswalk no longer proposes PRUYNE P AND CO at all, and a hand ruling on it is a ruling on nothing, which is what read_land_sales.py --check called it. Retired rather than deleted: the argument is what the rule was written from, and this is the second firm it caught — the one whose entry had been written onto Peter Pruyne's card as his own purchase, which a hand ruling on one spelling could never have reached."
+  }
+ ],
+ "withdrawn": [
+  {
+   "purchaser_as_read": "PEARSON HIRAM",
+   "resident_id": "pearson_hiram",
+   "ruling": "refused",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-1034",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "chicago_voter_lists_1833_1835_irad"
+   ],
+   "reasoning": "REFUSED, and this one is refused with a positive reason rather than for want of evidence. The register itself is the rival reading: it enters PEARSONS HIRAM and PEARSONS H forty-four times — including lot 8 of block 36 and lot 8 of block 37 in this same June 1836 town sale, six days before these rows — and that spelling is upheld to Hiram Pearsons, whom the corpus prints as one of the town's largest buyers. Against that, the town's record of a Hiram PEARSON is two bare lines, the poll and the tax list of 1833, and a surname fold away from the other man; the likelier reading is the register dropping the S. Four lots of block 1, 28 June 1836, $22,410 — the largest retraction in the cohort, and it comes off a card that should probably not have carried it.",
+   "withdrawn_on": "2026-09-15",
+   "withdrawn_by": "T-1132",
+   "reason": "THE CARD IT REFUSED ONTO NO LONGER EXISTS. This judgement is not overturned on new land evidence; it is withdrawn because its subject was folded away. `pearson_hiram` was merged onto `pearsons_hiram` under C9 on 2026-09-15, so a ruling whose resident_id names the folded card can no longer be asked or answered — it would read as a judgement about a person the town does not carry. T-1034's own reasoning had said the likelier reading was the register dropping the S and that the town's Hiram PEARSON stood 'a surname fold away from the other man'; that fold is now ruled, and the question it left open is answered in `ruled[]` by the entry for PEARSON HIRAM against `pearsons_hiram`, which upholds what this one retracted. Kept verbatim so the retraction and its reasoning survive the reversal."
   }
  ]
 }

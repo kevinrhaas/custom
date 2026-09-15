@@ -26,7 +26,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1306
+   "n": 1305
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -48,7 +48,7 @@
   "residents_matched_one_entry": 163,
   "residents_ambiguous": 11,
   "residents_contested": 4,
-  "residents_surname_only_refused": 263,
+  "residents_surname_only_refused": 262,
   "voters_matched_one_entry": 122,
   "voters_ambiguous": 39,
   "voters_surname_only_refused": 75,
@@ -5815,11 +5815,6 @@
     "name": "Hiram Hovey",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Hovey' is in Fergus 1839 and no entry under it carries the initial 'H' of 'Hiram Hovey'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Hiram Pearson",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Pearson' is in Fergus 1839 and no entry under it carries the initial 'H' of 'Hiram Pearson'. A surname-only agreement is a refusal."
    },
    {
     "name": "Ira Kimberly",

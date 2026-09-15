@@ -1,7 +1,7 @@
 ---
 id: T-1130
 title: Nineteen town cards stand one letter apart in the surname and identical in the forename, and the merge machinery has never been shown one of them
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-14
-closed: null
+closed: 2026-09-14
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-15T01:46:40.834Z
 claimed_run: null
 ---
 
