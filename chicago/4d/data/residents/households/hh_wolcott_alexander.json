@@ -41,14 +41,14 @@
   "note": "Not attested. No trade is recorded here, so there is no premises to seek; T-0633 is where a later directory's address gets back-projected."
  },
  "present_on_scene_date": {
-  "value": "present",
-  "confidence": "inferred",
+  "value": "absent",
+  "confidence": "attested",
   "sources": [
    "chicago_voter_lists_1833_1835_irad",
    "fergus_1843_old_settler_death_notices",
    "fergus_chicago_directory_1843"
   ],
-  "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
+  "note": "THE RECORD PLACES THIS PERSON NOWHERE ON THE DAY, BECAUSE HE WAS DEAD. The old settlers' obituary dates the death 31 December 1830, before the scene date of 1 July 1835, and no record that places a person at Chicago names this one after it. A DEATH NOTICE IS NOT A PRESENCE (T-1131): the old settlers' obituary declares `places_in_1835: false` on every record it publishes, because its own header admits it prints citizens who arrived after 1843. It dates a death; it never says the man was standing in the town on 1 July 1835 — so it cannot be the at-or-before leg of a bracket, and a later source on the far side cannot close one over a dead man. `absent` and not `uncertain`: a silence is somewhere the sources have not looked, and a death is not a silence."
  },
  "persons": [
   {

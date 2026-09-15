@@ -121,8 +121,11 @@ pass, and `mint_civic_residents.py --check` re-derives all 414 byte for byte.
   notice of 25 October 1830, bracketed against a directory of 1843. That is a second and
   separate defect — a death is not a presence, and `death_notices.json` already records
   `places_in_1835: false` for its whole class while `presence_block` does not read it.
-  **T-1131** carries it. The ruling's own star witness is the next ticket, which is a
-  better outcome than quietly fixing two questions in one PR.
+  **T-1131** carried it, and read the answer off a field the domain had already
+  published: `places_in_1835` is refused as an at-or-before leg of the bracket and left
+  standing as an after leg, and this card became `absent` —
+  `docs/RESEARCH/a_death_notice_is_not_a_presence.md`. The ruling's own star witness was
+  the next ticket, which is a better outcome than quietly fixing two questions in one PR.
 
 ## How this stays true
 

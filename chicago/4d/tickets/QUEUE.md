@@ -359,3 +359,7 @@ T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugu
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
+T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
+T-1137 — A change to the civic mint's derived note silently deletes every other pass's findings appended to the same card
