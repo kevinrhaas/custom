@@ -51,3 +51,23 @@ with T-0467 (which puts real anchors down there) rather than before it.
 ceilings are held with; whatever they say is written down beside the downtown ones; and
 if they are over, the answer is argued — a trim, a distance rule, or an argued
 re-budget — rather than the ceiling being moved to fit.
+
+---
+
+**WHAT THE READING FOUND (2026-09-15).** Taken on `tools/measure_detail_ceilings.mjs`
+with the new `--south` flag, at the same four poses, all three tiers, both gate
+viewports; committed in `data/render/southern_stand_ceilings.json`.
+
+The southern four ARE over -- worst 2,161,179 against 1,460,000 at `full` desktop, and
+1,379,963 against 825,000 at `light`. The ground-tiling instrument was not reading high:
+the two tools agree to within 0.7 per cent on every stand they share.
+
+But the downtown five are over too, at every tier and both viewports -- 1,883,619 at
+Lake Street at Canal against the same 1,460,000. So the excess is NOT southern, and
+none of the three answers this ticket offered for it (a trim down there, a distance
+rule, a southern re-budget) would touch the larger breach it sits on top of. That is
+filed as **T-1154**, with the bisection and the trim as its acceptance. The southern
+stands' own question -- whether poses with no anchors under them should be held to the
+town's ceilings at all -- stays where this ticket put it, with T-0467.
+
+No ceiling was moved.
