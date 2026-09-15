@@ -1,7 +1,7 @@
 ---
 id: T-1139
 title: Nineteen minted cards wear the transcription's spelling where the 1 January 1834 page image sets another
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-15
+pr: 1350
+claimed_by: run 9/15/2026, 4:41:02 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-15T10:55:03.225Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34953599120
 ---
 
 Nineteen minted cards wear the transcription's spelling where the 1 January 1834 page image

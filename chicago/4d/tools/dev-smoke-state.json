@@ -1,1855 +1,101 @@
 {
-  "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
+  "note": "T-0216 \u2014 dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log \u2014 local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree \u2014 but read the stage number as dated rather than current.",
   "readings": [
     {
       "viewport": "mobile",
-      "stage": "3,10",
+      "stage": "5-8",
       "parts": [
-        3,
-        10
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 112,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 399,
-      "takenAt": "2026-09-15T08:59:34.169Z",
-      "ref": "steward/t-1134-town-list-one-letter-pairs",
-      "commit": "aefff6699523",
-      "devCommit": "827c5523bfde",
-      "treeHash": "sha256:6ef2e22a8a4a3b00",
-      "treeDirty": false,
-      "changelogHash": "sha256:eb59f0ed1e3c1826",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.7,
-          4.6,
-          4.1
-        ]
-      },
-      "source": "/tmp/smoke_m310.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3,10",
-      "parts": [
-        3,
-        10
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 112,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 686,
-      "takenAt": "2026-09-15T08:52:43.895Z",
-      "ref": "steward/t-1134-town-list-one-letter-pairs",
-      "commit": "aefff6699523",
-      "devCommit": "827c5523bfde",
-      "treeHash": "sha256:6ef2e22a8a4a3b00",
-      "treeDirty": false,
-      "changelogHash": "sha256:eb59f0ed1e3c1826",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.4,
-          3.8
-        ]
-      },
-      "source": "/tmp/smoke_d310.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 67,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 378,
-      "takenAt": "2026-09-15T08:41:11.658Z",
-      "ref": "steward/t-1134-town-list-one-letter-pairs",
-      "commit": "aefff6699523",
-      "devCommit": "827c5523bfde",
-      "treeHash": "sha256:6ef2e22a8a4a3b00",
-      "treeDirty": false,
-      "changelogHash": "sha256:eb59f0ed1e3c1826",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.8,
-          4.4,
-          3.1
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 171,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 512,
-      "takenAt": "2026-09-15T08:34:48.872Z",
-      "ref": "steward/t-1134-town-list-one-letter-pairs",
-      "commit": "aefff6699523",
-      "devCommit": "827c5523bfde",
-      "treeHash": "sha256:6ef2e22a8a4a3b00",
-      "treeDirty": false,
-      "changelogHash": "sha256:eb59f0ed1e3c1826",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.2,
-          3.6,
-          2.3
-        ]
-      },
-      "source": "/tmp/smoke_m1213.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 113,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 556,
-      "takenAt": "2026-09-15T03:25:48.095Z",
-      "ref": "steward/t-1130-anchored-one-letter-pairs",
-      "commit": "667e1849a2e3",
-      "devCommit": "8bd9bbc4724e",
-      "treeHash": "sha256:fcb0d695ad8ac146",
-      "treeDirty": false,
-      "changelogHash": "sha256:69d1922c4c1173c6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.5,
-          4.1
-        ]
-      },
-      "source": "/tmp/sm_d13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 171,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 504,
-      "takenAt": "2026-09-15T03:25:48.003Z",
-      "ref": "steward/t-1130-anchored-one-letter-pairs",
-      "commit": "667e1849a2e3",
-      "devCommit": "8bd9bbc4724e",
-      "treeHash": "sha256:fcb0d695ad8ac146",
-      "treeDirty": false,
-      "changelogHash": "sha256:69d1922c4c1173c6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.5,
-          4.1
-        ]
-      },
-      "source": "/tmp/sm_m1213.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,10",
-      "parts": [
-        3,
-        10
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 112,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 399,
-      "takenAt": "2026-09-15T03:25:47.912Z",
-      "ref": "steward/t-1130-anchored-one-letter-pairs",
-      "commit": "667e1849a2e3",
-      "devCommit": "8bd9bbc4724e",
-      "treeHash": "sha256:fcb0d695ad8ac146",
-      "treeDirty": false,
-      "changelogHash": "sha256:69d1922c4c1173c6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.3,
-          4.5,
-          4.1
-        ]
-      },
-      "source": "/tmp/sm_m310.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 113,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 507,
-      "takenAt": "2026-09-15T01:31:50.404Z",
-      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
-      "commit": "1e8bf1a44d12",
-      "devCommit": "de79c0f0699a",
-      "treeHash": "sha256:65969ad2d95d7aa6",
-      "treeDirty": false,
-      "changelogHash": "sha256:ed22c003547df009",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.9,
-          4.6,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 89,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 205,
-      "takenAt": "2026-09-15T01:23:19.660Z",
-      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
-      "commit": "1e8bf1a44d12",
-      "devCommit": "de79c0f0699a",
-      "treeHash": "sha256:65969ad2d95d7aa6",
-      "treeDirty": false,
-      "changelogHash": "sha256:ed22c003547df009",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.1,
-          2.9
-        ]
-      },
-      "source": "/tmp/smoke_d3.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 113,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 292,
-      "takenAt": "2026-09-15T01:19:50.772Z",
-      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
-      "commit": "1e8bf1a44d12",
-      "devCommit": "de79c0f0699a",
-      "treeHash": "sha256:65969ad2d95d7aa6",
-      "treeDirty": false,
-      "changelogHash": "sha256:ed22c003547df009",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.8,
-          3.8,
-          2.4
-        ]
-      },
-      "source": "/tmp/smoke_m13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 147,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 300,
-      "takenAt": "2026-09-15T01:14:51.510Z",
-      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
-      "commit": "1e8bf1a44d12",
-      "devCommit": "de79c0f0699a",
-      "treeHash": "sha256:65969ad2d95d7aa6",
-      "treeDirty": false,
-      "changelogHash": "sha256:ed22c003547df009",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          3,
-          1.7
-        ]
-      },
-      "source": "/tmp/smoke_m312.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 113,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 565,
-      "takenAt": "2026-09-15T00:24:25.364Z",
-      "ref": "steward/t-0987-stretch-15-1843-initial-absent",
-      "commit": "1681aa886462",
-      "devCommit": "fcd6cc97e608",
-      "treeHash": "sha256:dc6d0097676deedb",
-      "treeDirty": false,
-      "changelogHash": "sha256:08efb72f916f4388",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5,
-          4.7,
-          3.8
-        ]
-      },
-      "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 67,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 404,
-      "takenAt": "2026-09-15T00:14:39.742Z",
-      "ref": "steward/t-0987-stretch-15-1843-initial-absent",
-      "commit": "1681aa886462",
-      "devCommit": "fcd6cc97e608",
-      "treeHash": "sha256:dc6d0097676deedb",
-      "treeDirty": false,
-      "changelogHash": "sha256:08efb72f916f4388",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.2,
-          3
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 171,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 503,
-      "takenAt": "2026-09-15T00:07:49.821Z",
-      "ref": "steward/t-0987-stretch-15-1843-initial-absent",
-      "commit": "1681aa886462",
-      "devCommit": "fcd6cc97e608",
-      "treeHash": "sha256:dc6d0097676deedb",
-      "treeDirty": false,
-      "changelogHash": "sha256:08efb72f916f4388",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.3,
-          3.6,
-          2.2
-        ]
-      },
-      "source": "/tmp/smoke_m1213.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 171,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 508,
-      "takenAt": "2026-09-14T23:14:09.734Z",
-      "ref": "steward/t-1128-exact-namesake-rulings",
-      "commit": "09d399e72652",
-      "devCommit": "9b232f7baa62",
-      "treeHash": "sha256:0fe3791bb4ee81d8",
-      "treeDirty": false,
-      "changelogHash": "sha256:425f25472beaa143",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.2,
-          3.4
-        ]
-      },
-      "source": "/tmp/s2_m1213.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 67,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 437,
-      "takenAt": "2026-09-14T23:05:35.172Z",
-      "ref": "steward/t-1128-exact-namesake-rulings",
-      "commit": "09d399e72652",
-      "devCommit": "9b232f7baa62",
-      "treeHash": "sha256:0fe3791bb4ee81d8",
-      "treeDirty": false,
-      "changelogHash": "sha256:425f25472beaa143",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.6,
-          3.7,
-          2.7
-        ]
-      },
-      "source": "/tmp/s2_d12.txt"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 113,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 392,
-      "takenAt": "2026-09-14T21:50:43.201Z",
-      "ref": "rescue",
-      "commit": "c3cdc0e55c35",
-      "devCommit": "82af939d6f8c",
-      "treeHash": "sha256:f5bbf9a390817b94",
-      "treeDirty": false,
-      "changelogHash": "sha256:d6ebdc3ebd98dcd3",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.1,
-          4.4,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke-d-13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 147,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 462,
-      "takenAt": "2026-09-14T21:44:06.784Z",
-      "ref": "rescue",
-      "commit": "c3cdc0e55c35",
-      "devCommit": "82af939d6f8c",
-      "treeHash": "sha256:f5bbf9a390817b94",
-      "treeDirty": false,
-      "changelogHash": "sha256:d6ebdc3ebd98dcd3",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.5,
-          3.9,
-          2.9
-        ]
-      },
-      "source": "/tmp/smoke-d-3-12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12-13",
-      "parts": [
-        3,
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 251,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 421,
-      "takenAt": "2026-09-14T21:36:15.164Z",
-      "ref": "rescue",
-      "commit": "c3cdc0e55c35",
-      "devCommit": "82af939d6f8c",
-      "treeHash": "sha256:f5bbf9a390817b94",
-      "treeDirty": false,
-      "changelogHash": "sha256:d6ebdc3ebd98dcd3",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          3.4,
-          2.1
-        ]
-      },
-      "source": "/tmp/smoke-m-3-12-13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 113,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 380,
-      "takenAt": "2026-09-14T21:06:25.242Z",
-      "ref": "steward/t-1109-pass-14-findings-rederive",
-      "commit": "4af008f75379",
-      "devCommit": "71d45c499206",
-      "treeHash": "sha256:ede73a85bd5add6e",
-      "treeDirty": false,
-      "changelogHash": "sha256:bbd3b67e20136de6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.8,
-          4.6,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke_d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 147,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 472,
-      "takenAt": "2026-09-14T21:06:25.147Z",
-      "ref": "steward/t-1109-pass-14-findings-rederive",
-      "commit": "4af008f75379",
-      "devCommit": "71d45c499206",
-      "treeHash": "sha256:ede73a85bd5add6e",
-      "treeDirty": false,
-      "changelogHash": "sha256:bbd3b67e20136de6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.8,
-          4.6,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke_d312.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 113,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 213,
-      "takenAt": "2026-09-14T21:06:25.052Z",
-      "ref": "steward/t-1109-pass-14-findings-rederive",
-      "commit": "4af008f75379",
-      "devCommit": "71d45c499206",
-      "treeHash": "sha256:ede73a85bd5add6e",
-      "treeDirty": false,
-      "changelogHash": "sha256:bbd3b67e20136de6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.8,
-          4.6,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke_m13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 147,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 231,
-      "takenAt": "2026-09-14T21:06:24.959Z",
-      "ref": "steward/t-1109-pass-14-findings-rederive",
-      "commit": "4af008f75379",
-      "devCommit": "71d45c499206",
-      "treeHash": "sha256:ede73a85bd5add6e",
-      "treeDirty": false,
-      "changelogHash": "sha256:bbd3b67e20136de6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.8,
-          4.6,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke_m312.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "12",
-      "parts": [
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 67,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 319,
-      "takenAt": "2026-09-14T20:20:05.043Z",
-      "ref": "steward/t-1110-st-marys-crosswalk",
-      "commit": "e710e60990a9",
-      "devCommit": "71d45c499206",
-      "treeHash": "sha256:7281864391ecf6a4",
-      "treeDirty": false,
-      "changelogHash": "sha256:331d44fc644ec16c",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.3,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke-desktop-12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "12-13",
-      "parts": [
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 171,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 378,
-      "takenAt": "2026-09-14T20:20:04.945Z",
-      "ref": "steward/t-1110-st-marys-crosswalk",
-      "commit": "e710e60990a9",
-      "devCommit": "71d45c499206",
-      "treeHash": "sha256:7281864391ecf6a4",
-      "treeDirty": false,
-      "changelogHash": "sha256:331d44fc644ec16c",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          5.2,
-          4.3,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke-mobile-1213.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 81,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 358,
-      "takenAt": "2026-09-14T19:02:41.926Z",
-      "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "de02b456d5cb",
-      "devCommit": "a9d736e4718c",
-      "treeHash": "sha256:d1904474edd9855d",
-      "treeDirty": false,
-      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4,
-          3.4,
-          2.7
-        ]
-      },
-      "source": "/tmp/d1b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-4",
-      "parts": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 259,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 496,
-      "takenAt": "2026-09-14T18:43:33.638Z",
-      "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "cd053e481ecf",
-      "devCommit": "a9d736e4718c",
-      "treeHash": "sha256:d1904474edd9855d",
-      "treeDirty": false,
-      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.8,
-          3.3
-        ]
-      },
-      "source": "/tmp/m14.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "8-9",
-      "parts": [
-        8,
-        9
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 31,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 442,
-      "takenAt": "2026-09-14T18:43:33.540Z",
-      "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "cd053e481ecf",
-      "devCommit": "a9d736e4718c",
-      "treeHash": "sha256:d1904474edd9855d",
-      "treeDirty": false,
-      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.8,
-          3.3
-        ]
-      },
-      "source": "/tmp/d89.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2-3",
-      "parts": [
-        2,
-        3
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 166,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 475,
-      "takenAt": "2026-09-14T18:43:33.444Z",
-      "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "cd053e481ecf",
-      "devCommit": "a9d736e4718c",
-      "treeHash": "sha256:d1904474edd9855d",
-      "treeDirty": false,
-      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.8,
-          3.3
-        ]
-      },
-      "source": "/tmp/d23.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 81,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 351,
-      "takenAt": "2026-09-14T18:43:33.346Z",
-      "ref": "steward/t-1126-orphan-furniture-load-failures",
-      "commit": "cd053e481ecf",
-      "devCommit": "a9d736e4718c",
-      "treeHash": "sha256:d1904474edd9855d",
-      "treeDirty": false,
-      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.8,
-          3.3
-        ]
-      },
-      "source": "/tmp/d1.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 112,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 404,
-      "takenAt": "2026-09-14T17:38:07.409Z",
-      "ref": "steward/t-1122-householder-prose-sex",
-      "commit": "ae2290e9d98b",
-      "devCommit": "f839907e964b",
-      "treeHash": "sha256:6e6489c9c6ad8951",
-      "treeDirty": false,
-      "changelogHash": "sha256:84a814804b2a93fa",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.6,
-          4.6,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke-desktop-13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 146,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 482,
-      "takenAt": "2026-09-14T17:38:07.314Z",
-      "ref": "steward/t-1122-householder-prose-sex",
-      "commit": "ae2290e9d98b",
-      "devCommit": "f839907e964b",
-      "treeHash": "sha256:6e6489c9c6ad8951",
-      "treeDirty": false,
-      "changelogHash": "sha256:84a814804b2a93fa",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.6,
-          4.6,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke-desktop-3-12.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12-13",
-      "parts": [
-        3,
-        12,
-        13
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 250,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 458,
-      "takenAt": "2026-09-14T17:38:07.219Z",
-      "ref": "steward/t-1122-householder-prose-sex",
-      "commit": "ae2290e9d98b",
-      "devCommit": "f839907e964b",
-      "treeHash": "sha256:6e6489c9c6ad8951",
-      "treeDirty": false,
-      "changelogHash": "sha256:84a814804b2a93fa",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.6,
-          4.6,
-          3.7
-        ]
-      },
-      "source": "/tmp/smoke-mobile-3-12-13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 113,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 401,
-      "takenAt": "2026-09-14T16:22:57.459Z",
-      "ref": "steward/t-1029-rederive-civic-crosswalks",
-      "commit": "04132a11cb00",
-      "devCommit": "e446a807b956",
-      "treeHash": "sha256:39788c1927efca24",
-      "treeDirty": false,
-      "changelogHash": "sha256:0b05fc2da9a8c6e8",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.6,
-          4.5,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke-desk-b.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 147,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 402,
-      "takenAt": "2026-09-14T16:22:57.365Z",
-      "ref": "steward/t-1029-rederive-civic-crosswalks",
-      "commit": "04132a11cb00",
-      "devCommit": "e446a807b956",
-      "treeHash": "sha256:39788c1927efca24",
-      "treeDirty": false,
-      "changelogHash": "sha256:0b05fc2da9a8c6e8",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.6,
-          4.5,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke-desk-a.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12-13",
-      "parts": [
-        3,
-        12,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 251,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 393,
-      "takenAt": "2026-09-14T16:22:57.272Z",
-      "ref": "steward/t-1029-rederive-civic-crosswalks",
-      "commit": "04132a11cb00",
-      "devCommit": "e446a807b956",
-      "treeHash": "sha256:39788c1927efca24",
-      "treeDirty": false,
-      "changelogHash": "sha256:0b05fc2da9a8c6e8",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.6,
-          4.5,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke-mobile.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 113,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 390,
-      "takenAt": "2026-09-14T15:16:03.902Z",
-      "ref": "steward/t-1125-lost-judgement-registry",
-      "commit": "3a81e787cfa6",
-      "devCommit": "b4419a72b711",
-      "treeHash": "sha256:6f70bccce77ec33a",
-      "treeDirty": false,
-      "changelogHash": "sha256:fb6d5c307dd24fd4",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.2,
-          3.9,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke-d13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 89,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 155,
-      "takenAt": "2026-09-14T15:16:03.811Z",
-      "ref": "steward/t-1125-lost-judgement-registry",
-      "commit": "3a81e787cfa6",
-      "devCommit": "b4419a72b711",
-      "treeHash": "sha256:6f70bccce77ec33a",
-      "treeDirty": false,
-      "changelogHash": "sha256:fb6d5c307dd24fd4",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.2,
-          3.9,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke-d3.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,13",
-      "parts": [
-        3,
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 193,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": null,
-      "takenAt": "2026-09-14T15:15:58.262Z",
-      "ref": "steward/t-1125-lost-judgement-registry",
-      "commit": "3a81e787cfa6",
-      "devCommit": "b4419a72b711",
-      "treeHash": "sha256:6f70bccce77ec33a",
-      "treeDirty": false,
-      "changelogHash": "sha256:fb6d5c307dd24fd4",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.5,
-          4,
-          2.7
-        ]
-      },
-      "source": "/tmp/smoke-d3.log /tmp/smoke-d13.log /tmp/smoke-m313.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 113,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 399,
-      "takenAt": "2026-09-14T13:28:57.389Z",
-      "ref": "steward/t-0999-rulings-loss-guard",
-      "commit": "712c3fe456b8",
-      "devCommit": "4c6a59d13e6b",
-      "treeHash": "sha256:0cce74db599bec22",
-      "treeDirty": false,
-      "changelogHash": "sha256:7237c0f9e0de7801",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.6,
-          3.8,
-          2.3
-        ]
-      },
-      "source": "/tmp/smoke-desktop-13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "13",
-      "parts": [
-        13
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 113,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 214,
-      "takenAt": "2026-09-14T13:28:57.295Z",
-      "ref": "steward/t-0999-rulings-loss-guard",
-      "commit": "712c3fe456b8",
-      "devCommit": "4c6a59d13e6b",
-      "treeHash": "sha256:0cce74db599bec22",
-      "treeDirty": false,
-      "changelogHash": "sha256:7237c0f9e0de7801",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.6,
-          3.8,
-          2.3
-        ]
-      },
-      "source": "/tmp/smoke-mobile-13.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1-2",
-      "parts": [
-        1,
-        2
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 157,
-      "failed": 1,
-      "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 612,
-      "takenAt": "2026-09-14T11:48:03.760Z",
-      "ref": "steward/t-1123-north-ground-kinzie",
-      "commit": "c9933dfa046a",
-      "devCommit": "ee71cd2ae5c6",
-      "treeHash": "sha256:c858de2756a6ab75",
-      "treeDirty": false,
-      "changelogHash": "sha256:03df904d1cb890d0",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0,
-          1.5,
-          1.8
-        ]
-      },
-      "source": "/tmp/smoke_d12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 81,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 288,
-      "takenAt": "2026-09-14T08:53:04.623Z",
-      "ref": "steward/t-1067-north-of-the-box",
-      "commit": "510eb511388d",
-      "devCommit": "27ff2d8c44f7",
-      "treeHash": "sha256:8f8ca95b0e59854b",
-      "treeDirty": false,
-      "changelogHash": "sha256:7b0886441d3d9ae6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.5,
-          4.2,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d1.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 23,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 125,
-      "takenAt": "2026-09-13T19:41:54.647Z",
-      "ref": "steward/t-0809-rotting-pr-rule",
-      "commit": "2e881f4e0234",
-      "devCommit": "3bfa59b62fe4",
-      "treeHash": "sha256:023d1297910f53fb",
-      "treeDirty": false,
-      "changelogHash": "sha256:7c88427d4bcc6984",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          2.5,
-          1.6
-        ]
-      },
-      "source": "/tmp/smoke-d9b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "9",
-      "parts": [
-        9
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 23,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 67,
-      "takenAt": "2026-09-13T19:41:54.567Z",
-      "ref": "steward/t-0809-rotting-pr-rule",
-      "commit": "2e881f4e0234",
-      "devCommit": "3bfa59b62fe4",
-      "treeHash": "sha256:023d1297910f53fb",
-      "treeDirty": false,
-      "changelogHash": "sha256:7c88427d4bcc6984",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          2.5,
-          1.6
-        ]
-      },
-      "source": "/tmp/smoke-m9b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1,3,12",
-      "parts": [
-        1,
-        3,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 213,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 375,
-      "takenAt": "2026-09-13T19:01:21.843Z",
-      "ref": "steward/t-1107-fort-plate-panels",
-      "commit": "06bbb1c2acf5",
-      "devCommit": "ea858c44a41c",
-      "treeHash": "sha256:023d1297910f53fb",
-      "treeDirty": false,
-      "changelogHash": "sha256:7c88427d4bcc6984",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          2.2,
-          3.9,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke_m.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-3",
-      "parts": [
-        1,
-        2,
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 232,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 204,
-      "takenAt": "2026-09-13T17:27:36.023Z",
-      "ref": "steward/t-0891-plate-read-ring-resolver",
-      "commit": "11d079b5dfd4",
-      "devCommit": "6c80b4abc554",
-      "treeHash": "sha256:0c75e341c7cc138b",
-      "treeDirty": false,
-      "changelogHash": "sha256:5f9a0d673730be73",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4,
-          4.1,
-          3.2
-        ]
-      },
-      "source": "/tmp/s2_m13.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "10-12",
-      "parts": [
-        10,
-        11,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 103,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 271,
-      "takenAt": "2026-09-13T17:27:35.951Z",
-      "ref": "steward/t-0891-plate-read-ring-resolver",
-      "commit": "11d079b5dfd4",
-      "devCommit": "6c80b4abc554",
-      "treeHash": "sha256:0c75e341c7cc138b",
-      "treeDirty": false,
-      "changelogHash": "sha256:5f9a0d673730be73",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4,
-          4.1,
-          3.2
-        ]
-      },
-      "source": "/tmp/s2_m1012.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "7-8",
-      "parts": [
+        5,
+        6,
         7,
         8
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 32,
+      "passed": 51,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 273,
-      "takenAt": "2026-09-13T16:53:20.094Z",
-      "ref": "steward/t-1105-tract-aware-generators",
-      "commit": "093004562bfe",
-      "devCommit": "c34919d9f275",
-      "treeHash": "sha256:49b960ba8647589b",
-      "treeDirty": false,
-      "changelogHash": "sha256:b41da0babd4f7e72",
+      "wallSeconds": 519,
+      "takenAt": "2026-08-30T08:43:06.219Z",
+      "ref": "steward/t-0379-letter-list-scale",
+      "commit": "b8a7d540d43d",
+      "devCommit": "afa7c2f6e1da",
+      "treeHash": "sha256:f04d3ae0d12a9edb",
+      "treeDirty": true,
+      "changelogHash": "sha256:e90cede42bb20ab1",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          1.1,
-          2.4,
-          2.4
+          0.6,
+          2.5,
+          3.6
         ]
       },
-      "source": "/tmp/smoke_d78.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "7",
-      "parts": [
-        7
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 24,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 201,
-      "takenAt": "2026-09-13T12:26:07.134Z",
-      "ref": "steward/t-1081-speed-label-gait-prefix",
-      "commit": "60e6189efe66",
-      "devCommit": "047a56c7555d",
-      "treeHash": "sha256:2e84b90ceb72de5e",
-      "treeDirty": false,
-      "changelogHash": "sha256:64e943589b834a3e",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4,
-          2.9
-        ]
-      },
-      "source": "/tmp/smoke-m7b.log"
+      "source": "/tmp/s_m5_8.log"
     },
     {
       "viewport": "desktop",
-      "stage": "11",
+      "stage": "5",
       "parts": [
-        11
+        5
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 22,
+      "passed": 25,
       "failed": 0,
       "failures": [],
-      "wallSeconds": 203,
-      "takenAt": "2026-09-13T12:20:24.930Z",
-      "ref": "steward/t-1106-far-split-silhouette",
-      "commit": "c640045ae399",
-      "devCommit": "1fdf91eec70c",
-      "treeHash": "sha256:573c81f943106cd9",
-      "treeDirty": false,
-      "changelogHash": "sha256:68d7fc656cfe5d1a",
+      "wallSeconds": 295,
+      "takenAt": "2026-08-30T08:43:06.794Z",
+      "ref": "steward/t-0379-letter-list-scale",
+      "commit": "b8a7d540d43d",
+      "devCommit": "afa7c2f6e1da",
+      "treeHash": "sha256:f04d3ae0d12a9edb",
+      "treeDirty": true,
+      "changelogHash": "sha256:e90cede42bb20ab1",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.5,
-          4.4,
-          3.3
+          0.6,
+          2.5,
+          3.6
         ]
       },
-      "source": "/tmp/smoke_d_11.log"
+      "source": "/tmp/s_d5.log"
     },
     {
       "viewport": "desktop",
-      "stage": "3,10",
+      "stage": "6",
       "parts": [
-        3,
-        10
+        6
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 103,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 360,
-      "takenAt": "2026-09-13T12:20:24.857Z",
-      "ref": "steward/t-1106-far-split-silhouette",
-      "commit": "c640045ae399",
-      "devCommit": "1fdf91eec70c",
-      "treeHash": "sha256:573c81f943106cd9",
-      "treeDirty": false,
-      "changelogHash": "sha256:68d7fc656cfe5d1a",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4.5,
-          4.4,
-          3.3
-        ]
-      },
-      "source": "/tmp/smoke_d_3_10.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "2-3,12",
-      "parts": [
-        2,
-        3,
-        12
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 215,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 463,
-      "takenAt": "2026-09-13T09:34:20.983Z",
-      "ref": "steward/t-0332-brick-row-name",
-      "commit": "787edc7df017",
-      "devCommit": "1ced9343e20d",
-      "treeHash": "sha256:03e1f7c868f1416f",
-      "treeDirty": false,
-      "changelogHash": "sha256:d53f6aebd08ed9e1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          4.2,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke_db.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-4",
-      "parts": [
-        1,
-        2,
-        3,
-        4
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 250,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 312,
-      "takenAt": "2026-09-13T09:34:20.908Z",
-      "ref": "steward/t-0332-brick-row-name",
-      "commit": "787edc7df017",
-      "devCommit": "1ced9343e20d",
-      "treeHash": "sha256:03e1f7c868f1416f",
-      "treeDirty": false,
-      "changelogHash": "sha256:d53f6aebd08ed9e1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          4.2,
-          3.5
-        ]
-      },
-      "source": "/tmp/smoke_m14b.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "2,7-8",
-      "parts": [
-        2,
-        7,
-        8
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 106,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: walking speed is presented in miles per hour — speed label walk · 3.2 mph",
-        "mobile 390x780: raising the road-legibility aid reaches the render — set to 1, reads back 1: cell delta mean 0.24, worst 3 (need worst>=4, mean>=0.15)"
-      ],
-      "wallSeconds": 343,
-      "takenAt": "2026-09-13T01:14:15.200Z",
-      "ref": "steward/t-1095-west-division-numerals",
-      "commit": "f8c940708aaa",
-      "devCommit": "54cd2ecb25c0",
-      "treeHash": "sha256:01fe4516da362c88",
-      "treeDirty": false,
-      "changelogHash": "sha256:13a42dcbb05369c9",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.7,
-          3.2,
-          1.7
-        ]
-      },
-      "source": "/tmp/smoke_m1.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3-4",
-      "parts": [
-        3,
-        4
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 98,
+      "passed": 15,
       "failed": 0,
       "failures": [],
       "wallSeconds": 143,
-      "takenAt": "2026-09-06T00:44:54.446Z",
-      "ref": "steward/t-0678-old-settlers-spend",
-      "commit": "2b0339bc76cd",
-      "devCommit": "d17d9cb9e9ec",
-      "treeHash": "sha256:1b4268b824d99296",
+      "takenAt": "2026-08-30T08:43:06.870Z",
+      "ref": "steward/t-0379-letter-list-scale",
+      "commit": "b8a7d540d43d",
+      "devCommit": "afa7c2f6e1da",
+      "treeHash": "sha256:f04d3ae0d12a9edb",
       "treeDirty": true,
-      "changelogHash": "sha256:7daf4bfac3e4e930",
+      "changelogHash": "sha256:e90cede42bb20ab1",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          0.5,
-          1.1,
-          2
+          0.6,
+          2.5,
+          3.6
         ]
       },
-      "source": "/tmp/smoke_d34.log"
+      "source": "/tmp/s_d6.log"
     },
     {
       "viewport": "mobile",
@@ -1887,133 +133,811 @@
     },
     {
       "viewport": "desktop",
-      "stage": "6",
+      "stage": "3-4",
       "parts": [
-        6
+        3,
+        4
       ],
       "verdict": "pass",
       "target": "published",
-      "passed": 15,
+      "passed": 98,
       "failed": 0,
       "failures": [],
       "wallSeconds": 143,
-      "takenAt": "2026-08-30T08:43:06.870Z",
-      "ref": "steward/t-0379-letter-list-scale",
-      "commit": "b8a7d540d43d",
-      "devCommit": "afa7c2f6e1da",
-      "treeHash": "sha256:f04d3ae0d12a9edb",
+      "takenAt": "2026-09-06T00:44:54.446Z",
+      "ref": "steward/t-0678-old-settlers-spend",
+      "commit": "2b0339bc76cd",
+      "devCommit": "d17d9cb9e9ec",
+      "treeHash": "sha256:1b4268b824d99296",
       "treeDirty": true,
-      "changelogHash": "sha256:e90cede42bb20ab1",
+      "changelogHash": "sha256:7daf4bfac3e4e930",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          0.6,
-          2.5,
-          3.6
+          0.5,
+          1.1,
+          2
         ]
       },
-      "source": "/tmp/s_d6.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "5",
-      "parts": [
-        5
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 25,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 295,
-      "takenAt": "2026-08-30T08:43:06.794Z",
-      "ref": "steward/t-0379-letter-list-scale",
-      "commit": "b8a7d540d43d",
-      "devCommit": "afa7c2f6e1da",
-      "treeHash": "sha256:f04d3ae0d12a9edb",
-      "treeDirty": true,
-      "changelogHash": "sha256:e90cede42bb20ab1",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          0.6,
-          2.5,
-          3.6
-        ]
-      },
-      "source": "/tmp/s_d5.log"
+      "source": "/tmp/smoke_d34.log"
     },
     {
       "viewport": "mobile",
-      "stage": "5-8",
+      "stage": "2,7-8",
       "parts": [
-        5,
-        6,
+        2,
         7,
         8
       ],
-      "verdict": "pass",
+      "verdict": "fail",
       "target": "published",
-      "passed": 51,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 519,
-      "takenAt": "2026-08-30T08:43:06.219Z",
-      "ref": "steward/t-0379-letter-list-scale",
-      "commit": "b8a7d540d43d",
-      "devCommit": "afa7c2f6e1da",
-      "treeHash": "sha256:f04d3ae0d12a9edb",
-      "treeDirty": true,
-      "changelogHash": "sha256:e90cede42bb20ab1",
+      "passed": 106,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: walking speed is presented in miles per hour \u2014 speed label walk \u00b7 3.2 mph",
+        "mobile 390x780: raising the road-legibility aid reaches the render \u2014 set to 1, reads back 1: cell delta mean 0.24, worst 3 (need worst>=4, mean>=0.15)"
+      ],
+      "wallSeconds": 343,
+      "takenAt": "2026-09-13T01:14:15.200Z",
+      "ref": "steward/t-1095-west-division-numerals",
+      "commit": "f8c940708aaa",
+      "devCommit": "54cd2ecb25c0",
+      "treeHash": "sha256:01fe4516da362c88",
+      "treeDirty": false,
+      "changelogHash": "sha256:13a42dcbb05369c9",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          0.6,
-          2.5,
-          3.6
+          3.7,
+          3.2,
+          1.7
         ]
       },
-      "source": "/tmp/s_m5_8.log"
+      "source": "/tmp/smoke_m1.log"
     },
     {
       "viewport": "mobile",
+      "stage": "1-4",
+      "parts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 250,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 312,
+      "takenAt": "2026-09-13T09:34:20.908Z",
+      "ref": "steward/t-0332-brick-row-name",
+      "commit": "787edc7df017",
+      "devCommit": "1ced9343e20d",
+      "treeHash": "sha256:03e1f7c868f1416f",
+      "treeDirty": false,
+      "changelogHash": "sha256:d53f6aebd08ed9e1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4.2,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke_m14b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3,12",
+      "parts": [
+        2,
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 215,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 463,
+      "takenAt": "2026-09-13T09:34:20.983Z",
+      "ref": "steward/t-0332-brick-row-name",
+      "commit": "787edc7df017",
+      "devCommit": "1ced9343e20d",
+      "treeHash": "sha256:03e1f7c868f1416f",
+      "treeDirty": false,
+      "changelogHash": "sha256:d53f6aebd08ed9e1",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4.2,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke_db.log"
+    },
+    {
+      "viewport": "desktop",
       "stage": "3,10",
       "parts": [
         3,
         10
       ],
-      "verdict": "fail",
+      "verdict": "pass",
       "target": "published",
-      "passed": 112,
-      "failed": 1,
-      "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
-      ],
-      "wallSeconds": 270,
-      "takenAt": "2026-09-15T06:35:32.913Z",
-      "ref": "steward/t-1133-post-office-one-letter-pairs",
-      "commit": "d555787e79ff",
-      "devCommit": "017b1b696f33",
-      "treeHash": "sha256:3b948e8bdc474868",
+      "passed": 103,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 360,
+      "takenAt": "2026-09-13T12:20:24.857Z",
+      "ref": "steward/t-1106-far-split-silhouette",
+      "commit": "c640045ae399",
+      "devCommit": "1fdf91eec70c",
+      "treeHash": "sha256:573c81f943106cd9",
       "treeDirty": false,
-      "changelogHash": "sha256:f8692cb7159b241a",
+      "changelogHash": "sha256:68d7fc656cfe5d1a",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.2,
-          3.1,
-          2.6
+          4.5,
+          4.4,
+          3.3
         ]
       },
-      "source": "/tmp/smoke_rebased.log"
+      "source": "/tmp/smoke_d_3_10.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "11",
+      "parts": [
+        11
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 22,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 203,
+      "takenAt": "2026-09-13T12:20:24.930Z",
+      "ref": "steward/t-1106-far-split-silhouette",
+      "commit": "c640045ae399",
+      "devCommit": "1fdf91eec70c",
+      "treeHash": "sha256:573c81f943106cd9",
+      "treeDirty": false,
+      "changelogHash": "sha256:68d7fc656cfe5d1a",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.4,
+          3.3
+        ]
+      },
+      "source": "/tmp/smoke_d_11.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "7",
+      "parts": [
+        7
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 24,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 201,
+      "takenAt": "2026-09-13T12:26:07.134Z",
+      "ref": "steward/t-1081-speed-label-gait-prefix",
+      "commit": "60e6189efe66",
+      "devCommit": "047a56c7555d",
+      "treeHash": "sha256:2e84b90ceb72de5e",
+      "treeDirty": false,
+      "changelogHash": "sha256:64e943589b834a3e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke-m7b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "7-8",
+      "parts": [
+        7,
+        8
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 32,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 273,
+      "takenAt": "2026-09-13T16:53:20.094Z",
+      "ref": "steward/t-1105-tract-aware-generators",
+      "commit": "093004562bfe",
+      "devCommit": "c34919d9f275",
+      "treeHash": "sha256:49b960ba8647589b",
+      "treeDirty": false,
+      "changelogHash": "sha256:b41da0babd4f7e72",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          1.1,
+          2.4,
+          2.4
+        ]
+      },
+      "source": "/tmp/smoke_d78.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "10-12",
+      "parts": [
+        10,
+        11,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 103,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 271,
+      "takenAt": "2026-09-13T17:27:35.951Z",
+      "ref": "steward/t-0891-plate-read-ring-resolver",
+      "commit": "11d079b5dfd4",
+      "devCommit": "6c80b4abc554",
+      "treeHash": "sha256:0c75e341c7cc138b",
+      "treeDirty": false,
+      "changelogHash": "sha256:5f9a0d673730be73",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.1,
+          3.2
+        ]
+      },
+      "source": "/tmp/s2_m1012.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-3",
+      "parts": [
+        1,
+        2,
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 232,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 204,
+      "takenAt": "2026-09-13T17:27:36.023Z",
+      "ref": "steward/t-0891-plate-read-ring-resolver",
+      "commit": "11d079b5dfd4",
+      "devCommit": "6c80b4abc554",
+      "treeHash": "sha256:0c75e341c7cc138b",
+      "treeDirty": false,
+      "changelogHash": "sha256:5f9a0d673730be73",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          4.1,
+          3.2
+        ]
+      },
+      "source": "/tmp/s2_m13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1,3,12",
+      "parts": [
+        1,
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 213,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 375,
+      "takenAt": "2026-09-13T19:01:21.843Z",
+      "ref": "steward/t-1107-fort-plate-panels",
+      "commit": "06bbb1c2acf5",
+      "devCommit": "ea858c44a41c",
+      "treeHash": "sha256:023d1297910f53fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:7c88427d4bcc6984",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.2,
+          3.9,
+          3.3
+        ]
+      },
+      "source": "/tmp/smoke_m.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 23,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 67,
+      "takenAt": "2026-09-13T19:41:54.567Z",
+      "ref": "steward/t-0809-rotting-pr-rule",
+      "commit": "2e881f4e0234",
+      "devCommit": "3bfa59b62fe4",
+      "treeHash": "sha256:023d1297910f53fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:7c88427d4bcc6984",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          2.5,
+          1.6
+        ]
+      },
+      "source": "/tmp/smoke-m9b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "9",
+      "parts": [
+        9
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 23,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 125,
+      "takenAt": "2026-09-13T19:41:54.647Z",
+      "ref": "steward/t-0809-rotting-pr-rule",
+      "commit": "2e881f4e0234",
+      "devCommit": "3bfa59b62fe4",
+      "treeHash": "sha256:023d1297910f53fb",
+      "treeDirty": false,
+      "changelogHash": "sha256:7c88427d4bcc6984",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          2.5,
+          1.6
+        ]
+      },
+      "source": "/tmp/smoke-d9b.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 81,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 288,
+      "takenAt": "2026-09-14T08:53:04.623Z",
+      "ref": "steward/t-1067-north-of-the-box",
+      "commit": "510eb511388d",
+      "devCommit": "27ff2d8c44f7",
+      "treeHash": "sha256:8f8ca95b0e59854b",
+      "treeDirty": false,
+      "changelogHash": "sha256:7b0886441d3d9ae6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.5,
+          4.2,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 157,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 612,
+      "takenAt": "2026-09-14T11:48:03.760Z",
+      "ref": "steward/t-1123-north-ground-kinzie",
+      "commit": "c9933dfa046a",
+      "devCommit": "ee71cd2ae5c6",
+      "treeHash": "sha256:c858de2756a6ab75",
+      "treeDirty": false,
+      "changelogHash": "sha256:03df904d1cb890d0",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0,
+          1.5,
+          1.8
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 113,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 214,
+      "takenAt": "2026-09-14T13:28:57.295Z",
+      "ref": "steward/t-0999-rulings-loss-guard",
+      "commit": "712c3fe456b8",
+      "devCommit": "4c6a59d13e6b",
+      "treeHash": "sha256:0cce74db599bec22",
+      "treeDirty": false,
+      "changelogHash": "sha256:7237c0f9e0de7801",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.8,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke-mobile-13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 113,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 399,
+      "takenAt": "2026-09-14T13:28:57.389Z",
+      "ref": "steward/t-0999-rulings-loss-guard",
+      "commit": "712c3fe456b8",
+      "devCommit": "4c6a59d13e6b",
+      "treeHash": "sha256:0cce74db599bec22",
+      "treeDirty": false,
+      "changelogHash": "sha256:7237c0f9e0de7801",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.8,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke-desktop-13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,13",
+      "parts": [
+        3,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 193,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": null,
+      "takenAt": "2026-09-14T15:15:58.262Z",
+      "ref": "steward/t-1125-lost-judgement-registry",
+      "commit": "3a81e787cfa6",
+      "devCommit": "b4419a72b711",
+      "treeHash": "sha256:6f70bccce77ec33a",
+      "treeDirty": false,
+      "changelogHash": "sha256:fb6d5c307dd24fd4",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.5,
+          4,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke-d3.log /tmp/smoke-d13.log /tmp/smoke-m313.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 89,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 155,
+      "takenAt": "2026-09-14T15:16:03.811Z",
+      "ref": "steward/t-1125-lost-judgement-registry",
+      "commit": "3a81e787cfa6",
+      "devCommit": "b4419a72b711",
+      "treeHash": "sha256:6f70bccce77ec33a",
+      "treeDirty": false,
+      "changelogHash": "sha256:fb6d5c307dd24fd4",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.2,
+          3.9,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke-d3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 113,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 390,
+      "takenAt": "2026-09-14T15:16:03.902Z",
+      "ref": "steward/t-1125-lost-judgement-registry",
+      "commit": "3a81e787cfa6",
+      "devCommit": "b4419a72b711",
+      "treeHash": "sha256:6f70bccce77ec33a",
+      "treeDirty": false,
+      "changelogHash": "sha256:fb6d5c307dd24fd4",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.2,
+          3.9,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke-d13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 251,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 393,
+      "takenAt": "2026-09-14T16:22:57.272Z",
+      "ref": "steward/t-1029-rederive-civic-crosswalks",
+      "commit": "04132a11cb00",
+      "devCommit": "e446a807b956",
+      "treeHash": "sha256:39788c1927efca24",
+      "treeDirty": false,
+      "changelogHash": "sha256:0b05fc2da9a8c6e8",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.5,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke-mobile.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 147,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 402,
+      "takenAt": "2026-09-14T16:22:57.365Z",
+      "ref": "steward/t-1029-rederive-civic-crosswalks",
+      "commit": "04132a11cb00",
+      "devCommit": "e446a807b956",
+      "treeHash": "sha256:39788c1927efca24",
+      "treeDirty": false,
+      "changelogHash": "sha256:0b05fc2da9a8c6e8",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.5,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke-desk-a.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 113,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 401,
+      "takenAt": "2026-09-14T16:22:57.459Z",
+      "ref": "steward/t-1029-rederive-civic-crosswalks",
+      "commit": "04132a11cb00",
+      "devCommit": "e446a807b956",
+      "treeHash": "sha256:39788c1927efca24",
+      "treeDirty": false,
+      "changelogHash": "sha256:0b05fc2da9a8c6e8",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.5,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke-desk-b.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 250,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 458,
+      "takenAt": "2026-09-14T17:38:07.219Z",
+      "ref": "steward/t-1122-householder-prose-sex",
+      "commit": "ae2290e9d98b",
+      "devCommit": "f839907e964b",
+      "treeHash": "sha256:6e6489c9c6ad8951",
+      "treeDirty": false,
+      "changelogHash": "sha256:84a814804b2a93fa",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke-mobile-3-12-13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 146,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 482,
+      "takenAt": "2026-09-14T17:38:07.314Z",
+      "ref": "steward/t-1122-householder-prose-sex",
+      "commit": "ae2290e9d98b",
+      "devCommit": "f839907e964b",
+      "treeHash": "sha256:6e6489c9c6ad8951",
+      "treeDirty": false,
+      "changelogHash": "sha256:84a814804b2a93fa",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.6,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke-desktop-3-12.log"
     },
     {
       "viewport": "desktop",
@@ -2023,63 +947,200 @@
       ],
       "verdict": "fail",
       "target": "published",
-      "passed": 113,
+      "passed": 112,
       "failed": 1,
       "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
       ],
-      "wallSeconds": 388,
-      "takenAt": "2026-09-15T06:16:57.589Z",
-      "ref": "steward/t-1133-post-office-one-letter-pairs",
-      "commit": "575a6f8c5650",
-      "devCommit": "017b1b696f33",
-      "treeHash": "sha256:32417eccdada487d",
+      "wallSeconds": 404,
+      "takenAt": "2026-09-14T17:38:07.409Z",
+      "ref": "steward/t-1122-householder-prose-sex",
+      "commit": "ae2290e9d98b",
+      "devCommit": "f839907e964b",
+      "treeHash": "sha256:6e6489c9c6ad8951",
       "treeDirty": false,
-      "changelogHash": "sha256:7afc4b0b255495ce",
+      "changelogHash": "sha256:84a814804b2a93fa",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.8,
           4.6,
-          3.6
+          4.6,
+          3.7
         ]
       },
-      "source": "/tmp/smoke_d_13.log"
+      "source": "/tmp/smoke-desktop-13.log"
     },
     {
       "viewport": "desktop",
-      "stage": "12",
+      "stage": "1",
       "parts": [
-        12
+        1
       ],
       "verdict": "fail",
       "target": "published",
-      "passed": 67,
+      "passed": 81,
       "failed": 1,
       "failures": [
-        "desktop 1280x800: no unexpected loader problems — trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower full's keep fraction, do not lower the budget"
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
       ],
-      "wallSeconds": 275,
-      "takenAt": "2026-09-15T06:10:29.136Z",
-      "ref": "steward/t-1133-post-office-one-letter-pairs",
-      "commit": "575a6f8c5650",
-      "devCommit": "017b1b696f33",
-      "treeHash": "sha256:32417eccdada487d",
+      "wallSeconds": 351,
+      "takenAt": "2026-09-14T18:43:33.346Z",
+      "ref": "steward/t-1126-orphan-furniture-load-failures",
+      "commit": "cd053e481ecf",
+      "devCommit": "a9d736e4718c",
+      "treeHash": "sha256:d1904474edd9855d",
       "treeDirty": false,
-      "changelogHash": "sha256:7afc4b0b255495ce",
+      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
       "host": {
         "kind": "steward-runner",
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          4.4,
-          4.2,
-          3
+          0.6,
+          2.8,
+          3.3
         ]
       },
-      "source": "/tmp/smoke_d_12.log"
+      "source": "/tmp/d1.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "2-3",
+      "parts": [
+        2,
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 166,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 475,
+      "takenAt": "2026-09-14T18:43:33.444Z",
+      "ref": "steward/t-1126-orphan-furniture-load-failures",
+      "commit": "cd053e481ecf",
+      "devCommit": "a9d736e4718c",
+      "treeHash": "sha256:d1904474edd9855d",
+      "treeDirty": false,
+      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.8,
+          3.3
+        ]
+      },
+      "source": "/tmp/d23.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "8-9",
+      "parts": [
+        8,
+        9
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 31,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 442,
+      "takenAt": "2026-09-14T18:43:33.540Z",
+      "ref": "steward/t-1126-orphan-furniture-load-failures",
+      "commit": "cd053e481ecf",
+      "devCommit": "a9d736e4718c",
+      "treeHash": "sha256:d1904474edd9855d",
+      "treeDirty": false,
+      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.8,
+          3.3
+        ]
+      },
+      "source": "/tmp/d89.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "1-4",
+      "parts": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 259,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 496,
+      "takenAt": "2026-09-14T18:43:33.638Z",
+      "ref": "steward/t-1126-orphan-furniture-load-failures",
+      "commit": "cd053e481ecf",
+      "devCommit": "a9d736e4718c",
+      "treeHash": "sha256:d1904474edd9855d",
+      "treeDirty": false,
+      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          0.6,
+          2.8,
+          3.3
+        ]
+      },
+      "source": "/tmp/m14.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 81,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 358,
+      "takenAt": "2026-09-14T19:02:41.926Z",
+      "ref": "steward/t-1126-orphan-furniture-load-failures",
+      "commit": "de02b456d5cb",
+      "devCommit": "a9d736e4718c",
+      "treeHash": "sha256:d1904474edd9855d",
+      "treeDirty": false,
+      "changelogHash": "sha256:8a0f9ef6eb8fba5e",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4,
+          3.4,
+          2.7
+        ]
+      },
+      "source": "/tmp/d1b.log"
     },
     {
       "viewport": "mobile",
@@ -2093,7 +1154,745 @@
       "passed": 171,
       "failed": 1,
       "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 378,
+      "takenAt": "2026-09-14T20:20:04.945Z",
+      "ref": "steward/t-1110-st-marys-crosswalk",
+      "commit": "e710e60990a9",
+      "devCommit": "71d45c499206",
+      "treeHash": "sha256:7281864391ecf6a4",
+      "treeDirty": false,
+      "changelogHash": "sha256:331d44fc644ec16c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.2,
+          4.3,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke-mobile-1213.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 67,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 319,
+      "takenAt": "2026-09-14T20:20:05.043Z",
+      "ref": "steward/t-1110-st-marys-crosswalk",
+      "commit": "e710e60990a9",
+      "devCommit": "71d45c499206",
+      "treeHash": "sha256:7281864391ecf6a4",
+      "treeDirty": false,
+      "changelogHash": "sha256:331d44fc644ec16c",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5.2,
+          4.3,
+          2.7
+        ]
+      },
+      "source": "/tmp/smoke-desktop-12.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 147,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 231,
+      "takenAt": "2026-09-14T21:06:24.959Z",
+      "ref": "steward/t-1109-pass-14-findings-rederive",
+      "commit": "4af008f75379",
+      "devCommit": "71d45c499206",
+      "treeHash": "sha256:ede73a85bd5add6e",
+      "treeDirty": false,
+      "changelogHash": "sha256:bbd3b67e20136de6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke_m312.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 213,
+      "takenAt": "2026-09-14T21:06:25.052Z",
+      "ref": "steward/t-1109-pass-14-findings-rederive",
+      "commit": "4af008f75379",
+      "devCommit": "71d45c499206",
+      "treeHash": "sha256:ede73a85bd5add6e",
+      "treeDirty": false,
+      "changelogHash": "sha256:bbd3b67e20136de6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke_m13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 147,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 472,
+      "takenAt": "2026-09-14T21:06:25.147Z",
+      "ref": "steward/t-1109-pass-14-findings-rederive",
+      "commit": "4af008f75379",
+      "devCommit": "71d45c499206",
+      "treeHash": "sha256:ede73a85bd5add6e",
+      "treeDirty": false,
+      "changelogHash": "sha256:bbd3b67e20136de6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke_d312.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 380,
+      "takenAt": "2026-09-14T21:06:25.242Z",
+      "ref": "steward/t-1109-pass-14-findings-rederive",
+      "commit": "4af008f75379",
+      "devCommit": "71d45c499206",
+      "treeHash": "sha256:ede73a85bd5add6e",
+      "treeDirty": false,
+      "changelogHash": "sha256:bbd3b67e20136de6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.7
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12-13",
+      "parts": [
+        3,
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 251,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 421,
+      "takenAt": "2026-09-14T21:36:15.164Z",
+      "ref": "rescue",
+      "commit": "c3cdc0e55c35",
+      "devCommit": "82af939d6f8c",
+      "treeHash": "sha256:f5bbf9a390817b94",
+      "treeDirty": false,
+      "changelogHash": "sha256:d6ebdc3ebd98dcd3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          3.4,
+          2.1
+        ]
+      },
+      "source": "/tmp/smoke-m-3-12-13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 147,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 462,
+      "takenAt": "2026-09-14T21:44:06.784Z",
+      "ref": "rescue",
+      "commit": "c3cdc0e55c35",
+      "devCommit": "82af939d6f8c",
+      "treeHash": "sha256:f5bbf9a390817b94",
+      "treeDirty": false,
+      "changelogHash": "sha256:d6ebdc3ebd98dcd3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.5,
+          3.9,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke-d-3-12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 392,
+      "takenAt": "2026-09-14T21:50:43.201Z",
+      "ref": "rescue",
+      "commit": "c3cdc0e55c35",
+      "devCommit": "82af939d6f8c",
+      "treeHash": "sha256:f5bbf9a390817b94",
+      "treeDirty": false,
+      "changelogHash": "sha256:d6ebdc3ebd98dcd3",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.1,
+          4.4,
+          3.5
+        ]
+      },
+      "source": "/tmp/smoke-d-13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 67,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 437,
+      "takenAt": "2026-09-14T23:05:35.172Z",
+      "ref": "steward/t-1128-exact-namesake-rulings",
+      "commit": "09d399e72652",
+      "devCommit": "9b232f7baa62",
+      "treeHash": "sha256:0fe3791bb4ee81d8",
+      "treeDirty": false,
+      "changelogHash": "sha256:425f25472beaa143",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.6,
+          3.7,
+          2.7
+        ]
+      },
+      "source": "/tmp/s2_d12.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 171,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 508,
+      "takenAt": "2026-09-14T23:14:09.734Z",
+      "ref": "steward/t-1128-exact-namesake-rulings",
+      "commit": "09d399e72652",
+      "devCommit": "9b232f7baa62",
+      "treeHash": "sha256:0fe3791bb4ee81d8",
+      "treeDirty": false,
+      "changelogHash": "sha256:425f25472beaa143",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.2,
+          3.4
+        ]
+      },
+      "source": "/tmp/s2_m1213.txt"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 171,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 503,
+      "takenAt": "2026-09-15T00:07:49.821Z",
+      "ref": "steward/t-0987-stretch-15-1843-initial-absent",
+      "commit": "1681aa886462",
+      "devCommit": "fcd6cc97e608",
+      "treeHash": "sha256:dc6d0097676deedb",
+      "treeDirty": false,
+      "changelogHash": "sha256:08efb72f916f4388",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.3,
+          3.6,
+          2.2
+        ]
+      },
+      "source": "/tmp/smoke_m1213.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 67,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 404,
+      "takenAt": "2026-09-15T00:14:39.742Z",
+      "ref": "steward/t-0987-stretch-15-1843-initial-absent",
+      "commit": "1681aa886462",
+      "devCommit": "fcd6cc97e608",
+      "treeHash": "sha256:dc6d0097676deedb",
+      "treeDirty": false,
+      "changelogHash": "sha256:08efb72f916f4388",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 565,
+      "takenAt": "2026-09-15T00:24:25.364Z",
+      "ref": "steward/t-0987-stretch-15-1843-initial-absent",
+      "commit": "1681aa886462",
+      "devCommit": "fcd6cc97e608",
+      "treeHash": "sha256:dc6d0097676deedb",
+      "treeDirty": false,
+      "changelogHash": "sha256:08efb72f916f4388",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5,
+          4.7,
+          3.8
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 147,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 300,
+      "takenAt": "2026-09-15T01:14:51.510Z",
+      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
+      "commit": "1e8bf1a44d12",
+      "devCommit": "de79c0f0699a",
+      "treeHash": "sha256:65969ad2d95d7aa6",
+      "treeDirty": false,
+      "changelogHash": "sha256:ed22c003547df009",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          3,
+          1.7
+        ]
+      },
+      "source": "/tmp/smoke_m312.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 292,
+      "takenAt": "2026-09-15T01:19:50.772Z",
+      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
+      "commit": "1e8bf1a44d12",
+      "devCommit": "de79c0f0699a",
+      "treeHash": "sha256:65969ad2d95d7aa6",
+      "treeDirty": false,
+      "changelogHash": "sha256:ed22c003547df009",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.8,
+          3.8,
+          2.4
+        ]
+      },
+      "source": "/tmp/smoke_m13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 89,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 205,
+      "takenAt": "2026-09-15T01:23:19.660Z",
+      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
+      "commit": "1e8bf1a44d12",
+      "devCommit": "de79c0f0699a",
+      "treeHash": "sha256:65969ad2d95d7aa6",
+      "treeDirty": false,
+      "changelogHash": "sha256:ed22c003547df009",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          4.1,
+          2.9
+        ]
+      },
+      "source": "/tmp/smoke_d3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 507,
+      "takenAt": "2026-09-15T01:31:50.404Z",
+      "ref": "steward/t-1117-tax-list-is-not-a-residence-check",
+      "commit": "1e8bf1a44d12",
+      "devCommit": "de79c0f0699a",
+      "treeHash": "sha256:65969ad2d95d7aa6",
+      "treeDirty": false,
+      "changelogHash": "sha256:ed22c003547df009",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.9,
+          4.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,10",
+      "parts": [
+        3,
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 112,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 399,
+      "takenAt": "2026-09-15T03:25:47.912Z",
+      "ref": "steward/t-1130-anchored-one-letter-pairs",
+      "commit": "667e1849a2e3",
+      "devCommit": "8bd9bbc4724e",
+      "treeHash": "sha256:fcb0d695ad8ac146",
+      "treeDirty": false,
+      "changelogHash": "sha256:69d1922c4c1173c6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4.5,
+          4.1
+        ]
+      },
+      "source": "/tmp/sm_m310.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 171,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 504,
+      "takenAt": "2026-09-15T03:25:48.003Z",
+      "ref": "steward/t-1130-anchored-one-letter-pairs",
+      "commit": "667e1849a2e3",
+      "devCommit": "8bd9bbc4724e",
+      "treeHash": "sha256:fcb0d695ad8ac146",
+      "treeDirty": false,
+      "changelogHash": "sha256:69d1922c4c1173c6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4.5,
+          4.1
+        ]
+      },
+      "source": "/tmp/sm_m1213.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 556,
+      "takenAt": "2026-09-15T03:25:48.095Z",
+      "ref": "steward/t-1130-anchored-one-letter-pairs",
+      "commit": "667e1849a2e3",
+      "devCommit": "8bd9bbc4724e",
+      "treeHash": "sha256:fcb0d695ad8ac146",
+      "treeDirty": false,
+      "changelogHash": "sha256:69d1922c4c1173c6",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4.5,
+          4.1
+        ]
+      },
+      "source": "/tmp/sm_d13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,10",
+      "parts": [
+        3,
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 112,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 272,
+      "takenAt": "2026-09-15T06:00:02.796Z",
+      "ref": "steward/t-1133-post-office-one-letter-pairs",
+      "commit": "575a6f8c5650",
+      "devCommit": "017b1b696f33",
+      "treeHash": "sha256:32417eccdada487d",
+      "treeDirty": false,
+      "changelogHash": "sha256:7afc4b0b255495ce",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.2,
+          2.7,
+          1.7
+        ]
+      },
+      "source": "/tmp/smoke_m_3_10.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 171,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
       ],
       "wallSeconds": 340,
       "takenAt": "2026-09-15T06:05:49.500Z",
@@ -2116,21 +1915,20 @@
       "source": "/tmp/smoke_m_12_13.log"
     },
     {
-      "viewport": "mobile",
-      "stage": "3,10",
+      "viewport": "desktop",
+      "stage": "12",
       "parts": [
-        3,
-        10
+        12
       ],
       "verdict": "fail",
       "target": "published",
-      "passed": 112,
+      "passed": 67,
       "failed": 1,
       "failures": [
-        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
       ],
-      "wallSeconds": 272,
-      "takenAt": "2026-09-15T06:00:02.796Z",
+      "wallSeconds": 275,
+      "takenAt": "2026-09-15T06:10:29.136Z",
       "ref": "steward/t-1133-post-office-one-letter-pairs",
       "commit": "575a6f8c5650",
       "devCommit": "017b1b696f33",
@@ -2142,12 +1940,347 @@
         "cpus": 4,
         "memGB": 15.6,
         "loadavg": [
-          3.2,
+          4.4,
+          4.2,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d_12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 388,
+      "takenAt": "2026-09-15T06:16:57.589Z",
+      "ref": "steward/t-1133-post-office-one-letter-pairs",
+      "commit": "575a6f8c5650",
+      "devCommit": "017b1b696f33",
+      "treeHash": "sha256:32417eccdada487d",
+      "treeDirty": false,
+      "changelogHash": "sha256:7afc4b0b255495ce",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.6,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke_d_13.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,10",
+      "parts": [
+        3,
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 112,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 270,
+      "takenAt": "2026-09-15T06:35:32.913Z",
+      "ref": "steward/t-1133-post-office-one-letter-pairs",
+      "commit": "d555787e79ff",
+      "devCommit": "017b1b696f33",
+      "treeHash": "sha256:3b948e8bdc474868",
+      "treeDirty": false,
+      "changelogHash": "sha256:f8692cb7159b241a",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.1,
+          2.6
+        ]
+      },
+      "source": "/tmp/smoke_rebased.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 171,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 512,
+      "takenAt": "2026-09-15T08:34:48.872Z",
+      "ref": "steward/t-1134-town-list-one-letter-pairs",
+      "commit": "aefff6699523",
+      "devCommit": "827c5523bfde",
+      "treeHash": "sha256:6ef2e22a8a4a3b00",
+      "treeDirty": false,
+      "changelogHash": "sha256:eb59f0ed1e3c1826",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.2,
+          3.6,
+          2.3
+        ]
+      },
+      "source": "/tmp/smoke_m1213.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 67,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 378,
+      "takenAt": "2026-09-15T08:41:11.658Z",
+      "ref": "steward/t-1134-town-list-one-letter-pairs",
+      "commit": "aefff6699523",
+      "devCommit": "827c5523bfde",
+      "treeHash": "sha256:6ef2e22a8a4a3b00",
+      "treeDirty": false,
+      "changelogHash": "sha256:eb59f0ed1e3c1826",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.8,
+          4.4,
+          3.1
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3,10",
+      "parts": [
+        3,
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 112,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 686,
+      "takenAt": "2026-09-15T08:52:43.895Z",
+      "ref": "steward/t-1134-town-list-one-letter-pairs",
+      "commit": "aefff6699523",
+      "devCommit": "827c5523bfde",
+      "treeHash": "sha256:6ef2e22a8a4a3b00",
+      "treeDirty": false,
+      "changelogHash": "sha256:eb59f0ed1e3c1826",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.3,
+          4.4,
+          3.8
+        ]
+      },
+      "source": "/tmp/smoke_d310.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,10",
+      "parts": [
+        3,
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 112,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 399,
+      "takenAt": "2026-09-15T08:59:34.169Z",
+      "ref": "steward/t-1134-town-list-one-letter-pairs",
+      "commit": "aefff6699523",
+      "devCommit": "827c5523bfde",
+      "treeHash": "sha256:6ef2e22a8a4a3b00",
+      "treeDirty": false,
+      "changelogHash": "sha256:eb59f0ed1e3c1826",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.7,
+          4.6,
+          4.1
+        ]
+      },
+      "source": "/tmp/smoke_m310.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 147,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 288,
+      "takenAt": "2026-09-15T10:38:59.618Z",
+      "ref": "steward/t-1139-letter-list-1834-spellings",
+      "commit": "80df1d881df4",
+      "devCommit": "827c5523bfde",
+      "treeHash": "sha256:5feaacf249c9cc5f",
+      "treeDirty": false,
+      "changelogHash": "sha256:6a20df739aecf5df",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.1,
           2.7,
           1.7
         ]
       },
-      "source": "/tmp/smoke_m_3_10.log"
+      "source": "/tmp/smoke_m312.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "13",
+      "parts": [
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 113,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems \u2014 trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 298,
+      "takenAt": "2026-09-15T10:44:00.933Z",
+      "ref": "steward/t-1139-letter-list-1834-spellings",
+      "commit": "80df1d881df4",
+      "devCommit": "827c5523bfde",
+      "treeHash": "sha256:5feaacf249c9cc5f",
+      "treeDirty": false,
+      "changelogHash": "sha256:6a20df739aecf5df",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.5,
+          3.9,
+          2.5
+        ]
+      },
+      "source": "/tmp/smoke_m13.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 89,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 206,
+      "takenAt": "2026-09-15T10:47:34.165Z",
+      "ref": "steward/t-1139-letter-list-1834-spellings",
+      "commit": "80df1d881df4",
+      "devCommit": "827c5523bfde",
+      "treeHash": "sha256:5feaacf249c9cc5f",
+      "treeDirty": false,
+      "changelogHash": "sha256:6a20df739aecf5df",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.4,
+          3.9,
+          2.8
+        ]
+      },
+      "source": "/tmp/smoke_d3.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 67,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: no unexpected loader problems \u2014 trees: the full stem budget bound at 3030 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned \u2014 lower full's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 382,
+      "takenAt": "2026-09-15T10:54:18.689Z",
+      "ref": "steward/t-1139-letter-list-1834-spellings",
+      "commit": "80df1d881df4",
+      "devCommit": "827c5523bfde",
+      "treeHash": "sha256:5feaacf249c9cc5f",
+      "treeDirty": false,
+      "changelogHash": "sha256:6a20df739aecf5df",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          3.7,
+          4.2,
+          3.3
+        ]
+      },
+      "source": "/tmp/smoke_d12.log"
     }
   ]
 }

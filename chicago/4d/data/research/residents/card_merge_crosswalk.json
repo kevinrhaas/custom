@@ -279,6 +279,19 @@
   },
   {
    "outcome": "merged",
+   "person_id": "fraser_wm_h",
+   "folded_person_id": "frazer_wm_h",
+   "rule": "C9",
+   "cluster": "fraser-frazer",
+   "record_ids": [],
+   "domains": [],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-1133: 'frazer_wm_h' and 'fraser_wm_h' are one person under rule C9; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'fraser-frazer'."
+  },
+  {
+   "outcome": "merged",
    "person_id": "fullerton_alexander",
    "folded_person_id": "fullerton_a_n",
    "rule": "C0",
@@ -1113,6 +1126,19 @@
    "domains": [],
    "sources": [],
    "evidence": "T-0842: 'vanderbogart_h' and 'vanderbogart_henry' are one person under rule C7; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'vanderbogart'."
+  },
+  {
+   "outcome": "merged",
+   "person_id": "vandino_john",
+   "folded_person_id": "vandine_john",
+   "rule": "C9",
+   "cluster": "vandine-vandino",
+   "record_ids": [],
+   "domains": [],
+   "sources": [
+    "chicago_democrat_1833_1835"
+   ],
+   "evidence": "T-1133: 'vandine_john' and 'vandino_john' are one person under rule C9; the ruling and its reasoning are in data/residents/card_merge_rulings.json under cluster 'vandine-vandino'."
   },
   {
    "outcome": "merged",
