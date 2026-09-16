@@ -30,23 +30,23 @@
    },
    "n_min": {
     "length_m": 2020,
-    "one_way_m": 1597.5,
-    "one_way_fraction": 0.7908,
-    "walkable_both_ways_m": 25,
-    "refuses_the_way_out_m": 397.5,
+    "one_way_m": 1937.5,
+    "one_way_fraction": 0.9592,
+    "walkable_both_ways_m": 32.5,
+    "refuses_the_way_out_m": 50,
     "step_down_max_m": 2.895,
-    "step_down_min_m": -2.91,
-    "step_down_mean_m": 0.682
+    "step_down_min_m": -0.989,
+    "step_down_mean_m": 1.657
    },
    "e_max": {
     "length_m": 4920,
     "one_way_m": 0,
     "one_way_fraction": 0,
-    "walkable_both_ways_m": 0,
-    "refuses_the_way_out_m": 4920,
-    "step_down_max_m": -2.635,
+    "walkable_both_ways_m": 5,
+    "refuses_the_way_out_m": 4915,
+    "step_down_max_m": 0.003,
     "step_down_min_m": -3.005,
-    "step_down_mean_m": -2.883
+    "step_down_mean_m": -2.773
    },
    "e_min": {
     "length_m": 4920,
@@ -60,8 +60,8 @@
    }
   },
   "total_m": 13880,
-  "one_way_m": 7935,
-  "one_way_fraction": 0.5717
+  "one_way_m": 8275,
+  "one_way_fraction": 0.5962
  },
  "viewpoint": {
   "id": "kinzie_block",
