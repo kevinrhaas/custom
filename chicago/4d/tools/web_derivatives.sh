@@ -16,7 +16,41 @@
 #
 # Verified byte-for-byte at the extraction: running this over the committed
 # masters reproduces all 334 committed derivatives exactly, md5 for md5, on
-# gltf-transform 4.4.2.
+# gltf-transform 4.4.2 — the release current at the extraction. The pin this
+# sentence holds under NOW is fixed below (T-0537); it has read 4.5.0 since
+# 2026-09-16, and the sentence is only true under the pinned version, whichever
+# one a given commit carries.
+#
+# PINNED 2026-09-16 (T-0537) AT 4.5.0 — the toolchain is fixed in this file, not
+# resolved from the calendar. `npx --yes @gltf-transform/cli` used to mean
+# "whatever npm calls latest today", and that was measured twice, not theorised:
+# on 2026-09-03 (T-0430) and again on 2026-09-13 (T-0332's branch) an upstream
+# release moved the resolved version 4.4.2 -> 4.5.0 and every derivative the step
+# touched came back with a TWO-BYTE diff — `{"generator":"glTF-Transform v4.5.0"}`
+# — and nothing else: 196 of 384 files in one PR, pure stamp noise burying
+# whatever it carried. And the caret is transitive: `@gltf-transform/cli@4.4.2`
+# depends on `@gltf-transform/core@^4.4.2`, so pinning the CLI alone still stamps
+# whatever the caret resolves to — which is how the 2026-09-03 reading was
+# confirmed rather than guessed.
+#
+# THE FORK THE TICKET OFFERED, AS FOUND, NOT CHOSEN IN THE ABSTRACT: pin at 4.4.2
+# and restamp the tree, or move to the current release deliberately and pin there.
+# The move had ALREADY happened — 381 of 384 committed derivatives carry the
+# v4.5.0 stamp tonight, landed bake by bake as a side effect, which is the whole
+# disease — so pinning at 4.4.2 would have churned all 381 the other way. The pin
+# therefore reads 4.5.0: the churn the ticket feared is bought back by making the
+# state that already exists undeletable-by-calendar, not by moving 381 files to
+# make a point. A future release (4.6.x) now CANNOT restamp the tree as a side
+# effect; moving to it is a deliberate one-commit decision that regenerates all
+# 384 derivatives and nothing else.
+#
+# Hence the pin names cli, core, functions AND extensions — every @gltf-transform
+# package this step can reach — each at an exact version, installed together in
+# one npx invocation so npm's dedupe cannot mix releases (functions/extensions
+# carry the same transitive caret as core). The step then proves the resolution
+# before it touches a byte: it fails if the resolved CLI version differs from the
+# pin, and every transformed derivative is checked for the pinned stamp before it
+# is accepted.
 #
 # THAT SENTENCE WAS NOT TRUE WHEN IT WAS WRITTEN — K36(b)'s own control measured
 # 243 of 334, and the 91 it did not reproduce are the two findings it deferred:
@@ -159,7 +193,36 @@ PY
 }
 
 echo "== web derivatives"
-if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
+
+# THE PIN (T-0537) — exact versions, all four packages, one npx invocation.
+# Pinned at 4.5.0 because that is the release the committed tree already carries
+# (381 of 384 derivatives stamp v4.5.0, landed bake by bake — see the header).
+# npx installs every --package into one throwaway env and caches by spec, so this
+# resolution is a function of this file and not of the date. Do not "just" pin
+# the CLI: it depends on core/functions/extensions by caret, and a bare CLI pin
+# still stamps whatever those carets resolve to (measured 2026-09-03, T-0430).
+GT_CLI_VERSION="4.5.0"
+GT_CORE_VERSION="4.5.0"
+GT_FUNCTIONS_VERSION="4.5.0"
+GT_EXTENSIONS_VERSION="4.5.0"
+GT_NPX=(npx --yes
+  --package "@gltf-transform/cli@$GT_CLI_VERSION"
+  --package "@gltf-transform/core@$GT_CORE_VERSION"
+  --package "@gltf-transform/functions@$GT_FUNCTIONS_VERSION"
+  --package "@gltf-transform/extensions@$GT_EXTENSIONS_VERSION")
+
+# Prove the resolution before any derivative is touched. A mismatch means the
+# pin variables and the invocation below disagree — a bug in THIS file, not bad
+# luck — and stamping 384 files with an unpinned version is the exact failure
+# this block exists to stop.
+resolved_cli="$("${GT_NPX[@]}" gltf-transform --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1 || true)"
+if [ -n "$resolved_cli" ] && [ "$resolved_cli" != "$GT_CLI_VERSION" ]; then
+  echo "   FATAL: npx resolved gltf-transform $resolved_cli but this script pins $GT_CLI_VERSION." >&2
+  echo "   The pin and the invocation disagree (T-0537). Fix the script; do not run unpinned." >&2
+  exit 1
+fi
+
+if [ -n "$resolved_cli" ]; then
   mkdir -p "$OUT"
   # `--texture-compress ktx2` shells out to the KTX-Software `ktx` binary, and
   # gltf-transform aborts the WHOLE optimize when it is absent — meshopt included.
@@ -372,21 +435,40 @@ if npx --yes @gltf-transform/cli --version >/dev/null 2>&1; then
       *) bits="$ASSET_QUANT_BITS"; epoch=0 ;;
     esac
     tmp="$(mktemp -t gltfopt.XXXXXX.glb)"
-    npx --yes @gltf-transform/cli optimize "$f" "$tmp" "${compress[@]}" 2>&1 | tail -2 \
-      && npx --yes @gltf-transform/cli meshopt "$tmp" "$out" \
-        --quantize-position "$bits" 2>&1 | tail -2 || {
-        echo "   optimize failed for $(basename "$f"); copying the master through"
-        cp "$f" "$out"; fellback=$((fellback + 1)); }
+    if "${GT_NPX[@]}" gltf-transform optimize "$f" "$tmp" "${compress[@]}" 2>&1 | tail -2 \
+      && "${GT_NPX[@]}" gltf-transform meshopt "$tmp" "$out" \
+        --quantize-position "$bits" 2>&1 | tail -2; then
+      # The stamp is the pin's receipt: a transformed derivative must say it was
+      # made by the pinned core. Anything else means the toolchain moved under
+      # an exact version, and banking 384 calendar-stamped files is the failure
+      # T-0537 exists to stop — refuse before the bytes reach the tree.
+      stamp="$(strings "$out" 2>/dev/null | grep -o 'glTF-Transform v[0-9][0-9.]*' | head -1 || true)"
+      if [ "$stamp" != "glTF-Transform v$GT_CORE_VERSION" ]; then
+        echo "   FATAL: $(basename "$f") is stamped '$stamp' but this step pins" >&2
+        echo "   glTF-Transform v$GT_CORE_VERSION (T-0537). The toolchain moved" >&2
+        echo "   under an exact version; refusing to write bytes no pin can describe." >&2
+        rm -f "$tmp"
+        exit 1
+      fi
+    else
+      echo "   optimize failed for $(basename "$f"); copying the master through"
+      cp "$f" "$out"; fellback=$((fellback + 1))
+    fi
     rm -f "$tmp"
     note=""
-    if [ "$epoch" = "0" ] && [ "$(stat -c%s "$out")" -ge "$(stat -c%s "$f")" ]; then
+    # PORTABLE SIZE, T-0537: `stat -c%s` is GNU-only and fails on the macOS
+    # steward runners, which silently disabled the passthrough rule below
+    # (the comparison read empty sizes and never fired, so the three K37
+    # assets came back compressed BIGGER than their masters). `wc -c <` is
+    # the same answer on both flavors.
+    if [ "$epoch" = "0" ] && [ "$(wc -c < "$out" | tr -d ' ')" -ge "$(wc -c < "$f" | tr -d ' ')" ]; then
       cp -f "$f" "$out"
       passthrough=$((passthrough + 1))
       note="  (compression grew it; master passed through)"
     fi
     echo "$(basename "$f")" >> "$PRODUCED"
     printf '   %s  %s -> %s bytes%s\n' "$(basename "$f")" \
-      "$(stat -c%s "$f")" "$(stat -c%s "$out")" "$note"
+      "$(wc -c < "$f" | tr -d ' ')" "$(wc -c < "$out" | tr -d ' ')" "$note"
   done
   # Say it once, at the end, where it cannot scroll past unnoticed. A fallback
   # copy is CORRECT but fat, and a fat payload is what fails the 25 MB gate —
