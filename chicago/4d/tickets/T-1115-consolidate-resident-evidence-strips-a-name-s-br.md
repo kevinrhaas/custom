@@ -1,7 +1,7 @@
 ---
 id: T-1115
 title: consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-13
-closed: null
-pr: null
+closed: 2026-09-16
+pr: 1371
 claimed_by: Codex 9/16/2026, 10:58:34 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-16T20:45:31.902Z
 claimed_run: null
 ---
 
