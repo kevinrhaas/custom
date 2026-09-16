@@ -68,6 +68,9 @@ step "the gate's own output tells a fired assertion from a failure" \
 selftest "…and its own assertions still fire when broken" \
   bash tools/test_check_harness.sh --self-test
 
+selftest "…and the post-deploy URL smoke still fires on a 404 (T-0968)" \
+  node ../../.github/chicago-4d-url-check.mjs --self-test
+
 step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
   python3 tools/validate.py --all $STRICT
 
