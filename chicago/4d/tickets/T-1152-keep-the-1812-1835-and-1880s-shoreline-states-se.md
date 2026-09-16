@@ -1,7 +1,7 @@
 ---
 id: T-1152
 title: Keep the 1812, 1835 and 1880s shoreline states separable, with a band where the sources disagree
-state: claimed
+state: done
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: T-0465
 opened: 2026-09-15
-closed: null
-pr: null
+closed: 2026-09-15
+pr: 1369
 claimed_by: run 9/15/2026, 7:59:08 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-16T01:35:05.042Z
 claimed_run: null
 ---
 
