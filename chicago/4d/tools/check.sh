@@ -71,6 +71,9 @@ selftest "…and its own assertions still fire when broken" \
 selftest "…and the post-deploy URL smoke still fires on a 404 (T-0968)" \
   node ../../.github/chicago-4d-url-check.mjs --self-test
 
+selftest "…and the bounded clone abandons a bad draw and re-rolls (T-0232)" \
+  bash ../../.github/chicago-4d-clone.sh --self-test
+
 step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
   python3 tools/validate.py --all $STRICT
 

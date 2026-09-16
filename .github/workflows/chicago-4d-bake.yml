@@ -150,6 +150,19 @@ jobs:
     outputs:
       bake: ${{ steps.q.outputs.bake }}
     steps:
+      # T-0232 RULED OUT, in writing, with the reasons — the bounded retried
+      # clone (.github/chicago-4d-clone.sh) is NOT applied to this workflow:
+      #   1. Four checkout sites across three job shapes, each with its own
+      #      contract (this 5-minute gate, the 30-minute bake, and T-0167's two
+      #      split-leg smokes whose 45-minute ceilings were budgeted to ABSORB
+      #      checkout tails — capping those tails is a re-budget of a measured
+      #      decision, which is T-0165/T-0167's call, not T-0232's).
+      #   2. The bake job's checkout feeds tools/bake_ref.py's branch logic,
+      #      which check.sh self-tests assert; changing the checkout shape
+      #      risks a tested contract for a job whose failure costs a scheduled
+      #      runner-hour, not the owner's switch dying silently.
+      # The pack itself (1.31 GiB of superseded GLB masters) remains the root
+      # cause; T-0232 item 4 scopes the cure.
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0

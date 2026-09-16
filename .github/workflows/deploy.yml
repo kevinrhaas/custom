@@ -80,10 +80,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout main (production is always the artifact root)
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
+        # T-0232 — the bounded, retried partial clone from
+        # .github/chicago-4d-clone.sh, same as promote-to-prod. The
+        # actions/checkout this replaced had no filter and no bound: this job
+        # has no timeout by design, so one slow draw could sit in checkout for
+        # hours while every other tenant's deploy waited. Fetches dev in the
+        # same bounded call so the preview step's fetch below is a no-op
+        # freshness check.
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: .github/chicago-4d-clone.sh main dev
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
