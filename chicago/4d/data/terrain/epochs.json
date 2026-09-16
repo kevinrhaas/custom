@@ -4,6 +4,7 @@
   "epochs": [
     {
       "id": "e1830_natural",
+      "shoreline_state": "shore_1812_pre_cut",
       "from": "1780-01-01",
       "to": "1833-06-30",
       "title": "Natural mouth, before the cut",
@@ -13,6 +14,7 @@
     },
     {
       "id": "e1834_harbor_cut",
+      "shoreline_state": "shore_1835_harbor_cut",
       "from": "1833-07-01",
       "to": "1848-12-31",
       "title": "The harbor cut and the decaying old channel",
@@ -54,6 +56,7 @@
     },
     {
       "id": "e1871_postfire",
+      "shoreline_state": "shore_1880s_ic_edge",
       "from": "1871-10-10",
       "to": "1900-12-31",
       "title": "The burnt district and the fills that followed",
