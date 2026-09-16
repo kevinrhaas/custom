@@ -31,6 +31,13 @@
 # — the BANDS say where a ticket sits.
 #
 # RE-RANK LEDGER — the instruction behind each pass, newest first
+#   2026-09-16  RESEARCH COMPLETION MOVED DIRECTLY ABOVE SOUTH THROUGH TIME, on the owner's
+#               instruction: "move all the research completion tickets in the queue next above
+#               south through time, remove the blank lines in queue and start on the next
+#               research completion ticket t 1115". The whole executable closeout band moves
+#               together; its internal order is unchanged. SOUTH THROUGH TIME and THE LOOP
+#               renumber from 5/6 to 6/7. No ticket is added, dropped, promoted from PARKED, or
+#               withdrawn. Empty separator lines are removed throughout this file.
 #   2026-09-15  RESEARCH COMPLETION GROUPED AT THE BOTTOM, on the owner's instruction after
 #               reviewing the post-South Through Time queue: "go ahead and group those together
 #               in queue in the research completion section at the bottom ... and then claim
@@ -189,7 +196,6 @@
 #               one Norris reader, each with 27-33 lines of measured evidence and its own
 #               acceptance. Folding them would destroy the evidence, so they are placed
 #               ADJACENTLY instead — ordering rule 5, so one run carries the last one's context.
-
 # --- ==========================================================================
 # --- 1. FINISH THE RESEARCH — the reads that still yield names, and the rulings that still reach a card
 # --- ==========================================================================
@@ -230,18 +236,12 @@
 # --- title already allows. Nothing new joins them — FILING RULE (d) sends a research run's
 # --- successors to PARKED RESEARCH at the foot of this file instead. When these three land the
 # --- band is EMPTY, and the cursor moves on: T-1127, then SOUTH THROUGH TIME.
-
-
 # --- ==========================================================================
 # --- 2. THE TOWN, BUILT FROM THE RESEARCH — businesses, their structures and where they stood
 # --- ==========================================================================
 # --- Owner: "apply the research and spend it to create residents and their business and residences
 # --- as reasonably accurate as we can". The roofs and placements that led this band have landed;
 # --- what stands here is what the walkthrough cannot yet say about a house and who was in it.
-
-
-
-
 # --- ==========================================================================
 # --- 3. THE GROUND — the Wright 1834 sheet, the mouth, and the west and north banks
 # --- ==========================================================================
@@ -253,8 +253,6 @@
 # --- 2 020 x 4 920 m, Cermak to Kinzie's Addition, and the drawn street standing off it is 0 m.
 # --- What the extension LEFT is the next work, and it is visible rather than structural: T-1127,
 # --- moved into band 4 below, is the wood cut off in a straight line at the new north edge.
-
-
 # --- ==========================================================================
 # --- 4. VISIBLE REFINEMENT — the town changing rather than growing
 # --- ==========================================================================
@@ -268,11 +266,33 @@
 # --- Also standing: the frontage layer leans on a confidence grade alone to keep street furniture
 # --- off an unoccupied invented building, because the hitching rule omits the anonymity clause
 # --- the signboard rule applies.
-
-
-
 # --- ==========================================================================
-# --- 5. SOUTH THROUGH TIME — owner epic, 2026-09-01; PROMOTED, and it sits below the 1835 town
+# --- 5. RESEARCH COMPLETION — owner-ranked, executable closeout, 2026-09-15
+# --- ==========================================================================
+# --- Owner: group the recommended resident-integrity and final-spend work here, then work its
+# --- first ticket. This band is executable, not PARKED or an EPIC. Work top-down. The closed
+# --- ledger comes first; writer safety precedes every mint repair; convergence waits for all
+# --- truth and gate repairs; locations close last. Completion means zero UNCLASSIFIED research,
+# --- not zero refusals or later/out-of-town evidence. Accuracy forbids lowering a count by invention.
+# ---
+# --- BLOCKED DECISIONS TRAVEL WITH THIS BAND BUT ARE NOT FALSELY OFFERED AS WORKABLE LINES:
+# --- T-0660's evidence-preserving survivorship ruling releases T-0691 before T-0662/T-1144;
+# --- T-0991 is resolved by T-1145's dated plural roles. T-0392/T-1027 and the location questions
+# --- T-0251/T-0305/T-0386/T-1087 remain explicit ledger dispositions unless their evidence or
+# --- owner ruling changes. The EPIC and PARKED sections below remain unpromoted.
+T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
+T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
+T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
+T-1129 — Four residents rest only on a Bear Creek, Sangamon County marriage, and their cards say the church list names them at Chicago
+T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
+T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
+T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
+T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
+T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
+T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
+T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
+# --- ==========================================================================
+# --- 6. SOUTH THROUGH TIME — owner epic, 2026-09-01; PROMOTED, after research completion
 # --- ==========================================================================
 # --- Owner, 2026-09-13: "Move south through time so it is just before the number 6 loop
 # --- improvements" — so the four bands that build the 1835 town run ahead of it, and it runs
@@ -303,34 +323,6 @@
 # --- T-0466 is the tiling and culling plan for the four-kilometre field T-0464 builds. The owner's
 # --- order puts it third and it is left there — but a run taking T-0464 should READ it first rather
 # --- than size the field twice.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 T-0467 — Add south-scene camera anchors, navigation and map extents
 T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
@@ -342,16 +334,14 @@ T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
 T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
-
 # --- ==========================================================================
-# --- 6. THE LOOP, ITS GATES AND ITS MEASUREMENTS — invisible, and none of it blocks a visible ticket
+# --- 7. THE LOOP, ITS GATES AND ITS MEASUREMENTS — invisible, and none of it blocks a visible ticket
 # --- ==========================================================================
 # --- Ordering rule 4 in the other direction: nothing here outranks the bands above.
 # ---
 # --- The resident-truth, resident-generator and location-integrity lines formerly leading this
 # --- band moved together into RESEARCH COMPLETION below on the owner's 2026-09-15 instruction.
 # --- The remaining lines are loop/release machinery and follow that completion programme.
-
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
@@ -377,7 +367,6 @@ T-0252 — Decide once whether a baked town carries the nine renderer-drawn laye
 T-0253 — May an invented building stand on the river margin of a platted street corridor
 T-0672 — The three ceilings were raised for one parcel on 2026-09-03 and light's floor was spent: re-measure once #432 lands and take every tier back down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
-
 # --- ==========================================================================
 # --- EPICS — future improvements. THE LOOP DOES NOT WORK THESE until the owner promotes one.
 # --- ==========================================================================
@@ -385,7 +374,6 @@ T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's 
 # --- more than 5 to complete a ticket then add those to an epic at the bottom of the queue for
 # --- future improvements." THREE stand here. South Through Time was the fourth and is now
 # --- band 1. None of these adds a resident, a trade or a roof to the 1835 town.
-
 # --- EPIC: THE 1840 CENSUS DEPOSIT, READ TO COMPLETENESS — 0 residents. 965 named heads are
 # --- adjudicated: 13 matched, 17 candidates, 935 refused (249 unreadable, 411 surnames absent
 # --- from 1835). What remains is continuation sheets carrying industry and school counts,
@@ -400,11 +388,9 @@ T-0926 — The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 1
 T-0934 — A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars footing lost its evidence to the gutter and the deposit holds one image
 T-0944 — Printed 232's continuation foots 198 against a column that reads 193: T-0642's footing key no longer closes on the one pairing made outside the deposit
 T-0971 — The two open columns of printed 240: a repeated two-stroke figure on four cells that closes m_20_30 at 41 or m_30_40 at 13, never both
-
 # --- EPIC: THE NEWBERRY INDEX — 4,199 of 6,658 cards unread at a measured 0.0% match rate.
 T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
 T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
-
 # --- EPIC: THE ONE-LETTER CARD PAIRS — 68 pairs the exact candidate test cannot see, measured
 # --- by tools/measure_card_fuzzy_candidates.py. The list mixes real printed spelling variations
 # --- (Foot/Foote, Lloyd/Loyd, Pearson/Pearsons, Pruyne/Pryne) with cards minted off scanner
@@ -412,11 +398,9 @@ T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text
 # --- John Vale, Mark Noble against Mary Noble. No distance separates the first kind from the
 # --- last. Distinct from T-1004, which is one card holding two men a volume already separates.
 T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
-
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
-
 # --- ==========================================================================
 # --- PARKED RESEARCH — filed after the wrap, worked only when the owner reopens band 1
 # --- ==========================================================================
@@ -428,41 +412,10 @@ T-1118 — A bake whose ref merged mid-run still spends the whole bake before th
 # --- a finding that belongs to an OPEN ticket goes onto that ticket under rule (a), which is
 # --- still the preferred answer; and a finding that is not research at all is banded normally.
 # --- Empty is the correct state of this section.
-
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
-
-
 T-1153 — Rule the 28 readings of the 1 April 1834 return where the page and the extraction set a name differently, and lift the two lines no claim carries
 T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
-
-# --- ==========================================================================
-# --- RESEARCH COMPLETION — owner-ranked, executable closeout, 2026-09-15
-# --- ==========================================================================
-# --- Owner: group the recommended resident-integrity and final-spend work here, then work its
-# --- first ticket. This band is executable, not PARKED or an EPIC. Work top-down. The closed
-# --- ledger comes first; writer safety precedes every mint repair; convergence waits for all
-# --- truth and gate repairs; locations close last. Completion means zero UNCLASSIFIED research,
-# --- not zero refusals or later/out-of-town evidence. Accuracy forbids lowering a count by invention.
-# ---
-# --- BLOCKED DECISIONS TRAVEL WITH THIS BAND BUT ARE NOT FALSELY OFFERED AS WORKABLE LINES:
-# --- T-0660's evidence-preserving survivorship ruling releases T-0691 before T-0662/T-1144;
-# --- T-0991 is resolved by T-1145's dated plural roles. T-0392/T-1027 and the location questions
-# --- T-0251/T-0305/T-0386/T-1087 remain explicit ledger dispositions unless their evidence or
-# --- owner ruling changes. The EPIC and PARKED sections above remain unpromoted.
-
-T-1115 — consolidate_resident_evidence strips a name's brackets before mint_civic_residents' uncertainty guard can see them, so a surname the page cut in half mints a household: H. G. Hub[…] becomes The Hub household
-T-1121 — The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
-T-1136 — The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
-T-1129 — Four residents rest only on a Bear Creek, Sangamon County marriage, and their cards say the church list names them at Chicago
-T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
-T-0856 — read_census_1830.py --check is not in check.sh, and dev was red on it: the 1830 crosswalk had drifted off the folded household tree unseen
-T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
-T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
-T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
-T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
-T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
-
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1154 — The five downtown stands are over every scene-detail ceiling at both viewports, and the town has been over since some point after 6 September
