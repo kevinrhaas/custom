@@ -121,6 +121,17 @@ step "the South Branch below Twelfth still carries what its generator writes" \
 step "the pre-fill lake shore below Twelfth still carries what its generator writes" \
   python3 tools/trace_lake_shore_rees_1849.py --check-properties
 
+# T-1152. A late observation can bound an earlier shore; it cannot quietly
+# become that shore, and a pair of fitted lines that disagree stays a polygonal
+# band rather than an invented midpoint. The same contract keeps the planned
+# 1812 and 1880s states from aliasing the active 1835 terrain while their own
+# scene tickets fill them.
+step "dated shorelines stay separate and source disagreement stays a band" \
+  python3 tools/check_shoreline_states.py
+
+selftest "…and shoreline-state assertions still fire when collapsed" \
+  python3 tools/check_shoreline_states.py --self-test
+
 # ...and for the North Branch north of it (T-1072). Two tools write one
 # branches.geojson through tools/branches_file.py, and each of these two steps
 # also holds the collection's shared fields and its declared feature order, so

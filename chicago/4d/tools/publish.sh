@@ -172,7 +172,10 @@ cp -f data/reconstruction/1835_agencies.json "$SITE/data/reconstruction/"
 # publishing heightfield.json without heightfield.bin gives a flat world and a
 # 404 that only appears on the deployed site, never in the dev tree.
 mkdir -p "$SITE/data/terrain"
-cp -f data/terrain/epochs.json "$SITE/data/terrain/"
+cp -f data/terrain/epochs.json \
+      data/terrain/shoreline_states.json \
+      data/terrain/shoreline_disagreement_bands.geojson \
+      "$SITE/data/terrain/"
 if [ -d data/terrain/epochs ]; then
   rm -rf "$SITE/data/terrain/epochs"
   cp -a data/terrain/epochs "$SITE/data/terrain/epochs"

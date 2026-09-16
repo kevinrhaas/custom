@@ -11,11 +11,16 @@ opened: 2026-09-01
 closed: null
 pr: null
 claimed_by: null
-blocked_on: T-1152
+blocked_on: null
 needs_bake: true
 ---
 
 Create a later terrain epoch appropriate to an 1880s Prairie Avenue scene. This is not the 1812/1835 surface with houses dropped on it: by then street grading, drainage, railroad works, shoreline change and fill had materially changed the South Side.
+
+**Unblocked 2026-09-15 by T-1152.** `shore_1880s_ic_edge` is now a distinct
+epoch-addressed state with deliberately null geometry. This ticket owns the
+representative date and sourced line; it may not fall back to either earlier
+shoreline state.
 
 Choose a specific representative scene date in the 1880s after checking landmark construction dates; document the choice. Reconstruct the then-current lakefront/Illinois Central edge, graded streets, blocks and major filled or cut ground using period maps, atlases, engineering records and Sanborn/fire-insurance mapping where available.
 

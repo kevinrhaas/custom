@@ -43,6 +43,32 @@ Planned epochs, in the order they matter:
 | `e1856_grade_raise` | the city lifts itself out of the mud; the original ground surface is buried |
 | `e1871_postfire` | the burnt district and the fills that followed |
 
+## Shoreline states are addressed through epochs
+
+An epoch's `shoreline_state` resolves in `data/terrain/shoreline_states.json`. The
+state id is the durable address; a scene must never find a shoreline by choosing a
+convenient GeoJSON file or by reusing the active epoch's line. Three addresses are
+reserved now:
+
+| scene time | epoch | shoreline state | present status |
+|---|---|---|---|
+| 15 August 1812 | `e1830_natural` | `shore_1812_pre_cut` | planned for T-0468; geometry deliberately null |
+| 1 July 1835 | `e1834_harbor_cut` | `shore_1835_harbor_cut` | active |
+| 1880s | `e1871_postfire` | `shore_1880s_ic_edge` | planned for T-0473; geometry deliberately null |
+
+`geometry: null` is not permission to fall back. It means that state cannot render
+until its owning ticket supplies its own sourced line. The planned 1812 and 1880s
+states therefore cannot silently inherit the 1835 coast.
+
+A dated observation may bound a shoreline without becoming it. The Rees & Rucker
+1849 trace below Twelfth Street is recorded under the 1835 state as a lower bound,
+not as an exact 1835 line. Where it overlaps Wright's independently fitted 1834
+reading, `data/terrain/shoreline_disagreement_bands.geojson` carries the full
+50.0–134.4 m spread as a polygon. It has `resolution: unresolved` and no adopted
+line. `tools/check_shoreline_states.py` re-derives that polygon from the committed
+station readings and fails if the states alias, a reference stops resolving, or the
+band is replaced by a midpoint.
+
 ## Why fast-changing works are structures, not terrain
 
 The north pier grew from roughly 700 ft at the end of 1834 to 1,260 ft by the close of the 1835
