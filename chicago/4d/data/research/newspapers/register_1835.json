@@ -12,7 +12,7 @@
     "structures": 384,
     "structures_sharing_a_name": 37,
     "streets": 77,
-    "resident_persons": 1300
+    "resident_persons": 1287
   },
   "counts": {
     "businesses": {
@@ -48,8 +48,8 @@
     "persons": {
       "total": 2685,
       "by_action": {
-        "enrich": 1357,
-        "new_resident": 1303,
+        "enrich": 1351,
+        "new_resident": 1309,
         "replace_invented": 25
       },
       "letter_list_only": 1970
@@ -12361,8 +12361,8 @@
       "first_seen": "1834-07-23",
       "last_seen": "1834-07-23",
       "action": "enrich",
-      "action_target": "king_byra",
-      "action_note": "data/residents/ already holds this person as king_byra (hh_king_byra, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_target": "king_byram",
+      "action_note": "data/residents/ already holds this person as king_byram (hh_king_byram, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_byram_king",
@@ -24560,8 +24560,8 @@
       "first_seen": "1834-10-22",
       "last_seen": "1834-10-22",
       "action": "enrich",
-      "action_target": "king_byra",
-      "action_note": "data/residents/ already holds this person as king_byra (hh_king_byra, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action_target": "king_byram",
+      "action_note": "data/residents/ already holds this person as king_byram (hh_king_byram, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_king_byram",
@@ -26187,9 +26187,9 @@
       "letter_list_only": false,
       "first_seen": "1834-11-19",
       "last_seen": "1834-11-19",
-      "action": "enrich",
-      "action_target": "han_m_s",
-      "action_note": "data/residents/ already holds this person as han_m_s (hh_han_m_s, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_m_vaughton_angus",
@@ -30060,8 +30060,8 @@
       "first_seen": "1834-01-14",
       "last_seen": "1834-01-14",
       "action": "enrich",
-      "action_target": "hunter_osice",
-      "action_note": "data/residents/ already holds this person as hunter_osice (hh_hunter_osice, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action_target": "hunter_robert",
+      "action_note": "data/residents/ already holds this person as hunter_robert (hh_hunter_robert, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
     },
     {
       "id": "person_r_stewart",
@@ -33546,9 +33546,9 @@
       "letter_list_only": false,
       "first_seen": "1835-08-12",
       "last_seen": "1835-08-12",
-      "action": "enrich",
-      "action_target": "tmple_john_t",
-      "action_note": "data/residents/ already holds this person as tmple_john_t (hh_tmple_john_t, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_t_e_parsons_2",
@@ -35889,9 +35889,9 @@
       "letter_list_only": false,
       "first_seen": "1834-04-30",
       "last_seen": "1834-10-29",
-      "action": "enrich",
-      "action_target": "owen_v",
-      "action_note": "data/residents/ already holds this person as owen_v (hh_owen_v, attested) — the civic pass minted that card from this printed name, so the link is the card's id and not its display string. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Named in a claim other than a letter list."
     },
     {
       "id": "person_vale_john",
@@ -36912,9 +36912,9 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "enrich",
-      "action_target": "john_w",
-      "action_note": "data/residents/ already holds this person as john_w (hh_john_w, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_walt_o_n_slato",
@@ -37165,9 +37165,9 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "enrich",
-      "action_target": "john_w",
-      "action_note": "data/residents/ already holds this person as john_w (hh_john_w, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_wheeler_orson",
@@ -37616,9 +37616,9 @@
       "letter_list_only": true,
       "first_seen": "1835-08-19",
       "last_seen": "1835-08-19",
-      "action": "enrich",
-      "action_target": "john_w",
-      "action_note": "data/residents/ already holds this person as john_w (hh_john_w, attested) — matched under the gazetteer's identity policy, surname plus forename initials. The papers add mentions and dates."
+      "action": "new_resident",
+      "action_target": null,
+      "action_note": "Ruling 1: a named person the town does not hold. Known only from the post-office letter lists."
     },
     {
       "id": "person_willinm_g",

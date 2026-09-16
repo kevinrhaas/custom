@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 898, title: 'Thirteen residents made from bracketed fragments left the town', kind: 'fix', ts: '2026-09-16T20:24:15.690Z', date: 'Sep 16, 2026, 3:24 PM CT',
+    items: [
+      'Some newspaper transcriptions mark missing or supplied letters with square brackets. The resident consolidator kept the raw reading but rebuilt its display name without those brackets, so the final mint guard never saw the warning it was written to refuse. A clipped H. G. Hub[…] could become H G Hub; an internal supply such as E. K[in]zie was split into E K Zie, under the false surname Zie. The audit found eighteen current cards carrying this kind of reading.',
+      'The mint now makes its decision from the source reading as well as the rebuilt display name. A bracketed scene-year appearance cannot create a resident or contribute evidence to one, and the committed resident-tree check asks the same question so a hand edit or future generator change cannot bypass it.',
+      'Thirteen cards whose only usable scene-year name was bracketed have been removed. Five real identities with separate clean records remain, but their bracketed appearance no longer changes their arrival bound, scene-date presence or evidence list. The broader identity-splitting problem is recorded separately because correcting it rekeys a much larger research corpus.'
+    ] },
   { v: 897, title: 'The lake below Twelfth Street ran down a ruled line', kind: 'change', ts: '2026-09-16T00:03:13.780Z', date: 'Sep 15, 2026, 7:03 PM CT',
     items: [
       'Yesterday the South Branch stopped being carried on a straight line below Twelfth Street, off an 1849 map that reaches past the south edge of the modelled ground. That change said what it was leaving behind: the lake shore beside the same reach was still a ruled line. Below the last vertex the 1834 survey draws, the water\u2019s edge was simply HELD at that position and carried dead straight for a mile \u2014 because without something there, the whole eastern half of the new southern ground came out as dry prairie where Lake Michigan is.',

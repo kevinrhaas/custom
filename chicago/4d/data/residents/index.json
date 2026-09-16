@@ -245,10 +245,10 @@
   ]
  },
  "counts": {
-  "households": 1276,
-  "persons": 1300,
+  "households": 1263,
+  "persons": 1287,
   "by_grade": {
-   "attested": 417,
+   "attested": 404,
    "inferred": 883,
    "reconstructed": 0
   },
@@ -256,7 +256,7 @@
   "projected_residents": 730,
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
-  "civic_mint": 410,
+  "civic_mint": 397,
   "merged_away": 65
  },
  "households": [
@@ -1086,21 +1086,6 @@
    "review_required": false
   },
   {
-   "id": "hh_bailey_esth_r_m",
-   "file": "households/hh_bailey_esth_r_m.json",
-   "civic_mint": true,
-   "head": "bailey_esth_r_m",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_bailly_joseph",
    "file": "households/hh_bailly_joseph.json",
    "letter_list_only": true,
@@ -1671,7 +1656,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "present",
+   "present_on_scene_date": "uncertain",
    "review_required": false
   },
   {
@@ -8309,21 +8294,6 @@
    "review_required": false
   },
   {
-   "id": "hh_han_m_s",
-   "file": "households/hh_han_m_s.json",
-   "civic_mint": true,
-   "head": "han_m_s",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_handy_henry_s",
    "file": "households/hh_handy_henry_s.json",
    "civic_mint": true,
@@ -9578,21 +9548,6 @@
    "review_required": false
   },
   {
-   "id": "hh_hunter_osice",
-   "file": "households/hh_hunter_osice.json",
-   "civic_mint": true,
-   "head": "hunter_osice",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_hunter_robert",
    "file": "households/hh_hunter_robert.json",
    "civic_mint": true,
@@ -9851,21 +9806,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_intry_m",
-   "file": "households/hh_intry_m.json",
-   "civic_mint": true,
-   "head": "intry_m",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_inven_elias",
    "file": "households/hh_inven_elias.json",
    "letter_list_only": true,
@@ -9912,21 +9852,6 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_isaac_h",
-   "file": "households/hh_isaac_h.json",
-   "civic_mint": true,
-   "head": "isaac_h",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_ives_chauncy_p",
@@ -10103,21 +10028,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_jesteorple_bernard",
-   "file": "households/hh_jesteorple_bernard.json",
-   "civic_mint": true,
-   "head": "jesteorple_bernard",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_john_meclure",
    "file": "households/hh_john_meclure.json",
    "letter_list_only": true,
@@ -10132,21 +10042,6 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_john_w",
-   "file": "households/hh_john_w.json",
-   "civic_mint": true,
-   "head": "john_w",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_johnson_lathrop",
@@ -10750,21 +10645,6 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_king_byra",
-   "file": "households/hh_king_byra.json",
-   "civic_mint": true,
-   "head": "king_byra",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_king_byram",
@@ -12222,21 +12102,6 @@
    "present_on_scene_date": "uncertain",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_man_hol",
-   "file": "households/hh_man_hol.json",
-   "civic_mint": true,
-   "head": "man_hol",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_markle_joseph_w",
@@ -13857,21 +13722,6 @@
    "projected_resident": true
   },
   {
-   "id": "hh_nter_edward_f_h",
-   "file": "households/hh_nter_edward_f_h.json",
-   "civic_mint": true,
-   "head": "nter_edward_f_h",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_oakley_benjamin_w",
    "file": "households/hh_oakley_benjamin_w.json",
    "letter_list_only": true,
@@ -14088,21 +13938,6 @@
    "works_at": "cobweb_castle",
    "present_on_scene_date": "present",
    "review_required": true
-  },
-  {
-   "id": "hh_owen_v",
-   "file": "households/hh_owen_v.json",
-   "civic_mint": true,
-   "head": "owen_v",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_paddock_jane",
@@ -17819,21 +17654,6 @@
    "review_required": false
   },
   {
-   "id": "hh_sweet_alon_on",
-   "file": "households/hh_sweet_alon_on.json",
-   "civic_mint": true,
-   "head": "sweet_alon_on",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
    "id": "hh_sweet_richard_m",
    "file": "households/hh_sweet_richard_m.json",
    "civic_mint": true,
@@ -18182,21 +18002,6 @@
    "present_on_scene_date": "present",
    "review_required": false,
    "projected_resident": true
-  },
-  {
-   "id": "hh_tmple_john_t",
-   "file": "households/hh_tmple_john_t.json",
-   "civic_mint": true,
-   "head": "tmple_john_t",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
   },
   {
    "id": "hh_toby_samuel",

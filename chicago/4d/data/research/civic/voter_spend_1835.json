@@ -572,7 +572,7 @@
      "list_date": "1833-08-10",
      "as_read": "Owen, Col. T. J. V.",
      "line": 42,
-     "rule": "one resident of the surname 'Owen' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Owen' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Col. T. J. V. Owen' against resident 'Thomas Jefferson Vance Owen'"
     }
    ]
@@ -1419,7 +1419,7 @@
      "list_date": "1833",
      "as_read": "Hunter, David",
      "line": 99,
-     "rule": "one resident of the surname 'Hunter' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Hunter' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'David Hunter' against resident 'David Hunter'"
     }
    ]
@@ -2114,7 +2114,7 @@
      "list_date": "1833",
      "as_read": "Sweet, Alanson",
      "line": 151,
-     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'"
     },
     {
@@ -2124,7 +2124,7 @@
      "list_date": "1834-08-11",
      "as_read": "Sweet, Alanson",
      "line": 274,
-     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'"
     },
     {
@@ -2134,7 +2134,7 @@
      "list_date": "1835",
      "as_read": "Sweet, Alanson",
      "line": 365,
-     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'"
     }
    ]
@@ -2151,7 +2151,7 @@
      "list_date": "1833",
      "as_read": "Sweet, R. M.",
      "line": 152,
-     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'R. M. Sweet' against resident 'Richard M Sweet'"
     }
    ]
@@ -2963,7 +2963,7 @@
      "list_date": "1834-08-11",
      "as_read": "Hunter, Edward E.",
      "line": 227,
-     "rule": "one resident of the surname 'Hunter' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Hunter' agrees with the entry's forenames; 4 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Edward E. Hunter' against resident 'Edward E Hunter'"
     }
    ]
@@ -3686,7 +3686,7 @@
      "list_date": "1835",
      "as_read": "Bailey, Amos",
      "line": 287,
-     "rule": "one resident of the surname 'Bailey' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Bailey' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Amos Bailey' against resident 'Amos Bailey'"
     }
    ]
@@ -4145,7 +4145,7 @@
      "list_date": "1835",
      "as_read": "King, Byron",
      "line": 328,
-     "rule": "one resident of the surname 'King' agrees with the entry's forenames; 8 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'King' agrees with the entry's forenames; 7 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Byron King' against resident 'Byron King'"
     }
    ]
@@ -4162,7 +4162,7 @@
      "list_date": "1835",
      "as_read": "King, J. D.",
      "line": 329,
-     "rule": "one resident of the surname 'King' agrees with the entry's forenames; 8 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'King' agrees with the entry's forenames; 7 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'J. D. King' against resident 'J D King'"
     }
    ]
