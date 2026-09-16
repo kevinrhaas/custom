@@ -382,5 +382,8 @@ JSON
 
 echo "   build $BUILD_VERSION  $BUILD_CT"
 
-BYTES=$(du -sb "$SITE" | cut -f1)
+# PORTABLE SIZE (T-0727): `du -sb` is GNU-only and dies on the macOS stewards
+# (exit 64, whole publish marked failed after every byte landed). wc -c over
+# the same files is the exact byte count on both flavors.
+BYTES=$(find "$SITE" -type f -exec wc -c {} + | tail -1 | awk '{print $1}')
 printf 'published %s  (%.2f MB)\n' "$SITE" "$(echo "scale=4; $BYTES/1048576" | bc)"
