@@ -344,6 +344,7 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- The remaining lines are loop/release machinery and follow that completion programme.
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
+T-1155 — Wire measure_boot_payload.mjs --check into the nightly gate so the 12 MB boot budget refuses without a human
 T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
 T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
 T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
