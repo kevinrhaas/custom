@@ -1,7 +1,7 @@
 ---
 id: T-0968
 title: A green deploy is not proof the site is reachable: /chicago/4d/dev/ served a 404 for hours while every deploy reported success, and nothing checks a URL after publishing
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -11,7 +11,7 @@ parent: null
 opened: 2026-09-07
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/16/2026, 11:38:21 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null

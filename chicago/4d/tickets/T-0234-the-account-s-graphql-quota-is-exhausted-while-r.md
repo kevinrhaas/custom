@@ -1,7 +1,7 @@
 ---
 id: T-0234
 title: The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: owner
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/16/2026, 11:38:27 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: null
 ---
 
 GitHub meters **GraphQL and REST as two separate hourly buckets**, and the fleet

@@ -1,7 +1,7 @@
 ---
 id: T-0232
 title: The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
-state: open
+state: claimed
 epic: PIPELINE
 requested_by: steward
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-27
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/16/2026, 11:38:24 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: null
 ---
 
 `chicago-4d-promote-to-prod.yml` is dispatch-only — it is the owner's switch and
