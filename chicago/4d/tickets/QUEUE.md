@@ -331,7 +331,6 @@
 
 
 
-T-1151 — Trace the pre-fill lake shore below Twelfth Street and retire the held-easting carry
 T-1152 — Keep the 1812, 1835 and 1880s shoreline states separable, with a band where the sources disagree
 T-0467 — Add south-scene camera anchors, navigation and map extents
 T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape

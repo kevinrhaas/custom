@@ -110,6 +110,17 @@ step "the traced South Branch still carries what its generator writes" \
 step "the South Branch below Twelfth still carries what its generator writes" \
   python3 tools/trace_south_branch_rees_1849.py --check-properties
 
+# ...and the pre-fill lake shore beside it, off the same sheet (T-1151). This
+# one's literals are a run's two ENDS and its two disagreements: it has to meet
+# the Wright shore run on the declared row N -2159.9 and CROSS the box floor,
+# because a run that stops on the floor leaves the floor row with no lake edge
+# and 355 m of Lake Michigan comes out as dry prairie; and the seam step and the
+# overlap offset have to stay negative and stay the size of the documented
+# erosion, because a re-trace that lost the erosion signal would be reading
+# something other than this shore.
+step "the pre-fill lake shore below Twelfth still carries what its generator writes" \
+  python3 tools/trace_lake_shore_rees_1849.py --check-properties
+
 # ...and for the North Branch north of it (T-1072). Two tools write one
 # branches.geojson through tools/branches_file.py, and each of these two steps
 # also holds the collection's shared fields and its declared feature order, so

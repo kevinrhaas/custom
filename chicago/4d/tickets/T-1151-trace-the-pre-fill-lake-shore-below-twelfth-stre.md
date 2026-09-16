@@ -1,7 +1,7 @@
 ---
 id: T-1151
 title: Trace the pre-fill lake shore below Twelfth Street and retire the held-easting carry
-state: open
+state: done
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: T-0465
 opened: 2026-09-15
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-15
+pr: 1368
+claimed_by: run 9/15/2026, 6:47:33 PM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-16T00:45:39.097Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35036984456
 ---
 
 Trace the pre-fill lake shore below Twelfth Street and retire the held-easting carry.

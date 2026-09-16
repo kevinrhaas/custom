@@ -25,7 +25,7 @@
  "max_m": 3.7446,
  "quantisation_error_m": 0.0025,
  "water_surface_m": 0.0,
- "water_fraction": 0.2122,
+ "water_fraction": 0.188,
  "relief_ft": {
   "land_min": -1.978,
   "land_max": 12.285,
@@ -49,7 +49,7 @@
   "plain_block_mean": 0.0962,
   "passes": true,
   "plain_cell_roughness_max": 55.913,
-  "shore_and_swale_cell_max": 346.516,
+  "shore_and_swale_cell_max": 215.233,
   "relief_zones_ft_per_300ft": {
    "approach_dearborn_north": {
     "cells": 23,
@@ -92,8 +92,8 @@
     "cell_max": 171.698
    },
    "bank_face": {
-    "cells": 71836,
-    "cell_max": 287.712
+    "cells": 88603,
+    "cell_max": 215.233
    },
    "fort_dearborn_mound": {
     "cells": 2251,
@@ -112,8 +112,8 @@
     "cell_max": 51.64
    },
    "south_sand_ridge": {
-    "cells": 290888,
-    "cell_max": 346.516
+    "cells": 329319,
+    "cell_max": 215.233
    },
    "state_street_break": {
     "cells": 75041,
@@ -136,5 +136,5 @@
   "ground": "gltf/terrain__e1834_harbor_cut.glb",
   "water": "gltf/water__e1834_harbor_cut.glb"
  },
- "inputs_sha256": "c082019f02d8ca3d07e1e6f64065d65098e877a5bec1588f8720668bf0ce26ce"
+ "inputs_sha256": "e640bef0b1466f57b40c30ce19630ba2295b03fae1750d6fd3d509d214291d7e"
 }

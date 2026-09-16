@@ -644,39 +644,25 @@ def build_field(spec, feats, origin):
                     continue
                 t = (N[sel, 0] - y1) / (y2 - y1)
                 east_edge[sel] = np.maximum(east_edge[sel], x1 + t * (x2 - x1))
-        # And south of where the trace itself stops. The shore run is the east
-        # edge of Fractional Section 15 carried to the foot of Wright's sheet,
-        # and the sheet ends: below its last vertex every row's east_edge is
-        # -inf, the rule cannot fire, and the box's whole eastern half comes out
-        # as dry land. That is the same false coast the rule above exists to
-        # prevent, 355 m wide and as long as the extension — so the southern
-        # extension of T-0464 could not be taken without answering it. The
-        # answer is the smallest one available: hold the trace's own last
-        # easting. Extrapolating its bearing was refused — the run's last 40 m
-        # swing 78 m west, which is picking noise on a 1.6 km lever — and a
-        # held easting claims only that the lake did not move, which is also
-        # what the modern shore south of Twelfth Street looks like. It is
-        # CONJECTURAL, it is recorded in docs/LIBERTIES.md, and T-0465 replaces
-        # it with a trace.
+        # AND THE SHORE DOES NOT END AT TWELFTH STREET EITHER -- and since
+        # T-1151 it does not have to be HELD to not end there. This is where
+        # `southern_lake.beyond_the_trace` stood: below south_shore_harbor_reach's
+        # last vertex at N -2159.9 every row's east_edge was -inf, the rule could
+        # not fire, and 355 x 1 640 m of Lake Michigan came out as dry prairie --
+        # the same false coast the rule above exists to prevent -- so the edge
+        # held that vertex's easting, E +1347.4, for the whole 1 640 m to the
+        # floor. It was conjectural and it was the lake's half of L239.
         #
-        # SOUTHERN ONLY, AND THE GUARD IS NOT DECORATION. This block was written
-        # against a standalone `south_rule` before T-1123 folded the two ends
-        # into the loop above; the merge of the two branches was CLEAN and left
-        # it reading a name that no longer existed (`NameError: south_rule`).
-        # Renaming it to `rule` is most of the fix, and not all of it: the tail
-        # below is the SOUTHERNMOST vertex (`min` on northing) and `unreached`
-        # looks for rows BELOW it, so run against `northern_lake` it would hold
-        # the wrong end of the trace and flood rows the north wall never reaches.
-        # Only `southern_lake` declares `beyond_the_trace` today, so the key test
-        # alone would not fire — but a future northern one would fail silently,
-        # and this whole block exists because a silent flood of dry land is the
-        # most expensive mistake available in this quadrant.
-        if sign < 0 and rule.get("beyond_the_trace"):
-            tail_n, tail_e = min((p[1], p[0])
-                                 for rid in rule["shore_runs"]
-                                 for p in shore_runs[rid])
-            unreached = (N[:, 0] < min(tail_n, n_cap)) & ~np.isfinite(east_edge)
-            east_edge[unreached] = tail_e
+        # REES & RUCKER 1849 draws the pre-fill shore beside this reach, and
+        # tools/trace_lake_shore_rees_1849.py traces it into an ordinary shore
+        # run (`lake_shore_below_twelfth`) which the loop above already knows how
+        # to read. So there is no held easting here any more and no code behind
+        # one: the shore falls away south-east from E +1298.9 at the splice to
+        # E +1689.6 at the floor, 390 m of easting the held value denied. What
+        # the trace does NOT relax is `evidence_limit`, which still writes every
+        # vertex below N -2149.4 conjectural, water and land alike; nor does it
+        # blend the 49 m step at the row where the two surveys abut, which is
+        # this shore's documented post-pier erosion and is left in the data.
         in_water |= (E > east_edge[:, None]) & np.isfinite(east_edge)[:, None]
 
     # AND THE RIVER DOES NOT END AT TWELFTH STREET EITHER -- and since T-1150 it
@@ -1563,7 +1549,8 @@ def main() -> int:
     spec = load(ep_dir / "terrain_spec.json")
     feats = {}
     for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson",
-                 "branches.geojson", "south_branch_below_twelfth.geojson"):
+                 "branches.geojson", "south_branch_below_twelfth.geojson",
+                 "lake_shore_below_twelfth.geojson"):
         for f in load(ep_dir / name)["features"]:
             feats[f["id"]] = f
     origin = (datum["origin_utm_e"], datum["origin_utm_n"])
