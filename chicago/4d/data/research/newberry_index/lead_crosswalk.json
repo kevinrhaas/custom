@@ -44,16 +44,16 @@
   }
  ],
  "counts": {
-  "leads_ruled": 1009,
-  "cards_ruled": 1417,
+  "leads_ruled": 1008,
+  "cards_ruled": 1414,
   "by_outcome": {
-   "refused": 748,
+   "refused": 747,
    "candidate": 261
   },
   "by_class": {
    "ocr_variant_only": 360,
    "testable_in_a_held_work": 261,
-   "locality_absent": 288,
+   "locality_absent": 287,
    "surname_only_chicago": 100
   },
   "matched": 0,
@@ -1707,7 +1707,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 1 card(s) heading 'Bailey' name Illinois and neither Chicago nor Cook County, so the lead against Amos Bailey; Bennet Bailey; Esth R M Bailey; John Baily stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 1 card(s) heading 'Bailey' name Illinois and neither Chicago nor Cook County, so the lead against Amos Bailey; Bennet Bailey; John Baily stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_0238"
    ],
@@ -1723,11 +1723,6 @@
      "rule": "exact surname"
     },
     {
-     "id": "bailey_esth_r_m",
-     "name": "Esth R M Bailey",
-     "rule": "exact surname"
-    },
-    {
      "id": "baily_john",
      "name": "John Baily",
      "rule": "OCR variant (0.91 similarity to 'baily')"
@@ -1736,7 +1731,6 @@
    "person_ids": [
     "bailey_amos",
     "bailey_bennet",
-    "bailey_esth_r_m",
     "baily_john"
    ],
    "works_cited": [
@@ -19700,7 +19694,7 @@
    "layer": "residents",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v02_1238",
     "nbi_v02_1239",
@@ -19723,11 +19717,6 @@
      "rule": "exact surname"
     },
     {
-     "id": "hunter_osice",
-     "name": "Osice Hunter",
-     "rule": "exact surname"
-    },
-    {
      "id": "hunter_robert",
      "name": "Robert Hunter",
      "rule": "exact surname"
@@ -19741,7 +19730,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -20389,7 +20377,7 @@
    "layer": "residents",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'S t John/St John' name Chicago or Cook County, the heading is the surname of MeClure John; W John exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
+   "reason": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'S t John/St John' name Chicago or Cook County, the heading is the surname of MeClure John exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody.",
    "record_ids": [
     "nbi_v03_1967",
     "nbi_v03_1968",
@@ -20400,16 +20388,10 @@
      "id": "john_meclure",
      "name": "MeClure John",
      "rule": "exact surname"
-    },
-    {
-     "id": "john_w",
-     "name": "W John",
-     "rule": "exact surname"
     }
    ],
    "person_ids": [
-    "john_meclure",
-    "john_w"
+    "john_meclure"
    ],
    "works_cited": [
     "andreas_history_of_chicago"
@@ -20457,7 +20439,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Johna' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Johna' at all. And if it were, a heading against MeClure John; W John would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Johna' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Johna' at all. And if it were, a heading against MeClure John would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v02_1402"
    ],
@@ -20466,16 +20448,10 @@
      "id": "john_meclure",
      "name": "MeClure John",
      "rule": "OCR variant (0.89 similarity to 'john')"
-    },
-    {
-     "id": "john_w",
-     "name": "W John",
-     "rule": "OCR variant (0.89 similarity to 'john')"
     }
    ],
    "person_ids": [
-    "john_meclure",
-    "john_w"
+    "john_meclure"
    ],
    "works_cited": [
     "andreas_history_of_chicago"
@@ -21646,17 +21622,12 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v02_1574",
     "nbi_v02_1578"
    ],
    "candidates": [
-    {
-     "id": "king_byra",
-     "name": "Byra King",
-     "rule": "exact surname"
-    },
     {
      "id": "king_byram",
      "name": "Byram King",
@@ -21694,7 +21665,6 @@
     }
    ],
    "person_ids": [
-    "king_byra",
     "king_byram",
     "king_byron",
     "king_hyram",
@@ -23425,37 +23395,6 @@
    ],
    "person_ids": [],
    "works_cited": [],
-   "held_works": [],
-   "discriminators": []
-  },
-  {
-   "lead_id": "lead_v01_man_residents",
-   "surname_key": "man",
-   "spellings_as_printed": [
-    "man"
-   ],
-   "layer": "residents",
-   "outcome": "refused",
-   "class": "locality_absent",
-   "reason": "Refused. All 3 card(s) heading 'man' name Illinois and neither Chicago nor Cook County, so the lead against Hol Man stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
-   "record_ids": [
-    "nbi_v01_2269",
-    "nbi_v03_0172",
-    "nbi_v03_0174"
-   ],
-   "candidates": [
-    {
-     "id": "man_hol",
-     "name": "Hol Man",
-     "rule": "exact surname"
-    }
-   ],
-   "person_ids": [
-    "man_hol"
-   ],
-   "works_cited": [
-    "moses_illinois_historical_and_statistical"
-   ],
    "held_works": [],
    "discriminators": []
   },
@@ -27209,7 +27148,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "locality_absent",
-   "reason": "Refused. All 2 card(s) heading 'Owen/owen' name Illinois and neither Chicago nor Cook County, so the lead against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
+   "reason": "Refused. All 2 card(s) heading 'Owen/owen' name Illinois and neither Chicago nor Cook County, so the lead against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed.",
    "record_ids": [
     "nbi_v01_0723",
     "nbi_v03_1107"
@@ -27229,18 +27168,12 @@
      "id": "owen_household_unnamed",
      "name": "Owen's household, unnamed",
      "rule": "exact surname"
-    },
-    {
-     "id": "owen_v",
-     "name": "V Owen",
-     "rule": "exact surname"
     }
    ],
    "person_ids": [
     "owen_j_v",
     "owen_thomas_jv",
-    "owen_household_unnamed",
-    "owen_v"
+    "owen_household_unnamed"
    ],
    "works_cited": [
     "la_salle_book_co_cook_county"
@@ -27291,7 +27224,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Owena' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Owena' at all. And if it were, a heading against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Owena' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Owena' at all. And if it were, a heading against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v03_1109"
    ],
@@ -27310,18 +27243,12 @@
      "id": "owen_household_unnamed",
      "name": "Owen's household, unnamed",
      "rule": "OCR variant (0.89 similarity to 'owen')"
-    },
-    {
-     "id": "owen_v",
-     "name": "V Owen",
-     "rule": "OCR variant (0.89 similarity to 'owen')"
     }
    ],
    "person_ids": [
     "owen_j_v",
     "owen_thomas_jv",
-    "owen_household_unnamed",
-    "owen_v"
+    "owen_household_unnamed"
    ],
    "works_cited": [
     "county_histories_kett_and_co"
@@ -49773,10 +49700,10 @@
   {
    "record_id": "nbi_v02_1238",
    "a": "m Hunter | F 10.085 Cook Co., I I I . (Andrea-. •„ T.) 1334",
-   "b": "David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
+   "b": "David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'm Hunter | F 10.085 Cook Co., I I I . (Andrea-. •„ T.) 1334' against David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'm Hunter | F 10.085 Cook Co., I I I . (Andrea-. •„ T.) 1334' against David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
    "layers": [
     "residents",
     "structures",
@@ -49790,7 +49717,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -49814,10 +49740,10 @@
   {
    "record_id": "nbi_v02_1239",
    "a": "Puh, no Hunter | Index.) .—Cumberland, laiperand Richland Co'a., III. (Battoy, F A",
-   "b": "David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
+   "b": "David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Puh, no Hunter | Index.) .—Cumberland, laiperand Richland Co'a., III. (Battoy, F A\" against David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card \"Puh, no Hunter | Index.) .—Cumberland, laiperand Richland Co'a., III. (Battoy, F A\" against David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
    "layers": [
     "residents",
     "structures",
@@ -49831,7 +49757,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -49855,10 +49780,10 @@
   {
    "record_id": "nbi_v02_1240",
    "a": "Hunter | Fulton C o , III. (Chapman, C. C. 4 Co.) 1879,",
-   "b": "David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
+   "b": "David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | Fulton C o , III. (Chapman, C. C. 4 Co.) 1879,' against David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | Fulton C o , III. (Chapman, C. C. 4 Co.) 1879,' against David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
    "layers": [
     "residents",
     "structures",
@@ -49872,7 +49797,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -49896,10 +49820,10 @@
   {
    "record_id": "nbi_v02_1241",
    "a": "Hunter | Pik. Co., III. (Chapman, C fc 4 Co., Puba.)",
-   "b": "David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
+   "b": "David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | Pik. Co., III. (Chapman, C fc 4 Co., Puba.)' against David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | Pik. Co., III. (Chapman, C fc 4 Co., Puba.)' against David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
    "layers": [
     "residents",
     "structures",
@@ -49913,7 +49837,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -49937,10 +49860,10 @@
   {
    "record_id": "nbi_v02_1242",
    "a": "Hunter | —Madison Co., Ill, (Brink, W,fl.4 Co., Pubs)",
-   "b": "David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
+   "b": "David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | —Madison Co., Ill, (Brink, W,fl.4 Co., Pubs)' against David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | —Madison Co., Ill, (Brink, W,fl.4 Co., Pubs)' against David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
    "layers": [
     "residents",
     "structures",
@@ -49954,7 +49877,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -49978,10 +49900,10 @@
   {
    "record_id": "nbi_v02_1243",
    "a": "Hunter | .Sangamon Co., Ill, (Power, J, C.) 1878.",
-   "b": "David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
+   "b": "David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | .Sangamon Co., Ill, (Power, J, C.) 1878.' against David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | .Sangamon Co., Ill, (Power, J, C.) 1878.' against David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
    "layers": [
     "residents",
     "structures",
@@ -49995,7 +49917,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -50019,10 +49940,10 @@
   {
    "record_id": "nbi_v02_1244",
    "a": "ou n icx Hunter | '\"-et ) . . - . . e..,.. K , A f her, I I I , I 1 lf(75,",
-   "b": "David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
+   "b": "David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'ou n icx Hunter | \\'\"-et ) . . - . . e..,.. K , A f her, I I I , I 1 lf(75,' against David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'ou n icx Hunter | \\'\"-et ) . . - . . e..,.. K , A f her, I I I , I 1 lf(75,' against David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
    "layers": [
     "residents",
     "structures",
@@ -50036,7 +49957,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -50060,10 +49980,10 @@
   {
    "record_id": "nbi_v02_1245",
    "a": "Hunter | Sec index. — England. (Rebecta, C, ^d. ________ Hea, iii. and Edw. I.",
-   "b": "David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
+   "b": "David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | Sec index. — England. (Rebecta, C, ^d. ________ Hea, iii. and Edw. I.' against David Hunter; Edward E Hunter; Osice Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 8 card(s) heading 'Hunter/Puh, no Hunter/m Hunter/ou n icx Hunter' name Chicago or Cook County, the heading is the surname of David Hunter; Edward E Hunter; Robert Hunter; William Hunter exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'Hunter | Sec index. — England. (Rebecta, C, ^d. ________ Hea, iii. and Edw. I.' against David Hunter; Edward E Hunter; Robert Hunter; William Hunter; Kinzie & Hunter's Warehouse; David Hunter; Edward E. Hunter.",
    "layers": [
     "residents",
     "structures",
@@ -50077,7 +49997,6 @@
    "person_ids": [
     "hunter_david",
     "hunter_edward_e",
-    "hunter_osice",
     "hunter_robert",
     "hunter_william"
    ],
@@ -55948,10 +55867,10 @@
   {
    "record_id": "nbi_v03_1967",
    "a": "St John | Chicago, III. (Andreas, A, T.) 18841-61 i r A .",
-   "b": "John [?]; MeClure John; W John",
+   "b": "John [?]; MeClure John",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'S t John/St John' name Chicago or Cook County, the heading is the surname of John [?] exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'St John | Chicago, III. (Andreas, A, T.) 18841-61 i r A .' against John [?]; MeClure John; W John.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'S t John/St John' name Chicago or Cook County, the heading is the surname of John [?] exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'St John | Chicago, III. (Andreas, A, T.) 18841-61 i r A .' against John [?]; MeClure John.",
    "layers": [
     "census_1840",
     "residents"
@@ -55961,10 +55880,9 @@
     "lead_v03_john_residents"
    ],
    "person_ids": [
-    "john_meclure",
-    "john_w"
+    "john_meclure"
    ],
-   "person_id": null,
+   "person_id": "john_meclure",
    "evidence": [
     "nbi_v03_1967",
     "data/research/newberry_index/leads.json"
@@ -55984,10 +55902,10 @@
   {
    "record_id": "nbi_v03_1968",
    "a": "S t John | Lrvingilon Co., III. (LeBaron, W., Jr., 4 Co , PubjJ 1878,",
-   "b": "John [?]; MeClure John; W John",
+   "b": "John [?]; MeClure John",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'S t John/St John' name Chicago or Cook County, the heading is the surname of John [?] exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'S t John | Lrvingilon Co., III. (LeBaron, W., Jr., 4 Co , PubjJ 1878,' against John [?]; MeClure John; W John.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'S t John/St John' name Chicago or Cook County, the heading is the surname of John [?] exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'S t John | Lrvingilon Co., III. (LeBaron, W., Jr., 4 Co , PubjJ 1878,' against John [?]; MeClure John.",
    "layers": [
     "census_1840",
     "residents"
@@ -55997,10 +55915,9 @@
     "lead_v03_john_residents"
    ],
    "person_ids": [
-    "john_meclure",
-    "john_w"
+    "john_meclure"
    ],
-   "person_id": null,
+   "person_id": "john_meclure",
    "evidence": [
     "nbi_v03_1968",
     "data/research/newberry_index/leads.json"
@@ -56020,10 +55937,10 @@
   {
    "record_id": "nbi_v03_1969",
    "a": "S t John | Pike Co., 111. (Chapman, C. C. & Co., Piitxl.1 1880,",
-   "b": "John [?]; MeClure John; W John",
+   "b": "John [?]; MeClure John",
    "outcome": "candidate",
    "class": "testable_in_a_held_work",
-   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'S t John/St John' name Chicago or Cook County, the heading is the surname of John [?] exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'S t John | Pike Co., 111. (Chapman, C. C. & Co., Piitxl.1 1880,' against John [?]; MeClure John; W John.",
+   "rule": "Plausible, insufficient - and answerable without acquiring anything. 1 of the 3 card(s) heading 'S t John/St John' name Chicago or Cook County, the heading is the surname of John [?] exactly, and the cards under it cite andreas_history_of_chicago, which this project already holds. Read it there. No card here gives a forename, so this mints nobody. Ruled on the card 'S t John | Pike Co., 111. (Chapman, C. C. & Co., Piitxl.1 1880,' against John [?]; MeClure John.",
    "layers": [
     "census_1840",
     "residents"
@@ -56033,10 +55950,9 @@
     "lead_v03_john_residents"
    ],
    "person_ids": [
-    "john_meclure",
-    "john_w"
+    "john_meclure"
    ],
-   "person_id": null,
+   "person_id": "john_meclure",
    "evidence": [
     "nbi_v03_1969",
     "data/research/newberry_index/leads.json"
@@ -58398,10 +58314,10 @@
   {
    "record_id": "nbi_v01_0238",
    "a": "Bailey | Illinois. (Moses, J.) 1880-9?. ?». See inder. I J",
-   "b": "J. Bailey; Amos Bailey; Bennet Bailey; Esth R M Bailey; John Baily; Amos Bailey",
+   "b": "J. Bailey; Amos Bailey; Bennet Bailey; John Baily; Amos Bailey",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 1 card(s) heading 'Bailey' name Illinois and neither Chicago nor Cook County, so the lead against J. Bailey stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bailey | Illinois. (Moses, J.) 1880-9?. ?». See inder. I J' against J. Bailey; Amos Bailey; Bennet Bailey; Esth R M Bailey; John Baily; Amos Bailey.",
+   "rule": "Refused. All 1 card(s) heading 'Bailey' name Illinois and neither Chicago nor Cook County, so the lead against J. Bailey stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Bailey | Illinois. (Moses, J.) 1880-9?. ?». See inder. I J' against J. Bailey; Amos Bailey; Bennet Bailey; John Baily; Amos Bailey.",
    "layers": [
     "census_1840",
     "residents",
@@ -58415,7 +58331,6 @@
    "person_ids": [
     "bailey_amos",
     "bailey_bennet",
-    "bailey_esth_r_m",
     "baily_john"
    ],
    "person_id": null,
@@ -60613,10 +60528,10 @@
   {
    "record_id": "nbi_v01_0723",
    "a": "owen | Sae Index. E Edgar Co., Ill, (LoBu",
-   "b": "J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen; Col. T. J. V. Owen; Th. J. V. Owen",
+   "b": "J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; Col. T. J. V. Owen; Th. J. V. Owen",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Owen/owen' name Illinois and neither Chicago nor Cook County, so the lead against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'owen | Sae Index. E Edgar Co., Ill, (LoBu' against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen; Col. T. J. V. Owen; Th. J. V. Owen.",
+   "rule": "Refused. All 2 card(s) heading 'Owen/owen' name Illinois and neither Chicago nor Cook County, so the lead against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'owen | Sae Index. E Edgar Co., Ill, (LoBu' against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; Col. T. J. V. Owen; Th. J. V. Owen.",
    "layers": [
     "residents",
     "voters"
@@ -60628,8 +60543,7 @@
    "person_ids": [
     "owen_household_unnamed",
     "owen_j_v",
-    "owen_thomas_jv",
-    "owen_v"
+    "owen_thomas_jv"
    ],
    "person_id": null,
    "evidence": [
@@ -68277,39 +68191,6 @@
    "ticket": "T-0590"
   },
   {
-   "record_id": "nbi_v01_2269",
-   "a": "man | Fulton Co, III. (Chapman, C. C. 6 Co.) I879i",
-   "b": "Hol Man",
-   "outcome": "refused",
-   "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'man' name Illinois and neither Chicago nor Cook County, so the lead against Hol Man stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'man | Fulton Co, III. (Chapman, C. C. 6 Co.) I879i' against Hol Man.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v01_man_residents"
-   ],
-   "person_ids": [
-    "man_hol"
-   ],
-   "person_id": "man_hol",
-   "evidence": [
-    "nbi_v01_2269",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_01",
-    "text_file": "vol_01_locality_cards.txt",
-    "lines": [
-     4543,
-     4544
-    ],
-    "index_page": 923,
-    "column": 3
-   },
-   "ticket": "T-0590"
-  },
-  {
    "record_id": "nbi_v01_2285",
    "a": "Evans | Fullon Co, III. (Ci.apman, C. C, ú C?.) 1879:",
    "b": "Sciota Evans",
@@ -73266,10 +73147,10 @@
   {
    "record_id": "nbi_v02_1402",
    "a": "Johna | i Cs., III. tbaeas, W..A., t t v , Pnbi.)ujr9i",
-   "b": "John [?]; MeClure John; W John",
+   "b": "John [?]; MeClure John",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Johna' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Johna' at all. And if it were, a heading against John [?] would still be a surname against a person, which is always a refusal here. Ruled on the card 'Johna | i Cs., III. tbaeas, W..A., t t v , Pnbi.)ujr9i' against John [?]; MeClure John; W John.",
+   "rule": "Refused twice over. No candidate reaches 'Johna' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Johna' at all. And if it were, a heading against John [?] would still be a surname against a person, which is always a refusal here. Ruled on the card 'Johna | i Cs., III. tbaeas, W..A., t t v , Pnbi.)ujr9i' against John [?]; MeClure John.",
    "layers": [
     "census_1840",
     "residents"
@@ -73279,10 +73160,9 @@
     "lead_v02_johna_residents"
    ],
    "person_ids": [
-    "john_meclure",
-    "john_w"
+    "john_meclure"
    ],
-   "person_id": null,
+   "person_id": "john_meclure",
    "evidence": [
     "nbi_v02_1402",
     "data/research/newberry_index/leads.json"
@@ -74238,10 +74118,10 @@
   {
    "record_id": "nbi_v02_1574",
    "a": "King | _Madlson Co., III. (Brink, W. R. ft Co., Pubs.) tttlno",
-   "b": "Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King",
+   "b": "Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'King | _Madlson Co., III. (Brink, W. R. ft Co., Pubs.) tttlno' against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King.",
+   "rule": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'King | _Madlson Co., III. (Brink, W. R. ft Co., Pubs.) tttlno' against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King.",
    "layers": [
     "census_1840",
     "residents",
@@ -74253,7 +74133,6 @@
     "lead_v02_king_voters"
    ],
    "person_ids": [
-    "king_byra",
     "king_byram",
     "king_byron",
     "king_hyram",
@@ -74282,10 +74161,10 @@
   {
    "record_id": "nbi_v02_1578",
    "a": "King | Wilbnu, y-oeh. (WrlcH. G. H.) nut, ill.",
-   "b": "Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King",
+   "b": "Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'King | Wilbnu, y-oeh. (WrlcH. G. H.) nut, ill.' against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byra King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King.",
+   "rule": "Refused. All 2 card(s) heading 'King' name Illinois and neither Chicago nor Cook County, so the lead against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'King | Wilbnu, y-oeh. (WrlcH. G. H.) nut, ill.' against Nathaniel A. King; Wil[?]s King; Byram King; Henry K[?]inig Sr.; Nathan E. King; Byram King; Byron King; Hyram King; J D King; Nehemiah King; Sherman King; Tuthill King; Byron King; J. D. King.",
    "layers": [
     "census_1840",
     "residents",
@@ -74297,7 +74176,6 @@
     "lead_v02_king_voters"
    ],
    "person_ids": [
-    "king_byra",
     "king_byram",
     "king_byron",
     "king_hyram",
@@ -75546,39 +75424,6 @@
    "ticket": "T-0590"
   },
   {
-   "record_id": "nbi_v03_0172",
-   "a": "man | DuPage Co,, III. (ölr.nchard, R.) 1882: j,",
-   "b": "Hol Man",
-   "outcome": "refused",
-   "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'man' name Illinois and neither Chicago nor Cook County, so the lead against Hol Man stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'man | DuPage Co,, III. (ölr.nchard, R.) 1882: j,' against Hol Man.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v01_man_residents"
-   ],
-   "person_ids": [
-    "man_hol"
-   ],
-   "person_id": "man_hol",
-   "evidence": [
-    "nbi_v03_0172",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_03",
-    "text_file": "vol_03_locality_cards.txt",
-    "lines": [
-     349,
-     350
-    ],
-    "index_page": 82,
-    "column": 2
-   },
-   "ticket": "T-0590"
-  },
-  {
    "record_id": "nbi_v03_0173",
    "a": "an family, Lyman | Ogle Co., III. (Kelt, H. F., tt Co.) I878t 648. Estex Inst. H",
    "b": "Cale[b] Lyman",
@@ -75603,39 +75448,6 @@
     "lines": [
      351,
      352
-    ],
-    "index_page": 82,
-    "column": 2
-   },
-   "ticket": "T-0590"
-  },
-  {
-   "record_id": "nbi_v03_0174",
-   "a": "man | Sangamon Co,, III, (Power, J, C.) 1876. S«hen, Mass",
-   "b": "Hol Man",
-   "outcome": "refused",
-   "class": "locality_absent",
-   "rule": "Refused. All 3 card(s) heading 'man' name Illinois and neither Chicago nor Cook County, so the lead against Hol Man stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'man | Sangamon Co,, III, (Power, J, C.) 1876. S«hen, Mass' against Hol Man.",
-   "layers": [
-    "residents"
-   ],
-   "leads": [
-    "lead_v01_man_residents"
-   ],
-   "person_ids": [
-    "man_hol"
-   ],
-   "person_id": "man_hol",
-   "evidence": [
-    "nbi_v03_0174",
-    "data/research/newberry_index/leads.json"
-   ],
-   "locator": {
-    "list": "vol_03",
-    "text_file": "vol_03_locality_cards.txt",
-    "lines": [
-     353,
-     354
     ],
     "index_page": 82,
     "column": 2
@@ -78705,10 +78517,10 @@
   {
    "record_id": "nbi_v03_1107",
    "a": "Owen | Fulton Co, 111. (Chapman, C. C. £ Co) 1879t 1",
-   "b": "J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen; Col. T. J. V. Owen; Th. J. V. Owen",
+   "b": "J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; Col. T. J. V. Owen; Th. J. V. Owen",
    "outcome": "refused",
    "class": "locality_absent",
-   "rule": "Refused. All 2 card(s) heading 'Owen/owen' name Illinois and neither Chicago nor Cook County, so the lead against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Owen | Fulton Co, 111. (Chapman, C. C. £ Co) 1879t 1' against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen; Col. T. J. V. Owen; Th. J. V. Owen.",
+   "rule": "Refused. All 2 card(s) heading 'Owen/owen' name Illinois and neither Chicago nor Cook County, so the lead against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed stands on a surname with the locality actively absent - the one thing beyond the name that a card could have contributed. Ruled on the card 'Owen | Fulton Co, 111. (Chapman, C. C. £ Co) 1879t 1' against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; Col. T. J. V. Owen; Th. J. V. Owen.",
    "layers": [
     "residents",
     "voters"
@@ -78720,8 +78532,7 @@
    "person_ids": [
     "owen_household_unnamed",
     "owen_j_v",
-    "owen_thomas_jv",
-    "owen_v"
+    "owen_thomas_jv"
    ],
    "person_id": null,
    "evidence": [
@@ -78743,10 +78554,10 @@
   {
    "record_id": "nbi_v03_1109",
    "a": "Owena | _Madlson Co., III. (Brink, W. B. et Co., Pubs.)",
-   "b": "J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen; Col. T. J. V. Owen; Th. J. V. Owen",
+   "b": "J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; Col. T. J. V. Owen; Th. J. V. Owen",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Owena' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Owena' at all. And if it were, a heading against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen would still be a surname against a person, which is always a refusal here. Ruled on the card 'Owena | _Madlson Co., III. (Brink, W. B. et Co., Pubs.)' against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; V Owen; Col. T. J. V. Owen; Th. J. V. Owen.",
+   "rule": "Refused twice over. No candidate reaches 'Owena' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Owena' at all. And if it were, a heading against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed would still be a surname against a person, which is always a refusal here. Ruled on the card 'Owena | _Madlson Co., III. (Brink, W. B. et Co., Pubs.)' against J V Owen; Thomas Jefferson Vance Owen; Owen's household, unnamed; Col. T. J. V. Owen; Th. J. V. Owen.",
    "layers": [
     "residents",
     "voters"
@@ -78758,8 +78569,7 @@
    "person_ids": [
     "owen_household_unnamed",
     "owen_j_v",
-    "owen_thomas_jv",
-    "owen_v"
+    "owen_thomas_jv"
    ],
    "person_id": null,
    "evidence": [
