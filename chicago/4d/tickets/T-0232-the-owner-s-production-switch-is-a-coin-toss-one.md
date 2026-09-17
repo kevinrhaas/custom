@@ -1,7 +1,7 @@
 ---
 id: T-0232
 title: The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
-state: claimed
+state: done
 epic: PIPELINE
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-27
-closed: null
-pr: null
+closed: 2026-09-16
+pr: 1372
 claimed_by: run 9/16/2026, 11:38:24 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T01:49:33.685Z
 claimed_run: null
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: T-0537
 title: The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
+closed: 2026-09-16
+pr: 1372
 claimed_by: run 9/16/2026, 11:38:18 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T01:49:28.500Z
 claimed_run: null
 ---
 

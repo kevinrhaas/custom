@@ -1,7 +1,7 @@
 ---
 id: T-0727
 title: Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-16
+pr: 1372
 claimed_by: run 9/16/2026, 11:38:30 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T01:49:37.990Z
 claimed_run: null
 ---
 

@@ -343,13 +343,9 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- band moved together into RESEARCH COMPLETION below on the owner's 2026-09-15 instruction.
 # --- The remaining lines are loop/release machinery and follow that completion programme.
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
-T-0727 — Budget the walkthrough's boot payload, which is what a visitor actually downloads, rather than the whole published tree
 T-1155 — Wire measure_boot_payload.mjs --check into the nightly gate so the 12 MB boot budget refuses without a human
 T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
-T-0232 — The owner's production switch is a coin toss: one promotion in four never reaches a promotion step
-T-0234 — The account's GraphQL quota is exhausted while REST sits untouched, and a slice loses its PR to it
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
-T-0537 — The web derivatives are stamped by an unpinned gltf-transform, so a release upstream restamps all 372 of them
 T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
 T-0777 — assets/manifest.web.json's $note is rewritten with escaped em-dashes, so its own generator does not reproduce what dev committed
 T-0829 — A repeated string in a provenance or coverage list is the same merge artefact as a repeated id, and nothing asserts it
@@ -358,7 +354,6 @@ T-0371 — The lattice path's block rotation is dead code that measure_rank_bias
 T-0053 — A patched lit material silently inherits another layer's shader program
 T-0030 — A queue card in Manager reading tickets.json
 T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
-T-0968 — A green deploy is not proof the site is reachable: /chicago/4d/dev/ served a 404 for hours while every deploy reported success, and nothing checks a URL after publishing
 T-0237 — The full ceiling has 1,145 triangles clear on the published mirror, twelve hours after T-0229 raised it
 T-0285 — An asset carrying its own AO map cannot batch with the town: +2 draw calls for one building
 T-0286 — The AO unwrap leaves 68.9 per cent of every atlas empty, and the map is priced as if it were full
