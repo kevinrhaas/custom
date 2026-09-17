@@ -5,11 +5,11 @@
   "source_id": "chicago_voter_lists_1833_1835_irad",
   "publication_source_id": "chicago_genealogist_1993_voter_lists",
   "crosswalk_target": "data/residents/households/*.json",
-  "residents_compared": 1287,
+  "residents_compared": 1288,
   "counts": {
     "entries": 345,
-    "matched": 295,
-    "candidate": 14,
+    "matched": 292,
+    "candidate": 17,
     "unmatched": 36,
     "per_list": {
       "poll_1833": {
@@ -20,20 +20,20 @@
       },
       "tax_1833": {
         "entries": 115,
-        "matched": 91,
-        "candidate": 2,
+        "matched": 90,
+        "candidate": 3,
         "unmatched": 22
       },
       "poll_1834": {
         "entries": 115,
-        "matched": 103,
-        "candidate": 3,
+        "matched": 102,
+        "candidate": 4,
         "unmatched": 9
       },
       "poll_1835": {
         "entries": 85,
-        "matched": 76,
-        "candidate": 8,
+        "matched": 75,
+        "candidate": 9,
         "unmatched": 1
       }
     }
@@ -1718,13 +1718,16 @@
       "list": "tax_1833",
       "as_read": "Sweet, Alanson",
       "normalized": "Alanson Sweet",
-      "outcome": "matched",
-      "matched_resident": "sweet_alanson",
-      "household_id": "hh_sweet_alanson",
-      "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'",
+      "outcome": "candidate",
+      "matched_resident": null,
+      "household_id": null,
+      "discriminator": null,
       "candidate": null,
-      "rivals": [],
-      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
+      "rivals": [
+        "sweet_a",
+        "sweet_alanson"
+      ],
+      "rule": "2 residents of the surname 'Sweet' agree with the entry's forenames and nothing in the printed row separates them; an ambiguous match is a candidate, never a merge."
     },
     {
       "record_id": "tax_1833_100",
@@ -1737,7 +1740,7 @@
       "discriminator": "forenames agree initial for initial: entry 'R. M. Sweet' against resident 'Richard M Sweet'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
     },
     {
       "record_id": "tax_1833_101",
@@ -3311,13 +3314,16 @@
       "list": "poll_1834",
       "as_read": "Sweet, Alanson",
       "normalized": "Alanson Sweet",
-      "outcome": "matched",
-      "matched_resident": "sweet_alanson",
-      "household_id": "hh_sweet_alanson",
-      "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'",
+      "outcome": "candidate",
+      "matched_resident": null,
+      "household_id": null,
+      "discriminator": null,
       "candidate": null,
-      "rivals": [],
-      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
+      "rivals": [
+        "sweet_a",
+        "sweet_alanson"
+      ],
+      "rule": "2 residents of the surname 'Sweet' agree with the entry's forenames and nothing in the printed row separates them; an ambiguous match is a candidate, never a merge."
     },
     {
       "record_id": "poll_1834_106",
@@ -4494,13 +4500,16 @@
       "list": "poll_1835",
       "as_read": "Sweet, Alanson",
       "normalized": "Alanson Sweet",
-      "outcome": "matched",
-      "matched_resident": "sweet_alanson",
-      "household_id": "hh_sweet_alanson",
-      "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'",
+      "outcome": "candidate",
+      "matched_resident": null,
+      "household_id": null,
+      "discriminator": null,
       "candidate": null,
-      "rivals": [],
-      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
+      "rivals": [
+        "sweet_a",
+        "sweet_alanson"
+      ],
+      "rule": "2 residents of the surname 'Sweet' agree with the entry's forenames and nothing in the printed row separates them; an ambiguous match is a candidate, never a merge."
     },
     {
       "record_id": "poll_1835_079",

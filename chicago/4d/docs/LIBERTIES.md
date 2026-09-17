@@ -10654,9 +10654,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 397 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 398 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 397 people
+**Scope:** `residents.persons[civic_mint]` — 398 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10874,10 +10874,27 @@ files) and `index.json` from 318 KB to 510 KB. No geometry moves, no triangle is
 and not one of the 531 is placed anywhere: `housed` in the town census does not move at all,
 which is the ruling's own condition, measured.
 
+**And one more, because a supplied letter is part of the name (T-1155, 2026-09-17).**
+T-1115's paragraph above named the defect it was leaving standing: the splitter took the
+square brackets off a printed name *and everything inside them*, so a transcriber's supplied
+letter was deleted along with a directory's aside. T-1155 keeps the supplied letters, and
+this scope rises from 397 to 398. The rise is ONE card and it is A. Sweet, named at Chicago
+by the Democrat of 4 June 1834. That reading used to fold onto Alanson Sweet unopposed,
+because the corpus's other Sweet — printed `Alon[s]on Sweet` — read as the two forenames
+`alon` and `on` and was no rival to an initial. With the letter back it reads as the full
+forename Alonson, the ladder's R3 refuses the initial A to both men rather than choosing,
+and the reading stands on a container of its own. The cluster is ruled `undecided` in
+`data/residents/card_merge_rulings.json` and not merged, because whether Alonson is a second
+man or a compositor's transposition of Alanson is a reading of the page: T-1216 owns it, and
+deciding it one way takes this count back to 397. NOTHING ELSE IN THE SCOPE MOVED by a
+mint or a fold: six people rose from `inferred` to `attested` and nine lost a
+`projected_resident` caveat, on evidence that was always theirs and that the mangled keys
+had been holding apart. No geometry moves and no figure is drawn (L1).
+
 Related: **L214** (the pass beside this one) · **L213** (the test this disagrees with) ·
 **L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514**
 (this), **T-0513**, **T-0515**, **T-0633**, **T-0667**.
-**Recorded:** 2026-09-04; count restated 2026-09-16 (T-1115).
+**Recorded:** 2026-09-04; count restated 2026-09-16 (T-1115) and 2026-09-17 (T-1155).
 
 ### L221 — What the 1835 town may show of the Indian trade: a catalogue of about 130 articles is admitted as corroboration and refused as a warrant
 **Decision:** the American Fur Company's own list of the goods it furnished "for trade of the

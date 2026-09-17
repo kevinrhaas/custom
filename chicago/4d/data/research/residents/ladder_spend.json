@@ -11,20 +11,21 @@
   "proposed_not_written": 864
  },
  "counts": {
-  "person_records": 1287,
-  "carried_by_the_civic_mint": 397,
-  "rungs_spent": 808,
-  "conflicts_for_the_owner": 79,
+  "person_records": 1288,
+  "carried_by_the_civic_mint": 398,
+  "rungs_spent": 807,
+  "conflicts_for_the_owner": 80,
   "spent_by_rule": {
    "G1a": 22,
    "G1b": 92,
    "G1c": 9,
-   "G2e": 47,
-   "G3": 638
+   "G2e": 54,
+   "G3": 630
   },
   "conflicts_by_kind": {
    "abstention": 44,
-   "downgrade": 35
+   "downgrade": 35,
+   "subtype": 1
   }
  },
  "refusal_kinds": {
@@ -93,9 +94,9 @@
    "household_id": "hh_albee_clark_b",
    "name": "Clark B. Albee",
    "identity": "id_albee_clark_b",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "albert_shepherd",
@@ -569,7 +570,7 @@
    "person_id": "beaubien_mark",
    "household_id": "hh_beaubien_mark",
    "name": "Mark Beaubien",
-   "identity": "id_beaubien_mark",
+   "identity": "id_beaubien_mark_b",
    "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null
@@ -1344,9 +1345,9 @@
    "household_id": "hh_chamberlain_l_c",
    "name": "L. C Chamberlain",
    "identity": "id_chamberlain_l_c",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "chambers_john",
@@ -2559,9 +2560,9 @@
    "household_id": "hh_fleet_john_van",
    "name": "John Van Fleet",
    "identity": "id_vanfleet_john",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "flint_a_w",
@@ -2640,15 +2641,6 @@
    "household_id": "hh_forster_jane",
    "name": "Jane Forster",
    "identity": "id_forster_jane",
-   "rule": "G3",
-   "grade": "inferred",
-   "resident_subtype": "projected_resident"
-  },
-  {
-   "person_id": "foster_caleb",
-   "household_id": "hh_foster_caleb",
-   "name": "Caleb Foster",
-   "identity": "id_foster_caleb",
    "rule": "G3",
    "grade": "inferred",
    "resident_subtype": "projected_resident"
@@ -4350,9 +4342,9 @@
    "household_id": "hh_lovering_richard",
    "name": "Richard Lovering",
    "identity": "id_lovering_richard",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "loyell_j_hi",
@@ -4683,9 +4675,9 @@
    "household_id": "hh_miles_andrew",
    "name": "Andrew Miles",
    "identity": "id_miles_andrew",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "miller_john",
@@ -4818,9 +4810,9 @@
    "household_id": "hh_moreland_thomas_u",
    "name": "Thomas U. Moreland",
    "identity": "id_moreland_thomas_u",
-   "rule": "G2e",
+   "rule": "G3",
    "grade": "inferred",
-   "resident_subtype": null
+   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "morgan_jesse",
@@ -5394,9 +5386,9 @@
    "household_id": "hh_poke_edward",
    "name": "Edward Poke",
    "identity": "id_poke_edward",
-   "rule": "G2e",
+   "rule": "G3",
    "grade": "inferred",
-   "resident_subtype": null
+   "resident_subtype": "projected_resident"
   },
   {
    "person_id": "polk_mary",
@@ -5673,9 +5665,9 @@
    "household_id": "hh_rodney_mcdole",
    "name": "McDole Rodney",
    "identity": "id_rodney_mcdole",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "rogers_edward_a",
@@ -5817,9 +5809,9 @@
    "household_id": "hh_sanderson_james",
    "name": "James Sanderson",
    "identity": "id_sanderson_james",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "sanford_ruth",
@@ -5987,7 +5979,7 @@
    "person_id": "sherman_h",
    "household_id": "hh_sherman_h",
    "name": "Mrs. H. Sherman",
-   "identity": "id_sherman_ho_r",
+   "identity": "id_sherman_h",
    "rule": "G1b",
    "grade": "attested",
    "resident_subtype": null
@@ -7257,18 +7249,18 @@
    "household_id": "hh_work_james_houston",
    "name": "James Houston Work",
    "identity": "id_work_james_houston",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "works_charles",
    "household_id": "hh_works_charles",
    "name": "Charles Works",
    "identity": "id_works_charles",
-   "rule": "G3",
+   "rule": "G2e",
    "grade": "inferred",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": null
   },
   {
    "person_id": "wright_john",
@@ -7772,6 +7764,21 @@
     "resident_subtype": "projected_resident"
    },
    "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
+  },
+  {
+   "person_id": "foster_caleb",
+   "household_id": "hh_foster_caleb",
+   "name": "Caleb Foster",
+   "identity": "id_foster_caleb",
+   "rule": "G2e",
+   "grade": "inferred",
+   "resident_subtype": "projected_resident",
+   "kind": "subtype",
+   "proposed": {
+    "grade": "inferred",
+    "resident_subtype": null
+   },
+   "why": "the rung proposes the same grade with a DIFFERENT resident_subtype. Taking a `projected_resident` caveat off a card, or putting one on, is a change to what the card claims and not a reason for what it already says."
   },
   {
    "person_id": "frame_david_p",

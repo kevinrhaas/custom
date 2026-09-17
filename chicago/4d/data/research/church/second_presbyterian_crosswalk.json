@@ -14,7 +14,7 @@
   ],
   "counts": {
     "roll_records": 941,
-    "residents_considered": 1285,
+    "residents_considered": 1286,
     "residents_matched_one_line": 81,
     "residents_ambiguous": 36,
     "residents_surname_only_refused": 319
@@ -888,7 +888,7 @@
       "name": "Samuel Miller",
       "person_id": "miller_samuel",
       "household_id": "hh_miller_samuel",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "rule": "Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins S.",
       "roll_lines": [
@@ -4138,7 +4138,7 @@
       "name": "Sanford Johnson",
       "person_id": "johnson_sanford",
       "household_id": "hh_johnson_sanford",
-      "grade": "inferred",
+      "grade": "attested",
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 10,
       "rule": "The surname 'Johnson' stands on the Second Presbyterian roll and no line under it carries the initial 'S' of 'Sanford Johnson'. A surname-only agreement is a refusal."

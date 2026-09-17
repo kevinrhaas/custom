@@ -1077,7 +1077,7 @@
    "person_id": "spence_james_c",
    "name": "James C Spence",
    "source_id": "fergus_chicago_directory_1839",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "rules": [
     "Surname 'Spence' folds to the same string as the 1837 entry's, and the given name of both begins J."
    ],

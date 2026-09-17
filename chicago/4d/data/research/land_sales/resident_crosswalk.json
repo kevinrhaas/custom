@@ -5,15 +5,15 @@
   "source_id": "isa_public_domain_land_tract_sales",
   "note": "PROPOSALS, not identities. Nothing here mints a resident, regrades one, or writes to data/residents/. T-0514 and T-0515 spend this file. A match carrying a `ruling` block has been ADJUDICATED (T-0700, resident_rulings.json); one carrying `ruling: null` is still only what the mechanical rule proposed, and a refused proposal is in refusals[] with the ruling as its rule.",
   "ruled": {
-    "upheld": 136,
+    "upheld": 135,
     "named": 1,
     "refused": 68,
     "unruled": 5
   },
   "counts": {
     "purchasers": 647,
-    "matched": 142,
-    "refused": 505,
+    "matched": 141,
+    "refused": 506,
     "firms": 2,
     "bodies": 3
   },
@@ -2604,59 +2604,6 @@
           "fergus_chicago_directory_1839"
         ],
         "reasoning": "Three school-section parcels on 22 October 1833. The town's own polls of 1834 and 1835 both print 'Steele, Ashbel', Andreas gives the trade, plasterer, and neither register nor layer holds a second Steele. An unusual forename printed identically by the land office and by the town's clerk is a token, not a coincidence of surname."
-      },
-      "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
-    },
-    {
-      "purchaser_as_read": "SWEET ALANSON",
-      "record_ids": [
-        "ls0345",
-        "ls0346",
-        "ls0347",
-        "ls0348",
-        "ls0349",
-        "ls0350",
-        "ls0545"
-      ],
-      "resident_id": "sweet_alanson",
-      "resident_name": "Alanson Sweet",
-      "household_id": "hh_sweet_alanson",
-      "match": "forename_agrees",
-      "rule": "SWEET ALANSON matches Alanson Sweet: the forename names Alanson Sweet of the 2 people of this surname, and the forename agrees in full.",
-      "via_card_merge": null,
-      "rivals": [
-        {
-          "key": "sweet_alanson",
-          "name": "Alanson Sweet",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — same (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
-        {
-          "key": "sweet_richard_m",
-          "name": "Richard M Sweet",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "M",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        }
-      ],
-      "residence_column": "UNKNOWN",
-      "evidence_grade": "inferred",
-      "ruling": {
-        "ruling": "upheld",
-        "ruled_on": "2026-09-11",
-        "ticket": "T-0990",
-        "checked_against": [
-          "isa_public_domain_land_tract_sales",
-          "andreas_1884_v1",
-          "chicago_voter_lists_1833_1835_irad",
-          "buck_pioneer_milwaukee_alanson_sweet"
-        ],
-        "reasoning": "AN UNCOMMON FORENAME PRINTED WHOLE ON BOTH SIDES, THREE CIVIC ROLLS, AND A TRADE THE SIX 1833 ROWS ARE WHAT YOU WOULD PREDICT FROM. Andreas's roster has “Alanson Sweet, 1832” and, elsewhere, that “the first Tremont House ... was built by Alanson Sweet” in 1833 and kept as a saloon and boarding-house by him and a Canadian named Darwin. A man who put a hotel up at Lake and Dearborn that year entered six town lots and a whole block at the school-section sale of 22 and 23 October 1833 for $991: the purchase is the trade doing what the trade does. The tax list of 1833, the poll of 1834 and the poll of 1835 hold him — three contemporary rolls bracketing the rows on both sides — and the layer's other Sweets are Richard M. and an “Alon On Sweet” whose name is this one read through bad type. THE SEVENTH ROW IS WEAKER AND IS SAID SO: ls0545, 27 June 1835, is inside the ring, and Buck's Pioneer History of Milwaukee has Sweet moving to Milwaukee in 1835 without giving a departure date relative to 1 July. A man buying Cook County ground on his way out of it is ordinary; it is noted rather than leaned on. Upheld."
       },
       "what_it_evidences": "A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints."
     },
@@ -9332,6 +9279,52 @@
       "record_ids": [
         "ls0343",
         "ls0344"
+      ],
+      "evidence": [
+        "data/residents/index.json"
+      ]
+    },
+    {
+      "a": "SWEET ALANSON",
+      "b": "3 residents named Sweet",
+      "rule": "SWEET ALANSON is refused against A Sweet and Alanson Sweet and Richard M Sweet: the forename names 2 of the 3 people of this surname, and a reading is named onto exactly one or onto none.",
+      "rivals": [
+        {
+          "key": "sweet_a",
+          "name": "A Sweet",
+          "forename_agrees": true,
+          "why": "an initial standing for the forename (M2)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "sweet_alanson",
+          "name": "Alanson Sweet",
+          "forename_agrees": true,
+          "why": "the forenames agree in full — same (M1)",
+          "middle_initial": null,
+          "reading_middle_initial": null,
+          "outcome": "survives"
+        },
+        {
+          "key": "sweet_richard_m",
+          "name": "Richard M Sweet",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
+          "middle_initial": "M",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        }
+      ],
+      "record_ids": [
+        "ls0345",
+        "ls0346",
+        "ls0347",
+        "ls0348",
+        "ls0349",
+        "ls0350",
+        "ls0545"
       ],
       "evidence": [
         "data/residents/index.json"

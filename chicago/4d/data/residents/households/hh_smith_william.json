@@ -113,6 +113,15 @@
      "describes_date": "1840",
      "source": "census_1840_chicago_familysearch_images",
      "rule": "G1a"
+    },
+    {
+     "list": "census_1840",
+     "as_read": "[W]m. Smith",
+     "locator": "214:27",
+     "record_id": "33SQ-GYYJ-BP:27",
+     "describes_date": "1840",
+     "source": "census_1840_chicago_familysearch_images",
+     "rule": "G1a"
     }
    ],
    "book_evidence": [
