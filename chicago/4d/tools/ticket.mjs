@@ -1526,6 +1526,81 @@ switch (cmd) {
     console.log(`queue prune: dropped ${dropped.length} line(s) — ${dropped.join(', ')}`);
     break;
   }
+  /**
+   * THE OTHER HALF OF `prune`, AND THE ONE THE LAP COULD NOT DO (T-1285).
+   *
+   * `prune` DELETES a queue line whose ticket is finished. The fault that actually
+   * held the pull-request queue shut runs the other way: a line the BASE added while
+   * a branch was open, LOST by the merge. QUEUE.md is in pr-lap.sh's `GENERATED` set,
+   * so a conflict there is cleared by taking a side and letting a tool rewrite the
+   * file — and for this file the tool is `board`, which regenerates BOARD.md from the
+   * queue and can only ever preserve what the side it took already said. Take the
+   * branch's side and every line `dev` added is gone.
+   *
+   * It is not hypothetical and it is not rare. Measured 2026-09-17 on the two PRs the
+   * lap had just pushed: #1400 was missing 28 of dev's queue lines and #1392 was
+   * missing 27, both red on the single gate step `ticket queue`, one of 439 — and
+   * `prune` ran on both, correctly, and could do nothing. Every line was one of the 27
+   * reconstruction tickets dev took in #1402 plus T-1177's retitle.
+   *
+   * WHAT IT WILL NOT DO IS INVENT AN ORDER. The queue is the OWNER's ordering; that is
+   * why `prune` only deletes and why `new` refuses to guess a position without
+   * `--after`. So this does not append and it does not sort: it takes the base's queue
+   * whole, then walks the branch's queue and puts back each line the base does not
+   * carry AFTER THE SAME LINE IT FOLLOWED ON THE BRANCH. A line whose predecessor is
+   * not in the base's queue either — the only case with no answer — goes to the foot,
+   * which is where `new` puts a line it cannot place, and the report says so.
+   *
+   *   node tools/ticket.mjs reconcile [--base origin/dev] [--dry-run]
+   */
+  case 'reconcile': {
+    const base = flag('base') ?? 'origin/dev';
+    let baseLines;
+    try {
+      baseLines = git(['show', `${base}:chicago/4d/tickets/QUEUE.md`]).split('\n');
+    } catch {
+      console.error(`queue reconcile: cannot read ${base}:chicago/4d/tickets/QUEUE.md — `
+        + 'fetch the base first, or pass --base <ref>.');
+      process.exit(1);
+    }
+    const mine = queueLines();
+    const baseIds = new Set(baseLines.map(queueId).filter(Boolean));
+    const out = [...baseLines];
+    const restored = [];
+    let prev = null;
+    for (const line of mine) {
+      const id = queueId(line);
+      if (!id) continue;
+      if (!baseIds.has(id)) {
+        // A line goes back after the SAME line it followed on the branch. Walking the
+        // branch's queue in order means that predecessor is always either in the base
+        // or already restored, so the only line with no predecessor at all is one that
+        // LED the branch's queue — and leading the queue is itself a ranking, so it
+        // goes back to the top rather than to the foot.
+        const at = prev === null ? -1 : out.findIndex((l) => queueId(l) === prev);
+        if (at >= 0) { out.splice(at + 1, 0, line); restored.push(`${id} (after ${prev})`); }
+        else {
+          const top = out.findIndex((l) => queueId(l) !== null);
+          if (top < 0) { out.push(line); restored.push(`${id} (to the foot — the base's queue has no lines)`); }
+          else { out.splice(top, 0, line); restored.push(`${id} (to the top — it led this branch's queue)`); }
+        }
+      }
+      prev = id;
+    }
+    const lost = baseIds.size - mine.map(queueId).filter((id) => id && baseIds.has(id)).length;
+    if (has('dry-run')) {
+      console.log(`queue reconcile: ${lost} line(s) of ${base} WOULD come back, `
+        + `${restored.length} line(s) of this branch WOULD be put back`);
+      for (const r of restored) console.log(`  ${r}`);
+      break;
+    }
+    writeFileSync(QUEUE, out.join('\n').replace(/\n+$/, '\n'));
+    generateBoard(loadAll());
+    console.log(`queue reconcile: rebuilt on ${base} — ${lost} line(s) the merge had lost are back, `
+      + `${restored.length} of this branch's own put back in place`);
+    for (const r of restored) console.log(`  ${r}`);
+    break;
+  }
   case 'board': generateBoard(tickets); console.log(`BOARD.md + tickets.json regenerated (${tickets.length} tickets)`); break;
   /**
    * WHAT IS BEING WORKED ON RIGHT NOW — the one question the files cannot answer.
@@ -1753,6 +1828,6 @@ switch (cmd) {
     break;
   }
   default:
-    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|split|list|inflight|landed|claims|prune|board|check');
+    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|split|list|inflight|landed|claims|prune|reconcile|board|check');
     process.exit(cmd ? 1 : 0);
 }
