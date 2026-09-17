@@ -65,7 +65,9 @@
     "sources": [
      "resident_research_v4_1835_census_bridge"
     ],
-    "note": "No occupation is promoted from the recovered bridge evidence."
+    "note": "No occupation is promoted from the recovered bridge evidence.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "later_census": {
     "year": 1840,
@@ -141,6 +143,24 @@
       "adams_william"
      ],
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ],
+   "roles": [
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "(W. H. A. & Co.)",
+     "from": "1843",
+     "to": "1843",
+     "precision": "year",
+     "dated_by": "printing_year",
+     "covers_scene_date": false,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "claim": null,
+     "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1843."
     }
    ]
   }

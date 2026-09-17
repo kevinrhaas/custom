@@ -155,6 +155,20 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
         if pointer is not None and isinstance(person.get("occupation"), dict):
             _insert_after(person["occupation"], "later_occupation", pointer, "confidence")
 
+        # T-1229: AND THE 1835 FIELD IS NOW A VIEW OF `roles[]`, DERIVED AFTER THE MINT.
+        # `roles` itself is an ordinary foreign person key and the loop above already
+        # carries it; these three live INSIDE `occupation`, which the mints rebuild whole,
+        # so they are lost the same way `later_occupation` was before T-1137. They are
+        # appended in the order tools/derive_resident_roles.py writes them, which is what
+        # keeps a mint's --check a byte comparison rather than a semantic one.
+        derived = old.get("occupation") or {}
+        if isinstance(person.get("occupation"), dict):
+            for key in ("withdrawn_from_scene_date", "derived_from",
+                        "roles_at_scene_date"):
+                if key in derived and key not in person["occupation"] \
+                        and key not in owned:
+                    person["occupation"][key] = derived[key]
+
         derived_sources = set(person.get("sources") or [])
         prior_sources = set(old.get("sources") or [])
         person["sources"] = sorted(
@@ -203,7 +217,10 @@ def self_test() -> int:
             "occupation": {
                 "value": "none_recorded", "confidence": "reconstructed",
                 "later_occupation": {"value": "clerk", "describes_date": 1839},
+                "withdrawn_from_scene_date": {"value": "grocer", "verdict": "pre_scene"},
+                "derived_from": "roles", "roles_at_scene_date": [],
             },
+            "roles": [{"role": None, "as_printed": "clerk", "from": "1839"}],
             "sources": ["source_this_mint_derives", "source_another_pass_added"],
             "note": old_derived + " " + OLD_SETTLER_MARKERS[0] + " — finding",
             "resident_research": {"ticket": "T-0509"},
@@ -223,6 +240,19 @@ def self_test() -> int:
          list(person).index("ladder_rule") == list(person).index("grade") + 1)
     want("a later occupation survives inside the newly derived occupation",
          person["occupation"].get("later_occupation", {}).get("describes_date") == 1839)
+    # T-1229. `roles[]` is an ordinary foreign person key; the three view keys live
+    # inside `occupation`, which a mint rebuilds whole, so they need naming.
+    want("the dated roles survive", person.get("roles") == prior["persons"][0]["roles"])
+    want("the scene-date view survives inside the newly derived occupation",
+         person["occupation"].get("derived_from") == "roles"
+         and person["occupation"].get("roles_at_scene_date") == [])
+    want("a withdrawn trade is not resurrected as a live one",
+         person["occupation"]["value"] == "none_recorded"
+         and person["occupation"]["withdrawn_from_scene_date"]["value"] == "grocer")
+    want("the view keys keep the order the generator writes them in",
+         [k for k in person["occupation"]
+          if k in ("withdrawn_from_scene_date", "derived_from", "roles_at_scene_date")]
+         == ["withdrawn_from_scene_date", "derived_from", "roles_at_scene_date"])
     want("another pass's citation survives",
          "source_another_pass_added" in person["sources"])
     want("the marker-bounded finding survives the changed note",

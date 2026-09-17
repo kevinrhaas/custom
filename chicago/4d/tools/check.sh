@@ -2247,6 +2247,22 @@ step "no standing 1835 trade is cited only to a volume about another year" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/audit_scene_window_trades.py --self-test
 
+# T-1229 (of T-1145). THE SINGULAR FIELD THE TWO STEPS ABOVE ARE ARGUING OVER IS NOW A
+# VIEW. `persons[].roles[]` is canonical — a controlled role, the kind of role it is, the
+# bound its evidence permits, how it was dated, a confidence and its sources — and
+# `persons[].occupation` is derived from the roles that actually cover 1 July 1835. That
+# is what lets a card say a man was a candle manufacturer in 1833 AND a school inspector
+# in 1839 without either erasing the other, and it is what took T-0991's six pre-scene
+# trades off the 1835 field: the audit above now stands at zero because the roles carry
+# them with their dates instead. This step is the re-derivation; validate.py holds the
+# shape and refuses an undated or non-covering role standing in the 1835 field, which is
+# the half a generator cannot cover because a hand edit never runs it.
+step "resident roles re-derive, and the 1835 view is the roles that reach it" \
+  python3 tools/derive_resident_roles.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/derive_resident_roles.py --self-test
+
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one
 # new household rewrote up to 73 of the 113 invented names — a diff in which the

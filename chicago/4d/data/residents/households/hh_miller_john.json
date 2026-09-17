@@ -78,7 +78,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'John Miller, brother of Samuel, the landlord, came in 1831, and run a tannery just north of Miller's tavern.' John Bates, interviewed in 1883: 'Hall & Miller had, in 1833, a large tannery on Wolf Point.'"
+    "note": "'John Miller, brother of Samuel, the landlord, came in 1831, and run a tannery just north of Miller's tavern.' John Bates, interviewed in 1883: 'Hall & Miller had, in 1833, a large tannery on Wolf Point.'",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "tanner"
+    ]
    },
    "later_census": {
     "year": 1840,
@@ -142,7 +146,25 @@
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "tanner",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   },
   {
    "id": "hall_benjamin",
@@ -156,7 +178,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'Benjamin Hall, tanner, a partner of John Miller, who came in 1832.' Bates's 1883 interview names the firm 'Hall & Miller'."
+    "note": "'Benjamin Hall, tanner, a partner of John Miller, who came in 1832.' Bates's 1883 interview names the firm 'Hall & Miller'.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "tanner"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -172,7 +198,25 @@
     "evidence_for": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence.",
     "summary": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence.",
     "notes": "The exact-name and variant sweep did not yield a dated Chicago/Cook County record with a discriminator beyond this common name. No occupation, kinship, address or migration fact is promoted; this documented no-find is not evidence of nonexistence."
-   }
+   },
+   "roles": [
+    {
+     "role": "tanner",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

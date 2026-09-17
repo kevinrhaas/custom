@@ -62,7 +62,11 @@
     "sources": [
      "rr_baptist_chicago_lathrop"
     ],
-    "note": "T-0485: independently corroborated resident research. Andreas' history of Chicago's First Baptist Church names Samuel S. Lathrop as one of the church's early members after its October 1833 organization and records him building the fence around Rev. A. B. Freeman's Chicago grave. This independently corroborates the exact named Chicago resident before the 1835 postal seed."
+    "note": "T-0485: independently corroborated resident research. Andreas' history of Chicago's First Baptist Church names Samuel S. Lathrop as one of the church's early members after its October 1833 organization and records him building the fence around Rev. A. B. Freeman's Chicago grave. This independently corroborates the exact named Chicago resident before the 1835 postal seed.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "minister"
+    ]
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -115,6 +119,24 @@
      "record_id": "resident_research:T-0485#02",
      "as_read": "records him building the fence around Rev. A. B. Freeman's Chicago grave",
      "note": "An undated act in the source, bounded to the church's early years. Carried at year precision with the source's own vagueness intact."
+    }
+   ],
+   "roles": [
+    {
+     "role": "minister",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1833",
+     "to": "1835",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "rr_baptist_chicago_lathrop"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }
