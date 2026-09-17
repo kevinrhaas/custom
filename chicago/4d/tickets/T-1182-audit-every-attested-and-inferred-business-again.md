@@ -62,8 +62,13 @@ and used as brackets, never as instructions to invent):
 4. The physicians' gap (3 vs 14) and lawyers' gap (18 vs 22) are worked FROM THE RESEARCH first:
    every physician/attorney the layer names in window gets an office record here; what remains
    short is written to the order book for T-1186, not invented here.
-5. The Sept–Dec 1835 crosswalk is re-run and its deltas re-printed; documented zeros stay zero.
-6. Report `docs/RESEARCH/business-audit-2026-09.md`; `--check` re-derives; gates in `check.sh`.
+5. **Black-owned and Native/Métis-run businesses identified.** Every business whose proprietor
+   the sources place in either community (the Indian traders' houses, the interpreters, the
+   barber, any firm a register or biography so describes) carries `proprietor_community` at the
+   tier the evidence supports, so the Businesses view can list them on one filter; the attested
+   set is the floor T-1177 reconstructs above.
+6. The Sept–Dec 1835 crosswalk is re-run and its deltas re-printed; documented zeros stay zero.
+7. Report `docs/RESEARCH/business-audit-2026-09.md`; `--check` re-derives; gates in `check.sh`.
 
 **Stop condition:** no attested or inferred business fact in the research is absent from a
 business record, and no in-window tradesman is without a workplace or a stated reason.

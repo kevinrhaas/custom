@@ -45,14 +45,16 @@ reversal has to be written down before any person is written, or the next run wi
   for invented people; roster re-admissions keep `hh_<read name>` with `source_pass:
   reconstructed_readmission`), the seed rule (household id + bucket), the naming rule (pools by
   community, collision check against the identity master), `replaceable_by` template text, the
-  LIBERTIES entry ids it will fill, and the standing constraint restated: no reconstructed
-  Native or Métis person, no reconstructed kin for a `touches_removal` household.
+  LIBERTIES entry ids it will fill, and the standing constraint as the owner re-ruled it on 2026-09-17 (AGENTS.md):
+  Native and Métis persons and kin ARE reconstructed, only through stage `underdocumented`
+  (T-1177), always `review_required` + `touches_removal`, never drawn (L1).
 - `tools/reconstruct_residents_1835.py` — the ONE writer for `grade: reconstructed` persons and
   households and for reconstructed attribute values on existing persons, with `--stage <ticket
   key> --build|--check|--self-test` so each ticket below is a stage of one deterministic build,
   and `--check` re-derives every stage in `check.sh`. Mutation self-test: a reconstructed person
-  without basis/seed, a reconstructed attribute above its tier, a Native reconstruction, an
-  attested name reused — each refused.
+  without basis/seed, a reconstructed attribute above its tier, a Native or Métis reconstruction
+  outside stage `underdocumented` or without `review_required`, an attested name reused —
+  each refused.
 - The retired programme stays retired: `1835_inferred_household_programme.json
   .resident_population_active` remains `false`; its 31 `inferred_anonymous` roofs are stock for
   T-1197; its 29-row occupation census is superseded by T-1162 and the file's `_doc`
