@@ -111,7 +111,6 @@ T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 181
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
 T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
 T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
-T-1249 — Decide and source the representative scene date of the 1880s South Side epoch, and make the checker read every dated shoreline state's date from the record that argues for it
 T-1250 — Trace the 1880s lake edge and Illinois Central corridor from period cartography, south past Twelfth Street to the Prairie Avenue blocks, with its sources, confidence and bounds
 T-1251 — Establish the graded streets, drainage and fill of the South Side at the 1880s scene date from engineering records and fire-insurance mapping
 T-1252 — Generate the 1880s terrain spec, heightfield and extent a Prairie Avenue scene stands on, and turn the epoch active

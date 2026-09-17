@@ -1,7 +1,7 @@
 ---
 id: T-1249
 title: Decide and source the representative scene date of the 1880s South Side epoch, and make the checker read every dated shoreline state's date from the record that argues for it
-state: open
+state: done
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0473
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1401
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T16:08:20.678Z
 claimed_run: null
 ---
 
