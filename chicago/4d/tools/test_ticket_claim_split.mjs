@@ -166,7 +166,88 @@ const markers = (bare) =>
   }
 }
 
+/* ------------------------------------- reconcile: the queue gets back what a merge lost */
+
+/**
+ * THE OTHER DIRECTION, AND THE ONE `prune` CANNOT REACH (T-1285). QUEUE.md is in
+ * pr-lap.sh's GENERATED set, so a conflict there is cleared by taking a side and
+ * letting a tool rewrite the file. For this file the "tool" is `board`, which builds
+ * BOARD.md FROM the queue — it can only ever preserve what the side it took already
+ * said. Take the branch's side and every line the base added is simply gone.
+ *
+ * Measured 2026-09-17 on the two PRs the lap had just pushed: #1400 missing 28 of
+ * dev's lines, #1392 missing 27, both red on the single gate step `ticket queue` out
+ * of 439 — and `prune` ran on both and could do nothing, correctly, because a prune
+ * only deletes.
+ *
+ * The thing it must never do is invent an order: the queue is the OWNER's ranking.
+ * So a restored line goes back after the SAME line it followed on the branch, and the
+ * only case with no answer — a predecessor the base does not carry either — goes to
+ * the foot, where `new` puts a line it cannot place.
+ */
+{
+  const { tmp, APP } = sandbox();
+  try {
+    console.log('\n  a queue whose merge took the branch\'s side and dropped the base\'s lines');
+    const T = (id) => writeFileSync(path.join(APP, 'tickets', `${id}-fixture.md`),
+      ticketFile(id, `fixture ${id}`, 'open'));
+    for (const id of ['T-3001', 'T-3002', 'T-3003', 'T-3004', 'T-3005']) T(id);
+
+    const QUEUE = path.join(APP, 'tickets', 'QUEUE.md');
+    const HEADER = '# QUEUE — top is next. THE OWNER ORDERS THIS FILE.\n# --- 1. A BAND\n';
+    // The base: the owner's ranking, including two lines added while the PR was open.
+    writeFileSync(QUEUE, HEADER
+      + 'T-3001 — fixture T-3001\nT-3002 — fixture T-3002\nT-3003 — fixture T-3003\n');
+    git(APP, 'add', '-A'); git(APP, 'commit', '-q', '-m', 'base queue');
+    git(APP, 'branch', '-f', 'base');
+
+    // The branch: it never saw T-3002 or T-3003, and it opened two of its own.
+    writeFileSync(QUEUE, HEADER
+      + 'T-3001 — fixture T-3001\nT-3004 — fixture T-3004\nT-3005 — fixture T-3005\n');
+
+    const dry = run(APP, 'reconcile', '--base', 'base', '--dry-run');
+    check('5. --dry-run reports and writes nothing',
+      dry.status === 0 && /WOULD/.test(dry.out)
+      && !readFileSync(QUEUE, 'utf8').includes('T-3002'),
+      dry.out.trim().split('\n')[0]);
+
+    const r = run(APP, 'reconcile', '--base', 'base');
+    const q = readFileSync(QUEUE, 'utf8');
+    const ids = q.split('\n').map((l) => /^(T-\d{4})/.exec(l)?.[1]).filter(Boolean);
+
+    check('6. THE FAULT: the base\'s lost lines are back', r.status === 0
+      && ids.includes('T-3002') && ids.includes('T-3003'), ids.join(' '));
+    check('7. …in the base\'s own order, which is the owner\'s',
+      ids.indexOf('T-3001') < ids.indexOf('T-3002')
+      && ids.indexOf('T-3002') < ids.indexOf('T-3003'), ids.join(' '));
+    check('8. the branch\'s own lines go back after the line they followed, not at the foot',
+      ids[ids.indexOf('T-3001') + 1] === 'T-3004'
+      && ids[ids.indexOf('T-3004') + 1] === 'T-3005', ids.join(' '));
+    check('9. the band header survives — a reconcile is not a regeneration',
+      q.includes('# --- 1. A BAND') && q.includes('THE OWNER ORDERS THIS FILE'));
+    check('10. every line the base had is still there, and nothing is duplicated',
+      new Set(ids).size === ids.length && ids.length === 5, ids.join(' '));
+
+    // The only line with no predecessor: one that LED the branch's queue. Leading the
+    // queue is itself a ranking, so it goes back to the top and not to the foot.
+    T('T-3006');
+    writeFileSync(QUEUE, HEADER + 'T-3006 — fixture T-3006\nT-3001 — fixture T-3001\n');
+    const led = run(APP, 'reconcile', '--base', 'base');
+    const ids2 = readFileSync(QUEUE, 'utf8').split('\n')
+      .map((l) => /^(T-\d{4})/.exec(l)?.[1]).filter(Boolean);
+    check('11. a line that LED the branch\'s queue goes back to the top, not the foot',
+      ids2[0] === 'T-3006' && /to the top/.test(led.out), ids2.join(' '));
+
+    const missing = run(APP, 'reconcile', '--base', 'no-such-ref');
+    check('12. an unreadable base is refused loudly, never treated as an empty queue',
+      missing.status !== 0 && /cannot read/.test(missing.out),
+      missing.out.trim().split('\n')[0] || `status ${missing.status}`);
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
 console.log(failures
   ? `\n  ${failures} failure(s)\n`
-  : '\n  a split keeps its lock, and the queue drops only work that finished\n');
+  : '\n  a split keeps its lock, and the queue drops only finished work and regains what a merge lost\n');
 process.exit(failures ? 1 : 0);

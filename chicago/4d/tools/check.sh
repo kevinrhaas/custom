@@ -2065,7 +2065,7 @@ step "a claim that outlived the window is work, and a merged branch is still lit
 # plural dated roles twice, with colliding ids. A split is not finished work — the run
 # carries on for another hour on a child, which is the widest window any terminal state
 # has. The litter that made `split` release is collected by age instead.
-step "a split keeps its claim, and the queue drops only finished work" \
+step "a split keeps its claim, and the queue drops only finished work and regains what a merge lost" \
   node tools/test_ticket_claim_split.mjs
 
 # A QUEUE LINE THAT STILL NAMES A FINISHED BLOCKER. T-0464 closed on 2026-09-14
