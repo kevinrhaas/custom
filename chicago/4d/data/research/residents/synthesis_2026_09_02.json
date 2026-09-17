@@ -246,6 +246,7 @@
       "stafford_b_p"
     ],
     "letter_list_deferred_to_ladder": [
+      "albee_clark_b",
       "albert_shepherd",
       "allen_william",
       "avery_charles",
@@ -258,6 +259,7 @@
       "brookes_samuel",
       "burbee_jonathan",
       "chadwick_joseph",
+      "chamberlain_l_c",
       "clark_erastus",
       "cole_parker_m",
       "covell_thomas_r",
@@ -266,6 +268,7 @@
       "dement_wm",
       "fish_e_m",
       "fitzsimmons_john",
+      "fleet_john_van",
       "flint_a_w",
       "ford_ebenezer",
       "gooding_caroline",
@@ -278,11 +281,13 @@
       "lansing_andrew",
       "lawrence_james_r",
       "lee_george",
+      "lovering_richard",
       "lucas_robert",
       "luce_william",
       "mack_stephen",
       "matthews_james_g",
       "merrill_winthrop",
+      "miles_andrew",
       "minard_ira",
       "moreland_thomas_u",
       "northrop_francis_b",
@@ -293,7 +298,9 @@
       "poke_edward",
       "powell_geo_n",
       "risley_horace",
+      "rodney_mcdole",
       "rogers_edward_a",
+      "sanderson_james",
       "scott_john",
       "sherwood_s",
       "simpson_john_p",
@@ -305,7 +312,9 @@
       "williams_charles_c",
       "wilson_john",
       "winson_wm",
-      "wood_wm"
+      "wood_wm",
+      "work_james_houston",
+      "works_charles"
     ],
     "promoted_facts": [
       {
@@ -1072,13 +1081,13 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1257,
-    "persons": 1281,
-    "attested": 404,
-    "inferred": 877,
+    "households": 1258,
+    "persons": 1282,
+    "attested": 410,
+    "inferred": 872,
     "reconstructed": 0,
     "letter_list_only": 736,
-    "projected_residents": 730,
+    "projected_residents": 721,
     "census_1840_linked": 3
   },
   "retirement": {

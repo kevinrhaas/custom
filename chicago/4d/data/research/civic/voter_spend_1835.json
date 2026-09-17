@@ -7,25 +7,25 @@
  "reads": "data/research/civic/voter_crosswalk.json",
  "writes": "data/residents/households/*.json — persons[].sources and persons[].note",
  "counts": {
-  "matched_rulings": 295,
-  "people_written": 237,
-  "households_touched": 236,
+  "matched_rulings": 292,
+  "people_written": 236,
+  "households_touched": 235,
   "grades_changed": 0,
   "per_list": {
    "poll_1833": 25,
-   "poll_1835": 76,
-   "tax_1833": 91,
-   "poll_1834": 103
+   "poll_1835": 75,
+   "tax_1833": 90,
+   "poll_1834": 102
   },
   "crosswalk_entries": 345,
-  "candidate_not_written": 14,
+  "candidate_not_written": 17,
   "unmatched": 36
  },
  "refusals": [
   {
    "rule": "V1",
    "why": "a `candidate` row is a rival still standing: the crosswalk did not choose between the bearers of the name, and a card that cited the roll anyway would print an undecided identity as a decided one",
-   "rulings": 14
+   "rulings": 17
   },
   {
    "rule": "V2",
@@ -2103,43 +2103,6 @@
    ]
   },
   {
-   "household_id": "hh_sweet_alanson",
-   "person_id": "sweet_alanson",
-   "source_id": "chicago_voter_lists_1833_1835_irad",
-   "entries": [
-    {
-     "record_id": "tax_1833_099",
-     "list": "tax_1833",
-     "list_title": "Tax list of the Town of Chicago, 1833",
-     "list_date": "1833",
-     "as_read": "Sweet, Alanson",
-     "line": 151,
-     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
-     "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'"
-    },
-    {
-     "record_id": "poll_1834_105",
-     "list": "poll_1834",
-     "list_title": "Election returns — poll list of 1834, filed 11 August 1834",
-     "list_date": "1834-08-11",
-     "as_read": "Sweet, Alanson",
-     "line": 274,
-     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
-     "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'"
-    },
-    {
-     "record_id": "poll_1835_078",
-     "list": "poll_1835",
-     "list_title": "Poll list of 1835",
-     "list_date": "1835",
-     "as_read": "Sweet, Alanson",
-     "line": 365,
-     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
-     "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'"
-    }
-   ]
-  },
-  {
    "household_id": "hh_sweet_richard_m",
    "person_id": "sweet_richard_m",
    "source_id": "chicago_voter_lists_1833_1835_irad",
@@ -2151,7 +2114,7 @@
      "list_date": "1833",
      "as_read": "Sweet, R. M.",
      "line": 152,
-     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'R. M. Sweet' against resident 'Richard M Sweet'"
     }
    ]
