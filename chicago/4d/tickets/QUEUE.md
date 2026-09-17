@@ -20,7 +20,6 @@
 # Build tickets in 5C are needs_bake and hand on a successor. No reconstructed Native presence.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
-T-1218 — Three letter-list cards spell their surname differently from the id minted off the same printing: fraser_wm_h reads Frazer, provis_joshua reads Pruvis, vandino_john reads Vandine
 T-1217 — The card for jones_es_high leads with its family name, because the printing 'Es,Jones, High' sets it in the middle, and a re-mint would file it in the directory under es
 T-0662 — check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
 T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
