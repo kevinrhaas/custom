@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "research" / "domains.json"
 LEDGER = ROOT / "data" / "research" / "research_spend_ledger.json.gz"
 REPORT = ROOT / "docs" / "RESEARCH" / "research-spend-ledger-2026-09-15.md"
+RULINGS = ROOT / "data" / "research" / "spend_rulings.json"
 AS_OF = "2026-09-15"
 
 DISPOSITIONS = (
@@ -285,7 +286,7 @@ def resident_finding(root: Path, unit: dict) -> dict | None:
 # an unasserted PERSON unit is now T-1234, which is the piece of the parent that still has
 # this corpus to spend: T-1232 read the 94 matched resident-research blocks and T-1234 has
 # the book claims, the Newberry index units and the letter-list name suspicions.
-def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
+def natural_disposition(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
     row = unit["record"]
     domain = unit["domain"]
     source = f"{unit['source_file']}#{unit['source_pointer']}"
@@ -296,8 +297,8 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
             return {"disposition": "unresolved", "ticket": "T-1145",
                     "reason": "The dated plural-role migration owns this temporal role ruling."}
         if name == "letter_list_reading_suspicions.json":
-            return {"disposition": "unresolved", "ticket": "T-1234",
-                    "reason": "The structured resident-fact pass owns this surviving name suspicion."}
+            return {"disposition": "unresolved", "ticket": "T-1236",
+                    "reason": "The remaining-units epic owns this surviving name suspicion."}
         finding = resident_finding(root, unit)
         if finding:
             outcome = str(finding.get("outcome") or "no_corroboration")
@@ -305,7 +306,7 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
                 return {"disposition": "refused", "rule": outcome,
                         "evidence": finding.get("summary") or finding["default_summary"]}
             if not finding.get("completed"):
-                return {"disposition": "unresolved", "ticket": "T-1234",
+                return {"disposition": "unresolved", "ticket": "T-1236",
                         "reason": "The resident research pass has not completed this reserved person."}
         # The pilot is a reservation without a committed findings file; positive
         # pass findings that have no exact structured target also remain owned here.
@@ -314,7 +315,7 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
             if not unit["source_ids"] or set(unit["source_ids"]) & set(target["sources"]):
                 target = {k: v for k, v in target.items() if k != "sources"}
                 return {"disposition": "asserted", "target": target}
-        return {"disposition": "unresolved", "ticket": "T-1234",
+        return {"disposition": "unresolved", "ticket": "T-1236",
                 "reason": "No exact source-bearing structured resident field is named yet."}
 
     if domain == "newberry_index":
@@ -345,11 +346,114 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
             return {"disposition": "asserted", "target": target}
 
     kind = row.get("kind")
-    owner = "T-1147" if kind in {"business", "building", "street", "infrastructure"} else "T-1234"
+    owner = "T-1147" if kind in {"business", "building", "street", "infrastructure"} else "T-1236"
     reason = ("The place and enterprise completion pass owns this unasserted unit."
               if owner == "T-1147" else
-              "The structured resident-fact pass owns this unasserted unit.")
+              "The remaining-units epic owns this unasserted unit.")
     return {"disposition": "unresolved", "ticket": owner, "reason": reason}
+
+
+# T-1234 GAVE THE LEDGER A PLACE TO WRITE A RULING DOWN. Every disposition above is derived
+# from what a reading already says about itself — its date, its `superseded_by`, its
+# domain. A unit whose reading says nothing self-classifying had exactly one outcome
+# available, `unresolved`, and the only way to close it was to write code that guessed. So
+# 3,471 person units sat owned by a ticket whose title covered 87 of them.
+# data/research/spend_rulings.json is the written alternative: a named rule with a stated
+# reason, and a note on every single unit it closes. It is consulted ONLY where the
+# derivation ends in `unresolved`, so a ruling can never overturn an assertion, a
+# later_only or a refusal the reading itself carries — the readings stay in charge.
+RULING_DISPOSITIONS = {"refused", "later_only", "outside_chicago", "aggregate_only", "unresolved"}
+
+
+def read_rulings(root: Path = ROOT) -> tuple[dict, list[str]]:
+    """Load the hand-authored ruling register, and every fault in it."""
+    path = root / RULINGS.relative_to(ROOT)
+    empty = {"rules": {}, "by_unit": {}}
+    if not path.exists():
+        return empty, [f"{RULINGS.relative_to(ROOT)} is missing"]
+    doc = read_json(path)
+    if not isinstance(doc, dict):
+        return empty, [f"{RULINGS.relative_to(ROOT)} is unreadable"]
+    faults = []
+    rules = doc.get("rules")
+    if not isinstance(rules, dict) or not rules:
+        return empty, [f"{RULINGS.relative_to(ROOT)}: rules is missing or empty"]
+    for name, rule in sorted(rules.items()):
+        where = f"spend_rulings.json rule {name}"
+        if not isinstance(rule, dict):
+            faults.append(f"{where}: is not an object")
+            continue
+        if rule.get("disposition") not in RULING_DISPOSITIONS:
+            faults.append(f"{where}: disposition {rule.get('disposition')!r} is not one a ruling may reach")
+        if len(str(rule.get("statement") or "").strip()) < 40:
+            faults.append(f"{where}: states no rule — a ruling with no statement is a silent reclassification")
+        if rule.get("disposition") == "unresolved" and not str(rule.get("ticket") or "").strip():
+            faults.append(f"{where}: hands the unit on and names no ticket")
+    by_unit = {}
+    rows = doc.get("rulings")
+    if not isinstance(rows, list):
+        return {"rules": rules, "by_unit": {}}, faults + [
+            f"{RULINGS.relative_to(ROOT)}: rulings is not a list"]
+    for index, row in enumerate(rows):
+        where = f"spend_rulings.json ruling {index}"
+        if not isinstance(row, dict):
+            faults.append(f"{where}: is not an object")
+            continue
+        unit_id = row.get("unit")
+        if not isinstance(unit_id, str) or not unit_id:
+            faults.append(f"{where}: names no unit")
+            continue
+        where = f"spend_rulings.json ruling on {unit_id}"
+        if unit_id in by_unit:
+            faults.append(f"{where}: two rulings on one unit")
+            continue
+        if row.get("rule") not in rules:
+            faults.append(f"{where}: names rule {row.get('rule')!r}, which this file does not state")
+            continue
+        if len(str(row.get("note") or "").strip()) < 20:
+            faults.append(f"{where}: carries no note — the rule alone never says why THIS unit fell under it")
+            continue
+        by_unit[unit_id] = row
+    return {"rules": rules, "by_unit": by_unit}, faults
+
+
+def ruling_coverage_faults(rulings: dict, known: set[str], fired: set[str]) -> list[str]:
+    """A ruling must name a real unit and must be the thing that closed it.
+
+    A ruling on a unit something else already closed reads as work done and is not, so it
+    fails rather than sitting in the file looking spent.
+    """
+    faults = []
+    ruled = set(rulings.get("by_unit") or {})
+    for unit_id in sorted(ruled - known):
+        faults.append(f"spend_rulings.json rules on {unit_id}, which is not a registered reading unit")
+    for unit_id in sorted((ruled & known) - fired):
+        faults.append(f"spend_rulings.json rules on {unit_id}, which was already closed without it")
+    return faults
+
+
+def classify(root: Path, unit: dict, targets: dict[str, list[dict]],
+             rulings: dict, fired: set[str]) -> dict:
+    """The reading's own disposition, and the written ruling where it leaves one open."""
+    out = natural_disposition(root, unit, targets)
+    if out.get("disposition") != "unresolved":
+        return out
+    ruling = rulings["by_unit"].get(unit["unit_id"])
+    if not ruling:
+        return out
+    fired.add(unit["unit_id"])
+    rule = rulings["rules"][ruling["rule"]]
+    said = f"{rule['statement']} THIS UNIT: {ruling['note']}"
+    row = {"disposition": rule["disposition"], "ruling": ruling["rule"]}
+    if rule["disposition"] == "refused":
+        row["rule"] = ruling["rule"]
+        row["evidence"] = said
+    elif rule["disposition"] == "unresolved":
+        row["ticket"] = rule["ticket"]
+        row["reason"] = said
+    else:
+        row["reason"] = said
+    return row
 
 
 def build_document(root: Path = ROOT) -> tuple[dict, list[str]]:
@@ -359,12 +463,17 @@ def build_document(root: Path = ROOT) -> tuple[dict, list[str]]:
     units, faults = extract_units(root, registry)
     ids = {unit["source_record_id"] for unit in units}
     targets = target_index(root, ids)
+    rulings, ruling_faults = read_rulings(root)
+    faults.extend(ruling_faults)
+    known = {unit["unit_id"] for unit in units}
+    fired = set()
     rows = []
     for unit in units:
         row = {k: unit[k] for k in (
             "unit_id", "domain", "source_file", "source_pointer", "source_record_id")}
-        row.update(classify(root, unit, targets))
+        row.update(classify(root, unit, targets, rulings, fired))
         rows.append(row)
+    faults.extend(ruling_coverage_faults(rulings, known, fired))
     by_domain = defaultdict(Counter)
     for row in rows:
         by_domain[row["domain"]][row["disposition"]] += 1
@@ -577,6 +686,39 @@ def self_test() -> int:
         run("an unresolved unit owned by a closed ticket",
             lambda r: (r.update(disposition="unresolved", ticket="T-1", reason="fixture"),
                        r.pop("target")), "missing or not open", {"T-1": "closed"})
+        good = {"unit": "u1", "rule": "r", "note": "The row says so in its own last word."}
+        rule = {"disposition": "refused",
+                "statement": "A stated rule, long enough to be a sentence a reader can weigh."}
+
+        def register(label, mutate, want):
+            doc = {"rules": {"r": copy.deepcopy(rule)}, "rulings": [copy.deepcopy(good)]}
+            mutate(doc)
+            write_json(root / "data/research/spend_rulings.json", doc)
+            got = read_rulings(root)[1]
+            if not any(want in fault for fault in got):
+                failures.append(f"{label}: expected {want!r}, got {got!r}")
+            else:
+                print(f"  fires: {label}")
+
+        register("a rule that states nothing",
+                 lambda d: d["rules"]["r"].update(statement="too short"), "states no rule")
+        register("a ruling with no note",
+                 lambda d: d["rulings"][0].update(note="x"), "carries no note")
+        register("a ruling naming an unstated rule",
+                 lambda d: d["rulings"][0].update(rule="nope"), "which this file does not state")
+        register("a hand-off that names no ticket",
+                 lambda d: d["rules"]["r"].update(disposition="unresolved"), "names no ticket")
+        register("two rulings on one unit",
+                 lambda d: d["rulings"].append(copy.deepcopy(good)), "two rulings on one unit")
+        for label, args, want in (
+                ("a ruling on a unit that does not exist", (set(), set()), "not a registered reading unit"),
+                ("a ruling something else had already closed", ({"u1"}, set()), "already closed without it")):
+            got = ruling_coverage_faults({"by_unit": {"u1": good}}, *args)
+            if not any(want in fault for fault in got):
+                failures.append(f"{label}: expected {want!r}, got {got!r}")
+            else:
+                print(f"  fires: {label}")
+
         duplicate = {"units": [base, copy.deepcopy(base)], "unit_count": 2,
                      "totals": {name: (2 if name == "asserted" else 0) for name in DISPOSITIONS}}
         got = validate_document(duplicate, root, {})
@@ -586,5 +728,5 @@ def self_test() -> int:
             print("  fires: a duplicate stable unit id")
     for failure in failures:
         print("   SILENT: " + failure)
-    print("LEDGER SELF-TEST %s — 5 case(s)" % ("FAIL" if failures else "PASS"))
+    print("LEDGER SELF-TEST %s — 12 case(s)" % ("FAIL" if failures else "PASS"))
     return 1 if failures else 0
