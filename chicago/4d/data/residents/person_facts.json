@@ -4,14 +4,14 @@
  "generated_by": "tools/spend_person_facts.py",
  "scene_date": "1835-07-01",
  "counts": {
-  "rows": 912,
+  "rows": 914,
   "by_adjudication": {
    "asserted": 40,
    "contradicted": 6,
    "duplicate": 9,
    "insufficient_identity": 133,
    "later_only": 44,
-   "no_candidate": 668,
+   "no_candidate": 670,
    "outside_chicago": 5,
    "unresolved": 7
   },
@@ -4092,6 +4092,24 @@
    "candidate_ids": [
     "cand_frederick_william_curtenius__curtenius_fredk"
    ]
+  },
+  {
+   "person_id": "curtin_david",
+   "household_id": "hh_curtin_david",
+   "name_as_read": "David Curtin",
+   "source_id": null,
+   "claim_or_record_id": "resident_research:unticketed",
+   "describes_date": "",
+   "field": "none",
+   "proposed_value": null,
+   "precision": null,
+   "confidence": null,
+   "place_class": "not_a_place",
+   "quote": "",
+   "adjudication": "no_candidate",
+   "reason": "The research reviewed this person and found nothing outside the record already held. A documented no-find, not evidence that the person did not exist, and nothing to spend.",
+   "research_outcome": "unstated",
+   "candidate_ids": null
   },
   {
    "person_id": "curtin_l_g",
@@ -8285,6 +8303,24 @@
    "adjudication": "no_candidate",
    "reason": "The research reviewed this person and found nothing outside the record already held. A documented no-find, not evidence that the person did not exist, and nothing to spend.",
    "research_outcome": "no_corroboration_yet",
+   "candidate_ids": null
+  },
+  {
+   "person_id": "johnson_sanford",
+   "household_id": "hh_johnson_sanford",
+   "name_as_read": "Sanford Johnson",
+   "source_id": null,
+   "claim_or_record_id": "resident_research:unticketed",
+   "describes_date": "",
+   "field": "none",
+   "proposed_value": null,
+   "precision": null,
+   "confidence": null,
+   "place_class": "not_a_place",
+   "quote": "",
+   "adjudication": "no_candidate",
+   "reason": "The research reviewed this person and found nothing outside the record already held. A documented no-find, not evidence that the person did not exist, and nothing to spend.",
+   "research_outcome": "unstated",
    "candidate_ids": null
   },
   {
