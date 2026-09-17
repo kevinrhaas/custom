@@ -672,8 +672,15 @@ selftest "…and its own assertions still fire when broken" \
 # list — expanded into households, occupancy blocks and structure records. It also
 # re-runs its own placement gates, so a centre that drifts onto another building,
 # onto water or off the modelled ground fails here rather than in a bake.
-step "inferred households, adoptions and their buildings match the programme" \
-  python3 tools/synthesize_resident_research.py --check
+# ...AND IT IS NOT GATED HERE, THOUGH THIS SLOT LONG READ AS IF IT WERE (T-0662).
+# Until 2026-09-17 the two lines below this comment were a step labelled "inferred
+# households, adoptions and their buildings match the programme" running
+# `tools/synthesize_resident_research.py --check` — a different pass, proving a
+# different thing. The programme's own re-derivation is
+# `tools/generate_inferred_households.py --check`; it is RED under T-1108 and is
+# carried, with that reason, in data/research/check_gate_baseline.json. A reader
+# asking whether this layer still re-derives goes there. What they may no longer do
+# is read a green build as the answer.
 
 # T-0838 (of T-0814). The step above re-derives the population IN MEMORY and checks its invariants;
 # it never asks whether that derivation matches the cards on disk, and on 2026-09-05 it
@@ -2086,9 +2093,31 @@ PY
 # and NOTHING on an invented structure may outrank the invention that put it
 # there. That last rule is the one that mattered: without it, 158 buildings that
 # never existed graded their wall heights as evidence and rendered solid.
-# The invented names, re-derived. Deterministic from each person's id, so a name
-# that changed without the pools or the generator changing is a real finding.
-step "the reconstructed residents' invented names re-derive" \
+# THE ONE THING THIS COMMAND PROVES, RUN ONCE (T-0662). `--check` re-derives the
+# resident synthesis over the committed cards and prints the population it writes:
+# "OK: 1281 people; 404 attested, 877 inferred, 0 reconstructed; 730 projected".
+# That is one fact, and it is this pass's.
+#
+# Until 2026-09-17 check.sh ran this IDENTICAL command five times under five labels,
+# and four of those labels named a pass it does not run — so the gate read as though
+# five derivations were held when one was, and it was the only command in this file
+# that appeared more than once. Each of the four passes those labels named carries a
+# `--check` of its own; every one of them is RED, and every one is carried as ungated,
+# with its reason and its owner, in data/research/check_gate_baseline.json:
+#
+#   tools/generate_inferred_households.py  T-1108  (was the K1 households step)
+#   tools/generate_inferred_names.py       T-1108  (was this step's old label)
+#   tools/replace_invented_residents.py    T-1108  (was the T-0264 roof-deal step)
+#   tools/mint_letter_list_residents.py    T-0691  --check: 798 file(s) differ
+#
+# `mint_documented_residents.py` was on that list until T-1220 read its 10 files, fixed
+# the two faults under them and committed the rest; it is a step of its own below.
+#
+# The invented names the old label spoke of are re-derived by
+# `generate_inferred_names.py --check`, not here. `audit_check_gates.py --gate` now
+# refuses a check.sh in which any one command runs under more than one label, so a
+# step cannot borrow another pass's command again.
+step "the resident synthesis re-derives the population it writes" \
   python3 tools/synthesize_resident_research.py --check
 
 # `none_recorded` was carrying two facts at once (T-0693): "no trade anywhere" and
@@ -2157,8 +2186,10 @@ step "one new household renames only the people it collides with" \
 # deal is a derivation and not a list — six refusals shape it, and a candidate
 # that quietly stopped being refused would otherwise plant a real man on a roof
 # his own record contradicts. `--report` prints the deal and every refusal.
-step "the documented residents on reconstructed roofs re-derive from the register" \
-  python3 tools/synthesize_resident_research.py --check
+# NOT GATED (T-0662). This slot ran `synthesize_resident_research.py --check`, which
+# does not re-derive the deal. `tools/replace_invented_residents.py --check` does; it
+# is RED under T-1108, and the baseline carries it with that reason. `--report` still
+# prints the deal and every refusal on demand.
 
 # And the pass that ADDS one (T-0376). The register's `new_resident` people are
 # the ones this reconstruction does not hold at all; where it can also read a
@@ -2168,8 +2199,31 @@ step "the documented residents on reconstructed roofs re-derive from the registe
 # them quietly ceasing to fire would put a firm, a man at the mouth of the
 # St. Joseph, or a second copy of a real resident into the town's people.
 # `--report` prints the mint and every refusal with its reason.
+# GATED (T-1220, which is what T-0662 left here). The command this slot used to run does
+# not touch the mint; this one does. The 10 files it reported differing were read, and
+# two of them were not the name splitter's doing at all — they were faults in this pass,
+# and both had quietly taken a documented man out of the town:
+#
+#   - `register_1835.json` ADJUDICATES: two printings it resolves onto one person carry
+#     the same `action_target`. The mint iterated the printings, so 'Grant, J., Jr.'
+#     (militia officer, 1834) and 'James Grant' (attorney, La Salle Street, 1835) — one
+#     man by the register's own ruling — competed for the one Grant household refusal 8
+#     allows, and the loser was refused as a duplicate of himself. Whichever printing
+#     sorted first took the card. `fold_adjudicated()` mints one household per
+#     adjudicated person now; fifteen of the pool's people are read from more than one
+#     printing and every one of them carries all of it.
+#   - Refusal 6 read 'P. Cohen's store' as somewhere else, and retired L. W. Montgomery,
+#     a shoemaker the papers print seven times on South Water Street. The rule the
+#     refusal is meant to be is written in the place vocabulary (T-1048, B2): a reading
+#     that names ONLY such places is not a Chicago appearance. It is a test on a reading
+#     now, and a person is refused only when every one of his readings fails it.
+#
+# 39 minted, was 38; the other 7 files were the corpus growing under a pass nothing
+# re-ran. The letter-list mint's 798 stay ungated and carry their own ticket: 648 of them
+# differ in nothing but the five keys `synthesize_resident_research.py` rewrites AFTER
+# this pass, so a re-derive-and-diff there is red against a correct tree.
 step "the minted documented residents re-derive from the register" \
-  python3 tools/synthesize_resident_research.py --check
+  python3 tools/mint_documented_residents.py --check
 
 # And the pass that adds the rest of that half (T-0373): the `new_resident` people
 # the papers name with NO trade at all. There is no trade to anchor them, so the
@@ -2207,8 +2261,19 @@ selftest "all four resident mints preserve findings across a derived-note change
 # one of them quietly ceasing to fire would now be worth hundreds of records rather than
 # one. `--report` prints the mint and every refusal with its reason; `--scale` counts
 # what the ruling did to the town on whatever tree it is run against.
-step "the minted letter-list residents re-derive from the register" \
-  python3 tools/synthesize_resident_research.py --check
+# NOT GATED (T-0662; the drift itself is T-0691's, and T-0691 is blocked on T-0660).
+# This slot ran `synthesize_resident_research.py --check`, which is not the mint.
+# `tools/mint_letter_list_residents.py --check` is, and it reports 798 file(s)
+# differing — but a byte-identity check is the wrong contract for this pass, because
+# it is NOT the last writer of the files it derives: the synthesis above rewrites the
+# `letter_list_only` cohort's grade, subtype and note, and retires households outright.
+# Re-running the mint over the committed tree therefore REVERTS that work — it puts
+# grades back from `inferred` to `attested` and strips the PROJECTED RESIDENT
+# qualifier off post-office-only names, which is a confidence upgrade this project
+# forbids — and it re-mints 54 households under changed ids (hh_adains_will_si becomes
+# hh_adains_willisi) out of the same name-splitting fault as above. The pass is gated
+# below by `--gate` and `--self-test`, which prove what they can. `--report` and
+# `--scale` print the mint and its refusals.
 
 # T-0491. The 1840 identity bridges — three adjudicated links from a canonical 1835
 # resident to a named head of household in the federal census five years later. The
