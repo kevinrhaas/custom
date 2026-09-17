@@ -1,18 +1,21 @@
 ---
 id: T-0467
 title: Add south-scene camera anchors, navigation and map extents
-state: open
+state: claimed
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
 effort: S
 legacy_id: null
+parent: null
 opened: 2026-09-01
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 7:34:37 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35221393518
 ---
 
 **Unblocked 2026-09-15.** This ticket carried `blocked_on: T-0464` from the day it was
