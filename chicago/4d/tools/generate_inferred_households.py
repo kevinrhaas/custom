@@ -312,6 +312,51 @@ INVENTED_FORM_NOTE = (
 # block still says `not_derivable` — nothing here upgrades a confidence. It removes a
 # hand-typed coordinate, which is the whole of the claim.
 
+# T-1227 (piece of T-1108): WHERE A BAND ASSIGNMENT MEETS A PLATTED CORRIDOR, THE CORRIDOR WINS — AND IT
+# WINS IN THE RECIPE, NOT IN THE FILE THE RECIPE WRITES.
+#
+# `validate` below refuses an invented placement that stands in the roadway, and it is
+# right to: a band assignment has no evidence to encroach with. T-0827 met that refusal
+# when it re-fitted Market Street off the plat's own 400 ft module instead of off the
+# modern junction on N Wacker Drive, moving the platted corridor 3.0 m west onto
+# `inf_cooperage_south_branch`. It settled the ruling correctly — the roadway moved, so
+# the building moves — and then wrote the answer into the GENERATED record by hand while
+# leaving the centre in the programme where it was. This generator owns that file, so the
+# two disagreed from that day: three `--check` modes refused on one line, none of the
+# three could be gated, and `data/research/check_gate_baseline.json` carried the refusal
+# as a standing exemption.
+#
+# So the ruling is expressed as a RULE a re-fitted plat re-runs, in the same spirit as the
+# block faces above. A building MAY declare `corridor_clearance` beside its centre, and
+# the pass then moves it the LEAST distance along that corridor's cross axis that leaves
+# its whole footprint the stated margin clear of the platted kerb. The centre in the
+# programme keeps its meaning — it is still the band assignment, still the interpretive
+# choice about which part of town this made-up building occupies — and the corridor is
+# what overrules it, measured rather than typed. A building already clear by the margin
+# does not move at all.
+#
+# THIS UPGRADES NOTHING. The position stays `reconstructed`, the derivation block stays
+# `not_derivable`, and standing clear of a derived corridor is not standing on a
+# recovered lot. What it removes is a hand-typed coordinate that no longer had anything
+# re-deriving it.
+
+CORRIDOR_CLEARANCE_NOTE = (
+    " MOVED OUT OF THE PLATTED {street_name} CORRIDOR, BY THE CORRIDOR RATHER THAN BY "
+    "HAND (T-1227, settling T-0827's ruling of 2026-09-12). The band assignment above "
+    "puts this building's centre at local ENU E {from_e:g} N {from_n:g}, which stands "
+    "{depth:.2f} m inside {street_name}'s platted corridor — and the reason is that the "
+    "ROADWAY moved, not the building: T-0827 re-fitted {street_name} off the plat's own "
+    "400 ft module instead of off the modern junction on N Wacker Drive it had been hung "
+    "from, and the corridor came west onto this footprint. An invented placement has "
+    "nothing to encroach with, so the corridor wins. The record therefore stands "
+    "{shift:.3f} m {direction} of its band assignment, at E {to_e:.3f} N {to_n:.3f} — the "
+    "LEAST this building can move and still leave its whole footprint {clear:.2f} m clear "
+    "of the platted kerb, measured against the corridor through tools/plat_corridors.py, "
+    "which is the same geometry the gate refuses on. The margin is T-0827's own and the "
+    "distance is not typed anywhere: re-fit {street_name} again and this building moves "
+    "again, instead of silently disagreeing with it."
+)
+
 FACE_PLACEMENT_NOTE = (
     "INTERPRETIVE PLACEMENT ON A COMMITTED BLOCK FACE, NOT A RECOVERED LOT (T-0182). "
     "{role} This building does not stand where a centre in the programme put it: it "
@@ -384,6 +429,121 @@ def resolve_placements(programme: dict) -> None:
         ce, cn, bearing = face_placement(spec, wft, dft)
         b["center_local_enu_m"] = [round(ce, 6), round(cn, 6)]
         b["rotation_deg"] = bearing
+
+
+def _corridor_rect(ce: float, cn: float, w: float, d: float, bearing: float) -> list:
+    """The footprint a RECORD will carry, centred on (ce, cn).
+
+    Deliberately not `rect_polygon`: that one multiplies feet by FT unrounded, while
+    `structure_record` rounds the metres to the millimetre it writes into the file, and
+    the corridor gate measures the written polygon. Half a millimetre does not matter to
+    the answer; measuring a different body from the one being gated does.
+    """
+    th = math.radians(bearing)
+    cos, sin = math.cos(th), math.sin(th)
+    return [(ce + u * cos + v * sin, cn - u * sin + v * cos)
+            for u, v in ((-w / 2, -d / 2), (w / 2, -d / 2), (w / 2, d / 2), (-w / 2, d / 2))]
+
+
+def resolve_corridor_clearance(programme: dict) -> None:
+    """Push a band-assigned centre clear of a platted corridor — see the note above.
+
+    Mutates `center_local_enu_m` in place and records what it did under
+    `_corridor_clearance_applied`, which `structure_record` turns into the record's own
+    account of the move. A building already clear by its stated margin is left alone and
+    the key says so, so the record never claims a move that did not happen.
+    """
+    from plat_corridors import sampled  # noqa: PLC0415
+    from generate_plat_lots import (  # noqa: PLC0415
+        EW_STREETS, NS_STREETS, point_in_polygon, point_to_ring_m,
+    )
+
+    lanes = None
+    for b in programme["buildings"]:
+        spec = b.get("corridor_clearance")
+        if not spec:
+            continue
+        if b.get("frontage"):
+            raise SystemExit(f"{b['id']} stands on a block face AND asks to be pushed off a "
+                             f"corridor: the face already decides where it stands")
+        if lanes is None:
+            from plat_corridors import corridors  # noqa: PLC0415
+            lanes = corridors()
+        street = spec["street"]
+        if street not in lanes:
+            raise SystemExit(f"{b['id']} names a corridor no committed street draws: {street}")
+        axis = 0 if street in NS_STREETS else 1 if street in EW_STREETS else None
+        if axis is None:
+            raise SystemExit(f"{b['id']} names {street}, which is on neither grid axis, so the "
+                             f"corridor has no cross axis to move along")
+
+        clear = float(spec["clear_m"])
+        ring = lanes[street]["ring"]
+        ce, cn = (float(v) for v in b["center_local_enu_m"])
+        wft, dft = b["footprint_ft"]
+        w, d = round(wft * FT, 3), round(dft * FT, 3)
+        bearing = float(b["rotation_deg"])
+
+        def body(shift: float) -> list:
+            c = (ce + shift, cn) if axis == 0 else (ce, cn + shift)
+            return _corridor_rect(c[0], c[1], w, d, bearing)
+
+        def signed(shift: float) -> float:
+            """How far short of `clear` the shifted footprint falls.
+
+            Positive while any part of it is inside the corridor or inside the margin,
+            negative once the whole body stands clear by more than the margin.
+            """
+            worst = -math.inf
+            for point in sampled(body(shift)):
+                depth = point_to_ring_m(point, ring)
+                inside = point_in_polygon(point, ring)
+                worst = max(worst, (depth if inside else -depth) + clear)
+            return worst
+
+        if signed(0.0) <= 0.0:
+            b["_corridor_clearance_applied"] = None
+            continue
+
+        # The least move on the cross axis, in whichever direction is nearer. A corridor
+        # is a convex band, so the shortfall falls monotonically once a body is on its way
+        # out of one and a bisection per side is exact. The winner is rounded AWAY from
+        # the roadway to the millimetre this dataset quotes a position in, which can only
+        # leave the building clearer than the rule asks and never nearer.
+        reach = 2.0 * (point_to_ring_m((ce, cn), ring) + max(w, d) + clear) + 1.0
+        best = None
+        for sign in (-1.0, 1.0):
+            hi = reach
+            if signed(sign * hi) > 0.0:
+                continue
+            lo = 0.0
+            for _ in range(60):
+                mid = (lo + hi) / 2.0
+                if signed(sign * mid) > 0.0:
+                    lo = mid
+                else:
+                    hi = mid
+            candidate = sign * (math.ceil(hi * 1000.0) / 1000.0)
+            if best is None or abs(candidate) < abs(best):
+                best = candidate
+        if best is None:
+            raise SystemExit(f"{b['id']} cannot be moved clear of the {street} corridor along "
+                             f"its cross axis: the band assignment is in the wrong place")
+
+        depth = max((point_to_ring_m(pt, ring) for pt in sampled(body(0.0))
+                     if point_in_polygon(pt, ring)), default=0.0)
+        moved = (round(ce + best, 3), cn) if axis == 0 else (ce, round(cn + best, 3))
+        b["_corridor_clearance_applied"] = {
+            "street_name": lanes[street]["name"],
+            "from_e": ce, "from_n": cn,
+            "to_e": moved[0], "to_n": moved[1],
+            "shift": abs(best),
+            "direction": ("west" if best < 0 else "east") if axis == 0
+                         else ("south" if best < 0 else "north"),
+            "depth": depth,
+            "clear": clear,
+        }
+        b["center_local_enu_m"] = [moved[0], moved[1]]
 
 
 def footprint_origin(ce: float, cn: float, w: float, d: float, bearing: float):
@@ -673,6 +833,12 @@ def structure_record(b: dict, datum: dict, prose: dict, hh_by_building: dict) ->
                 role=role, face=spec["face"], block=spec["block"],
                 setback=f"{float(spec['setback_m']):.2f}",
                 along=f"{float(spec['west_wall_along_m']):.3f}")
+        # T-1227: and a roof the platted corridor moved says so, says by how much, and
+        # says that the corridor is what moved it — in the record the generator owns,
+        # because that is the only place a reader of this building will look.
+        moved = b.get("_corridor_clearance_applied")
+        if moved:
+            pos_note += CORRIDOR_CLEARANCE_NOTE.format(**moved)
         form_over = {}
         phase_id = "inferred_1835"
         change = ("Raised by the inferred-household programme. A better-evidenced named building "
@@ -1067,6 +1233,7 @@ def validate(records: list[dict], households: list[dict], programme: dict, datum
 def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
     programme = load(PROGRAMME)
     resolve_placements(programme)
+    resolve_corridor_clearance(programme)
     datum = load(DATA / "datum.json")
     census = {c["occupation"]: c for c in programme["occupation_census"]}
     buildings = {b["id"]: b for b in programme["buildings"]}
