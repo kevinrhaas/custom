@@ -1,5 +1,5 @@
 ---
-id: T-1286
+id: T-1292
 title: Move the town census off the loader into an Evidence → City summary topic
 state: open
 epic: RENDERING

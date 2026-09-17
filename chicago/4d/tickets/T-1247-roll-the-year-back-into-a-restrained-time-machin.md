@@ -42,6 +42,6 @@ The loading screen becomes the **arrival**: a welcome that says you are entering
 
 **Harness and gates:** `./tools/check.sh` (renderer modules parse; add `test_arrival.mjs`); `node tools/smoke_budget.mjs --for-diff` → run the named parts `--published` at both viewports; boot payload `--check` (arrival.js is boot-critical — keep it under 12 KB minified-equivalent; no font download).
 
-**Out of scope:** the status library (T-1275), the welcome and its buttons (T-1278), the City topic (T-1286).
+**Out of scope:** the status library (T-1275), the welcome and its buttons (T-1278), the City topic (T-1292).
 
 Changelog: one visible entry. Contract: [architecture §A/§B and "Arrival states"](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md#arrival-states-and-honest-readiness) · [plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md). One PR into `dev`; claim with `ticket.mjs`.

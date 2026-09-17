@@ -13,13 +13,13 @@ Content briefs: [JAUNTS-INITIAL-LIBRARY.md](JAUNTS-INITIAL-LIBRARY.md).
 - The visitor enters a digital reconstruction. The opening explains that in one
   warm sentence, then offers **Jaunts** and **I’ll Explore Myself — Starting At…**.
   The census, completeness percentages and reconstruction statistics belong in
-  **Evidence → City** (T-1286) and the source library in **Evidence → Sources**
+  **Evidence → City** (T-1292) and the source library in **Evidence → Sources**
   (T-1248 + T-1276), reached through the existing Evidence surface — no new tab
   on the narrow mobile rail.
 - **Reviewed 2026-09-17 (owner-directed second pass).** Every ticket now names the
   real symbols it extends, the harness ids it must keep, its tests and its
   measurements; the shared contracts below (§A–§H) are the single place a field or
-  event name is defined. T-1286 was cut out of T-1276 so the welcome (T-1278) does
+  event name is defined. T-1292 was cut out of T-1276 so the welcome (T-1278) does
   not wait on the whole Sources browser; T-1253 lost its dependency on the welcome
   so the jaunt contract can be written while 5F is in flight.
 - Primary jaunt path: about five minutes, normally 4–8 stops. Optional source,
@@ -372,7 +372,7 @@ Keep: `#gate` (the loader/welcome dialog; `hidden` once the world is entered),
 `api.boot`, `api.welcome { state, enter(kind, id) }`, `api.destinations`, `api.jaunts
 { start, state, next, prev, end, menu, catalog }`, `api.daybook`. The smoke's `enterTown()`
 prefers `api.welcome.enter('spawn')` and falls back to `#gate-btn` (T-1278). The part-1
-gate-census assertions move to the Evidence part with T-1286. Budgets: boot payload
+gate-census assertions move to the Evidence part with T-1292. Budgets: boot payload
 12 MB (`measure_boot_payload.mjs --check`), smoke per-leg 30 min (`smoke_budget.mjs
 --legs`), both gate viewports 390×780 and 1280×800.
 

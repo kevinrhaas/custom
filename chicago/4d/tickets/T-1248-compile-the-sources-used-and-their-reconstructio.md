@@ -20,7 +20,7 @@ claimed_run: null
 
 Compile, at build time, **which sources this reconstruction actually used and for what** — the data behind the Sources browser (T-1276) and the loading-screen source cards (T-1275). The owner wants *"all the sources that you have used in building this … a link library or summary link to the items from that source, like what was pulled from that source for the reconstruction."* This ticket is compiler and published data only; no visitor-facing surface changes. (Visible-progress exemption 3: it is the gate blocking T-1275 and T-1276 — name both in the PR body.)
 
-**Depends on:** nothing. **Runs in parallel with:** T-1246, T-1286, T-1277.
+**Depends on:** nothing. **Runs in parallel with:** T-1246, T-1292, T-1277.
 
 **What exists today:**
 - `data/sources/*.json` — 292 registered sources (`data/source.schema.json`: `id, type, citation, author, date, describes_date, repository, url, archived_url, locator, tier 1–6, rights_status, what_it_supplies, what_it_does_not_supply, …`). 193 are `rights_status: check_required`; a registered source is not evidence that it reached the scene.

@@ -18,11 +18,11 @@ closed_at: null
 claimed_run: null
 ---
 
-The **Sources** browser: every source this reconstruction used, easy to scan though it is long, with per-source attested/inferred/reconstructed counts and a "used for" link library that opens the very cards each source fed. The owner: *"show all the sources that you have used in building this, maybe this is where you also have the stats of the attested inferred reconstructed next to that for the source list … It will be a long list so make that source list easy to review and consume and maybe have some kind of link library or summary link to the items from that source."* Built on T-1248's index; sits beside T-1286's City topic under Evidence so the narrow mobile rail gains no tab.
+The **Sources** browser: every source this reconstruction used, easy to scan though it is long, with per-source attested/inferred/reconstructed counts and a "used for" link library that opens the very cards each source fed. The owner: *"show all the sources that you have used in building this, maybe this is where you also have the stats of the attested inferred reconstructed next to that for the source list … It will be a long list so make that source list easy to review and consume and maybe have some kind of link library or summary link to the items from that source."* Built on T-1248's index; sits beside T-1292's City topic under Evidence so the narrow mobile rail gains no tab.
 
-**Depends on:** T-1248, T-1286. T-1257 and T-1272 depend on this.
+**Depends on:** T-1248, T-1292. T-1257 and T-1272 depend on this.
 
-**What exists today:** Evidence hub `createEvidenceHub` (evidence.js) with topic tiles reading DOM mounts; `hud.setTitle(text, onBack)` for a pushed head title; `citations.js` `citationItems()` renders a citation list with `[DOC]/[INF]/[CONJ]` chips; `popup.js` opens a structure card by id (`show(record)`, `openId`); `people.js` `open(id)`; drawer becomes a bottom sheet on mobile (`drawer.css` ≥ L376). T-1248 publishes `data/sidecars/1835/sources/index.json` + per-source edge files. T-1286 owns the City topic and the moved smoke checks.
+**What exists today:** Evidence hub `createEvidenceHub` (evidence.js) with topic tiles reading DOM mounts; `hud.setTitle(text, onBack)` for a pushed head title; `citations.js` `citationItems()` renders a citation list with `[DOC]/[INF]/[CONJ]` chips; `popup.js` opens a structure card by id (`show(record)`, `openId`); `people.js` `open(id)`; drawer becomes a bottom sheet on mobile (`drawer.css` ≥ L376). T-1248 publishes `data/sidecars/1835/sources/index.json` + per-source edge files. T-1292 owns the City topic and the moved smoke checks.
 
 **Build:**
 1. `renderers/web/js/sources.js` (~400 lines) mounted as an Evidence topic `sources` (tile: "The sources: what each one supplied, and where it shows"). Lazy: fetch `sources/index.json` the first time the topic opens; never at boot.
@@ -41,6 +41,6 @@ The **Sources** browser: every source this reconstruction used, easy to scan tho
 
 **Harness and gates:** `./tools/check.sh`; `node tools/smoke_budget.mjs --for-diff` → the drawer/Evidence parts, `--published`, both viewports; `measure_boot_payload.mjs --check`.
 
-**Out of scope:** the City ladders (T-1286), loading cards (T-1275), jaunt facts appearing here (they arrive through T-1248's compiler when T-1253 registers them).
+**Out of scope:** the City ladders (T-1292), loading cards (T-1275), jaunt facts appearing here (they arrive through T-1248's compiler when T-1253 registers them).
 
 Changelog: one visible entry. Contract: [architecture § Sources & City](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md#sources--city) · [plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md). One PR into `dev`; claim with `ticket.mjs`.

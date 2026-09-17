@@ -20,7 +20,7 @@ claimed_run: null
 
 One destination model for both entry points. The owner: *"I'll Explore Myself — Starting At… should let the user search or browse for a historical location, structure, business, resident-associated place, street/intersection … after selection, take them there and return them to normal free-exploration mode. This is like the way Go to works now so integrate all that together so it's not duplicate."* Extract what `goto.js` builds today into a shared `destinations.js`, and let the welcome's start picker and the in-world Go to tab both use it.
 
-**Depends on:** nothing. **Runs in parallel with:** T-1246, T-1286, T-1248. T-1278 and T-1279 depend on this.
+**Depends on:** nothing. **Runs in parallel with:** T-1246, T-1292, T-1248. T-1278 and T-1279 depend on this.
 
 **What exists today:**
 - `renderers/web/js/goto.js` `createGoTo({ … })` builds `targets[]` inline (~L66–140): anchors (`scene.anchors`, 17 in 1835), intersections (`index.intersections`, 5), structures from the registry (label from `display-name.js`, `placeKind` group, `presenceGrade`, `position_confidence`, `search` terms), and people **only when `lives_at`/`works_at` resolves to a registry id** — unlocated people are deliberately not rows. It owns diacritic-folded search, kind pills, keyboard selection, distance readouts and the "include reconstructed" preference.

@@ -20,7 +20,7 @@ claimed_run: null
 
 Make the boot **measurable and responsive** before anything is done to its looks. The owner's ask: *"as it's loading we should inside be able to calculate know how long each section is take and should be taking and know how to roll the clock years back and update statuses smoothly while things are loading"*. Today the loader knows five milestones and nothing in between; the prairie phase blocks the main thread so no status could repaint even if one wanted to. This ticket gives the boot real phase events, measured expected durations, and yielding long tasks. It changes no copy and no styling — T-1247 does that on top of these events.
 
-**Depends on:** nothing in this feature. **Runs in parallel with:** T-1286, T-1248, T-1277.
+**Depends on:** nothing in this feature. **Runs in parallel with:** T-1292, T-1248, T-1277.
 
 **What exists today** (`renderers/web/js/main.js`, dev 2026-09-17):
 - `progress(pct, label)` at ~L777 paints `#gate-sub` and `#gate-bar`; `boot()` calls it at 8 ("Reading the scene…"), 30 ("Placing the buildings…"), 55 ("Laying the ground and the river…"), 68 ("Planting the prairie…") and 100 ("Ready", ~L2513). Between 68 and 100 sit flora, fauna, wharves, signage, people, HUD and controls, all unlabelled.

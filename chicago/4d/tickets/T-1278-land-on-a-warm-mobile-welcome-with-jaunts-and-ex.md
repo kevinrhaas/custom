@@ -20,7 +20,7 @@ claimed_run: null
 
 The landing surface. When the arrival settles on 1835 the visitor is **on the welcome**: a warm, directed page with two ways in — **Jaunts** and **I'll Explore Myself — Starting At…** — and no dashboard. The owner: *"You should land on the explore on your own / jaunts page when you are completely loaded and landed in Aug 1835 … the opening screen should give you a warmer directed welcome with options for jaunts … it should not be tap to walk, more like tap to enter … That new screen must all fit and work on mobile."* Wording stays the approved "Chicago, summer 1835".
 
-**Depends on:** T-1247 (arrival), T-1286 (census gone from the loader), T-1277 (shared picker). T-1253/T-1279 (jaunts) and T-1259 (the finished menu) depend on this.
+**Depends on:** T-1247 (arrival), T-1292 (census gone from the loader), T-1277 (shared picker). T-1253/T-1279 (jaunts) and T-1259 (the finished menu) depend on this.
 
 **What exists today:** `#gate` is the loader and the entry gesture in one (`index.html` L53–75); `openWorld()` in main.js (~L2082) hides `#gate`, shows the HUD, opens first-run control help, unlocks audio and — on desktop — takes pointer lock unless help is open; `canvas` click locks the pointer when `!gateOpen` (~L1810); `hud.showControlHelp({ auto })` is stored under `CONTROL_HELP_KEY`; the smoke's `enterTown()` clicks `#gate-btn` and dismisses `#control-help-gotit`; spawn is the Sauganash stand (`scenes/1835.json` `spawn`).
 

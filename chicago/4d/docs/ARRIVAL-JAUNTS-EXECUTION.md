@@ -20,7 +20,7 @@ PR). Tickets marked *(opener)* have no predecessor and may be taken by different
 once. Shared engine and compiler contracts land before the content batches; a content batch
 owns only its own JSON files and never changes engine behaviour to fit a story.
 
-Every ticket is one run (`M`, or `S` for T-1286). Each states what exists today with real
+Every ticket is one run (`M`, or `S` for T-1292). Each states what exists today with real
 symbols, what to build, a numbered acceptance clause with the command or measurement that
 demonstrates it, the harness ids and budgets it must keep (§F), and what is out of scope.
 Finish each subsection; if a genuine remaining piece cannot fit, insert one focused
@@ -33,10 +33,10 @@ remain in force.
 
 ```
 5F  T-1246 boot phases ──► T-1247 arrival ──► T-1275 statuses
-    T-1286 city topic ─────────────┐              ▲
+    T-1292 city topic ─────────────┐              ▲
     T-1248 source index ──► T-1276 sources ───────┘ (T-1275 needs T-1247 + T-1248)
     T-1277 destinations ──┐
-                          ├──► T-1278 welcome  (needs T-1247, T-1286, T-1277)
+                          ├──► T-1278 welcome  (needs T-1247, T-1292, T-1277)
 5G  T-1253 jaunt contract (opener; parallel with 5F)
     T-1279 engine + navigation (needs T-1253, T-1277, T-1278)
       ├─► T-1280 travel modes ─┐
@@ -48,20 +48,20 @@ remain in force.
 5J  T-1271 library convergence (needs all of 5H + 5I) ──► T-1272 published acceptance
 ```
 
-Five agents can start today: T-1246, T-1286, T-1248, T-1277 and T-1253.
+Five agents can start today: T-1246, T-1292, T-1248, T-1277 and T-1253.
 
 ## 5F. Arrival and sources — measured loading, time rollback, source library, city summary, free start (8 tickets)
 
 | Ticket | Bounded delivery | Depends on |
 |---|---|---|
 | [T-1246](../tickets/T-1246-expose-real-boot-phases-and-yield-long-scene-bui.md) *(opener)* | `api.boot` phase events, measured `boot-weights.js`, time-sliced flora phase, essential/optional readiness | — |
-| [T-1286](../tickets/T-1286-move-the-town-census-off-the-loader-into-an-evid.md) *(opener, S)* | The gate census moves to Evidence → City; part-1 smoke checks relocated | — |
+| [T-1292](../tickets/T-1292-move-the-town-census-off-the-loader-into-an-evid.md) *(opener, S)* | The gate census moves to Evidence → City; part-1 smoke checks relocated | — |
 | [T-1248](../tickets/T-1248-compile-the-sources-used-and-their-reconstructio.md) *(opener)* | `compile_source_use.py` → `sidecars/1835/sources/` index + per-source edges, coverage report, tests | — |
 | [T-1277](../tickets/T-1277-share-one-destination-search-for-go-to-and-explo.md) *(opener)* | `destinations.js` shared by Go to and the start picker; derived business rows; spawn-at-destination | — |
 | [T-1247](../tickets/T-1247-roll-the-year-back-into-a-restrained-time-machin.md) | `arrival.js`: split-flap year paced by §A, restrained instrument style, error/retry, a11y | T-1246 |
-| [T-1276](../tickets/T-1276-move-city-statistics-into-a-browsable-sources-an.md) | Evidence → Sources: searchable, filtered, windowed list; counts; used-for link library | T-1248, T-1286 |
+| [T-1276](../tickets/T-1276-move-city-statistics-into-a-browsable-sources-an.md) | Evidence → Sources: searchable, filtered, windowed list; counts; used-for link library | T-1248, T-1292 |
 | [T-1275](../tickets/T-1275-give-the-loading-journey-160-varied-source-and-r.md) | `data/loading/statuses.json` (≥160), `loading-content.js` bags, content validator | T-1247, T-1248 |
-| [T-1278](../tickets/T-1278-land-on-a-warm-mobile-welcome-with-jaunts-and-ex.md) | The welcome: Jaunts · Explore Myself · Enter Chicago; no pointer lock on menus; Start route back | T-1247, T-1286, T-1277 |
+| [T-1278](../tickets/T-1278-land-on-a-warm-mobile-welcome-with-jaunts-and-ex.md) | The welcome: Jaunts · Explore Myself · Enter Chicago; no pointer lock on menus; Start route back | T-1247, T-1292, T-1277 |
 
 ## 5G. Jaunts engine — content contract, navigation, travel, mechanics, history, daybook, menu (7 tickets)
 
@@ -117,7 +117,7 @@ Same predecessors as 5H. Each batch names its quiet outing (no declared resource
 | Gently steampunk, retro-60s time-machine feel, not cutesy | T-1247 (restrained instrument style, `--brass` token, no gears/sound) |
 | Fast load shows only a couple of statuses; long prairie phase keeps repainting | T-1246 (time-slicing), T-1275 (dwell scaled to expected phase length) |
 | Land on the Jaunts / Explore Myself page; "Tap to enter", not "Tap to walk"; mobile fits | T-1278, T-1259, T-1272 |
-| Counts and percentages off the opening screen, into a city summary tab | T-1286 (Evidence → City) |
+| Counts and percentages off the opening screen, into a city summary tab | T-1292 (Evidence → City) |
 | All sources used, easy to consume, with attested/inferred/reconstructed counts and a used-for link library | T-1248 (index), T-1276 (browser) |
 | Explore Myself: search structure / business / resident place / street & intersection, then free exploration; not a duplicate of Go to | T-1277 (one `destinations.js`, derived business rows), T-1278 |
 | Recommended travel mode per jaunt, changeable on the card and mid-jaunt; duration follows the mode | T-1280, T-1259 |
