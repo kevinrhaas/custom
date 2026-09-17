@@ -25,12 +25,12 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 | civic | 1 | 2 | 0 | 1 | 0 | 499 | 503 |
 | directories | 0 | 8,227 | 0 | 3 | 1 | 27 | 8,258 |
 | genealogytrails | 0 | 1 | 0 | 0 | 3 | 1 | 5 |
-| land_sales | 0 | 0 | 0 | 0 | 0 | 1,572 | 1,572 |
+| land_sales | 0 | 570 | 46 | 0 | 603 | 353 | 1,572 |
 | newberry_index | 0 | 0 | 0 | 0 | 6,658 | 0 | 6,658 |
 | newspapers | 144 | 0 | 0 | 0 | 0 | 1,045 | 1,189 |
 | old_settlers | 0 | 1,094 | 0 | 0 | 0 | 0 | 1,094 |
 | residents | 15 | 0 | 0 | 0 | 683 | 382 | 1,080 |
-| **Total** | **170** | **11,885** | **63** | **32** | **7,386** | **4,157** | **23,693** |
+| **Total** | **170** | **12,455** | **109** | **32** | **7,989** | **2,938** | **23,693** |
 
 ## Second-hop preservation
 
@@ -45,8 +45,10 @@ Only tickets whose current state is open may own an unresolved unit.
 | T-1144 | 1 |
 | T-1145 | 1 |
 | T-1147 | 748 |
-| T-1169 | 21 |
+| T-1159 | 40 |
+| T-1169 | 334 |
 | T-1170 | 2 |
-| T-1236 | 3,384 |
+| T-1297 | 718 |
+| T-1298 | 1,094 |
 
 Nonzero `later_only`, `outside_chicago`, `aggregate_only`, and `refused` counts are closed decisions, not missing work. The gate fails only when a unit is unclassified, an asserted target dies, an unresolved owner closes or disappears, or an assertion survives only as prose.
