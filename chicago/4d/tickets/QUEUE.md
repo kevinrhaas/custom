@@ -26,7 +26,8 @@
 # Build tickets in 5C are needs_bake and hand on a successor. Native, Métis and Black residents,
 # families and businesses ARE reconstructed (owner, 2026-09-17; T-1177), review_required, no figures.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
-T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
+T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
+T-1255 — The people view shows every role as a dated timeline, marks which reach the scene date, and searches controlled and printed wording
 T-1236 — EPIC: rule on the unasserted units the person-fact passes do not own — the land-sale, civic, 1830-census, church, newspaper and directory names, the resident-pass reserved people, and the book readings of ground, harbour, weather, price and institution
 T-1228 — Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns
 T-1238 — Plural dated home, workplace and other-significant-location relationships on every person and household, with associated_with[] defined
@@ -103,6 +104,40 @@ T-1213 — Signboards for every business that would have hung one: the reconstru
 T-1214 — Build the camps of the summer of 1835: a tent and wagon-camp archetype, the encampments on the grounds the transient ticket evidenced — the land-sale crowd south of the fort, the immigrants' wagons at the west approach, the pier gang at the river mouth — bounded, labelled, and empty of figures
 # --- 5E. STRUCTURES — converge: every person housed, every business roofed, the town complete
 T-1215 — Converge the reconstructed town: every person housed, every business roofed, every roof occupied or its use stated, the census's dwellings ratio met, the programme reconciled, the budgets re-measured and set — the completion report a visitor can open
+# Arrival/jaunts: read docs/ARRIVAL-JAUNTS-EXECUTION.md; honor ticket dependencies.
+# Finish each subsection; unavoidable successors stay beside their dependency, not at the tail.
+# --- 5F. ARRIVAL AND SOURCES — measured loading, time rollback, source library, free start
+T-1246 — Expose real boot phases and yield long scene-building tasks
+T-1247 — Roll the year back into a restrained time-machine arrival
+T-1248 — Compile the sources used and their reconstruction backlinks
+T-1275 — Give the loading journey 160 varied source and reconstruction statuses
+T-1276 — Move city statistics into a browsable Sources and City summary
+T-1277 — Share one destination search for Go to and Explore Myself
+T-1278 — Land on a warm mobile welcome with Jaunts and Explore Myself
+# --- 5G. JAUNTS ENGINE — content contract, navigation, travel, choices, history and menu
+T-1253 — Define validated jaunt JSON and render a real pilot preview
+T-1279 — Make the pilot jaunt playable with persistent stop navigation
+T-1280 — Offer live jaunt travel modes and honest quick-play estimates
+T-1256 — Support bounded choices, inventory and alternate jaunt endings
+T-1257 — Connect jaunt stops and travel to optional historical context
+T-1258 — Collect era-themed keepsakes in a five-family Chicago daybook
+T-1259 — Finish the scalable Jaunts Menu and integrated start experience
+# --- 5H. PRIORITY JAUNTS — six short stories, fully authored and playable
+T-1260 — Publish Outfit for the West as a five-minute jaunt
+T-1261 — Publish Taverns of Chicago as a five-minute jaunt
+T-1262 — Publish New in Chicago as a five-minute jaunt
+T-1263 — Publish Shopping South Water Street as a five-minute jaunt
+T-1264 — Publish Across Wolf Point as a five-minute jaunt
+T-1265 — Publish Fort Dearborn Errand as a five-minute jaunt
+# --- 5I. EVERYDAY JAUNTS — nineteen additional outings in five bounded content batches
+T-1266 — Publish news, mail, lodging and work jaunts
+T-1267 — Publish land, freight, household supplies and clothing jaunts
+T-1268 — Publish harness, candles, building materials and leather jaunts
+T-1269 — Publish schooling, social visits and careful news reading jaunts
+T-1270 — Publish harbor, prairie arrival and a quiet stroll jaunts
+# --- 5J. ARRIVAL AND JAUNTS COMPLETE — content convergence and published mobile acceptance
+T-1271 — Reconcile and time the complete 25-jaunt library
+T-1272 — Verify arrival, jaunts and source browsing on the published mobile app
 # --- 6. SOUTH THROUGH TIME — dated terrain, Fort Dearborn, and Prairie Avenue
 T-1243 — Author the e1830_natural terrain spec and generate the 1812 heightfield and the ground and water meshes across the Fort-to-Eighteenth-Street corridor
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
@@ -117,7 +152,6 @@ T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 # --- 7. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
-T-1245 — Re-cut the ground's culling grid so the reach can bite, and bring the downtown five inside all three ceilings at both viewports
 T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down

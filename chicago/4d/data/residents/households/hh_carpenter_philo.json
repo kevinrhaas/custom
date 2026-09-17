@@ -63,7 +63,11 @@
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
     ],
-    "note": "'The earliest pharmaceutist of Chicago was Philo Carpenter, who arrived here in July, 1832, shortly thereafter opening a variety and drug store on what is now known as Lake Street, near the eastern bank of the river; and subsequently removing to South Water Street' (Andreas, scan p. 955). He advertised drugs, medicines, oils, paints and dye-stuffs in the Chicago Democrat of 26 November 1833, over copy dated 22 November."
+    "note": "'The earliest pharmaceutist of Chicago was Philo Carpenter, who arrived here in July, 1832, shortly thereafter opening a variety and drug store on what is now known as Lake Street, near the eastern bank of the river; and subsequently removing to South Water Street' (Andreas, scan p. 955). He advertised drugs, medicines, oils, paints and dye-stuffs in the Chicago Democrat of 26 November 1833, over copy dated 22 November.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "druggist"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -90,7 +94,26 @@
      "encyclopedia_chicago_medical_pharmaceutical"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "roles": [
+    {
+     "role": "druggist",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

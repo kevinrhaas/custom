@@ -62,28 +62,13 @@ const SHORE_Y = -0.10;
  *  step-up rule refuses it from any bank in the dataset. */
 const WATER_BARRIER_Y = 4.0;
 
-/** How many ground tiles the culling grid is allowed, and how much finer it cuts
- *  ACROSS the long axis than a square grid would. Both come from the measurement
- *  that chose 12 × 3, made end to end through the smoke at 1280×800 on the
- *  2,020 × 800 m box the town then stood on, against 58 draw calls and 550,513
- *  triangles untiled:
- *
- *      8 × 4   71 calls   488 405 tris
- *     12 × 3   71 calls   461 112 tris   <- chosen
- *     12 × 6   79 calls   434 516 tris
- *
- *  12 × 3 is strictly better than 8 × 4: the same draw calls for 27,000 fewer
- *  triangles. 12 × 6 buys another 26,000 and costs eight more calls, which would
- *  leave ONE of headroom — a gate that fails on the next building batch is not
- *  headroom. So 36 tiles is the BUDGET, and the 4:1 column-to-row ratio it was
- *  spent at is the BIAS. A grid of square tiles would have spent that box's own
- *  2.525:1 shape at 2.525:1; the measurement spent it at 4:1, because culling here
- *  is mostly by BEARING — a walker looks along the box, so cuts ACROSS the long
- *  axis are the ones that pay. Written as an exponent on the box's ratio,
- *  ln 4 / ln 2.525 = 1.4965, the bias is r^1.5 against a square grid's r^1. An
- *  exponent rather than a multiplier because it has to vanish where there is no
- *  long axis: on a square box r^1.5 is 1 and the grid comes out square, where a
- *  constant multiplier would still privilege east-west for no reason at all. */
+/** T-0466's 36-tile rule was a measured answer for the former 2,020 × 800 m
+ *  ground. T-0464 made the mesh 7,340 × 10,240 m, and T-1238 then gave it a
+ *  visibility reach. At 5 × 8, however, a tile was about 1.3 km wide: its near
+ *  corner kept a million-triangle field submitted long after most of that tile
+ *  was haze. T-1245 measures the rule in metres instead. A tile side is at most
+ *  240 m — about one eighth of the 1,883 m haze reach — so the reach can reject
+ *  ground with bounded edge overdraw as the modelled box changes again. */
 /** The grid the last ground build actually used, for the harness to read back.
  *  Written by tileGround(); read by `groundTiling()` and by nothing in the scene. */
 let lastGroundTiling = null;
@@ -91,8 +76,15 @@ let lastGroundTiling = null;
 /** The culling grid the ground currently stands on, or null before one is built. */
 export function groundTiling() { return lastGroundTiling; }
 
-const GROUND_TILE_BUDGET = 36;
-const GROUND_TILE_BEARING_EXP = 1.5;
+// A reach can only reject whole tiles. Hold each side to roughly one eighth of
+// the 1,883 m haze reach so a boundary tile cannot buy hundreds of metres of
+// detailed ground merely because one corner remains visible (T-1245).
+const GROUND_TILE_TARGET_M = 240;
+// The continuous low-detail field beneath the detailed tiles: 6 heightfield
+// cells = 15 m on the committed field. It carries the terrain beyond the detail
+// reach without carrying the expanded field's million triangles with it.
+const GROUND_BASE_STEP = 6;
+const GROUND_DETAIL_REACH_M = 600;
 
 /**
  * THE GROUND'S REACH — how far out the ground is submitted at all (T-1154).
@@ -124,13 +116,12 @@ const GROUND_TILE_BEARING_EXP = 1.5;
  * distance past which the ground is provably not drawn even when it is drawn,
  * and it is why the reach is applied at EVERY tier and not only at `light`.
  *
- * WHAT IT IS NOT. Nothing is un-built, re-graded or moved. Every tile is still
- * loaded, still tiled, still sampled — `surfaceHeight` and `walkableHeight` read
- * the heightfield and never the mesh, so footing, water, flora roots and every
- * anchored record are untouched, north, south and on the skirt. A visitor who
- * walks south gets each tile back as they approach it, at the distance where it
- * could first show them something. It is a rendering decision, and the test the
- * furniture's reach is held to is the test here: the pixels do not move.
+ * WHAT IT IS NOT. Nothing is un-built, re-graded or moved. The detailed ground
+ * remains within 600 m and a continuous 15 m-sampled rendition of the same
+ * heightfield carries the distance beyond it. `surfaceHeight` and
+ * `walkableHeight` read the original 2.5 m field and never either mesh, so
+ * footing, water, flora roots and every anchored record are untouched. Beyond
+ * the outer haze reach even the skirt is withheld, exactly as T-1238 measured.
  *
  * @param {number} density  the scene fog's `FogExp2` density
  * @param {number} steps    how many representable steps the channel has
@@ -142,36 +133,24 @@ export function hazeReachM(density, steps = 255) {
 }
 
 /**
- * The culling grid for a ground of this shape (T-0466).
+ * The culling grid for a ground of this shape (T-1245).
  *
- * The grid used to be the two literals `12` and `3`, and those two numbers were a
- * measurement of ONE box: 2,020 m east-west by 800 m north-south, long axis
- * east-west. The southern field makes that box 2,020 × 4,920 m — deeper than it is
- * wide, long axis north-south — and the literals do not know it. Left alone they
- * cut the long axis into THREE, so a tile becomes 168 × 1,640 m: a strip that runs
- * from the walker's feet to the far end of the town, is in the frustum from
- * anywhere on it, and can therefore never be culled. The grid has to be a function
- * of the box or it is a measurement of a box that no longer exists.
- *
- * So: spend the same tile BUDGET, at the same BEARING BIAS, on whatever shape the
- * ground actually is. With `r` the box's long-to-short ratio, the long axis takes
- * `sqrt(budget · r^1.5)` cuts and the short axis takes the rest. On the box the
- * measurement was made on this returns 12 × 3 exactly, which is the check
- * `tools/measure_ground_tiling.mjs --self-test` holds it to: a rule that does not
- * reproduce the reading it is derived from is a different rule.
+ * A fixed tile count grows fixed kilometre-wide tiles when the ground expands.
+ * The reach then cannot reject the far part of a tile whose near edge still lies
+ * inside it. Bound each side in metres instead: the committed 7,340 × 10,240 m
+ * mesh becomes 31 × 43, and any later extension adds tiles rather than silently
+ * making every existing tile coarser.
  *
  * @param {number} spanX  the ground's east-west extent, metres
  * @param {number} spanZ  its north-south extent, metres
  * @returns {{cols: number, rows: number}} cuts along X and along Z
  */
-export function groundTileGrid(spanX, spanZ,
-  budget = GROUND_TILE_BUDGET, exp = GROUND_TILE_BEARING_EXP) {
+export function groundTileGrid(spanX, spanZ, targetM = GROUND_TILE_TARGET_M) {
   if (!(spanX > 0) || !(spanZ > 0)) return { cols: 1, rows: 1 };
-  const long = Math.max(spanX, spanZ);
-  const short = Math.min(spanX, spanZ);
-  const nLong = Math.max(1, Math.round(Math.sqrt(budget * (long / short) ** exp)));
-  const nShort = Math.max(1, Math.round(budget / nLong));
-  return spanX >= spanZ ? { cols: nLong, rows: nShort } : { cols: nShort, rows: nLong };
+  return {
+    cols: Math.max(1, Math.ceil(spanX / targetM)),
+    rows: Math.max(1, Math.ceil(spanZ / targetM)),
+  };
 }
 
 /** local ENU metres -> three world position. */
@@ -392,10 +371,10 @@ export async function createTerrain({
   // Cut it into tiles and the half of the world behind you stops being drawn —
   // see tileGround() for the measurements behind the grid below.
   const tiles = tileGround(ground, groundTileGrid);
-  /** One banked WORLD bounding sphere per ground tile, for the reach below.
+  /** One banked WORLD bounding box per ground tile, for the reach below.
    *  Empty when the ground was too coarse to tile, which is the case the reach
    *  has nothing to say about: one mesh around the camera is always near. */
-  const groundSpheres = [];
+  const groundBounds = [];
   if (tiles) {
     for (const tile of tiles) {
       group.add(tile);
@@ -409,6 +388,23 @@ export async function createTerrain({
     ground.frustumCulled = false;
     group.add(ground);
     disposables.push(ground.geometry);
+  }
+
+  // One continuous, modest ground under the detailed tiles. The detail tiles
+  // are exact near the visitor; this 15 m field carries the same heightfield at
+  // distance, where fog and perspective make the baked 2.5 m sampling wasteful.
+  // A 3 cm drop prevents z-fighting where both levels are present. Navigation,
+  // flora and anchored records still sample `heightfield` itself, never this LOD.
+  let groundBase = null;
+  if (heightfield.loaded) {
+    groundBase = new THREE.Mesh(gridGeometry(heightfield, GROUND_BASE_STEP), groundMat);
+    groundBase.name = `terrain_base__${epochId ?? 'field'}`;
+    groundBase.position.y = -0.03;
+    groundBase.receiveShadow = true;
+    groundBase.castShadow = false;
+    groundBase.frustumCulled = true;
+    group.add(groundBase);
+    disposables.push(groundBase.geometry);
   }
 
   // ---- the water --------------------------------------------------------- //
@@ -457,23 +453,29 @@ export async function createTerrain({
 
   // ---- the ground's reach (T-1154) --------------------------------------- //
   // Banked once, here, for the same reason the furniture's spheres are banked:
-  // the per-frame test must be one distance against a number, with no matrix
-  // work and no allocation. The tiles never move, so the sphere never changes.
+  // the per-frame test must do no matrix work and no allocation. A sphere was
+  // deliberately conservative, but on a kilometre-wide ground tile its empty
+  // corners extended the reach by hundreds of metres. The axis-aligned tile
+  // boxes are exact for this unmoving grid, so the haze boundary tests the tile
+  // itself rather than the circle wrapped around it (T-1245).
   if (tiles) {
     group.updateWorldMatrix(true, true);
     for (const tile of tiles) {
-      if (!tile.geometry.boundingSphere) tile.geometry.computeBoundingSphere();
-      const sph = tile.geometry.boundingSphere?.clone();
-      if (!sph) continue;
-      sph.applyMatrix4(tile.matrixWorld);
-      groundSpheres.push({ mesh: tile, c: sph.center, r: sph.radius });
+      if (!tile.geometry.boundingBox) tile.geometry.computeBoundingBox();
+      const box = tile.geometry.boundingBox?.clone();
+      if (!box) continue;
+      box.applyMatrix4(tile.matrixWorld);
+      const e = (box.min.x + box.max.x) / 2;
+      const n = -(box.min.z + box.max.z) / 2;
+      groundBounds.push({ mesh: tile, min: box.min, max: box.max,
+                          overField: heightfield.contains(e, n) });
     }
   }
   /** The reach in force, in metres. `Infinity` draws every tile, which is what
    *  the ground did before this and what it still does until a scene with a fog
    *  sets one — see hazeReachM(). */
   let groundReachM = Infinity;
-  let groundDrawn = groundSpheres.length;
+  let groundDrawn = groundBounds.length;
   let groundHeld = 0;
 
   return {
@@ -509,25 +511,31 @@ export async function createTerrain({
     /** What the reach is doing this frame: the distance, and the tile counts. */
     groundReach() {
       return { reachM: Number.isFinite(groundReachM) ? groundReachM : null,
-               tiles: groundSpheres.length, drawn: groundDrawn, held: groundHeld };
+               detailReachM: GROUND_DETAIL_REACH_M,
+               baseTriangles: groundBase
+                 ? groundBase.geometry.index.count / 3 : 0,
+               tiles: groundBounds.length, drawn: groundDrawn, held: groundHeld };
     },
     /** Per frame, before the render: hold back the ground the haze has already
      *  finished. One subtraction and one comparison per tile, over the few dozen
      *  the grid comes to. */
     updateGroundReach(eye) {
-      if (!groundSpheres.length) return groundReachM;
+      if (!groundBounds.length) return groundReachM;
       let drawn = 0;
       let held = 0;
-      for (const sph of groundSpheres) {
-        const dx = sph.c.x - eye.x;
-        const dy = sph.c.y - eye.y;
-        const dz = sph.c.z - eye.z;
-        // NEAREST point of the sphere, not its centre: a tile is kept while any
-        // part of it could still be inside the reach, so the boundary falls
-        // beyond the far edge of what is drawn rather than through it.
-        const far = Math.sqrt(dx * dx + dy * dy + dz * dz) - sph.r > groundReachM;
-        sph.mesh.visible = !far;
-        sph.mesh.userData.reachCulled = far;
+      for (const bound of groundBounds) {
+        // Exact squared distance from the eye to an axis-aligned box. A zero on
+        // an axis means the eye is between that pair of faces. This keeps a tile
+        // whenever ANY of its ground can be inside the reach, with no sphere's
+        // empty corner buying it extra distance.
+        const dx = Math.max(bound.min.x - eye.x, 0, eye.x - bound.max.x);
+        const dy = Math.max(bound.min.y - eye.y, 0, eye.y - bound.max.y);
+        const dz = Math.max(bound.min.z - eye.z, 0, eye.z - bound.max.z);
+        const reach = bound.overField
+          ? Math.min(groundReachM, GROUND_DETAIL_REACH_M) : groundReachM;
+        const far = dx * dx + dy * dy + dz * dz > reach * reach;
+        bound.mesh.visible = !far;
+        bound.mesh.userData.reachCulled = far;
         if (far) held++; else drawn++;
       }
       groundDrawn = drawn;
@@ -594,16 +602,14 @@ async function fetchOk(url) {
  * mesh. Cut into tiles, each tile gets its own bounding sphere, and the ones behind
  * you stop being drawn.
  *
- * Measured on the committed 247,527-triangle ground, standing on South Water and
- * looking south: 4×2 culls 29 % of it, 6×3 and 8×4 both cull 54 %, 12×6 culls 79 %.
- * Looking straight down from the `from_above` anchor — where culling helps least and
- * costs most, because nearly everything is on screen — 12×6 still culls 54 % and
- * leaves 26 tiles visible. Tiles are cheap draw calls (one shared material, no state
- * change between them) but they are NOT free, and `main.js` budgets them. The grid
- * is asked for at GROUND_TILE_BUDGET, with the end-to-end numbers beside it; the
- * per-tile percentages here are what made it worth trying at all. They are readings
- * of the 2,020 x 800 m box, which is why the grid itself is no longer a pair of
- * literals but a function of whatever box the ground turns out to cover (T-0466).
+ * T-0466 first measured this on the former 247,527-triangle, 2,020 × 800 m ground.
+ * T-1245 repeated the real-renderer comparison after the field grew to
+ * 7,340 × 10,240 m: even 32 × 48 alone left the binding light stand at 957,505
+ * triangles. The final 240 m rule works with the continuous 15 m base and 600 m
+ * detailed reach above; `data/render/ground_detail_lod.json` keeps the rejected
+ * grid-only readings and all six closing viewport/tier readings. Tiles remain cheap
+ * draw calls (one shared material, no state change), not free ones, which is why the
+ * same reading also holds them under the existing 215-call budget.
  *
  * The split is by triangle CENTROID, so no triangle is duplicated and no seam is
  * introduced: every triangle lands in exactly one tile and the surface is the same
@@ -947,7 +953,7 @@ export function conformGroundToField(geometry, hf) {
  * missing; identical surface, more triangles, and it means a missing asset
  * degrades to "slower" rather than to "no ground".
  */
-function gridGeometry(hf) {
+function gridGeometry(hf, step = 1) {
   if (!hf.loaded) {
     const g = new THREE.PlaneGeometry(2400, 2400, 1, 1);
     g.rotateX(-Math.PI / 2);
@@ -956,27 +962,39 @@ function gridGeometry(hf) {
     return g;
   }
   const { cols, rows, cellM, originE, originN } = hf;
-  const pos = new Float32Array(cols * rows * 3);
-  const conf = new Float32Array(cols * rows).fill(0.5);
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const i = (r * cols + c) * 3;
+  const stride = Math.max(1, Math.floor(step));
+  const sampleCols = [];
+  const sampleRows = [];
+  for (let c = 0; c < cols; c += stride) sampleCols.push(c);
+  for (let r = 0; r < rows; r += stride) sampleRows.push(r);
+  if (sampleCols.at(-1) !== cols - 1) sampleCols.push(cols - 1);
+  if (sampleRows.at(-1) !== rows - 1) sampleRows.push(rows - 1);
+  const outCols = sampleCols.length;
+  const outRows = sampleRows.length;
+  const pos = new Float32Array(outCols * outRows * 3);
+  const conf = new Float32Array(outCols * outRows).fill(0.5);
+  for (let rr = 0; rr < outRows; rr++) {
+    const r = sampleRows[rr];
+    for (let cc = 0; cc < outCols; cc++) {
+      const c = sampleCols[cc];
+      const vi = rr * outCols + cc;
+      const i = vi * 3;
       const y = hf.data[r * cols + c];
       pos[i] = originE + c * cellM;
       pos[i + 1] = y;
       pos[i + 2] = -(originN + r * cellM);
-      if (y < SHORE_Y) conf[r * cols + c] = 1.0;
+      if (y < SHORE_Y) conf[vi] = 1.0;
     }
   }
-  const idx = new Uint32Array((cols - 1) * (rows - 1) * 6);
+  const idx = new Uint32Array((outCols - 1) * (outRows - 1) * 6);
   let k = 0;
-  for (let r = 0; r < rows - 1; r++) {
-    for (let c = 0; c < cols - 1; c++) {
-      const a = r * cols + c;
+  for (let r = 0; r < outRows - 1; r++) {
+    for (let c = 0; c < outCols - 1; c++) {
+      const a = r * outCols + c;
       // -Z is north, so the row-major grid is mirrored relative to ENU and the
       // winding has to be flipped to keep the normals up.
-      idx[k++] = a; idx[k++] = a + cols; idx[k++] = a + 1;
-      idx[k++] = a + 1; idx[k++] = a + cols; idx[k++] = a + cols + 1;
+      idx[k++] = a; idx[k++] = a + outCols; idx[k++] = a + 1;
+      idx[k++] = a + 1; idx[k++] = a + outCols; idx[k++] = a + outCols + 1;
     }
   }
   const g = new THREE.BufferGeometry();

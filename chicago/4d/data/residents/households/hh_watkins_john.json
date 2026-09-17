@@ -62,7 +62,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'John Watkins, school-master, came in 1832'. Andreas: 'In the fall of 1832, Colonel Hamilton and Colonel Owen employed John Watkins to teach a small school in the North Division, near the old Indian agency-house'; and by 1835 'John Watkins was then teaching what had become a public school on the North Side, on the river bank just east of Clark Street, in the building erected by Colonels Hamilton and Owen'."
+    "note": "'John Watkins, school-master, came in 1832'. Andreas: 'In the fall of 1832, Colonel Hamilton and Colonel Owen employed John Watkins to teach a small school in the North Division, near the old Indian agency-house'; and by 1835 'John Watkins was then teaching what had become a public school on the North Side, on the river bank just east of Clark Street, in the building erected by Colonels Hamilton and Owen'.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "schoolteacher"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -79,7 +83,25 @@
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "schoolteacher",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

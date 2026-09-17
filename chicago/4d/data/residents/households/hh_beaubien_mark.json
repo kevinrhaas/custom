@@ -62,7 +62,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "He built and kept the Sauganash - Andreas calls him 'the original proprietor' - and built the Exchange Coffee House at Lake and Wells in 1834. He was also the licensed ferryman of Chicago from 6 June 1831 (bond filed, James Kinzie surety, $50 into the county treasury) and the last keeper of the old lighthouse, decades later. Tavern keeping is the trade the sources return to."
+    "note": "He built and kept the Sauganash - Andreas calls him 'the original proprietor' - and built the Exchange Coffee House at Lake and Wells in 1834. He was also the licensed ferryman of Chicago from 6 June 1831 (bond filed, James Kinzie surety, $50 into the county treasury) and the last keeper of the old lighthouse, decades later. Tavern keeping is the trade the sources return to.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "tavern_keeper"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -86,7 +90,25 @@
      "drloih_beaubien"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "roles": [
+    {
+     "role": "tavern_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   },
   {
    "id": "beaubien_mark_household",

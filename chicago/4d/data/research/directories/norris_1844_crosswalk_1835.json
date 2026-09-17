@@ -35,7 +35,7 @@
   "ties_narrowed_by_a_trade": 2,
   "of_those_contested": 0,
   "of_those_ambiguous": 2,
-  "could_carry_occupation": 63,
+  "could_carry_occupation": 66,
   "could_carry_address": 83
  },
  "set_aside_for_want_of_a_surname": [
@@ -396,8 +396,8 @@
    "person_id": "jones_benjamin",
    "household_id": "hh_jones_benjamin",
    "grade_1835": "attested",
-   "occupation_1835": "grocer",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "h_jones_store",
    "rule": "Surname 'Jones' folds to the same string as the 1844 entry's, and the given name of both begins B.",
@@ -412,6 +412,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -473,8 +474,8 @@
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "harmon_loomis_store",
    "rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C.",
@@ -489,6 +490,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -551,8 +553,8 @@
    "person_id": "elston_daniel",
    "household_id": "hh_elston_daniel",
    "grade_1835": "attested",
-   "occupation_1835": "soap_and_candle_maker",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "elston_soap_candle_manufactory",
    "rule": "Surname 'Elston' folds to the same string as the 1844 entry's, and the given name of both begins D.",
@@ -567,6 +569,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
