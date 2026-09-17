@@ -1,7 +1,7 @@
 ---
 id: T-1249
 title: The 1880s representative scene date, and the e1871_postfire epoch record it selects
-state: claimed
+state: done
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0473
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1403
 claimed_by: run 9/17/2026, 10:16:44 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T16:19:23.324Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35238482063
 ---
 
