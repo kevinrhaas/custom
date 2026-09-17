@@ -2153,7 +2153,7 @@ step "no standing 1835 trade is cited only to a volume about another year" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/audit_scene_window_trades.py --self-test
 
-# T-1222 (of T-1145). THE SINGULAR FIELD THE TWO STEPS ABOVE ARE ARGUING OVER IS NOW A
+# T-1227 (of T-1145). THE SINGULAR FIELD THE TWO STEPS ABOVE ARE ARGUING OVER IS NOW A
 # VIEW. `persons[].roles[]` is canonical — a controlled role, the kind of role it is, the
 # bound its evidence permits, how it was dated, a confidence and its sources — and
 # `persons[].occupation` is derived from the roles that actually cover 1 July 1835. That

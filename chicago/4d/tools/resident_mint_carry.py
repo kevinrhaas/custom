@@ -155,7 +155,7 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
         if pointer is not None and isinstance(person.get("occupation"), dict):
             _insert_after(person["occupation"], "later_occupation", pointer, "confidence")
 
-        # T-1222: AND THE 1835 FIELD IS NOW A VIEW OF `roles[]`, DERIVED AFTER THE MINT.
+        # T-1227: AND THE 1835 FIELD IS NOW A VIEW OF `roles[]`, DERIVED AFTER THE MINT.
         # `roles` itself is an ordinary foreign person key and the loop above already
         # carries it; these three live INSIDE `occupation`, which the mints rebuild whole,
         # so they are lost the same way `later_occupation` was before T-1137. They are
@@ -240,7 +240,7 @@ def self_test() -> int:
          list(person).index("ladder_rule") == list(person).index("grade") + 1)
     want("a later occupation survives inside the newly derived occupation",
          person["occupation"].get("later_occupation", {}).get("describes_date") == 1839)
-    # T-1222. `roles[]` is an ordinary foreign person key; the three view keys live
+    # T-1227. `roles[]` is an ordinary foreign person key; the three view keys live
     # inside `occupation`, which a mint rebuilds whole, so they need naming.
     want("the dated roles survive", person.get("roles") == prior["persons"][0]["roles"])
     want("the scene-date view survives inside the newly derived occupation",

@@ -269,7 +269,7 @@ getting done.
 **To remove a ruling**, move it into a top-level `withdrawn[]` carrying the cluster `id`,
 the `rule`, a `reason` and the `ticket` that decided it.
 
-## `roles[]` is the trade record; `occupation` is a view of it (T-1222, of T-1145)
+## `roles[]` is the trade record; `occupation` is a view of it (T-1227, of T-1145)
 
 A person's trades, professions and offices live in `persons[].roles[]`, and
 `persons[].occupation` is a **generated compatibility view** of the roles that

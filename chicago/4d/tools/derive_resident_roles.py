@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""A resident's trades, professions and offices as DATED PLURAL ROLES (T-1222, of T-1145).
+"""A resident's trades, professions and offices as DATED PLURAL ROLES (T-1227, of T-1145).
 
     python3 tools/derive_resident_roles.py             what the cards would carry, read out
     python3 tools/derive_resident_roles.py --write     write roles[] and the 1835 view
@@ -65,7 +65,7 @@ from audit_scene_window_trades import VERDICTS, covers_scene  # noqa: E402
 SCENE_DATE = "1835-07-01"
 ABSENT = "none_recorded"
 GENERATOR = "tools/derive_resident_roles.py"
-TICKET = "T-1222"
+TICKET = "T-1227"
 
 # The grades that make a role a CLAIM, and so the grades that may fill the 1835 view.
 # Identical to the audit's, and for the same reason: `reconstructed` is this dataset's

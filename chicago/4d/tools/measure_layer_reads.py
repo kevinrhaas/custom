@@ -221,7 +221,7 @@ STATED_SHARED = frozenset({
     # RECORD's `present_on_scene_date` block is read and shown by residents.js;
     # the manifest's copy of it is read by nothing, and the two are the same word.
     "present_on_scene_date",
-    # T-1222's dated roles. `persons[].roles[].from` and `.to` are the bound a
+    # T-1227's dated roles. `persons[].roles[].from` and `.to` are the bound a
     # trade's evidence permits, and a bare `.from`/`.to` is this renderer's own
     # vocabulary for a span: boats.js and frontage.js index face ranges with it,
     # popup.js prints a documented range with it and facades.js ages a wall off it.
