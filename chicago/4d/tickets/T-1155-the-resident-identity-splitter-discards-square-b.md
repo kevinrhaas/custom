@@ -44,7 +44,7 @@ T-1115's mint refusal.
 
 ## CLOSING RECORD — every identity id this repair moved
 
-Re-derived from `origin/dev` with `consolidate_resident_evidence.py --build`.
+Re-derived against `origin/dev` at 224015cda with `consolidate_resident_evidence.py --build`.
 
 - 270 identities kept exactly their appearances and were RE-KEYED by the repaired split.
 - 84 further old ids no longer stand: their appearances moved onto another identity when the corrected surnames merged, or fell to a named refusal.
