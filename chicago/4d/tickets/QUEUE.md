@@ -27,6 +27,7 @@
 # families and businesses ARE reconstructed (owner, 2026-09-17; T-1177), review_required, no figures.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
+T-1286 — Cross-check the derived 1812 pre-cut shore against the Harrison 1830 trace, and record what the two readings disagree about
 T-1284 — Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
 T-1283 — Wire the dated roles onto the person card, and take the ready renderer from the duplicate branch rather than writing it twice
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
