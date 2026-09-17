@@ -12,13 +12,13 @@
     {
       "tool": "tools/generate_inferred_households.py",
       "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1108. Refuses on the same line as generate_inferred_names.py and replace_invented_residents.py: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor. One ruling makes three gates possible; gate all three in the commit that settles it.",
+      "why_not_gated": "RED — T-1108. Refuses on the same line as generate_inferred_names.py and replace_invented_residents.py: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor. One ruling makes three gates possible; gate all three in the commit that settles it. Until 2026-09-17 tools/check.sh also carried a step labelled for this pass that ran tools/synthesize_resident_research.py instead (T-0662); a borrowed command is refused by the audit now.",
       "owner_ticket": "T-1108"
     },
     {
       "tool": "tools/generate_inferred_names.py",
       "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1108, the same refusal as generate_inferred_households.py.",
+      "why_not_gated": "RED — T-1108, the same refusal as generate_inferred_households.py. Until 2026-09-17 tools/check.sh also carried a step labelled for this pass that ran tools/synthesize_resident_research.py instead (T-0662); a borrowed command is refused by the audit now.",
       "owner_ticket": "T-1108"
     },
     {
@@ -29,7 +29,7 @@
     {
       "tool": "tools/mint_documented_residents.py",
       "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-0662, which holds the three mint steps check.sh runs under labels naming a different pass. `--check` reports 42 file(s) differing from what the pass derives, data/residents/index.json among them.",
+      "why_not_gated": "RED — T-0662. `--check` reports 10 file(s) differing, re-measured 2026-09-17; this row said 42, so it had gone stale as well as ungated. The drift is NOT a re-derivation to commit: it renames hh_grant_james to hh_grant_j and writes the person's name as “J. Jr. Grant”, which is the resident name-splitting fault T-1155, T-1217 and T-1218 are open on, and it retires hh_montgomery_l_w on a register reading that now gives a surname and a trade and nothing else. Read on 2026-09-17 and left for the pass that owns it. Until that date tools/check.sh carried a step LABELLED for this mint that ran tools/synthesize_resident_research.py instead; the step is gone and audit_check_gates.py refuses a borrowed command now.",
       "owner_ticket": "T-0662"
     },
     {
@@ -38,7 +38,7 @@
         "--gate",
         "--self-test"
       ],
-      "why_not_gated": "RED — T-0691, itself blocked on T-0660's ruling. `--check` reports 798 file(s) differing. check.sh runs --gate and --self-test, which prove different things: only --check proves the committed cohort still follows from its inputs.",
+      "why_not_gated": "RED — T-0691, itself blocked on T-0660's ruling. `--check` reports 798 file(s) differing, re-measured 2026-09-17. T-0662 read that drift and found byte-identity to be the WRONG CONTRACT for this pass: it is not the last writer of the files it derives. tools/synthesize_resident_research.py rewrites the `letter_list_only` cohort's grade, subtype and note and retires households outright, so re-running the mint over the committed tree REVERTS that work — grades go back from `inferred` to `attested` and the PROJECTED RESIDENT qualifier is stripped from post-office-only names, a confidence upgrade this project forbids — and 54 households are re-minted under changed ids (hh_adains_will_si becomes hh_adains_willisi) out of the same name-splitting fault as the documented mint. Gating it wants a contract that compares what this pass owns, not the whole file. check.sh runs --gate and --self-test, which prove different things.",
       "owner_ticket": "T-0691"
     },
     {
@@ -49,7 +49,7 @@
     {
       "tool": "tools/replace_invented_residents.py",
       "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1108, the same refusal as generate_inferred_households.py.",
+      "why_not_gated": "RED — T-1108, the same refusal as generate_inferred_households.py. Until 2026-09-17 tools/check.sh also carried a step labelled for this pass that ran tools/synthesize_resident_research.py instead (T-0662); a borrowed command is refused by the audit now.",
       "owner_ticket": "T-1108"
     },
     {
