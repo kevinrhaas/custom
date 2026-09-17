@@ -3561,6 +3561,27 @@ step "the street-face adoptions re-derive, and no adopted business claims a lot"
 selftest "…and its own assertions still fire when broken" \
   python3 tools/adopt_street_faces.py --self-test
 
+# T-1237, the first piece of T-1147. The two steps above each answer one half of "where
+# is this business", and the household layer answers "where does this family live" in a
+# third place again — so a run that wanted the address book had to re-adjudicate all
+# three. These rows are that join, derived: one row per home, workplace and
+# business-location claim, carrying the street, face and anchor its evidence reached and
+# the `limit_clause` that stopped it. T-1198's seating pass starts from the rows rather
+# than from the evidence, which is why the clause is a FIELD and not prose.
+#
+# Gated rather than committed once, for the same reason the two steps above are: the
+# counts it publishes are the location axis T-1157 reads at the research sign-off — 56
+# businesses on a roof, 61 on a street face, 62 unplaceable; 20 households on a roof, 52
+# in a division and 1,185 nowhere — and each of those is an assertion about a moving
+# town. A business that quietly acquires a roof, a refused later address that acquires a
+# street, or a row that loses the clause limiting it are each a silent breach, and each
+# one fails here. `--report` prints both axes.
+step "the location reconciliation rows re-derive, and no row resolves past its evidence" \
+  python3 tools/location_reconciliation.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/location_reconciliation.py --self-test
+
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names
 # a position and no lot": a count of doors off a named corner — "on South-Water st. one
