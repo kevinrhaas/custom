@@ -101,7 +101,9 @@ const server = http.createServer((req, res) => {
 const PORT = 8123;
 await new Promise((r) => server.listen(PORT, r));
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({
+  executablePath: process.env.PW_EXECUTABLE || undefined,
+});
 const passes = [];
 for (const vp of VIEWPORTS) {
   const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
