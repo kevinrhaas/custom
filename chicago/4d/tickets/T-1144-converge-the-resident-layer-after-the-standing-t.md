@@ -1,7 +1,7 @@
 ---
 id: T-1144
 title: Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into the surviving ticket
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T20:05:42.085Z
 claimed_run: null
 ---
 

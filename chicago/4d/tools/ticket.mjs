@@ -1563,41 +1563,50 @@ switch (cmd) {
         + 'fetch the base first, or pass --base <ref>.');
       process.exit(1);
     }
+    // IT WORKS ON THE BRANCH'S FILE, NOT THE BASE'S, AND THE FIRST CUT HAD THAT BACKWARDS.
+    //
+    // Rebuilding on top of `baseLines` restored the ticket lines correctly and threw away
+    // every NON-ticket line the branch had written — the band headers, the owner's ordering
+    // notes, the preamble. It was caught the day it shipped: the owner's ruling of
+    // 2026-09-17 renumbered the parked jaunts bands from 5F-5J to 6 and wrote the
+    // fall-through rule into the header, the lap ran, and #1413 merged WITHOUT either,
+    // because the lap's own reconcile had quietly taken dev's headers back. A tool that
+    // silently reverts the thing a branch came to say is worse than the fault it fixes.
+    //
+    // So: start from the BRANCH's file, keep its prose exactly, and only ADD the ticket
+    // lines the base carries and the branch has lost — each after the line it follows in
+    // the BASE, which is the owner's ranking of it. Nothing here deletes a line; `prune`
+    // owns deletion and applies the gate's own rule.
     const mine = queueLines();
-    const baseIds = new Set(baseLines.map(queueId).filter(Boolean));
-    const out = [...baseLines];
+    const mineIds = new Set(mine.map(queueId).filter(Boolean));
+    const out = [...mine];
     const restored = [];
     let prev = null;
-    for (const line of mine) {
+    for (const line of baseLines) {
       const id = queueId(line);
       if (!id) continue;
-      if (!baseIds.has(id)) {
-        // A line goes back after the SAME line it followed on the branch. Walking the
-        // branch's queue in order means that predecessor is always either in the base
-        // or already restored, so the only line with no predecessor at all is one that
-        // LED the branch's queue — and leading the queue is itself a ranking, so it
-        // goes back to the top rather than to the foot.
+      if (!mineIds.has(id)) {
         const at = prev === null ? -1 : out.findIndex((l) => queueId(l) === prev);
         if (at >= 0) { out.splice(at + 1, 0, line); restored.push(`${id} (after ${prev})`); }
         else {
           const top = out.findIndex((l) => queueId(l) !== null);
-          if (top < 0) { out.push(line); restored.push(`${id} (to the foot — the base's queue has no lines)`); }
-          else { out.splice(top, 0, line); restored.push(`${id} (to the top — it led this branch's queue)`); }
+          if (top < 0) { out.push(line); restored.push(`${id} (to the foot — this queue has no lines)`); }
+          else { out.splice(top, 0, line); restored.push(`${id} (to the top — it led the base's queue)`); }
         }
       }
       prev = id;
     }
-    const lost = baseIds.size - mine.map(queueId).filter((id) => id && baseIds.has(id)).length;
+    const lost = restored.length;
     if (has('dry-run')) {
-      console.log(`queue reconcile: ${lost} line(s) of ${base} WOULD come back, `
-        + `${restored.length} line(s) of this branch WOULD be put back`);
+      console.log(`queue reconcile: ${lost} line(s) of ${base} WOULD come back; `
+        + "this branch's own lines and its headers are untouched");
       for (const r of restored) console.log(`  ${r}`);
       break;
     }
     writeFileSync(QUEUE, out.join('\n').replace(/\n+$/, '\n'));
     generateBoard(loadAll());
-    console.log(`queue reconcile: rebuilt on ${base} — ${lost} line(s) the merge had lost are back, `
-      + `${restored.length} of this branch's own put back in place`);
+    console.log(`queue reconcile: ${lost} line(s) of ${base} the merge had lost are back; `
+      + "this branch's own lines and its headers are untouched");
     for (const r of restored) console.log(`  ${r}`);
     break;
   }

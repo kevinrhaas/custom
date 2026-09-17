@@ -1,7 +1,7 @@
 ---
 id: T-1165
 title: The 1835 arrival and origin model: when the town's people came, from where, and why — arrival-year cohorts, origin communities and reasons, from the attested biographies, the letter lists, the land sales and the season's press
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1293
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T20:06:19.984Z
 claimed_run: null
 ---
 

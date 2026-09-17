@@ -1,7 +1,7 @@
 ---
 id: T-1163
 title: The 1835 household and family model: household types, sizes, and the rules that give a head a wife, children, servants, boarders or a partner — from the 1840 composition, the attested 1835 families, the baptism register and the boarding-house evidence
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1293
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T20:06:18.430Z
 claimed_run: null
 ---
 

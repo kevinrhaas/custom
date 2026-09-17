@@ -1,7 +1,7 @@
 ---
 id: T-1161
 title: The 1835 population model: how many people Chicago held on 1 July 1835, by sex, age band and division, derived from the November 1835 town census, the 1830 and 1840 schedules, the 1834 return and the growth curve — every figure sourced or labelled reconstructed
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1293
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T20:06:16.925Z
 claimed_run: null
 ---
 

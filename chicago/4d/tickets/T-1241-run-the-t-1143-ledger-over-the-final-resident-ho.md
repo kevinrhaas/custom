@@ -1,7 +1,7 @@
 ---
 id: T-1241
 title: Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1147
 opened: 2026-09-17
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into the surviving ticket
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T20:05:42.889Z
 claimed_run: null
 ---
 
