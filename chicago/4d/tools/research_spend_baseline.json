@@ -6,7 +6,7 @@
   "civic": 17,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 508,
+  "church": 506,
   "books": 223,
   "directories": 7315,
   "newberry_index": 4914,
@@ -28,7 +28,7 @@
   },
   "church": {
    "read": 1747,
-   "spent": 1239
+   "spent": 1241
   },
   "books": {
    "read": 303,
@@ -606,9 +606,9 @@
    "domain": "church",
    "hop": "read",
    "from": 505,
-   "to": 508,
+   "to": 506,
    "date": "2026-09-17",
-   "why": "T-1129 withdrew six false Chicago residents minted off the three Bear Creek, Sangamon County marriages of May 1834, which the register's own rows mark at_chicago: false. Three of those readings now match no person in the town at all, so they fall back to unmatched: the gap widened because a false spend was withdrawn, not because the domain read further."
+   "why": "T-1121 WITHDREW A RULING THAT ONLY EVER EXISTED BECAUSE A CARD WAS MISFILED. The minted person hugunin_leonard_c carried the display name 'Leonard, C. Hugunin', a printing's second comma left standing after the words had been reordered, so every reader of that card took Leonard for the family name. One of those readers was spend_second_presbyterian_roll: it proposed the man against the Leonards on the 1892 roll and wrote a surname-only refusal, and that refusal counted as this domain having ruled on the roll line. The card now reads 'Leonard C. Hugunin', the proposal is never made, and the refusal is gone with it — so one church reading that was only ever spent against a mistake is unspent again, and the ceiling moves 505 to 506 to say so. Nothing was read and nothing was left unruled by a run; the meter moved because a wrong ruling was taken back."
   }
  ],
  "lowered": [

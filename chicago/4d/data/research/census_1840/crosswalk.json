@@ -749,18 +749,8 @@
     },
     {
       "a": "John Leonard",
-      "b": "Leonard, C. Hugunin",
-      "rule": "'John Leonard' at printed page 231 line 26 (33S7-9YYJ-38) is NOT 'Leonard, C. Hugunin': The surname 'leonard' is carried by 3 person(s) of 1835 (Leonard, C. Hugunin, Anson Leonard, N Leonard) and none of their given names is 'john'.",
-      "evidence": [
-        "33S7-9YYJ-38",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "John Leonard",
       "b": "Anson Leonard",
-      "rule": "'John Leonard' at printed page 231 line 26 (33S7-9YYJ-38) is NOT 'Anson Leonard': The surname 'leonard' is carried by 3 person(s) of 1835 (Leonard, C. Hugunin, Anson Leonard, N Leonard) and none of their given names is 'john'.",
+      "rule": "'John Leonard' at printed page 231 line 26 (33S7-9YYJ-38) is NOT 'Anson Leonard': The surname 'leonard' is carried by 2 person(s) of 1835 (Anson Leonard, N Leonard) and none of their given names is 'john'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",
@@ -770,7 +760,7 @@
     {
       "a": "John Leonard",
       "b": "N Leonard",
-      "rule": "'John Leonard' at printed page 231 line 26 (33S7-9YYJ-38) is NOT 'N Leonard': The surname 'leonard' is carried by 3 person(s) of 1835 (Leonard, C. Hugunin, Anson Leonard, N Leonard) and none of their given names is 'john'.",
+      "rule": "'John Leonard' at printed page 231 line 26 (33S7-9YYJ-38) is NOT 'N Leonard': The surname 'leonard' is carried by 2 person(s) of 1835 (Anson Leonard, N Leonard) and none of their given names is 'john'.",
       "evidence": [
         "33S7-9YYJ-38",
         "T-0505",

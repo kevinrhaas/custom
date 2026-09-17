@@ -157,6 +157,7 @@ THE REFUSALS, in the order they fire, each one printed by `--report`:
 from __future__ import annotations
 
 import argparse
+import calendar
 import functools
 import json
 import pathlib
@@ -372,6 +373,18 @@ MONTHS = ("January", "February", "March", "April", "May", "June",
 
 YEAR = re.compile(r"(1[6-9]\d\d)")
 ISO = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
+YEAR_MONTH = re.compile(r"^(\d{4})-(\d{2})$")
+# The two orders the sources print a day in. `April 8, 1835` and `Dec. 1, 1848` are what
+# the old settlers' notices give; `d. 14 Mar. 1861` is the other order the same book
+# uses. The day is optional in both, because `July 1835` and `Sept., 1835` are printed
+# too and a month with no day is still narrower than a year.
+PRINTED_DATE = re.compile(r"([A-Za-z]{3,9})\.?\s*,?\s*(?:(\d{1,2})\s*,?\s*)?(1[6-9]\d\d)")
+DAY_FIRST_DATE = re.compile(r"(\d{1,2})\s+([A-Za-z]{3,9})\.?\s*,?\s*(1[6-9]\d\d)")
+MONTH_NUMBER = {}
+for _i, _m in enumerate(MONTHS, start=1):
+    MONTH_NUMBER[_m.lower()] = _i
+    MONTH_NUMBER[_m[:3].lower()] = _i
+MONTH_NUMBER["sept"] = 9
 
 
 # ---------------------------------------------------------------------------
@@ -383,19 +396,81 @@ def year_of(value) -> int | None:
     return int(m.group(1)) if m else None
 
 
-def bound_of(value) -> str | None:
-    """The latest day a `describes_date` permits, as an ISO date, or None.
+def _day_range(year: int, month: int | None, day: int | None) -> tuple[str, str] | None:
+    """The first and last day a (year, month?, day?) reading permits."""
+    if not 1 <= year <= 9999:
+        return None
+    if month is None:
+        return (f"{year:04d}-01-01", f"{year:04d}-12-31")
+    if not 1 <= month <= 12:
+        return None
+    last = calendar.monthrange(year, month)[1]
+    if day is None:
+        return (f"{year:04d}-{month:02d}-01", f"{year:04d}-{month:02d}-{last:02d}")
+    if not 1 <= day <= last:
+        # a day the month cannot hold is a misreading of the day, not of the month
+        return (f"{year:04d}-{month:02d}-01", f"{year:04d}-{month:02d}-{last:02d}")
+    return (f"{year:04d}-{month:02d}-{day:02d}",) * 2
 
-    A full date is its own bound. A bare year is bounded at the year's end and NOT at
-    its start: the list says the man was there that year, not that he was there in
-    January. Everything else the sources print — a death notice's `d. 14 Mar. 1861` —
-    is read for its year and bounded the same way.
+
+def date_range(value) -> tuple[str, str] | None:
+    """The EARLIEST and the LATEST day a `describes_date` permits, or None.
+
+    A `describes_date` is a range and not a point, because the sources write dates as
+    loosely as they please. A full ISO date is a single day. A bare year runs from 1
+    January to 31 December — the list says the man was there THAT YEAR, not that he was
+    there in January and not that he was there on New Year's Eve. `1834-06` is the month.
+    And a printed day — the old settlers' `April 8, 1835`, `Dec. 1, 1848`, the other
+    order's `d. 14 Mar. 1861` — is read for its MONTH AND DAY where the page gives them
+    (T-1136) and not merely for its year: the page prints the day, and throwing it away
+    was what let a death three months before the scene date be read as 31 December.
+
+    Which END of the range a caller wants is the caller's question and never this
+    function's — see `bracket_legs`, where the two legs want opposite ends.
     """
     s = str(value or "").strip()
+    if not s:
+        return None
     if ISO.match(s):
-        return s
+        return (s, s)
+    if m := YEAR_MONTH.match(s):
+        if rng := _day_range(int(m.group(1)), int(m.group(2)), None):
+            return rng
+    for pattern, day_first in ((DAY_FIRST_DATE, True), (PRINTED_DATE, False)):
+        if not (m := pattern.search(s)):
+            continue
+        name, day = (m.group(2), m.group(1)) if day_first else (m.group(1), m.group(2))
+        month = MONTH_NUMBER.get(name.lower().rstrip("."))
+        if month is None:
+            continue
+        if rng := _day_range(int(m.group(3)), month, int(day) if day else None):
+            return rng
     y = year_of(s)
-    return f"{y}-12-31" if y else None
+    return _day_range(y, None, None) if y else None
+
+
+def bound_of(value) -> str | None:
+    """The LATEST day a `describes_date` permits, as an ISO date, or None.
+
+    This is the end an arrival bound wants — `not_later_than` is the whole of what an
+    arrival claims — and the end the AT-OR-BEFORE leg of the presence bracket wants,
+    because that leg holds only if EVERY day the record permits falls at or before the
+    scene date. For the opposite end, and the leg that wants it, see `floor_of`.
+    """
+    rng = date_range(value)
+    return rng[1] if rng else None
+
+
+def floor_of(value) -> str | None:
+    """The EARLIEST day a `describes_date` permits, as an ISO date, or None.
+
+    The end the AT-OR-AFTER leg of the presence bracket wants (T-1136). That leg holds
+    only if every day the record permits falls at or after the scene date, so a bare
+    `1835` — which may describe 2 January as easily as 31 December — closes no bracket
+    over 1 July, and a death notice of `April 8, 1835` closes none either.
+    """
+    rng = date_range(value)
+    return rng[0] if rng else None
 
 
 def in_window(app: dict) -> bool:
@@ -613,6 +688,17 @@ def bracket_legs(appearances: list) -> tuple[list, list, list]:
     denies, while the after leg is a claim about a later day the record does make. The
     refused at-or-before rows come back as the third list rather than being dropped,
     because what they say is a finding — see `presence_block`.
+
+    EACH LEG READS THE END OF THE DATE RANGE NEAREST THE SCENE DATE, AND THEY ARE
+    OPPOSITE ENDS (T-1136). A `describes_date` permits a RANGE of days — a bare `1835`
+    permits all 365 of them — and a leg holds only if EVERY day the record permits falls
+    on that leg's side of 1 July 1835. So the at-or-before leg tests the LATEST permitted
+    day and the at-or-after leg tests the EARLIEST. Reading one number for both is what
+    let a death notice of `April 8, 1835` — three months before the scene date — close a
+    bracket over it as 31 December, and it is what let every bare `1835` do the same.
+    A record that straddles the day is NEITHER leg: it is honestly silent about which
+    side of 1 July its day fell on, and silence is `uncertain` (see `presence_block`),
+    never a bracket.
     """
     refused_classes = not_in_1835_classes()
     before: list = []
@@ -622,12 +708,13 @@ def bracket_legs(appearances: list) -> tuple[list, list, list]:
         cls = app.get("evidence_class")
         if cls in NOT_A_PRESENCE_CLASS:
             continue
-        bound = bound_of(app.get("describes_date"))
-        if not bound:
+        span = date_range(app.get("describes_date"))
+        if not span:
             continue
-        if bound >= SCENE_DATE:
+        earliest, latest = span
+        if earliest >= SCENE_DATE:
             after.append(app)
-        if bound <= SCENE_DATE:
+        if latest <= SCENE_DATE:
             (refused_before if cls in refused_classes else before).append(app)
     return before, after, refused_before
 
@@ -1419,8 +1506,11 @@ def gate_problems(docs: dict, index: dict) -> list:
         # AND THE PLACE-IN-1835 REFUSAL ON THE SAME CARD (T-1131). Same question, second
         # class of answer: a source whose own domain declares `places_in_1835: false` may
         # not be the at-or-before leg either. It is asked of the tree and not only of the
-        # derivation for the same reason — and the after leg is deliberately NOT asked
-        # about, because a death notice may perfectly well close the bracket from above.
+        # derivation for the same reason — and this refusal is deliberately NOT applied
+        # to the after leg, because a death notice may perfectly well close the bracket
+        # from above. THE AFTER LEG ITSELF IS ASKED ABOUT SINCE T-1136, below: a
+        # different question, about the DATE a record permits rather than the class it
+        # belongs to.
         if (doc.get("present_on_scene_date") or {}).get("value") == "present":
             refused_classes = NOT_A_PRESENCE_CLASS | set(not_in_1835_classes())
             evidence = [e for p in people for k in BLOCK_KEYS for e in p.get(k) or []]
@@ -1438,6 +1528,26 @@ def gate_problems(docs: dict, index: dict) -> list:
                                 f"declares `places_in_1835: false` for its whole class "
                                 f"(T-1131). Neither can carry a claim about where a man "
                                 f"stood on 1 July 1835")
+            # AND THE FAR LEG, ON THE SAME CARD (T-1136). A bracket has two legs and
+            # only one of them was ever asked of the tree. The at-or-after leg holds
+            # only if EVERY day the record permits falls at or after the scene date, so
+            # a bare `1835` — which may describe 2 January as easily as 31 December —
+            # closes nothing over 1 July, and neither does a death notice printed
+            # `April 8, 1835`. A death notice is NOT refused here, unlike above: a man
+            # who died at Chicago in 1885 was at Chicago in 1885, and that is a real far
+            # leg. Only the property roll is refused on this side as on the other.
+            far = [e for e in evidence if e.get("list") not in NOT_A_PRESENCE_CLASS
+                   and (f := floor_of(e.get("describes_date"))) and f >= SCENE_DATE]
+            if not far:
+                straddling = sorted({e.get("list") for e in evidence
+                                     if e.get("list") not in NOT_A_PRESENCE_CLASS
+                                     and (b := bound_of(e.get("describes_date")))
+                                     and b >= SCENE_DATE})
+                problems.append(f"{where}: reads `present` with no at-or-after leg but "
+                                f"{', '.join(straddling) or 'nothing'}. A record whose "
+                                f"date range STRADDLES 1 July 1835 is silent about which "
+                                f"side of the day it fell on, and a silence closes no "
+                                f"bracket (T-1136)")
         # THE NOT-CHICAGO REFUSAL, PROVED ON THE CARD (T-1129). The refusal above lives
         # in `decide()`, and a refusal that lives only in the code that writes the file
         # can be undone — by a hand edit, by another pass, by a carry-over — without
@@ -1704,10 +1814,13 @@ def self_test() -> int:
         failed += 1
         print("   FAIL the withdrawn bracket does not name the declaration that withdrew it")
     if dead["arrival"]["precision"] != "not_later_than" \
-            or dead["arrival"]["value"] != "1830-12-31":
+            or dead["arrival"]["value"] != "1830-10-25":
         failed += 1
         print("   FAIL the place-in-1835 refusal moved the ARRIVAL bound; it is a rule "
-              "about the presence bracket and a man who died at Chicago was at Chicago")
+              "about the presence bracket and a man who died at Chicago was at Chicago. "
+              "The bound is the notice's printed DAY, `Oct. 25, 1830`, and not the end of "
+              "its year (T-1136): the page gives the day and the bound may not throw it "
+              "away and call the loss precision")
     # the after leg is NOT swallowed: a real leg below, a death notice above
     survives = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
                                     record_id="poll_1834_999", locator="poll_1834"),
@@ -1740,6 +1853,75 @@ def self_test() -> int:
                              "present_on_scene_date": "present"}]})):
         failed += 1
         print("   FAIL the gate accepts `present` carried by a death notice alone")
+
+    # T-1136: THE TWO LEGS READ OPPOSITE ENDS OF THE DATE RANGE.
+    for label, value, want in (
+            ("a full date is a single day", "1835-05-20", ("1835-05-20", "1835-05-20")),
+            ("a bare year runs the whole year", "1835", ("1835-01-01", "1835-12-31")),
+            ("a year-month is the month", "1834-06", ("1834-06-01", "1834-06-30")),
+            ("a printed day is read for its day", "April 8, 1835",
+             ("1835-04-08", "1835-04-08")),
+            ("an abbreviated month is read too", "Dec. 1, 1848",
+             ("1848-12-01", "1848-12-01")),
+            ("the other printed order is read too", "d. 14 Mar. 1861",
+             ("1861-03-14", "1861-03-14")),
+            ("a month with no day is still narrower than a year", "July 1835",
+             ("1835-07-01", "1835-07-31")),
+            ("a day the month cannot hold withdraws to the month", "Feb. 30, 1835",
+             ("1835-02-01", "1835-02-28")),
+            ("no date is no range", "", None),
+    ):
+        if date_range(value) != want:
+            failed += 1
+            print(f"   FAIL {label}: date_range({value!r}) is {date_range(value)!r}, "
+                  f"wanted {want!r}")
+    # the bare year that straddles the day closes no bracket over it, on either leg
+    straddle = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
+                                    record_id="poll_1834_999", locator="poll_1834"),
+                               _app(describes_date="1835", evidence_class="poll_1835",
+                                    record_id="poll_1835_999", locator="poll_1835")],
+                      {}, set())
+    if straddle["present_on_scene_date"]["value"] != "uncertain":
+        failed += 1
+        print("   FAIL a bare `1835` closes the bracket over 1 July again; it may "
+              "describe 2 January as easily as 31 December and says nothing about which "
+              "side of the day the man was on (T-1136)")
+    # AND A DEATH BEFORE THE DAY CANNOT CLOSE IT FROM ABOVE, HOWEVER THE PAGE PRINTS IT.
+    # `hh_vanderbogart_henry`'s shape, which is what found this: two at-or-before legs
+    # that are real, a death notice printed `April 8, 1835` for its only far leg, and one
+    # of those legs dated AFTER the death. The death is no far leg — 8 April is three
+    # months before the day — and it is no `absent` either, because a record names the
+    # man at Chicago after it and this pass does not settle that contradiction (T-1131).
+    # What is left is a card with no far leg at all, and that is `uncertain`.
+    _press = dict(evidence_class="press_1833_1835", locator="press",
+                  source_id="chicago_newspapers_1833_1835", domain="newspapers")
+    vanderbogart = record(_row(), [_app(describes_date="1834-02-04",
+                                        record_id="press_999", **_press),
+                                   _app(describes_date="1835-05-20",
+                                        record_id="press_998", **_press),
+                                   _death(describes_date="April 8, 1835")], {}, set())
+    if vanderbogart["present_on_scene_date"]["value"] != "uncertain":
+        failed += 1
+        print("   FAIL a death notice printed `April 8, 1835` — three months BEFORE the "
+              "scene date — still closes the bracket over 1 July; its year was read and "
+              "its day was thrown away (T-1136)")
+    # and read alone, that same notice is a death and not a silence
+    early_death = record(_row(), [_app(describes_date="1834-02-04",
+                                       record_id="press_999", **_press),
+                                  _death(describes_date="April 8, 1835")], {}, set())
+    if early_death["present_on_scene_date"]["value"] != "absent":
+        failed += 1
+        print("   FAIL reading the notice's printed DAY lost the `absent` it earns: with "
+              "no record naming the man after 8 April 1835 he was dead before the day")
+    # a real far leg still closes: a bare 1843 is wholly after the day
+    forced_far = json.loads(json.dumps(straddle))
+    forced_far["present_on_scene_date"]["value"] = "present"
+    if not any("T-1136" in p for p in gate_problems(
+            {pathlib.Path("hh_fixture.json"): forced_far},
+            {"households": [{"id": forced_far["id"], "civic_mint": True,
+                             "present_on_scene_date": "present"}]})):
+        failed += 1
+        print("   FAIL the gate accepts `present` whose far leg straddles the scene date")
 
     polled = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
                                   record_id="poll_1834_999", locator="poll_1834"),

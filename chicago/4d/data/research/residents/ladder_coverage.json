@@ -31,9 +31,9 @@
   "proposed_not_written_by_rule": {},
   "ruled_but_disputed_by_rule": {
    "G2b": 7,
-   "G2e": 7,
+   "G2e": 8,
    "G3": 21,
-   "G5": 44
+   "G5": 43
   },
   "refused_by_rule": {
    "R1": 2,
@@ -86,7 +86,7 @@
   {"person_id":"hathaway_joshua","household_id":"hh_hathaway_joshua","name":"Joshua Hathaway jr.","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","hathaway_1834"],"identity":"id_hathaway_joshua","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"heacock_household_unnamed","household_id":"hh_heacock_russel_e","name":"Heacock's wife and children, unnamed","grade_on_the_card":"inferred","resident_subtype":null,"sources":["andreas_1884_v1"],"identity":null,"state":"refused_no_identity","refusal_rule":"R5","why":"the name joins two parties with 'and' — a firm style or a description of a household, not one person"},
   {"person_id":"hobson_jesse","household_id":"hh_hobson_jesse","name":"Jesse Hobson","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","resident_research_hobson_pioneer","resident_research_hobson_woodruff"],"identity":"id_hobson_jesse","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
-  {"person_id":"hugunin_leonard_c","household_id":"hh_hugunin_leonard_c","name":"Leonard, C. Hugunin","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","chicago_old_settlers_hugunin_1883","fergus_chicago_directory_1839"],"identity":"id_leonard_c_hugunin","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
+  {"person_id":"hugunin_leonard_c","household_id":"hh_hugunin_leonard_c","name":"Leonard C. Hugunin","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","chicago_old_settlers_hugunin_1883","fergus_chicago_directory_1839"],"identity":"id_hugunin_leonard_c","proposed_rule":"G2e","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G2e disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"jones_es_high","household_id":"hh_jones_es_high","name":"Jones, High Es","grade_on_the_card":"inferred","resident_subtype":"projected_resident","sources":["chicago_democrat_1833_1835"],"identity":"id_jones_high_es","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"kingston_paul","household_id":"hh_kingston_paul","name":"Paul Kingston","grade_on_the_card":"attested","resident_subtype":null,"sources":["chicago_democrat_1833_1835","isa_public_domain_land_tract_sales","rr_andreas_chicago_1884_pass11","rr_racine_old_settlers_1871"],"identity":"id_kingston_paul","proposed_rule":"G3","proposed_grade":"inferred","state":"ruled_but_disputed","why":"the ladder's G3 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},
   {"person_id":"kinzie_juliette","household_id":"hh_kinzie_john_h","name":"Juliette Augusta Magill Kinzie","grade_on_the_card":"attested","resident_subtype":null,"sources":["andreas_1884_v1","kinzie_waubun_1856"],"identity":"id_kinzie_juliette_augusta_magill","proposed_rule":"G5","proposed_grade":null,"state":"ruled_but_disputed","why":"the ladder's G5 disagrees with the grade this card carries; the row is on the owner's conflict list in ladder_spend.json and the card is left alone"},

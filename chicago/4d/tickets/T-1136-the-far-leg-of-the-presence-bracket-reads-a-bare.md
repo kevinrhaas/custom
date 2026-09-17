@@ -1,7 +1,7 @@
 ---
 id: T-1136
 title: The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-14
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-17
+pr: 1376
+claimed_by: run 9/16/2026, 11:27:33 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-17T05:00:03.458Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35181837149
 ---
 
 The far leg of the presence bracket reads a bare year at the year's END, so a death on 8 April 1835 closes the bracket over 1 July.
