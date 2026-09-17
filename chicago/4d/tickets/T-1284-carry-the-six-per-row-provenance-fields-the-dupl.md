@@ -1,7 +1,7 @@
 ---
 id: T-1284
 title: Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1419
 claimed_by: run 9/17/2026, 4:47:22 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T22:23:56.109Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35278245295
 ---
 
