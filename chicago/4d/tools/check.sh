@@ -3681,6 +3681,37 @@ step "the location reconciliation rows re-derive, and no row resolves past its e
 selftest "…and its own assertions still fire when broken" \
   python3 tools/location_reconciliation.py --self-test
 
+# T-1239, the third piece of T-1147, and the ADJUDICATION of the rows above rather than a
+# second reading of the evidence. It owns two of the parent's clauses.
+#
+# CLAUSE 3 — placement proportional to evidence — had two facts wearing one field. Forty of
+# the 61 street-only businesses stand under a roof, because the owner's street-face adoption
+# ruling of 2026-08-29 seats them there; clause 3 says a street-only business claims no roof.
+# Both are true, of different things: the PAPER reached the street, the TOWN chose the roof.
+# This step holds them apart — `evidence_reach` never climbs to the seat, every adopted seat
+# is `seat_is_substitutable`, and an adopted roof that hardens into a claim fails here.
+#
+# AND IT SPLITS A NUMBER THAT WAS OVERSTATING ITSELF. The published axis says 56 businesses
+# reach a structure; 11 of those reach a structure the town has not built (the register's
+# `new_building` action, whose `action_target` is another business or a corner and not a
+# structure id). 56 is right as an evidence metric and wrong as a completion metric, so both
+# are published — 45 committed, 11 pending — and the gate refuses a pending roof that
+# acquires a seat. NOTHING moves between the three published limits: clause 4 says they fall
+# only on a new source, and this pass reads none. That is asserted, not merely reported.
+#
+# CLAUSE 4 — the four standing questions T-0251, T-0305, T-0386 and T-1087 — is why this is
+# a gate at all. All four are RETAINED, none is the loop's to resolve, and a retention
+# written as prose goes quietly out of date the day its subject changes. So each carries a
+# guard measured from the committed data: the church's refusal note, the saddlery's watch
+# entry, the Montgomery entries and the absence of a Carver building, the two undecided B4
+# places and their person buckets. The day the owner rules, the guard stops holding and this
+# step SAYS SO instead of the file lying. That is T-0305's own clause 5, applied to all four.
+step "the location spend re-derives: no placement past its evidence, four retentions still true" \
+  python3 tools/location_spend.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/location_spend.py --self-test
+
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names
 # a position and no lot": a count of doors off a named corner — "on South-Water st. one
