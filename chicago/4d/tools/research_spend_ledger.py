@@ -19,7 +19,18 @@ AS_OF = "2026-09-15"
 DISPOSITIONS = (
     "asserted", "later_only", "outside_chicago", "aggregate_only", "refused", "unresolved",
 )
-OPEN_TICKET_STATES = {"open", "claimed", "review", "in-progress"}
+OPEN_TICKET_STATES = {"open", "claimed", "review", "in-progress", "split-with-open-children"}
+
+#: A ticket that was SPLIT still owns its ask — `ticket.mjs split` leaves the parent as
+#: the grouping record and gives the work to children that take its place in the queue.
+#: So a research unit whose `ticket` is a split parent is not orphaned, and reading its
+#: state literally says it is: T-1147 was split into three on 2026-09-17 and 223 book
+#: claims that name it went red in the same commit, for work that had just been made
+#: MORE legible rather than abandoned. `ticket_states` reports a split parent with at
+#: least one live child under the synthetic state below. A split parent whose children
+#: have all closed is NOT live and still fails here, which is the property that matters:
+#: the question this gate asks is whether live work still owns the unit.
+SPLIT_WITH_OPEN_CHILDREN = "split-with-open-children"
 STRUCTURED_CONFIDENCE = {"attested", "inferred", "documented"}
 NAME_FIELDS = ("normalized", "as_read", "quote")
 
@@ -72,14 +83,28 @@ def resolve_pointer(doc, pointer: str):
 
 
 def ticket_states(root: Path = ROOT) -> dict[str, str]:
-    states = {}
+    states: dict[str, str] = {}
+    parents: dict[str, str] = {}
     for path in sorted((root / "tickets").glob("T-*.md")):
         text = path.read_text(encoding="utf-8", errors="replace")
         tid = re.search(r"(?m)^id:\s*(T-\d+)\s*$", text)
         state = re.search(r"(?m)^state:\s*([^\s#]+)", text)
+        parent = re.search(r"(?m)^parent:\s*(T-\d+)\s*$", text)
         if tid and state:
             states[tid.group(1)] = state.group(1)
-    return states
+            if parent:
+                parents[tid.group(1)] = parent.group(1)
+    return promote_live_split_parents(states, parents)
+
+
+def promote_live_split_parents(states: dict[str, str],
+                               parents: dict[str, str]) -> dict[str, str]:
+    """A split parent with a live child is live. See SPLIT_WITH_OPEN_CHILDREN."""
+    live_parents = {parents[child] for child, state in states.items()
+                    if state in OPEN_TICKET_STATES and child in parents}
+    return {tid: (SPLIT_WITH_OPEN_CHILDREN
+                  if state == "split" and tid in live_parents else state)
+            for tid, state in states.items()}
 
 
 def declared_containers(doc: dict) -> list[str]:
@@ -570,6 +595,22 @@ def self_test() -> int:
         run("an unresolved unit owned by a closed ticket",
             lambda r: (r.update(disposition="unresolved", ticket="T-1", reason="fixture"),
                        r.pop("target")), "missing or not open", {"T-1": "closed"})
+        run("an unresolved unit owned by a split parent whose children have all closed",
+            lambda r: (r.update(disposition="unresolved", ticket="T-1", reason="fixture"),
+                       r.pop("target")), "missing or not open",
+            promote_live_split_parents({"T-1": "split", "T-2": "done"}, {"T-2": "T-1"}))
+        parent_live = copy.deepcopy(base)
+        parent_live.update(disposition="unresolved", ticket="T-1", reason="fixture")
+        parent_live.pop("target")
+        got = validate_document(
+            {"units": [parent_live], "unit_count": 1,
+             "totals": {name: int(name == "unresolved") for name in DISPOSITIONS}},
+            root, promote_live_split_parents({"T-1": "split", "T-2": "open"},
+                                             {"T-2": "T-1"}))
+        if any("missing or not open" in fault for fault in got):
+            failures.append("a split parent with a live child was read as orphaned")
+        else:
+            print("  holds: a split parent whose child is still open owns its unit")
         duplicate = {"units": [base, copy.deepcopy(base)], "unit_count": 2,
                      "totals": {name: (2 if name == "asserted" else 0) for name in DISPOSITIONS}}
         got = validate_document(duplicate, root, {})
@@ -579,5 +620,5 @@ def self_test() -> int:
             print("  fires: a duplicate stable unit id")
     for failure in failures:
         print("   SILENT: " + failure)
-    print("LEDGER SELF-TEST %s — 5 case(s)" % ("FAIL" if failures else "PASS"))
+    print("LEDGER SELF-TEST %s — 7 case(s)" % ("FAIL" if failures else "PASS"))
     return 1 if failures else 0
