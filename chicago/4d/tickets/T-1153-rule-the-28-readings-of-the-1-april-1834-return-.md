@@ -1,7 +1,7 @@
 ---
 id: T-1153
 title: Rule the 28 readings of the 1 April 1834 return where the page and the extraction set a name differently, and lift the two lines no claim carries
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1291
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:18:46.160Z
 claimed_run: null
 ---
 

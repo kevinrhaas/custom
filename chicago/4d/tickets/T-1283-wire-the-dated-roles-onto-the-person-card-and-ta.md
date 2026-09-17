@@ -1,7 +1,7 @@
 ---
 id: T-1283
 title: Wire the dated roles onto the person card, and take the ready renderer from the duplicate branch rather than writing it twice
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1255
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:19:27.387Z
 claimed_run: null
 ---
 
