@@ -126,9 +126,51 @@
       "records": 1,
       "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
     },
+    "residents/household:persons[].occupation.derived_from": {
+      "records": 262
+    },
+    "residents/household:persons[].occupation.roles_at_scene_date": {
+      "records": 262
+    },
+    "residents/household:persons[].occupation.withdrawn_from_scene_date.ticket": {
+      "records": 6
+    },
+    "residents/household:persons[].occupation.withdrawn_from_scene_date.value": {
+      "records": 6
+    },
+    "residents/household:persons[].occupation.withdrawn_from_scene_date.verdict": {
+      "records": 6
+    },
+    "residents/household:persons[].roles[].as_printed": {
+      "records": 134
+    },
+    "residents/household:persons[].roles[].covers_scene_date": {
+      "records": 267
+    },
+    "residents/household:persons[].roles[].dated_by": {
+      "records": 267
+    },
+    "residents/household:persons[].roles[].from": {
+      "records": 267
+    },
+    "residents/household:persons[].roles[].kind": {
+      "records": 267
+    },
+    "residents/household:persons[].roles[].precision": {
+      "records": 267
+    },
+    "residents/household:persons[].roles[].role": {
+      "records": 133
+    },
+    "residents/household:persons[].roles[].to": {
+      "records": 267
+    },
     "residents/household:source_pass": {
       "records": 1178,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping \u2014 which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows \u2014 grade, letter_list_only, sources \u2014 is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
+    },
+    "residents/manifest:_roles_doc": {
+      "records": 1
     },
     "residents/manifest:counts.households": {
       "records": 1,
@@ -201,6 +243,15 @@
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1,
       "refused_because": "A closed vocabulary tools/validate.py holds the records against \u2014 its one term, `projected_resident`, reaches the visitor as the People directory's filter and row mark. A card that printed the LIST would be printing the schema rather than anything about the town."
+    },
+    "residents/manifest:vocabulary.role_date_precision": {
+      "records": 1
+    },
+    "residents/manifest:vocabulary.role_dated_by": {
+      "records": 1
+    },
+    "residents/manifest:vocabulary.role_kinds": {
+      "records": 1
     }
   }
 }

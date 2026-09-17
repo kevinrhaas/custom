@@ -62,7 +62,11 @@
     "sources": [
      "rr_dupage_andrus_1882"
     ],
-    "note": "T-0485: independently corroborated resident research. DuPage history gives a detailed chronology for Thomas Andrus: arrival in Chicago Dec. 1, 1833, carpenter/pile-driving work in 1834, return east in autumn 1834, and arrival back at Chicago in June 1835 before settling in DuPage in July. This independently identifies the exact person behind the regional postal seed."
+    "note": "T-0485: independently corroborated resident research. DuPage history gives a detailed chronology for Thomas Andrus: arrival in Chicago Dec. 1, 1833, carpenter/pile-driving work in 1834, return east in autumn 1834, and arrival back at Chicago in June 1835 before settling in DuPage in July. This independently identifies the exact person behind the regional postal seed.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "carpenter"
+    ]
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -141,6 +145,24 @@
      "record_id": "resident_research:T-0485#04",
      "as_read": "before settling in DuPage in July",
      "note": "The same month as the scene. It is why the record's presence is 'uncertain' rather than 'present', and writing it down is what makes that grade legible instead of unexplained."
+    }
+   ],
+   "roles": [
+    {
+     "role": "carpenter",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1833",
+     "to": "1835",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "rr_dupage_andrus_1882"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }

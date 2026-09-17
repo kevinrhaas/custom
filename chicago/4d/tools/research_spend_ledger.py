@@ -317,7 +317,14 @@ def natural_disposition(root: Path, unit: dict, targets: dict[str, list[dict]]) 
     if domain == "residents":
         name = Path(unit["source_file"]).name
         if name == "scene_window_trade_audit.json":
-            return {"disposition": "unresolved", "ticket": "T-1145",
+            # T-1229 emptied this file: the six standing rows became dated pre-scene
+            # roles and the audit's population is zero, so nothing classifies here today.
+            # The pointer moves off T-1145 because that ticket was SPLIT and a split
+            # parent is not an open state — a row arriving tomorrow would have cited a
+            # ticket this gate cannot resolve, and said so in a message about a dead
+            # pointer rather than about the trade. T-1254 is the open successor that
+            # owns what is left of the role migration.
+            return {"disposition": "unresolved", "ticket": "T-1254",
                     "reason": "The dated plural-role migration owns this temporal role ruling."}
         if name == "letter_list_reading_suspicions.json":
             return {"disposition": "unresolved", "ticket": "T-1236",

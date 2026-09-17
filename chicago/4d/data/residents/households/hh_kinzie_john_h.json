@@ -85,7 +85,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "His own 1834 advertisement is for J. H. Kinzie, forwarding and commission merchant. He had been the Indian sub-agent at Fort Winnebago before returning to Chicago, and in 1835 became a member of the hardware firm of Kinzie, Davis & Hyde."
+    "note": "His own 1834 advertisement is for J. H. Kinzie, forwarding and commission merchant. He had been the Indian sub-agent at Fort Winnebago before returning to Chicago, and in 1835 became a member of the hardware firm of Kinzie, Davis & Hyde.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "forwarding_and_commission"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -178,6 +182,24 @@
      "referred_to": "owner",
      "for_merge": "'John S. Kinzie', printed once by the Democrat on 10 December 1833, is the forename of the documented John Harris Kinzie and the town holds no other John Kinzie in 1835.",
      "against_merge": "The middle initial S contradicts H, and the Kinzie surname is precisely the one T-0839 warns about: four Kinzie men stand on the town's cards and this project has already mis-folded a Kinzie once (T-0732). C4 would fire here on a surname with one documented bearer of the forename; it is withheld because the owner named this family as the trap. His call."
+    }
+   ],
+   "roles": [
+    {
+     "role": "forwarding_and_commission",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   },

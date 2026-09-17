@@ -86,7 +86,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Assistant surgeon, United States Army, on duty at Fort Dearborn. Andreas: 'On February 3, 1833, Assistant Surgeon Philip Maxwell is reported as having assumed his official duties at the fort ... he remained in that military position until the abandonment of the fort on December 29, 1836.'"
+    "note": "Assistant surgeon, United States Army, on duty at Fort Dearborn. Andreas: 'On February 3, 1833, Assistant Surgeon Philip Maxwell is reported as having assumed his official duties at the fort ... he remained in that military position until the abandonment of the fort on December 29, 1836.'",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "army_surgeon"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -103,7 +107,25 @@
     "source_ids": [
      "history_medicine_chicago_kimberly_maxwell"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "army_surgeon",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

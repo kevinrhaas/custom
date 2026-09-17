@@ -1,5 +1,24 @@
 # STATUS
 
+## T-1156 — nightly boot-budget enforcement, 2026-09-17
+
+Owner-requested workflow change: the desktop `1-2` smoke leg runs
+`measure_boot_payload.mjs --check` once, after downloading the bake's published
+mirror. Its nonzero exit fails `needs: smoke` and withholds the bake PR. The
+12 MB ceiling, eight smoke legs and existing job ceilings are unchanged; the
+new measurement step has a three-minute timeout.
+
+Measured from a clean export of `01ce6b7731d7b9db08a1369f5f9695807b053793`:
+**7.270 MB**, no failed requests, **25.747 s** on this host. A separate 13 MiB
+incompressible fixture measured **13.004 MB** and the unchanged tool refused
+with exit **1** against the real 12 MB definition. YAML validation confirms
+artifact-before-check order, exactly one selected leg, and the blocking PR
+dependency. These are local measurements, not a completed nightly CI run.
+The scheduled nightly adopts this workflow definition on the normal owner-controlled
+promotion to `main`; this PR targets `dev` and does not promote production.
+Nothing in the scene changes; no release-note entry is needed for this CI wiring.
+
+
 ## Shipped 2026-09-16 — T-0537, T-0968, T-0232, T-0234, T-0727: the loop's gates, worked as one
 
 Owner-directed batch of the five band-7 gate tickets; nothing in the scene changes. The

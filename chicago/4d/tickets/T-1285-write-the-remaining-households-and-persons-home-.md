@@ -1,5 +1,5 @@
 ---
-id: T-1253
+id: T-1285
 title: Write the remaining households' and persons' home and workplace claims as associated_with rows, and move every reader off the singular lives_at/works_at
 state: split
 epic: META

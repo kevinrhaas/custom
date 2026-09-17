@@ -63,17 +63,16 @@ const ONLY = argAt('--only') || 'desktop';
  *  the default is the one the budget binds at; `--tiers light,balanced,full` reads all. */
 const TIERS = (argAt('--tiers') || 'full').split(',').map((s) => s.trim()).filter(Boolean);
 const YEAR = process.env.TILING_YEAR || '1835';
-const READING = path.join(ROOT4D, 'data/render/ground_tiling_budget.json');
+const READING = path.join(ROOT4D, 'data/render/ground_detail_lod.json');
 
 /** The committed rule, re-implemented here so `--self-test` can hold the source
  *  file to it without a bundler. Kept identical to terrain.js groundTileGrid(). */
-function grid(spanX, spanZ, budget = 36, exp = 1.5) {
+function grid(spanX, spanZ, targetM = 240) {
   if (!(spanX > 0) || !(spanZ > 0)) return { cols: 1, rows: 1 };
-  const long = Math.max(spanX, spanZ);
-  const short = Math.min(spanX, spanZ);
-  const nLong = Math.max(1, Math.round(Math.sqrt(budget * (long / short) ** exp)));
-  const nShort = Math.max(1, Math.round(budget / nLong));
-  return spanX >= spanZ ? { cols: nLong, rows: nShort } : { cols: nShort, rows: nLong };
+  return {
+    cols: Math.max(1, Math.ceil(spanX / targetM)),
+    rows: Math.max(1, Math.ceil(spanZ / targetM)),
+  };
 }
 
 /** The source file's own rule, read out of terrain.js, so the two cannot drift. */
@@ -91,26 +90,20 @@ function selfTest() {
       fails.push(`${what}: got ${JSON.stringify(got)}, want ${JSON.stringify(want)}`);
     }
   };
-  // 1. The rule REPRODUCES the reading it was derived from. 2,020 x 800 m, the box
-  //    12 x 3 was measured on, must come back 12 x 3 or this is a different rule.
-  eq('the box 12 x 3 was measured on', grid(2020, 800), { cols: 12, rows: 3 });
-  // 2. It TRANSPOSES with the box. The southern field is the same shape turned
-  //    through a right angle, so its grid is the same grid turned with it.
-  eq('the same box, turned', grid(800, 2020), { cols: 3, rows: 12 });
-  // 3. The field as it now stands cuts its long axis into more than three.
-  const now = grid(2020, 4920);
-  if (!(now.rows >= 8)) fails.push(`the 2,020 x 4,920 m field cuts N-S into ${now.rows}, which is not a cut`);
-  if (now.cols * now.rows > 60) fails.push(`the field spends ${now.cols * now.rows} tiles, well over the 36 budgeted`);
-  // 4. A square box is a square grid — no axis is privileged by accident.
-  const sq = grid(1000, 1000);
-  eq('a square box', sq, { cols: 6, rows: 6 });
+  // 1. No side is wider than the measured 240 m target.
+  eq('the former 2,020 x 800 m box', grid(2020, 800), { cols: 9, rows: 4 });
+  // 2. It TRANSPOSES with the box; neither compass axis is privileged.
+  eq('the same box, turned', grid(800, 2020), { cols: 4, rows: 9 });
+  // 3. The committed mesh is the 31 x 43 grid the closing reading names.
+  eq('the committed 7,340 x 10,240 m mesh', grid(7339.6875, 10239.6875),
+    { cols: 31, rows: 43 });
+  // 4. A square box is a square grid.
+  eq('a square box', grid(1000, 1000), { cols: 5, rows: 5 });
   // 5. Degenerate boxes do not divide by zero or return a zero grid.
   eq('a zero-width box', grid(0, 800), { cols: 1, rows: 1 });
   // 6. The source file still carries the rule this file re-implements.
   const src = committedRuleText();
-  for (const frag of ['Math.sqrt(budget * (long / short) ** exp)',
-                      'Math.round(budget / nLong)',
-                      'spanX >= spanZ ? { cols: nLong, rows: nShort }']) {
+  for (const frag of ['Math.ceil(spanX / targetM)', 'Math.ceil(spanZ / targetM)']) {
     if (!src.includes(frag)) fails.push(`terrain.js groundTileGrid() no longer carries \`${frag}\``);
   }
   // 7. tileGround() must ASK the rule rather than carry literals again.
@@ -120,6 +113,14 @@ function selfTest() {
   }
   if (/GROUND_TILE_COLS|GROUND_TILE_ROWS/.test(t)) {
     fails.push('terrain.js has fixed GROUND_TILE_COLS/ROWS literals again');
+  }
+  for (const frag of ['const GROUND_TILE_TARGET_M = 240;',
+                      'const GROUND_BASE_STEP = 6;',
+                      'const GROUND_DETAIL_REACH_M = 600;',
+                      'gridGeometry(heightfield, GROUND_BASE_STEP)',
+                      'heightfield.contains(e, n)',
+                      'dx * dx + dy * dy + dz * dz > reach * reach']) {
+    if (!t.includes(frag)) fails.push(`terrain.js no longer carries the T-1245 rule \`${frag}\``);
   }
   return fails;
 }
@@ -131,40 +132,42 @@ function check() {
     return fails;
   }
   const r = JSON.parse(fs.readFileSync(READING, 'utf8'));
-  // 1. The reading must be a reading of THIS rule on THE FIELD IT NAMES. A field that
-  //    moves without the reading being retaken is the whole defect this ticket found.
-  const want = grid(r.field.span_x_m, r.field.span_z_m);
-  if (r.chosen.cols !== want.cols || r.chosen.rows !== want.rows) {
-    fails.push(`the committed reading chose ${r.chosen.cols} x ${r.chosen.rows}, `
-      + `but the rule on the field it names gives ${want.cols} x ${want.rows}`);
+  // 1. The reading must be a reading of THIS rule on the committed mesh.
+  const meta = JSON.parse(fs.readFileSync(path.join(ROOT4D,
+    'data/terrain/epochs/e1834_harbor_cut/heightfield.json'), 'utf8'));
+  const want = grid(7339.6875, 10239.6875, r.chosen.tile_target_m);
+  if (r.chosen.grid_on_committed_mesh !== `${want.cols}x${want.rows}`) {
+    fails.push(`the closing reading names ${r.chosen.grid_on_committed_mesh}, `
+      + `but the rule gives ${want.cols}x${want.rows}`);
   }
-  // 2. …and the rule's own constants must still be the ones the reading states.
+  if (meta.cell_m !== r.chosen.navigation_cell_m) {
+    fails.push(`the closing reading says navigation remains at ${r.chosen.navigation_cell_m} m, `
+      + `but the heightfield is ${meta.cell_m} m`);
+  }
+  // 2. The rule's constants must still be the ones the reading states.
   const src = fs.readFileSync(path.join(ROOT4D, 'renderers/web/js/terrain.js'), 'utf8');
-  for (const [what, literal] of [['budget', `const GROUND_TILE_BUDGET = ${r.rule.budget_tiles};`],
-                                 ['bearing exponent', `const GROUND_TILE_BEARING_EXP = ${r.rule.bearing_exponent};`]]) {
-    if (!src.includes(literal)) fails.push(`terrain.js no longer sets the ${what} the reading was taken at (\`${literal}\`)`);
+  for (const [what, literal] of [
+    ['tile target', `const GROUND_TILE_TARGET_M = ${r.chosen.tile_target_m};`],
+    ['base step', `const GROUND_BASE_STEP = ${r.chosen.base_sample_step};`],
+    ['detail reach', `const GROUND_DETAIL_REACH_M = ${r.chosen.detail_reach_m};`],
+  ]) {
+    if (!src.includes(literal)) fails.push(`terrain.js no longer sets the ${what} in the closing reading (\`${literal}\`)`);
   }
-  // 3. The chosen candidate must actually be in the reading, and must be the one the
-  //    numbers favour: no more triangles at the worst stand than the literals it
-  //    replaced, and inside the draw-call budget at every stand.
-  for (const vp of r.viewports) {
-    const chosen = vp.candidates.find((c) => c.id === r.chosen.id);
-    if (!chosen) { fails.push(`${vp.viewport}: the chosen tiling is not in the reading`); continue; }
-    if (chosen.grid.cols !== r.chosen.cols || chosen.grid.rows !== r.chosen.rows) {
-      fails.push(`${vp.viewport}: the chosen tiling was read at `
-        + `${chosen.grid.cols} x ${chosen.grid.rows}, not ${r.chosen.cols} x ${r.chosen.rows}`);
-    }
-    const literals = vp.candidates.find((c) => c.id === '12x3');
-    if (literals && chosen.worst_triangles > literals.worst_triangles) {
-      fails.push(`${vp.viewport}: the chosen tiling is worse than the literals it replaced — `
-        + `${chosen.worst_triangles} triangles at the worst stand against ${literals.worst_triangles}`);
-    }
-    for (const st of chosen.stands) {
-      if (st.calls > r.budget.draw_calls) {
-        fails.push(`${vp.viewport}: the chosen tiling spends ${st.calls} draw calls at `
-          + `${st.id}, over the budget of ${r.budget.draw_calls}`);
+  // 3. Both viewports and all three tiers close under their unchanged ceilings.
+  for (const [vp, levels] of Object.entries(r.results)) {
+    for (const [level, seen] of Object.entries(levels)) {
+      if (seen.worst_triangles > r.ceilings[level]) {
+        fails.push(`${vp} ${level}: ${seen.worst_triangles} triangles over ${r.ceilings[level]}`);
+      }
+      if (seen.worst_calls > r.ceilings.draw_calls) {
+        fails.push(`${vp} ${level}: ${seen.worst_calls} calls over ${r.ceilings.draw_calls}`);
       }
     }
+  }
+  // 4. Grid refinement alone was measured and refused, rather than assumed.
+  const rejected = r.rejected_grid_only_candidates ?? [];
+  if (!rejected.length || rejected.at(-1).lake_at_canal_triangles <= r.ceilings.light) {
+    fails.push('the closing reading no longer demonstrates that grid refinement alone stayed over light');
   }
   return fails;
 }

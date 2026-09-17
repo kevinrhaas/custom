@@ -83,7 +83,9 @@
      ],
      "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1839 is evidence about 1839. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
     },
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -133,6 +135,24 @@
      ],
      "for_merge": "THE STEM IS ALL BUT UNIQUE AND THE TOWN HAS ONE CHARLES OF EACH SPELLING. Charles Wesencraft is documented: the Democrat of 3 December 1833, column 7, prints the marriage of 'Mark Nobles, Esq. of this place, to Miss CHARLOTTE, only daughter of Mr. Charles Wesencraft, late of Buffalo', and his daughter Charlotte stands on her own card; Fergus 1843 prints 'Wesencraft, Charles, carpenter and wagon[maker], cor S. Clinton and W. Monroe' and Norris 1844 repeats the trade. 'Wessencraft, Charles' stands on the 1833 tax list. A carpenter and wagonmaker marrying a daughter into the Noble family in December 1833 is a man the town's tax roll of that year should hold.",
      "against_merge": "NO TITLE SETS BOTH, AND THE DOUBLE-S IS NOT A ONE-OFF SLIP — A SECOND, LATER TITLE SETS IT TOO. Searched over every deposited text: 'Wessencraft' occurs twice in the whole corpus and the two are independent — 'Wessencraft, Charles' on the 1833 tax list (line 159) and 'Wessencraft, Mrs. Jane' on the Second Presbyterian Church roll of 1842-1892 (line 7270). Two documents sixty years apart, neither derived from the other, both doubling the S. Against them the Democrat, Fergus 1839, Fergus 1843 and Norris 1844 set the single S and never the double. The two bodies of evidence do not touch, and a spelling attested by two unrelated sources is exactly the kind a fold should not quietly absorb. D7, and the cards stay two. WHAT WOULD SETTLE IT IS NOT A PAGE BUT A COUNT, in C12's shape moved from the forename to the surname — the closed roll leaves the documented man exactly one entry he can be, and the exhaustion is worked over the whole roll and printed rather than asserted. C12 as written reaches a FORENAME only, so firing it on a surname is itself a rule to write. T-1135 owns that question for Pruyne/Pryne and the rule it writes is the one this pair waits on."
+    }
+   ],
+   "roles": [
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "carpenter and wagonmaker, Clinton c. Monroe",
+     "from": "1839",
+     "to": "1839",
+     "precision": "year",
+     "dated_by": "printing_year",
+     "covers_scene_date": false,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "claim": null,
+     "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
     }
    ]
   }
