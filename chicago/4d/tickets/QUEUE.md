@@ -27,6 +27,7 @@
 # families and businesses ARE reconstructed (owner, 2026-09-17; T-1177), review_required, no figures.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
+T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1284 — Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
 T-1255 — The people view shows every role as a dated timeline, marks which reach the scene date, and searches controlled and printed wording
@@ -154,7 +155,6 @@ T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 # --- 7. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
-T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
@@ -181,8 +181,5 @@ T-1219 — The three re-spelled cards still say in prose that the papers print t
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1273 — Write every committed home and workplace reconciliation row as an associated_with row on the record it belongs to, changing no value, confidence or source
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
