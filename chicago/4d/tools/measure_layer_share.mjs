@@ -1,5 +1,5 @@
 /**
- * WHOSE TRIANGLES ARE THEY? THE FRAME, BROKEN DOWN BY SCENE LAYER (T-1238).
+ * WHOSE TRIANGLES ARE THEY? THE FRAME, BROKEN DOWN BY SCENE LAYER (T-1244).
  *
  *   node tools/measure_layer_share.mjs [--source] [--tiers full,light]
  *                                      [--only desktop|mobile] [--json out.json]

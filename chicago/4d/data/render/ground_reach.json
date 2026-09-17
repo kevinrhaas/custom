@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "_doc": "WHAT THE GROUND COSTS A DOWNTOWN FRAME, AND WHAT THE HAZE-TOTAL REACH TAKES OFF IT (T-1238, split out of T-1154). T-1154 found the five downtown stands over all three scene-detail ceilings at both viewports and asked which of the nine days after the last PASS put them there. This file is the answer and the first trim against it. GENERATED readings, pasted from the two instruments named below; nothing here is computed by hand.",
-  "ticket": "T-1238",
+  "_doc": "WHAT THE GROUND COSTS A DOWNTOWN FRAME, AND WHAT THE HAZE-TOTAL REACH TAKES OFF IT (T-1244, split out of T-1154). T-1154 found the five downtown stands over all three scene-detail ceilings at both viewports and asked which of the nine days after the last PASS put them there. This file is the answer and the first trim against it. GENERATED readings, pasted from the two instruments named below; nothing here is computed by hand.",
+  "ticket": "T-1244",
   "parent": "T-1154",
   "read_on": "2026-09-17",
   "instruments": {
     "frame": "tools/measure_detail_ceilings.mjs --only desktop, on the published mirror",
     "layers": "tools/measure_layer_share.mjs --only desktop --tiers full,light, the same mirror in the same sitting. Its whole-frame figures reproduce the ceiling instrument's to the triangle at every stand and tier read here, which is why the two can be read together."
   },
-  "what_this_is_not": "NOT a ceiling reading, and NOT the close of T-1154. The stands below are all still OVER. What is measured here is (a) which layer the overage is, and (b) what one rule takes off it. The remaining trim is T-1239.",
+  "what_this_is_not": "NOT a ceiling reading, and NOT the close of T-1154. The stands below are all still OVER. What is measured here is (a) which layer the overage is, and (b) what one rule takes off it. The remaining trim is T-1245.",
   "the_bisect": {
     "question": "tools/dev-smoke-state.json's newest desktop part-4 reading is a PASS of 2026-09-06T00:44:54Z, so the breach arrived in the nine days after it.",
     "answer": "The ground. Its modelled box went from 2,020 x 800 m to 2,020 x 4,920 m in those days at an unchanged 2.5 m sample -- 6.1 times the area -- and nothing about the ground is a function of distance or of the scene-detail tier, so all of it is submitted from everywhere. Read off the committed heightfield meta at each commit that moved it; no measurement was needed to find the change, only to price it.",
@@ -190,7 +190,7 @@
       }
     },
     "the_frame_after_by_layer": {
-      "note": "The whole reading is tools/measure_layer_share.mjs's; the two worst stands are written out here because they are what T-1239 has to move.",
+      "note": "The whole reading is tools/measure_layer_share.mjs's; the two worst stands are written out here because they are what T-1245 has to move.",
       "light/lake_and_market": {
         "terrain": 948723,
         "frontage": 145832,
@@ -222,5 +222,5 @@
       }
     }
   },
-  "what_is_left": "The reach takes about 45,500 triangles off every eye-level downtown stand and four off the aerial, and every stand is still over. The reason is measured and it is not the rule: the ground's culling grid cuts a 7,340 x 10,240 m mesh into 5 x 8, so a tile's bounding sphere has a radius of 950 to 2,000 m and a NEAREST-point test at 1,883 m can only reject the outermost few. T-1239 owns re-cutting the grid so the reach can bite, and T-0466's own reading (data/render/ground_tiling_budget.json) already measured 12 x 12 as 58,287 triangles better for fifteen more draw calls -- a candidate that was not bought when there was no reach to pay for it, and is a different proposition now."
+  "what_is_left": "The reach takes about 45,500 triangles off every eye-level downtown stand and four off the aerial, and every stand is still over. The reason is measured and it is not the rule: the ground's culling grid cuts a 7,340 x 10,240 m mesh into 5 x 8, so a tile's bounding sphere has a radius of 950 to 2,000 m and a NEAREST-point test at 1,883 m can only reject the outermost few. T-1245 owns re-cutting the grid so the reach can bite, and T-0466's own reading (data/render/ground_tiling_budget.json) already measured 12 x 12 as 58,287 triangles better for fifteen more draw calls -- a candidate that was not bought when there was no reach to pay for it, and is a different proposition now."
 }
