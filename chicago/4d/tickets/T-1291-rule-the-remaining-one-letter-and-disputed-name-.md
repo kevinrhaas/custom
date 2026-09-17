@@ -1,7 +1,7 @@
 ---
 id: T-1291
 title: Rule the remaining one-letter and disputed-name identity pairs in ONE pass and accept the residue as ambiguous
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 6:00:49 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35284430297
 ---
 
 **Owner, 2026-09-17**, on the same ruling as T-1290: the research spend is a CHECK before
