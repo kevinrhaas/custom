@@ -1,7 +1,7 @@
 ---
 id: T-1290
 title: Close the 1840 census reading to the standard already set, and record the residue as an accepted gap rather than nine more leaf tickets
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 6:47:16 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35288020158
 ---
 
 **Owner, 2026-09-17:** "my original concept is that the research is done so this is a check
