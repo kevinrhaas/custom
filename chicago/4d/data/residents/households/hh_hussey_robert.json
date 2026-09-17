@@ -5,12 +5,12 @@
  "head": "hussey_robert",
  "source_pass": "letter_list",
  "arrival": {
-  "value": "1835-07-01",
+  "value": "1835-06-30",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1835-07-01 and at no stated time before it; nothing says when they came.",
+  "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of June 1835 and not by the issue it was read in (T-0425). The earliest issue this project reads the name in is 1835-07-01, 1 day later; that gap is an accident of which impression an extraction pass reached, and it is not evidence. Somebody was writing to this name at Chicago by 1835-06-30 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -52,6 +52,7 @@
    "name": "Robert Hussey",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -76,7 +77,20 @@
      "chicago_democrat_1833_1835"
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1133",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "hussey-hussy",
+     "weighed_against": [
+      "hussy_robert"
+     ],
+     "for_merge": "One letter, “Robert” on both, and the two returns bracket the scene date: “Hussy, Robert 2” on the return of 1 October 1834 and “Hussey, Robert” on the return of 1 July 1835, the scene date itself. A man with two letters waiting in the autumn of 1834 and another the following summer is a plausible single correspondent, and the surname is one whose two spellings were both current.",
+     "against_merge": "TWO RETURNS, NINE MONTHS APART, NEITHER SETTING BOTH. “Hussy, Robert 2” is printed in the Democrat of 22 October 1834, seated between “Williams, Charles C.” and “Winters, Moses” in a surname-first list; “Hussey, Robert” in the Democrat of 1 July 1835, between “Phillips James” and “Park Hezekiah”. Each reading is clean in its own impression and neither return carries the other spelling. Neither card is an anchor; the gazetteer holds these two and no third bearer; nothing outside the post office names either man. C9's page does not exist and D5's roll does not either. D6."
+    }
+   ]
   }
  ],
  "touches_removal": false,

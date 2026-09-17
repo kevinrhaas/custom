@@ -255,7 +255,7 @@
     {
       "id": "c005",
       "kind": "business",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "Cabine? and Chai.\nWare House\nLE subscribers ha.\nving on hand (at fly\ntheir ware house on \\\nSouth water St. five\nof the corner\npuet) a very\nCLARK, FILER, 3",
       "normalized": "Cabinet and Chai[r] Ware House. [T]he subscribers ha[v]ing on hand (at their ware house on South water St. five [doors east] of the corner [of Randolph st.]) a very [large assortment of … FURNITURE …] CLARK, FILER, [& Co.]",
       "locator": {
@@ -315,11 +315,12 @@
           "class": "relative",
           "anchor": "the corner of Randolph st.",
           "offset_text": "their ware house on \\\nSouth water St. five\nof the corner",
-          "offset_normalized": "their ware house on South water St. five [doors east] of the corner [of Randolph st.]",
-          "street": "South Water Street"
+          "offset_normalized": "their ware house on South water St. five doors east of the corner of Randolph st.",
+          "street": "South Water Street",
+          "note": "T-0869 RULED THIS PLACEMENT A BEARING, NOT AN ADDRESS. All three printings of this advertisement were re-read at the page images on 2026-09-11 and every one of them sets 'the corner of Randolph st.' — see data/research/newspapers/clark_filer_randolph_corner_1834.json for the readings, the crop regions and the deposit sha256. They are ONE standing setting re-impressed, not three compositions: identical line breaks through the placement, the same 'cosisting' misprint, the same chair cuts, the same 'Chicago, June 10, 1834. 28' at the foot, and the phrase runs in at least five issues from 1834-06-11 to 1834-07-23. So the cross street was NOT mis-set by a slipping hand — there is no per-impression variation to be the slip. What stands is that the firm named a corner it did not stand on, which is how it locates elsewhere in the same month ('three doors from the Baptist meeting house', 1834-06-04). A wrong word in the firm's own copy, standing for six weeks, cannot be separated from that and has the same consequence: the phrase does not measure onto the committed plat. The ware house keeps street_only, `streets_cross` is right to refuse the ordinal (T-0771), and the anchor is left as printed rather than amended to what the plat allows. Do not re-open on a closer reading of these columns; only another impression setting a DIFFERENT street, or a source placing the ware house on the ground, moves it."
         }
       },
-      "notes": "THE FIRST PRINTING OF THE MOST EXACT PLACEMENT IN THE MONTH, and the interleaving eats two words of it. 'five ... of the corner' is what survives here; the 1834-06-18 printing of the same advertisement is not interleaved and reads 'their ware house on South water St. five doors east of the corner of Randolph st.' (that issue's claim c010, which carries the placement without brackets). This claim is kept beside it as the senior witness — its dateline is 10 June — and its bracketed words come from that later printing and from nowhere else. NOTE THE SECOND FIRM: a separate advertisement in this issue (claim c007) sends buyers to 'the cabinet shop of Clark, Filer & Co.' and a third, on 1834-06-04, places a cabinet and chair manufactory on South Water Street three doors from the Baptist meeting house. Whether the ware house, the shop and the manufactory are one address, two or three, no notice in the month says, and this reading does not merge them."
+      "notes": "READ AT THE PAGE IMAGE ON 2026-09-11 (T-0869), WHICH OVERTURNS THIS CLAIM'S OWN ACCOUNT OF ITS BRACKETS. An earlier note here said the bracketed words 'five [doors east] … [of Randolph st.]' came from the 1834-06-18 printing 'and from nowhere else'. They did not: this issue's page 3, column 1 sets the whole phrase itself — 'South water St. five / doors east of the corner / of Randolph st.) a very' — and the brackets were the transcription's interleaving, not the compositor's silence. `offset_normalized` is therefore de-bracketed; `offset_text` is left as the transcription's own damaged lines, because the quote is not laundered. THE FIRST PRINTING OF THE MOST EXACT PLACEMENT IN THE MONTH, and the interleaving eats two words of it. 'five ... of the corner' is what survives here; the 1834-06-18 printing of the same advertisement is not interleaved and reads 'their ware house on South water St. five doors east of the corner of Randolph st.' (that issue's claim c010, which carries the placement without brackets). This claim is kept beside it as the senior witness — its dateline is 10 June — and its bracketed words come from that later printing and from nowhere else. NOTE THE SECOND FIRM: a separate advertisement in this issue (claim c007) sends buyers to 'the cabinet shop of Clark, Filer & Co.' and a third, on 1834-06-04, places a cabinet and chair manufactory on South Water Street three doors from the Baptist meeting house. Whether the ware house, the shop and the manufactory are one address, two or three, no notice in the month says, and this reading does not merge them."
     },
     {
       "id": "c006",
@@ -435,7 +436,7 @@
       "kind": "business",
       "reading": "transcription_mediated",
       "quote": "Wo. @ WRAWCUA\nHouse and Land Py\nOTS parchased and Sold, or |\n22 Building Lots for sale, in thi\nSchool section.\n§q Houses to Let. Pugnire at\nLake st. opposite Dr. Temple's.",
-      "normalized": "W[m.] G. [BRANCHAUD,] House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. [… ] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's.",
+      "normalized": "W[m.] G. [BLANCHARD,] House and Land [Agent.] Lots purchased and Sold, or [by commission.] [1]2 Building Lots for sale, in th[e town and] School section. [… ] Houses to Let. Enquire at [the] Office on Lake st. opposite Dr. Temple's.",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 4,
@@ -456,9 +457,9 @@
         "interleaved": true
       },
       "business": {
-        "name": "Wm. G. Branchaud",
+        "name": "Wm. G. Blanchard",
         "proprietors": [
-          "Wm. G. Branchaud"
+          "Wm. G. Blanchard"
         ],
         "trade": "house and land agent",
         "goods": [],
@@ -471,7 +472,7 @@
           "street": "Lake Street"
         }
       },
-      "notes": "THE SECOND BUSINESS IN THE MONTH PLACED 'OPPOSITE DR. TEMPLE'S' ON LAKE STREET — William Clay's hat factory is the other, at the corner of Lake and Franklin (1834-06-04 claim c012). Temple's is therefore a Lake Street landmark two advertisers expect a stranger to find, and it is not itself advertised anywhere in the month. THE PROPRIETOR'S NAME IS NOT RECOVERABLE HERE: the heading reads 'Wo. @ WRAWCUA' and on 1834-06-04 '@s DRANCRAID'; the reading 'Wm. G. Branchaud' is the best that the two mangled settings support together and it is bracketed as a supply. NO PERSON IS MINTED from it — a name this uncertain would put a fiction in the gazetteer — so the claim carries the business and no entity. 'Houses to Let' in the plural is worth its own note: there is a rental market in this town by June 1834."
+      "notes": "THE SECOND BUSINESS IN THE MONTH PLACED 'OPPOSITE DR. TEMPLE'S' ON LAKE STREET — William Clay's hat factory is the other, at the corner of Lake and Franklin (1834-06-04 claim c012). Temple's is therefore a Lake Street landmark two advertisers expect a stranger to find, and it is not itself advertised anywhere in the month. THE PROPRIETOR'S NAME IS NOT RECOVERABLE HERE: the heading reads 'Wo. @ WRAWCUA' and on 1834-06-04 '@s DRANCRAID'; the reading 'Wm. G. Branchaud' is the best that the two mangled settings support together and it is bracketed as a supply. NO PERSON IS MINTED from it — a name this uncertain would put a fiction in the gazetteer — so the claim carries the business and no entity. 'Houses to Let' in the plural is worth its own note: there is a rental market in this town by June 1834. THE SURNAME IS BLANCHARD, AND THE CORPUS SETS IT SO TWICE IN COLUMNS THIS ONE CANNOT ANSWER (T-0408). The supply above was made from the two settings the reading had in front of it — 'Wo. @ WRAWCUA' here and '@s DRANCRAID' at 1834-06-04 — and BOTH stand in columns the transcription itself flags: 'This column uses the Tesseract fallback because the independent Vision reading was unavailable or substantially incomplete.' This is one STANDING advertisement, word for word the same card, and the Democrat runs it from 1834-05-14 to at least 1834-09-17. Two of those impressions carry the name line in columns that are NOT fallbacks: 1834-07-16, issue page 4 column 5, transcription line 5527, sets '1* G. BLANCHARD,' over 'House and Lund dgent.'; and 1834-09-17, issue page 3 column 6, transcription line 3292, sets '[uncertain: BLALYCHARD,]' over 'nd Land igent.' A Vision reading of the type outranks a Tesseract guess at the same line, and nothing in the corpus prints BRANCHAUD at all. So the supplied surname is corrected to [BLANCHARD] and the house is the 'W. G. Blanchard' this register already carries from 1834-07-09 c025 — joined by an `identity.json` firm merge, because the FORENAME is still what the two impressions differ in and that is an identity judgement rather than a reading. `quote` is untouched: it is what the column sets, and it still sets nonsense."
     },
     {
       "id": "c009",

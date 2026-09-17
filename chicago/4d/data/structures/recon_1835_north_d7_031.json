@@ -135,15 +135,20 @@
     ],
     "note": "INVENTED, NOT DERIVED. This value comes from a typology in the reconstruction spec — what a building of this kind was ordinarily like — and NOT from evidence about this particular building, because there is no particular building: the structure itself is an invention filling a demonstrable need of the town. The spec is cited because the invention is bounded by it, which is what makes it defensible rather than arbitrary; the GRADE is the bottom tier because nothing here is a reading of a source about this thing. Assigned from the D7 family to satisfy the aggregate North Division mix; no occupant or individual use is known."
   },
-  "occupants": {
-    "value": "An inferred household; no name is claimed",
-    "confidence": "reconstructed",
-    "sources": [
-      "andreas_1884_v1",
-      "owner_chicago_1835_reconstruction_spec_2026"
-    ],
-    "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the dwelling of an inferred tavern keeper's household (1 of 1 this layer infers): hh_inf_tavern_keeper_north_01 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
+  "reconstruction": {
+    "status": "inferred_anonymous",
+    "family": "D7",
+    "district": "north",
+    "inventory_class": "principal_functional",
+    "programme_phase": "phase2_north_division_initial",
+    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
+    "sequence": 31,
+    "finish_key": "whitewash",
+    "roof_condition": "weathered",
+    "age_state": "older_frontier"
   },
+  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
+  "review_required": false,
   "land_owner": {
     "value": "The ground was entered by Robert A Kenzie, 7 May 1831",
     "confidence": "reconstructed",
@@ -160,19 +165,5 @@
     "type_of_sale": "federal land sale (cash entry)",
     "margin_m": 51.7,
     "generated_by": "tools/resolve_land_tracts.py --build"
-  },
-  "reconstruction": {
-    "status": "inferred_anonymous",
-    "family": "D7",
-    "district": "north",
-    "inventory_class": "principal_functional",
-    "programme_phase": "phase2_north_division_initial",
-    "source_id": "owner_chicago_1835_reconstruction_spec_2026",
-    "sequence": 31,
-    "finish_key": "whitewash",
-    "roof_condition": "weathered",
-    "age_state": "older_frontier"
-  },
-  "research_note": "RECONSTRUCTED / GENERATED, NOT AN ATTESTED NAMED BUILDING. Aggregate mix follows the supplied specification; exact presence, position, footprint, finish and instance-level form are interpretive.",
-  "review_required": false
+  }
 }

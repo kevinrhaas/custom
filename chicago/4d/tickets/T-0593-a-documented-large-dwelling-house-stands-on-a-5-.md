@@ -1,7 +1,7 @@
 ---
 id: T-0593
 title: A documented 'large Dwelling-House' stands on a 5.36 x 6.38 m D3 count-unit, and the block's family mix was dealt before the address resolved
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 823
+claimed_by: run 9/4/2026, 5:41:21 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-04T23:40:46.407Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33926179612
 ---
 
 Four legible printings of G. Spring's For-Sale notice say "There is on said lot a large

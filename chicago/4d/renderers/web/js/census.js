@@ -2,14 +2,25 @@
  * census.js — live town/population statistics on the gate screen.
  *
  * T-0036 established the rule: the front screen never carries hand-typed population
- * numbers. Buildings standing and people housed come from `data/town_census.json`.
- * T-0490 extends the same rule to the evidence population: named/attested/inferred/
- * projected/reconstructed counts come directly from `data/residents/index.json`.
+ * numbers. Buildings standing comes from `data/town_census.json`. T-0490 extends the
+ * same rule to the evidence population: named/attested/inferred/reconstructed counts
+ * come directly from `data/residents/index.json`.
  *
- * That distinction matters. `people housed` is the subset already assigned to a dwelling
- * that stands in the rendered town. `named residents` is the evidence population we have
- * identified so far, including people not yet placed. Neither is silently substituted for
- * the November 1835 town census total of 3,265.
+ * T-0782 rebuilt what those numbers SAY. The card had three stacked figures, and read
+ * top-down they told three unrelated stories — worst of all `29 people housed · of
+ * roughly 3,265`, which set a placement figure against the town's whole population and
+ * so announced the town as 0.9 % peopled. It is one ladder, twice:
+ *
+ *   buildings — 359 of the 662 roofs the town held;
+ *   people    — 1,404 named of the roughly 3,265 who lived here, and the named count is
+ *               itself graded attested → inferred → reconstructed, three portions of the
+ *               same bar filling toward the census total.
+ *
+ * `people housed` survives as what it actually is — a PLACEMENT note under the people
+ * row, the named residents standing inside a building that stands — and is never again
+ * quoted against 3,265. `projected_residents` stays in the residents manifest for
+ * T-0490's readers; it no longer reaches the card, because a parenthesis inside the
+ * inferred count read as a fourth grade.
  *
  * FAIL SOFT, ALWAYS. Either source may be absent while a branch is being built. Show the
  * rows that can be read and never turn a census nicety into a page error on the first
@@ -19,6 +30,21 @@
 /** `3265` → `3,265`, in the locale-independent form the rest of the UI uses. */
 function group(n) {
   return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+/** A bar segment's width, as a percentage string, clamped into the bar. */
+function pct(part, whole) {
+  if (!Number.isFinite(part) || !Number.isFinite(whole) || whole <= 0) return '0%';
+  return `${Math.max(0, Math.min(100, (part / whole) * 100)).toFixed(2)}%`;
+}
+
+function attr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+
+/** `title="…"`, or nothing at all when there is no title to carry. */
+function titleAttr(s) {
+  return s ? ` title="${attr(s)}"` : '';
 }
 
 async function readJson(url) {
@@ -32,7 +58,7 @@ async function readJson(url) {
 }
 
 /**
- * Fill the gate census/evidence row from committed derived data.
+ * Fill the gate census/evidence rows from committed derived data.
  *
  * @param {{ dataBase: URL|string, root?: Element|null }} opts
  * @returns {Promise<object|null>} the town census as loaded, or null if it could not be read
@@ -54,25 +80,22 @@ export async function mountGateCensus({ dataBase, root }) {
   const housed = Number(census?.people?.housed);
   const town = Number(census?.people?.town_total);
 
+  // Row one: the roofs. One segment, because a building either stands or it does not.
   if (Number.isFinite(standing)) {
-    rows.push({
-      n: standing,
-      label: 'buildings standing',
-      of: Number.isFinite(target) ? `of the ${group(target)} the town held` : '',
-      title: census?.buildings?.basis || '',
-    });
-    aria.push(`${group(standing)} buildings standing`);
-  }
-
-  if (Number.isFinite(housed)) {
-    rows.push({
-      n: housed,
-      label: 'people housed',
-      of: Number.isFinite(town) ? `of roughly ${group(town)}` : '',
-      title: [census?.people?.basis, census?.people?.town_total_note]
-        .filter(Boolean).join(' '),
-    });
-    aria.push(`${group(housed)} people housed`);
+    const of = Number.isFinite(target) ? `of the ${group(target)} the town held` : '';
+    rows.push(
+      `<section class="gc-row"${titleAttr(census?.buildings?.basis)}>`
+      + '<p class="gc-head">'
+      + `<b class="gc-n">${group(standing)}</b>`
+      + '<span class="gc-l">buildings standing</span></p>'
+      + (Number.isFinite(target)
+        ? '<div class="gc-bar">'
+          + `<i class="gc-seg gc-seg-built" style="width:${pct(standing, target)}"></i></div>`
+        : '')
+      + (of ? `<p class="gc-of">${of}</p>` : '')
+      + '</section>',
+    );
+    aria.push(`${group(standing)} buildings standing${of ? ` ${of}` : ''}`);
   }
 
   const counts = residents?.counts || {};
@@ -81,35 +104,62 @@ export async function mountGateCensus({ dataBase, root }) {
   const attested = Number(grades.attested);
   const inferred = Number(grades.inferred);
   const reconstructed = Number(grades.reconstructed);
-  const projected = Number(counts.projected_residents);
 
+  // Row two: the people, the same shape. The bar's three segments are the grades in
+  // the order they are earned, so the visitor sees the named count as a portion of the
+  // town filling from the best-evidenced end. Reconstructed is listed in the key even
+  // at zero: it is the work still to do, and a key that hid it would hide that.
   if (Number.isFinite(named)) {
-    const parts = [];
-    if (Number.isFinite(attested)) parts.push(`${group(attested)} attested`);
-    if (Number.isFinite(inferred)) {
-      parts.push(Number.isFinite(projected)
-        ? `${group(inferred)} inferred (${group(projected)} projected)`
-        : `${group(inferred)} inferred`);
+    const of = Number.isFinite(town) ? `of roughly ${group(town)} who lived here` : '';
+    const key = [
+      ['att', attested, 'attested'],
+      ['inf', inferred, 'inferred'],
+      ['rec', reconstructed, 'reconstructed'],
+    ].filter(([, n]) => Number.isFinite(n));
+    rows.push(
+      `<section class="gc-row"${titleAttr(residents?._doc)}>`
+      + '<p class="gc-head">'
+      + `<b class="gc-n">${group(named)}</b>`
+      + '<span class="gc-l">named residents</span></p>'
+      + (Number.isFinite(town)
+        ? '<div class="gc-bar">'
+          + key.map(([k, n]) => `<i class="gc-seg gc-seg-${k}" style="width:${pct(n, town)}"></i>`).join('')
+          + '</div>'
+        : '')
+      + (of ? `<p class="gc-of"${titleAttr(census?.people?.town_total_note)}>${of}</p>` : '')
+      + (key.length
+        ? `<ul class="gc-key">${key.map(([k, n, label]) =>
+          `<li><i class="gc-sw gc-sw-${k}"></i>${group(n)} ${label}</li>`).join('')}</ul>`
+        : '')
+      + (Number.isFinite(housed)
+        ? `<p class="gc-note"${titleAttr(census?.people?.basis)}>`
+          + `${group(housed)} of them are placed in a building that stands</p>`
+        : '')
+      + '</section>',
+    );
+    aria.push(`${group(named)} named residents${of ? ` ${of}` : ''}`
+      + (key.length ? `: ${key.map(([, n, label]) => `${group(n)} ${label}`).join(', ')}` : ''));
+    if (Number.isFinite(housed)) {
+      aria.push(`${group(housed)} of them are placed in a building that stands`);
     }
-    if (Number.isFinite(reconstructed)) parts.push(`${group(reconstructed)} reconstructed`);
-    rows.push({
-      n: named,
-      label: 'named residents',
-      of: parts.join(' · '),
-      title: residents?._doc || 'Evidence-based named resident population identified so far.',
-    });
-    aria.push(`${group(named)} named residents${parts.length ? `: ${parts.join(', ')}` : ''}`);
+  } else if (Number.isFinite(housed)) {
+    // The residents manifest could not be read, so there is no named count to hang the
+    // placement figure under. It still belongs on the card — but as its own statement of
+    // what is placed, never as a share of the town.
+    rows.push(
+      `<section class="gc-row"${titleAttr(census?.people?.basis)}>`
+      + '<p class="gc-head">'
+      + `<b class="gc-n">${group(housed)}</b>`
+      + '<span class="gc-l">residents placed in a building that stands</span></p>'
+      + '</section>',
+    );
+    aria.push(`${group(housed)} residents placed in a building that stands`);
   }
 
   if (!rows.length) return null;
 
-  host.innerHTML = rows.map((r) => `<p class="gc-fig"${r.title
-    ? ` title="${String(r.title).replace(/"/g, '&quot;')}"` : ''}>`
-    + `<b class="gc-n">${group(r.n)}</b>`
-    + `<span class="gc-l">${r.label}</span>`
-    + (r.of ? `<span class="gc-of">${r.of}</span>` : '')
-    + '</p>').join('');
-  host.setAttribute('aria-label', aria.join(', '));
+  host.innerHTML = rows.join('');
+  host.setAttribute('aria-label', aria.join('. '));
   host.removeAttribute('hidden');
   return census;
 }

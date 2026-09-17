@@ -33,6 +33,8 @@ import { execFileSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
+import { WALK_SHIM } from './changelog_shim.mjs';
+
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const REPO = path.resolve(HERE, '..');
 
@@ -51,7 +53,7 @@ mkdirSync(path.join(APP, 'tools'), { recursive: true });
 mkdirSync(path.join(APP, 'renderers', 'web', 'js'), { recursive: true });
 mkdirSync(path.join(SITE, 'js'), { recursive: true });
 mkdirSync(path.join(SITE, 'walk', 'js'), { recursive: true });
-for (const f of ['stamp-changelog.mjs', 'check_published.mjs', 'publish.sh']) {
+for (const f of ['stamp-changelog.mjs', 'changelog_shim.mjs', 'check_published.mjs', 'publish.sh']) {
   cpSync(path.join(REPO, 'tools', f), path.join(APP, 'tools', f));
 }
 
@@ -88,9 +90,15 @@ const published = () => {
     return { ok: false, out: said(e) };
   }
 };
+/**
+ * The sandbox's stand-in for publish.sh, and it installs what publish.sh
+ * installs: the file at the fleet path, the SHIM inside walk/ (T-0722). Writing
+ * the file to both here would make this test pass on a state publish.sh can no
+ * longer produce — the shape of green that is worse than red.
+ */
 const publish = () => {
   writeFileSync(CONTRACT, readFileSync(SRC));
-  writeFileSync(INSIDE_WALK, readFileSync(SRC));
+  writeFileSync(INSIDE_WALK, WALK_SHIM);
 };
 
 try {
@@ -114,11 +122,26 @@ try {
   check('…and the stamper said which paths it carried', /mirrored to .*T-0155/.test(out),
     out.trim().split('\n').filter((l) => l.includes('mirrored')).join('; ') || 'it said nothing');
   const stampedSrc = readFileSync(SRC, 'utf8');
-  check('…and the mirrors really are the stamped file, not the unstamped one',
+  check('…and the contract mirror really is the stamped file, not the unstamped one',
     readFileSync(CONTRACT, 'utf8') === stampedSrc
-      && readFileSync(INSIDE_WALK, 'utf8') === stampedSrc
       && /ts: '20\d\d-/.test(stampedSrc) && /v: 2\b/.test(stampedSrc),
     `${stampedSrc.length} bytes, v2 stamped`);
+
+  /* --- T-0722: the walk copy is a re-export, and stays one -------------- */
+  //
+  // The duplicate this replaced was worth 4.1 % of the site budget and nobody saw
+  // it, because both copies were correct and neither was checked against the
+  // other. So assert the SHAPE, not just the freshness: the walk copy must be the
+  // shim, must be small, and must name the path it re-exports — a shim pointing
+  // at nothing is a blank What's-new tab that only the published tree can show.
+  const inWalk = readFileSync(INSIDE_WALK, 'utf8');
+  check('the walk copy is the shim, not a second copy of the changelog',
+    inWalk === WALK_SHIM && inWalk.length < 2048 && inWalk !== stampedSrc,
+    `${inWalk.length} bytes against the changelog's ${stampedSrc.length}`);
+  check('…and it re-exports the fleet path, with the names What\'s-new imports',
+    /from '\.\.\/\.\.\/js\/changelog\.js'/.test(inWalk)
+      && /CHANGELOG/.test(inWalk) && /LATEST_VERSION/.test(inWalk),
+    inWalk.trim().split('\n').pop());
 
   /* --- half two: the gate is not weaker ---------------------------------- */
   //
@@ -167,7 +190,8 @@ try {
   const block = stamperSrc.match(/export const PUBLISH_PINS = \[([\s\S]*?)\];/);
   check('stamp-changelog.mjs still declares PUBLISH_PINS', Boolean(block));
   const pins = [...(block?.[1] ?? '').matchAll(/'([^']*)'/g)].map((m) => m[1]);
-  check('…and it names both published copies', pins.length === 2, pins.join(' | '));
+  check('…and it names every published copy and the call that writes the shim',
+    pins.length === 3, pins.join(' | '));
   const pubSh = readFileSync(path.join(REPO, 'tools', 'publish.sh'), 'utf8');
   for (const pin of pins) {
     check(`publish.sh still contains ${JSON.stringify(pin)}`, pubSh.includes(pin),

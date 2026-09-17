@@ -74,9 +74,17 @@ export function groundClaimHtml(claim) {
   // A figure the terrain generator does not read is marked with the same words
   // the provenance card uses on a building's attribute, from the same module.
   // The ground's version of the Wolf Point wolf sign is on this panel: two
-  // surface materials are `documented`, and the ground is one earth colour from
-  // one edge of the box to the other, so a chip alone tells a visitor how sure
-  // we are of a soil they are emphatically not looking at.
+  // surface materials are `documented`, and the mesh draws almost none of what
+  // they describe, so a chip alone tells a visitor how sure we are of a soil
+  // they are largely not looking at. NARROWED BY T-1055, which took the sentence
+  // "the ground is one earth colour from one edge of the box to the other" out of
+  // this comment by making it false: terrain.js now paints the two flora zones
+  // with box extents — z09_sand_prairie and z08_lakeshore, the beach-ridge belt
+  // and the lakeshore, the sand bar inside them — their own recorded
+  // `ground.rgb`. It is still the right warning everywhere else. The soil claims
+  // on this panel are the terrain spec's `surface_materials`, whose every entry
+  // still reads `"mesh": { "material": "simplified" }`, and the prairie the rest
+  // of the box is drawn in is a texture, not those records.
   const rows = (claim.fields || []).map((f) => `
     <dt>${escapeHtml(fieldName(f.key))}</dt>
     <dd>${escapeHtml(fieldValue(f.value))}${geometryMark(f.mesh)}</dd>`).join('');

@@ -1,5 +1,1343 @@
 # STATUS
 
+## Shipped 2026-09-16 — T-0537, T-0968, T-0232, T-0234, T-0727: the loop's gates, worked as one
+
+Owner-directed batch of the five band-7 gate tickets; nothing in the scene changes. The
+derivative toolchain is pinned at gltf-transform 4.5.0 (all four packages, proven by the K40
+control: 384 of 384 committed derivatives regenerate md5-for-md5 — after a `stat -c%s` →
+`wc -c` portability fix that had disabled the passthrough rule on macOS stewards). The boot
+payload a first visit downloads is measured — **7.223 MB across 915 requests to stand in the
+1835 street**, byte-identical across three runs — and budgeted at **12 MB** (docs/SITE-BUDGET.md
+§4); the whole-tree cap relaxes 40 → 256 MB as the repository-hygiene guard it always was, with
+the reasoning at the definition site. Deploy now asks the live origin whether it answers —
+`/`, `/chicago/4d/`, both walk gates, both tiers' stamps — as a non-blocking `::error::`
+annotation (the acceptance dry run caught a real defect on first pass: the dev opener carried
+no PREVIEW marking, fixed in the opener's structure). The production switch's checkout is
+bounded (4-minute attempts, re-rolled, elapsed per attempt in the run summary; demonstrated
+against an injected slow draw by the committed self-test). The loop's PR operations moved off
+the exhausted GraphQL bucket onto REST (`.github/steward/pr-rest.sh`), with one named
+GraphQL-only exception — arming auto-merge — and `tools/check_gh_rest.mjs` refusing a relapse
+on every gate. T-1156 files the follow-up: wire `measure_boot_payload.mjs --check` into a
+nightly smoke leg (leg budgeting belongs to T-0167).
+
+AND A REPAIR, stated plainly: this file's T-1143 commit shipped with its second half
+corrupted — 393,216 bytes of clean text, then binary garbage to EOF, committed and pushed
+from a machine whose disk was failing (the local object store lost trees and blobs the same
+day; several `.github` objects and a tag ref were rebuilt from origin and the intact
+worktree to push this branch). The tail was reconstructed from the last clean revision
+(`ca3e184`, byte-exact prefix match proving the T-1143 edit was only the top-section swap):
+everything below the seam is restored verbatim from that revision. If T-1143 also edited the
+lost tail, that edit is unrecoverable from the record — this reconstruction restores what the
+repository can prove.
+
+
+## Shipped 2026-09-15 — T-1143: every research reading has an accountable outcome
+
+The old research-spend measure is preserved at **21,419 read / 7,769 ruled / 13,650
+unspent**; changing that baseline would have hidden the backlog instead of closing it. A new
+generated ledger now accounts for **23,699 reading units across all twelve committed research
+domains**, including the previously unregistered Genealogy Trails, newspapers and resident
+research passes. Every row is exactly one of asserted, later-only, outside Chicago,
+aggregate-only, refused or unresolved, and zero rows are unclassified.
+
+This does **not** claim the backlog is all on resident cards. The exact structured-target test
+finds 170 asserted units. Another 19,304 are durably dispositioned without pretending they are
+1835 assertions, and **4,225 remain unresolved** under open T-1145, T-1146 or T-1147. The older
+second hop remains independently green at **1,643 reached / 1,643 on a card / 0 unwritten / 0
+source-less**. The ledger gate now fails on an unregistered domain, an unmatched reading pattern,
+an unclassified or duplicate unit, a dead source or target, a closed unresolved owner, or an
+attested/inferred assertion that survives only as prose. Its mutation self-test breaks each of
+those contracts in memory.
+
+No resident, structure, business or visible scene output changes in this ticket. It establishes
+the accounting surface that T-1137 and the queued research-completion work must preserve and
+spend. The generated dated review is `docs/RESEARCH/research-spend-ledger-2026-09-15.md`.
+
+## Shipped 2026-09-13 — T-1106: the far band is a wall, and it had been dealt as a floor
+
+**T-0280 put both sides of the far band's grass-or-flower split into the same unit, and picked
+the wrong one.** That ticket was right that a cover cannot be divided by a lattice probability,
+and its ground-cover reading stands as the honest mix for GROUND. The far band is not ground.
+Its nearest card stands 34 m from the visitor and its furthest 95 m; at fifty metres a 1.7 m eye
+looks 1.9 degrees below horizontal, so the sward is seen **edge-on, as a wall**, and the plant
+that fills a pixel is the first element the ray meets. What governs that is projected area per
+element times elements per m² of ground — **silhouette-area density** — and the depth of the
+wall cancels out of a ratio between two strata standing in it.
+
+**The module already held that model, one field over.** `tools/measure_far_bloom.mjs` §1 has
+priced the BLOOM share on exactly this `n × a` bridge since T-0209, stating the same edge-on
+argument. Between T-0280 and this ticket the far band was reading one wall in two different
+units.
+
+**What changed.** `silhouetteOf(sp)` = `stems × w × h`, beside `coverOf`'s `stems × π·clump²`;
+`subsetOn()` sums it as `sil` beside `cover`; `farSplitOf` decides the boundary **once per
+community per side of the waterline** instead of per lattice slot, and `rebuildFar` now reads a
+constant rather than computing a ratio. The matrix side is the record's own `matrix_fraction`
+**converted** by the graminoid stratum's own measured aspect `sil / cover`, not replaced by the
+species rows' raw sum — T-0280 chose the authored figure deliberately and this keeps that
+choice. `matrixSil` is exported beside it so the two can be checked against each other. No
+constant enters the split that is not summed off `data/flora`.
+
+**The liberty, stated: L236.** The silhouette of a clump is its **bounding rectangle** `w × h`,
+with no shape factor. It is explicitly NOT the far card's own quad — that card's width is the
+aggregate `band.wide` L137 gives it, not this plant's. A shape factor cancels out of the ratio
+wherever the two strata share a growth form, the project has no measured profile for either to
+make it not cancel, and applying one to a single side would be a thumb on the scale. L235 is
+revised in the same pass: the fallback width it covers is now one factor of `w × h` rather than
+the radius of a disc, and is otherwise untouched.
+
+**It moves both ways, which is the test that it is a measurement.**
+`tools/measure_far_split.mjs --source` now prints all three units side by side. The forb's share
+of the far cards, per community:
+
+| community | T-0209 lattice | T-0280 cover | T-1106 silhouette | move | aspect gram / forb |
+|---|---|---|---|---|---|
+| z10_settled_town | 68.97 %* | 46.75 % | **72.72 %** | 1.556× | 0.67 / 2.04 |
+| z06_dense_forest | 74.07 %* | 72.10 % | **78.48 %** | 1.088× | 1.91 / 2.70 |
+| z04_marsh | 57.14 %* | 38.02 % | **38.01 %** | 1.000× | 3.98 / 3.98 |
+| z03_sedge_meadow | 54.05 %* | 11.51 % | **8.25 %** | **0.717×** | 3.47 / 2.40 |
+| z05_riverbank_timber | 68.97 %* | 5.26 % | **10.39 %** | 1.974× | 2.12 / 4.43 |
+| z02_mesic_prairie | 51.28 %* | 2.74 % | **3.73 %** | 1.364× | 2.63 / 3.62 |
+| z01_wet_prairie | 50.00 %* | 2.95 % | **3.62 %** | 1.228× | 3.22 / 3.98 |
+| z08_lakeshore | 74.07 %* | 6.33 % | **6.50 %** | 1.026× | 2.18 / 2.24 |
+| z09_sand_prairie | 35.45 % | 0.16 % | **0.30 %** | 1.938× | 2.05 / 3.98 |
+| z07_bur_oak_savanna | 0.00 % | 0.00 % | 0.00 % | — | — |
+
+`*` was sitting on the forb ring's 1.000 ceiling. `aspect` is each stratum's own `sil / cover`,
+the square metres of wall one square metre of its floor stands up, and the move is the ratio of
+the two — arithmetic, not a tuning. **`z03_sedge_meadow` goes DOWN**, because its sedges are the
+taller narrower stratum; `z04_marsh` moves by one hundredth of a percentage point, because its
+two strata happen to share an aspect of 3.98. A change that could only add flowers would not be
+a measurement.
+
+**At the three gate stands**, the annulus weighted by the ground it lands on:
+
+| stand | T-0209 | T-0280 | T-1106 | far cards |
+|---|---|---|---|---|
+| prairie_west (z02_mesic_prairie) | 51.40 % | 4.72 % | **6.62 %** | 226 |
+| prairie_south (z05_riverbank_timber) | 52.04 % | 7.33 % | **8.97 %** | 241 |
+| river_bank (z04_marsh) | 42.07 % | 19.93 % | **24.41 %** | 28 |
+
+**The drawn bloom, both readings measured on this same tree in this run**
+(`tools/measure_far_bloom.mjs --source`, desktop):
+
+| stand | heads before → after | furthest | > 24 m | > 40 m |
+|---|---|---|---|---|
+| prairie_west | 1993 → **1997** | 26.4 → **47.5 m** | 102 → **106** | 0 → **4** |
+| prairie_south | 1225 → **1238** | 78.7 → 76.5 m | 149 → **162** | 19 → **32** |
+| river_bank | 43 → 43 | 14.0 → 14.0 m | 0 → 0 | 0 → 0 |
+
+`prairie_west` regains the far tail T-0280 cost it — nothing past 40 m before, four heads now,
+and the furthest head almost doubles. **It does not go back to 135.7 m, and it must not**: that
+figure was bought by a clamped constant, and T-0280's refusal of it is not reopened here.
+`prairie_south`'s furthest ticks down 2.2 m while its counts past 24 m and past 40 m both rise —
+the tail is a re-deal of the same lottery and the single furthest head is its noisiest statistic;
+the bin counts are the figure to read.
+
+**What did not move.** Card count, instance count, draw calls, triangles, and where any card
+stands: 226 / 241 / 28 far cards at the three stands before and after. This decides what a card
+is a picture of, exactly as T-0209 left it. Zero sward records convert to no silhouette —
+`silUnknown` is exported so that stays checkable.
+
+## Shipped 2026-09-13 — T-0280: the far band's grass-or-flower split was reading a lattice ceiling, and now reads the ground
+
+**Eight of the ten communities were splitting on the number 1.000.**
+
+`rebuildFar` decides whether a far card stands for a grass or for a flowering plant with
+
+    split = matrixShare × (1 − forbside / (matrixShare + forbside))
+
+so the forb's share of the cards the band occupies is exactly `forbside / (matrixShare +
+forbside)`, and the whole of this ticket is about which number `forbside` is. It was
+`forbShare` — the **forb ring's** lattice occupancy, `min(1, density × cell² / perCell)` at one
+plant per 2.89 m² slot. Nine of the ten populated forb layers sit on that clamp (T-0019,
+`tools/forb_clamp_baseline.json`), so for nine communities the far band's species mix was
+decided by a ceiling and not by anything their records say. `z06_dense_forest` asks 66.381
+plants per m² and `z01_wet_prairie` asks 0.407, and the band split both as though they had
+asked for the same thing.
+
+**And it was the wrong kind of number even unclamped.** `matrixShare` is
+`cover.matrix_fraction`, a fraction of GROUND COVERED; `forbShare` is a slot-occupancy chance
+derived from stem density. Dividing one by the sum of both adds an area to a probability —
+K49(a)'s unit error, one stratum further out — so raising the clamp would have swapped a wrong
+constant for a wrong quantity. At 66.381 plants per m² the unclamped share is ~1 and every far
+card in the dense forest would have been a flower.
+
+**Both sides are now the same quantity: the ground the stratum covers.** `subsetOn().cover`
+sums `stems × π·clump²` over the subset that may stand on this side of the waterline, which for
+a cover-recorded species hands back its own `cover_fraction` intact. The matrix side stays the
+record's own `matrix_fraction` — that same quantity, already written down.
+
+**The clump is the drawn one, and it has to be (L235).** Fifty sward records state no
+`width_m`: every forb of the wet prairie, the mesic prairie and the sand prairie, and both
+marsh forbs. A sum over recorded widths alone returns **0.0000** for the sand prairie and
+**0.0000** for the marsh, and the band would deal both as pure grass on the strength of a
+missing field. `coverOf` falls back to `clumpRadiusOf` — the footprint `crowdsTheWalker` has
+given those plants all along — and `flora.communities()` exports `forbCoverFallbacks` so the
+provenance of every figure below is visible rather than assumed.
+
+**The instrument.** `tools/measure_far_split.mjs`. BEFORE and AFTER are not two runs compared
+by hand: `communities()` exports `forbShare` beside `forbCover`, so both are arithmetic on the
+same compiled communities in one pass. §2 samples the far band's annulus (16–175 m) with the
+placer's own `zoneAt` and a new `flora.isWaterAt` — `shoreDistance` cannot say which SIDE of
+the waterline a sample is on — and weights each sample by `farBand.coverAt(d)`.
+
+| community | matrix | forbShare | forbCover | before | after | w-less |
+|---|---|---|---|---|---|---|
+| `z06_dense_forest` | 0.350 | 1.000\* | 0.9045 | 74.07 % | **72.10 %** | 1 |
+| `z10_settled_town` | 0.450 | 1.000\* | 0.3950 | 68.97 % | **46.75 %** | 0 |
+| `z04_marsh` | 0.750 | 1.000\* | 0.4600 | 57.14 % | **38.02 %** | 2 |
+| `z03_sedge_meadow` | 0.850 | 1.000\* | 0.1106 | 54.05 % | **11.51 %** | 1 |
+| `z08_lakeshore` | 0.350 | 1.000\* | 0.0237 | 74.07 % | **6.33 %** | 3 |
+| `z05_riverbank_timber` | 0.450 | 1.000\* | 0.0250 | 68.97 % | **5.26 %** | 0 |
+| `z01_wet_prairie` | 1.000 | 1.000\* | 0.0304 | 50.00 % | **2.95 %** | 11 |
+| `z02_mesic_prairie` | 0.950 | 1.000\* | 0.0267 | 51.28 % | **2.74 %** | 9 |
+| `z09_sand_prairie` | 0.600 | 0.329 | 0.0009 | 35.45 % | **0.16 %** | 5 |
+| `z07_bur_oak_savanna` | 0.900 | 0.000 | 0.0000 | 0.00 % | 0.00 % | 0 |
+
+\* on the clamp. Read the `before` column down: it is 50–74 % everywhere, and it is 50–74 %
+everywhere **because it is `matrixShare` divided by `matrixShare + 1`**. The `after` column
+spans 0.16 % to 72 %, and it is ordered the way the records are: a prairie is a grass matrix
+with scattered forbs, a closed forest floor is a herb layer under a canopy. Nothing about the
+mix was a reading before; all of it is now.
+
+At the stands, the annulus weighted by the ground it lands on: `prairie_west` **51.40 % →
+4.72 %**, `prairie_south` **52.04 % → 7.33 %**, `river_bank` **42.07 % → 19.93 %**. The card
+count does not move at any of them — 226, 241 and 28 far cards before and after — because this
+decides what a card STANDS FOR, exactly as T-0209 left it.
+
+**What a visitor loses, stated plainly** (`tools/measure_far_bloom.mjs --source`, desktop). At
+`prairie_west` the drawn heads go **2,522 → 1,993** and the furthest **135.7 m → 26.4 m**; at
+`prairie_south`, 1,602 → 1,225 and 167.1 m → 78.7 m; `river_bank` is unchanged at 43 and 14.0 m
+(its band is mostly water and timber). **The distant bloom was bought by the clamp.** T-0209's
+acceptance — *bloom past twenty-four metres at `prairie_west`* — still holds on 102 heads, and
+nothing past 40 m survives. That is the honest consequence of taking a constant out of a ratio,
+not a regression to repair by putting it back: if the far sward should read as more flowered
+than its ground cover, the argument for that is a SILHOUETTE reading (a tall forb is more
+visible per square metre of ground than the grass it stands in), which is a different
+measurement and is filed as its own ticket.
+
+**Files:** `renderers/web/js/flora.js` (`clumpRadiusOf`, `coverOf`, `subsetOn().cover`,
+`rebuildFar`, `communities()`, `isWaterAt`) · `tools/measure_far_split.mjs` (new) ·
+`docs/LIBERTIES.md` L235.
+
+## Shipped 2026-09-13 — T-0277: what a density handover would cost the sward's far edge, re-measured against the corrected ruler
+
+**The ramp stays, and this time the reason is a reading rather than an inherited one.**
+
+`TUNE.mid.band` and `TUNE.forb.band` are the last two coverage ramps in the sward. Every
+other boundary — the near ring's outer edge, the mid ring's inner one, both far bands —
+hands its ground over by DENSITY (T-0093, T-0086): each slot carries its own boundary drawn
+from a world-anchored rank, and a plant is drawn whole or not at all. These two still ramp,
+so at `full` the last few metres of grass and flowers are resolved through the 4x4 screen
+door — a band of dots per pixel.
+
+**Why it had to be re-asked.** T-0187 priced the change and kept the ramp, and its
+arithmetic was never in dispute. Its RULER was. Every figure it compared against was read at
+`flora.fadeAt(...) > 0.02`, a coverage the screen door renders as nothing whatever for two
+instance phases in three (T-0225), so a coverage ramp was being credited with reach no
+visitor could see. The gate reads the boundary at 1/16 now — the screen door's own quantum —
+and carries the `band x 1/16` inset that costs. The comparison a spread has to win is
+therefore a different one, and this is the re-run.
+
+**The instrument.** `tools/simulate_outer_spread.mjs` stands where the gate's part 7 and
+`tools/measure_sward_reach.mjs` stand, bins the same 16 bearings over the same +/-30 degree
+cone, and for every placed mid and forb instance reports the drawn boundary under both
+representations — today's ramp read at 1/16, and `slotRing`'s own arithmetic on this slot's
+own `aChiRing` with the rank asked of the placer through a new `flora.handoverAt` (the rule
+`fringeAt` set: ask the placer, do not re-derive the noise in the tool). It reproduces
+`measure_sward_reach.mjs`'s reading of the unmodified tree to the centimetre at both
+viewports, which is what makes its other column worth believing. Partial spreads are priced
+too, so the choice is read off a curve.
+
+| ring, tune | today, at 1/16 | fully spread | bars, spread |
+|---|---|---|---|
+| mid, `full` | 25.00 min / 26.61 mean (bars 21.76 / 24.46) | 22.58 / 25.36 | 22.20 / 24.90 — **clears** by 0.38 / 0.46 m |
+| mid, `light` | 10.32 / 11.96 (bars 9.50 / 11.50) | 8.56 / 11.23 | 9.60 / 11.60 — **over** by 1.04 / 0.37 m |
+| forb, `full` | 23.52 / 24.74 (bars 20.89 / 23.59) | 16.41 / 21.73 | 21.20 / 23.90 — **over**, from a quarter of the band upwards |
+
+At `light` three quarters of the band is over as well (11.57 mean); half clears at 11.75.
+The forb ring at `light` is over under every representation including the unmodified one —
+11 or 12 bins of 16 and a 4.47 m minimum — which is the sampling the instrument already
+declines to read a boundary off, not a defect this introduces.
+
+**Why it loses, in two parts, and the second is a better reason than T-0187 gave.**
+
+1. *The bar rises when the band is spread.* `ringsFor` replaces a spread layer's `band` with
+   `HARD`, so the `band/16` a reading at the quantum sits inside the placed boundary — 0.44 m
+   at `full`, 0.10 m at `light` — vanishes. A spread must clear a HIGHER bar with a SHORTER
+   reach. Printing it against the ramp's own bars would have flattered it by 0.44 m, which is
+   most of the margin it has.
+2. *A handover's boundary is a SAMPLE, and its expectation falls with the slots in the bin.*
+   The desktop cone holds 642 mid slots, forty to a 3.75-degree bin, and one of forty draws a
+   rank low enough to stand near the boundary. The `light` cone holds 132, about eight to a
+   bin, and eight draws do not reach it. At `light` the mid ring is as sparse as the forb ring
+   is at `full` — exactly the case `measure_sward_reach.mjs` refuses to read a boundary off.
+
+**And it cannot be taken one edge at a time.** `full` would carry a mid spread; it will not
+carry a forb one. But the forb ring ends within a metre of the mid ring deliberately, so the
+two boundaries land on the same screen row — spreading only the grass would leave the flowers
+dithering along the line the grass had just stopped drawing, drawn by half as many plants and
+against a step. A split decision is worse than either whole one.
+
+**Nothing moved.** No plant, no ring, no byte of geometry: the only renderer change is the
+additive `flora.handoverAt` accessor the tool reads through, and the TUNE commentary now
+carries these figures instead of the superseded ones. Reopening this means changing what is
+measured, not the bar — a sward dense enough at `light` for eight plants a bin to become
+forty, or a forb layer that does not have to share the mid ring's boundary.
+
+Verified: `tools/check.sh`; `node tools/measure_sward_reach.mjs --source` at both viewports
+(unchanged from dev); `node tools/simulate_outer_spread.mjs --source` at both viewports;
+the smoke parts `tools/smoke_budget.mjs --for-diff` prices for this diff.
+
+## Shipped 2026-09-13 — T-0334: the line the Trustees walked round the built-up town
+
+Section 22 of the by-laws passed 5 August 1835 forbids stacking hay inside a boundary the
+ordinance walks street by street — Washington Street at the U.S. Reservation, west to Canal,
+north to Kinzie, east to Wolcott, north to Illinois, and out to Lake Michigan — at $25 a
+stack. **It is the only documented statement this project holds about where the built-up
+town ended in the scene year.** Every other judgement here about density comes from the
+plat, the land sales and measured frontage.
+
+`tools/derive_hay_limits.py` derives it into `data/reconstruction/1835_hay_limits.json` and
+`check.sh` re-derives it on every commit. All six of the ordinance's vertices are
+intersections of committed `path_local_enu_m` centrelines; five are true crossings, and the
+sixth carries the Illinois Street line 100.78 m past its committed east end to the traced
+1834 shore (recorded, gated at 150 m). The start — *"on Washington street, at the United
+States Reservation"* — is where Washington's line meets the committed reservation ring's
+west side, and it lands there to the centimetre.
+
+**What is decided rather than derived, and graded `inferred` with its reasoning:** the
+ordinance walks an OPEN line and ends at the lake, so closing it needs the two sides it
+names but does not draw. The ring closes down the traced lake shore, across the harbour
+entrance in one straight segment (water between two piers — a closure, not a claim about
+ground), west along the reservation's own traced waterline and south down its west side.
+The reading this rests on — that a walk *commencing at* the reservation is bounded by it,
+so the garrison was not subject to the town's hay rule — is recorded with its alternative
+and what that alternative would cost (the 23 fort structures would come inside; nothing
+else would move).
+
+**Measured:** 199 acres, 4,715.9 m round, 30 vertices. Of 383 committed structure
+positions, 302 inside and 81 outside — 23 on the reservation, 36 west of Canal, 20 north of
+the Kinzie/Illinois line, 1 south of Washington (Heacock on Monroe), 1 in the harbour (the
+South Pier).
+
+**The disagreement with the block-infill programme, named.** 18 of 21 scheduled blocks are
+inside and the schedule places no NEW roof outside. The three outside are the Clinton–Canal
+tier, which the boundary leaves out because it turns north AT Canal. Two are `at_capacity`
+and hold 21 standing roofs between them (11 and 10 of 31); the third is already
+`not_a_block`. So the reconstruction's built town reaches one tier further west than the
+town's own fire line did. Either the roofs were there and the line was drawn short, or the
+tier is a block too far west. Stated, not settled.
+
+**Nothing is drawn in the scene,** and `docs/LIBERTIES.md` carries no new admission: a legal
+limit is not a fence, and nobody in 1835 could see this one. It reaches a visitor on the
+card — `renderers/web/js/ordinances.js`, a new *"Was it inside the town's fire limit?"*
+section with the verdict, the acreage, the section's own words and the citation. 383 cards
+gain the row.
+
+The ordinance is 35 days after the scene date. Carried as evidence ABOUT 1835; nothing is
+placed, moved or dated because of it, and `date_standing` in the file says so.
+
+
+## T-0385 — the New York Clothing Store stands against the Tremont House
+
+Tuthill King's card — American 1835-06-08 c014, 1835-06-20 c007, 1835-07-04 c003,
+one dateline of 8 June 1835 — places the shop *three doors north of the Tremont
+House, in Dearborn Street*. The register read it as `street_only` on `dearborn`
+because the gazetteer mints a house's live placement from its EARLIEST printing,
+and the earliest of these three falls inside an 8,024-character blob with the
+hotel's name cut away. The second impression loses "of the" and the name and keeps
+only "House". Only the third prints "[the T]remont House".
+
+The `match_landmarks` blocker the ticket names is no longer one: `tremont_house_1`
+carries the plain aka `Tremont House` and `{tremont, house}` resolves to it today.
+The live blocker was the second one the ticket's prior attempt found, and it is
+what this ships.
+
+**The rule.** A reading that declares its own anchor UNREAD does not hold a house's
+placement against a reading of the same advertisement that names it. It is stated
+in `compile_gazetteer.py` beside the T-0440 pass, in prose and not only in code.
+`anchor_unread` is an authored field on the placement — the pass that could not read
+the word is the one that says so — and `claim_problems` now refuses an anchor whose
+prose says it was unread and whose field does not. Six placements in the corpus
+carry the flag.
+
+**The bounds, and they are what stop it becoming a judgement it may not make.**
+Same class; same street where the unread reading names one; ONE dateline at or
+before the scene date, which is what makes the impressions one card — and it has to
+be the dateline rather than T-0440's issue-date bound, because the legible
+impression of King's card is 3 July and the scene date is 1 July. That impression
+is not an address first printed after the scene date: the address ran on 06-08 and
+06-20 and all that is gained on 07-04 is the ability to read it. Two datelines are
+refused and left to `anchor_changes`. The pass never reorders two anchors both of
+which were read.
+
+**What moved.** One business. `business_new_york_clothing_store` resolves to
+`structure tremont_house_1` and its register row goes `street_only` → `new_building`
+(`street_only` 60 → 59, `new_building` 28 → 29). It leaves the street-face adoption
+deal (40 → 39 adopted), so `recon_1835_blk_randolph_clark_d6_04` passes to Fullerton
+& Botsford and three other Dearborn roofs re-allocate. The two remaining unread
+anchors — `business_hubbard_co`, `business_s_b_cobb_saddle_harness_and_trunk_manufactory`
+— keep theirs: neither has a second impression to be read against.
+
+**What is NOT shipped.** No geometry. `new_building` is a finding and no tool in this
+project builds from one; all 29 rows are in that position. A roof three doors north
+of the Tremont House is owed and does not stand, and T-0306's remaining pieces carry
+it. The ticket was filed `needs_bake: true` and needed no bake: nothing staled
+(`validate.py --stale`: 380 assets match their inputs, 0 stale).
+
+**Verified.** `tools/check.sh` green, 304 steps, none red; gazetteer self-test 132
+cases (9 new, each proved by disabling the pass and watching it fail). Renderer smoke
+per `smoke_budget.mjs --for-diff`, recorded in the PR.
+
+## T-0983 — continuation FS closes at 125 over twenty-seven households
+
+Image 58 is now recorded in `pages/33SQ-GYYJ-FS.json`, with every visible
+continuation block inspected. The contact-sheet inventory had counted 28 occupied
+rows and read the family footing as 152. Native-resolution row crops show 27
+occupied rows and three blank ruled positions; the apparent last row was the
+footing below the closing rule. Its glyphs read 1, 2, 5, not 1, 5, 2.
+
+The 27 family totals were read before addition and sum independently to 125.
+Manufactures and trades closes at 12, inland navigation at 1, and learned
+professions at 1. The other four industry columns, slaves, pensioners, and
+disability columns are blank in body and footing. A horizontal mark straddling a
+school-column rule remains unresolved, its school footings are blank, and the
+literacy column at the bound edge remains unread.
+
+Neither published pairing key contains a 27-household or 125-person left sheet.
+Printed 240 does have 27 names, but four unread cells leave it without a population
+key, so it cannot pass both tests. FS remains unpaired and contributes no name,
+occupation, resident, or 1835 placement. Group 3 now has six continuations read
+line by line and nine images inventoried only. T-0984 retains the remaining eight
+filled leaves and blank BH, one leaf per run. PR #1044 carries this completion.
+
+## T-0981 — continuation BS: twenty-nine households, unpaired
+
+Image 56 is recorded in `pages/33SQ-GYYJ-BS.json`, with all 29 occupied TOTAL
+entries and every continuation block inspected. Twenty-six family totals are
+readable and sum to 102. Lines 4, 10 and 12 remain null with alternatives 4 or
+11; the resulting conditional totals are 114, 121, 128 and 135, none equal to
+the written footing 131. The discrepancy stays recorded and no glyph is chosen
+from the arithmetic.
+
+All seven written occupation and school footings close independently: agriculture
+2, commerce 7, manufactures and trades 5, inland navigation 1, learned professions
+1, one primary/common school and 115 scholars. Mining and ocean navigation are
+blank in the body and footing. The slave, pensioner, and disability blocks are
+blank; the literacy column at the bound edge remains unread.
+
+The only available left-sheet key with 29 occupied households is printed 226,
+with population 184. The only population key of 131 is printed 208, with 30
+households. Neither passes both keys, so the sheet remains unpaired and sequence
+evidence is not used. No household identity, resident, occupation, or school fact
+is projected into 1835. Group 3 now has five continuations read line by line and
+ten images still inventoried only. T-0982 retains the remaining nine filled leaves
+and blank BH, one leaf per run. PR #1043 carries this completion.
+
+## T-0979 — continuation 9ZK: twenty-three households, unpaired
+
+Image 53 is recorded in `pages/33SQ-GYYJ-9ZK.json`, with all 23 occupied TOTAL
+entries and seven industry columns inspected. Nineteen totals are read and sum
+to 95; lines 3, 4, 18 and 21 remain null with alternatives. Their one conditional
+completion to the written footing 119 is recorded without filling any cell.
+The inventory's old strip sum of 118 is not promoted to a reading.
+
+Agriculture closes at 2 + 1 + 1 = 4. Eleven manufacturing entries close at 21,
+including the independently read 7 on line 20. Inland navigation has one body
+entry and no written footing. A horizontal professions mark, a crossed mark
+beside a disability-column rule, and an upright mark near the school binding
+remain unresolved. The literacy column is unread. Geometry records the measured
+bands, individual crop boxes and the instrument's spurious component groups.
+
+The sole committed left sheet with 23 households is printed 225 (9HY), whose
+115-person footing agrees with its own cells. It fails this sheet's 119-person
+key. No household identity or 1835 occupation is assigned. Group 3 now has four
+continuations read line by line and eleven images still inventoried only.
+T-0978 split in place: T-0979 owns this leaf, T-0980 retains ten filled leaves
+and blank BH. PR #1042 carries this completion.
+
+
+## T-0977 — continuation 9SQ: thirty entries, four unresolved totals
+
+Image 52 is read in `pages/33SQ-GYYJ-9SQ.json`: 30 occupied TOTAL entries,
+all seven industry columns, and the other visible blocks. Four totals remain null
+(lines 5, 7, 13, 16), with visual alternatives. The 26 readable totals sum to 149.
+Only one combination of those alternatives reaches the written 175, but arithmetic
+is not a reading; none is filled. Agriculture 1, commerce 4, inland navigation 1
+and professions 6 close independently. Four clear manufacturing entries also sum
+to its footing 4, but a fifth short upright mark stays unresolved. A small loop
+beside a slave-column rule is unresolved; the obscured school/literacy edge is unread.
+
+Printed 224 (JM) shares 30 households and 175 people, but only 2 of the 26
+readable right-hand totals match its independently committed household sequence.
+That coincidental two-key match is refused. Printed 216 (DD) has 175 people but
+31 households and fails the count. The sheet stays unpaired and assigns no names
+or occupations to 1835 residents. Measured column bands, crop boxes and the
+instrument's truncated-body limitation are recorded on the page.
+
+Group 3 now has three continuations read line by line and twelve inventoried-only
+images. T-0975 was split in place: T-0977 owns this leaf; T-0978 retains eleven
+filled leaves and blank BH, one leaf per run. PR #1041 carries this completion.
+
+
+## T-0976 — seven open PRs reconciled
+
+PR #1040 integrates the PW recapitulation and BP/P5 named census sheets, preserves four competing page readings with their original commit hashes, and repairs the Loyd abbreviation and courtesy-title identity defects. The garden comparison is available without changing its rule. The full disposition and validation requirement are in [the reconciliation record](RESEARCH/open-pr-reconciliation-2026-09-08.md).
+
+## Completed reading — T-0974: 31 census lines, three occupation footings closed
+
+All 31 entries on image 51 are recorded in `pages/33SQ-GYYJ-9J5.json`, including
+six unresolved family totals. The 25 readable totals sum to 150; that is a partial
+sum, not the sheet population. The enumerator writes **179** at the foot. Four
+assignments of the recorded alternatives would reach 179, so arithmetic alone
+cannot settle which separated-stroke cell is 11 rather than 4. No assignment is
+selected. Three occupation columns close independently: commerce **6**,
+manufactures and trades **8**, learned professions and engineers **2**. The other
+four industry columns have no written entries.
+
+The slave and pensioner blocks are blank. The disability block has one unresolved
+short vertical mark in the white-blind column on line 30; its 8 by 28 px box and
+reason for withholding a value are recorded. The seven school columns are blank;
+the narrow illiteracy column is obscured at the binding and remains unread.
+
+The page stays **unpaired**: no available printed population key for a 31-entry
+left sheet equals 179. Sixteen equal-line-count candidates are listed, with
+unread population keys distinguished from mismatches. No name, serial, 1835
+resident, occupation or grade is derived from the unpaired continuation.
+
+T-0973 was split under the queue's one-leaf-per-run rule. T-0974 owns this reading;
+T-0975 preserves the remaining twelve filled continuations and the blank leaf in
+the parent's queue position. The continuation coverage count includes inspected
+lines with unresolved cells; it is not a claim that every glyph was deciphered.
+
+
+## Shipped 2026-09-11 — T-0432: blk_south_water_dearborn's second deal, and the last block with room in it
+
+**What shipped.** Three roofs on `blk_south_water_dearborn`, the FOURTH and last of the South
+Water blocks T-0009's ruling unblocked (T-0420 piece 4 of 4):
+
+- `recon_1835_blk_south_water_dearborn_d3_08` — a **D3 one-room frame cottage**, 5.047 m wide,
+  standing ON the committed South Water block face at the plat module's 1.5 m margin, its
+  **east wall the west wall of `frederick_thomas_shop`** on a shared party line.
+- `recon_1835_blk_south_water_dearborn_d5_07` — a **D5 deep-plan frame cottage**, 6.835 m wide,
+  the same party line read from the other side: its west wall is the shop's east wall.
+- `recon_1835_blk_south_water_dearborn_a1_09` — the A1 stable in the same lot's yard, at the
+  alley end.
+
+The three and the shop make **21.2 m of continuous street wall** — 28.547 m to 49.742 m along
+the face. Lot 7, the Lake-and-State corner, stays open. The block moves `open` →
+**`at_capacity`**, free lots 2 → 1, headroom 4 → 0, standing roofs 11 → 14; the town's standing
+count goes 367 → 370 of 667.
+
+**The count of two is measured twice, in different units, and the two agree.** Lot 2 projects
+onto the north face between 25.93 m and 52.86 m; less the plat module's 1.5 m margin each side
+that is 23.93 m buildable, of which the shop holds 33.594 m to 42.907 m. West gap 6.164 m, east
+gap 8.453 m — and the west gap is really 5.932 m, because `john_holbrook_store` ends at
+24.662 m on the lot next door and the three-metre separation rule admits no party wall this run
+did not declare. One roof each; neither gap takes two. Separately, T-0079 allows
+`ROW_UNITS_PER_LOT` = 3 row units to a lot of this grid and the shop is one of them, so two more
+reach that ceiling exactly. The metres also chose the western FAMILY: the generator sizes a D4
+at 6.072 m, which will not go in 5.932 m, so the west unit is the D3 and the D4 returns to the
+south district's balance.
+
+**Every platted block the plat module reaches is now `at_capacity`.** That is the statement
+T-0028 asked whichever of the four runs went last to make: the anonymous-block programme has run
+out of committed ground. The 297 roofs still owed are all behind named gates —
+`blk_south_water_market` (South Water's centreline stops 24 m short of control, 27 roofs) and
+the four coverage gates west, south, north and at Wolf Point (270 between them). Fifteen of the
+eighteen built-out blocks still hold one lot open on purpose; three have none, from earlier
+parcels.
+
+### The gate that had to be taught something: two deals may meet on one lot
+
+`tools/generate_block_infill.py` accounted for a block's lots in four classes — built on by this
+parcel, built on by another deal on this block, already carrying a roof, named open — and held
+them **pairwise disjoint**. That made "built on by another deal" a PROHIBITION as well as an
+account: a lot the first deal's run stood over could never be dealt again. It had never bitten,
+because `blk_south_water_clark`'s two deals took lots 4 and 2 and never met. Here the block's
+whole remaining headroom stands on lot 2, so the old ceiling of one principal roof per lot —
+retired by T-0079 in August — would have gone on enforcing itself through an accounting rule.
+
+Three changes, and each is bounded:
+
+1. **The overlap is admitted.** "Built on by another deal" is now that set LESS the lots this
+   deal builds on; the other three pairs stay disjoint and every lot is still accounted for.
+2. **It is bounded by the density standard's own ceiling, counted across deals.** A lot may
+   carry `ROW_UNITS_PER_LOT` row units; the units already standing are read off the committed
+   ground, and a yard building is not one of them (a privy behind the row does not pack a
+   frontage). A record this programme did not write carries no inventory class and is counted —
+   Frederick Thomas's shop stands in this row whoever built it.
+3. **The occupancy question is asked of the whole parcel, not of one entry.** `mine_ids` is one
+   recipe entry's records, which on a block dealt once is every anonymous roof on it — so the
+   question had always been asked of ground the parcel itself had not touched. Read with only
+   its own records excluded, the first deal's `--check` saw the second deal's cottages as a
+   stranger's houses, and the owner's business-front clause switched off under the shared lot the
+   moment a third claimant stood on it. Every `recon_1835_blk_<block>_*` record is excluded
+   instead. Nothing physical relaxes: lot margin, corridor, three-metre separation and the run's
+   own strip all refuse what they always refused.
+
+### T-0441's ceiling is not a wall here
+
+PR #599, the closed prior attempt at this ticket, failed on the `balanced` tier's triangle
+ceiling — `dev` at 1,208,434 of 1,210,000 and the branch at 1,210,608. The ceilings were raised
+on the owner's ruling afterwards (#765). Measured on this branch by
+`node tools/measure_detail_ceilings.mjs`: full **1,359,838 of 1,460,000** (PASS by 100,162),
+balanced **1,200,848 of 1,280,000** (PASS by 79,152), light **773,942 of 825,000** (PASS by
+51,058). The three roofs cost 1,704 triangles at the master.
+
+### Derived layers that moved with the roofs
+
+The siding stock is dealt over the whole town at once (T-0112), so three new clapboard walls
+re-dealt `chicago_american_office`'s exposure and its GLB was re-baked in the same commit.
+Re-derived and committed: the lot-line fences, dooryard plantings, planted rows, lot building
+material, the town census, the land-tract join, the scene-date register, the street-face
+adoptions, the Newberry leads (the fingerprint gate forces a re-parse of all four volumes) and
+the frontage works. `tools/measure_generator_half.py`'s stated asset counts go 380 → 383 and
+378 → 381.
+
+## Shipped 2026-09-07 — T-0788: Wright's block numbers, read off the sheet instead of counted
+
+**What shipped.** The Original Town's block numbers, **read**. `data/traces/thompson_block_numbering.json`
+carried six numbers derived from two numerals on a 639 × 719 px crop; it now carries
+**twenty-four blocks, twenty-two of them numerals read off the georeferenced sheet**. All
+nineteen generated blocks in `data/traces/vectors/thompson_lots.json` take a number where six did,
+and **144 lots** are numbered where 40 were.
+
+**The method is the finding.** This project is fitted to the BPL copy of Wright 1834 (RMS 17.5 m,
+eight ground control points). So a block's four bounding street centrelines give a box in local
+ENU, `tools/wright_px.py` maps it into the scan's pixel space, and IIIF returns that rectangle at
+6×. **The block fills the frame**, which takes "which block carries this numeral" away from the
+reader and gives it to the fit. Every entry cites the region it was read on.
+
+| tier | west → east |
+|---|---|
+| South Water – Lake | 21 20 19 18 17 16 — *falls* eastward |
+| Lake – Randolph | *28 29* · river · 31 32 33 34 35 36 — **rises** eastward |
+| Randolph – Washington | *45 44 43* 42 41 40 · **Public Square** · 38 37 — *falls* eastward |
+
+*(italic: West Division, west of the South Branch)*
+
+- **The run reverses tier by tier.** The old file refused to carry the count from one tier to the
+  next and named a boustrophedon as one thing it could not rule out. That is what the sheet draws.
+  A count carried straight down would have numbered the Lake tier backwards.
+- **All four previously counted numbers are confirmed** — 21, 20, 17 and 16. Nothing moves; they
+  stop being arithmetic. **Block 16 is G. Spring's** *"LOT No. 7, in block No. 16 … on Lake
+  street"*, and that address now rests on a numeral in the block's own frame.
+- **The Public Square is block 39, and Wright does not write it.** He washes the block pink, rules
+  it into eight lots and letters *Public Square* where the number would go. 39 is the one number
+  in the file still counted — across a single block, bracketed by 40 read west and 38 read east —
+  and it carries `numeral_on_sheet: false`. It is written onto
+  `data/reconstruction/1835_reserved_ground.json`, where the block's identity is argued.
+- **The lot scheme is read on four blocks now**, not one: 20, 18, 16 and 40 each print 4 3 2 1
+  across the north row west to east and 5 6 7 8 across the south. Block 40 sits in a tier whose
+  BLOCK numbering runs the other way, so the lot run belongs to the block. **The grade does not
+  move** — the lines it numbers are still the module's, and a number on a line nobody drew is
+  conjectural whatever its own provenance.
+- **Not every block carries eight lots.** The West Division block west of block 28 prints
+  `1 4 5 8 9` — ten lots in two rows of five. No West Division block is generated today, so
+  nothing is mis-numbered; it is recorded so the day one is, this is found first.
+
+**What is refused, and it is most of the plat.** Twenty-four blocks of fifty-eight. The
+Washington–Madison tier, the North Division and the West Division beyond Clinton are refused
+because the method is *cut the crop from committed street lines* and the street grid does not
+reach them; a numeral found by eye on paper that stretches 3.7% is a numeral placed by the reader.
+**Block 30** is refused separately — the Lake tier reads 29 on the west bank and 31 east of the
+branch and the ground between is water, so 30 is somewhere not yet read. And one grid cell,
+`blk_randolph_canal`, is **two** plat blocks with the river between them (44 and 43), so it takes
+no number at all and both readings wait in `blocks_not_in_the_grid`.
+
+**Nothing was promoted.** Every number stays `inferred`, not `documented`: the numeral is read,
+but WHICH BLOCK carries it is an identification made through a ±20 m fit against a 97 m block, and
+the grade is the weaker of the two steps, as it was before.
+
+**Verification.** `tools/check.sh` green, including `generate_plat_lots.py --check`, which
+re-derives the whole grid byte for byte offline.
+
+**Files.** `data/traces/thompson_block_numbering.json` (authored) ·
+`data/traces/vectors/thompson_lots.json` (generated) ·
+`data/reconstruction/1835_reserved_ground.json` · `tools/generate_plat_lots.py` (prose only) ·
+`docs/RESEARCH/thompson_block_numbering.md` § 0 · `docs/RESEARCH/thompson_plat_grid.md` § 4b ·
+`docs/RESEARCH/clark_reach_bulge_1834.md` § 9.
+
+## Shipped 2026-09-06 — T-0843: the mints ask the identity master before they write a card
+
+**What shipped.** The prevention half of T-0839. #929 folded 42 duplicate cards under
+written rulings and gated that every candidate cluster carries one — that is *ruling
+coverage over the duplicates that exist*, and it stops nothing from writing the next one.
+
+**The cause.** Three of the four minting passes test "does the town already carry this
+person?" by SURNAME, and the proxy is partial by design: each skips the households minted
+by itself and by the passes below it, so a card one of those wrote is invisible to it.
+A man his sources spell six ways goes straight through the gap.
+
+**The instrument.** `tools/identity_master_guard.py` — new — hands a candidate name to
+`consolidate_resident_evidence.cluster()`, the identity master's OWN function, inside its
+own surname bucket, with every identity of that surname standing as an anchor whether it
+holds a committed card or not. It refuses only where the master merges (M1/M2/M3); where
+the master refuses to choose between rivals (R2/R3/R4) so does this, and the candidate is
+minted. Wired into the documented, placed and letter-list passes as refusal 9, each
+consulted BLIND to exactly the households its own surname test skips, so no pass reads
+back its own answer and all three stay re-derivable beside each other. `mint_civic_
+residents.py` already consulted the master (its refusal 2) and is unchanged.
+
+### The rules are not re-implemented, and the first draft is why
+
+Written out by hand from `MERGE_RULES`, the resolver reported **19** committed cards as
+duplicates of each other where the master itself reports **2**. A hand copy of M2 cannot
+see the rivals that HOLD a merge apart: `C. S. Hunt` looks like the one Charles Hunt on a
+card until you notice the bucket also prints `Cha Hunt`, which is R3 and not a merge. The
+resolver defers to `cluster()` for that reason, and the case is a self-test.
+
+### What it costs the town today: nothing
+
+| pass | accepted | newly refused |
+|---|---|---|
+| documented | 39 | **0** |
+| placed | 5 | **0** |
+| letter_list | 658 | **0** |
+
+`identity_master_guard.py --report` is the measurement: 1,356 of 6,697 identities stand on
+a committed card, 2 stand on more than one, and reading all 1,362 person records back as if
+they were being minted today resolves exactly those 4 onto a different card. Both pairs are
+`brown_rufus`/`brown_mrs_rufus` and `norton_n_r`/`norton_nelson_r`, deferred to **T-0723**
+by name in `data/residents/card_merge_rulings.json`. It is a lock, not a repair.
+
+### The gate
+
+`consolidate_resident_evidence.py --check` now fails when any identity stands on more than
+one town card. The only way past is a DEFERRAL in `card_merge_rulings.json` naming the cards,
+the ticket that owns them and the reason — a deferral without a ticket or without a reason
+fails too. Four self-test cases assert it fires. `check.sh` gains the guard's own self-test.
+
+### The gate caught one within the hour, and it is filed rather than decided
+
+Merging `dev` brought T-0724 (#931), which taught the splitter that a compound surname is
+one surname — and `Bogart, Dr. Henry Van der` and `H. Vanderbogart` fell into one bucket
+for the first time, where M2 attached the initial. Two town cards, one identity, and dev's
+own `consolidate_town_cards.py --check` was green on it because the cluster carried an
+`undecided` row, which is the ticket's whole argument about ruling coverage in one example.
+
+It is **T-0950**, deferred by name in `card_merge_rulings.json`. It is not decided here:
+the death notices put the doctor's death at 8 April 1835 and the letter this card was
+minted from ran on 20 May 1835 — ordinary for an uncalled-for letter, and still something
+somebody has to weigh. T-0843 owns the lock on the door, not the adjudication behind it.
+
+### One derived row moved, and it is the right one
+
+`docs/RESEARCH/letter-list-surname-collisions.md` counted `Norton N. R.` as a candidate only
+the corrected surname reading refuses. It is now refused under BOTH readings, because the
+master resolves those initials onto the committed Nelson R. Norton whichever token the old
+rule took for a surname. Collisions **9 → 8**. Nothing was retired to make that happen; the
+report says so in its own prose.
+
+## Shipped 2026-09-06 — T-0828: a fence run id names the side of the lot, not just the lot
+
+**What shipped.** `tools/generate_lot_line_fences.py` mints `side_<lot>_<e|w|n|s>`
+where it minted `side_<lot>`, and the three lot-line fence records rebuilt from it.
+Seventeen ids that were each carried twice are now thirty-four ids carried once:
+
+| file | runs | ids carried twice, before | after |
+|---|---|---|---|
+| `data/enclosures/town_lot_line_pickets.json` | 61 | 4 | 0 |
+| `data/enclosures/town_lot_line_rails.json` | 147 | 8 | 0 |
+| `data/enclosures/town_lot_line_boards.json` | 83 | 5 | 0 |
+
+**No fence moved.** The diff over the three records is 336 lines, and every one of
+them is an `id` or the `note` that now says which side the run is on. Not one
+`path_local_enu_m`, `belongs_to`, kind, opening or count changed — the collision was
+never in the geometry, and the geometry is the same geometry it was.
+
+### Why the id collided, and why both entries were always real
+
+A run was named after the LOT it belongs to, and a lot has two side lines. The two
+runs called `side_blk_lake_dearborn_lot1` in the rails file sit at easting 709.8 and
+735.7 — one lot's width apart, the east and the west line of that lot, each with its
+own path. Both are real fence. The name identified the lot and then stopped, which is
+under-specification rather than duplication, and it is why the check could not simply
+assert there: asserting would have refused correct data.
+
+### The discriminator is the geometry that already told them apart
+
+The side line's midpoint lies to one side of the lot's centre, and the two sides of a
+lot lie on opposite sides of it, so the dominant component of that offset — east,
+west, north or south — always separates them. It is measured off the WHOLE committed
+line rather than off the piece, so trimming a run around a building that stands on it
+cannot rename the side the run is on; and it is measured from the FIRST lot named in
+the id, which is the id's own sorted order, so a party line between two lots reads as
+the side of the earlier-named one. That is a statement about a real line and not a
+tie-break: the east side of lot 1 IS the west side of lot 2, and the id names both.
+The note on every side run now says the side in words as well.
+
+### The exception came out of `check_unique_ids.py`, which is the point of it
+
+`EXCEPTIONS` held these three entries and nothing else. It is now empty, and the
+check covers `runs[]` like every other keyed list — 67 of 68 kinds of list before,
+68 of 68 today. The table stays, empty, with the story of the entry that left it:
+an exception here is a named, ticketed gap and never a silent skip, and the check
+refuses one the day it stops being needed, which is exactly how this one came out —
+it reported the entries as unnecessary and asked for the deletion.
+
+Three self-test cases had to move with it. They asserted the machinery — an
+exception honoured, an exception reported when its list comes good, an exception
+whose file is simply absent — by pinning to the real `town_lot_line_rails.json`
+entry, so the day the entry went it took its own proof with it and they failed. They
+now install a synthetic exception for their own duration, which keeps the machinery
+proven for whoever needs the next one; and a new case asserts the three fence files
+are held by the rule like any other list.
+
+### Visible-progress rule
+
+**Not visible**, and it is not pretended to be. Nothing on the walk changed: the
+fences stand where they stood, and a run id is not drawn. What changed is that
+anything indexing these runs by id — a scene compile keying a mesh, an audit joining
+a run to its lot, a diff asking whether a run moved — can no longer silently keep one
+side of a lot and lose the other.
+
+## Shipped 2026-09-06 — T-0860: the three kin ties #947 read and the survey could not see
+
+**What shipped.** Kin rows on both people for three ties `dev` did not hold, each
+under a written ruling:
+
+| tie | on dev before |
+|---|---|
+| Mark Beaubien — brother of Jean Baptiste | `hh_beaubien_mark` carried **no kin at all** |
+| Charles Loomis Harmon — son of Elijah Dewey Harmon | `hh_harmon_brothers` carried **no kin at all** |
+| Isaac Dewey Harmon — son of Elijah Dewey Harmon | same |
+
+**The Miller ruling is untouched.** #947 and #949 disagree on it — #949 landed it
+at `inferred`, #947 refused it because "Samuel, the landlord" is a surname the
+dataset carries five times. The owner's call, in session: land the three, leave
+Miller as `dev` has it. That disagreement is not reopened.
+
+### Why the survey could not see them, and it was mechanical
+
+**#947 adds no tools.** It is data-only, so its three findings were readings a
+person made rather than anything the survey derives. Two separate gaps:
+
+1. `"Andreas's life of **his brother** Jean Baptiste"` — the pattern reads
+   `<relation> of <Name>`, and English puts no "of" after "his brother".
+2. `"lists his five surviving children: 'Charles Loomis Harmon, Isaac Dewey
+   Harmon, …'"` — one subject and five others, which no `<relation> <Name>`
+   pattern reaches.
+
+### One gap closed by generalising, the other deliberately not
+
+**`PROSE_POSSESSIVE`** reads `his|her <relation> <Name>`, bounded exactly as
+`PROSE` is. Measured before switching it on: **10 matches** across the committed
+prose, and the existing "must resolve to exactly one town person" step refuses
+`his mother Potawatomi` and the rest on its own. **The net is wider; the sieve is
+unchanged.**
+
+That exposed a second thing. The documented ellipsis rule — a quoted source that
+elides the surname is re-read with the SUBJECT'S — was implemented as *exactly one
+token*, a fair reading of `Samuel` and a wrong one of `Jean Baptiste`. It now
+covers a compound forename, and applies **only after the printed name has failed
+to resolve on its own**, so a name that stands alone is never rewritten and a
+re-read can fail to find somebody but cannot find the wrong somebody.
+
+**The Harmon gap gets no pattern, on purpose** — a regex fitted to that sentence
+would be fitted to that sentence. `data/residents/kin_readings.json` is an
+authored seam: a kinship a person read where no pattern reaches, recorded as a
+statement so it becomes a proposal and is ruled like any other. It earns the right
+to be **asked** and nothing about the answer.
+
+What stops it being a back door: **every entry names the path its quote stands on,
+and `--check` refuses an entry whose quote is not actually there.** Three
+self-test cases hold it — a quote that is nowhere, a card not in the tree, and the
+committed readings really standing on their cards.
+
+### Widening the net surfaced a new question, and it is answered
+
+`"his sons Charles Henry"` became landable. **Refused**, on #947's own reading:
+Andreas names the son in full, `hh_beaubien_charles_h` carries initials, and
+deciding they are one man is a crosswalk ruling rather than a kinship — the
+father's own record already says that of the two sons named, one has a household
+here.
+
+Rulings **13 → 17** (13 landed, 4 refused). Kin gate green, self-test green,
+`validate.py` PASS with 0 errors — the reciprocity check reads all four new rows.
+
+## Shipped 2026-09-06 — T-0855: the Hubbard fold rests on the man his own transcription names
+
+**What shipped.** `hubbard_g` folds onto `hubbard_henry_g`, not `hubbard_gurdon`.
+Its only press evidence is transcribed **`Hubbard, [Henry] G.`** and cites
+`person_hubbard_henry_g`; `hh_hubbard_henry_g.json` is a separate **attested** card
+in the same tree. T-0839 (#929) had put one man's record on another man.
+
+### It needed a new rule, not a bent one
+
+`C2` — an initial onto its one full forename — **refuses** a cluster with two rivals,
+on principle, and a bare `G.` has two here: Gurdon and Henry G. What settles it is not
+a name-matching inference at all: somebody read the page and wrote `[Henry]`.
+
+> **C5 — THE TRANSCRIBER NAMED HIM, IN BRACKETS.** A bracketed forename is an
+> editorial expansion by whoever transcribed the source. It is evidence about
+> IDENTITY where an initial is only evidence about spelling, so it outranks the
+> initial and settles a cluster C2 would refuse.
+
+The old ruling's `against` read *"No second Hubbard household is on any card, and no
+source reached names one."* Both halves were false. It now says so.
+
+**`chicago_democrat_1833_1835` stays on Gurdon** — three of the four cards still
+folded onto him cite it too, so it is his by other routes. Only the single wrong
+`press_evidence` entry came off, and that was checked before anything was removed.
+
+### Two defects found while fixing it, and both were hiding it
+
+1. **`--apply` could not correct a mis-fold.** Its already-folded branch only *read*
+   the stub, so rewriting the ruling and re-running changed nothing — the stub and the
+   redirect table went on naming Gurdon. It now re-points a corrected fold and records
+   `repointed_from`.
+2. **`--check` passed the whole time the ruling said Henry and the data said Gurdon.**
+   It verified a redirect points at *a* real person, never at the person the **ruling**
+   names. Two copies of one fact disagreeing — this project's oldest failure shape —
+   and it made a corrected ruling silently inert.
+
+Both are asserted now, and both were proved to fire by putting the redirect back and
+watching them catch it.
+
+### The gate the ticket asked for
+
+`bracket_conflict()`, pure and self-tested: a folded card whose reading brackets a
+forename absent from its survivor is refused. Five cases, including **the false
+positive it would otherwise have shipped** — a bracketed RANK (`Allen, [Lieut] James`)
+is not a forename and must not trip it.
+
+Measured over all 42 folded records: **one** tripped it, this one. The other 41 stand,
+so #929's consolidation is sound and this was an isolated ruling error.
+
+### Where it came from
+
+Draining the open-PR backlog. **#932** was the losing rival to #929 and superseded on
+coverage (36 clusters ruled against 31, 42 folds against 34) — but it was **right about
+this card**, and closing it on the numbers would have buried the finding. Reading a
+losing rival before closing it is what turned this up.
+
+### Visible-progress rule
+
+**Visible**, and it settles the commitment made two entries ago: a man's card now
+carries the reading that names him, and another man's stops carrying a record that was
+never his.
+
+## Shipped 2026-09-05 — T-0817: the owner's queue ranking stops going backwards
+
+**What shipped.** Two halves, because the fault has two.
+
+1. **`tools/merge-queue.mjs` — the band-stripping bug.** A new ticket is now placed
+   where its own side placed it, carrying the comment band that introduced it,
+   instead of being dumped at the end under "MERGED IN, NOT YET PLACED". And a band
+   that genuinely cannot be anchored now **refuses the merge and names the line**
+   rather than dropping it.
+2. **`tools/check_queue_order.mjs` — a gate, wired into `check.sh`.** Every re-rank
+   the base records must still be present on the branch.
+
+### Why the driver alone was never going to be enough
+
+T-0817 found the thing that matters and it is worth quoting: *"It never reaches a
+squash-merge on GitHub, because GitHub does not run this repository's merge
+drivers. So the driver protects branch merges and cannot protect the thing that
+actually lands."*
+
+That is exactly what happened with **PR #801** — the driver **refused**, correctly,
+and the ranking was lost anyway, because the refusal lives on a developer's machine
+and the merge happened on the server. `check.sh` is the required `gate` on dev's
+ruleset, so a gate refuses the merge **button**, which is the only door the
+regression actually comes through.
+
+### The driver's bug was not where the ordering rule is
+
+The ordering rule ("the side that actually re-ordered wins") is sound. The bug was
+below it: only the **ordering side's** text is walked, so any band the *other* side
+wrote was discarded outright — and because `seq()` compares only ids present in all
+three versions, six brand-new tickets under a new band do not register as a re-order
+at all. `theirsReordered` stays false, ours becomes the ordering side, and the
+owner's ranking is dropped without the "both sides re-ranked" refusal ever being
+reached. #909 measured the result: *"stripped THREE times … six tickets the owner put
+at the top came to be sitting at line 416."*
+
+### What the gate asserts, and what it deliberately does not
+
+**Set inclusion of the RE-RANK LEDGER's entries, not a date comparison.** Two
+re-ranks happened on 2026-09-05 alone, so "is our newest date ≥ theirs" would have
+passed a branch that dropped one of them. It never judges whether an order is good —
+only whether a decision the base already recorded has gone missing, which is
+decidable without reading a single ranking.
+
+It **skips rather than fails** when there is no base to read (no `origin/dev`, a
+detached checkout, an offline runner). A gate that fails for want of a network is a
+gate people learn to bypass.
+
+### Tested against the real regression, not a fixture
+
+The real `tickets/QUEUE.md` with yesterday's two re-ranks removed is **refused**, and
+both are named in the owner's own words. 37 assertions on the driver (11 new, on the
+band-stripping case and its refusal) and 13 on the gate — including the #801 scenario
+end to end in a real git repo, and the same-day case a date check would wave through.
+
+### Visible-progress rule
+
+The previous entry committed that the next run must be visible, and this one is not.
+**Exemption 1 — an owner-reported bug — which AGENTS.md says "always outranks this
+rule".** The owner asked for this fix directly, after that commitment was made. The
+commitment carries to the run after this one.
+
+## Shipped 2026-09-05 — T-0431: blk_south_water_clark's second deal, on the drug store's party wall
+
+**What shipped.** Two roofs on `blk_south_water_clark`, the third of the four South Water
+blocks T-0009's ruling unblocked (T-0420 piece 3 of 4):
+
+- `recon_1835_blk_south_water_clark_c2_06` — a **C2 store-residence**, 5.751 m × 10.760 m,
+  1.5 levels, standing ON the committed South Water block face at the plat module's 1.5 m
+  margin, its **east wall the west wall of `pruyne_kimball_drugstore`** on a shared party
+  line. First time this project has stood an invented roof shoulder to shoulder with a
+  *documented* one.
+- `recon_1835_blk_south_water_clark_a3_07` — the A3 privy in the same lot's yard, at the
+  alley end.
+
+Lot 1, the Lake-and-Clark corner, stays open. The block moves `open` → **`at_capacity`**,
+free lots 2 → 1, headroom 4 → 0, standing roofs 10 → 12.
+
+**The face is this block's own record, not the town's.** South Water carries four documented
+records on this block (Harmon & Loomis, Pruyne & Kimball, Bates's auction room, Madore
+Beaubien) against Lake's one, and three of the four are commercial; T-0024's second clause
+then puts a commercial roof ON the street line. The town-wide count does not decide it and
+the recipe says so.
+
+**The end rule is read, not asserted.** `measure_end_rule.py blk_south_water_clark --list`
+puts lot 2 at **84.44 m walked** from the Dearborn drawbridge against lot 1's **231.87 m**.
+This face grades only on the walked criterion (6.07 m unit step); the straight line reads
+4.81 m and is BELOW THE FLOOR — the same shape T-0317 found on `blk_randolph_market`.
+
+### The finding: two sizings of the same ground, in different units
+
+`reconcile_665.py` sizes principal room as `ROW_UNITS_PER_LOT * (free_lots - 1)` — party-line
+units of 6.072 m counted against LOTS — and dealt this block 3 principal roofs.
+`generate_block_infill.py`'s T-0105 ceiling is one principal roof per lot, and a frontage run
+may carry no more roofs than the lots it was dealt; this run was dealt one lot, so one is the
+ceiling. **It is not the metres that refuse the other two here.** Measured on the committed
+face: lot 2 projects 24.643–49.751 m, 22.108 m buildable after the 1.5 m side margins; the
+drug store holds 39.108–46.825 m; 12.965 m clear west and 1.426 m east; the store takes
+33.356–39.107 m and leaves **7.213 m still clear**, which is width enough for a D3 at its
+4.88 m band minimum. The two dealt cottages (D3, D4) are therefore NOT deferred — this
+generator's deferral list is for families it refuses by name — so the recipe claims 2 of the
+4 in its own `drawn_from_schedule` numbers and the other two return to the south district's
+balance. Filed as the successor ticket T-0431 owes under T-0028's programme rule.
+
+### The correction that made the ground reachable
+
+The first deal (2026-08-15) was declared on frontage lots `[2, 4]` and stands **entirely on
+lot 4** (60.439–72.893 m along the face, where lot 4 runs 49.286–74.393 m): it packs west
+from the east end and ran out of roofs 10.7 m short of lot 2. Lot 2 stayed declared as its
+ground, and the two halves of the programme then read it two ways — `reconcile_665.py`
+counted it FREE, `generate_block_infill.py`'s T-0105 lot accounting counted it built on and
+refused it to any later deal. Narrowing the declaration to `[4]` moves no coordinate (the
+east anchor reads `along_max`, which lot 4 sets either way) and both units re-derive
+byte-identical. The amendment is written into that entry's own `runs` field.
+
+### Side effect worth having
+
+`adopt_street_faces.py` seats one more documented trader on the street: **J. Curtiss,
+attorney and counsellor at law** — 38 adoptions → 39, refusals 22 → 21.
+
+### Also here
+
+- Baked: `c2_06`, `a3_07`, and `d5_01` — whose siding stock was re-dealt (6 in → 4.5 in) by
+  the new neighbours within 60 m, which `validate.py --stale` caught.
+- Re-derived: the 665 programme, `town_census.json`, `street_face_adoptions.json`,
+  `register_1835.json`, `land_sales/ground.json`, all sidecars, and the publish mirror.
+
+## Shipped 2026-09-05 — T-0832 (of T-0813): the five files that conflict on every merge stop conflicting
+
+**What shipped.** Two merge drivers and the `.gitattributes` to reach them:
+`tools/merge-generated.mjs` (the five build products — keep ours, print the
+rebuild command, never conflict) and `tools/merge-smoke-state.mjs` (the smoke
+ledger — union of whole readings, never of lines). Registered by
+`setup-merge-drivers.sh` beside the existing two; twenty assertions in
+`tools/merge-generated-selftest.mjs`, wired into `check.sh`.
+
+### The measurement, which is a log rather than an argument
+
+PR #906 was open about seventy minutes. `dev` moved **five times** under it —
+#904, #907, #908, #905, #858 — and every one of the five merges conflicted,
+**always in generated files and never once in the substantive diff**:
+
+| lap | dev landed | conflicted |
+|---|---|---|
+| 1 | #904 | BOARD.md, tickets.json ×2, build.json, walk/index.html |
+| 2 | #907 | the same five, plus STATUS.md (a real conflict, hand-merged) |
+| 3 | — | the same five, measured with `merge-tree` before the lap |
+| 4 | #905 | the same five |
+| 5 | #858 | BOARD.md, tickets.json ×2 |
+
+`check.sh`, `QUEUE.md`, `changelog.js` and every ticket source auto-merged every
+time, because those carry a driver or are hand-authored. Two other PRs report it
+independently: **#894** — *"each one collides on the same four generated files"*,
+four rebases paid and the fifth is where that run's clock ran out; **#850** —
+*"Every conflict so far has been in a generated file… The substantive diff has
+merged cleanly every time"*, rebased twice, the gate run three times on three
+bases, then parked. #850 prices a lap at ~19 minutes of honest verification,
+during which dev took three more merges.
+
+### Why keeping ours is safe on those five, and only those
+
+Each is **already refused by the gate when stale** — read out of `check.sh`, not
+assumed: BOARD.md and tickets.json by `ticket.mjs check`; the site tickets.json by
+`test_ticket_mirror.mjs`, which asserts a mirror somebody else made stale still
+fails; build.json and walk/index.html by `check_published.mjs`. **So the conflict
+was never what protected these files — the gate was, and the conflict was pure
+cost.** That is the same reasoning `chicago/4d/.gitattributes` already sets out
+for the liberty register.
+
+### The file that looks like one of them and is not
+
+`tools/dev-smoke-state.json` sits in exactly the same conflict set. Measured
+before writing any rule: it is an **append-only** register of smoke readings
+(T-0216), 62 of them; its rows carry **no `id`**, so T-0820's uniqueness check
+cannot see it; and **no step of `check.sh` reads it at all**. Nothing regenerates
+it and nothing would notice a merge throwing half of it away. #905 resolved one
+lap by taking dev's side and said so — right for one lap, wrong as a standing
+rule, because a reading is evidence that a gate was run on a tree, and evidence
+is not regenerable.
+
+**Treating all six alike would have destroyed data silently.** The ledger gets a
+union of whole readings instead, deduplicated on a canonical form that sorts keys
+at every depth — not `JSON.stringify(r, keys.sort())`, whose replacer array is
+applied at every level and would flatten two readings that differ only inside a
+nested object, dropping one. In a driver whose single promise is that no reading
+is ever lost, that was the bug that mattered, and it is its own test case.
+
+### The last test is a real merge, on purpose
+
+Nineteen cases test the scripts. The twentieth builds a git repo, writes the
+`.gitattributes`, registers the drivers and performs an actual conflicting merge.
+`.gitattributes` naming a driver, the driver being registered, and git reaching it
+are three separate things, and only the third is what a branch experiences — **a
+driver that works perfectly and is never invoked looks exactly like no driver at
+all**, which is the state this repo was in for all five laps of #906.
+
+### Visible-progress rule — stated against me, not around me
+
+**This is the second consecutive invisible run I have shipped**, after T-0820, and
+the four-entry window already carries two or three invisible entries. The hard
+trigger in AGENTS.md (three consecutive entries opening "Nothing you can see") is
+not met — v596 does not — but the one-in-four ratio is stretched and pretending
+otherwise would be the gaming the rule warns about.
+
+What justifies it is exemption 3's substance rather than its letter: it is not a
+gate, it is the thing parking gates' worth of finished work. The parcels are
+nameable, which the exemption requires — **#850** (T-0559, two readings settled
+against the sheets), **#856** (T-0497, the Dalton index), **#841** (T-0581, Moses
+and Kirkland vol. 1) are all sitting with green work behind this exact conflict,
+and #894 ran out of clock on it outright.
+
+**The next run must be visible, and this entry is the commitment.**
+
+### A correction, because it was my own duplicate
+
+This work was first filed as **T-0831** and it should not have been: **T-0813**
+already asked for exactly it, on the owner's request, and was ranked at the top of
+the drain band. T-0813's measurement is also better than the one above — it counted
+**21 of 21 open PRs** conflicting on the same six files, and observed that the two
+files which already had drivers conflicted on **0 of 21** and **3 of 21**
+respectively. That is the real evidence; my five laps are a second sample of it.
+
+T-0813 is now split — **T-0832** (this, the merge treatment) and **T-0833**
+(`tools/drain.mjs`, its untouched second half) — and the children hold its queue
+place. T-0831 is withdrawn.
+
+**Two deliberate deviations from what T-0813 specified**, recorded in T-0832 rather
+than left to be found:
+
+1. It asked for a driver that *re-runs the tool that owns the file*. A merge driver
+   runs during the merge on a HALF-MERGED tree, once per conflicting file, and the
+   owning tools here are `ticket.mjs board` and `publish.sh` — the second reads the
+   whole tree and takes a minute or two. Regenerating from a state that never
+   existed is worse than keeping a stale copy. So it keeps ours and PRINTS the
+   command, and the gate's existing staleness checks are what make that safe.
+2. It asked to union the ledger *by (tree hash, viewport, stage), newest wins on a
+   tie*. Newest-wins **discards a reading**, and two runs of one stage on one tree
+   are not redundant — they are the evidence it was run twice. This unions on full
+   identity and drops nothing; pruning, if ever wanted, is a deliberate pass and not
+   a merge driver's silent side effect.
+
+## Shipped 2026-09-05 — T-0820: an id used twice is refused on the branch, not on dev
+
+**What shipped.** `tools/check_unique_ids.py`, wired into `tools/check.sh` beside the
+conflict-marker check it is a sibling of. It walks every committed JSON under `data/`,
+`tools/` and `tickets/` — 2,835 files, 0.6 s — and refuses any list of objects that
+carries the same `id` twice, naming the file, the key, the id, and whether the two
+bodies are identical (a merge that kept both) or different (an id that names two
+things). Fourteen self-test cases prove it fires.
+
+**Why it is on the branch's gate and not a nightly.** `dev` went red twice on
+2026-09-05 on this exact fault — T-0739 minted by two branches (#863), then a second
+byte-identical `west_water` in `data/streets/1835.json` from a branch cut before the
+first landed (#889) — and a third came that evening from an agent staging a `UU`
+conflict with `git add -A`. None was caught on the branch that wrote it. All three were
+caught by `check.sh` against `dev` AFTER the merge, which is the expensive place: the
+dev gate is the base every open PR inherits, so one duplicate parked nineteen PRs
+behind a red they had not caused. `dev` now carries a ruleset requiring `gate`, so a
+red dev no longer discourages merging — it forbids it.
+
+### The rule is discovered, not listed
+
+A hand-maintained table of "lists to check" goes stale the first time somebody adds a
+list, and the list they add is the one that breaks. So the check applies wherever the
+SHAPE appears: a dict value that is a list of two or more objects, every one carrying
+an `id`. Measured over the tree before it was switched on: **68 kinds of list, 67
+already clean.** The rule is what the data already obeyed, written down.
+
+### What it found, and the cause was not the one expected
+
+One real fault: `fulton` in `data/streets/1835.json` cited `thompson_plat_1830`
+**twice**. It is not a merge artefact. `abacee6e4` — the T-0713 sweep that attested the
+platted streets — appended the plat to every street's `sources`, and Fulton's list
+already contained it. T-0713's own STATUS entry above says so in as many words: "and
+`fulton`, which already cited the plat". The sweep knew and appended anyway. Fixed
+here, one element removed; every other street in the file cites the plat once.
+
+That matters beyond the one line: **the fault the check was built for arrived by a
+route nobody predicted.** Three duplicates from merges, and the fourth from a
+single-branch sweep that read the value and added it again. A check written to catch
+merges would have missed it; a check written against the shape caught it.
+
+### The one exception, named rather than skipped — T-0828, and since closed
+
+`runs[]` in the three `data/enclosures/town_lot_line_*.json` files repeated ids, and
+those were NOT duplicates. Two runs called `side_blk_lake_dearborn_lot1` sat at easting
+709.8 and 735.7 — one lot's width apart, the east and the west line of that lot. Both
+are real fence; the generator named a run after the LOT and a lot has two sides, so the
+id under-specified. Asserting there would have refused correct data. **T-0828 fixed the
+generator** (see the entry at the head of this file, 2026-09-06): the id now names the
+side, all three files rebuilt clean, and `EXCEPTIONS` is empty. The check refuses an
+exception the day it stops being needed, so it cannot outlive its ticket — and that is
+how this one came out, on its own report rather than because somebody remembered.
+
+### Not covered, and measured rather than assumed — T-0829
+
+T-0820's acceptance also named `data/research/*/coverage.json` →
+`declarations[].items[]`. It is **not** covered: those are lists of strings and the
+declarations carry no `id`. All ten files are clean today, but nothing holds them.
+The obvious extension was measured and refused: 222 kinds of string list, 28,331 lists,
+14 with a repeat — and most of those repeats are **correct**, because the lists are
+multisets (`by_ward` has one entry per person, and two people share a ward). A blanket
+rule would refuse honest data, the same mistake `raised[]` forced this check to avoid.
+Three `mentions` lists in `gazetteer.json` are genuinely suspect and are written up in
+T-0829 for adjudication against the clippings, not silently deduplicated — the same
+clipping id twice is either a double count or a clipping-level id doing a
+mention-level job, and which one it is decides whether the fix is a deletion or a
+rename.
+
+### Visible-progress rule
+
+This is an invisible run under **exemption 3** — a gate blocking visible parcels. It is
+not speculative: with `dev`'s ruleset active, the next duplicate id stops every merge
+on the lane, and the parcels it stopped on 2026-09-05 were the nineteen PRs held behind
+#889. The last three merged entries (v588–v590) are all visible, so the one-in-four cap
+is not in play.
+
+## Shipped 2026-09-05 — T-0823, T-0824: a speed slider per pace, and a framed arrival
+
+The owner, in session: three speed sliders "like you have for walk speed", ceilings "like
+walk at 20 mph and horse gallop at some high number like 60 mph", gait names as the slider
+moves; and "for any travel, when you land it should be a nice complete view of the structure
+… center the structure entirely in frame" with the card open.
+
+**Sliders.** The walking slider moved from Settings to Travel (ids kept) and gained two
+siblings: walk 0.5–8.94 m/s, wagon 0.5–13.41, horse 0.5–26.82, each stored under its own key
+(`speed`, `wagonSpeed`, `horseSpeed`) and composed into `WALK` by `travel.applyPace()`; Shift
+multiplies by 2.28 / 1 / 1.7, capped at the ceiling. `GAITS` in travel.js names the speed
+("trot · 8.1 mph"); the top names — "faster than any man", "runaway", "beyond any horse" —
+say what the ceilings are. Interface, not claims about 1835; no LIBERTIES entry.
+
+**Framing.** `main.js framing(id)`: the front bearing from the router (nearest street track,
+else south-west), the distance that fits the footprint's half-diagonal across the 76°
+horizontal field of view and the height (wall × 1.55) within the live vertical one, aimed at
+the building's middle, clamped 10–90 m. `frame()`, the ride's destination and the flight's
+landing all take it, so the three arrivals cannot disagree.
+
+**Smoke restated, not weakened:** the pace assertion compares WALK to each pace's stored
+slider value instead of to the old constants; the three arrival distances (`<= 14 m`,
+`<= 40 m`) became "within 2.5 m of the framing distance for that building AND its four
+extreme ground points and ridge inside the frame" — a stronger claim than the fixed radius.
+Unverified until the gate runs.
+
+## Shipped 2026-09-05 — T-0713: the platted streets are attested, and the line grades the ribbon
+
+**What shipped.** Seventeen streets in `data/streets/1835.json` move from
+`geometry_confidence: inferred` to `attested` and each now cites
+`thompson_plat_1830`: the sixteen the owner named — `south_water`, `lake`, `randolph`,
+`washington`, `market`, `franklin`, `wells`, `lasalle`, `clark`, `dearborn`, `state`,
+`canal`, `clinton`, `kinzie`, `wolcott`, `michigan_north` — and `fulton`, which already
+cited the plat and is the best-held line in the file at RMS 0.35 m across four surviving
+intersections. `surface_confidence` and `wear_confidence` are untouched everywhere: the
+plat attests where a street ran, and carries nothing about what it was paved with or how
+it was worn. `north_water`, `fort_road` and `fort_bank_track` stay `reconstructed` — a
+line derived from the committed bank and two fort tracks the plat does not draw — and
+`carroll` stays `inferred`, because it is the one West Division tier that does not survive
+inside the plat and its line is interpolated between Kinzie and Fulton.
+
+### The distinction each upgraded note now states
+
+The 17.5 m RMS in `data/datum.json` `derivation.residual_m` is COORDINATE UNCERTAINTY —
+how well the 1834 sheet warped onto modern ground — and it bounds how precisely a line is
+PLACED, not whether the street was there. Confusing the two is what held these sixteen at
+`inferred`: a metric bracket on a position was being read as a doubt about existence. Every
+upgraded note says so in its own words, and each was re-read for
+`tools/audit_confidence.py`'s SILENCE vocabulary. One hit, in `fulton`: "no source gives
+Fulton a crossing" is a sentence about a BRIDGE and not about the line, and it is reworded
+so an attested field is not hedged in its own note.
+
+### The composition decision, which is what makes it visible
+
+`streets.js` graded a ribbon by `Math.max()` of geometry, surface and wear (T-0100), and
+every record in the file carries `wear_confidence: reconstructed` — so upgrading the lines
+alone would have moved no pixel and the whole platted town would have gone on dithering as
+invention. T-0713 splits the one grade into the two claims it had flattened:
+
+- **the LINE decides whether the ribbon STANDS** — presence, dither, and which level hides
+  it. That is the claim "a street ran here", and it is the only one of the three the
+  visitor's own footing depends on. It is carried on `_confidence`, the contract's channel,
+  and it is the channel the confidence view reads.
+- **SURFACE and WEAR decide only the TRACK painted on it.** They are carried on a second
+  attribute, `_trackConfidence`, read nowhere but the street material's own fragment block,
+  which fades the worn texture toward the bare corridor in proportion to how invented it is
+  — and only while the confidence view is on (`vTrackConfidence * uConfMode`), so the
+  ordinary daylight frame is the frame that shipped before this.
+
+T-0100's guard is kept rather than traded away, and `tools/test_street_confidence.mjs` is
+restated to prove it: an invented line under an attested surface still dithers out, and a
+record with no geometry grade still falls to `reconstructed` rather than reading as
+attested. What the split adds is the converse the `max()` could not express — an attested
+line under an invented wear no longer dithers away, because "we do not know how worn it was"
+is not a reason to tell a visitor the street was not there. The test now extracts BOTH
+expressions from the source and refuses to pass if the ribbon's one reads `surface_` or
+`wear_confidence` again, if the track's one has dropped either of them, or if
+`_trackConfidence` reaches the shader and is never spent.
+
+**Measured on the shipped index:** 21 street records — 17 ribbons attested, 1 inferred
+(`carroll`), 3 reconstructed. Hiding `inferred` drops Carroll and leaves the platted town
+standing; hiding `reconstructed` drops the two fort tracks and the north bank line.
+
+### Not decided here
+
+`INVENTED_TRACK_ALPHA` is 0.45, chosen to sit clear of the 0.34 the confidence view already
+uses to dither invented massing — a track we made up should read fainter than one we did
+not, and still plainly fainter than the road it is painted on is solid. It is a legibility
+constant and no measurement fixed it; if the fade reads wrong against the amber tint at a
+distance, that number is the thing to move, not the split.
+
+### Carried, not caused
+
+`python3 tools/compile_scene.py --all` was run and five sidecars —
+`clybourn_slaughterhouse`, `elston_soap_candle_manufactory`, `green_tree_tavern`,
+`pruyne_kimball_drugstore` and `residents_sources.json` — recompiled with land-sale evidence
+that had landed on `dev` without a recompile. That drift was on `dev` before this branch
+existed (verified against a clean tree) and `check.sh` fails on it either way, so the
+recompile is carried here rather than left for the next run to trip over.
+
 ## Shipped 2026-09-05 — T-0637: 302 runs of fence stop belonging to nobody
 
 **What shipped.** `tools/enclosure_owners.py`, a derivation, and the two generators that now
@@ -199,12 +1537,13 @@ lie are in its `--self-test`.
 
 ### The grade does not move, and the chain is why
 
-The words are read. The block number is `inferred` — three blocks counted east of the one
-numeral the Wright sheet carries. The lot number is `conjectural` twice over: four lots to a
-face is a reading of one block, the lines it numbers are drawn from no sheet, and the
-counter-clockwise scheme was read off block 18. So the seating is graded at the **bottom
-tier**, `confidence` is `const: "reconstructed"` in the schema, and the gate re-reads the
-phase and fails if a documented address has quietly promoted a reconstructed roof.
+The words are read. The block number is `inferred` — and since 2026-09-06 (T-0788) it is a
+numeral READ on block 16's own ground rather than three blocks counted east of another one.
+The lot number is still `conjectural` twice over: four lots to a face is now a reading of
+four blocks rather than one, but the lines the scheme numbers are drawn from no sheet, so a
+number put on them is conjectural whatever its own provenance. So the seating is graded at the
+**bottom tier**, `confidence` is `const: "reconstructed"` in the schema, and the gate re-reads
+the phase and fails if a documented address has quietly promoted a reconstructed roof.
 
 The seating writes **one block** and nothing else — no coordinate, no footprint, no form
 value, and not even the record's `function`, which the dooryard, fence, planting and
@@ -904,12 +2243,18 @@ Randolph took 1.
   advertisement's street is where the door is and a gable end reaching a street is not a doorway.
   **Widening the reading would reach 24 more**, and `--report` prints both readings side by side so
   the number an owner ruling would change is one number, not a rewrite.
-- **Three Lake Street roofs are probably one house.** Wm. G. Branchaud, W. G. Blanchard, G.
-  Blanshard and F. G. Blanshard advertise one trade within five months under four transcribed
-  spellings, and the gazetteer's identity layer has judged none of them. The duplicate refusal here
-  matches exact surnames only — deciding by resemblance is the identity layer's job — so it caught
-  one of the four and left three roofs standing. Filed as **T-0408**, with the page images named as
-  the remedy.
+- **Two Lake Street roofs are probably one house, and the corpus cannot say so.** Wm. G. Branchaud,
+  W. G. Blanchard, G. Blanshard and F. G. Blanshard advertised one trade at one door within five
+  months under four transcribed spellings; T-0413 joined the two Blanshards and **T-0408** read the
+  whole run behind the other two and joined them, so the group takes two roofs now instead of four.
+  'Branchaud' turned out to be a supply made from the only two columns of that card the
+  transcription flags as Tesseract fallbacks — the impressions of 1834-07-16 and 1834-09-17, whose
+  columns are independent Vision readings, set BLANCHARD — so the reading was repaired and an
+  `identity.json` firm merge joined 'Wm. G. Blanchard' to 'W. G. Blanchard'. The LAST join is
+  refused and the refusal is declared: 'W. G. Blanchard' and 'G. Blanshard' stand in the same
+  doorway opposite Dr. Temple's, in consecutive cards that never ran in the same weeks, and **no
+  printing in the corpus sets both spellings** — so `refused_firm_merges` holds them apart as
+  `not_joined` and says what would settle it. Very probably one man; the papers do not say it.
 - **The 84 `unplaceable` are untouched and T-0354's second half stays open.** The ruling does not
   reach them and this policy does not extend it; some are outside the plat entirely.
 - **Nothing is spent yet.** This is the policy and the allocation. No card, signboard or frontage
@@ -1341,8 +2686,26 @@ distinct ways. Each is now a guard with a self-test on the case that forced it.
    invention gets laundered into the documented layer. `Kinzie Hall` had matched
    `recon_1835_north_i2_015` on the word "hall".
 
+5. **A word in the record is not a surname in the record** (T-1042). The pools these guards back
+   are word SETS, so any capitalised word in a building's prose could satisfy a required surname:
+   `S. Dewey`, a joiner, matched Dr Elijah **Dewey** Harmon's log cabin on a middle name. Where the
+   paper prints a forename for the surname, the record must now print that surname AS a surname.
+   The same reading had been losing a match the other way — a generational tag reads as a
+   capitalised word, so `John Bates Jr.` left `bates` in no surname position at all and `J. Bates,
+   jr.` read as a man whose forename was Jr. Both of the auction-store notices now reach
+   `bates_auction_room`.
+
 Every surviving `enrich_existing` carries the tier it matched on and the exact text it matched
 against, so T-0263 can argue with a proposal without re-running anything.
+
+**The reading itself has ONE home** (T-1042). `compile_gazetteer.surname_words()` answers "which
+words of this proprietor string are surnames", and `firm_surnames()`, `adopt_street_faces.surnames()`
+and `replace_invented_residents.street_face_stands()` all read it instead of each taking a string's
+last word. The two outside this file used to invent a man — `H. Doty & Co.` and the five printings
+of `J. L. Wilson & Co.` each yielded `co`, and the street-face table stood somebody called Co on
+three streets — and to lose one, since `Clark, Filer & Co.` yielded `clark` alone. Eighteen of the
+198 register businesses read differently for it; no adoption moved, and the table now carries its
+own `surnames` rather than leaving the household pass to guess at them a third time.
 
 ### A name is not always one building, and the anchor path used to pretend it was
 
@@ -3107,7 +4470,8 @@ are now the cage parcel's first questions, not its last.
 fault of this shape here and the first repair left only a comment behind.
 
 - `generators/ao_export.py` reads the **exported bytes**: a pure-stdlib PNG decoder and GLB reader
-  (no Blender, no numpy, no Pillow — CI installs `jsonschema` and `pyproj` and nothing else).
+  (no Blender; CI installs `jsonschema pyproj openpyxl pypdf numpy scipy Pillow` — the
+  last three since T-1083, because without them thirteen raster steps skipped in silence).
 - `generators/build.py` calls `assert_ao_survived_export()` the moment each GLB is written, and
   the manifest entry is written **only if it passes** — so `baked_ao: true` cannot outlive the
   occlusion again. It refuses a missing `occlusionTexture`, a uniform texture (whichever value it

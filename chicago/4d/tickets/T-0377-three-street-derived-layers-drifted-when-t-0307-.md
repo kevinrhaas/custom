@@ -1,7 +1,7 @@
 ---
 id: T-0377
 title: Three street-derived layers drifted when T-0307 moved North Water Street, and dev's gate is red on all three
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the three layers were regenerated in #541 (T-0350) and verify on dev; twin of T-0388
 needs_bake: false
+closed_at: 2026-09-10T04:20:09.003Z
+claimed_run: null
 ---
 PR #530 (T-0307) changed `data/streets/1835.json` and nothing else. Three committed
 layers are DERIVED from the street lines and were not regenerated with it, so

@@ -40,10 +40,17 @@ Run this module with no arguments and the table above is what it prints, from th
 rather than from this docstring. **Not one documented store, warehouse or workshop in this
 town stands on a light street**, and that zero is the load-bearing figure: it is what makes
 "a store takes the better face" a reading of the record rather than a preference about
-frontage. It is a zero across 31 buildings, on the three letters a block parcel may
-actually be dealt.
+frontage. It is a zero across the stores and the warehouses, two of the three letters a
+block parcel may actually be dealt.
 
-The two letters that are not zero are stated rather than trimmed away. **T's one** is the
+The letters that are not zero are stated rather than trimmed away. **W's one** arrived on
+2026-09-06 with T-0883: `fort_dearborn_shop`, the garrison workshop the 1830 Harrison plan
+letters on Fort Dearborn's outer ground, which this table puts **381 m** from the State
+Street centreline — further off than T's, and for a harder reason than distance. The
+military reservation was UNPLATTED in 1835 and no street crossed it (see
+`data/reconstruction/1835_no_build_ground.json`), so a building inside the fort's fence has
+no street frontage to take a better or a worse face of. The zero it breaks is a statement
+about buildings that front streets, and this one does not front one. **T's one** is the
 Steamboat Hotel, which this table puts 287 m from the State Street centreline: it does not
 front State, State is simply the nearest committed line in a division that has almost no
 street control yet, and the same artefact accounts for most of the invented residual at the
@@ -236,15 +243,18 @@ def self_test() -> int:
     checks.append(("the committed town passes both assertions",
                    not out, "; ".join(out) or "clean"))
 
-    # The zero the first assertion rests on, and it is on three letters rather than five.
-    # T and I are stated in the docstring and are not trimmed away: T's single light-street
-    # instance stands 287 m off the street it is nearest, and the institutional families
-    # are refused to a block parcel by name. The assertion reads this witness rather than a
-    # list, so those two license nothing either way.
+    # The zero the first assertion rests on, and it is on two letters rather than five.
+    # W, T and I are stated in the docstring and are not trimmed away: W's single
+    # light-street instance is the fort's shop, 381 m off the nearest street and inside a
+    # federal reservation no street crossed in 1835; T's stands 287 m off the street it is
+    # nearest; and the institutional families are refused to a block parcel by name. The
+    # assertion reads this witness rather than a list, so none of the three licenses
+    # anything either way — and the two it does assert on, the stores and the warehouses,
+    # are still zero across 25 buildings.
     witness = documented_classes(reading()["rows"])
-    checks.append(("no documented store, warehouse or workshop stands on a light street, "
+    checks.append(("no documented store or warehouse stands on a light street, "
                    "which is what the first assertion rests on",
-                   all(witness.get(k, {}).get("light", 0) == 0 for k in "CFW"),
+                   all(witness.get(k, {}).get("light", 0) == 0 for k in "CF"),
                    ", ".join(f"{k} {v['light']}" for k, v in sorted(witness.items()))))
 
     out = failures(_synthetic("washington", 1.5))

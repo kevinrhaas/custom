@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One home and one gate for the six source domains beside the newspapers.
+"""One registry and one gate for every committed research domain.
 
     tools/research_domains.py --build       write/normalise each domain's scaffold
     tools/research_domains.py --check       the gate
@@ -60,7 +60,14 @@ RESEARCH = ROOT / "data" / "research"
 SOURCES = ROOT / "data" / "sources"
 MANIFEST = RESEARCH / "domains.json"
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
+
+DECLARED_UNITS = [{
+    "glob": "**/*.json",
+    "containers": "$declared",
+    "id": "row.id || file-relative JSON pointer",
+    "name_fields": ["normalized", "as_read", "quote"],
+}]
 
 # The six domains, in the order the owner named them, with what each is FOR. The
 # order is the manifest's order and the READMEs' order; it is not alphabetical on
@@ -72,6 +79,7 @@ DOMAINS = {
         "what": "The town's own lists of its own people — the poll books and voter "
                 "rolls of 1833-1835, and the officers, jurors and subscribers printed "
                 "beside them.",
+        "ledger_units": DECLARED_UNITS,
     },
     "census_1830": {
         "title": "The 1830 federal census",
@@ -79,30 +87,35 @@ DOMAINS = {
         "what": "Chicago was enumerated in Peoria County in 1830. The named schedule "
                 "is the object; the county aggregates this project already holds are "
                 "not it.",
+        "ledger_units": DECLARED_UNITS,
     },
     "census_1840": {
         "title": "The 1840 federal census",
         "holds": "records",
         "what": "Seventy-five page images and a head-of-household index. 1840 is "
                 "LATER EVIDENCE and never an 1835 household fact on its own.",
+        "ledger_units": DECLARED_UNITS,
     },
     "church": {
         "title": "Church registers",
         "holds": "records",
         "what": "Baptisms, marriages and burials — St Mary's 1833-1835 first, because "
                 "eleven images of its register are already deposited and unread.",
+        "ledger_units": DECLARED_UNITS,
     },
     "books": {
         "title": "Books and reminiscences",
         "holds": "claims",
         "what": "Prose: Fergus' Historical Series, Hubbard's autobiography, H. H. "
                 "Porter's Short Autobiography, and the memoirs printed beside them.",
+        "ledger_units": DECLARED_UNITS,
     },
     "directories": {
         "title": "Directories",
         "holds": "claims",
         "what": "The 1839 Chicago directory and its successors — entry by entry, "
                 "structured, and crosswalked rather than quoted at second hand.",
+        "ledger_units": DECLARED_UNITS,
     },
     # The seventh, added by T-0562 when the owner put the Newberry Library's
     # genealogical index on the Internet Archive. It is not one of his six original
@@ -125,6 +138,33 @@ DOMAINS = {
                 "read for the townships around Chicago through 1836. A sale is a "
                 "transaction, never a residence; the register's own Residence column is "
                 "the only thing here that speaks to where a purchaser lived.",
+        "ledger_units": DECLARED_UNITS,
+    },
+    # The ninth, registered by T-0678 — and the last domain in this directory that was
+    # not. It has been read since T-0574 and T-0577 and adjudicated since, and the
+    # registry never held it, so `tools/measure_research_spend.py` printed it as "not
+    # registered in domains.json (not measured)" and measured NEITHER hop for 767 read
+    # units and 109 rulings that name a person this town holds a card for. A domain
+    # nothing measures is a domain that can drift for as long as nobody looks.
+    #
+    # IT IS SHAPED BY ITS OWN TOOLS AND NOT BY THIS ONE, which is why registering it
+    # took two accommodations rather than a rewrite of two generated files: its reading
+    # lives in domain-owned files at the top of the directory (people.json,
+    # death_notices.json) rather than under records/, and its crosswalk is a ROSTER
+    # crosswalk — a printed name against a town person — rather than a pairwise identity
+    # crosswalk. Both shapes are gated already, by `tools/old_settlers.py --check` and
+    # `tools/read_fergus_obits.py --check`, and both run in check.sh. See
+    # `coverage_reached_by_a_domain_file` and `check_crosswalk` below for what each
+    # accommodation does and, more importantly, what it still refuses to let past.
+    "old_settlers": {
+        "title": "The Calumet Club's old settlers",
+        "holds": "records",
+        "what": "The rolls of the Calumet Club's receptions to the old settlers of "
+                "Chicago (1879-1882) and the obituary list printed in Fergus's 1843 "
+                "directory. Every one of them is LATER EVIDENCE about a person, and the "
+                "obituary list's own header admits it also names citizens who arrived "
+                "after 1843 — so a name here is never an 1835 residence.",
+        "ledger_units": DECLARED_UNITS,
     },
     "newberry_index": {
         "title": "The Newberry genealogical index",
@@ -133,6 +173,52 @@ DOMAINS = {
                 "index (G. K. Hall, 1960), read for the cards whose citation names "
                 "Chicago, Cook County or Illinois. A card says where a genealogy IS; "
                 "it never places a person, and nothing here may grade one.",
+        "ledger_units": DECLARED_UNITS,
+    },
+    # These three domains predate this scaffold and retain their domain-owned
+    # validators. T-1143 nevertheless registers the actual reading files and the
+    # stable row identifiers that enter the closed spend ledger.
+    "genealogytrails": {
+        "title": "Genealogy Trails transcriptions",
+        "holds": "claims",
+        "what": "Hand-read transcriptions of Chicago church and civic records; a later "
+                "primary-source reading may supersede a claim but never erase it.",
+        "managed": False,
+        "legacy_measure": False,
+        "ledger_units": [{
+            "glob": "claims/*.json", "containers": ["claims"],
+            "id": "row.id", "name_fields": ["normalized", "quote"],
+        }],
+    },
+    "newspapers": {
+        "title": "Chicago newspapers",
+        "holds": "claims",
+        "what": "Claims read from the committed Chicago Democrat and Chicago American "
+                "corpus; gazetteers and registers are generated from these units.",
+        "managed": False,
+        "legacy_measure": False,
+        "ledger_units": [{
+            "glob": "extracted/*.json", "containers": ["claims"],
+            "id": "row.id", "name_fields": ["normalized", "quote"],
+        }],
+    },
+    "residents": {
+        "title": "Resident research passes",
+        "holds": "research_passes",
+        "what": "Named resident cohorts and focused audits whose positive and negative "
+                "findings must survive regeneration of the public resident cards.",
+        "managed": False,
+        "legacy_measure": False,
+        "ledger_units": [
+            {"glob": "pass_*_cohort.json", "containers": ["people"],
+             "id": "row.person_id"},
+            {"glob": "pilot_75_cohort.json", "containers": ["people"],
+             "id": "row.person_id"},
+            {"glob": "scene_window_trade_audit.json", "containers": ["rows"],
+             "id": "row.person_id || file-relative JSON pointer"},
+            {"glob": "letter_list_reading_suspicions.json", "containers": ["rows"],
+             "id": "row.person_id || file-relative JSON pointer"},
+        ],
     },
 }
 
@@ -142,9 +228,21 @@ DOMAINS = {
 # need and the papers never did: `landscape` for what a reminiscence says the ground
 # looked like, `appearance` for what a building or a person looked like, `household`
 # for a census line's composition, and `civic` for an office, a poll or an ordinance.
+#
+# AND ONE THAT NAMES NO SUBJECT AT ALL (T-1023). `turned_line` is a printed line that
+# is part of the record ABOVE it and not a record — the tail of an entry too long for
+# the measure, which this scan un-indented so the reader took it for an entry of its
+# own and filed `. -house Clark street (See card)` as a man's surname. Its claim exists
+# for one reason: claim ids are allocated by position, they are cited by id from the
+# identity layer and from the second-hand comparison, and folding the line away would
+# renumber every entry after it. So the id keeps its place, the line is read with the
+# entry above, and the claim says what it is. A pass that reads people must skip it,
+# and the vocabulary is where it learns to. There is exactly one in the corpus and the
+# reading tool's --self-test holds it to the text.
 KINDS = ("person", "business", "building", "street", "infrastructure",
          "event", "shipping", "price", "notice",
-         "landscape", "appearance", "household", "civic")
+         "landscape", "appearance", "household", "civic",
+         "turned_line")
 
 # Ruling 2, unchanged from the papers. `transcription_mediated` is a reading made
 # through somebody else's transcription; `scan_verified` is a reading made off the
@@ -208,6 +306,74 @@ def coverage_key(unit: str, item) -> str:
     return "%s:%s" % (unit, item)
 
 
+# --------------------------------------------------------------------------- #
+# THE images[] COVERAGE SHAPE, AND WHY THE GATE READS IT RATHER THAN REWRITING IT
+#
+# T-0536, and the ticket asked for the decision in writing, so here it is.
+#
+# `census_1840` declared its deposit before T-0492 fixed `declarations[]`, and it
+# declared it RICHER: one object per page image, carrying the FamilySearch id, the
+# sheet side, the printed page number, the line count, a `read_state` and a
+# `page_file`. So the shared gate read zero declarations out of the domain that has
+# been read the most, and either the tool learned that shape or the file was
+# migrated to this one.
+#
+# THE GATE LEARNS `images[]`. Three reasons, in the order they bind:
+#
+#   1. The file is being appended to right now. T-0496 and the sheet-reading tickets
+#      split out of T-0494 and T-0495 all extend this one document, on branches that
+#      cannot see each other. Rewriting it underneath them loses readings in a merge,
+#      and a lost reading is a sheet read twice.
+#   2. `declarations[{unit, items[], ticket}]` has nowhere to put `read_state`,
+#      `page_file` or `lines_with_an_entry` — and those three ARE the evidence that a
+#      hole is a hole. The ticket forbids dropping a field to fit the shape.
+#   3. `declarations[]` is a PROJECTION of `images[]`, not a rival to it: unit
+#      `image`, items the FamilySearch ids, ticket the group's. A projection can be
+#      derived, so nothing needs hand-migrating at all.
+#
+# THE DISTINCTION THAT MAKES THE HOLE ASSERTION MEAN SOMETHING is `read_state`. An
+# image whose state is `inventoried_only` is declared as INVENTORIED — the sheet has
+# been looked at and described and nothing has been read off it — and it is NOT
+# asserted to be reached. Every other state declares the image READ, and a read image
+# must name a committed `page_file` and be reached by a `pages/*.json`. Run together,
+# the two states would make "declared" mean "seen", and a hole could never fire.
+INVENTORIED_ONLY = "inventoried_only"
+
+
+def coverage_images(cov: dict) -> list:
+    """Every image object in an `images[]` coverage document, with its ticket.
+
+    Schema 1 carried `images[]` at the top level. Schema 2 groups them, because the
+    deposit is read in image groups by one ticket each; a group's `declared_by` is
+    prose that opens with that ticket's id, and that is the ticket the declaration is
+    attributed to. Both shapes are read here, and a domain with neither yields
+    nothing — which is the correct answer for the six domains that use
+    `declarations[]`.
+    """
+    out = []
+    for image in cov.get("images") or []:
+        out.append((image, str(cov.get("ticket") or "?")))
+    for group in cov.get("groups") or []:
+        found = re.search(r"T-\d{4}", str(group.get("declared_by") or ""))
+        ticket = found.group(0) if found else "?"
+        for image in group.get("images") or []:
+            out.append((image, ticket))
+    return out
+
+
+def resolve_page_file(domain_dir: Path, name: str, page_file: str) -> Path:
+    """Where a declared `page_file` actually is.
+
+    The committed file states the path from `chicago/4d/`, which is what a person
+    reading coverage.json wants; the gate holds a domain directory, which is what the
+    self-test's synthetic tree gives it. Strip the one prefix that means "this
+    domain" and the two agree.
+    """
+    prefix = "data/research/%s/" % name
+    rel = page_file[len(prefix):] if page_file.startswith(prefix) else page_file
+    return domain_dir / rel
+
+
 def locator_reached(locator: dict) -> list:
     """The coverage keys a locator reaches. One locator may reach exactly one item."""
     if not isinstance(locator, dict):
@@ -253,6 +419,75 @@ def rebuild_quote(domain_dir: Path, locator: dict):
     return "\n".join(lines[first - 1:last]), None
 
 
+def is_roster_crosswalk(doc) -> bool:
+    """True for a crosswalk that rules a PRINTED NAME against the town, not spelling
+    against spelling.
+
+    Two shapes are in this directory and only one of them was ever checked here. The
+    pairwise shape is `identity.json`'s: two spellings, `into` and `from`, and a rule
+    naming both. The ROSTER shape rules one printed name against the whole residents
+    layer — `as_read` on one side, the town's own `resident_name` on the other — and its
+    refusals have no second spelling at all, because what was refused is the layer.
+    old_settlers/crosswalk.json is the second kind, generated and gated by
+    `tools/old_settlers.py`, and holding it to the first kind's fields reported all 45 of
+    its merges as naming fewer than two spellings (T-0678).
+
+    THE SHAPE IS DECIDED BY THE FILE AND NOT BY A ROW, deliberately: a file declares its
+    rules once, in a `rules` block, and every row cites one by name. A row cannot pick the
+    laxer reading by leaving a field out — a pairwise file has no `rules` block, so its
+    merges are still held to `into`/`from`/verbatim, and a roster file with a malformed
+    row fails as a roster row rather than falling through to nothing.
+    """
+    return isinstance(doc, dict) and isinstance(doc.get("rules"), dict) and bool(doc["rules"])
+
+
+def check_roster_crosswalk(doc, label: str, bad: list) -> None:
+    """The roster shape, held to the same four things the pairwise shape is.
+
+    A merge names both spellings; the rule is written down (here ONCE, in the file's own
+    `rules` block, and cited by name — which is stronger than repeating it per row, not
+    weaker, because one edit changes every row that rests on it); a surname-only merge is
+    always a refusal; and a merge carries evidence. A refusal is declared as explicitly as
+    a merge, and names the rule and the reason — the second spelling is not demanded of it
+    because there is none: the thing refused is every bearer in the layer, and the row says
+    which candidates it looked at.
+    """
+    rules = doc.get("rules") or {}
+    for i, merge in enumerate(doc.get("merges") or []):
+        where = "%s merge %d" % (label, i)
+        printed, town = str(merge.get("as_read") or ""), str(merge.get("resident_name") or "")
+        if not printed or not town:
+            bad.append("%s: a merge names fewer than two spellings" % where)
+            continue
+        rule = str(merge.get("rule") or "")
+        if not rule.strip():
+            bad.append("%s: a merge with no rule — %r into %r" % (where, printed, town))
+            continue
+        if rule not in rules:
+            bad.append("%s: the merge cites rule %r, which the file's rules block does not "
+                       "declare — %r into %r" % (where, rule, printed, town))
+        if surname_only(printed) or surname_only(town):
+            bad.append("%s: a surname-only merge is always a refusal — %r into %r"
+                       % (where, printed, town))
+        if not str(merge.get("evidence") or "").strip():
+            bad.append("%s: a merge with no evidence — %r into %r" % (where, printed, town))
+        if not merge.get("person_id"):
+            bad.append("%s: a merge naming no person in the town — %r into %r"
+                       % (where, printed, town))
+    for i, refusal in enumerate(doc.get("refusals") or []):
+        where = "%s refusal %d" % (label, i)
+        printed = str(refusal.get("as_read") or "")
+        if not printed:
+            bad.append("%s: a refusal naming no printed spelling" % where)
+            continue
+        rule = str(refusal.get("rule") or "")
+        if rule not in rules:
+            bad.append("%s: the refusal cites rule %r, which the file's rules block does "
+                       "not declare — %r" % (where, rule, printed))
+        if not str(refusal.get("why") or "").strip():
+            bad.append("%s: a refusal with no reason — %r" % (where, printed))
+
+
 def check_crosswalk(doc, label: str, bad: list) -> None:
     """`crosswalk.json` is `identity.json`'s shape, and it is held to its rules.
 
@@ -262,6 +497,8 @@ def check_crosswalk(doc, label: str, bad: list) -> None:
     spellings, because the ABSENCE of a merge reads exactly like a pair nobody has
     looked at yet and the next sweep does the work again.
     """
+    if is_roster_crosswalk(doc):
+        return check_roster_crosswalk(doc, label, bad)
     for i, merge in enumerate(doc.get("merges") or []):
         where = "%s merge %d" % (label, i)
         into, frm = str(merge.get("into") or ""), str(merge.get("from") or "")
@@ -297,9 +534,50 @@ def check_crosswalk(doc, label: str, bad: list) -> None:
             bad.append("%s: a refusal with no evidence[] — %r against %r" % (where, a, b))
 
 
+def coverage_reached_by_a_domain_file(domain_dir: Path, bad: list):
+    """(coverage key, file name) for every list a domain-owned file says it read.
+
+    The units it counts are the ones `measure_research_spend.py` counts: an entry of a
+    `records` or `claims` array carrying a name. A file with none of those names nothing.
+    """
+    for path in sorted(domain_dir.glob("*.json")):
+        if "crosswalk" in path.name or path.name in ("coverage.json", "domains.json"):
+            continue
+        try:
+            doc = load(path)
+        except Exception:
+            continue
+        if not isinstance(doc, dict):
+            continue
+        named = 0
+        sources = set()
+        if isinstance(doc.get("source_id"), str):
+            sources.add(doc["source_id"])
+        declared = doc.get("units_in")
+        containers = ("records", "claims")
+        if isinstance(declared, str) and declared.strip():
+            if not isinstance(doc.get(declared.strip()), list):
+                bad.append("%s/%s: declares units_in %r and holds no such array"
+                           % (domain_dir.name, path.name, declared))
+            containers += (declared.strip(),)
+        for key in containers:
+            for unit in doc.get(key) or []:
+                if not isinstance(unit, dict):
+                    continue
+                if any(unit.get(n) for n in ("normalized", "as_read", "quote")):
+                    named += 1
+                for field in ("source", "source_id"):
+                    if isinstance(unit.get(field), str):
+                        sources.add(unit[field])
+        if not named:
+            continue
+        for sid in sorted(sources):
+            yield coverage_key("list", sid), path.name
+
+
 def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad: list) -> dict:
     domain_dir = research / name
-    counts = {"records": 0, "claims": 0, "declared": 0}
+    counts = {"records": 0, "claims": 0, "declared": 0, "inventoried": 0}
     if not domain_dir.exists():
         bad.append("%s: the domain has no directory — run --build" % name)
         return counts
@@ -323,9 +601,84 @@ def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad:
                 bad.append("%s coverage %d: a declaration with no ticket" % (name, i))
             for item in dec.get("items") or []:
                 declared[coverage_key(unit, item)] = dec.get("ticket") or "?"
+
+        # …and the same declaration in the other shape. See the block above
+        # coverage_images() for why this file is read rather than rewritten.
+        for image, ticket in coverage_images(cov):
+            fid = image.get("familysearch_id")
+            if not fid:
+                bad.append("%s coverage: an image with no familysearch_id — the id is "
+                           "how a declaration names what it declares" % name)
+                continue
+            state = image.get("read_state")
+            if not state:
+                bad.append("%s coverage %s: an image with no read_state, so nothing "
+                           "can tell an inventoried sheet from a read one"
+                           % (name, fid))
+                continue
+            page_file = image.get("page_file")
+            if state == INVENTORIED_ONLY:
+                counts["inventoried"] += 1
+                if page_file:
+                    bad.append("%s coverage %s: read_state is %r and it names the page "
+                               "file %s — an inventoried sheet has nothing read off it"
+                               % (name, fid, INVENTORIED_ONLY, page_file))
+                continue
+            declared[coverage_key("image", fid)] = ticket
+            if not page_file:
+                bad.append("%s coverage %s: read_state %r declares the image read and "
+                           "it names no page_file" % (name, fid, state))
+            elif not resolve_page_file(domain_dir, name, page_file).exists():
+                bad.append("%s coverage %s: page_file %s is declared and is not "
+                           "committed" % (name, fid, page_file))
     counts["declared"] = len(declared)
 
     reached = set()
+
+    # A page file reaches the image it names, and that is the third thing that can
+    # reach a coverage item — `records/` and `claims/` are the other two. It is what
+    # turns a declared-read image with no reading behind it into a hole instead of a
+    # silence.
+    for path in sorted((domain_dir / "pages").glob("*.json")) if (domain_dir / "pages").exists() else []:
+        doc = load(path)
+        fid = doc.get("familysearch_id")
+        if not fid:
+            # A PAGE READ OFF A LEAF THE DEPOSIT DOES NOT HOLD (T-0912). census_1840's
+            # coverage is the 74-image FamilySearch deposit, and printed page 232's
+            # continuation is not in it — that absence is a finding of its own
+            # (continuation_search_page_232.json exhausted all 74 looking for it). The
+            # leaf was read off the Internet Archive's scan of NARA M704 roll 57
+            # instead. Such a page names no familysearch_id because it has none, and
+            # inventing one would be a false coverage claim. What it must still do is
+            # name WHAT IT READ: a `source_record` that is a real record in
+            # data/sources/. It reaches no coverage item, and that is correct — it
+            # declares nothing about the deposit.
+            sid = doc.get("source_record")
+            if not sid:
+                bad.append("%s/pages/%s: names neither a familysearch_id nor a "
+                           "source_record, so nothing says what it read"
+                           % (name, path.name))
+            elif known_sources and sid not in known_sources:
+                bad.append("%s/pages/%s: names source_record %r, which is not a "
+                           "source record" % (name, path.name, sid))
+            continue
+        reached.add(coverage_key("image", fid))
+
+    # A DOMAIN-OWNED FILE REACHES A COVERAGE ITEM TOO (T-0678). `records/` and `claims/`
+    # are this registry's own shape, and two domains do not use it: old_settlers reads
+    # into `people.json` and `death_notices.json` at the top of its directory, under the
+    # gates of `tools/old_settlers.py` and `tools/read_fergus_obits.py`. Reading only the
+    # two subdirectories reported both of its declared lists as coverage HOLES — a
+    # declaration nothing reaches — when in fact 1,084 units reach them, so registering
+    # the domain would have meant either a false red or moving two generated files out
+    # from under the tools that own them.
+    #
+    # WHAT THIS IS NOT: it is not "declared, therefore read". A file reaches an item only
+    # by NAMING it — as its own `source_id`, or on a unit's `source`/`source_id` — and
+    # only if it carries at least one named unit. A declaration with nothing behind it is
+    # still a hole, which is the whole point of the file.
+    for key, name_ in coverage_reached_by_a_domain_file(domain_dir, bad):
+        reached.add(key)
 
     for path in sorted((domain_dir / "records").glob("*.json")) if (domain_dir / "records").exists() else []:
         doc = load(path)
@@ -353,6 +706,24 @@ def check_domain(name: str, spec: dict, research: Path, known_sources: set, bad:
                 bad.append("%s: confidence %r is outside %s"
                            % (where, row.get("confidence"), list(CONFIDENCES)))
             reached.update(locator_reached(row.get("locator") or {}))
+            # THE VERBATIM GATE REACHES A ROW TOO, WHEN THE ROW ASKS FOR IT (T-0961).
+            # `as_read` is a CELL — a name lifted out of one column of a printed table —
+            # so it cannot be rebuilt out of a line of text and is not held to it. But a
+            # row transcribed out of a text this repository COMMITS can carry the whole
+            # printed line beside its cells, and then the same check the claims get is
+            # available for the asking: `verbatim` is rebuilt at the row's own locator and
+            # must match byte for byte. It is opt-in ON PURPOSE and not required, because
+            # the domains whose rows come off a SCAN — a census sheet, a parish register —
+            # have no committed text to rebuild from and never will; requiring the field
+            # would either fail them or teach them to fake it. A row that offers the field
+            # is asking to be checked, and this is the check.
+            if "verbatim" in row:
+                rebuilt, err = rebuild_quote(domain_dir, row.get("locator") or {})
+                if err:
+                    bad.append("%s: carries a verbatim and its locator %s" % (where, err))
+                elif rebuilt != row["verbatim"]:
+                    bad.append("%s: the verbatim is not what the committed text says at "
+                               "that locator" % where)
 
     for path in sorted((domain_dir / "claims").glob("*.json")) if (domain_dir / "claims").exists() else []:
         doc = load(path)
@@ -404,6 +775,9 @@ def build(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
     """Write the scaffold. Idempotent, and it never overwrites a hand-authored file."""
     for name, spec in DOMAINS.items():
         d = research / name
+        d.mkdir(parents=True, exist_ok=True)
+        if not spec.get("managed", True):
+            continue
         (d / "records").mkdir(parents=True, exist_ok=True)
         (d / "claims").mkdir(parents=True, exist_ok=True)
         (d / "text").mkdir(parents=True, exist_ok=True)
@@ -440,9 +814,9 @@ def build(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
             })
     manifest = {
         "schema": SCHEMA_VERSION,
-        "_doc": "GENERATED by tools/research_domains.py --build. The source domains "
-                "beside the newspapers, their shape and their home. Hand-edit and the "
-                "gate says so.",
+        "_doc": "GENERATED by tools/research_domains.py --build. Every committed "
+                "research domain, its reading-unit patterns and stable unit-id rule. "
+                "Hand-edit and the gate says so.",
         "generated_by": "tools/research_domains.py --build",
         "kinds": list(KINDS),
         "readings": list(READINGS),
@@ -452,7 +826,9 @@ def build(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
         "claim_fields": list(CLAIM_FIELDS),
         "domains": [
             {"id": name, "title": spec["title"], "holds": spec["holds"], "what": spec["what"],
-             "path": "data/research/%s/" % name}
+             "path": "data/research/%s/" % name,
+             "legacy_measure": spec.get("legacy_measure", True),
+             "ledger_units": spec["ledger_units"]}
             for name, spec in DOMAINS.items()
         ],
     }
@@ -465,8 +841,12 @@ def build(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
 def check(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = False) -> list:
     bad = []
     known = source_ids(sources)
-    totals = {"records": 0, "claims": 0, "declared": 0}
+    totals = {"records": 0, "claims": 0, "declared": 0, "inventoried": 0}
     for name, spec in DOMAINS.items():
+        if not spec.get("managed", True):
+            if not (research / name).is_dir():
+                bad.append("%s: the registered research domain has no directory" % name)
+            continue
         counts = check_domain(name, spec, research, known, bad)
         for k in totals:
             totals[k] += counts[k]
@@ -487,7 +867,9 @@ def check(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
             "confidences": list(CONFIDENCES), "coverage_units": list(COVERAGE_UNITS),
             "record_fields": list(RECORD_FIELDS), "claim_fields": list(CLAIM_FIELDS),
             "domains": [{"id": n, "title": s["title"], "holds": s["holds"],
-                         "what": s["what"], "path": "data/research/%s/" % n}
+                         "what": s["what"], "path": "data/research/%s/" % n,
+                         "legacy_measure": s.get("legacy_measure", True),
+                         "ledger_units": s["ledger_units"]}
                         for n, s in DOMAINS.items()],
         }))
         got = load(manifest_path)
@@ -498,8 +880,10 @@ def check(research: Path = RESEARCH, sources: Path = SOURCES, quiet: bool = Fals
     if not quiet:
         for b in bad:
             print("  FAIL  " + b)
-        print("  %d domain(s); %d record(s), %d claim(s), %d declared coverage item(s)"
-              % (len(DOMAINS), totals["records"], totals["claims"], totals["declared"]))
+        print("  %d domain(s); %d record(s), %d claim(s), %d declared coverage "
+              "item(s), %d inventoried and not asserted read"
+              % (len(DOMAINS), totals["records"], totals["claims"],
+                 totals["declared"], totals["inventoried"]))
     return bad
 
 
@@ -535,6 +919,18 @@ FIXTURE_RECORD = {
 }
 
 
+FIXTURE_PAGE = {
+    "schema": 1,
+    "familysearch_id": "33S7-FIXT-A",
+    "image": "chicago/reference/census1840/33S7-FIXT-A.jpg",
+    "printed_page": 229,
+    "sheet_side": "left",
+    "division": "Chicago",
+    "reading": "scan_verified",
+    "lines": [],
+}
+
+
 def _fixture(tmp: Path) -> Path:
     """A minimal but GREEN tree: one records domain, one claims domain, both covered."""
     research = tmp / "research"
@@ -566,6 +962,57 @@ def _fixture(tmp: Path) -> Path:
     dump(books / "coverage.json", {
         "schema": 1, "domain": "books", "generated_by": "fixture",
         "declarations": [{"unit": "page", "items": [7], "ticket": "T-9999"}],
+    })
+
+    # The third shape in the tree, because it is a third shape the gate has to hold:
+    # one image read and reached by its page file, one inventoried and asserted only
+    # to have been looked at. Both states have to be here or the case that tells them
+    # apart has nothing to break.
+    census = research / "census_1840"
+    dump(census / "pages" / "33S7-FIXT-A.json", copy.deepcopy(FIXTURE_PAGE))
+    dump(census / "coverage.json", {
+        "schema": 2, "domain": "census_1840", "generated_by": "fixture",
+        "groups": [{
+            "range": "images 1-2 of 2",
+            "declared_by": "T-9999. One sheet read to the line, one inventoried only.",
+            "images": [
+                {"index": 1, "familysearch_id": "33S7-FIXT-A",
+                 "file": "chicago/reference/census1840/33S7-FIXT-A.jpg",
+                 "sheet_side": "left", "printed_page": 229,
+                 "lines_with_an_entry": 2, "what_it_is": "fixture",
+                 "read_state": "names_and_cells_transcribed",
+                 "page_file": "data/research/census_1840/pages/33S7-FIXT-A.json"},
+                {"index": 2, "familysearch_id": "33S7-FIXT-B",
+                 "file": "chicago/reference/census1840/33S7-FIXT-B.jpg",
+                 "sheet_side": "right", "printed_page": None,
+                 "lines_with_an_entry": 0, "what_it_is": "fixture",
+                 "read_state": INVENTORIED_ONLY, "page_file": None},
+            ],
+        }],
+    })
+    # The fourth shape (T-0678): a domain whose reading lives in a file at the top of its
+    # own directory, under a declared `units_in`, and whose crosswalk rules a printed name
+    # against the town rather than a spelling against a spelling. Both are in the tree
+    # because both are now things this gate has to hold.
+    old_settlers = research / "old_settlers"
+    dump(old_settlers / "roll.json", {
+        "schema": 1, "domain": "old_settlers", "source_id": "fixture_source",
+        "units_in": "people",
+        "people": [{"id": "os001", "as_read": "Adams, William H.",
+                    "normalized": "William H. Adams"}],
+    })
+    dump(old_settlers / "coverage.json", {
+        "schema": 1, "domain": "old_settlers", "generated_by": "fixture",
+        "declarations": [{"unit": "list", "items": ["fixture_source"], "ticket": "T-9999"}],
+    })
+    dump(old_settlers / "crosswalk.json", {
+        "schema": 1, "domain": "old_settlers",
+        "rules": {"OS1": "surname equal and both sides spell the forename out"},
+        "merges": [{"id": "os001", "as_read": "Adams, William H.",
+                    "resident_name": "William Hanford Adams", "person_id": "adams_william_h",
+                    "rule": "OS1", "evidence": "surname and spelled-out forename agree"}],
+        "refusals": [{"id": "os002", "as_read": "Arnold, Isaac N.", "rule": "OS1",
+                      "outcome": "refused", "why": "no bearer of the surname in the layer"}],
     })
     return research
 
@@ -625,6 +1072,46 @@ def self_test() -> int:
                           lambda d: d["claims"][0]["locator"].update(text_file="nope.txt")),
         "which is not committed", "a quote citing text this repo does not hold")
 
+    # 3b. THE SAME GATE ON A ROW THAT ASKED FOR IT (T-0961). A record carrying a
+    # `verbatim` is held to the committed text exactly as a claim's quote is; a record
+    # without one is not, and the third case is what proves the opt-in is really opt-in
+    # rather than a check that happens to be off.
+    def _row_with_verbatim(research, verbatim=FIXTURE_TEXT.splitlines()[0], **over):
+        row = copy.deepcopy(FIXTURE_RECORD)
+        row.update({
+            "verbatim": verbatim,
+            "locator": {"text_file": "fixture.txt", "lines": [1, 1], "page": 7},
+        })
+        row.update(over)
+        dump(research / "books" / "records" / "fixture_rows.json", {
+            "schema": 1, "domain": "books", "source_id": "fixture_source",
+            "records": [row],
+        })
+
+    run(lambda r, t: _row_with_verbatim(r, verbatim="the town was then a mere hamlets"),
+        "the verbatim is not what the committed text says",
+        "a record verbatim that differs by one character")
+    run(lambda r, t: _row_with_verbatim(
+            r, locator={"text_file": "nope.txt", "lines": [1, 1], "page": 7}),
+        "which is not committed", "a record verbatim citing text this repo does not hold")
+    if True:
+        with tempfile.TemporaryDirectory() as td:
+            tmp = Path(td)
+            research = _fixture(tmp)
+            row = copy.deepcopy(FIXTURE_RECORD)
+            row["locator"] = {"text_file": "fixture.txt", "lines": [1, 1], "page": 7}
+            dump(research / "books" / "records" / "fixture_rows.json", {
+                "schema": 1, "domain": "books", "source_id": "fixture_source",
+                "records": [row],
+            })
+            cases += 1
+            bad = check(research=research, sources=tmp / "sources", quiet=True)
+            if any("verbatim" in b for b in bad):
+                failures.append("a record with NO verbatim was held to the text anyway: %r"
+                                % bad)
+            else:
+                print("  fires: a record with no verbatim is not held to the committed text")
+
     # 4. a coverage hole
     run(lambda r, t: edit(r / "books/coverage.json",
                           lambda d: d["declarations"][0]["items"].append(8)),
@@ -632,6 +1119,42 @@ def self_test() -> int:
     run(lambda r, t: edit(r / "civic/coverage.json",
                           lambda d: d["declarations"][0].update(unit="parish")),
         "is outside", "a coverage unit outside the vocabulary")
+
+    # 4b. the same hole, in the images[] shape — T-0536. An image declared READ that
+    # no pages/ file reaches, an inventoried one dressed up as read, and the two
+    # pointers a declaration can break.
+    def _images(d):
+        return d["groups"][0]["images"]
+
+    run(lambda r, t: edit(r / "census_1840/pages/33S7-FIXT-A.json",
+                          lambda d: d.update(familysearch_id="33S7-FIXT-Z")),
+        "coverage hole", "a census image declared read that no pages/ file reaches")
+    run(lambda r, t: edit(r / "census_1840/coverage.json",
+                          lambda d: _images(d)[1].update(
+                              page_file="data/research/census_1840/pages/33S7-FIXT-A.json")),
+        "an inventoried sheet has nothing read off it",
+        "an inventoried image that names a page file")
+    run(lambda r, t: edit(r / "census_1840/coverage.json",
+                          lambda d: _images(d)[0].update(page_file=None)),
+        "names no page_file", "an image declared read that names no page file")
+    run(lambda r, t: (r / "census_1840/pages/33S7-FIXT-A.json").unlink(),
+        "is declared and is not committed",
+        "an image whose declared page file is not committed")
+    run(lambda r, t: edit(r / "census_1840/coverage.json",
+                          lambda d: _images(d)[0].pop("read_state")),
+        "no read_state", "an image the gate cannot grade")
+
+    # 4c. an off-deposit page — one read off a leaf the deposit does not hold — still
+    # has to say what it read. T-0912.
+    run(lambda r, t: edit(r / "census_1840/pages/33S7-FIXT-A.json",
+                          lambda d: d.pop("familysearch_id")),
+        "names neither a familysearch_id nor a source_record",
+        "an off-deposit page that names no source either")
+    run(lambda r, t: edit(r / "census_1840/pages/33S7-FIXT-A.json",
+                          lambda d: (d.pop("familysearch_id"),
+                                     d.update(source_record="no_such_source"))),
+        "which is not a source record",
+        "an off-deposit page naming a source record that does not exist")
 
     # 5. a merge with no rule, and a rule that does not read back
     run(lambda r, t: edit(r / "civic/crosswalk.json",
@@ -689,6 +1212,37 @@ def self_test() -> int:
         for f in failures:
             print("FAIL: " + f, file=sys.stderr)
         return 1
+    # --- T-0678: the two accommodations that let old_settlers be registered ------------
+    run(lambda r, t: edit(r / "old_settlers" / "roll.json",
+                          lambda d: d.__setitem__("units_in", "peeple")),
+        "declares units_in", "a units_in naming an array the file does not hold")
+    run(lambda r, t: edit(r / "old_settlers" / "roll.json",
+                          lambda d: d.__setitem__("people", [])),
+        "coverage hole", "a declared list whose only reading has emptied out")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].pop("resident_name")),
+        "fewer than two spellings", "a roster merge naming only the printed spelling")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].__setitem__("rule", "OS9")),
+        "the file's rules block does not declare", "a roster merge citing an undeclared rule")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].__setitem__("as_read", "Adams")),
+        "surname-only merge", "a roster merge on a bare surname")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].pop("evidence")),
+        "with no evidence", "a roster merge with nothing behind it")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["merges"][0].pop("person_id")),
+        "naming no person in the town", "a roster merge that reaches nobody")
+    run(lambda r, t: edit(r / "old_settlers" / "crosswalk.json",
+                          lambda d: d["refusals"][0].__setitem__("why", "  ")),
+        "refusal with no reason", "a roster refusal that does not say why")
+    # …and the roster shape does not let the pairwise shape off: civic has no rules block,
+    # so its merges are still held to into/from and the verbatim rule.
+    run(lambda r, t: edit(r / "civic" / "crosswalk.json",
+                          lambda d: d.__setitem__("merges", [{"into": "A. Smith"}])),
+        "fewer than two spellings", "a pairwise merge is still a pairwise merge")
+
     print("SELF-TEST PASS — every research-domain assertion fires when broken "
           "(%d cases)" % cases)
     return 0

@@ -685,7 +685,8 @@
           ],
           "associated_places": [
             "Chicago"
-          ]
+          ],
+          "note": "THE MIDDLE INITIAL IS A DIGIT, AND `normalized` GUESSES AT IT. The printing sets 'JOHN 8. KINZIE'; no compositor set a digit inside a personal name, and the lines around this one come off the same scan as 'WIBRORA TT' and '[uncertain: orwarding & Commission | Fi]', so the reading here is wrecked. The S in 'John S. Kinzie' is this extraction's normalisation of the 8 and no witness supplies it. The token is left as it stands rather than re-normalised, because every consumer of this claim keys on the string; what it means is ruled instead. T-0844 (folding in T-0854) reads the man as John Harris Kinzie — the town's only John Kinzie, and the forwarding and commission merchant this advertisement names — and folds the card that was minted from the guess onto his: data/residents/card_merge_rulings.json, cluster 'kinzie-john'. Fourth instance of the digit-for-letter fault T-0721 holds."
         }
       ],
       "business": {

@@ -12,6 +12,11 @@ Inputs, all committed:
     data/terrain/epochs/<e>/terrain_spec.json         the authored zone table
     data/terrain/epochs/<e>/river.geojson             traced water polygon + bank runs
     data/terrain/epochs/<e>/hydrology.geojson         traced secondary watercourses
+    data/terrain/epochs/<e>/shoreline.geojson         the harbour reach, the bar and the lake
+    data/terrain/epochs/<e>/branches.geojson          the branches beyond the forks window
+    data/terrain/epochs/<e>/south_branch_below_twelfth.geojson
+                                                      the South Branch below Twelfth
+                                                      Street, off Rees & Rucker 1849
 
 Outputs:
 
@@ -92,7 +97,7 @@ SKIRT_MARGIN_MIN_M = 1500.0
 INT16_FULL_SCALE = 32767
 
 
-def skirt_margin_m(e_span_m: float, cell_m: float) -> tuple[float, int]:
+def skirt_margin_m(span_m: float, cell_m: float) -> tuple[float, int]:
     """The apron's width, DERIVED so the publish step's lattice divides the grid.
 
     THE ARTEFACT THIS ENDS (T-0152). `tools/web_derivatives.sh` quantises the
@@ -122,8 +127,25 @@ def skirt_margin_m(e_span_m: float, cell_m: float) -> tuple[float, int]:
 
     The margin is what buys that, because the margin is what sets the scale:
 
-        rung   = (e_span + 2 * margin) / 2 / 32767
-        margin = 32767 * cell / k - e_span / 2      for rung = cell / k
+        rung   = (span + 2 * margin) / 2 / 32767
+        margin = 32767 * cell / k - span / 2        for rung = cell / k
+
+    `span` is the box's WIDEST horizontal side, because that is the axis
+    `gltf-transform` takes its uniform scale from. It was written as the
+    east-west side until T-0464, which is not the same thing and only looked
+    like it while the box was wider than it was tall: 2 020 x 930 m. The
+    southern extension makes the box 2 020 x 4 200 m, so north-south is now the
+    widest side and the margin has to be bought against IT or the rung stops
+    dividing the grid and the plan displacement T-0152 abolished comes back.
+    Taking the widest side costs a coarser rung — the apron has to reach the
+    haze on the long axis, so `k` halves once, 32 to 16, and the rung goes
+    78.125 mm to 156.25 mm. That costs nothing measurable, and this
+    is why: the rung's job here is to DIVIDE 2.5 m, not to be small. 2.5 / 16 is
+    exact, so every ground vertex still stands on a rung and the quantiser still
+    rounds it to itself — plan displacement 0.0 mm at either rung. Height is not
+    at risk either way, because terrain.js conforms the drawn ground to the
+    field at the vertex's shipped (E, N); it is the PLAN position that has to be
+    right, and it is.
 
     `k` is a POWER OF TWO, which is one more constraint than commensurability
     needs and is worth the metre or two it costs. `gltf-transform` quantises to a
@@ -138,7 +160,7 @@ def skirt_margin_m(e_span_m: float, cell_m: float) -> tuple[float, int]:
     Returns the margin and the `k` it was derived from; the caller ASSERTS the
     result on the vertices themselves rather than trusting this arithmetic.
     """
-    half = 0.5 * e_span_m
+    half = 0.5 * span_m
     k = 1
     while INT16_FULL_SCALE * cell_m / (k * 2) >= half + SKIRT_MARGIN_MIN_M:
         k *= 2
@@ -179,13 +201,19 @@ def check_quantisation_lattice(verts, e0, e1, n0, n1, margin_m, cell_m, k):
     ns = [v[1] for v in verts]
     ys = [v[2] for v in verts]
     spans = (max(es) - min(es), max(ns) - min(ns), max(ys) - min(ys))
-    if spans[0] != max(spans):
+    # The quantiser takes its uniform scale from the widest axis, so the margin
+    # must have been bought against whichever of E and N that is — which is the
+    # north-south side since T-0464 and was the east-west side before it. What
+    # would break the derivation outright is HEIGHT becoming the widest axis:
+    # skirt_margin_m() knows nothing about relief, so a box taller than it is
+    # wide would set the rung off an axis no apron can reach.
+    if spans[2] >= max(spans[0], spans[1]):
         raise SystemExit(
-            f"REFUSING: the ground's widest axis is no longer east-west "
+            f"REFUSING: the ground's widest axis is vertical "
             f"({spans[0]:.3f} x {spans[1]:.3f} x {spans[2]:.3f} m). The quantiser takes its "
             f"uniform scale from the widest axis, so skirt_margin_m() would be deriving the "
-            f"apron against an axis that no longer sets the rung. See T-0152.")
-    rung = 0.5 * spans[0] / INT16_FULL_SCALE
+            f"apron against an axis it cannot reach. See T-0152.")
+    rung = 0.5 * max(spans[0], spans[1]) / INT16_FULL_SCALE
     centre = (0.5 * (min(es) + max(es)), 0.5 * (min(ns) + max(ns)))
     worst, worst_at = 0.0, None
     for e, n, _y in verts:
@@ -208,6 +236,150 @@ def check_quantisation_lattice(verts, e0, e1, n0, n1, margin_m, cell_m, k):
     assert abs(cell_m / rung - k) < 1e-6, (
         f"the rung is the grid cell / {cell_m / rung:.6f}, not / {k}")
     return rung
+
+# A boundary landform's taper may not be shorter than this many publish rungs.
+# Under one rung the two ring vertices would land on the same lattice position,
+# which is a degenerate quad — `from_pydata` accepts one and the decimate
+# modifier then segfaults on it (the same trap the skirt ring's own assert
+# guards). A termination that short is also below the mesh's own resolution, so
+# nothing is lost by carrying it instead.
+SKIRT_TERMINATION_MIN_RUNGS = 4
+
+
+def ring_local(feats, ref, origin):
+    """One traced ring in local ENU metres, open (no repeated closing vertex)."""
+    o_e, o_n = origin
+    f = feats[ref["feature"]]
+    coords = f["geometry"]["coordinates"][int(ref.get("ring", 0))]
+    return [(c[0] - o_e, c[1] - o_n) for c in coords][:-1]
+
+
+def _first_exit(ring, scan_axis, scan_at, out_axis, bound, sign):
+    """Walking outward from the box edge, how far out the ring is first crossed.
+
+    The SMALLEST positive outward distance, not the largest: walking south from a
+    point inside the ring, the first boundary crossing is where the landform ends.
+    A ring that re-enters further out (a second lobe the box has cut off from the
+    first) is not attached to this boundary vertex and is not this vertex's taper.
+
+    Returns None when the ring is never crossed outward of `bound` on that line.
+    """
+    best = None
+    for i in range(len(ring)):
+        a, b = ring[i - 1], ring[i]
+        lo, hi = a[scan_axis], b[scan_axis]
+        if not ((lo <= scan_at < hi) or (hi <= scan_at < lo)):
+            continue
+        t = (scan_at - lo) / (hi - lo)
+        d = sign * (a[out_axis] + t * (b[out_axis] - a[out_axis]) - bound)
+        if d > 0 and (best is None or d < best):
+            best = d
+    return best
+
+
+def skirt_terminations(spec, feats, origin, h_m, rung_m):
+    """Which boundary vertices stand on a landform that ENDS inside the skirt.
+
+    THE RULE, AND WHY IT IS A RULE ABOUT EVIDENCE RATHER THAN ABOUT THE BAR
+    (T-0939). The apron carries each boundary vertex outward at its own height,
+    which is right when the boundary is a CROSS-SECTION of ground that continues
+    — and the mainland's is: its traced shore runs stop at the edge of the
+    tracing window, which is a place the reading stopped, not a place the land
+    did. It is wrong when the boundary cuts a landform that ENDS, because then
+    1.55 km of apron is extruded from a section of something 36 m long. The owner
+    photographed exactly that: the 1834 sand bar leaving the box at a constant
+    +1.21 m and running to the haze as a straight ribbon three and a half times
+    longer than the island it is a section of.
+
+    The only evidence that can say a landform ends is a CLOSED traced outline
+    that the box truncates, and the spec already holds those — `islands`, "land
+    the water goes round", each resolved to a ring in `shoreline.geojson`. So
+    this asks every island ring, on every one of the four edges, two questions:
+    is the boundary vertex inside the ring, and how far past the edge does the
+    ring reach on that vertex's own line? The second answer is the taper LENGTH,
+    read off the trace rather than chosen — for the sand bar it runs from 1.4 m
+    at its western edge to 35.8 m at the tip and back to 2.0 m at its eastern,
+    which is the hook Wright drew.
+
+    Where the apron arrives is the WATER the landform stands in: the boundary
+    heights either side of the run, interpolated across it. That is what the
+    skirt would have carried there had the landform not been in the way, so the
+    run's apron rejoins its neighbours' instead of ending in a wall.
+
+    Lengths are snapped to the publish step's POSITION rung, because the vertices
+    this places have to stand on that lattice like every other ground vertex
+    (see skirt_margin_m and check_quantisation_lattice). The snap is at most half
+    a rung — 39 mm against the +/-20 m the planform itself carries.
+
+    Returns {edge: [run, ...]} with each run
+    {"landform", "index0", "extent_m": [...], "base_y": [...]}, indexed along
+    that edge's own axis (columns from the west on the south and north edges,
+    rows from the south on the west and east edges). An edge with no truncated
+    landform is absent, and a box with none returns {} — which is the case where
+    this changes nothing at all.
+    """
+    g = spec["grid"]
+    cell = float(g["cell_m"])
+    e0, e1 = float(g["e_min_m"]), float(g["e_max_m"])
+    n0, n1 = float(g["n_min_m"]), float(g["n_max_m"])
+    rows, cols = h_m.shape
+    # name: (scan axis, count, coordinate along the edge, out axis, bound,
+    #        outward sign, the heightfield row/column that edge is)
+    edges = {
+        "south": (0, cols, lambda i: e0 + i * cell, 1, n0, -1, lambda i: h_m[0, i]),
+        "north": (0, cols, lambda i: e0 + i * cell, 1, n1, +1, lambda i: h_m[rows - 1, i]),
+        "west": (1, rows, lambda i: n0 + i * cell, 0, e0, -1, lambda i: h_m[i, 0]),
+        "east": (1, rows, lambda i: n0 + i * cell, 0, e1, +1, lambda i: h_m[i, cols - 1]),
+    }
+    floor_m = SKIRT_TERMINATION_MIN_RUNGS * rung_m
+    out = {}
+    for isl in spec.get("islands", []):
+        ring = ring_local(feats, isl["ring"], origin)
+        for name, (sa, count, at, oa, bound, sign, edge_h) in edges.items():
+            along = np.array([at(i) for i in range(count)], float)
+            fixed = np.full(count, bound, float)
+            E, N = (along, fixed) if sa == 0 else (fixed, along)
+            inside = point_in_ring(E, N, ring)
+            reach = {}
+            for i in range(count):
+                if not inside[i]:
+                    continue
+                d = _first_exit(ring, sa, at(i), oa, bound, sign)
+                if d is None:
+                    continue
+                snapped = round(d / rung_m) * rung_m
+                if snapped >= floor_m:
+                    reach[i] = snapped
+            if not reach:
+                continue
+            for run in _contiguous(sorted(reach)):
+                lo, hi = run[0], run[-1]
+                # The water either side of the run — the height the skirt would
+                # have carried here had the landform not been standing in it.
+                west_y = float(edge_h(max(0, lo - 1)))
+                east_y = float(edge_h(min(count - 1, hi + 1)))
+                span = max(1, hi + 1 - lo + 1)
+                base = [west_y + (east_y - west_y) * (k + 1) / span
+                        for k in range(len(run))]
+                out.setdefault(name, []).append({
+                    "landform": isl["id"],
+                    "index0": lo,
+                    "extent_m": [round(reach[i], 6) for i in run],
+                    "base_y": [round(b, 6) for b in base],
+                })
+    return out
+
+
+def _contiguous(indices):
+    """Split a sorted index list into runs of consecutive integers."""
+    runs = []
+    for i in indices:
+        if runs and i == runs[-1][-1] + 1:
+            runs[-1].append(i)
+        else:
+            runs.append([i])
+    return runs
+
 
 # How far the decimated ground mesh may depart from the heightfield the walker
 # samples. 30 mm is well under the resolution of anything a person notices on
@@ -297,6 +469,22 @@ def point_in_ring(E, N, ring):
     return inside
 
 
+def carry_run_north(pts, to_n):
+    """A traced run with its northern tip carried due north to `to_n`.
+
+    The tip has to be an END of the polyline — a run whose northernmost vertex
+    is in its middle is a bend, not a truncation, and carrying THAT north would
+    put a spur through the middle of a bank. Refused rather than guessed at.
+    """
+    i = max(range(len(pts)), key=lambda k: pts[k][1])
+    if i not in (0, len(pts) - 1):
+        raise ValueError(f"northernmost vertex {i} of {len(pts)} is not an end of "
+                         f"the run, so it is a bend and not the end of a tracing "
+                         f"window; refusing to carry it north")
+    tip = (pts[i][0], to_n)
+    return ([tip] + list(pts)) if i == 0 else (list(pts) + [tip])
+
+
 def smoothstep(t):
     t = np.clip(t, 0.0, 1.0)
     return t * t * (3.0 - 2.0 * t)
@@ -351,7 +539,9 @@ def build_field(spec, feats, origin):
     renderers/web/js/terrain.js's Heightfield sampler requires.
 
     `feats` is every traced feature the epoch owns, by id, across river.geojson,
-    hydrology.geojson and shoreline.geojson.
+    hydrology.geojson, shoreline.geojson and branches.geojson. The spec decides
+    which of them the field reads; loading a file does not put its features in
+    the ground.
     """
     o_e, o_n = origin
     g = spec["grid"]
@@ -368,6 +558,27 @@ def build_field(spec, feats, origin):
     def ring_of(spec_ref):
         f = feats[spec_ref["feature"]]
         return to_local(f["geometry"]["coordinates"][int(spec_ref.get("ring", 0))])[:-1]
+
+    # The traced shore runs, in local metres. Resolved before the water mask
+    # because `southern_lake` below is stated against the SHORE and not against
+    # the water wash, and the waterline needs them anyway.
+    shore_runs = {s["id"]: to_local(feats[s["id"]]["geometry"]["coordinates"])
+                  for s in spec["shore_runs"]}
+    # A TRACED RUN THAT STOPS AT THE EDGE OF ITS WINDOW HAS NOT REACHED THE END
+    # OF WHAT IT DRAWS. `skirt_terminations` says the same thing about the box's
+    # own walls — "a place the reading stopped, not a place the land did" — and
+    # the north wall is where it started to matter: the North Branch's two banks
+    # end on the line Wright ruled across the top of his sheet, and the
+    # harbour-reach shore ends 2.7 m short of the box. Left there, the waterline
+    # north of each is measured to the run's last VERTEX rather than to a bank,
+    # which stands the ground off a cliff and silences the lake rule that reads
+    # the run per row. Each carry is declared in the spec, run by run, and
+    # carries the tip's own easting rather than the bearing of its last segment:
+    # the minimal continuation, because a bearing is a claim about where the
+    # line bends above the sheet.
+    for cy in spec.get("trace_carries", []):
+        shore_runs[cy["run"]] = carry_run_north(shore_runs[cy["run"]],
+                                                float(cy["to_n_m"]))
 
     # ---- what is water ----------------------------------------------------
     # Union of the traced water polygons, minus their islands. The sand bar is
@@ -393,6 +604,112 @@ def build_field(spec, feats, origin):
         idx = np.arange(E.shape[1])[None, :]
         east = np.where(in_water & (E > guard), idx, -1).max(axis=1)
         in_water |= (idx > east[:, None]) & (east >= 0)[:, None] & (E > guard)
+    # The same argument, made where the water wash runs out instead of where the
+    # tracing window does. South of the sand bar's traced hook the harbour trace
+    # carries the SHORE — the east edge of Fractional Section 15, a surveyed line
+    # — all the way to the foot of the sheet, but its water wash south of there
+    # is patches rather than a margin, so `open_lake`'s per-row test ("east of
+    # the easternmost traced WATER") measures from a patch and leaves the ground
+    # between two patches standing as dry land. It came out as a 4.8 m plateau of
+    # mainland sand ridge in the middle of Lake Michigan. This rule measures from
+    # the traced SHORE instead: south of the stated line, every cell east of the
+    # row's easternmost crossing of a named shore run is lake. Islands are
+    # subtracted after it, exactly as they are after `open_lake`, so the bar's
+    # southern hook is not touched by it.
+    # ONE RULE STATED AT BOTH ENDS. `northern_lake` is the same sentence at the
+    # other end of the same trace, and it is here for the same reason: the
+    # harbour-reach polygon's NORTH edge is the top of the tracing window, and
+    # Wright's wash frays across it — between N +1114.8 and +1118.0 it reads as
+    # two lobes with a 25 m notch between them, and the ground inside that notch
+    # is not east of the row's easternmost water. It came out as a one-cell
+    # causeway of 8.2 ft sand ridge standing in Lake Michigan at N +1117.5,
+    # which is the southern fault exactly, found at the far end of the box by
+    # T-1123's extension. The two blocks are read by one loop so neither can
+    # drift away from the other.
+    for key, sign in (("southern_lake", -1.0), ("northern_lake", +1.0)):
+        rule = spec.get(key)
+        if not rule:
+            continue
+        n_cap = float(rule["south_of_n_m" if sign < 0 else "north_of_n_m"])
+        east_edge = np.full(E.shape[0], -np.inf)
+        for rid in rule["shore_runs"]:
+            pts = shore_runs[rid]
+            for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                if y1 == y2:
+                    continue
+                lo, hi = (y1, y2) if y1 < y2 else (y2, y1)
+                beyond = (N[:, 0] > n_cap) if sign > 0 else (N[:, 0] < n_cap)
+                sel = (N[:, 0] >= lo) & (N[:, 0] <= hi) & beyond
+                if not sel.any():
+                    continue
+                t = (N[sel, 0] - y1) / (y2 - y1)
+                east_edge[sel] = np.maximum(east_edge[sel], x1 + t * (x2 - x1))
+        # AND THE SHORE DOES NOT END AT TWELFTH STREET EITHER -- and since
+        # T-1151 it does not have to be HELD to not end there. This is where
+        # `southern_lake.beyond_the_trace` stood: below south_shore_harbor_reach's
+        # last vertex at N -2159.9 every row's east_edge was -inf, the rule could
+        # not fire, and 355 x 1 640 m of Lake Michigan came out as dry prairie --
+        # the same false coast the rule above exists to prevent -- so the edge
+        # held that vertex's easting, E +1347.4, for the whole 1 640 m to the
+        # floor. It was conjectural and it was the lake's half of L239.
+        #
+        # REES & RUCKER 1849 draws the pre-fill shore beside this reach, and
+        # tools/trace_lake_shore_rees_1849.py traces it into an ordinary shore
+        # run (`lake_shore_below_twelfth`) which the loop above already knows how
+        # to read. So there is no held easting here any more and no code behind
+        # one: the shore falls away south-east from E +1298.9 at the splice to
+        # E +1689.6 at the floor, 390 m of easting the held value denied. What
+        # the trace does NOT relax is `evidence_limit`, which still writes every
+        # vertex below N -2149.4 conjectural, water and land alike; nor does it
+        # blend the 49 m step at the row where the two surveys abut, which is
+        # this shore's documented post-pier erosion and is left in the data.
+        in_water |= (E > east_edge[:, None]) & np.isfinite(east_edge)[:, None]
+
+    # AND THE RIVER DOES NOT END AT TWELFTH STREET EITHER -- and since T-1150 it
+    # does not have to be RULED to not end there. This is where `southern_branch`
+    # stood: a held easting that carried the channel's own 45.3 m cross-section
+    # at N -2110 due south, 1 690 m, to the box floor, because `branches.geojson`
+    # stops on the School Section's south line and Wright's sheet stops there
+    # with it. It was conjectural, it was recorded as L239, and its own note said
+    # where the answer lived -- "a source this corpus does not hold".
+    #
+    # The corpus holds one now. REES & RUCKER 1849 reaches a mile and a quarter
+    # past Cermak Road; it is georeferenced in data/traces/gcp/
+    # rees_rucker_1849_gcps.json at RMS 25.0 m and traced by
+    # tools/trace_south_branch_rees_1849.py into an ordinary water polygon and
+    # two ordinary bank runs, which the loops above already know how to read.
+    # So there is no rule here any more, and no code: the branch bends east to
+    # E +567 about Sixteenth Street and swings south-west toward the portage, and
+    # at the box floor its centre stands 521 m west of where the held easting put
+    # it. What the trace does NOT relax is `evidence_limit`, which still writes
+    # every vertex below N -2149.4 conjectural, water and land alike.
+
+    # THE SPLICES — where two tracing windows are declared to abut and the
+    # sampled row between them falls inside neither ring. The windows meet on a
+    # shared map row, but each closes with its own SLANTED chord across the
+    # channel and the two chords are neither parallel nor coincident: at the
+    # forks/North-Branch splice the forks polygon reaches E -160.3 at N +402.5
+    # and the branch polygon starts at -195.4, so 35 m of channel belongs to
+    # neither and stands as a 2.5 m-wide, 1.0 m-high weir across the river. The
+    # southern splice carries the identical bar at N -405 (E +5 to +32.5) and
+    # has done since T-0219 committed it; T-1123 built the northern twin and
+    # this repairs both, because it is one seam mechanism and not two.
+    #
+    # The water is spanned from the traced BANKS either side of the seam rather
+    # than from either polygon: the runs that meet at a splice are named in the
+    # spec, the vertex of each nearest the band is its tip, and the span is the
+    # hull of the west tips to the hull of the east tips. It is a union and can
+    # only ADD water, never take a traced cell away, and it reaches one sampled
+    # row per splice.
+    for sp in spec.get("splices", []):
+        lo, hi = sorted(float(x) for x in sp["n_range"])
+        mid = 0.5 * (lo + hi)
+        def tip(rid, at=mid):
+            return min(shore_runs[rid], key=lambda q: abs(q[1] - at))
+        west = min(tip(r)[0] for r in sp["west_runs"])
+        east = max(tip(r)[0] for r in sp["east_runs"])
+        in_water |= ((N >= lo) & (N <= hi) & (E >= west) & (E <= east))
+
     in_water &= ~islands
 
     # ---- the waterline ----------------------------------------------------
@@ -401,8 +718,6 @@ def build_field(spec, feats, origin):
     # traced window (the forks polygon at E +390, the harbour polygon at E +314
     # and again out in the lake), and a window edge is a place the tracing
     # stopped, not a bank. Measuring to it would raise a bank across open water.
-    shore_runs = {s["id"]: to_local(feats[s["id"]]["geometry"]["coordinates"])
-                  for s in spec["shore_runs"]}
     waterlines = [seg_distance(E, N, pts) for pts in shore_runs.values()]
     for isl in spec.get("islands", []):
         r = ring_of(isl["ring"])
@@ -462,6 +777,19 @@ def build_field(spec, feats, origin):
                            for s in spec["shore_runs"] if s["division"] == div["id"]])
         for div in divisions])
     nearest = np.argmin(dists, axis=0)
+    # South of the evidence there is no traced shore to be nearest TO, so this
+    # becomes a Voronoi diagram of two trace ENDPOINTS and it flips: at E +405
+    # the ground steps 1.4 ft between N -2900 and N -3100 because the West
+    # Division's endpoint became the closer one. A division is a thing the RIVER
+    # makes, and the river is not down there. Every row below the limit takes the
+    # division map of the last row the evidence reaches, so the relief bands each
+    # division declares carry south with it rather than being cut off from the
+    # ground they explain. See T-0464 and the carry below.
+    ev_limit = spec.get("evidence_limit")
+    ev_below = N[:, 0] < float(ev_limit["south_of_n_m"]) if ev_limit else None
+    if ev_below is not None and ev_below.any() and not ev_below.all():
+        ev_ref = int(np.argmax(~ev_below))
+        nearest = np.where(ev_below[:, None], nearest[ev_ref][None, :], nearest)
 
     level_ft = np.zeros(E.shape)
     face = np.full(E.shape, float(spec["bank"]["face_m"]))
@@ -489,6 +817,32 @@ def build_field(spec, feats, origin):
             lo, hi = rb["e_range"]
             band.setdefault(rb["id"], np.zeros(E.shape, bool))
             band[rb["id"]] |= mine & (E >= float(lo)) & (E <= float(hi))
+
+    # ---- south of the evidence, the land surface is CARRIED, not computed --
+    # Every profile above is a function of E and of distance to a traced shore,
+    # and south of Twelfth Street there is no traced shore: the South Branch
+    # stops at N -2149.6 and south_shore_harbor_reach at N -2159.9, both at the
+    # foot of Wright's sheet. Below that `nearest` becomes a Voronoi diagram of
+    # two trace ENDPOINTS, and it flips — at E +405 the ground steps 1.4 ft
+    # between N -2900 and N -3100 because the West Division's endpoint became the
+    # closer one. That step is an artefact of where two tracings happened to
+    # stop, it breaks the dossier's own flatness rule, and it is a relief claim
+    # made by arithmetic rather than by a source.
+    #
+    # So the surface is carried south instead, exactly as the skirt carries a
+    # boundary vertex outward at its own height: every row below the limit takes
+    # the land level and the bank face of the last row the evidence reaches. The
+    # north-south gradient of the frame is then zero by construction, which is
+    # the honest answer — this ground is a container for the 1812 and 1880s
+    # epochs, not a reconstruction of 1835, and evidence_limit marks every
+    # vertex of it conjectural. The WATER is not carried: it is left to the
+    # traced polygons and to southern_lake's rules, so nothing here invents a
+    # river running due south. See T-0464.
+    if ev_below is not None and ev_below.any() and not ev_below.all():
+        level_ft = np.where(ev_below[:, None], level_ft[ev_ref][None, :], level_ft)
+        face = np.where(ev_below[:, None], face[ev_ref][None, :], face)
+        for _m in band.values():
+            _m[ev_below] = _m[ev_ref]
 
     # ---- islands: land the water goes round ------------------------------
     conj_land = np.zeros(E.shape, bool)
@@ -565,6 +919,24 @@ def build_field(spec, feats, origin):
         for k, wl in enumerate(waves):
             micro += value_noise(E, N, float(wl), seed + 977 * k) / (k + 1)
         micro *= amp / max(1e-9, sum(1.0 / (k + 1) for k in range(len(waves))))
+    # ...but NOT over the carried frame. The noise is declared in the spec as "a
+    # texture, not a claim" — it exists so ground the sources call dead flat
+    # still reads as ground under a walker's feet, and so walking gives motion
+    # parallax. South of evidence_limit there are no sources and there is no
+    # walker: the nearest a camera gets is the town, 1.6 km north, which is past
+    # the distance at which world.js's haze is total. So the texture buys nothing
+    # down there and costs a great deal, because it is what stops the planar
+    # dissolve collapsing a surface that is otherwise EXACTLY planar — one
+    # evidenced row repeated 661 times. Measured on this bake: with the texture
+    # everywhere the extension ships a 27,019,736-byte master and a 2,646,392-byte
+    # web derivative; stopped at Madison it ships 17,919,344 and 1,819,896 — 9.10
+    # MB of master and 807 KiB of published payload, for ground nothing walks on
+    # and no camera resolves. That is the measured storage reason the ticket asks
+    # for before the field is allowed to change, and the 2.5 m cell is preserved
+    # either way (T-0464).
+    south_limit = mr.get("south_limit_n_m")
+    if amp > 0 and south_limit is not None:
+        micro = np.where(N < float(south_limit), 0.0, micro)
 
     # ---- assemble ---------------------------------------------------------
     # The bank ramp is an ease-OUT (steepest at the waterline, flattening into
@@ -633,6 +1005,14 @@ def build_field(spec, feats, origin):
 
     conf = np.where(water, CONF_CONJECTURAL, CONF_INFERRED)
     conf = np.where(conj_land & ~water, CONF_CONJECTURAL, conf)
+    # The box is a FRAME and the frame now reaches a mile and a half past the
+    # last thing this corpus says about ground (T-0464). Extending a division's
+    # plain profile into that is not an inference from a source, it is the
+    # generator having nowhere to stop, so every vertex down there is marked
+    # conjectural rather than carrying the inferred grade its neighbours earn.
+    ev = spec.get("evidence_limit")
+    if ev:
+        conf = np.where(N < float(ev["south_of_n_m"]), CONF_CONJECTURAL, conf)
 
     meta = {
         "cols": cols, "rows": rows, "cell_m": cell,
@@ -682,7 +1062,18 @@ def gradient_audit(h_m, water, geom, spec):
     relief_any = np.zeros(h_m.shape, bool)
     for m in bands.values():
         relief_any |= m
-    ok = (~water) & (~relief_any) & (geom["d_land"] >= marsh_m)
+    # The carried frame is not audited as plain, and is reported on its own line
+    # instead. The dossier's modelling rule is a statement about the town's
+    # ground; south of evidence_limit there is no reconstruction for it to be a
+    # statement about, only the last evidenced row carried south (T-0464). Its
+    # north-south gradient is the micro-relief texture and nothing else, and its
+    # east-west gradient is that one row's, so auditing it as plain would report
+    # the SAME east-west slope 660 more times and call each repeat a separate
+    # failure. The skirt, which is the same idea one step further out, has never
+    # been audited either.
+    ev = spec.get("evidence_limit")
+    frame = (geom["N"] < float(ev["south_of_n_m"])) if ev else np.zeros(h_m.shape, bool)
+    ok = (~water) & (~relief_any) & (geom["d_land"] >= marsh_m) & (~frame)
 
     de = (h_m[:, k:] - h_m[:, :-k]) / FT
     dn = (h_m[k:, :] - h_m[:-k, :]) / FT
@@ -696,6 +1087,21 @@ def gradient_audit(h_m, water, geom, spec):
     rough = slope[ok] if ok.any() else np.zeros(1)
     relief = (~water) & ~ok
     rel = slope[relief] if relief.any() else np.zeros(1)
+
+    fr = frame & (~water) & (~relief_any)
+    fde = np.abs(de)[fr[:, k:] & fr[:, :-k]]
+    fdn = np.abs(dn)[fr[k:, :] & fr[:-k, :]]
+    carried = {
+        "cells": int(fr.sum()),
+        "block_max": round(float(max(fde.max() if fde.size else 0.0,
+                                     fdn.max() if fdn.size else 0.0)), 3),
+        "north_south_block_max": round(float(fdn.max()) if fdn.size else 0.0, 3),
+        "note": "the ground carried south of evidence_limit, excluded from the plain "
+                "audit and measured here instead. The surface is one evidenced row "
+                "repeated, so north_south_block_max is the micro-relief texture and "
+                "nothing else (the spec's own +/- 0.10 ft, two octaves), and the "
+                "east-west figure is that row's own, already audited where it stands.",
+    }
 
     per_zone = {}
     for name, m in sorted(bands.items()):
@@ -711,6 +1117,7 @@ def gradient_audit(h_m, water, geom, spec):
                               round(float((2.5 * geom["face"]).max()), 1)],
         "marsh_exclusion_m": round(marsh_m, 1),
         "plain_cells_audited": int(ok.sum()),
+        "carried_frame": carried,
         "plain_block_max": round(float(block.max()), 3),
         "plain_block_mean": round(float(block.mean()), 4),
         "passes": bool(block.max() <= 0.5),
@@ -756,6 +1163,7 @@ def write_heightfield(out_dir: Path, h_m, meta, spec, inputs_sha: str):
             "channel_min": round(meta["min_m"] / FT, 3),
         },
         "gradient_audit_ft_per_300ft": meta.get("gradient_audit"),
+        "skirt": meta.get("skirt"),
         "glb": {
             "ground": f"gltf/terrain__{spec['epoch']}.glb",
             "water": f"gltf/water__{spec['epoch']}.glb",
@@ -792,7 +1200,8 @@ def terrain_inputs_sha(ep_dir: Path) -> str:
 # meshing (bpy)
 # ---------------------------------------------------------------------------
 
-def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
+def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float,
+                 terminations=None):
     from math import radians
 
     from common.mesh import reset_scene, simple_material  # noqa: PLC0415
@@ -830,7 +1239,7 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
     # skirt: carry each boundary vertex outward to a larger rectangle, keeping
     # its own height, so the channel continues past the box instead of stopping.
     # The width is DERIVED rather than round — see skirt_margin_m(), T-0152.
-    m, lattice_k = skirt_margin_m(e1 - e0, cell)
+    m, lattice_k = skirt_margin_m(max(e1 - e0, n1 - n0), cell)
     # Clockwise seen from above, each corner listed exactly once — a repeated
     # index here produces a degenerate quad, which from_pydata accepts and the
     # decimate modifier then segfaults on.
@@ -839,20 +1248,69 @@ def build_meshes(h_m, conf, spec, epoch, outdir: Path, decimate_deg: float):
                 + [r * cols + cols - 1 for r in range(rows - 2, -1, -1)]     # east, N->S
                 + [c for c in range(cols - 2, 0, -1)])                       # south, E->W
     assert len(set(ring_idx)) == len(ring_idx), "skirt ring visits a vertex twice"
+    # WHERE THE APRON IS A SECTION OF SOMETHING THAT ENDS (T-0939). Carrying a
+    # boundary vertex outward is right for ground that continues and wrong for a
+    # landform the box has cut: the 1834 sand bar left this edge at +1.21 m and
+    # was extruded 1.55 km south as a straight ribbon, three and a half times
+    # longer than the island it is a section of, which is what the owner
+    # photographed. skirt_terminations() reads which boundary vertices those are
+    # and how far past the edge each one's landform actually reaches, off the
+    # traced ring rather than off a number chosen to look right.
+    #
+    # The apron gains ONE more ring to say it with. Each boundary vertex has an
+    # outward distance `t` and an arrival height: over a termination, its own
+    # taper length and the water beside it; everywhere else, the deepest
+    # termination on the box and its own carried height — which makes the extra
+    # ring a subdivision of a flat strip and moves nothing. Where no landform is
+    # truncated at all there is no extra ring, and this is the mesh it has always
+    # been.
+    ends = {}
+    for name, runs in (terminations or {}).items():
+        for run in runs:
+            for k, i in enumerate(range(run["index0"], run["index0"] + len(run["extent_m"]))):
+                idx = (0, i) if name == "south" else \
+                      (rows - 1, i) if name == "north" else \
+                      (i, 0) if name == "west" else (i, cols - 1)
+                v = idx[0] * cols + idx[1]
+                # A corner belongs to two edges. The shorter taper wins: it is
+                # the one whose landform ends sooner on this vertex's own line.
+                prior = ends.get(v)
+                if prior is None or run["extent_m"][k] < prior[0]:
+                    ends[v] = (run["extent_m"][k], run["base_y"][k])
+    t_default = max((t for t, _ in ends.values()), default=0.0)
+
     outer = {}
+    mid = {}
     eps = 0.5 * cell
     for i in ring_idx:
         e, n, y = verts[i]
+        end = ends.get(i)
+        y_out = end[1] if end else y
+        if t_default > 0.0:
+            t = end[0] if end else t_default
+            mid[i] = len(verts)
+            verts.append((e0 - t if e <= e0 + eps else (e1 + t if e >= e1 - eps else e),
+                          n0 - t if n <= n0 + eps else (n1 + t if n >= n1 - eps else n),
+                          y_out))
+            confs.append(confs[i])
         oe = e0 - m if e <= e0 + eps else (e1 + m if e >= e1 - eps else e)
         on = n0 - m if n <= n0 + eps else (n1 + m if n >= n1 - eps else n)
         outer[i] = len(verts)
-        verts.append((oe, on, y))
+        verts.append((oe, on, y_out))
         confs.append(confs[i])
     # Wound so the skirt's normal points up, matching the grid above it: the
     # boundary runs clockwise from above, so the quad is a -> b -> outer_b ->
     # outer_a, not the other way round.
     for a, b in zip(ring_idx, ring_idx[1:] + ring_idx[:1]):
-        faces.append((a, b, outer[b], outer[a]))
+        if mid:
+            faces.append((a, b, mid[b], mid[a]))
+            faces.append((mid[a], mid[b], outer[b], outer[a]))
+        else:
+            faces.append((a, b, outer[b], outer[a]))
+    if ends:
+        print(f"skirt terminations: {len(ends)} boundary vertices stand on a landform the "
+              f"box truncates; tapers {min(t for t, _ in ends.values()):.3f}..{t_default:.3f} m, "
+              f"the apron elsewhere subdivided at {t_default:.3f} m and unmoved")
 
     rung = check_quantisation_lattice(verts, e0, e1, n0, n1, m, cell, lattice_k)
     print(f"skirt margin {m:.6f} m (grid cell / {lattice_k}); the publish step's "
@@ -1090,7 +1548,9 @@ def main() -> int:
     ep_dir = ROOT / "data" / "terrain" / "epochs" / args.epoch
     spec = load(ep_dir / "terrain_spec.json")
     feats = {}
-    for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson"):
+    for name in ("river.geojson", "hydrology.geojson", "shoreline.geojson",
+                 "branches.geojson", "south_branch_below_twelfth.geojson",
+                 "lake_shore_below_twelfth.geojson"):
         for f in load(ep_dir / name)["features"]:
             feats[f["id"]] = f
     origin = (datum["origin_utm_e"], datum["origin_utm_n"])
@@ -1100,6 +1560,31 @@ def main() -> int:
     audit["rule"] = ("docs/research/01-terrain-hydrology.md modelling rule 1: outside the zones "
                      "that earn relief, hold local gradients under 0.5 ft per 300 ft")
     meta["gradient_audit"] = audit
+
+    # The apron's rule, written where the renderer can read it. Both sides of
+    # the bake have to carry a boundary vertex outward the same way or the seam
+    # at the box edge opens, and since T-0939 that rule has a data half: which
+    # boundary vertices stand on a landform the box truncates, and how far out
+    # each one's own trace reaches. Publishing it here is what keeps
+    # renderers/web/js/terrain.js's conformGroundToField() from having to know
+    # about islands, or to drift away from this generator's answer.
+    _g = spec["grid"]
+    _margin, _k = skirt_margin_m(max(float(_g["e_max_m"]) - float(_g["e_min_m"]),
+                                     float(_g["n_max_m"]) - float(_g["n_min_m"])),
+                                 float(_g["cell_m"]))
+    _rung = float(_g["cell_m"]) / _k
+    meta["skirt"] = {
+        "_doc": "The apron outside the modelled box. It carries each boundary vertex "
+                "outward at its own height, EXCEPT over a landform whose traced outline "
+                "ends inside the apron: there the ground falls from the boundary height "
+                "to base_y, reaching it at extent_m and holding it beyond. Indices run "
+                "along the named edge — columns from the west on south/north, rows from "
+                "the south on west/east. See generators/terrain_gen.skirt_terminations "
+                "and T-0939.",
+        "margin_m": round(_margin, 6),
+        "position_rung_m": round(_rung, 9),
+        "terminations": skirt_terminations(spec, feats, origin, h_m, _rung),
+    }
 
     sha = terrain_inputs_sha(ep_dir)
     doc = write_heightfield(ep_dir, h_m, meta, spec, sha)
@@ -1130,7 +1615,8 @@ def main() -> int:
               "-- --glb")
         return 2
 
-    built = build_meshes(h_m, conf, spec, args.epoch, Path(args.out), args.decimate_deg)
+    built = build_meshes(h_m, conf, spec, args.epoch, Path(args.out),
+                         args.decimate_deg, meta.get("skirt", {}).get("terminations"))
 
     manifest_path = ROOT / "assets" / "manifest.json"
     manifest = load(manifest_path) if manifest_path.exists() else {}

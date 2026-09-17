@@ -44,7 +44,7 @@
     {
       "household_id": "hh_adains_will_si",
       "person_id": "adains_will_si",
-      "name": "Willısi Adains",
+      "name": "Willisi Adains",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
         "1835-07-01"
@@ -236,7 +236,7 @@
     {
       "household_id": "hh_bandle_will_nm",
       "person_id": "bandle_will_nm",
-      "name": "Willınm Bandle",
+      "name": "Willinm Bandle",
       "stratum": "letter_list_only_present",
       "letter_list_returns": [
         "1835-07-01"

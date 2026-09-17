@@ -10,7 +10,7 @@
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1834-04-01 and at no stated time before it; nothing says when they came.",
+  "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of 1 April 1834 and not by the issue it was read in (T-0425). Somebody was writing to this name at Chicago by 1834-04-01 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -57,12 +57,12 @@
     "1834-04-01"
    ],
    "occupation": {
-    "value": "forwarding_and_commission",
-    "confidence": "attested",
+    "value": "none_recorded",
+    "confidence": "reconstructed",
     "sources": [
      "hathaway_1834"
     ],
-    "note": "T-0483: independently corroborated resident research. Exact name with Jr. discriminator; primary 1834 Chicago map carrying his authorship."
+    "note": "NO TRADE IS PRINTED FOR THIS MAN ANYWHERE THIS PROJECT HOLDS, AND `forwarding_and_commission` WAS NEVER READ OFF THE SOURCE THAT CARRIED IT (T-0991). The one citation this trade ever had is `hathaway_1834` — 'Chicago with the School Section, Wabansia, and Kinzie's Addition', a MAP, and by this repository's own inspection of it at native resolution a PURE CADASTRAL LOT PLAT: block outlines, numbered lots, street names and survey bearings, and nothing else. It prints no trades, for this man or any other. What it does carry is his AUTHORSHIP, in the cartouche — evidence that he drew the map, which is a fact about a surveyor's hand and not a forwarding and commission house. The trade was read in rather than read off, and the repair is not a question of grade: no tier can hold a figure no source states. The man himself is unaffected and stands where he stood — the Chicago Democrat of 1 April 1834 prints 'joshua Hathaway jr.' in a single return of letters uncalled-for at the post office, which is how this record is known at all, and it prints no trade either. The 1835 field is therefore `none_recorded` at `reconstructed`. THE CARTOUCHE IS LEFT UNSPENT DELIBERATELY: reading `surveyor` off an authorship line would be the same move in the other direction, out of a sheet whose own describes_date is 1834, and it wants a source that prints the trade."
    },
    "sources": [
     "chicago_democrat_1833_1835",

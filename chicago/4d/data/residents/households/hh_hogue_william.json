@@ -72,15 +72,6 @@
      "describes_date": "1835-07-22",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
-    },
-    {
-     "list": "newspaper_1833_1835",
-     "as_read": "Hogue, W[m].",
-     "locator": "chicago_democrat_1835_08_05#c006",
-     "record_id": "person_hogue_w_m",
-     "describes_date": "1835-08-05",
-     "source": "chicago_democrat_1833_1835",
-     "rule": "G1b"
     }
    ]
   }

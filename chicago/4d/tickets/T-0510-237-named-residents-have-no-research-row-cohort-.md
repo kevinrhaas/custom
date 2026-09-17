@@ -1,7 +1,7 @@
 ---
 id: T-0510
 title: 237 named residents have no research row: cohort 15 of 79
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 844
+claimed_by: run 9/4/2026, 10:26:51 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T04:49:08.278Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941745252
 ---
 
 **The owner's ask, 2026-09-03, verbatim:** "Once complete i would like to begin to do and update of the

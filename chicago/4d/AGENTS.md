@@ -49,6 +49,12 @@ disposable. The first rendered scene is `1835` (target date 1835-07-01).
    your own work reads the meter up and the domain looks further behind for having checked
    itself. Both are printed by the report; neither is ever a silent zero.
 9. **`tools/check.sh` passes before every commit.** It takes seconds and needs no Blender.
+   **Read its last four lines, not its middle.** 115 of its 304 steps are self-tests that
+   prove a gate by breaking it, so a GREEN run prints fourteen `FAIL` lines on purpose.
+   Those are tagged — every line of a self-test's transcript starts `   self-test | ` —
+   and the steps that actually failed are listed once, by label, under `CHECK FAIL` at
+   the end. An untagged `FAIL` is the only kind worth chasing. Three tickets were filed
+   against tagged ones before T-0763; do not make a fourth.
 
 ## Standing constraint — 1835 and Indigenous history
 
@@ -221,21 +227,72 @@ is the contract. The short form:
 - **Pick**: take the topmost ticket in `tickets/QUEUE.md` you can actually run (skip
   `needs_bake` on the improve runner, with the skip stated in the PR). `node
   tools/ticket.mjs list --workable` prints the same order.
+- **Check it is not ALREADY DONE**: `node tools/ticket.mjs landed` names every workable
+  ticket that a MERGED PR names, with the number, the merge instant and the `done`
+  command. Git cannot answer this — everything squash-merges, so a merged branch never
+  becomes an ancestor of `dev`, and `inflight` therefore reads a finished ticket's cold
+  branch as litter rather than as done. T-0429 sat `claimed` at the top of the queue for
+  five days that way and a run rebuilt 116 files onto records already on `dev`.
+  `inflight` runs this for you. It REPORTS and never fails a gate: the id in a PR title
+  is a convention, so read the PR before you close a ticket on it, and treat its silence
+  as silence rather than as proof.
 - **Claim** in your first commit: `node tools/ticket.mjs claim T-NNNN`. `ticket.mjs
   inflight` shows what other branches are already carrying a ticket number, which is the
-  only live view of work the merged files cannot show yet. On the runner, `claim` also
+  only live view of work the merged files cannot show yet. It reads each branch as
+  **live**, **held** or **cold**, and `held` is the one to read carefully: the branch is
+  older than a run but the ticket's claim lock still stands, so it is either a run reading
+  sources for hours or a run that died after its merge. Check its PR before you take it —
+  age alone used to file that branch under "finished or litter", and two runs read cohort
+  14 in parallel for it (T-0852). On the runner, `claim` also
   records WHICH Actions run holds the ticket (`claimed_run`) and `done` records the
   INSTANT it finished (`closed_at`), so BOARD.md can show what is being worked now and
   what finished in the order it finished. Neither is ever hand-written.
+- **A CLAIM IS A LOCK, AND IT IS TAKEN ON THE REMOTE** (owner, 2026-09-11: *"can you
+  prevent duplicate claiming going forward?"*). `claim` pushes a marker branch
+  `claim/t-NNNN` before you do any work, and the push is a compare-and-swap the GitHub
+  server decides — two runs claiming in the same second cannot both win. **If it tells
+  you the ticket is already claimed, it is: take the next workable ticket.** That
+  message is not advisory and `--force` is not the way past it.
+  - This exists because six open PRs on 2026-09-11 were six runs working tickets another
+    run had already finished. Claiming EARLIER is no protection: T-1008's loser claimed
+    an hour BEFORE the winner. A claim reaches `dev` only when its PR merges, so until
+    then every other run reads the ticket as `open` — which is why this check does not
+    read `dev`, and why the branch scan could never have caught it (a run does not push
+    for about an hour after it claims).
+  - A claim older than 3h is a dead run and is **stolen automatically**, so a crashed
+    run cannot strand a ticket. `--no-lock` is for a checkout with no remote; it is not
+    a way past a live claim. `ticket.mjs claims [--sweep]` lists the locks held and
+    deletes the stale ones.
+  - Unreachable remote, no credentials, no git? The claim **succeeds and says so**. The
+    lock never turns a network blip into a dead slice.
 - **Close** in the merging PR: `node tools/ticket.mjs done T-NNNN --pr N`. Blocked instead?
   `block --owner "the question"` — the question goes in the ticket, where the owner will
   actually see it, not only in a PR body. **Closing after `publish.sh` is fine**: the tool
   carries `tickets.json` to the published mirror itself, so the order below — publish,
   push, PR, close with the number the PR just got — ends green with no second publish
-  (T-0154; before it, that order left the mirror gate red every time).
-- **New work found mid-run** becomes a ticket at the QUEUE **bottom**: `ticket.mjs new
-  "title" --by loop`. **Agents never reorder QUEUE.md — only the owner does.** That single
-  rule is what makes his priorities durable across runs.
+  (T-0154; before it, that order left the mirror gate red every time — and since
+  T-0938 the mirror is not committed, so no order of operations can leave a stale one
+  in a PR at all).
+- **The build products are GENERATED AND UNTRACKED, so there is nothing to stage**
+  (T-0937 for the board, T-0938 for the rest). `tickets/BOARD.md`,
+  `tickets/tickets.json` and the whole of `site/chicago/4d/` are .gitignored. They used to be the repository's worst conflict source, and for a reason
+  worth knowing: `claim` is a run's FIRST act and rewrites all three, so two branches
+  conflicted before either had done any work — and GitHub's server-side merge runs none of
+  this repo's merge drivers, so `merge=generated` never reached the merge that decides
+  mergeability (T-0857). Untracked files cannot conflict. Everything that needs one builds
+  it: `ticket.mjs check`/`board`, `publish.sh` before its copy, `deploy.yml` before the
+  Pages upload. **Never `git add -f` them**; if one shows in `git status`, the ignore rule
+  is the fault.
+- **New work found mid-run: extend, place, or make it an epic — in that order** (owner,
+  2026-09-10, after the queue reached 195 lines: *"I don't want you to keep adding a whole
+  bunch of tickets below your current one and working them … I want fewer tickets to
+  work"*). First, **if an open ticket already owns the question, add the finding to it**
+  and file nothing. Second, if it is a real one-run piece of the goal, `ticket.mjs new
+  "title" --after T-NNNN` places it directly under the ticket it serves — beside related
+  work, not at the foot. Third, **if finishing would take more than five tickets, it is an
+  epic**: one ticket under `EPICS` at the foot of QUEUE carrying the list, and no more.
+  The loop does not work an epic until the owner promotes it. **Agents never move an
+  existing line — only the owner re-ranks.** That is what keeps his priorities durable.
 - **An owner ask becomes a ticket the moment it is made**, `--by owner`, before any work
   starts. This is not optional bookkeeping; an owner request going untracked for days is
   the exact failure this system exists to close.
@@ -293,6 +350,21 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
 - **Branch `steward/<topic>` off `dev`. PR into `dev`. Merge when the dev gate is green.**
   Never push to `dev` or `main` directly. Ambiguous or unverified work stays an open PR
   with the `hold` label and a written explanation.
+- **A `steward/*` PR THAT CANNOT MERGE IS NOT OPEN — IT IS ROTTING.** Its ticket still
+  reads `open` at the top of the queue, so the next slice picks the same row and rebuilds
+  the same work. Measured 2026-09-13 (T-0809): **all five** open steward PRs on `dev`
+  conflicted with it — #1210, #1231, #1239, #1242, #1252 — every one of them on
+  `renderers/web/js/changelog.js`, `tickets/QUEUE.md` or `tools/dev-smoke-state.json`,
+  and the janitor had swept and silently skipped all five every two hours. Twenty-one had
+  silted up the same way in 2026-09: 21 open, 21 conflicting, six build products between
+  them, five past saving. Two things follow, and both are now true:
+  - the janitor **gates the merge, not the bare branch, and comments once naming the
+    conflicting paths** on any PR it cannot merge (polecat-platform#161). If your PR is
+    rotting you will be told inside one sweep; rebase it on `dev` or label it `hold`.
+  - those three files conflict on nearly every landing BY DESIGN — the root
+    `.gitattributes` refuses to union-merge the changelog because union silently
+    corrupted it on five consecutive merges in one day. So expect to rebase, and **finish
+    the PR you open inside your own run** rather than leaving it to be swept.
 - **Merging into `dev` is STAGE, not ship.** It publishes only the integration preview at
   `/custom/chicago/4d/dev/walk/?year=1835` — noindex, banner-marked, `build.json` says
   `tier: dev`. Production is untouched.
@@ -321,12 +393,34 @@ straight to production.* The fleet pilot is `kevinrhaas/jobtracker.polecat.live`
   a smoke to a FILE, never a pipe: node block-buffers stdout to a pipe, so a piped log
   stays at zero bytes until the process exits, and a run once killed a green smoke one
   minute from its finish for want of a byte to look at.
-- **Both gates, in the foreground, before merging**: `tools/check.sh` (needs `jsonschema` +
-  `pyproj`) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND 1280×800, zero
+- **`./tools/preflight.sh` BEFORE you open the PR.** `check.sh` is not the whole gate:
+  two of CI's questions are asked only on the pull_request event, where a base ref
+  exists, so a run cannot rehearse them and finds out after the PR is open — when its
+  turn has ended and nobody comes back. PR #1049 sat red for 2 h 19 m on a one-line
+  commit trailer, with the right sentence written in its PR body where the gate does
+  not look. Preflight asks all three in one command: `check.sh`, then
+  `check-changelog-entry.mjs` against the merge base, then
+  `resolve_id_collisions.mjs --check` (a sibling slice may have taken a ticket id
+  this branch minted while you were working). It writes nothing and names the repair
+  for each red. `BASE=origin/main ./tools/preflight.sh` for the hotfix path.
+- **Both gates, in the foreground, before merging**: `tools/check.sh` (`pip install
+  jsonschema pyproj openpyxl pypdf numpy scipy Pillow` — the last three are what let
+  thirteen steps RE-READ their rasters instead of standing on a banked copy; without
+  them the gate warns and degrades, and CI, which sets `C4D_GATE_REQUIRE_READERS=1`,
+  goes red. `tools/check_gate_readers.py` holds the list, T-1083) and `node tools/smoke_renderer.mjs` (Playwright, 390×780 AND 1280×800, zero
   page errors). Mobile is a release gate. **Never weaken an assertion to pass.** The
   `--published` run is the one that matters: the source tree loads uncompressed masters and
   the site loads compressed derivatives, and bugs have shipped in the gap twice.
-- **Run `tools/publish.sh` in the same commit** as any renderer, data or scene change.
+- **You no longer publish in the same commit — `site/chicago/4d/` is not committed at
+  all (T-0938).** The mirror is a build product with one writer, `tools/publish.sh`,
+  and it is untracked and .gitignored. `tools/check.sh` runs publish.sh first and then
+  asks `check_published.mjs` whether what it produced matches its source; `deploy.yml`
+  publishes both the production tree and the dev-preview worktree before the Pages
+  upload; `chicago-4d-bake.yml` publishes before it uploads the mirror the smoke runs
+  against. So the URLs are unchanged and a run that forgets to publish can no longer
+  ship an invisible change — there is nothing left for it to forget. Run publish.sh
+  when you want to LOOK at the published tree (`--published` measurements, a local
+  serve); the gate runs it for you either way.
   `site/chicago/4d/` is a generated mirror and `deploy.yml` only fires on `site/**`, so
   skipping it ships nothing while looking merged.
 - **Changelog**: prepend one entry to `renderers/web/js/changelog.js` with all three

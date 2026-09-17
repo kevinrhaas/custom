@@ -5,12 +5,12 @@
  "head": "beech_reuben",
  "source_pass": "letter_list",
  "arrival": {
-  "value": "1834-07-09",
+  "value": "1834-07-01",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1834-07-09 and at no stated time before it; nothing says when they came.",
+  "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of 1 July 1834 and not by the issue it was read in (T-0425). The earliest issue this project reads the name in is 1834-07-09, 8 days later; that gap is an accident of which impression an extraction pass reached, and it is not evidence. Somebody was writing to this name at Chicago by 1834-07-01 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -52,6 +52,7 @@
    "name": "Reuben Beech",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-07-09"
@@ -76,7 +77,20 @@
      "chicago_democrat_1833_1835"
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1133",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "beech-bench",
+     "weighed_against": [
+      "bench_reuben"
+     ],
+     "for_merge": "An interior letter, e against n, in a five-letter surname, with “Reuben” identical on both. e and n are neighbours in worn type and in OCR alike, and the town holds nothing of either man but a name on a post office list — the classic shape of one record minted twice.",
+     "against_merge": "TWO RETURNS NINE MONTHS APART, EACH INTERNALLY CONSISTENT. “Reuben Beech” stands on the return of 1 July 1834 and is printed TWICE, in the impressions of 9 July 1834 (“leaben Beech”, the forename wrecked, the surname clean) and 16 July 1834 (“Reuben Beech”): two settings of that return, and both set BEECH. “Bench, Reuben” stands on the return of 31 March 1835, printed in the Democrat of 20 May 1835, clean and alphabetically seated between “Beaubien” and “Bennet” in the B run. Two impressions on one side and a clean line on the other means the one-letter difference is NOT a damaged impression that a better one repairs — the readings are stable within each return and differ only between them. No return sets both, neither card is an anchor, and the gazetteer holds no third bearer of either stem. D6."
+    }
+   ]
   }
  ],
  "touches_removal": false,

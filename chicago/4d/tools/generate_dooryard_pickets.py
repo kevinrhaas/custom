@@ -30,9 +30,17 @@ THE RULE, and every clause of it is doing work. A lot gets a dooryard picket iff
      building's committed footprint.
 
 Every metre of every perimeter below is then DERIVED from the committed lot polygon
-and the committed footprint. Nothing here is hand-placed, which is what makes 23
-garden fences auditable rather than 23 numbers someone typed; `--check` re-derives the
+and the committed footprint. Nothing here is hand-placed, which is what makes every
+garden fence auditable rather than a number someone typed; `--check` re-derives the
 record byte for byte in `tools/check.sh`.
+
+HOW MANY IS AN OUTPUT, NOT A SETTING. No count is written down here, because the rule
+above decides it afresh on every run and the committed record is the only place it is
+true. It has been eighteen (2026-08-18), fifteen, thirteen and — since T-0516 withdrew
+the stale `occupants` prose clause 4 reads — ONE. Whether clause 4 is the right test at
+all is the owner's open question, T-0772: a garden could follow the HOUSE rather than
+the HOUSEHOLD. Do not restate a count in this docstring or in `docs/LIBERTIES.md` L129;
+both went stale by seventeen once already.
 
 WHAT IS INVENTED is the treatment and the plot geometry — the fence type, its height,
 its pale rhythm, the size of the plot, its position at the back of the lot and the gate
@@ -162,7 +170,7 @@ def lot_frame(block, lot):
     return fm, (ux, uy), (vx, vy), lu, lv
 
 
-def candidates():
+def candidates(require_household=True):
     """Every platted lot that passes clauses 1–4, with its house."""
     lots = load(LOTS_PATH)
     sidecars = {}
@@ -194,9 +202,10 @@ def candidates():
             fn = fn.get("value") if isinstance(fn, dict) else fn
             if not is_dwelling_function(fn):
                 continue
-            occ = st.get("occupants")
-            if not occ or "hh_" not in json.dumps(occ):
-                continue
+            if require_household:
+                occ = st.get("occupants")
+                if not occ or "hh_" not in json.dumps(occ):
+                    continue
             out.append((block, i, lot, sid, sc, fn))
     return out, sidecars
 
@@ -349,28 +358,43 @@ def record(runs, openings, refused):
         "existence": {
             "value": True,
             "confidence": "reconstructed",
-            "sources": [],
+            "sources": ["kurz_allison_1893"],
             "note": (
                 "NOTHING ATTESTS A GARDEN FENCE ON ANY LOT IN THIS TOWN, and this record "
                 "does not claim one. What is attested is a TREATMENT, on the far bank and "
                 "on a plate drawn decades later: the Kinzie-view lithograph shows the long "
                 "low house with its piazza, a row of Lombardy poplars and PICKET-FENCED "
-                "GARDEN PLOTS (data/sources/assets/prefire_views_kevin_2026_08/README.md, "
-                "plate '12'; docs/ROADMAP.md K5 (a) cites it in exactly these terms and in "
-                "the same sentence excludes the house itself from the 1835 scene). A "
-                "tier-5 retrospective view may drive massing, materials and setting and may "
-                "never drive a coordinate, which is precisely how it is used here: the "
-                "plate says what a garden fence in this place looked like, and the RULE in "
-                "tools/generate_dooryard_pickets.py says which lots get one. The claim this "
-                "record makes is 'the town's house lots are drawn with the plate's "
-                "treatment', not 'these households kept gardens'. SOURCES IS DELIBERATELY "
-                "EMPTY AND THAT IS THE FINDING: this project holds NO source record for "
-                "the Kinzie-view plate. It reaches the repository only as an "
-                "owner-supplied reference image with a README, and that README says "
-                "anything used from the set should be identified against chicagology's "
-                "plate numbering and cited to the matching chicagology_* record. No such "
-                "record exists, so the citation here is a committed path and nothing "
-                "stronger, and holding the plate as a source is filed as its own ticket."
+                "GARDEN PLOTS. A tier-5 retrospective view may drive massing, materials "
+                "and setting and may never drive a coordinate, which is precisely how it "
+                "is used here: the plate says what a garden fence in this place looked "
+                "like, and the RULE in tools/generate_dooryard_pickets.py says which lots "
+                "get one. The claim this record makes is 'the town's house lots are drawn "
+                "with the plate's treatment', not 'these households kept gardens'. "
+                "THE SOURCE IS NAMED SINCE 2026-09-13 (T-0055), AND THE PLATE TURNED OUT "
+                "TO BE ONE THIS PROJECT ALREADY HELD. This block used to read 'SOURCES IS "
+                "DELIBERATELY EMPTY AND THAT IS THE FINDING: this project holds NO source "
+                "record for the Kinzie-view plate', because the plate reached the "
+                "repository as an owner-supplied crop with a README and nothing else "
+                "(data/sources/assets/prefire_views_kevin_2026_08/p6_1.png, plate '12'). "
+                "It is PANEL 12 of `kurz_allison_1893` — Kurz & Allison, 'Chicago In Early "
+                "Days, 1779-1857' (1893), a chromolithograph of fifteen numbered vignettes "
+                "the project has held as a source record since before this layer existed. "
+                "The match is measured, not recognised: the crop and the sheet's "
+                "lower-left vignette both carry the printed numeral '12.'; the sheet's own "
+                "key reads 'No. 12.  The Old Kinzie Mansion, built 1832.  Population "
+                "310.'; and a normalised cross-correlation of the crop against the "
+                "committed sheet peaks at 0.797 on that vignette against 0.341 anywhere in "
+                "the control panel. So the old finding was right that nothing was cited "
+                "and wrong that nothing existed — the record was here and no line joined "
+                "it. WHAT THAT DOES NOT DO is strengthen this fence. The plate is still "
+                "tier 5, still published fifty-eight years after the scene date, still of "
+                "a house on the north bank that this scene excludes, and it still bounds a "
+                "treatment and attests nothing about these lots; the confidence above "
+                "stays 'reconstructed' for exactly the reasons it always did. What it "
+                "changes is that a reader can now reach the Library of Congress sheet "
+                "instead of a 391-pixel crop, and that the plate's rights are settled on "
+                "the object — its own foot carries 'Copyrighted 1893 by Kurz & Allison', "
+                "long expired, so the image this layer leans on is public domain."
             ),
         },
         "runs": runs,
@@ -381,9 +405,10 @@ def record(runs, openings, refused):
                 "confidence": "reconstructed",
                 "note": (
                     "INVENTED, and it is the one value on this record with a picture "
-                    "behind it. The Kinzie-view plate shows PICKETS — close-set vertical "
+                    "behind it. The Kinzie-view plate — panel 12 of `kurz_allison_1893`, "
+                    "identified in the existence note — shows PICKETS: close-set vertical "
                     "pales, not the open horizontal rails this layer draws at the wagon "
-                    "yard and the pound — and that difference is the whole point of the "
+                    "yard and the pound, and that difference is the whole point of the "
                     "distinction: a rail fence turns a team and a picket fence keeps "
                     "poultry out of the vegetables. The plate is tier 5 and it is of a "
                     "house on the north bank that this scene excludes, so it bounds a "
@@ -504,11 +529,59 @@ def record(runs, openings, refused):
     }
 
 
+def compare_rules() -> int:
+    """Both readings of clause 4, counted — the measurement T-0772 is blocked on.
+
+    Writes nothing. The HOUSEHOLD rule is the one in force: a garden is a household's,
+    and the lot is admitted on the structure record's `occupants` prose naming an `hh_`
+    id. The HOUSE rule is the alternative: one dwelling alone on a platted lot has a
+    kitchen garden behind it by archetype and by function, whoever lived in it. Clause 5
+    — room at the back for a plot that hits nothing — is applied to both, so the two
+    numbers below are gardens actually drawable and not pools.
+    """
+    house_pool, sidecars = candidates(require_household=False)
+    hh_pool, _ = candidates(require_household=True)
+
+    def drawable(pool):
+        ok, refused = [], []
+        for block, index, lot, sid, sc, fn in pool:
+            plot, why = plot_for(block, index, lot, sid, sc, sidecars)
+            (refused if plot is None else ok).append((f"{block['id']}_lot{index}", sid, why))
+        return ok, refused
+
+    house_ok, house_no = drawable(house_pool)
+    hh_ok, hh_no = drawable(hh_pool)
+    hh_ids = {r[0] for r in hh_ok}
+    print("CLAUSE 4, BOTH WAYS — T-0772's question, counted against the tree in front of it")
+    print(f"  the HOUSEHOLD rule (in force): {len(hh_pool)} lot(s) admitted, "
+          f"{len(hh_ok)} garden(s) drawn, {len(hh_no)} refused for want of room")
+    print(f"  the HOUSE rule (the alternative): {len(house_pool)} lot(s) admitted, "
+          f"{len(house_ok)} garden(s) drawn, {len(house_no)} refused for want of room")
+    added = [(lot_id, sid) for lot_id, sid, _ in house_ok if lot_id not in hh_ids]
+    print(f"  gardens the house rule would ADD: {len(added)}")
+    # HOW WELL FOUNDED IS THE HOUSE UNDER EACH ADDED GARDEN, in the project's own grading
+    # of what the building IS. A garden behind a reconstructed cottage is an invention
+    # resting on an invention, which is the cost the owner is being asked to weigh.
+    by_grade: dict[str, int] = {}
+    for lot_id, sid in added:
+        st = load(STRUCTURES / f"{sid}.json")
+        fn = st.get("function")
+        grade = fn.get("confidence", "ungraded") if isinstance(fn, dict) else "ungraded"
+        by_grade[grade] = by_grade.get(grade, 0) + 1
+        print(f"    + {lot_id}  {sid}  ({grade})")
+    for grade in sorted(by_grade):
+        print(f"  added, by the house's own function grade: {grade} {by_grade[grade]}")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
                     help="re-derive and diff, write nothing")
+    ap.add_argument("--compare-rules", action="store_true", help="count clause 4 both ways; write nothing")
     args = ap.parse_args()
+    if args.compare_rules:
+        return compare_rules()
     runs, openings, refused = build_record()
     text = json.dumps(record(runs, openings, refused), indent=2, ensure_ascii=False) + "\n"
     if args.check:

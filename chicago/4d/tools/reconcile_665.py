@@ -664,6 +664,61 @@ def block_rooms(free_lots: int, headroom_roofs: int) -> tuple[int, int]:
     return principal, max(0, ancillary)
 
 
+def lot_ceiling_principal(free_lots: int) -> int:
+    """The principal roofs a block can carry with NO party-line row on it (T-0834).
+
+    One principal roof per lot is what `tools/generate_block_infill.py` admits of an
+    ordinary roof — it stands ON a lot, carries that lot's `lot_index`, and the gate
+    that refuses two roofs on one lot is the same one T-0105 wrote — and the block
+    keeps one lot open, clause 3 of `block_rooms`. So a block with no frontage run can
+    hold `free_lots - 1` principal roofs and not one more.
+    """
+    return max(0, free_lots - 1)
+
+
+def row_lots_required(free_lots: int, principal: int) -> int:
+    """The fewest lots of FRONTAGE a block's run must be dealt for the principal roofs
+    it was dealt to have anywhere to stand (T-0834).
+
+    THE TWO SIZINGS THIS RECONCILES, because for a year they were two numbers in two
+    files with nothing tying them together. `block_rooms` sizes principal room at
+    `ROW_UNITS_PER_LOT` party-line units per free lot; the generator places by whole
+    LOTS and admits the party-line density only along a frontage run the recipe names
+    and gates at `ROW_UNITS_PER_LOT * len(frontage["lots"])`. A block that gives its
+    run k of its free lots therefore holds
+
+        (free_lots - k - 1)  +  ROW_UNITS_PER_LOT * k
+            =  free_lots - 1  +  k * (ROW_UNITS_PER_LOT - 1)
+
+    principal roofs — one on each free lot the run did not take, less the lot the block
+    keeps open, plus the run's own units — and `principal_room` is exactly that
+    expression at k = free_lots - 1, its maximum. So the schedule was never wrong about
+    the metres and never said what it was assuming: its sizing is CONDITIONAL on a row
+    across nearly the whole block, and until T-0834 the condition lived only in the
+    prose of whichever recipe happened to meet it. On `blk_south_water_clark`'s second
+    deal — the block that found this, T-0431 — 2 free lots sized 3 principal roofs, the
+    deal gave it 1, and the run it named was headroom rather than necessity: k_min is 0
+    there. On `blk_south_water_franklin`'s second deal the same 2 free lots were dealt
+    3, so k_min is 1 and the run it named was the only ground those roofs had. Two
+    parcels that read identically in the ledger, told apart by a number.
+
+    Inverting the expression for the smallest k that holds `principal`:
+
+        k >= (principal - free_lots + 1) / (ROW_UNITS_PER_LOT - 1)
+
+    Returns 0 where the lots alone suffice. A block whose k_min exceeds its free lots
+    less one has been dealt more than any arrangement of it can stand, which is the
+    over-deal `block_rooms` already refuses upstream; this states it rather than
+    trusting that it cannot happen.
+    """
+    if ROW_UNITS_PER_LOT <= 1:
+        return 0
+    short = principal - lot_ceiling_principal(free_lots)
+    if short <= 0:
+        return 0
+    return -(-short // (ROW_UNITS_PER_LOT - 1))
+
+
 def standing_roofs(grid, datum, taken):
     """Every committed structure record, with the physical roofs it puts in the scene and
     the platted block it stands in, where the grid reaches it.
@@ -700,9 +755,22 @@ def standing_roofs(grid, datum, taken):
         # `generated`. The totals were unchanged, which is exactly why it is worth a
         # gate's attention: the ledger would have gone on reporting 665 roofs while
         # crediting a third of the household layer to a generator that never ran.
+        # T-0516. Two anonymous statuses now, and one of them was not dealt by a
+        # generator. The owner retired the reconstructed resident population on
+        # 2026-09-02 and ruled its roofs kept as anonymous stock, so the 31 buildings
+        # this layer RAISED read `inferred_anonymous` like every parcel's count-unit —
+        # and reading only the status would credit them to `generated`, which is the
+        # same fault in the other direction as the one the paragraph above records: a
+        # ledger reporting 665 roofs while crediting a thirty-first of the town to a
+        # generator that never ran. The phase is what survives the status change, so
+        # the phase is what separates them, and they enrol under their own source name
+        # rather than disappearing into the parcels'.
         block = record.get("reconstruction") or {}
         if block.get("status") == "inferred_anonymous":
-            row = {"id": rid, "source": "generated", "district": block["district"],
+            retired = block.get("programme_phase") == "phase2_inferred_households"
+            row = {"id": rid,
+                   "source": "retired_household_roofs" if retired else "generated",
+                   "district": block["district"],
                    "family": block["family"], "roofs_min": 1, "roofs_max": 1,
                    "programme_phase": block.get("programme_phase")}
         elif rid in reconciliation:
@@ -760,27 +828,56 @@ def southern_ground() -> tuple[dict, str]:
 
     m = measure()
     figures = coverage_figures(m)
+    on_field = figures["last_tier_ring_points_on_field"]
+    of_total = figures["last_tier_ring_points"]
+
+    if on_field < of_total:
+        return figures, (
+            f"TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled "
+            f"heightfield ends at local N {figures['field_south_edge_n_m']:.1f} m, which falls "
+            f"inside Washington Street's own platted corridor — "
+            f"{m['washington_corridor']['area_m2'] / 1e4:.2f} ha of that street's south half "
+            f"lies off the field. South of the corridor the field holds "
+            f"{figures['land_south_of_committed_plat_ha']:.4f} ha of land above the water "
+            f"surface and "
+            f"{figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of it is in "
+            f"the South Division: the rest is the West Division bank, across the South Branch. "
+            f"Madison Street, the plat's south boundary, is "
+            f"{figures['madison_south_of_field_m']:.1f} m further south again, so the plat's "
+            f"last tier — {figures['last_tier_blocks']} blocks and "
+            f"{figures['last_tier_lots']} lots between Market and State, "
+            f"{figures['last_tier_area_ha']:.2f} ha — has {on_field} of its {of_total} "
+            f"block-boundary points on modelled ground. "
+            f"Every north-south column of the south plat has its committed centreline cut at "
+            f"the field's own south edge, so carrying street control further south would emit "
+            f"blocks whose every placement tools/generate_block_infill.py refuses for standing "
+            f"outside the modelled terrain. Ground east of State is not coming at any date — "
+            f"it is the United States Reservation (T-E2). Measured by "
+            f"tools/measure_southern_ground.py."
+        )
+
+    ends = ", ".join(f"{v:.0f}" for v in m["columns_end_n_m"].values())
     return figures, (
-        f"TERRAIN, and not the street control ROADMAP S9 records as owed. The modelled "
-        f"heightfield ends at local N {figures['field_south_edge_n_m']:.1f} m, which falls "
-        f"inside Washington Street's own platted corridor — "
-        f"{m['washington_corridor']['area_m2'] / 1e4:.2f} ha of that street's south half "
-        f"lies off the field. South of the corridor the field holds "
-        f"{figures['land_south_of_committed_plat_ha']:.4f} ha of land above the water "
-        f"surface and "
-        f"{figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of it is in "
-        f"the South Division: the rest is the West Division bank, across the South Branch. "
-        f"Madison Street, the plat's south boundary, is "
-        f"{figures['madison_south_of_field_m']:.1f} m further south again, so the plat's "
-        f"last tier — {figures['unmodelled_tier_blocks']} blocks and "
-        f"{figures['unmodelled_tier_lots']} lots between Market and State, "
-        f"{figures['unmodelled_tier_area_ha']:.2f} ha — is not modelled ground at all. "
-        f"Every north-south column of the south plat has its committed centreline cut at "
-        f"the field's own south edge, so carrying street control further south would emit "
-        f"blocks whose every placement tools/generate_block_infill.py refuses for standing "
-        f"outside the modelled terrain. Ground east of State is not coming at any date — "
-        f"it is the United States Reservation (T-E2). Measured by "
-        f"tools/measure_southern_ground.py."
+        f"STREET CONTROL — the S9 line ROADMAP has recorded as owed since before this "
+        f"schedule was written — and, for the first time, nothing else. THE TERRAIN IS NO "
+        f"LONGER THE BLOCKER: T-0219 carried the heightfield south to local N "
+        f"{figures['field_south_edge_n_m']:.1f} m, {-figures['madison_south_of_field_m']:.1f} m "
+        f"past Madison Street's line at State, and the plat's last tier — "
+        f"{figures['last_tier_blocks']} blocks and {figures['last_tier_lots']} lots between "
+        f"Market and State, {figures['last_tier_area_ha']:.2f} ha — now stands on modelled "
+        f"ground at all {on_field} of its {of_total} block-boundary points. Washington "
+        f"Street's platted corridor is fully on the field "
+        f"({m['washington_corridor']['area_m2'] / 1e4:.2f} ha off it, against 0.33 ha before), "
+        f"and south of that corridor the field holds "
+        f"{figures['land_south_of_committed_plat_ha']:.4f} ha of land above the water surface, "
+        f"{figures['south_division_land_south_of_committed_plat_ha']:.4f} ha of it in the "
+        f"South Division — where the same measurement returned 0.0000 ha before. What is left "
+        f"is the control itself: the plat's north-south columns still end at local N {ends}, "
+        f"the OLD south edge of the field, because they were cut where the ground used to "
+        f"stop. Carrying them to Madison is street work on ground that is now under them, and "
+        f"tools/generate_block_infill.py will accept what it emits. Ground east of State is "
+        f"still not coming at any date — it is the United States Reservation (T-E2). Measured "
+        f"by tools/measure_southern_ground.py."
     )
 
 
@@ -1141,6 +1238,22 @@ def programme_document():
     waterside = waterside_families()
     waterside_term = keep_the_waterside_off_the_plat(units, waterside, trade_shares, traffic)
 
+    # T-0834. WHAT THE SIZING WAS ASSUMING, written where a gate can read it. Both terms
+    # above are permutations and neither moves a unit's principal count, so this runs
+    # last and reads the counts as dealt. Every unit that has lots states two numbers:
+    # what it can carry on its lots alone, and the fewest lots of frontage a party-line
+    # run must be dealt for the roofs it WAS dealt to have ground under them. Until now
+    # the difference between those two was absorbed silently — the programme said roofs
+    # were dealt, the ground said they were not placed, and the only place the two met
+    # was a sentence in whichever recipe happened to notice.
+    # `tools/generate_block_infill.py` refuses a parcel that does not meet the condition.
+    for unit in units:
+        if "free_lots" not in unit:
+            continue
+        unit["lot_ceiling_principal"] = lot_ceiling_principal(unit["free_lots"])
+        unit["row_lots_required"] = row_lots_required(unit["free_lots"],
+                                                      unit.get("principal", 0))
+
     schedulable = sum(u["roofs"] for u in units if u["state"] == "open")
     gated = sum(u["roofs"] for u in units if u["state"] == "gated")
 
@@ -1183,6 +1296,20 @@ def programme_document():
                         "not. It replaces one roof per lot, which five of the twelve core "
                         "blocks already stood above. Capacity is a ceiling; `block_rooms` "
                         "carries the restraint.",
+            "lot_ceiling": "T-0834. `principal_room` is party-line units counted "
+                           "against whole lots, and the generator places by lots: an "
+                           "ordinary principal roof stands ON a free lot, one to a lot, "
+                           "and only a frontage run the recipe NAMES carries "
+                           f"{ROW_UNITS_PER_LOT} of them. So every open unit states both "
+                           "numbers — `lot_ceiling_principal`, what it holds with no run "
+                           "on it (its free lots, less the one it keeps open), and "
+                           "`row_lots_required`, the fewest lots of frontage a run must "
+                           "be dealt for the principal roofs it WAS dealt to stand at "
+                           "all. Where the second is above zero the sizing is conditional "
+                           "and says so, instead of leaving the difference to be absorbed "
+                           "into the district balance unremarked; "
+                           "tools/generate_block_infill.py refuses a parcel that does not "
+                           "meet it.",
             "overrun": "Where evidence has put more roofs into a family than the target "
                        "allows, the excess is reported and the remainder is reduced in the "
                        "families with the most slack. A documented roof is never removed "

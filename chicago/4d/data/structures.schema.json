@@ -61,7 +61,7 @@
     "reconstruction": {
       "type": "object",
       "additionalProperties": false,
-      "description": "Machine-readable disclosure for production-specification infill: which family band the massing was drawn from, and under which programme. Named/documented structures do not carry this block. Two statuses, and the difference is whether anybody is claimed to be in the building: `inferred_anonymous` is a count-unit of the 665-roof programme, placed by aggregate mix and carrying no occupant; `inferred_household` is a roof the inferred-household layer raised BECAUSE an argued household needed somewhere to be, and it carries an occupants block naming that household. The anonymous slots additionally carry their place in the parcel that dealt them (sequence, inventory_class); a household roof has no slot — it was authored one at a time against the occupation census — so those are required of the anonymous status only rather than invented for the other.",
+      "description": "Machine-readable disclosure for production-specification infill: which family band the massing was drawn from, and under which programme. Named/documented structures do not carry this block. Two statuses, and the difference is whether anybody is claimed to be in the building: `inferred_anonymous` is a count-unit of the 665-roof programme, placed by aggregate mix and carrying no occupant; `inferred_household` is a roof the inferred-household layer raised BECAUSE an argued household needed somewhere to be, and it carries an occupants block naming that household. The anonymous slots additionally carry their place in the parcel that dealt them (sequence, inventory_class). A roof of `programme_phase: phase2_inferred_households` has NO SLOT — the inferred-household layer authored its 31 roofs one at a time against the occupation census rather than dealing them out of a parcel — so the slot fields are required of the anonymous status EXCEPT under that phase. That exception is what T-0516 needed: the owner retired the reconstructed resident population on 2026-09-02 and ruled the roofs kept as anonymous stock, so those 31 became anonymous without ever acquiring a parcel slot, and minting them a sequence to satisfy a required field would have invented a place in a deal that never dealt them.",
       "required": [
         "status",
         "family",
@@ -72,11 +72,30 @@
       "allOf": [
         {
           "if": {
-            "properties": {
-              "status": {
-                "const": "inferred_anonymous"
+            "allOf": [
+              {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "const": "inferred_anonymous"
+                  }
+                }
+              },
+              {
+                "not": {
+                  "required": [
+                    "programme_phase"
+                  ],
+                  "properties": {
+                    "programme_phase": {
+                      "const": "phase2_inferred_households"
+                    }
+                  }
+                }
               }
-            }
+            ]
           },
           "then": {
             "required": [
@@ -87,6 +106,9 @@
         },
         {
           "if": {
+            "required": [
+              "status"
+            ],
             "properties": {
               "status": {
                 "const": "inferred_household"
@@ -110,7 +132,7 @@
         "occupation": {
           "type": "string",
           "pattern": "^[a-z_]+$",
-          "description": "The trade the household this roof was raised for practises, as the occupation census names it. Present on `inferred_household` only, and it is the census's own string — this field claims a count and a trade, never a person."
+          "description": "The trade the household this roof was raised for practises, as the occupation census names it. Required of `inferred_household`, and RETAINED on the 31 roofs T-0516 moved to `inferred_anonymous`, because the trade a roof was raised for is what the later placement sweep the owner asked for on 2026-09-03 has to work from. It is the census's own string — this field claims a count and a trade, never a person, and after the retirement of 2026-09-02 it claims neither: it records what the retired programme raised the roof for."
         },
         "family": {
           "type": "string",
@@ -519,12 +541,13 @@
         "method"
       ],
       "additionalProperties": false,
-      "description": "How this coordinate was arrived at, in a form tools/validate.py can recompute from data/traces/street_control.json. Every phase with coordinates carries one; a placement that no line in the dataset can check declares 'not_derivable' with a reason rather than going undeclared.",
+      "description": "How this coordinate was arrived at, in a form tools/validate.py can recompute from data/traces/street_control.json (a platted corner, a traced waterline) or from data/streets/1835.json (a frontage off a committed centreline). Every phase with coordinates carries one; a placement that no line in the dataset can check declares 'not_derivable' with a reason rather than going undeclared.",
       "properties": {
         "method": {
           "enum": [
             "platted_corner",
             "traced_waterline",
+            "street_frontage",
             "not_derivable"
           ]
         },
@@ -612,6 +635,39 @@
                   "west"
                 ]
               }
+            }
+          }
+        },
+        "frontage": {
+          "type": "object",
+          "required": [
+            "street",
+            "face",
+            "setback_m"
+          ],
+          "additionalProperties": false,
+          "description": "A frontage off a committed street centreline, for a street that is not square to the grid and so has no kerb to step to. tools/validate.py re-derives the perpendicular distance from the named wall's midpoint to the nearest point on the street's committed path, and refuses a street that lies behind that wall rather than in front of it.",
+          "properties": {
+            "street": {
+              "type": "string",
+              "description": "Street id in data/streets/1835.json."
+            },
+            "face": {
+              "enum": [
+                "front",
+                "back",
+                "left",
+                "right"
+              ],
+              "description": "Which of the building's own four walls stands on the frontage. Named in the footprint's frame per docs/GLB-CONTRACT.md — polygon `u` runs right along the front and `v` back from it, so `front` is the max-`v` wall, the one the facade bearing points out of. Not a compass direction: on a street running 41 degrees east of north these walls have no compass face."
+            },
+            "setback_m": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Perpendicular distance from that wall to the street's committed centreline. Half the platted module puts the wall on the corridor line."
+            },
+            "note": {
+              "type": "string"
             }
           }
         },

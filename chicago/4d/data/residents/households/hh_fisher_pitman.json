@@ -74,17 +74,6 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
-   ],
-   "book_evidence": [
-    {
-     "list": "directory_1844",
-     "as_read": "Fisher, Peter H. turner, Franklin st. b Lake and Randolph sts",
-     "locator": "b Lake and Randolph sts",
-     "record_id": "n1844_e0603",
-     "describes_date": "1844",
-     "source": "norris_directory_1844",
-     "rule": "G1b"
-    }
    ]
   }
  ],

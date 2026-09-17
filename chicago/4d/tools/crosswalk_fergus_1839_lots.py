@@ -65,6 +65,7 @@ def bidders(claims):
             "as_printed": c["normalized"]["as_printed"],
             "printed_page": c["locator"]["printed_page"],
             "bidder_ditto": c["normalized"]["bidder_ditto"],
+            "bidder_braced": c["normalized"]["bidder_braced"],
         })
     for e in out.values():
         paid = [l["amount_usd"] for l in e["lots"] if l["amount_usd"] is not None]

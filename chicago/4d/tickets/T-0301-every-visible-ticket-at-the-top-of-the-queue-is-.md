@@ -1,7 +1,7 @@
 ---
 id: T-0301
 title: Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the held PRs it names (#418, #456, #432) were closed on 2026-09-05
 needs_bake: false
+closed_at: 2026-09-10T04:20:11.590Z
+claimed_run: null
 ---
 
 Every visible ticket at the top of the queue is parked on hold or in flight, and five straight invisible runs merged under it.

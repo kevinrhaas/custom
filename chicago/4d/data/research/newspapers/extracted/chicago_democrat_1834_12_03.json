@@ -653,7 +653,9 @@
         "placement": {
           "class": "street_only",
           "anchor": null,
-          "offset_text": null
+          "offset_text": "for a shop, on Randoiph street,",
+          "offset_normalized": "for a shop, on Rando[l]ph street",
+          "street": "Randolph Street"
         }
       }
     },

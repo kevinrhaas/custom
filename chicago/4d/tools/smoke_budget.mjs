@@ -170,6 +170,14 @@ const COVERAGE = [
   ['generators/', NONE, 'the bake\'s generators — their output is the data rows below'],
   ['patches/', NONE, 'vendored patches applied at build time, not at run time'],
   ['tickets/', NONE, 'the backlog'],
+  // T-1148. Committed READINGS — what an instrument saw, on a day, on a tree.
+  // `tools/publish.sh` copies no part of this directory into the mirror and no
+  // module under `renderers/` fetches a path in it, so the scene cannot load one
+  // however wrong it is; `tools/check.sh` is what holds them, by re-deriving the
+  // rule each one was taken for. Without this row a new reading is an unmapped
+  // path, and an unmapped path prices at the whole gate — which is thirteen parts
+  // per viewport to cover a JSON file nothing reads.
+  ['data/render/', NONE, 'committed instrument readings — neither published nor fetched'],
   ['docs/', NONE, 'prose — except docs/LIBERTIES.md, which compiles into the scene'],
   ['README.md', NONE, 'prose'],
   ['AGENTS.md', NONE, 'prose'],
@@ -188,12 +196,16 @@ const COVERAGE = [
   ['renderers/web/index.html', ALL, 'the page itself'],
   ['renderers/web/css/', ALL, 'the chrome every panel check clicks'],
   ['data/reconstruction/', ALL, 'the infill programme the records are expanded from'],
-  ['site/chicago/4d/', ALL, 'the published mirror, which is the --published target'],
-  ['site/chicago/4d/js/changelog.js', [12], "the mirrored entries What's-new reads"],
-  ['site/chicago/4d/walk/js/changelog.js', [12], "the mirrored entries What's-new reads"],
-  ['site/chicago/4d/tickets.json', NONE, 'the backlog mirror — the renderer never loads it'],
-  ['site/chicago/4d/build.json', NONE, 'the publish stamp; the gate screen that shows it is boot scaffolding, taken in every invocation'],
-  ['site/chicago/4d/walk/index.html', NONE, 'the publish stamp again — publish.sh rewrites the build sha and Central date into it on EVERY run, so every publishing PR touches it; the gate screen that shows it is boot scaffolding, taken in every invocation. Run #1464 (2026-09-03) ran seven legs because this row was missing and the mirror catch-all above sent the stamp to all 13 parts'],
+
+  // --- AND NO ROW FOR site/chicago/4d/ ANY MORE (T-0938). The published mirror had six
+  // rows here, and every one of them existed to price a path that could appear in a diff.
+  // The mirror is untracked and generated now, so it cannot: `--for-diff` below reads
+  // `git diff --name-only` and an ignored tree is never in it. That deletes the hazard the
+  // last two of those rows were written for rather than pricing it — publish.sh rewrote
+  // the build sha and Central date into walk/index.html on EVERY run, so every publishing
+  // PR touched it, and before the NONE row existed the mirror catch-all sent the stamp to
+  // all 13 parts (run #1464, 2026-09-03: seven legs for two census page files). A PR is
+  // priced on the source it changed, which is the only thing it changes now.
 
   // --- PART 1: the enclosure layer, the plantings inside it, and the signs
   ['renderers/web/js/enclosures.js', [1], 'the enclosure layer (T-0038)'],
@@ -201,6 +213,8 @@ const COVERAGE = [
   ['renderers/web/js/signage.js', [1], 'the business signs (T-0039, T-0066)'],
   ['data/enclosures/', [1], 'fences, the pound, the dooryard pickets'],
   ['data/signage/', [1], 'what the signs say'],
+  ['renderers/web/js/wells.js', [1], "the fort's well head (T-0887)"],
+  ['data/wells/', [1], 'the well records'],
 
   // --- PART 2: the trading frontages, the river's edge and what floats on it
   ['renderers/web/js/frontage.js', [2], 'the frontage layer (T-0082, T-0090)'],
@@ -216,9 +230,19 @@ const COVERAGE = [
   // --- PART 3: the ground you stand on, and the card that says why
   ['renderers/web/js/ground.js', [3], 'the ground faces the sky (R-BUG3c)'],
   ['renderers/web/js/terrain.js', [3], 'the ground the town stands on'],
+  // T-1055. terrain.js's ground tile, lifted into its own module so a tool can
+  // measure it without a browser. Same part as the file it was lifted out of.
+  ['renderers/web/js/prairie-tile.js', [3], 'the ground tile the prairie is painted from'],
   ['renderers/web/js/citations.js', [3], 'pick -> provenance, and what kind of source'],
   ['renderers/web/js/liberties.js', [3, 13], 'the liberties on the card, and in the panel'],
   ['renderers/web/js/residents.js', [3, 13], 'who was here, and the people in the panel'],
+  // T-1041. The agency relation renders on the BUILDING card (part 3) and on the person
+  // card the People directory opens (part 13) — one module, two surfaces, and both are
+  // pinned. `people.js` is the directory itself, mapped for the first time here: it was
+  // unmapped, so every diff touching it priced the whole gate.
+  ['renderers/web/js/agencies.js', [3, 13], 'the agency on the card, and on the person'],
+  ['renderers/web/js/people.js', [13], 'the directory of everyone in the town'],
+  ['data/reconstruction/1835_agencies.json', [3, 13], 'the compiled relation both cards read'],
   ['renderers/web/js/display-name.js', [3], 'the prose may not name a level the record is not'],
   ['renderers/web/js/popup.js', [3], 'the card a visitor opens'],
   ['renderers/web/js/census.js', [3, 10], 'the population on the card and in the census'],
@@ -577,14 +601,18 @@ function selfTest() {
   }
   for (const p of ALL) if (!seen.has(p)) fails.push(`part ${p} is covered by no row of the map`);
 
-  // The publish stamp is NONE, and a real mirror file is still the whole gate:
-  // publish.sh rewrites site/chicago/4d/walk/index.html on every run, and before
-  // this row existed the mirror catch-all priced every publishing PR at all 13
-  // parts (run #1464, 2026-09-03, seven legs for two census page files).
-  const stamp = partsFor(['site/chicago/4d/walk/index.html']);
-  if (stamp.want.length !== 0) fails.push(`the publish stamp site/chicago/4d/walk/index.html must map to NONE, not ${key(stamp.want)}`);
-  const mirrorJs = partsFor(['site/chicago/4d/walk/js/main.js']);
-  if (mirrorJs.want.length !== PARTS) fails.push('a mirrored renderer module must still map to the whole gate');
+  // The published mirror can no longer reach this map at all (T-0938), and that is
+  // asserted rather than assumed: it is untracked and .gitignored, so `--for-diff`'s
+  // `git diff --name-only` never names it. Two self-test cases used to hold the mirror
+  // rows in place — the publish stamp must price at NONE, a mirrored renderer module at
+  // the whole gate — and both are replaced by this one, which holds the precondition
+  // they rested on. If the mirror is ever tracked again this fails and the rows come back.
+  {
+    const tracked = execFileSync('git', ['ls-files', '--', 'site/chicago/4d'],
+      { cwd: REPO, encoding: 'utf8' }).trim();
+    if (tracked) fails.push('site/chicago/4d is tracked again — the published mirror is back on the '
+      + 'PR surface, so it can appear in a diff and this map needs its rows back (T-0938)');
+  }
 
   // The map may only ever ADD parts: an unknown path is the whole gate.
   const unknown = partsFor(['renderers/web/js/no-such-module-at-all.js']);
@@ -651,7 +679,9 @@ else if (argv[0] === '--for') reportFor(argv.slice(1));
 else if (argv[0] === '--for-diff') {
   const ref = argv[1] || 'origin/dev';
   const out = execFileSync('git', ['diff', '--name-only', `${ref}...HEAD`], { cwd: APP, encoding: 'utf8' });
-  const paths = out.split('\n').map((s) => s.trim()).filter((s) => s.startsWith('chicago/4d/') || s.startsWith('site/chicago/4d/'));
+  // `chicago/4d/` only: the published mirror is untracked and generated (T-0938), so it
+  // is never in a diff and there is nothing under site/ left to price.
+  const paths = out.split('\n').map((s) => s.trim()).filter((s) => s.startsWith('chicago/4d/'));
   if (!paths.length) console.log(`nothing under chicago/4d/ changed against ${ref}`);
   else reportFor(paths.map((p) => p.replace(/^chicago\/4d\//, '')));
 } else if (argv.length && argv[0].startsWith('-')) {

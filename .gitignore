@@ -49,3 +49,48 @@ chicago/reference/ipums/nhgis0001_csv.zip
 chicago/reference/ipums/nhgis0001_shape/
 chicago/reference/ipums/nhgis0001_shape.zip
 !chicago/reference/ipums/README.md
+
+# CHICAGO 4D — THE BUILD PRODUCTS ARE GENERATED, SO THEY ARE NOT COMMITTED
+# (T-0937 took the ticket board off the PR surface; T-0938 takes the rest of the
+# published mirror off it, which is the whole of `site/chicago/4d/`).
+#
+# `tickets/BOARD.md` and `tickets/tickets.json` are pure functions of the one-file-
+# per-ticket records in `chicago/4d/tickets/`, and everything under
+# `site/chicago/4d/` is a pure function of `chicago/4d/` run through
+# `chicago/4d/tools/publish.sh`. `tools/ticket.mjs` writes the first two, and every
+# command that changes a ticket rewrites them — which means a run's FIRST commit
+# (`ticket.mjs claim`) touches them before it has done any work at all. publish.sh
+# writes the mirror, and its last act is to stamp the head sha and a wall clock into
+# `build.json` and `walk/index.html`, so EVERY publishing branch rewrites those two
+# by construction.
+#
+# That is what made them the most-conflicting files in the repository. Measured on PR
+# #906 (the .gitattributes note beside this one): dev moved five times under one PR and
+# every merge conflicted in generated files and never in the substantive diff; lap 5 was
+# the ticket artifacts and nothing else. GitHub's server-side merge does not run this
+# repo's merge drivers (T-0857), so `merge=generated` could not help the merge that
+# decides mergeability, and each collision cost a hand lap.
+#
+# A file that is not tracked cannot conflict — in a clone or on the server. Nothing is
+# lost by not committing any of it, because every one of these files has a command that
+# writes it and a gate that refuses it stale:
+#
+#   tickets/BOARD.md, tickets/tickets.json   `ticket.mjs check` / `board`
+#   site/chicago/4d/**                       `tools/publish.sh`, and `tools/check.sh`
+#                                            now RUNS publish.sh and then asks
+#                                            `check_published.mjs` whether what it
+#                                            produced matches its source (T-0938).
+#
+# And every consumer builds it before it reads it: `publish.sh` regenerates the board
+# before its copy, `deploy.yml` publishes the production tree AND the dev-preview
+# worktree before the Pages upload, and `chicago-4d-bake.yml` publishes before it
+# uploads the mirror the smoke runs against. So `/chicago/4d/`, `/chicago/4d/walk/`,
+# `/chicago/4d/js/changelog.js` and `/chicago/4d/tickets.json` are all unchanged URLs.
+#
+# THE ONE FILE IN THIS SET THAT STAYS TRACKED is `chicago/4d/tools/dev-smoke-state.json`
+# (T-0938, from T-0857 point 5): it sits in the same conflict set and looks like a build
+# product, but it is an append-only register of smoke readings that nothing regenerates.
+# Evidence is not regenerable. It keeps its merge driver instead — see /.gitattributes.
+chicago/4d/tickets/BOARD.md
+chicago/4d/tickets/tickets.json
+site/chicago/4d/

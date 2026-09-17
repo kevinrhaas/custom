@@ -37,6 +37,24 @@
  * same reason `tools/measure_furniture_reach.mjs` copies it: the smoke is a script
  * and not a module, so a stand added there and not here makes this tool less
  * complete, never wrong.
+ *
+ * `--south` (T-1148) ADDS the four southern poses to the sweep — and adds them, never
+ * replaces, because the five above are what every ceiling this project holds was
+ * measured at and the comparison is the point. They are poses and not anchors because
+ * there are no anchors south of the town yet; T-0467 is the ticket that puts them
+ * down, and when it does these four should become anchors like the rest. The four are
+ * COPIED, coordinate for coordinate, from `tools/measure_ground_tiling.mjs` SOUTH, so
+ * that the two instruments stand in the SAME four places and the only thing that
+ * differs between their readings is the instrument — which is exactly the question
+ * T-1148 asks, the ground-tiling reading having declined to answer it against a
+ * ceiling in its own `what_this_is_not`.
+ *
+ * With `--south` the verdict line is printed TWICE per tier, once for the five
+ * downtown stands and once for the four southern ones, and the PASS/OVER exit tally
+ * still counts only the downtown five. A tool whose default verdict changed the day
+ * a new stand was added would stop answering the question it was built for ("did THIS
+ * branch put the town over?"), and a southern stand that is over is a finding for
+ * T-1148 to argue, not a red this tool may declare on a branch that never went there.
  */
 import http from 'node:http';
 import fs from 'node:fs';
@@ -63,12 +81,13 @@ const argAt = (name) => {
   return i >= 0 ? process.argv[i + 1] : null;
 };
 const wantSource = process.argv.includes('--source');
+const wantSouth = process.argv.includes('--south');
 const jsonOut = argAt('--json');
 const against = argAt('--against');
 const ONLY = argAt('--only') || 'desktop';
 const YEAR = process.env.DETAIL_YEAR || '1835';
 
-const STANDS = [
+const DOWNTOWN = [
   { id: 'sauganash_26', kind: 'frame', target: 'sauganash_hotel', distance: 26,
     label: 'the Sauganash at 26 m' },
   { id: 'lake_at_canal', kind: 'anchor', target: 'green_tree',
@@ -80,6 +99,26 @@ const STANDS = [
   { id: 'lake_and_market', kind: 'anchor', target: 'lake_market',
     label: 'Lake and Market' },
 ];
+
+// T-1148. The southern field, at the four poses `tools/measure_ground_tiling.mjs`
+// read it at — same eastings, same northings, same yaws, same altitude on the
+// aerial. Do not "improve" these numbers: their whole value is that they are the
+// other instrument's, so the two readings are comparable stand for stand.
+const SOUTH = [
+  { id: 'south_branch_below_town', kind: 'pose',
+    label: 'the South Branch below the town, looking south',
+    pose: { local_e: 250, local_n: -700, yaw_deg: 180 } },
+  { id: 'mid_field_looking_north', kind: 'pose',
+    label: 'mid-field, looking back at the town',
+    pose: { local_e: 800, local_n: -1800, yaw_deg: 0 } },
+  { id: 'south_end_looking_north', kind: 'pose',
+    label: 'the south end of the field, looking north',
+    pose: { local_e: 700, local_n: -3200, yaw_deg: 0 } },
+  { id: 'above_south_field', kind: 'pose',
+    label: 'from the air over the southern field',
+    pose: { local_e: 600, local_n: -1600, yaw_deg: 0, altitude_m: 700, pitch_deg: -45 } },
+];
+const STANDS = wantSouth ? [...DOWNTOWN, ...SOUTH] : DOWNTOWN;
 
 const VIEWPORTS = [
   { label: 'desktop 1280x800', width: 1280, height: 800 },
@@ -139,7 +178,14 @@ async function sweep(browser, root, entry, port, treeLabel) {
         const atStands = [];
         for (const st of order) {
           if (st.kind === 'frame') { a.setFly(false); a.frame(st.target, st.distance); }
-          else a.goTo(st.target);
+          else if (st.kind === 'pose') {
+            // Same two lines the ground-tiling instrument uses. `setFly` is driven
+            // from the pose and not left where the last stand put it, because the
+            // aerial anchor above turns flight on and a walking pose taken while
+            // flying is a different stand.
+            a.setFly(typeof st.pose.altitude_m === 'number');
+            a.walker.teleport(st.pose);
+          } else a.goTo(st.target);
           await settle();
           const r = a.stats();
           atStands.push({ id: st.id, label: st.label,
@@ -183,6 +229,7 @@ await browser.close();
 
 const num = (n) => n.toLocaleString('en-US');
 let over = 0;
+let southOver = 0;
 for (const vp of VIEWPORTS) {
   console.log(`================  ${vp.label}  ================`);
   for (const level of results[0].passes.find((p) => p.viewport === vp.label)
@@ -193,13 +240,29 @@ for (const vp of VIEWPORTS) {
         .find((s) => s.level === level),
     }));
     const mine = rows[0].lv;
-    const worst = mine.atStands.reduce((x, y) => (y.tris > x.tris ? y : x));
-    const verdict = worst.tris <= mine.ceiling
-      ? `PASS by ${num(mine.ceiling - worst.tris)}`
-      : `OVER by ${num(worst.tris - mine.ceiling)}`;
+    // The verdict is per GROUP. The downtown five are what the ceilings were set
+    // against and what the exit tally counts; the southern four are reported beside
+    // them and counted separately, for the reason in the header.
+    const groupWorst = (group) => {
+      const seen = group
+        .map((st) => mine.atStands.find((x) => x.id === st.id))
+        .filter(Boolean);
+      if (!seen.length) return null;
+      const w = seen.reduce((x, y) => (y.tris > x.tris ? y : x));
+      return { ...w, verdict: w.tris <= mine.ceiling
+        ? `PASS by ${num(mine.ceiling - w.tris)}`
+        : `OVER by ${num(w.tris - mine.ceiling)}` };
+    };
+    const worst = groupWorst(DOWNTOWN);
     if (worst.tris > mine.ceiling) over += 1;
     console.log(`\n${level}  ceiling ${num(mine.ceiling)}  `
-      + `worst ${num(worst.tris)} at ${worst.label}  — ${verdict}`);
+      + `worst ${num(worst.tris)} at ${worst.label}  — ${worst.verdict}`);
+    if (wantSouth) {
+      const s4 = groupWorst(SOUTH);
+      southOver += s4.tris > mine.ceiling ? 1 : 0;
+      console.log(`${' '.repeat(level.length)}  the southern four        `
+        + `worst ${num(s4.tris)} at ${s4.label}  — ${s4.verdict}`);
+    }
     const head = rows.length > 1
       ? '   stand                                        triangles    calls'
         + '        against        delta'
@@ -225,3 +288,9 @@ for (const vp of VIEWPORTS) {
 if (jsonOut) fs.writeFileSync(jsonOut, `${JSON.stringify(results, null, 2)}\n`);
 console.log(`\n${over === 0 ? 'every tier inside its ceiling'
   : `${over} tier(s) OVER — the gate is tools/smoke_renderer.mjs, this only reports`}`);
+if (wantSouth) {
+  console.log(southOver === 0
+    ? 'the southern four are inside the same ceilings'
+    : `the southern four are over at ${southOver} tier(s) — T-1148; no ceiling is `
+      + 'held against them and none is moved by this reading');
+}

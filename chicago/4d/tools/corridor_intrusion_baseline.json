@@ -161,7 +161,9 @@
       "structure": "madore_beaubien_house"
     },
     "newberry_dole_slaughterhouse_south_branch:works_1834": {
-      "anchor_in": [],
+      "anchor_in": [
+        "market"
+      ],
       "anchor_offset_m": 12.74,
       "body_toward_street": true,
       "category": "building",
@@ -208,11 +210,11 @@
     },
     "philo_carpenter_log_shop:log_1832": {
       "anchor_in": [],
-      "anchor_offset_m": 16.9,
+      "anchor_offset_m": 16.92,
       "body_toward_street": true,
       "category": "building",
       "centroid_in": [],
-      "depth_m": 0.22,
+      "depth_m": 0.2,
       "layer": "research",
       "phase": "log_1832",
       "position_confidence": "inferred",
@@ -225,7 +227,7 @@
       "body_toward_street": true,
       "category": "building",
       "centroid_in": [],
-      "depth_m": 0.19,
+      "depth_m": 0.17,
       "layer": "research",
       "phase": "frame_1831",
       "position_confidence": "inferred",
@@ -276,8 +278,8 @@
       "structure": "western_hotel"
     }
   },
-  "measured": "2026-08-29",
-  "placed_phases": 359,
+  "measured": "2026-09-12",
+  "placed_phases": 384,
   "refused": {
     "harmon_loomis_store:frame_1833": {
       "depth_m": 0.21,

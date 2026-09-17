@@ -1,7 +1,7 @@
 ---
 id: T-0674
 title: A bot-opened PR never runs the dev gate before merge, and two of them broke dev
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: #792 landed and chicago-4d-check.yml runs on every pull_request unfiltered
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-10T04:20:11.419Z
 claimed_run: null
 ---
 

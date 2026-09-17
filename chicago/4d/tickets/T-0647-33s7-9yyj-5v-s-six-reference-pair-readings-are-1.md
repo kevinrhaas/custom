@@ -1,7 +1,7 @@
 ---
 id: T-0647
 title: 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 868
+claimed_by: run 9/5/2026, 4:23:17 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-05T10:20:36.055Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33957730780
 ---
 
 33S7-9YYJ-5V's six 'reference pair' readings are 11 and the digit key from a sheet that closes says they are 4.

@@ -99,6 +99,10 @@ const TIMBER_ZONES = [
  * answer is null and no dune is planted — the safe direction.
  */
 const DUNE_ZONE = 'z08_lakeshore';
+/** The roles THIS file draws out of a zone's woody list, so a `woody_stratum`
+ *  block that binds only `shrub_low` (flora.js's stratum) does not silently
+ *  thin the timber this loop plants. T-1056. */
+const DUNE_WOODY_ROLES = ['tree', 'thicket'];
 
 /* -------------------------------------------------------------------------- */
 /* the physical constants this file reasons with                               */
@@ -1061,6 +1065,7 @@ async function loadTimberZones(dataBase, problems = []) {
   const byZone = {};
   const shrubByZone = {};
   const bands = {};
+  const woody = {};
   const unimplemented = new Set();
   const zonesRead = [];
   const heads = [];
@@ -1070,6 +1075,12 @@ async function loadTimberZones(dataBase, problems = []) {
     const rec = await fetchOk(new URL(entry.file, manifestUrl));
     zonesRead.push(id);
     bands[id] = {};
+    // T-1056 — THE SAME WOODY BOUND `flora.js` READS, OFF THE SAME RECORD.
+    // A zone that states where woody growth establishes states it for every
+    // woody role it lists, and the poplars this file plants on the dune are
+    // three of them. Reading the block here rather than restating the numbers
+    // is the whole point: two renderers, one claim, gated once in validate.py.
+    if (rec.woody_stratum) woody[id] = rec.woody_stratum;
     for (const sp of rec.species ?? []) {
       // A DOORYARD SHRUB (T-0074). `shrub_low` is flora.js's stratum — dealt on
       // its own lattice at the zone's recorded density — and it stays that way:
@@ -1172,7 +1183,7 @@ async function loadTimberZones(dataBase, problems = []) {
   for (const entry of manifest.plantings ?? []) {
     plantings.push(await fetchOk(new URL(entry.file, manifestUrl)));
   }
-  return { specs, byZone, shrubByZone, bands, unimplemented: [...unimplemented],
+  return { specs, byZone, shrubByZone, bands, woody, unimplemented: [...unimplemented],
     zonesRead, heads, plantings };
 }
 
@@ -1929,6 +1940,9 @@ export async function createTrees({
     // somebody kept in a yard answers to no density at all.
     planted: 0, plantedStems: [],
     zoneRecords: [], unimplementedForms: [], speciesFromRecord: 0,
+    /** T-1056. Stems the dune's recorded woody band refused, so the count is
+     *  reportable rather than a difference somebody has to notice. */
+    rejectedBelowWoodyBand: 0,
     rejectedBelowWaterline: 0, lowestStationY: null,
     // ROADMAP K45(c). `headSpecies` is which records carry a July
     // inflorescence this file draws; `headStems` is how many stems actually
@@ -2109,11 +2123,82 @@ export async function createTrees({
   // navigable channels. Nobody draws a polygon: the river already divides the
   // box the way 1835 Chicago was divided, and the documented shallow slough on
   // the north side is above CHANNEL_Y so it does not cut the North Division.
+  //
+  // ...AND IT DIVIDES ONLY THE GROUND THE RIVER IS TRACED ACROSS. The sentence
+  // above is true exactly as far south as the South Branch is traced, and no
+  // further. Below its last traced row there is no channel in the field, so the
+  // land wraps underneath the branch and the West and South Divisions come back
+  // as ONE component — measured on the T-0464 box: 4 components, WEST=1,
+  // NORTH=3, SOUTH=1. The three-way test below then fails and NOTHING is
+  // planted anywhere, including the town, which is how a box that reaches
+  // Twenty-Second Street emptied the whole scene of trees.
+  //
+  // That is not a fault in the flood. Below the evidence limit the corpus says
+  // nothing about this ground — terrain_spec.json's `evidence_limit` is the
+  // line, every vertex under it is written CONF_CONJECTURAL, and "which bank is
+  // this point on" has no answer there because there is no bank. So the flood
+  // stops at that line: above it the divisions separate exactly as they always
+  // did, below it no cell is labelled and nothing plants on ground nobody
+  // described. The line is read from the heightfield's own runtime meta rather
+  // than written here, so it cannot drift from the spec that sets it.
+  // THE FLOOR IS FOUND, NOT DECLARED, and every declared line that was tried
+  // for it was wrong. The spec's `evidence_limit` (N -2149.4, Twelfth Street) is
+  // a SURVEY line and sits ~20 m south of where the traced water actually stops,
+  // so a flood bounded there still joins the banks: WEST=1 NORTH=3 SOUTH=1,
+  // measured. A cheaper proxy — "the southernmost row holding water with land
+  // on both sides" — answers N -2140 where the flood itself answers -2130,
+  // because enclosed water elsewhere in the box satisfies it without dividing
+  // anything. Neither is the question; the question is where THIS flood stops
+  // separating these three probes, so it is asked directly.
+  //
+  // Binary search over the cut row: the predicate is monotone in the direction
+  // that matters — cutting further north can only remove connections, never add
+  // one — so ~11 floods settle a 1 969-row field. Each is the same typed-array
+  // pass that runs below.
+  let divideFloorRow = 0;
+  const floodSeparates = (cutRow) => {
+    const d = new Int8Array(cells).fill(-1);
+    const st = new Int32Array(cells);
+    let lab = 0;
+    for (let s = cutRow * cols; s < cells; s++) {
+      if (data[s] < CHANNEL_Y || d[s] >= 0) continue;
+      let sp = 0; st[sp++] = s; d[s] = lab;
+      while (sp > 0) {
+        const j = st[--sp];
+        const c = j % cols;
+        const r = (j - c) / cols;
+        if (c > 0 && d[j - 1] < 0 && data[j - 1] >= CHANNEL_Y) { d[j - 1] = lab; st[sp++] = j - 1; }
+        if (c < cols - 1 && d[j + 1] < 0 && data[j + 1] >= CHANNEL_Y) { d[j + 1] = lab; st[sp++] = j + 1; }
+        if (r > cutRow && d[j - cols] < 0 && data[j - cols] >= CHANNEL_Y) { d[j - cols] = lab; st[sp++] = j - cols; }
+        if (r < rows - 1 && d[j + cols] < 0 && data[j + cols] >= CHANNEL_Y) { d[j + cols] = lab; st[sp++] = j + cols; }
+      }
+      lab++;
+    }
+    const pick = (e, n) => {
+      const c = Math.round((e - originE) / cellM);
+      const r = Math.round((n - originN) / cellM);
+      if (c < 0 || r < cutRow || c >= cols || r >= rows) return -1;
+      return d[r * cols + c];
+    };
+    const w = pick(-300, 0), nn = pick(200, 250), s2 = pick(200, -250);
+    return w >= 0 && nn >= 0 && s2 >= 0 && w !== nn && nn !== s2 && w !== s2 ? d : null;
+  };
+  {
+    let lo = 0, hi = rows - 1;
+    if (!floodSeparates(0)) {
+      while (lo < hi) {
+        const mid = (lo + hi) >> 1;
+        if (floodSeparates(mid)) hi = mid; else lo = mid + 1;
+      }
+      divideFloorRow = lo;
+    }
+  }
+  const divisible = (s) => ((s - (s % cols)) / cols) >= divideFloorRow;
   const div = new Int8Array(cells).fill(-1);
   const stack = new Int32Array(cells);
   let labels = 0;
   for (let s = 0; s < cells; s++) {
-    if (data[s] < CHANNEL_Y || div[s] >= 0) continue;
+    if (data[s] < CHANNEL_Y || div[s] >= 0 || !divisible(s)) continue;
     let sp = 0;
     stack[sp++] = s;
     div[s] = labels;
@@ -2121,10 +2206,16 @@ export async function createTrees({
       const j = stack[--sp];
       const c = j % cols;
       const r = (j - c) / cols;
-      if (c > 0 && div[j - 1] < 0 && data[j - 1] >= CHANNEL_Y) { div[j - 1] = labels; stack[sp++] = j - 1; }
-      if (c < cols - 1 && div[j + 1] < 0 && data[j + 1] >= CHANNEL_Y) { div[j + 1] = labels; stack[sp++] = j + 1; }
-      if (r > 0 && div[j - cols] < 0 && data[j - cols] >= CHANNEL_Y) { div[j - cols] = labels; stack[sp++] = j - cols; }
-      if (r < rows - 1 && div[j + cols] < 0 && data[j + cols] >= CHANNEL_Y) { div[j + cols] = labels; stack[sp++] = j + cols; }
+      // `divisible` is tested on every neighbour and not only on the seed. Row 0
+      // is the SOUTH edge, so `j - cols` walks south: a component seeded north of
+      // the evidence limit would otherwise flood straight under it, rejoin the
+      // far bank below the traced river, and put West and South back into one
+      // label — the exact fault the limit is here to prevent, reintroduced by
+      // the one step that was not guarded.
+      if (c > 0 && div[j - 1] < 0 && data[j - 1] >= CHANNEL_Y && divisible(j - 1)) { div[j - 1] = labels; stack[sp++] = j - 1; }
+      if (c < cols - 1 && div[j + 1] < 0 && data[j + 1] >= CHANNEL_Y && divisible(j + 1)) { div[j + 1] = labels; stack[sp++] = j + 1; }
+      if (r > 0 && div[j - cols] < 0 && data[j - cols] >= CHANNEL_Y && divisible(j - cols)) { div[j - cols] = labels; stack[sp++] = j - cols; }
+      if (r < rows - 1 && div[j + cols] < 0 && data[j + cols] >= CHANNEL_Y && divisible(j + cols)) { div[j + cols] = labels; stack[sp++] = j + cols; }
     }
     labels++;
   }
@@ -2318,7 +2409,8 @@ export async function createTrees({
   /**
    * `keep` — THE DETAIL CONTROL, AND IT IS A THINNING RATHER THAN A CAP.
    *
-   * ROADMAP K45(b3). A fraction on the acceptance roll thins the wood UNIFORMLY:
+   * ROADMAP K45(b3), RE-CUT BY T-1127 FOR THE FIELD T-1123 ENLARGED. A fraction
+   * on the acceptance roll thins the wood UNIFORMLY:
    * every cell of the swept field is offered the same reduced chance, so a phone
    * gets the same wood at a lower density — same species, same mix, same rules
    * about where a stem may stand, fewer stems everywhere. A cap cannot do that.
@@ -2326,25 +2418,54 @@ export async function createTrees({
    * and leaves a straight edge across the town: the same number of stems, and
    * three quarters of a wood rather than a whole thinner one.
    *
-   * WHERE THE NUMBERS COME FROM, because they are a choice and not a source.
-   * They are the levels' OWN triangle ceilings in `main.js` — 1,000,000 /
-   * 800,000 / 600,000 — read as a ratio. That is the only live per-level
-   * statement this renderer makes about how much geometry a level is for, and
-   * the release smoke holds each level to it. The obvious alternative, the ratio
-   * of the pre-K45(b2) caps (820/520/300 = 1 / 0.634 / 0.366), is NOT used: those
+   * WHERE THE RATIO COMES FROM, because it is a choice and not a source.
+   * It is the levels' OWN triangle ceilings in `main.js`, read as a ratio. That
+   * is the only live per-level statement this renderer makes about how much
+   * geometry a level is for, and the release smoke holds each level to it
+   * (`BUDGET.triangles` follows the tier the visitor is on). K45(b3) read them
+   * as 1,000,000 / 800,000 / 600,000 = 1 / 0.8 / 0.6; the ceilings have since
+   * moved to **1,460,000 / 1,280,000 / 825,000**, so the ratio is refreshed here
+   * to **1 / 0.877 / 0.565**. The obvious alternative, the ratio of the
+   * pre-K45(b2) caps (820/520/300 = 1 / 0.634 / 0.366), is still NOT used: those
    * were a backstop that never bound, so they are an intent nothing ever
    * executed, and K45(b2) then multiplied them by 3.70. A number that has never
-   * had an effect is not evidence of what a level should draw.
+   * had an effect is not evidence of what a level should draw — and a backstop
+   * that has STARTED to bind is a defect (below), not a promotion to a control.
+   *
+   * WHERE THE SCALE COMES FROM, which is what T-1127 changed. The ratio says how
+   * the levels stand to each other; one factor says how thin the whole wood is.
+   * Until T-1123 that factor was 1 and nothing bound. T-1123 carried the modelled
+   * ground north into Kinzie's Addition, which is Andreas's "body of thrifty
+   * heavy growth of timber" and takes the TOP of ZONE 5's range, and the wood the
+   * record asks for grew with it. MEASURED on this tree, 2026-09-15, with the
+   * caps lifted so the loop could finish: the field wants **4,052** stems at
+   * `full`'s step, 3,981 at `balanced`'s and 3,970 at `light`'s — one wood
+   * counted three ways, which is `step` count-neutrality doing what it says. The
+   * caps are 3,030 / 1,920 / 1,110, so at 1 / 0.8 / 0.6 ALL THREE bound and all
+   * three woods stopped partway north: the planted maxima were N +949.8 /
+   * +803.3 / +722.6 m against a field that runs to N +1,117.8 m.
+   *
+   * The scale is therefore set by the level with the least room — `light`, whose
+   * cap is the smallest fraction of the wood — at 80 % of that cap, which leaves
+   * the backstop a fifth of headroom rather than a rounding error:
+   *
+   *     lambda = (1,110 x 0.80) / (3,970 x 0.565) = 0.396  ->  0.400
+   *
+   * and the three fractions are `lambda` times the ceiling ratio. They plant a
+   * measured 1,621 / 1,393 / 893 stems against caps of 3,030 / 1,920 / 1,110, and
+   * every level reaches the north end of the field.
    *
    * This is a RENDERING density, not a claim about the town: `perHa`, the mixes,
    * `edgeFade`, `clearedFactor`, the waterline gate and the east limits are
-   * untouched, and `full` — what the gates and every published figure measure —
-   * keeps every stem it had. Recorded in docs/LIBERTIES.md.
+   * untouched, and the record's own stand is what the roll would accept at
+   * `keep = 1`. What changed at T-1127 is that `full` is no longer that stand —
+   * it is 40 % of it — because the enlarged field's wood does not fit the
+   * geometry any level of this renderer is for. Recorded in docs/LIBERTIES.md.
    */
   const STEMS = {
-    full:     { step: 4.0, keep: 1.00, trees: 3030, thickets: 1550 },
-    balanced: { step: 4.7, keep: 0.80, trees: 1920, thickets: 1000 },
-    light:    { step: 5.6, keep: 0.60, trees: 1110, thickets: 630 },
+    full:     { step: 4.0, keep: 0.400, trees: 3030, thickets: 1550 },
+    balanced: { step: 4.7, keep: 0.350, trees: 1920, thickets: 1000 },
+    light:    { step: 5.6, keep: 0.225, trees: 1110, thickets: 630 },
   };
   const stems = STEMS[level] ?? STEMS.full;
   const step = stems.step;
@@ -2564,6 +2685,34 @@ export async function createTrees({
       if (gy < dryFloorY) { stats.rejectedBelowWaterline++; continue; }
       const comm = communityAt(px, pz);
       if (!comm) continue;
+      // T-1056 — THE DUNE'S POPLARS STAND ON THE SANDY HILLS, NOT ON THE BAR.
+      //
+      // `communityAt` answers 'dune' for the whole of z08_lakeshore's box, and
+      // measured on the committed e1834_harbor_cut field 1,650 of the 1,653
+      // land samples that zone actually WINS are the traced sand bar, none
+      // higher than 1.58 m. So every dune cottonwood, aspen and balsam poplar
+      // this loop planted stood on a surface the lake reworks — the even
+      // scatter of woody growth T-1056 was opened against, the half of it that
+      // is this file's rather than flora.js's.
+      //
+      // The bound is the zone record's `woody_stratum`, read at load and
+      // interpolated here exactly as `flora.js` interpolates it for the shrub
+      // stratum: below the band nothing woody stands, across it the chance
+      // ramps, above it the community is untouched. `noise2` makes the survivors
+      // POCKETS rather than an even thinning, on the same 8 m grain the rest of
+      // this loop's ecology already uses. No zone without the block moves.
+      if (comm === 'dune') {
+        const w = records.woody?.[DUNE_ZONE];
+        const band = w?.establishes_m;
+        if (band && DUNE_WOODY_ROLES.some((r) => (w.applies_to_roles ?? []).includes(r))) {
+          const t = smoothstep(band[0], band[1], gy);
+          if (t <= 0) { stats.rejectedBelowWoodyBand++; continue; }
+          if (t < 1 && noise2(px, pz, 8, 41) >= t) {
+            stats.rejectedBelowWoodyBand++;
+            continue;
+          }
+        }
+      }
 
       const i = cellAt(px, pz);
       const y = data[i];

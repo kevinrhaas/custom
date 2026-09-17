@@ -114,17 +114,60 @@ RENDERER_JS = RENDERERS / "web" / "js"
 # meshes a change to the shared generator modules or to build.py would re-stale; the
 # terrain and pier_crib reaches stay at 2 each.
 #
+# 372 -> 374 and 370 -> 372 on 2026-09-05 (T-0431): `blk_south_water_clark` took its second
+# deal — one C2 store-residence on the block's one free lot of South Water frontage, party-
+# walled to Pruyne & Kimball's drug store, and the privy in the yard behind it. Two new
+# structure assets, so two more meshes a change to the shared generator modules or to
+# build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+#
+# 375 -> 378 and 373 -> 376 on 2026-09-06 (T-0883): the Big Barn with Cupola, the Wash house
+# and the Shop — three of the six things the 1830 Harrison plan names on Fort Dearborn's outer
+# ground and nothing drew. Three new `outbuilding` records, so three more committed assets and
+# three more meshes a change to the shared generator modules or to build.py would re-stale; the
+# terrain and pier_crib reaches stay at 2 each.
+#
+# 378 -> 380 and 376 -> 378 on 2026-09-06 (T-0881): the fort's Out Buildings, which the same
+# plate letters in the PLURAL and draws as TWO blocks rather than the one every earlier reading
+# of the sheet took them for. Two new `outbuilding` records, so two more committed assets and
+# two more meshes a change to the shared generator modules or to build.py would re-stale; the
+# terrain and pier_crib reaches stay at 2 each. The Well is the sixth thing on that plate and
+# adds nothing here: it is measured to a coordinate and deliberately not built, because this
+# project has no well archetype (docs/RESEARCH/wells.md section 5, T-0887).
+#
+# 380 -> 383 and 378 -> 381 on 2026-09-11 (T-0432): the second deal on
+# `blk_south_water_dearborn`, the last of the four South Water blocks T-0420 held in one
+# ticket — two frame cottages on the South Water frontage of lot 2, one party-walled to each
+# side wall of Frederick Thomas's shop, and the stable in the yard behind them. Three new
+# structure assets, so three more meshes a change to the shared generator modules or to
+# build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+#
+# 383 -> 384 and 381 -> 382 on 2026-09-11 (T-1036): `fort_dearborn_us_factors_house`, the
+# United States factory on the fort reservation — block A of the three the 1830 Harrison plate
+# letters `U.S. Factor's House`, built as a `log_dwelling` where T-0894 read all three and
+# built none. One new structure asset, so one more mesh a change to the shared generator
+# modules or to build.py would re-stale; the terrain and pier_crib reaches stay at 2 each.
+# Blocks B and C are drawn, unlettered and refused, and add nothing here: measured and
+# deliberately not built.
+#
+# 9 -> 10 drawn-at-load layers on 2026-09-11 (T-0887): `data/wells/`, read by
+# renderers/web/js/wells.js. The fort's well was the Well this block used to name as measured
+# and not built — the plate letters it, Hubbard corroborates it and T-0881 measured it to a
+# coordinate, and it stayed invisible because data/structures.schema.json has no well among its
+# twelve archetypes and a structure record with no buildable form does not validate. The curb is
+# derived at load from committed numbers, so THE ASSET COUNT DOES NOT MOVE and nothing re-stales:
+# this layer, like the other nine, owes a generator half and has none.
+#
 STATED = {
-    "assets": 372,
+    "assets": 384,
     "restales": {
-        "generators/common/*.py": 372,
+        "generators/common/*.py": 384,
         "generators/common/__init__.py": 0,
         "generators/common/phases.py": 0,
-        "generators/build.py": 370,
+        "generators/build.py": 382,
         "generators/terrain_gen.py": 2,
         "generators/archetypes/pier_crib.py": 2,
     },
-    "layers_drawn_at_load": 9,
+    "layers_drawn_at_load": 10,
     "layers_with_a_generator": 0,
     "renderers": 1,
 }
@@ -141,6 +184,7 @@ DRAWN_AT_LOAD = {
     "frontage": "frontage.js",
     "residents": "residents.js",
     "signage": "signage.js",
+    "wells": "wells.js",
     "wharves": "wharves.js",
     "yard": "yard.js",
 }
@@ -249,7 +293,7 @@ def layer_debt() -> tuple[list, list]:
             # The manifests do not agree on a key — `wharves`, `zones`,
             # `households`, and `flora` carries three lists at once — so the count
             # is not "the first list": it is every entry in the document that names
-            # a record FILE, which is the one thing all nine manifests do agree on
+            # a record FILE, which is the one thing every one of these manifests agrees on
             # and the only thing this column is claiming.
             records = sum(1 for v in doc.values() if isinstance(v, list)
                           for e in v if isinstance(e, dict) and e.get("file"))

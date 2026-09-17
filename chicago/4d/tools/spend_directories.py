@@ -51,13 +51,14 @@ WHAT IS AND IS NOT CARRIED — the whole provenance argument, in four rules.
      rendered — hiding them would report the crosswalks' successes and their arithmetic
      separately — and neither writes a value onto a card.
 
-  3. NORRIS'S ALPHABETICAL SPLIT DOES NOT CROSS, and that refusal is inherited rather
-     than invented. `spend_norris_1844.py` established it: splitting that volume's lines
-     on nineteenth-century punctuation yields trades like "of W" and "sailor, Indiana
-     st", and printing one on a card would launder a heuristic into a finding. The
-     volume's LINES are carried whole and quoted; its parse is not. Norris's advertising
-     cards are a different artefact — the trade is set as its own line of the card — and
-     they do cross.
+  3. A SPLIT IS REFUSED PER ENTRY AND PER FIELD, never per volume. What T-0569 refused
+     in Norris's alphabetical volume is a SHAPE: the volume sets a partnership where the
+     trade would go — "of Horace Norton & Co", "of Loyd", twice simply "of" — so the
+     split yields a value containing no trade at all, and printing one on a card would
+     launder a heuristic into a finding. That ground is a fact about one printed line,
+     so it is asked of one printed line: `split_refusal` below names the clause a field
+     is refused under and says nothing about the field beside it or the volume around
+     it. A refused field's LINE is still carried whole and quoted; only its parse stops.
 
   4. NO 1835 GRADE MOVES, EVER. Under the ratified ladder a directory of 1839, 1843 or
      1844 never makes an 1835 resident, never dates one and never gives one a trade in
@@ -73,6 +74,7 @@ is the rule the 1839 crosswalk wrote for itself.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -89,10 +91,12 @@ GENERATOR = "tools/spend_directories.py"
 # volume closest to 1835 is the one whose reading is worth most and the one whose
 # value is carried when two disagree.
 #
-# `parse_trusted` is rule 3 above. `carry_keys` maps this file's two carryable
-# things onto whatever the volume's own crosswalk called them: Fergus 1839 wrote
-# `street_1839` where Fergus 1843 wrote `address`, and Norris's advertisers wrote
-# `place_of_business`. The vocabulary is theirs; the meaning is one.
+# NO VOLUME CARRIES A TRUST FLAG. Rule 3 above used to be `parse_trusted`, a boolean on
+# the volume, and Norris's alphabetical directory carried it False; T-0987 stretch 6
+# replaced it with `split_refusal`, which is asked per entry and per field. `carry_keys`
+# maps this file's two carryable things onto whatever the volume's own crosswalk called
+# them: Fergus 1839 wrote `street_1839` where Fergus 1843 wrote `address`, and Norris's
+# advertisers wrote `place_of_business`. The vocabulary is theirs; the meaning is one.
 VOLUMES = [
     {
         "key": "fergus_1839",
@@ -105,7 +109,6 @@ VOLUMES = [
         "occupation_key": "occupation_1839",
         "address_key": "address_1839",
         "page_key": "printed_page",
-        "parse_trusted": True,
         "carry_keys": {"occupation": "occupation", "address": "street_1839"},
     },
     {
@@ -119,7 +122,6 @@ VOLUMES = [
         "occupation_key": "occupation_1843",
         "address_key": "address_1843",
         "page_key": "page",
-        "parse_trusted": True,
         "carry_keys": {"occupation": "occupation", "address": "address"},
     },
     {
@@ -133,7 +135,6 @@ VOLUMES = [
         "occupation_key": "occupation_1844",
         "address_key": "address_1844",
         "page_key": "printed_page",
-        "parse_trusted": False,
         "carry_keys": {"occupation": "occupation", "address": "address"},
     },
     {
@@ -148,10 +149,11 @@ VOLUMES = [
         "address_key": "address_1844",
         "page_key": "printed_page",
         "printed_key": "proprietor_as_printed",
-        "parse_trusted": True,
         "carry_keys": {"occupation": "trade", "address": "place_of_business"},
     },
 ]
+
+BY_KEY = {v["key"]: v for v in VOLUMES}
 
 STATUS_ARRAYS = (("matches", "single_entry"), ("ambiguous", "ambiguous"),
                  ("contested", "contested"))
@@ -162,20 +164,88 @@ LADDER = (
     "never had; on its own it makes nobody a resident of 1835. Nothing on this person's "
     "1835 record was regraded, moved, dated or given an occupation by this entry."
 )
-UNTRUSTED_SPLIT = (
-    "THE LINE IS CARRIED AND ITS PARSE IS NOT. Norris's alphabetical volume sets a "
-    "partnership as \"of Horace Norton & Co\" where the trade would go, so the split "
-    "yields \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\" — a value "
-    "containing no trade at all rather than a trade with something extra on it. "
-    "T-0569 refused it on that ground and this pass inherits the refusal: the line goes "
-    "to the card as Norris set it and archive.org read it, damage and all, and what it "
-    "HOLDS is stated separately for a reader to check against the quote."
+# THE SPLIT REFUSAL, PER ENTRY AND PER FIELD — T-0987 stretch 6, replacing the volume
+# flag T-0569 wrote. The refusal's GROUND is unchanged and is quoted in each clause: a
+# split that yields a value containing no trade at all, rather than a trade with
+# something extra on it, may not become a value. What changed is its SCOPE. Under the
+# flag all 144 of Norris's alphabetical could-carry units were refused by one sentence
+# about three of them, which is not a ruling about a line; measured against the reading
+# T-0987 stretch 5 corrected, 13 of that volume's 65 matched trades are the partnership
+# shape the sentence describes and 52 are plain legible trades — carpenter, baker,
+# tailor, physician, watchmaker.
+#
+# The shapes below are a COMPOSITOR'S CONSTRUCTION and not one volume's habit, so the
+# predicate is asked of every volume. Two of the three volumes the flag trusted print
+# them too, and had been carrying them: Fergus 1839 one premises where a trade goes,
+# Fergus 1843 four ditto addresses.
+FIRM_WHERE_A_TRADE_IS = (
+    "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at "
+    "all. The volume's construction is \"Surname, initials, of <firm>\" — it says this "
+    "man stood in that partnership, and the trade, if the book prints one anywhere, is "
+    "on the firm's own entry or its advertising card. T-0569 refused exactly this shape, "
+    "citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the "
+    "refusal stands; it is now made against the line that has the shape rather than "
+    "against every line in the volume. The entry goes to the card as the book set it "
+    "and archive.org read it, damage and all, and what it HOLDS is stated separately "
+    "for a reader to check against the quote."
 )
-# And the caution that rides on every value that DOES cross. The Fergus volumes set the
+PREMISES_WHERE_A_TRADE_IS = (
+    "THE LINE NAMES A PREMISES WHERE THE TRADE WOULD GO, so the split yields no trade "
+    "at all. \"at United States Hotel\", \"at clerk's office\", \"at G. S. Hubbard & "
+    "Co.'s warehouse\": the book is saying where this man was to be found, which is "
+    "evidence and is not an occupation. It is the same ground T-0569 refused a "
+    "partnership on — a value containing no trade rather than a trade with something "
+    "extra on it — and a trade that merely ENDS at a premises (\"clerk, at T. King's\", "
+    "\"book-keeper at G. S. Hubbard's\") is not refused by it. The line is carried "
+    "whole and quoted."
+)
+ADDRESS_IS_A_BACKREFERENCE = (
+    "THE ADDRESS IS A BACK-REFERENCE AND NOT AN ADDRESS: the volume prints \"res "
+    "same\", \"house same\" or a ditto mark, which means the door of the entry ABOVE "
+    "it in the alphabetical list. This pass reads one entry at a time and never the "
+    "entry above, by rule 1 — it carries what a crosswalk declares and re-parses "
+    "nothing — so the word resolves to nothing here and would put on a card a value "
+    "that names no ground. Reading it would mean the back-reference, not the adjacency "
+    "the compositor relied on, and that is a reading and belongs in the volume's own "
+    "reader. The line is carried whole and quoted."
+)
+SPLIT_CLAUSES = {
+    "firm_where_a_trade_is": FIRM_WHERE_A_TRADE_IS,
+    "premises_where_a_trade_is": PREMISES_WHERE_A_TRADE_IS,
+    "address_is_a_backreference": ADDRESS_IS_A_BACKREFERENCE,
+}
+SPLIT_RULE = (
+    "A SPLIT IS REFUSED PER ENTRY AND PER FIELD. T-0569 refused a parse on the ground "
+    "that it yielded a value containing no trade at all rather than a trade with "
+    "something extra on it, and until T-0987 stretch 6 that ground was carried as a "
+    "boolean on a VOLUME: Norris's alphabetical directory of 1844 was refused entire, "
+    "144 units of it, by a sentence about three of them. The ground is a fact about a "
+    "printed line, so it is now asked of the printed line, for one field at a time — "
+    "the clauses below — and a field's refusal says nothing about the field beside it. "
+    "Every clause names the shape it saw; nothing is refused without one."
+)
+
+EARLIER_VOLUME = (
+    "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest "
+    "first because the one closest to 1835 is the reading worth most and the one whose "
+    "value is carried when two disagree: %s prints %s against this person, and %s — %d, "
+    "nearer the scene — had printed one already. The refusal is the precedence rule and "
+    "nothing about this line. What this volume prints stands in the layer beside the "
+    "value that won, and its entry id is named on the card, so a reader can compare "
+    "them rather than take the earlier reading on trust."
+)
+# The two carryable things, in the words a refusal reads them back in.
+FIELD_AS_PROSE = {"occupation": "a trade", "address": "an address"}
+NOT_A_SINGLE_ENTRY = (
+    "THE MATCH IS NOT A SINGLE ENTRY. Rule 2 of this pass: a person met by several "
+    "entries is ambiguous and an entry met by two people is contested, and neither "
+    "writes a value onto a card. The line holds this field and it does not cross."
+)
+# And the caution that rides on every value that DOES cross. All four volumes set the
 # trade first and whatever qualifies it after — a market, an employer, a corner — on the
-# same comma-separated line, so the split carries more than the trade rather than
-# something other than it. That is a statable difference from Norris and it is why one
-# crosses and the other does not; it is not a claim that the Fergus split is clean.
+# same comma-separated line, so a split that survives the clauses above carries more than
+# the trade rather than something other than it. That difference is the whole of what
+# those clauses test; it is not a claim that any of these splits is clean.
 SPLIT_CAUTION = (
     "The value is the volume's own line, split by its crosswalk on the entry's "
     "punctuation. These volumes set the trade first and its qualifiers after it on the "
@@ -183,6 +253,39 @@ SPLIT_CAUTION = (
     "trade. The printed entry is quoted beside the value for exactly that reason: the "
     "split is checkable against it, and neither is read into an 1835 claim."
 )
+
+# WHY THE CARD NAMES THE ENTRY IDS (T-0989, spent by T-0987). A ruling in a generated
+# crosswalk states no source of its own: the file says once, at the top, which volume it
+# rests on, and every ruling in it shares that one id. `tools/measure_research_spend.py`
+# therefore judges such a ruling written only if the card ALSO names the unit adjudicated
+# — and until this line was added not one of the 263 matches these four crosswalks make
+# did. The instance the ticket checked by hand: `hh_garrett_a` cites
+# `fergus_chicago_directory_1839` because this pass writes the volume into `sources`,
+# while Fergus 1839's ruling for Garrett — entry f1839_e0527 — was nowhere on the record.
+# The citation was doing the work of a reading.
+#
+# So the block's own note ends by naming, per person and per volume, the printed entries
+# this pass ruled onto this household and the status it ruled them at. It goes in the
+# NOTE rather than in a new leaf deliberately: the note is already rendered whole by
+# `renderers/web/js/residents.js` and already declared `shown` in
+# `tools/measure_layer_reads.py`, so the entry a reader would have to go back to arrives
+# in front of that reader instead of into a field nothing opens. It is also the only
+# place that can speak for the 92 people this pass rules on and carries nothing for —
+# an ambiguous or contested match writes no graded value, and before this the card said
+# of them only that some volume had met somebody of the name.
+RULED_ON_PREAMBLE = (
+    "WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: "
+    "each volume below is followed by the printed entries it set against this person and "
+    "the status the crosswalk ruled them at — a single entry carries what its own "
+    "`could_carry` declares, and an ambiguous or contested match carries nothing and is "
+    "shown so that the silence is legible. "
+)
+
+STATUS_WORDS = {
+    "single_entry": "a single entry",
+    "ambiguous": "ambiguous, so nothing crossed",
+    "contested": "contested, so nothing crossed",
+}
 
 
 def read_json(path: Path):
@@ -246,6 +349,63 @@ def value_for(field: str, entry: dict, volume: dict) -> str | None:
     return value or None
 
 
+# The three shapes, as the compositors set them. Written against the printed values and
+# nothing else — these patterns read a SPLIT, never a line, and the thing they are asked
+# is only ever "is this value of its field's kind".
+#
+# `_FIRM` and `_PREMISES` anchor at the start on purpose: a value that BEGINS "of" or
+# "at" names a partnership or a door where the occupation belongs, while one that merely
+# ends at an employer ("clerk, at T. King's") is a trade with something extra on it and
+# T-0569's ground does not reach it. No trade in the English of 1844 begins with either
+# word, which is what makes the anchor safe rather than lucky.
+#
+# `_BACKREFERENCE` matches the locative word the volume prints — Norris's `h` and `r`,
+# Fergus's `res`, `house` and `bds`, and the OCR's `hou.«e` — followed by nothing but a
+# ditto. The alternation is ordered longest-first so `r` cannot eat the front of `res`,
+# and the separator is required so neither can eat the front of a street name.
+_FIRM = re.compile(r"^of\b", re.I)
+_PREMISES = re.compile(r"^at\b", re.I)
+_BACKREFERENCE = re.compile(
+    r"^(?:(?:residence|res|house|hou\S{0,2}e|bds?|h|r)\W+)?"
+    r"(?:same|ditto|do|\"|\u201d)\W*$", re.I)
+
+
+def split_refusal(field: str, value: str) -> str | None:
+    """The clause THIS entry's split is refused under for THIS field, or None.
+
+    Rule 3, asked one line at a time. The key returned indexes `SPLIT_CLAUSES`, which
+    is written into the layer so the clause a reader meets on the record and the clause
+    the ledger states are the same sentence."""
+    if field == "occupation":
+        if _FIRM.match(value):
+            return "firm_where_a_trade_is"
+        if _PREMISES.match(value):
+            return "premises_where_a_trade_is"
+        return None
+    if _BACKREFERENCE.match(value):
+        return "address_is_a_backreference"
+    return None
+
+
+def split_refused_of(match: dict, volume: dict, status: str, holds: dict) -> dict:
+    """Per held field, the clause this match's own entry is refused under.
+
+    ONLY A SINGLE-ENTRY MATCH IS ASKED. Rule 2 already refuses an ambiguous or contested
+    match whatever its lines hold, and naming a second clause beside that one would
+    report one refusal twice — and would state a judgement about a split that was never
+    going to be read."""
+    entries = match[volume["entries_key"]]
+    if status != "single_entry" or len(entries) != 1:
+        return {}
+    out = {}
+    for field in sorted(holds):
+        value = value_for(field, entries[0], volume)
+        clause = split_refusal(field, value) if value else None
+        if clause:
+            out[field] = clause
+    return out
+
+
 def appearance(match: dict, volume: dict, status: str) -> dict:
     entries = [entry_row(e, volume) for e in match[volume["entries_key"]]]
     holds = carried_from(match, volume) if status == "single_entry" else {}
@@ -259,7 +419,9 @@ def appearance(match: dict, volume: dict, status: str) -> dict:
         "reading": "transcription_mediated",
         "entries": entries,
         "holds": sorted(holds),
-        "parse_carries": volume["parse_trusted"],
+        # field -> a key of SPLIT_CLAUSES. Empty is the ordinary case and means every
+        # field this line holds is of its own kind.
+        "split_refused": split_refused_of(match, volume, status, holds),
         "sources": [volume["source_id"]],
     }
 
@@ -286,8 +448,8 @@ def graded(field: str, rows: list) -> dict | None:
     this value, of the year it was printed in. The year is in the block, in the note
     and in the field's own name, and the 1835 slot beside it is untouched."""
     for volume, match, entry, value in rows:
-        if not volume["parse_trusted"]:
-            continue
+        # Every row that reaches here has already passed `split_refusal` in `collect`,
+        # so precedence is the only question left: earliest volume wins.
         return {
             "value": value,
             "confidence": "attested",
@@ -333,7 +495,8 @@ def collect() -> tuple[dict, list]:
                     }
                     order.append(pid)
                     carries[pid] = {"occupation": [], "address": []}
-                row["appearances"].append(appearance(match, volume, status))
+                app = appearance(match, volume, status)
+                row["appearances"].append(app)
                 if status != "single_entry":
                     continue
                 entries = match[volume["entries_key"]]
@@ -341,6 +504,8 @@ def collect() -> tuple[dict, list]:
                     continue
                 entry = entries[0]
                 for field in carried_from(match, volume):
+                    if field in app["split_refused"]:
+                        continue
                     value = value_for(field, entry, volume)
                     if value:
                         carries[pid][field].append((volume, match, entry, value))
@@ -368,6 +533,7 @@ def counts_of(rows: list) -> dict:
             "single_entry": sum(1 for a in seen if a["match_status"] == "single_entry"),
             "ambiguous": sum(1 for a in seen if a["match_status"] == "ambiguous"),
             "contested": sum(1 for a in seen if a["match_status"] == "contested"),
+            "split_refused_fields": sum(len(a["split_refused"]) for a in seen),
         }
     return {
         "people_shown": len(rows),
@@ -376,6 +542,10 @@ def counts_of(rows: list) -> dict:
         "carrying_an_address": sum(1 for r in rows if r["address_later"]),
         "line_held_but_parse_refused": sum(
             1 for r in rows if r["holds_a_line_whose_parse_does_not_cross"]),
+        "split_refused_trades": sum(
+            1 for r in rows for a in r["appearances"] if "occupation" in a["split_refused"]),
+        "split_refused_addresses": sum(
+            1 for r in rows for a in r["appearances"] if "address" in a["split_refused"]),
         "grades_1835_changed": 0,
         "by_volume": per_volume,
     }
@@ -392,13 +562,42 @@ def layer(rows: list) -> dict:
         "ticket": TICKET,
         "sources": sorted({v["source_id"] for v in VOLUMES}),
         "standard": LADDER,
-        "parse_refusal": UNTRUSTED_SPLIT,
+        "split_refusal": {"rule": SPLIT_RULE, "clauses": SPLIT_CLAUSES},
         "volumes": [{"key": v["key"], "title": v["title"], "year": v["year"],
-                     "source_id": v["source_id"], "crosswalk": v["file"],
-                     "parse_carries": v["parse_trusted"]} for v in VOLUMES],
+                     "source_id": v["source_id"], "crosswalk": v["file"]}
+                    for v in VOLUMES],
         "counts": counts_of(rows),
         "people": rows,
     }
+
+
+def why_refused(row: dict, a: dict, carried: list) -> dict | None:
+    """The clause each refused field was refused under, named field by field."""
+    refused = sorted(set(a["holds"]) - set(carried))
+    if not refused:
+        return None
+    out = {}
+    for field in refused:
+        clause = (a.get("split_refused") or {}).get(field)
+        if clause:
+            out[field] = SPLIT_CLAUSES[clause]
+            continue
+        if a["match_status"] != "single_entry":
+            out[field] = NOT_A_SINGLE_ENTRY
+            continue
+        won = row["%s_later" % field]
+        # Two of the four volumes share a source id, so the winner is found by the
+        # entry it was carried from rather than by that id.
+        winner = next((b for b in row["appearances"]
+                       if won and any(e["claim_id"] == won["claim_id"]
+                                      for e in b["entries"])), None)
+        if won and winner:
+            out[field] = EARLIER_VOLUME % (
+                BY_KEY[a["volume"]]["title"], FIELD_AS_PROSE[field],
+                BY_KEY[winner["volume"]]["title"], won["describes_date"])
+        else:
+            out[field] = NOT_A_SINGLE_ENTRY
+    return out
 
 
 def ledger(rows: list) -> dict:
@@ -431,8 +630,12 @@ def ledger(rows: list) -> dict:
                 "rule": a["match_rule"],
                 "carried": carried,
                 "refused_to_carry": sorted(set(a["holds"]) - set(carried)),
-                "why_refused": (UNTRUSTED_SPLIT if a["holds"] and not carried
-                                and not a["parse_carries"] else None),
+                # ONE CLAUSE PER REFUSED FIELD. The doc below promises a refusal is
+                # declared as explicitly as a carry; until T-0987 stretch 2 only the
+                # untrusted-parse refusal said anything, and 64 of 161 refusals named
+                # nothing at all — the shape this file says "reads like a pair nobody
+                # has looked at yet".
+                "why_refused": why_refused(row, a, carried),
             })
     rulings.sort(key=lambda r: (r["person_id"], r["volume"]))
     return {
@@ -456,6 +659,25 @@ def ledger(rows: list) -> dict:
         },
         "rulings": rulings,
     }
+
+
+def ruled_on(rows: list) -> str:
+    """The entry ids this pass adjudicated onto one household, as one rendered sentence.
+
+    Deterministic in the order `cards` already sorts by — person, then volume as
+    `VOLUMES` lists them — because this string is compared byte for byte by `--check`."""
+    parts = []
+    for row in sorted(rows, key=lambda r: r["person_id"]):
+        for app in row["appearances"]:
+            ids = ", ".join(e["claim_id"] for e in app["entries"])
+            if not ids:
+                continue
+            parts.append("%s, %s — %s (%s)"
+                         % (row["person_id"], app["title"], ids,
+                            STATUS_WORDS.get(app["match_status"], app["match_status"])))
+    if not parts:
+        return ""
+    return RULED_ON_PREAMBLE + "; ".join(parts) + "."
 
 
 def card_block(row: dict) -> dict:
@@ -498,8 +720,11 @@ def cards(rows: list) -> dict:
         })
         out[hid]["people"].append(card_block(row))
         out[hid]["sources"] = sorted(set(out[hid]["sources"]) | set(row["sources"]))
-    for block in out.values():
+    for hid, block in out.items():
         block["people"].sort(key=lambda p: p["person_id"])
+        sentence = ruled_on([r for r in rows if r["household_id"] == hid])
+        if sentence:
+            block["note"] = block["note"] + " " + sentence
     return out
 
 
@@ -507,28 +732,34 @@ def dumps(doc) -> str:
     return json.dumps(doc, indent=1, ensure_ascii=False) + "\n"
 
 
+# The keys later passes own on a person inside this block, in the order they are
+# written. `household_text` lifts them off the record and puts them back rather
+# than rebuilding them, because this pass does not derive them.
+CARRIED_KEYS = ("back_projection", "residence_back_projection")
+
+
 def household_text(hid: str, block: dict | None) -> str:
     """The record with this pass's `directories` block on it, and nobody else's.
 
-    T-0633 CARRIES OVER. A later pass — `tools/back_project_addresses.py` — writes
-    a `back_projection` onto each person INSIDE this block, saying what was done
-    with the address this one carried there. Rebuilding the block from the
-    crosswalks would delete it, and the two gates would then take it in turns to
-    call the other's output drift. So the existing key is lifted off the record
-    and put back on the person it belongs to, which is the same narrowing T-0632
-    made in `mint_placed_residents.py` for the block as a whole: this pass owns
-    what it derives and nothing else.
+    T-0633 AND T-0669 CARRY OVER. Two later passes —
+    `tools/back_project_addresses.py` and `tools/back_project_residences.py` —
+    write a `back_projection` and a `residence_back_projection` onto each person
+    INSIDE this block, saying what each did with the address this one carried
+    there. Rebuilding the block from the crosswalks would delete them, and the
+    gates would then take it in turns to call each other's output drift. So the
+    existing keys are lifted off the record and put back on the person they
+    belong to, which is the same narrowing T-0632 made in
+    `mint_placed_residents.py` for the block as a whole: this pass owns what it
+    derives and nothing else.
     """
     doc = read_json(HOUSEHOLDS / f"{hid}.json")
-    carried = {p["person_id"]: p["back_projection"]
-               for p in (doc.get("directories") or {}).get("people") or []
-               if "back_projection" in p}
+    carried = {p["person_id"]: {k: p[k] for k in CARRIED_KEYS if k in p}
+               for p in (doc.get("directories") or {}).get("people") or []}
     doc.pop("directories", None)
     if block:
         block = json.loads(json.dumps(block))
         for person in block["people"]:
-            if person["person_id"] in carried:
-                person["back_projection"] = carried[person["person_id"]]
+            person.update(carried.get(person["person_id"]) or {})
         doc["directories"] = block
     return dumps(doc)
 
@@ -593,7 +824,12 @@ def self_test() -> int:
     stating: it does not break the pass to prove an assertion fires, it asserts the
     four rules against all 138 people and 303 rulings on every run. What it catches is
     a later change to a crosswalk, a carry rule or this file that lets a value cross
-    which the rules forbid — which is the failure that would matter."""
+    which the rules forbid — which is the failure that would matter.
+
+    It holds one rule that is not a carry rule at all: that a card this pass writes
+    NAMES the printed entries it was ruled on (T-1025). That one is about whether the
+    reading can be found again rather than about what crossed, which is why it is the
+    last assertion here and not one of the four."""
     failures = []
 
     def check(label: str, condition: bool) -> None:
@@ -622,10 +858,29 @@ def self_test() -> int:
             check("%s/%s carried off a match that is not single-entry"
                   % (r["person_id"], field), ok)
 
-    # Rule 3: Norris's alphabetical parse never becomes a value.
-    check("Norris's alphabetical split reached a card", not any(
-        (r[f] or {}).get("claim_id", "").startswith("n1844_e")
-        for r in rows for f in ("occupation_later", "address_later")))
+    # Rule 3, both directions, over every volume rather than over one.
+    # (a) nothing a clause refused reached a card, and (b) nothing that DID reach one
+    # has a shape a clause names — which is the assertion the volume flag could never
+    # make, because under it the shapes in the trusted volumes went unlooked-at.
+    for r in rows:
+        for field in ("occupation", "address"):
+            block = r["%s_later" % field]
+            if not block:
+                continue
+            check("%s/%s carries a value a split clause refuses (%s)"
+                  % (r["person_id"], field, block["value"]),
+                  split_refusal(field, block["value"]) is None)
+            refusing = [a["volume"] for a in r["appearances"]
+                        if field in a["split_refused"]
+                        and any(e["claim_id"] == block["claim_id"] for e in a["entries"])]
+            check("%s/%s carries the field its own entry was refused on" % (r["person_id"], field),
+                  not refusing)
+    # And every clause a refusal names is one this file declares.
+    for r in rows:
+        for a in r["appearances"]:
+            check("%s/%s names a clause SPLIT_CLAUSES does not hold"
+                  % (r["person_id"], a["volume"]),
+                  set(a["split_refused"].values()) <= set(SPLIT_CLAUSES))
 
     # Rule 1: every carried value is the string the crosswalk itself printed.
     for r in rows:
@@ -639,6 +894,16 @@ def self_test() -> int:
                   all(part.strip() in printed for part in block["value"].split(",")))
 
     # Every ruling states what it rests on: the third hop's ratchet is zero.
+    # T-0987 stretch 2: this file's own doc says a refusal is declared as explicitly
+    # as a carry, "the absence of one reads like a pair nobody has looked at yet".
+    # Hold it, so the 64 silent refusals that stood until then cannot come back.
+    for r in led["rulings"]:
+        named = set((r["why_refused"] or {}))
+        check("%s/%s refuses %s and names no clause for it"
+              % (r["person_id"], r["volume"],
+                 ", ".join(sorted(set(r["refused_to_carry"]) - named)) or "-"),
+              set(r["refused_to_carry"]) <= named)
+
     check("a ruling states no source",
           all(r["source_ids"] for r in led["rulings"]))
     check("a ruling names a person no household holds",
@@ -653,6 +918,40 @@ def self_test() -> int:
         check("%s cites less than its claims rest on" % hid,
               stated <= set(block["sources"]) and bool(block["sources"]))
 
+    # THE ENTRY, AND NOT ONLY THE BOOK (T-1025). Citing the volume is the weaker
+    # half of the second hop and it was the only half this pass held. A generated
+    # crosswalk states its one source id at the top of the file, so that id is
+    # shared by every ruling in it and a citation put on a card by ANY other pass
+    # satisfied all of them at once; `measure_research_spend.subject_of` therefore
+    # requires the card to name the printed entry the ruling was made ON. Until
+    # T-0987 stretch 1 (PR #1116) added `ruled_on` this pass wrote the volume and
+    # never the entry, and all 264 of the domain's person-reaching rulings were
+    # unwritten behind cards that cited the book — including the four T-1018 had
+    # just recorded as spent. Nothing in THIS file held that repair afterwards.
+    # It was ratcheted only by `measure_research_spend.py --gate`, one number over
+    # the whole town, which can say that some card is missing some entry and never
+    # which card or which entry.
+    #
+    # So the rule is asserted here, per household and per entry, and deliberately
+    # against the BLOCK this pass writes rather than against the record it lands
+    # on: a record may carry the id from some other pass, and a repair that leans
+    # on that is not this pass's repair. `ruled_on` speaks for the ambiguous and
+    # contested rows too, which carry no graded value at all, so the assertion
+    # covers every entry ruled onto the household and not only the ones that
+    # crossed.
+    entries_of: dict[str, set] = {}
+    for r in rows:
+        hid = r["household_id"]
+        if hid in card:
+            entries_of.setdefault(hid, set()).update(
+                e["claim_id"] for a in r["appearances"] for e in a["entries"]
+                if e["claim_id"])
+    for hid, block in card.items():
+        text = json.dumps(block, ensure_ascii=False)
+        missing = sorted(c for c in entries_of.get(hid, ()) if c not in text)
+        check("%s cites the volume and names none of the entries ruled onto it (%s)"
+              % (hid, ", ".join(missing)), not missing)
+
     # The instrument's own reading of the ledger: a ruling it cannot anchor is
     # invisible to it, and this pass exists to be counted.
     check("a ruling carries no anchor the spend measure can read",
@@ -664,7 +963,7 @@ def self_test() -> int:
         print("   %d assertion(s) failed" % len(failures), file=sys.stderr)
         return 1
     print("   OK: %d assertions over %d people and %d rulings"
-          % (5 + len(rows) * 3 + len(card), len(rows), len(led["rulings"])))
+          % (5 + len(rows) * 3 + len(card) * 2, len(rows), len(led["rulings"])))
     return 0
 
 

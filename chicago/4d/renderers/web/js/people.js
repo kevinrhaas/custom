@@ -550,7 +550,8 @@ export async function mountPeople({
       const wasOpen = new Set([...body.querySelectorAll('details[open] > summary')]
         .map((s) => s.textContent.replace(/\s+/g, ' ').trim()));
       body.innerHTML = '<h4 class="people-card-h">The household record</h4>'
-        + householdHtml(hh, joins.citationsById, joins.researchByPerson, joins.directoryByPerson, joins.ladderRules);
+        + householdHtml(hh, joins.citationsById, joins.researchByPerson, joins.directoryByPerson, joins.ladderRules,
+          joins.agencies);
       for (const det of body.querySelectorAll('details')) {
         const summary = det.querySelector(':scope > summary')?.textContent.replace(/\s+/g, ' ').trim() || '';
         const title = det.querySelector(':scope > summary .lib-title')?.textContent?.trim();

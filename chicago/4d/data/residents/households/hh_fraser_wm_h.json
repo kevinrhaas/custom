@@ -1,16 +1,16 @@
 {
  "id": "hh_fraser_wm_h",
- "name": "The Fraser household — a name from the post office's letter lists",
+ "name": "The Frazer household — a name from the post office's letter lists",
  "division": "unplaced",
  "head": "fraser_wm_h",
  "source_pass": "letter_list",
  "arrival": {
-  "value": "1834-01-28",
+  "value": "1834-01-01",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1834-01-28 and at no stated time before it; nothing says when they came.",
+  "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of 1 January 1834 and not by the issue it was read in (T-0425). The earliest issue this project reads the name in is 1834-01-28, 27 days later; that gap is an accident of which impression an extraction pass reached, and it is not evidence. Somebody was writing to this name at Chicago by 1834-01-01 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -49,9 +49,21 @@
  "persons": [
   {
    "id": "fraser_wm_h",
-   "name": "Wm. H. Fraser",
+   "name": "Wm. H. Frazer",
+   "name_ruling": {
+    "displayed_name_was": "Wm. H. Fraser",
+    "ruled_by": "T-1139",
+    "rule": "N3",
+    "printed_line": 55,
+    "takes": "the reading T-0424 made at the page image of the ninth impression, which sets 'Wm. H. Frazer'",
+    "over": "the reading chicago_democrat_1834_01_28#c001 made from a transcription, which set 'Wm. H. Fraser' and was normalized to 'Wm. H. Fraser'",
+    "reasoning": "Both readings set plain, complete letters and they disagree — two impressions of one return, re-keyed by the compositor. The roster is `scan_verified` and the transcription `transcription_mediated`, and tools/read_letter_list_1834_image.py already rules that the image OVERTURNS an uncut transcription reading the printed line contradicts. Nothing outside this return carries the overturned letters.",
+    "the_id_did_not_move": "person_id 'fraser_wm_h' and household 'hh_fraser_wm_h' are cited by the crosswalks, identity_master.json, the smoke cohorts and card_merge_rulings.json. An id is a handle, not a claim, so the displayed name moves and the id stands (T-1139 rule N5).",
+    "ruling": "data/research/newspapers/letter_list_1834_01_01_name_rulings.json"
+   },
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-01-28"
@@ -86,7 +98,18 @@
      }
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merged_from": [
+    {
+     "ticket": "T-1133",
+     "rule": "C9",
+     "cluster": "fraser-frazer",
+     "cards": [
+      "frazer_wm_h"
+     ],
+     "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ]
   }
  ],
  "touches_removal": false,

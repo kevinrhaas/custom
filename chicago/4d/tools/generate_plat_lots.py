@@ -79,6 +79,18 @@ SOURCE_IDS = ["thompson_plat_1830", "hathaway_1834", "wright_1834", "osm_streets
 
 RESERVED_PATH = DATA / "reconstruction" / "1835_reserved_ground.json"
 NUMBERING_PATH = DATA / "traces" / "thompson_block_numbering.json"
+TRACTS_PATH = DATA / "reconstruction" / "1835_survey_tracts.json"
+WEST_DIVISION_PATH = DATA / "traces" / "thompson_west_division_lots.json"
+
+# T-1104's precedence clause, carried here rather than re-invented, because the layer is
+# not a partition: a tract whose ring is defined as what another tract leaves over yields
+# any block a non-residual tract covers at least half of. Named, not inferred from the
+# grade — `canal_section_9_remainder`'s own `boundary_from` says it is the residual.
+RESIDUAL_TRACTS = {"canal_section_9_remainder"}
+MAJORITY = 0.50
+# Below this an overlap is the clip's own rounding, not a statement that a block is on a
+# tract. 1 m2 against blocks of 10,000 m2 and up.
+TOUCH_M2 = 1.0
 
 
 def block_numbering() -> dict:
@@ -89,12 +101,12 @@ def block_numbering() -> dict:
     module carries none, and the numbers land on blocks whose geometry is derived
     exactly as it was before. T-0358.
 
-    Two numerals are read off the owner's crop of Wright's 1834 sheet — 19 and 18,
-    side by side in the South Water tier — and every other number in that file is
-    counted one block per step along the same tier. Nothing outside the tier is
-    numbered: the crop fixes the direction of the run inside a row and says nothing
-    about how it passes from one row to the next, and a number counted across that
-    gap would look exactly like a number that was read.
+    The numerals are read off the georeferenced BPL scan of Wright's 1834 sheet, one
+    crop per block, cut from that block's own committed street lines — so which block
+    carries a numeral is settled by the fit and not by counting from a neighbour. The
+    run turns out to REVERSE tier by tier (South Water falls eastward, Lake rises,
+    Randolph falls), which is why the earlier reading was right to refuse to count
+    across a tier. Blocks outside the reach of the committed grid stay unnumbered.
     """
     doc = load(NUMBERING_PATH)
     return {b["block_id"]: b for b in doc["blocks"]}, doc
@@ -117,6 +129,160 @@ def reserved_blocks() -> dict[str, dict]:
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+# ------------------------------------------------- the survey tract under a block
+
+
+def survey_tracts() -> list[dict]:
+    """The placed rings of `data/reconstruction/1835_survey_tracts.json`, and nothing else.
+
+    T-1101 built the layer that says WHO SURVEYED WHAT GROUND. Until it existed this
+    module had no way to ask which survey a block stood in, so it chose one street width
+    and one block module for the whole town and said so nowhere. It can ask now. Reading
+    the layer is not the same as obeying it — what the answer is worth is decided in
+    `module_for`, on the arithmetic, and both are written onto every block.
+    """
+    doc = load(TRACTS_PATH)
+    return [{
+        "id": t["id"],
+        "ring": [(float(e), float(n)) for e, n in t["polygon_local_enu_m"]],
+        "geometry_confidence": t["geometry_confidence"],
+        "residual": t["id"] in RESIDUAL_TRACTS,
+    } for t in doc["tracts"] if t.get("placed") and t.get("polygon_local_enu_m")]
+
+
+def tract_of(ring: list, tracts: list[dict]) -> dict:
+    """Which survey tract a block stands in, under T-1104's precedence clause.
+
+    The clipper is imported from `tools/sort_land_sales_onto_tracts.py` rather than
+    written again: two implementations of the same overlap would be two answers to the
+    same question, and that file's `--self-test` already holds this one to six
+    constructed cases.
+    """
+    sys.path.insert(0, str(ROOT / "tools"))
+    from sort_land_sales_onto_tracts import overlap_area  # noqa: PLC0415
+
+    area = polygon_area(ring)
+    shares = []
+    for tract in tracts:
+        overlap = overlap_area(ring, tract["ring"])
+        if overlap > TOUCH_M2:
+            shares.append({"tract": tract["id"], "share": round(overlap / area, 4),
+                           "residual": tract["residual"],
+                           "geometry_confidence": tract["geometry_confidence"]})
+    if not shares:
+        return {"tract": None, "share": 0.0, "on": [],
+                "why": "no placed tract ring in the layer covers this block"}
+    shares.sort(key=lambda s: -s["share"])
+    best = shares[0]
+    clause = None
+    if best["residual"]:
+        outright = [s for s in shares[1:]
+                    if not s["residual"] and s["share"] >= MAJORITY]
+        if outright:
+            best = outright[0]
+            clause = ("the residual yielded: a non-residual tract covers this block by "
+                      f"{best['share']:.0%} and canal_section_9_remainder is the layer's "
+                      "only residual ring")
+    return {
+        "tract": best["tract"],
+        "share": best["share"],
+        "geometry_confidence": best["geometry_confidence"],
+        "on": [s["tract"] for s in shares],
+        "precedence_clause_fired": clause,
+    }
+
+
+# ------------------------------------------------------ the module under a block
+
+
+def west_division() -> dict:
+    """The West Division's own module, as the Thompson sheet PRINTS it (T-0689).
+
+    Two columns of 180-ft lots backing onto a north-south alley, five 75 3/5-ft lots to
+    a column, and the block square at 378 ft — a different ARRANGEMENT from the South
+    Division's four-to-a-face with an east-west alley, not just a different frontage.
+    The street set is taken from the block table's own `bounded_*_by` fields, so which
+    streets are West Division streets is read off that file too and not asserted here.
+    """
+    doc = load(WEST_DIVISION_PATH)
+    streets = set()
+    for entry in doc["blocks"]:
+        streets.add(entry["bounded_west_by"])
+        streets.add(entry["bounded_east_by"])
+    figures = doc["the_west_division_block"]
+    return {
+        "streets": {s for s in streets if s.replace("_", "").isalpha()},
+        "lot_frontage_ft": float(figures["lot_frontage_ft"]),
+        "lot_depth_ft": float(figures["lot_depth_ft"]),
+        "alley_width_ft": float(figures["alley_width_ft"]),
+        "block_east_west_ft": float(figures["block_east_west_ft"]),
+        "block_north_south_ft": float(figures["block_north_south_ft_five_row_tiers"]),
+        "street_module_ft": float(figures["north_south_street_module_ft"]),
+        "confidence": figures["confidence"],
+        "printed_frontage": figures["lot_frontage_as_printed"],
+        "authored_in": "data/traces/thompson_west_division_lots.json",
+    }
+
+
+def module_for(entry: dict, bounded_by: dict, west: dict, spacing_ft: float) -> dict:
+    """Which module this block was subdivided on, and — where another one is held — why not it.
+
+    T-1105. The South Division module is the only one this file can BUILD, and for
+    nineteen blocks out of nineteen that is also the only one the evidence allows. Two of
+    them stand west of the river, where the plat prints a different arrangement; the
+    arithmetic that refuses it is computed here and carried on the block, so a reader
+    sees a refusal with a figure rather than a silent 80 ft.
+    """
+    taken = {
+        "module": "south_division_thompson_1830",
+        "lot_frontage_ft": LOT_FRONTAGE_FT,
+        "alley_width_ft": ALLEY_FT,
+        "alley_runs": "east-west, mid-block",
+        "chosen_by": "the only module this generator can seat on the committed street lines",
+    }
+    if not {bounded_by["west"], bounded_by["east"]} <= west["streets"]:
+        taken["division"] = "south"
+        return taken
+
+    taken["division"] = "west"
+    face_ft = entry["frontage_m"] / FT_M
+    depth_ft = entry["depth_m"] / FT_M
+    columns_ft = 2 * west["lot_depth_ft"] + west["alley_width_ft"]
+    rows = depth_ft / west["lot_frontage_ft"]
+    taken["west_division_module_refused"] = {
+        "module": "west_division_thompson_1830",
+        "authored_in": west["authored_in"],
+        "confidence_of_the_figures": west["confidence"],
+        "what_it_asks_for": (
+            f"two columns of {west['lot_depth_ft']:.0f} ft lots backing onto an "
+            f"{west['alley_width_ft']:.0f} ft north-south alley — {columns_ft:.0f} ft "
+            f"east to west — and {west['printed_frontage']} ft of frontage to a lot, "
+            f"{west['block_north_south_ft']:.0f} ft north to south"),
+        "what_the_committed_lines_give": {
+            "east_west_face_ft": round(face_ft, 1),
+            "north_south_depth_ft": round(depth_ft, 1),
+        },
+        "the_arithmetic": (
+            f"the two lot columns alone need {2 * west['lot_depth_ft']:.0f} ft and this "
+            f"block's face is {face_ft:.1f} ft, so the arrangement does not fit before "
+            f"the alley is cut; {west['block_east_west_ft']:.0f} ft is "
+            f"{west['block_east_west_ft'] - face_ft:.1f} ft more than the block has. "
+            f"North to south {depth_ft:.1f} ft divides into {rows:.2f} lots of "
+            f"{west['printed_frontage']} ft, and a plat does not print a fifth of a lot."),
+        "why_the_lines_and_not_the_module": (
+            "the module is `documented` — figures printed on the sheet and numerals "
+            f"counted in a block — and it closes exactly at {west['block_east_west_ft']:.0f} "
+            "ft each way. What does not close is this project's West Division street "
+            f"spacing: Clinton to Canal is committed at {spacing_ft:.1f} ft against "
+            f"the plat's own {west['street_module_ft']:.0f} ft. Seating the printed module "
+            "would mean moving those lines, which is T-0445's ticket and not this one's, "
+            "and the same short spacing is what T-0444 reported."),
+        "so": ("this block keeps the South Division subdivision it was already built on, "
+               "and says here that it is not the module the West Division plat prints"),
+    }
+    return taken
 
 
 # ---------------------------------------------------------------- geometry helpers
@@ -445,6 +611,11 @@ def grid_from_inputs() -> dict:
 
     reserved = reserved_blocks()
     numbers, numbering_doc = block_numbering()
+    tracts = survey_tracts()
+    west = west_division()
+    # The one spacing the West Division refusal turns on, re-derived here from the same
+    # committed centrelines every block edge is offset from — never a figure typed in.
+    spacing_ft = abs(lines["clinton"]["mean_e"] - lines["canal"]["mean_e"]) / FT_M
     blocks, omitted = [], []
     for north_id, south_id in zip(rows, rows[1:]):
         pitch_n = abs(lines[north_id]["mean_n"] - lines[south_id]["mean_n"])
@@ -487,6 +658,8 @@ def grid_from_inputs() -> dict:
                 "alley_local_enu_m": divided["alley"],
                 "lots": divided["lots"],
             }
+            entry["survey_tract"] = tract_of(ring, tracts)
+            entry["module"] = module_for(entry, bounded_by, west, spacing_ft)
             hold = reserved.get(block_id)
             if hold:
                 # The boundary stays; the subdivision goes. `lots_per_face` reports what
@@ -531,11 +704,19 @@ def grid_from_inputs() -> dict:
                          f"{', '.join(unplaced)}, which the grid neither builds nor omits")
 
     return assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
-                    numbering_doc)
+                    numbering_doc, tracts, west, spacing_ft)
+
+
+def _count_tracts(blocks: list) -> dict:
+    counts: dict[str, int] = {}
+    for block in blocks:
+        key = block["survey_tract"]["tract"] or "no placed ring covers it"
+        counts[key] = counts.get(key, 0) + 1
+    return dict(sorted(counts.items()))
 
 
 def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
-             numbering_doc) -> dict:
+             numbering_doc, tracts, west, spacing_ft) -> dict:
     faces = [lot["frontage_m"] for b in blocks for lot in b["lots"]]
     return {
         "_doc": (
@@ -547,11 +728,10 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "Written by tools/generate_plat_lots.py, which re-derives this file byte for byte "
             "offline on every commit (tools/check.sh). Block ids name the streets that bound "
             "a block, which is a description and not a claim. Thompson's own block NUMBERS "
-            "are carried separately, in `plat_block_number`, and only for the six blocks of "
-            "the South Water tier that two numerals on Wright's 1834 sheet can be counted "
-            "along — see `block_numbering` below and "
-            "data/traces/thompson_block_numbering.json. Every other block in this file is "
-            "unnumbered on purpose."),
+            "are carried separately, in `plat_block_number`, read block by block off the "
+            "georeferenced Wright 1834 scan — see `block_numbering` below and "
+            "data/traces/thompson_block_numbering.json. A block left unnumbered here is one "
+            "the sheet was not read on, and the authored file says which and why."),
         "tool": "tools/generate_plat_lots.py",
         "generated_from": [
             "data/traces/street_control.json",
@@ -593,6 +773,86 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
                 "file is numbered: a numbering invented to look complete is exactly what "
                 "this project does not do."),
         },
+        "survey_tract_layer": {
+            "why_this_section_exists": (
+                "T-1105. Until T-1101 built the survey-tract layer this generator chose ONE "
+                "street width and ONE block module for the whole town because there was no "
+                "layer to ask, and the choice was invisible: nothing on a block said which "
+                "survey it stood in or which module it had been given. Both are now stamped "
+                "on every block, so a block that takes the Original Town's module takes it "
+                "on the record."),
+            "read": "data/reconstruction/1835_survey_tracts.json",
+            "rings_read": [t["id"] for t in tracts],
+            "rule": (
+                "a block takes the tract that covers the most of it, by clipped area, using "
+                "the clipper in tools/sort_land_sales_onto_tracts.py"),
+            "the_precedence_clause": (
+                "EXCEPT that a residual tract — one whose ring is defined as what another "
+                "tract leaves over — yields any block a non-residual tract covers at least "
+                "50% of. canal_section_9_remainder is the layer's only residual. T-1104 "
+                "states this clause for parcels; a second statement of it would be a second "
+                "answer, so it is the same clause and the same clipper."),
+            "what_the_layer_answers_here": {
+                "blocks_sorted": len(blocks),
+                "by_tract": _count_tracts(blocks),
+                "finding": (
+                    "THE LAYER DOES NOT DISCRIMINATE THIS GRID. All nineteen generated "
+                    "blocks fall in canal_commissioners_1830 and no other placed ring "
+                    "touches one, which the tract record itself already says — its "
+                    "geometry_note reports all 19 inside the rectangle. So the question "
+                    "T-1105 asks the layer, the layer cannot answer: no block here stands "
+                    "in Wabansia or Kinzie's Addition, and a per-tract module would change "
+                    "nothing about what is built. What DOES vary inside this one tract is "
+                    "the DIVISION, because the river runs through the Original Town and "
+                    "the plat gives its two sides different blocks."),
+                "the_grade_is_inherited": (
+                    "canal_commissioners_1830 is `conjectural` — its four bounds are the "
+                    "standard account of the 1830 plat and no source record here states "
+                    "them. Any module chosen off that ring would be conjectural for that "
+                    "reason alone. None is: the module below is chosen off the street "
+                    "lines, and the tract is carried as a finding, not used as an input."),
+            },
+            "the_west_division_module": {
+                "held": west["authored_in"],
+                "confidence_of_the_figures": west["confidence"],
+                "printed": (
+                    f"lots {west['printed_frontage']} ft on the front and "
+                    f"{west['lot_depth_ft']:.0f} ft deep, two columns backing onto an "
+                    f"{west['alley_width_ft']:.0f} ft NORTH-SOUTH alley, the block square "
+                    f"at {west['block_east_west_ft']:.0f} ft, the street module "
+                    f"{west['street_module_ft']:.0f} ft"),
+                "streets_it_governs": sorted(west["streets"]),
+                "blocks_of_this_grid_inside_it": sorted(
+                    b["id"] for b in blocks
+                    if b["module"].get("division") == "west"),
+                "refused_on_every_one_of_them": (
+                    "and the refusal is arithmetic, not preference. Two lot columns alone "
+                    f"need {2 * west['lot_depth_ft']:.0f} ft; the committed faces west of "
+                    "the river are "
+                    + ", ".join(
+                        f"{b['module']['west_division_module_refused']['what_the_committed_lines_give']['east_west_face_ft']:.1f} ft"
+                        for b in blocks if b["module"].get("division") == "west")
+                    + ". The arrangement does not fit before the alley is cut."),
+                "what_is_short_is_the_spacing_not_the_module": (
+                    f"Clinton to Canal is committed at {spacing_ft:.1f} ft against the "
+                    f"plat's {west['street_module_ft']:.0f} ft — "
+                    f"{west['street_module_ft'] - spacing_ft:.1f} ft short, the same "
+                    "finding tools/measure_west_division_module.py reports and the owner "
+                    "reported on 2026-08-31. Seating the printed module means moving those "
+                    "centrelines, which is T-0445 and is deliberately not done here: this "
+                    "generator writes what the committed lines give and records what the "
+                    "sheet asks for beside it."),
+                "what_would_change_if_the_lines_moved": (
+                    "the two West Division blocks would be subdivided the other way about "
+                    "— columns and a north-south alley instead of faces and an east-west "
+                    "one — so this is a refusal that will be worth revisiting the day "
+                    "T-0445 settles the spacing, and not before."),
+            },
+            "omitted_blocks_carry_no_tract": (
+                "an omitted block has no ring to clip, by definition — it is omitted "
+                "because the grid could not draw one — so it is sorted onto no tract "
+                "rather than onto one guessed from its bounding streets"),
+        },
         "method": {
             "block_edge": ("a street centreline offset by half the platted corridor "
                            f"({module['half_width_m']} m), the four offsets intersected"),
@@ -619,10 +879,11 @@ def assemble(blocks, omitted, module, alley_m, frontage_m, reach_m, lines,
             "lot_scheme": numbering_doc["lot_numbering"]["scheme"],
             "lot_confidence": numbering_doc["lot_numbering"]["confidence"],
             "refused": [r["scope"] for r in numbering_doc["refused"]],
-            "note": ("Two numerals were read and the rest were counted along one tier. "
-                     "`numeral_on_sheet` on each block says which is which, and the "
-                     "authored file carries the reading, the identification and the "
-                     "refusals in full."),
+            "note": ("Each numeral is read on a crop cut to that block's own committed "
+                     "ground, so the reading is identified by the georeference rather than "
+                     "counted from a neighbour. `numeral_on_sheet` on each block says which "
+                     "numbers are read and which are not, and the authored file carries the "
+                     "reading, the crop regions and the refusals in full."),
         },
         "confidence": "inferred",
         "confidence_note": (
@@ -865,11 +1126,59 @@ def self_test() -> int:
               f"Market as the committed waterline (local N {waterline:.1f}) allows leaves "
               f"{headroom:.1f} m between it and Lake Street")
 
+    # 5. T-1105. The survey-tract layer is asked, and the West Division refusal is
+    #    re-derived rather than trusted. Both halves matter: that the layer answers the
+    #    same tract for every block is the finding, and that the printed West Division
+    #    arrangement will not seat on the committed faces is the reason the refusal
+    #    stands. If either stops being true this gate should be the thing that says so.
+    cases += 1
+    tracts = survey_tracts()
+    west = west_division()
+    lines = street_lines(streets)
+    spacing_ft = abs(lines["clinton"]["mean_e"] - lines["canal"]["mean_e"]) / FT_M
+    grid = load(OUT_PATH) if OUT_PATH.exists() else None
+    if grid is None:
+        print("  the committed grid is missing; nothing to check the layer against")
+        failed += 1
+    else:
+        sorted_to = {t["id"] for t in tracts if any(
+            b["survey_tract"]["tract"] == t["id"] for b in grid["blocks"])}
+        stated = set(grid["survey_tract_layer"]["what_the_layer_answers_here"]["by_tract"])
+        if sorted_to != stated:
+            print(f"  THE LAYER'S ANSWER MOVED: blocks now sort onto {sorted(sorted_to)}, "
+                  f"the record says {sorted(stated)}")
+            failed += 1
+        else:
+            print(f"  ok:    {len(grid['blocks'])} blocks sort onto {sorted(stated)}, "
+                  "which is what the record says")
+
+    cases += 1
+    columns_ft = 2 * west["lot_depth_ft"] + west["alley_width_ft"]
+    west_blocks = [b for b in (grid["blocks"] if grid else [])
+                   if b["module"].get("division") == "west"]
+    if not west_blocks:
+        print("  NO WEST DIVISION BLOCK on this grid — the refusal has nothing to refuse")
+        failed += 1
+    else:
+        seatable = [b for b in west_blocks
+                    if b["frontage_m"] / FT_M >= columns_ft]
+        if seatable:
+            print("  THE REFUSAL IS STALE: the printed West Division arrangement now "
+                  f"seats on {', '.join(b['id'] for b in seatable)} — re-read it")
+            failed += 1
+        else:
+            faces = ", ".join(f"{b['frontage_m'] / FT_M:.1f}" for b in west_blocks)
+            print(f"  ok:    the West Division arrangement needs {columns_ft:.0f} ft of "
+                  f"face and the committed blocks give {faces} ft; Clinton to Canal is "
+                  f"{spacing_ft:.1f} ft against the plat's "
+                  f"{west['street_module_ft']:.0f} ft")
+
     if failed:
-        print(f"SELF-TEST FAIL \u2014 {failed} of {cases}")
+        print(f"SELF-TEST FAIL — {failed} of {cases}")
         return 1
-    print(f"SELF-TEST PASS \u2014 the crossed-corner refusal fires on the case that "
-          f"produced it, and the ground says why ({cases} cases)")
+    print(f"SELF-TEST PASS — the crossed-corner refusal fires on the case that "
+          f"produced it, the ground says why, and the survey-tract layer's answer and the "
+          f"West Division refusal are both re-derived ({cases} cases)")
     return 0
 
 

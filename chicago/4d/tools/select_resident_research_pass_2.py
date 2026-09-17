@@ -1,11 +1,20 @@
 #!/usr/bin/env python3
-"""Derive T-0462's fixed, non-overlapping 75-person research cohort."""
+"""Derive T-0462's fixed, non-overlapping 75-person research cohort.
+
+`member()` is shared with pass 3. It refuses a member that has left the town or gone
+`reconstructed` on every path — that is staleness. A member that has moved out of the
+stratum it was drawn from is the research landing instead, so its test is scoped to
+the minting path and reported on the gate (T-0870); see
+`resident_cohort_freeze.Membership`.
+"""
 
 from __future__ import annotations
 
 import argparse
 import json
 from pathlib import Path
+
+import resident_cohort_freeze as freeze
 
 ROOT = Path(__file__).resolve().parents[1]
 RESIDENTS = ROOT / "data" / "residents"
@@ -62,16 +71,19 @@ def load_people() -> tuple[dict[str, tuple[dict, dict]], list[dict]]:
 
 
 def member(index: dict[str, tuple[dict, dict]], person_id: str,
-           evidence: str, reason: str) -> dict:
+           evidence: str, reason: str, drift: freeze.Membership) -> dict:
     if person_id not in index:
         raise SystemExit(f"fixed cohort member {person_id} is missing")
     household, person = index[person_id]
     if person.get("grade") == "reconstructed":
         raise SystemExit(f"{person_id}: reconstructed people are outside T-0462")
-    if evidence == "letter_list_only" and not person.get("letter_list_only"):
-        raise SystemExit(f"{person_id}: no longer marked letter_list_only")
-    if evidence == "established_profile" and person.get("letter_list_only"):
-        raise SystemExit(f"{person_id}: established stratum became letter-list-only")
+    # …and below this line the questions are about the STRATUM, not the person (T-0870).
+    if evidence == "letter_list_only":
+        drift.holds(bool(person.get("letter_list_only")),
+                    f"{person_id}: no longer marked letter_list_only")
+    if evidence == "established_profile":
+        drift.holds(not person.get("letter_list_only"),
+                    f"{person_id}: established stratum became letter-list-only")
     return {
         "household_id": household["id"], "person_id": person_id,
         "name": person["name"], "starting_evidence": evidence,
@@ -84,17 +96,18 @@ def member(index: dict[str, tuple[dict, dict]], person_id: str,
     }
 
 
-def derive() -> dict:
+def derive(drift: freeze.Membership | None = None) -> dict:
+    drift = drift if drift is not None else freeze.Membership(minting=False)
     index, households = load_people()
     prior = {row["person_id"] for row in json.loads(PILOT.read_text())["people"]}
     people = [member(index, pid, "established_profile",
-                     "Established named resident selected to deepen an existing household profile.")
+                     "Established named resident selected to deepen an existing household profile.", drift)
               for pid in KNOWN_IDS]
     people += [member(index, pid, "letter_list_only",
-                      "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing.")
+                      "Distinctive or variant-rich scene-date return name selected for identity and duplicate testing.", drift)
                for pid in PRESENT_LETTER_IDS]
     people += [member(index, pid, "letter_list_only",
-                      "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing.")
+                      "Distinctive or variant-rich earlier-return name selected for identity and duplicate testing.", drift)
                for pid in UNCERTAIN_LETTER_IDS]
     ids = [row["person_id"] for row in people]
     if prior.intersection(ids):
@@ -108,8 +121,10 @@ def derive() -> dict:
     }
     expected = {"established_profile": 25, "letter_list_only_present": 25,
                 "letter_list_only_uncertain": 25}
-    if strata != expected:
-        raise SystemExit(f"pass-two strata changed: {strata}")
+    # Counted off today's `present_on_scene_date`, so this total moves when a presence
+    # ruling lands on one member — the same event as a flag moving (T-0870). The 75
+    # unique ids above are the frozen list and stay hard on every path.
+    drift.holds(strata == expected, f"pass-two strata changed: {strata}")
     eligible = sum(person.get("grade") != "reconstructed"
                    for household in households for person in household.get("persons", []))
     return {
@@ -123,20 +138,44 @@ def derive() -> dict:
     }
 
 
+def stratum_probes(established: str, letter: str):
+    """The probes pass 2, 3, 4 and 5 all run — one member, moved and unmoved."""
+    def probe(stratum, flag):
+        def run(drift, moved):
+            index = {"probe": ({"id": "hh_probe",
+                                "present_on_scene_date": {"value": "present"}},
+                               {"id": "probe", "name": "A Probe", "grade": "inferred",
+                                "letter_list_only": flag if moved else not flag})}
+            member(index, "probe", stratum, "a probe", drift)
+        return run
+    return [(established, probe("established_profile", True)),
+            (letter, probe("letter_list_only", False))]
+
+
+def self_test() -> int:
+    return freeze.stratum_self_test("resident research pass two", stratum_probes(
+        "an established member that became letter-list-only",
+        "a letter-list member whose letter_list_only flag moved"))
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--gate", action="store_true")
-    args = parser.parse_args()
-    rendered = json.dumps(derive(), indent=2, ensure_ascii=False) + "\n"
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gate", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
+    args = ap.parse_args()
+    if args.self_test:
+        return self_test()
+    # T-0870, and T-0492 before it: minting is the FIRST write only, and the stratum
+    # tests are selection checks, so they refuse then and report afterwards.
+    drift = freeze.Membership(minting=not args.gate and not OUT.exists())
+    doc = derive(drift)
+    for line in drift.report("resident research pass two"):
+        print("   %s" % line)
+    # T-0764: the manifest's snapshot is frozen, so the gate does not re-derive it and a
+    # regeneration does not rewrite it. tools/resident_cohort_freeze.py holds both halves.
     if args.gate:
-        if not OUT.exists() or OUT.read_text() != rendered:
-            raise SystemExit(f"{OUT.relative_to(ROOT)} is stale; regenerate without --gate")
-        print("resident research pass two: 75 people, committed manifest current")
-        return 0
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(rendered)
-    print("resident research pass two: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
-    return 0
+        return freeze.gate(OUT, doc, "resident research pass two")
+    return freeze.write(OUT, doc, "resident research pass two: wrote 75 people (25 established, 25 present-list, 25 earlier-list)")
 
 
 if __name__ == "__main__":

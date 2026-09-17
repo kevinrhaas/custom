@@ -12,11 +12,22 @@ import argparse
 import csv
 import gzip
 import json
+import os
 import re
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+# T-0836: rerooted with the synthesis it is re-applied by, so `--drift` can run the pair
+# against a scratch copy of the tree.  Unset in every ordinary run.
+ROOT = Path(os.environ["SYNTH_SCRATCH_ROOT"]) if os.environ.get("SYNTH_SCRATCH_ROOT") \
+    else Path(__file__).resolve().parents[1]
+import sys
+# The DATA root is overridable (above); the tools directory is NOT — it is where this
+# file lives. Deriving the import path from ROOT instead breaks `--drift`, whose scratch
+# copy carries data and no tools: measured, ModuleNotFoundError on rebuild_resident_index.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -27,7 +38,6 @@ CENSUS_INDEX = CENSUS_DIR / "index.json"
 CENSUS_ROWS = CENSUS_DIR / "household_heads.csv.gz"
 LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
-SITE = ROOT.parent.parent / "site" / "chicago" / "4d"
 SOURCE_ID = "census_1840_chicago_v4_research"
 ALLOWED_STATUS = {"validated", "provisional"}
 
@@ -234,42 +244,12 @@ def docs_and_people():
 
 
 def rebuild_index(index, docs):
-    old = {r.get("id"): r for r in index.get("households") or []}
-    rows=[]; grades=Counter(); letter=projected=census=0
-    for path, doc in sorted(docs.items(), key=lambda kv: kv[1].get("id", kv[0].name)):
-        people = doc.get("persons") or []
-        g = Counter(p.get("grade") for p in people if p.get("grade")); grades.update(g)
-        ll = sum(bool(p.get("letter_list_only")) for p in people)
-        pr = sum(p.get("resident_subtype") == "projected_resident" for p in people)
-        ce = sum(bool(p.get("later_census")) for p in people)
-        letter += ll; projected += pr; census += ce
-        hid = doc.get("id"); row = dict(old.get(hid) or {})
-        def val(block): return block.get("value") if isinstance(block, dict) else block
-        row.update({"id":hid,"file":f"households/{path.name}","head":doc.get("head"),
-                    "division":doc.get("division"),"persons":len(people),
-                    "grades":dict(sorted(g.items())),"lives_at":val(doc.get("lives_at")),
-                    "works_at":val(doc.get("works_at")),
-                    "present_on_scene_date":val(doc.get("present_on_scene_date")),
-                    "review_required":bool(doc.get("review_required"))})
-        if ll: row["letter_list_only"] = True
-        else: row.pop("letter_list_only", None)
-        if pr: row["projected_resident"] = True
-        else: row.pop("projected_resident", None)
-        if ce: row["census_1840_linked"] = ce
-        else: row.pop("census_1840_linked", None)
-        rows.append(row)
-    index["households"] = rows
-    counts = dict(index.get("counts") or {})
-    counts.update({
-        "households": len(rows),
-        "persons": sum(r["persons"] for r in rows),
-        "by_grade": {"attested": grades.get("attested",0), "inferred": grades.get("inferred",0), "reconstructed": grades.get("reconstructed",0)},
-        "letter_list_only": letter,
-        "projected_residents": projected,
-        "census_1840_linked": census,
-    })
-    index["counts"] = counts
-    return index
+    """The manifest, re-derived from the cards by its one owner (T-0715).
+
+    This pass used to carry its own copy of the derivation. Two copies of one
+    rule drift, and the rule is gated now, so there is one.
+    """
+    return rebuild(index, docs)
 
 
 def update_ledger(rows, all_census):
@@ -345,12 +325,14 @@ def apply():
     for path, doc in docs.items(): dump(path, doc, 1)
     index = rebuild_index(load(INDEX), docs); dump(INDEX, index, 1)
     update_ledger(rows, all_rows); update_summary(rows, all_rows)
-    site_hh = SITE / "data" / "residents" / "households"; site_hh.mkdir(parents=True, exist_ok=True)
-    for row in rows:
-        _person, path, doc = people[row["person_id"].strip()]
-        dump(site_hh / path.name, doc, 1)
-    site_index = SITE / "data" / "residents" / "index.json"; site_index.parent.mkdir(parents=True, exist_ok=True)
-    site_index.write_text(INDEX.read_text(encoding="utf-8"), encoding="utf-8")
+    # THIS WRITER DOES NOT WRITE THE PUBLISHED MIRROR (T-0938, fixing T-0933).  It used
+    # to carry the four paths it touches into `site/chicago/4d/data/residents/`
+    # PRETTY-PRINTED, while `synthesize_resident_research.py` and `tools/publish.sh`
+    # both wrote the same paths MINIFIED — so `bash tools/publish.sh` on an untouched
+    # `dev` turned `tools/check.sh` red on four files whose parsed values were identical,
+    # and whichever writer ran last decided whether the gate was green.  The mirror is
+    # untracked and generated now and has exactly one writer, `tools/publish.sh`, which
+    # `tools/check.sh` runs before it gates what that produced.
     return check()
 
 
@@ -391,12 +373,14 @@ def check():
     if int(census.get("provisional_identity_bridges") or 0) != provisional: problems.append("ledger provisional bridge count disagrees")
     summary=SUMMARY.read_text(encoding="utf-8")
     if "**210 named 1840 household-head rows" not in summary: problems.append("summary census coverage is stale")
-    site_index=SITE/"data"/"residents"/"index.json"
-    if not site_index.exists() or site_index.read_text(encoding="utf-8") != INDEX.read_text(encoding="utf-8"): problems.append("published resident index mirror is stale")
-    for pid,row in expected.items():
-        if pid not in people: continue
-        _p,path,_doc=people[pid]; site_path=SITE/"data"/"residents"/"households"/path.name
-        if not site_path.exists() or site_path.read_text(encoding="utf-8") != path.read_text(encoding="utf-8"): problems.append(f"published household mirror stale: {path.name}")
+    # THE MIRROR IS NOT THIS TOOL'S TO ASSERT ANY MORE (T-0938).  These four lines used
+    # to check that `site/chicago/4d/data/residents/` carried the same parsed value as
+    # the cards — a real claim, but one this tool could only make because it was also a
+    # writer of the mirror, and being both is what made T-0933 possible.  The mirror is
+    # untracked and generated now; `tools/check.sh` publishes it and then asks
+    # `tools/check_published_residents.mjs`, which makes the identical claim over the
+    # WHOLE layer (same value, file for file, none missing and none extra) rather than
+    # over the handful of rows this bridge file happens to name.
     adams=people.get("adams_william_h")
     if adams and len(adams[2].get("persons") or []) != 1: problems.append("Adams 1840 second person was incorrectly back-projected into 1835")
     if problems:

@@ -84,9 +84,12 @@ WHAT AN ACTION MEANS, for the seeding tickets that consume this:
 
 AND WHAT A PERSON ACTION MEANS:
 
-  enrich           `data/residents/` already holds this person, matched under the
-                   gazetteer's OWN identity policy (surname plus forename initials,
-                   imported from compile_gazetteer so the two tools cannot drift).
+  enrich           `data/residents/` already holds this person — matched EITHER by the
+                   card the minting passes wrote from this very printed name (the card's
+                   id is that name normalized, so the link outlives any later correction
+                   of the display string; T-0866) OR, failing that, under the gazetteer's
+                   OWN identity policy (surname plus forename initials, imported from
+                   compile_gazetteer so the two tools cannot drift).
   replace_invented a documented person whose occupation is one the town INVENTED a
                    household for. The candidate to retire that invention (T-0264).
   new_resident     everybody else. Ruling 1: a letter-list name is enough.
@@ -109,6 +112,26 @@ from compile_gazetteer import (  # noqa: E402  — the identity policy has one h
     REPO, ROOT, RESEARCH, GAZETTEER,
     SCENE_DATE, dumps, firm_surnames, initials, load_json, slug, surname, unmarked,
 )
+# THE MINTING KEYS, imported from the passes that own them rather than re-derived here
+# (T-0866). A card minted from a printed name is keyed by that pass's `plain_fragment`
+# of the name, so a third copy of the function living in this file would be a link that
+# can drift out of agreement with the link it is meant to be.
+#
+# AND THERE ARE TWO OF THEM, WHICH IS THE POINT OF ASKING RATHER THAN ASSUMING. The two
+# passes do not read a printed name the same way: the letter-list pass knows the lists'
+# SURNAME-FIRST setting, so `Mills Joel C.` is a Mills to it and a Mr C. to the
+# documented pass. Ask each mint for the key IT would have written, and match only
+# against the cards it actually wrote. `mint_civic_residents.py` and
+# `mint_placed_residents.py` both take the documented pass's copy, so they share its key.
+from mint_documented_residents import plain_fragment as documented_fragment  # noqa: E402
+from mint_letter_list_residents import plain_fragment as letter_list_fragment  # noqa: E402
+
+MINT_KEY = {
+    "letter_list": letter_list_fragment,
+    "documented": documented_fragment,
+    "civic": documented_fragment,
+    "placed": documented_fragment,
+}
 
 import re  # noqa: E402
 
@@ -534,8 +557,8 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
     Read in sorted filename order and reduced to sets, so the register does not depend
     on the order a filesystem hands back.
     """
-    town = {"structures": [], "streets": {}, "residents": [], "invented": {},
-            "has_creek": False}
+    town = {"structures": [], "streets": {}, "street_paths": {}, "residents": [],
+            "invented": {}, "has_creek": False}
 
     for path in sorted(Path(structures_dir).glob("*.json")):
         d = load_json(path)
@@ -549,6 +572,9 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
             "name_words": [set(words(n)) for n in names if words(n)],
             "aka_head_words": [set(words(head_of(n))) for n in names[1:] if words(head_of(n))],
             "occupant_words": set(words(occ)),
+            # The same line with NOTHING struck out, so `match_occupant` can tell a
+            # building this firm was never in from one it has LEFT (T-0403).
+            "occupant_words_all": set(words(occ_prose)),
             "occupant_text": occ,
             "aka_texts": [head_of(n) for n in names[1:]],
             "identity_text": " ; ".join([d.get("name") or "", occ_prose]
@@ -558,9 +584,51 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
             "anonymous": d["id"].startswith(("recon_", "inf_")),
         })
 
-    for s in load_json(streets_file).get("streets", []):
-        town["streets"][street_key(s["name_1835"])] = s["id"]
+    # Where two records share a name_1835 the register has to choose, and the choice must
+    # not be the file's line order. T-0451 seated the North Division's six lines as the
+    # committed South Division streets CONTINUED across the river, so `dearborn` and
+    # `dearborn_north` both read "Dearborn Street" — and the plat letters no name in any
+    # North Division corridor, so nothing on the sheet tells them apart either. A bare
+    # street name in these newspapers is the South Division line: that is where the
+    # advertising town stood, and it is the reach every ordinal in this register is
+    # counted along. So the record reaching furthest SOUTH takes the name, and the North
+    # Division line stays reachable by its id. Before this, seating those six lines
+    # re-anchored 90 fields of the register onto the wrong side of the water.
+    #
+    # T-0877 FOUND THE RULE'S UNSTATED HALF. "Furthest south" was a proxy for "the street
+    # the advertising town walked on", sound while the only rival was across the river and
+    # wrong the moment a rival appeared BELOW the town. Wright's School Section is a mile
+    # of ruled grid south of Madison, and seven of its north-south lines are lettered with
+    # names the town also uses — Clinton, Canal, Market, Wells, Clark, State. Every one of
+    # them reaches a mile further south than the street it shares a name with, so the bare
+    # proxy would have handed the printed name to unopened prairie: a notice reading
+    # "Clark st." would have resolved a mile from the town that printed it.
+    #
+    # So the proxy is replaced by the thing it stood for, and the data already says it.
+    # A record the town USED carries no `opened` flag at all — the twenty-eight streets of
+    # the 1830 plats, the fort's two ways — while every survey line seated since is
+    # `opened: false`, `track_width_m: 0`, "platted, unopened, unworn". A printed street
+    # name in a newspaper or a directory is a place somebody walked to, so an unopened line
+    # never takes a name from a street that was open, whichever reaches further south.
+    # Within each of those two groups the T-0451 rule is unchanged, which is what keeps
+    # `dearborn` ahead of `dearborn_north` (neither carries the flag) and what keeps the
+    # School Section's own line ahead of a hypothetical rival further north (both do).
+    # Measured when it landed: the winner of every name key in the register was unchanged.
+    for s in sorted(load_json(streets_file).get("streets", []),
+                    key=lambda r: (r.get("opened") is False,
+                                   min(p[1] for p in r["path_local_enu_m"]))):
+        # A street with no name — the eight unnamed tiers Wright rules across the School
+        # Section carry `name_1835: null` — has no key for a printed name to match, and
+        # `street_key(None)` is the EMPTY string. Seated, it made "" a live key and every
+        # notice this town could not place resolved onto it: 62 businesses moved from
+        # `unplaceable` to `street_only` on a street no paper names (T-0797).
+        key = street_key(s["name_1835"])
+        if key:
+            town["streets"].setdefault(key, s["id"])
         town["streets"][s["id"]] = s["id"]
+        # The committed centreline, kept so `streets_cross` can ask the plat whether a
+        # named corner exists rather than assume it (T-0771).
+        town["street_paths"].setdefault(s["id"], s["path_local_enu_m"])
 
     # The creek marker in OUTSIDE_MARKERS is only sound while this stays False.
     town["has_creek"] = any(
@@ -577,6 +645,10 @@ def read_town(structures_dir=STRUCTURES, streets_file=STREETS, residents_dir=RES
                 "name": p.get("name"),
                 "grade": p.get("grade"),
                 "occupation": occ.get("value") if isinstance(occ, dict) else occ,
+                # Which pass wrote this card, or None where a hand authored it. It is
+                # what says whether the person id is a printed name normalized or just
+                # an id, and the register's rename-proof link turns on that (T-0866).
+                "source_pass": d.get("source_pass"),
             })
 
     # The invented layer, per trade: how many households the town raised because no
@@ -690,15 +762,26 @@ def scene_date_occupants(text, scene_year=SCENE_DATE.year):
 FORENAME_RUN = r"((?:[A-Z][A-Za-z]*\.?\s+){0,3})"
 
 
+#: A generational tag standing AFTER the family name — 'John Bates Jr.'. It reads as a
+#: capitalised word, so the scan below took it for the surname and left Bates inside the
+#: forename run, and 'bates' was then printed by this record in no surname position at
+#: all. The tag is not a name and is taken off before the scan (T-1042).
+GENERATIONAL = re.compile(r",?\s+\b(?:Jr|Jun|Junr|Sr|Senr|Esq|Esqr|2d|3d)\b\.?", re.I)
+
+
 def forenames_before(text, sn):
     """Every forename run this text prints before the surname `sn`, as word tuples.
 
     'John H. Kinzie, forwarding merchant' → [('john', 'h')]. An empty run — the surname
     printed bare, as 'Jones, grocer' — yields the empty tuple, which is compatible with
     anything: a record that does not print a forename cannot contradict one.
+
+    NO RUN AT ALL is a different answer and the guard below acts on it: it means this
+    record prints the word somewhere OTHER than in surname position, as 'Dr Elijah Dewey
+    Harmon' prints Dewey for a middle name.
     """
     out = []
-    for m in re.finditer(FORENAME_RUN + r"\b([A-Z][a-z]+)\b", text or ""):
+    for m in re.finditer(FORENAME_RUN + r"\b([A-Z][a-z]+)\b", GENERATIONAL.sub("", text or "")):
         if slug(m.group(2)) != sn:
             continue
         out.append(tuple(w.strip(".").lower() for w in m.group(1).split()))
@@ -706,8 +789,13 @@ def forenames_before(text, sn):
 
 
 def forenames_of(name):
-    """The forename words of a printed name, in order. 'R. A. Kinzie' → ('r', 'a')."""
-    name = unmarked(name or "").strip()
+    """The forename words of a printed name, in order. 'R. A. Kinzie' → ('r', 'a').
+
+    The generational tag comes off first, comma and all. It is not a forename, and while
+    it stayed on, 'J. Bates, jr.' read as a man whose forename was Jr — which disagreed
+    with the John the record prints and refused a match this reading should make (T-1042).
+    """
+    name = GENERATIONAL.sub("", unmarked(name or "")).strip()
     fore = name.split(",", 1)[1] if "," in name else " ".join(name.split()[:-1])
     return tuple(w.lower() for w in re.findall(r"[^\W\d_]+", fore, re.UNICODE))
 
@@ -749,6 +837,14 @@ def initials_compatible(text, require, proprietors):
             mine = forenames_of(who)
             if not mine:
                 continue
+            # THE WORD IS IN THE RECORD; IS IT THERE AS A FAMILY NAME? (T-1042). The
+            # pools this guard backs are word sets, so any capitalised word in the
+            # record's prose can satisfy a required surname — and 'S. Dewey', a joiner,
+            # matched Dr Elijah DEWEY Harmon's log cabin on a middle name. Where the
+            # paper prints a forename for the surname, the record must print that surname
+            # as a surname; printing the word in some other position is not the same man.
+            if not forenames_before(text, sn):
+                return False
             runs = [r for r in forenames_before(text, sn) if r]
             if not runs:
                 continue
@@ -778,13 +874,46 @@ def match_occupant(town, require, business_occupation, proprietors):
     quietly matching a firm into one would launder an invention into the documented
     layer. Putting a documented business into an anonymous roof is a decision T-0263
     makes deliberately, with the adoption written down.
+
+    AND A NAME OUTLIVES A TENANCY, SO AN UNDATED ONE MAY NOT PUT BACK A TENANT THE DATED
+    LINE HAS JUST TAKEN OUT (T-0403). `occupants` is the only statement a committed
+    record makes about who is inside that this register READS FOR A DATE —
+    `scene_date_occupants` strikes the clauses whose years do not cover the scene. The
+    `name` and `aka` tiers below are undated by nature: a building is called what it was
+    called, and it goes on being called that after the tenant it was named for has gone.
+    So a record that says "John Calhoun's Chicago Democrat printing office 1833-1834"
+    and is also `aka` "John Calhoun's printing office" had the firm struck out of its
+    occupants line by the date and handed straight back by its own alternate name, one
+    tier down — which is the dated statement silently overruled by the undated one, and
+    it is worse than never having asked, because the register then prints `match_tier:
+    aka` as if a judgement had been made.
+
+    The Chicago Democrat's office is the case. The paper's own colophon moves it off the
+    corner of South Water and Clark between 1834-01-07 and 1835-05-20 (identity.json
+    `anchor_changes`), so on the scene date the printing office is not in the building at
+    that corner — but the building is still named for it, and still `aka` "John Calhoun's
+    printing office", because that is what it was. The rule is general and not about this
+    house: where a structure's UNDATED occupants line carries the firm and its scene-dated
+    one does not, that structure is out of the `name` and `aka` tiers as well. The record
+    has spoken about this firm, with a date, and the answer was no.
     """
     if not require:
         return None, None, None
+    # The records whose own occupants line dates this firm away from the scene. Asked
+    # with the same initials guard the tiers use, so a namesake the record never claimed
+    # cannot silence a match: `identity_text` is built from the UNDATED prose, which is
+    # what this question is about.
+    departed = {s["id"] for s in town["structures"]
+                if not s["anonymous"]
+                and require <= s["occupant_words_all"]
+                and not require <= s["occupant_words"]
+                and initials_compatible(s["identity_text"], require, proprietors)}
     for tier in ("occupants", "name", "aka"):
         hits = []
         for s in town["structures"]:
             if s["anonymous"]:
+                continue
+            if tier != "occupants" and s["id"] in departed:
                 continue
             if tier == "occupants":
                 pools, text = [s["occupant_words"]], s["occupant_text"]
@@ -918,6 +1047,47 @@ def streets_in(town, text, require_suffix):
     return sorted(found)
 
 
+def streets_cross(town, a, b):
+    """Do two platted streets actually MEET? Asked of the committed centrelines (T-0771).
+
+    An ordinal counts doors from a CORNER, and a corner is a crossing. Two streets being
+    platted and different does not make one: **Randolph Street and South Water Street are
+    both east-west lines of the Original Town and run parallel for their whole length.**
+    Clark, Filer & Co. advertise "their ware house on South water St. five doors east of
+    the corner of Randolph st.", and the first three tests pass it — two platted streets,
+    not the same one — so without this test the register would count five doors east of a
+    corner that has never existed and stand a documented warehouse on it.
+
+    The answer is taken from `data/streets/1835.json`'s committed `path_local_enu_m`, the
+    same geometry every other placement is measured against, by segment intersection.
+    Nothing is inferred: if the plat's own lines meet, there is a corner, and if they do
+    not, there is not one. A street the town holds no path for cannot be shown to cross
+    anything and is refused, which is the cautious direction.
+    """
+    def segments(sid):
+        path = town.get("street_paths", {}).get(sid) or []
+        return list(zip(path, path[1:]))
+
+    def side(o, a, b):
+        return ((a[0] - o[0]) * (b[1] - o[1])) - ((a[1] - o[1]) * (b[0] - o[0]))
+
+    def meets(p, q, r, t):
+        d1, d2 = side(r, t, p), side(r, t, q)
+        d3, d4 = side(p, q, r), side(p, q, t)
+        if ((d1 > 0) != (d2 > 0)) and ((d3 > 0) != (d4 > 0)):
+            return True
+        # A T-junction is a corner: an endpoint lying ON the other line counts.
+        for o, x, y in ((r, t, p), (r, t, q), (p, q, r), (p, q, t)):
+            if abs(side(o, x, y)) < 1e-9 and \
+                    min(o[0], x[0]) - 1e-9 <= y[0] <= max(o[0], x[0]) + 1e-9 and \
+                    min(o[1], x[1]) - 1e-9 <= y[1] <= max(o[1], x[1]) + 1e-9:
+                return True
+        return False
+
+    return any(meets(p, q, r, t)
+               for p, q in segments(a) for r, t in segments(b))
+
+
 def ordinal_off_a_corner(town, placement):
     """A count of doors off a named cross street, resolved — or None.
 
@@ -944,6 +1114,11 @@ def ordinal_off_a_corner(town, placement):
     3. the business's OWN street is platted and is a different street. "two doors north
        of Lake street" said by a house on Lake Street is not an ordinal off a corner;
        the crossing an ordinal counts from is the crossing of two streets.
+    4. the two streets MEET on the committed plat. Different is not crossing, and the
+       corpus prints the difference: Randolph and South Water are parallel east-west
+       lines of the Original Town, so Clark, Filer & Co.'s "five doors east of the corner
+       of Randolph st." counts from a corner that does not exist. Asked of the streets'
+       own centrelines by `streets_cross`; see T-0771.
 
     What comes back names the crossing in `streets` (the pair, as `corner` does) and the
     reading itself in `ordinal`, so a gate can read the count without parsing prose.
@@ -968,6 +1143,12 @@ def ordinal_off_a_corner(town, placement):
     # is not required of it — 'South Water' and 'South Water Street' are one answer.
     along = streets_in(town, placement.get("street"), False)
     if len(along) != 1 or along[0] == reference[0]:
+        return None
+    # 4. THE TWO STREETS MUST ACTUALLY MEET (T-0771). Different is not crossing: Randolph
+    # and South Water are parallel east-west lines and have no corner, so Clark, Filer &
+    # Co.'s "five doors east of the corner of Randolph st." counts from nothing this plat
+    # holds. Asked of the committed centrelines by `streets_cross` above.
+    if not streets_cross(town, along[0], reference[0]):
         return None
     count = ORDINAL_COUNT[m.group(1).lower()]
     direction = (m.group(2) or "").lower() or None
@@ -1153,6 +1334,37 @@ def dated_anchor(town, business, by_firm, window):
     }
 
 
+def minted_link_problems(persons, minted_card):
+    """THE INVARIANT, AS A GATE (T-0866 acceptance 3). Above is the fix; this is the
+    thing that must still be true after somebody edits the fix.
+
+    It is asked of the EMITTED rows and of the town's own cards, not of the matcher, so
+    it fires whatever the matcher comes to do — which is why it lives out here where a
+    self-test can hand it rows the matcher would never produce. A printed name that a
+    mint turned into a card must reach that card, and no other. Both halves have been
+    live faults: the register called 37 rows "a named person the town does not hold"
+    while holding a card minted from that very name, and a display-string match handed
+    17 more of them to a different person of the same surname.
+    """
+    out = []
+    for entry in persons:
+        card = minted_card(entry["name"])
+        if not card:
+            continue
+        if entry["action"] != "enrich":
+            out.append(
+                "%s: %r, but the %s pass minted %s from this very printed name — the "
+                "town holds this person and the register says it does not"
+                % (entry["id"], entry["action"], card["source_pass"], card["person"]))
+        elif entry["action_target"] != card["person"]:
+            out.append(
+                "%s: enriches %s, but the %s pass minted %s from this very printed "
+                "name — the row belongs to the card it was minted from"
+                % (entry["id"], entry["action_target"], card["source_pass"],
+                   card["person"]))
+    return out
+
+
 def compile_register(gazetteer, town, quiet=True):
     """Derive the register. Returns (doc, problems). Nothing here reads the clock."""
     problems = []
@@ -1195,6 +1407,13 @@ def compile_register(gazetteer, town, quiet=True):
             "trade": b.get("trade"),
             "occupation": occupation_of(b.get("trade")),
             "proprietors": b.get("proprietors") or [],
+            # T-0398. The gazetteer derives which of those strings are people and which
+            # are the house's own trading style, and the register carries both rather
+            # than making every reader re-derive it. A consumer that means PEOPLE reads
+            # `partners`; `proprietors` is still the union of what the claims read and is
+            # what a surname pass wants, because a style carries surnames too.
+            "partners": b.get("partners") or [],
+            "firm_styles": b.get("firm_styles") or [],
             "street": b.get("street"),
             "street_id": town["streets"].get(street_key(b.get("street"))),
             "placement_class": (b.get("placement") or {}).get("class"),
@@ -1299,10 +1518,27 @@ def compile_register(gazetteer, town, quiet=True):
                                 "would be placing this house against a superseded "
                                 "printing" % (b["id"], entry["anchor"]["note"]))
             for w in ac["history"]:
+                # T-0773. `street` PLACES NOTHING — the docstring on `resolve_anchor`
+                # says so and `ANCHOR_KIND_RANK` ranks it below everything that does —
+                # so a reading that resolves to a street is not a second PLACE, it is a
+                # reading the pass swept less of the sentence into. That is the same
+                # thing `unresolved` is, and this gate already excused `unresolved`
+                # while refusing the half-swept case beside it. G. Spring is where it
+                # showed: eleven printings of one card, of which 1834-05-28 survives as
+                # "[corne]r [F]ra[n]klin and South W[at]er-str[ee]t" — the word "of" lost
+                # with the type, so `CORNER` does not match and the reach of South Water
+                # Street is all that resolves. Refusing that grouping would have said the
+                # corner and one of its own two streets are two places.
+                #
+                # It is excused only where the coarser reading is CONTAINED by the
+                # placing one. A street the placing resolution does not name is still two
+                # different things declared one landmark, and still fails.
                 placed = {(r["resolved"]["kind"], r["resolved"]["target"],
                            r["resolved"]["via"], tuple(r["resolved"]["streets"] or []))
                           for r in w["readings"]
-                          if r["resolved"]["kind"] != "unresolved"}
+                          if r["resolved"]["kind"] not in ("unresolved", "street")}
+                reaches = {tuple(r["resolved"]["streets"] or [])
+                           for r in w["readings"] if r["resolved"]["kind"] == "street"}
                 if len(placed) > 1:
                     problems.append(
                         "%s: the readings grouped under the anchor %r resolve to %d "
@@ -1310,7 +1546,70 @@ def compile_register(gazetteer, town, quiet=True):
                         "declared one landmark, and one landmark is one place"
                         % (b["id"], w["anchor"], len(placed),
                            ", ".join(sorted(str(x) for x in placed))))
+                elif not placed and len(reaches - {()}) > 1:
+                    problems.append(
+                        "%s: the readings grouped under the anchor %r resolve to %d "
+                        "different reaches of the plat (%s) and to nothing that places — "
+                        "they were declared one landmark, and one landmark is one place"
+                        % (b["id"], w["anchor"], len(reaches),
+                           ", ".join(sorted(str(x) for x in reaches))))
+                elif placed:
+                    named = set(next(iter(placed))[3])
+                    stray = [r for r in reaches if r and not set(r) <= named]
+                    if stray:
+                        problems.append(
+                            "%s: the readings grouped under the anchor %r resolve to %s "
+                            "and also to %s, which it does not name — a coarser reading "
+                            "of one landmark is a reach of that landmark's own streets, "
+                            "and anything else is a second place"
+                            % (b["id"], w["anchor"], sorted(named) or "no street",
+                               ", ".join(sorted(str(list(x)) for x in stray))))
         businesses.append(entry)
+
+    # ONE GROUND, ONE ROOF (T-0411). The gazetteer can now say that one business is
+    # another's PREMISES — the shop a paper is printed at, the store an agency is kept
+    # at — which is neither a merge nor a refusal, and until this the register could not
+    # hear it. It showed on the pair the relation was built for: `business_the_chicago_
+    # democrat` and `business_chicago_democrat_printing_office` are one man's paper and
+    # one man's shop at one corner, and the register took `enrich_existing` on the
+    # committed `chicago_democrat_office` for the shop and `new_building` at
+    # `clark+south_water` for the paper — a SECOND roof at the same corner for a
+    # business that has no ground of its own. (The two fall on different sides of
+    # `match_occupant` for a reason worth writing down: the shop's proprietors are
+    # ['John Calhoun'] and the paper's are ['John Calhoun', 'Calhoun, J.'], so the
+    # required surname set for the paper is {calhoun, j} and no occupant line carries a
+    # partner named J.)
+    #
+    # So the WHOLE follows its PART, because the part IS the ground: it takes the part's
+    # action and target verbatim rather than computing its own. This is deliberately
+    # narrow. It fires only where the part is actually placed — `enrich_existing` or
+    # `new_building` — and only where the whole was about to raise or name ground of its
+    # own; a part the register cannot place says nothing about the whole, and a whole
+    # already enriched onto a structure is left alone rather than moved.
+    by_id = {e["id"]: e for e in businesses}
+    for b in sorted(gazetteer["businesses"], key=lambda x: x["id"]):
+        for edge in b.get("parts") or []:
+            if edge.get("kind") != "premises":
+                continue
+            whole, part = by_id.get(b["id"]), by_id.get(edge.get("business_id"))
+            if not whole or not part:
+                continue
+            if part["action"] not in ("enrich_existing", "new_building"):
+                continue
+            if whole["action"] not in ("new_building", "street_only"):
+                continue
+            was, was_target = whole["action"], whole["action_target"]
+            whole["action"] = part["action"]
+            whole["action_target"] = part["action_target"]
+            whole["match_tier"] = part["match_tier"]
+            whole["match_evidence"] = part["match_evidence"]
+            whole["action_note"] = (
+                "%s is declared the premises %s is carried on (identity.json "
+                "premises_relations), so it stands where its premises stands and raises "
+                "no ground of its own: %s at %s, taken from %s. Without the relation this "
+                "record took %s at %s — a second roof for a business that has none. %s"
+                % (part["name"], whole["name"], whole["action"], whole["action_target"],
+                   part["id"], was, was_target, part["action_note"] or ""))
 
     # ---- persons -----------------------------------------------------------
     # The identity key is the gazetteer's own: surname plus forename initials, so
@@ -1324,7 +1623,43 @@ def compile_register(gazetteer, town, quiet=True):
         if key[0]:
             resident_by_key.setdefault(key, []).append(r)
 
+    # THE LINK THAT SURVIVES A RENAME (T-0866). The key above is the card's stored
+    # DISPLAY string, and this project rewrites display strings whenever a reading is
+    # corrected — T-0638 moved 36 of them, and T-0721 rewrote three letter-list cards
+    # (`8. G. Abbot` became `[?] G. Abbot`). Every such rewrite silently unlinked the
+    # card from the printed name it was MINTED FROM, and the register then said of two
+    # people the town holds that it does not hold them: the exact untruth T-0692 is
+    # about, in a derived file.
+    #
+    # So do not ask the display string. Ask the minting pass's own key: every mint in
+    # this project (`letter_list`, `documented`, `civic`, `placed`) writes its person id
+    # as `plain_fragment(printed name)`, so the ID IS THE PRINTED NAME NORMALIZED — and
+    # an id does not move when a reading is corrected. That restores the contract
+    # `mint_letter_list_residents.py` states of itself: "the moment this pass mints
+    # somebody the compiler stops calling him `new_resident`".
+    #
+    # It is exactly as sound as the mint's own identity decision and no sounder: two
+    # printed names collide here only when they carry the same surname and the same
+    # given words, which is the case the passes already refuse to mint twice. A
+    # HAND-AUTHORED card is excluded — its id was never derived from a printing, so an
+    # id that happens to equal a fragment is a coincidence and not a link.
+    minted_from_printed = {}
+    for r in town["residents"]:
+        if r.get("source_pass") in MINT_KEY:
+            minted_from_printed.setdefault((r["source_pass"], r["person"]), r)
+
+    def minted_card(name):
+        """The card a mint wrote FROM this printed name, or None."""
+        for pass_name, key in MINT_KEY.items():
+            card = minted_from_printed.get((pass_name, key(name)))
+            if card:
+                return card
+        return None
+
     def resident_match(name):
+        minted = minted_card(name)
+        if minted:
+            return minted
         sn, ini = surname(name), initials(name)
         if not sn:
             return None
@@ -1381,9 +1716,19 @@ def compile_register(gazetteer, town, quiet=True):
         if match:
             entry["action"] = "enrich"
             entry["action_target"] = match["person"]
+            # How the link was made is part of what the row asserts: matched on the id
+            # the mint wrote from this printed name, or on surname-plus-initials against
+            # the card's display string (T-0866).
+            if match is minted_card(p["name"]):
+                how = ("the %s pass minted that card from this printed name, so the link "
+                       "is the card's id and not its display string"
+                       % match["source_pass"])
+            else:
+                how = ("matched under the gazetteer's identity policy, surname plus "
+                       "forename initials")
             entry["action_note"] = ("data/residents/ already holds this person as %s "
-                                    "(%s, %s). The papers add mentions and dates."
-                                    % (match["person"], match["household"], match["grade"]))
+                                    "(%s, %s) — %s. The papers add mentions and dates."
+                                    % (match["person"], match["household"], match["grade"], how))
         elif occ and occ in town["invented"]:
             entry["action"] = "replace_invented"
             entry["action_target"] = occ
@@ -1400,6 +1745,15 @@ def compile_register(gazetteer, town, quiet=True):
         if entry["action"] not in PERSON_ACTIONS:
             problems.append("%s: action %r is not in the vocabulary" % (p["id"], entry["action"]))
         persons.append(entry)
+
+    # THE INVARIANT, AS A GATE (T-0866 acceptance 3). Above is the fix; this is the
+    # thing that will still be true after somebody edits the fix. It is asked of the
+    # emitted rows, not of the matcher, so it fires whatever the matcher comes to do:
+    # a printed name that a mint turned into a card must reach that card, and no other.
+    # Both halves have been live faults — the register called 28 letter-list cards it
+    # holds "a named person the town does not hold", and a display-string match can
+    # equally hand a minted card's row to a different person of the same initials.
+    problems.extend(minted_link_problems(persons, minted_card))
 
     # ---- counts ------------------------------------------------------------
     def tally(rows, field):
@@ -1548,6 +1902,7 @@ def self_test():
             {"id": "dole_warehouse_south", "name": "Dole's Warehouse",
              "name_words": [{"dole", "warehouse"}], "aka_head_words": [], "aka_texts": [],
              "occupant_words": {"dole", "forwarder"},
+             "occupant_words_all": {"dole", "forwarder"},
              "occupant_text": "George W. Dole, forwarder", "function": "warehouse",
              "identity_text": "Dole's Warehouse ; George W. Dole, forwarder",
              "occupation": None, "anonymous": False},
@@ -1555,6 +1910,7 @@ def self_test():
              "name_words": [{"wolf", "point", "tavern"}, {"taylor", "tavern"}],
              "aka_head_words": [{"taylor", "tavern"}], "aka_texts": ["Taylor's tavern"],
              "occupant_words": {"william", "walters", "landlord"},
+             "occupant_words_all": {"william", "walters", "landlord"},
              "occupant_text": "William Walters, landlord", "function": "tavern_inn",
              "identity_text": "Wolf Point Tavern ; William Walters, landlord ; Taylor's tavern",
              "occupation": "tavern_keeper", "anonymous": False},
@@ -1565,18 +1921,64 @@ def self_test():
             {"id": "wright_building_to_let_a", "name": "John Wright's Building to Let",
              "name_words": [{"john", "wright", "building", "let"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_words_all": set(),
              "occupant_text": "", "function": "dwelling_to_let",
              "identity_text": "John Wright's Building to Let",
              "occupation": None, "anonymous": False},
             {"id": "wright_building_to_let_b", "name": "John Wright's Building to Let",
              "name_words": [{"john", "wright", "building", "let"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_words_all": set(),
              "occupant_text": "", "function": "dwelling_to_let",
              "identity_text": "John Wright's Building to Let",
+             "occupation": None, "anonymous": False},
+            # T-0406's own case, and the real record's shape: a record whose NAME
+            # carries a disambiguator the printed corpus never uses — there was a second
+            # Tremont House — and an AKA carrying the plain form the Democrat prints.
+            {"id": "tremont_house_1", "name": "Tremont House (the first)",
+             "name_words": [{"tremont", "house", "first"}, {"tremont", "house"}],
+             "aka_head_words": [{"tremont", "house"}], "aka_texts": ["Tremont House"],
+             "occupant_words": set(), "occupant_words_all": set(),
+             "occupant_text": "", "function": "tavern_inn",
+             "identity_text": "Tremont House (the first) ; Tremont House",
+             "occupation": None, "anonymous": False},
+            # T-0403's own shape: a building whose occupants line DATES its namesake
+            # tenant away from the scene, and whose name and aka go on carrying him.
+            {"id": "democrat_office_fixture", "name": "The Chicago Democrat Office",
+             "name_words": [{"chicago", "democrat", "office"},
+                            {"john", "calhoun", "printing", "office"}],
+             "aka_head_words": [{"john", "calhoun", "printing", "office"}],
+             "aka_texts": ["John Calhoun's printing office"],
+             "occupant_words": set(),
+             "occupant_words_all": {"john", "calhoun", "chicago", "democrat",
+                                    "printing", "office"},
+             "occupant_text": "", "function": "printing_office_and_store",
+             "identity_text": "The Chicago Democrat Office ; John Calhoun's Chicago "
+                              "Democrat printing office 1833-1834 ; John Calhoun's "
+                              "printing office",
+             "occupation": "printer", "anonymous": False},
+            # T-1042's two records, and the whole of the difference between them: one
+            # prints the required surname as a MIDDLE name and the other prints it as a
+            # family name with a generational tag after it. A word-set pool cannot tell
+            # them apart, so `initials_compatible` has to.
+            {"id": "harmon_log_cabin", "name": "Harmon's Log Cabin",
+             "name_words": [{"harmon", "log", "cabin"}],
+             "aka_head_words": [], "aka_texts": [],
+             "occupant_words": {"dr", "elijah", "dewey", "harmon"}, "occupant_words_all": {"dr", "elijah", "dewey", "harmon"},
+             "occupant_text": "Dr Elijah Dewey Harmon", "function": "dwelling",
+             "identity_text": "Harmon's Log Cabin ; Dr Elijah Dewey Harmon",
+             "occupation": None, "anonymous": False},
+            {"id": "bates_auction_room", "name": "Bates's Auction Room",
+             "name_words": [{"bates", "auction", "room"}],
+             "aka_head_words": [], "aka_texts": [],
+             "occupant_words": {"john", "bates", "auctioneer"}, "occupant_words_all": {"john", "bates", "auctioneer"},
+             "occupant_text": "John Bates Jr.; auctioneer", "function": "store",
+             "identity_text": "Bates's Auction Room ; John Bates Jr.; auctioneer",
              "occupation": None, "anonymous": False},
             {"id": "recon_1835_north_i2_015", "name": "Reconstructed meeting hall #015",
              "name_words": [{"reconstructed", "meeting", "hall", "015"}],
              "aka_head_words": [], "aka_texts": [], "occupant_words": set(),
+             "occupant_words_all": set(),
              "occupant_text": "", "function": "meeting hall",
              "identity_text": "Reconstructed meeting hall #015",
              "occupation": None, "anonymous": True},
@@ -1585,10 +1987,31 @@ def self_test():
         # corpus actually prints rather than a stand-in.
         "streets": {"south_water": "south_water", "clark": "clark", "lake": "lake",
                     "dearborn": "dearborn"},
+        # The plat's own shape, in miniature: South Water and Lake are the east-west
+        # lines and Clark and Dearborn cross them. The ordinal cases need real geometry
+        # because the fourth test asks whether two streets MEET (T-0771), and the pair
+        # that does NOT — two parallel east-west lines — is the case it exists to refuse.
+        "street_paths": {"south_water": [[100.0, 0.0], [800.0, 0.0]],
+                         "lake": [[-320.0, -112.0], [900.0, -112.0]],
+                         "clark": [[600.0, -400.0], [600.0, 20.0]],
+                         "dearborn": [[700.0, -400.0], [700.0, 20.0]]},
         "residents": [{"household": "hh_x", "person": "cohen_peter", "name": "Peter Cohen",
                        "grade": "attested", "occupation": "clothier"},
                       {"household": "hh_inf_baker", "person": "inf_baker_01",
-                       "name": "Silas Stiles", "grade": "reconstructed", "occupation": "baker"}],
+                       "name": "Silas Stiles", "grade": "reconstructed", "occupation": "baker"},
+                      # T-0866's own shape: a card the letter-list pass minted from the
+                      # printed 'Gabbs, James I1.', whose DISPLAY string was later
+                      # corrected to mark the initial nobody can read. The id is the
+                      # printed name and did not move; the display string did.
+                      {"household": "hh_gabbs_james_i1", "person": "gabbs_james_i1",
+                       "name": "James [?] Gabbs", "grade": "inferred",
+                       "occupation": None, "source_pass": "letter_list"},
+                      # And the case the two mints read differently: the letter lists set
+                      # the surname FIRST, so this card is a Mills to the pass that wrote
+                      # it and a Mr C. to the documented pass's reading of the same words.
+                      {"household": "hh_mills_joel_c", "person": "mills_joel_c",
+                       "name": "Joel C. Mills", "grade": "inferred",
+                       "occupation": None, "source_pass": "letter_list"}],
         "invented": {"baker": ["hh_inf_baker"]},
         "has_creek": False,
     }
@@ -1725,12 +2148,64 @@ def self_test():
                             and d["businesses"][0]["action_target"] == "dole_warehouse_south")
          else "action=%r target=%r" % (d["businesses"][0]["action"],
                                        d["businesses"][0]["action_target"]))
+    # T-1042, both halves. The reading of the proprietor string is what put these two
+    # businesses in front of the guard at all — before it, 'Dewey, S.' carried an invented
+    # surname 's' that missed the cabin by accident, and 'J. Bates, jr.' carried 'jr'
+    # instead of 'bates' and missed the auction room for good.
+    case("a record printing the surname as a MIDDLE name is not this man",
+         gaz([biz("b1", proprietors=["Dewey, S."], trade="cabinet making")]),
+         lambda d: True if (d["businesses"][0]["action"] == "unplaceable"
+                            and d["businesses"][0]["action_target"] is None)
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    case("a generational tag after the family name does not hide the family name",
+         gaz([biz("b1", proprietors=["J. Bates, jr."], trade="auctioneer")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "bates_auction_room")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
     case("a corner of two platted streets takes new_building",
          gaz([biz("b1", street="South Water Street", placement={
              "class": "corner", "anchor": "the corner of South Water and Clark streets"})]),
          lambda d: True if (d["businesses"][0]["action"] == "new_building"
                             and d["businesses"][0]["anchor"]["streets"] == ["clark", "south_water"])
          else "action=%r anchor=%r" % (d["businesses"][0]["action"], d["businesses"][0]["anchor"]))
+    # …and the fifth thing that can decide one: a declared premises relation (T-0411).
+    def premises_edge(b, part_id, part_name, kind="premises"):
+        b["parts"] = [{"kind": kind, "business": part_name, "business_id": part_id,
+                       "witnesses": ["the fixture"],
+                       "relation_rule": "the fixture's own declaration"}]
+        return b
+
+    case("a business standing on another's premises takes its premises' roof",
+         gaz([premises_edge(biz("b1", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"}),
+              "b2", "b2"),
+              biz("b2", proprietors=["George W. Dole"], street="South Water Street")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "dole_warehouse_south")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+    case("a premises the register cannot place leaves the whole where it was",
+         gaz([premises_edge(biz("b1", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"}),
+              "b2", "b2"),
+              biz("b2", street="Flag Creek", placement={"class": "none", "anchor": None})]),
+         lambda d: True if d["businesses"][0]["action"] == "new_building"
+         else "action=%r" % d["businesses"][0]["action"])
+    case("a whole already enriched onto a structure is not moved by the relation",
+         gaz([premises_edge(biz("b1", proprietors=["George W. Dole"],
+                                street="South Water Street"), "b2", "b2"),
+              biz("b2", street="South Water Street", placement={
+                  "class": "corner",
+                  "anchor": "the corner of South Water and Clark streets"})]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "dole_warehouse_south")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
+
     case("a street with no anchor takes street_only",
          gaz([biz("b1", street="Lake Street", placement={"class": "street_only", "anchor": None})]),
          lambda d: True if (d["businesses"][0]["action"] == "street_only"
@@ -1764,6 +2239,29 @@ def self_test():
                             and d["businesses"][0]["action"] == "street_only")
          else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
                                        d["businesses"][0]["action"]))
+    # 4b. T-0406. AN AKA IS HOW A RECORD ANSWERS TO THE NAME THE PAPERS PRINT, and it
+    #     resolves on the SAME whole-set rule as a name. The committed Tremont is named
+    #     "Tremont House (the first)" and the Democrat prints "the Tremont House" — the
+    #     anchor of six advertisements. Loosening the rule to containment would have
+    #     resolved it and would also have put "the store" on the first store in the town.
+    case("an anchor resolves on a record's AKA, not only on its name",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont House"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "structure"
+                            and d["businesses"][0]["anchor"]["target"] == "tremont_house_1")
+         else "anchor=%r" % d["businesses"][0]["anchor"])
+    case("…and the aka still only matches WHOLE: a SUBSET names nothing",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont"})]),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] == "unresolved"
+                            and d["businesses"][0]["action"] == "street_only")
+         else "anchor=%r action=%r" % (d["businesses"][0]["anchor"],
+                                       d["businesses"][0]["action"]))
+    case("…and a SUPERSET names nothing either",
+         gaz([biz("b1", street="Lake Street", placement={
+             "class": "relative", "anchor": "the Tremont House stables"})]),
+         lambda d: True if d["businesses"][0]["anchor"]["kind"] == "unresolved"
+         else "anchor=%r" % d["businesses"][0]["anchor"])
     case("…and an anchor naming exactly ONE still places on it",
          gaz([biz("b1", street="Lake Street", placement={
              "class": "relative", "anchor": "Dole's Warehouse"})]),
@@ -1846,6 +2344,13 @@ def self_test():
                             and d["businesses"][0]["anchor"]["ordinal"]["count"] == 2
                             and d["businesses"][0]["anchor"]["ordinal"]["direction"] == "north")
          else "anchor=%r" % (d["businesses"][0]["anchor"],))
+    case("two streets that never meet are no corner, however platted both are (T-0771)",
+         ordinal("Lake Street",
+                 "on South-Water st. five doors east of the corner of Lake street"),
+         lambda d: True if (d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
+                            and d["businesses"][0]["action"] == "street_only")
+         else "two parallel east-west lines were read as a crossing: anchor=%r"
+              % (d["businesses"][0]["anchor"],))
     case("'a few doors below' counts nothing and is refused the ordinal reading",
          ordinal("Newberry & Dole", "a few doors below Messrs. Newberry & Dole"),
          lambda d: True if d["businesses"][0]["anchor"]["kind"] != "corner_ordinal"
@@ -1945,6 +2450,38 @@ def self_test():
                                 ["Wolf Point Tavern", "Dole's Warehouse"]),
                          window("the hotel", True, ["the hotel"])))]),
             "one landmark is one place")
+    # T-0773. The same grouping with a COARSER reading of the one landmark rather than a
+    # second one: a corner, and one of the two streets that make it, which is what a
+    # printing reads as when the word "corner" goes with the type.
+    case("a reach of the landmark's own street is one landmark, not two",
+         gaz([biz("b1", street="Lake Street",
+                  placement={"class": "relative", "anchor": "the hotel"},
+                  anchor_change=history(
+                      window("the corner of Lake and Clark streets", False,
+                             ["the corner of Lake and Clark streets", "Clark-street"]),
+                      window("the hotel", True, ["the hotel"])))]),
+         lambda d: True if (
+             d["businesses"][0]["anchor_change"]["history"][0]["resolved"]["kind"]
+             == "corner")
+         else "resolved %r"
+              % d["businesses"][0]["anchor_change"]["history"][0]["resolved"])
+    refuses("a reach the landmark does not name is still a second place",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("the corner of Lake and Clark streets", False,
+                                ["the corner of Lake and Clark streets",
+                                 "South Water-street"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "which it does not name")
+    refuses("two reaches and nothing that places is two landmarks",
+            gaz([biz("b1", street="Lake Street",
+                     placement={"class": "relative", "anchor": "the hotel"},
+                     anchor_change=history(
+                         window("the street", False,
+                                ["Clark-street", "South Water-street"]),
+                         window("the hotel", True, ["the hotel"])))]),
+            "different reaches of the plat")
     # 4c. T-0355 — the two readings that put a Flag Creek tavern in a Wolf Point stable.
     # First the occupants line that caused it, read directly, because the town fixture
     # above supplies `occupant_words` ready-made and cannot exercise the clause filter.
@@ -1961,6 +2498,33 @@ def self_test():
          "Eliza Chappel and her infant school")
     unit("a year range is one span, not two loose years",
          year_spans("1833-34 and 1836"), [(1833, 1834), (1836, 1836)])
+
+    # 4d. T-0403 — a name outlives a tenancy, and the undated tiers may not put back a
+    # tenant the dated occupants line has just struck out. The fixture record is named
+    # and `aka`'d for John Calhoun and dates his office to 1833-1834, so at the scene
+    # date the firm is not in it; before this rule the occupants tier said no and the aka
+    # tier said yes one line later, and the register printed `match_tier: aka`.
+    case("a firm its own record dates away is not handed back by the building's aka",
+         gaz([biz("b1", name="Chicago Democrat printing office",
+                  proprietors=["John Calhoun"], trade="newspaper and job printing",
+                  street="South Water Street",
+                  placement={"class": "relative",
+                             "anchor": "Messrs. Jones & King's hardware store",
+                             "street": "South Water Street"})]),
+         lambda d: True if (d["businesses"][0]["action"] == "street_only"
+                            and d["businesses"][0]["match_tier"] is None)
+         else "action=%r tier=%r target=%r" % (d["businesses"][0]["action"],
+                                               d["businesses"][0]["match_tier"],
+                                               d["businesses"][0]["action_target"]))
+    # And the other half, which is what keeps the rule from being a blanket refusal: the
+    # SAME record, asked about the tenant its occupants line does not date away.
+    case("a firm the same record does not date away still matches on the occupants line",
+         gaz([biz("b1", proprietors=["William Walters"], trade="tavern",
+                  street="Lake Street")]),
+         lambda d: True if (d["businesses"][0]["action"] == "enrich_existing"
+                            and d["businesses"][0]["action_target"] == "wolf_point_tavern")
+         else "action=%r target=%r" % (d["businesses"][0]["action"],
+                                       d["businesses"][0]["action_target"]))
 
     # Then the guard the fault generalises to: the firm's own record says where it is.
     case("a distance in miles refuses every match into the committed town",
@@ -2000,6 +2564,44 @@ def self_test():
          gaz(persons=[person("p1", "J. Cohen")]),
          lambda d: True if d["persons"][0]["action"] == "new_resident"
          else "action=%r" % d["persons"][0]["action"])
+    # T-0866: the link is to the card the mint wrote from this printed name, so it
+    # outlives the display string. Under the initials policy alone `Gabbs, James I1.`
+    # reads ('j', 'i') against the corrected card's ('j', '?') and matches nothing.
+    case("a card renamed since it was minted is still the person the papers print",
+         gaz(persons=[person("p1", "Gabbs, James I1.", letter_list_only=True)]),
+         lambda d: True if (d["persons"][0]["action"] == "enrich"
+                            and d["persons"][0]["action_target"] == "gabbs_james_i1")
+         else "action=%r target=%r" % (d["persons"][0]["action"], d["persons"][0]["action_target"]))
+    case("the surname-first setting is read by the pass that mints from it",
+         gaz(persons=[person("p1", "Mills Joel C.", letter_list_only=True)]),
+         lambda d: True if (d["persons"][0]["action"] == "enrich"
+                            and d["persons"][0]["action_target"] == "mills_joel_c")
+         else "action=%r target=%r" % (d["persons"][0]["action"], d["persons"][0]["action_target"]))
+    case("and the row says which of the two links carried it",
+         gaz(persons=[person("p1", "Gabbs, James I1.", letter_list_only=True)]),
+         lambda d: True if "minted that card from this printed name" in d["persons"][0]["action_note"]
+         else "note=%r" % d["persons"][0]["action_note"])
+    case("a name no mint wrote a card from is still ruled by the identity policy",
+         gaz(persons=[person("p1", "P. Cohen")]),
+         lambda d: True if "surname plus forename initials" in d["persons"][0]["action_note"]
+         else "note=%r" % d["persons"][0]["action_note"])
+
+    # …and the gate over it fires on both halves, asked of rows the matcher above can no
+    # longer produce — which is the whole reason it is a separate function (T-0866).
+    minted = {"person": "gabbs_james_i1", "source_pass": "letter_list"}
+    unit("the gate catches a minted card called a stranger",
+         bool(minted_link_problems(
+             [{"id": "p1", "name": "Gabbs, James I1.", "action": "new_resident",
+               "action_target": None}], lambda n: minted)), True)
+    unit("the gate catches a minted card's row handed to somebody else",
+         bool(minted_link_problems(
+             [{"id": "p1", "name": "Gabbs, James I1.", "action": "enrich",
+               "action_target": "gabbs_james"}], lambda n: minted)), True)
+    unit("and it is silent where the row reaches its own card",
+         minted_link_problems(
+             [{"id": "p1", "name": "Gabbs, James I1.", "action": "enrich",
+               "action_target": "gabbs_james_i1"}], lambda n: minted), [])
+
     case("a documented baker is a candidate to retire the invented one",
          gaz(persons=[person("p1", "Amos Thing", occupations=["baker"])]),
          lambda d: True if (d["persons"][0]["action"] == "replace_invented"

@@ -52,6 +52,8 @@ import argparse
 import json
 from pathlib import Path
 
+import resident_cohort_freeze as freeze
+
 ROOT = Path(__file__).resolve().parents[1]
 RESIDENTS = ROOT / "data" / "residents"
 RESEARCH = ROOT / "data" / "research" / "residents"
@@ -162,12 +164,13 @@ def load_people() -> dict:
     records are the town; the index is a summary of it, and a cohort must not move
     because a summary is behind.
     """
-    people = {}
+    folded = freeze.folded_people()      # a fold is a redirect, not a deletion (T-0842)
+    people = dict(folded)
     for path in sorted((RESIDENTS / "households").glob("*.json")):
         household = json.loads(path.read_text(encoding="utf-8"))
         for person in household.get("persons") or []:
             pid = person.get("id")
-            if pid in people:
+            if pid in people and pid not in folded:
                 raise SystemExit("duplicate person id %s" % pid)
             people[pid] = (household, person)
     return people
@@ -218,7 +221,7 @@ def researched_ids(people: dict) -> set:
             if (p.get("resident_research") or {}).get("outcome")}
 
 
-def derive(pass_no: int) -> dict:
+def derive(pass_no: int, minting: bool = False) -> dict:
     if len(FRAME) != 228 or len(set(FRAME)) != 228:
         raise SystemExit("the frozen frame is not 228 unique people: %d/%d"
                          % (len(FRAME), len(set(FRAME))))
@@ -239,7 +242,23 @@ def derive(pass_no: int) -> dict:
     # Zero overlap with the people who already carry a research row. This is the
     # non-overlap that means something; see the module docstring for why "zero
     # overlap with passes 1-12" is not the same claim and is not made.
-    if overlap := researched_ids(people).intersection(ids):
+    #
+    # IT IS A SELECTION CHECK, SO IT ONLY RUNS WHILE SELECTING. The module docstring
+    # has always said this — "a person who acquires a research row after this — which
+    # is what T-0508 to T-0510 are for — does NOT make the manifest stale" — and the
+    # committed manifest repeats it in `selection_policy`. The code did not: `derive`
+    # ran the assertion on every call, including `--gate`, so the three cohorts began
+    # failing the build the moment their own tickets did the work they were selected
+    # for. dev went red on 2026-09-05 when T-0510 landed and cohort 15 tripped it;
+    # 13 and 14 followed as T-0508 and T-0509 landed rows of their own.
+    #
+    # Nothing is weakened by scoping it. FRAME is a hardcoded 228-name literal frozen
+    # on 2026-09-03, so membership cannot drift between a selection and a gate — a
+    # regeneration re-reads today's records for each member's `starting_*` fields and
+    # cannot reshuffle who is in the cohort. `member()` still refuses a member who
+    # left the town, turned into a placeholder or went `reconstructed`, on every call
+    # including the gate, which is the staleness the docstring says DOES matter.
+    if minting and (overlap := researched_ids(people).intersection(ids)):
         raise SystemExit("cohort %d claims people who already carry a research row: %s"
                          % (pass_no, sorted(overlap)))
 
@@ -292,22 +311,25 @@ def run(pass_no: int, argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gate", action="store_true")
     args = ap.parse_args(argv)
-    doc = derive(pass_no)
     path = out_path(pass_no)
+    # Minting is the first write only, and so is the FREEZE. A later regeneration
+    # re-selects nobody, because FRAME is frozen — and since T-0764 it no longer
+    # refreshes each member's `starting_*` snapshot against today's records either:
+    # that snapshot is what the cohort was fixed with, and rewriting it is how the
+    # "came in at `inferred` on one source" reading of a finished pass was lost.
+    # tools/resident_cohort_freeze.py holds both halves of the contract.
+    doc = derive(pass_no, minting=not args.gate and not path.exists())
+    # A member the town has since ruled a duplicate is still studied and still counted,
+    # and the gate SAYS so rather than counting them in silence (T-0842).
+    for line in freeze.redirected(row["person_id"] for row in doc["people"]):
+        print("   redirected by a landed merge ruling: %s" % line)
     if args.gate:
-        # The committed manifest is the frozen thing; formatting is not evidence.
-        if not path.exists() or json.loads(path.read_text(encoding="utf-8")) != doc:
-            raise SystemExit("%s is stale; regenerate it without --gate"
-                             % path.relative_to(ROOT))
-        print("resident research pass %d: %d people, committed manifest current"
-              % (pass_no, len(doc["people"])))
-        return 0
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print("resident research pass %d: wrote %d people (%s)"
-          % (pass_no, len(doc["people"]),
-             ", ".join("%s %s" % (v, k) for k, v in sorted(doc["population_frame"]["strata"].items()))))
-    return 0
+        return freeze.gate(path, doc, "resident research pass %d" % pass_no)
+    return freeze.write(
+        path, doc,
+        "resident research pass %d: wrote %d people (%s)"
+        % (pass_no, len(doc["people"]),
+           ", ".join("%s %s" % (v, k) for k, v in sorted(doc["population_frame"]["strata"].items()))))
 
 
 if __name__ == "__main__":

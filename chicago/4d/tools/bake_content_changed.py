@@ -115,7 +115,23 @@ def is_stamp_only(path, cwd=None):
 
 
 def content_paths(cwd=None):
-    """Every dirty path under the app that is not purely the build stamp."""
+    """Every dirty path under the app that is not purely the build stamp.
+
+    THE MIRROR IS STILL IN THE PATHSPEC AND USUALLY ANSWERS NOTHING (T-0938).
+    `site/chicago/4d` is untracked and .gitignored in this repository now, so
+    `git status --porcelain` never names it here and the stamp exclusions below
+    can only fire in a tree where it is tracked — which is exactly the sandbox
+    `--self-test` builds. Both halves are deliberate. The pathspec stays because
+    it costs nothing and because the question this asks is about the app's whole
+    output, tracked or not; the self-test keeps exercising the stamp logic
+    because that logic is what a REAL tracked build stamp would still need, and a
+    gate whose assertions stop running is a gate that has quietly stopped.
+
+    What changed for the real tree is simpler and better: the bake's content
+    signal now rests entirely on `chicago/4d/`, which is where bake.sh writes
+    geometry, and the build stamp cannot manufacture a PR because the two files
+    it is written into are not committed at all.
+    """
     out = git("status", "--porcelain", "--", "chicago/4d", "site/chicago/4d",
               cwd=cwd)
     paths = []

@@ -170,8 +170,11 @@ WORKS = [
         "date": "1888-1892 (the cards' date; the Archive's copies are dated 1889)",
         "pattern": re.compile(r"18[68]8\s*[-\u2013]\s*9[23]", re.I),
         "fuzzy": ("moses", 0.6),
-        "held": None,
-        "reachable": "Internet Archive: illinoishistoric01inmose, cu31924092214752",
+        "held": "moses_illinois_historical_and_statistical",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "illinoishistoric01inmose (vol. 1) and illinoishistoricv2mose "
+                     "(vol. 2). Reachable and thin: 169 Chicago or Cook cards stand on "
+                     "a STATE history whose 1835 sentences are population and revenue",
     },
     {
         "key": "sons_of_the_american_revolution_illinois_1896",
@@ -230,19 +233,50 @@ WORKS = [
         "date": "1881",
         "pattern": re.compile(r"h[uv]r[il1]b[uv]t", re.I),
         "fuzzy": ("antiquities", 0.55),
-        "held": None,
-        "reachable": "not yet located — search the Internet Archive and HathiTrust",
+        "held": "hurlbut_chicago_antiquities",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "chicagoantiquiti00hurl. TWO cards, and the densest 1830s Chicago "
+                     "text of any work in this table: the index is the wrong instrument "
+                     "for ranking it",
     },
     {
         "key": "la_salle_book_co_cook_county",
         "title": "The biographical and portrait volumes of Cook County published by "
                  "the La Salle Book Co.",
         "author": "La Salle Book Co.",
-        "date": "1900, 1909",
+        # The cards print 1900 fifty-three times and 1909 once, beside a 1903 and an
+        # 1854 that are as likely to be OCR of 1900. T-0582 opened the work: it is the
+        # Album of Genealogy and Biography, Cook County, eleventh edition 1899 and
+        # thirteenth 1900, and no 1909 Cook County volume of this publisher was found.
+        "date": "1899 (11th ed.) and 1900 (13th ed.)",
         "pattern": re.compile(r"la\s*sa[il1]le", re.I),
         "fuzzy": ("salle", 0.7),
-        "held": None,
-        "reachable": "not yet located — search the Internet Archive and HathiTrust",
+        "held": "la_salle_album_of_genealogy_cook_county",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "albumofgenealogy1900chic and albumofgenealogy1899lasa. The "
+                     "lowest-yield work in this table: about a dozen pre-1840 Chicago "
+                     "arrival sentences per edition, under 91 Chicago or Cook cards",
+    },
+    {
+        "key": "wood_1881_chicago_and_its_distinguished_citizens",
+        "title": "Chicago and its distinguished citizens; or, The progress of forty "
+                 "years",
+        "author": "David Ward Wood",
+        "date": "1881",
+        # The author's surname and initials as the card prints them — 'Wood, D. W.',
+        # and the OCR's 'Wood, D. V/.', 'Wood, D, W.' and 'Wood, D. W J'. The YEAR is
+        # unusable as a key here: the same eight cards carry it as 1881, I88li, I88I1,
+        # 1381 and loWi. Keyed on the initials for the reason Andreas is — the letters
+        # survive the photostat and the spelled-out name does not — but tighter, since
+        # this needs the surname AND both initials where Andreas needs two letters.
+        # No `fuzzy`: 'wood' is four letters and would take Good, Hood, Ward and
+        # Woods with it, and `works_of` reads `.get("fuzzy")` for exactly this case.
+        "pattern": re.compile(r"w[o0]{2}d\s*[.,;:'\u00b4]?\s*[dbo]\s*[.,;:'\u00b4]?\s*[wv]",
+                              re.I),
+        "held": "wood_1881_chicago_and_its_distinguished_citizens",
+        "reachable": "held — located and opened for T-0582; Internet Archive "
+                     "chicagoitsdistin00wood. Its printed pages 23-25 are a continuous "
+                     "account of the year 1835 in Chicago",
     },
 ]
 
@@ -257,6 +291,273 @@ def collapse(s: str) -> str:
 
 def alpha(s: str) -> str:
     return re.sub(r"[^a-z]", "", s.lower())
+
+
+# ------------------------------------------------- the column sliver (T-0601)
+#
+# The four crop windows are 200 points wide on a 173-point pitch (CROPS), so every
+# window carries the leftmost 27 points of the NEXT column. When a card sits on that
+# boundary the pass over column c reads the first few characters of a card the pass
+# over column c+1 reads in full, and keeps it as a second, short card of the same
+# locality. The dedup in assemble() cannot see it: that keys on (page, heading,
+# body) and a truncation is equal to nothing, so the sliver survives and the domain
+# counts one card twice.
+#
+# MEASURED on the committed reading before the rule was written. The sliver's body
+# is a BYTE-EXACT prefix of the full card's body, because it is the same ink read
+# twice by the same engine — the reader's own errors come through verbatim ('Pike
+# Ce, III.', 'Fua Co., III.', 'Chicago, in.'). That exactness is the whole test.
+# Matching on alpha() instead, which drops the digits and the stops, admits two
+# DIFFERENT cards that cite the same county history: 'Sangamon Co, III. (Power, J.
+# C.) 1878.' and '... (Power, J. C.) I876.' are one string under alpha() and are two
+# readings on the leaf.
+#
+# The figure the rule was earned on: 9 pairs over the four volumes, every one of
+# them at column delta +1 and NONE at any other delta — which is the crop geometry's
+# own prediction, and is why the adjacency clause is in the rule rather than assumed.
+# The same test run without the adjacency clause and folded through alpha() finds 17,
+# of which 8 are two cards sharing a citation.
+#
+# A sliver is MARKED, never dropped. Three reasons, and all three are load-bearing:
+# the record id is positional, so striking one renumbers every card after it and
+# orphans precision_sample.json's hand-adjudications and lead_crosswalk.json's
+# rulings; the sliver is real ink that was really read, and check() rebuilds every
+# `as_read` out of the committed text, which still carries it; and a wrong call
+# stays visible and reversible instead of silently deleting a card.
+SLIVER_MIN_GAP = 8
+_SLIVER_LEAD = re.compile(r"^[^0-9A-Za-z]+")
+
+
+def sliver_core(body: str) -> str:
+    """A body with its leading rule-dashes and specks off — collapsed, but NOT
+    alpha-folded: the comparison has to keep the digits and the stops."""
+    return _SLIVER_LEAD.sub("", collapse(body))
+
+
+def find_slivers(cards: list) -> dict:
+    """{index of a sliver: index of the card it is a truncated copy of}.
+
+    `cards` is the committed reading of one volume, in the order the records are
+    numbered — read_committed_cards() order.
+    """
+    bypage = {}
+    for i, card in enumerate(cards):
+        bypage.setdefault(card["page"], []).append(i)
+    out = {}
+    for idxs in bypage.values():
+        for i in idxs:
+            a = cards[i]
+            head = sliver_core(a["body"])
+            if len(head) < 4:
+                continue
+            for j in idxs:
+                if j == i or cards[j]["column"] != a["column"] + 1:
+                    continue
+                full = sliver_core(cards[j]["body"])
+                if len(full) >= len(head) + SLIVER_MIN_GAP and full.startswith(head):
+                    out[i] = j
+                    break
+    return out
+
+
+# ------------------------------------------- the bled-in body (T-0769)
+#
+# The mirror of the sliver, off the same 27-point overlap and read from the other
+# end. A volume's pages are not all the same width — 689 to 733 points — and the
+# crop windows are fixed, so on a WIDE page every column's ink sits further right
+# than the boxes assume and the left edge of window c+1 falls INSIDE column c. The
+# window then reads the right-hand part of column c's lines: not as a card of its
+# own, which is what the prefix half does, but glued to the FRONT of the card it
+# assembles, heading line and body line alike. The locality patterns then match on
+# text that is not on that card.
+#
+# MEASURED before the rule, and the measurement is what fixed its two clauses.
+# Asking, over the four volumes' 6,658 committed cards, whether a body OPENS with a
+# byte-exact run that CLOSES another body on the same page:
+#
+#   run >= 15 chars | 21 pairs | 21 at column delta -1 | 0 at 0, +1, +-2, +-3
+#
+# against an ordered same-page pair population of 15,518 at delta 0 and 2,517 at
+# delta +1. The concentration is the crop geometry's own prediction and is the
+# evidence that the two readings are the same ink, exactly as in T-0601.
+#
+# WHY 15 AND NOT 6. The ticket's first pass asked for a run of six and found 117
+# candidates, which is an upper bound and not a measurement: at six characters most
+# hits are two unrelated cards that both carry `Chicago,` or `Illinois`. The floor
+# is not chosen for tidiness — it is CALIBRATED on T-0601's own nine slivers, whose
+# bodies are the entire yield of the 27-point overlap and run 11 to 14 characters.
+# A shared run longer than 14 is therefore longer than the overlap alone has ever
+# been observed to carry, and cannot be the prefix artefact wearing this shape. At
+# or below 14 the two halves are indistinguishable from the string, and this rule
+# says nothing about them rather than guessing.
+#
+# THE SECOND DISCRIMINATOR, and it is what stops the rule marking the wrong card.
+# The string relation is symmetric: `A opens with B's tail` is also what the PREFIX
+# bleed looks like when column c has ink on that line, and there the contaminated
+# card is B, not A. The window that slices column c's body line slices its HEADING
+# line at the same x, so a card carried in by this artefact opens mid-word — its
+# heading is a fragment beginning in lower case (`nner` out of `Brenner`, `lus` out
+# of `Broslus`, `berta` out of `Roberts`). Over all 6,658 cards 1,019 headings begin
+# in lower case, a base rate of 15.3 per cent; over the 21 long-run pairs, 15 do —
+# 71 per cent, an enrichment of 4.7x. The six refused by this clause are the check
+# that it is the right way round: one of them, `nbi_v02_1830`, is a precision-sample
+# row hand-adjudicated `locality_correct` off the leaf image, with the county and
+# the state read on the card. Marking it would have contradicted a reading made by
+# eye.
+#
+# A bled card is MARKED, never trimmed, and the reasons are T-0601's plus one more
+# that is decisive here: MANIFEST.text_sha256 binds the committed text and check()
+# rebuilds every `as_read` out of it, so cutting the run off a body is a gate
+# failure and not an edit. The record keeps its id and its verbatim reading, gains
+# `bleed_of` and `bleed_run`, and is withheld from the volume's counts, its leads
+# and its reading order — because all 15 name a locality ONLY inside the run, which
+# is to say they were kept for text that is not on them.
+BLEED_MIN_RUN = 15
+_FIRST_LETTER = re.compile(r"[A-Za-z]")
+
+
+def heading_is_cut(heading: str) -> bool:
+    """True when a heading opens mid-word — the window's left edge sliced it.
+
+    An index heading is a surname and is printed capitalised. A heading whose first
+    letter is lower case is a fragment of one, which is what a crop box landing
+    inside the previous column leaves behind.
+    """
+    m = _FIRST_LETTER.search(heading or "")
+    return bool(m) and m.group(0).islower()
+
+
+def shared_run(a_body: str, b_body: str) -> int:
+    """The longest run `a` OPENS with that `b` CLOSES with, byte-exact.
+
+    Proper at both ends: a run that is the whole of either body is two cards reading
+    the same, which is a duplicate and not a bleed — page 363 of volume 1 carries
+    `Sangamon Co., III. (Power, J. C.) 1876.` twice, in two columns, and it is two
+    readings of two cards citing one county history.
+    """
+    a, b = collapse(a_body), collapse(b_body)
+    for length in range(min(len(a), len(b)) - 1, 0, -1):
+        if a[:length] == b[-length:]:
+            return length
+    return 0
+
+
+def find_bleeds(cards: list) -> dict:
+    """{index of a bled card: (index of the card whose tail bled in, run length)}.
+
+    `cards` is one volume's committed reading in record order, and each card needs
+    its `heading` as well as its body: the heading is half the test.
+    """
+    bypage = {}
+    for i, card in enumerate(cards):
+        bypage.setdefault(card["page"], []).append(i)
+    out = {}
+    for idxs in bypage.values():
+        for i in idxs:
+            a = cards[i]
+            if not heading_is_cut(a.get("heading") or ""):
+                continue
+            best = None
+            for j in idxs:
+                if j == i or cards[j]["column"] != a["column"] - 1:
+                    continue
+                length = shared_run(a["body"], cards[j]["body"])
+                if length >= BLEED_MIN_RUN and (best is None or length > best[1]):
+                    best = (j, length)
+            if best:
+                out[i] = best
+    return out
+
+
+# ------------------------------------------- scanning a reading for slivers (T-0810)
+#
+# find_slivers() tests a byte-exact prefix, and that test is right for a TEXT-LAYER
+# reading and inapplicable to an OCR one. Volumes 1-3 come out of `pdftotext` on four
+# crop boxes: the sliver and the full card are the same ink returned twice by the same
+# extraction, so the reader's own errors come through verbatim on both and the prefix
+# is exact to the byte. Volume 4 was re-read by OCR (T-0775): its two readings of the
+# overlap are two tesseract runs over two separately rendered images, so a real sliver
+# there would agree CLOSELY and never exactly. A zero out of the byte-exact rule
+# therefore says nothing at all about an OCR volume — which is the whole of T-0810,
+# because volume 4 has been sitting on `slivers: 0` since it was re-read.
+#
+# So the volume is scanned by a second measure that does not care which engine made the
+# characters: positional agreement over the two bodies' common prefix. It separates
+# cleanly on the readings this domain already holds — every one of the eight slivers in
+# volumes 1-3 scores 1.000, the closest column-boundary pair that is NOT a sliver
+# scores 0.921 (nbi_v02_1738 against nbi_v02_1741, two cards citing one work), and all
+# 21 of volume 4's boundary pairs score 0.216 or below.
+#
+# The measure REPORTS, it does not mark. Nothing between 0.921 and 1.000 has ever been
+# seen, so no threshold for marking an inexact sliver has been earned, and inventing
+# one would strike cards on a number no reading has tested. What the scan does instead
+# is put the figures in the records file, where check() re-derives them: a volume's
+# zero is then a zero that was MEASURED on the text it is committed beside, and a
+# re-read that starts producing slivers moves the numbers and fails the gate.
+
+
+def prefix_agreement(a: str, b: str) -> float:
+    """Positional character agreement over two bodies' common prefix, 0.0 - 1.0."""
+    n = min(len(a), len(b))
+    if not n:
+        return 0.0
+    return sum(1 for k in range(n) if a[k] == b[k]) / n
+
+
+def boundary_pairs(cards: list) -> list:
+    """Every (i, j) on one page where j sits in the column to i's right.
+
+    The population find_slivers() draws from, minus its early `break`: the scan has to
+    see all of them to report the closest, so it cannot stop at the first match.
+    """
+    bypage = {}
+    for i, card in enumerate(cards):
+        bypage.setdefault(card["page"], []).append(i)
+    out = []
+    for idxs in bypage.values():
+        for i in idxs:
+            if len(sliver_core(cards[i]["body"])) < 4:
+                continue
+            for j in idxs:
+                if j == i or cards[j]["column"] != cards[i]["column"] + 1:
+                    continue
+                if len(sliver_core(cards[j]["body"])) < 4:
+                    continue
+                out.append((i, j))
+    return out
+
+
+def scan_slivers(cards: list, ids: list, read_by: str) -> dict:
+    """What the sliver rule found in this reading, and how close it came otherwise."""
+    pairs = boundary_pairs(cards)
+    best, on = 0.0, None
+    for i, j in pairs:
+        r = prefix_agreement(sliver_core(cards[i]["body"]), sliver_core(cards[j]["body"]))
+        if r > best:
+            best, on = r, [ids[i], ids[j]]
+    return {
+        "_doc": "GENERATED by --parse and re-derived by --check. The column-boundary "
+                "pairs this reading offers, how many are byte-exact slivers under the "
+                "T-0601 rule, and the closest pair that is not one. A zero in "
+                "`byte_exact` means nothing on its own for an OCR reading, where the "
+                "two readings of the overlap cannot be byte-identical; "
+                "`max_prefix_agreement` is what says whether there was anything to "
+                "find. See the comment above scan_slivers() (T-0810).",
+        "read_by": read_by,
+        "boundary_pairs": len(pairs),
+        "byte_exact": len(find_slivers(cards)),
+        "max_prefix_agreement": round(best, 3),
+        "max_prefix_agreement_on": on,
+    }
+
+
+def read_by_of(volume: int, domain: Path = None) -> str:
+    """How this volume's committed text was made, per MANIFEST.json."""
+    path = (domain or DOMAIN) / "text" / "MANIFEST.json"
+    if not path.exists():
+        return "unknown"
+    entry = (load(path).get("volumes") or {}).get(str(volume)) or {}
+    return entry.get("read_by") or "unknown"
 
 
 def load(path: Path):
@@ -331,15 +632,155 @@ REGNAL = re.compile(r"(?:hen|edw|ric|[gc]eo|jas|el[il1]z|wm|w[il1]ll|chas|vol)\s
                     re.I)
 
 
+# The second and third systematic false positives, both found by T-0578's forty-card
+# draw on volume 2 and both absent from volume 1's draw (T-0600). They sit here, beside
+# REGNAL, because they are the same kind of thing: a locality pattern matching something
+# that is not a locality, and a written reason for telling them apart.
+
+# ONE — THE STATE BANNER, AND ANY OTHER BODY THAT NAMES ONLY THE PLACE. The printed
+# index divides a family's run of cards by state with a rule on its own line,
+# 'ILLINOIS.'. `assemble` opens a card at a heading and hangs the lines under it on
+# that card, so a banner falling directly beneath a heading becomes that card's whole
+# body and the stanza is kept for a locality no card of that family claims —
+# nbi_v02_1675 is the proof: its heading is 'Kinge or King family.', whose one card is
+# an English parish register, and the surname run that opens under the banner is
+# KINGERY. The same shape catches the wreck of the call-number column, '111. P 85132.8'.
+#
+# The test is not the spelling of the banner but what is missing: a card body is a
+# CITATION — an author, a date, a title — and this domain's whole product is a list of
+# books to open. Strip the locality the patterns matched and a real card still has
+# words left; a banner has nothing. So a stanza whose body is the locality and no more
+# names no work, can never become a lead, and is refused.
+
+# TWO — THE STROKE STANDING WHERE THE CALL NUMBER STANDS. `illinois_abbreviated` is
+# anchored to a comma or to the start of the line, and the start-of-line branch is
+# there for a locality that wrapped: '..., Cook Co.,' on one line and 'Ill. (Andreas,
+# A. T.) 1884-6' on the next. The left of a card also carries its call number, though
+# ('543.7 LaSalle Co., Ill.'), and three strokes of a wrecked one read as 'III,' —
+# nbi_v02_1106, whose card is 'Holden family. — Hapgood fam. (Hapgood, W.) 1898. See
+# index. E. 7. H 21' and names no locality at all.
+#
+# What tells the two apart is what FOLLOWS. A wrapped locality is followed by its
+# citation; a stroke in the call-number slot is followed by the next card's own family
+# heading, because the crop has caught the head of a stanza and not the tail of one. So
+# a start-of-line stroke with a family word behind it, before any citation opens, is
+# refused. (The ticket proposed testing what PRECEDES the stroke instead. On the page
+# there is nothing before it — the stroke IS the call number — so the test is the other
+# way round; the measurement is written up in the PR.)
+FAMILY_AFTER = re.compile(r"\b(?:f\s*a\s*m\s*[il1][il1]?\s*[yv]|fam|faml|famly)\b\s*[.,]?",
+                          re.I)
+
+
+def call_number_slot(body: str, m) -> bool:
+    """True when a start-of-line stroke is a call number and not a wrapped locality."""
+    if m.start() != 0:
+        return False
+    rest = body[m.end():]
+    cut = rest.find("(")
+    return bool(FAMILY_AFTER.search(rest if cut < 0 else rest[:cut]))
+
+
+# THREE — THE PAGE NUMBER STANDING WHERE THE STATE STANDS (T-0765, measured by
+# T-0600 and left undone there). A card's citation ends in the pages the surname is
+# on, printed as a comma-separated list — '1897: 130,111,183,186,371' — and 111 is a
+# page in that list, not Illinois. The anchor `illinois_abbreviated` needs is the
+# comma the list itself supplies, so every page list that happens to reach page 111
+# is kept as an Illinois card. So is the illustration note: '(Delano, J. A.) 1899:
+# 203,ill.' is page 203, illustrated.
+#
+# WHAT THE RULE MAY NOT BE. T-0600 measured the obvious one — refuse when a digit
+# precedes the comma — and refused to ship it, because this OCR reads a trailing 'o'
+# as '0' and '««g0, III.' and '> — Chiear.0, 111.,' are both *Chicago, Ill.* Both are
+# a SINGLE digit, and both sit against a letter or a stop that a real number would
+# not. So the shape tested is narrower: a run of TWO OR MORE digits, ending at the
+# anchor, with no letter immediately in front of it. A page list always presents that
+# shape; a wrecked 'Chicago' presents one digit, because it is one letter that fell.
+#
+# WHAT IT STRIKES, per volume, over the committed text of 2026-09-06: 11 in volume 1,
+# 9 in volume 2, 9 in volume 3 and 3 in volume 4 — 32 cards, every one of them read
+# against its body and every one a page list or an illustration note. It cannot strike
+# a Chicago or Cook County card by construction: it disables one bucket, so a card
+# with any other locality bucket keeps it and stays. The stratum genuinely at risk is
+# the wrecked 'Chicago' that reaches the file only through the abbreviation, and the
+# two the ticket names are the two the digit-run test spares.
+#
+# WHAT IT DELIBERATELY LEAVES. 21 further candidates precede the anchor with a digit
+# and are not struck: mostly page lists whose last run this OCR ran into the word in
+# front of it ('1899il09,lll,113.'). Dropping the letter guard would take exactly two
+# of them across all four volumes — measured, not guessed — and would spend the one
+# test that tells a fallen letter from a number to do it. The trade is refused.
+PAGE_LIST_BEFORE = re.compile(r"(?<![A-Za-z])\d{2,}$")
+
+
+def page_number_slot(body: str, m) -> bool:
+    """True when the stroke is a page in the citation's page list, not the state."""
+    pre = body[:m.start() + 1]
+    if not pre.endswith((",", ";")):
+        return False
+    return bool(PAGE_LIST_BEFORE.search(pre[:-1]))
+
+
+# FOUR — THE INQUISITIONS AGAIN, WHERE THE REGNAL YEAR IS TOO WRECKED FOR REGNAL.
+# T-0766. REGNAL above tells 'Calendarium, Hen. III. and Edw. I' apart from 'Cook Co.,
+# Ill.' by the regnal abbreviation standing in front of the stroke, and that abbreviation
+# is three or four letters of the worst text in the volume: it comes back as 'Han,',
+# 'Hee,', 'Ken,', 'Ron,' and 'ben,', and the numeral comes back lowercase. So the guard
+# fires on the cards whose OCR happened to survive and misses the ones whose OCR did not
+# — nbi_v03_0614 is the proof, 'Calendafium, Han, iii. and i n .', volume 1's false
+# positive wearing a different wreck.
+#
+# The discriminator is not the regnal year but the SERIES. Every one of these cards cites
+# the same work, `Calendarium Inquisitionum post mortem`, and 'Calendarium' is eleven
+# letters where the regnal abbreviation is three — long enough to be recognised through
+# the photostat by similarity, which is how this file already matches the works a
+# citation names (`token_like`). The threshold is measured, not guessed: at 0.55 it
+# strikes 38 cards over the four volumes and every one of them is this series; at 0.50 it
+# begins to take real Illinois cards, because 'Blanchard' and 'Cicncharu' — the publisher
+# of the DuPage and Sangamon county histories — are as close to 'calendarium' as some of
+# these wrecks are. The cost of the rule at 0.55 is zero cards, and the measurement is in
+# the README.
+CALENDARIUM = ("calendarium", 0.55)
+
+
+CITATION_YEAR = re.compile(r"(?<!\d)1[5-9]\d\d(?!\d)")
+
+
+def names_only_the_place(body: str, spans: list) -> bool:
+    """True when nothing but the locality is left of the body — no work is cited.
+
+    A citation is an author, a title and a date, and a stanza that has none of them
+    points at no book. What survives the locality is tested for both: any word, and
+    any four-digit year. The year matters because the OCR loses authors wholesale —
+    'Murry f t | Chicago,\'I;....\' . .\' 1895:' is a wrecked reading of a real card,
+    and the date is the part of the citation that came through.
+    """
+    keep, last = [], 0
+    for start, end in sorted(spans):
+        keep.append(body[last:start])
+        last = max(last, end)
+    keep.append(body[last:])
+    rest = "".join(keep)
+    return len(alpha(rest)) <= 1 and not CITATION_YEAR.search(rest)
+
+
 def buckets_of(body: str):
-    out = []
+    out, spans = [], []
     for name, pat in LOCALITY_BUCKETS:
         m = pat.search(body)
         if not m:
             continue
         if name == "illinois_abbreviated" and REGNAL.search(body[:m.start() + 1]):
             continue
+        if name == "illinois_abbreviated" and call_number_slot(body, m):
+            continue
+        if name == "illinois_abbreviated" and page_number_slot(body, m):
+            continue
+        if name == "illinois_abbreviated" and token_like(body, *CALENDARIUM):
+            continue
         out.append(name)
+        spans.append((m.start(), m.end()))
+    if out and names_only_the_place(body, spans):
+        return []
     return out
 
 
@@ -1007,6 +1448,40 @@ def leads_and_follow(records, layers, lead_id):
     return leads, follow, unmatched, unmatched_chi, by_key
 
 
+# ------------------------------------------------- the re-derivation fingerprint
+
+# T-0740. `--parse` is deterministic over TWO inputs: the committed card text, and the
+# layers the leads are looked up in — the households, the 1833-1835 voter lists, the
+# 1840 census pages and the named structures. The card text is gated already (its
+# sha256 is in MANIFEST). The LAYERS are not, and they are the ones that move: a
+# cohort lands, a census page is read, a household is renamed, and the committed
+# leads quietly stop being what a fresh parse produces. Nothing was wrong in the
+# files; they were just old, and the gate could not see it because it re-derived the
+# crosswalk from the COMMITTED leads rather than from the inputs.
+#
+# Re-parsing inside the gate would cost four minutes (64 s a volume, measured), which
+# is four minutes on every commit to catch a drift that happens weekly. So the gate
+# hashes the inputs instead. A fingerprint that still matches means a re-parse is a
+# no-op; one that does not means the leads are stale and must be regenerated AND
+# re-ruled (tools/rule_newberry_leads.py --write), because new leads arrive unruled.
+def parse_fingerprint(domain: Path = None, volumes: list = None) -> str:
+    domain = domain or DOMAIN
+    h = hashlib.sha256()
+    layers = layer_names()
+    h.update(json.dumps(layers, sort_keys=True, ensure_ascii=False).encode("utf-8"))
+    # The WORKS table lives in this file, not in data/, so an edit to it changes the
+    # parse without changing any committed input. T-0582 added a pattern and could
+    # not commit the re-parse; that is the case this line covers.
+    h.update(json.dumps([[w["key"], w["pattern"].pattern, w.get("fuzzy")]
+                         for w in WORKS], sort_keys=True,
+                        ensure_ascii=False).encode("utf-8"))
+    for vol in sorted(volumes if volumes is not None else VOLUMES):
+        path = domain / "text" / ("vol_%02d_locality_cards.txt" % vol)
+        h.update(("vol_%02d:" % vol).encode("utf-8"))
+        h.update(sha256_file(path).encode("utf-8") if path.exists() else b"absent")
+    return h.hexdigest()
+
+
 def parse(volume: int) -> dict:
     text_name, _lines, cards = read_committed_cards(volume)
     layers = layer_names()
@@ -1044,19 +1519,65 @@ def parse(volume: int) -> dict:
                      % (", ".join(card["buckets"]) or "a locality"),
         })
 
+    # The crop windows overlap, so a card on a column boundary is read twice — once
+    # in full and once as a truncated sliver. The sliver keeps its record, because
+    # the ink is real and the ids are positional, and is marked and withheld from
+    # every count below. See find_slivers().
+    slivers = find_slivers(cards)
+    for i, j in slivers.items():
+        records[i]["normalized"]["sliver_of"] = records[j]["id"]
+        records[i]["notes"] = (
+            "A COLUMN SLIVER: the leftmost few points of %s, which the pass over "
+            "column %d read in full, caught by the pass over column %d because the "
+            "crop windows overlap by 27 points. Its body is a byte-exact prefix of "
+            "that card's. It is kept because the ink is real and it was really read, "
+            "and it is withheld from this volume's counts, from the leads and from "
+            "the reading order, because it is not a second card."
+            % (records[j]["id"], cards[j]["column"], cards[i]["column"]))
+    # The same overlap read from the other end, and on a WIDE page (T-0769). The
+    # left edge of a window falls inside the previous column, so the card it
+    # assembles OPENS with that column's tail — heading and body both — and the
+    # locality patterns match on text that is not on this card. Every one of the
+    # fifteen names a locality ONLY inside the run, so every one is withheld: it was
+    # kept for ink it does not carry. See find_bleeds().
+    bleeds = find_bleeds(cards)
+    for i, (j, length) in bleeds.items():
+        run = collapse(cards[i]["body"])[:length]
+        records[i]["normalized"]["bleed_of"] = records[j]["id"]
+        records[i]["normalized"]["bleed_run"] = run
+        records[i]["normalized"]["localities_off_own_ink"] = buckets_of(
+            collapse(cards[i]["body"])[length:])
+        records[i]["notes"] = (
+            "A BLED-IN BODY: this page is wide enough that the crop window over "
+            "column %d begins inside column %d, so the pass read the tail of %s "
+            "— %r, %d characters, byte-exact — and glued it to the front of this "
+            "card. The heading is cut in the same place, which is how the direction "
+            "is known. The card's own ink names %s, so the locality that kept it is "
+            "not on it; the record is held because the ink is real and it was really "
+            "read, and it is withheld from this volume's counts, from the leads and "
+            "from the reading order."
+            % (cards[i]["column"], cards[j]["column"], records[j]["id"], run, length,
+               ", ".join(records[i]["normalized"]["localities_off_own_ink"])
+               or "no locality at all"))
+    withheld = set(slivers) | set(bleeds)
+    live = [r for k, r in enumerate(records) if k not in withheld]
+
     leads, follow, unmatched, unmatched_chi, by_key = leads_and_follow(
-        records, layers, lambda key, layer: "lead_v%02d_%s_%s" % (volume, key, layer))
+        live, layers, lambda key, layer: "lead_v%02d_%s_%s" % (volume, key, layer))
 
     counts = {
-        "cards": len(records),
-        "by_locality": {name: sum(1 for r in records
+        "cards": len(live),
+        "records": len(records),
+        "slivers": len(slivers),
+        "bled_in_bodies": len(bleeds),
+        "by_locality": {name: sum(1 for r in live
                                   if name in r["normalized"]["localities"])
                         for name, _ in LOCALITY_BUCKETS},
         "distinct_surname_keys": len(by_key),
         "leads": len(leads),
         "leads_by_layer": {layer: sum(1 for ld in leads if ld["layer"] == layer)
                            for layer in sorted(layers)},
-        "chicago_or_cook_cards": sum(1 for r in records
+        "chicago_or_cook_cards": sum(1 for r in live
                                      if r["normalized"]["chicago_or_cook"]),
         "cards_matching_no_known_work": len(unmatched),
         "chicago_or_cook_cards_matching_no_known_work": len(unmatched_chi),
@@ -1071,6 +1592,8 @@ def parse(volume: int) -> dict:
         "source_id": SOURCE_ID,
         "volume": volume,
         "counts": counts,
+        "sliver_scan": scan_slivers(cards, [r["id"] for r in records],
+                                    read_by_of(volume)),
         "records": records,
     })
     index_path = DOMAIN / "entries.json"
@@ -1100,7 +1623,10 @@ def parse(volume: int) -> dict:
     for vol in parsed:
         path = DOMAIN / "records" / ("entries_vol_%02d.json" % vol)
         if path.exists():
-            all_records.extend(load(path).get("records") or [])
+            all_records.extend(
+                r for r in (load(path).get("records") or [])
+                if not (r.get("normalized") or {}).get("sliver_of")
+                and not (r.get("normalized") or {}).get("bleed_of"))
     # THE ID KEEPS THE VOLUME, and it is the FIRST volume the surname appears in.
     # lead_crosswalk.json (T-0590) anchors 1,248 references at `lead_v01_*`, so a
     # surname filed in both volumes must keep the id its ruling was written against;
@@ -1122,6 +1648,17 @@ def parse(volume: int) -> dict:
                 "merge: see crosswalk.json, which holds none and says why.",
         "generated_by": "tools/read_newberry_index.py --parse",
         "volumes": parsed,
+        # What this file re-derives from. --check recomputes it and fails when it has
+        # moved, so a stale leads.json is found by the gate rather than by the next
+        # run that happens to touch the works table (T-0740).
+        "derives_from": {
+            "fingerprint": parse_fingerprint(volumes=parsed),
+            "_doc": "sha256 over the layers the leads are looked up in, the WORKS "
+                    "table, and the committed card text of every parsed volume. "
+                    "Recomputed by --check; a mismatch means --parse is no longer a "
+                    "no-op and the leads must be regenerated and re-ruled.",
+            "layer_counts": {name: len(rows) for name, rows in sorted(layers.items())},
+        },
         "counts": {
             "cards": len(all_records),
             "distinct_surname_keys": len(by_key_all),
@@ -1252,6 +1789,114 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
                 bad.append("%s: the localities do not re-derive from the committed "
                            "body line" % where)
 
+    # THE SLIVER MARK, BOTH WAYS (T-0601). A record that calls itself a sliver has to
+    # be one on the committed text, and — the half that actually earns its keep —
+    # every sliver the committed text carries has to be marked. Without the second
+    # clause a records file parsed before the rule existed goes on counting one card
+    # twice and nothing says so; with it, the count and the text cannot drift apart.
+    for path in sorted((domain / "records").glob("entries_vol_*.json")):
+        doc = load(path)
+        label = "records/" + path.name
+        volume = doc.get("volume")
+        text_path = domain / "text" / ("vol_%02d_locality_cards.txt" % (volume or 0))
+        if not text_path.exists():
+            continue
+        tlines = text_path.read_text(encoding="utf-8").splitlines()
+        recs = doc.get("records") or []
+        cards, moored = [], True
+        for rec in recs:
+            loc = rec.get("locator") or {}
+            pair = loc.get("lines") or []
+            if len(pair) != 2 or not (1 <= pair[1] <= len(tlines)):
+                moored = False
+                break
+            cards.append({"page": loc.get("index_page"), "column": loc.get("column"),
+                          "heading": re.sub(r"^p\d{4} c\d  ", "",
+                                            tlines[pair[0] - 1]),
+                          "body": tlines[pair[1] - 1][8:]})
+        if not moored:
+            continue                      # the locator gate above has already said so
+        found = find_slivers(cards)
+        for i, rec in enumerate(recs):
+            marked = (rec.get("normalized") or {}).get("sliver_of")
+            truth = recs[found[i]].get("id") if i in found else None
+            if truth and not marked:
+                bad.append("%s %s: a column sliver of %s that the records do not mark "
+                           "— the domain is counting one card twice"
+                           % (label, rec.get("id"), truth))
+            elif marked and not truth:
+                bad.append("%s %s: marked a sliver of %s, and the committed text does "
+                           "not make it one" % (label, rec.get("id"), marked))
+            elif marked and marked != truth:
+                bad.append("%s %s: marked a sliver of %s, and the card it truncates on "
+                           "the committed text is %s"
+                           % (label, rec.get("id"), marked, truth))
+        # THE BLEED MARK, BOTH WAYS (T-0769), and for the same reason the sliver
+        # gate runs both ways: a records file parsed before this rule existed goes
+        # on counting a card that was kept for a locality printed in the column to
+        # its left, and nothing says so.
+        bled = find_bleeds(cards)
+        for i, rec in enumerate(recs):
+            marked = (rec.get("normalized") or {}).get("bleed_of")
+            truth = recs[bled[i][0]].get("id") if i in bled else None
+            if truth and not marked:
+                bad.append("%s %s: opens with the tail of %s in the column to its "
+                           "left and the records do not mark it — the domain is "
+                           "counting a card kept for a locality that is not on it"
+                           % (label, rec.get("id"), truth))
+            elif marked and not truth:
+                bad.append("%s %s: marked a bled-in body off %s, and the committed "
+                           "text does not make it one"
+                           % (label, rec.get("id"), marked))
+            elif marked and marked != truth:
+                bad.append("%s %s: marked a bled-in body off %s, and the card whose "
+                           "tail it opens with on the committed text is %s"
+                           % (label, rec.get("id"), marked, truth))
+            elif marked:
+                want = collapse(cards[i]["body"])[:bled[i][1]]
+                if (rec.get("normalized") or {}).get("bleed_run") != want:
+                    bad.append("%s %s: bleed_run is not the run the committed text "
+                               "shares with %s" % (label, rec.get("id"), marked))
+        overlap = set(found) & set(bled)
+        if overlap:
+            bad.append("%s: %d record(s) marked both a column sliver and a bled-in "
+                       "body — the two halves of the overlap cannot both hold"
+                       % (label, len(overlap)))
+        net = len(recs) - len(set(found) | set(bled))
+        stated = (doc.get("counts") or {}).get("cards")
+        if stated is not None and stated != net:
+            bad.append("%s: counts.cards says %s, and the file holds %d records of "
+                       "which %d are column slivers and %d are bled-in bodies — %d "
+                       "cards" % (label, stated, len(recs), len(found), len(bled), net))
+        stated_bleeds = (doc.get("counts") or {}).get("bled_in_bodies")
+        if stated_bleeds is not None and stated_bleeds != len(bled):
+            bad.append("%s: counts.bled_in_bodies says %s and the committed text "
+                       "carries %d" % (label, stated_bleeds, len(bled)))
+
+        # THE SCAN, RE-DERIVED (T-0810). `byte_exact: 0` is what the sliver rule gives
+        # for an OCR reading whether or not the volume has slivers, because its two
+        # readings of the overlap come from two tesseract runs and cannot be
+        # byte-identical. Volume 4 carried that zero from the day it was re-read and
+        # nothing had ever looked. So every volume now states its scan, and the gate
+        # rebuilds it here: a records file with no scan is a reading nobody checked,
+        # and a scan whose figures have drifted from the text beside them is one the
+        # counts above cannot see.
+        stated_scan = doc.get("sliver_scan")
+        if not stated_scan:
+            bad.append("%s: no sliver_scan — this reading has never been scanned for "
+                       "column slivers, and counts.slivers alone cannot say whether "
+                       "that is a clean volume or an unasked question (T-0810)"
+                       % label)
+        else:
+            ids = [r.get("id") for r in recs]
+            truth_scan = scan_slivers(cards, ids, read_by_of(volume, domain))
+            for key in ("read_by", "boundary_pairs", "byte_exact",
+                        "max_prefix_agreement", "max_prefix_agreement_on"):
+                if stated_scan.get(key) != truth_scan[key]:
+                    bad.append("%s: sliver_scan.%s says %r and the committed text "
+                               "gives %r" % (label, key, stated_scan.get(key),
+                                             truth_scan[key]))
+
     cross_path = domain / "crosswalk.json"
     if cross_path.exists():
         cross = load(cross_path)
@@ -1261,7 +1906,22 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
 
     leads_path = domain / "leads.json"
     if leads_path.exists():
-        for lead in load(leads_path).get("leads") or []:
+        leads_doc = load(leads_path)
+        # T-0740: the committed leads must still be what a fresh --parse produces.
+        want = parse_fingerprint(domain=domain,
+                                 volumes=leads_doc.get("volumes") or None)
+        got = (leads_doc.get("derives_from") or {}).get("fingerprint")
+        if not got:
+            bad.append("leads.json carries no derives_from.fingerprint — it was "
+                       "written before the re-derivation gate; re-run "
+                       "tools/read_newberry_index.py --parse --volume 1..4")
+        elif got != want:
+            bad.append("leads.json does not re-derive from its inputs: the layers, "
+                       "the WORKS table or the committed card text have moved under "
+                       "it. Re-run --parse over every volume in leads.json's "
+                       "`volumes`, then tools/rule_newberry_leads.py --write — new "
+                       "leads arrive unruled")
+        for lead in leads_doc.get("leads") or []:
             if not lead.get("candidates"):
                 bad.append("leads.json %s: a lead with no candidate" % lead.get("id"))
             for cand in lead.get("candidates") or []:
@@ -1292,16 +1952,30 @@ def check(domain: Path = None, payload_root: Path = None) -> list:
     sample_path = domain / "precision_sample.json"
     if sample_path.exists():
         sample = load(sample_path)
-        read = set()
+        read, withheld = set(), {}
         for path in sorted((domain / "records").glob("entries_vol_*.json")):
             for rec in load(path).get("records") or []:
                 read.add(rec.get("as_read"))
+                mark = (rec.get("normalized") or {}).get("bleed_of")
+                if mark:
+                    withheld[rec.get("as_read")] = (rec.get("id"), mark)
         rows = sample.get("records") or []
         for row in rows:
             if row.get("as_read") not in read:
                 bad.append("precision_sample.json %s: the card it adjudicates is no "
                            "longer in the records — re-draw the sample, do not carry "
                            "its number forward" % row.get("id"))
+            # T-0769. A sampled row is a verdict reached by eye on the leaf; a bleed
+            # mark is a verdict reached by rule that the locality is printed in the
+            # column to the left. The two cannot both stand on one card, and the
+            # sample is the older and the better-evidenced of them: a row that turns
+            # up marked is the RULE to re-argue, not the reading to overwrite.
+            elif row.get("as_read") in withheld:
+                rid, mark = withheld[row["as_read"]]
+                bad.append("precision_sample.json %s: %s is marked a bled-in body off "
+                           "%s and is adjudicated %r by eye — re-argue the rule or "
+                           "re-draw the row, and do not carry both"
+                           % (row.get("id"), rid, mark, row.get("verdict")))
             if row.get("verdict") not in ("locality_correct", "not_demonstrated"):
                 bad.append("precision_sample.json %s: verdict %r is outside the two "
                            "this file may reach" % (row.get("id"), row.get("verdict")))
@@ -1373,10 +2047,138 @@ def self_test() -> int:
     ok &= run("MANIFEST naming the wrong Internet Archive item",
               lambda d: dump(d / "text" / "MANIFEST.json",
                              dict(load(d / "text" / "MANIFEST.json"), ia_item="wrong")))
+    def unmark_sliver(dom):
+        for path in sorted((dom / "records").glob("entries_vol_*.json")):
+            doc = load(path)
+            for rec in doc.get("records") or []:
+                if (rec.get("normalized") or {}).get("sliver_of"):
+                    rec["normalized"].pop("sliver_of")
+                    doc["counts"]["cards"] = doc["counts"]["cards"] + 1
+                    dump(path, doc)
+                    return
+        raise AssertionError("no sliver in the committed records to unmark")
+    ok &= run("a column sliver the records no longer mark", unmark_sliver)
+
+    def invent_sliver(dom):
+        path = next((dom / "records").glob("entries_vol_*.json"))
+        doc = load(path)
+        for rec in doc.get("records") or []:
+            if not (rec.get("normalized") or {}).get("sliver_of"):
+                rec["normalized"]["sliver_of"] = doc["records"][0]["id"]
+                break
+        dump(path, doc)
+    ok &= run("a card marked a sliver of one it does not truncate", invent_sliver)
+
+    def miscount_slivers(dom):
+        # The fixture has to break a volume that HAS a sliver to deduct. It used to
+        # take whichever the glob yielded first, which was safe only while every
+        # volume carried one. T-0775's OCR re-read of volume 4 rewrote all its cards
+        # and carries no sliver count at all (T-0810), so on a glob that lands there
+        # `cards` already equals `len(records)`, the fixture changes nothing and the
+        # assertion silently stops testing anything. Pick a volume that can be broken.
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("slivers")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a sliver to miscount — "
+                                 "this fixture can no longer test what it claims to")
+        doc = load(path)
+        doc["counts"]["cards"] = len(doc["records"])
+        dump(path, doc)
+    ok &= run("a volume counting its slivers as cards", miscount_slivers)
+
+    def drop_sliver_scan(dom):
+        path = next(iter(sorted((dom / "records").glob("entries_vol_*.json"))))
+        doc = load(path)
+        doc.pop("sliver_scan", None)
+        dump(path, doc)
+    ok &= run("a reading nobody scanned for column slivers", drop_sliver_scan)
+
+    def stale_sliver_scan(dom):
+        # The figure a re-read would move. It is deliberately NOT byte_exact: that one
+        # is already covered by the counts, and what T-0810 is about is the half of the
+        # scan the counts cannot see.
+        path = next(iter(sorted((dom / "records").glob("entries_vol_*.json"))))
+        doc = load(path)
+        doc["sliver_scan"]["boundary_pairs"] = doc["sliver_scan"]["boundary_pairs"] + 1
+        dump(path, doc)
+    ok &= run("a sliver scan that no longer re-derives from the committed text",
+              stale_sliver_scan)
+
+    def unmark_bleed(dom):
+        for path in sorted((dom / "records").glob("entries_vol_*.json")):
+            doc = load(path)
+            for rec in doc.get("records") or []:
+                if (rec.get("normalized") or {}).get("bleed_of"):
+                    rec["normalized"].pop("bleed_of")
+                    rec["normalized"].pop("bleed_run", None)
+                    doc["counts"]["cards"] = doc["counts"]["cards"] + 1
+                    doc["counts"]["bled_in_bodies"] = doc["counts"]["bled_in_bodies"] - 1
+                    dump(path, doc)
+                    return
+        raise AssertionError("no bled-in body in the committed records to unmark")
+    ok &= run("a bled-in body the records no longer mark", unmark_bleed)
+
+    def invent_bleed(dom):
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("bled_in_bodies")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a bled-in body")
+        doc = load(path)
+        # Not the first record, and not off itself: the fixture has to name a real
+        # OTHER card, or it tests self-reference rather than the mark.
+        for rec in doc["records"][1:]:
+            if not (rec.get("normalized") or {}).get("bleed_of"):
+                rec["normalized"]["bleed_of"] = doc["records"][0]["id"]
+                rec["normalized"]["bleed_run"] = "x" * BLEED_MIN_RUN
+                break
+        dump(path, doc)
+    ok &= run("a card marked a bled-in body off one whose tail it does not open with",
+              invent_bleed)
+
+    def miscount_bleeds(dom):
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("bled_in_bodies")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a bled-in body to "
+                                 "miscount — this fixture can no longer test what it "
+                                 "claims to")
+        doc = load(path)
+        doc["counts"]["cards"] = len(doc["records"]) - (doc["counts"].get("slivers") or 0)
+        dump(path, doc)
+    ok &= run("a volume counting its bled-in bodies as cards", miscount_bleeds)
+
+    def restate_bleed_run(dom):
+        path = next((p for p in sorted((dom / "records").glob("entries_vol_*.json"))
+                     if (load(p).get("counts") or {}).get("bled_in_bodies")), None)
+        if path is None:
+            raise AssertionError("no committed volume carries a bled-in body")
+        doc = load(path)
+        for rec in doc.get("records") or []:
+            if (rec.get("normalized") or {}).get("bleed_of"):
+                rec["normalized"]["bleed_run"] = rec["normalized"]["bleed_run"][:-1]
+                break
+        dump(path, doc)
+    ok &= run("a bleed_run shortened to something the two cards do not share",
+              restate_bleed_run)
+
     ok &= run("a merge in the crosswalk",
               lambda d: dump(d / "crosswalk.json",
                              dict(load(d / "crosswalk.json"),
                                   merges=[{"into": "Adams", "from": "Adams"}])))
+
+    def stale_fingerprint(dom):
+        doc = load(dom / "leads.json")
+        doc.setdefault("derives_from", {})["fingerprint"] = "0" * 64
+        dump(dom / "leads.json", doc)
+    ok &= run("committed leads that no longer re-derive from their inputs",
+              stale_fingerprint)
+
+    def no_fingerprint(dom):
+        doc = load(dom / "leads.json")
+        doc.pop("derives_from", None)
+        dump(dom / "leads.json", doc)
+    ok &= run("committed leads with no re-derivation fingerprint at all",
+              no_fingerprint)
 
     def drop_rule(dom):
         doc = load(dom / "leads.json")
@@ -1511,6 +2313,57 @@ def self_test() -> int:
     ok &= run("an OCR shard committed that MANIFEST does not name",
               lambda d: ocr_manifest(d, lambda dom, root, path: shard(
                   root, 1, 9, 9, {"9": BLANK})))
+
+    # The reading rules themselves, on the cards that bought each one (T-0600, and
+    # REGNAL before it). These are not gate assertions — they are what the extractor
+    # keeps and refuses — so they are asserted directly on `buckets_of` and named by
+    # the record whose adjudication is the evidence.
+    for label, body, want in (
+        ("the state banner absorbed as a card body (nbi_v02_1675)", "Illinois.", []),
+        ("the banner in the OCR's own spelling (nbi_v02_1027)", "IlllNOiS.", []),
+        ("a call-number column wrecked down to the stroke", "111. P 85132.8", []),
+        ("a call number standing where the locality would (nbi_v02_1106)",
+         "III, Hepgoed fam. (He'agaod. W.l 1898. See lad", []),
+        ("the regnal Calendarium, which REGNAL already refused",
+         "England. (Roberts, C., Ed. Calendarium, Hen. III. and Edw. I. 1865.)", []),
+        ("the regnal Calendarium with its regnal year wrecked (nbi_v03_0614, T-0766)",
+         "\u2014 Ingland. (Hoberta, C. _ Calendafium, Han, iii. and i n . |", []),
+        ("the same series where the title itself is wrecked (nbi_v01_hibald, T-0766)",
+         "tnpltnd. IRc4xrlt. C., Ed. Ctllndvlum, Hex, ill. tod idw I.", []),
+        ("a county history the Calendarium rule must not take (T-0766's measured cost)",
+         "j* \" 6 ' Co., Ill, (Cicncharu, R.) I882l pt.2t", ["illinois_abbreviated"]),
+        ("the regnal Calendarium with its regnal year wrecked (T-0766)",
+         "\u2014 Ingland. (Hoberta, C. _ Calendafium, Han, iii. and i n . |", []),
+        ("the same series where the title itself is wrecked (T-0766)",
+         "tnpltnd. IRc4xrlt. C., Ed. Ctllndvlum, Hex, ill. tod idw I.", []),
+        ("a county history the Calendarium rule must not take (T-0766's measured cost)",
+         "j* \" 6 ' Co., Ill, (Cicncharu, R.) I882l pt.2t", ["illinois_abbreviated"]),
+        ("a wrapped locality, which the call-number rule must not touch",
+         "III. f(Moses, J, j n d Kirkland, J.) I89J,", ["illinois_abbreviated"]),
+        ("a wrecked reading that still carries its date (nbi_v01_1796's class)",
+         "Chicago,'I;....' . .' 1895:", ["chicago"]),
+        ("an ordinary Cook County card", "Cook Co.. I l l (La Sa'le Bock Co., Pub.l I9CB,",
+         ["cook_county"]),
+        # T-0765 — the page list, and the two wrecked Chicagos it must not reach.
+        ("a page list that reaches page 111 (nbi_v01_1054)",
+         "Ura.H.D.,Ed.) v . l . 1003:145,111.", []),
+        ("the illustration note, page 203 illustrated (nbi_v01_1707)",
+         "\u2014Delano fam. (Delano, J, A.) 1899: 203,ill.", []),
+        ("Chicago with its trailing o read as a nought (nbi_v02_0809)",
+         "\u00ab\u00abg0, III. ((-'cs,'. i . \u2022 .", ["illinois_abbreviated"]),
+        ("Chicago wrecked to a stop and a nought (nbi_v02_1144)",
+         "> \u2014 Chiear.0, 111., Create and conte of", ["illinois_abbreviated"]),
+        ("a page list the OCR ran into the word before it, kept on purpose (nbi_v03_0596)",
+         "I \\ (Boogher. W.P.) 1899il09,lll,113.", ["illinois_abbreviated"]),
+    ):
+        got = buckets_of(body)
+        if got != want:
+            print("  DID NOT HOLD: %s — buckets_of(%r) = %r, wanted %r"
+                  % (label, body, got, want))
+            ok = False
+        else:
+            print("  holds: %s" % label)
+            fired.append(label)
 
     if not ok:
         print("SELF-TEST FAIL")

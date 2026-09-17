@@ -56,8 +56,8 @@ sys.path.insert(0, str(ROOT / "tools"))
 # T-E2's refused ground is resolved from the committed traces rather than stored, so the
 # generator asks the same command the gate does instead of keeping its own copy.
 from band_notes import split_notes  # noqa: E402
-from measure_no_build_ground import bar_ring, inside as point_in_ring  # noqa: E402
-from measure_no_build_ground import reservation_ring  # noqa: E402
+from measure_no_build_ground import inside as point_in_ring  # noqa: E402
+from measure_no_build_ground import region_ring as no_build_ring  # noqa: E402
 # T-0112. The clapboard stock is dealt at the end of the parcel — over all fourteen
 # blocks at once, because a roof on one block's alley face stands within 60 m of the
 # next block's — since it is the one form value that depends on where a building's
@@ -66,8 +66,16 @@ from siding_stock import deal_records as deal_siding  # noqa: E402
 
 
 def no_build_rings() -> dict[str, list[tuple[float, float]]]:
-    ring, _madison, _section = reservation_ring()
-    return {"fort_dearborn_reservation": ring, "river_mouth_sand_bar": bar_ring()}
+    """Every region the refusal file authors, resolved the way that region's entry says.
+
+    Named by the FILE rather than listed here, so a region added there is refused here on
+    the same commit. Until T-0891 this function held its own copy of the two rings, and
+    the gate and the generator could have come to disagree about what ground exists
+    without either of them saying so.
+    """
+    refused = json.loads(
+        (DATA / "reconstruction" / "1835_no_build_ground.json").read_text(encoding="utf-8"))
+    return {region["id"]: no_build_ring(region) for region in refused["regions"]}
 
 # An adopted roof's `occupants` block is authored ONCE, in the household programme's
 # ledger, and handed to whichever generator owns the roof — the arrangement the three
@@ -79,6 +87,7 @@ from inferred_occupancy import occupancy  # noqa: E402
 # Which lot is already taken is the SAME question the schedule asks before it deals this
 # parcel its roofs, so it is asked in one place and imported by both (ROADMAP T-A7).
 from plat_occupancy import LOT_MARGIN_M, exclusive_lots, footprints  # noqa: E402
+from plat_occupancy import lot_holders, shared_business_fronts  # noqa: E402
 import lot_addresses  # noqa: E402
 
 # The face of a committed block — the line a party-line street row stands on, the way
@@ -1245,14 +1254,55 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
         raise SystemExit(f"{block['block_id']}: {len(records)} roofs exceed the block's "
                          f"{claimed['headroom']} of headroom")
 
+    dealt_p = claimed.get("dealt_principal", claimed["principal"])
+    dealt_a = claimed.get("dealt_ancillary", claimed["ancillary"])
+    # T-0834. THE SCHEDULE'S SIZING IS CONDITIONAL, AND THE CONDITION IS GATED HERE.
+    # `reconcile_665.block_rooms` sizes a block's principal room in party-line units —
+    # ROW_UNITS_PER_LOT of them per free lot — and this generator places by whole LOTS:
+    # an ordinary principal roof stands ON a free lot and one lot never carries two, so
+    # the party-line density is reachable only along a frontage run the recipe NAMES.
+    # A parcel that gives its run k of its free lots can stand
+    #
+    #     (free_lots - k - 1) + ROW_UNITS_PER_LOT * k
+    #
+    # principal roofs, and `principal_room` is that at k = free_lots - 1. Between those
+    # two numbers sat a gap nothing measured: the programme said roofs were dealt, the
+    # ground said they were not placed, and the difference went into the district
+    # balance unremarked — `blk_south_water_clark`'s second deal (T-0431) is where it
+    # was found, and `blk_south_water_franklin`'s (T-0430) is where the same two shapes
+    # agreed by accident. The schedule now states the condition per unit as
+    # `row_lots_required`; this refuses a parcel that does not meet it, so a deal too
+    # big for its ground fails at the parcel that would have quietly shed it.
+    #
+    # The four phase-3 recipes written before ROADMAP T-A6 carry no `free_lots` — the
+    # schedule did not size in lots yet — so there is nothing to hold them to and they
+    # are passed. That is a gap in the OLD recipes, not a relaxation of the rule.
+    free_lots = claimed.get("free_lots")
+    if free_lots is not None:
+        ceiling = max(0, free_lots - 1)
+        row_lots = len((block.get("frontage") or {}).get("lots") or ())
+        if row_lots > ceiling:
+            raise SystemExit(f"{block['block_id']}: the frontage run is dealt {row_lots} "
+                             f"of the block's {free_lots} free lot(s), which leaves it no "
+                             f"open lot. A run's lots are free lots like any other and "
+                             f"the block keeps one open (T-0834)")
+        can_stand = ceiling + row_lots * (ROW_UNITS_PER_LOT - 1)
+        if dealt_p > can_stand:
+            raise SystemExit(f"{block['block_id']}: the schedule dealt {dealt_p} "
+                             f"principal roof(s) and this parcel has ground for "
+                             f"{can_stand} — {ceiling} on its free lots, less the one it "
+                             f"keeps open, plus {row_lots * (ROW_UNITS_PER_LOT - 1)} the "
+                             f"frontage run's {row_lots} lot(s) add at "
+                             f"{ROW_UNITS_PER_LOT} units to the lot. Name the run more "
+                             f"lots or take a smaller deal; a roof with nowhere to stand "
+                             f"is not deferrable, because no family is refused (T-0834)")
+
     # A parcel may build FEWER roofs than the schedule dealt it, but only by naming
     # each missing slot and the refusal it rests on. Without this, "the block carries
     # nine roofs" and "the schedule dealt it ten" are two numbers in two files and
     # nothing makes them meet — which is how a slot gets dropped for being awkward
     # rather than for being wrong, and the ledger reads as though it were never dealt.
     deferred = block.get("deferred") or []
-    dealt_p = claimed.get("dealt_principal", claimed["principal"])
-    dealt_a = claimed.get("dealt_ancillary", claimed["ancillary"])
     shortfall = (dealt_p - claimed["principal"]) + (dealt_a - claimed["ancillary"])
     if shortfall < 0:
         raise SystemExit(f"{block['block_id']}: the parcel claims to build more roofs "
@@ -1389,8 +1439,30 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # as it was put to him and all three tests the clause has to pass; everything
     # physical below — the lot margin, the corridor, the three-metre separation — is
     # untouched by it and still refuses what it always refused.
+    # T-0432. THE OTHER DEAL'S ROOFS ARE NOT A STRANGER'S. `mine_ids` is this ENTRY's
+    # records, and on a block dealt once that is every anonymous roof on it — so this
+    # question has always been asked of ground the parcel itself had not touched. A
+    # second deal breaks the coincidence: read with only its own records excluded, the
+    # first deal's run reads the second deal's cottages as somebody else's houses, and
+    # the business-front clause switches off underneath the lot they share the moment a
+    # third claimant stands on it. The whole parcel is excluded instead, which restores
+    # the question the clause was ruled on — was this lot free of everything THIS
+    # PROGRAMME did not build — and leaves every physical gate reading the full town.
+    # What it does not relax is density: the ceiling counted across deals, above, is
+    # what now refuses a lot the programme has already filled.
+    parcel = {sid for sid, _ in footprints(datum)
+              if sid.startswith(f"{PREFIX}{block['block_id'][len('blk_'):]}_")}
     occupied = exclusive_lots({"blocks": [grid]}, datum,
-                              exclude=mine_ids).get(block["block_id"], {})
+                              exclude=mine_ids | parcel).get(block["block_id"], {})
+    # The lots the owner's clause is HOLDING OPEN on this block — a documented store at
+    # the street on a declared business-front lot, which `occupied` therefore does not
+    # report. T-1053: while every declared front lot was also ground the run was dealt,
+    # such a lot always landed in `built on by this parcel` and the class audit below
+    # never had to name it. A front that reaches past the run's own ground does, and a
+    # lot that is neither built on, occupied nor open would otherwise fail that audit
+    # for carrying a store the clause itself says does not exhaust it.
+    front_held = shared_business_fronts({"blocks": [grid]}, datum,
+                                        exclude=mine_ids | parcel).get(block["block_id"], {})
     for index in (frontage["lots"] if frontage else []):
         holder = occupied.get(index)
         if holder is not None:
@@ -1445,11 +1517,64 @@ def check_block(block: dict, grid: dict, frames: list[dict], records: list[dict]
     # A lot the owner's business-front clause admits is NOT its own class: it is built
     # on by this parcel — the run stands over it — and it also carries a documented
     # store at the street. `occupied` is `exclusive_lots` above, so the clause has
-    # already taken it out of "already carrying a roof" and the four classes stay
-    # disjoint, which is the only property this check has ever needed of them.
+    # already taken it out of "already carrying a roof".
+    #
+    # T-0432. THE TWO DEALS MAY MEET ON ONE LOT, and until this block nothing had asked
+    # them to. The four sets above were held pairwise disjoint, which made "built on by
+    # another deal" a PROHIBITION as well as an account: a lot the first deal's run
+    # stood over could never be dealt again. That was true of every block so far only
+    # because no second deal had come back to one — `blk_south_water_clark`'s two deals
+    # took lots 4 and 2, and never met. It is not true here. The first deal on this
+    # block declared a run over lots 0, 2 and 4 in August, under the ceiling of one
+    # principal roof per lot; T-0079 retired that ceiling, and this block's whole
+    # remaining headroom stands on lot 2 — its one free business front, the other free
+    # lot being the corner the schedule's own sizing reserves. Refusing it would have
+    # been the OLD ceiling enforcing itself through an accounting rule, a run at a time,
+    # after the standard that retired it had already been written down.
+    #
+    # So the overlap is admitted and BOUNDED, and the bound is the density standard's
+    # own, counted across deals rather than inside one: `ROW_UNITS_PER_LOT` roofs may
+    # stand on a lot, and the roofs already standing on it are read off the committed
+    # ground by the same module the rest of this gate asks. Nothing else relaxes — the
+    # lot margin, the corridor, the three-metre separation and the run's own strip all
+    # still refuse what they always refused, and on this lot the metres bind first: the
+    # frontage clear of Frederick Thomas's shop takes two roofs and the ceiling takes
+    # two, which is two reasons agreeing rather than one rule doing the work.
+    shared_with_sibling = set(used) & set(sibling_lots)
+    if shared_with_sibling:
+        standing = lot_holders({"blocks": [grid]}, datum, exclude=mine_ids)
+        standing = standing.get(block["block_id"], {})
+        placed = {sid: poly for sid, poly in mine}
+        for index in sorted(shared_with_sibling):
+            # ROW UNITS, not roofs. A yard building is not in the street row and was
+            # never what `ROW_UNITS_PER_LOT` counted — the ceiling is a statement about
+            # how tightly a frontage packs, and a privy behind the row does not pack it.
+            # A building this programme did not write carries no inventory class and is
+            # counted: Frederick Thomas's shop stands in this row whoever built it.
+            already = sum(1 for sid in standing.get(index, ())
+                          if not is_ancillary_record(sid))
+            # Where a row unit STANDS, not which lots its run was dealt. A run is one
+            # stretch of frontage across several lots and its units fall where the
+            # chain of party walls puts them — the first deal on this block declared
+            # lots 0, 2 and 4 and stood all three of its units on lot 4 — so counting a
+            # run's whole length against every lot it was dealt would refuse a lot that
+            # carries none of it.
+            lot = frames[index]["polygon"]
+            adding = sum(
+                1 for r in records
+                if r["reconstruction"]["inventory_class"] == "principal_functional"
+                and any(point_in_polygon(pt, lot) for pt in placed[r["id"]]))
+            if already + adding > ROW_UNITS_PER_LOT:
+                raise SystemExit(
+                    f"{block['block_id']}: lot {index} already carries {already} roof(s) "
+                    f"and this deal adds {adding}, past the {ROW_UNITS_PER_LOT} units a "
+                    f"lot of this grid holds at the row's own measured spacing. A second "
+                    f"deal on a lot is denser than the first, not unbounded by it")
     classes = {"built on by this parcel": set(used),
-               "built on by another deal on this block": set(sibling_lots),
+               "built on by another deal on this block": set(sibling_lots) - set(used),
                "already carrying a roof": set(occupied) - set(sibling_lots),
+               "carrying a documented store on this block's business front":
+                   set(front_held) - set(used) - set(sibling_lots) - set(occupied),
                "named open in the recipe": set(named_open)}
     for name, indices in classes.items():
         for other_name, other_indices in classes.items():
@@ -1596,6 +1721,19 @@ def claimed_lots(block: dict) -> set[int]:
     return lots | {int(index) for index in (block.get("frontage") or {}).get("lots", [])}
 
 
+def is_ancillary_record(structure_id: str) -> bool:
+    """Whether a COMMITTED record is a yard building, read off the record itself.
+
+    Only this generator's own records carry an inventory class; a documented building
+    has none and is not ancillary — it is a roof in the row like any other.
+    """
+    path = STRUCTURES / f"{structure_id}.json"
+    if not path.exists():
+        return False
+    recon = load(path).get("reconstruction") or {}
+    return recon.get("inventory_class") == "ancillary"
+
+
 def siblings(blocks: list[dict], block: dict) -> frozenset[int]:
     """The lots the OTHER deals on this block build on (T-0105)."""
     return frozenset().union(*[claimed_lots(other) for other in blocks
@@ -1693,9 +1831,31 @@ def main() -> int:
         for item in drift:
             print(f"  - {item}")
         return 1
-    blocks = len(load(RECIPE_PATH)["blocks"])
+    parcels = load(RECIPE_PATH)["blocks"]
     mode = "verified" if args.check else "generated"
-    print(f"{mode} {len(records)} anonymous roofs across {blocks} platted block(s)")
+    print(f"{mode} {len(records)} anonymous roofs across {len(parcels)} platted block(s)")
+    # T-0834, and it is the line the ticket was opened for. A parcel's deal either fits
+    # on its free lots one roof to a lot, or it does not and the frontage run is the
+    # only ground the rest of it has. Those two cases read identically in the ledger —
+    # same block, same shape of recipe, same `frontage` key — and the difference is
+    # whether the run was headroom or necessity. It is printed rather than left to be
+    # worked out from the schedule, because working it out is what nobody did.
+    conditional, unsized = [], 0
+    for block in parcels:
+        claimed = block["drawn_from_schedule"]
+        free = claimed.get("free_lots")
+        if free is None:
+            unsized += 1
+            continue
+        short = claimed.get("dealt_principal", claimed["principal"]) - max(0, free - 1)
+        if short > 0:
+            need = -(-short // (ROW_UNITS_PER_LOT - 1))
+            got = len((block.get("frontage") or {}).get("lots") or ())
+            conditional.append(f"{block['block_id']} needs {need} of its {got}")
+    print(f"  lot ceiling (T-0834): {len(conditional)} of {len(parcels) - unsized} sized "
+          f"parcel(s) are dealt past their free lots and stand the rest in a frontage "
+          f"run — {', '.join(conditional) if conditional else 'none'}"
+          + (f"; {unsized} pre-T-A6 parcel(s) carry no free-lot count" if unsized else ""))
     return 0
 
 

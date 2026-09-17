@@ -1,7 +1,7 @@
 ---
 id: T-0497
 title: Dalton Data Bank holds a free 1840 Chicago head-of-household index by ward, and the repo cites it without reading it
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 856
+claimed_by: run 9/5/2026, 1:39:37 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T07:14:33.733Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33950206105
 ---
 
 **The owner's ask, 2026-09-03, recorded verbatim:** "create tickets to do more resident research

@@ -1,7 +1,7 @@
 ---
 id: T-0318
 title: The January 1834 letter list: the third printing repairs the A-H half, and the images are needed only for the rest
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-28
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0424: one letter-list page-image pass, as T-0428 itself says
 needs_bake: false
+closed_at: 2026-09-10T04:20:06.440Z
+claimed_run: null
 ---
 
 T-0310 read the list of letters remaining in the Post Office at Chicago on 1 January 1834

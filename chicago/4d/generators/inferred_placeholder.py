@@ -152,15 +152,16 @@ def record_geometry(record: dict) -> tuple[dict[str, list], list[dict]]:
     # AND THE CHIMNEY IS THE LAST OF THEM (T-0138). `placeholder_chimney_brick` was
     # the one row left holding a local literal — #89503F, (0.537, 0.314, 0.247) linear,
     # written here and argued nowhere — while T-0008 gave the 112 brick stacks on the
-    # archetype buildings the sheet's CHIMNEY_BRICK at (0.45, 0.23, 0.17). The two are
+    # archetype buildings the sheet's BRICK at (0.45, 0.23, 0.17). The two are
     # about 20 % apart in linear red and they stand on the same streets, which is
     # docs/RESEARCH/materials.md §4 finding 4 in one line: *an atlas that textures one
     # path and not the other splits the town visibly in half.*
     #
     # WHICH VALUE SURVIVES, and it is not a coin toss. #89503F has no witness behind
     # it: no source record, no note, nothing in this repository that argues for the
-    # number. CHIMNEY_BRICK is `frame_tavern`'s committed BRICK_RGBA, read off the
-    # Petford watercolour of the Sauganash (T-0092, L154) — the ONE coloured witness
+    # number. BRICK — named `CHIMNEY_BRICK` until T-0332 — is `frame_tavern`'s
+    # committed BRICK_RGBA, read off the Petford watercolour of the Sauganash
+    # (T-0092, L154) — the ONE coloured witness
     # to any Chicago chimney — and generalised to the town's other framed stacks on
     # the town's own warrant, Blodgett's North Side brick-yard from the spring of 1833.
     # An `inferred` value with a source beats an undocumented literal, so the literal

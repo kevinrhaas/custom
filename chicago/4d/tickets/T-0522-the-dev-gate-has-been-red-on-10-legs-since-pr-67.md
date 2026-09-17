@@ -1,7 +1,7 @@
 ---
 id: T-0522
 title: The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: all five causes verified green on dev and part 13 smoke PASS 2026-09-09; twin of T-0683
 needs_bake: false
+closed_at: 2026-09-10T04:20:09.342Z
+claimed_run: null
 ---
 
 The dev gate has been red on 10 legs since PR #670 merged the recovered census bridge.

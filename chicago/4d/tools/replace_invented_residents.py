@@ -149,6 +149,9 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+
+sys.path.insert(0, str(ROOT / "tools"))
 
 import fronting_street  # noqa: E402  (needs the path above)
 
@@ -209,6 +212,16 @@ def surname(name: str) -> str:
         head = words(name.partition(",")[0])
         return (head[-1] if head else parts[0]).lower().strip("'")
     return parts[-1].lower().strip("'")
+
+
+def adoption_key(name: str) -> str:
+    """This man's surname, spelled the way the adoption table spells one.
+
+    The table's `surnames` are normalised down to letters — `M'Cormick` is `mcormick`
+    there — so a lookup into it has to be normalised the same way or it silently misses.
+    One key function, used to read the table and nowhere else (T-1042).
+    """
+    return re.sub(r"[^a-z]", "", surname(name).lower())
 
 
 def display(name: str) -> str:
@@ -320,10 +333,15 @@ def street_face_stands() -> dict[tuple[str, str], tuple[str, str]]:
         roof = row.get("structure_id")
         if not street_id or not roof:
             continue
-        for who in (row.get("proprietors") or []):
-            sur = surname(who)
-            if sur:
-                stands.setdefault((sur, street_id), (row.get("business_name") or who, roof))
+        # T-1042. THE ROW CARRIES ITS OWN SURNAMES and this pass reads them instead of
+        # taking the last word of each proprietor string, which invented a man out of a
+        # firm suffix ('H. Doty & Co.' stood as somebody called Co) and lost one out of a
+        # style ('Clark, Filer & Co.' dropped Filer, so Filer never matched here at all).
+        # The reading is `compile_gazetteer.surname_words()`, through the pass that owns
+        # the table; a copy of the guess here would be a third answer to one question.
+        for sur in (row.get("surnames") or []):
+            stands.setdefault((sur, street_id),
+                              (row.get("business_name") or "", roof))
     return stands
 
 
@@ -483,9 +501,9 @@ def deal(docs: dict):
                 # T-0375: say so when he is already standing on that street as a
                 # storefront. The household seat is still refused; what the man
                 # is short of is a dwelling, not a place in the town.
-                already = next((adopted[(surname(cand["name"]), s)]
-                                for s in want
-                                if (surname(cand["name"]), s) in adopted), None)
+                key = adoption_key(cand["name"])
+                already = next((adopted[(key, s)]
+                                for s in want if (key, s) in adopted), None)
                 if already:
                     reason += (f" — but he stands on that street already as "
                                f"'{already[0]}', a street-face adoption on "
@@ -646,24 +664,14 @@ def build(preload: dict | None = None):
         files[path] = dumps(doc, 1)
 
     # The manifest's denormalised copies, which validate.py holds equal to the
-    # records: the grade tallies move when a person's grade does, and the hh_inf_
-    # rows are written by the household programme with a hardcoded
-    # {"reconstructed": n} that this pass has just made untrue.
+    # records. Re-derived over the WHOLE layer by the manifest's one owner
+    # (T-0715) rather than patched row by row: this pass moves grades, and the
+    # rows it does not move can be as stale as any other pass has left them.
     index = json.loads(index_text) if index_text is not None else load(INDEX)
-    changed = {doc["id"]: doc for (_p, doc, _pn), *_ in pairs}
-    for row in index["households"]:
-        doc = changed.get(row["id"])
-        if not doc:
-            continue
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        row["grades"] = dict(sorted(tally.items()))
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    for row in index["households"]:
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["by_grade"] = totals
+    final = dict(house_docs)
+    final.update({path: json.loads(text) for path, text in files.items()
+                  if path != INDEX})
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, pairs, refusals
 

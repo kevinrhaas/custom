@@ -134,13 +134,9 @@
       "note": "A wheelwright's shop beside the smithy: the two trades work on the same wagon and in 1835 they stand next door to each other."
     },
     "occupants": {
-      "value": "A reconstructed household; no name is claimed",
+      "value": "Anonymous stock; no occupant is claimed",
       "confidence": "reconstructed",
-      "sources": [
-        "andreas_1884_v1",
-        "owner_chicago_1835_reconstruction_spec_2026"
-      ],
-      "note": "The reconstructed household this building exists for: hh_inf_wheelwright_west_01 in data/residents/households/. No name is claimed and no figure is drawn."
+      "note": "ANONYMOUS STOCK (T-0516). This roof was raised by the inferred-household programme because an argued household needed somewhere to be; the owner retired that reconstructed resident population on 2026-09-02 and ruled the geometry kept - \"keep as anonymous stock\" - so the household this roof was raised for no longer exists and nobody is claimed to be here. It is unassigned until the later placement sweep, and it is counted as one of the anonymous count-units of the 665-roof programme. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the retirement: what was withdrawn is the occupant, not the building. The trade it was raised for is kept in `reconstruction.occupation` and in this record's own name, because that is what the placement sweep works from; the argument that raised it is kept as history in data/reconstruction/1835_inferred_household_programme.json."
     }
   },
   "residents": [],
@@ -177,7 +173,7 @@
   "research_doc": "docs/RESEARCH/residents_1835_inferred.md",
   "review_required": false,
   "reconstruction": {
-    "status": "inferred_household",
+    "status": "inferred_anonymous",
     "family": "W3",
     "district": "west",
     "programme_phase": "phase2_inferred_households",

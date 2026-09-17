@@ -44,6 +44,22 @@
 const SPEC = /^Reconstructed\s+(\S+)\s+(.+?)\s+#(\d+)$/;
 
 /**
+ * The OTHER production name in the anonymous layer, and it arrived there rather than
+ * being built there. `Reconstructed bakery (baker)` — a function and the trade the roof
+ * was raised for, with no family band and no part number, because these 31 were authored
+ * one at a time by the inferred-household programme instead of being dealt out of a
+ * parcel. They read `inferred_household` until 2026-09-02, when the owner retired the
+ * reconstructed resident population and ruled the roofs kept as anonymous stock (T-0516),
+ * and they came into this layer still wearing the production vocabulary the owner's naming
+ * ruling is about: "give the locations useful names not technical D3 #03 names, you can
+ * have that somewhere on the card for reference identity purposes but dont make it the
+ * title." A part number is not what makes a name technical — leading with `Reconstructed`
+ * is — so these compose a title the same way their 249 neighbours do, off the same
+ * description, and keep the production name on the reference line underneath.
+ */
+const RAISED = /^Reconstructed\s+(.+?)\s+\(([^)]+)\)$/;
+
+/**
  * The building noun a title can end in, matched against the record's own description.
  * Ordered, because the descriptions are deliberately hedged ("small shop or office",
  * "small inn or tavern") and the FIRST reading is the one the archetype is named for.
@@ -110,12 +126,19 @@ function surnameOf(household) {
 export function displayName(sidecar, id = '') {
   const spec = String(sidecar?.name ?? '');
   const parts = SPEC.exec(spec);
+  const raised = parts ? null : RAISED.exec(spec);
   // Anything with a real name keeps it: this layer is the anonymous programme's alone.
-  if (sidecar?.reconstruction?.status !== 'inferred_anonymous' || !parts) {
+  if (sidecar?.reconstruction?.status !== 'inferred_anonymous' || !(parts || raised)) {
     return { title: spec || id, spec: null, vacant: false };
   }
 
-  const description = parts[2];
+  // The description is the part of the production name that describes the BUILDING: the
+  // family band's phrase where a parcel dealt it, the function where the household layer
+  // raised it. The trade in the raised name's brackets is deliberately not folded in —
+  // the roof was raised for a blacksmith the town's arithmetic argued for and the owner
+  // retired, so titling it a blacksmith's anything would put back the occupant T-0516
+  // took out. It stays on the card in `function` and on the reference line.
+  const description = parts ? parts[2] : raised[1];
   const noun = nounFor(description);
   const households = Array.isArray(sidecar.residents) ? sidecar.residents : [];
   const lives = households.find((h) => /lived/.test(String(h.relation)));

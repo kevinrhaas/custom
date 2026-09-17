@@ -77,6 +77,20 @@ one, and ruling 3 below is recomputed afterwards, which is the point: three of t
 Wilson house's five spellings were last seen in 1834 and were each claiming a survival
 liberty the fourth and fifth disprove.
 
+AND SOME THINGS THE PAPERS NAME ARE NEITHER A PERSON NOR A HOUSE (T-0410). The Howard
+Fire Insurance Company of the city of New-York sold insurance in this town through a
+LOCAL AGENT, and an agency is not a trade, a shop or a signboard: it is a RELATION
+between a principal that never stood here and the house or man who held it for a season.
+With only persons and businesses to mint into, the corpus expressed it the one way it
+could — as its own business — which then collided with the house holding it under
+`firm_surnames()` and had to be refused by hand, and the refusal said the two were not
+one house when the true finding was that they were JOINED. `identity.json`'s `agencies`
+is where that relation is declared: a principal, who held it over what window, and
+optionally the minted record the relation RETIRES. The window is computed from the
+witnesses and never asserted; a holding adds no proprietor, no trade, no street and no
+roof, because a man who signs for a principal is not thereby a partner in the house he
+signs for. `refused_holdings` is the same record kept the other way up.
+
 THE QUOTE IS MACHINE-CHECKED AGAINST THE TRANSCRIPTION, which is the one gate here that
 is about provenance rather than shape. A claim names the exact line numbers its quote is
 built from, and `--check` reassembles the quote out of the transcription and refuses any
@@ -134,6 +148,7 @@ EXTRACTED = RESEARCH / "extracted"
 IDENTITY = RESEARCH / "identity.json"
 GAZETTEER = RESEARCH / "gazetteer.json"
 COVERAGE = RESEARCH / "coverage.json"
+TRADE_CLASSES = RESEARCH / "trade_class_rulings.json"
 
 SCHEMA_VERSION = 1
 SCENE_DATE = date(1835, 7, 1)
@@ -152,6 +167,63 @@ READINGS = ("transcription_mediated", "scan_verified")
 # honest answers when it cannot, and they are values rather than absences so that a
 # later pass can count them.
 PLACEMENT_CLASSES = ("corner", "relative", "street_only", "none")
+
+# The ways this corpus's reading passes have written "I could not read the word the
+# anchor turns on" into the anchor field itself. Used by `claim_problems` ONLY, to
+# refuse a placement that says it in prose and not in `anchor_unread` (T-0385).
+ANCHOR_UNREAD_PROSE = re.compile(
+    r"\b(unread|unnamed|illegible|unresolved|indecipherable)\b", re.I)
+
+# AND A PLACEMENT CAN BELONG TO A HOUSE THE ADVERTISER IS SELLING (T-0412). A `building`
+# claim carries an address because the notice gives one, and the extractor attaches the
+# business the signature names to it — which is right where the signer KEEPS the house
+# and wrong where he is only selling it. P. Pruyne signs "[W]E offer for sale the House
+# on [the corner] of Lasalle and Lake streets. [It] is 16 by 30 feet"
+# (chicago_democrat_1834_05_21 c001) as VENDOR, and T-0400 merged the record that minted
+# into `P. Pruyne & Co.`, whose store the papers put between Clark and Dearborn streets
+# across four printings. The corner then stood among that firm's `placement_readings` as
+# though it were a second frontage of the store.
+#
+# It did no harm on this record, and that was luck rather than design: the minting
+# claim's own placement was `none`, so `placement_rank` never promoted the corner. A
+# vendor notice that happened to be the ONLY reading on its record would have moved a
+# firm to a house it was selling — which is what the rule below refuses, once, for every
+# such notice the corpus may yet carry.
+#
+# THE RULE: a claim of kind `building` whose own entities sign it as the VENDOR of that
+# building contributes NO placing reading to the business the signature names. What the
+# printing said about the firm's own ground is nothing, so it records `{"class": "none"}`
+# — the same value every other silent printing records, and the claim key therefore
+# still stands in the record's readings rather than being dropped out of the history.
+# The notice is NOT thrown away: the printed placement, the address text and the claim go
+# on the business as `vendor_placements`, so the judgement can be read back, and the
+# claim itself — a documented Chicago house with a corner and a 16-by-30-foot footprint —
+# is untouched in `extracted/` where it always was.
+#
+# WHAT IT DOES NOT REACH, deliberately. `role` is free prose in this corpus (some three
+# hundred distinct strings), and a rule that read it loosely would silence an auctioneer
+# selling at his own store house — `chicago_democrat_1834_04_16` c008 is exactly that,
+# and its business is David Carver's own commission house. So the match is exact: the
+# role is `vendor`, or `vendor` followed by a qualifier ("vendor at auction"). Anything
+# else is a role somebody has to write a rule for, deliberately, having read it.
+VENDOR_ROLES = ("vendor",)
+
+
+def vendor_role(claim):
+    """The role string by which this claim's signature says the advertiser is SELLING.
+
+    Returns the role AS AUTHORED — so the record can quote it — or None. Only a
+    `building` claim can carry one: the seller of a building, not its occupant. See the
+    ruling above for why the match is exact rather than a search over prose.
+    """
+    if claim.get("kind") != "building":
+        return None
+    for ent in claim.get("entities") or []:
+        role = (ent.get("role") or "").strip()
+        low = role.lower()
+        if low in VENDOR_ROLES or any(low.startswith(v + " ") for v in VENDOR_ROLES):
+            return role
+    return None
 
 # AND A PAPER CAN SAY WHEN A HOUSE OPENED (T-0356). The register had no way to ask the
 # question, so it answered a different one: a business whose FIRST issue postdated the
@@ -527,6 +599,97 @@ def person_key(name):
     return slug(name)
 
 
+# --------------------------------------------------------------------------
+# T-0694: an out-of-town house, and the men who keep it
+
+# The roles that make an entity the HOUSE rather than somebody standing beside it.
+# A proprietor or a partner IS the firm; an assignee, an agent, a passenger or a
+# name in a letter list is not, and must not inherit the firm's city.
+HOUSE_ROLES = ("proprietor", "partner")
+
+
+def place_tail(trade):
+    """The place a printed trade line ends with, or None.
+
+    The papers set an out-of-town house's own city at the END of its trade line —
+    "hat manufacturers and wholesale dealers, Detroit", "steam saw mill and lumber,
+    St. Joseph". Everything before the last comma is the trade; the tail is where
+    the house stands.
+    """
+    m = re.search(r",\s*([^,]+?)\s*$", trade or "")
+    return m.group(1) if m else None
+
+
+def house_place_problems(houses, vocabulary):
+    """T-0694. A house's city must be on the men who keep it, not only on the firm.
+
+    M'Cormick & Moon advertised to Chicago out of No. 109 Jefferson Avenue, Detroit.
+    The BUSINESS record carried "Detroit" inside its trade line and the PERSON record
+    carried nothing at all, so every pass that reads a person — and the mints read
+    `associated_places` to refuse a man this project cannot put in the town — saw a
+    hatter with no address and a printed trade. Nothing had gone wrong yet; the
+    register's action was `new_resident` either way, because ruling 1 turns on the
+    town not holding the name. But nothing stopped a later pass raising a hatter's
+    shop on the plat for a house in Michigan, and nothing looked.
+
+    The test is DERIVED, not a list of cities: a trade tail counts as a place only
+    where the corpus itself already names it as one on some entity's
+    `associated_places`. That is what holds "agents, Merchants Line" — a shipping
+    line, not a town — out of it, without anybody hand-typing which words are cities.
+    Its one blind spot is stated rather than papered over: a city this corpus names
+    ONCE, on the very claim that omits it, is invisible here.
+    """
+    out = []
+    for label, trade, tail, entities in houses:
+        key = norm_place(tail)
+        if key not in vocabulary:
+            continue
+        for ent in entities:
+            if ent.get("role") not in HOUSE_ROLES:
+                continue
+            held = {norm_place(p) for p in (ent.get("associated_places") or [])}
+            if key in held:
+                continue
+            out.append(
+                "%s: the trade line puts this house at %r and %r keeps it as a %s, "
+                "but the entity carries no such place — an out-of-town house whose "
+                "proprietors read as placeless is one a later pass can raise on the "
+                "plat (T-0694). Put the place on the entity, or give the entity a "
+                "role that is not the house."
+                % (label, tail, ent.get("normalized") or ent.get("as_printed"),
+                   ent.get("role")))
+    return out
+
+
+def norm_place(name):
+    return re.sub(r"\s+", " ", (name or "").strip()).casefold()
+
+
+
+
+def load_trade_classes() -> tuple:
+    """The census class of each printed trade, and of the notices that print none (T-1006).
+
+    Read here rather than computed here: a class is an adjudication, and it lives in
+    data/research/newspapers/trade_class_rulings.json with the boundary it was ruled
+    under. Missing or unruled reads as no class, because THIS compiler is not the gate
+    for it — tools/trade_census_1835.py --check refuses an unruled business, and the
+    self-tests below compile registers that carry no rulings at all.
+    """
+    if not TRADE_CLASSES.exists():
+        return {}, {}
+    doc = json.loads(TRADE_CLASSES.read_text(encoding="utf-8"))
+    classes, scopes = {}, {}
+    for row in doc.get("trade_rulings", []):
+        classes[("trade", row["trade"])] = row["classes"]
+        if row.get("scope"):
+            scopes[("trade", row["trade"])] = row["scope"]
+    for row in doc.get("business_overrides", []):
+        classes[row["business_id"]] = row["classes"]
+        if row.get("scope"):
+            scopes[row["business_id"]] = row["scope"]
+    return classes, scopes
+
 def compile_gazetteer(files, identity, corpus, quiet=True):
     """Compile extracted/* into the gazetteer. Returns (doc, problems).
 
@@ -538,6 +701,15 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
     persons = {}
     businesses = {}
     claim_count = 0
+    # T-0694. Both halves are whole-corpus facts, so they are gathered here and ruled
+    # on after every file has been read: `place_vocabulary` is every place name the
+    # corpus itself puts on an entity, and `houses` is every business claim whose
+    # trade line ends in something that might be one.
+    place_vocabulary = set()
+    houses = []
+    # T-0410. Every claim key the corpus carries, so a relation declared in
+    # `identity.json` can be checked against the printings it says it rests on.
+    all_claims = {}
 
     for path in sorted(files, key=lambda p: Path(p).name):
         doc = load_json(path)
@@ -551,6 +723,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         for claim in doc.get("claims", []):
             claim_count += 1
             key = claim_key(issue_id, claim)
+            all_claims[key] = issue_date
             for ent in claim.get("entities", []):
                 name = ent.get("normalized") or ent.get("as_printed")
                 pk = person_key(name)
@@ -574,20 +747,60 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 for place in ent.get("associated_places", []):
                     if place not in p["associated_places"]:
                         p["associated_places"].append(place)
+                    place_vocabulary.add(norm_place(place))
 
             biz = claim.get("business")
             if biz:
+                tail = place_tail(biz.get("trade"))
+                if tail:
+                    houses.append((key, biz.get("trade"), tail,
+                                   claim.get("entities") or []))
                 bk = slug(biz.get("name"))
+                # T-0412. The address in a vendor's for-sale notice is the house he is
+                # selling, not the ground his own firm stands on, so it places nothing
+                # here and the printing is recorded as the silence it is about the firm.
+                printed_placement = biz.get("placement") or {}
+                sold_by = vendor_role(claim)
+                sold = bool(sold_by) and placement_rank(printed_placement) > 0
+                placement = {"class": "none"} if sold else biz.get("placement")
                 b = businesses.setdefault(bk, {
                     "id": "business_" + bk, "name": biz.get("name"), "proprietors": [],
                     "trade": biz.get("trade"), "goods": [], "street": biz.get("street"),
-                    "placement": biz.get("placement"),
+                    "placement": placement,
                     "evidence": {"first_issue": issue_date, "last_issue": issue_date,
                                  "copy_dates": []},
                     "contradicted_by": [], "opening_announced": [], "mentions": [],
                     "placement_readings": [],
                 })
                 b["mentions"].append(key)
+                # A STREET THE FIRST IMPRESSION WITHHELD IS NOT A STREET THE HOUSE LACKS
+                # (T-1046). The dict above is a `setdefault`, so `street` was taken from
+                # whichever claim happened to mint the key — sorted filename order, which
+                # is issue order and nothing more. Where one impression of a standing
+                # advertisement names the street and another leaves it null on purpose
+                # (a placement recorded `relative` to an anchor, the street deliberately
+                # not collapsed out of the chain), the house's street then depended on
+                # which impression came first. `firm_merges` below has always taken the
+                # first non-empty of the two it joins; within one key the same rule was
+                # missing. A printing that is SILENT about the street does not contradict
+                # one that prints it, and a disagreement between two printed streets is
+                # caught by the firm-merge guard, not created here.
+                if not b.get("street") and biz.get("street"):
+                    b["street"] = biz.get("street")
+                if sold:
+                    # The notice, kept where the judgement can be read back off the
+                    # record it was made about. Nothing downstream places on this.
+                    b.setdefault("vendor_placements", []).append({
+                        "claim": key,
+                        "issue": issue_date,
+                        "role": sold_by,
+                        "printed_placement": printed_placement,
+                        "address_text": biz.get("address_text"),
+                        "rule": "T-0412: the advertiser signs this building notice as its "
+                                "VENDOR, so the address is the house he is selling and not "
+                                "the ground his own house stands on. It places nothing "
+                                "here; the building itself stands in the claim.",
+                    })
                 # EVERY PRINTING'S OWN PLACEMENT, KEPT (T-0345). The dict above takes
                 # the placement of whichever claim mints the key, and until now every
                 # later printing's was thrown away — which is why a house whose printed
@@ -597,7 +810,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 # and the gazetteer held only the first. Readings collapse on (class,
                 # anchor) and carry their own dates: this is what each printing SAID and
                 # when, not a judgement about it. The judgement is `anchor_changes`.
-                record_reading(b, biz.get("placement") or {}, issue_date, key)
+                record_reading(b, placement or {}, issue_date, key)
                 b["evidence"]["first_issue"] = min(b["evidence"]["first_issue"], issue_date)
                 b["evidence"]["last_issue"] = max(b["evidence"]["last_issue"], issue_date)
                 for who in biz.get("proprietors", []):
@@ -624,6 +837,10 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                         {"claim": key, "issue": issue_date, "dating": op.get("dating"),
                          "iso": op.get("iso"), "verbatim": op.get("verbatim"),
                          "note": op.get("note")})
+
+    # T-0694, ruled on now that the whole corpus has been read: the city a printed
+    # trade line gives a house has to be on the men who keep it too.
+    problems.extend(house_place_problems(houses, place_vocabulary))
 
     # THE PLACES, and they are DECLARED, exactly the way a merge is (T-0359). The table
     # above is keyed on a name and knows nothing about what kind of thing a name is, so a
@@ -917,6 +1134,12 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         dst["opening_announced"].extend(src["opening_announced"])
         for reading in src["placement_readings"]:
             absorb_reading(dst, reading)
+        # T-0412. A vendor notice usually mints its own key — "P. Pruyne" beside
+        # "P. Pruyne & Co." — so the record of WHY that printing places nothing has to
+        # survive the merge that joins them, or the judgement is lost at the one moment
+        # it becomes about the firm the corpus actually keeps.
+        for vp in src.get("vendor_placements") or []:
+            dst.setdefault("vendor_placements", []).append(vp)
         for cd in src["evidence"]["copy_dates"]:
             if cd not in dst["evidence"]["copy_dates"]:
                 dst["evidence"]["copy_dates"].append(cd)
@@ -928,6 +1151,33 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         # other's reading stands; where both speak, the merge keeps the one that can put
         # more of the firm on the ground, and every trade either side printed is kept in
         # `trade_variants` so the merge cannot quietly narrow what the papers said.
+        #
+        # AND THE CHOICE BELOW IS PROVISIONAL, NOT A JUDGEMENT ABOUT A MOVE (T-0403).
+        # `placement_rank` reads the CLASS and is blind to the date, deliberately: it
+        # measures how much ground a reading can put a storefront on, which is a property
+        # of the sentence and not of the week it was set. So this line can hand the
+        # surviving record an address the firm had already left — the Chicago Democrat's
+        # printing office is the case, merged from a colophon that reads "over Messrs.
+        # Jones & King['s] Hard[ware store]" on 1835-05-20 into one that reads the corner
+        # of South Water and Clark streets on 1834-01-07, and the corner wins here because
+        # a corner outranks a relative offset.
+        #
+        # THAT IS NOT A DEFECT IN THIS LINE AND IT IS NOT FIXED HERE. Making the rank
+        # date-aware would put the merge in the business of deciding that a house MOVED,
+        # which is the one judgement this project reserves for an authored, guarded and
+        # dated declaration: `anchor_changes`, below, which runs after every merge and
+        # overwrites what this decides. A merge that preferred the later reading would
+        # make that declaration silently, for all 40 firm merges at once, out of nothing
+        # but the order two printings happen to sit in — and it would be wrong wherever a
+        # standing advertisement simply stopped repeating an address it had already given,
+        # which is the population T-0440 exists for.
+        #
+        # WHAT MAKES THE DEFERRAL SAFE is that `absorb_reading` above has already carried
+        # EVERY reading of both sides onto the survivor (T-0345). The merge therefore
+        # narrows nothing: whichever placement this line picks, the other is still in
+        # `placement_readings` with its own dates and claims, which is precisely what an
+        # `anchor_changes` rule needs in order to be writable at all. The choice here is
+        # a default standing until somebody reads the printings, not an answer.
         dst["street"] = dst.get("street") or src.get("street")
         if placement_rank(src.get("placement")) > placement_rank(dst.get("placement")):
             dst["placement"] = src.get("placement")
@@ -937,6 +1187,312 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
         if len(trades) > 1:
             dst["trade_variants"] = sorted(trades)
         dst.setdefault("merged", []).append({"from": frm, "merge_rule": why})
+
+    # A PRINTING THAT OMITS THE ADDRESS DOES NOT HOLD THE HOUSE'S PLACEMENT (T-0440).
+    #
+    # The dict a house is minted into takes `placement` and `street` from WHICHEVER
+    # CLAIM MINTS THE KEY — the earliest printing the corpus carries — and nothing
+    # downstream of that ever revised it. `record_reading` keeps every later printing's
+    # placement (T-0345), and a firm merge may raise the live one, but within a single
+    # key the first printing won outright. So a house whose first advertisement ran
+    # without an address, and which printed one afterwards, stood at `{"class": "none"}`
+    # for good: `compile_register.resolve_anchor` is handed no anchor, the row reads
+    # `unplaceable`, and its own printings say otherwise three lines below in the same
+    # file. Clark, Filer & Co. is the case this was found on — silent on 1834-05-28,
+    # then "their ware house on South water St. five [doors east] of the corner [of
+    # Randolph st.]" on 1834-06-11, 1834-06-18 and 1834-07-02 — and 13 other houses of
+    # the 206 were in the same position (tools/measure_placement_silence.py).
+    #
+    # WHAT THIS DECIDES, AND WHAT IT REFUSES TO. A printing that omits the address does
+    # not contradict one that gives it; it simply did not repeat it, which is what a
+    # standing advertisement does every other week. Preferring speech to silence is
+    # therefore not a judgement about a house that MOVED, and this pass makes none: it
+    # fires only where the live placement places nothing at all, and it takes the
+    # EARLIEST placing reading — the same tie-break `absorb_reading` already applies
+    # inside a reading, and the same one the mint applied, now asked of the first
+    # printing that actually said something. Where two placing readings disagree about
+    # the anchor, both are kept with their own dates exactly as before and the only
+    # thing that may reorder them is the authored `anchor_changes` rule below, which
+    # runs after this and overwrites what it decides. Nothing here upgrades a class,
+    # invents an anchor, or touches a house whose live placement already places
+    # something: a printed address is never overridden by another printed address.
+    #
+    # AND IT IS BOUNDED BY THE SCENE DATE, for the reason `anchor_changes` already is
+    # and AGENTS.md rule 3 states generally: an address first printed after 1 July 1835
+    # was not up on 1 July 1835, and a house is not placed in this town on the strength
+    # of it. Jones, King & Co. was written here as the case — silent through its 1834
+    # printings and given South Water Street on 1835-08-05 — and T-0859 found that it is
+    # not: that 1835-08-05 notice is a fire-insurance agency card printing no address at
+    # all, and the South Water Street beside it is the extraction's business-level field.
+    # The house is silent on BOTH counts and the scene bound is not what holds it. The
+    # bound itself is unchanged and still fires — `--self-test` asserts it on a fixture
+    # rather than on a house that turned out not to be one.
+    #
+    # AND "PLACES NOTHING" IS A QUESTION ABOUT THE PLACEMENT, NOT ABOUT ITS CLASS
+    # (T-0859). This pass fired only where the live rank was zero, and one class can be
+    # written without the field that gives it meaning: a `street_only` carrying neither
+    # a `street` nor an `anchor` names no street and puts a shop on no ground, yet it
+    # ranks 1 and outranks nothing-at-all. So a printing that gave no address could
+    # outrank eight that did, and the report filed the house under "waiting on an
+    # `anchor_changes` judgement" — a judgement nobody could write, because guard 3 of
+    # that rule admits only anchors some printing carries and this one carries none.
+    # `places_nothing()` is the test, used on both sides here so the pass cannot take a
+    # reading it would itself refuse to be held by. Nothing else changes: the same
+    # earliest-placing tie-break, the same scene-date bound, the same refusal to let one
+    # printed address override another.
+    scene_iso_placement = SCENE_DATE.isoformat()
+    for biz in businesses.values():
+        if not places_nothing(biz.get("placement")):
+            continue
+        placing = [r for r in biz["placement_readings"]
+                   if not places_nothing(r.get("placement"))
+                   and r["first_issue"] <= scene_iso_placement]
+        if not placing:
+            continue
+        first = min(placing, key=lambda r: (r["first_issue"], min(r["claims"])))
+        superseded = dict(biz.get("placement") or {"class": "none"})
+        biz["placement"] = first["placement"]
+        biz["placement_from"] = {
+            "rule": "T-0440: the minting printing gave no address, so the house is "
+                    "placed by the earliest printing that did. A printing that omits "
+                    "the address does not contradict one that gives it. T-0859: a "
+                    "`street_only` naming neither a street nor an anchor is such a "
+                    "printing, whatever its class says.",
+            "first_issue": first["first_issue"],
+            "claims": sorted(first["claims"]),
+            "superseded": {"class": superseded.get("class") or "none"},
+        }
+        # The street the same reading names, where the minting printing named none.
+        # This is the reading's OWN `street` field and not a second inference: the
+        # sentence that carries the offset carries the street it is measured along.
+        street = (first["placement"] or {}).get("street")
+        if street and not biz.get("street") and " and " not in street \
+                and street != "unstated":
+            biz["street"] = street
+            biz["placement_from"]["street_from_reading"] = street
+
+    # AN ANCHOR THE READING PASS COULD NOT READ IS NOT A SECOND ANCHOR (T-0385).
+    #
+    # T-0771 above already holds the rule this wants — *an anchor printed four ways is
+    # resolved on its BEST reading* — and it holds it for exactly this shape: one
+    # advertisement's one sentence, printed whole in one impression and damaged in
+    # another. It reaches a damaged printing through `wholer()`, which compares the
+    # bracketed SUPPLIES in `offset_normalized`, and it only ever chooses between
+    # printings `reading_key` has already grouped as one reading.
+    #
+    # It cannot reach the case where the damage fell on the LANDMARK'S NAME, and the
+    # reason is a habit of the reading pass rather than anything about the paper. Where
+    # a column cut the word the anchor turns on, the pass does not bracket a supply it
+    # cannot make — it says so in prose, in the anchor field itself: "three doors north
+    # of an unread anchor", "an unnamed House, three doors south", "the corner of Lake
+    # Street and an unread cross street". That prose is what `reading_key` keys on, so
+    # one sentence becomes two readings that differ in their anchors, T-0771 never looks
+    # at them, and the mint keeps the earliest — the unread one — for good.
+    #
+    # The New York Clothing Store is the case. Tuthill King's card, datelined 8 June
+    # 1835, ran in the American on 06-08, 06-20 and 07-04 and says the same thing every
+    # time: the store is three doors north of the Tremont House, in Dearborn Street. The
+    # 06-08 impression falls inside an 8,024-character blob and the anchor is cut away;
+    # the 06-20 impression reads "three doors north o[f the ... ] House" and can see the
+    # word House and not the name in front of it; the 07-04 impression prints "[the
+    # T]remont House" and the town holds `tremont_house_1`. The house was placed by the
+    # blob, so the register called it `street_only` on the whole of Dearborn Street with
+    # the address it could not read printed three lines below in the same file.
+    #
+    # WHAT THIS DECIDES, AND WHAT IT REFUSES TO. An unread anchor is not a competing
+    # address. It is the reading pass saying it could not say — no landmark is named, so
+    # nothing is asserted that a named landmark could contradict, and preferring the
+    # legible impression is not a judgement between two addresses any more than T-0440's
+    # preferring speech to silence was. Which is also the whole of its reach: it fires
+    # only where the live placement is DECLARED unread, never between two anchors both
+    # of which were read, and `anchor_changes` below still runs after it and overwrites
+    # what it decides. `anchor_unread` is an authored field on the placement and not a
+    # phrase sniffed out of the prose — the pass that could not read the word is the one
+    # that says so, and `claim_problems` refuses an anchor whose prose says it and whose
+    # field does not.
+    #
+    # THE BOUNDS, each of which is a way this could have become a judgement it may not
+    # make:
+    #   1. SAME CLASS. A `corner` read and a `relative` unread are two sentences, not
+    #      one sentence read twice.
+    #   2. SAME STREET, where the unread reading names one. A house whose unread
+    #      impression names Dearborn Street is not re-placed onto South Water Street by
+    #      an impression that names an anchor there; that is a MOVE, and a move is
+    #      `anchor_changes`' to declare.
+    #   3. ONE ADVERTISEMENT, evidenced by ONE DATELINE at or before the scene date.
+    #      This is what stands in for T-0440's issue-date bound, and it has to, because
+    #      the legible impression of King's card is 3 July 1835 and the scene date is
+    #      1 July. That impression is not an address first printed after the scene date
+    #      — the address ran on 06-08 and 06-20, and all we gain on 07-04 is the ability
+    #      to read it. A single dateline across a house's printings is the paper's own
+    #      statement that they are impressions of one setting of one card; the bound is
+    #      conservative rather than exact, and a house printing two datelines is refused
+    #      here and left to `anchor_changes`.
+    #   4. AND THE UNREAD READING MUST ITSELF BE RUNNING BY THE SCENE DATE, so that the
+    #      advertisement this is reading is one the July town could have walked past.
+    for biz in businesses.values():
+        live = biz.get("placement") or {}
+        if not live.get("anchor_unread"):
+            continue
+        copy_dates = sorted(set(biz["evidence"]["copy_dates"]))
+        if len(copy_dates) != 1 or copy_dates[0] > scene_iso_placement:
+            continue
+        held = [r for r in biz["placement_readings"]
+                if (r["placement"] or {}).get("anchor_unread")
+                and r["first_issue"] <= scene_iso_placement]
+        if not held:
+            continue
+        live_street = (live.get("street") or "").strip().lower()
+        read = [r for r in biz["placement_readings"]
+                if not (r["placement"] or {}).get("anchor_unread")
+                and (r["placement"] or {}).get("class") == live.get("class")
+                and (r["placement"] or {}).get("anchor")
+                and not places_nothing(r["placement"])
+                and (not live_street
+                     or ((r["placement"] or {}).get("street") or "").strip().lower()
+                     == live_street)]
+        if not read:
+            continue
+        first = min(read, key=lambda r: (r["first_issue"], min(r["claims"])))
+        superseded = dict(live)
+        biz["placement"] = first["placement"]
+        biz["placement_from"] = {
+            "rule": "T-0385: the printing that minted this house declares its anchor "
+                    "unread, so the house is placed by the earliest printing of the "
+                    "same advertisement that reads it. An anchor the pass could not "
+                    "read names no landmark and contradicts none; the bound is one "
+                    "dateline at or before the scene date, which is what makes the "
+                    "impressions one card rather than two addresses.",
+            "first_issue": first["first_issue"],
+            "claims": sorted(first["claims"]),
+            "copy_date": copy_dates[0],
+            "superseded": {"class": superseded.get("class") or "none",
+                           "anchor": superseded.get("anchor"),
+                           "anchor_unread": True},
+        }
+        street = (first["placement"] or {}).get("street")
+        if street and not biz.get("street") and " and " not in street \
+                and street != "unstated":
+            biz["street"] = street
+            biz["placement_from"]["street_from_reading"] = street
+
+    # A STREET NAMED WITHOUT AN ANCHOR DOES NOT OUTRANK THE ANCHOR ON IT (T-0948).
+    #
+    # T-0440 above ruled that SILENCE about an address does not outrank speech about
+    # one, and stopped at `places_nothing` — where the live placement puts a storefront
+    # on no ground whatever. This is that argument one rung up, and the ticket asked for
+    # it to be answered in writing HERE, beside the pass it extends, rather than only in
+    # code.
+    #
+    # THE QUESTION. A house prints "South Water street" one week and "on South Water
+    # street, at the stand formerly occupied by Clark & Co." the next. Is the second a
+    # second ADDRESS, which only an authored `anchor_changes` rule may prefer? Or is it
+    # the same address said more fully?
+    #
+    # THE ANSWER IS THE SECOND, AND ONLY WHERE THE STREET IS THE SAME. A card naming a
+    # street and no landmark has not said where ON that street the shop stands; it said
+    # LESS, not something else. An anchor printed on that same street narrows the coarser
+    # printing without retracting a word of it — which is T-0440's shape exactly: nothing
+    # was withdrawn, something was added. So the narrower reading is taken up, and the
+    # coarse one is kept as a reading with its own dates, as every superseded printing
+    # here is.
+    #
+    # AND THE COUNTER-CASE IS WHY THE STREET BOUND IS THE WHOLE OF THE RULE. A street
+    # named without an anchor IS a positive statement about the frontage — the
+    # street-face adoption policy (T-0354) has already dealt such a house a roof on the
+    # strength of it — so an anchor standing on ANOTHER street is no refinement of that
+    # statement. It is a house in a different part of town: a MOVE, and a move is
+    # `anchor_changes`' to declare with its anchors named verbatim. This pass refuses it,
+    # exactly as T-0385's guard 2 refuses an anchor read on another street. It refuses,
+    # for the same reason, any house whose live placement carries an anchor of its own —
+    # one printed ANCHOR is never preferred to another here — and any anchored reading
+    # that declares itself unread, which is T-0385's to take up and not this one's.
+    #
+    # THE BOUND IS T-0440'S, WITH T-0385'S STANDING-CARD CLAUSE. An anchor whose first
+    # printing falls on or before the scene date places the house on an advertisement the
+    # July town could read, and that is T-0440's bound unchanged. Where the only anchored
+    # impression falls AFTER the scene date, the pass fires only on T-0385's guard 3 —
+    # ONE DATELINE, at or before the scene date, across every printing of the house —
+    # which is the paper's own statement that the impressions are one advertisement and
+    # not two addresses. `placement_from.bound` records which of the two carried it, so
+    # the looser one is never invisible in the record.
+    #
+    # ROCKWELL'S CABINET FURNITURE WAREHOUSE IS THAT CASE, and the only one in the
+    # corpus: one dateline, 8 June 1835; four impressions in the American; no address at
+    # all on 06-13 and 06-20; "[A]pply to […] ROCKWELL, [S]outh Wate[r street]" on 06-27;
+    # and on 07-04 "[F]urniture a[t] the stand on S[outh] Water [s]tre[e]t, formerly
+    # occ[u]p[i]ed by Clark, [Fils?] [C]o." Same street, same card, three days past the
+    # scene date — and a stand the notice describes the house as ALREADY standing in,
+    # under a dateline three weeks before the scene date.
+    #
+    # WHAT IT DOES NOT REACH, stated so the queue can see it. Samuel Lewis prints South
+    # Water Street through three issues and "A. Garrett's Auction Room" on 1835-08-12,
+    # under TWO datelines, and that 08-12 reading names no street at all. Two datelines
+    # are two advertisements, and a reading naming no street cannot be shown to narrow
+    # one that does; he is refused on both counts and stays `street_only`.
+    #
+    # AND THE TWO HOUSES THE TICKET WAS FILED ON ARE NOT HERE, because T-0859 landed
+    # first and settled them. `business_j_s_c_hogan` and `business_newberry_dole` were
+    # each held by a printing that named NO ground at all — `places_nothing`'s business,
+    # not this pass's — and T-0440 above now places both, Hogan from 1834-08-13 and
+    # Newberry & Dole from 1834-05-14. Neither is refused anything by this file, which is
+    # what T-0948's third acceptance asked for. Newberry & Dole is NOT moved to the north
+    # bank by this pass or any other: `docs/RESEARCH/dole_warehouse_south.md` carries
+    # that guard and this rule never reaches across streets in any case.
+    for biz in businesses.values():
+        live = biz.get("placement") or {}
+        if places_nothing(live) or live.get("anchor"):
+            continue
+        live_street = (live.get("street") or "").strip().lower()
+        if not live_street or " and " in live_street or live_street == "unstated":
+            continue
+        # The coarse reading must itself be running by the scene date, so that the
+        # printing being narrowed is one the July town could have walked past.
+        held = [r for r in biz["placement_readings"]
+                if not (r["placement"] or {}).get("anchor")
+                and ((r["placement"] or {}).get("street") or "").strip().lower()
+                == live_street
+                and r["first_issue"] <= scene_iso_placement]
+        if not held:
+            continue
+        anchored = [r for r in biz["placement_readings"]
+                    if (r["placement"] or {}).get("anchor")
+                    and not (r["placement"] or {}).get("anchor_unread")
+                    and not places_nothing(r["placement"])
+                    and placement_rank(r["placement"]) > placement_rank(live)
+                    and ((r["placement"] or {}).get("street") or "").strip().lower()
+                    == live_street]
+        if not anchored:
+            continue
+        in_time = [r for r in anchored if r["first_issue"] <= scene_iso_placement]
+        copy_dates = sorted(set(biz["evidence"]["copy_dates"]))
+        one_card = len(copy_dates) == 1 and copy_dates[0] <= scene_iso_placement
+        if in_time:
+            pool, bound = in_time, "issue"
+        elif one_card:
+            pool, bound = anchored, "dateline"
+        else:
+            continue
+        first = min(pool, key=lambda r: (r["first_issue"], min(r["claims"])))
+        superseded = dict(live)
+        biz["placement"] = first["placement"]
+        biz["placement_from"] = {
+            "rule": "T-0948: the printing holding this house named a street and no "
+                    "anchor, so it is placed by the earliest printing that named an "
+                    "anchor ON THAT SAME STREET. A printing that names a street and no "
+                    "landmark has said less, not something else, and the narrower "
+                    "reading contradicts none of it. An anchor on another street is a "
+                    "move and `anchor_changes`' alone.",
+            "first_issue": first["first_issue"],
+            "claims": sorted(first["claims"]),
+            "bound": bound,
+            "street": superseded.get("street"),
+            "superseded": {"class": superseded.get("class") or "none",
+                           "anchor": None,
+                           "street": superseded.get("street")},
+        }
+        if bound == "dateline":
+            biz["placement_from"]["copy_date"] = copy_dates[0]
 
     # THE DATED ANCHOR CHANGE (T-0345). A firm merge unions two STYLES of one house.
     # This is the other thing two printings of one advertisement can differ about, and
@@ -1005,7 +1561,28 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                             % (label, ", ".join(repr(n) for n in unnamed)))
             continue
         biz = businesses[bkey]
-        held = {r["anchor"]: r for r in biz["placement_readings"]}
+        # T-0440. A reading that places NOTHING names no landmark, so it can neither be
+        # claimed by an anchor group (guard 3 would refuse the name `null`) nor be left
+        # out of one (guard 4 would call it a printing silently dropped). Before this,
+        # any house whose advertisement ever ran without an address could not have an
+        # anchor rule written for it AT ALL — the one mechanism that may order a house's
+        # anchors was unreachable for exactly the houses whose placement most needed
+        # ordering. Silence is still kept in `placement_readings` with its own dates;
+        # what it may not do is take part in a judgement about which anchor is live.
+        #
+        # T-0773. One anchor STRING can be carried by more than one reading of the same
+        # house, because a reading is grouped by its whole placement and not by its
+        # anchor alone: G. Spring's "the corner of Franklin and South Water streets" is
+        # read `relative` across seven printings from 1833-12-17 and `corner` once on
+        # 1834-09-03, two readings under one name. Keyed one-to-one, the later of the two
+        # overwrote the earlier and the rule's history lost seven claims and eleven
+        # months of window WITHOUT tripping guard 4 — the drop was invisible to the very
+        # guard that exists to catch it, because the anchor was still claimed. An anchor
+        # therefore holds every reading printed under it, and a group takes all of them.
+        held = {}
+        for r in biz["placement_readings"]:
+            if placement_rank(r.get("placement")) > 0:
+                held.setdefault(r["anchor"], []).append(r)
         claimed, windows, bad = [], [], False
         for g in groups:
             readings = g.get("readings") or []
@@ -1032,7 +1609,7 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 bad = True
                 break
             claimed.extend(readings)
-            rs = [held[r] for r in readings]
+            rs = [one for r in readings for one in held[r]]
             windows.append({
                 "name": g.get("name"),
                 "why": (g.get("why") or "").strip() or None,
@@ -1078,6 +1655,17 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             if w["first_issue"] <= scene_iso:
                 live = w
         biz["placement"] = live["placement"]
+        # T-0773. AND THE STREET GOES WITH IT. `street` is taken from whichever claim
+        # MINTS the house, so a rule that moves the live anchor across town leaves the
+        # street of the anchor it superseded behind — and `compile_register` adopts a
+        # street face off that field, not off the placement. G. Spring's rule put his
+        # office on Dearborn-street beside the Tremont House while the row went on
+        # reading South Water Street, which is the frontage the ruling had just retired.
+        # Only where the live reading names ONE street: a corner reading names two, and
+        # a `street` field holding both is not a street this town can adopt against.
+        live_street = (live["placement"] or {}).get("street")
+        if live_street and " and " not in live_street:
+            biz["street"] = live_street
         biz["anchor_change"] = {
             "rule": why,
             "cannot_say": cannot,
@@ -1095,6 +1683,130 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                          "placement": w["placement"]}
                         for w in windows],
         }
+    # AND THE REFUSAL OF ONE (T-0773, landed by T-0949). `anchor_changes` above is the
+    # only thing in this project that may prefer one printed address of a house to
+    # another, and `measure_placement_silence.py` counts the houses whose live placement
+    # one of their own later printings outranks. Some of that population must NEVER get a
+    # rule — and until now the only record of that judgement was the ABSENCE of one,
+    # which reads exactly like a house nobody has looked at yet. So the next sweep finds
+    # the same houses and reads them again. That is the argument `refused_places` and
+    # `refused_firm_merges` already make, and this is the same record kept the other way
+    # up: the refusal is DECLARED, it names verbatim an anchor it refuses to be reordered
+    # by, and its KIND is CHECKED against the readings rather than taken on the author's
+    # word. Three kinds, and each is a different reason the corpus cannot order two
+    # printed addresses:
+    #
+    #   `printed_in_the_same_weeks` — the two anchors ran concurrently, so there is no
+    #       before and no after to put them in. J. K. Botsford's "next door to Graves'
+    #       Tavern" and his "corner of Dearborn and Lake streets" run in ONE issue six
+    #       weeks after the move they would have to record, and Graves' Tavern IS that
+    #       corner (T-0324, docs/RESEARCH/botsford_graves_1834.md).
+    #   `silence_is_not_an_anchor` — the outranked reading names NO anchor. One anchor is
+    #       not a change (guard 2 above), and calling a printing that gave only a street
+    #       the EARLIER anchor asserts a move nothing printed says.
+    #   `after_the_scene_date` — every printing that outranks the live placement first ran
+    #       after the scene date, so it does not place this house in this town at all.
+    #       AGENTS.md rule 3 has already decided it and no anchor rule is owed.
+    #
+    # A refusal may not outlive its pair, exactly as T-0399's may not: a house no
+    # printing outranks any more is a judgement about nothing, and is an error here
+    # rather than a line nobody notices has stopped being true. That guard is load
+    # bearing and not decoration — three of T-0773's five refusals could not be declared
+    # when T-0949 came to land them, because T-0440, T-0859 and T-0948 had since repaired
+    # those houses and left the refusals with nothing to refuse.
+    #
+    # `places_nothing` and `placement_rank` are read the same way
+    # `measure_placement_silence.py` reads them, so the gate and the report cannot
+    # disagree about which houses are in this population.
+    REFUSED_ANCHOR_KINDS = {"printed_in_the_same_weeks", "silence_is_not_an_anchor",
+                            "after_the_scene_date"}
+    declared_anchor_changes = {r.get("business")
+                               for r in identity.get("anchor_changes", [])}
+    for rule in identity.get("refused_anchor_changes", []):
+        bid = rule.get("business")
+        kind = rule.get("kind")
+        why = (rule.get("refused_because") or "").strip()
+        label = "identity.json refused_anchor_change %r" % bid
+        bkey = bid[len("business_"):] if (bid or "").startswith("business_") else bid
+        if not bkey or bkey not in businesses:
+            problems.append("%s: no business of that id is compiled — a refusal about a "
+                            "house that is not in the corpus is a rule nobody can check"
+                            % label)
+            continue
+        if bid in declared_anchor_changes:
+            problems.append("%s: this house is DECLARED an anchor change and refused one "
+                            "in the same file" % label)
+            continue
+        if kind not in REFUSED_ANCHOR_KINDS:
+            problems.append("%s: kind %r is not one of %s — a refusal whose reason is "
+                            "free text is a reason nothing can check"
+                            % (label, kind, ", ".join(sorted(REFUSED_ANCHOR_KINDS))))
+            continue
+        if not why:
+            problems.append("%s: no `refused_because` — a refusal nobody argued is a "
+                            "refusal the next reader will overturn by accident" % label)
+            continue
+        biz = businesses[bkey]
+        live = biz.get("placement") or {}
+        live_rank = 0 if places_nothing(live) else placement_rank(live)
+        placing = [r for r in biz["placement_readings"]
+                   if not places_nothing(r.get("placement"))]
+        over = [r for r in placing if placement_rank(r.get("placement")) > live_rank]
+        if not over:
+            problems.append("%s: no printing of this house outranks its live placement "
+                            "(%s) — a refusal whose pair has gone is a judgement about "
+                            "nothing, and reads as one still standing"
+                            % (label, live.get("class") or "none"))
+            continue
+        anchors = sorted({r["anchor"] for r in over if r.get("anchor")})
+        if not anchors:
+            problems.append("%s: the printings that outrank this house name no anchor at "
+                            "all, so there is nothing here to refuse being reordered by"
+                            % label)
+            continue
+        if not any(a in why for a in anchors):
+            problems.append("%s: `refused_because` must name one of %s VERBATIM, so the "
+                            "judgement can be read back without the code"
+                            % (label, ", ".join(repr(a) for a in anchors)))
+            continue
+        if kind == "silence_is_not_an_anchor" and live.get("anchor"):
+            problems.append("%s: the live placement names the anchor %r, so its printing "
+                            "was not silent about one — that is a change to argue, not a "
+                            "silence to refuse" % (label, live["anchor"]))
+            continue
+        if kind == "after_the_scene_date":
+            early = min(r["first_issue"] for r in over)
+            if early <= scene_iso:
+                problems.append("%s: %s outranks this house and was first printed %s, on "
+                                "or before the scene date %s — the bound is not what is "
+                                "holding this back"
+                                % (label, ", ".join(repr(a) for a in anchors), early,
+                                   scene_iso))
+                continue
+        if kind == "printed_in_the_same_weeks":
+            same = [r for r in placing if r.get("anchor") == live.get("anchor")
+                    and placement_rank(r.get("placement")) == live_rank]
+            overlap = [(a, b2) for a in same for b2 in over
+                       if a["first_issue"] <= b2["last_issue"]
+                       and b2["first_issue"] <= a["last_issue"]]
+            if not overlap:
+                problems.append("%s: the live anchor and the anchors that outrank it were "
+                                "never printed in the same weeks, so there IS a before "
+                                "and an after here and the refusal is the wrong one"
+                                % label)
+                continue
+        biz["anchor_refusal"] = {
+            "kind": kind,
+            "refused_because": why,
+            "live_anchor": live.get("anchor"),
+            "live_class": live.get("class") or "none",
+            "outranked_by": [
+                {"anchor": r["anchor"], "class": r["class"],
+                 "first_issue": r["first_issue"], "last_issue": r["last_issue"],
+                 "claims": sorted(r["claims"])}
+                for r in sorted(over, key=lambda r: (r["first_issue"], r["anchor"] or ""))],
+        }
+
     # …AND THE FIRMS' REFUSAL (T-0399), which is the other half of the same judgement
     # and had nowhere to live until now. `firm_surnames()` groups the register on the
     # partner surname alone, so it puts together houses that are not one house — the two
@@ -1166,6 +1878,102 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             businesses[key].setdefault("refused_merges", []).append(
                 {"with": frm if key == a else into, "kind": kind,
                  "witnesses": list(witnesses), "refused_because": why})
+
+    # …AND THE THIRD ANSWER, WHICH UNTIL NOW DID NOT EXIST (T-0411). A merge says the two
+    # styles are one house; a refusal says they are not one house. The corpus keeps
+    # producing pairs that are NEITHER — a paper and the shop that prints it, an agency
+    # and the house that keeps it — where the honest sentence is "two businesses, and one
+    # of them is the other's premises". T-0402 was asked to judge the Chicago Democrat
+    # against the Chicago Democrat printing office and could write down no true thing:
+    # `firm_surnames()` compares {democrat} against {office} and the partner guard has no
+    # escape by design, while all three refusal kinds are false — these are not two
+    # houses, a printing DOES join them (the colophon is the paper naming its own shop),
+    # and in 1834 they stand on the same corner. It declined to file a false refusal,
+    # which is what this relation is for.
+    #
+    # It is NOT a merge and it does not touch the partner guard: both records stay whole,
+    # both keep their own printings, their own placement readings and their own trade.
+    # What it adds is a stated, cited edge between them, in one direction — the `part` is
+    # the `whole`'s premises or department — so that a later sweep meets a judgement
+    # rather than an unexamined group, which is the entire argument T-0399 made for
+    # declaring refusals.
+    RELATION_KINDS = {
+        # the part IS the ground the whole is carried on: the shop a paper is printed
+        # at, the store an agency is kept at. One roof, and the model must not mint a
+        # second one for the whole.
+        "premises",
+        # the part is a branch of the whole's own business, conducted by the same house
+        # under a style of its own — a job-printing department, a warehouse arm
+        "department",
+    }
+    relation_pairs = set()
+    for rule in identity.get("premises_relations", []):
+        part, whole = rule.get("part"), rule.get("whole")
+        why = (rule.get("relation_rule") or "").strip()
+        kind = rule.get("kind")
+        witnesses = rule.get("witnesses") or []
+        label = "identity.json premises_relation %r of %r" % (part, whole)
+        if not part or not whole:
+            problems.append("%s: a relation needs both `part` and `whole` — which of the "
+                            "two is the premises is the whole content of the edge" % label)
+            continue
+        if not why:
+            problems.append("%s: no relation_rule — an unexplained relation is worth no "
+                            "more than the silence it replaces, because the next sweep "
+                            "cannot tell it from a group nobody has judged" % label)
+            continue
+        if part not in why or whole not in why:
+            problems.append("%s: relation_rule must name BOTH spellings verbatim, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        if kind not in RELATION_KINDS:
+            problems.append("%s: `kind` must be one of %s — a paper printed at a shop and "
+                            "a house's own department are different claims about the town"
+                            % (label, ", ".join(sorted(RELATION_KINDS))))
+            continue
+        if not witnesses:
+            problems.append("%s: no `witnesses` — a relation rests on printings exactly as "
+                            "a merge does, and one that names none cannot be checked"
+                            % label)
+            continue
+        a, b = slug(part), slug(whole)
+        if a == b:
+            problems.append("%s: a firm cannot be its own premises" % label)
+            continue
+        missing = [n for n, k in ((part, a), (whole, b)) if k not in businesses]
+        if missing:
+            problems.append("%s: %s is not a firm the compiled register carries — a "
+                            "relation that has outlived one of its ends is a judgement "
+                            "nobody can check, and it will not be left to rot here"
+                            % (label, ", ".join(repr(m) for m in missing)))
+            continue
+        if frozenset((a, b)) in merged_pairs:
+            problems.append("%s: this pair is also declared in `firm_merges` — one house "
+                            "cannot be its own premises, and a merge says they are one "
+                            "house" % label)
+            continue
+        if any(r.get("with") == whole for r in businesses[a].get("refused_merges") or []):
+            problems.append("%s: this pair is also declared in `refused_firm_merges` — a "
+                            "refusal and a relation are two answers to one question, and "
+                            "the file may give only one of them" % label)
+            continue
+        if "part_of" in businesses[a]:
+            problems.append("%s: %r is already declared the premises of %r — a business "
+                            "stands on one ground, and a second whole would silently "
+                            "replace the first"
+                            % (label, part, businesses[a]["part_of"]["business"]))
+            continue
+        if (b, a) in relation_pairs:
+            problems.append("%s: the reverse relation is already declared — premises runs "
+                            "one way, and two businesses cannot each be the other's "
+                            "ground" % label)
+            continue
+        relation_pairs.add((a, b))
+        edge = {"kind": kind, "witnesses": list(witnesses), "relation_rule": why}
+        businesses[a]["part_of"] = dict(
+            edge, business=whole, business_id=businesses[b]["id"])
+        businesses[b].setdefault("parts", []).append(dict(
+            edge, business=part, business_id=businesses[a]["id"]))
 
     # THE PROPRIETORS' HALF (T-0337). Applied after the firm merges, because a firm
     # merge is what unions two houses' proprietor lists in the first place, and a pair
@@ -1248,11 +2056,282 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
                 "declaration that has outlived its pair is a judgement nobody can check."
                 % (biz["id"], sorted(pair)))
 
+    # ------------------------------------------------------------------
+    # AN AGENCY IS A RELATION AND NOT A HOUSE (T-0410)
+    #
+    # A business record holds a trade, goods, proprietors, a street and placement
+    # readings. An AGENCY is none of those: it is a relation between a named principal
+    # that is not in this town at all — the Howard Fire Insurance Company of the city of
+    # New-York — and a local house that holds it for a season. Until this section existed
+    # the corpus could express it only one way, by minting the agency as its OWN business,
+    # which then collided under `firm_surnames()` with the house holding it and had to be
+    # refused by hand. T-0402 wrote two such refusals and neither said the true thing,
+    # which is that the houses are JOINED rather than confused.
+    #
+    # So a declaration here does three things and no more: it names the principal, it
+    # records who held the agency over what window, and it may RETIRE the business record
+    # the corpus minted for the agency itself. The window is COMPUTED from the witnesses'
+    # own issue dates and may not be asserted — the same discipline as ruling 3.
+    #
+    # WHAT IT MAY NEVER DO, because this is the shape in which an agency would quietly
+    # invent a partnership: a holding says a house held the agency and NOTHING else. It
+    # adds no proprietor, no trade, no street and no roof. That nobody here becomes a
+    # partner in the house he signs for is the whole reason E. K. Hubbard's agency could
+    # not be merged into Hubbard & Co. in the first place.
+    #
+    # Six guards, each one a way a relation could delete or invent something:
+    #   1. a `why` that names the principal VERBATIM, so the judgement reads back
+    #      without the code — the merges' rule, for the merges' reason;
+    #   2. every witness is a claim key the corpus actually carries;
+    #   3. a holder is a business the register carries or a person the corpus names,
+    #      and which of the two is DECLARED rather than guessed at;
+    #   4. a retired record must be one the register carries, must be unplaced — a
+    #      placed record would take an address out of the town with it — and its every
+    #      mention must be a witness of some holding, so retirement cannot drop a
+    #      printing;
+    #   5. a retired record may not still be named by a refusal, because a refusal that
+    #      has outlived its pair is a judgement nobody can check;
+    #   6. a REFUSED holding says which printing refutes it, in the same shape, because
+    #      the absence of a holding reads exactly like a candidate nobody has judged.
+    AGENCY_HOLDER_KINDS = {"business", "person"}
+    agencies = {}
+
+    def _agency_holding(label, h, seen, refused=False):
+        """Validate one holding. Returns the compiled record, or None with problems."""
+        holder, kind = h.get("holder"), h.get("holder_kind")
+        why_key = "refused_because" if refused else "note"
+        note = (h.get(why_key) or "").strip()
+        what = "refused holding" if refused else "holding"
+        tag = "%s %s %r" % (label, what, holder)
+        if not holder:
+            problems.append("%s: a %s needs a `holder`" % (label, what))
+            return None
+        if kind not in AGENCY_HOLDER_KINDS:
+            problems.append("%s: `holder_kind` must be one of %s — whether the agency sat "
+                            "with a house or with one man is part of what the relation "
+                            "says, and it is declared rather than guessed at"
+                            % (tag, ", ".join(sorted(AGENCY_HOLDER_KINDS))))
+            return None
+        if not note:
+            problems.append("%s: no `%s` — a relation nobody argued is worth no more "
+                            "than no relation at all" % (tag, why_key))
+            return None
+        if holder not in note:
+            problems.append("%s: `%s` must name the holder VERBATIM, so the judgement "
+                            "can be read back without the code" % (tag, why_key))
+            return None
+        witnesses = list(h.get("witnesses") or [])
+        if not witnesses:
+            problems.append("%s: no `witnesses` — an agency rests on printings exactly "
+                            "as a merge does, and one that names none cannot be checked"
+                            % tag)
+            return None
+        missing = [w for w in witnesses if w not in all_claims]
+        if missing:
+            problems.append("%s: %s is not a claim the corpus carries — a relation "
+                            "resting on a printing nobody extracted cannot be checked"
+                            % (tag, ", ".join(repr(m) for m in missing)))
+            return None
+        key = slug(holder)
+        table = businesses if kind == "business" else persons
+        if key not in table:
+            problems.append("%s: not a %s the corpus carries, so a relation hung on it "
+                            "is a rule nobody can check" % (tag, kind))
+            return None
+        if (kind, key) in seen:
+            problems.append("%s: this holder is declared twice for one principal — one "
+                            "relation, one window" % tag)
+            return None
+        seen.add((kind, key))
+        witnesses.sort()
+        dates = sorted(all_claims[w] for w in witnesses)
+        rec = {
+            "holder": holder,
+            "holder_kind": kind,
+            "holder_id": table[key]["id"],
+            "witnesses": witnesses,
+            # computed, never asserted: the window is what the printings say it is
+            "first_issue": dates[0],
+            "last_issue": dates[-1],
+        }
+        if h.get("signature"):
+            rec["signature"] = h["signature"]
+        if h.get("number"):
+            rec["number"] = h["number"]
+        if h.get("copy_dates"):
+            rec["copy_dates"] = sorted(h["copy_dates"])
+        rec[why_key] = note
+        return rec
+
+    for rule in identity.get("agencies", []):
+        principal = rule.get("principal")
+        why = (rule.get("why") or "").strip()
+        label = "identity.json agency %r" % principal
+        if not principal:
+            problems.append("identity.json agency: a declaration needs a `principal`")
+            continue
+        if not why:
+            problems.append("%s: no `why` — an agency declared on nobody's argument is a "
+                            "relation between two houses asserted out of the air" % label)
+            continue
+        if principal not in why:
+            problems.append("%s: `why` must name the principal VERBATIM, so the "
+                            "judgement can be read back without the code" % label)
+            continue
+        ak = slug(principal)
+        if ak in agencies:
+            problems.append("%s: this principal is declared twice" % label)
+            continue
+        seen_holders = set()
+        holdings = [_agency_holding(label, h, seen_holders)
+                    for h in rule.get("holdings") or []]
+        refused = [_agency_holding(label, h, seen_holders, refused=True)
+                   for h in rule.get("refused_holdings") or []]
+        if any(h is None for h in holdings + refused):
+            continue
+        if not holdings:
+            problems.append("%s: no `holdings` — a principal with nobody holding it for "
+                            "it in this town is not a fact about this town" % label)
+            continue
+
+        retired = None
+        ret = rule.get("retires")
+        if ret:
+            name = ret.get("name")
+            because = (ret.get("because") or "").strip()
+            rtag = "%s retires %r" % (label, name)
+            rk = slug(name or "")
+            if not name or not because:
+                problems.append("%s: a retirement needs both a `name` and a `because`"
+                                % rtag)
+                continue
+            if name not in because:
+                problems.append("%s: `because` must name the retired record VERBATIM — "
+                                "a business leaving the register on an unreadable "
+                                "argument is a house silently deleted" % rtag)
+                continue
+            if rk not in businesses:
+                problems.append("%s: not a business the register carries, so the "
+                                "retirement answers nothing" % rtag)
+                continue
+            doomed = businesses[rk]
+            if placement_rank(doomed.get("placement") or {}) > 0 or doomed.get("street"):
+                problems.append("%s: this record is PLACED, and retiring it would take "
+                                "an address out of the town with it. An agency that was "
+                                "read at a street is not the relation this section is "
+                                "for" % rtag)
+                continue
+            if ("business", rk) in seen_holders:
+                problems.append("%s: the retired record is also declared a HOLDER of "
+                                "its own agency — a relation cannot hold itself" % rtag)
+                continue
+            covered = {w for h in holdings for w in h["witnesses"]}
+            dropped = [m for m in doomed["mentions"] if m not in covered]
+            if dropped:
+                problems.append("%s: %s would be dropped — every printing the retired "
+                                "record was compiled from has to be a witness of some "
+                                "holding, or retiring it loses a reading"
+                                % (rtag, ", ".join(repr(d) for d in sorted(dropped))))
+                continue
+            still_refused = [r for r in identity.get("refused_firm_merges", [])
+                             if rk in (slug(r.get("into") or ""), slug(r.get("from") or ""))]
+            if still_refused:
+                problems.append("%s: a `refused_firm_merge` still names this record. The "
+                                "relation is what that refusal could not say, so the "
+                                "refusal comes out in the same pass — one left behind is "
+                                "a judgement nobody can check" % rtag)
+                continue
+            doomed = businesses.pop(rk)
+            retired = {
+                "id": doomed["id"], "name": doomed["name"], "trade": doomed.get("trade"),
+                "mentions": sorted(doomed["mentions"]), "because": because,
+            }
+            if doomed.get("merged"):
+                # the styles an earlier firm merge collapsed INTO this record: the
+                # judgement outlives the record it was made about
+                retired["merged"] = doomed["merged"]
+
+        agencies[ak] = {
+            "id": "agency_" + ak,
+            "principal": principal,
+            "principal_seat": rule.get("principal_seat"),
+            "trade": rule.get("trade"),
+            "why": why,
+            "first_issue": min(h["first_issue"] for h in holdings),
+            "last_issue": max(h["last_issue"] for h in holdings),
+            "holdings": sorted(holdings, key=lambda h: (h["first_issue"], h["holder"])),
+            "refused_holdings": sorted(refused,
+                                       key=lambda h: (h["first_issue"], h["holder"])),
+            "retired": retired,
+        }
+        # …and the line on the holder's own card, which is what the ticket asked for:
+        # a house that holds an agency says so, and gains nothing else by it.
+        for h, field in ([(h, "agencies_held") for h in holdings]
+                         + [(h, "agencies_refused") for h in refused]):
+            table = businesses if h["holder_kind"] == "business" else persons
+            rec = table.get(slug(h["holder"]))
+            if rec is None:          # the holder WAS the retired record's own house
+                continue
+            rec.setdefault(field, []).append({
+                "agency": "agency_" + ak, "principal": principal,
+                "first_issue": h["first_issue"], "last_issue": h["last_issue"],
+                "witnesses": list(h["witnesses"]),
+            })
+    for table in (businesses, persons):
+        for rec in table.values():
+            for field in ("agencies_held", "agencies_refused"):
+                if rec.get(field):
+                    rec[field].sort(key=lambda a: (a["first_issue"], a["agency"]))
+
+    trade_classes, trade_scopes = load_trade_classes()
     for b in businesses.values():
+        # T-0398. THE PROPRIETOR LIST IS NOT A LIST OF PEOPLE, AND NOW IT SAYS SO.
+        #
+        # `proprietors` is whatever each claim read where a proprietor was wanted, and a
+        # notice signed only by the house gives the house: the Democrat of 1835-08-19
+        # (c012) prints "for sale only by Russell & Cl[if]t (Agents for the State of
+        # I[ll]inois) at the Chicago Book Store" and nothing else, so the reading pass
+        # recorded `Russell & Clift` as a proprietor of `business_russell_clift`. That is
+        # exactly what the paper printed and it is not a misreading — 28 of the 199 houses
+        # carry their own trading style this way — but the LIST then reads 'Aaron Russell,
+        # Benj. H. Clift, Russell & Clift', which states that the partnership is its own
+        # third partner.
+        #
+        # So the record carries the distinction instead of the reader having to make it.
+        # `partners` is the person-styled entries, `firm_styles` the house's own, both in
+        # the order `proprietors` prints them, and NEITHER EDITS A CLAIM: `proprietors`
+        # is untouched and stays the union of what was read. It is DERIVED, by the same
+        # `firm_styled()` the proprietor policy already steps over styles with (T-0337),
+        # so there is nothing to declare and nothing to keep in step — a house whose style
+        # `firm_styled()` cannot see would need `identity.json` to say so, and the corpus
+        # has none today.
+        #
+        # `partners` is EMPTY where the papers only ever signed the house ('H. Doty & Co.'
+        # is the whole of that record's proprietor list), and empty is the honest answer:
+        # no man is named. The surnames inside a style are not lost by this — the register
+        # reads them out with `firm_surnames()` for its occupant matching, which is a
+        # different question from who the papers named.
+        ordered = {}
+        for key, value in list(b.items()):
+            ordered[key] = value
+            if key == "proprietors":
+                ordered["partners"] = [n for n in value if not firm_styled(n)]
+                ordered["firm_styles"] = [n for n in value if firm_styled(n)]
+        b.clear()
+        b.update(ordered)
         # Ruling 3, computed and never asserted: a documented business stands in the
         # 1835 town unless a claim contradicts it, and one whose last issue predates
         # 1835 stands on a survival liberty that has to be written down.
         b["built_at_scene_date"] = not b["contradicted_by"]
+        # T-1006: the census class, carried BESIDE the printed trade and never over it.
+        # The December 1835 State census counted the town by class and this field is what
+        # can be counted; `trade` stays the prose the notice printed. The join is a lookup
+        # and nothing more — the judgement is in trade_class_rulings.json, and
+        # tools/trade_census_1835.py --check is what refuses a business no ruling covers.
+        b["trade_classes"] = sorted(
+            trade_classes.get(b["id"]) or trade_classes.get(("trade", b.get("trade"))) or [])
+        b["trade_class_scope"] = (
+            trade_scopes.get(b["id"]) or trade_scopes.get(("trade", b.get("trade"))) or "in_town")
         last = date.fromisoformat(b["evidence"]["last_issue"])
         b["survival_liberty_required"] = b["built_at_scene_date"] and last.year < SCENE_DATE.year
         b["goods"].sort()
@@ -1263,6 +2342,8 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             r["claims"].sort()
         b["placement_readings"].sort(
             key=lambda r: (r["first_issue"], r["anchor"] or "", r["class"] or ""))
+        if b.get("vendor_placements"):
+            b["vendor_placements"].sort(key=lambda v: (v["issue"], v["claim"]))
     for p in persons.values():
         p["mentions"].sort()
         p["variants"].sort(key=lambda v: (v["claim"], v["as_printed"] or ""))
@@ -1282,10 +2363,12 @@ def compile_gazetteer(files, identity, corpus, quiet=True):
             for p in sorted(files, key=lambda p: Path(p).name)
         ],
         "counts": {"claims": claim_count, "persons": len(persons),
-                   "places": len(places), "businesses": len(businesses)},
+                   "places": len(places), "businesses": len(businesses),
+                   "agencies": len(agencies)},
         "persons": sorted(persons.values(), key=lambda p: p["id"]),
         "places": sorted(places.values(), key=lambda p: p["id"]),
         "businesses": sorted(businesses.values(), key=lambda b: b["id"]),
+        "agencies": sorted(agencies.values(), key=lambda a: a["id"]),
     }
     if not quiet:
         print("  ok    %d claim(s) → %d person(s), %d place(s), %d business(es)"
@@ -1409,22 +2492,129 @@ def firm_style(name):
     return re.split(r",\s+(?=[a-z])", name, maxsplit=1)[0].strip().rstrip(",")
 
 
+# A generational or courtesy tag printed AFTER the family name. It is not a surname and
+# it is not a partner: 'John Bates, Jr.' is one man, and reading 'Jr' out of him both
+# invented a surname and lost Bates (T-1042).
+NAME_SUFFIXES = {"jr", "jun", "junr", "junior", "sr", "sen", "senr", "senior",
+                 "esq", "esqr", "2d", "3d", "2nd", "3rd"}
+
+
+#: A word as the papers print it, with the abbreviating point kept — the point is the
+#: tell this reading turns on, so the tokenizer may not throw it away.
+NAME_TOKEN = re.compile(r"[A-Za-z][A-Za-z\u2019']*\.?")
+
+
+def _forename_token(word):
+    """Is this word a FORENAME as printed, rather than a family name?
+
+    Two forms and the papers print both: the bare initial 'J.', and the abbreviation
+    'Wm.' for William, 'Jno.' for John, 'Chas.' for Charles. The abbreviating point is
+    what says so — a family name is set whole and carries none — and it is why the
+    tokenizer above keeps the point instead of stripping it with the rest.
+    """
+    return word.endswith(".") or len(re.sub(r"[^A-Za-z]", "", word)) <= 1
+
+
+def _segment_surname(seg):
+    """The one word a partner SEGMENT names as a surname, or '' where it names none.
+
+    Three kinds of word are not the family name and are dropped before the last one is
+    taken: a firm suffix ('& Co.'), a generational tag ('Jr.') and a forename, whether an
+    initial or an abbreviation. A segment of forenames alone names NOBODY and says so:
+    'C. & I. Harmon' is two men of one family, not a partner called C.
+    """
+    kept = [w for w in NAME_TOKEN.findall(seg)
+            if slug(w) not in FIRM_SUFFIXES
+            and slug(w) not in NAME_SUFFIXES
+            and not _forename_token(w)]
+    return kept[-1].rstrip(".") if kept else ""
+
+
+PARTNERSHIP = re.compile(r"&|\band\b")
+
+
+def _partners(style):
+    """A firm style cut into one segment per partner, reversals folded back together.
+
+    '&' and 'and' separate partners and a COMMA does not, on its own. The corpus prints
+    three different things with one, and getting them apart is the whole of T-1042:
+
+      * ', ' then a LOWER-CASE word begins a trade description — `firm_style()` has
+        already cut that off before this runs.
+      * ', ' in a name that states NO partnership reverses one man for alphabetising
+        ('Taylor, Wm. H.', 'Holsman, George') or tags him ('John Bates, Jr.'). A
+        partnership is printed with '&' or 'and'; a reversal is a filing device for a
+        single name, so a style with no partnership conjunction names one man and the
+        comma cannot be separating two.
+      * ', ' INSIDE a partnership separates partners — 'Clark, Filer & Co.',
+        'Harmon, Loomis & Co.' — which is how both of their men are kept. A piece that is
+        forenames or a generational tag is still a tail there and folds back into the
+        partner in front of it.
+    """
+    if not PARTNERSHIP.search(style):
+        head = style.split(",")[0].strip()
+        return [head or style.strip()]
+    out = []
+    for run in PARTNERSHIP.split(style):
+        for piece in (piece.strip() for piece in run.split(",")):
+            words = NAME_TOKEN.findall(piece)
+            tail = bool(out) and bool(words) and all(
+                _forename_token(w) or slug(w) in NAME_SUFFIXES for w in words)
+            if tail:
+                out[-1] = "%s %s" % (out[-1], piece)
+            elif piece:
+                out.append(piece)
+    return out
+
+
+def surname_words(name):
+    """EVERY word a proprietor string names as a surname, markup off, as printed.
+
+    THE ONE DERIVATION (T-1042). Three passes each guessed at this and each guessed
+    differently: `firm_surnames()` here, `adopt_street_faces.surnames()` and
+    `replace_invented_residents.street_face_stands()`. The two outside this file took the
+    LAST word of the whole string, which is right on a person and a guess on a firm's own
+    trading style — and the corpus showed it going wrong both ways. It INVENTED a man:
+    'H. Doty & Co.' and the five printings of 'J. L. Wilson & Co.' each yielded the
+    surname 'co', so the adoption table stood somebody called Co on Lake Street and
+    refusal 5 could fire on him. And it LOST one: 'Clark, Filer & Co.' yielded 'clark'
+    alone, 'Harmon, Loomis & Co.' lost Loomis, 'Fullerton & Botsford' lost Fullerton.
+
+    'J. L. Wilson & Co.' → ('Wilson',) · 'Clark, Filer & Co.' → ('Clark', 'Filer') ·
+    'Taylor, Wm. H.' → ('Taylor',) · 'C. & I. Harmon' → ('Harmon',).
+
+    The words come back AS PRINTED, in the order the string names them, and are NOT
+    normalised, so that each caller keeps the spelling its own keys are already built on.
+    This settles WHICH words are surnames — the question all three answered differently —
+    and deliberately does not reach into how a pass spells one.
+
+    Three commas, three meanings, and the printing tells them apart (see `_partners()`):
+      * ', ' then a LOWER-CASE word begins the trade description — `firm_style()` cuts it.
+      * ', ' then forenames or a generational tag is the SAME man, reversed for
+        alphabetising ('Taylor, Wm. H.') or tagged ('John Bates, Jr.').
+      * ', ' then a family name is a partner separator, which is how 'Clark, Filer & Co.'
+        keeps both of its men.
+
+    A DECLARED sign-name is NOT visible here and must be taken off first —
+    `partner_surnames()` below is that reading.
+    """
+    out = []
+    for seg in _partners(firm_style(unmarked(name or ""))):
+        word = _segment_surname(seg)
+        if word and word not in out:
+            out.append(word)
+    return tuple(out)
+
+
 def firm_surnames(name):
-    """The set of partner surnames a firm style carries.
+    """The set of partner surnames a firm style carries, slugged.
 
     'J. L. Wilson & Co.' → {'wilson'} · 'Clark, Filer & Co.' → {'clark', 'filer'}.
 
-    Split the style on the separators a partnership uses — '&', ',' and 'and' — and take
-    the LAST word of each partner, which is the surname whether the forename was printed
-    whole ('Giles Spring'), abbreviated ('Jno. L. Wilson') or dropped ('L. Wilson').
+    The identity policy's spelling of `surname_words()` above, which is where the reading
+    itself lives (T-1042).
     """
-    out = set()
-    for seg in re.split(r"\s*(?:&|,|\band\b)\s*", firm_style(name)):
-        words = [w for w in re.findall(r"[A-Za-z][A-Za-z\u2019']*", seg)
-                 if slug(w) not in FIRM_SUFFIXES]
-        if words:
-            out.add(slug(words[-1]))
-    return out
+    return {slug(w) for w in surname_words(name)}
 
 
 def sign_name_index(identity):
@@ -1516,18 +2706,81 @@ def reading_key(placement):
     return ((p.get("class") or ""), (p.get("anchor") or ""))
 
 
+# A BRACKET IS THE READING PASS SAYING IT COULD NOT SEE THE WORD (T-0771). Square
+# brackets in `offset_normalized` mark a SUPPLY — a word the pass reconstructed because
+# the column cut, blotted or mis-set it — and this project refuses to spend one:
+# `docs/CORNER-ORDINAL.md` turns away the American's "De[arborn]" because a bracketed
+# supply is not a street name. That refusal is right and nothing here relaxes it.
+#
+# What it does not settle is which PRINTING of one reading a house keeps. Clark, Filer &
+# Co. advertise one sentence three times — "their ware house on South water St. five
+# doors east of the corner of Randolph st." — and the Democrat prints it whole on
+# 1834-06-18 and 1834-07-02 and damaged on 1834-06-11, "five [doors east] of the corner
+# [of Randolph st.]". All three are ONE reading: same class, same anchor. Keeping the
+# earliest kept the damaged one, so the ordinal reader met a supply where the count
+# should be, refused it, and the register put a documented warehouse on the whole of
+# South Water Street instead of five doors along it.
+#
+# `docs/CORNER-ORDINAL.md` already states the rule this wants — *an anchor printed four
+# ways is resolved on its BEST reading* — because the printings are declared to be one
+# landmark and which of them a pass swept most of the sentence into is a fact about the
+# pass. The offset is the rest of that same sentence and takes the same rule.
+#
+# THE TEST IS EQUALITY, WHICH IS THE WHOLE OF THE CARE. A printing displaces the one
+# held only when unbracketing the held text yields the candidate's text exactly, up to
+# case and run of whitespace — the SAME SENTENCE, one printing of it damaged and one
+# whole. Nothing is gained, nothing is lost, and only the brackets go. A candidate that
+# says LESS does not qualify however few brackets it carries, and a printing carrying no
+# `offset_normalized` at all never qualifies: an absent normalisation is not a whole one.
+# A first pass here ranked printings by bracket COUNT and moved five houses onto worse
+# transcriptions — G. Spring's office off Dearborn Street onto South Water — which is
+# why the rule is equality and not a score.
+#
+# The limit: this chooses between printings of ONE reading and never between readings.
+# Two different anchors are two readings and are still dated against each other by
+# `anchor_change`; a damaged printing that is the only printing of its reading keeps that
+# reading, still bracketed, still refused downstream. Nothing is unbracketed, nothing is
+# merged, and no word enters the tree that some printing did not set.
+SUPPLIED = re.compile(r"\[[^\]]*\]")
+
+
+def unbracketed(placement):
+    """A printing's normalised offset with its supplies opened, or None if it has none.
+
+    `None` for a placement carrying no `offset_normalized`, which is how a printing that
+    was never normalised stays out of the comparison entirely.
+    """
+    text = (placement or {}).get("offset_normalized")
+    if not text:
+        return None
+    return " ".join(SUPPLIED.sub(lambda m: m.group(0)[1:-1], str(text)).split()).lower()
+
+
+def wholer(candidate, held):
+    """True when `candidate` prints the sentence `held` had to supply part of."""
+    a, b = unbracketed(candidate), unbracketed(held)
+    if a is None or b is None or a != b:
+        return False
+    return not SUPPLIED.search(str(candidate["offset_normalized"])) \
+        and bool(SUPPLIED.search(str(held["offset_normalized"])))
+
+
 def absorb_reading(business, reading):
     """Fold a printing's placement into a house's readings, widening the window.
 
     The placement KEPT for a reading is the earliest printing's, so the offset text
-    quoted beside it is the one the anchor was first set with. Ties break on the claim
-    key, because this compile is re-derived and byte-compared by the gate.
+    quoted beside it is the one the anchor was first set with — UNLESS a later printing
+    sets the very same sentence without the supplies the earliest needed, in which case
+    the whole printing displaces the damaged one (T-0771; see the note above). Ties break
+    on the claim key, because this compile is re-derived and byte-compared by the gate.
     """
     for r in business["placement_readings"]:
         if reading_key(r["placement"]) != reading_key(reading["placement"]):
             continue
-        if (reading["first_issue"], min(reading["claims"])) < (r["first_issue"],
-                                                              min(r["claims"])):
+        if wholer(reading["placement"], r["placement"]) \
+                or ((reading["first_issue"], min(reading["claims"]))
+                    < (r["first_issue"], min(r["claims"]))
+                    and not wholer(r["placement"], reading["placement"])):
             r["placement"] = reading["placement"]
         r["first_issue"] = min(r["first_issue"], reading["first_issue"])
         r["last_issue"] = max(r["last_issue"], reading["last_issue"])
@@ -1549,10 +2802,52 @@ def record_reading(business, placement, issue_date, key):
 
 
 def placement_rank(placement):
-    """How much of the ground a placement can actually put a storefront on."""
+    """How much of the ground a placement can actually put a storefront on.
+
+    A PROPERTY OF THE SENTENCE, NEVER OF ITS DATE (T-0403, settled). It is asked in five
+    places and none of them wants to know which printing is the later one; making it
+    date-aware would mean the firm merge, the T-0440 silence pass and
+    `measure_placement_silence.py` all started deciding that houses MOVED, silently and
+    in bulk. The one thing in this project that may order two printed addresses in time
+    is an authored `anchor_changes` declaration, which runs after all of them and
+    overwrites what they decide. See the merge's own note above for the case that asked.
+    """
     order = list(reversed(PLACEMENT_CLASSES))          # none < street_only < relative < corner
     cls = (placement or {}).get("class")
     return order.index(cls) if cls in order else -1
+
+
+def places_nothing(placement):
+    """True where a placement puts a storefront on NO ground at all (T-0859).
+
+    `placement_rank` reads the CLASS, and one class can be written without the field
+    that gives it its meaning: a `street_only` carrying neither a `street` nor an
+    `anchor` names no street, so it can no more put a shop on the ground than
+    `{"class": "none"}` can. Twelve claims in the corpus carried one and eleven houses
+    held one when the rule was written — five claims since T-0861 — and J. S. C. Hogan
+    is the case that made it visible — his live placement came off a two-line notice of three hundred cedar posts that gives no address
+    whatever, and it outranked eight printings that place him one door from the Post
+    Office. The class and the `South Water Street` beside it came from the extraction's
+    BUSINESS-level `street` field, supplied by a reader who knew where the store was.
+
+    This is a statement about the PLACEMENT RECORD, not about the advertisement. Seven
+    of the twelve notices DID print a street in their prose, and the reading simply had
+    not carried it into the placement; that was a defect in the extraction and not in
+    this function, and T-0861 repaired it — each of the seven now carries the street its
+    own type prints, quoted, and the twelve are FIVE. The five left are the population
+    proper: notices that place themselves "at his Store" or "at the old stand" or give no
+    address at all, whose business-level `street` came from a reader who knew the house
+    and is not read back into a placement the page never printed. Not one house's live
+    placement moved when the seven were repaired, which is what the ticket predicted:
+    `compile_register` adopts a street face off the business-level field, so nothing was
+    mis-placed by the silence — what was wrong is that the reading did not say what the
+    printing said. Either way the placement itself names no ground, and a reading that
+    names no ground may not outrank one that does.
+    """
+    p = placement or {}
+    if placement_rank(p) <= 0:
+        return True
+    return p.get("class") == "street_only" and not p.get("street") and not p.get("anchor")
 
 
 # --------------------------------------------------------------------------
@@ -1677,6 +2972,28 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
                 if place.get("class") == "relative" and not place.get("offset_text"):
                     bad.append("%s %s: a relative placement must carry the paper's own "
                                "offset text verbatim — that text IS the evidence" % (at, key))
+                # T-0385. The unread anchor is a FIELD, and the prose beside it may not
+                # be the only place it is said. A pass that could not read the word the
+                # anchor turns on writes the damage into the anchor itself — "an unread
+                # cross street", "an unnamed House" — and the placement rule above reads
+                # `anchor_unread` and never that prose, so a reading that says it in
+                # words alone would be silently held by the impression it could not
+                # read. This is the gate that stops the next such reading going in
+                # unflagged; it is deliberately a gate and not a sniffer, because what
+                # the field asserts is the READER's judgement and no regular expression
+                # is entitled to make it.
+                if ANCHOR_UNREAD_PROSE.search(place.get("anchor") or "") \
+                        and not place.get("anchor_unread"):
+                    bad.append("%s %s: the anchor %r says the pass could not read it "
+                               "and the placement does not set `anchor_unread` — the "
+                               "flag is what the placement rules read, and prose alone "
+                               "leaves the house placed by the impression nobody could "
+                               "read" % (at, key, place.get("anchor")))
+                if place.get("anchor_unread") and place.get("class") not in \
+                        ("corner", "relative"):
+                    bad.append("%s %s: `anchor_unread` on a %s placement — only a "
+                               "placement that turns on an anchor can declare one unread"
+                               % (at, key, place.get("class")))
             ad = claim.get("ad_copy_date")
             if ad is not None:
                 if not ad.get("verbatim"):
@@ -1741,6 +3058,53 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
             loc = claim.get("locator") or {}
             if not loc:
                 continue
+
+            # A CLAIM READ AT THE PAGE IMAGE, NOT AT THE TRANSCRIPTION (T-1011).
+            #
+            # Everything below this point locates a claim in the deposit's typed
+            # transcription and re-reads its quote out of it, character for character.
+            # That is the right default and it is the whole of the corpus but for the
+            # case ruling 2 already contemplates: where a scan exists and is read, the
+            # scan is the authority. Until now the scan could only CORRECT a reading the
+            # transcription also carried — it had no way to carry one the transcription
+            # does not. The 1 January 1834 letter list is where that ran out: an
+            # advertisement stands down the middle of the printed column, the segmenter
+            # lost 54 of the return's 170 lines to it, and no transcription of any of the
+            # return's nine impressions carries them. A quote reassembled from lines that
+            # are not there cannot be made, and the reading is real.
+            #
+            # So a locator may name the PAGE IMAGE instead, and the escape is narrower
+            # than the thing it replaces rather than looser. It buys nothing except
+            # exemption from the transcription reassembly, and it costs a provenance
+            # block that has to resolve: the deposit's own image record — item, file,
+            # sha256 and jp2 page — is re-read out of the roster file the claim cites,
+            # and every field has to agree with it. A claim that says `read_at_image`
+            # and names a roster that does not exist, or whose image block does not
+            # match, is a compile error. There is no form of this that asserts a reading
+            # nothing can be checked against.
+            img = loc.get("read_at_image")
+            if img is not None:
+                for field in ("roster", "internet_archive_item", "file", "file_sha256"):
+                    if not img.get(field):
+                        bad.append("%s %s: a page-image locator must carry %s — the "
+                                   "deposit record is what makes the reading checkable"
+                                   % (at, key, field))
+                roster_rel = img.get("roster") or ""
+                roster_path = repo / roster_rel if roster_rel else None
+                if roster_path is None or not roster_path.exists():
+                    bad.append("%s %s: the page-image locator cites roster %r, which is "
+                               "not in the tree" % (at, key, roster_rel))
+                else:
+                    held = (json.loads(roster_path.read_text()).get("image") or {})
+                    for field in ("internet_archive_item", "file", "file_sha256",
+                                  "jp2_page"):
+                        if field in img and img[field] != held.get(field):
+                            bad.append("%s %s: the page-image locator's %s is %r and the "
+                                       "roster records %r — a claim may not restate the "
+                                       "deposit differently from the reading it cites"
+                                       % (at, key, field, img[field], held.get(field)))
+                continue
+
             role = loc.get("artifact_role")
             art = artifact_of(issue, role)
             if art is None:
@@ -1887,9 +3251,23 @@ def check(extracted=EXTRACTED, gazetteer=GAZETTEER, identity=IDENTITY, corpus=CO
               "reading of those accounted for, the live one computed from the scene date"
               % (readings, many,
                  sum(1 for b in doc["businesses"] if b.get("anchor_change"))))
+        print("  ok    %d house(s) whose live address a later printing outranks and "
+              "which are REFUSED a change, each naming an anchor it will not be "
+              "reordered by and a kind the readings themselves confirm"
+              % sum(1 for b in doc["businesses"] if b.get("anchor_refusal")))
         print("  ok    %d firm group(s) refused rather than merged, each naming the "
               "printings the refusal rests on"
               % len(identity_doc.get("refused_firm_merges", [])))
+        print("  ok    %d business(es) declared another's premises or department rather "
+              "than merged into it, each naming the printings the relation rests on"
+              % len(identity_doc.get("premises_relations", [])))
+        print("  ok    %d agency relation(s): %d holding(s) and %d refused, %d minted "
+              "record(s) retired — a house that holds an agency gains a line and not a "
+              "roof"
+              % (len(doc.get("agencies", [])),
+                 sum(len(a["holdings"]) for a in doc.get("agencies", [])),
+                 sum(len(a["refused_holdings"]) for a in doc.get("agencies", [])),
+                 sum(1 for a in doc.get("agencies", []) if a.get("retired"))))
         covered = sum(1 for i in corpus_doc.get("issues", [])
                       for r in coverage_doc.get("ranges", [])
                       if i.get("publication") == r.get("publication")
@@ -2011,6 +3389,25 @@ def self_test():
         "a quote with no normalized reading")
     run(lambda d, i: d["claims"][0]["locator"].update(artifact_role="imaginary"),
         "which this issue does not have", "an artifact role the issue lacks")
+
+    # T-1011'S ESCAPE, and each of the three ways it could be abused.
+    IMG = {"roster": "chicago/4d/data/research/newspapers/"
+                     "letter_list_1834_01_01_printed.json",
+           "internet_archive_item": "chicago1835-newspaper-chicago-democrat-1834",
+           "file": "Jan1834-Mar1834.pdf",
+           "file_sha256": "9fdfe5762de29a2581dcffb0a2b2140a15eb04b1811747aa37d78bbda92022d3"}
+
+    def at_image(d, **kw):
+        rec = dict(IMG)
+        rec.update(kw)
+        d["claims"][0]["locator"]["read_at_image"] = rec
+
+    run(lambda d, i: at_image(d, roster=None), "must carry roster",
+        "a page-image locator that cites no roster")
+    run(lambda d, i: at_image(d, roster="chicago/4d/data/nope.json"),
+        "not in the tree", "a page-image locator citing a roster that does not exist")
+    run(lambda d, i: at_image(d, file_sha256="0" * 64), "may not restate the deposit",
+        "a page-image locator restating the deposit's own sha256")
     run(lambda d, i: d["claims"][0]["locator"].update(lines_of_claim=[1]),
         "fall outside the cited range", "a claim line outside the cited range")
     run(lambda d, i: d.update(issue_id="chicago_democrat_1999_01_01"),
@@ -2122,11 +3519,11 @@ def self_test():
     # THE FIRM'S HALF OF THE SAME POLICY (T-0304). Every case below is built by giving
     # the fixture's own Wilson advertisement a SECOND printing under another spelling,
     # which is the shape every firm merge in identity.json actually has.
-    def variant(d, name, **biz):
+    def variant(d, name, cid="zz1", **biz):
         src = next(c for c in d["claims"]
                    if (c.get("business") or {}).get("name") == "L. Wilson & Co.")
         c = copy.deepcopy(src)
-        c["id"] = "zz1"
+        c["id"] = cid
         c["business"]["name"] = name
         c["business"].update(biz)
         d["claims"].append(c)
@@ -2194,6 +3591,174 @@ def self_test():
                       firm_rule(i, "L. Wilson & Co.", "Jno. Wilson & Co."),
                       firm_refusal(i, "L. Wilson & Co.", "Jno. Wilson & Co.")),
         "cannot both join and hold apart", "a pair both merged and refused")
+
+    # …AND THE RELATION (T-0411), the third answer. Same fixture again: the second
+    # printing is a house that is NEITHER the first nor unrelated to it — the shop the
+    # first is printed at — which is the pair `firm_surnames()` cannot join and no
+    # refusal kind can honestly hold apart.
+    def premises(i, part, whole, why=None, kind="premises", witnesses=("the fixture",)):
+        i.setdefault("premises_relations", []).append({
+            "part": part, "whole": whole, "kind": kind, "witnesses": list(witnesses),
+            "relation_rule": why if why is not None
+            else "%s is the premises %s is printed at: the second printing is the first's "
+                 "own colophon naming its shop" % (part, whole)})
+
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.")),
+        None, "a shop declared the premises of the house printed there")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.", "")),
+        "no relation_rule", "a premises relation that does not say why it holds")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.",
+                               "they go together")),
+        "name BOTH spellings", "a premises relation that does not name what it joins")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.",
+                               kind="affiliated")),
+        "`kind` must be one of", "a premises relation whose kind is neither of the two")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.",
+                               witnesses=())),
+        "no `witnesses`", "a premises relation that rests on no printing")
+    run(lambda d, i: premises(i, "Nobody & Co.", "L. Wilson & Co."),
+        "outlived one of its ends", "a premises relation for a house nobody claimed")
+    run(lambda d, i: premises(i, "L. Wilson & Co.", "L. Wilson & Co."),
+        "its own premises", "a firm declared the premises of itself")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      firm_rule(i, "L. Wilson & Co.", "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.")),
+        "cannot be its own premises",
+        "a pair both merged and declared one the other's premises")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      firm_refusal(i, "Wilson printing office", "L. Wilson & Co."),
+                      premises(i, "Wilson printing office", "L. Wilson & Co.")),
+        "two answers to one question",
+        "a pair both refused and declared one the other's premises")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co."),
+                      premises(i, "L. Wilson & Co.", "Wilson printing office")),
+        "premises runs one way", "two businesses each declared the other's ground")
+    run(lambda d, i: (variant(d, "Wilson printing office"),
+                      variant(d, "Wilson job room", cid="zz2"),
+                      premises(i, "Wilson printing office", "L. Wilson & Co."),
+                      premises(i, "Wilson printing office", "Wilson job room")),
+        "already declared the premises of",
+        "one business declared to stand on two different grounds")
+    # THE AGENCY RELATION AND EVERY WAY IT COULD INVENT OR DELETE SOMETHING (T-0410).
+    # A holding is the one declaration here that joins two houses rather than holding
+    # them apart, so it is the one most able to assert a partnership nobody printed —
+    # and the retirement is the only thing in this file that takes a business OUT of the
+    # register. Both are therefore fixed by cases, and the green ones are as load-bearing
+    # as the red: a guard that also refuses the legitimate declaration is a guard that
+    # gets deleted the first time somebody needs one.
+    ISSUE = base.get("issue_id")
+    WK = "%s#c012" % ISSUE            # L. Wilson & Co., unplaced and streetless
+    VK = "%s#zz1" % ISSUE             # whatever `variant` mints
+    PK = "%s#c004" % ISSUE            # W. L. Newberry, a person and not a house
+
+    def holding(holder, kind="business", witnesses=None, note=None, field="note", **kw):
+        h = {"holder": holder, "holder_kind": kind,
+             "witnesses": [WK] if witnesses is None else list(witnesses)}
+        h[field] = (note if note is not None
+                    else "%s held the agency over this window and gains nothing else by "
+                         "it — no proprietor, no trade, no street, no roof" % holder)
+        h.update(kw)
+        return h
+
+    def agency(i, holdings=None, principal="Howard Fire Insurance Company", why=None,
+               refused=None, retires=None):
+        rec = {"principal": principal,
+               "why": why if why is not None
+               else "The %s is a company that never stood in this town and sold here "
+                    "through a local agent" % principal,
+               "holdings": [holding("L. Wilson & Co.")] if holdings is None else holdings}
+        if refused is not None:
+            rec["refused_holdings"] = refused
+        if retires is not None:
+            rec["retires"] = retires
+        i.setdefault("agencies", []).append(rec)
+
+    def retirement(name="A. Gent, agent for the Howard Fire Insurance Company", because=None):
+        return {"name": name,
+                "because": because if because is not None
+                else "'%s' is the agency itself minted as a house, it is unplaced in "
+                     "every printing, and every one of them is a witness above" % name}
+
+    run(lambda d, i: agency(i), None, "an agency held by one house")
+    run(lambda d, i: agency(i, [holding("W. L. Newberry", kind="person", witnesses=[PK])]),
+        None, "an agency held by one man rather than a house")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co."),
+                                holding("W. L. Newberry", kind="person", witnesses=[PK])]),
+        None, "an agency that passes from a house to a man")
+    run(lambda d, i: agency(i, why=""),
+        "no `why`", "an agency declared on nobody's argument")
+    run(lambda d, i: agency(i, why="a New York company sold insurance here"),
+        "name the principal VERBATIM", "an agency whose reason does not name its principal")
+    run(lambda d, i: agency(i, []),
+        "no `holdings`", "a principal nobody in this town holds")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co.", kind="firm")]),
+        "`holder_kind` must be one of", "a holder whose kind is outside the vocabulary")
+    run(lambda d, i: agency(i, [holding("Nobody & Co.")]),
+        "not a business the corpus carries", "an agency hung on a house nobody claimed")
+    run(lambda d, i: agency(i, [holding("Absent Person", kind="person", witnesses=[PK])]),
+        "not a person the corpus carries", "an agency hung on a man nobody claimed")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co.", witnesses=[])]),
+        "no `witnesses`", "a holding that rests on no printing")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co.", witnesses=["%s#c999" % ISSUE])]),
+        "not a claim the corpus carries", "a holding citing a printing nobody extracted")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co.", note="somebody held it")]),
+        "name the holder VERBATIM", "a holding whose note does not name its holder")
+    run(lambda d, i: agency(i, [holding("L. Wilson & Co."), holding("L. Wilson & Co.")]),
+        "declared twice for one principal", "one house declared the holder twice")
+    run(lambda d, i: (agency(i), agency(i)),
+        "declared twice", "one principal declared twice")
+
+    # THE REFUSED HOLDING — the candidate the printings refute, held to the holding's
+    # own shape because the absence of one reads exactly like a candidate nobody judged.
+    run(lambda d, i: agency(i, refused=[
+            holding("Goss & Cobb", field="refused_because",
+                    note="Goss & Cobb signs the notice below the card, not the card")]),
+        None, "a candidate holder refused on the printing that refutes it")
+    run(lambda d, i: agency(i, refused=[
+            holding("Goss & Cobb", field="refused_because", note="")]),
+        "no `refused_because`", "a refused holding that does not say why")
+    run(lambda d, i: agency(i, refused=[holding("Goss & Cobb")]),
+        "no `refused_because`", "a refused holding written as if it were a holding")
+    run(lambda d, i: agency(i, refused=[
+            holding("L. Wilson & Co.", field="refused_because",
+                    note="L. Wilson & Co. is both, which cannot be")]),
+        "declared twice for one principal", "one house both holding and refused")
+
+    # THE RETIREMENT — the only declaration in this file that takes a business OUT of
+    # the register, and the four ways it could do that dishonestly.
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, [holding("L. Wilson & Co.", witnesses=[WK, VK])],
+                             retires=retirement())),
+        None, "the agency's own minted record retired into the relation")
+    run(lambda d, i: agency(i, retires=retirement("Nobody & Co.")),
+        "not a business the register carries", "a retirement of a record nobody claimed")
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, retires=retirement(because="it is not a house"))),
+        "name the retired record VERBATIM", "a retirement whose reason does not name it")
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, retires=retirement())),
+        "would be dropped", "a retirement that loses one of its record's printings")
+    run(lambda d, i: agency(
+            i, retires=retirement("S. B. Cobb, saddle, harness and trunk manufactory")),
+        "this record is PLACED", "a retirement that would take an address with it")
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      firm_refusal(i, "L. Wilson & Co.",
+                                   "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, [holding("L. Wilson & Co.", witnesses=[WK, VK])],
+                             retires=retirement())),
+        "still names this record", "a retirement leaving its own refusal behind")
+    run(lambda d, i: (variant(d, "A. Gent, agent for the Howard Fire Insurance Company"),
+                      agency(i, [holding("L. Wilson & Co.", witnesses=[WK, VK]),
+                                 holding("A. Gent, agent for the Howard Fire Insurance "
+                                         "Company", witnesses=[VK])],
+                             retires=retirement())),
+        "cannot hold itself", "a retired record declared the holder of its own agency")
 
     # THE SIGN-NAME ESCAPE AND ITS NEGATIVE CASES (T-0340). The guard above lets a style
     # that names NO partner merge into one that does; everything here is the price of
@@ -2466,6 +4031,563 @@ def self_test():
     run_anchor(anchor_docs(["the tavern", "the hotel"], ["the hotel"]),
                anchor_rule([{"name": "the tavern", "readings": ["the tavern"]}, TREMONT]),
                "overlapping weeks", "two anchors printed in the same weeks")
+
+    # AND THE REFUSAL OF A CHANGE (T-0773, landed by T-0949). A house whose live address
+    # one of its own later printings outranks is either RULED on by `anchor_changes` or
+    # waiting on a judgement, and the file had no way to say "this one is never getting
+    # one" — so the absence of a rule read exactly like an absence of a reader. Every
+    # guard below is a way a declared refusal could quietly stand for something the
+    # readings themselves do not say.
+    def refusal_docs(*specs):
+        return [{"issue_id": iid, "claims": [
+            {"id": "zf0", "kind": "business", "reading": "transcription_mediated",
+             "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                          "street": street, "placement": placement}}]}
+                for iid, street, placement in specs]
+
+    def refusal(kind, why, business="business_a_smith_co", changes=None):
+        return {"merges": [], "anchor_changes": changes or [],
+                "refused_anchor_changes": [{"business": business, "kind": kind,
+                                            "refused_because": why}]}
+
+    # The silence case, and the street is deliberately NOT repeated on the anchored
+    # reading: T-0948 narrows a street-only printing only where the anchor stands on that
+    # SAME street, and an anchor on no stated street is this refusal's population rather
+    # than that pass's.
+    SILENT_THEN_ANCHORED = refusal_docs(
+        (early_id, "Lake Street", {"class": "street_only", "street": "Lake Street"}),
+        (late_id, "Lake Street", {"class": "relative", "anchor": "the hotel",
+                                  "offset_text": "next to the hotel"}))
+    out = run_anchor(SILENT_THEN_ANCHORED,
+                     refusal("silence_is_not_an_anchor",
+                             "the printing this house is placed by names no anchor, and "
+                             "'the hotel' is the first that does"),
+                     None, "a refused anchor change, declared with its kind")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None or not got.get("anchor_refusal"):
+        failures.append("a declared refusal left no record of itself on the house")
+    elif got["anchor_refusal"]["kind"] != "silence_is_not_an_anchor":
+        failures.append("a refusal recorded the wrong kind: %r"
+                        % got["anchor_refusal"]["kind"])
+    elif [r["anchor"] for r in got["anchor_refusal"]["outranked_by"]] != ["the hotel"]:
+        failures.append("a refusal did not name the printings that outrank the house: %r"
+                        % got["anchor_refusal"]["outranked_by"])
+    elif (got["placement"] or {}).get("class") != "street_only":
+        failures.append("a REFUSAL re-placed the house it refused to re-place: %r"
+                        % got["placement"])
+
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("silence_is_not_an_anchor", "nothing outranks this house"),
+               "must name one of", "a refusal that does not name what outranks it")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("the corpus is quiet", "'the hotel' came later"),
+               "is not one of", "a refusal whose reason is free text")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("silence_is_not_an_anchor", ""),
+               "no `refused_because`", "a refusal nobody argued")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("after_the_scene_date", "'the hotel' came later"),
+               "the bound is not what is holding this back",
+               "a refusal blaming the scene date for a printing inside it")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("printed_in_the_same_weeks", "'the hotel' came later"),
+               "never printed in the same weeks",
+               "a refusal claiming concurrency where there is a before and an after")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("silence_is_not_an_anchor", "'the hotel' came later",
+                       business="business_nobody_at_all"),
+               "no business of that id is compiled",
+               "a refusal about a house nobody claimed")
+    run_anchor(refusal_docs(
+        (early_id, "Lake Street", {"class": "relative", "anchor": "the tavern",
+                                   "offset_text": "opposite the tavern"}),
+        (late_id, "Lake Street", {"class": "corner",
+                                  "anchor": "Lake and Dearborn streets"})),
+        refusal("silence_is_not_an_anchor",
+                "'Lake and Dearborn streets' came later"),
+        "was not silent about one",
+        "a silence refusal on a house whose live printing named an anchor")
+    run_anchor(refusal_docs(
+        (early_id, "Lake Street", {"class": "relative", "anchor": "the tavern",
+                                   "offset_text": "opposite the tavern"}),
+        (late_id, "Lake Street", {"class": "relative", "anchor": "the hotel",
+                                  "offset_text": "next to the hotel"})),
+        refusal("silence_is_not_an_anchor", "'the hotel' came later"),
+        "no printing of this house outranks its live placement",
+        "a refusal whose pair has gone")
+    run_anchor(SILENT_THEN_ANCHORED,
+               refusal("silence_is_not_an_anchor", "'the hotel' came later",
+                       changes=anchor_rule(
+                           [{"name": "the tavern", "readings": ["the tavern"]},
+                            TREMONT])["anchor_changes"]),
+               "DECLARED an anchor change and refused one in the same file",
+               "a house both declared and refused a change")
+
+    # SILENCE DOES NOT HOLD A HOUSE'S PLACEMENT (T-0440). The mint takes `placement`
+    # and `street` from the earliest printing, so a standing advertisement that ran
+    # without an address in its first week and with one afterwards stood at
+    # `{"class": "none"}` for good and read `unplaceable` in the register. Both halves
+    # of the repair are asserted here: that a later printing's address is taken up, and
+    # that a printed address is NEVER overridden by another printed address.
+    def silent_then_placed(late_placement, early_placement=None):
+        def doc_for(issue_id, placement):
+            return {"issue_id": issue_id, "claims": [
+                {"id": "zs0", "kind": "business", "reading": "transcription_mediated",
+                 "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                              "placement": placement}}]}
+        return [doc_for(early_id, early_placement or {"class": "none"}),
+                doc_for(late_id, late_placement)]
+
+    LATE = {"class": "relative", "anchor": "the hotel", "offset_text": "opposite the hotel",
+            "street": "Lake Street"}
+    out = run_anchor(silent_then_placed(LATE), {"merges": [], "anchor_changes": []}, None,
+                     "a first printing with no address does not hold the placement")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None:
+        failures.append("the silent-printing case lost the house it was declared on")
+    elif (got["placement"] or {}).get("anchor") != "the hotel":
+        failures.append("a house silent in its first printing and placed in its second "
+                        "is left placed by the silence: %r" % got["placement"])
+    elif got.get("street") != "Lake Street":
+        failures.append("the street the placing printing names was not taken up: %r"
+                        % got.get("street"))
+    elif not got.get("placement_from"):
+        failures.append("a placement taken from a later printing left no record of "
+                        "where it came from")
+    elif len(got["placement_readings"]) != 2:
+        failures.append("the silent printing was dropped rather than kept as a reading: "
+                        "%d reading(s)" % len(got["placement_readings"]))
+
+    # …and the other direction: an address that IS printed first stands, whatever a
+    # later printing says. Reordering two printed addresses is `anchor_changes`' to
+    # declare and this pass may never do it in silence.
+    out = run_anchor(silent_then_placed(LATE, early_placement={
+        "class": "street_only", "street": "South Water Street"}),
+        {"merges": [], "anchor_changes": []}, None,
+        "a printed address is not overridden by a later printed address")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got and (got["placement"] or {}).get("class") != "street_only":
+        failures.append("a house printed with an address in its first week was re-placed "
+                        "by a later printing with no rule declaring the move: %r"
+                        % got["placement"])
+    if got and got.get("placement_from"):
+        failures.append("the silence rule fired on a house that was never silent")
+
+    # …and an address first printed AFTER the scene date does not place the house at the
+    # scene date, which is the bound `anchor_changes` and AGENTS.md rule 3 already hold.
+    # The SILENT printing has to be the one that MINTS the house, or this case tests the
+    # mint rather than the pass — `compile_gazetteer` reads the extraction files in
+    # filename order, so both ids are chosen off the corpus by that order and the
+    # fixture asserts the ordering it depends on rather than assuming it.
+    silent_id = min(i for d, i in dates if d <= scene_iso)
+    placed_after_id = max((i for d, i in dates if d > scene_iso), default=None)
+    if placed_after_id is None or silent_id >= placed_after_id:
+        failures.append("the after-the-scene-date placement case cannot be built from "
+                        "this corpus: %r does not sort before %r"
+                        % (silent_id, placed_after_id))
+    else:
+        out = run_anchor([{"issue_id": silent_id, "claims": [
+            {"id": "zs0", "kind": "business", "reading": "transcription_mediated",
+             "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                          "placement": {"class": "none"}}}]},
+            {"issue_id": placed_after_id, "claims": [
+                {"id": "zs1", "kind": "business", "reading": "transcription_mediated",
+                 "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                              "placement": LATE}}]}],
+            {"merges": [], "anchor_changes": []}, None,
+            "an address first printed after the scene date")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"),
+                   None)
+        if got and placement_rank(got.get("placement")) > 0:
+            failures.append("an address first printed after the scene date %s placed "
+                            "the house at it: %r" % (scene_iso, got["placement"]))
+
+    # AN UNREAD ANCHOR DOES NOT HOLD A HOUSE'S PLACEMENT (T-0385). The shape is
+    # T-0440's one rung up and the bound is different, so every guard is asserted here
+    # as well as the firing. The fixture is Tuthill King's card in miniature: one
+    # dateline before the scene date, an impression whose anchor the pass could not read
+    # minting the house, and a LATER impression — after the scene date, as the real one
+    # is — that reads it.
+    DATELINE = {"verbatim": "June 8, 1835.", "iso": "1835-06-08"}
+
+    def unread_then_read(read_placement, unread_placement=None, dateline=DATELINE,
+                         late_dateline=None):
+        unread = unread_placement or {
+            "class": "relative", "anchor": "three doors north of an unread anchor",
+            "anchor_unread": True, "offset_text": "three doors north of",
+            "street": "Dearborn Street"}
+
+        def doc_for(issue_id, placement, ad):
+            claim = {"id": "zu0", "kind": "business", "reading": "transcription_mediated",
+                     "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                  "placement": placement}}
+            if ad:
+                claim["ad_copy_date"] = ad
+            return {"issue_id": issue_id, "claims": [claim]}
+        return [doc_for(silent_id, unread, dateline),
+                doc_for(placed_after_id, read_placement, late_dateline or dateline)]
+
+    READ = {"class": "relative", "anchor": "the hotel",
+            "offset_text": "three doors north of the hotel", "street": "Dearborn Street"}
+
+    if placed_after_id is not None and silent_id < placed_after_id:
+        out = run_anchor(unread_then_read(READ), {"merges": [], "anchor_changes": []},
+                         None, "an unread anchor gives way to the impression that reads it")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got is None:
+            failures.append("the unread-anchor case lost the house it was declared on")
+        elif (got["placement"] or {}).get("anchor") != "the hotel":
+            failures.append("a house whose minting impression could not read its anchor "
+                            "is left placed by the impression that could not read it: %r"
+                            % got["placement"])
+        elif not (got.get("placement_from") or {}).get("rule", "").startswith("T-0385"):
+            failures.append("the unread-anchor pass placed a house and left no record "
+                            "of where the placement came from: %r"
+                            % got.get("placement_from"))
+        elif got["placement_from"]["copy_date"] != DATELINE["iso"]:
+            failures.append("the dateline that makes the impressions one card is not "
+                            "recorded: %r" % got["placement_from"])
+        elif len(got["placement_readings"]) != 2:
+            failures.append("the unread impression was dropped rather than kept as a "
+                            "reading: %d reading(s)" % len(got["placement_readings"]))
+
+        # GUARD 3. Two datelines are two advertisements, and the pass may not reach
+        # across them — that is a move, and a move is `anchor_changes`' to declare.
+        out = run_anchor(
+            unread_then_read(READ, late_dateline={"verbatim": "July 2, 1835.",
+                                                  "iso": "1835-07-02"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "two datelines are two advertisements, and the unread rule refuses them")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the unread-anchor pass reached across two datelines, which "
+                            "is a move it may not declare: %r" % got["placement_from"])
+
+        # …and a dateline AFTER the scene date is an advertisement the July town never
+        # saw, whatever its impressions were read from.
+        out = run_anchor(
+            unread_then_read(READ, dateline={"verbatim": "August 5, 1835.",
+                                             "iso": "1835-08-05"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "a card datelined after the scene date is not read back into the town")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("a card datelined after the scene date placed a house at "
+                            "it: %r" % got["placement_from"])
+
+        # GUARD 2. A read anchor on ANOTHER street is a second address, not the same
+        # one legible.
+        out = run_anchor(
+            unread_then_read(dict(READ, street="South Water Street")),
+            {"merges": [], "anchor_changes": []}, None,
+            "an anchor read on another street is a move and not a reading")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the unread-anchor pass moved a house onto a street its own "
+                            "unread impression does not name: %r" % got["placement_from"])
+
+        # GUARD 1. A corner read against a relative unread is two sentences.
+        out = run_anchor(
+            unread_then_read({"class": "corner",
+                              "anchor": "the corner of Lake and Clark streets",
+                              "street": "Dearborn Street"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "a corner does not read a relative placement's unread anchor")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the unread-anchor pass read one sentence's anchor off "
+                            "another sentence: %r" % got["placement_from"])
+
+        # …and the pass never touches a house whose live anchor WAS read. Reordering
+        # two anchors both of which the pass could read is `anchor_changes`' alone.
+        out = run_anchor(
+            unread_then_read(READ, unread_placement={
+                "class": "relative", "anchor": "the tavern",
+                "offset_text": "opposite the tavern", "street": "Dearborn Street"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "two anchors both of which were read are not this pass's to reorder")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and (got["placement"] or {}).get("anchor") != "the tavern":
+            failures.append("a house whose first printed anchor was READ was re-placed "
+                            "by the unread rule: %r" % got["placement"])
+
+    # A STREET NAMED WITHOUT AN ANCHOR DOES NOT OUTRANK THE ANCHOR ON IT (T-0948).
+    # T-0440's shape one rung up, and every guard is asserted here as well as the
+    # firing, because each one is a way this pass could quietly assert a MOVE. The
+    # fixture is Rockwell's card in miniature: a printing naming the street and no
+    # landmark, and a later printing naming a stand ON THAT STREET.
+    COARSE = {"class": "street_only", "street": "Lake Street"}
+    ANCHORED = {"class": "relative", "anchor": "the hotel",
+                "offset_text": "opposite the hotel", "street": "Lake Street"}
+    early_ids = [i for d, i in dates if d <= scene_iso]
+
+    def street_then_anchor(anchored=None, coarse=None, late_id=None,
+                           dateline=None, late_dateline=None):
+        def doc_for(issue_id, placement, ad):
+            claim = {"id": "zt0", "kind": "business", "reading": "transcription_mediated",
+                     "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                  "placement": placement}}
+            if ad:
+                claim["ad_copy_date"] = ad
+            return {"issue_id": issue_id, "claims": [claim]}
+        return [doc_for(early_ids[0], coarse or COARSE, dateline),
+                doc_for(late_id or early_ids[1], anchored or ANCHORED,
+                        late_dateline or dateline)]
+
+    if len(early_ids) > 1:
+        out = run_anchor(street_then_anchor(), {"merges": [], "anchor_changes": []},
+                         None, "a street named without an anchor gives way to the "
+                               "anchor printed on it")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got is None:
+            failures.append("the street-without-an-anchor case lost the house it was "
+                            "declared on")
+        elif (got["placement"] or {}).get("anchor") != "the hotel":
+            failures.append("a house whose live printing named a street and no landmark "
+                            "is left held by it against an anchor on the same street: %r"
+                            % got["placement"])
+        elif not (got.get("placement_from") or {}).get("rule", "").startswith("T-0948"):
+            failures.append("the street-without-an-anchor pass placed a house and left "
+                            "no record of where the placement came from: %r"
+                            % got.get("placement_from"))
+        elif got["placement_from"]["bound"] != "issue":
+            failures.append("an anchor printed before the scene date was taken on the "
+                            "standing-card bound rather than its own issue date: %r"
+                            % got["placement_from"])
+        elif got["placement_from"]["superseded"]["street"] != "Lake Street":
+            failures.append("the coarse printing the house was moved off is not named "
+                            "in the record: %r" % got["placement_from"])
+        elif len(got["placement_readings"]) != 2:
+            failures.append("the coarse printing was dropped rather than kept as a "
+                            "reading: %d reading(s)" % len(got["placement_readings"]))
+
+        # GUARD 1 — THE SAME STREET, and this is the whole of the rule. An anchor on
+        # another street is a house in another part of town, which is a MOVE and
+        # `anchor_changes`' alone to declare.
+        out = run_anchor(
+            street_then_anchor(anchored=dict(ANCHORED, street="South Water Street")),
+            {"merges": [], "anchor_changes": []}, None,
+            "an anchor on another street is a move and not a narrowing")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the street-without-an-anchor pass moved a house onto a "
+                            "street its own live printing does not name: %r"
+                            % got["placement_from"])
+
+        # …and an anchored reading that names NO street cannot be shown to narrow one
+        # that does. Samuel Lewis is this case on the real corpus.
+        out = run_anchor(
+            street_then_anchor(anchored={"class": "relative", "anchor": "the hotel",
+                                         "offset_text": "opposite the hotel"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "an anchor naming no street does not narrow a printing that names one")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("a reading that names no street was allowed to narrow one "
+                            "that does: %r" % got["placement_from"])
+
+        # GUARD 2 — ONE PRINTED ANCHOR IS NEVER PREFERRED TO ANOTHER. Where the live
+        # placement already names a landmark, reordering the two is `anchor_changes`'.
+        out = run_anchor(
+            street_then_anchor(coarse={"class": "relative", "anchor": "the tavern",
+                                       "offset_text": "opposite the tavern",
+                                       "street": "Lake Street"},
+                               anchored={"class": "corner",
+                                         "anchor": "the corner of Lake and Clark streets",
+                                         "street": "Lake Street"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "one printed anchor is not preferred to another")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and (got["placement"] or {}).get("anchor") != "the tavern":
+            failures.append("a house whose live printing named an anchor was re-placed "
+                            "by the street-without-an-anchor rule: %r" % got["placement"])
+
+        # GUARD 3 — AN UNREAD ANCHOR IS NOT AN ANCHOR HERE. A reading that declares it
+        # could not read the landmark names none, and T-0385 above owns that case.
+        out = run_anchor(
+            street_then_anchor(anchored=dict(ANCHORED, anchor_unread=True,
+                                             anchor="opposite an unread anchor")),
+            {"merges": [], "anchor_changes": []}, None,
+            "an unread anchor does not narrow a street")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("a reading declaring its own anchor unread was taken as a "
+                            "narrowing: %r" % got["placement_from"])
+
+    # THE BOUND. An anchor whose only impression falls after the scene date fires only
+    # on T-0385's standing-card clause — ONE dateline, at or before the scene date —
+    # and Rockwell is the corpus's single case of it.
+    if early_ids and placed_after_id is not None and early_ids[0] < placed_after_id:
+        DL = {"verbatim": "June 8, 1835.", "iso": "1835-06-08"}
+        out = run_anchor(
+            street_then_anchor(late_id=placed_after_id, dateline=DL),
+            {"merges": [], "anchor_changes": []}, None,
+            "one dateline makes two impressions one card, and the later one narrows it")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got is None or not (got.get("placement_from") or {}).get("rule", "").startswith("T-0948"):
+            failures.append("a card under one dateline before the scene date was not "
+                            "narrowed by its own later impression: %r"
+                            % (got or {}).get("placement_from"))
+        elif got["placement_from"]["bound"] != "dateline":
+            failures.append("the standing-card bound carried a placement and did not "
+                            "say so: %r" % got["placement_from"])
+        elif got["placement_from"]["copy_date"] != DL["iso"]:
+            failures.append("the dateline that makes the impressions one card is not "
+                            "recorded: %r" % got["placement_from"])
+
+        # …two datelines are two advertisements, and the pass may not reach across them.
+        out = run_anchor(
+            street_then_anchor(late_id=placed_after_id, dateline=DL,
+                               late_dateline={"verbatim": "July 2, 1835.",
+                                              "iso": "1835-07-02"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "two datelines are two advertisements, and the street rule refuses them")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("the street-without-an-anchor pass reached across two "
+                            "datelines: %r" % got["placement_from"])
+
+        # …and a card datelined AFTER the scene date is an advertisement the July town
+        # never saw, whatever its impressions say.
+        out = run_anchor(
+            street_then_anchor(late_id=placed_after_id,
+                               dateline={"verbatim": "August 5, 1835.",
+                                         "iso": "1835-08-05"}),
+            {"merges": [], "anchor_changes": []}, None,
+            "a card datelined after the scene date does not narrow a street")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("a card datelined after the scene date placed a house at "
+                            "it: %r" % got["placement_from"])
+
+        # …and with NO dateline at all there is nothing making the impressions one
+        # card, so an anchor printed after the scene date is simply out of time.
+        out = run_anchor(
+            street_then_anchor(late_id=placed_after_id),
+            {"merges": [], "anchor_changes": []}, None,
+            "an anchor printed after the scene date under no dateline is out of time")
+        got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+        if got and got.get("placement_from"):
+            failures.append("an anchor first printed after the scene date placed a "
+                            "house with nothing saying it was one card: %r"
+                            % got["placement_from"])
+
+    # …and the flag is the only thing the pass reads, so a reading that declares the
+    # damage in prose alone is refused at the claim gate rather than silently left
+    # holding the house. These run through `run`, because the gate is in `check()`.
+    def placed(d, placement):
+        d["claims"][0]["kind"] = "business"
+        d["claims"][0]["business"] = {"name": "A. Smith & Co.", "trade": "blacksmith",
+                                      "placement": placement}
+
+    run(lambda d, i: placed(d, {
+        "class": "relative", "anchor": "three doors north of an unread anchor",
+        "offset_text": "three doors north of", "street": "Dearborn Street"}),
+        "does not set `anchor_unread`",
+        "an anchor whose prose says it was unread must say so in the field")
+    run(lambda d, i: placed(d, {
+        "class": "relative", "anchor": "three doors north of an unread anchor",
+        "anchor_unread": True, "offset_text": "three doors north of",
+        "street": "Dearborn Street"}),
+        None, "…and the same anchor with the flag set is clean")
+    run(lambda d, i: placed(d, {"class": "street_only", "anchor_unread": True,
+                                "street": "Dearborn Street"}),
+        "only a placement that turns on an anchor can declare one unread",
+        "`anchor_unread` on a placement with no anchor to be unread")
+
+    # A `street_only` THAT NAMES NO STREET PLACES NOTHING (T-0859). `placement_rank`
+    # reads the CLASS, and one class can be written without the field that gives it
+    # meaning. J. S. C. Hogan's live placement came off a two-line notice of three
+    # hundred cedar posts that prints no address whatever, and it outranked eight
+    # printings that place him one door from the Post Office; the report then filed him
+    # under a judgement nobody could write. Both directions are asserted: that the
+    # empty class no longer holds a house, and that a `street_only` which DOES name its
+    # street still does.
+    EMPTY_STREET_ONLY = {"class": "street_only", "anchor": None}
+    if not places_nothing(EMPTY_STREET_ONLY):
+        failures.append("a street_only naming neither a street nor an anchor is read as "
+                        "placing something")
+    if places_nothing({"class": "street_only", "street": "Lake Street"}):
+        failures.append("a street_only that names its street is read as placing nothing")
+    if places_nothing({"class": "relative", "anchor": "the hotel"}):
+        failures.append("a relative placement is read as placing nothing")
+    if not places_nothing({"class": "none"}):
+        failures.append("`none` is read as placing something")
+    cases.append("a street_only naming no street places no more than `none` does")
+
+    out = run_anchor(silent_then_placed(LATE, early_placement=EMPTY_STREET_ONLY),
+                     {"merges": [], "anchor_changes": []}, None,
+                     "a printing that named no street does not hold the placement")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None:
+        failures.append("the empty-street_only case lost the house it was declared on")
+    elif (got["placement"] or {}).get("anchor") != "the hotel":
+        failures.append("a house whose first printing named no street is left placed by "
+                        "it: %r" % got["placement"])
+    elif got["placement_from"]["superseded"]["class"] != "street_only":
+        failures.append("the repair did not record the class it superseded: %r"
+                        % got["placement_from"]["superseded"])
+    elif len(got["placement_readings"]) != 2:
+        failures.append("the street-less printing was dropped rather than kept as a "
+                        "reading: %d kept" % len(got["placement_readings"]))
+
+    # …and it may not be taken UP either, or the pass would place a house on a reading
+    # it has just ruled places nothing.
+    out = run_anchor(silent_then_placed(EMPTY_STREET_ONLY),
+                     {"merges": [], "anchor_changes": []}, None,
+                     "a street-less printing is not taken up by the repair either")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got and placement_rank(got.get("placement")) > 0:
+        failures.append("a house silent when minted was placed by a later printing that "
+                        "names no street: %r" % got["placement"])
+    if got and got.get("placement_from"):
+        failures.append("the repair claimed a house it placed on nothing")
+
+    # …and a street_only that DOES name its street is still an address, and still
+    # holds — against an anchor on ANOTHER street, which is what this fixture prints.
+    # T-0948 below narrows it where the anchor stands on the SAME street, and the two
+    # rules meet exactly there: a street named is still a statement about the
+    # frontage, and only a landmark ON that frontage says more about it.
+    out = run_anchor(silent_then_placed(LATE, early_placement={
+        "class": "street_only", "street": "South Water Street"}),
+        {"merges": [], "anchor_changes": []}, None,
+        "a street_only that names its street is still an address")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got and (got["placement"] or {}).get("class") != "street_only":
+        failures.append("a house printed with a named street in its first week was "
+                        "re-placed by a later printing: %r" % got["placement"])
+
+    # …and an anchor rule may now be written for a house one of whose printings gave no
+    # address at all. Before T-0440 the `null` anchor of a silent printing could neither
+    # be named by a group (guard 3) nor left out of one (guard 4), so the one mechanism
+    # that may order a house's anchors was unreachable for exactly those houses.
+    def three_printings(anchors):
+        docs = silent_then_placed({"class": "relative", "anchor": anchors[1],
+                                   "offset_text": "opposite %s" % anchors[1]})
+        docs.append({"issue_id": after_id, "claims": [
+            {"id": "zs1", "kind": "business", "reading": "transcription_mediated",
+             "business": {"name": "A. Smith & Co.", "trade": "blacksmith",
+                          "placement": {"class": "relative", "anchor": anchors[2],
+                                        "offset_text": "opposite %s" % anchors[2]}}}]})
+        return docs
+
+    out = run_anchor(three_printings([None, "the tavern", "the hotel"]),
+                     anchor_rule([{"name": "the tavern", "readings": ["the tavern"]},
+                                  TREMONT]),
+                     None, "an anchor rule on a house whose first printing was silent")
+    got = next((b for b in out["businesses"] if b["id"] == "business_a_smith_co"), None)
+    if got is None:
+        failures.append("the silent-printing anchor-rule case lost its house")
+    elif not got.get("anchor_change"):
+        failures.append("a silent printing still blocks an anchor rule from being "
+                        "written for the house")
+    elif got["anchor_change"]["live_anchor"] != "the tavern":
+        failures.append("the anchor live at the scene date is %r on a house whose only "
+                        "later printing runs after it"
+                        % got["anchor_change"]["live_anchor"])
+    elif len(got["placement_readings"]) != 3:
+        failures.append("the silent printing was dropped from the readings by the "
+                        "anchor rule: %d kept" % len(got["placement_readings"]))
 
     # A NAME IS NOT ALWAYS A PERSON (T-0359), and the cases below are the ones the
     # Haddock's/Maddock's pair actually produced. Every guard here exists to stop the
@@ -2771,6 +4893,195 @@ def self_test():
     if DASH_COLUMN_HEADING.match("--- SOURCE PDF PAGE 13, COLUMN 1 ---"):
         failures.append("the 1833 dash-column heading swallowed a 1835 scan-page column "
                         "rule, which carries a page the 1833 shape does not")
+
+    # A VENDOR'S FOR-SALE NOTICE PLACES NOTHING (T-0412), and the control beside it is
+    # the whole of the rule: change one word of the role and the same corner places the
+    # firm. Asserted on the compiled record, because a rule that silently changed
+    # nothing would look exactly like a green run.
+    def for_sale(role, claim_id="zv1", kind="building"):
+        d = copy.deepcopy(base)
+        c = copy.deepcopy(d["claims"][0])
+        c["id"] = claim_id
+        c["kind"] = kind
+        c["entities"] = [{"as_printed": "P. PRUYNE", "normalized": "P. Pruyne",
+                          "role": role, "occupations": []}]
+        c["business"] = {"name": "Vendor Test & Co.",
+                         "placement": {"class": "corner",
+                                       "anchor": "Lasalle and Lake streets",
+                                       "street": "Lasalle Street and Lake Street"},
+                         "address_text": "the House on the corner of Lasalle and Lake"}
+        d["claims"] = [c]
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % d["issue_id"])).write_text(
+                json.dumps(d, ensure_ascii=False), encoding="utf-8")
+            doc, probs = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []},
+                                           corpus_doc)
+        got = next((b for b in doc["businesses"] if b["name"] == "Vendor Test & Co."), None)
+        return got, probs, claim_key(d["issue_id"], c)
+
+    cases.append("a building notice signed by its vendor")
+    sold, probs, sold_key = for_sale("vendor")
+    if probs:
+        failures.append("the vendor case did not compile clean: %r" % probs)
+    elif sold is None:
+        failures.append("the vendor case minted no business at all")
+    elif placement_rank(sold["placement"]) > 0:
+        failures.append("a vendor's for-sale notice placed the firm that signed it: %r"
+                        % sold["placement"])
+    elif any(placement_rank(r["placement"]) > 0 for r in sold["placement_readings"]):
+        failures.append("a vendor's for-sale notice left a placing reading on the firm: %r"
+                        % sold["placement_readings"])
+    elif sold_key not in {c for r in sold["placement_readings"] for c in r["claims"]}:
+        failures.append("the vendor printing was dropped out of the readings entirely — "
+                        "it says nothing about the firm's ground, which is a silence and "
+                        "not an absence")
+    elif not sold.get("vendor_placements"):
+        failures.append("a vendor's for-sale notice was silenced and not recorded, so "
+                        "the judgement cannot be read back off the record")
+    elif sold["vendor_placements"][0]["printed_placement"].get("anchor") \
+            != "Lasalle and Lake streets":
+        failures.append("the vendor record does not carry the corner the paper printed: %r"
+                        % sold["vendor_placements"][0])
+
+    cases.append("the same corner signed by an occupant")
+    for role, kind, why in (("occupant", "building", "an occupant's building notice"),
+                            ("vendor", "business", "a vendor role on a business claim")):
+        cases.append(why)
+        kept, probs, _ = for_sale(role, claim_id="zv2", kind=kind)
+        if probs:
+            failures.append("%s did not compile clean: %r" % (why, probs))
+        elif kept is None or placement_rank(kept["placement"]) <= 0:
+            failures.append("%s stopped placing the firm — T-0412 reaches only a "
+                            "`building` claim signed by its vendor" % why)
+        elif kept.get("vendor_placements"):
+            failures.append("%s was recorded as a vendor notice" % why)
+
+    # AN OUT-OF-TOWN HOUSE PUTS ITS CITY ON THE MEN WHO KEEP IT (T-0694), and the
+    # three controls beside it are the whole of the rule: the place is required only
+    # of a HOUSE role, only where the corpus itself already names the tail as a place,
+    # and not at all once the entity carries it.
+    def out_of_town(trade, role, places, elsewhere="Detroit", claim_id="zt1"):
+        d = copy.deepcopy(base)
+        c = copy.deepcopy(d["claims"][0])
+        c["id"] = claim_id
+        c["kind"] = "business"
+        c["entities"] = [{"as_printed": "A HOUSE & CO.", "normalized": "A House & Co.",
+                          "role": role, "occupations": [],
+                          "associated_places": list(places)}]
+        # The corpus's own place vocabulary, which is what the rule is derived from:
+        # one OTHER entity, in a role that is not the house, naming the town.
+        other = copy.deepcopy(d["claims"][0])
+        other["id"] = claim_id + "v"
+        other["entities"] = [{"as_printed": "A CORRESPONDENT", "role": "mentioned",
+                              "normalized": "A Correspondent", "occupations": [],
+                              "associated_places": [elsewhere]}]
+        c["business"] = {"name": "Out Of Town House", "proprietors": ["A House & Co."],
+                         "trade": trade, "goods": [], "street": None,
+                         "placement": {"class": "none", "street": None}}
+        d["claims"] = [c, other]
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % d["issue_id"])).write_text(
+                json.dumps(d, ensure_ascii=False), encoding="utf-8")
+            _, probs = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []},
+                                         corpus_doc)
+        return [b for b in probs if "T-0694" in b]
+
+    cases.append("an out-of-town house whose proprietor carries no place")
+    if not out_of_town("hat manufacturers and wholesale dealers, Detroit",
+                       "proprietor", []):
+        failures.append("a house printed at Detroit kept a placeless proprietor and "
+                        "nothing said so")
+
+    cases.append("the same house once the proprietor carries the city")
+    if out_of_town("hat manufacturers and wholesale dealers, Detroit",
+                   "proprietor", ["Detroit"]):
+        failures.append("a proprietor who DOES carry his house's city was still refused")
+
+    cases.append("a trade tail the corpus does not name as a place")
+    if out_of_town("storage, forwarding and commission merchants; agents, Merchants Line",
+                   "proprietor", []):
+        failures.append("'Merchants Line' was read as a town — the rule is derived from "
+                        "the places the corpus itself names, not from a word list")
+
+    cases.append("somebody standing beside the house, not keeping it")
+    if out_of_town("steam saw mill and lumber, Detroit", "assignee", []):
+        failures.append("an assignee inherited the house's city — only a proprietor or "
+                        "a partner IS the firm")
+
+    # T-0398. A house that signed its own notice is not its own third partner.
+    cases.append("a house whose proprietor list carries its own trading style")
+
+    def styled_house(proprietors):
+        d = copy.deepcopy(base)
+        c = copy.deepcopy(d["claims"][0])
+        c["business"] = {"name": "Russell & Clift", "proprietors": list(proprietors),
+                         "trade": "bookseller and stationer", "goods": [], "street": None,
+                         "placement": {"class": "none", "street": None}}
+        d["claims"] = [c]
+        with tempfile.TemporaryDirectory() as td:
+            ex = Path(td) / "extracted"
+            ex.mkdir()
+            (ex / ("%s.json" % d["issue_id"])).write_text(
+                json.dumps(d, ensure_ascii=False), encoding="utf-8")
+            doc, _ = compile_gazetteer(sorted(ex.glob("*.json")), {"merges": []},
+                                       corpus_doc)
+        return next(b for b in doc["businesses"] if b["id"] == "business_russell_clift")
+
+    got = styled_house(["Aaron Russell", "Benj. H. Clift", "Russell & Clift"])
+    if got["proprietors"] != ["Aaron Russell", "Benj. H. Clift", "Russell & Clift"]:
+        failures.append("the derivation EDITED a claim's reading: proprietors is %r"
+                        % (got["proprietors"],))
+    if got["partners"] != ["Aaron Russell", "Benj. H. Clift"]:
+        failures.append("the partnership stands among its own partners: %r"
+                        % (got["partners"],))
+    if got["firm_styles"] != ["Russell & Clift"]:
+        failures.append("the house's own style is not named as one: %r"
+                        % (got["firm_styles"],))
+
+    # T-1042. THE ONE READING OF A PROPRIETOR STRING, case by case. Each line is a form
+    # the corpus actually prints, and the two failures the ticket was filed on are the
+    # first two: a suffix read as a man, and a partner dropped off a style.
+    cases.append("every surname a proprietor string names, and no surname it does not")
+    for printed, want in [
+        ("H. Doty & Co.", ("Doty",)),            # invented a man called Co
+        ("J. L. Wilson & Co.", ("Wilson",)),
+        ("Clark, Filer & Co.", ("Clark", "Filer")),   # lost Filer
+        ("Harmon, Loomis & Co.", ("Harmon", "Loomis")),
+        ("Fullerton & Botsford", ("Fullerton", "Botsford")),
+        ("Cooley and Halsman", ("Cooley", "Halsman")),
+        ("C. & I. Harmon", ("Harmon",)),         # two men of one family, not a Mr C.
+        ("Taylor, Wm. H.", ("Taylor",)),         # reversed for alphabetising
+        ("Holsman, George", ("Holsman",)),       # reversed, forename printed whole
+        ("John Bates, Jr.", ("Bates",)),         # tagged, not a partner called Jr
+        ("J. Bates jr.", ("Bates",)),
+        ("Collins & Caton, attorneys and counsellors at law", ("Collins", "Caton")),
+        ("J. H. Collins & J. D. C[aton]", ("Collins", "Caton")),   # markup off first
+        ("[uncertain: Noble & Wesencaft]", ("Noble", "Wesencaft")),
+        ("Wm. Hogue & Co.", ("Hogue",)),
+    ]:
+        got = surname_words(printed)
+        if got != want:
+            failures.append("surname_words(%r) is %r, wanted %r" % (printed, got, want))
+
+    cases.append("a declared sign-name states no partner this pass can invent")
+    signs = {"Chicago Wholesale and Retail Book & Stationary Store": "",
+             "Russell & Clift, Chicago Book and Stationary Store": "Russell & Clift"}
+    if partner_surnames("Russell & Clift, Chicago Book and Stationary Store",
+                        signs) != {"russell", "clift"}:
+        failures.append("a declared sign-name lost the partners it declares")
+    if partner_surnames("Chicago Wholesale and Retail Book & Stationary Store",
+                        signs) != set():
+        failures.append("a style that is ALL sign-name named a partner anyway")
+
+    cases.append("a house the papers only ever signed with its style")
+    got = styled_house(["H. Doty & Co."])
+    if got["partners"] or got["firm_styles"] != ["H. Doty & Co."]:
+        failures.append("a house nobody is named for should carry no partners, got %r"
+                        % (got["partners"],))
 
     # A hand-edit to the generated file, which is the fault nothing downstream can see.
     with tempfile.TemporaryDirectory() as td:

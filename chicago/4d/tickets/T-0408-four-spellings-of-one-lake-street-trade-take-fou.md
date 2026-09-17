@@ -1,7 +1,7 @@
 ---
 id: T-0408
 title: Four spellings of one Lake Street trade take four separate roofs, and the identity layer has judged none of them
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1173
+claimed_by: run 9/12/2026, 12:30:45 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-12T05:59:08.830Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34674841397
 ---
 Measured on 2026-08-29 by `tools/adopt_street_faces.py --report`, building T-0354's
 street-face adoption. Four `street_only` businesses in the register advertise a Lake

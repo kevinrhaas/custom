@@ -135,11 +135,12 @@
       <kbd>W A S D</kbd><span>walk</span><kbd>mouse</kbd><span>look around</span>
       <kbd>Shift</kbd><span>run</span><kbd>click / E</kbd><span>inspect a building</span>
       <kbd>F</kbd><span>fly or walk</span><kbd>H</kbd><span>the menu</span>
-      <kbd>G</kbd><span>go to a place</span>
+      <kbd>G</kbd><span>go to a place</span><kbd>M</kbd><span>the whole map</span>
     </div>
     <div id="control-help-touch" class="control-help-grid" hidden>
       <kbd>left stick</kbd><span>walk</span><kbd>drag right</kbd><span>look around</span>
       <kbd>tap</kbd><span>inspect</span><kbd>Fly</kbd><span>switch walk / aerial view</span>
+      <kbd>tap the map</kbd><span>see the whole field</span>
     </div>
     <button class="control-help-gotit" id="control-help-gotit" type="button">Got it</button>
   </div>
@@ -157,12 +158,32 @@
       <canvas id="overview-map-canvas" aria-hidden="true"></canvas>
       <span class="overview-north" aria-hidden="true">N</span>
       <span class="overview-caption" aria-hidden="true">map</span>
+      <button type="button" class="overview-open" id="overview-open"
+        aria-label="Open the whole map"></button>
     </div>
     <div id="street-readout" class="street-readout" aria-live="polite" hidden>
       <span class="street-mode" id="street-mode">On street</span>
       <strong id="street-historic"></strong>
       <span class="street-modern" id="street-modern"></span>
       <span class="street-approach" id="street-approach" hidden></span>
+    </div>
+  </div>
+
+  <!-- THE WHOLE FIELD, ON DEMAND (T-1142). The inset beside the compass is a
+       WINDOW — a fixed frame at a fixed scale that travels with the visitor,
+       so extending the ground no longer stretches the widget. This is the
+       other half of that bargain: the entire heightfield fitted to the screen,
+       carrying the visitor's arrow and a box marking what the inset shows. -->
+  <div id="overview-full" class="overview-full" role="dialog" aria-modal="true"
+    aria-labelledby="overview-full-title" hidden>
+    <div class="overview-full-card">
+      <header class="overview-full-head">
+        <strong id="overview-full-title">The whole field</strong>
+        <button type="button" class="overview-full-close" id="overview-full-close"
+          aria-label="Close the whole map">×</button>
+      </header>
+      <canvas id="overview-full-canvas" aria-hidden="true"></canvas>
+      <p class="overview-full-foot" id="overview-full-foot"></p>
     </div>
   </div>
 
@@ -207,12 +228,21 @@
           <button type="button" class="seg-btn" data-pace="wagon" role="radio" aria-checked="false">Wagon</button>
           <button type="button" class="seg-btn" data-pace="horse" role="radio" aria-checked="false">Horse</button>
         </div></div>
+      <!-- Each pace's own speed, named as the slider moves (T-0823). The ceilings
+           are the owner's: 20 mph on foot, 30 by wagon, 60 on horseback — the
+           readout says plainly when a figure is past any man or any horse. -->
+      <label class="field"><span>On foot <b id="v-speed"></b></span>
+        <input type="range" id="s-speed" min="0.5" max="8.94" step="0.01"></label>
+      <label class="field"><span>By wagon <b id="v-wagon-speed"></b></span>
+        <input type="range" id="s-wagon-speed" min="0.5" max="13.41" step="0.01"></label>
+      <label class="field"><span>On horseback <b id="v-horse-speed"></b></span>
+        <input type="range" id="s-horse-speed" min="0.5" max="26.82" step="0.01"></label>
       <p class="legend-note" id="travel-note"></p>
       <label class="field row check-field"><span>Rider's head moves with the horse's gait</span>
         <input type="checkbox" id="s-head-bob"></label>
       <p class="legend-note">These paces are how the camera moves, not claims about 1835: a light
-        wagon at a trot, a horse at a canter, and a gallop on <kbd>Shift</kbd>. Walking speed is
-        the slider under Settings. Choosing a place in Go to takes you there at the pace above,
+        wagon, a horse, and a gallop on <kbd>Shift</kbd>; the sliders above set each one, and name
+        the pace you are asking for. Choosing a place in Go to takes you there at the pace above,
         along the streets where they run — Fly lifts you over the town and sets you down at the
         door. Any movement of your own stops the ride; where no walkable route exists you are
         taken straight there, as before.</p>
@@ -384,8 +414,7 @@
       </div>
       <div class="settings-group">
         <h4>Movement</h4>
-        <label class="field"><span>Walking speed <b id="v-speed"></b></span>
-          <input type="range" id="s-speed" min="0.8" max="4" step="0.1"></label>
+        <p class="legend-note">Walking, wagon and horse speeds live under <b>Travel</b>.</p>
         <!-- Eye height is a CLAIM about 1835, so the default is the researched
              figure and the slider says where that figure sits. Raising it is a
              comfort choice about the view, not a correction. -->
@@ -471,6 +500,7 @@
         <dt><kbd>F</kbd></dt><dd>free-fly — rise above the town</dd>
         <dt><kbd>Space</kbd> <kbd>Q</kbd></dt><dd>up / down <em>(while flying)</em></dd>
         <dt><kbd>G</kbd></dt><dd>go to a viewpoint, a building or a street corner</dd>
+        <dt><kbd>M</kbd></dt><dd>the whole map — the small one shows the ground around you</dd>
         <dt><kbd>N</kbd></dt><dd>what's new</dd>
         <dt><kbd>H</kbd></dt><dd>this menu</dd>
         <dt><kbd>Esc</kbd></dt><dd>release the cursor</dd>
@@ -480,6 +510,7 @@
         <dt>push it fully</dt><dd>run</dd>
         <dt>drag right</dt><dd>look around</dd>
         <dt>tap</dt><dd>inspect a building</dd>
+        <dt>tap the map</dt><dd>the whole field — the small one shows the ground around you</dd>
         <dt>Go to</dt><dd>the tab beside this one — every viewpoint, building and corner</dd>
         <dt>Fly</dt><dd>rise above the town — ▲ ▼ appear bottom-right</dd>
       </dl>

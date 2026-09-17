@@ -138,10 +138,43 @@ question of the data that exists.
   control; its two ends must meet the traced 1834 waterline at that northing, which is what makes
   the span measured. Tolerance 0.5 m rather than 0.05, because a traced bank is a polyline and
   where it crosses a given northing depends on which vertex pair you sample.
+- **`street_frontage`** (added 2026-09-11, T-0946) — a frontage instead of a corner, for the
+  streets this module cannot reach. `platted_corner` steps half a module from a control point out
+  to a named kerb, and both halves of that need a street with an `ew`/`ns` axis; north of the
+  river there is no such street. The committed `north_water` line is a derived offset curve from
+  the traced bank (T-0307, T-0447) running 41.4° east of north, with no control point of its own,
+  so every placement on that bank had to declare `not_derivable` — not because the readings were
+  loose but because the vocabulary had no term for them. **§ 11 settled what the setback north of
+  the river IS; this settles how a record SAYS it.** The declaration names a street id in
+  `data/streets/1835.json`, one of the building's **own** four walls (`front`/`back`/`left`/
+  `right`, the footprint frame of `docs/GLB-CONTRACT.md` — a wall on a 41° street has no compass
+  face), and the wall's setback from the committed centreline. Re-derived: the perpendicular
+  distance from that wall's midpoint to the nearest point on the committed path, to 0.05 m, AND
+  that the street lies on the side the wall faces. The second half is not decoration — a back yard
+  can be as close to a street as a front wall is, so a check that measured only the distance would
+  certify a building standing with its back to its own frontage. The arithmetic is
+  `tools/generate_business_signboards.py::_nearest_on_path`, which has decided which street a
+  signboard faces since T-0459; T-0946 promoted it from a generator's private helper to a gate.
+
+  **It does not replace `tools/measure_north_bank_frontage.py --gate`, and the two ask different
+  questions.** That tool holds the RULE across the bank — five records on it, eight named
+  exceptions each with its reason, and an unbaselined north-bank frontage fails — which is a
+  claim about the bank that no single record can make. This method holds each RECORD to what that
+  record itself declares, in the same block every other placement declares its derivation in, and
+  at 0.05 m rather than 0.20. The Steamboat Hotel is now held by both: 5.00 m measured against
+  5.00 m declared.
+
 - **`not_derivable`** — three of the nine phases, each owing a reason. No surviving street here
   (Miller House); a position stacked on another inferred position (Walker's meeting house); an
   interpolation plus a free 40 m (Wolf Point Tavern). Recording those as derivations would be the
-  check certifying a guess.
+  check certifying a guess. **It is still by far the commonest declaration: 378 of the 384 phases
+  with coordinates, measured 2026-09-11.** T-0946 gave the module a third word and converted
+  exactly one record with it, the Steamboat Hotel, because § 11 had just settled what that
+  record's setback is. Of the 378 that remain, 377 stand at no recognisable module distance from
+  the nearest street in front of them — most are infill placed on a lot grid rather than off a
+  centreline — so converting them would again be the check certifying a guess. The gap the third
+  method closes is a gap in what can be SAID, and it is filled one record at a time by records
+  that have a settled setback to say.
 
 **What it cannot do.** It cannot tell you the control is *right*. Since 2026-08-10 every control
 point can at least be re-fetched from OpenStreetMap and re-derived from the street names (§ 7),
@@ -421,3 +454,171 @@ assumption and is now a reading.
    traverse crosses three candidates and all three are rejected for the same reason — one of
    the two lines bounding them stops after 24–32 m, well short of a block face. Both streets
    need a traverse placed for them, not a looser filter.
+
+## 11. The north bank has no module, and its frontages come off the track
+
+**T-0947, 2026-09-11.** Everything above this section is a measurement of the Original Town
+and the West Division. § 8's eleven corridors are Desplaines, Jefferson, Clinton and Canal
+on the block row south of Lake, plus Lake, Randolph and one unnamed corridor east of Canal;
+§ 4's control points are Kinzie × Canal, Lake × Canal, Lake × Market, Randolph × Canal and
+South Water × Franklin. **Not one of them is north of the river.** `street_control.json`
+says as much in its own note — the 80 ft figure is applied "town-wide to Lake, Market,
+Canal, Randolph and Kinzie" — and `tools/plat_corridors.py` agrees by construction:
+`generate_plat_lots.EW_STREETS` and `NS_STREETS` name no north-bank street, so `north_water`
+has no corridor ring, and no record has ever been reported lapping one.
+
+That silence was read, twice on one day, as permission.
+
+### What it cost: one ruling, two green answers, 36.79 m apart
+
+On 2026-09-06 two reconciliations of T-0812 were written hours apart. Both ruled the same
+way about Kinzie Street (see `kinzie_alignment_1835.md`) and then placed the Steamboat Hotel
+in two different places. PR #974, which landed, offset **12.192 m** from North Water Street's
+committed centreline — half the platted module, carried across the river. PR #975, which was
+closed, offset **7.00 m**, argued from a band of neighbours' setbacks. Nothing could tell
+them apart: both records declare `derivation.method: not_derivable`, and `validate.py
+--stale` asks whether a mesh matches the record it was baked from, not whether a record
+matches the rule it says it follows.
+
+### The rule, and it was already here
+
+North of the river this project's placements do not offset from a module. They offset from
+the street **as drawn**, and the arithmetic is stated four times over — once in each of the
+Dearborn sheds' own `position.note`:
+
+> North Water Street's travelled track, `data/streets/1835.json`, `track_width_m` 6.0: at
+> local E 678.0 the drawn centreline stands at N 108.35, so its north edge is 3.00 m north
+> of that. The front wall is set 2.00 m back from that edge — **5.00 m from the centreline**,
+> leaving the front wall 2.00 m clear of the drawn ribbon
+
+**The frontage line is the street record's own kerb plus a 2.00 m clearance.** The kerb is
+`track_width_m / 2` and is never written down twice, so a street re-drawn in
+`data/streets/1835.json` re-derives every frontage on it in the same commit — which is
+exactly what happened when T-0226 moved North Water Street off the water mask and the sheds
+came with it. The clearance is this programme's own invention and is declared as one.
+
+### Why the module is refused here, and why the neighbour band is too
+
+The module is refused because it has never been measured on this bank and this dataset
+holds no corridor for it. Applying half of it left the Steamboat Hotel standing 12.20 m back
+on a bank where every other building's face stands between **0.06 and 5.05 m** of the same
+centreline.
+
+The *neighbour band* is refused as a rule for a different reason: it is not a band. Measured
+on the committed records, the nine north-bank frontages inside 25 m of the centreline read
+0.06, 1.00, 1.75, 2.02, 2.89, 4.42, 4.85–5.05, 9.65 — and **five of them are drawn inside
+the 6 m track**. A scatter that includes five buildings standing in the roadway is the
+residue of independently-placed records met by a later-traced line; it is not a custom, and
+the loose end of it is not a setback. (PR #975's own figures — "school 2.15, Cobweb Castle
+2.89, Dearborn sheds 5.01–5.17, Kinzie & Hunter 5.35, brickyard 7.02, boatman's cabin 7.31"
+— reproduce on the committed records only for Cobweb Castle. Kinzie & Hunter measures 0.06,
+not 5.35. A number derived by hand and thrown away does not reproduce; that is § 1's lesson
+and `measure_corridor_intrusion`'s, met again.)
+
+What the four sheds have that the other five do not is a **stated rule**, applied
+identically, that reproduces. That is what is adopted.
+
+### The gate
+
+`tools/measure_north_bank_frontage.py` measures every committed building phase whose street
+face stands within 25 m of North Water Street's committed centreline — the same
+`FRONTAGE_BAND_M` `tools/fronting_street.py` uses — and sorts each into one of three:
+
+| verdict | held to | population |
+|---|---|---|
+| `on_rule` | the derived 5.00 m, within 0.20 m | the four Dearborn sheds and the Steamboat Hotel |
+| `exception` | its own committed figure, within 0.25 m, **with the reason named** | eight records |
+| `unbaselined` | nothing — **the gate fails** | none, and that is the point |
+
+The 0.20 m is about the street and not about the placements: the face is measured to the
+nearest point of a POLYLINE, which at a vertex is a corner-to-corner distance rather than
+the perpendicular the rule is stated in. The sheds read 4.85–5.05 m for that reason alone.
+
+The exceptions are recorded rather than repaired, and five of them are buildings drawn
+inside the track. That is a real fault of this dataset, and the reason it is not fixed here
+is the one `measure_corridor_intrusion` states for the platted grid: **a position with a
+source outranks a corridor this project derived.** Cobweb Castle's corner is documented
+twice; the school's is Andreas, twice; Kinzie & Hunter stands at the forks where the street
+is a trace that has already been re-derived once. Moving them to make a number smaller is
+exactly what that tool refuses to do, and so does this one.
+
+### What moved
+
+`data/structures/steamboat_hotel.json` only, by **7.87 m**: its face onto the frontage line,
+then 3.17 m along the street's own bearing to restore the 5.486 m platted alley to
+`council_house`'s footprint that PR #974's station is constructed on. The along-street
+station is #974's and is unchanged in substance; #975's is not taken, and its own placement
+would have put this facade 6.24 m from the `attested` `kinzie` centreline — 5.95 m inside
+the platted corridor of a street that genuinely carries the module.
+
+## 12. What the queued Canal/Kinzie correction costs the platted corridor — and it is a cycle path
+
+**T-0421, 2026-09-13.** § 3 above names the two coordinates for Kinzie × Canal and settles
+which subset of the crossing is right. It does not say what the unapplied correction *costs*,
+and by 2026-08-29 that had turned into an open question about Canal Street itself.
+
+T-0009 derived every street's platted corridor from its committed control that day, per the
+owner's ruling. `plat_corridors.control_offsets()` reported Canal as **the one street with
+more than one control point that does not agree with itself**:
+
+| control point | offset from Canal's drawn centreline |
+|---|---|
+| `lake_canal` | +0.00 m |
+| `randolph_canal` | +0.09 m |
+| `kinzie_canal` | **−2.24 m** |
+
+A spread of **2.33 m**, verdict `disagree`, so the corridor stays on the drawn line — the
+honest answer, because no rigid translation satisfies three points and re-drawing the line is
+what the ruling forbids. T-0421 was filed to ask whether the platted block grid on that reach
+is also offset, in which case the lots and every roof on them move.
+
+**It is not, and the question dissolves.** Substitute the road-only reading of the same
+junction — the three shared nodes of the five, the ones that are West Kinzie Street × North
+Canal Street rather than the Kinzie Street Bikeway crossing Canal — and run the identical
+computation against the identical committed lines:
+
+| control point | as committed | on the road-only reading |
+|---|---|---|
+| `lake_canal` | +0.00 m | +0.00 m |
+| `randolph_canal` | +0.09 m | +0.09 m |
+| `kinzie_canal` | −2.24 m | **+0.01 m** |
+| **spread** | **2.33 m** | **0.09 m** |
+
+**The 2.33 m is the bikeway inside the control's own average. It was never Canal Street
+disagreeing with itself** — the drawn line reproduces all three of its control points to
+**9 cm**, which is a quarter of the width of the pen that drew it and 190 times inside the
+17.5 m coordinate residual that brackets where it is placed. The `canal` record in
+`data/streets/1835.json` has said in words since it was drawn that its line "uses the
+road-only Kinzie control already adopted by the North Branch bridge rather than the queued
+five-node bikeway-inclusive GCP"; this is the arithmetic of that sentence.
+
+### Both readings stand, and each file now says the other exists
+
+The ticket asked for the control to be said in one place rather than two. It is one place —
+and the answer is that the two coordinates are answers to two different questions, so both
+stay, each with its reason committed beside it:
+
+* **`control.kinzie_canal.utm_e/utm_n` stays the five-node mean.** It *is* georeferencing
+  GCP HB. Re-deriving it re-runs the Hathaway cross-check fit and re-bakes the North Branch
+  bridge, whose span is a mesh parameter measured off the traced 1834 banks (§ 3). That cost
+  has been written down since 2026-08-10 and is unchanged.
+* **The road-only mean is now committed as data**, at
+  `data/traces/street_control.json` § `control.kinzie_canal.road_only_reading` — its three
+  node ids, E 446891.71, N 4637657.80, how it was derived, and the two committed placements
+  that stand on it. Until this ticket it lived only in prose, in three separate paragraphs,
+  while two placements depended on it and nothing could re-derive either.
+* **The `canal` street record names that field**, and the field names the street record and
+  the bridge record back.
+
+### Nothing moves, and a gate keeps it that way
+
+`tools/measure_canal_control_spread.py --check` runs in `tools/check.sh` and re-derives all
+of it every commit: both spreads, all six per-point offsets, and the **2.93 m** the North
+Branch bridge declares as `centreline.control_variance_m` — which is exactly the northing
+between `kinzie_canal` and its own `road_only_reading`, and was until now two prose numbers
+that happened to agree.
+
+The verdict is `disagree` **on both readings**, because 0.09 m is still wider than the 0.01 m
+`plat_corridors.QUOTED_M` quotes offsets to. So Canal's corridor sits where it sat, the lot
+grid is untouched, and no roof moves. What changed is the size of the unknown: from 2.33 m,
+which is a question about a street, to 0.09 m, which is not.

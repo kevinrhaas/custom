@@ -146,16 +146,36 @@ THE REFUSALS, AND WHY EACH ONE IS THERE.
                                         NOT refused: whether those are one house is
                                         T-0338's open question over thirty-one such
                                         groups, and a placement pass must not answer it by
-                                        seating or refusing. Nor does this reach a
+                                        seating or refusing.
+
+                                        **But it DOES defer to a ruling that already
+                                        exists.** Where
+                                        `identity.json` § `refused_firm_merges` declares
+                                        two headings `two_houses` and their surname sets
+                                        are equal, the collapse keys on (surname set,
+                                        occupation) — the axis the ruling itself used —
+                                        so W. Montgomery the auctioneer is no longer
+                                        refused for being called Montgomery by L. W.
+                                        Montgomery the bootmaker (T-0414). Two headings of
+                                        the SAME trade in such a group still collide.
+
+                                        Nor does this reach a
                                         variant SPELLING — 'F. G. Blanshard', 'G.
                                         Blanshard', 'W. G. Blanchard' and 'Wm. G.
-                                        Branchaud' advertise the same Lake Street trade
-                                        within five months and take three roofs here
-                                        (the two exact 'Blanshard's collide and one is
-                                        refused), because the gazetteer's identity layer
-                                        has not judged them one man and this file will not
-                                        judge it either. T-0408 measures that group and is
-                                        where it is settled.
+                                        Branchaud' advertised the same Lake Street trade
+                                        within five months and took three roofs here,
+                                        because the gazetteer's identity layer had not
+                                        judged them and this file will not judge a
+                                        resemblance. T-0408 SETTLED IT WHERE IT BELONGS
+                                        and the group is now TWO roofs: 'Branchaud' was a
+                                        supply made from two Tesseract-fallback columns
+                                        and the same card's Vision columns of 1834-07-16
+                                        and 1834-09-17 set BLANCHARD, so that reading was
+                                        repaired and an `identity.json` firm merge joined
+                                        'Wm. G. Blanchard' to 'W. G. Blanchard'; and
+                                        'W. G. Blanchard' against 'G. Blanshard' is a
+                                        declared `not_joined` refusal — one door, one
+                                        trade, and no printing that sets both spellings.
 
 WHAT THIS FILE WILL NOT DO. It will not raise a structure, move one, promote one, or
 write a lot. It writes ONE derived table and nothing else; spending it — a card, a
@@ -174,10 +194,14 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
 import fronting_street  # noqa: E402  (needs the path above)
+from compile_gazetteer import (  # noqa: E402  — the identity policy has one home
+    sign_name_index, surname_words,
+)
 
 DATA = ROOT / "data"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
+IDENTITY = DATA / "research" / "newspapers" / "identity.json"
 OUT = DATA / "research" / "newspapers" / "street_face_adoptions.json"
 STRUCTURES = DATA / "structures"
 HOUSEHOLDS = DATA / "residents" / "households"
@@ -192,6 +216,8 @@ BAND = "centreline band"
 # limit 1 is enforced against a future field rather than only against today's.
 ADOPTION_KEYS = {
     "business_id", "business_name", "trade", "proprietors",
+    "partners", "firm_styles",          # T-0398: which of those strings are people
+    "surnames",                         # T-1042: every surname those strings name
     "street_id", "street_name", "street_text", "placement_class",
     "cites", "first_issue", "last_issue", "mentions",
     "structure_id", "face", "roof_confidence",
@@ -405,25 +431,99 @@ def supply(roofs: dict[str, str], homes: dict[str, list[str]],
 # the pool: the register's street_only businesses, ranked by evidence
 # ---------------------------------------------------------------------------
 
-def surnames(entry: dict) -> tuple[str, ...]:
+_SIGNS: dict | None = None
+
+
+def declared_sign_names() -> dict:
+    """`identity.json` § `firm_sign_names`, read once: {style: its partner half}.
+
+    A sign-name is the shop's own name over its door and no partner is named in it, so
+    the split cannot be derived — it is DECLARED beside the merges it governs, and
+    `compile_gazetteer.sign_name_index()` is the reader.
+    """
+    global _SIGNS
+    if _SIGNS is None:
+        _SIGNS = sign_name_index(load(IDENTITY)) if IDENTITY.exists() else {}
+    return _SIGNS
+
+
+def surnames(entry: dict, signs: dict | None = None) -> tuple[str, ...]:
     """The normalised proprietor surname SET a register entry prints, sorted.
 
     Empty where the advertisement names no proprietor at all — an anonymous 'wholesale
     wine and liquor store' cannot collide with anything, and is never refused by refusal 5.
+
+    THE READING IS NOT THIS PASS'S (T-1042). Until this ticket the last word of each
+    proprietor string was taken for its surname, which on a firm's own trading style is a
+    guess — and it invented a man ('H. Doty & Co.' stood on Lake Street as somebody called
+    Co, and refusal 5 could fire on him) and it lost one ('Clark, Filer & Co.' dropped
+    Filer). `compile_gazetteer.surname_words()` is now the one derivation for all three
+    passes that asked this; what stays here is only the normalisation these keys are
+    built on, because `two_house_surnames()` and the collapse compare against them.
+
+    A DECLARED sign-name is taken off the style first where `signs` is passed — the
+    shop's own name over its door is a capitalised trade, not a partner, and only
+    `identity.json` can say which is which.
     """
+    signs = declared_sign_names() if signs is None else signs
     found: set[str] = set()
     for name in entry.get("proprietors") or []:
-        text = re.sub(r"^\[uncertain:\s*", "", str(name)).rstrip("]").strip()
-        # 'Mulford, J. H.' is the same man as 'J. H. Mulford'; the comma form puts the
-        # surname first, and the corpus prints both.
-        head = text.split(",")[0].strip() if "," in text else text
-        parts = [word for word in re.split(r"\s+", head) if word]
-        if not parts:
-            continue
-        surname = re.sub(r"[^a-z]", "", parts[-1].lower())
-        if surname:
-            found.add(surname)
+        style = signs.get(str(name), str(name))
+        for word in surname_words(style):
+            key = re.sub(r"[^a-z]", "", word.lower())
+            if key:
+                found.add(key)
     return tuple(sorted(found))
+
+
+def two_house_surnames(register: dict) -> set[tuple[str, ...]]:
+    """Surname sets the corpus has ALREADY RULED cover more than one house.
+
+    `identity.json` § `refused_firm_merges` is where this project writes down that two
+    headings are not one business. A refusal of kind `two_houses` says exactly what
+    refusal 3's surname collapse would otherwise assume away — and refusal 3 is forbidden
+    to answer an identity question (docs/STREET-FACE-ADOPTION.md § refusal 3), so where
+    the ruling exists the pass must obey it rather than re-decide it.
+
+    Only refusals whose two headings would actually MEET in the collapse count: the
+    collapse fires on an exact surname-set match, so a `two_houses` refusal between
+    'New York Clothing Store' and "Peter Cohen's store" has nothing to say to it and is
+    not admitted here. A heading the register does not carry is likewise skipped — the
+    ruling may name a business this pass never sees.
+    """
+    by_name = {entry["name"]: entry for entry in register["businesses"]}
+    ruled: set[tuple[str, ...]] = set()
+    for refusal in load(IDENTITY).get("refused_firm_merges", []):
+        if refusal.get("kind") != "two_houses":
+            continue
+        pair = [by_name.get(refusal.get("into")), by_name.get(refusal.get("from"))]
+        if not all(pair):
+            continue
+        left, right = (surnames(pair[0]), surnames(pair[1]))
+        if left and left == right:
+            ruled.add(left)
+    return ruled
+
+
+def collapse_key(entry: dict, ruled: set[tuple[str, ...]]) -> tuple:
+    """What refusal 3 treats as "the same proprietor" on one face.
+
+    Normally the normalised proprietor surname set, and nothing else — one man, one roof
+    per face. But inside a surname set the corpus has ruled `two_houses`, the TRADE joins
+    the key, because the trade is the axis the ruling itself used: W. Montgomery the
+    auctioneer against L. W. Montgomery the bootmaker is "a different trade, a different
+    stand and eighteen months later" in `identity.json`'s own words. Keying on the
+    occupation there is derived from the ruling rather than invented by this pass, and it
+    reaches nothing the ruling has not already decided.
+
+    Two headings of the SAME trade inside such a group still collide and one is still
+    refused — whether the three surplus Montgomery auction headings are one house is the
+    gazetteer's question, not this pass's.
+    """
+    house = surnames(entry)
+    if house and house in ruled and entry.get("occupation"):
+        return house + ("trade:" + str(entry["occupation"]),)
+    return house
 
 
 def rank_key(entry: dict, gaz: dict) -> tuple:
@@ -438,8 +538,20 @@ def rank_key(entry: dict, gaz: dict) -> tuple:
     return (-mentions, first, entry["id"])
 
 
+#: THE TWO LEDGERS A DEAL CAN KEEP (T-0422). `TOWN_LEDGER` is the policy — one roof, one
+#: business, counted across the whole town. `PER_FACE_LEDGER` is the ledger this pass kept
+#: until the corner-side widening made it wrong: a roof spent on Dearborn was still free to
+#: Lake, so two faces could deal the same building. It survives here ONLY so `self_test()`
+#: can DERIVE it and show what the town-wide ledger is buying; no document is ever written
+#: under it, and `costed()` refuses to.
+TOWN_LEDGER = "town-wide"
+PER_FACE_LEDGER = "per face"
+
+
 def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
-             yards: set[str], readings: tuple[str, ...]) -> tuple[list, list]:
+             yards: set[str], readings: tuple[str, ...],
+             ruled_two_houses: set[tuple[str, ...]],
+             ledger: str = TOWN_LEDGER) -> tuple[list, list]:
     """Deal the ranked pool onto the faces, reading "face" as `readings` says.
 
     The pass this file writes calls it with `ADOPTED_READINGS` and nothing else, and
@@ -457,6 +569,13 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
     gate; refusing it here means the table is never written that way in the first place.
     """
     taken: set[str] = set()
+    spent_on_face: dict[str, set[str]] = {}
+
+    def spoken_for(street_id: str) -> set[str]:
+        """The roofs this deal has already spent, as `ledger` counts them."""
+        return (taken if ledger == TOWN_LEDGER
+                else spent_on_face.setdefault(street_id, set()))
+
     seated: dict[str, dict[tuple[str, ...], str]] = {}
     adoptions: list[dict] = []
     refusals: list[dict] = []
@@ -478,7 +597,7 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
         face = faces.get(street_id) or {key: list(value)
                                         for key, value in EMPTY_FACE.items()}
         free = [sid for sid in free_under(face, readings, homes, yards)
-                if sid not in taken]
+                if sid not in spoken_for(street_id)]
         if not any(face[how] for how in readings):
             refusals.append(dict(
                 common, refusal=REFUSALS[1],
@@ -488,16 +607,21 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
                        "on 2026-08-30."
                        % (len(face[FRONT]), len(face[SIDE]), len(face[BAND]))))
             continue
-        house = surnames(entry)
+        house = collapse_key(entry, ruled_two_houses)
         held = seated.setdefault(street_id, {})
         if house and house in held:
             refusals.append(dict(
                 common, refusal=REFUSALS[2],
                 detail="%r already stands on this face under the same proprietor "
-                       "surname(s) %s, on better evidence. One house, one roof per face; "
-                       "whether these are two headings of one business is the "
+                       "surname(s) %s%s, on better evidence. One house, one roof per "
+                       "face; whether these are two headings of one business is the "
                        "gazetteer's to judge (T-0338, T-0340), not this pass's."
-                       % (held[house], ", ".join(house))))
+                       % (held[house],
+                          ", ".join(surnames(entry)),
+                          " in the same trade (%s), which identity.json's two_houses "
+                          "ruling on this surname does not separate"
+                          % entry.get("occupation")
+                          if len(house) > len(surnames(entry)) else "")))
             continue
         if not free:
             on_face = [sid for how in readings for sid in face[how]]
@@ -510,11 +634,13 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
                        % (len(on_face),
                           len([sid for sid in on_face if sid in homes]),
                           len([sid for sid in on_face if sid in yards]),
-                          len([sid for sid in on_face if sid in taken]))))
+                          len([sid for sid in on_face
+                               if sid in spoken_for(street_id)]))))
             continue
 
         structure_id = free[0]
         taken.add(structure_id)
+        spent_on_face.setdefault(street_id, set()).add(structure_id)
         if house:
             held[house] = entry["name"]
         how = reading_of(face, structure_id)
@@ -523,6 +649,17 @@ def allocate(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
             "business_name": entry["name"],
             "trade": entry.get("trade"),
             "proprietors": entry.get("proprietors") or [],
+            # T-0398. The register derives which of those strings are people and which
+            # are the house's own trading style, and the row carries both: a table that
+            # prints 'Aaron Russell, Benj. H. Clift, Russell & Clift' otherwise states
+            # that the partnership is its own third partner.
+            "partners": entry.get("partners") or [],
+            "firm_styles": entry.get("firm_styles") or [],
+            # T-1042 ANSWERED. `surnames()` reads every surname the strings above name,
+            # styles included, through `compile_gazetteer.surname_words()`; the row now
+            # CARRIES that reading so the household pass reads it instead of guessing at
+            # `proprietors` a third time and taking each string's last word.
+            "surnames": list(surnames(entry)),
             "street_id": street_id,
             "street_name": fronting_street.street_name(street_id),
             "street_text": printed.get("street"),
@@ -566,8 +703,23 @@ COSTED_READINGS = (
 )
 
 
+def dealt_twice(rows: list) -> dict[str, list[str]]:
+    """Every roof more than one row in `rows` is seated in, and who those rows are.
+
+    T-0422. Under the narrow reading a roof reached exactly one face, so "once per face"
+    and "once in the town" were the same sentence and no count could tell them apart. The
+    corner-side widening separated them, and this is the reading that says which one a
+    table obeys.
+    """
+    who: dict[str, list[str]] = {}
+    for row in rows:
+        who.setdefault(row["structure_id"], []).append(row["business_id"])
+    return {sid: names for sid, names in sorted(who.items()) if len(names) > 1}
+
+
 def costed(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
-           yards: set[str], adoptions: list) -> dict:
+           yards: set[str], adoptions: list,
+           ruled_two_houses: set[tuple[str, ...]]) -> dict:
     """What each reading of "face" actually SEATS, dealt rather than estimated.
 
     `widened_reading_would_reach` counts the businesses refused for want of a face —
@@ -582,7 +734,15 @@ def costed(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
     today = {row["business_id"]: row for row in adoptions}
     out: dict[str, dict] = {}
     for label, readings in COSTED_READINGS:
-        would, refused = allocate(pool, gaz, faces, roofs, homes, yards, readings)
+        would, refused = allocate(pool, gaz, faces, roofs, homes, yards, readings,
+                                  ruled_two_houses, TOWN_LEDGER)
+        # T-0422. The same reading dealt under the ledger this pass kept until the
+        # corner-side widening: one roof, one business PER FACE. It is derived here, on
+        # every rebuild, so the difference between the two ledgers is a measured number in
+        # the document rather than an argument in a ticket — and so `limits()` has
+        # something to re-assert. Nothing below is ever written as an adoption.
+        per_face, _ = allocate(pool, gaz, faces, roofs, homes, yards, readings,
+                               ruled_two_houses, PER_FACE_LEDGER)
         seated = {row["business_id"]: row for row in would}
         gained = sorted(set(seated) - set(today))
         # A wider reading is not automatically a superset. Roofs are dealt to the pool in
@@ -599,6 +759,13 @@ def costed(pool: list, gaz: dict, faces: dict, roofs: dict, homes: dict,
             "adopted_faces": list(readings),
             "in_force": tuple(readings) == ADOPTED_READINGS,
             "would_seat": len(would),
+            # ONE ROOF, ONE BUSINESS, TOWN-WIDE — stated as a count rather than asserted
+            # in prose, because a counterfactual nobody looks at is exactly where this
+            # would rot. `would_seat_on_distinct_roofs` must equal `would_seat`.
+            "would_seat_on_distinct_roofs": len({row["structure_id"] for row in would}),
+            "deals_a_roof_twice": dealt_twice(would),
+            "per_face_ledger_would_seat": len(per_face),
+            "per_face_ledger_would_deal_twice": dealt_twice(per_face),
             "against_the_reading_in_force": len(would) - len(today),
             "seats_that_the_reading_in_force_does_not": gained,
             "seats_that_the_reading_in_force_does_not_by_street":
@@ -621,11 +788,12 @@ def derive() -> dict:
     yards = yard_roofs()
     faces = supply(roofs, homes, yards)
 
+    ruled_two_houses = two_house_surnames(register)
     pool = [b for b in register["businesses"] if b["action"] == "street_only"]
     pool.sort(key=lambda entry: rank_key(entry, gaz))
 
     adoptions, refusals = allocate(pool, gaz, faces, roofs, homes, yards,
-                                   ADOPTED_READINGS)
+                                   ADOPTED_READINGS, ruled_two_houses)
 
     unplaceable = [b for b in register["businesses"]
                    if b["action"] == "unplaceable" and b.get("present_at_scene_date")]
@@ -655,7 +823,8 @@ def derive() -> dict:
         }
 
     eligible = sum(1 for row in refusals if row["refusal"] == REFUSALS[1])
-    costed_readings = costed(pool, gaz, faces, roofs, homes, yards, adoptions)
+    costed_readings = costed(pool, gaz, faces, roofs, homes, yards, adoptions,
+                             ruled_two_houses)
 
     # THE BAND, CONSIDERED AND DECLINED — recorded here rather than left to a document,
     # so a later run reads the refusal off the same file it reads the adoption off and
@@ -787,6 +956,23 @@ def limits(doc: dict) -> list[str]:
     for structure_id in sorted(seen & yard_roofs()):
         bad.append("%s is a yard building — a privy, a stable or a woodshed standing "
                    "behind a lot — and a business cannot be seated in one" % structure_id)
+
+    # LIMIT 1 HOLDS OVER THE COUNTERFACTUALS TOO — T-0422. Every check above reads the
+    # SHIPPED table, which is the reading in force; the other two rows of
+    # `costed_readings` are the numbers the owner is asked to rule on, and until this gate
+    # existed nothing re-asserted anything about them. A widening whose seat count is
+    # inflated by dealing one corner building to two shopfronts is a wrong price on a real
+    # decision, and it would never fail a gate, because it is never adopted.
+    for label, row in sorted((doc.get("reading") or {}).get("costed_readings", {}).items()):
+        for structure_id, businesses in sorted((row.get("deals_a_roof_twice") or {}).items()):
+            bad.append("the %r counterfactual deals %s to %s — one roof, one business "
+                       "holds town-wide, not once per face"
+                       % (label, structure_id, " and ".join(businesses)))
+        if row.get("would_seat_on_distinct_roofs") != row.get("would_seat"):
+            bad.append("the %r counterfactual seats %s business(es) on %s roof(s), so its "
+                       "price is inflated by the difference"
+                       % (label, row.get("would_seat"),
+                          row.get("would_seat_on_distinct_roofs")))
     return bad
 
 
@@ -848,6 +1034,14 @@ def report() -> int:
         print("      %-34s %2d seated (%+d), %d still refused  %s"
               % (label, row["would_seat"], row["against_the_reading_in_force"],
                  row["would_still_refuse"], mark))
+        # T-0422. One roof, one business is counted TOWN-WIDE, and the second line says
+        # what that costs: a per-face ledger would price this reading higher by dealing
+        # the same corner building to two shopfronts.
+        print("          %d roof(s) dealt; per face it would seat %d and deal %s"
+              % (row["would_seat_on_distinct_roofs"], row["per_face_ledger_would_seat"],
+                 ", ".join("%s twice" % sid
+                           for sid in row["per_face_ledger_would_deal_twice"])
+                 or "no roof twice"))
         gains = row["seats_that_the_reading_in_force_does_not_by_street"]
         print("          gains: %s" % (", ".join(
             "%s +%d" % (fronting_street.street_name(street_id), n)
@@ -958,6 +1152,25 @@ def self_test() -> int:
          lambda b: first(b).update(cites=[]),
          "cites no printing")
 
+    # T-0422. THE COUNTERFACTUALS' OWN LEDGER. Both cases mutate a costed row rather than
+    # an adoption, because that row is the only place a widening's price is written.
+    widening = next((label for label, row in doc["reading"]["costed_readings"].items()
+                     if not row["in_force"] and row["adopted_faces"] != [FRONT]), None)
+    if widening is None:
+        print("  FAIL  no widening is costed, so its ledger cannot be tested")
+        failed = 1
+    else:
+        case("a widening that deals one corner roof to two shopfronts",
+             lambda b: b["reading"]["costed_readings"][widening].update(
+                 deals_a_roof_twice={first(b)["structure_id"]:
+                                     ["business_a", "business_b"]}),
+             "one roof, one business holds town-wide")
+        case("a widening whose seat count runs ahead of the roofs it dealt",
+             lambda b: b["reading"]["costed_readings"][widening].update(
+                 would_seat_on_distinct_roofs=b["reading"]["costed_readings"]
+                 [widening]["would_seat"] - 1),
+             "its price is inflated")
+
     # Refusal 5's live half. Nine adoptions stood in outbuildings until 2026-08-29, so
     # this case is the one that would have caught it: seat the first business on a roof
     # the parcels dealt as ancillary and the limits must say so.
@@ -998,12 +1211,93 @@ def self_test() -> int:
         print("  ok:    the phase reader distinguishes %s, so a promoted roof is visible "
               "to limit 2" % ", ".join(sorted(grades)))
 
+    # T-0422, THE LIVE HALF. The two cases above prove the gate fires; this proves it is
+    # not vacuous, by dealing every costed reading under BOTH ledgers on the tree as it
+    # stands. The town-wide ledger must never double-deal, and the difference between the
+    # two is the thing the ticket asked to be kept measured rather than argued.
+    register_for_ledger = load(REGISTER)
+    gaz_for_ledger = {b["id"]: b for b in load(GAZETTEER)["businesses"]}
+    roofs_for_ledger = reconstructed_roofs()
+    homes_for_ledger = dwellings()
+    yards_for_ledger = yard_roofs()
+    faces_for_ledger = supply(roofs_for_ledger, homes_for_ledger, yards_for_ledger)
+    ruled_for_ledger = two_house_surnames(register_for_ledger)
+    pool_for_ledger = [b for b in register_for_ledger["businesses"]
+                       if b["action"] == "street_only"]
+    pool_for_ledger.sort(key=lambda entry: rank_key(entry, gaz_for_ledger))
+    bites = 0
+    for label, readings in COSTED_READINGS:
+        under = {}
+        for ledger in (TOWN_LEDGER, PER_FACE_LEDGER):
+            rows, _ = allocate(pool_for_ledger, gaz_for_ledger, faces_for_ledger,
+                               roofs_for_ledger, homes_for_ledger, yards_for_ledger,
+                               readings, ruled_for_ledger, ledger)
+            under[ledger] = rows
+        twice = dealt_twice(under[TOWN_LEDGER])
+        if twice:
+            failed = 1
+            print("  FAIL  %r deals a roof twice under the town-wide ledger: %s"
+                  % (label, ", ".join(sorted(twice))))
+            continue
+        per_face_twice = dealt_twice(under[PER_FACE_LEDGER])
+        bites += len(per_face_twice)
+        print("  holds: %-34s %2d seated on %2d roofs town-wide; per face it would "
+              "seat %2d and deal %d roof(s) twice"
+              % (label, len(under[TOWN_LEDGER]),
+                 len({row["structure_id"] for row in under[TOWN_LEDGER]}),
+                 len(under[PER_FACE_LEDGER]), len(per_face_twice)))
+    print("  ok:    the per-face ledger would double-deal %d roof(s) across the costed "
+          "readings, so the town-wide one is doing work" % bites)
+
+    # T-0414: REFUSAL 3 MUST OBEY THE IDENTITY LAYER. This is not a limit on the
+    # committed document — it is a rule about how the deal is MADE — so it is asserted
+    # directly instead of by breaking a record. The four assertions are the four ways the
+    # rule could rot: stop firing, fire on a group nobody ruled, stop separating trades,
+    # or start separating headings of the SAME trade (which would answer T-0338's open
+    # question by seating rather than by judging).
+    register = load(REGISTER)
+    ruled = two_house_surnames(register)
+    by_id = {entry["id"]: entry for entry in register["businesses"]}
+    boot = by_id.get("business_l_w_montgomery_boot_and_shoe_maker")
+    auctioneer = by_id.get("business_w_montgomery")
+    second = by_id.get("business_montgomery_auction_and_commission_house")
+
+    def want(label: str, ok: bool) -> None:
+        nonlocal failed
+        if ok:
+            print("  holds: %s" % label)
+        else:
+            failed = 1
+            print("  FAIL  %s" % label)
+
+    if not all((boot, auctioneer, second)):
+        want("the Montgomery headings T-0414 rests on are still in the register", False)
+    else:
+        want("the bootmaker and the auctioneer still share one surname set, so the "
+             "collapse would still reach them",
+             surnames(boot) == surnames(auctioneer) != ())
+        want("identity.json still rules that surname `two_houses`",
+             surnames(boot) in ruled)
+        want("the ruling separates the two trades",
+             collapse_key(boot, ruled) != collapse_key(auctioneer, ruled))
+        want("two headings of the SAME trade inside a ruled group still collide",
+             collapse_key(auctioneer, ruled) == collapse_key(second, ruled))
+        want("and without the ruling they would collapse, so the ruling is what does "
+             "the work",
+             collapse_key(boot, set()) == collapse_key(auctioneer, set()))
+    unruled = [entry for entry in register["businesses"]
+               if surnames(entry) and surnames(entry) not in ruled]
+    want("a surname the corpus has NOT ruled is keyed on the surname alone (%d "
+         "businesses)" % len(unruled),
+         all(collapse_key(entry, ruled) == surnames(entry) for entry in unruled))
+
     if failed:
         print("SELF-TEST FAIL")
         return 1
     print("SELF-TEST PASS — all four limits, both halves of both roof "
-          "refusals and both edges of the 2026-08-30 face ruling fire when broken "
-          "(12 cases)")
+          "refusals, both edges of the 2026-08-30 face ruling and both readings of the "
+          "one-roof-one-business ledger fire when broken, and refusal 3 still obeys "
+          "identity.json's two_houses rulings (20 cases)")
     return 0
 
 

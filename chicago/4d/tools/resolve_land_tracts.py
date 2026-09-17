@@ -46,14 +46,34 @@ the reservation ring `measure_no_build_ground.py` already derives and `check.sh`
 re-derives. The north fraction of section 10 — Robert A. Kinzie's 102.29 acres, which is
 Kinzie's Addition — is that section clipped to the committed north bank of the main stem.
 
-WHAT IS REFUSED, AND WHY IT IS THE HONEST ANSWER. Every town-lot and block-only row in
-this register is in **section 16**, the school section, sold at the October 1833 auction.
-That subdivision's plat is not traced by this project, so a block and lot number in it
-names ground this repo cannot point at, and 150 rows are refused for that one reason.
-The refusal costs the scene exactly one roof, and the tool prints which. The other large
-silence is section 9's south-east quarter — the original town, where 254 of the 372
-structures stand. The canal commissioners sold those lots, not the land office, and the
-register does not hold them; that absence is the domain README's, not a hole here.
+THE SCHOOL SECTION, AND WHAT ITS ROWS NOW SAY (T-0798). Every town-lot and block-only
+row in this register is in **section 16**, the school section, sold at the October 1833
+auction. Until T-0797 traced its plat those 336 rows were the largest silence here — read,
+and not put on the ground, because a block number named ground this repo could not point
+at. It can now: `data/traces/vectors/school_section_blocks_1834.json` carries all 142
+blocks measured off J. S. Wright's 1834 survey, and each row is seated on the polygon its
+own block number names.
+
+  THE BLOCK, NOT THE LOT, and the distinction is the whole discipline of the placement.
+  The sheet's ruled LOT lines are not traced, so a row that names lot 6 of block 48 is
+  put on block 48 and its lot is carried as read and left unplaced. A block averages
+  about a hectare and the auction sold most of them to several men apiece, so a roof
+  standing inside one was not necessarily bought by any given purchaser of it. Block
+  placements therefore reach NO structure, by rule and not by accident — `structures` is
+  empty on every row of this kind, and `--self-test` holds it. Nothing here mints a
+  person, a roof or a residence: the register's first discipline, that a sale is not a
+  resident, is untouched.
+
+  A NUMBER THE SHEET DOES NOT CARRY IS REFUSED, never nudged onto a neighbouring
+  polygon. Today no row needs that refusal — all 136 blocks the sale names are on the
+  sheet — and the two witnesses agree in the one place worth checking: Wright writes
+  `Reserved` across blocks 1, 87, 88 and 142 and draws no numeral on them, and the
+  auction, held a year earlier by a different hand, sells a lot in none of the four.
+
+The other large silence is section 9's south-east quarter — the original town, where 254
+of the 372 structures stand. The canal commissioners sold those lots, not the land
+office, and the register does not hold them; that absence is the domain README's, not a
+hole here.
 """
 from __future__ import annotations
 
@@ -62,6 +82,7 @@ import json
 import math
 import re
 import sys
+from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -71,6 +92,7 @@ DATA = ROOT / "data"
 DOMAIN = DATA / "research" / "land_sales"
 GROUND = DOMAIN / "ground.json"
 STRUCTURES = DATA / "structures"
+SCHOOL_BLOCKS = DATA / "traces" / "vectors" / "school_section_blocks_1834.json"
 SOURCE_ID = "isa_public_domain_land_tract_sales"
 GENERATED_BY = "tools/resolve_land_tracts.py --build"
 
@@ -318,6 +340,26 @@ def envelope(points, to_grid):
             min(ys) - ENVELOPE_PAD_M, max(ys) + ENVELOPE_PAD_M)
 
 
+# ------------------------------------------------- the school section's own plat
+
+# `LOT6BL48` is lot 6 of block 48; `BL106` is the block with no lot named; the register
+# suffixes a cancelled sale VOID or VO. Nothing else in section 16 is a block reference,
+# and a string this does not match is refused rather than coaxed into one.
+SCHOOL_BLOCK = re.compile(r"^(?:LOT(\d+))?BL(\d+)(?:VOID|VO)?$")
+
+
+def school_section_blocks():
+    """block number -> the polygon T-0797 measured off Wright's 1834 survey.
+
+    The trace is the one this project holds for section 16: 142 blocks, read off the
+    sheet's own rules, with the two independent numeral readings of T-0797 and T-0875
+    agreeing cell for cell. It is read here rather than re-derived, so a correction to
+    the plat moves the sale rows with it.
+    """
+    doc = load(SCHOOL_BLOCKS)
+    return {b["block_number"]: b for b in doc["blocks"]}, doc
+
+
 # ------------------------------------------------------------------ the join
 
 REFUSALS = {
@@ -326,12 +368,12 @@ REFUSALS = {
         "at the only PLSS corner this project holds, so the nominal-mile grid would be "
         "carried past any ground this reconstruction models and past anything that "
         "could check it. No structure could stand on it either way.",
-    "subdivision_plat_not_held":
-        "Read, and not put on the ground. The row names a block — and usually a lot — "
-        "in the SCHOOL SECTION, section 16, subdivided and sold at the October 1833 "
-        "auction. That subdivision's plat is not traced by this project, so its block "
-        "and lot numbers name ground this repo cannot point at. The section itself is "
-        "resolved; the lot inside it is not.",
+    "block_not_on_the_sheet":
+        "Read, and not put on the ground. The row names a block of the SCHOOL SECTION "
+        "that Wright's 1834 survey does not carry a numeral for, so the sale record and "
+        "the sheet disagree about what that number names. The disagreement is written "
+        "here and nothing is picked: putting the row on the nearest plausible polygon "
+        "would be inventing the agreement the two witnesses do not have.",
     "description_not_read":
         "Read, and not put on the ground. `read_land_sales.py` leaves this legal "
         "description unparsed rather than guess at it, and guessing at it here would "
@@ -342,6 +384,7 @@ REFUSALS = {
 def resolve(entries, to_grid, from_grid, reach):
     """One row per sale: where it lands, or why it does not."""
     ring, north_shore, _water = committed_fractions(to_grid)
+    plat, _plat_doc = school_section_blocks()
     e_lo, e_hi, n_lo, n_hi = reach
     rows = []
     for entry in entries:
@@ -404,10 +447,42 @@ def resolve(entries, to_grid, from_grid, reach):
                 "with the school-section marker — are the same entry printed twice.")
             continue
 
-        if tract["resolves"] == "town_lot" or (
-                tract["resolves"] == "unparsed" and tract["section"] == "16"
-                and tract["part"].startswith(("BL", "LOT"))):
-            row["refusal"] = "subdivision_plat_not_held"
+        if tract["section"] == "16" and SCHOOL_BLOCK.match(tract["part"]):
+            m = SCHOOL_BLOCK.match(tract["part"])
+            lot, number = m.group(1), int(m.group(2))
+            block = plat.get(number)
+            if block is None:
+                row["refusal"] = "block_not_on_the_sheet"
+                row["note"] = (f"The sale names block {number} of the school section and "
+                               f"Wright's sheet numbers {len(plat)} blocks that do not "
+                               f"include it.")
+                continue
+            row["ground"] = {
+                "kind": "school_section_block",
+                "name": (f"block {number} of the school section, section 16 T39N R14E"
+                         + (f" (lot {lot} within it, not placed)" if lot else "")),
+                "block_number": number,
+                "block_id": block["id"],
+                "lot_as_read": lot,
+                "ring_local_enu": [[round(x, 3), round(y, 3)]
+                                   for x, y in block["boundary_local_enu_m"]],
+                "acres_derived": round(block["area_m2"] / ACRE_M2, 2),
+                "numeral_on_the_sheet": block["numeral"]["on_sheet"],
+                "geometry_confidence": block["geometry_confidence"],
+                "trace": "data/traces/vectors/school_section_blocks_1834.json"}
+            row["note"] = (
+                "THE BLOCK, NOT THE LOT. The row is placed on the block polygon T-0797 "
+                "measured off J. S. Wright's 1834 survey of the school section; the LOT "
+                "inside it is carried as read and is NOT put on the ground, because the "
+                "sheet's ruled lot lines are not traced. So this says the purchaser "
+                "bought ground somewhere inside this block on this date, and it does not "
+                "say where inside it. A block here averages a hectare and the auction "
+                "sold most of them to several men, so nothing on it may be read as the "
+                "owner of a particular roof — see `structures`, which is empty by rule "
+                "for every row of this kind."
+                + ("" if block["numeral"]["on_sheet"] else
+                   " The sheet writes no numeral on this block and the serpentine "
+                   "sequence supplies it: see the trace's own note."))
             continue
 
         box = aliquot_box(tract["section"], tract["part"])
@@ -444,6 +519,13 @@ def reach_structures(rows, structures, to_grid):
                 continue
             e, n = to_grid(x, y)
             kind = row["ground"]["kind"]
+            # A BLOCK IS NOT A LOT. A school-section row lands on a block polygon and the
+            # lot inside it is not traced, so a roof standing in that block was not
+            # necessarily bought by this purchaser — the auction sold most blocks to
+            # several men. Reaching a structure from one would claim exactly the thing
+            # the placement refuses to claim, so it reaches none, by rule.
+            if kind == "school_section_block":
+                continue
             if kind == "aliquot_grid":
                 e0, e1, n0, n1 = row["ground"]["box_local_enu"]
                 if not (e0 <= e < e1 and n0 <= n < n1):
@@ -464,6 +546,381 @@ def reach_structures(rows, structures, to_grid):
             row["structures"].append({"id": sid, "margin_m": round(margin, 1)})
             assigned.setdefault(sid, []).append((row, round(margin, 1)))
     return assigned
+
+
+def school_section_parcels(placed, entries):
+    """A ROW IS NOT A PARCEL, and in this sale the difference is 38 of them (T-0885).
+
+    Every count of who bought the south is a count of REGISTER ROWS — that is what the
+    source offers and what `school_section_counts` prints. It is not the same as a count
+    of ground: 335 live rows name only 297 distinct block-and-lot parcels, because 38
+    parcels are entered more than once, under two different names, on the same day and
+    the same page of the volume, with a purchase number apiece.
+
+    Twenty-six of those 38 are ONE pair of names — every parcel Ebenezer Hale enters,
+    John Hale enters as well — which is why the keenest-purchaser table reads two Hales
+    at the top of it. Six of the 38 carry the register's `AS` suffix on one of the two
+    rows, which reads as an assignment and is the one shape of duplicate this source
+    explains itself. The rest, the Hales among them, it does not.
+
+    NOTHING HERE MERGES A NAME OR DROPS A ROW. Whether the pair is one transaction, an
+    assignment written without its mark, or two men entering one lot is an identity
+    ruling, and this file makes none: `resident_crosswalk.json` is where the domain rules
+    on identity. What this does is stop the difference being invisible — a table that
+    says `rows` beside a table that says `parcels` cannot be read as the same number by
+    accident.
+    """
+    by_id = {e["record_id"]: e for e in entries}
+    live = [r for r in placed if not r["void"]]
+    parcels = {}
+    for row in live:
+        key = (row["ground"]["block_number"], row["ground"]["lot_as_read"])
+        parcels.setdefault(key, []).append(row)
+    repeated = {k: v for k, v in parcels.items() if len(v) > 1}
+
+    def marked(row):
+        return by_id[row["record_id"]]["purchaser_as_read"].rstrip().endswith(" AS")
+
+    pairs, prices_agree, days_agree, pages_agree, with_mark = {}, 0, 0, 0, 0
+    disagreements = []
+    for key, rows_here in sorted(repeated.items()):
+        names = tuple(sorted({r["purchaser_normalized"] for r in rows_here}))
+        entry = pairs.setdefault(names, {"purchasers": list(names), "parcels": 0,
+                                         "an_assignment_mark_on_a_row": False})
+        entry["parcels"] += 1
+        prices = {by_id[r["record_id"]]["total_price"] for r in rows_here}
+        days = {r["date_purchased"] for r in rows_here}
+        pages = {(by_id[r["record_id"]]["volume"], by_id[r["record_id"]]["page"])
+                 for r in rows_here}
+        prices_agree += len(prices) == 1
+        days_agree += len(days) == 1
+        pages_agree += len(pages) == 1
+        if any(marked(r) for r in rows_here):
+            entry["an_assignment_mark_on_a_row"] = True
+            with_mark += 1
+        if len(prices) > 1:
+            disagreements.append({
+                "block": key[0], "lot_as_read": key[1],
+                "rows": sorted(r["record_id"] for r in rows_here),
+                "prices_as_read": sorted(prices),
+                "reading": "The same parcel, the same day and the same page, entered "
+                           "at two prices. One of the two is a slip — of the clerk's "
+                           "pen or of the transcription — and this project does not "
+                           "know which, so both are carried as read."})
+
+    return {
+        "live_rows_counted": len(live),
+        "void_rows_excluded": len(placed) - len(live),
+        "distinct_parcels": len(parcels),
+        "parcels_entered_more_than_once": len(repeated),
+        "of_those_the_day_agrees_on": days_agree,
+        "of_those_the_page_agrees_on": pages_agree,
+        "of_those_the_price_agrees_on": prices_agree,
+        "of_those_carrying_an_assignment_mark": with_mark,
+        "name_pairs": sorted(pairs.values(), key=lambda p: (-p["parcels"],
+                                                            p["purchasers"])),
+        "price_disagreements": disagreements,
+        "what_this_is_not": "Not a merge and not a refusal. The rows all stand; this "
+                            "only counts the ground under them, so that a row count is "
+                            "never read as a parcel count. Identity is ruled on in "
+                            "data/research/land_sales/resident_crosswalk.json.",
+    }
+
+
+
+# A LOT ON A 4x4 GRID, so the register's two levels of halving are exact and disjointness
+# is a set operation rather than an area sum. `N2S2` — the north half of the south half —
+# is a quarter that no four-cell grid can hold and this one can; `E2W2` and `W2E2` are
+# different quarters that an area sum would have called the same size and let overlap.
+# Read RIGHT TO LEFT, as the clerk wrote it: the rightmost fraction is taken of the lot
+# and each one to its left is taken of that.
+def _cells(fraction):
+    cols = rows = (0, 1, 2, 3)
+    for word in reversed(re.findall("[NSEW]2", fraction or "")):
+        hand = word[0]
+        half = len(cols if hand in "EW" else rows) // 2
+        if hand == "E":
+            cols = cols[half:]
+        elif hand == "W":
+            cols = cols[:half]
+        elif hand == "N":
+            rows = rows[half:]
+        else:
+            rows = rows[:half]
+    return frozenset((c, r) for c in cols for r in rows)
+
+
+WHOLE_LOT = _cells(None)
+
+
+def town_lot_parcels(entries):
+    """A ROW IS NOT A PARCEL, asked of the town lots — and the answer is not the school
+    section's (T-1039).
+
+    T-0885 asked this of the October 1833 school-section auction and found 38 parcels
+    entered twice, 26 of them one pair of names it could not separate. The 619 town lots
+    of volume L5A were never asked. They were read by T-1032 and joined by T-1033, and
+    T-1034's cohort B turned up four lots entered two and three times over, in paired and
+    doubled prices, which is what set this question.
+
+    THE COUNT FIRST. 616 of the 619 parse to a lot and a block. Taking a parcel as the
+    town code, the block, the lot and the fraction exactly as the clerk wrote them, those
+    616 rows name 559 of them; 47 keys carry more than one row, 104 rows in all.
+
+    THE ANSWER IS NOT DUPLICATION, AND ONE COUNT SETTLES IT: not one of the 40 same-day
+    repeat groups repeats a purchaser's NAME. Forty of forty are two, three or four
+    different men. A clerk's duplicate writes the same name twice; this register never
+    does it once in 616 rows.
+
+    WHAT THEY ARE IS A CO-PURCHASE ENTERED ONE ROW PER BUYER, EACH ROW CARRYING THAT
+    BUYER'S SHARE OF THE PRICE — not the parcel's price repeated. Three groups prove it,
+    because in three the price does not divide evenly and the register had to round:
+
+      * lot 1 of block 51, `CHIOTV`, 27 June 1836 — $1,916.66, $1,916.67, $1,916.67,
+        which is $5,750.00 in three;
+      * lot 3 of the same block, same day, same page — $686.66, $686.67, $686.67, which
+        is $2,060.00 in three;
+      * lot 8 of block 38, `CHIOT`, 22 June 1836 — $1,166.00, $1,166.00, $1,168.00,
+        which is $3,500.00 in three, rounded to whole dollars instead of cents.
+
+    A remainder spread across the rows is a division; one price written twice is not.
+    The other 37 groups divide evenly and cannot be settled that way on their own, so two
+    things lean and neither is proof:
+
+      * THE SAME THREE MEN. D. B. Brown, N. J. Brown and A. Garnett carry the proven
+        thirds on lots 1 and 3 of block 51, and $1,000 apiece on lot 5 of it — the same
+        day, the same page, between the two. Whatever the pair of proven lots are, lot 5
+        is; and the shape recurs elsewhere, four lots for Goodhue and Thompson, two for
+        Richards and Stone, two for Smith and Taylor.
+      * THE ROUNDNESS FALLS WHERE A FRACTION WOULD PUT IT. 87.5% of the 40 group SUMS
+        land on a round ten, against 78.1% of the 512 rows that stand alone — while the
+        89 repeated rows' OWN prices land there only 56.2% of the time. A share of a
+        round price is less round than a price; that is the whole of the argument, and it
+        is a tendency over 40 groups rather than a proof over any one of them.
+
+    SO THE MONEY IS UNTOUCHED AND THE GROUND IS NOT. $1,387,606.33 stands over the 616
+    placed rows and $1,399,066.33 over all 619, exactly as T-1032 printed them, because
+    no row here repeats another's money — each is a share of a parcel's price, and the
+    shares add to it. What shrinks is the ground: 616 rows, 559 parcels.
+
+    AND EIGHT LOTS SAY THE TOWN CODE IS NOT THE PLAT. Eleven families of rows — one
+    block, one lot, one day, one page — carry fractions that are DISJOINT and EXHAUSTIVE
+    of a whole lot and agree, to the cent, on a single price per lot. Eight of the eleven
+    spell the town code differently on different fractions of that one lot: the north
+    half of lot 4 of block 54 is `CHIV` and the south half `CHIOT`, both at $1,755 on
+    23 June 1836, page 021. Complementary halves at one rate on one page are not two
+    additions that happened to match. This does not decode the codes and it does not
+    merge them — it says that a row's town code cannot be read as naming which plat the
+    lot sits on, which is the refusal T-0830 and T-1033 already make for a different
+    reason. The count is carried so the refusal now has arithmetic behind it.
+
+    THREE OF THE ELEVEN NEED A READING OF A BARE ROW AND GET ONE ONLY AS ARITHMETIC.
+    Lot 8 of block 53 is Garrett's, all three rows, 23 June, page 020: $940 on a bare
+    `L8B53CHIOTV`, $940 on `N2S2L8B53CHI`, $1,880 on `N2L8B53CHIOT`. Read the bare row as
+    the whole lot and a quarter costs what the whole does. Read it as the quarter the
+    other two leave — the south half of the south half — and all three stand at $3,760
+    the lot. Lot 1 of block 46 and lot 2 of block 53 do the same. THE PARSER IS NOT
+    CHANGED AND NO FRACTION IS WRITTEN ONTO A ROW: `lot_fraction` stays null on all three,
+    because the clerk did not write one and inferring ground from a price would be this
+    project inventing the very thing it refuses to invent. The arithmetic is recorded
+    here, where a later reading of the plat can test it.
+
+    SEVEN REPEATS ARE NOT CO-PURCHASES AT ALL — the day disagrees, so they are the same
+    ground entered twice, weeks or years apart. Lot 4 of block 19 goes to James Walker for
+    $36 on 4 October 1830 and to J. H. Woodworth for $14,000 on 21 June 1836. Those are
+    two transactions and are counted as one parcel and two rows, which is what they are.
+
+    NOTHING HERE MERGES A NAME, DROPS A ROW, OR WRITES A FRACTION. T-0885's rule holds
+    unchanged: whether the men on one parcel are partners, a trustee and his principal or
+    strangers is an IDENTITY ruling, and `resident_crosswalk.json` is where this domain
+    makes those.
+    """
+    lots = [e for e in entries
+            if not (e["section"] or "").strip()
+            and e["tract"]["resolves"] == "town_plat_lot"]
+    no_section = [e for e in entries if not (e["section"] or "").strip()]
+
+    def keyed(e, with_code):
+        t = e["tract"]
+        return ((t["town_code"],) if with_code else ()) + (
+            t["block"], t["lot"], t["lot_fraction"])
+
+    with_code, without_code = {}, {}
+    for e in lots:
+        with_code.setdefault(keyed(e, True), []).append(e)
+        without_code.setdefault(keyed(e, False), []).append(e)
+    repeated = {k: v for k, v in with_code.items() if len(v) > 1}
+
+    # A co-purchase is one day and one page; anything else is the ground entered again.
+    same_day, later_entry = {}, []
+    for key, rows in sorted(repeated.items(), key=lambda kv: str(kv[0])):
+        if len({r["date_purchased"] for r in rows}) == 1:
+            same_day[key] = rows
+        else:
+            later_entry.append({
+                "town_code": key[0], "block": key[1], "lot": key[2],
+                "lot_fraction": key[3],
+                "rows": [{"record_id": r["record_id"], "date": r["date_purchased"],
+                          "total_price": r["total_price"],
+                          "purchaser_as_read": r["purchaser_as_read"]}
+                         for r in sorted(rows, key=lambda r: r["date_purchased"])],
+                "reading": "One parcel, entered again on a later day at a different "
+                           "price. Two transactions, not two writings of one."})
+
+    # The division the price proves: a total that does not divide by the number of
+    # buyers leaves a remainder ON THE ROWS, and a remainder cannot be a duplicate.
+    divisions, name_repeated, syndicates = [], [], {}
+    for key, rows in same_day.items():
+        names = sorted(r["purchaser_as_read"] for r in rows)
+        if len(set(names)) != len(names):
+            name_repeated.append({"key": [str(p) for p in key], "names": names})
+        syndicates.setdefault(tuple(names), []).append(
+            f"lot {key[2]} of block {key[1]}{' ' + key[3] if key[3] else ''} ({key[0]})")
+        cents = [round(float(r["total_price"]) * 100) for r in rows]
+        # The signature of a DIVISION rather than a repetition: the shares disagree,
+        # not one of them lands on a round ten, and together they do. A clerk writing
+        # one price twice writes it twice; a clerk dividing one has to put the
+        # remainder somewhere, and it shows up here.
+        if len(set(cents)) > 1 and sum(cents) % 1000 == 0 \
+                and not any(c % 1000 == 0 for c in cents):
+            divisions.append({
+                "town_code": key[0], "block": key[1], "lot": key[2],
+                "date": rows[0]["date_purchased"], "page": rows[0]["page"],
+                "shares_as_read": sorted(r["total_price"] for r in rows),
+                "they_sum_to": f"{sum(cents) / 100:.2f}",
+                "the_shares_spread_by": f"{(max(cents) - min(cents)) / 100:.2f}",
+                "reading": f"The rounding remainder is spread across the {len(rows)} "
+                           "rows, so the rows are SHARES of one price and not one price "
+                           "written more than once."})
+
+    # Fractions that partition ONE lot: disjoint quarters, all four covered, and one
+    # price per lot to the cent. A bare row is read as what the others leave, AND THAT
+    # READING IS NOT WRITTEN BACK ONTO THE ROW.
+    families, partitions = {}, []
+    for e in lots:
+        families.setdefault((e["tract"]["block"], e["tract"]["lot"],
+                             e["date_purchased"], e["page"]), []).append(e)
+    for key, rows in sorted(families.items(), key=lambda kv: str(kv[0])):
+        by_desc = {}
+        for r in rows:
+            by_desc.setdefault(r["aliquot_or_lot_as_read"], []).append(r)
+        if len(by_desc) < 2:
+            continue
+        parts, bare, covered, ok = [], [], set(), True
+        for desc, rs in by_desc.items():
+            frac = rs[0]["tract"]["lot_fraction"]
+            price = sum(float(r["total_price"]) for r in rs)
+            part = {"as_read": desc, "lot_fraction": frac, "price": price,
+                    "rows": len(rs), "town_code": rs[0]["tract"]["town_code"]}
+            (bare if frac is None else parts).append(part)
+        for p in parts:
+            cells = _cells(p["lot_fraction"])
+            if cells & covered:
+                ok = False
+            covered |= cells
+        if not ok or len(bare) > 1:
+            continue
+        residual = WHOLE_LOT - covered
+        if bare and not residual:
+            continue
+        if not bare and residual:
+            continue
+        if bare:
+            bare[0]["read_as_the_residual"] = f"{Fraction(len(residual), len(WHOLE_LOT))} of the lot"
+            parts = parts + bare
+        rates = {round(p["price"] * len(WHOLE_LOT)
+                       / len(residual if p["lot_fraction"] is None
+                             else _cells(p["lot_fraction"])), 2)
+                 for p in parts}
+        if len(rates) != 1:
+            continue
+        codes = sorted({p["town_code"] for p in parts})
+        partitions.append({
+            "block": key[0], "lot": key[1], "date": key[2], "page": key[3],
+            "one_price_per_lot": f"{rates.pop():.2f}",
+            "town_codes_on_this_one_lot": codes,
+            "spans_more_than_one_town_code": len(codes) > 1,
+            "needs_the_bare_row_read_as_a_fraction": bool(bare),
+            "parts": sorted(parts, key=lambda p: p["as_read"])})
+
+    money = sum(float(e["total_price"]) for e in lots)
+    all_money = sum(float(e["total_price"]) for e in no_section)
+    shared = sum(1 for k, v in without_code.items()
+                 if len({e["tract"]["town_code"] for e in v}) > 1)
+    return {
+        "rows_read": len(no_section),
+        "rows_that_parse_to_a_lot": len(lots),
+        "distinct_parcels": len(with_code),
+        "distinct_parcels_if_the_town_code_is_not_the_plat": len(without_code),
+        "parcels_entered_more_than_once": len(repeated),
+        "of_those_on_one_day_and_one_page": len(same_day),
+        "of_those_entered_again_on_a_later_day": len(later_entry),
+        "rows_in_a_repeated_parcel": sum(len(v) for v in repeated.values()),
+        "same_day_groups_repeating_a_purchaser_name": name_repeated,
+        "divisions_the_rounding_proves": divisions,
+        "co_purchaser_sets": [
+            {"purchasers": list(names), "parcels": len(where), "where": sorted(where)}
+            for names, where in sorted(syndicates.items(),
+                                       key=lambda kv: (-len(kv[1]), kv[0]))],
+        "lots_whose_fractions_partition_them": partitions,
+        "of_those_spanning_more_than_one_town_code":
+            sum(1 for p in partitions if p["spans_more_than_one_town_code"]),
+        "block_and_lot_pairs_under_more_than_one_town_code": shared,
+        "purchase_money_over_the_parsed_rows": f"{money:.2f}",
+        "purchase_money_over_every_row": f"{all_money:.2f}",
+        "what_this_is_not": "Not a merge, not a refusal and not a re-parse. Every row "
+                            "stands, every name stands, and `lot_fraction` stays null "
+                            "on every row the clerk left bare. This counts the ground "
+                            "under the rows so that a row count is never read as a "
+                            "parcel count, and records the arithmetic that says the "
+                            "repeats are SHARES rather than duplicates. Identity is "
+                            "ruled on in resident_crosswalk.json.",
+    }
+
+def school_section_counts(rows, entries):
+    """Who bought the south, counted off the rows that landed on the plat.
+
+    THE FIRST HONEST STATEMENT OF IT this project can make: until T-0797 traced the
+    blocks, every one of these rows read `Read, and not put on the ground`.
+    """
+    sixteen = [r for r in rows if r["section"] == "16" and r["township"] == "39N"
+               and r["range"] == "14E"]
+    placed = [r for r in sixteen if r["ground"]
+              and r["ground"]["kind"] == "school_section_block"]
+    by_block, by_buyer, dates = {}, {}, []
+    named_a_lot = 0
+    for row in placed:
+        n = row["ground"]["block_number"]
+        by_block.setdefault(n, []).append(row["record_id"])
+        by_buyer.setdefault(row["purchaser_normalized"], set()).add(n)
+        if row["ground"]["lot_as_read"]:
+            named_a_lot += 1
+        if row["date_purchased"]:
+            dates.append(row["date_purchased"])
+    plat, plat_doc = school_section_blocks()
+    reserved = [n for n in plat_doc["summary"]["reserved"]]
+    busiest = sorted(by_block.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:10]
+    keenest = sorted(by_buyer.items(), key=lambda kv: (-len(kv[1]), kv[0]))[:10]
+    return {
+        "parcels": school_section_parcels(placed, entries),
+        "rows_in_the_section": len(sixteen),
+        "put_on_a_block": len(placed),
+        "of_which_name_a_lot_inside_it": named_a_lot,
+        "of_which_name_the_block_alone": len(placed) - named_a_lot,
+        "refused": {key: sum(1 for r in sixteen if r["refusal"] == key)
+                    for key in REFUSALS if any(r["refusal"] == key for r in sixteen)},
+        "blocks_on_the_sheet": len(plat),
+        "blocks_that_changed_hands": len(by_block),
+        "blocks_never_sold": sorted(set(plat) - set(by_block)),
+        "blocks_reserved_on_the_sheet": reserved,
+        "reserved_blocks_the_sale_names": sorted(set(reserved) & set(by_block)),
+        "first_sale": min(dates) if dates else None,
+        "last_sale": max(dates) if dates else None,
+        "distinct_purchasers": len(by_buyer),
+        "busiest_blocks": [{"block": n, "rows": len(ids)} for n, ids in busiest],
+        "keenest_purchasers": [{"purchaser": who, "blocks": len(bs)}
+                               for who, bs in keenest],
+    }
 
 
 MONTHS = ("January", "February", "March", "April", "May", "June", "July",
@@ -584,6 +1041,8 @@ def derive():
             grade: sum(1 for b in blocks.values() if b["confidence"] == grade)
             for grade in ("inferred", "reconstructed")},
         "structures_unreached_by_section": {k: len(v) for k, v in sorted(unreached.items())},
+        "school_section": school_section_counts(rows, entries),
+        "town_lots": town_lot_parcels(entries),
     }
 
     doc = {
@@ -706,6 +1165,83 @@ def report():
     print("  reached by nothing, by section:")
     for section, n in counts["structures_unreached_by_section"].items():
         print(f"    section {section:<20} {n}")
+    ss = counts["school_section"]
+    print("\nTHE SCHOOL SECTION — who bought the south at the auction of October 1833")
+    print(f"  rows in section 16           {ss['rows_in_the_section']}")
+    print(f"  put on a block               {ss['put_on_a_block']}")
+    print(f"    naming a lot inside it     {ss['of_which_name_a_lot_inside_it']}")
+    print(f"    naming the block alone     {ss['of_which_name_the_block_alone']}")
+    for key, n in ss["refused"].items():
+        print(f"  refused: {key:<28} {n}")
+    print(f"  blocks on Wright's sheet     {ss['blocks_on_the_sheet']}")
+    print(f"  blocks that changed hands    {ss['blocks_that_changed_hands']}")
+    print(f"  blocks never sold            {', '.join(str(n) for n in ss['blocks_never_sold'])}")
+    print(f"    of those, marked Reserved  {', '.join(str(n) for n in ss['blocks_reserved_on_the_sheet'])}")
+    print(f"  distinct purchasers          {ss['distinct_purchasers']}")
+    print(f"  the sale ran                 {ss['first_sale']} to {ss['last_sale']}")
+    print("  the blocks that changed hands most:")
+    for row in ss["busiest_blocks"]:
+        print(f"    block {row['block']:<4} {row['rows']} row(s)")
+    print("  the purchasers on the most blocks (as the register spelled them):")
+    for row in ss["keenest_purchasers"]:
+        print(f"    {row['purchaser']:<26} {row['blocks']} block(s)")
+
+    par = ss["parcels"]
+    print("\n  AND THE ROWS ARE NOT PARCELS")
+    print(f"    live rows                  {par['live_rows_counted']}"
+          f" ({par['void_rows_excluded']} void row excluded)")
+    print(f"    distinct block-and-lot     {par['distinct_parcels']}")
+    print(f"    entered more than once     {par['parcels_entered_more_than_once']}"
+          f" — the day agrees on {par['of_those_the_day_agrees_on']},"
+          f" the page on {par['of_those_the_page_agrees_on']},"
+          f" the price on {par['of_those_the_price_agrees_on']}")
+    print(f"    with an assignment mark    {par['of_those_carrying_an_assignment_mark']}")
+    for pair in par["name_pairs"]:
+        mark = "  (one row marked AS)" if pair["an_assignment_mark_on_a_row"] else ""
+        print(f"      {' and '.join(pair['purchasers']):<44}"
+              f" {pair['parcels']} parcel(s){mark}")
+    for bad in par["price_disagreements"]:
+        print(f"    block {bad['block']} lot {bad['lot_as_read']} is entered at "
+              f"{' and '.join('$' + v for v in bad['prices_as_read'])}"
+              f" ({', '.join(bad['rows'])})")
+
+    tl = counts["town_lots"]
+    print("\nTHE TOWN'S OWN LOTS — and here too a row is not a parcel (T-1039)")
+    print(f"  rows read                    {tl['rows_read']}")
+    print(f"  parsing to a lot and a block {tl['rows_that_parse_to_a_lot']}")
+    print(f"  distinct parcels             {tl['distinct_parcels']}"
+          f" — {tl['distinct_parcels_if_the_town_code_is_not_the_plat']}"
+          " if the town code does not name a plat")
+    print(f"  entered more than once       {tl['parcels_entered_more_than_once']}"
+          f" ({tl['rows_in_a_repeated_parcel']} rows):"
+          f" {tl['of_those_on_one_day_and_one_page']} on one day and one page,"
+          f" {tl['of_those_entered_again_on_a_later_day']} entered again later")
+    print(f"  repeating a purchaser's name "
+          f"{len(tl['same_day_groups_repeating_a_purchaser_name'])}"
+          " — so no repeat here is a duplicated row")
+    print("  the rounding proves a division on:")
+    for d in tl["divisions_the_rounding_proves"]:
+        print(f"    block {d['block']} lot {d['lot']}, {d['date']} — "
+              f"{', '.join('$' + v for v in d['shares_as_read'])}"
+              f" = ${d['they_sum_to']}")
+    print("  the co-purchasers on more than one parcel:")
+    for sset in tl["co_purchaser_sets"]:
+        if sset["parcels"] > 1:
+            print(f"    {' and '.join(sset['purchasers']):<44} {sset['parcels']} parcel(s)")
+    print(f"  lots their own fractions partition at one price"
+          f"        {len(tl['lots_whose_fractions_partition_them'])}")
+    print(f"    of those, spelling the town code more than one way"
+          f"  {tl['of_those_spanning_more_than_one_town_code']}")
+    for lot in tl["lots_whose_fractions_partition_them"]:
+        if not lot["spans_more_than_one_town_code"]:
+            continue
+        parts = ", ".join(f"{q['as_read']} ${q['price']:,.2f}" for q in lot["parts"])
+        print(f"      block {lot['block']} lot {lot['lot']}, {lot['date']} — {parts}"
+              f"  = ${float(lot['one_price_per_lot']):,.2f} the lot")
+    print(f"  purchase money                $" + tl["purchase_money_over_the_parsed_rows"]
+          + " over the parsed rows, $" + tl["purchase_money_over_every_row"] + " over all"
+          " — unchanged, because a share is not a repetition")
+
     print("\nTHE GROUND UNDER THE TOWN")
     by_tract = {}
     for sid, block in blocks.items():
@@ -769,18 +1305,146 @@ def self_test():
             assert row["refusal"] in doc["refusal_reasons"], row["refusal"]
     checks.append("every row either lands or says why it does not")
 
-    # Section 16's rows are all refused for the one reason, and section 9's SE quarter
-    # — the original town — reaches nothing, because the canal commissioners sold it.
-    # Every one is refused; all but the rows whose printed description this project's
-    # parser will not guess at are refused for the plat. T-0675 walked the section to
-    # its end and 337 rows came back rather than the ceiling's 150, one of which reads
-    # its lot as `06126` — unparsed, and refused as that rather than as the plat.
+    # Section 16 is the school section, and since T-0797 traced its plat every row of it
+    # either lands on a block or says why not. T-0675 walked the section to its end and
+    # 337 rows came back rather than the ceiling's 150, one of which reads its lot as
+    # `06126` — unparsed, and refused as that rather than as the plat.
     sixteen = [r for r in doc["tracts"] if r["section"] == "16" and r["township"] == "39N"]
-    plat = {"subdivision_plat_not_held", "description_not_read"}
-    assert sixteen and all(r["refusal"] in plat for r in sixteen)
-    assert any(r["refusal"] == "subdivision_plat_not_held" for r in sixteen)
-    checks.append(f"all {len(sixteen)} school-section rows refuse, for the plat this "
-                  "repo lacks or for a description it will not guess at")
+    assert sixteen and len(sixteen) == 337, len(sixteen)
+    landed = [r for r in sixteen if r["ground"]]
+    assert all(r["ground"]["kind"] == "school_section_block" for r in landed)
+    assert all(r["refusal"] in {"block_not_on_the_sheet", "description_not_read"}
+               for r in sixteen if not r["ground"])
+    checks.append(f"{len(landed)} of {len(sixteen)} school-section rows land on a block "
+                  "of Wright's plat, and the rest say why they do not")
+
+    # A block placement is a block and not a lot: it reaches no roof, ever.
+    assert all(not r["structures"] for r in landed), "a block placement reached a roof"
+    checks.append("no school-section block placement claims the ground under a roof")
+
+    # The two witnesses to the reservation agree. Wright writes `Reserved` across four
+    # blocks and draws no numeral on them; the auction, held a year earlier by a
+    # different hand, sells lots in 136 blocks and in none of those four. Neither
+    # reading was made from the other.
+    ss = doc["counts"]["school_section"]
+    assert ss["blocks_reserved_on_the_sheet"] == [1, 87, 88, 142], ss
+    assert ss["reserved_blocks_the_sale_names"] == [], ss
+    assert set(ss["blocks_reserved_on_the_sheet"]) <= set(ss["blocks_never_sold"])
+    checks.append("the sale sells no lot in any of the four blocks the sheet reserves")
+
+    # A block number the sheet does not carry is refused rather than nudged onto a
+    # neighbour. Today there are none, so the assertion is held over a forged row.
+    plat, _ = school_section_blocks()
+    assert 999 not in plat and SCHOOL_BLOCK.match("LOT4BL999")
+    assert SCHOOL_BLOCK.match("BL106").group(1) is None
+    assert SCHOOL_BLOCK.match("LOT3BL4VOID").groups() == ("3", "4")
+    assert SCHOOL_BLOCK.match("06126") is None
+    checks.append("a bare block, a lot-and-block, a voided row and an unread "
+                  "description are each read as what they are")
+
+    # A ROW IS NOT A PARCEL (T-0885). The counts above are rows, and 38 parcels carry
+    # more than one of them; the arithmetic that says so is held here, along with the
+    # claim the summary makes about every repeated parcel — that the two rows agree on
+    # the day and on the page of the volume, which is what makes them the same sale
+    # written twice rather than two sales of the same ground months apart.
+    par = ss["parcels"]
+    entries_by_id = {e["record_id"]: e for e in load(DOMAIN / "entries.json")["entries"]}
+    live = [r for r in landed if not r["void"]]
+    seen = {}
+    for row in live:
+        seen.setdefault((row["ground"]["block_number"], row["ground"]["lot_as_read"]),
+                        []).append(row)
+    repeated = {k: v for k, v in seen.items() if len(v) > 1}
+    assert par["live_rows_counted"] == len(live) == len(landed) - par["void_rows_excluded"]
+    assert par["distinct_parcels"] == len(seen) < len(live), par
+    assert par["parcels_entered_more_than_once"] == len(repeated)
+    assert sum(pair["parcels"] for pair in par["name_pairs"]) == len(repeated)
+    assert par["of_those_the_day_agrees_on"] == par["of_those_the_page_agrees_on"] \
+        == len(repeated), par
+    for rows_here in repeated.values():
+        assert len({r["date_purchased"] for r in rows_here}) == 1
+        assert len({(entries_by_id[r["record_id"]]["volume"],
+                     entries_by_id[r["record_id"]]["page"]) for r in rows_here}) == 1
+        assert len({entries_by_id[r["record_id"]]["purchase_no"]
+                    for r in rows_here}) == len(rows_here), "one purchase number, two rows"
+        assert len({r["purchaser_normalized"] for r in rows_here}) > 1, \
+            "a parcel repeated under ONE name would be a duplicated row, not a pair"
+    assert par["of_those_the_price_agrees_on"] + len(par["price_disagreements"]) \
+        == len(repeated)
+    checks.append(f"{len(live)} rows are {len(seen)} parcels: every one of the "
+                  f"{len(repeated)} repeated parcels is two names on one day, one page "
+                  "and two purchase numbers")
+
+    # And nothing here merged a name or dropped a row to get that number.
+    assert ss["put_on_a_block"] == len(landed)
+    assert ss["distinct_purchasers"] == len({r["purchaser_normalized"] for r in landed})
+    checks.append("counting parcels changed no row count and merged no spelling")
+
+    # A ROW IS NOT A PARCEL, ASKED OF THE TOWN LOTS (T-1039) — and answered the other
+    # way. The school section's repeats are duplicates this project cannot separate; the
+    # town lots' repeats are CO-PURCHASES, and the one count that says so is held first.
+    tl = doc["counts"]["town_lots"]
+    all_entries = load(DOMAIN / "entries.json")["entries"]
+    lots = [e for e in all_entries if not (e["section"] or "").strip()
+            and e["tract"]["resolves"] == "town_plat_lot"]
+    assert tl["rows_that_parse_to_a_lot"] == len(lots)
+    assert tl["rows_read"] == sum(1 for e in all_entries
+                                  if not (e["section"] or "").strip())
+    assert tl["same_day_groups_repeating_a_purchaser_name"] == [], tl
+    checks.append(f"not one of the {tl['of_those_on_one_day_and_one_page']} same-day "
+                  "town-lot repeats repeats a purchaser's NAME, which is what a "
+                  "duplicated row would do")
+
+    # The rounding is the proof, so the arithmetic behind each division is re-done here
+    # rather than trusted: shares that sum to a round ten while not one of them is one.
+    assert len(tl["divisions_the_rounding_proves"]) == 3, tl
+    for div in tl["divisions_the_rounding_proves"]:
+        cents = [round(float(v) * 100) for v in div["shares_as_read"]]
+        assert len(set(cents)) > 1, div
+        assert sum(cents) == round(float(div["they_sum_to"]) * 100), div
+        assert sum(cents) % 1000 == 0 and not any(c % 1000 == 0 for c in cents), div
+        assert max(cents) - min(cents) == round(float(div["the_shares_spread_by"]) * 100)
+    checks.append("three town-lot groups carry a rounding remainder across their rows: "
+                  "$5,750.00, $2,060.00 and $3,500.00, each in three")
+
+    # The fractions that partition a lot, re-derived off the grid rather than read back.
+    assert len(WHOLE_LOT) == 16
+    assert _cells("N2S2") != _cells("S2") and len(_cells("N2S2")) == 4
+    assert _cells("E2W2") & _cells("W2E2") == frozenset(), "two different quarters"
+    assert _cells("N2") | _cells("S2") == WHOLE_LOT
+    for lot in tl["lots_whose_fractions_partition_them"]:
+        named = [q for q in lot["parts"] if q["lot_fraction"] is not None]
+        covered = set()
+        for part in named:                                 # the written fractions first
+            cells = _cells(part["lot_fraction"])
+            assert not (cells & covered), lot              # disjoint
+            covered |= cells
+        residual = WHOLE_LOT - covered                     # then what they leave
+        assert len(covered) + len(residual) == len(WHOLE_LOT)
+        assert bool(residual) == lot["needs_the_bare_row_read_as_a_fraction"], lot
+        rates = {round(q["price"] * len(WHOLE_LOT)
+                       / len(residual if q["lot_fraction"] is None
+                             else _cells(q["lot_fraction"])), 2)
+                 for q in lot["parts"]}
+        assert len(rates) == 1 and f"{rates.pop():.2f}" == lot["one_price_per_lot"], lot
+    assert tl["of_those_spanning_more_than_one_town_code"] == 8, tl
+    checks.append(f"{len(tl['lots_whose_fractions_partition_them'])} town lots are "
+                  "partitioned by their own rows at one price per lot, and 8 of them "
+                  "spell the town code more than one way while doing it")
+
+    # AND NOTHING WAS WRITTEN BACK. The three bare rows the arithmetic reads as a
+    # residual quarter still carry no fraction, because the clerk wrote none.
+    bare = [q for lot in tl["lots_whose_fractions_partition_them"]
+            for q in lot["parts"] if q["lot_fraction"] is None]
+    assert len(bare) == 3 and all(q["read_as_the_residual"] == "1/4 of the lot"
+                                  for q in bare), bare
+    assert all(e["tract"]["lot_fraction"] is None for e in lots
+               if e["aliquot_or_lot_as_read"] in {q["as_read"] for q in bare})
+    assert tl["distinct_parcels"] > tl["distinct_parcels_if_the_town_code_is_not_the_plat"]
+    assert float(tl["purchase_money_over_the_parsed_rows"]) == round(
+        sum(float(e["total_price"]) for e in lots), 2)
+    checks.append("the residual-quarter reading stays arithmetic: no row gained a "
+                  "fraction, and the town lots' purchase money is the sum of the rows")
 
     for line in checks:
         print("  ok  " + line)

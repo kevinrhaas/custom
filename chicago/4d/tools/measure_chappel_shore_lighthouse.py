@@ -572,10 +572,28 @@ def read_sheets():
     }
 
 
-def banked():
+def banked(live_town=False):
+    """the banked reading — with its `town` block re-derived, not replayed.
+
+    T-1083. Bare, this returns the baseline verbatim — that is the DRIFT BASE, and
+    it has to be what was banked or there is nothing to drift from. With
+    `live_town=True` the `town` block is recomputed instead, which is what the
+    no-reader path stands on.
+
+    Everything else in this reading comes off two committed rasters and
+    cannot move, which is why banking it is honest. The `town` block is different
+    in kind: it is arithmetic over `data/structures/*.json`, it needs no image
+    library at all, and those records DO move. Replaying a banked copy of it made
+    the drift check compare the baseline with itself, so when T-1065 put the
+    lighthouse on Wright's glyph and the Sauganash range went 1066.3 -> 1001.2,
+    CI — which installs no image library — read the step as green.
+    """
     if not BASELINE.exists():
         raise SheetError(f"{BASELINE.name} is not in the tree")
-    return json.loads(BASELINE.read_text(encoding="utf-8"))["reading"]
+    r = json.loads(BASELINE.read_text(encoding="utf-8"))["reading"]
+    if live_town:
+        r = dict(r, town=town_geometry())
+    return r
 
 
 # ---------------------------------------------------------------------------
@@ -753,6 +771,30 @@ def findings(r, d, a):
     return bad
 
 
+# The two checks that stand on committed records rather than on the rasters, so
+# they are answerable whether or not an image library is installed (T-1083).
+TOWN_CHECKS = (("sauganash_range_m", 1.0), ("palisade_span_m", 0.5),
+               ("palisade_to_light_m", 0.5))
+
+
+def _report(checks):
+    out = []
+    for name, f, b, tol in checks:
+        if f is None or b is None:
+            if f != b:
+                out.append(f"{name} moved from {b} to {f}")
+            continue
+        if abs(f - b) > tol:
+            out.append(f"{name} moved from {b} to {f} (tolerance {tol})")
+    return out
+
+
+def town_drift(fresh, base):
+    """record drift, with no raster read — what CI was blind to before T-1083."""
+    return _report([(n, fresh["town"][n], base["town"][n], tol)
+                    for n, tol in TOWN_CHECKS])
+
+
 def drift(fresh, base):
     fd, bd = derive(fresh), derive(base)
     out = []
@@ -778,15 +820,10 @@ def drift(fresh, base):
          base["town"]["sauganash_range_m"], 1.0),
         ("palisade_span_m", fresh["town"]["palisade_span_m"],
          base["town"]["palisade_span_m"], 0.5),
+        ("palisade_to_light_m", fresh["town"]["palisade_to_light_m"],
+         base["town"]["palisade_to_light_m"], 0.5),
     ]
-    for name, f, b, tol in checks:
-        if f is None or b is None:
-            if f != b:
-                out.append(f"{name} moved from {b} to {f}")
-            continue
-        if abs(f - b) > tol:
-            out.append(f"{name} moved from {b} to {f} (tolerance {tol})")
-    return out
+    return out + _report(checks)
 
 
 def show(r, d, a):
@@ -877,7 +914,7 @@ def main():
         reading = read_sheets()
     except NoReader:
         try:
-            reading, live = banked(), False
+            reading, live = banked(live_town=True), False
         except SheetError as exc:
             print(f"   FAIL {exc}")
             return 1
@@ -906,7 +943,13 @@ def main():
                      "installs no image library and would otherwise skip the reading in "
                      "silence, and a detector edit that quietly moves a reading is a "
                      "thing this project has been bitten by (T-0197). Regenerate with "
-                     "--write-baseline, and only ever with the reason in the commit.",
+                     "--write-baseline, and only ever with the reason in the commit. "
+                     "T-1083: the `town` block here is the drift BASE only. It is "
+                     "arithmetic over data/structures/*.json, not over either raster, "
+                     "and the tool re-derives it live on every run — so a record that "
+                     "moves is caught with or without an image library. Re-derived "
+                     "2026-09-12 because T-1065 (#1189) put the lighthouse on Wright's "
+                     "own glyph and nothing re-banked this with it.",
             "reading": reading,
         }, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         show(reading, d, a)
@@ -914,11 +957,16 @@ def main():
         return 0
 
     bad = findings(reading, d, a)
-    if live and BASELINE.exists():
-        bad += drift(reading, banked())
-    if not live and not args.quiet:
-        print("   Pillow or numpy is absent, so THE SHEETS WERE NOT RE-READ. Standing "
-              f"on the banked reading in {BASELINE.name}.")
+    if BASELINE.exists():
+        # T-1083. The raster half of the drift needs a reader; the town half never
+        # did, and running it here is what stops a no-reader gate counting its own
+        # skip as a pass.
+        bad += drift(reading, banked()) if live else town_drift(reading, banked())
+    if not live:
+        print("   Pillow or numpy is absent, so THE TWO SHEETS WERE NOT RE-READ. "
+              f"Standing on the banked reading in {BASELINE.name}; the town "
+              "geometry below is still derived live from the committed records, "
+              "and is gated.")
     if not args.quiet or bad:
         show(reading, d, a)
     for g in bad:

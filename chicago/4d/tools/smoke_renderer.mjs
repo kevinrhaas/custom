@@ -406,10 +406,27 @@ async function readRoadStations(page, label, stations) {
     failing: (b) => b.medianDeltaL < ROAD_MIN_DELTA_L || b.perceptible < ROAD_MIN_PERCEPTIBLE,
   });
   Object.assign(ROAD_BAND_OBSERVED, observed);
+  // T-0690 — AND TO THE STATIONS THIS INVOCATION READ, not only its viewport.
+  //
+  // The filter above was written when all three stations sat in one part, so
+  // "compares only what THIS invocation measured" was true of it. T-0173 then
+  // cut them across parts 7 and 8, and nothing here noticed: a part-filtered
+  // run compared the bank's WHOLE viewport against the one station it visited
+  // and reported every band it had not been to as `ungated — either the probes
+  // stopped projecting or the station moved`. Neither had. `SMOKE_STAGE=8`
+  // simply never goes to `south_water` or `from_above`, which are part 7's, and
+  // six of the ten movements T-0690 was filed over were exactly that. A report
+  // that cries wolf six times in ten is a report nobody reads, which is the one
+  // thing a print-only report cannot survive.
+  const visited = new Set(stations.map((st) => st.id));
   const bankedHere = Object.fromEntries(
-    Object.entries(ROAD_BAND_BANKED).filter(([k]) => k.startsWith(`${vp}/`)));
+    Object.entries(ROAD_BAND_BANKED).filter(([k]) => {
+      const [bankedVp, stationId] = k.split('/');
+      return bankedVp === vp && visited.has(stationId);
+    }));
   if (!Object.keys(bankedHere).length) {
-    console.log(`        road bands: nothing banked for ${vp} yet`
+    console.log(`        road bands: nothing banked for ${vp}`
+      + ` at ${[...visited].join(', ')} yet`
       + ' — re-run with --update-road-bands to bank this run (T-0016)');
   } else {
     for (const line of renderRoadBands(compareRoadBands(bankedHere, observed))) {
@@ -655,7 +672,53 @@ const FACADE_MOVED_MIN = 300;
  */
 const SHADOW_REACH_MIN_WORST = 4;
 
+/** The 48² frame signature THREE other assertions are measured on — the
+ *  roughness merge, the facade tone and the shadow reach, each with a floor
+ *  derived against this grid and this grid only. It keeps its name and its
+ *  value: a finer grid reads a larger worst cell for an identical change, so
+ *  moving it would quietly slacken all three at once. R-A1's own reach reading
+ *  moved off it — see ROAD_AID_REACH_GRID below. */
 const ROAD_AID_GRID = 48;
+/**
+ * T-0690 — THE GRID R-A1'S REACH IS READ ON, AND WHY IT IS NOT THE 48 ABOVE.
+ *
+ * The signature averages luma over `grid²` cells, so a roadway occupying about
+ * a tenth of the frame is diluted inside every cell it only partly covers and a
+ * coarser grid reports a smaller worst cell for the SAME change. R-A1 found
+ * that on 2026-08-16 without naming it — the aid scored worst 2 at 12² and
+ * worst 6 at 48² with nothing about the scene changed between the two runs —
+ * and set its floor at 4 from the 48² desktop reading alone. Mobile was never
+ * measured, and mobile is where the assertion has been red since 2026-09-04:
+ * the aid moves the 390×780 frame by a worst cell of 3, one short, while the
+ * mean clears its own floor comfortably.
+ *
+ * MEASURED BEFORE IT WAS SET, on the published mirror at `lake_market`, the
+ * clock held, by `tools/measure_road_aid.mjs`. Reach worst cell / residual
+ * worst cell, aid off → full on → off again:
+ *
+ *      grid    390×780      1280×800
+ *      12²      2 / 0        2 / 0
+ *      24²      3 / 0        4 / 0
+ *      48²      3 / 0        7 / 0     <- was here; mobile one short of 4
+ *      96²      7 / 0       11 / 0     <- here
+ *     144²      9 / 0       15 / 0
+ *
+ * So the aid was never weak — the instrument was blind. The residual is 0 at
+ * every grid on both viewports, which is the other half of the reading: this
+ * is dilution and not noise, and a finer grid buys signal without buying any.
+ *
+ * 96² and not 144² because the floor below does not move and 96 already clears
+ * it on the WEAKER viewport by the same margin the shipped rule asks for —
+ * SHADOW_REACH_MIN_WORST's box states it as "half the smaller of the two", and
+ * half of 7 is 3.5. Going finer would buy a headroom no assertion spends.
+ */
+const ROAD_AID_REACH_GRID = 96;
+/** UNCHANGED BY T-0690, on purpose. The gate still asks the aid for four cells
+ *  and 0.15 of mean; what changed is that both viewports can now be asked. At
+ *  96² the reading is 7 / 0.35 at 390×780 and 11 / 0.28 at 1280×800, so each
+ *  floor sits at roughly half the weaker of the two — the rule the shadow-reach
+ *  floor beside it was set by — and far above a residual measured at 0. A red
+ *  here is now a statement about the aid rather than about the grid. */
 const ROAD_AID_MIN_WORST = 4;
 const ROAD_AID_MIN_MEAN = 0.15;
 // K24. The brightness aid's own floors, and the reason they are not the road
@@ -1406,6 +1469,58 @@ for (const [label, viewport, touch] of [
     const structures = await page.evaluate(() => window.__chicago4d.registry.size);
     check(`${label}: scene has structures`, structures > 0, `${structures} loaded`);
 
+    /**
+     * DRAWN AGAINST INDEXED (T-1126). "The scene has structures" passes with one
+     * building standing and three hundred and eighty missing, which is close to
+     * the shape of the fault this came from: one auction room failed to fetch,
+     * the walk went on looking finished, and the only detector was the owner
+     * standing in front of the hole. The roll is the renderer's own count of how
+     * many structures it was told to place against how many put geometry into a
+     * batch, so the gate can now read the number rather than the adjective.
+     */
+    const roll = await page.evaluate(() => window.__chicago4d.roll);
+    check(`${label}: every structure that should draw, drew`,
+      !!roll && roll.expected > 0 && roll.standing === roll.expected,
+      roll ? `${roll.standing} of ${roll.expected} standing; missing `
+        + `${roll.missing.slice(0, 5).join(', ')}` : 'no roll call was taken');
+
+    // T-0848 — THE POSE EVERY DELTA CHECK IS CALIBRATED AT, read here because
+    // this is the last line before the stage-guarded body, and nothing above it
+    // has moved the visitor. A *reaches the render* check winds a shipped value
+    // off, photographs the frame and asserts the picture MOVED by at least so
+    // much; what it is actually measuring is whatever the camera happens to be
+    // pointed at, so its threshold is a number about a VIEW. The readings below
+    // teleport to their own viewpoints and do not put the visitor back, and the
+    // expensive ones are guarded on which PARTS were selected — so `SMOKE_STAGE=9`
+    // photographed the boot view and passed (worst cell 10 and 22), while
+    // `SMOKE_STAGE=9-12` photographed wherever part 10's shared street reading
+    // had left the visitor and collapsed to 2, on a tree where nothing about
+    // facades or shadows had changed. Since `smoke_budget.mjs --for-diff` packs
+    // parts into ranges precisely because that is what fits under the foreground
+    // ceiling, the packing the tooling recommends was the one packing those
+    // checks could not survive. A delta check now states the view it needs and
+    // takes it (`standAtBootPose`), which is the fix: the frame it photographs
+    // is the same frame whichever other parts are selected.
+    const bootPose = await page.evaluate(() => {
+      const st = window.__chicago4d.walker.state;
+      return {
+        local_e: st.e,
+        local_n: st.n,
+        yaw_deg: window.__chicago4d.walker.bearingDeg,
+        pitch_deg: (st.pitch * 180) / Math.PI,
+        altitude_m: st.flying ? st.altitude : null,
+      };
+    });
+    // Stand where the thresholds were measured. `step()` settles the walker the
+    // same way the readings above do, so the first capture is not of a frame
+    // caught mid-arrival.
+    const standAtBootPose = async () => {
+      await page.evaluate((pose) => {
+        window.__chicago4d.walker.teleport(pose);
+        window.__chicago4d.step();
+      }, bootPose);
+    };
+
     // ======================================================================
     // T-0060 — everything below, to the end of this viewport's body, runs in
     // four stages so each fits a ten-minute command. The sections are NOT
@@ -1459,6 +1574,13 @@ for (const [label, viewport, touch] of [
     // before the split — and skipped when neither runs, because it is the most
     // expensive single evaluate in the file. It teleports to its own
     // viewpoints, so it does not care what ran before it.
+    //
+    // T-0848: it does not put the visitor BACK, though, and that half matters as
+    // much. Because the guard is on which parts were SELECTED, this block runs
+    // for `SMOKE_STAGE=9-12` and not for `SMOKE_STAGE=9`, so it is the one thing
+    // in the file that can change what a LATER part photographs according to
+    // what a range asked for. Anything downstream that measures a frame must
+    // state its own view — see `standAtBootPose` above.
     //
     // T-0121 narrowed the guard from "stage 3 or stage 4" to the two PARTS that
     // actually read it: parts 9 and 11 hold no reference to `streetLayer`, and
@@ -1822,6 +1944,47 @@ for (const [label, viewport, touch] of [
           mitredJoints: a.streets.stats?.mitredJoints ?? null,
           fannedJoints: a.streets.stats?.fannedJoints ?? null,
           jointFanTriangles: a.streets.stats?.jointFanTriangles ?? null,
+          // T-0713. THE TWO CHANNELS, censused off the geometry the browser
+          // actually built. `_confidence` is the contract's channel and now
+          // carries the LINE's grade alone, so it decides whether a ribbon
+          // stands; `_trackConfidence` carries the weakest of surface and wear
+          // and is spent only on the worn texture. A vertex census is the only
+          // reading that can tell the two apart from out here, and it is what
+          // would have caught the split being quietly reverted — the whole
+          // platted town going back to dithering as invention while every
+          // node-side test still passed.
+          streetChannels: (() => {
+            const band = (v) => (v >= 0.75 ? 'reconstructed' : v >= 0.25 ? 'inferred' : 'attested');
+            const out = {
+              ribbon: { attested: 0, inferred: 0, reconstructed: 0 },
+              track: { attested: 0, inferred: 0, reconstructed: 0 },
+              meshes: 0, missingTrack: 0, unequal: 0,
+            };
+            a.streets.group.traverse((o) => {
+              const g = o.geometry;
+              const conf = g?.getAttribute?.('_confidence');
+              if (!conf) return;
+              out.meshes += 1;
+              const trk = g.getAttribute('_trackConfidence');
+              if (!trk) { out.missingTrack += 1; return; }
+              if (trk.count !== conf.count) out.unequal += 1;
+              for (let i = 0; i < conf.count; i += 1) out.ribbon[band(conf.getX(i))] += 1;
+              for (let i = 0; i < trk.count; i += 1) out.track[band(trk.getX(i))] += 1;
+            });
+            return out;
+          })(),
+          // ...and the records those channels were built from, so a census that
+          // disagrees with the dataset is reported as the disagreement it is
+          // rather than as a bare count nobody can check.
+          streetGrades: (() => {
+            const out = { attested: [], inferred: [], reconstructed: [], wornInvented: 0 };
+            for (const rec of a.streets.records) {
+              (out[rec.geometry_confidence] ?? out.reconstructed).push(rec.id);
+              if (rec.wear_confidence === 'reconstructed'
+                || rec.surface_confidence === 'reconstructed') out.wornInvented += 1;
+            }
+            return out;
+          })(),
           records: a.streets.records.length, vertices, worstDrape, wetVertices,
           dryCentrelinePanels, clippedPanels, slivers, emittedQuads,
           canopyPresent, rootedPlants, worstPlantRoot, waterPlants, deepWaterPlants,
@@ -1919,19 +2082,34 @@ for (const [label, viewport, touch] of [
     // and compares figure for figure cannot. The residents manifest is fetched here
     // rather than taken off the harness handle because `census.js` reads it directly and
     // nothing puts it on `window`.
+    //
+    // T-0782 rebuilt the card as TWO rows — buildings, then people — and demoted `people
+    // housed` from a headline figure to a placement note under the people row, because
+    // set against the town total it read as population coverage and is nothing of the
+    // kind. So the headline figures are now the two numerators, and the housed count is
+    // asserted where it moved to rather than dropped: it is the number this whole check
+    // exists to keep honest. The two strings the owner asked be struck are asserted
+    // ABSENT, because either of them coming back is a silent regression of the reading.
     const gateCensus = await page.evaluate(() => {
       const host = document.getElementById('gate-census');
       const visible = !!host && !host.hasAttribute('hidden');
       const figures = [...(host?.querySelectorAll('.gc-n') || [])].map((el) => el.textContent);
+      const seg = (sel) => [...(host?.querySelectorAll(sel) || [])].map((el) => el.style.width);
       return {
         visible,
         figures,
         text: host ? host.textContent.replace(/\s+/g, ' ').trim() : '',
+        aria: host ? (host.getAttribute('aria-label') || '') : '',
+        note: host ? [...host.querySelectorAll('.gc-note')].map((el) => el.textContent.trim()) : [],
+        bars: host ? host.querySelectorAll('.gc-bar').length : 0,
+        grades: seg('.gc-seg-att, .gc-seg-inf, .gc-seg-rec'),
+        keys: host ? [...host.querySelectorAll('.gc-key li')].map((el) => el.textContent.trim()) : [],
+        gateSub: (document.getElementById('gate-sub')?.textContent || '').trim(),
         box: host ? host.getBoundingClientRect().width : 0,
         data: window.__chicago4d.census,
       };
     });
-    // The third row's figure is not on the harness handle, so it is read off the
+    // The people row's figure is not on the harness handle, so it is read off the
     // SERVED tree — `ROOT` is whichever of the source tree and the published mirror
     // this run is serving, which is the same file the page fetched.
     let residentCounts = null;
@@ -1940,19 +2118,44 @@ for (const [label, viewport, touch] of [
         fs.readFileSync(path.join(ROOT, 'data', 'residents', 'index.json'), 'utf8'),
       ).counts || null;
     } catch { residentCounts = null; }
+    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     const shown = gateCensus.figures.map((t) => Number(String(t).replace(/,/g, '')));
-    const want = [gateCensus.data?.buildings?.standing, gateCensus.data?.people?.housed,
-      residentCounts?.persons].filter((n) => Number.isFinite(Number(n))).map(Number);
+    const want = [gateCensus.data?.buildings?.standing, residentCounts?.persons]
+      .filter((n) => Number.isFinite(Number(n))).map(Number);
     check(`${label}: the gate shows the town census`,
       gateCensus.visible && gateCensus.box > 0 && shown.length === want.length && want.length >= 2,
       `visible=${gateCensus.visible} width=${gateCensus.box} figures=${JSON.stringify(gateCensus.figures)} wanted=${JSON.stringify(want)}`);
     check(`${label}: the gate's figures are the committed data's`,
       want.length >= 2 && shown.length === want.length && shown.every((n, i) => n === want[i]),
       `showed ${JSON.stringify(shown)}, data says ${JSON.stringify(want)}`);
+    // Each numerator carries a bar it is a portion of, and the people bar carries the
+    // three grades as segments of the town total — a key alone would let the bar rot.
+    const housed = Number(gateCensus.data?.people?.housed);
+    const byGrade = residentCounts?.by_grade || {};
+    const gradeWant = ['attested', 'inferred', 'reconstructed']
+      .filter((g) => Number.isFinite(Number(byGrade[g])));
+    check(`${label}: both rows carry a completeness bar, the people bar graded`,
+      gateCensus.bars === want.length && gateCensus.grades.length === gradeWant.length
+      && gateCensus.keys.length === gradeWant.length
+      && gradeWant.every((g, i) => gateCensus.keys[i]
+        === `${grouped(Number(byGrade[g]))} ${g}`),
+      `bars=${gateCensus.bars} segments=${JSON.stringify(gateCensus.grades)} keys=${JSON.stringify(gateCensus.keys)}`);
+    // The placement figure survives as a note under the people row, in the committed
+    // data's own number, and never again as a share of the town.
+    check(`${label}: people housed reads as placement, under the people row`,
+      Number.isFinite(housed) && gateCensus.note.length === 1
+      && gateCensus.note[0] === `${grouped(housed)} of them are placed in a building that stands`
+      && gateCensus.aria.includes(`${grouped(housed)} of them are placed`),
+      `note=${JSON.stringify(gateCensus.note)} housed=${housed} aria=${JSON.stringify(gateCensus.aria)}`);
+    // T-0782's two strikes, asserted as absences. `structures` was the ready line's
+    // record count, which contradicted the buildings figure below it.
+    check(`${label}: the card drops the projected count and the structures line`,
+      !/projected/i.test(gateCensus.text) && !/projected/i.test(gateCensus.aria)
+      && !/structures?\b/i.test(gateCensus.text) && !/structures?\b/i.test(gateCensus.gateSub),
+      `card=${JSON.stringify(gateCensus.text)} ready=${JSON.stringify(gateCensus.gateSub)}`);
     // Neither figure is a total, and the row has to say so or it misleads: the
     // buildings are counted against the programme's target and the people
     // against the town's own recorded size, both quoted out of the same file.
-    const grouped = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     check(`${label}: the gate names both denominators`,
       Number.isFinite(gateCensus.data?.buildings?.target)
       && Number.isFinite(gateCensus.data?.people?.town_total)
@@ -2198,19 +2401,41 @@ for (const [label, viewport, touch] of [
     // fence — the layer knew only posts and horizontal rails until today, and a
     // picket drawn as three rails would pass every count in this file. And a
     // fence at the back of a lot can be invisible from anywhere a visitor stands.
+    //
+    // T-0516: THIRTEEN PLOTS BECAME ONE, and the floor here moved with them because
+    // the twelve were never the town's to keep. Clause 4 of the rule admits a lot on
+    // "a household recorded as living in it", read off the structure record's
+    // `occupants` PROSE — and on 2026-09-02 the owner retired the reconstructed
+    // resident population, so twelve of the thirteen were resting on the prose of
+    // households that no longer exist. A garden behind a house nobody lives in claims
+    // a gardener who does not exist. `generate_dooryard_pickets.py` said so itself,
+    // in a comment naming T-0516 as the cause before T-0516 was worked.
+    //
+    // A floor of ten would now be an assertion about retired people, so it is
+    // replaced rather than lowered — and by something STRONGER than a count. The one
+    // plot that survives is the one lot in this town where the committed household
+    // index carries a real `lives_at`: Elijah Harmon's, on Randolph, which is also the
+    // garden the checks below walk into. Naming it asserts that the rule kept the
+    // EVIDENCED plot and dropped the inferred ones, which a floor of ten never could.
+    // Whether a garden should follow the HOUSE instead of the household is a claim
+    // about the town rather than a bug, and it is the owner's: T-0727 asks him. If he
+    // rules that way this floor rises again, and it should.
     const pickets = await page.evaluate(() => {
       const e = window.__chicago4d.enclosures;
       const rec = (e?.records ?? []).find((r) => r.id === 'town_dooryard_pickets');
       return {
         found: !!rec,
         runs: rec?.runs?.length ?? 0,
+        ids: (rec?.runs ?? []).map((r) => r.id),
         type: rec?.form?.fence_type?.value ?? null,
         pales: e?.census?.pales ?? 0,
       };
     });
     check(`${label}: the town's house lots carry generated picket gardens`,
-      pickets.found && pickets.runs >= 10 && pickets.type === 'picket',
-      `record ${pickets.found}, ${pickets.runs} plot(s), fence type ${pickets.type}`);
+      pickets.found && pickets.runs >= 1 && pickets.type === 'picket'
+      && pickets.ids.includes('blk_randolph_franklin_lot2'),
+      `record ${pickets.found}, ${pickets.runs} plot(s) [${pickets.ids.join(', ')}], `
+      + `fence type ${pickets.type}`);
     // A pale per 0.178 m of perimeter is what makes it a picket and not a rail
     // fence; the floor is deliberately far under the count so it asserts the
     // BRANCH ran, not a number that will drift with the rule's output.
@@ -2590,9 +2815,15 @@ for (const [label, viewport, touch] of [
         sampledArea: inside * STEP * STEP,
       };
     });
+    // T-0516 moved the interior floor from 18 to 8 for the same reason the picket
+    // floor above moved: twelve of the eighteen interiors were the dooryard gardens
+    // of households retired on 2026-09-02. What the check is FOR is untouched — every
+    // record that declares a treatment still has to have got an interior, which is the
+    // failure this layer would most quietly make, and all three treatments still have
+    // to reach the ground.
     check(`${label}: every fenced interior in the town carries a ground treatment`,
       fenced.declared.length >= 4 && fenced.declared.every((d) => d.interiors >= 1)
-      && fenced.census?.interiors >= 18 && fenced.meshes >= 3 && fenced.tris > 0
+      && fenced.census?.interiors >= 8 && fenced.meshes >= 3 && fenced.tris > 0
       && Object.keys(fenced.census?.byTreatment ?? {}).length === 3,
       `${fenced.declared.length} record(s) declare a treatment `
       + `[${fenced.declared.map((d) => `${d.id} ${d.treatment} x${d.interiors}`).join(', ')}]; `
@@ -3578,7 +3809,16 @@ for (const [label, viewport, touch] of [
             e: w.at_local_enu_m[0], n: w.at_local_enu_m[1],
             bearing: w.bearing_deg ?? 0, street: w.stands_on ?? null,
             enclosure: w.in_enclosure ?? null, confidence: w.confidence,
-            yoke: !!w.yoke, tilt: !!w.tilt })),
+            yoke: !!w.yoke, tilt: !!w.tilt,
+            // T-0688. The deal T-0836 made, carried out whole: how far off its
+            // square bearing this wagon stands, the envelope it was dealt inside
+            // and how many steps that envelope was walked in. The two wagons the
+            // record holds by hand — the attested Western Hotel wagon and the
+            // Randolph Street water cart — carry no slew, and read as null here.
+            drawnUp: w.drawn_up ?? null,
+            slew: typeof w.slew_deg === 'number' ? w.slew_deg : null,
+            slewEnvelope: typeof w.slew_envelope_deg === 'number' ? w.slew_envelope_deg : null,
+            slewSteps: typeof w.slew_steps === 'number' ? w.slew_steps : null })),
         wagonsRefused: (y?.records ?? []).reduce(
           (t, r) => t + (r.wagons_refused ?? []).length, 0),
       };
@@ -3771,13 +4011,62 @@ for (const [label, viewport, touch] of [
     const kindCounts = {};
     for (const w of townWagons) kindCounts[w.kind] = (kindCounts[w.kind] ?? 0) + 1;
     const commonest = Math.max(0, ...Object.values(kindCounts));
-    const bearings = new Set(townWagons.map((w) => Math.round(w.bearing / 5)));
-    check(`${label}: the town's wagons vary in type and in the way they stand`,
+    check(`${label}: the town's wagons vary in type`,
       kinds.size >= 3 && kinds.has('covered') && kinds.has('cart')
-        && kinds.has('farm_box')
-        && commonest <= townWagons.length * 0.75 && bearings.size >= 8,
-      `${Object.entries(kindCounts).map(([k, v]) => `${v} ${k}`).join(', ')}; `
-      + `${bearings.size} distinct heading(s) to the nearest 5 degrees`);
+        && kinds.has('farm_box') && commonest <= townWagons.length * 0.75,
+      `${Object.entries(kindCounts).map(([k, v]) => `${v} ${k}`).join(', ')}`);
+    // AND IN THE WAY THEY STAND — T-0688, and this clause measures THE WAGON
+    // RULE, which the one it replaces did not. It used to count distinct
+    // `bearing_deg` to the nearest five degrees against a floor of 8. A town
+    // wagon drawn up along a road takes that road's bearing, so what it counted
+    // was distinct STREET headings that happened to carry a wagon: re-deriving
+    // one street's centreline (T-0447) took the reading from 9 buckets to 7 and
+    // failed a gate no wagon rule controls, while the floor of 8 was only the
+    // last green reading written down. What the rule does control is the SLEW —
+    // T-0836 turns every derived wagon off its square bearing by an angle dealt
+    // from its own id, inside an envelope graded by the manoeuvre — so the slew
+    // is what is asked about, and every number below is read off the record's
+    // own `slew_envelope_deg` and `slew_steps` rather than restated here.
+    const dealt = townWagons.filter((w) => w.slew !== null);
+    // The two the record holds by hand (the attested Western Hotel wagon, the
+    // Randolph Street water cart) are the only ones that may stand undealt.
+    const undealt = townWagons.filter((w) => w.slew === null);
+    // Every slew inside the envelope its own manoeuvre was graded at. This is
+    // the exact clause, not a floor: a wagon outside its envelope is a deal that
+    // has escaped the rule, and _lateral_reach set its stand back for an angle
+    // it no longer stands at.
+    const escaped = dealt.filter((w) => !(w.slewEnvelope > 0)
+      || Math.abs(w.slew) > w.slewEnvelope + 1e-6);
+    // Three envelopes, because the rule grades the manoeuvre three ways — along
+    // a road, backed square to one, and in a yard with no line to work to. All
+    // three have to be standing or the grading is untested.
+    const envelopes = new Set(dealt.map((w) => w.slewEnvelope));
+    // AND THE DEAL HAS TO BE DEALING. The slew is `sha1(id) mod steps` walked
+    // end to end over the envelope, which is a uniform deal into `slewSteps`
+    // buckets; with sixty-odd wagons over nine steps every step is expected to
+    // carry about seven, and the chance a uniform deal leaves even one step
+    // empty is well under a percent. So the floor is `slewSteps - 1`: the deal's
+    // own step count, with one step of slack for the town gaining or losing a
+    // wagon — derived from the rule, not read off a green run. And no step may
+    // carry more than a quarter, which is more than double the uniform share.
+    const steps = Math.max(0, ...dealt.map((w) => w.slewSteps ?? 0));
+    const stepCounts = {};
+    for (const w of dealt) {
+      const k = `${w.slewEnvelope}:${w.slew.toFixed(1)}`;
+      stepCounts[k] = (stepCounts[k] ?? 0) + 1;
+    }
+    const alongSlews = new Set(dealt.filter((w) => w.drawnUp === 'along the road')
+      .map((w) => w.slew.toFixed(1)));
+    const commonestStep = Math.max(0, ...Object.values(stepCounts));
+    check(`${label}: the town's wagons stand at the slew the rule dealt them`,
+      dealt.length >= 55 && undealt.length <= 2 && escaped.length === 0
+        && envelopes.size === 3 && steps > 0 && alongSlews.size >= steps - 1
+        && commonestStep <= dealt.length * 0.25,
+      `${dealt.length} dealt and ${undealt.length} held by hand; `
+      + `${escaped.length} outside their own envelope; envelopes `
+      + `${[...envelopes].sort((x, z) => x - z).join('/')} degrees; `
+      + `${alongSlews.size} of ${steps} steps used along the road, `
+      + `commonest step ${commonestStep} of ${dealt.length}`);
     // GRADED, every one of them, and the tilt/yoke flags have to agree with the
     // kind — a covered wagon without its canvas is a farm wagon the record is
     // lying about.
@@ -4414,6 +4703,21 @@ for (const [label, viewport, touch] of [
       // stands on this platted lot" to the building that does and how far back
       // it stands. WALKS and CROSSINGS do not move: this rule reads lots, and a
       // walk is laid off the block face.
+      // T-1053 took a privy off blk_south_water_franklin lot 4 — it had been
+      // standing in the yard of a lot its own household's cottage is not on, a
+      // lot to the west of the row it serves — and re-lotted it behind that
+      // cottage on lot 6. Lot 6 was already improved and already had its street
+      // wall, so nothing arrives; lot 4 stops being improved at all, and an
+      // unimproved lot is open prairie that takes no street fence. FENCES 32 to
+      // 31 and REFUSED 85 to 86, and the two move together and only together,
+      // which is the check that this is one lot changing class and not the rule
+      // changing its mind: the retiring fence and the arriving refusal name the
+      // same wall (`blk_south_water_franklin north face, lot 4`, "no committed
+      // building stands on this platted lot"). WALKS, CROSSINGS AND POSTS DO NOT
+      // MOVE — the face's walk was laid for its whole length either way, the
+      // privy carries no trade the hitching rule accepts, and the two other
+      // privies this ticket re-lotted moved between lots that are improved on
+      // both sides of the move.
       frontage.census?.records === 5 && frontage.census?.walks === 51
         && frontage.census?.crossings === 39
         // T-0626 takes it back to NINETEEN, and it is the first time this count
@@ -4428,8 +4732,8 @@ for (const [label, viewport, touch] of [
         // the same man's name over the same door. Walks, crossings, fences and
         // refusals do not move: the building is still there and still the street
         // wall on that face.
-        && frontage.census?.posts === 19 && frontage.census?.fences === 32
-        && frontage.census?.refused === 85
+        && frontage.census?.posts === 19 && frontage.census?.fences === 31
+        && frontage.census?.refused === 86
         && frontage.recordIds.join(',')
           === 'green_tree_frontage,sauganash_frontage,river_walk_frontage,'
             + 'lasalle_crossing_frontage,town_street_edge'
@@ -5060,8 +5364,13 @@ for (const [label, viewport, touch] of [
       // frontage line IS the street wall. The exact count is asserted above in
       // the frontage census (32), so this stays a floor rather than becoming a
       // second place to keep the same number.
+      // T-1053 LOWERS IT AGAIN, 32 to 31, for the same kind of reason and with
+      // the same warrant: a privy left blk_south_water_franklin lot 4 for the
+      // lot its household's cottage is on, so lot 4 stops being improved and its
+      // street fence is refused as open prairie. Laid ground does not move —
+      // faces, metres and decks are all where they were.
       edge.hasRecord && edge.cardId === 'town_street_edge'
-        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 32
+        && edge.faces === 36 && edge.walkM >= 3050 && edge.fences >= 31
         && edge.decks >= 232,
       `record ${edge.hasRecord}, card ${edge.cardId}, ${edge.faces} block face(s), `
       + `${edge.walkM} m of walk, ${edge.fences} fence run(s), `
@@ -6428,6 +6737,68 @@ for (const [label, viewport, touch] of [
       && popLibOpen.evidenceBack,
       `pane shown ${popLibOpen.paneShown}, ${popLibOpen.before} -> ${popLibOpen.after}`);
 
+    // --- the agency held here, on the card --------------------------------
+    // T-1041. A HOLDING IS A RELATION, and the card had no place for one: the
+    // register has recorded since T-0410 that Hubbard & Co. of La Salle Street was
+    // appointed agent for the Howard Fire Insurance Company of New-York, and that
+    // three weeks before the scene date the identical notice starts running in the
+    // singular over one man. Nothing read it. Pinned on the RENDERED card for the
+    // same reason `documented_range` is: a compiled relation nothing renders is
+    // exactly the failure this ticket reports, and it is green everywhere else.
+    //
+    // Three reads, and the second and third are the discriminating ones. A card
+    // that printed the whole file would pass the first alone.
+    const popAgency = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const sec = document.querySelector('#popup .pop-agency');
+        return {
+          present: !!sec,
+          text: sec?.textContent?.replace(/\s+/g, ' ').trim() ?? '',
+          refused: !!document.querySelector('#popup .pop-agency .agency-refused'),
+          cites: [...document.querySelectorAll('#popup .pop-agency .agency-cites code')]
+            .map((n) => n.textContent.trim()),
+        };
+      };
+      return {
+        hubbard: read('recon_1835_blk_randolph_wells_d2_07'),
+        jonesKing: read('recon_1835_blk_south_water_franklin_d5_01'),
+        sauganash: read('sauganash_hotel'),
+      };
+    });
+    check(`${label}: the card names the agency this house held, and its principal`,
+      popAgency.hubbard.present
+      && /Hubbard & Co\. held the agency for Howard Fire Insurance Company/.test(popAgency.hubbard.text)
+      && /city of New-York/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(0, 240));
+    // The window is printings and says so, and it is dated in words rather than ISO.
+    check(`${label}: it dates the holding by its printings and calls them printings`,
+      /printed from 2 July 1834 to 20 May 1835/.test(popAgency.hubbard.text)
+      && /first and last PRINTING/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(0, 400));
+    // Every other line on this card cites its source; so does this one.
+    check(`${label}: the holding cites the printings it rests on`,
+      popAgency.hubbard.cites.includes('chicago_democrat_1834_07_02#c048')
+      && popAgency.hubbard.cites.length === 3,
+      `got [${popAgency.hubbard.cites.join(', ')}]`);
+    // THE CAVEAT IS THE ACCEPTANCE CLAUSE. "Nothing on the card implies the holder
+    // traded in the principal's line, held a roof for it, or was a partner in any
+    // house he signed for." It is written in the compiled file beside the relation,
+    // so this pins the rendered text and `compile_agencies.py --check` pins the file.
+    check(`${label}: the card says a holding is only a holding`,
+      /A holding is a relation and nothing more/.test(popAgency.hubbard.text)
+      && /partner in any house that signed for it/.test(popAgency.hubbard.text),
+      popAgency.hubbard.text.slice(-260));
+    // The REFUSED holding is legible, on the house the reading was made about.
+    check(`${label}: a refused holding is on the card of the house it was refused for`,
+      popAgency.jonesKing.present && popAgency.jonesKing.refused
+      && /Refused:/.test(popAgency.jonesKing.text),
+      popAgency.jonesKing.text.slice(0, 240));
+    // And the discriminating case: a building holding no agency shows no section.
+    check(`${label}: a house that held no agency says nothing about one`,
+      !popAgency.sauganash.present,
+      `sauganash got "${popAgency.sauganash.text.slice(0, 120)}"`);
+
     // --- was it here at all? ----------------------------------------------
     // The claim the whole scene rests on, and the last one to reach the card.
     // `popup.js` read `documented_range` from the moment it was written and
@@ -6836,6 +7207,59 @@ for (const [label, viewport, touch] of [
     check(`${label}: the placeholder label agrees with the asset it describes`,
       placeholder.placeholderFlag === (placeholder.recommended === true),
       JSON.stringify(placeholder));
+
+    // --- the standing constraint, on the card ------------------------------
+    // T-0268. Nine records are held under AGENTS.md's standing constraint, and the
+    // flag used to reach a browser exactly once, as a console line about the scene.
+    //
+    // This is asserted over EVERY flagged record rather than one sampled id, because
+    // the set is the thing: `measure_review_constraint.py` decides which buildings
+    // are held and the card must not disagree with it about a single one. The two
+    // ends of that agreement are gated in different places and both are needed — the
+    // census re-derives `review_reason` against the committed sidecars, and this
+    // asks the rendered DOM whether a visitor is actually handed it.
+    //
+    // The control is the other half. A held notice on a building that is not held
+    // would be a worse fault than a missing one: it would put a consultation claim
+    // on a record nobody made it for.
+    const held = await page.evaluate(() => {
+      const read = (id) => {
+        window.__chicago4d.pick(id);
+        const flag = document.querySelector('#popup .pop-flag-held');
+        return {
+          id,
+          notice: !!flag && /held pending consultation/i.test(flag.textContent),
+          why: flag?.querySelector('.pop-held-why')?.textContent?.trim() ?? '',
+          recorded: window.__chicago4d.registry.get(id)?.sidecar?.review_reason ?? '',
+          // Folded sections are not an answer to "without unfolding anything":
+          // the reason lived inside a 400-word note behind a disclosure before
+          // this, and that is the state the ticket was opened about.
+          openable: !!flag?.closest('details'),
+        };
+      };
+      const flagged = [...window.__chicago4d.registry.values()]
+        .filter((r) => r.sidecar?.review_required)
+        .map((r) => r.sidecar.id)
+        .sort();
+      const control = [...window.__chicago4d.registry.values()]
+        .find((r) => r.sidecar && !r.sidecar.review_required)?.sidecar?.id;
+      return { flagged: flagged.map(read), control: control ? read(control) : null };
+    });
+    check(`${label}: every held building says so on its card`,
+      held.flagged.length > 0 && held.flagged.every((h) => h.notice && !h.openable),
+      `${held.flagged.filter((h) => !h.notice || h.openable).map((h) => h.id).join(', ')
+       || `${held.flagged.length} flagged`}`);
+    // Verbatim, and for the same reason the account below is: this is the record's
+    // sentence, not a gloss of it, and a renderer that trimmed it to a first clause
+    // would pass any substring check written here.
+    const whyDrift = held.flagged.filter((h) => !h.recorded || h.why !== h.recorded);
+    check(`${label}: and says what it is held for, in the record's own words`,
+      held.flagged.length > 0 && whyDrift.length === 0,
+      whyDrift.map((h) => `${h.id}: shown ${JSON.stringify(h.why.slice(0, 40))}`
+        + ` vs recorded ${JSON.stringify(h.recorded.slice(0, 40))}`).join(' | '));
+    check(`${label}: and a building that is not held does not claim to be`,
+      held.control !== null && held.control.notice === false,
+      JSON.stringify(held.control));
 
     // --- the record's own account -----------------------------------------
     // `research_note` is on every record and in every compiled sidecar, and the
@@ -8107,8 +8531,17 @@ for (const [label, viewport, touch] of [
         mapCaption: document.querySelector('.overview-caption')?.textContent?.trim(),
         mapAria: document.getElementById('overview-map')?.getAttribute('aria-label'),
         speedLabel: document.getElementById('v-speed')?.textContent?.trim(),
+        paceLabels: ['v-speed', 'v-wagon-speed', 'v-horse-speed'].map(
+          (id) => [id, document.getElementById(id)?.textContent?.trim() ?? null]),
         units: document.getElementById('s-units')?.value,
         mapSize: [mapCanvas.width, mapCanvas.height],
+        // T-1142. The BACKING store is CSS px x dpr and so differs between the
+        // two viewports for reasons that are not the frame; the box is what the
+        // visitor sees, and it is the box that must not move when ground does.
+        mapBox: (() => {
+          const b = mapCanvas.getBoundingClientRect();
+          return { w: Math.round(b.width), h: Math.round(b.height) };
+        })(),
         east,
         first,
         second: signature(),
@@ -8118,20 +8551,170 @@ for (const [label, viewport, touch] of [
     check(`${label}: compass shows the live heading`,
       nav.compassShown && nav.east.direction === 'E' && nav.east.bearing === '090°',
       `${nav.east.direction} ${nav.east.bearing}`);
-    check(`${label}: overview map renders the whole heightfield`,
+    check(`${label}: the overview map is shown, captioned and read in imperial`,
       nav.mapShown && nav.mapSize[0] >= 188 && nav.mapSize[1] >= 76
       && nav.east.snapshot.bounds.eMax - nav.east.snapshot.bounds.eMin > 1900
       && nav.mapCaption === 'map' && nav.units === 'imperial'
       && /feet|ft/.test(nav.mapAria ?? ''),
       `${nav.mapSize.join('x')}, caption ${nav.mapCaption}, aria ${nav.mapAria}, `
       + `E ${nav.east.snapshot.bounds.eMin}…${nav.east.snapshot.bounds.eMax}`);
-    check(`${label}: walking speed is presented in miles per hour`,
-      /^\d+(?:\.\d)? mph$/.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
+    // T-1142. THE FRAME IS A CONSTANT, and this is the assertion that keeps it
+    // one. It used to be the field's own aspect ratio —
+    //   logicalHeight = round(logicalWidth * (nMax - nMin) / (eMax - eMin))
+    // — so the widget was the ground's shadow, and when T-1067, T-1123 and
+    // T-0464 grew the field in two days the inset went 248x98 -> 248x604, more
+    // than half a phone screen, with the town smeared across the top of it.
+    // These numbers are what that formula PRODUCED on the 2026-09-12 field, so
+    // an edit that re-derives the height from `bounds` fails HERE rather than
+    // shipping — which matters because T-0466 widens the field to four
+    // kilometres and would walk the whole fault back in.
+    const frame = touch ? { w: 188, h: 76 } : { w: 248, h: 98 };
+    check(`${label}: the overview inset is a fixed ${frame.w}x${frame.h} frame, not the field's shape`,
+      Math.abs(nav.mapBox.w - frame.w) <= 1 && Math.abs(nav.mapBox.h - frame.h) <= 1,
+      `inset ${nav.mapBox.w}x${nav.mapBox.h} css px (expected ${frame.w}x${frame.h}), `
+      + `backing ${nav.mapSize.join('x')}, field `
+      + `${Math.round(nav.east.snapshot.bounds.nMax - nav.east.snapshot.bounds.nMin)} m deep`);
+    // T-1081. The readout is `gait · speed` — "walk · 3.2 mph" — since T-0823 gave
+    // each pace a named gait, and this assertion's `^`-anchored bare-number pattern
+    // had called dev red on that prefix on both viewports for a week, which is a
+    // week of every PR touching parts 7-8 unable to merge. The pattern now reads the
+    // shape the HUD actually ships, so the gait is COVERED rather than contradicted:
+    // a readout that loses its unit still fires, and so does one that loses its name.
+    const PACE_READOUT = /^[a-z][a-z ]*[a-z] · \d+(?:\.\d)? mph$/;
+    check(`${label}: walking speed is presented as a named gait in miles per hour`,
+      PACE_READOUT.test(nav.speedLabel ?? '') && !/m\/s/.test(nav.speedLabel ?? ''),
       `speed label ${nav.speedLabel}`);
+    // And all three ground paces, because the readout is one function (hud.js
+    // § gaitReadout) and a fault in it reaches the wagon and the horse too.
+    const badPace = nav.paceLabels.filter(([, text]) => !PACE_READOUT.test(text ?? ''));
+    check(`${label}: every pace slider names its gait beside an imperial speed`,
+      nav.paceLabels.length === 3 && badPace.length === 0,
+      badPace.length
+        ? badPace.map(([id, text]) => `${id} reads ${JSON.stringify(text)}`).join('; ')
+        : nav.paceLabels.map(([id, text]) => `${id} ${text}`).join(', '));
     check(`${label}: overview marker follows position and bearing`,
       nav.first !== nav.second && Math.abs(nav.moved.e - 180) < 0.1
       && Math.abs(nav.moved.n - 90) < 0.1 && Math.abs(nav.moved.bearingDeg - 225) < 0.1,
       `canvas ${nav.first} -> ${nav.second}; ${JSON.stringify(nav.moved)}`);
+
+    // T-1142. The inset is a WINDOW on the field, so the three things that make
+    // it one are read off `snapshot().viewport` — it travels with the visitor,
+    // it carries the pre-growth scale, and it stops at the field's edge instead
+    // of running off into ground that does not exist. Read as numbers rather
+    // than pixels, because "the picture changed" cannot tell a window that
+    // moved from a marker sliding over a static image of everything.
+    const win = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const b = api.navigation.snapshot().bounds;
+      const mapCanvas = document.getElementById('overview-map-canvas');
+      const signature = () => {
+        const p = mapCanvas.getContext('2d').getImageData(0, 0, mapCanvas.width, mapCanvas.height).data;
+        let hash = 2166136261;
+        for (let i = 0; i < p.length; i += 37) hash = Math.imul(hash ^ p[i], 16777619) >>> 0;
+        return hash;
+      };
+      const at = (n) => {
+        api.walker.teleport({ local_e: 20, local_n: n, yaw_deg: 0 });
+        api.step();
+        const s = api.navigation.snapshot();
+        return { n, view: s.viewport, inset: s.inset, sig: signature() };
+      };
+      const mid = (b.nMin + b.nMax) / 2;
+      const low = at(mid);
+      const high = at(mid + 1000);
+      const south = at(b.nMin + 5);
+      const north = at(b.nMax - 5);
+      // Hand the walker back where the checks above left it, so nothing after
+      // this reading inherits a visitor standing 3.8 km out of town.
+      api.walker.teleport({ local_e: 180, local_n: 90, yaw_deg: 225 });
+      api.step();
+      return { b, low, high, south, north };
+    });
+    const spanN = win.low.view.nMax - win.low.view.nMin;
+    const spanE = win.low.view.eMax - win.low.view.eMin;
+    check(`${label}: the overview window travels with the visitor at the scale it had before`,
+      win.low.sig !== win.high.sig
+      && Math.abs((win.high.view.nMin - win.low.view.nMin) - 1000) < 1
+      && Math.abs(spanN - win.low.inset.h * win.low.inset.mPerPx) < 1
+      && Math.abs(spanE - win.low.inset.w * win.low.inset.mPerPx) < 1
+      && Math.abs(win.low.inset.mPerPx - 2020 / 248) < 0.01,
+      `window ${Math.round(spanE)}x${Math.round(spanN)} m at `
+      + `${win.low.inset.mPerPx.toFixed(3)} m/px; a 1 000 m step north moved nMin `
+      + `${(win.high.view.nMin - win.low.view.nMin).toFixed(1)} m; `
+      + `signature ${win.low.sig} -> ${win.high.sig}`);
+    check(`${label}: the overview window clamps to the field instead of running past it`,
+      Math.abs(win.south.view.nMin - win.b.nMin) < 0.5
+      && win.south.view.nMax <= win.b.nMax + 0.5
+      && Math.abs(win.north.view.nMax - win.b.nMax) < 0.5
+      && win.north.view.nMin >= win.b.nMin - 0.5,
+      `field N ${Math.round(win.b.nMin)}…${Math.round(win.b.nMax)}; `
+      + `at the south edge the window is ${Math.round(win.south.view.nMin)}…`
+      + `${Math.round(win.south.view.nMax)}, at the north edge `
+      + `${Math.round(win.north.view.nMin)}…${Math.round(win.north.view.nMax)}`);
+
+    // The other half of the bargain: the whole field is still reachable, it has
+    // just moved to a pop-out. This is where "renders the whole heightfield"
+    // now lives. Opened through the real control with a real hit test, because
+    // the opener is a transparent button laid over the inset and "covered by
+    // something else" is exactly how that fails.
+    await clickChrome('#overview-open');
+    const pop = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const el = document.getElementById('overview-full');
+      const c = document.getElementById('overview-full-canvas');
+      const box = c.getBoundingClientRect();
+      const p = c.getContext('2d').getImageData(0, 0, c.width, c.height).data;
+      let ink = 0;
+      for (let i = 3; i < p.length; i += 404) if (p[i] > 0) ink++;
+      return {
+        open: !el.hasAttribute('hidden'),
+        apiOpen: api.navigation.fullOpen,
+        w: Math.round(box.width),
+        h: Math.round(box.height),
+        onScreen: box.width > 0 && box.height > 0
+          && box.top >= -1 && box.bottom <= window.innerHeight + 1,
+        ink,
+        foot: document.getElementById('overview-full-foot')?.textContent?.trim() ?? '',
+        focus: document.activeElement?.id ?? '',
+      };
+    });
+    const fieldAspect = (win.b.nMax - win.b.nMin) / (win.b.eMax - win.b.eMin);
+    check(`${label}: the pop-out renders the whole heightfield`,
+      pop.open && pop.apiOpen && pop.ink > 0 && pop.onScreen
+      && Math.abs(pop.h / pop.w - fieldAspect) < 0.05
+      // The foot says how far across the field is, in the visitor's own units —
+      // `formatDistance` abbreviates, so this reads the abbreviations it emits
+      // rather than the words it does not ("1.3 mi", not "1.3 miles").
+      && /\b(ft|feet|yd|mi|miles?)\b/.test(pop.foot),
+      `${pop.w}x${pop.h} px, aspect ${(pop.h / pop.w).toFixed(3)} against the field's `
+      + `${fieldAspect.toFixed(3)}, ${pop.ink} inked samples, foot ${JSON.stringify(pop.foot)}`);
+    await page.keyboard.press('Escape');
+    const shut = await page.evaluate(() => ({
+      hidden: document.getElementById('overview-full').hasAttribute('hidden'),
+      apiOpen: window.__chicago4d.navigation.fullOpen,
+      focus: document.activeElement?.id ?? '',
+    }));
+    check(`${label}: Escape puts the pop-out away and hands focus back to the map`,
+      shut.hidden && !shut.apiOpen && shut.focus === 'overview-open',
+      `hidden ${shut.hidden}, api ${shut.apiOpen}, focus ${JSON.stringify(shut.focus)} `
+      + `(was ${JSON.stringify(pop.focus)} while open)`);
+    // And the settings toggle owns BOTH of them: a pop-out standing over a map
+    // the visitor has switched off is the setting not being obeyed.
+    const offWhileHidden = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      api.navigation.setMapVisible(false);
+      const refused = api.navigation.setFullVisible(true);
+      const state = {
+        refused,
+        hidden: document.getElementById('overview-full').hasAttribute('hidden'),
+      };
+      api.navigation.setMapVisible(true);
+      return state;
+    });
+    check(`${label}: the pop-out cannot be opened while the map is switched off`,
+      offWhileHidden.refused === false && offWhileHidden.hidden,
+      `setFullVisible answered ${offWhileHidden.refused}, `
+      + `overlay hidden ${offWhileHidden.hidden}`);
 
     // (The street-layer reading that lived here moved above the stage split —
     // T-0060 — because its checks span stages 3 and 4.)
@@ -8149,6 +8732,40 @@ for (const [label, viewport, touch] of [
       `${streetLayer.emittedQuads} panels drawn of ${streetLayer.dryCentrelinePanels} `
       + `with a dry centreline — ${streetLayer.clippedPanels} clipped at the waterline, `
       + `${streetLayer.slivers} dropped as narrower than a metre`);
+    // T-0713. The platted streets are `attested` from the Thompson plat and
+    // every record in the file still grades its wear `reconstructed`, so under
+    // the old Math.max() composition the whole platted town drew as invention.
+    // This asserts the split reached the geometry the browser built: the ribbon
+    // channel stands at `attested` for the seventeen platted streets, and the
+    // grade that is NOT about whether the street was there rides its own
+    // channel instead of pulling the road down with it.
+    check(`${label}: the platted streets reach the picture as attested, not as invention`,
+      streetLayer.streetGrades.attested.length >= 17
+      && streetLayer.streetChannels.ribbon.attested > 0
+      && streetLayer.streetChannels.ribbon.attested
+         > streetLayer.streetChannels.ribbon.reconstructed,
+      `${streetLayer.streetGrades.attested.length} attested lines, `
+      + `${streetLayer.streetGrades.inferred.length} inferred `
+      + `(${streetLayer.streetGrades.inferred.join(', ') || 'none'}), `
+      + `${streetLayer.streetGrades.reconstructed.length} reconstructed `
+      + `(${streetLayer.streetGrades.reconstructed.join(', ') || 'none'}) — `
+      + `ribbon vertices ${JSON.stringify(streetLayer.streetChannels.ribbon)}`);
+    // The other half, and it is the half that would fail silently: the track
+    // grade must be CARRIED, on its own channel, on every street mesh and at
+    // the same vertex count as the ribbon's. A missing attribute arrives at the
+    // shader unbound, which is not reliably zero — it can be NaN, and NaN reads
+    // as `attested` after a clamp. So absence is a failure here, not a default.
+    check(`${label}: surface and wear ride their own channel and every street carries it`,
+      streetLayer.streetChannels.meshes > 0
+      && streetLayer.streetChannels.missingTrack === 0
+      && streetLayer.streetChannels.unequal === 0
+      && streetLayer.streetChannels.track.reconstructed > 0
+      && streetLayer.streetChannels.track.attested === 0,
+      `${streetLayer.streetChannels.meshes} street mesh(es), `
+      + `${streetLayer.streetChannels.missingTrack} without a track channel, `
+      + `${streetLayer.streetChannels.unequal} of unequal length — `
+      + `track vertices ${JSON.stringify(streetLayer.streetChannels.track)}, `
+      + `${streetLayer.streetGrades.wornInvented} record(s) grade a surface or wear invented`);
     // T-0110. Vertex drape above says every vertex touches the ground; this
     // says the ground stays UNDER the ribbon between them. The 0.35 bar is
     // documented at the probe: measured worst after refinement is 0.21 m
@@ -8235,7 +8852,11 @@ for (const [label, viewport, touch] of [
       aidAtBoot === 0, `uRoadAid ${aidAtBoot} with no stored preference`);
 
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
-    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    // T-0690. ROAD_AID_REACH_GRID, not the 48² the three assertions further down
+    // share: at 390×780 a 48² cell dilutes the roadway until the aid's worst cell
+    // reads 3 against a floor of 4, and the same frame at 96² reads 7. Its box
+    // carries the sweep both readings come from.
+    const aidOff = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const aidOff12 = await page.evaluate(() => window.__chicago4d.capture());
     const aidSet = await page.evaluate(() => window.__chicago4d.setRoadAid(1));
     // K24. The raised READING, which until now this suite never took: both of
@@ -8243,12 +8864,12 @@ for (const [label, viewport, touch] of [
     // them and only a value that is meant to MOVE can find that out. See
     // main.js § Live getters.
     const aidLive = await page.evaluate(() => window.__chicago4d.roadAid);
-    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const aidOn12 = await page.evaluate(() => window.__chicago4d.capture());
     const dAid = signatureDistance(aidOff, aidOn);
     const dAid12 = signatureDistance(aidOff12, aidOn12);
     await page.evaluate(() => window.__chicago4d.setRoadAid(0));
-    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
+    const aidBack = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_REACH_GRID);
     const dAidBack = signatureDistance(aidOff, aidBack);
     const aidRestored = await page.evaluate(() => window.__chicago4d.roadAid);
     await page.evaluate(() => window.__chicago4d.setAnimationHold(false));
@@ -8268,7 +8889,7 @@ for (const [label, viewport, touch] of [
       `uRoadAid ${aidRestored}, residual mean ${dAidBack.mean?.toFixed(2)}, `
       + `worst-cell delta ${dAidBack.worst}`);
     console.log(`        road aid: full-on delta mean ${dAid.mean?.toFixed(2)} / worst `
-      + `${dAid.worst} at ${ROAD_AID_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
+      + `${dAid.worst} at ${ROAD_AID_REACH_GRID}², ${dAid12.mean?.toFixed(2)} / ${dAid12.worst} `
       + `at 12²; restored residual mean ${dAidBack.mean?.toFixed(2)} / worst `
       + `${dAidBack.worst}`);
 
@@ -8393,6 +9014,13 @@ for (const [label, viewport, touch] of [
     }
     const attested = facades.filter((r) => r.confidence === 'attested');
 
+    // THE VIEW THIS CHECK REQUIRES (T-0848): the boot pose. The three captures
+    // below are a delta measurement, and its floor — worst cell >=3, mean >=0.03
+    // — was measured from there. Taken from the South Division stand that part
+    // 10's street reading leaves behind, the same unchanged town moves the worst
+    // cell by 2, because far fewer painted walls are in frame. So the pose is
+    // part of the assertion and is taken here, not inherited.
+    await standAtBootPose();
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
     const toneOn = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const toneOff = await page.evaluate(() => window.__chicago4d.setFacadeWeathering(0));
@@ -8486,6 +9114,13 @@ for (const [label, viewport, touch] of [
       + `per texel (want ±${want.reachM} m over ${want.mapSize}² = `
       + `${(want.texelM * 100).toFixed(1)} cm)`);
 
+    // THE VIEW THIS CHECK REQUIRES (T-0848): the boot pose again, and re-taken
+    // rather than assumed to have survived the facade section — the same reason.
+    // `worst >= 4` is a number about how much of the town the rig can reach IN
+    // FRAME; from a stand with little standing behind the visitor, winding the
+    // reach from its documented value back to +/-60 m moves almost nothing and
+    // the check silently becomes an assertion about the previous section.
+    await standAtBootPose();
     await page.evaluate(() => window.__chicago4d.setAnimationHold(true));
     const reachFull = await page.evaluate((g) => window.__chicago4d.capture(g), ROAD_AID_GRID);
     const woundBack = await page.evaluate(() => window.__chicago4d.world.setShadowReach(60));
@@ -10770,6 +11405,22 @@ for (const [label, viewport, touch] of [
           chip: document.getElementById('btn-pace')?.dataset.pace };
       }
       const slider = api.hud.settings.speed;
+      // T-0823: each pace has its own slider, and the walker's WALK follows the
+      // one for the pace in force. Read the three stored values, each slider's
+      // ceiling, and what the readout SAYS as the horse's slider is dragged.
+      const sliders = { walk: api.hud.settings.speed, wagon: api.hud.settings.wagonSpeed, horse: api.hud.settings.horseSpeed };
+      const range = (id) => { const el = document.getElementById(id); return el && { min: Number(el.min), max: Number(el.max), value: Number(el.value) }; };
+      const drag = (id, v) => { const el = document.getElementById(id); el.value = String(v); el.dispatchEvent(new Event('input', { bubbles: true })); return document.getElementById(id.replace('s-', 'v-'))?.textContent.trim() ?? ''; };
+      const ranges = { walk: range('s-speed'), wagon: range('s-wagon-speed'), horse: range('s-horse-speed') };
+      api.setPace('horse');
+      const before = api.hud.settings.horseSpeed;
+      const gaits = { canter: drag('s-horse-speed', 6.5), gallop: drag('s-horse-speed', 10), top: drag('s-horse-speed', 26.82) };
+      const atTop = { speed: WALK.speed, sprint: WALK.sprintSpeed };
+      drag('s-horse-speed', before);
+      const afterDrag = { speed: WALK.speed, sprint: WALK.sprintSpeed };
+      gaits.walkWord = drag('s-speed', api.hud.settings.speed);
+      gaits.wagonWord = drag('s-wagon-speed', api.hud.settings.wagonSpeed);
+      api.setPace('walk');
       const eyeSetting = api.hud.settings.eyeHeight;
       // The gait: horse, own input forward on a street, peak over one second.
       api.setPace('horse');
@@ -10780,7 +11431,7 @@ for (const [label, viewport, touch] of [
       bobBox.click();
       const back = { setting: api.hud.settings.headBob, checked: bobBox.checked };
       api.setPace('walk');
-      return { modes, chosen, restored, paces, slider, eyeSetting, on, off, back };
+      return { modes, chosen, restored, paces, slider, sliders, ranges, gaits, atTop, afterDrag, eyeSetting, on, off, back };
     }, gaitLoop);
     await page.emulateMedia({ reducedMotion: 'reduce' });
     const reduced = await page.evaluate((loop) => {
@@ -10798,16 +11449,32 @@ for (const [label, viewport, touch] of [
       && travelUi.chosen.on === 'horse' && travelUi.chosen.checked === 'horse'
       && travelUi.restored.stored === 'instantly' && travelUi.restored.mode === 'instantly',
       `${JSON.stringify(travelUi.chosen)} -> ${JSON.stringify(travelUi.restored)}`);
-    check(`${label}: horse and wagon set the walker's pace and seat; walk is the slider again`,
-      travelUi.paces.horse.speed === 6.5 && travelUi.paces.horse.sprint === 11
+    // T-0823 RESTATED, NOT WEAKENED. The horse's 6.5/11 and the wagon's 3.6 were
+    // constants; each pace now has its own slider, so the claim is that WALK
+    // follows THAT pace's stored value — sprint = value × factor (2.28 on foot,
+    // 1 by wagon, 1.7 in the saddle) capped at the slider's top — and the seats
+    // are unchanged. The defaults (1.45 / 3.6 / 6.5) are asserted where the store
+    // is fresh, which it is in this run.
+    const near = (a, b) => Math.abs(a - b) < 0.01;
+    const sp = travelUi.sliders;
+    check(`${label}: each pace sets the walker to its own slider, its Shift factor and its seat`,
+      near(travelUi.paces.horse.speed, sp.horse) && near(travelUi.paces.horse.sprint, Math.min(sp.horse * 1.7, 26.82))
       && Math.abs(travelUi.paces.horse.eye - (travelUi.eyeSetting + 0.75)) < 0.01
-      && travelUi.paces.wagon.speed === 3.6 && travelUi.paces.wagon.sprint === 3.6
+      && near(travelUi.paces.wagon.speed, sp.wagon) && near(travelUi.paces.wagon.sprint, sp.wagon)
       && Math.abs(travelUi.paces.wagon.eye - (travelUi.eyeSetting + 0.5)) < 0.01
-      && travelUi.paces.walk.speed === travelUi.slider
-      && Math.abs(travelUi.paces.walk.sprint - travelUi.slider * 2.28) < 0.01
+      && near(travelUi.paces.walk.speed, sp.walk) && near(travelUi.paces.walk.sprint, Math.min(sp.walk * 2.28, 8.94))
       && Math.abs(travelUi.paces.walk.eye - travelUi.eyeSetting) < 0.01
+      && sp.walk === 1.45 && sp.wagon === 3.6 && sp.horse === 6.5
       && travelUi.paces.horse.chip === 'horse' && travelUi.paces.walk.chip === 'walk',
-      JSON.stringify({ ...travelUi.paces, slider: travelUi.slider, eye: travelUi.eyeSetting }));
+      JSON.stringify({ ...travelUi.paces, sliders: sp, eye: travelUi.eyeSetting }));
+    check(`${label}: the three pace sliders top out at 20, 30 and 60 mph and name the gait as they move`,
+      travelUi.ranges.walk?.max === 8.94 && travelUi.ranges.wagon?.max === 13.41 && travelUi.ranges.horse?.max === 26.82
+      && /^canter · /.test(travelUi.gaits.canter) && /^gallop · /.test(travelUi.gaits.gallop)
+      && /^beyond any horse · /.test(travelUi.gaits.top) && /60\.0 mph|96\.5 km\/h/.test(travelUi.gaits.top)
+      && /^walk · /.test(travelUi.gaits.walkWord) && /^steady roll · /.test(travelUi.gaits.wagonWord)
+      && travelUi.atTop.speed === 26.82 && travelUi.atTop.sprint === 26.82
+      && near(travelUi.afterDrag.speed, 6.5) && near(travelUi.afterDrag.sprint, 11.05),
+      JSON.stringify({ ranges: travelUi.ranges, gaits: travelUi.gaits, atTop: travelUi.atTop, afterDrag: travelUi.afterDrag }));
     check(`${label}: the horse's gait moves the rider's eye a few centimetres, and stops when they do`,
       travelUi.on.peak >= 0.03 && travelUi.on.peak <= 0.10 && travelUi.on.after === 0
       && travelUi.on.speed > 1,
@@ -10825,8 +11492,23 @@ for (const [label, viewport, touch] of [
     // on-street share depends on it (REQUESTS-travel §4: south_water 100 %,
     // the forks 47 % — the forks sit off any street). `streets.status()` is
     // null off-street, so the read is guarded.
-    const ride = await page.evaluate(async () => {
+    // T-0824: every arrival — a ride, a flight, an instant Go to — ends at the
+    // framing distance for THAT building and with the whole of it in frame. The
+    // probe projects the footprint's four extreme ground points and the ridge
+    // through the live camera; all five must sit inside NDC ±0.95.
+    const FRAMED = `(id) => {
+      const a = window.__chicago4d; const w = a.walker;
+      const f = a.framing(id); const c = a.structurePosition(id);
+      const ground = a.terrain.surfaceHeight(c.e, c.n); const rr = f.radius;
+      const pts = [[rr, 0], [-rr, 0], [0, rr], [0, -rr]].map(([de, dn]) => [c.e + de, c.n + dn, ground]);
+      pts.push([c.e, c.n, ground + f.height]);
+      const ndc = pts.map(([e, n, y]) => { const v = a.project(e, n, y); return [+v.x.toFixed(2), +v.y.toFixed(2), v.z]; });
+      return { want: +f.distance.toFixed(1), got: +Math.hypot(c.e - w.state.e, c.n - w.state.n).toFixed(1),
+        inFrame: ndc.every(([x, y, z]) => Math.abs(x) <= 0.95 && Math.abs(y) <= 0.95 && z < 1), ndc };
+    }`;
+    const ride = await page.evaluate(async (FRAMED) => {
       const api = window.__chicago4d;
+      const framed = eval(FRAMED);
       const w = api.walker;
       const WALK = api.walkBudget;
       const out = {};
@@ -10860,7 +11542,7 @@ for (const [label, viewport, touch] of [
       }
       out.arrive = { phase: r.phase, seconds: +r.seconds.toFixed(1), budget: +budget.toFixed(0),
         samples: r.samples.length, onStreetPct: +(100 * on / Math.max(1, r.samples.length)).toFixed(0),
-        distToCentre: dist('sauganash_hotel'), card: api.popup.openId,
+        distToCentre: dist('sauganash_hotel'), card: api.popup.openId, framed: framed('sauganash_hotel'),
         bannerHidden: banner.hasAttribute('hidden'), eye: +(w.state.eyeY - w.state.groundY).toFixed(2) };
       // Own input stops a ride — the same call tick() makes, with the visitor's
       // forward set; the intent is theirs and is left as they wrote it.
@@ -10879,7 +11561,7 @@ for (const [label, viewport, touch] of [
       for (let i = 0; i < 10; i++) { api.travel.update(1 / 30, api.intent); w.update(1 / 30, api.intent); api.travel.afterWalk(api.intent, 1 / 30); }
       out.beforeStop = { phase: api.travelState.phase, bannerHidden: banner.hasAttribute('hidden') };
       return out;
-    });
+    }, FRAMED);
     check(`${label}: choosing the Sauganash on foot starts a walk and says so`,
       ride.go.row && ride.go.phase === 'travelling' && ride.go.mode === 'walk'
       && ride.go.dest_id === 'sauganash_hotel' && ride.go.dist_m > 100 && ride.go.points > 1
@@ -10889,7 +11571,8 @@ for (const [label, viewport, touch] of [
       JSON.stringify(ride.go));
     check(`${label}: the walk ends at the Sauganash's door with its card open`,
       ride.arrive.phase === 'idle' && ride.arrive.card === 'sauganash_hotel'
-      && ride.arrive.distToCentre <= 14 && ride.arrive.bannerHidden
+      && ride.arrive.framed.inFrame && Math.abs(ride.arrive.framed.got - ride.arrive.framed.want) <= 2.5
+      && ride.arrive.bannerHidden
       && Math.abs(ride.arrive.eye - 1.68) < 0.05,
       JSON.stringify(ride.arrive));
     check(`${label}: the walk from South Water keeps to the streets`,
@@ -10909,8 +11592,9 @@ for (const [label, viewport, touch] of [
       ride.beforeStop.phase === 'travelling' && !ride.beforeStop.bannerHidden
       && stopped.phase === 'idle' && stopped.bannerHidden,
       `${JSON.stringify(ride.beforeStop)} -> ${JSON.stringify(stopped)}`);
-    const flight = await page.evaluate(() => {
+    const flight = await page.evaluate((FRAMED) => {
       const api = window.__chicago4d;
+      const framed = eval(FRAMED);
       const w = api.walker;
       const dist = (id) => { const p = api.structurePosition(id); return +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(1); };
       api.popup.close();
@@ -10923,7 +11607,7 @@ for (const [label, viewport, touch] of [
       const r = api.travelSimulate(300);
       const fly = { target: far, ok, phase: r.phase, seconds: +r.seconds.toFixed(1),
         maxAltitude: +r.maxAltitude.toFixed(1), flying: w.state.flying, altitude: +w.state.altitude.toFixed(2),
-        distToCentre: dist(far.id), card: api.popup.openId };
+        distToCentre: dist(far.id), card: api.popup.openId, framed: framed(far.id) };
       // And instantly is still instant.
       api.setTravelMode('instantly');
       api.popup.close();
@@ -10932,11 +11616,12 @@ for (const [label, viewport, touch] of [
         dist: dist('sauganash_hotel'), bannerHidden: document.getElementById('travel-banner').hasAttribute('hidden') };
       api.popup.close();
       return { fly, instant };
-    });
+    }, FRAMED);
     check(`${label}: flying to a far building climbs to a cruise height, lands and opens its card`,
       flight.fly.ok && flight.fly.phase === 'idle' && flight.fly.maxAltitude >= 20
       && flight.fly.flying === false && flight.fly.altitude < 0.5
-      && flight.fly.card === flight.fly.target.id && flight.fly.distToCentre <= 40,
+      && flight.fly.card === flight.fly.target.id && flight.fly.framed.inFrame
+      && Math.abs(flight.fly.framed.got - flight.fly.framed.want) <= 2.5,
       JSON.stringify(flight.fly));
     check(`${label}: instantly is still instant`,
       flight.instant.ok && flight.instant.phase === 'idle' && flight.instant.card === 'sauganash_hotel'
@@ -11003,8 +11688,9 @@ for (const [label, viewport, touch] of [
     // Go there, on horseback: the drawer closes, the ride ends at Hogan's with its card.
     await page.evaluate(() => { window.__chicago4d.setTravelMode('horse'); window.__chicago4d.popup.close(); });
     await clickChrome('#people-card .people-go');
-    const goThere = await page.evaluate(() => {
+    const goThere = await page.evaluate((FRAMED) => {
       const api = window.__chicago4d;
+      const framed = eval(FRAMED);
       const w = api.walker;
       const st = api.travelState;
       const start = { phase: st.phase, mode: st.mode, dest_id: st.dest_id, person: st.person,
@@ -11013,17 +11699,18 @@ for (const [label, viewport, touch] of [
       const r = api.travelSimulate(((st.dist_m ?? 300) / 6.5) + 30);
       const p = api.structurePosition('hogan_store');
       const end = { phase: r.phase, seconds: +r.seconds.toFixed(1), card: api.popup.openId,
-        distToCentre: +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(2) };
+        distToCentre: +Math.hypot(p.e - w.state.e, p.n - w.state.n).toFixed(2), framed: framed('hogan_store') };
       api.setTravelMode('instantly');
       api.popup.close();
       api.people.close();
       return { start, end, cardClosed: document.getElementById('people-card').hasAttribute('hidden') };
-    });
+    }, FRAMED);
     check(`${label}: Go there rides to the person's building and opens its card`,
       goThere.start.phase === 'travelling' && goThere.start.mode === 'horse'
       && goThere.start.dest_id === 'hogan_store' && goThere.start.person === 'hogan_john_s_c'
       && goThere.start.panelHidden && goThere.start.verb === 'Riding to'
-      && goThere.end.phase === 'idle' && goThere.end.card === 'hogan_store' && goThere.end.distToCentre <= 14
+      && goThere.end.phase === 'idle' && goThere.end.card === 'hogan_store' && goThere.end.framed.inFrame
+      && Math.abs(goThere.end.framed.got - goThere.end.framed.want) <= 2.5
       && goThere.cardClosed,
       JSON.stringify(goThere));
 
@@ -11328,6 +12015,40 @@ for (const [label, viewport, touch] of [
         overflow: document.documentElement.scrollWidth <= window.innerWidth + 1,
       };
     });
+    // --- the agency on the PERSON'S card (T-1041) --------------------------
+    // The relation has two ends and they are two different surfaces: the house's
+    // end is on the building card in part 3, and the man's end is here, on his own
+    // town card in the drawer. The agency LEFT Hubbard & Co. for E. K. Hubbard three
+    // weeks before the scene date, so his card is the one where a visitor learns
+    // what was true on the day — and it is rendered by the same module, which is
+    // what stops the two ends describing one holding two ways.
+    const personAgency = await page.evaluate(async () => {
+      const mount = document.getElementById('residents');
+      const row = mount ? mount.querySelector('details.res-hh[data-id="hh_hubbard_elijah_kent"]') : null;
+      if (!row) return { found: false, text: '' };
+      row.open = true;
+      for (let i = 0; i < 100 && row.querySelector('.res-hh-body .legend-note'); i++) {
+        await new Promise((r) => setTimeout(r, 50));
+      }
+      const sec = row.querySelector('.pop-agency');
+      return {
+        found: true,
+        present: !!sec,
+        text: sec ? sec.textContent.replace(/\s+/g, ' ').trim() : '',
+      };
+    });
+    check(`${label}: a man who held an agency says so on his own card`,
+      personAgency.found && personAgency.present
+      && /E\. K\. Hubbard held the agency for Howard Fire Insurance Company/.test(personAgency.text)
+      && /printed from 20 June 1835 to 5 August 1835/.test(personAgency.text),
+      personAgency.found ? personAgency.text.slice(0, 260) : 'no hh_hubbard_elijah_kent row');
+    // …and the caveat travels with it, because it is the file's sentence and not
+    // the building card's.
+    check(`${label}: the person's card carries the same caveat as the house's`,
+      /A holding is a relation and nothing more/.test(personAgency.text)
+      && /the notice was running on the day you are standing in/.test(personAgency.text),
+      personAgency.text.slice(-260));
+
     // T-0524, and the shape every figure below now takes. These assertions carried
     // the layer's SIZE as a literal — 920 households, 956 people, 193 evidenced,
     // 764 off-card, 150 reviews — and a test that hardcodes a count rots the next
@@ -11512,7 +12233,16 @@ for (const [label, viewport, touch] of [
       && /weakest evidence/.test(residents.letterText),
       residents.letterText.slice(0, 200));
     check(`${label}: the count sentence says how many people are known only that way`,
-      /727 of the people here are known ONLY from the post office/.test(residents.prose)
+      // T-0524's rule, applied here at last: this one still carried 727 as a typed
+      // literal and went red the day T-0723 folded the duplicate Norton card and the
+      // cohort became 726 — right about a town that had changed, which is exactly the
+      // rot that ticket named. The figure is read out of `residents/index.json` beside
+      // every other count in this section, so what is asserted is that the SENTENCE
+      // agrees with the DATA rather than with a number somebody typed. The floor keeps
+      // it from passing on an empty cohort.
+      expected.letterList > 0
+      && new RegExp(`${expected.letterList} of the people here are known ONLY from the post office`)
+        .test(residents.prose)
       && /per cent of this town/.test(residents.prose),
       residents.prose.slice(0, 240));
     // And the other half of the same ruling: none of the ten may carry a trade
@@ -11770,6 +12500,65 @@ for (const [label, viewport, touch] of [
       mountFit.length === 7 && unfit.length === 0,
       unfit.length ? unfit.map((m) => `${m.id} ${m.scroll}/${m.client} in ${m.panel}`).join('; ')
         : mountFit.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
+
+    // T-0302's actual claim, and the reason the measure above was not enough:
+    // *"it is invisible today only because their longest line happens to fit;
+    // the first long `<dd>` any of them gains clips silently."* A check on the
+    // content as it stands cannot see a latent clipper, so this one puts the
+    // long line there. Each mount is CLONED, laid out as the next sibling of the
+    // original — same parent, same column width, so the measurement is of this
+    // section's real layout — every `<details>` in the copy is opened, a
+    // 90-character unbreakable run replaces the text of every leaf, and the copy
+    // is measured and removed. The original is never touched, which is what lets
+    // this sit in the middle of a part whose later assertions read the same
+    // sections' text.
+    // Measured on this branch, 2026-09-13 at 390x780: before the rules in
+    // css/evidence.css all seven clipped — liberties 1196/362, ground 1261,
+    // fauna 1196, plants 749, exclusions 685, uncertain 685, residents 689 —
+    // carried by ordinary furniture the old `dt`/`dd`-only rule did not name: a
+    // citation `<li>`, the scope pill, a `<b>` in a household's prose. After,
+    // every one of them is 362/362.
+    const mountStress = await page.evaluate(async () => {
+      const api = window.__chicago4d;
+      const TOKEN = 'x'.repeat(90);
+      const stress = (id) => {
+        const mount = document.getElementById(id);
+        if (!mount) return { id, client: 0, scroll: 1, leaves: 0 };
+        const probe = mount.cloneNode(true);
+        probe.id = `${id}-t0302-probe`;
+        mount.after(probe);
+        probe.querySelectorAll('details').forEach((d) => { d.open = true; });
+        let leaves = 0;
+        for (const el of probe.querySelectorAll('*')) {
+          if (el.children.length || !el.textContent.trim()) continue;
+          el.textContent = TOKEN;
+          leaves += 1;
+        }
+        const out = { id, client: probe.clientWidth, scroll: probe.scrollWidth, leaves };
+        probe.remove();
+        return out;
+      };
+      const rows = [];
+      api.hud.setPanel(true);
+      api.hud.selectTab('evidence');
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+        api.evidenceHub.showTopic(id);
+        await new Promise((r) => setTimeout(r, 30));
+        rows.push(stress(id));
+      }
+      api.hud.selectTab('people');
+      api.people?.close?.();
+      await new Promise((r) => setTimeout(r, 30));
+      rows.push(stress('residents'));
+      api.hud.selectTab('evidence');
+      api.evidenceHub.showHub();
+      return rows;
+    });
+    const clipped = mountStress.filter((m) => !(m.client > 0 && m.leaves > 0 && m.scroll <= m.client));
+    check(`${label}: a run longer than the column breaks inside all seven mounts, not past them`,
+      mountStress.length === 7 && clipped.length === 0,
+      clipped.length ? clipped.map((m) => `${m.id} ${m.scroll}/${m.client} on ${m.leaves} leaves`).join('; ')
+        : mountStress.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 
     // The document's own account of what this list is. It is compiled out of
     // `docs/LIBERTIES.md` and was rendered nowhere, while the panel opened with a

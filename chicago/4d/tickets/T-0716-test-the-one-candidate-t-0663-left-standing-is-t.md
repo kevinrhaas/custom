@@ -1,7 +1,7 @@
 ---
 id: T-0716
 title: Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 1005
+claimed_by: run 9/6/2026, 4:03:51 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T21:29:33.258Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34059671448
 ---
 
 Test the one candidate T-0663 left standing: is the Eliza Chappel shore drawing William Mark Young's 'Chicago's First School House' of about 1925.

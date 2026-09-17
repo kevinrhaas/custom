@@ -64,14 +64,30 @@
     "chicagology_prefire275",
     "andreas_1884_v1"
    ],
-   "note": "THE THINNEST DOCUMENTED PERSON IN THE PARCEL AND THE RECORD SAYS SO. The whole of the evidence is one sentence in an uncredited editorial addendum at the foot of a chicagology page, which this project already grades as the weakest text in its own source set. A Thomas Church appears in Andreas's city rosters as an alderman in 1845, ten years past the scene date, which corroborates a man of that name in Chicago and dates nothing here."
+   "note": "THE THINNEST DOCUMENTED PERSON IN THE PARCEL AND THE RECORD SAYS SO. The whole of the evidence is one sentence in an uncredited editorial addendum at the foot of a chicagology page, which this project already grades as the weakest text in its own source set. A Thomas Church appears in Andreas's city rosters as an alderman in 1845, ten years past the scene date, which corroborates a man of that name in Chicago and dates nothing here.",
+   "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0508",
+    "outcome": "corroborated",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "Independent of the post office in books, 1840 census, civic rolls and more.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
+    "source_ids": [
+     "chicagology_prefire275",
+     "andreas_1884_v1",
+     "fergus_chicago_directory_1839",
+     "fergus_chicago_directory_1843"
+    ],
+    "summary": "Independently corroborated; confirmed, not moved."
+   }
   }
  ],
  "touches_removal": false,
  "review_required": false,
  "research_note": "A HOUSEHOLD WRITTEN ALMOST ENTIRELY TO KEEP A BUILDING FROM BEING ANONYMOUS, and graded so that a reader can see it. Every field but the name is derived or conjectural. It is kept because an empty building on Lake Street tells a visitor less than a named man with three warnings attached.",
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. church_thomas, Fergus's Chicago directory of 1839 — f1839_e0275 (a single entry); church_thomas, Fergus's Chicago directory of 1843 — f1843_e0611 (a single entry); church_thomas, Norris's Chicago directory of 1844 — n1844_e0340 (a single entry).",
   "sources": [
    "fergus_chicago_directory_1839",
    "fergus_chicago_directory_1843",
@@ -81,7 +97,7 @@
    {
     "person_id": "church_thomas",
     "address_later": {
-     "value": "hi Lake st",
+     "value": "Lake st",
      "confidence": "attested",
      "describes_date": 1839,
      "sources": [

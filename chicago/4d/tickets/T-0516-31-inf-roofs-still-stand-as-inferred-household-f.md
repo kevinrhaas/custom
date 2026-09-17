@@ -1,7 +1,7 @@
 ---
 id: T-0516
 title: 31 inf_ roofs still stand as inferred_household for 101 households that no longer exist, and about 140 records name them in prose
-state: open
+state: done
 epic: TOWN
 requested_by: owner
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-02
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-04
+pr: 843
+claimed_by: run 9/4/2026, 10:27:42 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T04:26:18.353Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33941752969
 ---
 
 **The owner's ask, 2026-09-03, verbatim:** "later we will add reconstructed people, but i would like to

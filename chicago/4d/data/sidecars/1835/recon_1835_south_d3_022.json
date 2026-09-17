@@ -136,27 +136,10 @@
         "owner_chicago_1835_reconstruction_spec_2026"
       ],
       "note": "INVENTED, NOT DERIVED. A typology value from the reconstruction spec, not a reading of evidence about this particular building — there is no particular building. The spec is cited because the invention is bounded by it. Assigned from the D3 production family to satisfy the aggregate South Division mix; no occupant or individual use is known."
-    },
-    "occupants": {
-      "value": "An inferred household; no name is claimed",
-      "confidence": "reconstructed",
-      "sources": [
-        "andreas_1884_v1",
-        "owner_chicago_1835_reconstruction_spec_2026"
-      ],
-      "note": "ADOPTED BY THE INFERRED-HOUSEHOLD PROGRAMME (docs/ROADMAP.md K1, phase two). This anonymous roof is the dwelling of an inferred joiner's household (1 of 2 this layer infers): hh_inf_joiner_south_01 in data/residents/households/. THE ROOF'S OWN EXISTENCE, POSITION AND FOOTPRINT REMAIN CONJECTURAL and are unchanged by the adoption; what the adoption adds is an argued occupant instead of an anonymous count-unit. The occupant is hypothesised from the town's demonstrable needs - the 1835 census of 3,265 people in 398 dwellings against the trades Andreas's 1833 roster names - and is not a person: no name is claimed and no figure is drawn."
     }
   },
   "residents": [],
   "citations": [
-    {
-      "source_id": "andreas_1884_v1",
-      "citation": "Andreas, A. T. History of Chicago: From the Earliest Period to the Present Time. Vol. 1. Chicago: A. T. Andreas, 1884.",
-      "url": "https://archive.org/details/historyofchicago01andr",
-      "archived_url": "",
-      "tier": 3,
-      "tier_label": "compiled secondary (Andreas)"
-    },
     {
       "source_id": "owner_chicago_1835_reconstruction_spec_2026",
       "citation": "Chicago · July 1835: Building Inventory and Architectural Reconstruction Specification. Prepared for Kevin Haas, August 2026.",

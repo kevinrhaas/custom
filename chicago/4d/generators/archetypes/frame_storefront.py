@@ -49,10 +49,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common import materials  # noqa: E402
 from common.mesh import MeshBuilder, simple_material  # noqa: E402
 from archetypes.frame_storefront_params import (  # noqa: E402
-    CORNER_BOARD_M, POST_FACE_M, POST_SPACING_M, SHEATHING_M, SHOP_BAY_W_M,
-    SHOP_DOOR_W_M, SHOP_FASCIA_M, SHOP_MULLION_M, SHOP_PILASTER_M, SHOP_SILL_Z_M,
-    SIDING_M, STUD_DEPTH_M, STUD_FACE_M, STUD_SPACING_M, FrameStorefrontParams,
-    shopfront_width_m,
+    CORNER_BOARD_M, POST_FACE_M, POST_SPACING_M, SHEATHING_M, SHOP_FASCIA_M,
+    SHOP_PILASTER_M, SHOP_SILL_Z_M, SIDING_M, STOREY_WIN_H_M, STOREY_WIN_W_M,
+    STUD_DEPTH_M, STUD_FACE_M, STUD_SPACING_M, FrameStorefrontParams, ell_extent,
+    front_window_rects, main_extent, plain_door_rect, shopfront_extent,
+    shopfront_panels, snap, storey_sill_z,
 )
 
 # Materials are indices into the list passed to to_object(), in this order.
@@ -129,14 +130,14 @@ def build(params: FrameStorefrontParams, name: str):
     c_frame = p.conf("construction", "reconstructed")
     c_fen = p.conf("fenestration", "reconstructed")
 
-    mx0, my0, mx1, my1 = _main_extent(p)
+    mx0, my0, mx1, my1 = main_extent(p)
     wall_z = p.wall_height_m
 
     # The main block, minus the bottom (never seen) and minus the facade, which is
     # built plane by plane around the shopfront below.
     b.add_box(mx0, my0, 0.0, mx1, my1, wall_z, c_mass, M_WALL, skip=("bottom", "back"))
 
-    shop = _shopfront_extent(p, mx0, mx1) if p.shopfront else None
+    shop = shopfront_extent(p, mx0, mx1) if p.shopfront else None
     _front_wall(b, p, mx0, mx1, my1, wall_z, shop, c_mass)
     _skin(b, p, mx0, my0, mx1, my1, wall_z, c_clad, front_gap=shop)
 
@@ -221,31 +222,6 @@ def _trim_rgba(wall):
 
 # ---------------------------------------------------------------- plan geometry
 
-def _main_extent(p: FrameStorefrontParams) -> tuple[float, float, float, float]:
-    """The store block's rectangle inside the footprint bbox.
-
-    The ell is carved OUT of the footprint rather than bolted onto it, so the whole
-    building stays inside the polygon the record attests — log_dwelling's rule, and
-    the one that keeps GROUND_CONTACT 'perimeter' true of the mesh.
-    """
-    w, d = p.width_m, p.depth_m
-    if not p.ell:
-        return 0.0, 0.0, w, d
-    if p.ell_side == "end":
-        return 0.0, 0.0, w - p.ell_width_m, d
-    return 0.0, p.ell_depth_m, w, d
-
-
-def _ell_extent(p: FrameStorefrontParams) -> tuple[float, float, float, float]:
-    """The ell's rectangle. A rear ell sits against the -x end of the back wall,
-    leaving the yard on the loading side; an end ell runs to the +x edge and takes
-    the whole depth."""
-    w, d = p.width_m, p.depth_m
-    if p.ell_side == "end":
-        return w - p.ell_width_m, 0.0, w, d
-    return 0.0, 0.0, p.ell_width_m, p.ell_depth_m
-
-
 def _loading_sign(p: FrameStorefrontParams) -> float:
     """Which end of the block takes the goods door: +1 for the +x gable.
 
@@ -263,33 +239,8 @@ def _ridge_along_x(p: FrameStorefrontParams) -> bool:
     return not p.gable_front
 
 
-def _snap(x: float, origin: float, module: float) -> float:
-    """The nearest framing line at or near `x`, measured from `origin`.
-
-    This is where the 16 in module stops being a note in a docstring: every opening
-    on the elevation is set out on it, because in a framed wall an opening lands
-    between studs or it does not land at all.
-    """
-    return origin + round((x - origin) / module) * module
-
-
-def _module(p: FrameStorefrontParams) -> float:
-    return STUD_SPACING_M if p.construction == "balloon_frame" else POST_SPACING_M
-
-
 def _wall_thickness(p: FrameStorefrontParams) -> float:
     return BALLOON_WALL_M if p.construction == "balloon_frame" else BRACED_WALL_M
-
-
-def _shopfront_extent(p: FrameStorefrontParams, mx0: float,
-                      mx1: float) -> tuple[float, float, float]:
-    """(x0, x1, head_z) for the shopfront, centred on the frontage and snapped to
-    the framing module."""
-    sf_w = shopfront_width_m(p.shopfront_bays)
-    centre = (mx0 + mx1) / 2.0
-    x0 = _snap(centre - sf_w / 2.0, mx0, STUD_SPACING_M)
-    x0 = min(max(x0, mx0 + 0.30), mx1 - sf_w - 0.30)
-    return x0, x0 + sf_w, p.shopfront_head_z
 
 
 # ------------------------------------------------------------------ primitives
@@ -535,41 +486,36 @@ def _shopfront(b: MeshBuilder, p: FrameStorefrontParams,
     """
     sx0, sx1, head = shop
     reveal = _wall_thickness(p)
-    inner0, inner1 = sx0 + SHOP_PILASTER_M, sx1 - SHOP_PILASTER_M
 
     # pilaster boards at each end, standing proud of the siding
     for a, c in ((sx0, sx0 + SHOP_PILASTER_M), (sx1 - SHOP_PILASTER_M, sx1)):
         _board(b, a, y, c, y + 0.034, 0.0, head, conf, M_TRIM,
                skip=("bottom", "back"))
 
-    bays = p.shopfront_bays
-    n_mull = bays                      # one mullion between each pair of panels
-    fit = (inner1 - inner0 - SHOP_DOOR_W_M - n_mull * SHOP_MULLION_M) / bays
-    bay_w = min(fit, SHOP_BAY_W_M * 1.15)
-    run = SHOP_DOOR_W_M + bays * bay_w + n_mull * SHOP_MULLION_M
-    cur = inner0 + (inner1 - inner0 - run) / 2.0
-
-    # Which panel is the door. 'centre' cannot be centred against an even number of
-    # panels, so it takes the middle-most one and the record can say left or right
-    # when a source is more specific than that.
-    door_at = {"left": 0, "right": bays, "centre": (bays + 1) // 2}[p.shopfront_door_side]
+    # THE RUN OF PANELS IS THE PARAMS MODULE'S SET-OUT (T-0520): `shopfront_panels`
+    # states the door and the show windows left to right, and the signage layer reads
+    # the same list, so a board can no longer be hung over a bay this builder put
+    # somewhere else. Which panel is the door is settled there too — 'centre' cannot
+    # be centred against an even number of panels, so it takes the middle-most one
+    # and the record can say left or right when a source is more specific than that.
+    # The mullions are what is BETWEEN two panels and so are stated by neither: they
+    # are the gap from one panel's end to the next one's start.
+    panels = shopfront_panels(p, shop)
 
     # everything left of the first panel and right of the last is pilaster, and the
     # strip under the pilasters is the same board carried to the ground
-    _panel(b, "y", y, sx0, cur, 0.0, head, 1, conf, M_TRIM)
-    for i in range(bays + 1):
-        if i == door_at:
-            _shop_door(b, y, cur, cur + SHOP_DOOR_W_M, head, reveal, conf)
-            cur += SHOP_DOOR_W_M
+    _panel(b, "y", y, sx0, panels[0][1], 0.0, head, 1, conf, M_TRIM)
+    for i, (kind, u0, u1, _z0, _z1) in enumerate(panels):
+        if kind == "shop_door":
+            _shop_door(b, y, u0, u1, head, reveal, conf)
         else:
-            _show_window(b, y, cur, cur + bay_w, head, reveal, conf)
-            cur += bay_w
-        if i < bays:
-            _panel(b, "y", y, cur, cur + SHOP_MULLION_M, 0.0, head, 1, conf, M_TRIM)
-            _board(b, cur, y, cur + SHOP_MULLION_M, y + 0.022, SHOP_SILL_Z_M - 0.05,
+            _show_window(b, y, u0, u1, head, reveal, conf)
+        if i + 1 < len(panels):
+            m0, m1 = u1, panels[i + 1][1]
+            _panel(b, "y", y, m0, m1, 0.0, head, 1, conf, M_TRIM)
+            _board(b, m0, y, m1, y + 0.022, SHOP_SILL_Z_M - 0.05,
                    head, conf, M_TRIM, skip=("bottom", "back"))
-            cur += SHOP_MULLION_M
-    _panel(b, "y", y, cur, sx1, 0.0, head, 1, conf, M_TRIM)
+    _panel(b, "y", y, panels[-1][2], sx1, 0.0, head, 1, conf, M_TRIM)
 
     # the fascia over the whole opening — the board a sign goes on, and the thing
     # that ties the run of panels into one shopfront
@@ -662,21 +608,12 @@ def _fenestration(b: MeshBuilder, p: FrameStorefrontParams, x0: float, y0: float
     The centres are then snapped to the framing module, because in a framed wall a
     window lands between studs or it does not land.
     """
-    story_h = p.story_height_m
-    win_w, win_h = 0.85, 1.30
-    front_w = x1 - x0
-    bays = max(2, min(7, int(round(front_w / 2.45))))
-    module = _module(p)
+    win_w, win_h = STOREY_WIN_W_M, STOREY_WIN_H_M
 
-    for story in range(p.stories):
-        z0 = story * story_h + story_h * 0.30
-        if story == 0 and shop is not None:
-            continue                       # the ground storey is the shop
-        for i in range(bays):
-            cx = _snap(x0 + front_w * (i + 0.5) / bays, x0, module)
-            cx = min(max(cx, x0 + win_w), x1 - win_w)
-            _opening(b, "y", y1, cx - win_w / 2, cx + win_w / 2, z0, z0 + win_h,
-                     1, conf)
+    # THE FACADE'S WINDOWS ARE THE PARAMS MODULE'S SET-OUT (T-0520), bay count,
+    # snapping and clamp together, and the signage layer reads the same list.
+    for u0, u1, z0, z1 in front_window_rects(p, x0, x1, shop):
+        _opening(b, "y", y1, u0, u1, z0, z1, 1, conf)
 
     # The flanks: one window per storey per end, and one on the back. A store's
     # side walls were party walls in waiting on a platted street, so they are
@@ -684,12 +621,12 @@ def _fenestration(b: MeshBuilder, p: FrameStorefrontParams, x0: float, y0: float
     # behind the ell, the ground storey of the loading gable where the goods door
     # is, and the free span of the back wall when the goods door is there instead.
     buried_x1 = p.ell and p.ell_side == "end"
-    rear_x0 = _ell_extent(p)[2] if (p.ell and p.ell_side == "rear") else x0
+    rear_x0 = ell_extent(p)[2] if (p.ell and p.ell_side == "rear") else x0
     goods_end = _loading_sign(p) if (p.goods_door and p.goods_door_side == "end") else 0.0
     yc = (y0 + y1) / 2.0
     xc = (rear_x0 + x1) / 2.0
     for story in range(p.stories):
-        z0 = story * story_h + story_h * 0.30
+        z0 = storey_sill_z(p, story)
         for xx, sgn in ((x0, -1), (x1, 1)):
             if sgn > 0 and buried_x1:
                 continue
@@ -711,8 +648,8 @@ def _plain_door(b: MeshBuilder, p: FrameStorefrontParams, x0: float, x1: float,
     that dealt in groceries and Indian goods, with nothing said about a street
     face, and a shop window invented for it would be evidence manufactured out of
     a trade."""
-    cx = (x0 + x1) / 2.0
-    _opening(b, "y", y, cx - 0.52, cx + 0.52, 0.02, 2.06, 1, conf)
+    u0, u1, z0, z1 = plain_door_rect(x0, x1)
+    _opening(b, "y", y, u0, u1, z0, z1, 1, conf)
 
 
 def _goods_door(b: MeshBuilder, p: FrameStorefrontParams, x0: float, y0: float,
@@ -729,7 +666,7 @@ def _goods_door(b: MeshBuilder, p: FrameStorefrontParams, x0: float, y0: float,
     w, h = 1.85, 2.30
     if p.goods_door_side == "rear":
         # the free stretch of the back wall — a rear ell takes the -x end of it
-        gx0 = _ell_extent(p)[2] if (p.ell and p.ell_side == "rear") else x0
+        gx0 = ell_extent(p)[2] if (p.ell and p.ell_side == "rear") else x0
         cx = (gx0 + x1) / 2.0
         _opening(b, "y", y0, cx - w / 2, cx + w / 2, 0.02, h, -1, conf)
         _board(b, cx - 0.035, y0 - 0.055, cx + 0.035, y0 - 0.030, 0.02, h,
@@ -820,7 +757,7 @@ def _ell(b: MeshBuilder, p: FrameStorefrontParams, conf: float,
     the same argument log_dwelling's L24 makes for an end addition. Its confidence
     is its own and does not inherit the store block's.
     """
-    ex0, ey0, ex1, ey1 = _ell_extent(p)
+    ex0, ey0, ex1, ey1 = ell_extent(p)
     ez = p.ell_wall_height_m
 
     if p.ell_side == "end":
@@ -985,7 +922,7 @@ def _exposed_framing(b: MeshBuilder, p: FrameStorefrontParams, x0: float, y0: fl
     # members with a 4 in depth, not stripes painted on a wall
     face = gp + sgn * (0.012 + STUD_DEPTH_M)
     _stick(b, axis, face, sgn, ge0, ge1 - ge0, wall_z - 0.10, wall_z + 0.05, conf)
-    u = _snap(ge0 + module, ge0, module)
+    u = snap(ge0 + module, ge0, module)
     while u < ge1 - 0.10:
         top = rake_z(u)
         if top - wall_z > 0.14:

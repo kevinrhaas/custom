@@ -168,6 +168,14 @@ function surfaceAt(idx, xyz, indices, e, n) {
  * height. Conforming is what the browser does to whatever it loads, so every
  * mesh is measured after it — otherwise this would measure the 306 mm lattice
  * R-BUG3c already repaired instead of the artefact left behind.
+ *
+ * The one thing it does NOT copy is the renderer's termination taper (T-0939),
+ * which bends the apron down over a landform the box has cut. That is deliberate
+ * and not drift: every measurement this file reports is restricted to the box —
+ * `measureMesh()` skips a vertex the field cannot answer for and `displacement()`
+ * skips one outside it — and the taper applies only outside it, where the factor
+ * is 0 at the seam. Copying it here would change no reported number and would put
+ * a second reading of the apron's rule in a third file.
  */
 function conform(xyz, hf, box) {
   let worst = 0;

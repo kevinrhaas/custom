@@ -76,7 +76,10 @@ Three more are new, and each was found by reading this pass's own output:
     business records are the derived test: a name that is a business and is NOT listed
     among that business's own proprietors is the business, not a man. A tradesman
     whose shop the papers advertise under his own name IS among the proprietors, so
-    this refuses the hotel without refusing the hatter.
+    this refuses the hotel without refusing the hatter. It reads the record's
+    `partners` and not its `proprietors` (T-0398): a notice signed only by the firm
+    puts the FIRM in the proprietor list, and 28 houses would otherwise vouch for
+    themselves against a test written to catch precisely that.
   · `an article and a common noun, not a person` — 'the Baptist meeting house'. A
     grammatical fact about the printed name, not a list.
   · `the name is not printed clear of the transcription's uncertainty marks` — 180
@@ -133,11 +136,16 @@ GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
 EXTRACTED = DATA / "research" / "newspapers" / "extracted"
 
 sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     BARE_TOWN, FEMALE_TITLES, FIRM, MALE_TITLES, PAPERS, SCENE_DATE, UNCERTAIN,
     cited, display, dumps, household_id, in_town_places, issue_of, load,
     minted_by, paper_for, plain_fragment, slug, surname, titles_in,
     town_family_names, words,
+)
+from identity_master_guard import (  # noqa: E402  (T-0843)
+    IdentityGuard, blind_person_ids, refusal as guard_refusal,
 )
 
 PREFIX = "hh_placed_"
@@ -239,14 +247,24 @@ def claim_text(extracted=EXTRACTED) -> dict:
 # ---------------------------------------------------------------------------
 
 def business_proprietors(gazetteer: dict) -> dict:
-    """Every business name the corpus prints → the proprietors it prints under it."""
+    """Every business name the corpus prints → the PEOPLE it prints under it.
+
+    `partners` and not `proprietors` (T-0398). The test below asks whether a printed
+    name is a house or a man, and answers it by looking for the name among the house's
+    own proprietors — a hatter who advertises under his own name is there, a hotel is
+    not. But a notice signed only by the firm puts the FIRM in that list, so 28 of the
+    199 houses vouch for themselves: `business_russell_clift` carries 'Russell & Clift'
+    among its proprietors because the Democrat of 1835-08-19 printed nothing else, and
+    the house would then pass a test written to catch exactly that. The gazetteer already
+    derives which entries are people, so this reads that instead.
+    """
     out: dict = {}
     for biz in gazetteer["businesses"]:
         key = (biz.get("name") or "").strip().lower()
         if not key:
             continue
         out.setdefault(key, set()).update(
-            (p or "").strip().lower() for p in (biz.get("proprietors") or []))
+            (p or "").strip().lower() for p in (biz.get("partners") or []))
     return out
 
 
@@ -303,6 +321,14 @@ def mint(docs: dict, index: dict):
     # this pass SEES `hh_doc_` and gives way to it, and does not see its own output
     # or the letter-list pass below it, which gives way to this one in turn.
     known = town_family_names(docs, index, skip=_ORDER_SKIP)
+    # T-0843. The surname test above is blind to the households `_ORDER_SKIP` names —
+    # this pass's own, the letter-list pass's and the civic pass's. The identity master
+    # resolves on surname AND forename signature, so it can see into that blind spot
+    # without the bluntness that made the proxy partial in the first place. Consulted
+    # with the SAME precedence, so nothing here reads back this pass's own answer.
+    guard = IdentityGuard.load()
+    blind = blind_person_ids(docs, lambda path, doc: any(
+        minted_by(path, doc, pass_name, prefix) for pass_name, prefix in _ORDER_SKIP))
     in_town = in_town_places()
 
     candidates = [p for p in register["persons"]
@@ -361,6 +387,8 @@ def mint(docs: dict, index: dict):
                       "one issue, and fewer than two committed residents beside them")
         elif fam in known:
             reason = f"the town already names a {fam.title()}"
+        elif (hit := guard.holder(name, blind_to=blind)) is not None:
+            reason = guard_refusal(hit)
         elif fam in taken:
             reason = "surname already minted"
         if reason:
@@ -529,49 +557,28 @@ def record(cand: dict, gaz: dict, inside, addressed, issues, neighbours,
     return doc
 
 
-# T-0634. What the civic spend writes onto a person, named here so this mint can carry it
-# over without importing the pass: the source id it cites and the first words of the
-# paragraph it appends. Both are checked against the pass's own constants by
-# `tools/spend_civic_voter_lists.py --self-test`'s sibling assertion in check.sh, and a
-# drift in either shows up immediately as this mint deleting a citation.
+# T-0634. The civic writer's self-test pins these literals here, while T-1137's shared
+# contract discovers the writer-owned marker without importing the pass as executable
+# code. A drift in either still shows up in the writer's own assertion.
 CIVIC_ROLLS_SOURCE = "chicago_voter_lists_1833_1835_irad"
 CIVIC_ROLLS_MARKER = "THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE."
 
-# T-0635, consolidation pass 2, and the same arrangement one pass later. The list is what
-# grew: a second spend now writes onto these records, so the carry is a loop over the
-# (source id, marker) pairs rather than one hard-wired pair, and adding a third pass means
-# adding a row here and an assertion in that pass's --self-test.
+# T-0635, consolidation pass 2.  This writer's self-test pins the source and marker
+# literals here; the shared carry contract discovers that marker from the writer itself.
 FERGUS_1839_SOURCE = "fergus_chicago_directory_1839"
 FERGUS_1839_MARKER = "FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT."
 
-CARRIED_SPENDS = ((CIVIC_ROLLS_SOURCE, CIVIC_ROLLS_MARKER),
-                  (FERGUS_1839_SOURCE, FERGUS_1839_MARKER))
+# T-0697. The land-sales crosswalk stopped counting namesakes and started putting the
+# reading to every person of the surname.  The writer's self-test holds both constants
+# against this file while the shared contract preserves the resulting finding.
+LAND_SALES_SOURCE = "isa_public_domain_land_tract_sales"
+LAND_SALES_MARKER = "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE."
 
-
-def carry_civic_rolls(doc: dict, existing: dict) -> None:
-    """Re-attach every consolidation pass's citation to a record this mint has rebuilt."""
-    was = {p.get("id"): p for p in existing.get("persons") or []}
-    for person in doc.get("persons") or []:
-        before = was.get(person.get("id"))
-        if not before:
-            continue
-        for source, marker in CARRIED_SPENDS:
-            if source in (before.get("sources") or []):
-                if source not in (person.get("sources") or []):
-                    person["sources"] = (person.get("sources") or []) + [source]
-            note = before.get("note") or ""
-            if marker in note and marker not in (person.get("note") or ""):
-                tail = note[note.index(marker):].strip()
-                person["note"] = ((person.get("note") or "").strip() + " " + tail).strip()
-
-
-def carry_research(doc: dict, existing: dict) -> None:
-    """Keep a `resident_research` block another pass wrote onto one of these people."""
-    by_id = {p.get("id"): p for p in (existing.get("persons") or [])}
-    for person in doc.get("persons") or []:
-        prior = by_id.get(person.get("id")) or {}
-        if prior.get("resident_research") and "resident_research" not in person:
-            person["resident_research"] = prior["resident_research"]
+def carry_over(doc: dict, existing: dict) -> dict:
+    """Keep every sibling pass's finding through the shared marker contract (T-1137)."""
+    # ``sex`` is the one optional person field this mint derives from a printed title.
+    # Its absence is therefore a new answer, not a foreign field to restore.
+    return carry_resident_mint(doc, existing, owned_person_keys=("sex",))
 
 
 def build(preload: dict | None = None):
@@ -585,72 +592,24 @@ def build(preload: dict | None = None):
     accepted, refusals = mint(docs, index)
 
     files = {}
-    rows = []
     seen: set = set()
     for cand, gaz, inside, addressed, issues, neighbours in accepted:
         doc = record(cand, gaz, inside, addressed, issues, neighbours, docs, seen)
-        # THE LATER-EVIDENCE BLOCK IS NOT THIS PASS'S AND IS CARRIED OVER (T-0632).
-        # `tools/spend_directories.py` writes a `directories` key onto the households a
-        # Chicago directory of 1839, 1843 or 1844 meets, holding what those volumes
-        # print beside the person and citing the source. It states nothing about 1835
-        # and this mint derives nothing about it, so re-deriving the record must not
-        # silently delete it — which is what this byte-for-byte gate would otherwise
-        # turn into: the spend pass writes the block, this pass rebuilds without it,
-        # and whichever ran last wins.
         existing = docs.get(HOUSEHOLDS / f"{doc['id']}.json") or {}
-        if existing.get("directories"):
-            doc["directories"] = existing["directories"]
-        # AND THE TOWN'S OWN ROLLS, CARRIED THE SAME WAY AND FOR THE SAME REASON
-        # (T-0634). `tools/spend_civic_voter_lists.py` writes the 1833-1835 poll and tax
-        # lists onto the people its crosswalk matched, as a citation and a paragraph on
-        # the PERSON rather than as a block on the household. This mint derives a person's
-        # sources and note from the newspaper register alone, so rebuilding a record the
-        # rolls have reached would delete the citation and leave two byte-for-byte gates
-        # fighting over the same file — whichever ran last winning, which is not a gate.
-        carry_civic_rolls(doc, existing)
-        # AND THE RESEARCH BLOCK, FOR THE THIRD TIME AND THE SAME REASON (T-0515).
-        # `tools/synthesize_resident_research.py` writes an adjudicated research
-        # outcome onto a person, and the regrade mode of `mint_civic_residents.py`
-        # writes into the same block the rule and date of a grade the ladder moved —
-        # or, on this pass's cards, the REFUSAL that kept a grade where it was. Both
-        # are findings about the person and neither is derived here, so rebuilding
-        # the record must not delete them. Mark Nobles is the one that found this:
-        # his card is the single downgrade the ladder proposes on a residency-tested
-        # person, refused in writing because the card rests on a dated Democrat issue
-        # the consolidation never read, and the refusal is the whole point of it.
-        carry_research(doc, existing)
+        carry_over(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
+    # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
+    # keep every other row verbatim, so a household no pass owned could be regraded
+    # elsewhere and go on carrying a stale row for ever. `final` is the whole layer
+    # as this pass leaves it, and the derivation reads all of it.
+    final = {path: doc for path, doc in docs.items() if path not in mine_paths}
+    final.update({path: json.loads(text) for path, text in files.items()
+                  if path != INDEX})
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 
@@ -719,12 +678,17 @@ def self_test() -> int:
 
     # the business/person confusion, from the two records that caused it.
     props = business_proprietors({"businesses": [
-        {"name": "Eagle Hotel", "proprietors": ["John Murphy"]},
-        {"name": "W. G. Blanchard", "proprietors": ["W. G. Blanchard"]}]})
+        {"name": "Eagle Hotel", "partners": ["John Murphy"]},
+        {"name": "W. G. Blanchard", "partners": ["W. G. Blanchard"]},
+        # T-0398: a house that signed its own notice does not vouch for itself.
+        {"name": "Russell & Clift", "proprietors": ["Aaron Russell", "Russell & Clift"],
+         "partners": ["Aaron Russell"], "firm_styles": ["Russell & Clift"]}]})
     want("a hotel is not among its own proprietors",
          "eagle hotel" in props and "eagle hotel" not in props["eagle hotel"], True)
     want("a shop advertised under its keeper's name is",
          "w. g. blanchard" in props["w. g. blanchard"], True)
+    want("a partnership does not stand among its own partners",
+         "russell & clift" in props["russell & clift"], False)
 
     # the article rule, and the two duplicate guards' shape.
     want("a common noun behind an article is refused",

@@ -1,7 +1,7 @@
 ---
 id: T-0559
 title: The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column
-state: open
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-03
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-05
+pr: 850
+claimed_by: run 9/4/2026, 11:58:16 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-05T19:51:52.842Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33945838683
 ---
 
 The 1840 census printed pages 229 and 231: two independent cell readings disagree on 45 of 61 lines — reconcile them against the sheets, column by column.

@@ -145,8 +145,53 @@ NOT_1835 = {
 }
 
 # A word that introduces a residence rather than a place of business. `res` and
-# `bds` are the directories' own abbreviations for residence and boards-at.
-RESIDENCE_PREFIX = re.compile(r"^\s*(res\.?|bds\.?|boards)\b", re.I)
+# `bds` are the Fergus volumes' own abbreviations for residence and boards-at.
+#
+# NORRIS SETS THE SAME THING IN HIS OWN SHORTHAND, and until T-0987 stretch 6 this
+# pattern had never been asked about it: that volume's parse was refused entire, so no
+# `h` or `house` address ever reached clause 2 to be tested. The moment the refusal
+# became per-entry, `house N Water st (See card` — Silvester Marsh's HOME, printed
+# `house` in Norris's preface's own abbreviation for it — was placed as a business face
+# on North Water Street by the very clause written to refuse it. So the four words the
+# four volumes actually print are all here: `res`/`bds` (Fergus), `residence`/`house`
+# spelled out (Fergus 1843), and `h`/`r` (Norris, declared in his preface). The single
+# letters require a following space, so no street name beginning with one can match.
+#
+# `hou\S{0,2}e` is the archive.org reading of `house` with a mis-set character inside
+# it — `hou.«e` is in the corpus — and is the same word.
+RESIDENCE_PREFIX = re.compile(
+    r"^\s*(residence|res\.?|boards|bds\.?|house|hou\S{0,2}e|[hr](?=\s))\b", re.I)
+
+# THE FIELD CAN CARRY BOTH CLAIMS (T-0987 stretch 7). The residence word usually
+# opens the field; it does not always. The crosswalks split a printed line on its
+# punctuation, and where the trade's own trailing corner falls into the address the
+# field opens with the SHOP and goes on to the HOME: `cor Clark, res Dearborn, bet
+# Washington and Madison` is Charles Loomis Harmon's shop corner and then his
+# house. Clause 2 asks whether the volume prints an address as a residence, and
+# that word answers it wherever in the field it stands — so the field is CUT at it,
+# and each pass reads its own half. Stretch 6 fixed this fault at the head of the
+# field, where `house N Water st` had been placed as a shop face; this is the same
+# fault one clause in.
+_HOME_CLAUSE = re.compile(
+    r"[,;]\s*((?:residence|res\.?|boards|bds\.?|house|hou\S{0,2}e|[hr](?=\s))\b.*)$",
+    re.I | re.S)
+
+
+def split_home(printed: str):
+    """(the shop half, the home half) of one printed address field.
+
+    Either half may be empty: a field that OPENS with the residence word is all
+    home, and a field with no residence word in it at all is all shop. Nothing is
+    invented and nothing is dropped — the full field stays the quote on the record.
+    """
+    text = str(printed or "")
+    if RESIDENCE_PREFIX.match(text):
+        return "", text.strip()
+    m = _HOME_CLAUSE.search(text)
+    if not m:
+        return text.strip(), ""
+    return text[:m.start()].strip(" .,"), m.group(1).strip()
+
 
 # The qualifiers that set a door against a second street, in two kinds. A
 # CORNER word claims the corner itself; an ANCHOR word ("near Dearborn", "north
@@ -166,7 +211,83 @@ _STREET_WORD = re.compile(
     r"milwaukee\s+ave(?:nue)?|north\s+branch|st\.?\s+clair|la\s*salle|"
     r"lake|randolph|washington|market|franklin|wells|clark[e]?|dearb(?:orn)?|state|"
     r"canal|clinton|kinzie|wolcott|madison|monroe|adams|jackson|illinois|indiana|"
-    r"ohio|superior|erie|pine|cass|rush|jefferson|wabash|michigan)\b", re.I)
+    r"ohio|superior|erie|pine|cass|rush|jefferson|wabash|michigan|"
+    # ...and the volumes' own contractions of those names (T-1050), LAST in the
+    # alternation so a spelled-out name is always tried first: at the start of
+    # `Randolph` the engine reaches `randolph` before it reaches `rand`.
+    r"wash|rand|ran|dear|wol|frank|kin|clin|mich|mad|mon|jack|ind|wab|ad)\b", re.I)
+
+
+# The names whose type word is part of the NAME and must survive the fold.
+# `Michigan street` and `Michigan ave` are two different streets; `Dearborn pl`
+# is a later platting and not Dearborn Street; and the `St` in `St Clair` is
+# Saint, not Street. Every other name in the tables is bare, so the type word is
+# dropped once these are settled. Without this set the strip below reduced
+# `dearborn pl` to `dearborn` and `st clair` to `clair`, which made the two
+# NOT_1835 keys of those names unreachable — a latent refusal no address had yet
+# exercised, found by T-0669 when a residence printed `res 5 Dearborn pl`.
+KEEPS_ITS_TYPE_WORD = ("michigan street", "michigan ave", "dearborn pl", "st clair")
+
+
+# THE VOLUMES' OWN CONTRACTIONS OF A STREET NAME — T-1050. Norris's REMARKS page
+# declares that he uses them and names three: "Abbreviations, which occur only in a
+# very few words, will readily be understood; b stands for between; Rand for Randolph;
+# Mad for Madison; Wash for Washinglon, &c."
+# (`data/research/directories/text/norris_1844_leaf_031.txt` lines 9-11, printed page
+# 21). His `&c.` is the whole difficulty: he sets eleven more the page never lists, and
+# a table that knows only the spelled-out name can see none of them.
+#
+# That is not a cosmetic miss, because of what this table is FOR. It decides whether a
+# printed name is a street the town of 1835 has, and a contraction hides the names it
+# does NOT have exactly as well as the ones it does. Norris prints Rebecca Sherman's
+# house at `h Clark st. b Mad. & Mon`; read as naming Clark alone, that is Clark Street
+# placed on a qualifier the pass never saw — while `h Clark, b Madison and Monroe`, the
+# same address spelled out one line further down the same column, is refused. One
+# address, two spellings, two verdicts, and the one that said MORE was the one the pass
+# could not read.
+#
+# The expansion happens ONCE, in `street_words`, rather than as aliases in STREET_1835
+# and NOT_1835: those two tables carry the argument about the ground, a contraction is
+# a fact about the type, and keeping them apart means each refusal is still written out
+# exactly once.
+#
+# Every expansion is unique on the 1844 street list — no other Chicago street of the
+# period begins Wol, Frank, Kin, Clin, Mon, Jack or Wab — and every occurrence of every
+# one of these tokens, across all 4,235 addresses the four volumes print, is that
+# street. Three are `documented` by the preface above; the rest are `inferred` from
+# that sentence's `&c.` plus the uniqueness of the expansion, which is the reasoning
+# note the confidence model requires.
+PRINTED_ABBREVIATION = {
+    # named by Norris's preface
+    "rand": "randolph",
+    "mad": "madison",
+    "wash": "washington",
+    # his `&c.`, one entry per token the pages actually set
+    "ran": "randolph",
+    "dear": "dearborn",
+    "wol": "wolcott",
+    "frank": "franklin",
+    "kin": "kinzie",
+    "clin": "clinton",
+    "mich": "michigan",
+    "mon": "monroe",
+    "jack": "jackson",
+    "ind": "indiana",
+    "wab": "wabash",
+    "ad": "adams",
+}
+
+# NOT in the table, and left unread on purpose. `h Lake st. b Frank <t Wat` (Norris,
+# the one occurrence in 4,235 addresses) contracts either North Water Street or South
+# Water Street, both of which the 1835 layer carries, and the token cannot decide
+# which. T-0397's rule is that a name the page does not let you read stays unread, so
+# this one is declared here instead of guessed at. Nothing turns on it either way:
+# both candidates are 1835 streets, so the qualifier would be permitted under either
+# reading, and `--self-test` asserts the token stays invisible.
+UNREADABLE_ABBREVIATION = {
+    "wat": "North Water Street or South Water Street — the contraction cannot "
+           "decide which, and the 1835 layer carries both.",
+}
 
 
 def fold(token: str) -> str:
@@ -176,9 +297,7 @@ def fold(token: str) -> str:
     t = re.sub(r"\bstreet\b", "street", t)
     t = re.sub(r"\bplace\b", "pl", t)
     t = re.sub(r"\s+", " ", t).strip()
-    # `michigan street` and `michigan ave` are two streets; every other name in
-    # the table is bare, so the type word is dropped once those two are settled.
-    if t not in ("michigan street", "michigan ave"):
+    if t not in KEEPS_ITS_TYPE_WORD:
         t = re.sub(r"\b(street|st|ave|pl)\b", "", t)
     return re.sub(r"\s+", " ", t).strip()
 
@@ -188,10 +307,25 @@ def street_words(address: str) -> list[str]:
     out, seen = [], set()
     for m in _STREET_WORD.finditer(address):
         raw = m.group(0)
-        # `michigan` alone is ambiguous; look at the word after it.
+        # A CONTRACTION IS READ ONLY WHERE THE PAGE SETS IT AS A WORD OF ITS OWN
+        # (T-1050). The one measured reason: the scanner sets `and` as `;ind` in
+        # `res nenr Clark ;ind N. Water sts. 5th ward`, and a damaged conjunction
+        # glued to a semicolon must not read as Indiana Street. Three other `Ind`
+        # in the corpus all stand free and all are Indiana. No volume sets a street
+        # contraction with punctuation shoved against its front, so requiring
+        # whitespace in front of one costs the table nothing and closes that.
+        abbrev = PRINTED_ABBREVIATION.get(raw.lower().strip(" .,"))
+        if abbrev:
+            if not (m.start() == 0 or address[m.start() - 1].isspace()):
+                continue
+            raw = abbrev
+        # `michigan` alone is ambiguous; look at the word after it. The point and the
+        # comma have to be stepped over, because `Mich. av.` and `Mich Av` are how
+        # Norris sets the avenue and a bare `\s*ave` reads both as the north-side
+        # street — which is the NOT_1835 name being hidden a second way (T-1050).
         tail = address[m.end():m.end() + 12].lower()
         if raw.lower().strip() == "michigan":
-            raw = "michigan ave" if re.match(r"\s*ave", tail) else "michigan street"
+            raw = "michigan ave" if re.match(r"[\s.,]*av", tail) else "michigan street"
         elif re.match(r"^michigan\s+st", raw.lower()):
             raw = "michigan street"
         elif re.match(r"^michigan\s+ave", raw.lower()):
@@ -314,13 +448,14 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
     # Clause 2, second half — a residence address is a different claim.
     if RESIDENCE_PREFIX.match(printed):
         row.update(outcome="refused", clause="2",
-                   reason="The directory prints this as a RESIDENCE — its own `res` or "
-                          "`bds` — and this pass positions businesses. Reading a home "
+                   reason="The directory prints this as a RESIDENCE — its own `res`, "
+                          "`bds`, `house` or Norris's `h` — and this pass positions "
+                          "businesses. Reading a home "
                           "address as a shop door would be the pass answering a question "
                           "nobody asked it. The residence half is T-0669.")
         return row
 
-    names = street_words(printed)
+    names = street_words(split_home(printed)[0])
     if not names:
         row.update(outcome="refused", clause="3",
                    reason="The address names no street at all — it names a house or a "
@@ -404,6 +539,52 @@ def adjudicate_one(streets, hh, persons, person, claim) -> dict:
                           f"the owner's ruling of 2026-08-29 says a street name "
                           f"constrains — and no roof is dealt.")
     return row
+
+
+# T-1122 — THE HOUSEHOLDER'S SEX IS NOT A READING, AND BOTH PASSES USED TO ASSERT IT.
+# These two passes write the prose a reader sees on a household card, and every one of
+# the residence pass's templates said "this man": 28 of its 57 rulings carried the
+# phrase in their `reason` and the notes carried it again. One of the 57 is Rebecca
+# Sherman, so the record as published told a reader that Norris printed where *this man*
+# lived. Nothing about the reading was wrong — the prose was asserting a fact about a
+# person that the source does not give and that happens to be false, which is the one
+# word on that card a reader did not ask for.
+#
+# So the templates say "this person", "the householder", or the name; and this is what
+# holds them there. It is an assertion over the strings the passes actually GENERATE —
+# every static reason template, plus the `reason` and the note written for every row
+# adjudicated — and not a one-time sweep of the source, because the fault is a template
+# being reached for and not a line of code being present. Whole words, so `this house`
+# is not read as `his house`; and the printed address and the person's own name are not
+# scanned, because those are what the volume set and not what this pass says.
+SEXED_OF_THE_SUBJECT = (
+    "this man", "this woman", "this gentleman", "this lady",
+    "his house", "her house", "his home", "her home", "his lodging", "her lodging",
+    "he lived", "she lived", "he boarded", "she boarded",
+    "himself", "herself", "his host", "her host",
+)
+
+_SEXED = re.compile(r"\b(?:" + "|".join(re.escape(w) for w in SEXED_OF_THE_SUBJECT)
+                    + r")\b", re.I)
+
+
+def generated_prose(rows, note_of, tables=()) -> list[tuple[str, str]]:
+    """Every string a pass generates: its static templates, and what it wrote per row."""
+    pairs = list(tables)
+    for row in rows:
+        pairs.append((f"{row['person_id']} reason", row.get("reason") or ""))
+        pairs.append((f"{row['person_id']} note", note_of(row) or ""))
+    return pairs
+
+
+def sexed_prose(label: str, pairs) -> list[str]:
+    """T-1122's assertion: no generated string assumes the householder's sex."""
+    out = []
+    for where, text in pairs:
+        for hit in dict.fromkeys(m.group(0) for m in _SEXED.finditer(text or "")):
+            out.append(f"{label}: {where} says {hit!r} of a person the source does "
+                       f"not sex")
+    return out
 
 
 def note_for(row: dict) -> str:
@@ -619,6 +800,22 @@ def self_test() -> int:
     # Clause 2: a residence is not a shop.
     want("res is a residence", one("res 15 Lake", "attorney", None), "refused", "2")
     want("bds is a residence", one("bds Tremont House", "merchant", None), "refused", "2")
+    # ...and Norris's own shorthand for the same word, which until T-0987 stretch 6 this
+    # clause had never been shown, because that volume's parse never reached it. The
+    # instance: `house N Water st` was PLACED as a business face on the one street in
+    # the town no other rule can seat a shop on.
+    want("house is a residence", one("house N Water st", "merchant", None), "refused", "2")
+    want("Norris's h is a residence", one("h Clark st. b Mad. & Mon", "attorney", None),
+         "refused", "2")
+    want("Norris's r is a residence", one("r Ind, b Cass & Rush", "grocer", None),
+         "refused", "2")
+    want("a mis-set house is still a house",
+         one("hou.\u00abe Randolph st. 1st ward", "carpenter", None), "refused", "2")
+    # And the letters are not street names: a street beginning with one still places.
+    want("Randolph is not Norris's r", one("Randolph st", "grocer", None),
+         "placed", "3 and 4", "face")
+    want("Lake is not Norris's h", one("Lake st", "grocer", None),
+         "placed", "3 and 4", "face")
     # Clause 3: the street has to be 1835's, under that name, in that place.
     want("Michigan ave is not Michigan Street",
          one("Michigan ave", "brickmaker", None), "refused", "3")
@@ -646,6 +843,64 @@ def self_test() -> int:
     want("an 1844 landmark leaves a face",
          one("office Clark street, opposite City Saloon", "hardware_merchant", None,
              year=1844), "placed", "3 and 4", "face")
+
+    # T-1050 — THE VOLUMES' OWN CONTRACTIONS, one case per entry in the table, each
+    # quoted off a page. The table is shared with the residence pass, so this is where
+    # it is held: a contraction that stops resolving silently un-refuses every address
+    # whose qualifier it hides, which is the fault that ticket was filed for.
+    for printed, expect in [
+            ("h Wells st. b Rand and Wash sis", ["wells", "randolph", "washington"]),
+            ("h Wells st. b Wash & Mad", ["wells", "washington", "madison"]),
+            ("house State st. b Ran dolph and Washington streets",
+             ["state", "randolph", "washington"]),
+            ("h Rand st. b Dear and Lake sts", ["randolph", "dearborn", "lake"]),
+            ("h Mich st. b Dear & Wol", ["michigan street", "dearborn", "wolcott"]),
+            ("b Wells & Frank", ["wells", "franklin"]),
+            ("b Kin and Dear", ["kinzie", "dearborn"]),
+            ("h Washington, b Canal & Clin", ["washington", "canal", "clinton"]),
+            ("h Clark st. b Mad. & Mon", ["clark", "madison", "monroe"]),
+            ("b Jack. & Fifth", ["jackson"]),
+            ("r Ind, b Cass & Rush", ["indiana", "cass", "rush"]),
+            ("res Wab. av. b Mon. and Ad", ["wabash", "monroe", "adams"]),
+            # The point and the comma between `Mich` and `av` are Norris's, and the
+            # avenue is the NOT_1835 name, so stepping over them is load-bearing.
+            ("house cor Mich. av. and Randolph", ["michigan ave", "randolph"]),
+            ("h c Mich Av & Mad st", ["michigan ave", "madison"]),
+            ("h c Mich dc Cass", ["michigan street", "cass"]),
+            # The scanner's word-splits fall out of the same table: a contraction is
+            # what the first half of a broken name looks like.
+            ("house Dear-. born street, bet Randolph and Washington",
+             ["dearborn", "randolph", "washington"]),
+            ("house State street, bet Wash ington and Madison",
+             ["state", "washington", "madison"]),
+            # A contraction is read only where the page sets it as a word of its own:
+            # `;ind` here is the scanner's `and`, not Indiana Street.
+            ("res nenr Clark ;ind N. Water sts. 5th ward", ["clark", "n water"]),
+            # And the one contraction left unread, because it cannot be decided.
+            ("h Lake st. b Frank <t Wat", ["lake", "franklin"]),
+    ]:
+        got = street_words(printed)
+        if got != expect:
+            fails.append(f"contraction: {printed!r} read as {got}, wanted {expect}")
+    for token in UNREADABLE_ABBREVIATION:
+        if token in PRINTED_ABBREVIATION:
+            fails.append(f"'{token}' is declared unreadable and also expanded")
+        if street_words(f"h Lake st. b {token.title()}") != ["lake"]:
+            fails.append(f"'{token}' is declared unreadable and still read as a street")
+    # Every expansion has to be a name one of the two tables rules on, or the
+    # contraction buys a refusal reading `'x' is not a street this pass's table knows`
+    # — a right answer for a wrong reason, which is worse than not reading it. The one
+    # exception is `michigan`, which is deliberately NOT in either table: it is
+    # ambiguous between the north-side street and the lakefront avenue, and the
+    # disambiguation above splits it before the tables are consulted.
+    for token, full in PRINTED_ABBREVIATION.items():
+        if full == "michigan":
+            continue
+        if full not in STREET_1835 and full not in NOT_1835:
+            fails.append(f"'{token}' expands to '{full}', which neither table rules on")
+    for reading in ("michigan street", "michigan ave"):
+        if reading not in STREET_1835 and reading not in NOT_1835:
+            fails.append(f"'{reading}' is a reading of `Mich` neither table rules on")
 
     # Michigan Street, the north-side one, does resolve.
     r = one("Michigan st", "forwarding_and_commission", None)
@@ -682,6 +937,13 @@ def self_test() -> int:
             bp = person.get("back_projection")
             if bp and set(bp) & {"lives_at", "works_at"}:
                 fails.append(f"{hh['id']}: a back_projection block writing an 1835 link")
+
+    # T-1122: nothing this pass generates assumes the householder's sex — the static
+    # refusal templates keyed on a street the town does not carry, and the `reason` and
+    # note written for every row actually adjudicated.
+    fails.extend(sexed_prose("back_project_addresses", generated_prose(
+        ledger["rows"], note_for,
+        [(f"NOT_1835[{k}]", v) for k, v in NOT_1835.items()])))
 
     for f in fails:
         print(f"   {f}")

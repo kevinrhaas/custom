@@ -9,7 +9,7 @@
  "state": "Illinois",
  "county": "Cook",
  "reading": "scan_verified",
- "read_pass": "names (T-0523) and cells (T-0534)",
+ "read_pass": "names (T-0523), cells (T-0534), cells reconciled against the second reading (T-0559)",
  "lines_ruled": 30,
  "lines_ruled_with_an_entry": 30,
  "lines_ruled_and_blank": 0,
@@ -209,9 +209,8 @@
  ],
  "grid_note": "HOW THE CELLS WERE LOCATED, because a mark one column off is a person of the wrong age. The 39 vertical rules were fitted as a SINGLE PITCH over the whole width by maximising the darkness profile of the sheet's own body at 39 evenly spaced positions, and the fit was CHECKED AGAINST THE PRINTED HEADING before a single cell was read — column 1 must read 'Under 5', column 27 'Under 10' under FREE COLORED MALES, column 38 '100 and upwards'. The rules of this book lean: measured against the printed heading the same grid sits about 10 px left at the head of the sheet and 10 px right at its foot, so the column positions carry that lean rather than a single x. The 30/31 writing lines were fitted the same way off the NAMES column and checked against the names themselves, and they lean too — on 33S7-9YYJ-9M5 the ruling drops about 45 px between the left edge of the table and its right, which is more than half a row, so a flat row grid puts the free-coloured end of a line into the wrong household. Every cell carrying ink was then read as an image, and every column carrying a mark was read a SECOND time as a montage of its own 30 or 31 cells; that second pass is what separated three name-tails intruding into column 1 of 33S7-9YYJ-9M5 from the tally marks. No cell value here is an OCR output.",
  "cells_state": "partial",
- "cells_note": "A column is committed only where the lines this pass read SUM to the figure the enumerator wrote at the foot of the sheet. `cells` carries the committed columns only; `cells_first_pass` carries the whole reading, balanced or not, so the next reader starts from a reading rather than from the sheet — it is NOT reconciled data and nothing downstream may treat it as such. A column that is blank down the page and blank in the footing is treated as balanced at zero: the sheet says nothing and the reading says nothing.",
+ "cells_note": "A column is committed only where the lines this pass read SUM to the figure the enumerator wrote at the foot of the sheet. `cells` carries the committed columns only; `cells_first_pass` carries the whole reading, balanced or not, so the next reader starts from a reading rather than from the sheet — it is NOT reconciled data and nothing downstream may treat it as such. A column that is blank down the page and blank in the footing is treated as balanced at zero: the sheet says nothing and the reading says nothing.\n\nRECONCILED, T-0559. This page was read to the cell twice by runs that did not know about each other — T-0550 (this file) and PR #698 (kept verbatim in ../second_readings/33S7-9YYJ-9M5.json) — and the two readings were settled here against the image, column by column, at 4x to 11x on a grid re-fitted off the sheet's own vertical rules and checked against the printed heading (column 1 reads `Under 5`, column 14 `Under 5` under FEMALES). The two readings agree on every cell of the page except ONE: line 28, column 1. THE CELL. Line 28 (Patrick Sanderken) carries ink inside column 1; this pass judges it the terminal flourish of the surname, as PR #698 did, because at 5x it is a single continuous tapering movement out of the last letter that crosses the rule on its way up, where the free-standing tally on line 27 in the same column stands clear of the name with its own entry and exit. Column 1 therefore reads 9, not 10. The five other lines whose column-1 ink was in question — 16, 19, 22, 29 and 30 — were examined the same way and every one is a name terminal; nothing on this sheet supports a tenth stroke, let alone a fourteenth. THE FOOTINGS. Column 1: two glyphs on damaged paper; the second is an open angular crossing with no closed bowl, which is how this hand writes 4 (column 3's footing) and not how it writes 0 (columns 2 and 17, both a narrow closed loop) — read 14, alternates 10 and 16, confidence low. Column 6: one glyph, a long diagonal with a barred head — a 7, not the 1 this file previously read; unambiguous at 9x. Column 14: two faint parallel slants on the worst paper on the sheet, reading equally as 11 and as 19, exactly as this file already said. WHAT WAS COMMITTED AND WHY. Column 14 is committed at 19: both independent readings of its thirteen cells agree at 19 without consulting each other, and 19 is one of the two readings the footing admits, so the cells choose between the glyph's alternates rather than the glyph deciding the cells. Column 1 is DE-COMMITTED — this file had it balanced at 10 = 10, and it is not balanced: 9 read against a footing of 14, residual 5. Column 6 stays uncommitted at 8 read against 7. A column that balances is necessary and not sufficient (T-0532), and this page is the demonstration: both readings balanced column 1 and they balanced it at different numbers.",
  "cells_columns_committed": [
-  1,
   2,
   3,
   4,
@@ -223,6 +222,7 @@
   11,
   12,
   13,
+  14,
   15,
   16,
   17,
@@ -249,22 +249,23 @@
   38
  ],
  "page_free_population": {
-  "free_white_males": 71,
+  "free_white_males": 70,
   "free_white_females": 81,
   "free_coloured": 0,
-  "total": 152,
-  "note": "the sum of the marks read on the 30 lines. 71 + 81 = 152, of which the two uncommitted columns contribute 8 (males 30 under 40) and 19 (females Under 5). By the sheet's own footings the figure would be 64 + 73 = 137, but neither of those two footings can be trusted: the males 30 under 40 footing is a single stroke against eight marks that a column montage confirms one at a time, and the females Under 5 footing is two strokes on badly degraded paper that read equally as 11 and as 19. This total is therefore the READING's total and is not the sheet's own; the page's population will be settled by the continuation sheet's TOTAL column, which is not yet paired to this page."
+  "total": 151,
+  "note": "the sum of the marks read on the 30 lines after T-0559 reconciled this page against its second reading. 70 + 81 = 151, of which the one column that still does not balance its footing — column 1, free white males Under 5 — contributes 9. By the sheet's own footings the figure would be different again: column 1's footing re-reads as 14 against 9 marks on the sheet, and column 6's as 7 against 8. This total is therefore the READING's total and is not the sheet's own; the page's population will be settled by the continuation sheet's TOTAL column, which is not yet paired to this page."
  },
  "cells_column_check": [
   {
    "column": 1,
    "band": "free white males Under 5",
-   "read_sum": 10,
-   "printed_total": 10,
+   "read_sum": 9,
+   "printed_total": 14,
    "printed_total_reading": "low",
-   "balanced": true,
-   "residual": 0,
+   "balanced": false,
+   "residual": 5,
    "printed_total_alternate_readings": [
+    10,
     16
    ],
    "read_sum_matches_an_alternate_reading": false
@@ -317,11 +318,13 @@
    "column": 6,
    "band": "free white males 30 under 40",
    "read_sum": 8,
-   "printed_total": 1,
+   "printed_total": 7,
    "printed_total_reading": "medium",
    "balanced": false,
-   "residual": 7,
-   "printed_total_alternate_readings": null,
+   "residual": -1,
+   "printed_total_alternate_readings": [
+    1
+   ],
    "read_sum_matches_an_alternate_reading": false
   },
   {
@@ -407,12 +410,12 @@
    "column": 14,
    "band": "free white females Under 5",
    "read_sum": 19,
-   "printed_total": 11,
+   "printed_total": 19,
    "printed_total_reading": "low",
-   "balanced": false,
-   "residual": 8,
+   "balanced": true,
+   "residual": 0,
    "printed_total_alternate_readings": [
-    19
+    11
    ],
    "read_sum_matches_an_alternate_reading": true
   },
@@ -1208,15 +1211,13 @@
    "as_read": "Patrick Sanderken",
    "normalized": "Patrick Sanderken",
    "name_confidence": "low",
-   "note": "Sanderken / Sanderkin / Sanderburt",
+   "note": "Sanderken / Sanderkin / Sanderburt; T-0559: the ink inside column 1 on this line is the terminal flourish of the surname, not a stroke — decided on the image at 5x, where it is one continuous, tapering pen movement out of the last letter, unlike the free-standing tally on line 27 in the same column",
    "reading": "scan_verified",
    "cells": {
-    "1": 1,
     "2": 1,
     "19": 1
    },
    "cells_first_pass": {
-    "1": 1,
     "2": 1,
     "6": 1,
     "19": 1

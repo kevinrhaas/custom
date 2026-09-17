@@ -153,7 +153,10 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "offset_text": "that he has purchascd a lot and Store-] 106\neon South Water Street,",
+          "offset_normalized": "that he has purchased a lot and Store[hous]e on South Water Street",
+          "street": "South Water Street"
         }
       },
       "ad_copy_date": {
@@ -300,7 +303,7 @@
         },
         {
           "as_printed": "Col. Samuel Miller",
-          "normalized": "Samuel Miller",
+          "normalized": "Col. Samuel Miller",
           "role": "his agent at Michigan City",
           "occupations": [
             "agent"
@@ -310,7 +313,7 @@
           ]
         }
       ],
-      "notes": "WHERE THE TOWN'S BUILDING MATERIAL CAME FROM, IN A SENTENCE: 'lumber from the Lake, lath, shingles, red cedar posts'. Carver is not a sawyer — he is the importer, and the supply chain is named end to end: agents at St. Joseph and Michigan City on the Michigan shore forward to him, and he has CHARTERED THE SCHOONER POST BOY for the season's first two trips so as to land the first cargo of the year. That is the fabric of 1834 Chicago arriving by water because there was no other way for it to arrive. No address is given for his store — 'at his Store' is all the notice says — so the placement is recorded as `none` rather than guessed at, which is the honest value here."
+      "notes": "WHERE THE TOWN'S BUILDING MATERIAL CAME FROM, IN A SENTENCE: 'lumber from the Lake, lath, shingles, red cedar posts'. Carver is not a sawyer — he is the importer, and the supply chain is named end to end: agents at St. Joseph and Michigan City on the Michigan shore forward to him, and he has CHARTERED THE SCHOONER POST BOY for the season's first two trips so as to land the first cargo of the year. That is the fabric of 1834 Chicago arriving by water because there was no other way for it to arrive. No address is given for his store — 'at his Store' is all the notice says — so the placement is recorded as `none` rather than guessed at, which is the honest value here. THE COLONEL KEEPS HIS TITLE (T-1040). This reading normalized the signature 'Col. Samuel Miller' to 'Samuel Miller', and the 25 February impression of the SAME advertisement (chicago_democrat_1834_02_25 c003) kept it — so one man in one notice printed twice stood in the gazetteer as two persons, `person_samuel_miller` and `person_col_samuel_miller`. The title is restored here because the page sets it, because this corpus keeps a printed title in a normalized name elsewhere ('Col. G. S. Hubbard', 'Capt. N. Leonard', 'Dr. John T. Temple'), and because dropping it is what handed the reading to a different man: the town's own lists carry a Samuel Miller of Chicago, and an identical normalized name is the whole of merge rule M1."
     },
     {
       "id": "c007",
@@ -477,7 +480,8 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "note": "The dissolution notice says the business \"will be continued at the old stand\" and names no street. The business-level `street` carries South Water Street from a reader who knew the house; it is not read back into a placement the page never printed, so this placement still names no ground (T-0859)."
         }
       },
       "ad_copy_date": {
@@ -945,7 +949,8 @@
         "street": "South Water Street",
         "placement": {
           "class": "street_only",
-          "anchor": null
+          "anchor": null,
+          "note": "The card prints a trade, an assortment and a dateline, and no address at all. The business-level `street` is not read back into the placement (T-0859)."
         }
       },
       "ad_copy_date": {
@@ -1139,7 +1144,7 @@
     {
       "id": "c026",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "List of L\n[uncertain: Atkina 2]\n[uncertain: as Bennett]\n[uncertain: .E. Bonton]\n[uncertain: Avice Blodget]\n[uncertain: Bennettra]\n[uncertain: ell Baldwin]\n[uncertain: A.O.T. Breed]\n[uncertain: Ca Conger]\n[uncertain: I Cenige]\n[uncertain: Lamira. Laura Carrier C.]\n[uncertain: Willism Crisey]\n[uncertain: & Delano]\n[uncertain: nel Devoe]\n[uncertain: Elliot 3]\n[uncertain: il. Frazer]\n[uncertain: Caleb Foster]\n[uncertain: Rob't.]\n[uncertain: Fisher]\n[uncertain: no Poeter]\n[uncertain: which will please ay aliy are adver]",
       "normalized": "List of L[etters remaining in the Post-Office at Chicago, …] […] [?] Atkins 2; […]as Bennett; [?] E. Benton; [uncertain: Avice] Blodget; [?] Bennett[…]; […]ell Baldwin; A. O. T. Breed; [?] Conger; [uncertain: … Cenige]; [uncertain: Lamira] [or] Laura Carrier; Willi[a]m Crisey; [?] & Delano; […]nel Devoe; [?] Elliot 3; […]l. Frazer; Caleb Foster; Rob't. Fisher; [uncertain: … Foster]; […] which will please say they are adver[tised].",
       "locator": {
@@ -1179,42 +1184,99 @@
       "entities": [
         {
           "as_printed": "Atkina 2",
-          "normalized": "[?] Atkins",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Eliphalet Atkins 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 1,
+            "tied_by": "text",
+            "was_normalized": "[?] Atkins",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Eliphalet Atkins 2"
+          }
         },
         {
           "as_printed": "as Bennett",
-          "normalized": "[…]as Bennett",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Thomas Bennett",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 13,
+            "tied_by": "text",
+            "was_normalized": "[…]as Bennett",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Thomas Bennett"
+          }
         },
         {
           "as_printed": ".E. Bonton",
-          "normalized": "[?] E. Benton",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "A. P. Benton",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 17,
+            "tied_by": "text",
+            "was_normalized": "[?] E. Benton",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "A. P. Benton"
+          }
         },
         {
           "as_printed": "Avice Blodget",
-          "normalized": "[uncertain: Avice] Blodget",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Avice Blodget",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 18,
+            "tied_by": "text",
+            "was_normalized": "[uncertain: Avice] Blodget",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Avice Blodget"
+          }
         },
         {
           "as_printed": "Bennettra",
-          "normalized": "[?] Bennett[…]",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "H. S. Bennett 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 19,
+            "tied_by": "text",
+            "was_normalized": "[?] Bennett[…]",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "H. S. Bennett 2"
+          }
         },
         {
           "as_printed": "ell Baldwin",
-          "normalized": "Russel Baldwin",
+          "normalized": "Russell Baldwin",
           "role": "named in the Chicago post-office letter list printed 1834-03-04",
           "completed_from": [
             "1834-01-28",
             "1834-02-04"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 21,
+            "tied_by": "text",
+            "was_normalized": "Russel Baldwin",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Russell Baldwin",
+            "overturns_concordance_completion": "Russel Baldwin"
+          }
         },
         {
           "as_printed": "A.O.T. Breed",
           "normalized": "A. O. T. Breed",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 26,
+            "tied_by": "text",
+            "was_normalized": "A. O. T. Breed",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "A. O. T. Breed"
+          }
         },
         {
           "as_printed": "Ca Conger",
@@ -1225,22 +1287,66 @@
             "1834-01-14",
             "1834-02-04",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 30,
+            "tied_by": "text",
+            "was_normalized": "Thomas Conger",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Thomas Conger"
+          }
         },
         {
           "as_printed": "I Cenige",
           "normalized": "[uncertain: … Cenige]",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "transcription_mediated",
+          "read_at_image": {
+            "printed_line": null,
+            "tied_by": "unassigned",
+            "was_normalized": "[uncertain: … Cenige]",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "fragment": "I Cenige",
+            "between": [
+              "Thomas Conger",
+              "Lamira & Laura Carrier"
+            ],
+            "candidates": [
+              31,
+              32,
+              33,
+              34,
+              35
+            ],
+            "note": "No surname in the printed list reads `Cenige`. The crop kept one of the five lines the list sets between Conger and Carrier and the image cannot say which; `D. P. Clevinger` is the nearest setting and is NOT asserted."
+          }
         },
         {
           "as_printed": "Lamira. Laura Carrier C.",
-          "normalized": "[uncertain: Lamira or Laura] Carrier",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Lamira & Laura Carrier",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 36,
+            "tied_by": "text",
+            "was_normalized": "[uncertain: Lamira or Laura] Carrier",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Lamira & Laura Carrier"
+          }
         },
         {
           "as_printed": "Willism Crisey",
-          "normalized": "William Crisey",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "William Crissy",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 42,
+            "tied_by": "text",
+            "was_normalized": "William Crisey",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "William Crissy"
+          }
         },
         {
           "as_printed": "& Delano",
@@ -1251,7 +1357,15 @@
             "1834-01-14",
             "1834-01-21",
             "1834-02-04"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 45,
+            "tied_by": "text",
+            "was_normalized": "Loring Delano",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Loring Delano"
+          }
         },
         {
           "as_printed": "nel Devoe",
@@ -1261,17 +1375,33 @@
             "1834-01-14",
             "1834-02-04",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 46,
+            "tied_by": "text",
+            "was_normalized": "Samuel Devoe",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Samuel Devoe"
+          }
         },
         {
           "as_printed": "Elliot 3",
-          "normalized": "William Elliot",
+          "normalized": "William Elliot 3",
           "role": "named in the Chicago post-office letter list printed 1834-03-04",
           "completed_from": [
             "1834-01-28",
             "1834-02-04",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 50,
+            "tied_by": "text",
+            "was_normalized": "William Elliot",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "William Elliot 3"
+          }
         },
         {
           "as_printed": "il. Frazer",
@@ -1280,30 +1410,62 @@
           "completed_from": [
             "1834-01-07",
             "1834-01-21"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 55,
+            "tied_by": "text",
+            "was_normalized": "Wm. H. Frazer",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Wm. H. Frazer"
+          }
         },
         {
           "as_printed": "Caleb Foster",
           "normalized": "Caleb Foster",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 60,
+            "tied_by": "text",
+            "was_normalized": "Caleb Foster",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Caleb Foster"
+          }
         },
         {
           "as_printed": "Rob't.",
           "normalized": "Rob't. Fisher",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 61,
+            "tied_by": "position",
+            "was_normalized": "Rob't. Fisher",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Rob't. Fisher"
+          }
         },
         {
           "as_printed": "no Poeter",
-          "normalized": "[uncertain: … Foster]",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Alburn Foster",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 64,
+            "tied_by": "position",
+            "was_normalized": "[uncertain: … Foster]",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Alburn Foster"
+          }
         }
       ],
-      "notes": "A CHICAGO POST-OFFICE LETTER LIST NOBODY KNEW WAS HERE, AND THE SWEEP THAT MISSED IT. `data/research/newspapers/README.md` records a sweep of T-0258's thirty issues concluding that only four carry a list — 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30. THIS IS A FIFTH, and the reason the sweep missed it is legible in the quote: the heading is cut IN HALF by the segmenter, so the words 'List of L' stand at the top of this crop and 'etters … ost-Offiee at Chica- … 34.' at the top of the next one (claim c027 here). No search for 'list of letters' or 'remaining in the post office' could match a heading that exists in neither column whole. RULING 1 APPLIES: this is Chicago's own office, so every listed name mints a resident candidate, flagged `letter_list_only`. THE NAMES ARE CUT ON THEIR LEFT EDGE, which is the opposite damage to January's: the crop has taken the forenames, so 'as Bennett' and 'ell Baldwin' are minted as the fragments they are, with `[…]` marking the cut, and NOT completed into the Thomas Bennett and Russell Baldwin who stand in the 1 January list — a completion that would look right and prove nothing. WHICH RETURN THIS IS CANNOT BE READ. The date line survives only as '34.', and the name set is neither the January list nor a subset of it: Atkins, Benton, Conger, Carrier, Crisey and Delano are new here, while much of January's list is absent. A quarterly return of 1 March 1834 is the obvious candidate and is NOT asserted, because the paper's own words for it are gone. THE COUNT IS A FLOOR, and a low one: eighteen names from this half-column, against the ninety-seven of 1834-01-28. See claim c025 for the hand count of the whole list. THE RETURN IS 1 JANUARY 1834, AND THIS IS ITS NINTH PRINTING (T-0331). The date line survives on this page only as `34.`, and T-0312 could not say which return the list was, so a 1 March quarterly return was floated as the obvious candidate and rightly not asserted. It is not one. `tools/letter_list_printings.py` counts the printings the way `data/research/newspapers/README.md` prescribes for exactly this - by the notice's OWN BODY TEXT and not by its heading (T-0328, T-0350) - and the Chicago post office's 1 January 1834 return stands in EVERY issue of the Democrat from Vol. I No. 7 of 1834-01-07 to this one, No. 15 of 1834-03-04, nine weeks without a break. A letter list is standing type, and this crop is the last impression of it, not a cohort of its own. FOUR OF THE NINE PRINTINGS SET THE DATE LINE WHOLE OR NEARLY: 'EMAINING in the Post-Offiee at Chic / go, Ill. January [1,] 1834.' at No. 7 line 645, 'in the Port-Offiee at Ch- go, Ill. Fammuary 1, 1604.' at No. 10 line 1107, 'go, Ill, January 3, 1934.' at No. 11 line 2858, and 'REMAINISG in the Pest[-Office at Chica]go, Il January 1, 63[4].' at No. 14 line 2947. The `34.` at the head of this page's column 3 is the tail of that same line's year. NO PAGE IMAGE WAS READ, so the reading stays `transcription_mediated`; the witnesses are eight other transcriptions of eight other impressions. WHAT THIS MEANS FOR THE PEOPLE WORK, and it is the opposite of what the ticket hoped: these are not a second census-proxy cohort for 1834. They are January's names, printed an eighth time, and T-0299's rule that one list mints once applies to them as one list with January's. A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS AND IS NOT CHICAGO'S - read 'at Henne[pin]' at No. 9 line 937 and 'at H- mi pin, Hl.' at No. 10 line 957 - so a later sweep must not fold the two together. THE FORENAMES ARE REPAIRED FROM THE CONCORDANT PRINTINGS, NOT GUESSED (T-0331). The crop cut every name on its LEFT edge, which took the forename; the other eight impressions are cut in other places and carry it. `tools/letter_list_printings.py` matches on the surname - which this page states plainly, and which is therefore the thing being matched, not the thing being supplied - and completes a forename ONLY where two or more PRINTINGS set the same one. Twenty-five of the fifty-seven cut readings are completed that way and appear here with `completed_from` naming the printings that carry them; the rest are left cut, and the tool says why for each: twelve have no two printings agreeing, four carry a surname that stands TWICE in this list - Bennett, Miner, Temple, and a crop that lost both forenames cannot say which line is which - fifteen have no witness at all, and one, Tuller, is reported as a disagreement rather than a winner because Alden Tuller and Elam Tuller BOTH stand in the list, two lines apart, at No. 13 lines 3137-3138. NOTHING IS AMENDED TO AGREE WITH ANYTHING: `as_printed` keeps this page's setting verbatim beside every completion, and the claim's own `normalized` is untouched, because it is the reading of THIS page and a forename taken off another impression is not."
+      "notes": "A CHICAGO POST-OFFICE LETTER LIST NOBODY KNEW WAS HERE, AND THE SWEEP THAT MISSED IT. `data/research/newspapers/README.md` records a sweep of T-0258's thirty issues concluding that only four carry a list — 1834-01-28, 1834-02-04, 1834-04-23 and 1834-04-30. THIS IS A FIFTH, and the reason the sweep missed it is legible in the quote: the heading is cut IN HALF by the segmenter, so the words 'List of L' stand at the top of this crop and 'etters … ost-Offiee at Chica- … 34.' at the top of the next one (claim c027 here). No search for 'list of letters' or 'remaining in the post office' could match a heading that exists in neither column whole. RULING 1 APPLIES: this is Chicago's own office, so every listed name mints a resident candidate, flagged `letter_list_only`. THE NAMES ARE CUT ON THEIR LEFT EDGE, which is the opposite damage to January's: the crop has taken the forenames, so 'as Bennett' and 'ell Baldwin' are minted as the fragments they are, with `[…]` marking the cut, and NOT completed into the Thomas Bennett and Russell Baldwin who stand in the 1 January list — a completion that would look right and prove nothing. WHICH RETURN THIS IS CANNOT BE READ. The date line survives only as '34.', and the name set is neither the January list nor a subset of it: Atkins, Benton, Conger, Carrier, Crisey and Delano are new here, while much of January's list is absent. A quarterly return of 1 March 1834 is the obvious candidate and is NOT asserted, because the paper's own words for it are gone. THE COUNT IS A FLOOR, and a low one: eighteen names from this half-column, against the ninety-seven of 1834-01-28. See claim c025 for the hand count of the whole list. THE RETURN IS 1 JANUARY 1834, AND THIS IS ITS NINTH PRINTING (T-0331). The date line survives on this page only as `34.`, and T-0312 could not say which return the list was, so a 1 March quarterly return was floated as the obvious candidate and rightly not asserted. It is not one. `tools/letter_list_printings.py` counts the printings the way `data/research/newspapers/README.md` prescribes for exactly this - by the notice's OWN BODY TEXT and not by its heading (T-0328, T-0350) - and the Chicago post office's 1 January 1834 return stands in EVERY issue of the Democrat from Vol. I No. 7 of 1834-01-07 to this one, No. 15 of 1834-03-04, nine weeks without a break. A letter list is standing type, and this crop is the last impression of it, not a cohort of its own. FOUR OF THE NINE PRINTINGS SET THE DATE LINE WHOLE OR NEARLY: 'EMAINING in the Post-Offiee at Chic / go, Ill. January [1,] 1834.' at No. 7 line 645, 'in the Port-Offiee at Ch- go, Ill. Fammuary 1, 1604.' at No. 10 line 1107, 'go, Ill, January 3, 1934.' at No. 11 line 2858, and 'REMAINISG in the Pest[-Office at Chica]go, Il January 1, 63[4].' at No. 14 line 2947. The `34.` at the head of this page's column 3 is the tail of that same line's year. NO PAGE IMAGE WAS READ, so the reading stays `transcription_mediated`; the witnesses are eight other transcriptions of eight other impressions. WHAT THIS MEANS FOR THE PEOPLE WORK, and it is the opposite of what the ticket hoped: these are not a second census-proxy cohort for 1834. They are January's names, printed an eighth time, and T-0299's rule that one list mints once applies to them as one list with January's. A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS AND IS NOT CHICAGO'S - read 'at Henne[pin]' at No. 9 line 937 and 'at H- mi pin, Hl.' at No. 10 line 957 - so a later sweep must not fold the two together. THE FORENAMES ARE REPAIRED FROM THE CONCORDANT PRINTINGS, NOT GUESSED (T-0331). The crop cut every name on its LEFT edge, which took the forename; the other eight impressions are cut in other places and carry it. `tools/letter_list_printings.py` matches on the surname - which this page states plainly, and which is therefore the thing being matched, not the thing being supplied - and completes a forename ONLY where two or more PRINTINGS set the same one. Twenty-five of the fifty-seven cut readings are completed that way and appear here with `completed_from` naming the printings that carry them; the rest are left cut, and the tool says why for each: twelve have no two printings agreeing, four carry a surname that stands TWICE in this list - Bennett, Miner, Temple, and a crop that lost both forenames cannot say which line is which - fifteen have no witness at all, and one, Tuller, is reported as a disagreement rather than a winner because Alden Tuller and Elam Tuller BOTH stand in the list, two lines apart, at No. 13 lines 3137-3138. NOTHING IS AMENDED TO AGREE WITH ANYTHING: `as_printed` keeps this page's setting verbatim beside every completion, and the claim's own `normalized` is untouched, because it is the reading of THIS page and a forename taken off another impression is not. THE PAGE IMAGE HAS NOW BEEN READ, AND IT SETTLES BOTH QUESTIONS T-0331 LEFT (T-0424). `data/research/newspapers/letter_list_1834_01_01_printed.json` carries every line of this printing of the list, read at the scan behind the deposit -- Internet Archive `chicago1835-newspaper-chicago-democrat-1834`, `Jan1834-Mar1834.pdf`, jp2 page 0019, which is page 4 of Vol. I No. 15 -- with the IIIF regions named. THE PRINTED LENGTH IS 170 LINES, eighty-five in each sub-column, over John S. C. Hogan's signature. The seventy-eight names these two claims mint are 45 per cent of it, so the hand count was a floor and the ninety-two missing lines are the crops' loss and not the paper's. EVERY ENTITY BELOW IS NOW TIED TO ITS PRINTED LINE, in `read_at_image`, and carries the grade of that tie: `scan_verified` where the image states the line, `transcription_mediated` for the two crop fragments no line of the list matches -- `I Cenige` and `Re Leena,` -- which are reported with their candidates rather than guessed. Thirty-one of the thirty-two readings `tools/letter_list_printings.py` left cut are completed here, INCLUDING the four the doubled surnames blocked: the crop's `as Bennett` is Thomas Bennett and its `Bennettra` is H. S. Bennett 2 -- the list holds THREE Bennetts, not two -- `nda Miner 2` is Miranda Miner 2 and `'. Miner` is F. T. Miner, `Temple 3` is Peter Temple 3 and `is Temple` is Lewis Temple, and `n Tuller` is Alden Tuller, the disagreement resolved. THE IMAGE ALSO OVERTURNS THREE CONCORDANCE COMPLETIONS, which is the price of completing a forename from another impression: `nda Miner 2` was read `[Ori]nda` and the type sets `Miranda` -- Orinda is a different person on this page, Orinda Garyl; `stor Marshall 2` was read `[Ne]stor` and the type sets `Chester`; `| Monreou` was read `John Monroe` and the type sets `John Monreou`. `normalized` now carries the printed line, `as_printed` still carries this crop's own setting, and nothing is minted here -- T-0299 rules that one list mints once and these names are January's."
     },
     {
       "id": "c027",
       "kind": "person",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "[uncertain: elters            Beot & Shoe ?]\nost-Offiee at Chica-        HE subscriber having rece\n34.                               the above business, pext\nHT. Howard\n3, Haight             stited to     call of the’ coun’\nward                 wishing Fine Boots, water proc\n». Johnson          +| modated with the best material\nc Killigoss            blo style. Most kinds of work\nQO. Knapp.              on hand, or made to order on\n|. Kinzie                              L.      Mo}\nKerchevel          Chicago, Dee. 15, 18:\n‘is Lafton             So\nLake             Two Buildings\nRe Leena,                  ILL the first d\nnda Miner 2                      Nor. 26.\ns, Miller                                          -\ny Meriams                 Ge. SPRE!\nés Machel           ATTORNEY AND COUNSEl\nM'Carty                     FFICE second door west\nstor Marshall 2             of Franklin and South W\n| Monreou             Chicago, Dee. 17, 1333,\n'. Miner             ———______——\nNats         x               E. WENTWOR\nis Pestin 2         H 18 miles South of Chica;\nua Pruvis                             leading to Ottawa.\nPlumer                            be furnished with th\nin Poel                              try affords, and solic\n1. Pease                             ive him acall. He\n1 Phelps             on hand CORN and OATS.\n. H. Riche:          Cremer acess aD YS\nRouit 2               THE ATHEN\non Rutherford 3                          AND\na Bteward           ‘American Scenery, Biogre\nd Sprague                 Se.\nScott                 Besides a department of light r\nh Stowell           Jar attention will be paid to that\nuel Stout             of * Reviews” —in which all nen\nSchermerhorn       er of domestic or foreign origin,\n, Shier               ly noticed. The present pape:\nSewell            seded by ‘* The Athenian’’ on |\nhen Sherwood      of the present year and each st\n. Shearman          furnished with a copy, which wi\nn Tuller              tain a much gieater quantity,\n| Tuller              greater raricty of useful and iy\n. Taylor            and every exertion will be used\nThompaon       the character of the Prospectus\njam Teal         keep pace with the improveme\nThorn               ledge, and the rising spirit of thi\nTemple 3              In order to render the publicat\nis Temple            every department, arrangemer\nfanzandt 2          made for an acquisition of valus\nVandine         aud, es soon as the eens\nn Vanderwerker, |eeries of ENGRAVINGS, illus\nWilson 6 *      brated structures or distinguish\n_ Winson            will periodically accompany the:\np Willece           Tur Atuxsiax being uncivcu\n» B. Winn & Co. | utility, will be cqnally devoted t:\nel Warren          of the Union, and will comprehi\nWeed          ject which may be worthy of |\nn Whitcomb         productive 4 interest.\nney Wells           Aware -hat the offer of rewa\nnas H. Wrickey | aspirant bas elicited some hi\n[uncertain: HOGAN, P.M. | encof?ge,—premiums for a varie]\nof the above letters | ticl4 @8 ere suitable for its colun\nrtised.            fe-d early in January, As the",
       "normalized": "[L]etters [remaining in the P]ost-Office at Chica[go, …] [18]34. […] [?] H. Howard; [?] Haight; […]ward; [?] Johnson; [?] Killigoss; O. Knapp; [?] Kinzie; [?] Kercheval; [Lew]is Lafton; [?] Lake; [?] Leena; [?] Miner 2; [?] Daniel; […]s Miller; […]y Meriams; […]s Machel; [?] M'Carty; […]stor Marshall 2; [?] Monroe; [?] Miner; [?] Nats; [?] Pestin 2; [Josh]ua Provis; [?] Plumer; […]in Poel; [?] Pease; [?] Phelps; [?] H. Riche[…]; [?] Rouit 2; [?] Rutherford 3; [?] Steward; [?] Sprague; [?] Scott; [?] Stowell; [Sam]uel Stout; [?] Schermerhorn; [?] Shier; [?] Sewell; [Step]hen Sherwood; [?] Shearman; [?] Tuller; [?] Tuller; [?] Taylor; [?] Thompson; [Willi]am Teal; [?] Thorn; [?] Temple 3; [Lew]is Temple; [?] Vanzandt 2; [?] Vandine; [?] Vanderwerker; [?] Wilson 6; [?] Winson; [?] Willece; [?] B. Winn & Co.; [?] Warren; [?] Weed; [?] Whitcomb; [Dela]ney Wells; [Thom]as H. Wrickey; [?] Webb. [JOHN S. C.] HOGAN, P. M. […] of the above letters [will please say they are adve]rtised.",
       "locator": {
@@ -1387,48 +1549,120 @@
       "entities": [
         {
           "as_printed": "HT. Howard",
-          "normalized": "[?] H. Howard",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "A. H. Howard",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 89,
+            "tied_by": "text",
+            "was_normalized": "[?] H. Howard",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "A. H. Howard"
+          }
         },
         {
           "as_printed": "3, Haight",
-          "normalized": "[?] Haight",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "D. S. Haight",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 90,
+            "tied_by": "text",
+            "was_normalized": "[?] Haight",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "D. S. Haight"
+          }
         },
         {
           "as_printed": "ward",
-          "normalized": "[…]ward",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Edward Hill",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 91,
+            "tied_by": "position",
+            "was_normalized": "[…]ward",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Edward Hill"
+          }
         },
         {
           "as_printed": "». Johnson",
-          "normalized": "[?] Johnson",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Geo. Johnson",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 92,
+            "tied_by": "text",
+            "was_normalized": "[?] Johnson",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Geo. Johnson"
+          }
         },
         {
           "as_printed": "c Killigoss",
-          "normalized": "[?] Killigoss",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Isaac Killigoss",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 93,
+            "tied_by": "text",
+            "was_normalized": "[?] Killigoss",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Isaac Killigoss"
+          }
         },
         {
           "as_printed": "QO. Knapp.",
-          "normalized": "O. Knapp",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Ira O. Knapp",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 94,
+            "tied_by": "text",
+            "was_normalized": "O. Knapp",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Ira O. Knapp"
+          }
         },
         {
           "as_printed": "|. Kinzie",
-          "normalized": "[?] Kinzie",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "J. H. Kinzie",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 95,
+            "tied_by": "text",
+            "was_normalized": "[?] Kinzie",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "J. H. Kinzie"
+          }
         },
         {
           "as_printed": "Kerchevel",
-          "normalized": "[?] Kercheval",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Lewis Kerchevel",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 96,
+            "tied_by": "text",
+            "was_normalized": "[?] Kercheval",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Lewis Kerchevel"
+          }
         },
         {
           "as_printed": "‘is Lafton",
-          "normalized": "[Lew]is Lafton",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Lewis Lafton",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 97,
+            "tied_by": "text",
+            "was_normalized": "[Lew]is Lafton",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Lewis Lafton"
+          }
         },
         {
           "as_printed": "Lake",
@@ -1438,22 +1672,64 @@
             "1834-01-07",
             "1834-01-28",
             "1834-02-11"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 98,
+            "tied_by": "text",
+            "was_normalized": "Lewis Lake",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Lewis Lake"
+          }
         },
         {
           "as_printed": "Re Leena,",
           "normalized": "[?] Leena",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "transcription_mediated",
+          "read_at_image": {
+            "printed_line": null,
+            "tied_by": "unassigned",
+            "was_normalized": "[?] Leena",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "fragment": "Re Leena,",
+            "between": [
+              "Lewis Lake",
+              "Miranda Miner 2"
+            ],
+            "candidates": [
+              99,
+              100,
+              101
+            ],
+            "note": "No surname in the printed list reads `Leena`. The crop kept one of the three lines the list sets between Lake and Miner and the image cannot say which."
+          }
         },
         {
           "as_printed": "nda Miner 2",
-          "normalized": "[Ori]nda Miner",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Miranda Miner 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 102,
+            "tied_by": "text",
+            "was_normalized": "[Ori]nda Miner",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Miranda Miner 2"
+          }
         },
         {
           "as_printed": "1\" Daniel",
-          "normalized": "[?] Daniel",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "A. M'Daniel",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 103,
+            "tied_by": "text",
+            "was_normalized": "[?] Daniel",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "A. M'Daniel"
+          }
         },
         {
           "as_printed": "s, Miller",
@@ -1462,100 +1738,239 @@
           "completed_from": [
             "1834-01-07",
             "1834-02-11"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 104,
+            "tied_by": "text",
+            "was_normalized": "Chas. Miller",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Chas. Miller"
+          }
         },
         {
           "as_printed": "y Meriams",
-          "normalized": "[…]y Meriams",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Mary Meriams",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 105,
+            "tied_by": "text",
+            "was_normalized": "[…]y Meriams",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Mary Meriams"
+          }
         },
         {
           "as_printed": "és Machel",
-          "normalized": "[…]s Machel",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "James Mackel",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 106,
+            "tied_by": "text",
+            "was_normalized": "[…]s Machel",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "James Mackel"
+          }
         },
         {
           "as_printed": "M'Carty",
-          "normalized": "[?] M'Carty",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "N. M'Carty",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 109,
+            "tied_by": "text",
+            "was_normalized": "[?] M'Carty",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "N. M'Carty"
+          }
         },
         {
           "as_printed": "stor Marshall 2",
-          "normalized": "[Ne]stor Marshall",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Chester Marshall 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 110,
+            "tied_by": "text",
+            "was_normalized": "[Ne]stor Marshall",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Chester Marshall 2"
+          }
         },
         {
           "as_printed": "| Monreou",
-          "normalized": "[uncertain: John Monroe]",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "John Monreou",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 111,
+            "tied_by": "text",
+            "was_normalized": "[uncertain: John Monroe]",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "John Monreou"
+          }
         },
         {
           "as_printed": "'. Miner",
-          "normalized": "[?] Miner",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "F. T. Miner",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 112,
+            "tied_by": "text",
+            "was_normalized": "[?] Miner",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "F. T. Miner"
+          }
         },
         {
           "as_printed": "Nats",
-          "normalized": "[?] Nats",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "J. V. Natta",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 114,
+            "tied_by": "position",
+            "was_normalized": "[?] Nats",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "J. V. Natta"
+          }
         },
         {
           "as_printed": "is Pestin 2",
-          "normalized": "[?] Pestin",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Julius Perrin 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 117,
+            "tied_by": "position",
+            "was_normalized": "[?] Pestin",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Julius Perrin 2"
+          }
         },
         {
           "as_printed": "ua Pruvis",
-          "normalized": "[Josh]ua Provis",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Joshua Pruvis",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 118,
+            "tied_by": "text",
+            "was_normalized": "[Josh]ua Provis",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Joshua Pruvis"
+          }
         },
         {
           "as_printed": "Plumer",
-          "normalized": "F. Plumer",
+          "normalized": "S. F. Plumer",
           "role": "named in the Chicago post-office letter list printed 1834-03-04",
           "completed_from": [
             "1834-01-28",
             "1834-02-11"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 119,
+            "tied_by": "text",
+            "was_normalized": "F. Plumer",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "S. F. Plumer",
+            "overturns_concordance_completion": "F. Plumer"
+          }
         },
         {
           "as_printed": "in Poel",
-          "normalized": "[…]in Poel",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Green Poel",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 120,
+            "tied_by": "text",
+            "was_normalized": "[…]in Poel",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Green Poel"
+          }
         },
         {
           "as_printed": "1. Pease",
-          "normalized": "H. Pease",
+          "normalized": "C. H. Pease",
           "role": "named in the Chicago post-office letter list printed 1834-03-04",
           "completed_from": [
             "1834-01-07",
             "1834-02-25"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 121,
+            "tied_by": "text",
+            "was_normalized": "H. Pease",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "C. H. Pease",
+            "overturns_concordance_completion": "H. Pease"
+          }
         },
         {
           "as_printed": "1 Phelps",
-          "normalized": "[?] Phelps",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Noah Phelps",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 122,
+            "tied_by": "text",
+            "was_normalized": "[?] Phelps",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Noah Phelps"
+          }
         },
         {
           "as_printed": ". H. Riche:",
-          "normalized": "[?] H. Riche[…]",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Thos. H. Richey",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 124,
+            "tied_by": "text",
+            "was_normalized": "[?] H. Riche[…]",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Thos. H. Richey"
+          }
         },
         {
           "as_printed": "Rouit 2",
-          "normalized": "Mr. Rouit",
+          "normalized": "Mr. Roult 2",
           "role": "named in the Chicago post-office letter list printed 1834-03-04",
           "completed_from": [
             "1834-01-07",
             "1834-02-11",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 125,
+            "tied_by": "text",
+            "was_normalized": "Mr. Rouit",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Mr. Roult 2",
+            "overturns_concordance_completion": "Mr. Rouit"
+          }
         },
         {
           "as_printed": "on Rutherford 3",
-          "normalized": "[Salm]on Rutherford",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Salmon Rutherford 3",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 126,
+            "tied_by": "text",
+            "was_normalized": "[Salm]on Rutherford",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Salmon Rutherford 3"
+          }
         },
         {
           "as_printed": "a Bteward",
@@ -1564,7 +1979,15 @@
           "completed_from": [
             "1834-01-07",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 137,
+            "tied_by": "text",
+            "was_normalized": "James Steward",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "James Steward"
+          }
         },
         {
           "as_printed": "d Sprague",
@@ -1575,12 +1998,28 @@
             "1834-01-28",
             "1834-02-11",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 140,
+            "tied_by": "text",
+            "was_normalized": "David Sprague",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "David Sprague"
+          }
         },
         {
           "as_printed": "Scott",
-          "normalized": "[?] Scott",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "S. I. Scott",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 141,
+            "tied_by": "text",
+            "was_normalized": "[?] Scott",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "S. I. Scott"
+          }
         },
         {
           "as_printed": "h Stowell",
@@ -1589,12 +2028,28 @@
           "completed_from": [
             "1834-02-11",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 142,
+            "tied_by": "text",
+            "was_normalized": "Ralph Stowell",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Ralph Stowell"
+          }
         },
         {
           "as_printed": "uel Stout",
-          "normalized": "[Sam]uel Stout",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Samuel Stout",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 143,
+            "tied_by": "text",
+            "was_normalized": "[Sam]uel Stout",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Samuel Stout"
+          }
         },
         {
           "as_printed": "Schermerhorn",
@@ -1604,7 +2059,15 @@
             "1834-02-11",
             "1834-02-18",
             "1834-02-25"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 144,
+            "tied_by": "text",
+            "was_normalized": "J. F. Schermerhorn",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "J. F. Schermerhorn"
+          }
         },
         {
           "as_printed": ", Shier",
@@ -1614,7 +2077,15 @@
             "1834-01-28",
             "1834-02-11",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 145,
+            "tied_by": "text",
+            "was_normalized": "Wm. Shier",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Wm. Shier"
+          }
         },
         {
           "as_printed": "Sewell",
@@ -1624,28 +2095,60 @@
             "1834-01-07",
             "1834-02-11",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 146,
+            "tied_by": "text",
+            "was_normalized": "John Sewell",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "John Sewell"
+          }
         },
         {
           "as_printed": "hen Sherwood",
-          "normalized": "[Step]hen Sherwood",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Stephen Sherwood",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 147,
+            "tied_by": "text",
+            "was_normalized": "[Step]hen Sherwood",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Stephen Sherwood"
+          }
         },
         {
           "as_printed": ". Shearman",
-          "normalized": "H.C. Shearman",
+          "normalized": "H. C. Shearman",
           "role": "named in the Chicago post-office letter list printed 1834-03-04",
           "completed_from": [
             "1834-01-07",
             "1834-01-28",
             "1834-02-11",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 148,
+            "tied_by": "text",
+            "was_normalized": "H.C. Shearman",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "H. C. Shearman"
+          }
         },
         {
           "as_printed": "n Tuller",
-          "normalized": "[?] Tuller",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Alden Tuller",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 149,
+            "tied_by": "position",
+            "was_normalized": "[?] Tuller",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Alden Tuller"
+          }
         },
         {
           "as_printed": ". Taylor",
@@ -1655,7 +2158,15 @@
             "1834-02-11",
             "1834-02-18",
             "1834-02-25"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 151,
+            "tied_by": "text",
+            "was_normalized": "A. H. Taylor",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "A. H. Taylor"
+          }
         },
         {
           "as_printed": "Thompaon",
@@ -1664,32 +2175,80 @@
           "completed_from": [
             "1834-02-11",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 152,
+            "tied_by": "text",
+            "was_normalized": "John Thompson",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "John Thompson"
+          }
         },
         {
           "as_printed": "jam Teal",
-          "normalized": "[Willi]am Teal",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "William Teal",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 153,
+            "tied_by": "text",
+            "was_normalized": "[Willi]am Teal",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "William Teal"
+          }
         },
         {
           "as_printed": "Thorn",
-          "normalized": "[?] Thorn",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Platt Thorn",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 154,
+            "tied_by": "text",
+            "was_normalized": "[?] Thorn",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Platt Thorn"
+          }
         },
         {
           "as_printed": "Temple 3",
-          "normalized": "[?] Temple",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Peter Temple 3",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 155,
+            "tied_by": "text",
+            "was_normalized": "[?] Temple",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Peter Temple 3"
+          }
         },
         {
           "as_printed": "is Temple",
-          "normalized": "[Lew]is Temple",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Lewis Temple",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 156,
+            "tied_by": "text",
+            "was_normalized": "[Lew]is Temple",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Lewis Temple"
+          }
         },
         {
           "as_printed": "fanzandt 2",
-          "normalized": "[?] Vanzandt",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "W. Vanzandt 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 157,
+            "tied_by": "text",
+            "was_normalized": "[?] Vanzandt",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "W. Vanzandt 2"
+          }
         },
         {
           "as_printed": "Vandine",
@@ -1698,21 +2257,45 @@
           "completed_from": [
             "1834-02-11",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 158,
+            "tied_by": "text",
+            "was_normalized": "John Vandine",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "John Vandine"
+          }
         },
         {
           "as_printed": "n Vanderwerker,",
-          "normalized": "[?] Vanderwerker",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Adam Vanderwerker",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 159,
+            "tied_by": "text",
+            "was_normalized": "[?] Vanderwerker",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Adam Vanderwerker"
+          }
         },
         {
           "as_printed": "Wilson 6 *",
-          "normalized": "John Wilson",
+          "normalized": "John Wilson 4",
           "role": "named in the Chicago post-office letter list printed 1834-03-04",
           "completed_from": [
             "1834-01-28",
             "1834-02-18"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 160,
+            "tied_by": "text",
+            "was_normalized": "John Wilson",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "John Wilson 4"
+          }
         },
         {
           "as_printed": "_ Winson",
@@ -1721,17 +2304,41 @@
           "completed_from": [
             "1834-01-28",
             "1834-02-11"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 161,
+            "tied_by": "text",
+            "was_normalized": "Wm. Winson",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Wm. Winson"
+          }
         },
         {
           "as_printed": "p Willece",
-          "normalized": "[?] Willece",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Philip Willaee",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 162,
+            "tied_by": "text",
+            "was_normalized": "[?] Willece",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Philip Willaee"
+          }
         },
         {
           "as_printed": "» B. Winn & Co.",
-          "normalized": "[?] B. Winn & Co.",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Jesse B. Winn & Co.",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 163,
+            "tied_by": "text",
+            "was_normalized": "[?] B. Winn & Co.",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Jesse B. Winn & Co."
+          }
         },
         {
           "as_printed": "el Warren",
@@ -1740,12 +2347,28 @@
           "completed_from": [
             "1834-01-07",
             "1834-02-11"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 164,
+            "tied_by": "text",
+            "was_normalized": "Daniel Warren",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Daniel Warren"
+          }
         },
         {
           "as_printed": "Weed",
-          "normalized": "[?] Weed",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Sally Weed",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 165,
+            "tied_by": "text",
+            "was_normalized": "[?] Weed",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Sally Weed"
+          }
         },
         {
           "as_printed": "n Whitcomb",
@@ -1754,22 +2377,54 @@
           "completed_from": [
             "1834-01-07",
             "1834-02-11"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 166,
+            "tied_by": "text",
+            "was_normalized": "Aaron Whitcomb",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Aaron Whitcomb"
+          }
         },
         {
           "as_printed": "ney Wells",
-          "normalized": "[Dela]ney Wells",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Delaney Wells",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 167,
+            "tied_by": "text",
+            "was_normalized": "[Dela]ney Wells",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Delaney Wells"
+          }
         },
         {
           "as_printed": "nas H. Wrickey",
-          "normalized": "[Thom]as H. Wrickey",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Thomas H. Wrickey",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 168,
+            "tied_by": "text",
+            "was_normalized": "[Thom]as H. Wrickey",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Thomas H. Wrickey"
+          }
         },
         {
           "as_printed": "» Webb",
-          "normalized": "[?] Webb",
-          "role": "named in the Chicago post-office letter list printed 1834-03-04"
+          "normalized": "Loiza Webb",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 169,
+            "tied_by": "text",
+            "was_normalized": "[?] Webb",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Loiza Webb"
+          }
         },
         {
           "as_printed": "HOGAN, P.M. | encof?ge,—premiums for a varie",
@@ -1781,17 +2436,25 @@
           ],
           "associated_places": [
             "the Post Office at Chicago"
-          ]
+          ],
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": "signature",
+            "tied_by": "text",
+            "was_normalized": "John S. C. Hogan",
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "John S. C. Hogan"
+          }
         }
       ],
-      "notes": "THE SECOND HALF OF THE SAME LIST, AND THE HALF THAT CARRIES THE HEADING AND THE SIGNATURE. Read with claim c026, this is one printed column of the Chicago post-office's list of uncalled-for letters, cut by the segmenter down its middle into two crops: this one opens '[L]etters … ost-Offiee at Chica-… 34.' and closes over the postmaster's name, 'HOGAN, P. M.', above the standard footer 'of the above letters … [will please say they are adve]rtised'. THE HAND COUNT THE TICKET REQUIRES, made by eye off the printed list as this transcription preserves it: eighteen names in the first crop (claim c024) and SIXTY-ONE here, of which sixty are private persons and one is the postmaster's own signature — SEVENTY-EIGHT PERSONAL NAMES IN TOTAL, plus John S. C. Hogan. THAT IS A FLOOR AND NOT THE PRINTED LENGTH, and the loss is visible rather than estimated: the Vision reading of both crops failed outright and the Tesseract fallback interleaved the list with whatever advertisement shared the printed column beside it, so every name here has lost its left edge and the debris between them — 'rackepelagd' at 3218, 'rhe ae' at 3225, '1e) Ws' at 3276 — stands where names stood. Closing the gap needs the page images, and that is filed as a ticket rather than guessed. NOTHING IS MERGED OUT OF THIS LIST. Fragments are minted as fragments; a bare surname with no initial is minted with its marker and NOT joined to anybody already in the gazetteer, even where the same surname stands in the 1 January list, because an initial is often the only thing separating two members of one family — the rule `identity.json` states and the rule that makes these two claims safe to mint at all. The trailing digits ('Elliot 3', 'Wilson 6', 'Rutherford 3', 'Marshall 2') are the count of letters waiting and are read as such. THE RETURN IS 1 JANUARY 1834, AND THIS IS ITS NINTH PRINTING (T-0331). The date line survives on this page only as `34.`, and T-0312 could not say which return the list was, so a 1 March quarterly return was floated as the obvious candidate and rightly not asserted. It is not one. `tools/letter_list_printings.py` counts the printings the way `data/research/newspapers/README.md` prescribes for exactly this - by the notice's OWN BODY TEXT and not by its heading (T-0328, T-0350) - and the Chicago post office's 1 January 1834 return stands in EVERY issue of the Democrat from Vol. I No. 7 of 1834-01-07 to this one, No. 15 of 1834-03-04, nine weeks without a break. A letter list is standing type, and this crop is the last impression of it, not a cohort of its own. FOUR OF THE NINE PRINTINGS SET THE DATE LINE WHOLE OR NEARLY: 'EMAINING in the Post-Offiee at Chic / go, Ill. January [1,] 1834.' at No. 7 line 645, 'in the Port-Offiee at Ch- go, Ill. Fammuary 1, 1604.' at No. 10 line 1107, 'go, Ill, January 3, 1934.' at No. 11 line 2858, and 'REMAINISG in the Pest[-Office at Chica]go, Il January 1, 63[4].' at No. 14 line 2947. The `34.` at the head of this page's column 3 is the tail of that same line's year. NO PAGE IMAGE WAS READ, so the reading stays `transcription_mediated`; the witnesses are eight other transcriptions of eight other impressions. WHAT THIS MEANS FOR THE PEOPLE WORK, and it is the opposite of what the ticket hoped: these are not a second census-proxy cohort for 1834. They are January's names, printed an eighth time, and T-0299's rule that one list mints once applies to them as one list with January's. A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS AND IS NOT CHICAGO'S - read 'at Henne[pin]' at No. 9 line 937 and 'at H- mi pin, Hl.' at No. 10 line 957 - so a later sweep must not fold the two together. THE FORENAMES ARE REPAIRED FROM THE CONCORDANT PRINTINGS, NOT GUESSED (T-0331). The crop cut every name on its LEFT edge, which took the forename; the other eight impressions are cut in other places and carry it. `tools/letter_list_printings.py` matches on the surname - which this page states plainly, and which is therefore the thing being matched, not the thing being supplied - and completes a forename ONLY where two or more PRINTINGS set the same one. Twenty-five of the fifty-seven cut readings are completed that way and appear here with `completed_from` naming the printings that carry them; the rest are left cut, and the tool says why for each: twelve have no two printings agreeing, four carry a surname that stands TWICE in this list - Bennett, Miner, Temple, and a crop that lost both forenames cannot say which line is which - fifteen have no witness at all, and one, Tuller, is reported as a disagreement rather than a winner because Alden Tuller and Elam Tuller BOTH stand in the list, two lines apart, at No. 13 lines 3137-3138. NOTHING IS AMENDED TO AGREE WITH ANYTHING: `as_printed` keeps this page's setting verbatim beside every completion, and the claim's own `normalized` is untouched, because it is the reading of THIS page and a forename taken off another impression is not."
+      "notes": "THE SECOND HALF OF THE SAME LIST, AND THE HALF THAT CARRIES THE HEADING AND THE SIGNATURE. Read with claim c026, this is one printed column of the Chicago post-office's list of uncalled-for letters, cut by the segmenter down its middle into two crops: this one opens '[L]etters … ost-Offiee at Chica-… 34.' and closes over the postmaster's name, 'HOGAN, P. M.', above the standard footer 'of the above letters … [will please say they are adve]rtised'. THE HAND COUNT THE TICKET REQUIRES, made by eye off the printed list as this transcription preserves it: eighteen names in the first crop (claim c024) and SIXTY-ONE here, of which sixty are private persons and one is the postmaster's own signature — SEVENTY-EIGHT PERSONAL NAMES IN TOTAL, plus John S. C. Hogan. THAT IS A FLOOR AND NOT THE PRINTED LENGTH, and the loss is visible rather than estimated: the Vision reading of both crops failed outright and the Tesseract fallback interleaved the list with whatever advertisement shared the printed column beside it, so every name here has lost its left edge and the debris between them — 'rackepelagd' at 3218, 'rhe ae' at 3225, '1e) Ws' at 3276 — stands where names stood. Closing the gap needs the page images, and that is filed as a ticket rather than guessed. NOTHING IS MERGED OUT OF THIS LIST. Fragments are minted as fragments; a bare surname with no initial is minted with its marker and NOT joined to anybody already in the gazetteer, even where the same surname stands in the 1 January list, because an initial is often the only thing separating two members of one family — the rule `identity.json` states and the rule that makes these two claims safe to mint at all. The trailing digits ('Elliot 3', 'Wilson 6', 'Rutherford 3', 'Marshall 2') are the count of letters waiting and are read as such. THE RETURN IS 1 JANUARY 1834, AND THIS IS ITS NINTH PRINTING (T-0331). The date line survives on this page only as `34.`, and T-0312 could not say which return the list was, so a 1 March quarterly return was floated as the obvious candidate and rightly not asserted. It is not one. `tools/letter_list_printings.py` counts the printings the way `data/research/newspapers/README.md` prescribes for exactly this - by the notice's OWN BODY TEXT and not by its heading (T-0328, T-0350) - and the Chicago post office's 1 January 1834 return stands in EVERY issue of the Democrat from Vol. I No. 7 of 1834-01-07 to this one, No. 15 of 1834-03-04, nine weeks without a break. A letter list is standing type, and this crop is the last impression of it, not a cohort of its own. FOUR OF THE NINE PRINTINGS SET THE DATE LINE WHOLE OR NEARLY: 'EMAINING in the Post-Offiee at Chic / go, Ill. January [1,] 1834.' at No. 7 line 645, 'in the Port-Offiee at Ch- go, Ill. Fammuary 1, 1604.' at No. 10 line 1107, 'go, Ill, January 3, 1934.' at No. 11 line 2858, and 'REMAINISG in the Pest[-Office at Chica]go, Il January 1, 63[4].' at No. 14 line 2947. The `34.` at the head of this page's column 3 is the tail of that same line's year. NO PAGE IMAGE WAS READ, so the reading stays `transcription_mediated`; the witnesses are eight other transcriptions of eight other impressions. WHAT THIS MEANS FOR THE PEOPLE WORK, and it is the opposite of what the ticket hoped: these are not a second census-proxy cohort for 1834. They are January's names, printed an eighth time, and T-0299's rule that one list mints once applies to them as one list with January's. A SECOND OFFICE'S RETURN RUNS IN THE SAME WEEKS AND IS NOT CHICAGO'S - read 'at Henne[pin]' at No. 9 line 937 and 'at H- mi pin, Hl.' at No. 10 line 957 - so a later sweep must not fold the two together. THE FORENAMES ARE REPAIRED FROM THE CONCORDANT PRINTINGS, NOT GUESSED (T-0331). The crop cut every name on its LEFT edge, which took the forename; the other eight impressions are cut in other places and carry it. `tools/letter_list_printings.py` matches on the surname - which this page states plainly, and which is therefore the thing being matched, not the thing being supplied - and completes a forename ONLY where two or more PRINTINGS set the same one. Twenty-five of the fifty-seven cut readings are completed that way and appear here with `completed_from` naming the printings that carry them; the rest are left cut, and the tool says why for each: twelve have no two printings agreeing, four carry a surname that stands TWICE in this list - Bennett, Miner, Temple, and a crop that lost both forenames cannot say which line is which - fifteen have no witness at all, and one, Tuller, is reported as a disagreement rather than a winner because Alden Tuller and Elam Tuller BOTH stand in the list, two lines apart, at No. 13 lines 3137-3138. NOTHING IS AMENDED TO AGREE WITH ANYTHING: `as_printed` keeps this page's setting verbatim beside every completion, and the claim's own `normalized` is untouched, because it is the reading of THIS page and a forename taken off another impression is not. THE PAGE IMAGE HAS NOW BEEN READ, AND IT SETTLES BOTH QUESTIONS T-0331 LEFT (T-0424). `data/research/newspapers/letter_list_1834_01_01_printed.json` carries every line of this printing of the list, read at the scan behind the deposit -- Internet Archive `chicago1835-newspaper-chicago-democrat-1834`, `Jan1834-Mar1834.pdf`, jp2 page 0019, which is page 4 of Vol. I No. 15 -- with the IIIF regions named. THE PRINTED LENGTH IS 170 LINES, eighty-five in each sub-column, over John S. C. Hogan's signature. The seventy-eight names these two claims mint are 45 per cent of it, so the hand count was a floor and the ninety-two missing lines are the crops' loss and not the paper's. EVERY ENTITY BELOW IS NOW TIED TO ITS PRINTED LINE, in `read_at_image`, and carries the grade of that tie: `scan_verified` where the image states the line, `transcription_mediated` for the two crop fragments no line of the list matches -- `I Cenige` and `Re Leena,` -- which are reported with their candidates rather than guessed. Thirty-one of the thirty-two readings `tools/letter_list_printings.py` left cut are completed here, INCLUDING the four the doubled surnames blocked: the crop's `as Bennett` is Thomas Bennett and its `Bennettra` is H. S. Bennett 2 -- the list holds THREE Bennetts, not two -- `nda Miner 2` is Miranda Miner 2 and `'. Miner` is F. T. Miner, `Temple 3` is Peter Temple 3 and `is Temple` is Lewis Temple, and `n Tuller` is Alden Tuller, the disagreement resolved. THE IMAGE ALSO OVERTURNS THREE CONCORDANCE COMPLETIONS, which is the price of completing a forename from another impression: `nda Miner 2` was read `[Ori]nda` and the type sets `Miranda` -- Orinda is a different person on this page, Orinda Garyl; `stor Marshall 2` was read `[Ne]stor` and the type sets `Chester`; `| Monreou` was read `John Monroe` and the type sets `John Monreou`. `normalized` now carries the printed line, `as_printed` still carries this crop's own setting, and nothing is minted here -- T-0299 rules that one list mints once and these names are January's."
     },
     {
       "id": "c028",
       "kind": "business",
       "reading": "transcription_mediated",
       "quote": "[uncertain: elters            Beot & Shoe ?]\nost-Offiee at Chica-        HE subscriber having rece\n34.                               the above business, pext\nHave                                        hen's Store, wil\na good assortm\ncian | ote te Bo«\n3, Haight             stited to     call of the’ coun’\nward                 wishing Fine Boots, water proc\n». Johnson          +| modated with the best material\nc Killigoss            blo style. Most kinds of work\nQO. Knapp.              on hand, or made to order on\n|. Kinzie                              L.      Mo}\nKerchevel          Chicago, Dee. 15, 18:",
-      "normalized": "Boot & Shoe [Making]. [T]HE subscriber having rece[ntly commenced] the above business, next [door to P. Co]hen's Store, wil[l keep on hand] a good assortm[ent of BOOTS and SHOES] […] su[i]ted to [the] call of the coun[try]. Gentlemen wishing Fine Boots, water proo[f, will be accom]modated with the best material[s, and fashiona]ble style. Most kinds of work [kept constantly] on hand, or made to order on [short notice]. [W. MONTGOMERY.] Chicago, Dec. 15, 18[33].",
+      "normalized": "Boot & Shoe [Making]. [T]HE subscriber having rece[ntly commenced] the above business, next [door to P. Co]hen's Store, wil[l keep on hand] a good assortm[ent of BOOTS and SHOES] […] su[i]ted to [the] call of the coun[try]. Gentlemen wishing Fine Boots, water proo[f, will be accom]modated with the best material[s, and fashiona]ble style. Most kinds of work [kept constantly] on hand, or made to order on [short notice]. [L.] [W. MONTGOMERY.] Chicago, Dec. 15, 18[33].",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 4,
@@ -1818,10 +2481,10 @@
         "interleaved": true
       },
       "business": {
-        "name": "W. Montgomery, boot and shoe maker",
+        "name": "L. W. Montgomery, boot and shoe maker",
         "trade": "boot and shoe making",
         "proprietors": [
-          "W. Montgomery"
+          "L. W. Montgomery"
         ],
         "goods": [
           "boots",
@@ -1840,7 +2503,7 @@
         "iso": "1833-12-15"
       },
       "entities": [],
-      "notes": "A BOOTMAKER PLACED NEXT DOOR TO PETER COHEN'S STORE, and that anchor is the strongest one in the whole month, because Cohen is the ONE Chicago storefront this project holds on a SCAN-VERIFIED record: `data/sources/chicago_democrat_1833_11_26.json` reads his address off the page images as the EAST END OF SOUTH WATER STREET, and this issue's own page 4 column 2 still carries that head-line in the surviving fragment '[E]AST END OF SOUTH WAT[ER]' (line 3176). So this claim puts a bootmaker's shop at the east end of South Water Street by two removes, both of them documented. THE PROPRIETOR'S NAME IS NOT LEGIBLE IN THIS CROP and is read from better witnesses to the same standing advertisement: 'MON TOOMERY' in the 1834-03-25 reprint (page 3 column 4 there), and 'W. MONTGOMERY' whole in the 1834-01-28 printing, which the corpus already carries. The initial is therefore W. NO PERSON IS MINTED FROM THIS CLAIM, because this column carries no legible signature. THE STREET IS LEFT NULL AND THE PLACEMENT IS `relative` ON COHEN'S STORE, following the January reading exactly: 'next door to a shop that advertises itself at the east end of a street' is one inference away from an address, and this project keeps that distinction. The lines cited interleave with the letter list of claim c025, which shares this crop — the same lines carry both, and each claim names only what its own text says."
+      "notes": "A BOOTMAKER PLACED NEXT DOOR TO PETER COHEN'S STORE, and that anchor is the strongest one in the whole month, because Cohen is the ONE Chicago storefront this project holds on a SCAN-VERIFIED record: `data/sources/chicago_democrat_1833_11_26.json` reads his address off the page images as the EAST END OF SOUTH WATER STREET, and this issue's own page 4 column 2 still carries that head-line in the surviving fragment '[E]AST END OF SOUTH WAT[ER]' (line 3176). So this claim puts a bootmaker's shop at the east end of South Water Street by two removes, both of them documented. THE PROPRIETOR'S NAME IS NOT LEGIBLE IN THIS CROP and is read from better witnesses to the same standing advertisement: 'MON TOOMERY' in the 1834-03-25 reprint (page 3 column 4 there), and 'W. MONTGOMERY' whole in the 1834-01-28 printing, which the corpus already carries. The initial is therefore W. NO PERSON IS MINTED FROM THIS CLAIM, because this column carries no legible signature. THE STREET IS LEFT NULL AND THE PLACEMENT IS `relative` ON COHEN'S STORE, following the January reading exactly: 'next door to a shop that advertises itself at the east end of a street' is one inference away from an address, and this project keeps that distinction. The lines cited interleave with the letter list of claim c025, which shares this crop — the same lines carry both, and each claim names only what its own text says. THE SIGNATURE IS LOTON W. MONTGOMERY'S, AND THE SHOEMAKING IS NOT THE AUCTIONEER'S (T-1040). This is ONE standing advertisement — 'Boot & Shoe Making. The subscriber having recently commenced the above business, next door to P. Cohen's Store …', the same setting word for word under a dateline of Chicago, December 1833 — and the Democrat runs it from 17 December 1833 through at least 8 April 1834. Four impressions bear on the signature and three of them carry an L: it is set WHOLE as 'L. W. MONTGOMERY' at 1833-12-17 c003 and at 1834-04-08 c007, and the damaged 1834-03-04 c028 preserves the initial itself — its column reads 'L.      Mo}' where the name stood. Those impressions stand on both sides of the two that read 'W. MONTGOMERY' (1834-01-28 c008, and 1834-03-25 c009, whose initial its own note says was READ FROM the January printing rather than off its own page). So the reading is L. W. Montgomery throughout, and `as_printed` is left exactly as each column sets it. WHAT THIS IS NOT: it is not a merge of 'W. Montgomery' with 'L. W. Montgomery'. This corpus carries a real W. Montgomery — the auctioneer and commission merchant of South Water Street, signing 'W. MONTGOMERY' and 'W. MONTGOMERY, Auc'r.' across the summer of 1835 — and the identity policy's families rule rightly refuses to join two Montgomerys on a differing initial. The discriminator here is not the initial; it is that the shoemaking notice and the auction notices are two different advertisements, and this one is the shoemaker's. Before this ruling `person_w_montgomery` carried 'boot and shoe maker' beside 'auctioneer', 'commission merchant', 'land agent' and 'newspaper agent' — one record holding two men's trades on two signatures separated on the page. Loton W. Montgomery is in this reconstruction under his own name (hh_montgomery_l_w), on the polls of 1834 and 1835 and in Fergus 1843 and Norris 1844, a shoemaker in each."
     },
     {
       "id": "c029",
@@ -1985,6 +2648,786 @@
       },
       "entities": [],
       "notes": "THE NEWSPAPER'S OWN ADDRESS, AND IT IS A CORNER: South Water and Clark. The Democrat's terms notice states where the paper is printed, which places a PRINTING OFFICE — press, cases, and a room big enough for both — at the corner of South Water and Clark Streets in March 1834. Two things make this claim worth more than a normal storefront. First, the office is not a shop and so is a different KIND of building on a street this project is trying to populate. Second, W. Kimball's 'New Store on the corner of South Water and Clark-streets' (1834-03-18, claim c015 there) is on the same corner by the same words, so two documented occupants stand at one crossing without either saying which side of it — which is the honest limit of what a corner address gives you, and is recorded rather than resolved. THE LINE IS CUT DOWN THE MIDDLE by the segmenter and its right half carries the terms of subscription; the normalized reading supplies only the office's own sentence and leaves the rest."
+    },
+    {
+      "id": "c033",
+      "kind": "person",
+      "reading": "scan_verified",
+      "quote": "J. W. Anderson\nConstant Abbott\nWm. G. Austin\nAlmond Axtell 2\nMyron K. Brownson\nTimothy Burnett\nB. H. Bertrand\nCyntha Burbee\nJoseph Babeu\nAnthony Beers\nJ. K. Blodgett\nAarri[?]t Bradford\nErastus Bowen\nChas. Babcock\nAaron Bemis\nO. P. Catran\nD. P. Clevinger\nE. W. Center\nAlfred Clarke\nDaniel B. Clevinger 4\nHenry B. Clarke 2\nAlfred Churchill\nGustavus Clark\nBenj. Chapman\nSamuel Eberiden\nH. K. Fay\nAaron Friend\nJane Forrister\nP. Field\nEbenezer Goodrich\ndane Gray\nWilliam Gooding 2\nJos. A. Gooding\nO. Grant\nPomeroy Goodrich\nLuther Hatch\nReuben Hart\nWooster Harrison [?]\nBenj. Harrison\nJ. P. Harkness\nIsaac Hays\nLevi Hills 2\nH. B. Hoffman\nJ. S. Lacey\nJacob Loose\nJoseph Meeker\nJames Makio\nF. B. Northrop\nLauretta Plympton 2\nT. E. Parsons 2\nRob't. Robinson\nAxtel & Steele\nB. P. Stafford\nH. S. Steele 2",
+      "normalized": "J. W. Anderson; Constant Abbott; Wm. G. Austin; Almond Axtell 2; Myron K. Brownson; Timothy Burnett; B. H. Bertrand; Cyntha Burbee; Joseph Babeu; Anthony Beers; J. K. Blodgett; Aarri[?]t Bradford; Erastus Bowen; Chas. Babcock; Aaron Bemis; O. P. Catran; D. P. Clevinger; E. W. Center; Alfred Clarke; Daniel B. Clevinger 4; Henry B. Clarke 2; Alfred Churchill; Gustavus Clark; Benj. Chapman; Samuel Eberiden; H. K. Fay; Aaron Friend; Jane Forrister; P. Field; Ebenezer Goodrich; dane Gray; William Gooding 2; Jos. A. Gooding; O. Grant; Pomeroy Goodrich; Luther Hatch; Reuben Hart; Wooster Harrison [?]; Benj. Harrison; J. P. Harkness; Isaac Hays; Levi Hills 2; H. B. Hoffman; J. S. Lacey; Jacob Loose; Joseph Meeker; James Makio; F. B. Northrop; Lauretta Plympton 2; T. E. Parsons 2; Rob't. Robinson; Axtel & Steele; B. P. Stafford; H. S. Steele 2.",
+      "locator": {
+        "issue_page": 4,
+        "column": 2,
+        "printed_lines_of_the_return": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          14,
+          20,
+          23,
+          24,
+          25,
+          31,
+          32,
+          33,
+          35,
+          38,
+          39,
+          40,
+          43,
+          44,
+          52,
+          56,
+          57,
+          59,
+          62,
+          66,
+          68,
+          69,
+          70,
+          74,
+          76,
+          77,
+          79,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          100,
+          101,
+          107,
+          108,
+          113,
+          115,
+          116,
+          123,
+          131,
+          133,
+          136
+        ],
+        "read_at_image": {
+          "roster": "chicago/4d/data/research/newspapers/letter_list_1834_01_01_printed.json",
+          "internet_archive_item": "chicago1835-newspaper-chicago-democrat-1834",
+          "file": "Jan1834-Mar1834.pdf",
+          "file_sha256": "9fdfe5762de29a2581dcffb0a2b2140a15eb04b1811747aa37d78bbda92022d3",
+          "jp2_page": "Jan1834-Mar1834_jp2/Jan1834-Mar1834_0019.jp2"
+        }
+      },
+      "letter_list_only": true,
+      "notes": "THE LINES THE CROPS LOST, LIFTED FROM THE PAGE IMAGE (T-1011, out of T-1008). Claims c026 and c027 of this issue are the two crops the segmenter cut from page 4's second printed column, and an advertisement stands down the middle of that column: between them they carry 78 of the return's 170 printed lines. T-0424 read the whole column at the scan and set every line down in `data/research/newspapers/letter_list_1834_01_01_printed.json`; T-1010 counted what each line reaches and found 54 that reach nothing at all — not refused by any rule, merely never read into a claim. This claim is those 54 lines, in printed order, from the same impression, the same page and the same column as the crops beside it. It is a LIFT of a reading already made and gated, not a second reading: `as_printed` is the type's own setting, unamended, and each entity's `normalized` is identical to it because at the image there is nothing left to resolve. RULING 1 APPLIES, as it does to c026 and c027: this is Chicago's own office, so a listed name mints a resident candidate, flagged `letter_list_only` — and the minting pass's own refusals decide which of them the town keeps. Nothing here is hand-picked: `tools/lift_letter_list_1834_unread.py --check` re-derives the set of lines from the other five claims and fails if it has moved.",
+      "entities": [
+        {
+          "as_printed": "J. W. Anderson",
+          "normalized": "J. W. Anderson",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 2,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "J. W. Anderson"
+          }
+        },
+        {
+          "as_printed": "Constant Abbott",
+          "normalized": "Constant Abbott",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 3,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Constant Abbott"
+          }
+        },
+        {
+          "as_printed": "Wm. G. Austin",
+          "normalized": "Wm. G. Austin",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 4,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Wm. G. Austin"
+          }
+        },
+        {
+          "as_printed": "Almond Axtell 2",
+          "normalized": "Almond Axtell 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 5,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Almond Axtell 2"
+          }
+        },
+        {
+          "as_printed": "Myron K. Brownson",
+          "normalized": "Myron K. Brownson",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 6,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Myron K. Brownson"
+          }
+        },
+        {
+          "as_printed": "Timothy Burnett",
+          "normalized": "Timothy Burnett",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 7,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Timothy Burnett"
+          }
+        },
+        {
+          "as_printed": "B. H. Bertrand",
+          "normalized": "B. H. Bertrand",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 8,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "B. H. Bertrand"
+          }
+        },
+        {
+          "as_printed": "Cyntha Burbee",
+          "normalized": "Cyntha Burbee",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 9,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Cyntha Burbee"
+          }
+        },
+        {
+          "as_printed": "Joseph Babeu",
+          "normalized": "Joseph Babeu",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 10,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Joseph Babeu"
+          }
+        },
+        {
+          "as_printed": "Anthony Beers",
+          "normalized": "Anthony Beers",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 12,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Anthony Beers"
+          }
+        },
+        {
+          "as_printed": "J. K. Blodgett",
+          "normalized": "J. K. Blodgett",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 14,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "J. K. Blodgett"
+          }
+        },
+        {
+          "as_printed": "Aarri[?]t Bradford",
+          "normalized": "Aarri[?]t Bradford",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 20,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Aarri[?]t Bradford"
+          }
+        },
+        {
+          "as_printed": "Erastus Bowen",
+          "normalized": "Erastus Bowen",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 23,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Erastus Bowen"
+          }
+        },
+        {
+          "as_printed": "Chas. Babcock",
+          "normalized": "Chas. Babcock",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 24,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Chas. Babcock"
+          }
+        },
+        {
+          "as_printed": "Aaron Bemis",
+          "normalized": "Aaron Bemis",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 25,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Aaron Bemis"
+          }
+        },
+        {
+          "as_printed": "O. P. Catran",
+          "normalized": "O. P. Catran",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 31,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "O. P. Catran"
+          }
+        },
+        {
+          "as_printed": "D. P. Clevinger",
+          "normalized": "D. P. Clevinger",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 32,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "D. P. Clevinger"
+          }
+        },
+        {
+          "as_printed": "E. W. Center",
+          "normalized": "E. W. Center",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 33,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "E. W. Center"
+          }
+        },
+        {
+          "as_printed": "Alfred Clarke",
+          "normalized": "Alfred Clarke",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 35,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Alfred Clarke"
+          }
+        },
+        {
+          "as_printed": "Daniel B. Clevinger 4",
+          "normalized": "Daniel B. Clevinger 4",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 38,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Daniel B. Clevinger 4"
+          }
+        },
+        {
+          "as_printed": "Henry B. Clarke 2",
+          "normalized": "Henry B. Clarke 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 39,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Henry B. Clarke 2"
+          }
+        },
+        {
+          "as_printed": "Alfred Churchill",
+          "normalized": "Alfred Churchill",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 40,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Alfred Churchill"
+          }
+        },
+        {
+          "as_printed": "Gustavus Clark",
+          "normalized": "Gustavus Clark",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 43,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Gustavus Clark"
+          }
+        },
+        {
+          "as_printed": "Benj. Chapman",
+          "normalized": "Benj. Chapman",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 44,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Benj. Chapman"
+          }
+        },
+        {
+          "as_printed": "Samuel Eberiden",
+          "normalized": "Samuel Eberiden",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 52,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Samuel Eberiden"
+          }
+        },
+        {
+          "as_printed": "H. K. Fay",
+          "normalized": "H. K. Fay",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 56,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "H. K. Fay"
+          }
+        },
+        {
+          "as_printed": "Aaron Friend",
+          "normalized": "Aaron Friend",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 57,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Aaron Friend"
+          }
+        },
+        {
+          "as_printed": "Jane Forrister",
+          "normalized": "Jane Forrister",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 59,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Jane Forrister"
+          }
+        },
+        {
+          "as_printed": "P. Field",
+          "normalized": "P. Field",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 62,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "P. Field"
+          }
+        },
+        {
+          "as_printed": "Ebenezer Goodrich",
+          "normalized": "Ebenezer Goodrich",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 66,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Ebenezer Goodrich"
+          }
+        },
+        {
+          "as_printed": "dane Gray",
+          "normalized": "dane Gray",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 68,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "dane Gray"
+          }
+        },
+        {
+          "as_printed": "William Gooding 2",
+          "normalized": "William Gooding 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 69,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "William Gooding 2"
+          }
+        },
+        {
+          "as_printed": "Jos. A. Gooding",
+          "normalized": "Jos. A. Gooding",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 70,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Jos. A. Gooding"
+          }
+        },
+        {
+          "as_printed": "O. Grant",
+          "normalized": "O. Grant",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 74,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "O. Grant"
+          }
+        },
+        {
+          "as_printed": "Pomeroy Goodrich",
+          "normalized": "Pomeroy Goodrich",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 76,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Pomeroy Goodrich"
+          }
+        },
+        {
+          "as_printed": "Luther Hatch",
+          "normalized": "Luther Hatch",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 77,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Luther Hatch"
+          }
+        },
+        {
+          "as_printed": "Reuben Hart",
+          "normalized": "Reuben Hart",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 79,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Reuben Hart"
+          }
+        },
+        {
+          "as_printed": "Wooster Harrison [?]",
+          "normalized": "Wooster Harrison [?]",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 83,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Wooster Harrison [?]"
+          }
+        },
+        {
+          "as_printed": "Benj. Harrison",
+          "normalized": "Benj. Harrison",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 84,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Benj. Harrison"
+          }
+        },
+        {
+          "as_printed": "J. P. Harkness",
+          "normalized": "J. P. Harkness",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 85,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "J. P. Harkness"
+          }
+        },
+        {
+          "as_printed": "Isaac Hays",
+          "normalized": "Isaac Hays",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 86,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Isaac Hays"
+          }
+        },
+        {
+          "as_printed": "Levi Hills 2",
+          "normalized": "Levi Hills 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 87,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Levi Hills 2"
+          }
+        },
+        {
+          "as_printed": "H. B. Hoffman",
+          "normalized": "H. B. Hoffman",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 88,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "H. B. Hoffman"
+          }
+        },
+        {
+          "as_printed": "J. S. Lacey",
+          "normalized": "J. S. Lacey",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 100,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "J. S. Lacey"
+          }
+        },
+        {
+          "as_printed": "Jacob Loose",
+          "normalized": "Jacob Loose",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 101,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Jacob Loose"
+          }
+        },
+        {
+          "as_printed": "Joseph Meeker",
+          "normalized": "Joseph Meeker",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 107,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Joseph Meeker"
+          }
+        },
+        {
+          "as_printed": "James Makio",
+          "normalized": "James Makio",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 108,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "James Makio"
+          }
+        },
+        {
+          "as_printed": "F. B. Northrop",
+          "normalized": "F. B. Northrop",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 113,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "F. B. Northrop"
+          }
+        },
+        {
+          "as_printed": "Lauretta Plympton 2",
+          "normalized": "Lauretta Plympton 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 115,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Lauretta Plympton 2"
+          }
+        },
+        {
+          "as_printed": "T. E. Parsons 2",
+          "normalized": "T. E. Parsons 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 116,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "T. E. Parsons 2"
+          }
+        },
+        {
+          "as_printed": "Rob't. Robinson",
+          "normalized": "Rob't. Robinson",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 123,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Rob't. Robinson"
+          }
+        },
+        {
+          "as_printed": "Axtel & Steele",
+          "normalized": "Axtel & Steele",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 131,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "Axtel & Steele"
+          }
+        },
+        {
+          "as_printed": "B. P. Stafford",
+          "normalized": "B. P. Stafford",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 133,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "B. P. Stafford"
+          }
+        },
+        {
+          "as_printed": "H. S. Steele 2",
+          "normalized": "H. S. Steele 2",
+          "role": "named in the Chicago post-office letter list printed 1834-03-04",
+          "reading": "scan_verified",
+          "read_at_image": {
+            "printed_line": 136,
+            "tied_by": "image",
+            "lifted_from_the_roster": true,
+            "roster": "data/research/newspapers/letter_list_1834_01_01_printed.json",
+            "as_printed_at_image": "H. S. Steele 2"
+          }
+        }
+      ]
     }
   ]
 }

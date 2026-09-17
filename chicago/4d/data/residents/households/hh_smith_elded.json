@@ -5,12 +5,12 @@
  "head": "smith_elded",
  "source_pass": "letter_list",
  "arrival": {
-  "value": "1835-07-01",
+  "value": "1835-06-30",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1835-07-01 and at no stated time before it; nothing says when they came.",
+  "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of June 1835 and not by the issue it was read in (T-0425). The earliest issue this project reads the name in is 1835-07-01, 1 day later; that gap is an accident of which impression an extraction pass reached, and it is not evidence. Somebody was writing to this name at Chicago by 1835-06-30 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -52,6 +52,7 @@
    "name": "Elded Smith",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -74,16 +75,29 @@
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-0839",
+     "verdict": "undecided",
+     "rule": "R5",
+     "cluster": "smith-e-kirby",
+     "weighed_against": [
+      "smith_e_kirby"
+     ],
+     "referred_to": "rule",
+     "for_merge": "Both are Smiths in the Democrat, and 'Elded' begins with the E that 'E Kirby' prints.",
+     "against_merge": "'Elded' is not a name — it is a garbled printed forename off the post office's letter list, and T-0695 is the open ticket that reads that class of wreck. A merge cannot be tested against a word nobody has read yet. Refused by rule until T-0695 lands."
+    }
+   ]
   }
  ],
  "touches_removal": false,
  "review_required": false,
  "research_note": "MINTED FROM THE LETTER LISTS (T-0378, T-0379). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here argues for a household, and this one argues for a PERSON. `data/residents/` cannot carry a person outside a household, so one was written around them and told to claim nothing — one member, no dwelling, no division, no trade, no family, no arrival beyond the paper's bound. tools/mint_letter_list_residents.py derives the set and prints every refusal, `--gate` proves no record here gained a roof, a trade or a second member, and docs/LIBERTIES.md L214 carries the change of scale.",
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. smith_elded, the advertising cards in Norris's directory of 1844 — n1844_ad0060 (contested, so nothing crossed).",
   "sources": [
-   "fergus_chicago_directory_1839",
    "norris_directory_1844"
   ],
   "people": [

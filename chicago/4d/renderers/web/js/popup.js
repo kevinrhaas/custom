@@ -98,6 +98,9 @@ import { geometryMark } from './geometry.js';
 // the reason every other renderer thing here is shared: three surfaces naming one
 // building three ways is how a town becomes a spreadsheet.
 import { displayName } from './display-name.js';
+// The agency relation, rendered by the module that owns it so this card and the
+// household browser cannot describe one holding two ways (T-1041).
+import { agencySectionHtml } from './agencies.js';
 
 const CONF_ORDER = { attested: 0, inferred: 1, reconstructed: 2 };
 
@@ -701,7 +704,8 @@ function roofWords(attrs) {
  * about the scene. The sentence is standing text keyed on the boolean — the
  * record's own reasoning is in its notes below, verbatim, as the ticket says —
  * and it names what the record is held for, because "held" alone tells a reader
- * that a decision was made and nothing about what it rests on.
+ * that a decision was made and nothing about what it rests on. The record's own
+ * sentence follows it, from `review_reason` on the sidecar.
  */
 function headHtml(s, record, called, p, place) {
   const aka = Array.isArray(s.aka) && s.aka.length
@@ -753,10 +757,25 @@ function headHtml(s, record, called, p, place) {
   if (record.assetIsPlaceholder) {
     flags.push('<span class="pop-flag">This shape is a placeholder massing, not a bake from the record.</span>');
   }
+  // The one flag on this card that is not about how well the building is known.
+  // The four above qualify a reconstruction; this one says the project has stopped
+  // short of a claim on purpose, and it outranks them — so it is rendered last, in
+  // its own treatment, and it is the only flag that quotes the record.
+  //
+  // The quote is the point. Standing text can say a building is HELD; only the
+  // record can say what it is held FOR, and the sentence is the one
+  // `measure_review_constraint.py` assertion 6 judges, carried here by the
+  // compiler through the module the two of them share (T-0268). Before this the
+  // reason lived in a 400-word `research_note` the card shows verbatim and folded
+  // away, which is a reason a visitor never reads.
   if (s.review_required === true) {
-    flags.push(`<span class="pop-flag pop-flag-held">Held pending consultation — this record
-      touches the standing constraint on depicting Indigenous history in 1835; see
-      AGENTS.md. The record's own account below says what it is held for.</span>`);
+    const reason = typeof s.review_reason === 'string' ? s.review_reason.trim() : '';
+    flags.push(`<span class="pop-flag pop-flag-held"><strong>Held pending consultation.</strong>
+      This record touches the standing constraint on depicting Indigenous history in
+      1835: the project depicts the built fabric and stops there until the people
+      whose history it is have been consulted.${
+        reason ? `<em class="pop-held-why">${escapeHtml(reason)}</em>` : ''
+      }</span>`);
   }
   const flagBlock = flags.length ? `<div class="pop-flags">${flags.join('')}</div>` : '';
 
@@ -888,6 +907,50 @@ function whereSection(p, place) {
   </section>`;
 }
 
+/**
+ * The town's own law, on the building it fell on or did not.
+ *
+ * The 5 August 1835 ordinance is the only DOCUMENTED statement this project holds
+ * about where the built-up town ended in the scene year — a boundary the Trustees
+ * walked street by street, inside which a hay stack cost twenty-five dollars. It
+ * is a fire rule, so the line IS their answer to "where is the town built up?",
+ * and every other answer in this dataset is derived from the plat, the land deal
+ * and measured frontage instead.
+ *
+ * Nothing is drawn in the scene for it: a legal limit is not a fence. This row is
+ * where it reaches a visitor, and it says which side of the line the building a
+ * visitor just clicked on stood on.
+ *
+ * Silent in two cases, both deliberate. `limits` null means the derived file did
+ * not load, and "not loaded" is not the same claim as "this building was outside".
+ * A null answer means the record commits no position, so there is no side to
+ * be on. The ordinance is also five weeks LATER than the scene date, which the
+ * row says rather than hides.
+ */
+function ordinanceSection(limits, p) {
+  if (!limits) return '';
+  const covered = limits.coversPlacement(p);
+  if (covered === null) return '';
+  const ord = limits.ordinance ?? {};
+  const inside = covered
+    ? 'Inside the limit — hay could not lawfully be stacked here.'
+    : 'Outside the limit — the rule did not reach this ground.';
+  const quote = ord.quote
+    ? `<blockquote class="pop-quote">${escapeHtml(ord.quote)}</blockquote>` : '';
+  return `<section class="pop-sec pop-ordinance">
+    <h3>Was it inside the town's fire limit?</h3>
+    <p class="pop-ordinance-stands">${escapeHtml(inside)}</p>
+    <p class="pop-ordinance-lead">Section 22 of the by-laws the Trustees passed on
+      5 August 1835 made it unlawful to stack hay inside a boundary they walked street
+      by street — ${limits.areaAcres ? `${escapeHtml(String(limits.areaAcres))} acres` : 'a boundary'}
+      of it — under twenty-five dollars a stack. It is the town's own statement of where
+      it was built up closely enough to burn, five weeks after this scene.</p>
+    ${quote}
+    <p class="pop-ordinance-cite">The Chicago Democrat, 19 August 1835, page 1 —
+      the limit is derived from committed street lines, never drawn in the scene.</p>
+  </section>`;
+}
+
 /** The three panes under the facts, and the strip that switches them. The last
  *  tab a visitor chose is remembered for the session — module scope, not
  *  storage — so walking from one building to the next keeps the reader where
@@ -965,6 +1028,11 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
   /** Same rule for the scene's open questions: null means "not loaded", which is
    *  not the same claim as "nothing is open about this building". */
   let openQuestions = null;
+  /** Null until the derived ordinance limits load; see `ordinanceSection`. */
+  let ordinanceLimits = null;
+  /** Null until the compiled agency relation loads. Same rule as the liberties:
+   *  null means "not loaded", which is not the claim that this house held none. */
+  let agencies = null;
   let currentRecord = null;
 
   function close() {
@@ -972,6 +1040,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
     currentRecord = null;
     root.setAttribute('hidden', '');
     root.innerHTML = '';
+    document.documentElement.classList.remove('card-open');
   }
 
   root.addEventListener('click', (e) => {
@@ -1014,6 +1083,30 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
      */
     setOpenQuestions(list) {
       openQuestions = Array.isArray(list) ? list : null;
+      if (currentRecord) this.show(currentRecord);
+    },
+
+    /**
+     * Hand the popup the derived town ordinance limits, on the same terms as the
+     * liberties and the open questions: a card already on screen is redrawn rather
+     * than left without a row the dataset can now fill.
+     *
+     * @param {object|null} limits  `loadOrdinanceLimits()`'s handle, or null
+     */
+    setOrdinanceLimits(limits) {
+      ordinanceLimits = limits ?? null;
+      if (currentRecord) this.show(currentRecord);
+    },
+
+    /**
+     * Hand the popup the compiled agency relation once it loads. Redrawn like the
+     * liberties, for the same reason: a card already on screen showing fewer
+     * relations than the dataset holds is the one failure mode that matters.
+     *
+     * @param {object|null} doc  `loadAgencies()`'s handle, or null
+     */
+    setAgencies(doc) {
+      agencies = doc ?? null;
       if (currentRecord) this.show(currentRecord);
     },
 
@@ -1067,6 +1160,7 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
       const evidencePane = `
         ${basisSection(s, place)}
         ${whereSection(p, place)}
+        ${ordinanceSection(ordinanceLimits, p)}
         ${presenceSection(s)}
         ${shapeSection(s)}
         <section class="pop-sec">
@@ -1094,12 +1188,16 @@ export function createPopup(root, { docBase = DOSSIER_BASE } = {}) {
         ${leadHtml(s, called, p)}
         ${factsHtml(s)}
         ${residentsSection(s)}
+        ${agencySectionHtml(agencies, 'structure_id', record.id, escapeHtml)}
         ${tabsHtml({ liberties: libertyCount + questionCount })}
         ${paneHtml('evidence', evidencePane)}
         ${paneHtml('liberties', libertiesPane)}
         ${paneHtml('record', recordPane)}
       `;
       root.removeAttribute('hidden');
+      // On a phone the sheet takes the lower screen and the building is framed into
+      // the strip above it (T-0824); the map and compass would cover that strip.
+      document.documentElement.classList.add('card-open');
       root.scrollTop = 0;
       return true;
     },

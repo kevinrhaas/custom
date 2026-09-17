@@ -33,7 +33,7 @@ note. The division vocabulary gains `unplaced` for exactly this, because writing
 `south` because most of the town was south is the kind of quiet invention this project
 exists not to make.
 
-THE EIGHT REFUSALS, AND WHY EACH ONE IS THERE.
+THE NINE REFUSALS, AND WHY EACH ONE IS THERE.
 
   1. `garbled`                — the transcription bracketed the name as uncertain.
   2. `a firm, not a person`   — 'Hamilton & Sons'. A firm cannot head a household; it
@@ -63,6 +63,19 @@ THE EIGHT REFUSALS, AND WHY EACH ONE IS THERE.
                                 candidate costs the town one documented resident, a
                                 wrongly accepted one mints a second copy of a real man
                                 or answers a question the project has already opened.
+  9. `the identity master already holds this person on a committed card` — refusal 7
+                                is a surname proxy and it is deliberately PARTIAL: it
+                                skips the households minted by this pass and by every
+                                pass below it, so a card one of those wrote is invisible
+                                to it. `tools/identity_master_guard.py` asks the
+                                cross-domain identity master instead, which resolves on
+                                surname AND forename signature and can therefore look
+                                into that blind spot without the bluntness. It refuses
+                                only where the master's own M1/M2/M3 merge this name
+                                onto a card; where the master refuses to choose between
+                                rivals (R2/R3/R4) so does this, and the candidate is
+                                minted. T-0843, the half of T-0839 that stops the next
+                                duplicate rather than folding the last one.
   8. `surname already minted`  — one surname, one household, across the whole pass. A
                                 shared surname reads as kinship and this pass claims
                                 none; it is also how the same man under two printed
@@ -92,6 +105,13 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
+from identity_master_guard import (  # noqa: E402  (T-0843; refusal 9)
+    IdentityGuard, blind_person_ids, refusal as guard_refusal,
+)
+
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -358,6 +378,11 @@ def mint(docs: dict, index: dict):
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
     known = town_family_names(docs, index)
     in_town = in_town_places()
+    # T-0843. The identity master, consulted with the same precedence this pass's
+    # surname test already obeys: blind to its own output and to every pass below it.
+    guard = IdentityGuard.load()
+    blind = blind_person_ids(docs, lambda path, doc: any(
+        minted_by(path, doc, pass_name, prefix) for pass_name, prefix in MINTED_PASSES))
 
     def norm(s):
         return re.sub(r"[^a-z ]", "", (s or "").lower()).strip()
@@ -403,6 +428,8 @@ def mint(docs: dict, index: dict):
                       + "; ".join(outside) + ")")
         elif fam in known:
             reason = f"the town already names a {fam.title()}"
+        elif (hit := guard.holder(name, blind_to=blind)) is not None:
+            reason = guard_refusal(hit)
         elif fam in taken:
             reason = "surname already minted"
         if reason:
@@ -561,6 +588,13 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
     return doc
 
 
+def carry_over(doc: dict, existing: dict) -> dict:
+    """Keep later passes' findings when this newspaper mint rebuilds its card."""
+    # A title is this pass's evidence for ``sex``.  If the reading changes and the
+    # title vanishes, an old derivation may not silently put that optional field back.
+    return carry_resident_mint(doc, existing, owned_person_keys=("sex",))
+
+
 def build(preload: dict | None = None):
     docs = ({p: json.loads(t) for p, t in preload.items() if p != INDEX}
             if preload is not None
@@ -572,42 +606,24 @@ def build(preload: dict | None = None):
     accepted, refusals = mint(docs, index)
 
     files = {}
-    rows = []
     seen: set[str] = set()
     for cand, gaz in accepted:
         doc = record(cand, gaz, docs, seen)
+        existing = docs.get(HOUSEHOLDS / f"{doc['id']}.json") or {}
+        carry_over(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
+    # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
+    # keep every other row verbatim, so a household no pass owned could be regraded
+    # elsewhere and go on carrying a stale row for ever. `final` is the whole layer
+    # as this pass leaves it, and the derivation reads all of it.
+    final = {path: doc for path, doc in docs.items() if path not in mine_paths}
+    final.update({path: json.loads(text) for path, text in files.items()
+                  if path != INDEX})
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 

@@ -7,6 +7,14 @@ pre-T-0638 reading of a printed name, once under the corrected one — and repor
 difference. `--check` re-derives it and fails if this file has drifted from what the
 tree now says, so it cannot quietly go stale.
 
+T-0843 MOVED ONE ROW OUT OF THIS REPORT AND THE REASON IS WORTH READING. The pass
+now consults the cross-domain identity master before it writes a card, so
+`Norton N. R.` is refused under BOTH readings — the master resolves the initials
+onto the committed Nelson R. Norton whichever token the old rule took for a
+surname. It was never a difference between the two readings; the surname test was
+simply too blunt to see it under one of them. The count below fell by one
+accordingly, and nothing was retired to make that happen.
+
 T-0660 asks for this list before anything is retired, and the reason is in the third
 section: the pass's own ranking would not always keep the better record, and two of
 these collisions are not duplicates at all but two different men who cannot both hold
@@ -14,11 +22,11 @@ one family name.
 
 ## The two readings, over the same pool
 
-* the pool the register offers this pass: **1845** candidates
-* accepted under the pre-T-0638 reading: **656**
-* accepted under the corrected reading: **658**
-* candidates the correction REFUSES that the old reading accepted: **9**
-* candidates the correction ADMITS that the old reading refused: **11**
+* the pool the register offers this pass: **1879** candidates
+* accepted under the pre-T-0638 reading: **703**
+* accepted under the corrected reading: **715**
+* candidates the correction REFUSES that the old reading accepted: **8**
+* candidates the correction ADMITS that the old reading refused: **20**
 
 ## The collisions — what the paper printed, and who holds the surname instead
 
@@ -28,14 +36,13 @@ rules for. `carries` is what a retirement would strand.
 
 | printed | as a card shows it | old | new | refused because | holds it | returns | carries |
 |---|---|---|---|---|---|---|---|
-| `Es,Jones, High` | Jones, High Es | `es` | `jones` | the town already names a Jones | Benjamin Jones (hh_jones_benjamin); D E Jones (hh_jones_d_e); M Jones (hh_jones_m) … | 1 | research row T-0481 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
+| `Es,Jones, High` | Jones, High Es | `es` | `jones` | the town already names a Jones | Benjamin Jones (hh_jones_benjamin); D E Jones (hh_jones_d_e); M Jones (hh_jones_m) … | 1 | research row T-0481 (no_corroboration_yet) |
 | `Esther Preston` | Esther Preston | `preston` | `preston` | surname already minted | Stephen II. Preston | 1 | research row T-0479 (no_corroboration_yet) |
-| `Frederick W. Page` | Frederick W. Page | `page` | `page` | surname already minted | Elisha S. Page | 1 | — |
-| `Mason Sabrina A.` | Sabrina A. Mason | `a` | `mason` | the town already names a Mason | Matthias Mason (hh_mason_matthias) | 1 | research row T-0482 (no_corroboration) |
-| `Mills Joel C.` | Joel C. Mills | `c` | `mills` | the town already names a Mills | John A Mills (hh_mills_john_a); Samuel Mills (hh_mills_samuel) | 1 | research row T-0482 (no_corroboration), directory fergus_chicago_directory_1839 |
-| `Norton N. R.` | N. R. Norton | `r` | `norton` | the town already names a Norton | Nelson R. Norton (hh_norton_nelson_r) | 1 | research row T-0483 (no_corroboration_yet), directory fergus_chicago_directory_1839 |
+| `Frederick W. Page` | Frederick W. Page | `page` | `page` | surname already minted | Elisha S. Page | 1 | research row T-0510 (no_corroboration) |
+| `Mason Sabrina A.` | Sabrina A. Mason | `a` | `mason` | the town already names a Mason | Matthias Mason (hh_mason_matthias) | 1 | research row T-0482 (no_corroboration_yet) |
+| `Mills Joel C.` | Joel C. Mills | `c` | `mills` | the town already names a Mills | John A Mills (hh_mills_john_a) | 1 | research row T-0482 (no_corroboration_yet) |
 | `Norton Wm. H.` | Wm. H. Norton | `h` | `norton` | the town already names a Norton | Nelson R. Norton (hh_norton_nelson_r) | 1 | research row T-0483 (no_corroboration_yet) |
-| `Perry A. 8.` | A. 8. Perry | `8` | `perry` | the town already names a Perry | Calvin Perry (hh_perry_calvin) | 1 | research row T-0483 (no_corroboration_yet), directory fergus_chicago_directory_1839, directory fergus_chicago_directory_1843, directory norris_directory_1844 |
+| `Perry A. 8.` | A. [?] Perry | `8` | `perry` | the town already names a Perry | Calvin Perry (hh_perry_calvin) | 1 | research row T-0483 (no_corroboration_yet), directory fergus_chicago_directory_1839, directory fergus_chicago_directory_1843, directory norris_directory_1844 |
 | `Wm. Osborn` | Wm. Osborn | `osborn` | `osborn` | surname already minted | B. Osborn | 1 | research row T-0485 (candidate_identity), directory fergus_chicago_directory_1839, directory fergus_chicago_directory_1843 |
 
 ## Why a tool may not pick the survivor
@@ -53,15 +60,16 @@ rules for. `carries` is what a retirement would strand.
 
 ## The committed cohort against its own derivation
 
-The tree holds **727** letter-list households. The pass, run today
-against that same tree, derives **658**. `check.sh` runs this pass's
+The tree holds **743** letter-list households. The pass, run today
+against that same tree, derives **715**. `check.sh` runs this pass's
 `--gate` and not its `--check`, so the gap has never been red. Split by cause:
 
 | households | cause |
 |---|---|
-| 75 | the town gained this surname from another pass after the mint (the town already names that family) |
-| 9 | THIS FAULT — the corrected reading collides it with another record |
-| 2 | no longer in the pool the register offers |
+| 67 | the town gained this surname from another pass after the mint (the town already names that family) |
+| 8 | THIS FAULT — the corrected reading collides it with another record |
+| 3 | the record stands under a different id (a rename, not a retirement) |
+| 3 | no longer in the pool the register offers |
 | 1 | the town gained this surname from another pass after the mint (surname already minted) |
 
 **This is the finding that resizes T-0660.** The ticket was filed believing the
@@ -76,7 +84,14 @@ The other half of the same diff, and none of them is committed today.
 | printed | as a card would show it | old | new | returns |
 |---|---|---|---|---|
 | `Augustus H, Conant` | Conant Augustus H | `h` | `augustus` | 1 |
+| `Chester Marshall 2` | Marshall [?] Chester | `2` | `chester` | 1 |
+| `Eliphalet Atkins 2` | Atkins [?] Eliphalet | `2` | `eliphalet` | 1 |
+| `Julius Perrin 2` | Perrin [?] Julius | `2` | `julius` | 1 |
+| `Lauretta Plympton 2` | Plympton [?] Lauretta | `2` | `lauretta` | 1 |
+| `Levi Hills 2` | Hills [?] Levi | `2` | `levi` | 1 |
 | `Loweley. Watere e` | Watere e Loweley | `e` | `loweley` | 1 |
+| `Miranda Miner 2` | Miner [?] Miranda | `2` | `miranda` | 1 |
+| `Mr. Roult 2` | Roult [?] Mr | `2` | `roult` | 1 |
 | `Nett Robert A.` | Robert A. Nett | `a` | `nett` | 1 |
 | `Nicholson Joshua F.` | Joshua F. Nicholson | `f` | `nicholson` | 1 |
 | `Orisbee Edgar I..` | Edgar I.. Orisbee | `i` | `orisbee` | 1 |
@@ -84,8 +99,10 @@ The other half of the same diff, and none of them is committed today.
 | `Osborn B.` | B. Osborn | `b` | `osborn` | 1 |
 | `Pedrick Robert c.` | Robert c. Pedrick | `c` | `pedrick` | 1 |
 | `Root Ez c.` | Ez c. Root | `c` | `root` | 1 |
+| `Salmon Rutherford 3` | Rutherford [?] Salmon | `3` | `salmon` | 1 |
 | `Swanwick F.` | F. Swanwick | `f` | `swanwick` | 1 |
 | `Timothy B.` | B. Timothy | `b` | `timothy` | 1 |
+| `W. Vanzandt 2` | Vanzandt [?] W. | `2` | `vanzandt` | 1 |
 
 ## A residual fault in the corrected reading
 

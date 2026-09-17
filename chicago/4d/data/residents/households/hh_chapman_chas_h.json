@@ -10,7 +10,7 @@
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1834-04-01 and at no stated time before it; nothing says when they came.",
+  "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of 1 April 1834 and not by the issue it was read in (T-0425). Somebody was writing to this name at Chicago by 1834-04-01 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -52,13 +52,22 @@
    "name": "Chas. H. Chapman",
    "relationship": "head",
    "grade": "attested",
-   "letter_list_only": true,
+   "ladder_rule": "G1b",
    "letter_list_returns": [
     "1834-04-01"
    ],
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "later_occupation": {
+     "value": "real estate dealer",
+     "describes_date": 1839,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1839 is evidence about 1839. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
+    },
     "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in."
    },
    "sources": [
@@ -67,9 +76,10 @@
     "chicago_voter_lists_1833_1835_irad",
     "fergus_chicago_directory_1839",
     "fergus_chicago_directory_1843",
-    "norris_directory_1844"
+    "norris_directory_1844",
+    "isa_public_domain_land_tract_sales"
    ],
-   "note": "KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Chas, Ul. Chapman' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 1 April 1834, column 1 — dated 1834-04-01. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1). FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT. Fergus' Chicago Directory for 1839 names this person 1 time in its two later lists: the poll of Chicago's first city election, 2 May 1837 — “Chas. H. Chapman” (f1839_v0198, printed page 42, ward 2, voting for William B. Ogden). What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house. Identity by the crosswalk's own rule: Surname 'Chapman' folds to the same string as the 1837 entry's, and the given name of both begins C. (data/research/directories/fergus_1839_election_crosswalk_1835.json and fergus_1839_register_crosswalk_1835.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a poll twenty-two months after the scene date — or a register four years after it — is a second source about CONTINUED RESIDENCE rather than about July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
+   "note": "INDEPENDENTLY CORROBORATED RESIDENT. Originally documented in Chicago post-office evidence; independent resident research now corroborates the identity. FIRST READ AT THE POST OFFICE, AND THE CORPUS NAMES THEM AGAIN (T-1005). The papers print 'Chas, Ul. Chapman' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 1 April 1834, column 1 — dated 1834-04-01. THE CORPUS NAMES THIS PERSON BESIDE THE RETURN: 3 ordinary readings of the papers, not lists of uncalled-for letters — the Democrat of 26 November 1833 (‘Chapman, C. H.’, chicago_democrat_1833_11_26#c008); the American of 24 December 1833 (‘C. H. Chapman’, chicago_american_1835_06_08#c010); the Democrat of 13 August 1834 (‘Charles H. Chapman’, chicago_democrat_1834_08_13#c012). That is why `letter_list_only` is no longer written on this record: the flag says ‘known only from the post office’ and this record says otherwise. The return below still stands, and is still the weakest thing said here. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1). FERGUS 1839'S LATER LISTS — 1837 AND 1839 EVIDENCE, NEVER AN 1835 FACT. Fergus' Chicago Directory for 1839 names this person 1 time in its two later lists: the poll of Chicago's first city election, 2 May 1837 — “Chas. H. Chapman” (f1839_v0198, printed page 42, ward 2, voting for William B. Ogden). What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house. Identity by the crosswalk's own rule: Surname 'Chapman' folds to the same string as the 1837 entry's, and the given name of both begins C. (data/research/directories/fergus_1839_election_crosswalk_1835.json and fergus_1839_register_crosswalk_1835.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a poll twenty-two months after the scene date — or a register four years after it — is a second source about CONTINUED RESIDENCE rather than about July 1835. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict. THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 4 times, as “CHAPMAN CHARLES H”, 1833-10-22 to 1836-06-28: 1 lot in the platted town — lot 1 of block 4 in the town the register codes CHI (L1BL4CHI, as printed) and 3 parcels of the school section — lot 3 of block 141 of the school section (sec 16 T39N R14E); lot 4 of block 96 of the school section (sec 16 T39N R14E); lot 8 of block 93 of the school section (sec 16 T39N R14E), 0.00 acres stated in all, for $3149.00 (ls0134, ls0135, ls0136, ls1028). THE REGISTER'S OWN RESIDENCE COLUMN READS UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE SCHOOL-SECTION ROWS ARE GROUND INSIDE THE TOWN, NOT FARMLAND: section 16 of T39N R14E was platted and sold off by lot and by block at the sale of 1833, which is why the register states 0000.00 acres against most of them. Ground inside the town is nearer to this reconstruction than a quarter-section is, and it is still a purchase: the register names a purchaser and never an occupant, and nothing here puts this person on that ground. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $2900.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: CHAPMAN CHARLES H matches Chas. H. Chapman: the forename names Chas. H. Chapman of the 2 people of this surname, and the forename agrees in full. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
    "civic_evidence": [
     {
      "list": "tax_1833",
@@ -140,8 +150,20 @@
     }
    ],
    "resident_research": {
+    "programme": "resident-research-2026",
+    "ticket": "T-0509",
+    "outcome": "corroborated_enrichment",
+    "reviewed_on": "2026-09-05",
+    "asserted_identity": true,
+    "evidence_for": "No reliable record found in the reviewed contemporary, institutional, local-history and index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
+    "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "regraded_on": "2026-09-04",
-    "rule": "G1b"
+    "rule": "G1b",
+    "summary": "The 1837 election return prints 'Chas. H. Chapman' — the transcribed 1835 form letter for letter — and Fergus 1839 prints 'Chapman, Charles II., real estate dealer, Randolph street', where 'II.' is the printer's H. The papers run him from 24 December 1833 to 20 June 1835 as a merchant, so the town has him before and after. A rare case in this stratum: a letter-list man who is nonetheless well held.",
+    "source_ids": [
+     "chicago_democrat_1833_1835",
+     "fergus_chicago_directory_1839"
+    ]
    }
   }
  ],
@@ -149,7 +171,7 @@
  "review_required": false,
  "research_note": "MINTED FROM THE LETTER LISTS (T-0378, T-0379). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here argues for a household, and this one argues for a PERSON. `data/residents/` cannot carry a person outside a household, so one was written around them and told to claim nothing — one member, no dwelling, no division, no trade, no family, no arrival beyond the paper's bound. tools/mint_letter_list_residents.py derives the set and prints every refusal, `--gate` proves no record here gained a roof, a trade or a second member, and docs/LIBERTIES.md L214 carries the change of scale.",
  "directories": {
-  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry.",
+  "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. chapman_chas_h, Fergus's Chicago directory of 1839 — f1839_e0265 (a single entry); chapman_chas_h, Fergus's Chicago directory of 1843 — f1843_e0591 (a single entry); chapman_chas_h, Norris's Chicago directory of 1844 — n1844_e0326 (a single entry).",
   "sources": [
    "fergus_chicago_directory_1839",
    "fergus_chicago_directory_1843",

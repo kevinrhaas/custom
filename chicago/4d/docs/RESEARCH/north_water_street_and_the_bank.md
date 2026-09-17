@@ -1,5 +1,9 @@
 # North Water Street ran inside the river, and the street was the record that was wrong
 
+> **Sequel, 2026-09-04:** T-0447 finished the job at the east end — the last two
+> vertices of the schematic this memo replaced had survived because they were dry.
+> See [north_water_east_end.md](north_water_east_end.md).
+
 **T-0226. Settled 2026-08-28.** The question the ticket set was research, not a nudge:
 North Water Street's committed centreline stood inside the terrain's water mask for
 **477.4 m of its 843.3 m**, in one unbroken run from `[200.2, 55]` to `[675.4, 95.7]`,

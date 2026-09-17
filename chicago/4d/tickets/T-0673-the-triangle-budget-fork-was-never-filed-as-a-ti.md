@@ -92,3 +92,23 @@ count gets to six for nothing.
 **Done when** the ruling is recorded here (it is), #599 and #601 are shown to need no raise
 (they are, above), and #432 either lands under a raise sized from a fresh measurement with a
 retirement that can fall due, or is shown to fit without one.
+
+## A reading filed against this ticket, T-1151, 2026-09-16
+
+**The mobile reference stand is now 509,000 triangles over its 825,000 budget, and every
+terrain parcel widens it.** Not a new breach and not this parcel's: `tools/dev-smoke-state.mjs`
+carries `mobile / part 3-4` as FAIL on `dev` at **1,237,040 tris** since #1367 (T-1150, the
+South Branch below Twelfth), and the last pass on that part is 2026-09-13. T-1151 re-baked the
+terrain to put a traced lake shore where a held easting stood, and the same check reads
+**1,333,996** — **+96,956, 7.8 per cent**, all of it ground mesh. The shore is the reason: a
+ruled easting is one straight edge and a traced coastline wanders, and the field also gained
+2.4 per cent of its area back from water to land, which is meshed rather than flat.
+
+The number this ticket "refuses to guess" is therefore moving under it on a schedule: **T-0465's
+remaining pieces are all terrain**, and each one re-bakes this mesh. Whatever raise or trim is
+sized from a fresh `measure_detail_ceilings.mjs --against` run should be sized after that epic
+lands, not between its pieces — or it will be re-sized once per piece.
+
+Filed rather than worked, under the queue's FILING RULE (a): this ticket already owns the
+question of where a measured breach is spent. Related: **T-0672** (take every tier back down),
+**T-0727** (the boot payload), **T-0231** (a retirement that can actually fall due).

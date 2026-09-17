@@ -685,7 +685,11 @@
   "unpaired_key_not_yet_read": 3,
   "what_the_result_means": "Ten of the eleven continuation sheets in images 1-25 do not pair inside images 1-25, and two of them \u2014 33S7-9YYJ-8D and 33S7-9YYJ-9WS, both at 32 entries \u2014 are shown outright to have no possible partner here. The deposit is ordered by sorted filename and not by the book, so a left sheet and its own continuation are only in the same group by accident; the coverage file has said so about the page numbers from the start and this is the measurement of it. The ten are not blocked on more reading of THIS group: they are blocked on the footings of the left sheets in groups 2 and 3, which are read for names but not for cells, and on the three TOTAL footings T-0641 still owns; T-0644's, on 33S7-9YYJ-9WS, is read and is the second sheet ruled out of this group.",
   "footings_read_after_this_pass": {
-   "33S7-9YYJ-9WS": "157, read by T-0644 with the sheet line by line; the sheet's two keys are 157 and 32 and it is ruled out of this group on both"
-  }
+   "33S7-9YYJ-9WS": "157, read by T-0644 with the sheet line by line; the sheet's two keys are 157 and 32 and it is ruled out of this group on both",
+   "33S7-9YYJ-5V": "155, read by T-0543 off a magnified crop of the footing band while searching the whole deposit for printed 232's continuation. With this group's line count of 30 the sheet's two keys are 155 and 30. This is the TOTAL footing only; the sheet's cells stay with T-0647 and T-0671.",
+   "33S7-9YYJ-B1": "165, read by T-0543 the same way, alternate 185 named for the middle glyph. Its two keys are 165 (or 185) and 31. The line-by-line reading is still owed by T-0641's children.",
+   "33S7-9YYJ-B2": "113, read by T-0543 the same way. Its two keys are 113 and 31. The line-by-line reading is still owed by T-0641's children."
+  },
+  "what_the_three_new_footings_do_to_this_group": "Nothing, and that is worth stating: 155, 165 and 113 are not the population of any of this group's twelve keyed left sheets, so T-0642's verdict of ten unpaired continuations stands with all eleven footings now read rather than with three of them outstanding. It stands for the reason T-0642 gave \u2014 the partners are in the groups whose left sheets have been read for names and not for cells, or outside this deposit altogether. T-0543 also tested all three against printed 232 and refused all three."
  }
 }

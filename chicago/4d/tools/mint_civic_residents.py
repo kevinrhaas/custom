@@ -153,6 +153,7 @@ THE REFUSALS, in the order they fire, each one printed by `--report`:
 from __future__ import annotations
 
 import argparse
+import functools
 import json
 import pathlib
 import re
@@ -166,6 +167,8 @@ PROPOSAL = DATA / "research" / "residents" / "grading_proposal.json"
 MASTER = DATA / "research" / "residents" / "identity_master.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
 from mint_documented_residents import (  # noqa: E402  (shared, deliberately)
     FIRM, PAPERS, SCENE_DATE, UNCERTAIN, display, dumps, household_id, load,
     minted_by, plain_fragment, slug, surname, words,
@@ -187,7 +190,100 @@ LETTER_LIST_CLASS = "newspaper_letter_list"
 # `data/research/civic/records/blackhawk_war_1832_chicago.json`'s own `the_ladder` field
 # so the two cannot drift apart silently. See refusal 4.
 MUSTER_CLASS = "muster_1832"
+# THE PLACE REFUSAL (T-1049), as the identity master names it. A reading the resolved
+# place vocabulary puts outside the town is not a Chicago appearance, so this pass must
+# not read one: not into `press_evidence`, not into the sources a card cites, and — the
+# one that would have been hardest to see — not into `arrival_block`, where a Michigan
+# City notice of February 1834 would otherwise have set a man's bound at Chicago. The
+# master keeps the row under its own class; this pass simply does not spend it.
+REFUSED_CLASSES = {"newspaper_out_of_town"}
 NO_DATE = "not read from this record"
+
+# THE PROPERTY REFUSAL (T-1117), and it is a different refusal from the place one above.
+# A tax list is a roll of what the town ASSESSED, and a town assesses GROUND: the
+# non-resident owner of a town lot stands on it for the lot, and so does a dead man's
+# estate. The 1833 list proves that out of its own membership rather than out of an
+# argument — entry 110 is "Wolcott, Alexander", and this project's own source
+# (fergus_1843_old_settler_death_notices, fdn0742) prints "Wolcott, Dr. Alexander,
+# Indian agent, died Oct. 25, 1830, aged 40; his will was the first probated in Cook
+# County." A man three years dead was not in the town; his estate was, and the probate
+# is how it got onto the roll. On its own face the list settles nothing either way:
+# the published transcription is names only — no valuation, no lot, no amount, no
+# residence column (civic claims v001) — so it marks no payer resident and no payer
+# non-resident, and the distinction it would have to draw is not on the page.
+# So it cannot carry the one claim that is about a BODY ON A DAY. It is no leg of the
+# presence bracket. What it still does is date and corroborate a NAME in the town's own
+# paper, which is the whole of what the owner's ratified ladder spends it on at G2b, so
+# no grade moves here and the arrival bound stands as a bound on the RECORD — restated
+# in those words rather than withdrawn. docs/RESEARCH/tax_list_1833_not_a_residence_check.md
+# is the reading and the count.
+NOT_A_PRESENCE_CLASS = {"tax_1833"}
+PROPERTY_ROLL_NOTE = ("THE 1833 TAX LIST IS A PROPERTY ROLL, NOT A RESIDENCE CHECK (T-1117): "
+                      "it names the owner of ground inside the town, resident or not, and its "
+                      "own entry 110 is a man three years dead. It bounds the town's RECORD of "
+                      "this name and not the day this person reached Chicago")
+# THE PLACE-IN-1835 REFUSAL (T-1131), and it is a THIRD refusal, reached from the data
+# rather than listed here. A research domain may declare, on every record it publishes,
+# that membership of its list is no evidence of where that person was in 1835 —
+# `places_in_1835: false`, with the reason beside it. `death_notices.json` has carried
+# that field since the obituary was read, because the OBITUARY's own header admits it
+# prints "some of Chicago's Old Settlers, prior to 1843, and other well - known citizens
+# who arrived after 1843, together with others prominently connected with Illinois
+# history". Nothing read the field, so the refusal existed in the corpus and not in any
+# derivation: `hh_wolcott_alexander` read `present` for 1 July 1835 on a bracket whose
+# at-or-before leg was the man's own death notice of 25 October 1830.
+#
+# THE REFUSAL IS ASYMMETRIC, AND THE ASYMMETRY IS WHAT THE FIELD ITSELF SAYS. The
+# at-or-before leg of the presence bracket is exactly the claim `places_in_1835: false`
+# denies — that this source puts the person at Chicago by the scene date. The after leg
+# is a different claim, about a LATER day, and the record does make it on its own face:
+# a man who died at Chicago in 1885 was at Chicago in 1885. So a class the field refuses
+# may still close the bracket from above, and a blanket refusal would have been wrong on
+# seven cards whose only at-or-after leg is a death notice. `tax_1833` is refused on
+# BOTH legs and for a different reason (T-1117): a property roll names ground and not a
+# person, so it is no leg of the bracket at any date.
+#
+# WHAT A REFUSED AT-OR-BEFORE LEG LEAVES BEHIND is a reading of the record, not a gap —
+# see `presence_block`. A death is the one appearance that is terminal: a man dead
+# before the scene date was not merely unrecorded on it, he was ABSENT from it.
+PLACE_CLAIM_DOMAINS = {
+    # the research file that publishes the declaration -> the evidence class the
+    # identity master gives its rows. One entry today; the mechanism is the point.
+    DATA / "research" / "old_settlers" / "death_notices.json": "death_notice",
+}
+# The one class in the refusal whose date is a DEATH rather than an appearance, which is
+# what lets `absent` be read off it. Another class could join the refusal above without
+# joining this one, and the reading below would then stay `uncertain` for it.
+DEATH_CLASS = "death_notice"
+PLACE_REFUSAL_FIELD = "places_in_1835"
+DEATH_NOTICE_NOTE = ("A DEATH NOTICE IS NOT A PRESENCE (T-1131): the old settlers' "
+                     "obituary declares `places_in_1835: false` on every record it "
+                     "publishes, because its own header admits it prints citizens who "
+                     "arrived after 1843. It dates a death; it never says the man was "
+                     "standing in the town on 1 July 1835")
+
+
+@functools.lru_cache(maxsize=None)
+def not_in_1835_classes() -> frozenset:
+    """The evidence classes whose own domain says they place nobody in 1835.
+
+    Read from the domain, never asserted here, and UNANIMITY is the bar: the class is
+    refused only if every record the file publishes carries `places_in_1835: false`. A
+    file that has stopped saying it, or that says it of some rows and not others, is a
+    ruling that has moved — the class drops out of the refusal, `--self-test` goes red
+    on the class it expects to find, and the ticket reopens rather than the rule being
+    re-argued from this comment.
+    """
+    refused = set()
+    for path, cls in PLACE_CLAIM_DOMAINS.items():
+        if not path.exists():
+            continue
+        records = load(path).get("records") or []
+        if records and all(r.get(PLACE_REFUSAL_FIELD) is False for r in records):
+            refused.add(cls)
+    return frozenset(refused)
+
+
 MUSTER_LADDER = ("An 1832 enrollment is EARLIER evidence and never an 1835 residence on "
                  "its own: it places the man in this town in 1832, which is why it dates "
                  "and corroborates rather than mints")
@@ -279,6 +375,22 @@ def has_family_name(name: str) -> bool:
     return bool(fam) and len(re.sub(r"[^a-z]", "", fam)) >= 3
 
 
+def bracketed_name_appearance(app: dict) -> bool:
+    """Whether an in-window appearance carries a bracketed name reading (T-1115).
+
+    Later directory annotations also use square brackets, for death notes and
+    editorial context. They are not evidence this pass may use to mint a person
+    in 1835 and they must not poison a separate clean scene-year reading.
+    """
+    raw = app.get("as_read")
+    return in_window(app) and isinstance(raw, str) and bool(UNCERTAIN.search(raw))
+
+
+def mintable_appearances(appearances: list) -> list:
+    """The evidence this mint may write: never a bracketed scene-year name."""
+    return [a for a in appearances if not bracketed_name_appearance(a)]
+
+
 def decide(row: dict, appearances: list, town_person_ids: set,
            excluded: set | None = None, own: set | None = None,
            taken_above: set | None = None) -> tuple[bool, str]:
@@ -298,14 +410,25 @@ def decide(row: dict, appearances: list, town_person_ids: set,
     if plain_fragment(name) in (excluded or set()):
         return False, (f"the town has researched this person and left them out "
                        f"({plain_fragment(name)})")
-    scene_year = [a for a in appearances if in_window(a)]
+    uncertain_readings = [a.get("as_read") for a in appearances
+                          if bracketed_name_appearance(a)]
+    scene_year = [a for a in appearances
+                  if in_window(a) and not bracketed_name_appearance(a)]
     if scene_year and all(a.get("evidence_class") == MUSTER_CLASS for a in scene_year):
         return False, "an 1832 enrollment alone is earlier evidence and never mints"
     if scene_year and all(a.get("evidence_class") == LETTER_LIST_CLASS for a in scene_year):
         return False, "the post office's letter lists are the pass beside this one's pool"
     if FIRM.search(name):
         return False, "a firm, not a person"
-    if UNCERTAIN.search(name):
+    # T-1115. `row.name` is the consolidation's rebuilt display name, not the
+    # source reading. The clusterer has already stripped square brackets by the
+    # time it writes that value, so checking it alone made this refusal dead:
+    # `H. G. Hub[…]` arrived here as `H G Hub` and minted The Hub household.
+    # Read the in-window appearances' verbatim `as_read` values as well. A
+    # bracketed appearance is excluded from the mint; a separate clean reading
+    # may still support the identity, while a name resting only on the bracketed
+    # reading reaches refusal 7.
+    if UNCERTAIN.search(name) or (uncertain_readings and not scene_year):
         return False, "the transcription bracketed the name as uncertain"
     if not has_family_name(name):
         return False, "no name the corpus prints as a family name"
@@ -364,14 +487,36 @@ def arrival_block(appearances: list, sources: list) -> dict:
                     if (b := bound_of(a.get("describes_date")))), key=lambda t: t[:2])
     value, _rid, app = dated[0]
     late = value > SCENE_DATE
-    note = (f"A BOUND FROM THE RECORD, NOT AN ARRIVAL. {app.get('list') or app.get('evidence_class')} "
-            f"names this person at Chicago by {pretty(value)} and nothing says when they came. ")
+    cls = app.get("evidence_class")
+    roll = cls in NOT_A_PRESENCE_CLASS
+    names = ("stands against this person's name by "
+             if roll else "names this person at Chicago by ")
+    note = (f"A BOUND FROM THE RECORD, NOT AN ARRIVAL. {app.get('list') or cls} "
+            f"{names}{pretty(value)} and nothing says when they came. ")
     if late:
         note += ("THE BOUND FALLS AFTER THE SCENE DATE and the record says so rather than "
                  "narrowing it: the earliest source that names this person is later than "
                  "1 July 1835, so they may have arrived after the day this scene models. "
                  "present_on_scene_date is `uncertain` for that reason.")
+    elif roll:
+        # The bound stands and its CLAIM shrinks (T-1117). `arrival` is structurally a
+        # dated `not_later_than` on every household the validator will accept, and this
+        # record does give one honestly: the town's assessor had this name on his roll by
+        # then. What it does not give is the man at Chicago, so the sentence that used to
+        # say so is gone rather than softened, and the claim about the day now lives only
+        # in present_on_scene_date — which this same refusal has withdrawn to `uncertain`.
+        note += (PROPERTY_ROLL_NOTE + ". The bound is at or before the scene date, so the "
+                 "town's own paper carries this name by 1 July 1835; whether the man it "
+                 "names was standing in the town is a claim this record cannot make, and "
+                 "present_on_scene_date says `uncertain` for that reason.")
     else:
+        # AND THE ARRIVAL BOUND IS NOT TOUCHED BY THE PLACE-IN-1835 REFUSAL (T-1131),
+        # which is a rule about the presence bracket and not about this one. A man who
+        # died at Chicago in 1830 WAS at Chicago by 1830 to die there, so `not_later_than
+        # 1830-12-31` is honest and the sentence below stays true of him: it says he had
+        # been at Chicago at some time by the scene date, which is all an arrival bound
+        # ever asserted. The claim this ticket refuses — that he was standing in the town
+        # ON the day — lives in present_on_scene_date alone, and is settled there.
         note += ("The bound is at or before the scene date, so the person was at Chicago "
                  "by 1 July 1835 on this record's own evidence.")
     return {
@@ -383,11 +528,60 @@ def arrival_block(appearances: list, sources: list) -> dict:
     }
 
 
+def bracket_legs(appearances: list) -> tuple[list, list, list]:
+    """Which side of the presence bracket each appearance may stand on.
+
+    THREE ANSWERS AND NOT TWO, because the two refusals this pass carries are different
+    shapes. `tax_1833` is refused on BOTH legs (T-1117): a property roll names the owner
+    of ground inside the town — resident, absent or three years dead — so it is no leg of
+    the bracket at any date. A class the domain declares `places_in_1835: false` (T-1131)
+    is refused on the AT-OR-BEFORE leg alone: that leg is the very claim the declaration
+    denies, while the after leg is a claim about a later day the record does make. The
+    refused at-or-before rows come back as the third list rather than being dropped,
+    because what they say is a finding — see `presence_block`.
+    """
+    refused_classes = not_in_1835_classes()
+    before: list = []
+    after: list = []
+    refused_before: list = []
+    for app in appearances:
+        cls = app.get("evidence_class")
+        if cls in NOT_A_PRESENCE_CLASS:
+            continue
+        bound = bound_of(app.get("describes_date"))
+        if not bound:
+            continue
+        if bound >= SCENE_DATE:
+            after.append(app)
+        if bound <= SCENE_DATE:
+            (refused_before if cls in refused_classes else before).append(app)
+    return before, after, refused_before
+
+
+def death_before_the_day(refused_before: list, before: list) -> str | None:
+    """The day this person died, if the record says he was dead before the scene date.
+
+    Narrow on purpose, and it says no three ways. It reads only `DEATH_CLASS` — another
+    class may join the `places_in_1835` refusal without its date being a death, and the
+    reading below would stay `uncertain` for it. It wants ONE death: two notices that
+    disagree on the year are an identity question and not a death. And it defers to any
+    record that places the person at Chicago AFTER the death and at or before the scene
+    date, because that is a contradiction the mint must not resolve by picking a side —
+    a tax roll is not one of those records, which is the whole of T-1117.
+    """
+    days = {b for app in refused_before
+            if app.get("evidence_class") == DEATH_CLASS
+            and (b := bound_of(app.get("describes_date"))) and b < SCENE_DATE}
+    if len(days) != 1:
+        return None
+    died = days.pop()
+    if any((b := bound_of(app.get("describes_date"))) and b > died for app in before):
+        return None
+    return died
+
+
 def presence_block(appearances: list, sources: list) -> dict:
-    before = [a for a in appearances
-              if (b := bound_of(a.get("describes_date"))) and b <= SCENE_DATE]
-    after = [a for a in appearances
-             if (b := bound_of(a.get("describes_date"))) and b >= SCENE_DATE]
+    before, after, refused_before = bracket_legs(appearances)
     if before and after:
         return {
             "value": "present",
@@ -398,14 +592,51 @@ def presence_block(appearances: list, sources: list) -> dict:
                      "reach across the scene date rather than stopping at one side of it. "
                      "Inferred, not documented: no source says where they were on the day."),
         }
+    died = death_before_the_day(refused_before, before)
+    if died:
+        return {
+            "value": "absent",
+            "confidence": "attested",
+            "sources": sources,
+            # A DEATH IS THE ONE APPEARANCE THAT IS TERMINAL. Everywhere else this pass
+            # withdraws to `uncertain`, because a silence is a place the sources have not
+            # looked. A death is not a silence: the record says the man stopped, and it
+            # dates the stopping before the day this scene models. `absent` is therefore
+            # the honest reading and `uncertain` would be the flattering one.
+            "note": (f"THE RECORD PLACES THIS PERSON NOWHERE ON THE DAY, BECAUSE HE WAS "
+                     f"DEAD. The old settlers' obituary dates the death "
+                     f"{pretty(died)}, before the scene date of 1 July 1835, and no "
+                     f"record that places a person at Chicago names this one after it. "
+                     + DEATH_NOTICE_NOTE + " — so it cannot be the at-or-before leg of a "
+                     "bracket, and a later source on the far side cannot close one over a "
+                     "dead man. `absent` and not `uncertain`: a silence is somewhere the "
+                     "sources have not looked, and a death is not a silence."),
+        }
+    refused = sorted({a.get("evidence_class") for a in appearances
+                      if a.get("evidence_class") in NOT_A_PRESENCE_CLASS})
+    note = ("THE RECORD DOES NOT REACH THE DAY. Every source that names this person "
+            "falls on one side of 1 July 1835, and nothing follows them to it or says "
+            "they left. `uncertain` rather than dropped — the distinction index.json "
+            "draws for Jeremiah Porter, and a finding, not a gap.")
+    if refused:
+        note += (" AND THE BRACKET THIS CARD ONCE HAD IS WITHDRAWN, NOT LOST: its "
+                 f"at-or-before leg was {', '.join(refused)} alone. "
+                 + PROPERTY_ROLL_NOTE + ", so it cannot say this person was here to be "
+                 "followed across the day. Withdrawn to `uncertain` and not to `absent` — "
+                 "no source places this person anywhere else on 1 July 1835 either, and a "
+                 "man who was taxed for ground in the town may perfectly well have been "
+                 "standing on it.")
+    if refused_before and not before:
+        note += (" THE AT-OR-BEFORE LEG OFFERED HERE IS ONE THIS PASS MAY NOT STAND ON: "
+                 + DEATH_NOTICE_NOTE + ". `uncertain` and not `absent` — this card's "
+                 "refused leg does not date a single death before the day, or another "
+                 "record names this person at Chicago after it, so what the sources leave "
+                 "is a gap rather than an end.")
     return {
         "value": "uncertain",
         "confidence": "inferred",
         "sources": sources,
-        "note": ("THE RECORD DOES NOT REACH THE DAY. Every source that names this person "
-                 "falls on one side of 1 July 1835, and nothing follows them to it or says "
-                 "they left. `uncertain` rather than dropped — the distinction index.json "
-                 "draws for Jeremiah Porter, and a finding, not a gap."),
+        "note": note,
     }
 
 
@@ -413,48 +644,34 @@ def unattested(note: str) -> dict:
     return {"value": None, "confidence": "reconstructed", "note": note}
 
 
-def carry_over(doc: dict, prior: dict | None) -> dict:
-    """Keep what ANOTHER pass wrote onto one of this pass's cards.
+def carry_over(doc: dict, prior: dict | None, retracted: set | None = None) -> dict:
+    """Keep what another pass wrote, at that writer's marker boundary (T-1137).
 
-    A minted household is not this tool's private file once it is in the tree: the
-    directory spend (T-0632) writes a `directories` block onto the card, the old-settlers
-    roll writes a citation, the research passes write a `resident_research` block. This
-    pass owns the keys it writes and re-derives them every run; everything else that is
-    on the record is somebody else's finding and is preserved verbatim, at the end of the
-    record and of the person, where a stable order keeps `--check` byte-identical.
+    ``BLOCK_KEYS`` and ``resident_subtype`` are this mint's optional answers: if the
+    new derivation omits one, an old card may not put it back.  ``retracted`` has the
+    same ownership rule for a source this pass used to derive.  Everything else is
+    carried by the shared four-mint contract, including a foreign note suffix even
+    when this mint's own prose changed.
     """
     if not prior or prior.get("source_pass") != PASS_NAME:
         return doc
-    for key, value in prior.items():
-        if key not in doc:
-            doc[key] = value
-    by_id = {p.get("id"): p for p in prior.get("persons") or []}
-    for person in doc["persons"]:
-        old = by_id.get(person["id"]) or {}
-        for key, value in old.items():
-            if key not in person:
-                person[key] = value
-        # Two keys this pass DOES write are also written to by other passes, and both
-        # are additive there. `tools/old_settlers.py --apply-citations` puts the roll's
-        # source on the person and APPENDS its sentence to the note, marker-guarded, and
-        # its own gate then requires both to be on the record. So the union of the
-        # sources is kept, and any tail another pass appended after this pass's own note
-        # is kept with it — recognised as a tail precisely because this pass's note is
-        # re-derived and is therefore the prefix it was appended to. If the derivation
-        # ever changes the note out from under a tail, the prefix stops matching, the
-        # tail is dropped, and that pass's own `--check` says so rather than the sentence
-        # disappearing quietly.
-        person["sources"] = sorted(set(person["sources"]) | set(old.get("sources") or []))
-        was = (old.get("note") or "")
-        if was.startswith(person["note"]) and len(was) > len(person["note"]):
-            person["note"] = person["note"] + was[len(person["note"]):]
-    return doc
+    return carry_resident_mint(
+        doc, prior,
+        owned_person_keys=BLOCK_KEYS + ("resident_subtype",),
+        retracted_sources=retracted,
+    )
 
 
-def record(row: dict, appearances: list, docs: dict, taken_ids: set) -> dict:
-    name = display(row.get("name") or "")
-    hid = household_id(name, PREFIX, PASS_NAME, docs, taken_ids)
-    pid = plain_fragment(name)
+def record(row: dict, appearances: list, docs: dict, taken_ids: set,
+           established: dict | None = None) -> dict:
+    # T-0970: a newly matched spelling adds evidence to an existing person. It
+    # cannot rename the card and thereby evade carry_over's exact household lookup.
+    # Only this mint's own card, explicitly named by canonical_person_id, qualifies.
+    previous = next((p for p in (established or {}).get("persons", [])
+                     if p.get("id") == row.get("canonical_person_id")), None)
+    name = previous["name"] if previous else display(row.get("name") or "")
+    hid = established["id"] if previous else household_id(name, PREFIX, PASS_NAME, docs, taken_ids)
+    pid = previous["id"] if previous else plain_fragment(name)
     n = 2
     while pid in taken_ids:
         pid, n = f"{plain_fragment(name)}_{n}", n + 1
@@ -608,7 +825,8 @@ def pool(docs: dict, proposal: dict, master: dict, index: dict, own: set):
     it and something else seats them.
     """
     apps = {i["id"]: [a for a in (i.get("appearances") or [])
-                      if a.get("domain") != "town_layer"]
+                      if a.get("domain") != "town_layer"
+                      and a.get("evidence_class") not in REFUSED_CLASSES]
             for i in master.get("identities", [])}
     known = town_person_ids(docs)
     excluded = excluded_ids(index)
@@ -618,7 +836,7 @@ def pool(docs: dict, proposal: dict, master: dict, index: dict, own: set):
         appearances = apps.get(row["identity"], [])
         ok, reason = decide(row, appearances, known, excluded, own, above)
         if ok:
-            accepted.append((row, appearances))
+            accepted.append((row, mintable_appearances(appearances)))
         else:
             refusals.append((row, reason))
     return accepted, refusals
@@ -639,58 +857,37 @@ def build(preload: dict | None = None):
     others = {p: d for p, d in docs.items() if p not in mine_paths}
     own = {person.get("id") for path in mine_paths
            for person in docs[path].get("persons") or []}
+    established = {person.get("id"): docs[path] for path in mine_paths
+                   for person in docs[path].get("persons") or []}
     accepted, refusals = pool(others, proposal, master, index, own)
 
-    files, rows = {}, []
+    # What each identity's REFUSED readings were citing, so `carry_over` can tell this
+    # pass's own retraction from another pass's addition (T-1049).
+    retracted = {i["id"]: {sid for a in (i.get("appearances") or [])
+                           if a.get("evidence_class") in REFUSED_CLASSES
+                           and (sid := source_of(a))}
+                 for i in master.get("identities", [])}
+
+    files = {}
     taken: set = set()
     for row, appearances in accepted:
-        doc = record(row, appearances, others, taken)
-        doc = carry_over(doc, docs.get(HOUSEHOLDS / f"{doc['id']}.json"))
+        doc = record(row, appearances, others, taken,
+                     established.get(row.get("canonical_person_id")))
+        doc = carry_over(doc, docs.get(HOUSEHOLDS / f"{doc['id']}.json"),
+                         retracted.get(row["identity"], set()))
         if doc["id"] in taken:
             raise SystemExit(f"two identities mint the same household id {doc['id']}")
         taken.add(doc["id"])
         taken.add(doc["persons"][0]["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            "civic_mint": True,
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-            "projected_resident": any(p.get("resident_subtype") == "projected_resident"
-                                      for p in doc["persons"]),
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
-
+    # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
+    # keep every other row verbatim, so a household no pass owned could be regraded
+    # elsewhere and go on carrying a row that said something else. `final` is the
+    # whole layer as this pass leaves it, and the derivation reads all of it.
     final = dict(others)
     final.update({path: json.loads(text) for path, text in files.items()})
-    index["counts"]["civic_mint"] = sum(
-        1 for doc in final.values() for person in doc.get("persons") or []
-        if person.get("civic_mint"))
-    index["counts"]["projected_residents"] = sum(
-        1 for doc in final.values() for person in doc.get("persons") or []
-        if person.get("resident_subtype") == "projected_resident")
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 
@@ -930,7 +1127,8 @@ def regrade_decisions(docs: dict, proposal: dict, master: dict):
     """
     idents = {i["id"]: i for i in master.get("identities", [])}
     apps = {i["id"]: [a for a in (i.get("appearances") or [])
-                      if a.get("domain") != "town_layer"]
+                      if a.get("domain") != "town_layer"
+                      and a.get("evidence_class") not in REFUSED_CLASSES]
             for i in master.get("identities", [])}
     people = people_by_id(docs)
     applied, refusals = [], []
@@ -1019,29 +1217,11 @@ def apply_regrade(docs: dict, index: dict, applied: list) -> set:
             rr["refusals"] = keep + [refusal]
         touched.add(path)
 
-    # The manifest rows and the counts the panels read. Re-derived from the tree
-    # rather than adjusted, so a second run of this mode is a no-op.
-    rows = {r["id"]: r for r in index.get("households") or []}
-    for path in touched:
-        doc = docs[path]
-        row = rows.get(doc.get("id"))
-        if row is None:
-            continue
-        tally: dict = {}
-        for person in doc.get("persons") or []:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        row["grades"] = dict(sorted(tally.items()))
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
-    index["counts"]["projected_residents"] = sum(
-        1 for doc in docs.values() for person in doc.get("persons") or []
-        if person.get("resident_subtype") == "projected_resident")
+    # The manifest rows and the counts the panels read. Re-derived from the WHOLE
+    # tree rather than from the rows this run touched (T-0715): a run where the
+    # proposal is already spent touches nothing, and used to leave every drifted row
+    # exactly as it found it.
+    rebuild(index, docs)
     return touched
 
 
@@ -1134,6 +1314,10 @@ def gate_problems(docs: dict, index: dict) -> list:
                     if not e.get("as_read") or not e.get("rule"):
                         problems.append(f"{where}/{p.get('id')}: an evidence row without a "
                                         f"reading or the rule that fired it")
+                    if bracketed_name_appearance(e):
+                        problems.append(f"{where}/{p.get('id')}: civic-minted from bracketed "
+                                        f"name evidence {e['as_read']!r}; T-1115 requires the "
+                                        f"verbatim reading to reach refusal 7")
             classes = {e.get("list") for k in BLOCK_KEYS for e in p.get(k) or []}
             if classes and classes <= {LETTER_LIST_CLASS}:
                 problems.append(f"{where}/{p.get('id')}: rests on a letter list alone, which "
@@ -1152,6 +1336,34 @@ def gate_problems(docs: dict, index: dict) -> list:
         if (doc.get("present_on_scene_date") or {}).get("value") == "present" \
                 and not (doc.get("present_on_scene_date") or {}).get("note"):
             problems.append(f"{where}: present_on_scene_date without its reasoning")
+        # THE PROPERTY REFUSAL, PROVED ON THE CARD (T-1117). presence_block keeps the
+        # 1833 tax list out of the bracket, but a refusal that lives only in the code
+        # that writes the file can be undone without anything going red. So the tree is
+        # asked directly: a household that says `present` must own a record which places
+        # the PERSON at or before the day, and a tax roll is not one — it names the
+        # owner of ground inside the town, resident, absent or three years dead.
+        # AND THE PLACE-IN-1835 REFUSAL ON THE SAME CARD (T-1131). Same question, second
+        # class of answer: a source whose own domain declares `places_in_1835: false` may
+        # not be the at-or-before leg either. It is asked of the tree and not only of the
+        # derivation for the same reason — and the after leg is deliberately NOT asked
+        # about, because a death notice may perfectly well close the bracket from above.
+        if (doc.get("present_on_scene_date") or {}).get("value") == "present":
+            refused_classes = NOT_A_PRESENCE_CLASS | set(not_in_1835_classes())
+            evidence = [e for p in people for k in BLOCK_KEYS for e in p.get(k) or []]
+            legs = [e for e in evidence if e.get("list") not in refused_classes
+                    and (b := bound_of(e.get("describes_date"))) and b <= SCENE_DATE]
+            if not legs:
+                offered = sorted({e.get("list") for e in evidence
+                                  if e.get("list") in refused_classes
+                                  and (b := bound_of(e.get("describes_date")))
+                                  and b <= SCENE_DATE})
+                problems.append(f"{where}: reads `present` with no at-or-before leg but "
+                                f"{', '.join(offered) or 'nothing'}. The 1833 tax list is "
+                                f"a property roll and names owners and estates, not people "
+                                f"at the place (T-1117); a death notice dates a death and "
+                                f"declares `places_in_1835: false` for its whole class "
+                                f"(T-1131). Neither can carry a claim about where a man "
+                                f"stood on 1 July 1835")
         row = rows.get(where)
         if row is None:
             problems.append(f"{where}: minted here and absent from the manifest")
@@ -1231,8 +1443,14 @@ REFUSAL_CASES = (
      set(), "an 1832 enrollment alone"),
     ("a firm, not a person",
      _row(name="Fixture & Co"), [_app()], set(), "a firm, not a person"),
-    ("a bracketed transcription",
+    ("a bracketed display name",
      _row(name="Ezra [Fixture]"), [_app()], set(), "bracketed the name as uncertain"),
+    ("a half surname whose brackets were stripped from the display name",
+     _row(name="H G Hub"), [_app(as_read="H. G. Hub[…]")], set(),
+     "bracketed the name as uncertain"),
+    ("an internal supply whose brackets were stripped from the display name",
+     _row(name="E K Zie"), [_app(as_read="E. K[in]zie")], set(),
+     "bracketed the name as uncertain"),
     ("a name with nothing that could be a surname",
      _row(name="E. S."), [_app()], set(), "no name the corpus prints as a family name"),
     ("a mint with no evidence block",
@@ -1253,6 +1471,17 @@ def self_test() -> int:
     if not ok:
         failed += 1
         print(f"   FAIL the control case is refused: {reason!r}")
+    mixed = [_app(record_id="press_uncertain", as_read="H. G. Hub[…]"),
+             _app(record_id="poll_clean", as_read="Hubbard, Henry G.")]
+    ok, reason = decide(_row(name="Henry G Hubbard"), mixed,
+                        set(), set(), set(), set())
+    if not ok:
+        failed += 1
+        print(f"   FAIL a clean independent appearance cannot rescue an identity from a "
+              f"separate bracketed reading: {reason!r}")
+    if [a["record_id"] for a in mintable_appearances(mixed)] != ["poll_clean"]:
+        failed += 1
+        print("   FAIL a surviving identity still writes its bracketed appearance onto the card")
     ok, reason = decide(_row(), [_app()], set(), set(), set(), {"fixture_ezra"})
     if ok or "the residency-tested pass above this one" not in reason:
         failed += 1
@@ -1295,6 +1524,122 @@ def self_test() -> int:
             failed += 1
             print(f"   FAIL {label}")
 
+    # THE PROPERTY REFUSAL STILL FIRES (T-1117). A tax roll may not bracket the day, and
+    # the same evidence on a poll list still may — otherwise the refusal would be a
+    # blanket that quietly emptied the bracket for everyone.
+    taxed = record(_row(), [_app(describes_date="1833", evidence_class="tax_1833",
+                                 record_id="tax_1833_999", locator="tax_1833"),
+                            _app(domain="directories", describes_date="1843",
+                                 evidence_class="directory_1843",
+                                 record_id="f1843_999", locator="F",
+                                 source_id="fergus_chicago_directory_1843")], {}, set())
+    if taxed["present_on_scene_date"]["value"] != "uncertain":
+        failed += 1
+        print("   FAIL the 1833 tax list brackets the scene date again; it is a property "
+              "roll and names no person at the place (T-1117)")
+    if "PROPERTY ROLL" not in taxed["present_on_scene_date"]["note"]:
+        failed += 1
+        print("   FAIL a withdrawn bracket does not say what withdrew it")
+    if "PROPERTY ROLL" not in taxed["arrival"]["note"]:
+        failed += 1
+        print("   FAIL an arrival bound off a tax roll still reads as a man at Chicago")
+    # THE PLACE-IN-1835 REFUSAL (T-1131), and every edge it is supposed to have. The
+    # class is read from the domain, refuses the at-or-before leg, reads `absent` off a
+    # death before the day, and leaves the after leg alone.
+    if not_in_1835_classes() != frozenset({DEATH_CLASS}):
+        failed += 1
+        print(f"   FAIL the domains no longer declare places_in_1835: false for "
+              f"{DEATH_CLASS!r} — got {sorted(not_in_1835_classes())}. The refusal is "
+              f"read from data/research/, so reopen T-1131 rather than re-arguing it here")
+
+    def _death(**kw):
+        base = dict(domain="old_settlers", source_id="fergus_1843_old_settler_death_notices",
+                    record_id="fdn0999", locator="F", as_read="Fixture, Ezra",
+                    describes_date="Oct. 25, 1830", evidence_class=DEATH_CLASS)
+        base.update(kw)
+        return _app(**base)
+
+    _dir = dict(domain="directories", describes_date="1843",
+                evidence_class="directory_1843", record_id="f1843_999", locator="F",
+                source_id="fergus_chicago_directory_1843")
+    dead = record(_row(), [_death(), _app(**_dir)], {}, set())
+    if dead["present_on_scene_date"]["value"] != "absent":
+        failed += 1
+        print("   FAIL a death five years before the scene date still brackets the day; "
+              "a death notice is not a presence (T-1131)")
+    if "places_in_1835" not in dead["present_on_scene_date"]["note"]:
+        failed += 1
+        print("   FAIL the withdrawn bracket does not name the declaration that withdrew it")
+    if dead["arrival"]["precision"] != "not_later_than" \
+            or dead["arrival"]["value"] != "1830-12-31":
+        failed += 1
+        print("   FAIL the place-in-1835 refusal moved the ARRIVAL bound; it is a rule "
+              "about the presence bracket and a man who died at Chicago was at Chicago")
+    # the after leg is NOT swallowed: a real leg below, a death notice above
+    survives = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
+                                    record_id="poll_1834_999", locator="poll_1834"),
+                               _death(describes_date="April 13, 1885")], {}, set())
+    if survives["present_on_scene_date"]["value"] != "present":
+        failed += 1
+        print("   FAIL the place-in-1835 refusal has swallowed the AFTER leg too; a man "
+              "who died at Chicago in 1885 was at Chicago in 1885 (T-1131)")
+    # and a contradiction is not resolved by picking a side
+    disputed = record(_row(), [_death(),
+                               _app(describes_date="1834", evidence_class="poll_1834",
+                                    record_id="poll_1834_999", locator="poll_1834")],
+                      {}, set())
+    if disputed["present_on_scene_date"]["value"] != "uncertain":
+        failed += 1
+        print("   FAIL a death read as `absent` over a later record that names the man in "
+              "the town; that is an identity question and this pass does not settle it")
+    # a refused leg with no usable one left says which leg it refused
+    alone = record(_row(), [_death(), _death(record_id="fdn0998",
+                                             describes_date="Oct. 25, 1831")], {}, set())
+    if alone["present_on_scene_date"]["value"] != "uncertain" \
+            or "places_in_1835" not in alone["present_on_scene_date"]["note"]:
+        failed += 1
+        print("   FAIL two death notices that disagree on the year are read as one death")
+    forced_dead = json.loads(json.dumps(dead))
+    forced_dead["present_on_scene_date"]["value"] = "present"
+    if not any("T-1131" in p for p in gate_problems(
+            {pathlib.Path("hh_fixture.json"): forced_dead},
+            {"households": [{"id": forced_dead["id"], "civic_mint": True,
+                             "present_on_scene_date": "present"}]})):
+        failed += 1
+        print("   FAIL the gate accepts `present` carried by a death notice alone")
+
+    polled = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
+                                  record_id="poll_1834_999", locator="poll_1834"),
+                             _app(domain="directories", describes_date="1843",
+                                  evidence_class="directory_1843",
+                                  record_id="f1843_999", locator="F",
+                                  source_id="fergus_chicago_directory_1843")], {}, set())
+    if polled["present_on_scene_date"]["value"] != "present":
+        failed += 1
+        print("   FAIL the property refusal has swallowed the poll lists too")
+    forced = json.loads(json.dumps(taxed))
+    forced["present_on_scene_date"]["value"] = "present"
+    if not any("property roll" in p for p in gate_problems(
+            {pathlib.Path("hh_fixture.json"): forced},
+            {"households": [{"id": forced["id"], "civic_mint": True,
+                             "present_on_scene_date": "present"}]})):
+        failed += 1
+        print("   FAIL the gate accepts `present` carried by a tax roll alone")
+
+    # T-1115's tree-side witness. The decision fixture above proves a new bad
+    # reading is refused; this mutation proves an already-committed card cannot
+    # keep one if a generator or hand edit bypasses decide().
+    bracketed = record(_row(), [_app()], {}, set())
+    bracketed["persons"][0]["civic_evidence"][0]["as_read"] = "H. G. Hub[…]"
+    if not any("bracketed name evidence" in p for p in gate_problems(
+            {pathlib.Path("hh_fixture.json"): bracketed},
+            {"households": [{"id": bracketed["id"], "civic_mint": True,
+                             "present_on_scene_date":
+                                 bracketed["present_on_scene_date"]["value"]}],
+             "counts": {"civic_mint": 1}})):
+        failed += 1
+        print("   FAIL the gate accepts a civic-minted card carrying bracketed name evidence")
+
     # a foreign block on one of this pass's cards survives a re-derivation
     base = record(_row(), [_app()], {}, set())
     prior = json.loads(json.dumps(base))
@@ -1313,10 +1658,35 @@ def self_test() -> int:
             or not kept["persons"][0]["note"].endswith("THE ROLL IS WORTH THIS."):
         failed += 1
         print("   FAIL a citation another pass wrote onto the card does not survive")
+
+    # T-1137's exact failure: changing one character of this mint's prefix used to
+    # make the startswith() carry fail and silently cut every marked paragraph after
+    # it.  The appended finding owns its marker, so the derived prose may now move.
+    marked = json.loads(json.dumps(base))
+    marked["persons"][0]["note"] += " OLD SETTLERS, 1882 — THE ROLL IS WORTH THIS."
+    changed = record(_row(), [_app()], {}, set())
+    changed["persons"][0]["note"] += " DERIVED PROSE CHANGED."
+    survived = carry_over(changed, marked)
+    if not survived["persons"][0]["note"].endswith(
+            "OLD SETTLERS, 1882 — THE ROLL IS WORTH THIS."):
+        failed += 1
+        print("   FAIL changed derived prose silently deletes another pass's finding")
     if carry_over(record(_row(), [_app()], {}, set()),
                   dict(prior, source_pass="letter_list")).get("directories"):
         failed += 1
         print("   FAIL carry_over took a record that is not this pass's")
+
+    # a kinship another pass ruled on comes back in the slot the layer keeps for it
+    with_kin = carry_over(record(_row(), [_app()], {}, set()),
+                          dict(prior, kin=[{"person": "p", "relation": "wife",
+                                            "household": "hh_x", "value": "q",
+                                            "confidence": "attested"}]))
+    if "kin" not in with_kin:
+        failed += 1
+        print("   FAIL a kin row written by another pass is re-derived away")
+    elif list(with_kin).index("kin") != list(with_kin).index("persons") - 1:
+        failed += 1
+        print("   FAIL a carried kin block does not land immediately before persons")
 
     # the two source labels the identity master hands over unresolved
     if source_of(_app(domain="newspapers", source_id="chicago_newspapers_1833_1835",

@@ -61,9 +61,19 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+# THE ONCE-EACH RULE lives in one place (T-0846). `gaps` asks whether this pass's
+# paragraph is PRESENT and `strays` whether an unruled card carries one; neither can
+# see a card that carries it TWICE, which is what an add-only applier produces when the
+# wording changes between runs. T-0677 measured that on this series and closed it in one
+# tool; three copies later the copies had already drifted apart, so the rule is shared.
+import spend_write_once  # noqa: E402
 LAND_SALES = ROOT / "data" / "research" / "land_sales"
 CROSSWALK = LAND_SALES / "resident_crosswalk.json"
 RECORDS = LAND_SALES / "records"
@@ -79,6 +89,18 @@ SOURCE_ID = "isa_public_domain_land_tract_sales"
 # The sentence that says a paragraph is this pass's, so re-running it is idempotent and
 # `--check` can find its own work without guessing.
 MARKER = "THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE."
+
+# THE SAME REGISTER, IN A PASS THIS ONE SUPERSEDED (T-0677). This tool was rewritten between
+# T-0635 and T-0636, and the earlier version is still pushed on `steward/salvage-t0635-mine`
+# — where T-0677's own text sends the next run to find it. Run it against dev today and all
+# thirty-one of these cards gain a SECOND paragraph about the tract sales, differently worded
+# and saying the same thing. Neither gate below could see that: `gaps` asks only whether the
+# paragraph is PRESENT and `strays` only whether an unruled card carries one. T-0677 measured
+# it — `tools/check.sh` went green with every one of the thirty-one cards doubled. `doubles`
+# is that hole closed, and this tuple is what a superseded paragraph looks like.
+SUPERSEDED_MARKERS = (
+    "THE FEDERAL TRACT SALES — A TRANSACTION, NOT A RESIDENCE.",
+)
 
 LADDER_LIMIT = (
     "This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a "
@@ -121,6 +143,20 @@ def tract_of(row: dict) -> str:
     inside the town as having bought nothing at all.
     """
     t = row.get("tract") or {}
+    # THE REGISTER SELLS A THIRD THING (T-1033): a lot and a block in a platted town,
+    # with no section, no township and no range because the plat is the description. The
+    # old sentence put those three empty strings into "sec  T R" and the card read as if
+    # the ground were missing rather than as if it were in the town. `plat` is never
+    # guessed at — the town code is the register's own abbreviation and this project does
+    # not expand it — so the lot is named and the code is quoted, and that is all.
+    if t.get("resolves") == "town_plat_lot" and t.get("lot") and t.get("block"):
+        town = (" in the town the register codes %s" % t["town_code"]) if t.get("town_code") \
+            else ", in a town the register does not name"
+        part = ("the %s of " % t["lot_fraction"]) if t.get("lot_fraction") else ""
+        return "%slot %s of block %s%s (%s, as printed)" % (part, t["lot"], t["block"],
+                                                            town, t.get("part"))
+    if t.get("resolves") == "refused":
+        return "%s — a tract this reading refuses to resolve" % (t.get("part") or "—")
     where = "sec %s T%s R%s" % (t.get("section"), t.get("township"), t.get("range"))
     if t.get("resolves") == "town_lot" and t.get("lot") and t.get("block"):
         return "lot %s of block %s of the school section (%s)" % (t["lot"], t["block"], where)
@@ -146,6 +182,9 @@ def entry(rid: str, row: dict) -> dict:
         "tract": tract_of(row),
         "resolves": (row.get("tract") or {}).get("resolves"),
         "sale_kind": ("school_section" if sale.get("type_of_sale") == "SC"
+                      else "town_plat_lot"
+                      if (row.get("tract") or {}).get("resolves") in ("town_plat_lot",
+                                                                     "refused")
                       else "federal_entry"),
         "purchase_no": loc.get("purchase_no"),
         "volume": sale.get("volume"),
@@ -202,7 +241,8 @@ def totals(row: dict) -> dict:
             return 0.0
     dates = sorted(e["date_purchased"] for e in row["entries"] if e.get("date_purchased"))
     lots = [e for e in row["entries"] if e.get("sale_kind") == "school_section"]
-    country = [e for e in row["entries"] if e.get("sale_kind") != "school_section"]
+    town = [e for e in row["entries"] if e.get("sale_kind") == "town_plat_lot"]
+    country = [e for e in row["entries"] if e.get("sale_kind") == "federal_entry"]
     return {
         "entries": len(row["entries"]),
         "acres": round(sum(num(e["acres"]) for e in row["entries"]), 2),
@@ -211,6 +251,8 @@ def totals(row: dict) -> dict:
         "last_purchase": dates[-1] if dates else None,
         "tracts": sorted({e["tract"] for e in country}),
         "school_section": sorted({e["tract"] for e in lots}),
+        "town_plat_lots": sorted({e["tract"] for e in town}),
+        "town_plat_dollars": round(sum(num(e["total_price"]) for e in town), 2),
         "residence_as_read": sorted({e["residence_as_read"] or "UNKNOWN"
                                      for e in row["entries"]}),
     }
@@ -231,6 +273,11 @@ def paragraph(row: dict) -> str:
         bought.append("%d federal land entr%s — %s"
                       % (len(t["tracts"]), "y" if len(t["tracts"]) == 1 else "ies",
                          "; ".join(t["tracts"])))
+    if t["town_plat_lots"]:
+        bought.append("%d lot%s in the platted town — %s"
+                      % (len(t["town_plat_lots"]),
+                         "" if len(t["town_plat_lots"]) == 1 else "s",
+                         "; ".join(t["town_plat_lots"])))
     if t["school_section"]:
         bought.append("%d parcel%s of the school section — %s"
                       % (len(t["school_section"]),
@@ -243,6 +290,17 @@ def paragraph(row: dict) -> str:
                 "quarter-section is, and it is still a purchase: the register names a "
                 "purchaser and never an occupant, and nothing here puts this person on that "
                 "ground." if t["school_section"] else "")
+    # T-1033. The same warning for the canal town lots, and it needs its own words: these
+    # are the town's own plat, sold in the fortnight of June 1836, and the register states
+    # no acreage against any of them because there is no aliquot to state.
+    town_note = (" THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook "
+                 "County's register describes them by lot and block in a platted town "
+                 "and gives them no section, no township and no acreage at all, so they "
+                 "add nothing to the acre figure above and $%.2f to the money. This "
+                 "project does not expand the register's town codes, so which addition a "
+                 "lot stands in is carried as the code and not as a name. It is still a "
+                 "purchase and it still places nobody."
+                 % t["town_plat_dollars"] if t["town_plat_lots"] else "")
     return (
         "%s The Illinois State Archives' Public Domain Land Tract Sales register enters this "
         "person %d time%s, as %s, %s: %s, %.2f acres stated in all, for $%.2f (%s). THE "
@@ -251,7 +309,8 @@ def paragraph(row: dict) -> str:
         "a purchase here places nobody.%s %s Identity by the crosswalk's own rule: %s "
         "(data/research/land_sales/resident_crosswalk.json). %s"
         % (MARKER, t["entries"], "" if t["entries"] == 1 else "s", spellings, span,
-           " and ".join(bought), t["acres"], t["dollars"], ids, residence, lot_note,
+           " and ".join(bought), t["acres"], t["dollars"], ids, residence,
+           lot_note + town_note,
            " ".join(row["carry"]),
            row["rules"][0] if row["rules"] else "stated in the crosswalk", LADDER_LIMIT))
 
@@ -337,8 +396,21 @@ def ledger_doc() -> dict:
 # --- the write -------------------------------------------------------------------------
 
 def apply_to_person(person: dict, row: dict) -> bool:
-    """The ONLY mutation this tool performs. Two keys, and rule 2 is held here."""
+    """The ONLY mutation this tool performs. Two keys, and rule 2 is held here.
+
+    T-0700 added the third case: a paragraph ALREADY on the card that no longer says what
+    the crosswalk says. Before it, the write was add-only — `if MARKER not in note` — so a
+    ruling that changed what the evidence means left the old sentence standing and both
+    gates passed, because they asked whether a paragraph was PRESENT and never whether it
+    was RIGHT. Frank Dill is the case: his match now grades documented off a COOK row the
+    first-row read could not see, and his card was still saying "a purchase and nothing
+    more". A stale paragraph is cut and rewritten, never patched.
+    """
     changed = False
+    note = (person.get("note") or "").strip()
+    if MARKER in note and paragraph(row) not in note:
+        person["note"] = note[:note.index(MARKER)].rstrip()
+        changed = True
     if SOURCE_ID not in (person.get("sources") or []):
         person["sources"] = (person.get("sources") or []) + [SOURCE_ID]
         changed = True
@@ -347,6 +419,68 @@ def apply_to_person(person: dict, row: dict) -> bool:
         person["note"] = (note + " " + paragraph(row)).strip()
         changed = True
     return changed
+
+
+def retract_from_person(person: dict, household: dict) -> bool:
+    """The inverse of apply_to_person: the paragraph is cut back off between the two
+    literals that bound it, MARKER and LADDER_LIMIT.
+
+    T-0700. Before it, a proposal could only ever be written: the crosswalk proposed, this
+    pass wrote, and nothing could take it back. A ruling that REFUSES a proposal has to be
+    able to, or the ruling is only a file — A. Garrett & Co. is a firm, and the card said
+    the man entered eighty acres.
+
+    T-0850. The cut used to require the paragraph to be the TAIL of the note, because that
+    is where this pass appends it. It is not the tail forever: a LATER pass appends its own
+    paragraph after it, and Joseph Chandler's card carried the 1840 census under this one
+    the day a ruling refused his purchase. The span is still not guessed at — both ends are
+    exact literals this module writes, and an interior cut closes the gap with one space —
+    but a note that carries the marker without the limit after it is refused as before,
+    because then the end of the paragraph is genuinely unknown.
+    """
+    note = person.get("note") or ""
+    if MARKER not in note:
+        return False
+    start = note.index(MARKER)
+    end = note.find(LADDER_LIMIT, start)
+    if end < 0:
+        return False
+    head = note[:start].rstrip()
+    tail = note[end + len(LADDER_LIMIT):].lstrip()
+    person["note"] = ("%s %s" % (head, tail)).strip() if tail else head
+    if SOURCE_ID in (person.get("sources") or []):
+        person["sources"] = [s for s in person["sources"] if s != SOURCE_ID]
+    # …and the source id goes only if NOTHING else on the card still rests on it.
+    if SOURCE_ID in json.dumps(household, ensure_ascii=False):
+        person["sources"] = sorted(set((person.get("sources") or []) + [SOURCE_ID]))
+    return True
+
+
+def retract(quiet: bool = False) -> int:
+    """Cards this pass wrote that the crosswalk no longer names — a refused ruling."""
+    ruled = {(r["household_id"], r["person_id"]) for r in matches()}
+    taken = 0
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        hh = load(path)
+        changed = False
+        for person in hh.get("persons") or []:
+            note = person.get("note") or ""
+            if MARKER not in note or (hh.get("id"), person.get("id")) in ruled:
+                continue
+            if LADDER_LIMIT not in note[note.index(MARKER):]:
+                raise SystemExit(
+                    "%s/%s — this pass's paragraph carries its marker and not the limit "
+                    "that ends it, so where it stops is unknown. Retract it by hand and "
+                    "say why." % (hh.get("id"), person.get("id")))
+            if retract_from_person(person, hh):
+                changed = True
+                taken += 1
+        if changed:
+            dump(path, hh)
+    if taken and not quiet:
+        print("land tract sales: retracted from %d resident record(s) — a ruling refused "
+              "the proposal behind them (T-0700)" % taken)
+    return taken
 
 
 def apply(quiet: bool = False) -> int:
@@ -369,6 +503,7 @@ def apply(quiet: bool = False) -> int:
 
 def build(quiet: bool = False) -> int:
     dump(LEDGER, ledger_doc())
+    retract(quiet=quiet)
     apply(quiet=quiet)
     if not quiet:
         print("wrote %s" % LEDGER.relative_to(ROOT))
@@ -399,9 +534,16 @@ def gaps(rows: list) -> list:
         if SOURCE_ID not in (person.get("sources") or []):
             bad.append("%s/%s — matched by the crosswalk and the card does not cite %s"
                        % (row["household_id"], row["person_id"], SOURCE_ID))
-        if MARKER not in (person.get("note") or ""):
+        note = person.get("note") or ""
+        if MARKER not in note:
             bad.append("%s/%s — matched by the crosswalk and the card carries no paragraph"
                        % (row["household_id"], row["person_id"]))
+        elif paragraph(row) not in note:
+            # T-0700. PRESENT is not RIGHT: this is the gate that would have caught a card
+            # still saying "a purchase and nothing more" after the crosswalk had regraded
+            # the same rows documented.
+            bad.append("%s/%s — carries a paragraph that no longer says what the crosswalk "
+                       "says: re-run the tool" % (row["household_id"], row["person_id"]))
     return bad
 
 
@@ -420,6 +562,24 @@ def strays(rows: list) -> list:
     return bad
 
 
+def _doubles_over(household_id: str, person: dict) -> list:
+    """doubles() for one already-loaded person — what the self-test needs and the gate reuses."""
+    return spend_write_once.doubles_over(household_id, person, MARKER, SUPERSEDED_MARKERS)
+
+
+def doubles() -> list:
+    """…and a card says this register ONCE, however many passes have written it.
+
+    Two ways a card ends up saying it twice and both are silent to the two gates above:
+    this pass's own paragraph appended a second time, or a superseded pass's paragraph
+    left standing beside it. T-0677 wrote that rule here first; T-0846 moved it to
+    `tools/spend_write_once.py`, where the six passes that write a paragraph share it —
+    three copies had already drifted, two of them counting the marker and never looking
+    for a superseded wording at all.
+    """
+    return spend_write_once.doubles(MARKER, SUPERSEDED_MARKERS, HOUSEHOLDS)
+
+
 def check(quiet: bool = False) -> int:
     rows = matches()
     if not LEDGER.exists():
@@ -429,7 +589,7 @@ def check(quiet: bool = False) -> int:
         print("   %s no longer re-derives from the crosswalk and the records — re-run the "
               "tool" % LEDGER.relative_to(ROOT))
         return 1
-    bad = gaps(rows) + strays(rows)
+    bad = gaps(rows) + strays(rows) + doubles()
     if bad:
         for line in bad[:20]:
             print("   %s" % line)
@@ -437,7 +597,7 @@ def check(quiet: bool = False) -> int:
             print("   …and %d more" % (len(bad) - 20))
         return 1
     if not quiet:
-        print("land tract sales: %d entry/entries on %d card(s), no strays"
+        print("land tract sales: %d entry/entries on %d card(s), no strays, none written twice"
               % (sum(len(r["entries"]) for r in rows), len(rows)))
     return 0
 
@@ -468,8 +628,11 @@ def _gaps_over(row: dict, person: dict) -> list:
     if SOURCE_ID not in (person.get("sources") or []):
         out.append("%s/%s — does not cite %s" % (row["household_id"], row["person_id"],
                                                  SOURCE_ID))
-    if MARKER not in (person.get("note") or ""):
+    note = person.get("note") or ""
+    if MARKER not in note:
         out.append("%s/%s — no paragraph" % (row["household_id"], row["person_id"]))
+    elif paragraph(row) not in note:
+        out.append("%s/%s — stale paragraph" % (row["household_id"], row["person_id"]))
     return out
 
 
@@ -494,6 +657,52 @@ def self_test() -> int:
          all(all(c in paragraph(r) for c in r["carry"]) for r in rows))
     want("no paragraph may assert residence at Chicago",
          all("lived at Chicago" not in paragraph(r) for r in rows))
+
+    # T-0700: a paragraph that is PRESENT but no longer says what the crosswalk says is a
+    # gate failure, not a pass. This is the assertion that would have caught Frank Dill's.
+    stale = json.loads(json.dumps({"id": rows[0]["person_id"], "sources": [SOURCE_ID],
+                                   "note": paragraph(rows[0]).replace("enters this person",
+                                                                      "enters this fellow")}))
+    want("a paragraph that no longer matches the crosswalk must fail the gate",
+         any("stale" in line for line in _gaps_over(rows[0], stale)))
+    want("a paragraph that matches the crosswalk must pass",
+         not _gaps_over(rows[0], {"id": rows[0]["person_id"], "sources": [SOURCE_ID],
+                                  "note": paragraph(rows[0])}))
+
+    # T-0700: the write is REVERSIBLE, or a ruling that refuses a proposal cannot reach
+    # the card it was written onto. Apply, retract, and the record must be what it was.
+    original = {"id": "x", "name": "X", "grade": "projected_resident",
+                "sources": ["some_source"], "note": "Existing sentence.",
+                "occupation": {"value": "cooper", "confidence": "inferred"}}
+    roundtrip = json.loads(json.dumps(original))
+    apply_to_person(roundtrip, rows[0])
+    want("the write must be reversible: apply then retract returns the record",
+         retract_from_person(roundtrip, {"id": "hh_x", "persons": [roundtrip]})
+         and roundtrip == original)
+    # T-0850: and it is reversible from the MIDDLE of a note as well, which is where a
+    # later pass leaves it. Chandler's card is this shape: land sales, then the 1840 census.
+    buried = json.loads(json.dumps(original))
+    apply_to_person(buried, rows[0])
+    buried["note"] += " A LATER PASS WROTE THIS. And a second sentence of it."
+    want("the write must be reversible when a later pass has appended below it",
+         retract_from_person(buried, {"id": "hh_x", "persons": [buried]})
+         and buried["note"] == "Existing sentence. A LATER PASS WROTE THIS. And a second "
+                               "sentence of it."
+         and buried["sources"] == original["sources"])
+    # A marker with no limit after it is where the paragraph ends unknown, and it refuses.
+    truncated = json.loads(json.dumps(original))
+    apply_to_person(truncated, rows[0])
+    truncated["note"] = truncated["note"].replace(LADDER_LIMIT, "")
+    want("a paragraph whose closing limit is gone must refuse the cut",
+         not retract_from_person(truncated, {"id": "hh_x", "persons": [truncated]}))
+
+    # …and the source id STAYS when another block on the card still rests on it.
+    kept = json.loads(json.dumps(original))
+    apply_to_person(kept, rows[0])
+    retract_from_person(kept, {"id": "hh_x", "persons": [kept],
+                               "arrival": {"sources": [SOURCE_ID]}})
+    want("a retraction must not strip a source id another block still cites",
+         SOURCE_ID in kept["sources"] and MARKER not in kept["note"])
 
     # Rule 2, held over a synthetic record: two keys move and no others.
     before = {"id": "x", "name": "X", "grade": "projected_resident",
@@ -522,6 +731,29 @@ def self_test() -> int:
     silent["note"] = "Existing sentence."
     want("gaps must fire on a card that carries no paragraph",
          any("no paragraph" in g for g in _gaps_over(rows[0], silent)))
+
+    # …and the third gate must fire on both ways a card comes to say it twice (T-0677).
+    want("doubles must stay silent on the card the applier actually writes",
+         not _doubles_over("hh_x", after))
+    doubled = json.loads(json.dumps(after))
+    doubled["note"] = doubled["note"] + " " + paragraph(rows[0])
+    want("doubles must fire on a card carrying this pass's paragraph twice",
+         any("2 times" in d for d in _doubles_over("hh_x", doubled)))
+    rival = json.loads(json.dumps(after))
+    rival["note"] = rival["note"] + " " + SUPERSEDED_MARKERS[0] + " …"
+    want("doubles must fire on a superseded tract-sales paragraph left standing",
+         any("superseded" in d for d in _doubles_over("hh_x", rival)))
+
+    # T-0697. `tools/mint_placed_residents.py` rebuilds some of the cards this pass writes
+    # — J. K. Boyer since the crosswalk stopped counting namesakes — and re-attaches this
+    # pass's citation instead of deleting it. It names the source id and the marker itself
+    # rather than importing them, exactly as it does for passes 1 and 2, so a drift between
+    # the two copies would silently start deleting the register's citation again.
+    mint = (ROOT / "tools" / "mint_placed_residents.py").read_text(encoding="utf-8")
+    want("the placed mint must carry this pass's source id",
+         'LAND_SALES_SOURCE = "%s"' % SOURCE_ID in mint)
+    want("the placed mint must carry this pass's marker",
+         'LAND_SALES_MARKER = "%s"' % MARKER in mint)
 
     for line in fails:
         print("   %s" % line)

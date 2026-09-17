@@ -17,6 +17,13 @@
   "belongs_to": [],
   "in_enclosure": null,
   "zone": "z10_settled_town",
+  "the_street_a_yard_is_measured_from": {
+    "why_this_is_stated": "A stem is seated AWAY FROM THE NEAREST STREET, because the yard is behind the house — so what 'the nearest street' is allowed to mean decides where every tree in this record stands, and until T-0255 it meant the nearest of all 77 records in data/streets/1835.json at any distance on either bank. Nobody chose that: a 23.91 m track laid on the SOUTH bank below the fort's north gate (T-0099) became the nearest street to a dwelling on the NORTH bank, with no crossing between the two for hundreds of metres, and turned that house's cottonwoods. The rule now has two bounds and both are measured rather than picked.",
+    "the_bank": "A street is a house's street only where it stands on the same dry ground. The committed heightfield's land cells fall into 6 four-connected pieces — the West, South and North Divisions the river separates, and the lake shore east of the 1834 harbour cut — and that partition IS the river, read off the same field the renderer walks the visitor over. Each street's path is cut into the segments that lie in each piece and a house measures only the segments in its own, so Kinzie Street — which runs out of the West Division, across the North Branch at Wolf Point and into the North — is measured from a North Division house along its North Division reach and not across the water. This is a connected component and not a tolerance: there is no threshold to tune.",
+    "the_reach_m": 68.72,
+    "the_reach": "68.72 m, and the figure is the plat's own. The deepest committed lot in data/traces/vectors/thompson_lots.json is 56.53 m deep (144 lots, 43.83-56.53 m), and the centreline of the street it fronts stands half of the plat's 80 ft module — 12.192 m — beyond its frontage, so no ground inside the platted town lies further than 68.72 m from the centreline of the street it fronts. Ground past that reach is no further 'away from the street' than ground at it. THE BOUND IS A CLAMP AND NOT A CLIFF: a cliff would score a house's far candidates above its near ones wherever the bound fell inside its own ring of candidate ground, and seat its trees outside its lot to escape a street.",
+    "what_is_not_bounded": "The REFUSAL. No stem may stand in any street's travelled track, whichever bank that street is on and whoever fronts it — that refusal is about the two metres around the point, not about whose yard it is, and bounding it would let a stem grow up through a road."
+  },
   "existence": {
     "value": true,
     "confidence": "inferred",
@@ -52,8 +59,8 @@
       "id": "cobweb_castle_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        804.26,
-        129.9
+        803.22,
+        133.77
       ],
       "height_m": 18.6,
       "confidence": "reconstructed",
@@ -93,6 +100,39 @@
       "note": "DEALT BY RULE for council_house: the closest allowed ground to the house, which is where a dooryard bush stands. 1.24 m is inside the species' recorded band."
     },
     {
+      "id": "fort_dearborn_us_factors_house_tree_1",
+      "species": "ulmus_americana",
+      "at_local_enu_m": [
+        1173.69,
+        29.76
+      ],
+      "height_m": 18.4,
+      "confidence": "reconstructed",
+      "note": "DEALT BY RULE for fort_dearborn_us_factors_house: the best-scored allowed ground in this house's yard quarter. 18.4 m sits in the low third of the species' recorded 16-24 m band — a kept tree is cut back and a planted one is young, and the record claims neither in particular."
+    },
+    {
+      "id": "fort_dearborn_us_factors_house_bush_1",
+      "species": "ribes_spp",
+      "at_local_enu_m": [
+        1149.51,
+        32.18
+      ],
+      "height_m": 1.01,
+      "confidence": "reconstructed",
+      "note": "DEALT BY RULE for fort_dearborn_us_factors_house: the closest allowed ground to the house, which is where a dooryard bush stands. 1.01 m is inside the species' recorded band."
+    },
+    {
+      "id": "fort_dearborn_us_factors_house_bush_2",
+      "species": "ribes_spp",
+      "at_local_enu_m": [
+        1165.44,
+        59.79
+      ],
+      "height_m": 1.35,
+      "confidence": "reconstructed",
+      "note": "DEALT BY RULE for fort_dearborn_us_factors_house: the closest allowed ground to the house, which is where a dooryard bush stands. 1.35 m is inside the species' recorded band."
+    },
+    {
       "id": "inf_artisan_dwelling_west_a_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
@@ -129,8 +169,8 @@
       "id": "inf_boatman_cabin_north_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        257.95,
-        143.77
+        257.71,
+        125.55
       ],
       "height_m": 18.5,
       "confidence": "reconstructed",
@@ -140,8 +180,8 @@
       "id": "inf_boatman_cabin_north_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        256.3,
-        136.3
+        242.37,
+        127.95
       ],
       "height_m": 1.37,
       "confidence": "reconstructed",
@@ -162,8 +202,8 @@
       "id": "inf_carpenter_dwelling_north_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        380.0,
-        189.43
+        392.14,
+        196.75
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -228,8 +268,8 @@
       "id": "jb_beaubien_homestead_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        1083.29,
-        160.65
+        1114.38,
+        177.85
       ],
       "height_m": 16.5,
       "confidence": "reconstructed",
@@ -448,8 +488,8 @@
       "id": "recon_1835_blk_randolph_wells_d3_05_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        360.22,
-        -360.77
+        359.72,
+        -361.64
       ],
       "height_m": 0.93,
       "confidence": "reconstructed",
@@ -533,11 +573,33 @@
       "note": "DEALT BY RULE for recon_1835_blk_randolph_wells_h2_01: the closest allowed ground to the house, which is where a dooryard bush stands. 0.88 m is inside the species' recorded band."
     },
     {
+      "id": "recon_1835_blk_south_water_dearborn_h1_03_tree_1",
+      "species": "populus_deltoides",
+      "at_local_enu_m": [
+        790.7,
+        -93.3
+      ],
+      "height_m": 18.3,
+      "confidence": "reconstructed",
+      "note": "DEALT BY RULE for recon_1835_blk_south_water_dearborn_h1_03: the best-scored allowed ground in this house's yard quarter. 18.3 m sits in the low third of the species' recorded 18-26 m band — a kept tree is cut back and a planted one is young, and the record claims neither in particular."
+    },
+    {
+      "id": "recon_1835_blk_south_water_dearborn_h1_03_bush_1",
+      "species": "ribes_spp",
+      "at_local_enu_m": [
+        788.36,
+        -102.0
+      ],
+      "height_m": 1.42,
+      "confidence": "reconstructed",
+      "note": "DEALT BY RULE for recon_1835_blk_south_water_dearborn_h1_03: the closest allowed ground to the house, which is where a dooryard bush stands. 1.42 m is inside the species' recorded band."
+    },
+    {
       "id": "recon_1835_north_d1_001_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        480.0,
-        166.39
+        494.87,
+        153.98
       ],
       "height_m": 19.1,
       "confidence": "reconstructed",
@@ -702,7 +764,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         515.0,
-        181.31
+        174.31
       ],
       "height_m": 16.1,
       "confidence": "reconstructed",
@@ -734,8 +796,8 @@
       "id": "recon_1835_north_d3_016_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        715.0,
-        166.12
+        731.12,
+        150.0
       ],
       "height_m": 18.4,
       "confidence": "reconstructed",
@@ -745,8 +807,8 @@
       "id": "recon_1835_north_d3_016_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        710.83,
-        165.57
+        730.57,
+        145.83
       ],
       "height_m": 18.2,
       "confidence": "reconstructed",
@@ -801,7 +863,7 @@
       "species": "ulmus_americana",
       "at_local_enu_m": [
         1017.87,
-        322.11
+        317.89
       ],
       "height_m": 18.5,
       "confidence": "reconstructed",
@@ -811,8 +873,8 @@
       "id": "recon_1835_north_d3_042_tree_2",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        1020.15,
-        320.0
+        1002.13,
+        322.11
       ],
       "height_m": 18.0,
       "confidence": "reconstructed",
@@ -888,8 +950,8 @@
       "id": "recon_1835_north_d4_017_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        755.0,
-        182.06
+        763.71,
+        175.03
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -943,8 +1005,8 @@
       "id": "recon_1835_north_d4_039_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        1142.88,
-        324.25
+        1140.0,
+        320.87
       ],
       "height_m": 19.7,
       "confidence": "reconstructed",
@@ -954,8 +1016,8 @@
       "id": "recon_1835_north_d4_039_tree_2",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        1137.12,
-        324.25
+        1143.92,
+        320.38
       ],
       "height_m": 18.3,
       "confidence": "reconstructed",
@@ -1020,8 +1082,8 @@
       "id": "recon_1835_north_d5_019_tree_1",
       "species": "populus_deltoides",
       "at_local_enu_m": [
-        857.55,
-        172.55
+        861.84,
+        171.84
       ],
       "height_m": 20.2,
       "confidence": "reconstructed",
@@ -1031,7 +1093,7 @@
       "id": "recon_1835_north_d5_019_bush_1",
       "species": "ribes_spp",
       "at_local_enu_m": [
-        842.45,
+        857.55,
         172.55
       ],
       "height_m": 0.91,
@@ -1119,8 +1181,8 @@
       "id": "recon_1835_north_d6_021_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        450.0,
-        183.98
+        431.98,
+        200.0
       ],
       "height_m": 16.8,
       "confidence": "reconstructed",
@@ -1141,8 +1203,8 @@
       "id": "recon_1835_north_d6_058_tree_1",
       "species": "ulmus_americana",
       "at_local_enu_m": [
-        656.16,
-        324.33
+        660.0,
+        323.84
       ],
       "height_m": 16.9,
       "confidence": "reconstructed",
@@ -1444,6 +1506,7 @@
     "inf_packer_dwelling: no allowed ground for bush 1",
     "inf_sawyer_dwelling_a: no allowed ground for tree 1",
     "inf_teamster_dwelling_south: no allowed ground for tree 1",
+    "lasalle_lake_house: no allowed ground for bush 1",
     "recon_1835_blk_lake_clark_d1_01: no allowed ground for bush 1",
     "recon_1835_blk_lake_clark_d3_02: no allowed ground for tree 1",
     "recon_1835_blk_lake_clark_d3_02: no allowed ground for bush 1",
@@ -1504,7 +1567,10 @@
     "recon_1835_blk_south_water_clark_d5_01: no allowed ground for bush 1",
     "recon_1835_blk_south_water_dearborn_d1_05: no allowed ground for tree 1",
     "recon_1835_blk_south_water_dearborn_d1_05: no allowed ground for bush 1",
-    "recon_1835_blk_south_water_dearborn_d3_03: no allowed ground for bush 1",
+    "recon_1835_blk_south_water_dearborn_d3_08: no allowed ground for tree 1",
+    "recon_1835_blk_south_water_dearborn_d3_08: no allowed ground for bush 1",
+    "recon_1835_blk_south_water_dearborn_d5_07: no allowed ground for tree 1",
+    "recon_1835_blk_south_water_dearborn_d5_07: no allowed ground for bush 1",
     "recon_1835_blk_south_water_franklin_d1_04: no allowed ground for tree 1",
     "recon_1835_blk_south_water_franklin_d1_04: no allowed ground for bush 1",
     "recon_1835_blk_south_water_franklin_d3_03: no allowed ground for tree 1",
@@ -1575,5 +1641,5 @@
     "wright_building_to_let_b: no allowed ground for tree 1",
     "wright_building_to_let_b: no allowed ground for bush 1"
   ],
-  "research_note": "67 DOORYARD TREES AND 61 CURRANT BUSHES ACROSS 62 OF THE TOWN'S 150 DWELLINGS, EVERY ONE OF THEM DEALT BY THE RULE IN tools/generate_dooryard_plantings.py — no source counts any house's trees, so the honest shape is a rule that says why each house got what it got, re-derived on every commit. THE DEAL IS DELIBERATELY THIN: at most two trees and two bushes to a house, under half a town of houses drawing any tree at all, and the dense party-wall blocks refuse themselves (a stem must clear every committed footprint by more than the renderer's own margin, so a rowhouse yard offers no allowed ground — the refusals below name each one). WHAT THE DENSITY IS NOT: ZONE 10's 8-25/ha relict band binds the DEALT wood inside that zone's drawn extent, and only 3 of these 128 stems stand inside it; this record makes a HOUSEHOLD claim (a dooryard's stems), not an ecological one, and the two must not be added together. Whether any given tree was kept from the clearing or planted by the household is unknowable and unclaimed. Heights: trees in the LOW third of their recorded bands (cut-back if kept, young if planted); bushes anywhere in theirs. Every coordinate, count and height is reconstructed and claimed in docs/LIBERTIES.md L151. WHAT IS DELIBERATELY NOT HERE: the Lombardy poplars the ticket names are not dealt, because no committed flora zone record describes the species and the renderer refuses a stem the zone records do not carry — holding the poplar as a species is its own ticket; and the currant clumps are drawn without their July fruit, because the clonal draw path carries no berry (stated in trees.js). WHAT WOULD UPGRADE IT: T-0075's source records for the plates, or any sale notice, diary or view that counts or places a particular house's trees."
+  "research_note": "69 DOORYARD TREES AND 64 CURRANT BUSHES ACROSS 64 OF THE TOWN'S 154 DWELLINGS, EVERY ONE OF THEM DEALT BY THE RULE IN tools/generate_dooryard_plantings.py — no source counts any house's trees, so the honest shape is a rule that says why each house got what it got, re-derived on every commit. THE DEAL IS DELIBERATELY THIN: at most two trees and two bushes to a house, under half a town of houses drawing any tree at all, and the dense party-wall blocks refuse themselves (a stem must clear every committed footprint by more than the renderer's own margin, so a rowhouse yard offers no allowed ground — the refusals below name each one). WHAT THE DENSITY IS NOT: ZONE 10's 8-25/ha relict band binds the DEALT wood inside that zone's drawn extent, and only 3 of these 133 stems stand inside it; this record makes a HOUSEHOLD claim (a dooryard's stems), not an ecological one, and the two must not be added together. Whether any given tree was kept from the clearing or planted by the household is unknowable and unclaimed. Heights: trees in the LOW third of their recorded bands (cut-back if kept, young if planted); bushes anywhere in theirs. Every coordinate, count and height is reconstructed and claimed in docs/LIBERTIES.md L151. WHAT IS DELIBERATELY NOT HERE: the Lombardy poplars the ticket names are not dealt, because no committed flora zone record describes the species and the renderer refuses a stem the zone records do not carry — holding the poplar as a species is its own ticket; and the currant clumps are drawn without their July fruit, because the clonal draw path carries no berry (stated in trees.js). WHAT WOULD UPGRADE IT: T-0075's source records for the plates, or any sale notice, diary or view that counts or places a particular house's trees."
 }

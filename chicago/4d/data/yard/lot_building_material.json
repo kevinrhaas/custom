@@ -17,11 +17,11 @@
     "refused": 14
   },
   "census": {
-    "standing": 371,
-    "anonymous_refused": 279,
-    "named_examined": 92,
+    "standing": 383,
+    "anonymous_refused": 284,
+    "named_examined": 99,
     "named_with_1835_start_refused": 14,
-    "state_not_stated_refused": 91,
+    "state_not_stated_refused": 98,
     "qualified": 1
   },
   "existence": {
@@ -106,7 +106,7 @@
       "value": null,
       "confidence": "reconstructed",
       "geometry": "renderer",
-      "note": "THE BRICK IS NOT A NEW COLOUR AND THE STONE IS. Brick is this town's ONE brick — generators/common/materials.py's CHIMNEY_BRICK, inferred, off the Petford watercolour's brick chimneys, and the same brick every framed house in the scene carries on its stack; the material on this lot being that brick is the cheapest honest answer, because it is the fabric the record already attests. Stone has no row on the material sheet at all (substrate `stone` carries no colour), so its tone is reconstructed and BOUNDED by two values this project already ships: it is paler and greyer than the yard layer's own timber, or the heap stops reading as stone beside the sticks next to it, and it is darker than the chinking clay, which is the same mineral sitting sheltered under an eave. Timber is the yard layer's own timber tone unchanged — a sawn building stick and a packing case are the same new wood, and inventing a second one would be a claim about a saw."
+      "note": "THE BRICK IS NOT A NEW COLOUR AND THE STONE IS. Brick is this town's ONE brick — generators/common/materials.py's BRICK, inferred, off the Petford watercolour's brick chimneys, and the same brick every framed house in the scene carries on its stack; the material on this lot being that brick is the cheapest honest answer, because it is the fabric the record already attests. Stone has no row on the material sheet at all (substrate `stone` carries no colour), so its tone is reconstructed and BOUNDED by two values this project already ships: it is paler and greyer than the yard layer's own timber, or the heap stops reading as stone beside the sticks next to it, and it is darker than the chinking clay, which is the same mineral sitting sheltered under an eave. Timber is the yard layer's own timber tone unchanged — a sawn building stick and a packing case are the same new wood, and inventing a second one would be a claim about a saw."
     }
   },
   "rule": {
@@ -349,14 +349,14 @@
     },
     {
       "structure_id": "wright_building_to_let_a",
-      "name": "John Wright's Building to Let (east)",
+      "name": "John Wright's Building to Let (a)",
       "function": "dwelling_to_let",
       "documented_range_from": "1835-01-01",
       "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."
     },
     {
       "structure_id": "wright_building_to_let_b",
-      "name": "John Wright's Building to Let (west)",
+      "name": "John Wright's Building to Let (b)",
       "function": "dwelling_to_let",
       "documented_range_from": "1835-01-01",
       "why": "its documented range opens inside 1835, which is the nearest thing to a start date this dataset carries and is NOT one: it is the date the record is first attested — a first issue, a directory line, a deed — and the record nowhere says the building was going up on the scene date. Clause 2 asks the record to SAY it, and this one does not."

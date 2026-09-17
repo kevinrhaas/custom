@@ -8,19 +8,20 @@
     "url": "https://archive.org/details/fergusdirectoryo00ferg",
     "what": "Allen County Public Library Genealogy Center scan of Robert Fergus, Fergus' Directory of the City of Chicago, 1839 (Chicago: Fergus Printing Company, 1876). 86 leaves. Printed pages 47-50 are leaves 59-62.",
     "committed": true,
-    "how": "tools/fetch_fergus_1839_pages.py commits the page text; tools/read_fergus_1839_lots.py --map commits the row map that puts the columns back in printed order, out of the same scan's word coordinates."
+    "how": "tools/fetch_fergus_1839_pages.py commits the page text; tools/read_fergus_1839_lots.py --map commits the row map that puts the columns back in printed order, out of the same scan's word coordinates; fergus_1839_lots_corrections.json holds the numerals that were read off the page images themselves, because the OCR destroyed them."
   },
-  "reading_note": "transcription_mediated. THE PAIRING IS RECONSTRUCTED AND SAYS SO. The table is set as three pairs of year-and-figure columns and the OCR interleaves them — its flat text puts 1863 under 1849 and strands the last column's figures — so no row here is read off the committed text in reading order. Each row is put back from the word coordinates: a year and a figure are one row when their vertical centres agree inside 28 px within one pair of columns, and every claim carries column_reconstructed true. Fourteen figures in the 1863-1876 column are swallowed by the leader dots and are NULL. ONE ROW IS MISSING ENTIRELY, and it is named in counts rather than left as a silent gap: the 1840 line is printed `1 S40 .... 4,47!*` in this scan and neither its year nor its figure can be read, so there is no 1840 claim here at all. The census of 1840 is held elsewhere in this repo and is not borrowed to fill it.",
+  "reading_note": "transcription_mediated. THE PAIRING IS RECONSTRUCTED AND SAYS SO. The table is set as three pairs of year-and-figure columns and the OCR interleaves them — its flat text puts 1863 under 1849 and strands the last column's figures — so no row here is read off the committed text in reading order. Each row is put back from the word coordinates: a year and a figure are one row when their vertical centres agree inside 28 px within one pair of columns, and every claim carries column_reconstructed true. THE 1840 LINE WAS MISSING ENTIRELY and is not any more: the scan prints it `1 S40 .... 4,47!*`, neither half of which parses, so the reading dropped the row — T-0679 read the page image, where it prints 1840 .... 4,479, and that row is now here and graded scan_verified. Five more figures the leader dots had swallowed were read the same way. The census of 1840 is held elsewhere in this repo and was not borrowed for any of it.",
   "date_note": "Each claim's describes_date is the year the FIGURE describes, not the year of the volume. The first row is the one this project wants: Fergus prints Chicago's 1835 population as 3,265.",
   "projection_note": "The table's last two lines are not counts and are not read here: 1885 estimated by Jno S. Wright at 1,000,000 and 1911 estimated by J. X. Balestier at 2,000,000. They are projections printed in 1876 and belong with the volume's rhetoric, which follows them on the same page.",
   "counts": {
-    "claims": 41,
+    "claims": 42,
     "years": [
       1835,
       1836,
       1837,
       1838,
       1839,
+      1840,
       1841,
       1842,
       1843,
@@ -58,10 +59,13 @@
       1875,
       1876
     ],
-    "figures_read": 36,
-    "figures_the_scan_destroyed": 5,
+    "cells_settled_off_the_page_image": {
+      "year": 1,
+      "figure": 6
+    },
+    "figures_read": 42,
+    "figures_the_scan_destroyed": 0,
     "rows_whose_year_the_scan_destroyed": [
-      "1 S40 4,47!*",
       "“Chicago people",
       "every occasion, to",
       "become a marvel",
@@ -335,6 +339,47 @@
     {
       "id": "f1839_pop06",
       "kind": "civic",
+      "reading": "scan_verified",
+      "quote": "1 S40\n4,47!*",
+      "normalized": {
+        "as_printed": {
+          "year": "1 S40",
+          "figure": "4,47!*"
+        },
+        "year": 1840,
+        "population": 4479,
+        "of": "Chicago",
+        "column_reconstructed": true
+      },
+      "locator": {
+        "text_file": "fergus_1839_leaf_062.txt",
+        "spans": [
+          {
+            "line": 17,
+            "from": 0,
+            "to": 5
+          },
+          {
+            "line": 18,
+            "from": 0,
+            "to": 6
+          }
+        ],
+        "lines": [
+          17,
+          18
+        ],
+        "page": "fergus_1839_leaf_062",
+        "printed_page": 50
+      },
+      "describes_date": "1840",
+      "entities": [],
+      "town_finding": true,
+      "notes": "the row the reading dropped entirely, because neither its year nor its figure would parse"
+    },
+    {
+      "id": "f1839_pop07",
+      "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1841....\n5,752",
       "normalized": {
@@ -374,7 +419,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop07",
+      "id": "f1839_pop08",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1842....\n6,248",
@@ -415,7 +460,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop08",
+      "id": "f1839_pop09",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1843....\n7,580",
@@ -456,7 +501,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop09",
+      "id": "f1839_pop10",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1844.\n. . .\n8,000",
@@ -502,7 +547,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop10",
+      "id": "f1839_pop11",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1845.\n12,088",
@@ -543,7 +588,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop11",
+      "id": "f1839_pop12",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1846....\n14,169",
@@ -584,7 +629,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop12",
+      "id": "f1839_pop13",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1847....\n16,859",
@@ -625,7 +670,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop13",
+      "id": "f1839_pop14",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1848....\n20,023",
@@ -666,7 +711,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop14",
+      "id": "f1839_pop15",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1849.\n23,047",
@@ -707,7 +752,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop15",
+      "id": "f1839_pop16",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1850.\n28,269",
@@ -748,7 +793,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop16",
+      "id": "f1839_pop17",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1851  .\n34,437",
@@ -789,7 +834,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop17",
+      "id": "f1839_pop18",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1852.\n38,733",
@@ -830,7 +875,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop18",
+      "id": "f1839_pop19",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1853.\n60,652",
@@ -871,7 +916,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop19",
+      "id": "f1839_pop20",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1854.\n65,872",
@@ -912,7 +957,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop20",
+      "id": "f1839_pop21",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1855.\n80,028",
@@ -953,7 +998,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop21",
+      "id": "f1839_pop22",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1 856 .\n84,113",
@@ -994,7 +1039,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop22",
+      "id": "f1839_pop23",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1857.\n93,000",
@@ -1035,7 +1080,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop23",
+      "id": "f1839_pop24",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1858.\n90, 000",
@@ -1076,9 +1121,9 @@
       "notes": null
     },
     {
-      "id": "f1839_pop24",
+      "id": "f1839_pop25",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "1859.",
       "normalized": {
         "as_printed": {
@@ -1086,7 +1131,7 @@
           "figure": null
         },
         "year": 1859,
-        "population": null,
+        "population": 95000,
         "of": "Chicago",
         "column_reconstructed": true
       },
@@ -1109,10 +1154,10 @@
       "describes_date": "1859",
       "entities": [],
       "town_finding": true,
-      "notes": "the figure is destroyed in the scan and is left null rather than recovered from the run it sits in"
+      "notes": "the OCR mapped no ink at all to this cell; the page prints 95,000"
     },
     {
-      "id": "f1839_pop25",
+      "id": "f1839_pop26",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1860.\n112,172",
@@ -1153,7 +1198,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop26",
+      "id": "f1839_pop27",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1861  .\n120,000",
@@ -1194,7 +1239,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop27",
+      "id": "f1839_pop28",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1862.\n138,835",
@@ -1235,9 +1280,9 @@
       "notes": null
     },
     {
-      "id": "f1839_pop28",
+      "id": "f1839_pop29",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "1863.\n.",
       "normalized": {
         "as_printed": {
@@ -1245,7 +1290,7 @@
           "figure": "."
         },
         "year": 1863,
-        "population": null,
+        "population": 160000,
         "of": "Chicago",
         "column_reconstructed": true
       },
@@ -1273,10 +1318,10 @@
       "describes_date": "1863",
       "entities": [],
       "town_finding": true,
-      "notes": "the figure is destroyed in the scan and is left null rather than recovered from the run it sits in"
+      "notes": null
     },
     {
-      "id": "f1839_pop29",
+      "id": "f1839_pop30",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1864.\n.\n. .  169,353",
@@ -1322,9 +1367,9 @@
       "notes": null
     },
     {
-      "id": "f1839_pop30",
+      "id": "f1839_pop31",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "1 865\n. .",
       "normalized": {
         "as_printed": {
@@ -1332,7 +1377,7 @@
           "figure": ". ."
         },
         "year": 1865,
-        "population": null,
+        "population": 178900,
         "of": "Chicago",
         "column_reconstructed": true
       },
@@ -1360,10 +1405,10 @@
       "describes_date": "1865",
       "entities": [],
       "town_finding": true,
-      "notes": "the figure is destroyed in the scan and is left null rather than recovered from the run it sits in"
+      "notes": null
     },
     {
-      "id": "f1839_pop31",
+      "id": "f1839_pop32",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1866\n. .\n. .  200,418",
@@ -1409,7 +1454,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop32",
+      "id": "f1839_pop33",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1867.\n.\n. .  220,000",
@@ -1455,7 +1500,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop33",
+      "id": "f1839_pop34",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1868.\n.\n.  .252,054",
@@ -1501,7 +1546,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop34",
+      "id": "f1839_pop35",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1869.\n.\n.  .273,043",
@@ -1547,7 +1592,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop35",
+      "id": "f1839_pop36",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1870.\n.\n..298,977",
@@ -1593,7 +1638,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop36",
+      "id": "f1839_pop37",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1871 \n. .\n..334,270",
@@ -1639,7 +1684,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop37",
+      "id": "f1839_pop38",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1872.\n.\n.  .364,377",
@@ -1685,7 +1730,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop38",
+      "id": "f1839_pop39",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1873..\n.  .465,650",
@@ -1726,7 +1771,7 @@
       "notes": null
     },
     {
-      "id": "f1839_pop39",
+      "id": "f1839_pop40",
       "kind": "civic",
       "reading": "transcription_mediated",
       "quote": "1874.\n.\n.  .  475,000",
@@ -1772,9 +1817,9 @@
       "notes": null
     },
     {
-      "id": "f1839_pop40",
+      "id": "f1839_pop41",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "1875.\n.",
       "normalized": {
         "as_printed": {
@@ -1782,7 +1827,7 @@
           "figure": "."
         },
         "year": 1875,
-        "population": null,
+        "population": 500000,
         "of": "Chicago",
         "column_reconstructed": true
       },
@@ -1810,12 +1855,12 @@
       "describes_date": "1875",
       "entities": [],
       "town_finding": true,
-      "notes": "the figure is destroyed in the scan and is left null rather than recovered from the run it sits in"
+      "notes": null
     },
     {
-      "id": "f1839_pop41",
+      "id": "f1839_pop42",
       "kind": "civic",
-      "reading": "transcription_mediated",
+      "reading": "scan_verified",
       "quote": "1 876\n. .",
       "normalized": {
         "as_printed": {
@@ -1823,7 +1868,7 @@
           "figure": ". ."
         },
         "year": 1876,
-        "population": null,
+        "population": 525000,
         "of": "Chicago",
         "column_reconstructed": true
       },
@@ -1851,7 +1896,7 @@
       "describes_date": "1876",
       "entities": [],
       "town_finding": true,
-      "notes": "the figure is destroyed in the scan and is left null rather than recovered from the run it sits in"
+      "notes": null
     }
   ]
 }

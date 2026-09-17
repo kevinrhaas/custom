@@ -51,15 +51,27 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = ROOT / "data" / "research" / "census_1830"
-TEXT = DOMAIN / "text" / "peoria_putnam_1830_leaves_580_582.txt"
+TEXTDIR = DOMAIN / "text"
+# Every committed reading of a leaf of this division, in leaf order. One file per pass:
+# a pass declares the leaves it read and appends nothing to anybody else's file, so a
+# later reader can see which run read which page without reading a diff.
+TEXTS = ("peoria_putnam_1830_leaves_576_578.txt",
+         "peoria_putnam_1830_leaves_580_582.txt",
+         "peoria_putnam_1830_leaf_584.txt")
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 
 SOURCE_ID = "census_1830_peoria_county_chicago_precinct"
-TICKET = "T-0498"
+TICKET = "T-0498, T-0605, T-0757"
 
-# The film item, fixed so a later run can go back to the same pixels.
+# The film item, fixed so a later run can go back to the same pixels. Every record's
+# locator cites the _w2400 derivative, which is what the leaves were read at. The item
+# also serves a FULL-RESOLUTION derivative at .../page/{leaf}.jpg — about twice the
+# linear resolution — and T-0757 re-read n586's family column and re-counted n576's and
+# n580's name rows off that one. Both URLs are stable; the locators are not rewritten,
+# because the reading they carry was made at the magnification they name.
 ITEM = "populationsc18300024unit"
 IMAGE_URL = "https://archive.org/download/%s/page/{leaf}_w2400.jpg" % ITEM
+FULL_RES_IMAGE_URL = "https://archive.org/download/%s/page/{leaf}.jpg" % ITEM
 
 # Rows whose letters are genuinely open. The value is what else the ink could be —
 # never a preference, and never resolved by what would be convenient.
@@ -123,18 +135,87 @@ NORMALIZE = {
 # page. Carried as a calibration the next reader can check a re-count against; the
 # remaining columns of the totals row were not read and are not claimed.
 LEAF_TOTALS = {
-    "n580": {"first_five_male_columns_as_read": [20, 9, 9, 2, 3], "entries": 39},
-    "n582": {"first_five_male_columns_as_read": [16, 5, 14, 8, 10], "entries": 28},
+    "n576": {"first_five_male_columns_as_read": [25, 33, 23, 15, 39], "entries": 55,
+             "page": 299, "division_page": 1, "ticket": "T-0605",
+             "note": "As CORRECTED by the enumerator. He struck and rewrote six of the nine "
+                     "cells and the recapitulation on n586 carries the same six corrections, "
+                     "which is what binds this leaf to this division. The 55 entries were "
+                     "RE-COUNTED for T-0757 off the full-resolution image in two crops "
+                     "overlapping by one row (Hiram Cleaveland), independently of T-0605's "
+                     "four crops, and stand. n586's page-1 family cell, re-read at the same "
+                     "magnification, is 55 and not the 53 T-0605 read — so this leaf and the "
+                     "recapitulation now agree."},
+    "n578": {"first_five_male_columns_as_read": [37, 16, 29, 21, 37], "entries": 56,
+             "page": 300, "division_page": 2, "ticket": "T-0605"},
+    "n580": {"first_five_male_columns_as_read": [20, 9, 9, 2, 3], "entries": 39,
+             "page": 301, "division_page": 3, "ticket": "T-0498",
+             "note": "T-0498 read the fifth column as 3; the recapitulation's third row, "
+                     "which is this leaf's totals row, prints 38. The reading is left as "
+                     "T-0498 made it and the disagreement is recorded rather than patched. "
+                     "The 39 entries were RE-COUNTED for T-0757 off the full-resolution image "
+                     "in two crops overlapping by one row (John Paylin) and stand. n586's "
+                     "page-3 family cell is 88 at that magnification and is NOT 38 or 39, so "
+                     "this leaf and the recapitulation remain the division's one open "
+                     "disagreement."},
+    "n582": {"first_five_male_columns_as_read": [16, 5, 14, 8, 10], "entries": 28,
+             "page": 302, "division_page": 4, "ticket": "T-0498"},
+    "n584": {"first_five_male_columns_as_read": [15, 8, 8, 5, 13], "entries": 22,
+             "page": 303, "division_page": 5, "ticket": "T-0605"},
+}
+
+# The recapitulation leaf. It carries no head of family and mints no record; it is here
+# because it is the evidence that the names end on n584 and begin on n576.
+RECAPITULATION = {
+    "image": "n586",
+    "page": 304,
+    "text_file": "peoria_putnam_1830_recapitulation_n586.txt",
+    "families_per_page_as_read": {"1": 55, "2": 56, "3": 88, "4": 28, "5": 22},
+    "division_total_as_read": 199,
+    "read_at": "Full-resolution page derivative, %s, 7170 x 6529 px — twice the linear "
+               "resolution of the _w2400 derivative every record's locator cites. Cells "
+               "autocontrasted and enlarged 7x; the two open cells 10x to 12x beside known "
+               "glyphs from this same leaf. T-0757." % FULL_RES_IMAGE_URL.format(leaf="n586"),
+    "image_url_full_res": FULL_RES_IMAGE_URL.format(leaf="n586"),
+    "superseded_reading": "T-0605 read page 1 as 53 off the _w2400 derivative and offered 197 "
+                          "as available for the total. T-0757 re-read both at twice that "
+                          "magnification: page 1 is 55 (both digits are this hand's 5, "
+                          "identical to the 5 of '15' in the page-1 male row and unlike the 3 "
+                          "of '23' beside it) and the total is 199 (the leading 1 is carried "
+                          "in on an approach stroke; both following figures are 9s).",
+    "discrepancy": "The family column as re-read sums to 249, not to the 199 written under it, "
+                   "and the leaves as read carry 200 heads. ONE cell of the five now disagrees "
+                   "with the leaf it totals, not two: page 1 was a reading error and is "
+                   "corrected to 55, which is what n576 carries; page 3 prints 88 against the "
+                   "39 heads on n580 and is a real disagreement, left open. Recorded, not "
+                   "resolved: nothing in this domain is graded on it.",
+    "arithmetic_observation_not_adopted": "With page 3 taken as 38 the column would sum to 199 "
+                   "exactly, so the copyist's own total is consistent with 38 and with nothing "
+                   "else. That is an observation about his arithmetic and NOT a reading: the "
+                   "ink is unambiguously 88 at full resolution (both digits are closed "
+                   "figure-eights, matching the 8 of the page-3 male row's '38' and the 8 of "
+                   "the page-4 family cell's '28'), and this project does not correct a page "
+                   "to make a sum work. 38 would in any case still be one short of n580's 39.",
+    "leaf_counts_re_derived": "T-0757 re-counted the name rows of n576 and n580 off the "
+                   "full-resolution images, independently of T-0498's and T-0605's crops, in "
+                   "two crops per leaf overlapping by one row so that no row falls in a seam "
+                   "(Hiram Cleaveland on n576, John Paylin on n580). Both stand: 55 and 39.",
 }
 
 
 def read_text():
-    """(line_number, leaf, entry, as_read) for every transcribed row."""
+    """(text_file, line_number, leaf, entry, as_read) for every transcribed row.
+
+    Read in LEAF order, not file order, so the records come out in the order the
+    enumerator walked the division rather than the order the passes read it.
+    """
     rows = []
-    for n, line in enumerate(TEXT.read_text(encoding="utf-8").splitlines(), start=1):
-        m = re.match(r"^(n\d+)\t(\d+)\t(.+)$", line)
-        if m:
-            rows.append((n, m.group(1), int(m.group(2)), m.group(3).strip()))
+    for name in TEXTS:
+        path = TEXTDIR / name
+        for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+            m = re.match(r"^(n\d+)\t(\d+)\t(.+)$", line)
+            if m:
+                rows.append((name, n, m.group(1), int(m.group(2)), m.group(3).strip()))
+    rows.sort(key=lambda r: (int(r[2][1:]), r[3]))
     return rows
 
 
@@ -147,7 +228,7 @@ def normalized_for(as_read: str) -> tuple:
 def build_records():
     rows = read_text()
     records = []
-    for line_no, leaf, entry, as_read in rows:
+    for text_file, line_no, leaf, entry, as_read in rows:
         norm, why = normalized_for(as_read)
         uncertain = UNCERTAIN.get((leaf, entry))
         note = []
@@ -155,10 +236,12 @@ def build_records():
             note.append("READING OPEN. " + uncertain)
         if why:
             note.append("NORMALISED. " + why)
-        note.append("Entry %d of %d on leaf %s of the district headed 'Peoria & Putnam "
-                    "Counties & Territory attached'. Presence in that district in the "
-                    "summer of 1830; not a Chicago residence, and never an 1835 one."
-                    % (entry, LEAF_TOTALS[leaf]["entries"], leaf))
+        note.append("Entry %d of %d on leaf %s — page %d of the printed schedule, page %d of "
+                    "5 in the enumerator's division headed 'Peoria & Putnam Counties & "
+                    "Territory attached'. Presence in that district in the summer of 1830; "
+                    "not a Chicago residence, and never an 1835 one."
+                    % (entry, LEAF_TOTALS[leaf]["entries"], leaf,
+                       LEAF_TOTALS[leaf]["page"], LEAF_TOTALS[leaf]["division_page"]))
         records.append({
             "id": "census1830_%s_%03d" % (leaf, entry),
             "as_read": as_read,
@@ -167,10 +250,11 @@ def build_records():
                 "image": leaf,
                 "entry": entry,
                 "line": line_no,
-                "text_file": TEXT.name,
+                "text_file": text_file,
                 "item": ITEM,
                 "image_url": IMAGE_URL.format(leaf=leaf),
             },
+            "read_for": LEAF_TOTALS[leaf]["ticket"],
             "reading": "scan_verified",
             "confidence": "inferred" if uncertain else "documented",
             "notes": " ".join(note),
@@ -345,10 +429,10 @@ def build():
     matched, variants, candidates, refusals, institutions = build_crosswalk(records)
     doc = {
         "schema": 1,
-        "_doc": "GENERATED by tools/read_census_1830.py --build out of the committed reading "
-                "at data/research/census_1830/text/%s. Hand-edit and --check says so. Every "
+        "_doc": "GENERATED by tools/read_census_1830.py --build out of the committed readings "
+                "at data/research/census_1830/text/ (%s). Hand-edit and --check says so. Every "
                 "row is a hand reading of the film image named in its locator; the film "
-                "carries no text layer and nothing here was extracted." % TEXT.name,
+                "carries no text layer and nothing here was extracted." % ", ".join(TEXTS),
         "generated_by": "tools/read_census_1830.py --build",
         "source_id": SOURCE_ID,
         "describes_date": "1830",
@@ -357,13 +441,25 @@ def build():
             "as_written": "Peoria & Putnam Counties & Territory attached",
             "note": "The enumerator's own heading, written once on leaf n580 and dittoed. "
                     "The schedule never writes 'Chicago'; there was no Chicago to write.",
+            "leaves": "n576, n578, n580, n582, n584 — printed pages 299 to 303, being pages "
+                      "1 to 5 of one enumerator's division, and n586 (page 304) its "
+                      "recapitulation. The division is READ COMPLETE: every leaf of it has "
+                      "been read head by head, and n586 carries no head of family.",
+            "how_the_leaves_were_bound_to_the_district": "By the recapitulation on n586, whose "
+                      "five page rows ARE the totals rows of n576, n578, n580, n582 and n584 — "
+                      "page 1's row carries the same six struck-and-rewritten cells as n576's. "
+                      "The heading itself is written on n580 only; the other four leaves leave "
+                      "the county cell empty. T-0498 had guessed that n576-n579 belonged to the "
+                      "county before this district, and the recapitulation disproves it for the "
+                      "even leaves.",
         },
+        "recapitulation": RECAPITULATION,
         "the_ladder": "An 1830 head of family is EARLIER EVIDENCE and never an 1835 residence "
                       "on its own. Under the ladder ratified 2026-09-03, this schedule "
                       "corroborates and dates; it does not mint.",
         "counts": {
             "records": len(records),
-            "leaves": sorted(LEAF_TOTALS),
+            "leaves": sorted(LEAF_TOTALS, key=lambda k: int(k[1:])),
             "by_leaf": {k: v["entries"] for k, v in LEAF_TOTALS.items()},
             "documented": sum(1 for r in records if r["confidence"] == "documented"),
             "inferred": sum(1 for r in records if r["confidence"] == "inferred"),
@@ -391,11 +487,15 @@ def build():
                    "not_a_person": len(institutions)},
         "calibration": {
             "nhgis_peoria_county_1830_total_population": 1236,
-            "note": "NHGIS ds5 1830 county table gives Peoria County 1,236 persons. The 67 "
-                    "households read here are two leaves of a district that runs on past "
-                    "leaf n584, so the two figures are NOT yet comparable and no ratio is "
-                    "claimed from them. The comparison becomes a real check when the rest "
-                    "of the district is read.",
+            "note": "NHGIS ds5 1830 county table gives Peoria County 1,236 persons. The "
+                    "division read here is complete at five leaves and %d heads of family, and "
+                    "the enumerator's own recapitulation totals it at 199 families and 1,113 "
+                    "free white males against 484 females as read. The NHGIS figure is a "
+                    "COUNTY total and this division is Peoria and Putnam and everything hung "
+                    "off them, so the two are still not the same object and no ratio is "
+                    "claimed from them. What can now be checked is the division against "
+                    "itself, and it does not close — see the recapitulation block."
+                    % len(records),
             "verified": False,
         },
         "matched": matched,

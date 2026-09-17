@@ -194,6 +194,19 @@ def _register_survival_liberty_count() -> int:
                if b.get("present_at_scene_date") and b.get("survival_liberty_required"))
 
 
+def _register_backdating_liberty_count() -> int:
+    """Businesses standing at the scene date documented only after it.
+
+    The forward twin of `_register_survival_liberty_count`, and counted the same
+    way and for the same reason: `present_at_scene_date` is asserted here as well
+    as the flag, so this number cannot quietly widen if `compile_register.py` ever
+    carries the flag on a business its own evidence excludes.
+    """
+    doc = json.loads(REGISTER_1835.read_text())
+    return sum(1 for b in doc.get("businesses", [])
+               if b.get("present_at_scene_date") and b.get("backdating_liberty_required"))
+
+
 RESIDENTS_HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 
 
@@ -247,6 +260,23 @@ def _back_projected_position_count() -> int:
     return n
 
 
+def _back_projected_residence_count() -> int:
+    """Homes standing on a face read back out of a later directory (T-0669).
+
+    The residence half of the pass above, counted the same way and off the same
+    records, and kept a separate enumeration because it is a separate policy: a
+    home is carried back on a weaker argument than a shop is, and a scope that
+    added the two together would let one liberty's count move on the other's work.
+    """
+    n = 0
+    for path in sorted(RESIDENTS_HOUSEHOLDS.glob("*.json")):
+        doc = json.loads(path.read_text())
+        for person in (doc.get("directories") or {}).get("people") or []:
+            if (person.get("residence_back_projection") or {}).get("outcome") == "placed":
+                n += 1
+    return n
+
+
 STRUCTURES_DIR = ROOT / "data" / "structures"
 
 
@@ -271,6 +301,10 @@ SCOPE_SOURCES = {
         _register_survival_liberty_count,
         "data/research/newspapers/register_1835.json, itself re-derived by "
         "tools/compile_register.py --check"),
+    "register_1835.businesses[backdating_liberty_required]": (
+        _register_backdating_liberty_count,
+        "data/research/newspapers/register_1835.json, itself re-derived by "
+        "tools/compile_register.py --check"),
     "residents.persons[letter_list_only]": (
         _letter_list_person_count,
         "data/residents/households/*.json, themselves re-derived by "
@@ -283,6 +317,10 @@ SCOPE_SOURCES = {
         _back_projected_position_count,
         "data/residents/households/*.json, themselves re-derived by "
         "tools/back_project_addresses.py --check"),
+    "residence_back_projection.positions[placed]": (
+        _back_projected_residence_count,
+        "data/residents/households/*.json, themselves re-derived by "
+        "tools/back_project_residences.py --check"),
     "structures.land_owner[constructed_section_grid]": (
         _land_owner_count,
         "data/structures/*.json, themselves re-derived by "

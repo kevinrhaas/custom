@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "bourrassa_leon",
+   "relation": "father",
+   "household": "hh_baptist_john",
+   "value": "baptist_john",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "THE MIRROR OF THE ROW ON hh_baptist_john. THE BURIAL ENTRY NAMES THE FATHER, AND THAT IS THE WHOLE OF WHAT IS CLAIMED. Death entry 5 of Father St Cyr's page, Chicago, 2 July 1835: 'On the 2nd of July 1835, I performed the ecclesiastical burial according to the rites of the Catholic Church on the corpse of John Baptist, son of Leon Bourrassa, 28 days old.' Filed as st_cyr_death_05_1 (decedent) and st_cyr_death_05_2 (parent), and both cards were minted from those two rows and carry their record ids, so no identification is being made by name here. THE CHILD WAS ALIVE ON THE SCENE DATE: 28 days old at a burial on 2 July 1835 puts his birth about 4 June 1835 and his death the day AFTER 1 July 1835, so the father and son of this row are father and son in the scene. WHAT THE ENTRY DOES NOT SETTLE: 'John Baptist' is the transcription's reading of the child's name and it is very likely the forename Jean Baptiste standing where a surname was expected — the card is filed under Baptist because that is how the printed register reads, and T-0721 is where names read out of a printer's smudge are ruled on. The RELATIONSHIP does not turn on which of the two the child was called."
+  }
+ ],
  "persons": [
   {
    "id": "bourrassa_leon",

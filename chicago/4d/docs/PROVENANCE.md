@@ -227,3 +227,75 @@ the data: a disputed attribute is `reconstructed` or `inferred`, never `attested
 
 A dispute that cannot be resolved is not a failure. It is the honest state of the evidence, and
 the confidence view is built to show it.
+
+## A fact the dataset has no field for goes in a prose note, not a new shape
+
+Sources hand this project facts it has no field to hold. The rule is that such a fact is written
+into the **prose note of a field the record already has**, at that field's grade and under that
+field's citation — not into a new field, and not into an existing structure with its checked
+parts blanked out.
+
+The idiom is older than the ruling. No person record has a birthplace field, so every birthplace
+here rides in the `birth_year` note: `hh_harmon_elijah_d` reads "20 August 1782 at Bennington,
+Vermont", `hh_porter_jeremiah` "5 November 1807 at Geneseo, New York". The fact is on the card,
+it is graded, and it cites the page it came from — which is everything a field would have bought
+except a query.
+
+**T-0849 is the ruling that made this general** (2026-09-10). Hurlbut names Gurdon Hubbard's
+parents, Elizur and Abigail (Sage) Hubbard, and they were living in Montreal, were never in this
+scene, and have no household here. The proposal was an external `kin[]` row — `household: null`,
+the source's own string in its place. It was refused, because every rule `kin[]` enforces is a
+rule about the **far end**: the inverse must be legal, and the mirror row must exist. A row with
+no far end is not a weaker kin row; it is a kin row with the entire checked part removed, and
+what is left is a graded name — which is a note. It would also make every genealogical name in
+the corpus eligible for the residents layer, and this dataset reconstructs a town on one day: a
+person who was never in it is not a resident of it.
+
+So kin stays inside the town, a relative outside it is evidence rather than structure, and
+Hubbard's parents are named in his `origin` note at `inferred` on Hurlbut's rung-4 prose — the
+same footing a kin row could have claimed and no more. `tools/validate.py` refuses a
+null-household kin row **in the ruling's own words**, so a run that meets it is told where the
+name belongs instead of being sent off to mint a Montreal household.
+
+## A label may outlive a tenancy; a sign may not
+
+Two of this dataset's fields carry a trade's name, and they are not the same kind of object.
+A record's **`name`** — "The Chicago Democrat Office", "Philo Carpenter's Log Drug Store",
+"The Old Bank Building" — is *this project's caption for a structure*. It is written so a
+modern reader knows which building is meant; it is what the search box matches and what the
+card heads itself with. It is not, and has never been, an assertion that the named business
+was inside those walls on 1 July 1835. A **signboard** is exactly that assertion. It is
+painted or hung in the scene, a walker reads it standing in front of the wall, and it says
+*this is what is behind this door, today*.
+
+So when the corpus follows a trade **out** of a building before the scene date, the two
+fields part company, and the rule is:
+
+* **the name stays.** A town goes on calling a corner by the shop that used to be on it,
+  and a record that drops the trade it was known by becomes unfindable — that is a real
+  loss, paid to tidy something that was never a claim. Say in the record's own notes that
+  the tenancy ended, and say when. Do not rename the building.
+* **the board comes down**, because a present-tense statement the register contradicts is
+  simply wrong, whatever the wall used to say.
+* **and nothing is lettered in its place unless the corpus names who traded there on the
+  scene date.** This is where the mistake lives. A frontage that has just lost its board
+  invites a replacement built out of whatever else is in the file — an advertisement from
+  two years earlier, a for-sale notice, an occupant the record lists without a date. None
+  of those attest who kept the counter on the day. An empty wall is a reading; a plausible
+  wall is an invention. Leave it blank and write the refusal down.
+* **fields the scene is furnished FROM are boards, not names.** `function` is the clearest
+  case: the sign rule, the yard goods, the street edge and the register all read it in the
+  present tense, so a `function` naming a departed tenancy is the same defect as the board
+  and narrows the same way. Narrowing it is not an upgrade and must not move a confidence.
+
+**T-1064 is the worked example** (2026-09-12). `chicago_democrat_office` is documented at
+the corner of South Water and Clark by the Chicago Democrat's own imprint of 26 November
+1833, and T-0403 then read the paper's later colophons and found the press printing from
+over Jones & King's hardware store by 1835-05-20. The building kept its name and its `aka`;
+its `function` narrowed from `printing_office_and_store` to `store`, the half the corpus
+does not follow out of the door; and the board reading CHICAGO DEMOCRAT / Printing Office
+came off the facade with nothing painted in its place, because the one name available for
+the successor — W. Kimball's — comes from a notice *offering* the store for sale in 1834.
+The refusal is machine-enforced: `tools/generate_business_signboards.py` clause 8
+(`VACATED_NAMES`) carries the reason per frontage into the record's `refused` block, where
+the next such building will read it.

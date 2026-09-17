@@ -77,6 +77,21 @@ def wall_height_band_m(stories: float) -> tuple[float, float]:
     """
     return WALL_HEIGHT_M[float(stories)]
 
+
+#: THE FACADE'S OWN NUMBERS. They were the builder's module constants (T-0435) and
+#: came here with T-0520, when the builder stopped setting out the facade itself and
+#: started reading `core_front_rects`. Both modules read these: the builder still
+#: needs `_WIN_AT` and `_DOOR_HALF` to keep a second chimney stack out of the band
+#: the facade leaves clear, and two copies of those figures is exactly how the stack
+#: and the door drift back into each other. Half-widths in metres; `WIN_AT_FRAC` is
+#: the flanking windows' offset as a fraction of the wall's full span.
+DOOR_HALF_M = 0.52
+WIN_HALF_M = 0.31
+WIN_AT_FRAC = 0.28
+#: The frame addition's own half-width: a sawn-frame wall takes a larger light than a
+#: log one, and the gable end the builder pierces takes the same window as the facade.
+ADDITION_WIN_HALF_M = 0.36
+
 # How a signboard is displayed. `bracket` is an arm off the wall; `sapling_pole` is
 # a slender trunk set in the ground with a cross-arm at its head, which is what the
 # Wolf Point sources describe and what its engraving draws. See `sign_mount`.
@@ -414,16 +429,14 @@ def from_phase(phase: dict, record: dict | None = None) -> LogDwellingParams:
 # wall boards at a height chosen for the trade, over whatever happened to be behind
 # them.
 
-# HOW THIS IS KEPT TRUE, and it is a duplication with its eyes open. The builder
-# beside this file computes the same rectangles from the same constants, and until
-# it CONSUMES these functions the two are two copies. Making it consume them is
-# T-0520, and it is a separate ticket for one reason: the asset staleness hash
-# covers each archetype's builder module BYTE FOR BYTE, so editing the builder
-# stales every asset of that archetype — 212 of them across the three touched here
-# — and demands a town-wide rebake that does not fit beside this work. Until then:
-# ANY CHANGE TO AN OPENING'S GEOMETRY IN THE BUILDER MUST BE MADE HERE IN THE SAME
-# COMMIT. The constants are already shared, which is most of the drift surface; the
-# arithmetic is what is not yet.
+# THE BUILDER READS THESE (T-0520). It used to compute the same rectangles beside
+# them, which made two copies of one set-out and left a written rule — change one,
+# change the other — as the only thing holding them together. It does not any more:
+# the builder calls these functions, so an opening moved here moves on the mesh a
+# visitor sees, and there is nowhere else to move it. What made that a ticket of its
+# own is that the asset staleness hash covers each archetype's builder module BYTE
+# FOR BYTE, so touching the three builders staled 212 assets and demanded the
+# town-wide rebake that landed with the refactor.
 # ---------------------------------------------------------------------------
 
 def core_extent(p: "LogDwellingParams") -> tuple[float, float, float, float]:
@@ -467,13 +480,13 @@ def core_front_rects(p: "LogDwellingParams") -> list[tuple]:
     span = x1 - x0
     out: list[tuple] = []
     if not front_taken:
-        out.append(("door", xm - 0.52, xm + 0.52, 0.02, 1.95))
+        out.append(("door", xm - DOOR_HALF_M, xm + DOOR_HALF_M, 0.02, 1.95))
     for story in range(p.stories):
         z0 = story * story_h + story_h * 0.34
-        for u in (xm - span * 0.28, xm + span * 0.28):
-            out.append(("window", u - 0.31, u + 0.31, z0, z0 + 0.72))
+        for u in (xm - span * WIN_AT_FRAC, xm + span * WIN_AT_FRAC):
+            out.append(("window", u - WIN_HALF_M, u + WIN_HALF_M, z0, z0 + 0.72))
         if front_taken and story == 0:
-            out.append(("window", xm - 0.31, xm + 0.31, z0, z0 + 0.72))
+            out.append(("window", xm - WIN_HALF_M, xm + WIN_HALF_M, z0, z0 + 0.72))
     return out
 
 
@@ -499,7 +512,8 @@ def addition_front_rects(p: "LogDwellingParams") -> list[tuple]:
             u = ax0 + (ax1 - ax0) * fx
             if story == 0 and front and abs(u - xm) < 0.9:
                 continue
-            out.append(("window", u - 0.36, u + 0.36, z0, z0 + 1.05))
+            out.append(("window", u - ADDITION_WIN_HALF_M, u + ADDITION_WIN_HALF_M,
+                        z0, z0 + 1.05))
     return out
 
 

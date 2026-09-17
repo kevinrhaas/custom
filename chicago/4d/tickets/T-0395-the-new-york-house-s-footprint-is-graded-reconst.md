@@ -1,7 +1,7 @@
 ---
 id: T-0395
 title: The New York House's footprint is graded reconstructed but its note cites a source, and the gate warns
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the New York House note now reads INVENTED and the audit is silent
 needs_bake: false
+closed_at: 2026-09-10T04:20:12.093Z
+claimed_run: null
 ---
 
 `tools/check.sh` prints, and has printed since PR #536 (T-0380) landed:

@@ -1061,6 +1061,7 @@
         "placement": {
           "class": "corner",
           "anchor": "the corner of Lake Street and an unread cross street",
+          "anchor_unread": true,
           "offset_text": "M9 e at his shop, comer sf peels { | nrecis",
           "offset_normalized": "at his shop, corner [o]f [… ][st]re[et]s",
           "street": "Lake Street"

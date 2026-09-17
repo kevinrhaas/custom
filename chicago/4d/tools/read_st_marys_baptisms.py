@@ -13,6 +13,14 @@ records and the claims and `--check` proving the emitted JSON is still exactly w
 this table says. A hand-edit of the JSON is therefore a gate failure, which is the
 point — the transcription and the artifact cannot drift apart.
 
+THE CROSSWALK HAS A SECOND INPUT and it moves: `data/residents/`. The records and
+the claims are this table alone, but the crosswalk holds the reading against the
+town, so it goes stale whenever the town gains people — which it did, 849 to 1,308,
+between T-0503 and T-1110. That is not a hand edit and not a changed tool, and
+`--check` now says which of the three it is (`_why_it_differs`) instead of naming two
+and leaving the reader to guess. Staleness is answered by `--build`; a hand edit
+would be a ruling a rebuild erases.
+
 THE GRADE. Every row here is `scan_verified`: read off the page image, not out of a
 transcription. That is the higher of the two readings this project recognises and it
 is why these rows outrank the marriage register's, which came through the Illinois
@@ -1422,6 +1430,35 @@ MERGES = [
      "letter-list name has always lacked. Two independent agreements — the name and "
      "the town — plus a household the letter list could not show. THE RESIDUAL RISK IS "
      "STATED: the name is not rare and no third attribute agrees."),
+    ("Solomon Juneau", "Solomon Juneau",
+     ["st_marys_bapt_1833_05_2_father", "st_marys_bapt_1833_08_4_godfather",
+      "st_marys_bapt_1833_10_4_godfather", "st_marys_bapt_1834_17_4_sponsor"],
+     "The register writes \"Salomon Juneau\" in 1833 entry 5 and 1834 entry 17 and "
+     "\"Solomon Juneau\" in 1833 entries 8 and 10 \u2014 the French and the English form "
+     "of one forename, in one hand \u2014 and the residents layer writes \"Solomon "
+     "Juneau\". THE SURNAME IS RARE HERE: one Juneau among the people the layer holds "
+     "and one across every adult reading of this book. Three agreements stand beyond "
+     "the name, and the two sources did not copy each other. FIRST, THE FAMILY THE "
+     "REGISTER ITSELF GIVES HIM: he is the father of Marguerite by 'Josette Vieau' "
+     "(1833 entry 5), he stands godfather WITH Josette Vieau (1833 entry 10), and he "
+     "stands godfather to the daughter of Jacob Vieau (1833 entry 8). A husband, his "
+     "wife and her kin named together across three entries is not a surname match. "
+     "SECOND, THE TRADE AND THE TWO TOWNS: the resident card is minted from the "
+     "Chicago Democrat, and the newspaper gazetteer's entity for this name carries "
+     "the occupation merchant and the associated places Chicago AND Milwaukee \u2014 "
+     "while this book's own reading notes name him 'Salomon Juneau of Milwaukee'. "
+     "Milwaukee is the agreement; it is the one attribute that would separate a "
+     "second Solomon Juneau and instead it joins them. THIRD, THE WINDOW CLOSES: his "
+     "last reading here is 29 June 1834, and his advertisement is dated over his own "
+     "name 'Chicago, July 2, 1834' \u2014 three days later. RESIDENCE IS NOT CLAIMED "
+     "AND IS NOT IMPLIED. Sponsorship at a font is not residence, and `at_chicago` on "
+     "a reading is about the ENTRY, not the man: he had every reason to stand "
+     "godfather at Chicago and the record gives him none to sleep there. His own "
+     "advertisement is the proof of it \u2014 he offers a corner parcel of Block 18 on "
+     "South Water Street to lease and sends enquiries 'to the Printing office', which "
+     "is how an owner lets ground he is not in the town to show. The resident card "
+     "already carries present_on_scene_date 'uncertain'; THIS PASS DOES NOT DISTURB "
+     "IT, and what is merged is an IDENTITY, not a residence."),
 ]
 
 REFUSALS = [
@@ -1503,6 +1540,64 @@ REFUSALS = [
      "against \"Emeline Egan\", the layer's only other Egan. The refusal is written "
      "down because the merge above depends on it: the title separates them, and if it "
      "did not, neither identification could stand."),
+    ("Josette Chevalier", "Josette Chevalier",
+     "\"Josette Chevalier\" sponsors 1833 entries 11 and 12 and stands godmother at "
+     "1834 entry 12, and \"Josette Chevalier\" is in the residents layer as the bride "
+     "of Mark Bourassa, married at Chicago in March 1835. THE NAMES AGREE EXACTLY AND "
+     "THAT IS THE WHOLE OF WHAT AGREES. Everything else the pair shares \u2014 the "
+     "parish, the priest, the town, the nineteen months \u2014 is a restatement of WHERE "
+     "BOTH READINGS WERE FOUND, because both sides are ONE MANUSCRIPT: the layer's "
+     "person is minted from st_cyr_marriage_005_2, the marriage list of the same "
+     "Father St Cyr whose baptism book this is. That fails the test every merge above "
+     "passes, which is two sources that did not copy each other. And this book holds a "
+     "SECOND Chevalier presence \u2014 Joseph Chevalier, a child born at the Rivi\u00e8re au "
+     "Sable and baptised at Chicago on 20 October 1833, and 'L. Chevalier', a witness "
+     "of 6 June 1835 who is refused above \u2014 so a Chevalier kin group stands at "
+     "Chicago from which a second Josette is not excluded by anything read here. SHE "
+     "IS VERY PROBABLY ONE WOMAN. Probably is not a confidence grade, and writing the "
+     "merge would put the word 'documented' over an inference. WHAT WOULD OVERTURN "
+     "THIS: a source outside St Cyr's own register that names her, or an entry naming "
+     "the same husband or household on both sides."),
+    ("Patrick Carroll", "Patrick Carroll",
+     "\"Patrick Carroll\" sponsors 1835 entry 1, the first entry of the scene year, and "
+     "\"Patrick Carroll\" is in the residents layer as the groom of Mary Hogan, married "
+     "at Chicago on 21 April 1835. Refused on the ground that refuses Josette "
+     "Chevalier above, and more heavily. The names agree exactly and nothing else "
+     "agrees that is independent of where the readings were found: the layer's person "
+     "is minted from st_cyr_marriage_007_1, the marriage list of this book's own "
+     "priest, so the shared parish and the eight weeks between 23 February and 21 "
+     "April are ONE FACT and not two agreements. THE NAME IS ALSO A COMMON ONE: the "
+     "layer holds six Patricks, and the priest's margin against this very entry reads "
+     "one word, 'Irish' \u2014 this register exists to show that the Irish and French "
+     "Catholic town was larger than the poll books knew, which is exactly why a "
+     "second Patrick Carroll in it cannot be ruled out. John Murphy is MERGED above "
+     "because a wife and a hotel stand beside his equally common name. Nothing stands "
+     "beside this one."),
+    ("Mary Durbin", "Mary Durbin",
+     "\"Mary Durbin\" is the mother of 1834 entry 8 and \"Mary Durbin\" is in the "
+     "residents layer. The names agree exactly and the two records CONTRADICT each "
+     "other on the single attribute both carry \u2014 a husband. The register makes her "
+     "the mother of Marguerite, daughter of Samuel Henriks, born 13 December 1833 and "
+     "baptised on 25 May 1834; this register writes mothers under their MAIDEN names "
+     "throughout (Josette Vieau, Adelaide Bouchard, Monique Nadeau), so its Mary "
+     "Durbin is Samuel Henriks' wife. The layer's Mary Durbin is minted from "
+     "st_cyr_marriage_002_2: the bride of JOHN SIMMONS, married five days earlier on "
+     "20 May 1834. One woman does not marry two men in five days and nothing read "
+     "here widows her. NEITHER READING IS AT CHICAGO: the baptism is written at the "
+     "South Fork of the Sangamon and the marriage at Bear Creek, Sangamon County, in "
+     "the house the article's footnote calls Hy Durbin's \u2014 central Illinois, not "
+     "Cook County. AND THE SURNAME IS THAT SETTLEMENT'S, NOT A PERSON'S: one week of "
+     "the priest's journey names John, Philipp, Thomas, William, Elisabeth, "
+     "Marguerite, Ann, Oro and Mary Durbin across six entries, and it repeats its "
+     "forenames across generations \u2014 a Marguerite Durbin is BAPTISED AS A CHILD in "
+     "1834 entry 3 and a Marguerite Durbin stands as a MOTHER in 1834 entry 6. An "
+     "exact name inside a clan that reuses its names, disagreeing on the husband, in "
+     "a county this town is not in, is a refusal three times over. A SEPARATE FINDING, "
+     "not this crosswalk's to fix: the layer's card reads that the church list 'names "
+     "this person at Chicago by 20 May 1834' while the marriage record it cites says "
+     "in capitals that it is not Chicago and 'is not evidence of anybody standing in "
+     "Chicago'. That is a defect in the residents layer and it is filed as its own "
+     "ticket."),
 ]
 
 
@@ -1554,10 +1649,19 @@ def crosswalk_doc():
         rowset = seen[name]
         at_chicago = any(r["at_chicago"] for r in rowset)
         candidates = by_surname.get(_surname(name), [])
+        # An EXACT name is not the surname-only case and must not be filed under its
+        # rule, whose whole ground is that no forename agrees. See T-1110: the
+        # residents layer grew from 849 people to over 1,300 after this pass was
+        # written, and four adults it had found no candidate for now have a namesake
+        # in it who folds identically. Saying "no forename agrees" over those would
+        # be a false statement in a provenance artifact.
+        exact = [c["name"] for c in candidates if _fold(c["name"]) == _fold(name)]
         if name in merged:
             outcome = "merged"
         elif name in refused:
             outcome = "refused"
+        elif exact:
+            outcome = "exact_name_unruled"
         elif candidates:
             outcome = "refused_surname_only"
         else:
@@ -1570,10 +1674,12 @@ def crosswalk_doc():
             "entries": sorted({"%s/%s" % (r["locator"]["year_series"], r["locator"]["entry"])
                                for r in rowset}),
             "resident_surname_candidates": [c["name"] for c in candidates],
+            "resident_exact_name_matches": exact,
             "adjudication": outcome,
         })
 
-    counted = {"merged": 0, "refused": 0, "refused_surname_only": 0, "no_candidate": 0}
+    counted = {"merged": 0, "refused": 0, "exact_name_unruled": 0,
+               "refused_surname_only": 0, "no_candidate": 0}
     chicago_counted = dict(counted)
     for o in outcomes:
         counted[o["adjudication"]] += 1
@@ -1582,6 +1688,14 @@ def crosswalk_doc():
 
     nowhere = sorted(o["name"] for o in outcomes
                      if o["at_chicago"] and o["adjudication"] == "no_candidate")
+
+    # The pairs the next pass owes a ruling. Listed by name so it is a worklist and
+    # not a count somebody has to go and reconstruct.
+    exact_unruled = [
+        {"register_name": o["name"], "resident_names": o["resident_exact_name_matches"],
+         "readings": o["readings"], "at_chicago": o["at_chicago"], "entries": o["entries"]}
+        for o in outcomes if o["adjudication"] == "exact_name_unruled"
+    ]
 
     # ONE RULING PER READING, anchored to the row it rules on. The summary above is
     # by NAME, and a name read in three entries is three readings; the spend gate
@@ -1603,6 +1717,17 @@ def crosswalk_doc():
                                         "layer holds this surname and no forename "
                                         "agrees, and a surname-only merge is always a "
                                         "refusal.",
+                "exact_name_unruled": "AN EXACT NAME, AND NOBODY HAS RULED ON IT. The "
+                                      "residents layer holds a person whose name folds "
+                                      "identically to this one, and neither merges[] nor "
+                                      "refusals[] names the pair. It is NOT the standing "
+                                      "surname-only refusal, whose ground is that no "
+                                      "forename agrees — here one does. It is not merged "
+                                      "either: a merge needs a written rule naming both "
+                                      "spellings, and there is none. The pair is listed "
+                                      "in exact_name_unruled[] for the pass that rules "
+                                      "on it; until then this reading is crosswalked to "
+                                      "nobody.",
                 "no_candidate": "NO CANDIDATE AT ALL — the residents layer holds no "
                                 "person of this surname. This is the finding, not a "
                                 "failure: it is the Catholic town the poll books and "
@@ -1648,12 +1773,19 @@ def crosswalk_doc():
         "source_id": SOURCE_ID,
         "pass": "T-0503",
         "what": "Every ADULT named in the eleven page images — parents, godparents, "
-                "sponsors, witnesses, spouses and the officiant — held against the 849 "
-                "people of data/residents/.",
+                "sponsors, witnesses, spouses and the officiant — held against the %d "
+                "people data/residents/ holds today. That count is DERIVED and it "
+                "moves: the layer stood at 849 when T-0503 wrote this pass, and a "
+                "crosswalk built against a layer that has since grown is stale rather "
+                "than wrong — which is what T-1110 found and why --check now says "
+                "which of the three it is." % len(people),
         "the_rule": "A merge needs a written rule naming BOTH spellings verbatim; a "
-                    "surname-only merge is always a refusal; a refusal is declared as "
-                    "explicitly as a merge. Nothing here mints or regrades a resident — "
-                    "T-0514 and T-0515 spend this file.",
+                    "surname-only merge is always a refusal; an EXACT name with no "
+                    "written rule is neither, and is held in exact_name_unruled[] "
+                    "rather than filed under a refusal whose stated ground is untrue "
+                    "of it; a refusal is declared as explicitly as a merge. Nothing "
+                    "here mints or regrades a resident — T-0514 and T-0515 spend this "
+                    "file.",
         "counts": {
             "adult_readings": sum(1 for r in rows if r["adult"]),
             "distinct_adult_names": len(outcomes),
@@ -1670,6 +1802,7 @@ def crosswalk_doc():
                        "owner's ask was for."
                        % (sum(1 for o in outcomes if o["at_chicago"]), len(nowhere)),
         "chicago_adults_present_nowhere_else": nowhere,
+        "exact_name_unruled": exact_unruled,
         "counts_by_ruling": {k: sum(1 for r in rulings if r["outcome"] == k)
                              for k in sorted({r["outcome"] for r in rulings})},
         "merges": [
@@ -1708,6 +1841,35 @@ def cmd_build():
         print("    %d: %d entries (the book's own pencil tally: %d)" % (y, t[y], BOOK_TALLY[y]))
 
 
+def _why_it_differs(path):
+    """Say WHICH of the three it is, rather than name two and leave the reader to guess.
+
+    T-1110 is the reason this exists. The old message offered a hand edit or a tool
+    change and could tell them apart from neither — and the actual cause was a THIRD
+    thing it did not name: the crosswalk's INPUT, data/residents/, had grown from 849
+    people to over 1,300 since the pass was written, while neither the file nor the
+    tool had been touched since the commit that landed both. That is staleness, and it
+    is answered by a rebuild that costs nothing; a hand edit is a ruling somebody made
+    that a rebuild would erase, and the two must not read alike.
+
+    The committed file records the count it was built against, so the input case can
+    be recognised for what it is instead of inferred.
+    """
+    if path != CROSSWALK:
+        return "It has been hand-edited or the tool has changed."
+    try:
+        was = json.loads(path.read_text(encoding="utf-8"))["counts"]["residents_examined"]
+    except Exception:
+        return "It has been hand-edited or the tool has changed."
+    now = len(_resident_people())
+    if was != now:
+        return ("Its INPUT moved: it was built against %d people in data/residents/ and "
+                "that layer holds %d today, so this is staleness and not a hand edit."
+                % (was, now))
+    return ("The residents layer still holds the %d people it was built against, so "
+            "this is a hand edit or a change to the tool, not staleness." % now)
+
+
 def cmd_check():
     bad = []
     for path, doc in ((RECORDS, records_doc()), (CLAIMS, claims_doc()),
@@ -1717,9 +1879,8 @@ def cmd_check():
             continue
         want = json.dumps(doc, indent=2, ensure_ascii=False) + "\n"
         if path.read_text(encoding="utf-8") != want:
-            bad.append("%s is not what tools/read_st_marys_baptisms.py says; it has been "
-                       "hand-edited or the tool has changed. Rebuild it."
-                       % path.relative_to(ROOT))
+            bad.append("%s is not what tools/read_st_marys_baptisms.py says. %s Rebuild it."
+                       % (path.relative_to(ROOT), _why_it_differs(path)))
 
     # The book's own arithmetic. A reading that misses it has lost or invented an entry.
     t = tallies()
@@ -1748,9 +1909,17 @@ def cmd_check():
     for b in bad:
         print("  FAIL  " + b)
     if not bad:
+        # The exact-name bucket is a WORKLIST and it refills silently: the layer grows,
+        # the rebuild that answers the staleness message quietly re-derives a new pair,
+        # and nothing says so. T-1128 emptied it; this line is what keeps it visible.
+        unruled = len(crosswalk_doc()["exact_name_unruled"])
         print("  st_marys_baptisms: %d entries, %d readings, %d town findings, %d images "
               "— and the book's own tallies agree"
               % (len(ENTRIES), len(ids), len(TOWN_FINDINGS), len(IMAGES)))
+        print("  st_marys_baptisms: %d exact-name pair(s) awaiting a written ruling%s"
+              % (unruled, "" if not unruled else
+                 " — see exact_name_unruled[] in the crosswalk; each needs a rule in "
+                 "MERGES or REFUSALS, never an edit to the JSON"))
     return bad
 
 

@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "chevalier_josette",
+   "relation": "wife",
+   "household": "hh_bourassa_mark",
+   "value": "bourassa_mark",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "MARK BOURASSA AND JOSETTE CHEVALIER ARE HUSBAND AND WIFE, AND THE REGISTER MARRIED THEM. Entry 5 of Father St Cyr's marriage register, at Chicago, March 1835: 'Mark Bourassa' and 'Josette Chevalier', celebrated by J. M. I. Saint Cyr, filed as st_cyr_marriage_005_1 and st_cyr_marriage_005_2 in data/research/church/records/st_cyr_marriages_1834_1839.json. THE DATE IS AT OR BEFORE THE SCENE: they were married on the day this dataset reconstructs. The mirror of the row on the other record, and written here because a kinship on one card only leaves this one still reading as no relationship at all. THE GRADE IS WHAT A PARISH REGISTER IS WORTH FOR THE ACT IT RECORDS. The St Cyr register is the contemporary record OF this marriage — the date, the place, the celebrant and both parties by name, written by the priest who performed it — so the relationship is read off a record rather than reasoned to. The rung these two people carry (G2c, inferred) is a ruling about RESIDENCE: a parish register naming somebody is weak evidence that they LIVED in the town and strong evidence that the act happened, and this row claims only the second. THE LIMIT: the reading is transcription_mediated — the Illinois Catholic Historical Review's printed transcription, not the manuscript — and a transcription can mangle a name. It cannot invent a couple. NO IDENTIFICATION IS BEING MADE HERE. Both cards were minted FROM this entry and carry its record id in church_evidence, so the two people this row links are the two people the entry names; nothing is matched by surname. A KINSHIP IS NOT A PLACEMENT: neither household's position, arrival, trade or membership rests on this row."
+  }
+ ],
  "persons": [
   {
    "id": "chevalier_josette",

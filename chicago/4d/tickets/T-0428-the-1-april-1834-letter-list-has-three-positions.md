@@ -1,7 +1,7 @@
 ---
 id: T-0428
 title: The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-0424: one letter-list page-image pass, as it says itself
 needs_bake: false
+closed_at: 2026-09-10T04:20:06.630Z
+claimed_run: null
 ---
 
 The 1 April 1834 letter list has three positions no printing reads, and only the page images can say how long it was.

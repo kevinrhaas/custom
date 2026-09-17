@@ -121,6 +121,30 @@ FIVE ASSERTIONS.
     in the tree fails until it is un-banked with `--update` in the same commit,
     because a repair here is a claim and recording it is part of making it.
 
+6.  **The banked record COUNT is held for flora and fauna and not for residents**
+    (T-1029). Assertion 4 banks each path with the number of records carrying it,
+    and that number went ungated from the day it was written — which is how
+    `residents/manifest:households[].head` came to say 1,338 against a tree of
+    1,284, and `merged[]` 42 against 57, for as long as nobody looked.
+
+    THE DECISION THIS FILE MAKES, because the ticket asked for one either way. A
+    count is a TALLY, not a claim: the claim is assertion 4's, that this figure
+    reaches nothing, and the tally only says how widely. Gating it exactly would
+    fire on every ticket that mints, folds or merges a resident card — 61 of the 94
+    banked paths are `residents/` and the layer is the one thing this project is
+    still actively writing — and the whole remedy for that failure is `--update`. A
+    gate whose only possible response is to re-bank is not a gate; it is a chore
+    that trains people to re-bank without reading, and it would drag a 61-line
+    diff of somebody else's measurement into every research PR, which is the
+    unread-change laundering T-1029 exists to stop.
+
+    `data/flora/` and `data/fauna/` are the opposite case. They are finished
+    research datasets — 154 plant and 139 animal records, unchanged since the day
+    they were banked — so a count that moves there is not growth, it is an edit to
+    a dataset nobody is editing, and it should have to say so. Those counts are
+    held exactly. `COUNTS_NOT_HELD` is where that line is drawn, and a layer that
+    stops being written should come out of it.
+
 WHAT THIS DOES NOT DECIDE. Whether an unread figure should be deleted, wired up
 or declared is three different answers for three different findings, and none of
 them is this parcel's to make — except where somebody has made it, which is what
@@ -145,6 +169,14 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RENDERER = ROOT / "renderers" / "web" / "js"
 BASELINE = ROOT / "tools" / "layer_reads_baseline.json"
+
+# T-1029. The layers whose banked record COUNTS are a dated tally rather than a held
+# number. `data/residents/` is the one layer this project is still writing — cards are
+# minted, folded and merged most weeks — so every one of its 61 banked paths moves for a
+# reason that has nothing to do with what this file asserts. `data/flora/` and
+# `data/fauna/` are finished research datasets: their counts have not moved since the
+# day they were banked, and a move there IS a finding.
+COUNTS_NOT_HELD = {"residents"}
 
 # The renderer, minus the two files that are not renderer code: the changelog is
 # authored prose that happens to be JavaScript (and quotes field names by the
@@ -215,6 +247,19 @@ FLORA_ZONE_READS: dict[str, tuple[str, str]] = {
     # Read, and its only consumer is the `zones()` accessor the smoke's sward
     # gate reads. No plant is placed or withheld by it.
     "cover.bare_soil_fraction": ("probe", "cover.bare_soil_fraction"),
+    # T-1056 — WHERE THE WOODY STRATUM ESTABLISHES. Two renderers read this one
+    # block off the same record: `flora.js`'s `station` withholds a `shrub_low`
+    # below the band, and `trees.js`'s planting loop withholds the dune poplars.
+    # Both are `mesh` — they change what stands on the ground, which is the
+    # strongest claim this map makes about a figure.
+    #
+    # `woody_stratum.measured_from` is deliberately NOT here and is banked
+    # unread: it states what the metres are measured from, for the reader and for
+    # `tools/validate.py`, and a renderer that read it would be a renderer that
+    # could convert between datums. If it ever disagreed with the heightfield's
+    # own datum the right outcome is this gate failing, not a silent conversion.
+    "woody_stratum.establishes_m": ("mesh", "const band = w.establishes_m;"),
+    "woody_stratum.applies_to_roles": ("mesh", "new Set(w.applies_to_roles ?? [])"),
     # The extent decides WHERE a community stands, which is a position and
     # therefore a vertex. `x` is the extent object inside `matchZone`.
     "extent.kind": ("mesh", "switch (x.kind)"),
@@ -280,6 +325,14 @@ FLORA_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "zones[].extent.include_polygons": ("mesh", "rec.extent ?? entry.extent"),
     "zones[].extent.priority": ("mesh", "entry.priority ?? 0"),
     "zones[].priority": ("mesh", "entry.priority ?? 0"),
+    # T-1055. The ground mesh paints a zone with box extent its own recorded
+    # colour: terrain.js `substrateZones()` takes these two copies off the
+    # manifest and `zoneGlsl()` multiplies the prairie tile's luminance
+    # through them, so the mean albedo inside the zone is the recorded
+    # triple. They were banked unread for as long as the mesh was one
+    # material, which is why the beach and the sand bar were drawn green.
+    "zones[].ground_rgb": ("mesh", "z.ground_rgb"),
+    "zones[].ground_wet_rgb": ("mesh", "z.ground_wet_rgb"),
     # Read once at boot, to report a published shape this renderer has no
     # archetype for. Nothing is drawn from the list itself.
     "vocabulary.inflorescence_shapes": ("probe", "index.vocabulary?.inflorescence_shapes"),
@@ -397,7 +450,6 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # (T-0378), so the count sentence says how many of the people listed are the
     # first kind.
     "counts.letter_list_only": ("shown", "counts.letter_list_only"),
-    "counts.projected_residents": ("shown", "Number(counts.projected_residents)"),
     # T-0491. Three of these people are bridged to a named head of household in the
     # 1840 census, and PR #670 attached that bridge without giving the panel any way
     # to say so. Both copies are read now: the total in the count sentence, so a
@@ -440,6 +492,12 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "vocabulary.divisions": ("shown", "rank(vocab.divisions, a.division)"),
     "vocabulary.arrival_precision": ("shown", "vocab.arrival_precision"),
     "vocabulary.relationships": ("shown", "vocab.relationships"),
+    # T-0597. The second relationship set, and it exists because a place INSIDE a
+    # household and a tie BETWEEN two households are different questions. The
+    # degrees are the whole point of showing it: a reader who cannot see that
+    # `half_brother` and `brother` are both in the closed set cannot see that the
+    # dataset holds them apart.
+    "vocabulary.kin_relations": ("shown", "['Ties between two households', vocab.kin_relations]"),
     # Shown because the value it governs is shown: `persons[].sex` is on every
     # person's card and this was the one closed set the panel withheld.
     "vocabulary.sexes": ("shown", "['Sex, as the records give it', vocab.sexes]"),
@@ -493,6 +551,18 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.note": ("shown", "escapeHtml(block.note)"),
     "works_at.note": ("shown", "escapeHtml(block.note)"),
     "present_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
+    # T-0597. The kinship rows, which are the first claim on this layer to point at
+    # ANOTHER record. Each of the four link fields is named at its own call site in
+    # `kinRows` — the person the tie belongs to here, the term, the far household and
+    # the far person — for the same reason the seven graded claims are: a figure dug
+    # out inside a generic accessor is a figure this census cannot see. The three
+    # parts the block shares with every other claim are read in `claimRow`, once.
+    "kin[].person": ("shown", "${words(k.person)} is the"),
+    "kin[].relation": ("shown", "the ${words(k.relation)} of"),
+    "kin[].value": ("shown", "${words(k.value)}, "),
+    "kin[].household": ("shown", "words(String(k.household ?? '').replace(/^hh_/, ''))"),
+    "kin[].confidence": ("shown", "swatch(block.confidence)"),
+    "kin[].note": ("shown", "escapeHtml(block.note)"),
     # T-0632. The later directories, on the record rather than only beside it. The
     # printed lines and the crosswalks' arithmetic stay in
     # `data/residents/directories.json`, which the panel opens once for the town; what
@@ -542,6 +612,31 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "directories.people[].back_projection.read_back_years": (
         "shown", "escapeHtml(String(bp.read_back_years))"),
     "directories.people[].back_projection.note": ("shown", "escapeHtml(bp.note)"),
+    # T-0669, the residence half of the same grammar, on its own row of the same
+    # card. `residenceBackProjectionHtml` has no branch that drops one either, so
+    # all 48 render — the 7 placements and the 41 refusals — and `kind` is the one
+    # leaf the business row has no counterpart for: whether the volume printed
+    # `res` or `bds` is the difference between a household and a month's rent.
+    "directories.people[].residence_back_projection.outcome": (
+        "shown", "rp.outcome === 'placed'"),
+    "directories.people[].residence_back_projection.clause": (
+        "shown", "escapeHtml(String(rp.clause))"),
+    "directories.people[].residence_back_projection.kind": (
+        "shown", "rp.kind === 'boards' ? 'printed as a lodging' : 'printed as a residence'"),
+    "directories.people[].residence_back_projection.value": (
+        "shown", "`${rp.value} — the ${words(rp.placement)}, and nothing narrower`"),
+    "directories.people[].residence_back_projection.confidence": (
+        "shown", "swatch(rp.confidence)"),
+    "directories.people[].residence_back_projection.placement": (
+        "shown", "words(rp.placement)"),
+    "directories.people[].residence_back_projection.describes_date": (
+        "shown", "escapeHtml(String(rp.describes_date))"),
+    "directories.people[].residence_back_projection.read_back_years": (
+        "shown", "escapeHtml(String(rp.read_back_years))"),
+    "directories.people[].residence_back_projection.note": (
+        "shown", "escapeHtml(rp.note)"),
+    "directories.people[].residence_back_projection.sources": (
+        "shown", "(rp.sources || []).map((id) => citationsById.get(id))"),
     # The standing constraint, on the record that touches it.
     "touches_removal": ("shown", "hh.touches_removal"),
     "research_note": ("shown", "hh.research_note"),
@@ -569,6 +664,22 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].occupation.value": ("shown", "words(occ.value)"),
     "persons[].occupation.confidence": ("shown", "swatch(occ.confidence)"),
     "persons[].occupation.note": ("shown", "escapeHtml(occ.note)"),
+    # T-0693. `none_recorded` was carrying two facts — "no trade anywhere" and "no
+    # trade for 1835, and a dated one for 1839" — and a reader could not tell them
+    # apart from the field the card reads out. The pointer that separates them is
+    # derived from the `directories` block above, so every figure on it is that
+    # block's, dated to the year it describes; `laterOccupationHtml` renders all five
+    # beside the 1835 value and never in place of it. The year is read twice on
+    # purpose: once in the summary line, so the two states differ before the card is
+    # even opened, which was the whole complaint.
+    "persons[].occupation.later_occupation.value": ("shown", "escapeHtml(later.value)"),
+    "persons[].occupation.later_occupation.describes_date": (
+        "shown", "escapeHtml(String(later.describes_date))"),
+    "persons[].occupation.later_occupation.confidence": (
+        "shown", "swatch(later.confidence)"),
+    "persons[].occupation.later_occupation.note": ("shown", "escapeHtml(later.note || '')"),
+    "persons[].occupation.later_occupation.sources": (
+        "shown", "(later.sources || []).map((id) => citationsById.get(id))"),
     # The three that were reaching the card as `[object Object]` until the commit
     # this map arrived in. See the module docstring: they are graded claim blocks
     # like the household's own, and they go through `claimRow` now.
@@ -732,6 +843,19 @@ RECORD_KINDS = ("zone", "manifest", "palette", "household")
 # assertion 4 still fails if a new one appears, and assertion 5 still fails if
 # one of these leaves the data.
 REFUSALS: dict[str, str] = {
+    # T-1056, recovered by T-1029. This refusal was written straight into
+    # layer_reads_baseline.json and never into this table, so `--update` — which
+    # rebuilds the bank from `state["unread"]` and re-attaches a refusal only if it
+    # is HERE — deleted it the first time anybody re-derived the file. Nothing
+    # noticed for two days because nothing re-derived it. A stated refusal is a
+    # judgement somebody made; losing one silently is the expensive direction, so it
+    # is restored here verbatim and the table is now the only place one is authored.
+    "flora/zone:woody_stratum.measured_from": (
+        "A units declaration, not a figure. It states what woody_stratum.establishes_m's "
+        "metres are measured from, for a reader of the record and for tools/validate.py, "
+        "which requires it. A renderer that read it would be a renderer able to convert "
+        "between datums; if it ever disagreed with the heightfield's own, the right "
+        "outcome is this gate failing rather than a silent conversion. T-1056."),
     "residents/manifest:counts.households": (
         "The panel renders one row per household and counts the rows. A tally shown "
         "beside a list it might disagree with is worse than no tally; validate.py holds "
@@ -751,6 +875,16 @@ REFUSALS: dict[str, str] = {
         "The flat copy of a graded claim. `residents.js` shows the RECORD's block — its "
         "value, its confidence, its reasoning and its sources — and the manifest's bare "
         "value carries none of that. Showing the poorer copy would be showing less."),
+    "residents/manifest:counts.projected_residents": (
+        "T-0782, the owner's ruling on the opening card: the aggregate is struck. It "
+        "reached a visitor in one place — a parenthesis inside the gate card's inferred "
+        "count — where it read as a fourth grade beside attested/inferred/reconstructed "
+        "and was in fact a subtype OF the inferred, counted on a different axis. The "
+        "claim itself still reaches the visitor, and better: `people.js` filters and "
+        "chips `resident_subtype === 'projected_resident'` on the person's own row, "
+        "where the evidence that made them projected is beside the label. A bare total "
+        "with nothing beside it was the poorer of the two copies. The field stays in the "
+        "manifest because the mint tools derive it and validate.py holds it."),
     "residents/household:source_pass": (
         "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass "
         "(documented/placed/letter_list) minted this record, so a re-run can tell 'a "
@@ -1141,6 +1275,22 @@ def evaluate(state: dict, bank: dict[str, dict]) -> list[str]:
             f"up, deleted or renamed. Re-run with --update in the commit that did it, so "
             f"the bank records the repair rather than keeping its ghost")
 
+    # 6 — T-1029. THE BANKED RECORD COUNT, held for the two layers that are
+    # finished and deliberately NOT for the one still being written. See assertion 6
+    # in the module docstring for the reasoning; the short of it is that a count is a
+    # tally, not a claim, and gating a tally that moves for a legitimate reason
+    # teaches people to re-bank without reading.
+    for key in sorted(set(bank) & set(state["unread"])):
+        if key.split("/", 1)[0] in COUNTS_NOT_HELD:
+            continue
+        banked, measured = bank[key].get("records"), state["unread"][key]["records"]
+        if banked != measured:
+            problems.append(
+                f"{key} is banked on {banked} record(s) and is on {measured}. This layer is "
+                f"not being written any more, so its unread population moving is a finding "
+                f"and not bookkeeping: say what changed, then re-bank it with --update in "
+                f"the commit that changed it")
+
     # 1 — absolute: assertion 1 is structural. Every figure is either declared or
     # banked, so an unbanked one is assertion 4 above; what is left to check is
     # that the map was applied to something at all.
@@ -1198,6 +1348,9 @@ def self_test() -> int:
 
     clean = evaluate(state, bank)
     cases: list[tuple[str, dict, dict]] = []
+    # Cases that must NOT fire — a deliberate exemption is a claim too, and an
+    # exemption nothing exercises is how one silently stops applying (T-1029).
+    silent: list[tuple[str, dict, dict]] = []
 
     s2 = copy.deepcopy(state)
     s2["ghosts"].append(("flora/zone:cover.matrix_fraction", "zone.coverFractionNobodyWrote"))
@@ -1214,6 +1367,22 @@ def self_test() -> int:
     b5 = copy.deepcopy(bank)
     b5["flora/zone:a_figure_that_left"] = {"records": 1}
     cases.append(("5 a banked figure that left the data", state, b5))
+
+    # T-1029. Assertion 6 is a DECISION as much as an assertion, so both halves of
+    # it are exercised: the held layer must fire and the unheld one must stay
+    # silent. A count gate that quietly spread to `residents/` would be a
+    # 61-path false alarm on every research ticket, and nothing else would notice.
+    held = next(k for k in sorted(bank) if k.split("/", 1)[0] not in COUNTS_NOT_HELD)
+    b6 = copy.deepcopy(bank)
+    b6[held] = {**b6[held], "records": b6[held]["records"] + 7}
+    cases.append((f"6 a banked count that moved in a finished layer ({held})", state, b6))
+
+    unheld = next((k for k in sorted(bank) if k.split("/", 1)[0] in COUNTS_NOT_HELD), None)
+    if unheld:
+        b6b = copy.deepcopy(bank)
+        b6b[unheld] = {**b6b[unheld], "records": b6b[unheld]["records"] + 7}
+        silent.append((f"6 a banked count that moved in a layer still being written "
+                       f"({unheld})", state, b6b))
 
     # A layer nothing declares a read for, opened by the renderer. It used to be
     # `fauna` and ROADMAP K51 gave that layer a read map, at which point the case
@@ -1234,6 +1403,10 @@ def self_test() -> int:
         fired = len(evaluate(s, b)) > len(clean)
         print(f"  {'fires' if fired else 'SILENT'}  {label}")
         ok = ok and fired
+    for label, s, b in silent:
+        fired = len(evaluate(s, b)) > len(clean)
+        print(f"  {'FIRES' if fired else 'quiet'}  {label} — must not fire")
+        ok = ok and not fired
 
     # The two scans are the load-bearing part of assertions 2 and 3, so they are
     # exercised directly: each must be able to say yes AND no.
@@ -1313,7 +1486,12 @@ def main() -> int:
                     "K42 before adding a line. `refused_because` is a STATED REFUSAL "
                     "(T-0021): somebody decided this figure should not reach a visitor "
                     "and wrote down why. It is not a permission and it does not soften "
-                    "any assertion — the entry is banked exactly like every other.",
+                    "any assertion — the entry is banked exactly like every other. The `records` "
+                    "count is HELD EXACTLY for flora and fauna, which are finished "
+                    "datasets, and is a dated tally for residents, which is the layer "
+                    "this project is still writing — see assertion 6 in "
+                    "tools/measure_layer_reads.py for why the line is drawn there "
+                    "(T-1029).",
             "entries": {k: ({**state["unread"][k], "refused_because": REFUSALS[k]}
                              if k in REFUSALS else state["unread"][k])
                         for k in sorted(state["unread"])},

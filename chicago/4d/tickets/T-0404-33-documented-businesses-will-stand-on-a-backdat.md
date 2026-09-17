@@ -1,7 +1,7 @@
 ---
 id: T-0404
 title: 33 documented businesses will stand on a backdating liberty and LIBERTIES.md carries none of them
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-12
+pr: 1174
+claimed_by: run 9/12/2026, 12:33:35 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-12T06:00:46.517Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34675646811
 ---
 
 T-0356 retired the `first_evidence_after_scene_date` proxy: a business whose first
@@ -40,3 +42,37 @@ the town's documented trades rest on either.
   attached.
 - Nothing is upgraded to make the entry shorter: a business restored on this liberty still
   reads as restored on an assumption.
+
+## 2026-09-10 — THE OWNER RULES THE LIBERTY, and this ticket now has its answer
+
+He was asked nothing; he ruled it while reading the December 1835 State census (T-0988):
+
+> "I think we are ok to populate some of those and create them even though the scene date is
+> not perfect. or at least head in that direction based on your reasonable inferences. We are
+> making a reconstruction and it won't be perfect but we have good inferences like this."
+
+**So the backdating class is permitted, and this ticket stops being a question about whether
+and becomes the work of writing it down.** A business documented only after 1835-07-01 may
+stand in the July town on the assumption ruling 3 already makes, and `LIBERTIES.md` records
+that as a class with its bound and its retirement condition.
+
+**WHAT THE RULING DOES NOT DO, and the entry must say so.** It does not license a business the
+sources do not name, and it does not overturn a positive refusal. Both limits were found the
+same day in the corpus, testing the ruling against the first three cases it touches:
+
+- **A bank.** The census counts one. `chicago_american_1835_06_27` c001 — **five days before the
+  scene date** — has the State Bank of Illinois *determining* to establish a Chicago branch,
+  with "the officers of those institutions have not been made known", and Hubbard's branch
+  occupied a corner of his warehouse in **1836**. A liberty about DATES cannot outrank a notice
+  that says the thing did not yet exist.
+- **A lyceum and a reading room.** The census counts them among trades; both are **institutions
+  without premises**. The Chicago Lyceum was instituted 2 December 1834 and was meeting in the
+  town (`n1844_tf_054`, `bk_fer_050`) with no venue recorded. The Chicago Reading Room's
+  directors met at the **Tremont House on 6 July 1835** to work out how to obtain a building
+  at $2,500-3,000 by joint stock (`chicago_american_1835_07_11` c001), and seven weeks later
+  its books were still "for the present deposited at [?] House" (`..._08_22` c005). **The
+  sequence is documented and negative.** Neither adds a roof; both add links.
+
+**Add to this ticket's acceptance:** the entry states that the liberty covers a DATE and never
+an ABSENCE, and cites the bank as the worked example of a refusal it does not touch.
+

@@ -86,6 +86,19 @@ lots carry both). **Three lots in the whole town carry nothing at all**, and eve
 of those three reads free to the schedule: `blk_south_water_franklin` is `open` with 3
 principal rooms and `blk_south_water_lasalle` with 6, dealt against exactly this ground.
 
+T-1053 EMPTIED THAT TABLE, and it did so by answering the question the last paragraph
+below asks rather than by re-deciding it. The eight rows are gone: every frontage entry
+now declares exactly the ground its run stands across, the three yard buildings that
+were standing in the yards of lots their households' roofs were not on have been
+re-lotted onto the lots they serve, and the lots the owner's business-front clause was
+reaching through the same list are named on a `business_front` field of their own — so
+no lot in the town lost the ruling and no surrendered lot needed an `open_lots` reason
+nobody had the evidence for. One did: `blk_south_water_franklin` lot 4, which carries
+nothing at all now that the privy has left it, and the reason it can be written is that
+the measurement is what found the lot empty. This survey therefore reports no idle
+dealt lots today, and its self-test asserts that rather than asserting the population
+it was written against.
+
 So the headline figure was measuring the distance between two lists that T-0079 made
 different ON PURPOSE, and reading it as waste. A run's deal is its STRIP —
 `frontage_strip()` projects the dealt lots onto the face, requires them to adjoin, and
@@ -410,11 +423,23 @@ def self_test() -> int:
             bool(twice) and twice[0]["load"] == fixture["ceiling"] + 1,
             [r["load"] for r in twice])
 
-    # 4. the classification, on the fixture's own ground: an injected roof this parcel
-    #    did not build reads `documented`, not `parcel` and not `empty`.
-    elsewhere = [r for r in clean if r["idle"]]
-    require("the town's idle dealt lots are classified", bool(elsewhere),
-            len(elsewhere))
+    # 4. the classification. T-0233 wrote this against eight idle dealt lots standing in
+    #    the committed town; T-1053 emptied that population — every frontage entry now
+    #    declares exactly the ground its run stands across, so a dealt lot the run does
+    #    not stand on no longer exists — and an assertion that the town HAS one would
+    #    now be asserting the defect back. What is tested instead is the classifier
+    #    itself, on the three holder shapes it exists to tell apart, and the invariant
+    #    that whatever the town's idle lots are they read as one of the three.
+    idle_rows = [r for r in clean if r["idle"]]
+    require("no frontage entry declares a lot its run does not stand on",
+            not idle_rows, [(r["block"], sorted(r["idle"])) for r in idle_rows])
+    require("an idle lot with nothing on it reads empty",
+            idle_class([], {"mine"}) == "empty", idle_class([], {"mine"}))
+    require("an idle lot carrying only the parcel's own roof reads parcel",
+            idle_class(["mine"], {"mine"}) == "parcel", idle_class(["mine"], {"mine"}))
+    require("an idle lot carrying a roof the parcel did not build reads documented",
+            idle_class(["a_store"], {"mine"}) == "documented",
+            idle_class(["a_store"], {"mine"}))
     states = {state["state"] for row in clean for state in row["idle"].values()}
     require("every idle lot reads empty, parcel or documented",
             states <= {"empty", "parcel", "documented"}, sorted(states))

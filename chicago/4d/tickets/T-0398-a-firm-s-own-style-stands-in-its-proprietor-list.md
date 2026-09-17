@@ -1,7 +1,7 @@
 ---
 id: T-0398
 title: A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-11
+pr: 1165
+claimed_by: run 9/11/2026, 9:06:25 PM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-12T02:41:31.573Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34666575823
 ---
 
 A firm's own style stands in its proprietor list, because a claim read the signature where a person was wanted.

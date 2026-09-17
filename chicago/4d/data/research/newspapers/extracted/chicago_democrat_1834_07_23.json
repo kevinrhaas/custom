@@ -326,7 +326,10 @@
         {
           "as_printed": "WM. McCALEB.",
           "normalized": "[uncertain: Wm. McCaleb]",
-          "role": "proprietor"
+          "role": "proprietor",
+          "associated_places": [
+            "St. Joseph"
+          ]
         },
         {
           "as_printed": "E. P. DEACON, _|",
@@ -355,7 +358,7 @@
           "street": null
         }
       },
-      "notes": "THE SUCCESSION HALF of claim c005's dissolution, and it is what keeps Chicago's pine coming: the LUMBER business is continued by E. P. Deacon alone at the steam mill, while the stock of goods is sold off at cost by McCaleb. So Carver's Chicago yard loses a partnership and keeps a supplier. Two businesses are compiled from these two claims — the dissolved partnership, contradicted, and E. P. Deacon's continuing mill, not contradicted — which is the shape ruling 3 is meant to produce. The year on the second dateline prints '1838' at line 3558 and is read 1834 from the issue and from the insertion code '6w34'; it is not bracketed in the entity because the reading is the paper's own arithmetic, and it is stated here."
+      "notes": "THE SUCCESSION HALF of claim c005's dissolution, and it is what keeps Chicago's pine coming: the LUMBER business is continued by E. P. Deacon alone at the steam mill, while the stock of goods is sold off at cost by McCaleb. So Carver's Chicago yard loses a partnership and keeps a supplier. Two businesses are compiled from these two claims — the dissolved partnership, contradicted, and E. P. Deacon's continuing mill, not contradicted — which is the shape ruling 3 is meant to produce. The year on the second dateline prints '1838' at line 3558 and is read 1834 from the issue and from the insertion code '6w34'; it is not bracketed in the entity because the reading is the paper's own arithmetic, and it is stated here. T-0694: McCaleb's entity now carries St. Joseph, the place his partner's entity on this claim already carries and the place c005's dissolution notice puts the same pair of men at in this same issue. He is the retiring partner of a St. Joseph steam mill selling off its stock, not a Chicago storefront, and reading his role as `proprietor` with no place is what would let a later pass raise one for him here."
     },
     {
       "id": "c007",
@@ -524,6 +527,49 @@
         }
       ],
       "notes": "THE JULIET LIST, ONE WEEK ON AND MUCH WORSE PRINTED — the two sub-columns have collapsed into each other ('Ag ins Josrph CS pangs', 'Trames ie liam Webster c') and only four of the nine names survive whole. The BETTER witness is the issue of 1834-07-16 at page 3 column 2, which prints all nine and the postmaster clean; that claim mints the names and this one corroborates four of them with a second locator. THE CHICAGO LIST IS GONE from this issue: three weeks of standing and it is withdrawn, which dates the run of the 1 July return to 2-16 July 1834 in this paper. Only the names the cut lines carry whole are extracted here; 'Weston N.' and 'Willi q' are left unminted even though the previous issue names them, because a claim is made from ITS OWN lines."
+    },
+    {
+      "id": "c009",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "louse and Lend Agent.\nOTS purchased and Sold, or by commis\n12 Batting Lots for sale, in the town and\nSchool section.\n1 Houses to Let.\nEnquire at the Office on\nLake sl. opposile Dr. Temple s.",
+      "normalized": "[H]ouse and L[a]nd Agent. [L]OTS purchased and Sold, or by commis[sion.] 12 B[uildin]g Lots for sale, in the town and School section. […] Houses to Let. Enquire at the Office on Lake st. opposi[t]e Dr. Temple['s.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 3,
+        "lines": [
+          637,
+          647
+        ],
+        "lines_of_claim": [
+          637,
+          640,
+          642,
+          643,
+          645,
+          646,
+          647
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's",
+          "offset_text": "Lake sl. opposile Dr. Temple s.",
+          "offset_normalized": "Lake st. opposi[t]e Dr. Temple['s.]",
+          "street": "Lake Street"
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. The display line did not survive the interleave — line 636 reads 'all' and line 635 closes P. Pruyne & Co.'s notice above — so the card runs here from its trade line. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. 638, 639, 641 and 644 are the woven column's fragments, named in `lines` and not quoted. This is the FOURTH consecutive week to print '12 Building Lots' after 1834-07-09 printed '122': the figure the corpus can read wobbles between the two and neither is corrected against the other here."
     }
   ]
 }

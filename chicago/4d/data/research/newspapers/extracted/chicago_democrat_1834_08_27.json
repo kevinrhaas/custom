@@ -328,6 +328,7 @@
         "placement": {
           "class": "corner",
           "anchor": "a corner with Clark street, unread on this line",
+          "anchor_unread": true,
           "offset_text": "corner of\nand char",
           "offset_normalized": "corner of […] and [Cl]ar[k]",
           "street": null
@@ -381,6 +382,46 @@
       "reading": "transcription_mediated",
       "id": "c009",
       "quote": "[uncertain: SHE DOMOBAT]\n[uncertain: Is published every Tuesday, in the siing]\n[uncertain: Chiesgo, Cock co. I!l. in the balang o]\n[uncertain: corner of South Water and Clark stzee]\nTERMS\n1. The Chicago Democrat is printed on an\n[uncertain: perial sheet, and afforded to subecribere at]"
+    },
+    {
+      "id": "c010",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "House and Land olgest.\n2%\nOTS purchased and Sold or by comm\nBuilding Lots for sale, in the towna",
+      "normalized": "House and Land [A]g[en]t. […] [L]OTS purchased and Sold or by comm[ission.] […] Building Lots for sale, in the town a[nd] [School section. …]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 3,
+        "column": 4,
+        "lines": [
+          3036,
+          3039
+        ],
+        "lines_of_claim": [
+          3036,
+          3037,
+          3038,
+          3039
+        ],
+        "interleaved": true
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": null,
+        "placement": {
+          "class": "none",
+          "anchor": null,
+          "offset_text": null,
+          "offset_normalized": null,
+          "street": null
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. Four lines of the card survive and the rest of it is gone: the display line, the houses to let and the whole address are not in this column. 3037 ('2%') is quoted where it stands because excluding it would hide the interleave, and the lot count it may be a fragment of is not read from it. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. This printing is recorded as silent about placement."
     }
   ]
 }

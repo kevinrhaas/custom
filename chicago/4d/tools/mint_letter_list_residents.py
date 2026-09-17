@@ -109,6 +109,13 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "tools"))
+from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
+from identity_master_guard import (  # noqa: E402  (T-0843)
+    IdentityGuard, blind_person_ids, refusal as guard_refusal,
+)
+
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
@@ -119,6 +126,10 @@ SCENE_DATE = "1835-07-01"
 PREFIX = "hh_ll_"
 PERSON_PREFIX = "ll_"
 DIVISION = "unplaced"
+
+# The `list` a press row carries when it IS a return of uncalled-for letters. Every
+# other value on that block is an ordinary reading of the papers.
+LETTER_LIST_CLASS = "newspaper_letter_list"
 
 # The gap that separates one return of uncalled-for letters from the next. The
 # Democrat reprinted a list over two and three consecutive weekly issues, so
@@ -137,6 +148,168 @@ RETURN_GAP_DAYS = 60
 # The number of returns above which a name is ranked ahead of the dated head. Not a
 # threshold for entry any more; see above.
 RANKED_FIRST_RETURNS = 2
+
+# ---------------------------------------------------------------------------
+# THE RETURNS, AND THE PRINTINGS EACH OF THEM RAN OVER (T-0425)
+# ---------------------------------------------------------------------------
+#
+# A letter list is a RETURN — the office's statement of what was still uncalled
+# for on one day — and the Democrat printed one return over as many consecutive
+# issues as it took. So the date on the issue an extraction pass happened to reach
+# is not the date of the evidence. T-0331 counted the 1 January 1834 return over
+# NINE printings; the extraction that produced this project's claims reached the
+# fourth and the ninth of them, and `hh_conger_thomas` was therefore dated
+# 1834-03-04 — nine weeks late, by an accident of which impression was read.
+#
+# Every row below is the DATE LINE the printing itself sets, quoted verbatim, with
+# the deposit issue it stands in. Nothing is amended to agree with anything: where
+# the impressions disagree the tally is stated and the losing setting stays visible.
+#
+# TWO RULES DECIDE WHAT A ROW IS ALLOWED TO CLAIM, and both are here because the
+# bound is `not_later_than` and a `not_later_than` bound may be weak but may never
+# be wrong:
+#
+#   * WHERE THE PRINTED DAY IS NOT READ BUT THE MONTH IS, the row takes the LAST
+#     day of the printed month. The 1835 returns are the case: `on the Stat: day /
+#     ot March, 1895` and `on the 50th ... day of June, 1` each lose the day and
+#     keep the month, and a letter held on any day of March was held by 31 March.
+#     The project declines to read `Stat:` as `31st` when it does not have to.
+#   * THE BOUND IS NEVER LATER THAN THE EARLIEST PRINTING that carries the name —
+#     `bound_for()` takes the minimum — because a return cannot be dated after the
+#     issue that printed it.
+#
+# `date: None` is a return whose date line this project cannot read at all. It is
+# not a hole: the bound falls back to the earliest printing carrying the name,
+# exactly as before T-0425, and the record's own note says which of the two it used.
+RETURNS = (
+    {
+        "date": "1834-01-01",
+        "said": "the return of 1 January 1834",
+        "printings": ("1834-01-07", "1834-01-14", "1834-01-21", "1834-01-28",
+                      "1834-02-04", "1834-02-11", "1834-02-18", "1834-02-25",
+                      "1834-03-04"),
+        "date_lines": (
+            ("1834-01-07", "EMAINING in the Post-Offiee at Chic / go, Ill. "
+                           "January [1,] 1834."),
+            ("1834-01-28", "EMAINING in the Port-Offiee at Ch / go, Ill. "
+                           "Fammuary 1, 1604."),
+            ("1834-02-04", "EMAINING in the Post- / go, Ill, January 3, 1934."),
+            ("1834-02-25", "REMAINISG in the Pest[-Office at Chica]go, Il "
+                           "January 1, 63[4]."),
+            ("1834-03-04", "List of L | etters / ost-Offiee at Chica- / 34."),
+        ),
+        "basis": "three of the four legible date lines set January 1 and the fourth "
+                 "sets January 3, a broken 1 in a setting that also renders the year "
+                 "1934; the ninth printing, which is the one this project extracted "
+                 "its March names from, keeps nothing of the date but `34.` and is "
+                 "placed on this return by T-0331's concordance over the body text "
+                 "(tools/letter_list_printings.py)",
+    },
+    {
+        "date": "1834-04-01",
+        "said": "the return of 1 April 1834",
+        "printings": ("1834-04-01", "1834-04-08", "1834-04-16"),
+        "date_lines": (
+            ("1834-04-01", "of Litera |: / the Post Office a Chi / day of peer mea"),
+            ("1834-04-08", "and the re- EMAINIG in the P / ey. IM. on the first day"),
+            ("1834-04-16", "ef Letters FFIC / the Post Office at Chicego, | Sy' of F "
+                           "/ at day of April, 1834."),
+        ),
+        "basis": "no one impression sets the whole line: the second prints the day "
+                 "(`on the first day`) and the third the month and year (`[fir]st day "
+                 "of April, 1834`), and the first loses both. Two impressions read side "
+                 "by side is the instrument data/research/newspapers/README.md "
+                 "prescribes (T-0328)",
+    },
+    {
+        "date": "1834-07-01",
+        "said": "the return of 1 July 1834",
+        "printings": ("1834-07-02", "1834-07-09", "1834-07-16"),
+        "date_lines": (
+            ("1834-07-02", "MAINING in the Post-Office at Chica- / go, Ill. "
+                           "July 1, 1834."),
+            ("1834-07-09", ", go, Ill. July 1, 1834."),
+            ("1834-07-16", "EMAINING in the Post-Office at Chica- / go, I!. "
+                           "July 1, 1834."),
+        ),
+        "basis": "three impressions, three identical date lines, nothing to weigh",
+    },
+    {
+        "date": "1834-10-01",
+        "said": "the return of 1 October 1834",
+        "printings": ("1834-10-22",),
+        "date_lines": (
+            ("1834-10-22", "EMAINING in the Post Office at Chi / R cago, Hl. "
+                           "Oct. 1, ViS4."),
+            ("1834-10-22", "Chicago, Oct. 1, 1834."),
+        ),
+        "basis": "one impression, but the day and month are clean in the heading and "
+                 "the year, which the heading mangles to `ViS4`, is set again five "
+                 "columns away over the postmaster's signature. No other printing of "
+                 "this return is in the deposit",
+    },
+    {
+        "date": "1835-03-31",
+        "said": "the return of March 1835",
+        "printings": ("1835-05-20",),
+        "date_lines": (
+            ("1835-05-20", "a ago, Cook Go, Mlinvis, om the Stat: day / "
+                           "ot March, 1895,:"),
+        ),
+        "basis": "the month and the year are printed and the day is not: `Stat:` is "
+                 "not read, and no reading of it is supplied. A letter held on any day "
+                 "of March 1835 was held by the 31st, so the month's last day is the "
+                 "bound the printed line actually supports. The Chicago list runs seven "
+                 "weeks behind its own return here, which is why this row matters: the "
+                 "printing is 1835-05-20",
+    },
+    {
+        "date": "1835-06-30",
+        "said": "the return of June 1835",
+        "printings": ("1835-07-01",),
+        "date_lines": (
+            ("1835-07-01", "o: Letters. / G in the Post Office at Chi- / "
+                           "County Illinois, on the 50th"),
+            ("1835-07-01", "EMAINI / cago, Co / day of June, 1"),
+        ),
+        "basis": "the segmenter cut this heading down the middle and the two crops "
+                 "reassemble to `[List] of Letters / [R]EMAINI[NG] in the Post Office "
+                 "at Chi[ca]go, Co[ok] County Illinois, on the [?]0th day of June, "
+                 "1[835]`. `50th` is not a day of any month and is not read; the month "
+                 "is, so the bound is the last day of June",
+    },
+    {
+        "date": None,
+        "said": "the return printed on 19 August 1835, which sets no date line this "
+                "project can read",
+        "printings": ("1835-08-19",),
+        "date_lines": (),
+        "basis": "the deposit holds this issue as a .docx with no transcription text "
+                 "beside it, and the extracted letter-list claims carry names only — no "
+                 "heading, no date line. Whether it is a return of its own or a late "
+                 "printing of the 30 June return is not decided here, and the bound "
+                 "falls back to the printing",
+    },
+)
+
+RETURN_OF_PRINTING = {issue: entry for entry in RETURNS
+                      for issue in entry["printings"]}
+
+
+def bound_for(earliest_printing: str) -> tuple[str, dict | None]:
+    """The arrival bound a name printed in this run owes, and the return behind it.
+
+    `earliest_printing` is the ISO date of the first issue that carries the name —
+    what `return_dates()` reports, and what this pass used to write into `arrival`
+    on its own. Where the run's return is dated, the bound is the return's date;
+    where it is not, it stays the printing. Either way it is never later than the
+    printing, because a return cannot be dated after the issue that printed it.
+    """
+    entry = RETURN_OF_PRINTING.get(earliest_printing)
+    if entry and entry["date"]:
+        return min(entry["date"], earliest_printing), entry
+    return earliest_printing, entry
+
 
 # Everything below is shared with tools/mint_documented_residents.py, which is the
 # pass this one sits beside. Importing it would make one pass's refusals depend on
@@ -227,6 +400,31 @@ def surname(name: str) -> str:
     return picked.lower().strip("'").replace("'", "")
 
 
+UNREAD = "[?]"
+"""The corpus's own marker for an initial the printing did not deliver.
+
+It is not invented here. The Chicago list of 1 January 1834 is already carried with
+it — `[?] Blodget`, `[?] T. Miner`, `[?] B. Northrop`, `[?] Gay` — under that
+column's stated rule that a bare surname with no initial is minted with the marker
+"rather than joined to anybody already in the gazetteer"
+(data/research/newspapers/extracted/chicago_democrat_1834_01_28.json). It says the
+character was not read. It never says which character it was.
+"""
+
+
+def unread_initial(token: str) -> bool:
+    """Is this token an initial slot the reading did not deliver? (T-0721)
+
+    A DIGIT IS NEVER PART OF A NAME — the same principle `split_name` states in
+    consolidate_resident_evidence.py, where it is the guard that stops the 1843
+    directory's `Reading Room (Y. M. A.), 37 Clark, 2d story` minting a person. Here
+    it lands on three of the town's own cards, whose middle initial the scan set as
+    `8.` (an S), `8.` again, and `I1.` (an H): `Abbot, 8. G.`, `Perry A. 8.`,
+    `Gabbs, James I1.`.
+    """
+    return any(ch.isdigit() for ch in token)
+
+
 def display(name: str) -> str:
     """'Foot, S.' -> 'S. Foot'. The papers print both orders; a card shows one.
 
@@ -234,19 +432,50 @@ def display(name: str) -> str:
     Mills`. Only the ORDER of the printed tokens moves, and the stop that followed
     the leading surname goes with it — no token is recased, respelled or dropped,
     because every one of these names is an OCR reading and this pass does not
-    correct readings (see docs/RESEARCH/letter-list-reading-suspicions.md).
+    correct readings (the register of the ones that look misread is
+    tools/register_letter_list_suspicions.py, written to
+    data/research/residents/letter_list_reading_suspicions.json).
+
+    T-0721 ADDS THE ONE THING A CARD MAY SAY ABOUT A READING, WHICH IS THAT THERE
+    ISN'T ONE. An initial the scan set as a digit is replaced by `UNREAD`, and by
+    nothing else: the surname is never touched, no letter is supplied, and the
+    verbatim printing stays where verbatim printings belong — in the extracted
+    column and in the gazetteer's `as_printed`, both of which this pass leaves
+    alone. What changes is that the card stops asserting `8.` is a name.
     """
     if "," in name:
         head, _, tail = name.partition(",")
         tail = tail.strip()
-        return f"{tail} {head.strip()}".strip() if tail else head.strip()
+        shown = f"{tail} {head.strip()}".strip() if tail else head.strip()
+        return mark_unread(shown, name)
     tokens = name.split()
     if len(tokens) >= 2 and surname_is_first_token(name):
         moved = tokens[0]
         if full_word(moved) and moved.endswith("."):
             moved = moved[:-1]
-        return " ".join(tokens[1:] + [moved])
-    return name.strip()
+        return mark_unread(" ".join(tokens[1:] + [moved]), name)
+    return mark_unread(name.strip(), name)
+
+
+def mark_unread(shown: str, printed: str) -> str:
+    """Replace every unread initial in an ordered display name with `UNREAD`.
+
+    THE FAMILY NAME IS NEVER MARKED. A card whose surname is the unreadable token
+    has lost the only thing that could ever match it to anybody, and blanking it
+    would turn a bad reading into a nameless record; that is a different fault and
+    this pass leaves it exactly as printed for the register to carry. Nothing in the
+    corpus is in that state today, and the assertion is here so that if one ever is,
+    it is refused rather than quietly emptied.
+    """
+    if not any(unread_initial(t) for t in shown.split()):
+        return shown
+    fam = surname(printed)
+    return " ".join(
+        UNREAD if (unread_initial(token)
+                   and token.lower().strip("'.,").replace("'", "") != fam)
+        else token
+        for token in shown.split()
+    )
 
 
 def slug(name: str) -> str:
@@ -459,13 +688,19 @@ def letter_list_pool(register: dict, own_pass: frozenset[str] = frozenset()) -> 
 
 
 def apply_refusals(candidates: list[dict], gazetteer: dict, known: set[str],
-                   in_town: set[str]):
-    """The eight refusals, in order, over an already-ranked list of candidates.
+                   in_town: set[str], guard=None, blind=frozenset()):
+    """The nine refusals, in order, over an already-ranked list of candidates.
 
     Held apart from `mint` because --scale-report prices a DIFFERENT cohort out of
     the same pool, and the price is only worth anything if it is paid through these
     exact rules rather than a second implementation of them that could drift.
     Refusal 8 depends on the order it is handed, so ranking is the caller's job.
+
+    `guard` is T-0843's ninth refusal — the identity master, consulted for the
+    surnames the proxy in `known` is entitled not to see. It is a PARAMETER and not a
+    module-level load because the caller owns the precedence: `blind` has to be the
+    same households `known` skipped, and only the caller knows which cohort it is
+    pricing. A caller that hands none gets the eight rules it always had.
     """
     taken: set[str] = set()
     accepted, refusals = [], []
@@ -493,6 +728,8 @@ def apply_refusals(candidates: list[dict], gazetteer: dict, known: set[str],
                       + "; ".join(outside) + ")")
         elif fam in known:
             reason = f"the town already names a {fam.title()}"
+        elif guard is not None and (hit := guard.holder(name, blind_to=blind)) is not None:
+            reason = guard_refusal(hit)
         elif fam in taken:
             reason = "surname already minted"
         if reason:
@@ -543,17 +780,59 @@ def mint(docs: dict, index: dict):
     register = load(REGISTER)
     gazetteer = {p["id"]: p for p in load(GAZETTEER)["persons"]}
     known = town_family_names(docs, index)
+    # T-0843. The surname test above skips this pass's own households — refusal 7's
+    # precedence rule — which is exactly where a duplicate it minted last run would
+    # hide. The identity master resolves on surname AND forename signature, so it
+    # sees the collision the proxy cannot; it is consulted blind to the same
+    # households, so this pass stays re-derivable against its own output.
+    guard = IdentityGuard.load()
+    blind = blind_person_ids(
+        docs, lambda path, doc: minted_by(path, doc, "letter_list", PREFIX))
     in_town = in_town_places()
     own_pass = frozenset(doc["head"] for doc in docs.values()
                          if doc.get("source_pass") == "letter_list")
 
     return apply_refusals(rank(letter_list_pool(register, own_pass), gazetteer),
-                          gazetteer, known, in_town)
+                          gazetteer, known, in_town, guard=guard, blind=blind)
 
 
 # ---------------------------------------------------------------------------
 # the records
 # ---------------------------------------------------------------------------
+
+def arrival_note(bound: str, earliest_printing: str, entry: dict | None) -> str:
+    """Why this household's bound is the date it is, and which of the two rules set it.
+
+    T-0425. The bound is the RETURN's date where the return is dated, and the earliest
+    PRINTING that carries the name where it is not, and a reader may not have to guess
+    which — so the note says so in its first six words either way.
+    """
+    tail = (f"Somebody was writing to this name at Chicago by {bound} and at no stated "
+            f"time before it; nothing says when they came.")
+    if entry and entry["date"]:
+        late = (datetime.date.fromisoformat(earliest_printing)
+                - datetime.date.fromisoformat(bound)).days
+        printed = ("" if not late else
+                   f" The earliest issue this project reads the name in is "
+                   f"{earliest_printing}, {late} day{'' if late == 1 else 's'} later; "
+                   f"that gap is an accident of which impression an extraction pass "
+                   f"reached, and it is not evidence.")
+        return (f"A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters "
+                f"uncalled-for is a RETURN — its statement of what was still unclaimed "
+                f"on ONE day — and the paper reprinted one return over as many "
+                f"consecutive issues as it took, so the bound is dated by "
+                f"{entry['said']} and not by the issue it was read in (T-0425).{printed} "
+                f"{tail} The date lines the printings set, and how they were weighed, "
+                f"stand beside this rule in tools/mint_letter_list_residents.py.")
+    why = (f"{entry['said'].capitalize()} — so the bound falls back to the earliest "
+           f"printing that carries the name"
+           if entry else
+           "This project holds no dated return for the list this name stands in, so the "
+           "bound falls back to the earliest printing that carries the name")
+    return (f"A BOUND FROM THE PAPER, NOT AN ARRIVAL. {why}, {bound}, and not to the "
+            f"return behind it, which stands earlier by an unknown interval (T-0425). "
+            f"{tail}")
+
 
 def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
     name = display(cand["name"])
@@ -613,8 +892,23 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
                 + (f", reprinted over {len(groups[0])} consecutive issues"
                    if len(groups[0]) > 1 else "")
                 + f" — dated {span}. ")
+    unread = (
+        f"AN INITIAL THIS PROJECT CANNOT READ, MARKED AS ONE. The card shows "
+        f"'{name}': the scan sets a DIGIT where the middle initial goes, and a digit "
+        f"is never part of a name, so the character is carried as {UNREAD} — the "
+        f"marker the Chicago list of 1 January 1834 already uses for an initial the "
+        f"printing did not deliver. NO LETTER IS SUPPLIED. The deposit holds two "
+        f"transcriptions of this issue and no page image, and the alternate carries "
+        f"no letter list at all, so there is no cleaner impression here to settle it "
+        f"against and the project declines to guess (T-0721; the suspicion is "
+        f"registered, ungraded, at data/research/residents/"
+        f"letter_list_reading_suspicions.json). The verbatim setting is untouched "
+        f"and quoted above; what has stopped is the card asserting that setting is a "
+        f"name. A pass that reaches the page images settles it and this marker goes. "
+    ) if UNREAD in name else ""
     person["note"] = (
         held
+        + unread
         + f"Nothing else in the corpus names this person: no trade, no street, no "
         f"household, no arrival, so every other claim here is written unattested in its own "
         f"block. WHAT THAT IS WORTH: a correspondent believed a person of this name "
@@ -638,14 +932,13 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
         # A genuinely new mint (T-0599): see mint_documented_residents.record()'s
         # matching comment — a household reusing its legacy id is unchanged.
         doc["source_pass"] = "letter_list"
+    bound, entry = bound_for(dates[0])
     doc.update({
         "arrival": {
-            "value": cand["first_seen"],
+            "value": bound,
             "confidence": "inferred",
             "sources": list(sources),
-            "note": (f"A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to "
-                     f"this name at Chicago by {cand['first_seen']} and at no stated time "
-                     f"before it; nothing says when they came."),
+            "note": arrival_note(bound, dates[0], entry),
             "precision": "not_later_than",
         },
         "party_size_on_arrival": {
@@ -697,6 +990,13 @@ def record(cand: dict, gaz: dict, docs: dict, taken_ids: set[str]) -> dict:
     return doc
 
 
+def carry_over(doc: dict, existing: dict) -> dict:
+    """Keep later passes' findings when this letter-list mint rebuilds its card."""
+    # A printed title is this pass's evidence for ``sex``; its absence after a new
+    # reading is owned by this mint and must not be resurrected from the old card.
+    return carry_resident_mint(doc, existing, owned_person_keys=("sex",))
+
+
 def build(preload: dict | None = None):
     docs = ({p: json.loads(t) for p, t in preload.items() if p != INDEX}
             if preload is not None
@@ -708,57 +1008,24 @@ def build(preload: dict | None = None):
     accepted, refusals = mint(docs, index)
 
     files = {}
-    rows = []
     seen: set[str] = set()
     for cand, gaz in accepted:
         doc = record(cand, gaz, docs, seen)
+        existing = docs.get(HOUSEHOLDS / f"{doc['id']}.json") or {}
+        carry_over(doc, existing)
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
         files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
-        tally: dict = {}
-        for person in doc["persons"]:
-            tally[person["grade"]] = tally.get(person["grade"], 0) + 1
-        rows.append({
-            "id": doc["id"],
-            "file": f"households/{doc['id']}.json",
-            # The manifest's own flag for the evidence strength, so the Evidence
-            # panel can hold these apart from the town's evidenced households
-            # WITHOUT fetching 900 records or reading a mint tool's id prefix
-            # (T-0379: they are most of the list now, and a visitor has to be able
-            # to tell which three quarters are names alone at a glance).
-            "letter_list_only": True,
-            "head": doc["head"],
-            "division": doc["division"],
-            "persons": len(doc["persons"]),
-            "grades": dict(sorted(tally.items())),
-            "lives_at": doc["lives_at"]["value"],
-            "works_at": doc["works_at"]["value"],
-            "present_on_scene_date": doc["present_on_scene_date"]["value"],
-            "review_required": doc["review_required"],
-        })
 
-    mine_ids = {p.stem for p in mine_paths}
-    keep = [r for r in index["households"] if r["id"] not in mine_ids]
-    index["households"] = sorted(keep + rows, key=lambda r: r["id"])
-    totals = {"attested": 0, "inferred": 0, "reconstructed": 0}
-    persons = 0
-    for row in index["households"]:
-        persons += row["persons"]
-        for grade, n in row["grades"].items():
-            totals[grade] = totals.get(grade, 0) + n
-    index["counts"]["households"] = len(index["households"])
-    index["counts"]["persons"] = persons
-    index["counts"]["by_grade"] = totals
-    # The count sentence's own half of the parent's ask: the panel says how many
-    # of the people it lists are known only from the post office, so the evidence
-    # strength is legible before a visitor opens anything.
+    # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
+    # keep every other row verbatim, so a household no pass owned could be regraded
+    # elsewhere and go on carrying a stale row for ever. `final` is the whole layer
+    # as this pass leaves it, and the derivation reads all of it.
     final = {path: doc for path, doc in docs.items() if path not in mine_paths}
     final.update({path: json.loads(text) for path, text in files.items()
                   if path != INDEX})
-    index["counts"]["letter_list_only"] = sum(
-        1 for doc in final.values() for person in doc.get("persons") or []
-        if person.get("letter_list_only"))
+    rebuild(index, final)
     files[INDEX] = dumps(index, 1)
     return files, accepted, refusals, mine_paths
 
@@ -873,6 +1140,35 @@ def scale_report() -> None:
 ISO = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
+def press_contradicting(person: dict) -> list[dict]:
+    """The rows of this person's `press_evidence[]` that are NOT letter lists.
+
+    T-1005. `letter_list_only` is not decoration: `renderers/web/js/residents.js`
+    prints a whole paragraph off it — "Only from the post office's lists of
+    uncalled-for letters … it is the weakest evidence this project accepts for a
+    resident" — and the land-sale ruling rule reads the flag as the written form
+    of its own refusal test. The flag is written at MINT time, when a letter list
+    is all there is; the consolidation passes add `press_evidence` to a card
+    afterwards and never looked at it again. So seven cards reached dev asserting
+    "known only from the post office" while carrying, on the same record, an
+    ordinary reading of the papers — the exact confusion the flag exists to
+    prevent, stated backwards.
+
+    The test is one line, and it is one-directional on purpose. A person whose
+    press block holds no letter list at all is not this pass's business, and 678
+    of the cohort carry the reading in `letter_list_returns` and the note with no
+    press block at all — so this may never SET the flag, only refuse it where the
+    record itself contradicts it.
+    """
+    return [row for row in (person.get("press_evidence") or [])
+            if row.get("list") != LETTER_LIST_CLASS]
+
+# The two rules T-0425 allows an arrival note to open on, in the order
+# `bound_for()` chooses between them: the return where the return is dated,
+# the printing where it is not.
+BOUND_MARKERS = ("A BOUND FROM THE RETURN", "A BOUND FROM THE PAPER")
+
+
 def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
     """Every way the minted cohort could stop being what the owner ruled for.
 
@@ -899,12 +1195,25 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                             f"person and this pass may not invent a household around them")
         for person in persons:
             pid = person.get("id")
-            if person.get("letter_list_only") is not True:
+            # T-1005. The flag's own justification is the test: it is what keeps a
+            # letter list and a shopkeeper's advertisement from reading as the same
+            # claim, so a person carrying BOTH may not carry the flag. This pass
+            # mints the flag and this gate keeps it honest in both directions.
+            contradicting = press_contradicting(person)
+            if contradicting:
+                if person.get("letter_list_only"):
+                    where = ", ".join(sorted({str(r.get("locator")) for r in contradicting}))
+                    problems.append(f"{hid}/{pid}: letter_list_only is true and "
+                                    f"{len(contradicting)} press reading(s) on this same "
+                                    f"record are not letter lists — {where}. The flag says "
+                                    f"'known only from the post office' and the evidence "
+                                    f"beside it says otherwise; one of the two is wrong")
+            elif person.get("letter_list_only") is not True:
                 problems.append(f"{hid}/{pid}: letter_list_only is "
                                 f"{person.get('letter_list_only')!r} and must be true — it "
                                 f"is what keeps this evidence and a shopkeeper's "
                                 f"advertisement from reading as the same claim")
-            else:
+            if person.get("letter_list_only"):
                 flagged_persons += 1
             dates = person.get("letter_list_returns")
             if not isinstance(dates, list) or not dates:
@@ -927,6 +1236,35 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                 problems.append(f"{hid}/{pid}: occupation is {occ.get('value')!r} — a "
                                 f"letter list gives no trade and this pass may not read "
                                 f"one in without independently corroborated resident research")
+        # T-0425. The bound belongs to the RETURN, not to the impression an
+        # extraction pass happened to reach. It is gated rather than merely derived
+        # because the failure is invisible on the card — `1834-03-04` looks like a
+        # date somebody read, and it is nine weeks of a name's residence given away
+        # to whichever printing a crop happened to catch. Only records whose arrival
+        # is still this pass's own are held to it: a later pass that dates somebody
+        # from a source of its own (T-0482 on `hh_orsemus_morrison`, `1833`) writes
+        # its own reasoning into the note and is out of scope by construction.
+        arrival = doc.get("arrival") or {}
+        note = arrival.get("note") or ""
+        returns = sorted({d for person in persons
+                          for d in (person.get("letter_list_returns") or [])})
+        if note.startswith(BOUND_MARKERS) and returns:
+            want, entry = bound_for(returns[0])
+            if arrival.get("value") != want:
+                problems.append(
+                    f"{hid}: arrival is {arrival.get('value')!r} and the earliest return "
+                    f"printing behind this name is {returns[0]} — the bound owed is "
+                    f"{want!r}, from {(entry or {}).get('said', 'the printing itself')} "
+                    f"(T-0425)")
+            elif not note.startswith(BOUND_MARKERS[0 if entry and entry["date"] else 1]):
+                problems.append(
+                    f"{hid}: arrival is {want!r} but its note opens on the wrong rule — "
+                    f"a reader may not have to work out whether a bound came from the "
+                    f"return or from the printing (T-0425)")
+            if arrival.get("precision") != "not_later_than":
+                problems.append(
+                    f"{hid}: arrival precision is {arrival.get('precision')!r} — a "
+                    f"letter-list bound is never anything but not_later_than")
         for key in ("lives_at", "works_at"):
             value = (doc.get(key) or {}).get("value")
             if value is not None:
@@ -939,10 +1277,15 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
         row = rows.get(hid)
         if row is None:
             problems.append(f"{hid}: no manifest row")
-        elif row.get("letter_list_only") is not True:
-            problems.append(f"{hid}: the manifest row does not carry letter_list_only, "
-                            f"so the Evidence panel cannot hold this row apart from the "
-                            f"town's evidenced households without fetching every record")
+        elif bool(row.get("letter_list_only")) != any(p.get("letter_list_only")
+                                                      for p in persons):
+            # The row must say what the card says — T-1005 cleared the flag on seven
+            # cards and the row has to follow, or the Evidence panel holds a household
+            # apart from the town's evidenced ones on a flag its own record dropped.
+            problems.append(f"{hid}: the manifest row says letter_list_only="
+                            f"{bool(row.get('letter_list_only'))!r} and the card says "
+                            f"{any(p.get('letter_list_only') for p in persons)!r} — the "
+                            f"Evidence panel reads the row and the card is the master")
 
     mine_ids = {p.stem for p in mine_paths}
     for hid, row in rows.items():
@@ -1001,7 +1344,7 @@ def gate() -> int:
 NAME_READING_CASES = (
     # printed as the post office set it,   surname,     the card's display name
     # --- surname printed FIRST, no comma to say so (T-0638, fault A) -----------
-    ("Perry A. 8.", "perry", "A. 8. Perry"),
+    ("Perry A. 8.", "perry", "A. [?] Perry"),
     ("Mason Sabrina A.", "mason", "Sabrina A. Mason"),
     ("merrich J. B.", "merrich", "J. B. merrich"),
     ("Mills Joel C.", "mills", "Joel C. Mills"),
@@ -1019,6 +1362,13 @@ NAME_READING_CASES = (
     ("Regera John V.", "regera", "John V. Regera"),
     ("Oakley Benjamin W.", "oakley", "Benjamin W. Oakley"),
     ("Nelts Wm.", "nelts", "Wm. Nelts"),
+    # --- an initial the scan did not deliver (T-0721) --------------------------
+    # The surname survives, the initial does not, and no letter is supplied for it.
+    ("Abbot, 8. G.", "abbot", "[?] G. Abbot"),
+    ("Gabbs, James I1.", "gabbs", "James [?] Gabbs"),
+    # …and the clusters that are ugly but are still LETTERS stay exactly as printed,
+    # because this pass marks what it cannot read and does not tidy what it can.
+    ("Conkiin, Robert I.", "conkiin", "Robert I. Conkiin"),
     # …and the three the printing gives no forename at all
     ("McLoud I.", "mcloud", "I. McLoud"),
     ("Willinm G.", "willinm", "G. Willinm"),
@@ -1030,9 +1380,14 @@ NAME_READING_CASES = (
     ("John Bates Jr.", "bates", "John Bates Jr."),
     ("Joshua Hathaway jr.", "hathaway", "Joshua Hathaway jr."),
     # a mangled INITIAL beside a sound surname is fault C, not fault A: the id is
-    # already right and this rule must leave both of them alone
-    ("8. G. Abbot", "abbot", "8. G. Abbot"),
-    ("James I1. Gabbs", "gabbs", "James I1. Gabbs"),
+    # already right and T-0638's reordering rule must leave both of them alone.
+    # T-0721 marks the initial as unread — from EITHER printed order, and the marked
+    # form is then a fixed point, which is what lets a card carry it (three rows).
+    ("8. G. Abbot", "abbot", "[?] G. Abbot"),
+    ("James I1. Gabbs", "gabbs", "James [?] Gabbs"),
+    ("[?] G. Abbot", "abbot", "[?] G. Abbot"),
+    ("A. [?] Perry", "perry", "A. [?] Perry"),
+    ("James [?] Gabbs", "gabbs", "James [?] Gabbs"),
     # --- the comma the papers do sometimes print -------------------------------
     ("Hail, Aifred", "hail", "Aifred Hail"),
     ("Foot, S.", "foot", "S. Foot"),
@@ -1054,6 +1409,11 @@ SLUG_CASES = (
     # a space is not an apostrophe: St Cyr slugs exactly as it always has
     ("Rev. John Mary Irenaeus St Cyr", "john_mary_irenaeus_st_cyr",
      "cyr_john_mary_irenaeus_st"),
+    # T-0721: the marker changes the DISPLAY name and nothing the id is built from,
+    # which is the whole reason it may be applied to a committed record at all.
+    ("Abbot, 8. G.", "abbot_8_g", "abbot_8_g"),
+    ("Perry A. 8.", "perry_a_8", "perry_a_8"),
+    ("Gabbs, James I1.", "gabbs_james_i1", "gabbs_james_i1"),
 )
 
 
@@ -1091,16 +1451,73 @@ def name_reading_self_test() -> int:
     return 0
 
 
+def return_bound_self_test() -> int:
+    """T-0425's own assertion: two printings of ONE return give ONE bound.
+
+    Fixtures over the RETURNS table, not over the tree — the tree's answer is gated
+    separately by `--gate`. What is proved here is the rule rather than a row: that
+    every printing of a return agrees, that a bound is never later than the issue
+    that carried it, and that a return this project cannot date falls back to the
+    printing instead of inventing one.
+    """
+    failed = 0
+    for entry in RETURNS:
+        bounds = {bound_for(issue)[0] for issue in entry["printings"]}
+        if entry["date"] and len(bounds) != 1:
+            failed += 1
+            print(f"   FAIL {entry['said']}: its printings give {sorted(bounds)} — one "
+                  f"return owes one bound")
+        for issue in entry["printings"]:
+            got, _ = bound_for(issue)
+            if got > issue:
+                failed += 1
+                print(f"   FAIL {issue}: bound {got} is later than the issue that "
+                      f"printed it")
+            if not entry["date"] and got != issue:
+                failed += 1
+                print(f"   FAIL {issue}: an undated return must fall back to the "
+                      f"printing, not to {got}")
+        if entry["date"] and not entry["date_lines"]:
+            failed += 1
+            print(f"   FAIL {entry['said']}: a dated return owes the date line it is "
+                  f"read off")
+    # The worked case the ticket names: the fourth and the ninth printing of the
+    # 1 January 1834 return, nine weeks apart, are one piece of evidence.
+    for pair in (("1834-01-28", "1834-03-04"), ("1834-07-02", "1834-07-16")):
+        a, b = (bound_for(pair[0])[0], bound_for(pair[1])[0])
+        if a != b:
+            failed += 1
+            print(f"   FAIL {pair[0]} and {pair[1]} print one return and give "
+                  f"{a} and {b}")
+    unknown, entry = bound_for("1899-01-01")
+    if unknown != "1899-01-01" or entry is not None:
+        failed += 1
+        print(f"   FAIL a printing no return row claims must date itself, not "
+              f"{unknown}")
+    if failed:
+        print(f"   {failed} return-bound assertion(s) failed")
+        return 1
+    print(f"   OK: {len(RETURNS)} return(s) over "
+          f"{sum(len(e['printings']) for e in RETURNS)} printing(s), each return one "
+          f"bound")
+    return 0
+
+
 def self_test() -> int:
     """Break each invariant on a copy of the tree and require the gate to name it."""
     if name_reading_self_test():
+        return 1
+    if return_bound_self_test():
         return 1
     docs, index, structures = read_tree()
     if gate_problems(docs, index, structures):
         print("   the committed tree does not pass its own gate; fix that first")
         return 1
+    # A victim that still CARRIES the flag: T-1005 cleared it on seven cards, and a
+    # mutation that drops a flag off a card which no longer has one asserts nothing.
     victim = next(p for p, doc in sorted(docs.items())
-                 if minted_by(p, doc, "letter_list", PREFIX))
+                 if minted_by(p, doc, "letter_list", PREFIX)
+                 and (doc.get("persons") or [{}])[0].get("letter_list_only"))
 
     def broken(mutate):
         d = json.loads(json.dumps({str(k): v for k, v in docs.items()}))
@@ -1134,6 +1551,35 @@ def self_test() -> int:
     def build_them_a_building(d, i, s):
         s["invented.json"] = '{"occupants": ["%s"]}' % d[victim]["persons"][0]["id"]
 
+    # T-0425, and the pair of them is the assertion the ticket asks for: two
+    # printings of ONE return must give ONE bound. `date_the_impression` moves a
+    # bound back onto the issue it was read in — the defect itself — and
+    # `wrong_rule` leaves the value right and the note claiming the other rule.
+    def date_the_impression(d, i, s):
+        for path, doc in sorted(d.items()):
+            dates = (doc.get("persons") or [{}])[0].get("letter_list_returns") or []
+            if dates and bound_for(dates[0])[0] != dates[0]:
+                doc["arrival"]["value"] = dates[0]
+                return
+        raise AssertionError("no letter-list record whose return predates its printing")
+
+    def blur_the_precision(d, i, s):
+        d[victim]["arrival"]["precision"] = "exact"
+
+    # T-1005. The eighth card: a flagged person gains an ordinary reading of the
+    # papers — a shopkeeper's advertisement beside "known only from the post office".
+    # This is how the seven arrived, one consolidation pass at a time.
+    def advertise_a_shop(d, i, s):
+        d[victim]["persons"][0].setdefault("press_evidence", []).append({
+            "list": "newspaper_1833_1835",
+            "as_read": "a shopkeeper's advertisement",
+            "locator": "chicago_democrat_1834_08_13#c012",
+            "record_id": "person_invented",
+            "describes_date": "1834-08-13",
+            "source": "chicago_democrat_1833_1835",
+            "rule": "G1b",
+        })
+
     cases = [
         ("a person loses letter_list_only", drop_flag, "letter_list_only"),
         ("a person loses its returns' dates", drop_dates, "letter_list_returns"),
@@ -1142,6 +1588,11 @@ def self_test() -> int:
         ("a household gains a second member", give_a_household, "persons"),
         ("the manifest row loses its flag", unflag_the_row, "manifest row"),
         ("a structure names one of them", build_them_a_building, "data/structures/"),
+        ("a bound is dated by the impression, not the return", date_the_impression,
+         "T-0425"),
+        ("a bound stops being not_later_than", blur_the_precision, "precision"),
+        ("a flagged person gains an ordinary press reading", advertise_a_shop,
+         "not letter lists"),
     ]
     failed = 0
     for label, mutate, expect in cases:

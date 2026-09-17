@@ -83,6 +83,17 @@
  *    yard wagons have an ox-yoke lying on the grass beside them. The yoke is the
  *    honest half of a team, the same way the empty bench is the honest half of
  *    the Trowbridge sitters.
+ *  * T-0759 ADDS ONE MORE VEHICLE AND IT IS NOT ON A STREET. Andreas's Water
+ *    Works section says how this town drank in 1835 — from the lake, by cart —
+ *    and describes the vehicle exactly: "two wheeled vehicles, upon which
+ *    hogsheads were mounted", driven into the water "generally at the foot of
+ *    Randolph Street". So `buildCart` gained a cask, mounted when the record
+ *    says `hogshead`, and `data/yard/town_water_cart.json` stands ONE of them
+ *    at the point Randolph's committed line meets the committed waterline. One,
+ *    and only there: the same sentence sends the watermen "around town" to
+ *    "their customers' houses" and names no street, no door and no count, and
+ *    dealing barrels to doors off that would be inventing a business's customer
+ *    list. What is refused is written on the record, not only here.
  */
 
 import * as THREE from 'three';
@@ -1182,6 +1193,21 @@ function buildCart(buf, wagon, form, terrain, level, problems) {
     pushPole(buf, x, z, base, fx, fz, sx, sz, L / 2, bed - 0.035, shaft,
       s * (CART_SHAFT_GAUGE_M / 2), SHAFT_T_M / 2, level);
   }
+  // A HOGSHEAD MOUNTED ON IT, and only when the record says so (T-0759).
+  // Andreas gives the water cart its two defining facts and no third — "two
+  // wheeled vehicles, upon which hogsheads were mounted" — so the cask is a
+  // flag on the vehicle rather than a fourth `kind`: it changes what the cart
+  // carries, not what the cart is, exactly as `tilt` does for a wagon. It lies
+  // on its side ALONG the cart's own line, resting on the box floor, because a
+  // cask filled by pail and run off through a hose at the bung lies down; the
+  // record's own numbers give its length and its two diameters, and the belly
+  // is checked against the box it has to sit inside rather than assumed to fit.
+  if (wagon.hogshead) {
+    const [caskL, caskBelly, caskHead] = form.hogshead;
+    const caskR = Math.min(caskBelly, W - 0.06) / 2;
+    pushBarrel(buf, x, bed + 0.035 + caskR, z, [fx, 0, fz], [0, 1, 0],
+      Math.min(caskL, L), caskR, (caskHead / caskBelly) * caskR, level);
+  }
   if (wagon.yoke) pushYoke(buf, x, z, base, fx, fz, sx, sz, form, L, level);
   return true;
 }
@@ -1456,6 +1482,10 @@ function readForm(record) {
     // contract as everything above — the record owns the claim, this file owns
     // only what a triangle is made of.
     cart: v('cart_m', [1.98, 1.07, 0.5, 1.42, 0.86, 2.44]),
+    // T-0759's one addition: the cask a WATER CART carries. Same contract as
+    // every line here — the record owns the claim, and the fallback exists only
+    // so a record written before this parcel does not throw.
+    hogshead: v('hogshead_m', [1.22, 0.84, 0.7]),
     yoke: v('ox_yoke_m', [1.42, 0.12, 0.34, 0.05]),
     yokeOffset: 1.35,
     // T-0057's building material. Same contract again: every size is the record's
@@ -1477,6 +1507,11 @@ function readForm(record) {
  */
 export async function createYardGoods({
   dataBase, terrain, confidence = null, problems = [],
+  /** T-1126: does this structure's geometry exist in the scene? Goods stand on
+   *  the footway of a building that is there; when the building is not, the
+   *  crates in the grass are the only thing left saying it was, which is worse
+   *  than an empty lot. See `createSignage` for the whole argument. */
+  hostMissing = () => false,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'yard';
@@ -1490,7 +1525,7 @@ export async function createYardGoods({
     sheds: [],
     census: { records: 0, frontages: 0, objects: 0, barrels: 0, crates: 0, wagons: 0,
       byKind: {}, benches: 0, sheds: 0, refused: 0, wagonsRefused: 0, chunks: 0,
-      marked: 0, markCells: 0, lots: 0, piles: 0, byMaterial: {} },
+      marked: 0, markCells: 0, lots: 0, piles: 0, orphaned: 0, byMaterial: {} },
     pickAt: () => null,
     dispose: () => {},
   };
@@ -1642,6 +1677,7 @@ export async function createYardGoods({
     const form = readForm(record);
     const level = LEVEL[record.existence?.confidence] ?? 1;
     for (const frontage of record.frontages ?? []) {
+      if (hostMissing(frontage.structure_id)) { out.census.orphaned += 1; continue; }
       const anchor = anchorOf(frontage.items ?? []);
       if (!anchor) continue;
       const chunk = chunkAt(anchor[0], anchor[1]);
@@ -1670,6 +1706,7 @@ export async function createYardGoods({
      * a shop's barrels do.
      */
     for (const lot of record.lots ?? []) {
+      if (hostMissing(lot.structure_id)) { out.census.orphaned += 1; continue; }
       const anchor = anchorOf(lot.items ?? []);
       if (!anchor) continue;
       const chunk = chunkAt(anchor[0], anchor[1]);
@@ -1691,6 +1728,10 @@ export async function createYardGoods({
       out.census.lots += 1;
     }
     for (const wagon of record.wagons ?? []) {
+      // A wagon in a yard goes with the yard's building; one standing in a public
+      // street names no owner, so `hostMissing` is never asked about it and it
+      // stays. That is the right answer both ways round — the street is there.
+      if (hostMissing(wagon.belongs_to)) { out.census.orphaned += 1; continue; }
       const at = wagon.at_local_enu_m;
       if (!Array.isArray(at) || at.length !== 2) continue;
       // A CART IS NOT A WAGON WITH TWO WHEELS MISSING, so the record's `kind`

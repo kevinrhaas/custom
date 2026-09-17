@@ -1,7 +1,7 @@
 ---
 id: T-0718
 title: Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-06
+pr: 990
+claimed_by: run 9/6/2026, 9:16:55 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-06T15:50:06.728Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/34038473898
 ---
 
 Is jb_beaubien_homestead the Factory House or the house Beaubien moved to: John Dean is the hinge, and the SW-versus-NE corner turns on it.

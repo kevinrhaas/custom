@@ -46,6 +46,19 @@
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
+ "kin": [
+  {
+   "person": "simmons_marion",
+   "relation": "wife",
+   "household": "hh_vincent_john",
+   "value": "vincent_john",
+   "confidence": "attested",
+   "sources": [
+    "st_cyr_register_ichr_v4"
+   ],
+   "note": "JOHN VINCENT AND MARION SIMMONS ARE HUSBAND AND WIFE, AND THE REGISTER MARRIED THEM. Entry 3 of Father St Cyr's marriage register, at Chicago, 21 May 1834: 'John Vincent' and 'Marion Simmons', celebrated by J. M. I. Saint Cyr, filed as st_cyr_marriage_003_1 and st_cyr_marriage_003_2 in data/research/church/records/st_cyr_marriages_1834_1839.json. THE DATE IS AT OR BEFORE THE SCENE: they were married on the day this dataset reconstructs. The mirror of the row on the other record, and written here because a kinship on one card only leaves this one still reading as no relationship at all. THE GRADE IS WHAT A PARISH REGISTER IS WORTH FOR THE ACT IT RECORDS. The St Cyr register is the contemporary record OF this marriage — the date, the place, the celebrant and both parties by name, written by the priest who performed it — so the relationship is read off a record rather than reasoned to. The rung these two people carry (G2c, inferred) is a ruling about RESIDENCE: a parish register naming somebody is weak evidence that they LIVED in the town and strong evidence that the act happened, and this row claims only the second. THE LIMIT: the reading is transcription_mediated — the Illinois Catholic Historical Review's printed transcription, not the manuscript — and a transcription can mangle a name. It cannot invent a couple. NO IDENTIFICATION IS BEING MADE HERE. Both cards were minted FROM this entry and carry its record id in church_evidence, so the two people this row links are the two people the entry names; nothing is matched by surname. A KINSHIP IS NOT A PLACEMENT: neither household's position, arrival, trade or membership rests on this row."
+  }
+ ],
  "persons": [
   {
    "id": "simmons_marion",
@@ -60,9 +73,10 @@
     "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
    },
    "sources": [
+    "second_presbyterian_chicago_1892",
     "st_cyr_register_ichr_v4"
    ],
-   "note": "THE ST CYR REGISTER OF 1833-1835 NAMES THIS PERSON IN THE PARISH. Read from church_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2c), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. church_1833_1835 names this person at Chicago by 21 May 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1).",
+   "note": "THE ST CYR REGISTER OF 1833-1835 NAMES THIS PERSON IN THE PARISH. Read from church_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G2c), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. church_1833_1835 names this person at Chicago by 21 May 1834 and nothing says when they came. The bound is at or before the scene date, so the person was at Chicago by 1 July 1835 on this record's own evidence. No figure is drawn (L1). THE SECOND PRESBYTERIAN ROLL — A NAME ON A CHURCH LIST THAT OPENS IN 1842, AND NEVER AN 1835 FACT. The 1892 printed membership roll of the Second Presbyterian Church of Chicago, read line by line into this repository, carries 1 line whose surname and given initial agree with this person's — “Simmons, Mrs. Mary E. | Profession. | April 5, 1858.” (second_presb_0303, printed page 171), admitted 1858-04-05 by profession. Under the rule that decided it: Surname 'Simmons' folds to the same string as the roll line's, and the given name of both begins M. WHAT THE MATCH MINTS OR REGRADES: “NOTHING. A line on a roll that opens in June 1842 cannot place a person in the town of July 1835, and this file makes no proposal that it does. What a match IS: the same surname and initial, in Chicago, within seven years — a lead for a later pass that is allowed to write people.” THE LINE IS A MARRIED WOMAN'S ENTRY, and the crosswalk's own Mrs rule governs what it can have met: “a line flagged a_married_womans_entry that meets a MAN in the 1835 layer has met his name, not him: it corroborates that the name was a Chicago name in the 1840s and it does not put that man on this roll.” The match is filed rather than suppressed, because a suppressed match is invisible and a flagged one can be argued with. THE SAME ROLL LINE IS MET BY OTHER TOWNSPEOPLE OF THIS NAME: second_presb_0303 is matched under this same rule to Medad I. Simmons (simmons_medad_i), so it is met by two townspeople of this name, and it says which of them it was about no more than it says it was about this one — the test that decided it is a surname and a given initial agreeing, which cannot tell them apart. This pass WRITES THE EVIDENCE AND MOVES NO GRADE: under the ratified ladder (T-0513) the roll is handed to the card as a thing a reader may weigh, and the verdict stays with T-0515, which applies the ladder against every source at once.",
    "church_evidence": [
     {
      "list": "church_1833_1835",

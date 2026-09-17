@@ -5,12 +5,12 @@
  "head": "mclintock_thomas",
  "source_pass": "letter_list",
  "arrival": {
-  "value": "1834-10-22",
+  "value": "1834-10-01",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1834-10-22 and at no stated time before it; nothing says when they came.",
+  "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of 1 October 1834 and not by the issue it was read in (T-0425). The earliest issue this project reads the name in is 1834-10-22, 21 days later; that gap is an accident of which impression an extraction pass reached, and it is not evidence. Somebody was writing to this name at Chicago by 1834-10-01 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -52,6 +52,7 @@
    "name": "Thomas M'Clintock",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "letter_list_only": true,
    "letter_list_returns": [
     "1834-10-22"
@@ -71,16 +72,10 @@
     "outcome": "candidate_identity",
     "reviewed_on": "2026-09-02",
     "asserted_identity": false,
-    "evidence_for": "Cook County biography places Thomas McClintock Sr. and…",
-    "evidence_against": "Both father and son are Thomas; no disc…",
     "summary": "Cook County biography places Thomas McClintock Sr. and his son Thomas Franklin McClintock in Bachelor's Grove from fall 1833. This is strong family-level Cook County chronology, but two Thomas McClintocks are simultaneously available and the postal item cannot safely identify either one.",
-    "notes": "research-only; full detail in pass_10_findings.json",
     "source_ids": [
      "chicago_democrat_1833_1835",
      "cook_county_mclintock_bachelors_grove"
-    ],
-    "candidate_ids": [
-     "cand_thomas_mcclintock_bachelors_grove"
     ],
     "candidates": [
      {

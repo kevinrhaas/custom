@@ -90,6 +90,73 @@ chicago/4d/tickets/QUEUE.md merge=queue
 # It REFUSES — leaving ordinary conflict markers — if both sides edited the same
 # shipped entry differently, or if a title would appear twice. That is precisely
 # the case union got silently wrong, and it is rare enough not to automate.
+#
+# ONE PATH, NOT THREE (T-0938). The two published mirrors of this file used to be
+# listed here too. `site/chicago/4d/` is untracked now — it is a build product that
+# `tools/publish.sh` writes and `tools/check.sh` re-derives and checks — so there is
+# no mirror in the index for a driver to reconcile. The authored file is the only
+# tracked changelog, which is also the only one anybody edits.
 chicago/4d/renderers/web/js/changelog.js merge=changelog
-site/chicago/4d/js/changelog.js merge=changelog
-site/chicago/4d/walk/js/changelog.js merge=changelog
+
+# THE BUILD PRODUCTS ARE GONE FROM THIS FILE, AND THAT IS THE ANSWER, NOT A REGRESSION
+# (T-0831 -> T-0937 -> T-0938, all under T-0857).
+#
+# THE MEASUREMENT THAT STARTED IT. PR #906 was open about seventy minutes. `dev` moved
+# FIVE times under it — #904, #907, #908, #905, #858 — and every one of the five merges
+# conflicted, always in generated files and never once in the substantive diff:
+#
+#   lap 1  #904   BOARD.md, tickets.json x2, build.json, walk/index.html
+#   lap 2  #907   the same five (plus STATUS.md, a real conflict, hand-merged)
+#   lap 3   --    the same five, measured with merge-tree before the lap
+#   lap 4  #905   the same five
+#   lap 5  #858   BOARD.md, tickets.json x2
+#
+# Two other PRs report it independently. #894: "each one collides on the same four
+# generated files" — four rebases paid, and the fifth is where that run's clock ran out.
+# #850: "Every conflict so far has been in a generated file... The substantive diff has
+# merged cleanly every time" — rebased twice, gated three times on three bases, then
+# parked on `hold` with finished, green work.
+#
+# T-0831 answered it with a `merge=generated` driver that kept OURS and printed the
+# rebuild command. That driver only ever protected a LOCAL `git merge`. GitHub's
+# server-side merge runs no custom driver, so the platform still called every one of
+# these branches conflicting, auto-merge could never fire, and the lap had to be paid by
+# hand anyway — measured on PR #940: zero conflicts in a clone with the drivers
+# registered, "merge conflict" on the identical merge in GitHub's UI.
+#
+# So the build products were taken off the PR surface instead. `tickets/BOARD.md` and
+# `tickets/tickets.json` first (T-0937), then the whole published mirror
+# `site/chicago/4d/**` (T-0938) — which is where `build.json` and `walk/index.html`,
+# the two the driver was still holding, went. All of it is UNTRACKED and .gitignored;
+# the reasoning is in /.gitignore beside the rules. A file that is not tracked cannot
+# conflict, in a clone or on the server, so no driver is needed for any of them and
+# none is named here.
+#
+# They are still written, and every consumer writes them before it reads them:
+# `ticket.mjs check` and `board` regenerate the board, `tools/publish.sh` regenerates
+# the whole mirror, `tools/check.sh` runs publish.sh and then gates what it produced,
+# `deploy.yml` publishes both the production tree and the dev-preview worktree before
+# the Pages upload, and `chicago-4d-bake.yml` publishes before it uploads the mirror the
+# smoke runs against. So /chicago/4d/walk/, /chicago/4d/js/changelog.js and
+# /chicago/4d/tickets.json still ship.
+#
+# `merge=generated` therefore names no path any more. The driver and its self-test stay
+# in the tree: they are the record of what was tried, and `tools/merge-generated-
+# selftest.mjs` still holds the behaviour if anything ever needs it again.
+
+# …AND THE FILE THAT LOOKS LIKE ONE OF THEM AND IS NOT.
+#
+# tools/dev-smoke-state.json sits in exactly the same conflict set, and treating it
+# the same way would have destroyed data. Measured before writing the rule: it is an
+# APPEND-ONLY register of smoke readings (T-0216), 62 of them; its rows carry NO
+# `id`, so T-0820's uniqueness check cannot see it; and NO step of check.sh reads it
+# at all. Nothing regenerates it and nothing would notice a merge throwing half of
+# it away. #905 resolved one lap by taking dev's side and said so — correct for one
+# lap, wrong as a standing rule, because a reading is evidence that a gate was run
+# on a tree and evidence is not regenerable.
+#
+# So this one gets a union of WHOLE READINGS — ours in ours' order, then theirs'
+# that ours does not already hold, deduplicated on a canonical form that sorts keys
+# at every depth. Never a union of lines. It refuses, leaving ordinary conflict
+# markers, if either side is not the shape it knows.
+chicago/4d/tools/dev-smoke-state.json  merge=smokestate

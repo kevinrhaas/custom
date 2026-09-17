@@ -12,6 +12,27 @@
     "bare_soil_fraction": 0.55,
     "standing_water_fraction": 0.0
   },
+  "woody_stratum": {
+    "establishes_m": [
+      1.22,
+      2.32
+    ],
+    "measured_from": "metres above the summer-1835 water surface, as data/terrain/epochs/*/meta.json emits it",
+    "applies_to_roles": [
+      "shrub_low",
+      "thicket",
+      "tree"
+    ],
+    "confidence": "inferred",
+    "sources": [
+      "andreas_1884_v1",
+      "chicagology_prefire274",
+      "cowles_1901",
+      "mnfi_open_dunes",
+      "wright_1834"
+    ],
+    "note": "WHAT SEPARATES THE SANDY HILLS FROM THE ACTIVE SAND, recorded here because it was prose in this zone's own extent note and a renderer cannot read prose (T-1056). Andreas excepts \"the sandy hills near the lake\" from the North Division timber, and the exception is to the HILLS: chicagology_prefire274 describes \"the white sand hills both to the north and south\" and, separately, the long low sandy barrier ridge that deflected the river — two landforms, not one. z09_sand_prairie's extent note puts the relict-ridge belt at +7.6 to +9.5 ft above the water, so 7.6 ft (2.32 m) is the recorded floor of the ground the sources call a hill. The bar across the mouth is the other end: data/terrain/epochs/e1834_harbor_cut/terrain_spec.json islands[0] argues its crest to +4 ft (1.22 m) from a feature Fort Dearborn work parties trenched with hand tools between 1816 and 1828 and a February 1834 storm breached outright. Cowles 1901 reads this shore landform by landform: woody growth belongs to the STABILISED dune, and the active strand carries none. Ground the lake still reworks does not hold a sand cherry, a red-osier or a black-oak grub, so the woody stratum establishes across the interval between the two recorded elevations and not below it. THE TWO ENDS ARE RECORDED; THE SHAPE BETWEEN THEM IS NOT — no source states a step or a ramp, and the smooth ramp the renderers apply over this band is this project's own choice, admitted at docs/LIBERTIES.md L233. This is a bound on the WOODY stratum alone: the matrix, ground and forb records are what the dossier gives for the beach and the foredune and they are unchanged. IN THIS ZONE THE BOUND IS THE WHOLE PLANTED AREA. Measured on the committed e1834_harbor_cut heightfield at 5 m spacing, this zone WINS 1,653 land samples and 1,650 of them stand inside the traced sand bar, none higher than 1.58 m. The stabilised back-dune this record's 8c species were written for — sand cherry, S. cordata, red-osier, juniper and the three poplars — is west of E +1400 and belongs to z09_sand_prairie's box, so it is not modelled ground this zone reaches. The four shrub_low records and the three tree records therefore stand only where the bar rises toward the band, which is what \"low scrub in pockets\" means on a surface a storm overtops. The records are NOT withdrawn and no species is deleted: the community is right and the ground under it is a bar."
+  },
   "ground": {
     "rgb": [
       198,

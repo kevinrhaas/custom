@@ -675,6 +675,22 @@ async function getJSON(url) {
  */
 export async function createFrontage({
   dataBase, terrain, confidence = null, problems = [],
+  /**
+   * T-1126 — and here the answer is split, because this layer draws two
+   * different kinds of thing off one record.
+   *
+   * The STANDING timber goes with its building: a board fence behind a shopfront
+   * and a hitching post at a trading frontage are furniture belonging to a
+   * business, and left standing around an empty lot they say a business was
+   * there in exactly the way the auction room's signboard did.
+   *
+   * The PLANK WALKS do not. A footway is ground, not furniture — it is laid
+   * along a street, the walker stands on it (`walkableDecks`), and a stretch of
+   * boards with no shop behind it claims nothing about the shop. Taking the walk
+   * away would put a hole in the surface a visitor is standing on to look at the
+   * hole in the town, which trades a false claim for a worse one.
+   */
+  hostMissing = () => false,
 } = {}) {
   const group = new THREE.Group();
   group.name = 'frontage';
@@ -698,7 +714,7 @@ export async function createFrontage({
     fences: [],
     census: {
       records: 0, walks: 0, crossings: 0, posts: 0, hitching: 0, lettered: 0,
-      fences: 0, decks: 0, refused: 0, meshes: 0,
+      fences: 0, decks: 0, refused: 0, orphaned: 0, meshes: 0,
       /** THE EDGE RULE (T-0460). `kerb` is how many lengths of string piece the
        *  layer laid down the sides of its walks; `kerbStep_m` is the largest
        *  height step between two consecutive lengths on one run, which is what
@@ -930,6 +946,7 @@ export async function createFrontage({
     // that face's own buffer beside the walk it stands behind; one with no
     // chunk falls back to the layer's shared mesh, exactly as a post does.
     for (const fence of record.fences ?? []) {
+      if (hostMissing(fence.belongs_to)) { out.census.orphaned += 1; continue; }
       const level = LEVEL[fence.confidence] ?? 1;
       const bucket = bufFor(standingChunk(record, fence), fence.belongs_to, true);
       const target = bucket ? bucket.buf : buf;
@@ -946,6 +963,7 @@ export async function createFrontage({
     // are one record each) falls back to the layer's shared mesh, exactly as it
     // always did.
     for (const post of record.posts ?? []) {
+      if (hostMissing(post.belongs_to)) { out.census.orphaned += 1; continue; }
       const level = LEVEL[post.confidence] ?? 1;
       const bucket = bufFor(standingChunk(record, post), post.belongs_to, true);
       const target = bucket ? bucket.buf : buf;

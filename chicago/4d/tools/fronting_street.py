@@ -184,9 +184,33 @@ def _by_flat_name() -> dict[str, str]:
     if "names" not in _cache:
         # 'The fort road' and 'The bank track' are not '<Name> Street' and the
         # corpus never prints them as an address.
-        _cache["names"] = {_flat(street["name_1835"]): street["id"]
-                           for street in streets()
-                           if (street.get("name_1835") or "").lower().endswith("street")}
+        # Sorted southernmost-first and claimed with setdefault, because two records can
+        # carry one name: T-0451's North Division lines are the committed South Division
+        # streets continued across the river, and the plat letters no name in any of them.
+        # An address printed as "Dearborn Street" is the South Division line — the reach
+        # the corpus advertises on — so the record reaching furthest south takes the name.
+        #
+        # T-0877 ADDED THE FIRST KEY, because "furthest south" was only ever a proxy for
+        # "the street the town walked on" and a rival appeared BELOW the town: Wright's
+        # School Section is a mile of ruled grid south of Madison, and it letters Clinton,
+        # Canal, Market, Wells, Clark and State on lines that reach a mile further south
+        # than the streets of those names. Measured before the fix, seating them moved
+        # 'Clark Street', 'Market Street', 'Wells Street' and 'the corner of South Water
+        # and Clark streets' off the town and onto unopened prairie. A record the town
+        # USED carries no `opened` flag at all — the twenty-eight streets of the 1830
+        # plats, the fort's two ways — and every survey line seated since is
+        # `opened: false`, "platted, unopened, unworn". A printed address is a place
+        # somebody walked to, so an unopened line never takes a name from a street that
+        # was open, whichever reaches further south. Within each group T-0451's rule is
+        # untouched, which is what keeps `dearborn` ahead of `dearborn_north`.
+        # tools/compile_register.py keys printed names the same way and says so there.
+        names: dict[str, str] = {}
+        for street in sorted(streets(),
+                             key=lambda r: (r.get("opened") is False,
+                                            min(p[1] for p in r["path_local_enu_m"]))):
+            if (street.get("name_1835") or "").lower().endswith("street"):
+                names.setdefault(_flat(street["name_1835"]), street["id"])
+        _cache["names"] = names
     return _cache["names"]
 
 

@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import math
 import re
@@ -109,7 +110,103 @@ WIDE_RANGE_YEARS = 12
 # and the two largest items in the tree are now named and ticketed rather than
 # discovered: the letter-list cohort at 2.54 MiB (T-0379, this) and the duplicated
 # changelog at 2.07 MiB, 7.3 % of the tree, which is T-0364 and is still unanswered.
-SITE_BUDGET_MB = 32
+#
+# 32 -> 36 ON 2026-09-05 (T-0593), AND IT IS THE THIRD CONSCIOUS RE-BUDGET RATHER THAN
+# A WEAKENED ASSERTION. Saying which one, as the note above requires: this is a
+# re-budget. Nothing was made cheaper to pass, nothing was moved out of the tree to duck
+# the number, and no reasoning was deleted to fit under it.
+#
+# WHAT EXHAUSTED 32, MEASURED ON `dev` AT 06a0a9ec. The published tree stands at
+# 33,553,488 bytes against a ceiling of 33,554,432 — 944 BYTES of headroom, which is
+# 0.003 % of the budget. That is not a margin; it is a wall that the next merge of any
+# kind walks into. A release entry alone costs about 5.4 KB, because the changelog is
+# published twice (below, and T-0364), so the budget was already spent for every ticket
+# in the queue before this one. T-0593 is simply the run that hit the wall, exactly as
+# T-0317 was at 25 and T-0379 at 28.
+#
+# WHAT THIS UNIT ADDS, AND WHY IT CANNOT BE TRIMMED INTO 944 BYTES. Re-dealing lot 7 of
+# block 16 from a D3 cottage to an H1 house publishes 22,285 bytes net: the new roof and
+# its sidecar in place of the old (+13,761), the yard fences and dooryard stems the
+# larger footprint re-derives (+911), the ruling L222 in liberties.json (+7,655), the
+# release entry in its two published copies (+5,414), and 7,404 bytes of sidecars that
+# were STALE ON DEV and that any PR touching compile_scene.py has to carry. Everything
+# in that list is either derived geometry or reasoning. The two prose items together are
+# 13,069 bytes against an overflow of 21,341, so deleting BOTH of them entirely — the
+# liberty that records the invention and the note that tells a visitor what changed —
+# would still leave the tree 8,272 bytes over. Going further would have meant deleting
+# reasoning rather than de-duplicating it, which is what the 28 -> 32 note refused, for
+# the same reason, and it is refused again here.
+#
+# WHAT SUPPORTS 36. The LFS clause at the top is still the real constraint and it is
+# about FORMAT: the tree holds plain binaries at 36 MiB exactly as it did at 25. Pages
+# allows 1 GB a site, so this is under 4 % of what the host permits, and
+# docs/RENDERING.md § the gate table has recorded a sanctioned raise to ~100 MB at H2
+# since the rendering plan was written. It restores 3.98 MiB of headroom — more than
+# either previous raise bought, 2.85 then 3.52 — which is the first raise in the three
+# to leave room for a year of releases rather than a season of them.
+#
+# WHAT WILL EXHAUST IT AGAIN, NAMED RATHER THAN DISCOVERED. The same two items the last
+# raise named, both still open and both now larger: the duplicated changelog is
+# 2,753,794 bytes, 8.2 % of the tree and the fastest-growing item in it because it grows
+# on every release rather than on every building (T-0364), and the letter-list cohort is
+# 2.54 MiB (T-0438). Answering T-0364 alone would return more than two thirds of what
+# this raise buys. Neither is answered here: a re-budget buys the time to answer them
+# and is not an answer, and folding either into a ticket about a dwelling on Lake Street
+# would be two units in one revert.
+# AND 36 IS SPENT, ON THE GROUND ITSELF — T-0464, 2026-09-13, the fourth run to hit the
+# wall after T-0317 at 25, T-0379 at 28 and T-0593 at 32. The pattern is the same and so
+# is the test: say what the unit adds, show it cannot be trimmed, and name what will
+# exhaust the next one.
+#
+# WHAT THIS UNIT ADDS. The owner asked for the shared south terrain to reach modern
+# Cermak Road so the 1812 evacuation corridor and the Prairie Avenue district have ground
+# to stand on. The box goes from 2 020 x 930 m to 2 020 x 4 200 m and the field from
+# 301 757 samples to 1 359 929, which publishes 2 116 344 more bytes of heightfield.bin
+# and 1 018 468 more of the terrain derivative: 2.99 MiB, and it is the GROUND. There is
+# no prose in it and no duplicate.
+#
+# WHY IT CANNOT BE TRIMMED. The ticket's acceptance is that a baked epoch covers
+# Madison-to-Cermak WITHOUT out-of-bounds fallback, so the field has to reach there at
+# the cell the renderer's sampler indexes; the apron, which is free, is exactly the
+# fallback the acceptance excludes. Two trims were made before asking for this raise and
+# they are already in the number above: the micro-relief texture is switched off south of
+# Madison Street, where nothing walks and 30 mm subtends a hundredth of a pixel, which
+# returned 807 KiB of payload and 9.10 MB of master; and the surface below Twelfth Street
+# is one evidenced row carried, not a computed one, which is what lets the planar dissolve
+# collapse it at all. What is left over the budget is 0.73 MB, and the cheapest thing that
+# could pay it is the changelog this tree still ships twice (2.04 MB in the walk copy's
+# place) — which is T-0364, open, and folding it into a ticket about terrain would be two
+# units in one revert, exactly as the 32 -> 36 note refused.
+#
+# WHAT SUPPORTS 40. Unchanged from the last raise and still the real constraint: the
+# clause at the top is about FORMAT, not size, and the tree holds plain binaries at 40 MiB
+# as it did at 25. Pages allows 1 GB a site; docs/RENDERING.md's gate table has recorded a
+# sanctioned raise to ~100 MB at H2 since the rendering plan was written. This restores
+# 3.27 MiB of headroom, in the band the last three raises bought (2.85, 3.52, 3.98).
+#
+# WHAT WILL EXHAUST IT AGAIN. T-0364's duplicated changelog, still the fastest-growing
+# item in the tree because it grows on every release; T-0438's letter-list cohort; and now
+# a third, which this unit created and should be said plainly: T-0466, the south-terrain
+# tiling and culling plan, is what makes a four-kilometre field affordable, and it sits
+# BELOW this ticket in the queue. The field arrived before the plan for carrying it.
+#
+# AND THE NUMBER MOVED AGAIN, 2026-09-16 (T-0727) — 40 -> 256, AS A RE-BUDGET, NOT A
+# WEAKENING. The whole-tree total is the wrong proxy for what a size budget defends:
+# measured on this day's tree, a first-time visitor downloads 7.223 MB to stand in
+# the 1835 street while the tree carries 38.87 MB — the 1,385 household cards are
+# 28 % of the tree and cost a first visit nothing until one is opened. The number
+# that defends the visitor is the BOOT PAYLOAD budget in docs/SITE-BUDGET.md §4
+# (12 MB, enforced by tools/measure_boot_payload.mjs --check); this cap becomes the
+# repository-hygiene guard it always was, set at a quarter of GitHub Pages' 1 GB
+# documented site limit so the tree cannot approach the platform wall by drift.
+# Raising it removes the recurring "pay for the budget out of the record" raises
+# (32 -> 36 -> 40, each bought with a doc edit); the honest guard on visitor cost
+# is the boot budget now.
+SITE_BUDGET_MB = 256
+# Warn at 90 % of it. See run_site_check for why this band exists (T-0722).
+SITE_WARN_FRACTION = 0.90
+# Identical files smaller than this are not worth a merge refusal (T-0722).
+SITE_DUPE_FLOOR = 64 * 1024
 
 CONFIDENCE = ("attested", "inferred", "reconstructed")
 SLUG = re.compile(r"^[a-z0-9_]+$")
@@ -1778,6 +1875,95 @@ def face_of(pts: list[tuple[float, float]], face: str) -> float:
     return {"west": min(es), "east": max(es), "south": min(ns), "north": max(ns)}[face]
 
 
+# The building's own four walls, named as docs/GLB-CONTRACT.md names the footprint
+# axes: polygon `u` runs right along the front and `v` runs back from it, so the wall
+# a facade bearing points out of is the max-`v` one. `face_of` above answers a
+# different question — where a placed shape's most-westerly point lands on the grid —
+# and the two are the same wall only when the building is square to the grid.
+FOOTPRINT_FACES = {"front": (1, max), "back": (1, min),
+                   "right": (0, max), "left": (0, min)}
+
+
+def footprint_face(phase: dict, face: str) -> tuple[tuple[float, float],
+                                                    tuple[float, float]] | None:
+    """The midpoint and outward normal of one named wall, in EPSG:26916 metres.
+
+    The same composition `world_footprint` makes, asked of one edge rather than the
+    whole ring, because a frontage is a claim about a WALL: "this house's front
+    stands 12.19 m off North Water Street" stays true when the house is rotated and
+    is not a claim about the polygon's westmost corner. The normal is the direction
+    that wall faces, which is what tells a frontage from a back yard.
+    """
+    pos = phase.get("position") or {}
+    poly = (phase.get("footprint") or {}).get("polygon") or []
+    if pos.get("utm_e") is None or pos.get("utm_n") is None or len(poly) < 3:
+        return None
+    axis, pick = FOOTPRINT_FACES[face]
+    other = 1 - axis
+    extreme = pick(p[axis] for p in poly)
+    on = [p for p in poly if abs(p[axis] - extreme) < 1e-6]
+    if len(on) < 2:
+        return None
+    mid = (min(p[other] for p in on) + max(p[other] for p in on)) / 2.0
+    u, v = (extreme, mid) if axis == 0 else (mid, extreme)
+    b = math.radians(float(pos.get("rotation_deg") or 0.0))
+    cos, sin = math.cos(b), math.sin(b)
+    point = (float(pos["utm_e"]) + u * cos + v * sin,
+             float(pos["utm_n"]) - u * sin + v * cos)
+    normal = {"front": (sin, cos), "back": (-sin, -cos),
+              "right": (cos, -sin), "left": (-cos, sin)}[face]
+    return point, normal
+
+
+def nearest_on_path(pt: tuple[float, float],
+                    path: list[tuple[float, float]]) -> tuple[float, tuple[float, float]]:
+    """(distance, foot) from a point to an open polyline, in metres.
+
+    Character for character the arithmetic in
+    `tools/generate_business_signboards.py::_nearest_on_path`, which has decided
+    which street a signboard faces since T-0459. It was a generator's private
+    helper and is now also a gate; the recipe did not change, only what may lean
+    on it.
+    """
+    x, y = pt
+    best = (float("inf"), (x, y))
+    for i in range(len(path) - 1):
+        x1, y1 = path[i]
+        x2, y2 = path[i + 1]
+        dx, dy = x2 - x1, y2 - y1
+        L2 = dx * dx + dy * dy
+        t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((x - x1) * dx + (y - y1) * dy) / L2))
+        fx, fy = x1 + t * dx, y1 + t * dy
+        d = math.hypot(x - fx, y - fy)
+        if d < best[0]:
+            best = (d, (fx, fy))
+    return best
+
+
+def committed_street_paths(base: Path, rep: Report) -> dict:
+    """`data/streets/1835.json`'s centrelines, reprojected to EPSG:26916.
+
+    The street records are stored in local ENU metres from `data/datum.json`'s
+    origin and the placements are stored in UTM; the offset between them is a
+    translation and nothing else, so this adds it once here rather than in every
+    caller. A missing datum or streets file is an error the caller reports against
+    the placement that asked for it.
+    """
+    datum = load_json(base / "datum.json", rep, required=False)
+    doc = load_json(base / "streets" / "1835.json", rep, required=False)
+    if not isinstance(datum, dict) or not isinstance(doc, dict):
+        return {}
+    e0, n0 = datum.get("origin_utm_e"), datum.get("origin_utm_n")
+    if e0 is None or n0 is None:
+        return {}
+    out: dict = {}
+    for st in doc.get("streets") or []:
+        path = [(float(e0) + float(p[0]), float(n0) + float(p[1]))
+                for p in st.get("path_local_enu_m") or []]
+        out[st.get("id")] = {"name": st.get("name_1835") or st.get("id"), "path": path}
+    return out
+
+
 def waterline_crossings(epoch_dir: Path, northing: float, rep: Report,
                         where: str) -> list[float]:
     """Eastings where the traced water boundary crosses a northing."""
@@ -1785,8 +1971,17 @@ def waterline_crossings(epoch_dir: Path, northing: float, rep: Report,
     if not isinstance(doc, dict):
         rep.error(where, f"no traced river at {epoch_dir.name} to meet")
         return []
+    # The forks window is not the whole river. `branches.geojson` carries the
+    # reaches traced OUTSIDE it — today the South Branch from the forks window's
+    # south edge to the School Section's south line (T-1071) — and a face that
+    # ends on the water down there meets a bank that lives in that file and
+    # nowhere else. It is optional: an epoch may have no branches traced yet.
+    docs = [doc]
+    more = load_json(epoch_dir / "branches.geojson", rep, required=False)
+    if isinstance(more, dict):
+        docs.append(more)
     out: list[float] = []
-    for ft in doc.get("features", []):
+    for ft in [f for d in docs for f in d.get("features", [])]:
         geom = ft.get("geometry") or {}
         if geom.get("type") != "Polygon":
             continue
@@ -1825,6 +2020,33 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
     declares `not_derivable` and owes a reason — three of the nine do, and their
     reasons are the honest ones: no surviving street here, a position stacked on
     another inferred position, an interpolation plus a free 40 m.
+
+    THE THREE METHODS, AND WHAT EACH RE-DERIVES.
+
+    - `platted_corner` — `control` names a junction in the control table and each
+      constraint names a `street`, a `kerb` and the `face` of the placed footprint
+      that stands on it. Re-derived: that face's grid coordinate against the control
+      stepped half a platted module (plus any `offset_m`) out to the named kerb.
+      Requires the street to have an `ew`/`ns` axis, because a kerb is found by
+      stepping along one.
+
+    - `traced_waterline` — `centreline` gives the axis and any declared variance from
+      control, `ends` the epoch and the faces that must land on it. Re-derived: the
+      variance, and that each named end meets the traced waterline.
+
+    - `street_frontage` (T-0946) — `frontage` names a `street` id in
+      `data/streets/1835.json`, the `face` of the building's own four walls that
+      stands on it, and the `setback_m` of that wall from the street's committed
+      centreline. Re-derived: the perpendicular distance from that wall's midpoint
+      to the nearest point on the committed path, to PLACEMENT_TOL_M, AND that the
+      street lies on the side the wall faces rather than behind it. This is the
+      method for a street that is not square to the grid, which is most of the north
+      bank: `north_water` is a derived offset curve from the traced bank (T-0307,
+      T-0447) running 41.4° east of north, so it has no axis to step a kerb along
+      and no control point can be hung on it. Before this method the whole bank
+      declared `not_derivable` — not because the readings were loose but because the
+      vocabulary had no term for them, and a placement nothing re-computes is a
+      placement two runs can land 36 m apart without either noticing (T-0947).
     """
     base = data_root or DATA
     doc = load_json(base / "traces" / "street_control.json", rep, required=False)
@@ -1888,6 +2110,7 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
                                             f"have to reproject the answer it is checking")
 
     checked = declared = 0
+    streets_utm: dict | None = None
     for name, st in sorted(structures.items()):
         sid = st.get("id", name)
         for ph in st.get("phases", []):
@@ -1910,9 +2133,55 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
                 if not (der.get("reason") or "").strip():
                     rep.error(where, "not_derivable without a reason — that is an undeclared "
                                      "placement with a label on it")
-                for k in ("control", "constraints", "centreline", "ends"):
+                for k in ("control", "constraints", "centreline", "ends", "frontage"):
                     if der.get(k):
                         rep.error(where, f"not_derivable but carries `{k}`")
+                continue
+
+            if method == "street_frontage":
+                fr = der.get("frontage") or {}
+                if streets_utm is None:
+                    streets_utm = committed_street_paths(base, rep)
+                st_rec = streets_utm.get(fr.get("street") or "")
+                if not st_rec:
+                    rep.error(where, f"fronts street '{fr.get('street')}', which is not a "
+                                     f"record in data/streets/1835.json")
+                    continue
+                if len(st_rec["path"]) < 2:
+                    rep.error(where, f"fronts '{fr.get('street')}', whose committed record "
+                                     f"carries no path to stand off")
+                    continue
+                face = fr.get("face")
+                if face not in FOOTPRINT_FACES:
+                    rep.error(where, f"names face '{face}', which is not one of the "
+                                     f"building's four walls")
+                    continue
+                setback = fr.get("setback_m")
+                if not isinstance(setback, (int, float)) or setback < 0:
+                    rep.error(where, "declares a frontage and no setback from the committed "
+                                     "centreline, which is the whole of the claim")
+                    continue
+                placed = footprint_face(ph, face)
+                if placed is None:
+                    rep.error(where, f"has no footprint edge at its {face} to stand on a "
+                                     f"frontage")
+                    continue
+                (px, pn), normal = placed
+                got, foot = nearest_on_path((px, pn), st_rec["path"])
+                # A back yard can be as close to a street as a front wall is, so the
+                # distance alone does not say "frontage". The street has to lie on the
+                # side the wall faces — the same test the signboard layer makes before
+                # it will stand a post out in front of a wall.
+                if (foot[0] - px) * normal[0] + (foot[1] - pn) * normal[1] <= 0:
+                    rep.error(where, f"declares its {face} wall on {st_rec['name']}, and "
+                                     f"that street lies behind the wall rather than in "
+                                     f"front of it — that is a back, not a frontage")
+                elif abs(got - float(setback)) > PLACEMENT_TOL_M:
+                    rep.error(where, f"its {face} wall stands {got:.2f} m from "
+                                     f"{st_rec['name']}'s committed centreline and declares "
+                                     f"{float(setback):.2f} ({got - float(setback):+.2f} m)")
+                else:
+                    checked += 1
                 continue
 
             cid = der.get("control")
@@ -1993,7 +2262,7 @@ def check_position_derivations(structures: dict, source_ids: set, rep: Report,
                 rep.error(where, f"unknown derivation method '{method}'")
 
     rep.note(f"placement derivations: {declared} declared, {checked} constraint(s) recomputed "
-             f"from data/traces/street_control.json")
+             f"from data/traces/street_control.json and data/streets/1835.json")
 
 
 def check_drawn_by(structures: dict, rep: Report) -> None:
@@ -3738,6 +4007,58 @@ def check_flora(source_ids: set, field, rep: Report, tally: dict) -> dict:
             if not _rgb_ok((z.get("ground") or {}).get(key)):
                 rep.error(where, f"ground.{key} must be [r,g,b] 0-255")
 
+        # T-1056 — THE WOODY STRATUM'S ELEVATION BAND, GATED WHERE IT IS RECORDED.
+        #
+        # The sand zones carry a bound on where woody growth establishes, because
+        # Andreas's timber exception is to the sandy HILLS and the bar across the
+        # mouth is not one. It is an ecological claim with two recorded ends, so it
+        # is checked exactly as an extent is: a real range, in metres above the
+        # summer water surface, over roles this project actually draws, and graded.
+        # An unrecognised role would be a bound that silently binds nothing, which
+        # is the one failure a reader could not see in the walkthrough.
+        ws = z.get("woody_stratum")
+        if ws is not None:
+            if not isinstance(ws, dict):
+                rep.error(where, "woody_stratum must be an object carrying establishes_m, "
+                                 "applies_to_roles and its own provenance")
+            else:
+                if not _num_range(ws.get("establishes_m"), -5.0, 50.0):
+                    rep.error(where, "woody_stratum.establishes_m must be [low, high] metres "
+                                     "above the summer water surface, low <= high, got "
+                                     f"{ws.get('establishes_m')!r}")
+                elif ws["establishes_m"][0] == ws["establishes_m"][1]:
+                    rep.error(where, "woody_stratum.establishes_m is a single elevation, so it "
+                                     "states a STEP; no source in this project gives one, and "
+                                     "the band exists to keep the invention visible")
+                roles = ws.get("applies_to_roles")
+                if not isinstance(roles, list) or not roles:
+                    rep.error(where, "woody_stratum.applies_to_roles must name the roles the "
+                                     "bound binds; a bound over no role binds nothing")
+                else:
+                    known = set(vocab.get("roles") or [])
+                    for r in roles:
+                        if known and r not in known:
+                            rep.error(where, f"woody_stratum.applies_to_roles names '{r}', "
+                                             f"which is not in the index's role vocabulary")
+                    bound = [sp for sp in z.get("species") or []
+                             if sp.get("role") in set(roles)]
+                    if not bound:
+                        rep.error(where, "woody_stratum binds roles this zone records no "
+                                         "species in, so the band is unreachable")
+                # `measured_from` and not `datum`: the token `datum` occurs in nine
+                # renderer files (data/datum.json is the scene's horizontal origin),
+                # and tools/measure_layer_reads.py matches a figure's name against
+                # the renderer text — so a field called `datum` reads as one the
+                # renderers access, which is the opposite of true here.
+                if not ws.get("measured_from"):
+                    rep.error(where, "woody_stratum.measured_from must say what the metres are "
+                                     "measured from; an elevation with no datum is a number")
+                check_attested(where, "woody_stratum", ws, source_ids, rep)
+                if ws.get("confidence") == "attested":
+                    rep.error(where, "woody_stratum cannot be attested: no source in this "
+                                     "project states an establishment elevation for lake sand. "
+                                     "It is reasoned from two recorded ones and must say so")
+
         ext = z.get("extent") or {}
         kind = ext.get("kind")
         if kind not in EXTENT_KINDS:
@@ -4389,7 +4710,9 @@ def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
 # arrived in September 1835 is not in a scene set on 1 July 1835, and the
 # failure mode is silent: nothing about a household record looks wrong when its
 # subject was still in Vermont. Arrival values carry a `precision` because the
-# sources give years far more often than days, and the rule is asymmetric on
+# sources give years far more often than days - and one of those precisions,
+# `either_of_two_days`, exists for a source that gives two and declines to pick.
+# The rule is asymmetric on
 # purpose - the EARLIEST day a value permits must not be after the scene date
 # (an error), and a value whose LATEST day is after it earns a warning rather
 # than a failure, because "1835" with no month is a real state of the evidence
@@ -4426,7 +4749,17 @@ RESIDENT_EVIDENCE_ROW_KEYS = ("list", "as_read", "locator", "record_id",
 # next person to reach for it learns why.
 RETIRED_GRADE_TERMS = ("recommended", "recommendation", "suggested")
 
-RESIDENT_PRECISION = ("day", "month", "season", "year", "not_later_than")
+RESIDENT_PRECISION = ("day", "either_of_two_days", "month", "season", "year",
+                      "not_later_than")
+
+# `either_of_two_days` is what a source looks like when it will not choose. Hurlbut
+# prints Hubbard as arriving at Chicago "on the last day of October or first day of
+# November" of 1818 - two adjacent days, offered as alternatives, and neither of them
+# preferred. Every coarser precision here is a LIE about that sentence in one of two
+# directions: `day` picks one of the two on the reader's behalf, and `month`, `season`
+# or `year` widen a claim that is already exact to within a day in order to contain
+# both. The value is the EARLIER of the two days and the bound runs to the day after
+# it, so the record keeps the source's own precision AND its own refusal.
 
 # A season, in days, for bounding a "spring of 1833" arrival. Deliberately
 # generous: the point is to bound the claim, not to date it.
@@ -4440,6 +4773,72 @@ RESIDENT_HOUSEHOLD_KEYS = ("id", "name", "division", "head", "arrival",
                            "party_size_on_arrival", "origin", "reason_for_coming",
                            "lives_at", "works_at", "present_on_scene_date", "persons",
                            "touches_removal", "review_required", "research_note")
+
+# --------------------------------------------------------------------------
+# kin: a relationship BETWEEN two households (T-0597)
+#
+# Until this existed the dataset could say everything about a person except who
+# they were related to, because `persons[].relationship` is a person's place
+# INSIDE one household and stops at its edge. So a kinship that crosses two
+# household records had nowhere to live but a free-text note, which is to say
+# nowhere a query can reach it — and the households this project most needs to
+# keep apart are exactly the ones a shared surname makes mergeable. Four
+# household cards in this dataset are Kinzies — six until T-0839 folded two
+# duplicate initials cards on 2026-09-05; `data/research/books/crosswalk.json`
+# already has to refuse "Mr. John Kinzie" the elder against John Harris Kinzie
+# his son, and a household set recording no Kinzie relationship at all offers
+# that refusal no support.
+#
+# A `kin` row is an ordinary graded claim block — `value` names the OTHER
+# person, so walk_attested checks its confidence, sources and note exactly as
+# it checks an arrival — plus three fields that make it a link: `person` (whose
+# relative this is, in THIS household), `household` (where the other person
+# lives) and `relation` (the term, from the closed set below).
+#
+# TWO RULES, AND BOTH EXIST BECAUSE HALF IS THE POINT. Hurlbut's note says HALF
+# brother — same father, different mothers — and that is the specific form a
+# summary flattens to "brother" the first time nobody is watching. So the
+# vocabulary keeps the degrees apart, and:
+#
+#   * a relation is only legal against its declared inverses, which for a
+#     sibling link is a sibling link OF THE SAME DEGREE. A half brother whose
+#     mirror row says plain brother is the flattening, caught.
+#   * every row is RECIPROCAL. A kinship written on one record and not the
+#     other is half a fact: the household you read second still says the two
+#     men were unrelated, which is the defect T-0597 was opened about.
+#
+# THE ASYMMETRIC RELATIONS, ADDED AS PAIRS (T-0734). Until this ticket the set
+# was siblings alone, on the rule that "a relation whose inverse is unknown
+# cannot be checked for reciprocity ... add the pair together or not at all".
+# That rule is kept and satisfied rather than relaxed: `husband` is declared
+# WITH `wife`, and the parent terms WITH the child terms, so every relation
+# below still has a mirror this file can demand and check. What made them
+# askable was the corpus — the St Cyr register marries six couples this town
+# holds both halves of, and buries an infant it names the father of, and the
+# household records had no way to say so. A relation is still refused outright
+# unless its inverse appears here; uncle/nephew and cousin remain undeclared
+# because nothing in the corpus has needed them yet.
+RESIDENT_KIN_KEYS = ("person", "relation", "household", "value", "confidence")
+
+# relation -> the relations its mirror row may carry. Sibling terms differ by the
+# SEX of the person named, not by the degree of the tie, so each degree accepts
+# both of its own terms and neither of the other's. A parent's mirror is a child
+# term and a child's mirror is a parent term, for the same reason: which of the
+# two words is right is a fact about the OTHER person's sex, and the register
+# that states the tie usually states that too.
+RESIDENT_KIN_INVERSES = {
+    "brother": ("brother", "sister"),
+    "sister": ("brother", "sister"),
+    "half_brother": ("half_brother", "half_sister"),
+    "half_sister": ("half_brother", "half_sister"),
+    "husband": ("wife",),
+    "wife": ("husband",),
+    "father": ("son", "daughter"),
+    "mother": ("son", "daughter"),
+    "son": ("father", "mother"),
+    "daughter": ("father", "mother"),
+}
+RESIDENT_KIN_RELATIONS = tuple(sorted(RESIDENT_KIN_INVERSES))
 
 
 def arrival_bounds(value, precision: str):
@@ -4455,6 +4854,8 @@ def arrival_bounds(value, precision: str):
         return None
     if precision == "day":
         return d, d
+    if precision == "either_of_two_days":
+        return d, d + dt.timedelta(days=1)
     if precision == "month":
         if d.month == 12:
             last = dt.date(d.year, 12, 31)
@@ -4567,6 +4968,10 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
     if not isinstance(index, dict):
         return {}
 
+    # Every way the manifest can disagree with the cards, collected rather than
+    # reported one at a time - see the single error this becomes at the end.
+    index_drift: list[str] = []
+
     scene_date = index.get("scene_date") or ""
     scene = parse_date(scene_date)
     if scene is None:
@@ -4576,7 +4981,7 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
 
     vocab = index.get("vocabulary") or {}
     for key in ("grades", "relationships", "occupations", "sexes", "presence", "divisions",
-                "arrival_precision"):
+                "arrival_precision", "kin_relations"):
         if not vocab.get(key):
             rep.error("residents index", f"vocabulary.{key} is missing - a renderer and the "
                                          f"evidence panel read this block to know the closed "
@@ -4585,6 +4990,13 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
         rep.error("residents index", f"vocabulary.grades must be exactly {list(RESIDENT_GRADES)} "
                                      f"and is {vocab.get('grades')!r}. The accuracy vocabulary "
                                      f"is a contract, not a preference")
+    if list(vocab.get("kin_relations") or []) != list(RESIDENT_KIN_RELATIONS):
+        rep.error("residents index", f"vocabulary.kin_relations must be exactly "
+                                     f"{list(RESIDENT_KIN_RELATIONS)} and is "
+                                     f"{vocab.get('kin_relations')!r}. A relation with no "
+                                     f"declared inverse cannot be checked for reciprocity, so "
+                                     f"the set a record may use is the set validate.py can "
+                                     f"mirror")
     if list(vocab.get("arrival_precision") or []) != list(RESIDENT_PRECISION):
         rep.error("residents index", f"vocabulary.arrival_precision must be exactly "
                                      f"{list(RESIDENT_PRECISION)} and is "
@@ -4598,6 +5010,7 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
     divisions = set(vocab.get("divisions") or [])
 
     households: dict = {}
+    kin_rows: list = []
     person_ids: dict = {}
     grade_totals: dict = {g: 0 for g in RESIDENT_GRADES}
     n_persons = 0
@@ -4772,6 +5185,54 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
         for k in ("lives_at", "works_at"):
             check_resident_link(where, k, h.get(k), structure_ids, rep)
 
+        # --- kin: the link out of this record -------------------------------
+        # Shape and local resolution here; the other end is checked after the
+        # loop, because a kinship may name a household this pass has not loaded
+        # yet and a forward reference is not an error.
+        kin = h.get("kin")
+        if kin is not None and not isinstance(kin, list):
+            rep.error(where, "kin must be a list of relationship rows")
+        elif kin:
+            own_person_ids = {p.get("id") for p in persons}
+            for i, k in enumerate(kin):
+                kwhere = f"{where}/kin[{i}]"
+                if not isinstance(k, dict):
+                    rep.error(kwhere, "a kin row must be an object")
+                    continue
+                for key in RESIDENT_KIN_KEYS:
+                    if key not in k:
+                        rep.error(kwhere, f"missing required key '{key}'")
+                rel = k.get("relation")
+                if rel not in RESIDENT_KIN_RELATIONS:
+                    rep.error(kwhere, f"relation '{rel}' is not one of "
+                                      f"{list(RESIDENT_KIN_RELATIONS)} - the declared set is "
+                                      f"the set whose inverse this file knows, and a relation "
+                                      f"whose inverse is unknown cannot be checked for "
+                                      f"reciprocity")
+                if k.get("person") not in own_person_ids:
+                    rep.error(kwhere, f"person '{k.get('person')}' is not a person in this "
+                                      f"household; a kin row says who in HERE the relative "
+                                      f"belongs to")
+                other_hid = k.get("household")
+                if not (isinstance(other_hid, str) and other_hid.strip()):
+                    rep.error(kwhere, "a kin row's 'household' must name a household id in "
+                                      "this dataset. KIN IS INSIDE THE TOWN (T-0849): both "
+                                      "rules this block enforces are rules about the far end "
+                                      "- the inverse has to be legal and the mirror has to "
+                                      "exist - so a row with no far end is not a weaker kin "
+                                      "row, it is one with the whole checked part removed. A "
+                                      "relative who was never in this scene (a parent in "
+                                      "Montreal, a brother left in Vermont) is EVIDENCE, not "
+                                      "structure: write the name in the prose note of a field "
+                                      "the record already has, at that field's grade and under "
+                                      "that field's citation, the way every birthplace here is "
+                                      "written")
+                    continue
+                if other_hid == hid:
+                    rep.error(kwhere, "a kin row links two households; a relationship inside "
+                                      "one household is persons[].relationship")
+                kin_rows.append((hid, k, kwhere))
+
         if h.get("touches_removal") and not h.get("review_required"):
             rep.error(where, "touches_removal is true but review_required is false. AGENTS.md's "
                              "standing constraint: the final removal of the Potawatomi is the "
@@ -4797,27 +5258,74 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                              (h.get("present_on_scene_date") or {}).get("value")),
                             ("review_required", h.get("review_required"))):
             if entry.get(key) != actual:
-                rep.error("residents index", f"household '{hid}' {key} in the manifest "
-                                             f"({entry.get(key)!r}) disagrees with the record "
-                                             f"({actual!r}); the record is authoritative")
+                index_drift.append(f"household '{hid}' {key} in the manifest "
+                                   f"({entry.get(key)!r}) disagrees with the record "
+                                   f"({actual!r})")
         if entry.get("persons") != len(persons):
-            rep.error("residents index", f"household '{hid}' persons {entry.get('persons')!r} "
-                                         f"disagrees with the {len(persons)} in the record")
+            index_drift.append(f"household '{hid}' persons {entry.get('persons')!r} "
+                               f"disagrees with the {len(persons)} in the record")
         if entry.get("grades") != local_grades:
-            rep.error("residents index", f"household '{hid}' grades {entry.get('grades')!r} "
-                                         f"disagrees with the record's {local_grades!r}")
+            index_drift.append(f"household '{hid}' grades {entry.get('grades')!r} "
+                               f"disagrees with the record's {local_grades!r}")
         households[hid] = h
+
+    # --- kin: the far end, and the reciprocity rule -------------------------
+    # Every household is loaded by now, so a row can be resolved and, more to
+    # the point, its mirror can be demanded. A kinship written on one record
+    # only leaves the other record still saying the two people were unrelated,
+    # which is exactly the state T-0597 was opened about.
+    written = {(hid, k.get("person"), k.get("household"), k.get("value")): k.get("relation")
+               for hid, k, _ in kin_rows}
+    for hid, k, kwhere in kin_rows:
+        other_hid, other_pid = k.get("household"), k.get("value")
+        other = households.get(other_hid)
+        if other is None:
+            rep.error(kwhere, f"household '{other_hid}' does not resolve in "
+                              f"data/residents/households/")
+            continue
+        if other_pid not in {p.get("id") for p in other.get("persons") or []}:
+            rep.error(kwhere, f"'{other_pid}' is not a person in household '{other_hid}'")
+            continue
+        mirror = written.get((other_hid, other_pid, hid, k.get("person")))
+        if mirror is None:
+            rep.error(kwhere, f"household '{other_hid}' does not carry the matching row. A kin "
+                              f"claim is reciprocal: write it on both records or on neither, "
+                              f"because the record that omits it still reads as no "
+                              f"relationship at all")
+        elif mirror not in RESIDENT_KIN_INVERSES.get(k.get("relation"), ()):
+            rep.error(kwhere, f"this row says '{k.get('relation')}' and the matching row in "
+                              f"'{other_hid}' says '{mirror}'. The degree of a tie is not a "
+                              f"matter of which end you read it from - a HALF brother whose "
+                              f"mirror says brother is the flattening this check exists to "
+                              f"catch")
 
     counts = index.get("counts") or {}
     if counts.get("households") != len(households):
-        rep.error("residents index", f"counts.households {counts.get('households')!r} "
-                                     f"disagrees with the {len(households)} loaded")
+        index_drift.append(f"counts.households {counts.get('households')!r} "
+                           f"disagrees with the {len(households)} loaded")
     if counts.get("persons") != n_persons:
-        rep.error("residents index", f"counts.persons {counts.get('persons')!r} disagrees with "
-                                     f"the {n_persons} in the records")
+        index_drift.append(f"counts.persons {counts.get('persons')!r} disagrees with "
+                           f"the {n_persons} in the records")
     if counts.get("by_grade") != grade_totals:
-        rep.error("residents index", f"counts.by_grade {counts.get('by_grade')!r} disagrees "
-                                     f"with the records' {grade_totals!r}")
+        index_drift.append(f"counts.by_grade {counts.get('by_grade')!r} disagrees "
+                           f"with the records' {grade_totals!r}")
+
+    # ONE FAULT, ONE SENTENCE, AND IT NAMES THE FIX (T-0715). Every disagreement
+    # collected above has the same cause - the manifest is DERIVED from the cards,
+    # and some pass left behind a row it did not own - and reporting them one per
+    # household turned a single stale write into nineteen errors that named no
+    # remedy between them. tools/rebuild_resident_index.py is the derivation and
+    # tools/check.sh re-runs it; this is the diagnosis, not the gate.
+    if index_drift:
+        shown = index_drift[:12]
+        more = ("" if len(index_drift) == len(shown)
+                else f"; ... and {len(index_drift) - len(shown)} more")
+        rep.error("residents index",
+                  "the manifest is DERIVED from data/residents/households/*.json and no "
+                  f"longer matches them on {len(index_drift)} point(s); the records are "
+                  "authoritative. Re-derive it with `python3 "
+                  "tools/rebuild_resident_index.py --write`. What disagrees: "
+                  + "; ".join(shown) + more)
 
     # The researched-and-excluded half. Same standard as data/exclusions.json:
     # a finding that a person is NOT in this scene is a claim and owes a reason.
@@ -5404,12 +5912,50 @@ def run_site_check(rep: Report) -> None:
     if not site.exists():
         rep.note("site check: nothing published yet")
         return
-    total = sum(p.stat().st_size for p in site.rglob("*") if p.is_file())
+    files = [p for p in site.rglob("*") if p.is_file()]
+    total = sum(p.stat().st_size for p in files)
     mb = total / (1024 * 1024)
     if mb > SITE_BUDGET_MB:
         rep.error("site", f"published tree is {mb:.1f} MB, over the {SITE_BUDGET_MB} MB budget — "
-                          f"GitHub Pages cannot serve Git LFS objects, so this has to stay lean")
-    rep.note(f"site check: published tree {mb:.2f} MB of {SITE_BUDGET_MB} MB budget")
+                          f"GitHub Pages cannot serve Git LFS objects, so this has to stay lean. "
+                          f"`python3 tools/site_budget.py` says where the bytes are (T-0722)")
+    elif mb > SITE_BUDGET_MB * SITE_WARN_FRACTION:
+        # A budget with no slack fails the NEXT PR either way, and until T-0722
+        # nothing said so until it was already too late: dev reached 31.999 MB of
+        # 32 in silence, and the run that discovered it was a run whose finished
+        # work could not merge. This band is the warning that was missing — it
+        # cannot stop a merge, and it is not meant to; it is meant to reach the
+        # queue while there is still room to answer it.
+        rep.warn("site", f"published tree is {mb:.2f} MB — {100 * mb / SITE_BUDGET_MB:.0f} % of the "
+                         f"{SITE_BUDGET_MB} MB budget, {SITE_BUDGET_MB - mb:.2f} MB left. Print "
+                         f"`python3 tools/site_budget.py` and open a ticket before it is a wall")
+    rep.note(f"site check: published tree {mb:.2f} MB of {SITE_BUDGET_MB} MB budget "
+             f"({SITE_BUDGET_MB - mb:.2f} MB headroom)")
+
+    # THE SAME BYTES, SHIPPED TWICE — T-0722. The mirror carried the 1.31 MB
+    # changelog under two URLs for as long as both paths existed, which is 4.1 % of
+    # the budget spent on a copy, growing at twice the rate of the record. Nothing
+    # noticed, because the only question ever asked of this tree was its total.
+    #
+    # A duplicate is not a judgement call the way a large file is: one of the two is
+    # the file and the other is waste, and the answer is always a re-export, a
+    # redirect or a deletion. So this refuses rather than warns. The floor keeps it
+    # about payload rather than about tidiness — small identical files (an empty
+    # index, a shared stub) are not what this is for.
+    by_hash: dict[str, list[Path]] = {}
+    for f in files:
+        if f.stat().st_size < SITE_DUPE_FLOOR:
+            continue
+        by_hash.setdefault(hashlib.sha256(f.read_bytes()).hexdigest(), []).append(f)
+    for paths in by_hash.values():
+        if len(paths) < 2:
+            continue
+        size = paths[0].stat().st_size
+        names = ", ".join(sorted(p.relative_to(site).as_posix() for p in paths))
+        rep.error("site", f"{len(paths)} files in the published tree are byte-identical at "
+                          f"{size / 1024:.0f} KB each — {names}. That is "
+                          f"{size * (len(paths) - 1) / 1048576:.2f} MB of the budget spent on a "
+                          f"copy. Publish one and re-export or redirect the others (T-0722)")
     # Only page directories need an index.html; asset and data directories are
     # fetched by explicit path and are never a bare URL a visitor lands on.
     def is_page_dir(d: Path) -> bool:

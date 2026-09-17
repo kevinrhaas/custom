@@ -1,7 +1,7 @@
 ---
 id: T-0388
 title: Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
+closed: 2026-09-09
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: stale: the three layers were regenerated in #541 (T-0350) and verify on dev; twin of T-0377
 needs_bake: false
+closed_at: 2026-09-10T04:20:09.168Z
+claimed_run: null
 ---
 
 Three derived records have drifted from their own generators on an unmodified dev, so every branch's gate is red.

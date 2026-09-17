@@ -65,6 +65,9 @@
  */
 
 import { citationItems, escapeHtml } from './citations.js';
+// The agency relation, rendered by the module that owns it — one rendering of a
+// holding for the building card and the person card both (T-1041).
+import { agencySectionHtml, loadAgencies } from './agencies.js';
 
 /** A closed-set token as a reader should see it: `tavern_keeper`. */
 export function words(token) {
@@ -133,6 +136,36 @@ function claimRow(label, value, block, citationsById) {
   const list = cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : '';
   return `<dt>${escapeHtml(label)}</dt>
     <dd>${swatch(block.confidence)}${escapeHtml(shown)}${note}${list}</dd>`;
+}
+
+/**
+ * The household's kin rows — a relationship that crosses to ANOTHER household
+ * record (T-0597).
+ *
+ * `persons[].relationship` is a person's place inside one household and stops
+ * at its edge, so until `kin` existed the only place a family tie between two
+ * records could go was a free-text note, where a reader may find it and a query
+ * never will. The row renders like any other graded claim, which is the whole
+ * argument: the tie carries its confidence swatch, its reasoning and its
+ * citations exactly as an arrival does, because it is exactly as much of a
+ * claim as an arrival is.
+ *
+ * The far person and household are shown as their ids, humanised the same way
+ * the collapsed summary humanises a household id. The card holds ONE record —
+ * the others are fetched only when their own row is opened — so printing a
+ * neighbour's display name here would mean either a fetch per kin row or a
+ * denormalised copy that can go stale, and the manifest's rule is that a copy
+ * which can disagree with its record does not get made.
+ */
+function kinRows(hh, citationsById) {
+  const kin = Array.isArray(hh.kin) ? hh.kin : [];
+  return kin.map((k) => claimRow(
+    'Related to',
+    `${words(k.person)} is the ${words(k.relation)} of ${words(k.value)}, `
+      + `in the ${words(String(k.household ?? '').replace(/^hh_/, ''))} household`,
+    k,
+    citationsById,
+  )).join('');
 }
 
 /**
@@ -313,12 +346,18 @@ function laterDirectoryHtml(found, citationsById) {
       <br><span class="res-why">Printed page ${escapeHtml(String(e.printed_page))}, entry ${
         escapeHtml(e.claim_id)}.</span></li>`).join('');
     const holds = (a.holds || []).map((c) => (c === 'occupation' ? 'a trade' : 'a street'));
+    // T-0987 stretch 6: a split is refused per FIELD, so the chip names which of the two
+    // does not cross rather than saying it of the whole line. `split_refused` maps a
+    // field to a clause key; the clause itself is on the ruling, in the ledger.
+    const noCross = Object.keys(a.split_refused || {}).sort()
+      .map((c) => (c === 'occupation' ? "the trade's split" : "the street's split"));
     return `<dt>Found again in ${escapeHtml(a.title)}</dt>
       <dd>${swatch(null)}<span class="res-chip res-research">${
         escapeHtml(words(a.match_status))}</span>${
         holds.length
           ? `<span class="res-chip res-research">${escapeHtml(String(a.year))} holds ${
-              escapeHtml(holds.join(' and '))}${a.parse_carries ? '' : ', and its parse does not cross'}</span>`
+              escapeHtml(holds.join(' and '))}${noCross.length
+                ? `, and ${escapeHtml(noCross.join(' and '))} does not cross` : ''}</span>`
           : ''}
         ${lines ? `<ul class="res-candidates">${lines}</ul>` : ''}
         <span class="res-why">${escapeHtml(a.match_rule)}</span></dd>`;
@@ -349,7 +388,8 @@ function laterClaimHtml(block, citationsById) {
   };
   return one(block.occupation_later, 'A trade printed against this name')
     + one(block.address_later, 'An address printed against this name')
-    + backProjectionHtml(block.back_projection);
+    + backProjectionHtml(block.back_projection)
+    + residenceBackProjectionHtml(block.residence_back_projection, citationsById);
 }
 
 /**
@@ -399,6 +439,52 @@ function backProjectionHtml(bp) {
   return `<dt>${escapeHtml(label)}</dt>
     <dd>${chip}${escapeHtml(where)}${carried}${clause}
       <br><span class="res-why">${escapeHtml(bp.note)}</span></dd>`;
+}
+
+/**
+ * And the same question asked about a HOME (T-0669), which is a different question and
+ * so gets a different row rather than a wider one.
+ *
+ * `docs/RESIDENCE-BACK-PROJECTION.md` is L218's mechanism aimed at where a man slept:
+ * a street the volume prints as `res` or `bds`, read backwards and carried as the
+ * household's street FACE. It departs from the business rule in two places, and both
+ * are visible here. A home needs no attested trade — everybody the town holds lived
+ * somewhere in it — which is why forty-four of these forty-eight belong to people the
+ * 1835 papers give no trade and the business pass refused before it ever asked about
+ * their houses. And a home never reaches a POINT, not even where the volume prints a
+ * corner: that corner hangs off a street number from a grid 1835 did not have.
+ *
+ * BOTH ROWS CAN APPEAR ON ONE CARD, and that is deliberate. One printed address can
+ * carry two rulings because two policies asked two questions of it, and a card showing
+ * only the second would leave a reader wondering what became of the first.
+ */
+function residenceBackProjectionHtml(rp, citationsById) {
+  if (!rp) return '';
+  const placed = rp.outcome === 'placed';
+  const label = {
+    placed: 'That home address was read backwards, and here is what it reaches',
+    already_better_placed: 'Not read backwards — something better already houses him',
+  }[rp.outcome] || 'That home address was refused, and here is why';
+  // `rp.placement` is always `face` and is read rather than assumed: the day this
+  // policy grows a second unit, the row says so instead of the prose lying.
+  const where = placed
+    ? `${rp.value} — the ${words(rp.placement)}, and nothing narrower`
+    : 'no position taken';
+  const kind = rp.kind
+    ? `<span class="res-chip res-research">${escapeHtml(
+      rp.kind === 'boards' ? 'printed as a lodging' : 'printed as a residence')}</span>` : '';
+  const carried = rp.read_back_years
+    ? `<span class="res-chip res-research">${escapeHtml(String(rp.read_back_years))} years back, from ${
+      escapeHtml(String(rp.describes_date))}</span>` : '';
+  const clause = rp.clause
+    ? `<span class="res-chip res-research">clause ${escapeHtml(String(rp.clause))}</span>` : '';
+  // A chip only where there is a claim to grade, for the reason the row above gives.
+  const chip = placed ? swatch(rp.confidence) : '';
+  const cites = (rp.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  return `<dt>${escapeHtml(label)}</dt>
+    <dd>${chip}${escapeHtml(where)}${kind}${carried}${clause}
+      <br><span class="res-why">${escapeHtml(rp.note)}</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
 }
 
 /**
@@ -500,6 +586,26 @@ function evidenceLadderHtml(person, citationsById, ladderRules) {
         them together.</span></dd>` : ''}`;
 }
 
+/**
+ * WHEN a trade is unrecorded, on the cards that hold one for a later year (T-0693).
+ *
+ * `none_recorded` was carrying two different states. "This project holds no trade for
+ * this person anywhere" and "it holds none for 1835 and a dated one for 1839" are not
+ * the same fact, and a reader could not tell them apart from the field the card reads
+ * out. `tools/qualify_later_trades.py` writes a `later_occupation` pointer on the second
+ * kind, derived wholly from the `directories` block already on the record; this renders
+ * it BESIDE the 1835 value and never in place of it. The 1835 claim is still
+ * `none_recorded`, still `reconstructed`, and still says nothing about the scene date.
+ */
+function laterOccupationHtml(later, citationsById) {
+  if (!later || !later.value) return '';
+  const cites = (later.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  return `<br><span class="res-why">Recorded for ${escapeHtml(String(later.describes_date))},
+    and not for 1835: ${swatch(later.confidence)}${escapeHtml(later.value)}.
+    ${escapeHtml(later.note || '')}</span>
+    ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}`;
+}
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules) {
   const occ = person.occupation || {};
@@ -511,14 +617,18 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
   return `<details class="lib res-person">
     <summary><span class="lib-title">${swatch(person.grade)}${escapeHtml(person.name || 'unnamed')}</span>
       <span class="res-role">${escapeHtml(words(person.relationship))}${
-        occ.value ? ` · ${escapeHtml(words(occ.value))}` : ''}</span></summary>
+        occ.value ? ` · ${escapeHtml(words(occ.value))}` : ''}${
+        occ.later_occupation ? ` for 1835 · a trade is printed for ${
+          escapeHtml(String(occ.later_occupation.describes_date))}` : ''}</span></summary>
     <dl class="lib-body">
       ${row('In the household as', words(person.relationship))}
       ${row('Sex', words(person.sex))}
       ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
       ${claimRow('Born', born && born.value, born, citationsById)}
       ${occ.value ? `<dt>Occupation</dt><dd>${swatch(occ.confidence)}${escapeHtml(words(occ.value))}${
+        occ.later_occupation ? ' for 1835' : ''}${
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
+        laterOccupationHtml(occ.later_occupation, citationsById)}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
       ${person.letter_list_only
@@ -580,7 +690,8 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 }
 
 /** The household record itself, rendered into an opened row. */
-export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules) {
+export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules,
+  agencies = null) {
   // T-0632's block on the record: `directories.note` states what a later volume is
   // worth and `directories.sources` names every one that met this household.
   const onRecord = hh.directories || {};
@@ -597,6 +708,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
       ${claimRow('Worked at', (hh.works_at || {}).value, hh.works_at, citationsById)}
       ${claimRow('Here on 1 July 1835', (hh.present_on_scene_date || {}).value,
         hh.present_on_scene_date, citationsById)}
+      ${kinRows(hh, citationsById)}
       ${hh.touches_removal
         ? `<dt>Touches the removal of 1835</dt><dd>Yes — read the standing constraint in
            <code>AGENTS.md</code>. This record is published as research; nothing about the
@@ -606,6 +718,7 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
     </dl>
     ${onRecord.note ? `<p class="res-why">${escapeHtml(onRecord.note)} Volumes cited on this record: ${
         escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
+    ${agencySectionHtml(agencies, 'household_id', hh.id, escapeHtml)}
     <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules)).join('')}</div>`;
 }
 
@@ -697,6 +810,13 @@ function vocabularyHtml(vocab) {
     ['Divisions of the town', vocab.divisions],
     ['How exact an arrival year is', vocab.arrival_precision],
     ['Places in a household', vocab.relationships],
+    // T-0597. A place in a household and a tie between two households are
+    // different questions, so they are two sets: `relationships` stops at the
+    // household's edge and `kin_relations` is what may cross it. Shown for the
+    // same reason every other set here is — the degrees are the point, and a
+    // reader who cannot see that `half_brother` and `brother` are both in the
+    // set cannot see that the dataset keeps them apart.
+    ['Ties between two households', vocab.kin_relations],
     // Shown because `sex` is shown. The census of T-0021 found this set reaching
     // nothing while the value it governs was on every person's card — five closed
     // sets listed and the sixth withheld, which reads as a set the dataset does
@@ -757,6 +877,11 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     if (!res.ok) throw new Error(`${rel}: ${res.status} ${res.statusText}`);
     return res.json();
   };
+
+  // The agency relation. A man who held one is named on his own town card, and a
+  // failure here leaves the block off rather than the card — `loadAgencies` returns
+  // null and `agencySectionHtml` renders nothing from a null.
+  const agencies = await loadAgencies({ dataBase, problems });
 
   let index;
   try {
@@ -892,8 +1017,10 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `than one. ${directoryCounts.carrying_an_occupation || 0} carry a trade the `
           + `1835 record never had and ${directoryCounts.carrying_an_address || 0} an `
           + `address, each written as its own year's and read back onto nobody; `
-          + `${directoryCounts.line_held_but_parse_refused || 0} hold only a line whose `
-          + `parse this project will not cross. ` : '')
+          + `${directoryCounts.split_refused_trades || 0} printed line(s) name a firm or `
+          + `a door where the trade would go and ${
+              directoryCounts.split_refused_addresses || 0} give an address that is only a `
+          + `ditto, so those fields do not cross and the line is quoted instead. ` : '')
       + `Nobody is drawn: this is the research, not a population.`;
     noteMount.removeAttribute('aria-busy');
   }
@@ -918,7 +1045,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
         if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson,
-          vocab.ladder_rules);
+          vocab.ladder_rules, agencies);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);
@@ -970,7 +1097,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
  * @param {string} sceneId which scene's citation join to read
  * @param {string[]} [problems] the shared collector
  * @returns {Promise<{citationsById: Map, researchByPerson: Map, directoryByPerson: Map,
- *   ladderRules: object[], getJson: (rel: string) => Promise<any>}>}
+ *   ladderRules: object[], agencies: object|null, getJson: (rel: string) => Promise<any>}>}
  */
 const residentJoinCache = new Map();
 export function loadResidentJoins(dataBase, sceneId, problems = []) {
@@ -986,7 +1113,7 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
     const researchByPerson = new Map();
     const directoryByPerson = new Map();
     let ladderRules = [];
-    const [joined, pilot, found, index] = await Promise.all([
+    const [joined, pilot, found, index, agencies] = await Promise.all([
       getJson(`sidecars/${sceneId}/residents_sources.json`).catch((err) => {
         problems.push(`people: ${err.message} — person cards are shown without their citations`);
         return null;
@@ -1003,6 +1130,9 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
         problems.push(`people: ${err.message} — the grading ladder's text is not shown on person cards`);
         return null;
       }),
+      // The agency relation. Its own loader, because it degrades the same way and
+      // pushes its own problem; a null here costs the block and not the card.
+      loadAgencies({ dataBase, problems }),
     ]);
     for (const [id, record] of Object.entries(joined?.citations || {})) citationsById.set(id, record);
     for (const review of pilot?.reviews || []) researchByPerson.set(review.person_id, review);
@@ -1010,7 +1140,7 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
       directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
     }
     ladderRules = index?.vocabulary?.ladder_rules || [];
-    return { citationsById, researchByPerson, directoryByPerson, ladderRules, getJson };
+    return { citationsById, researchByPerson, directoryByPerson, ladderRules, agencies, getJson };
   })();
   residentJoinCache.set(key, promise);
   return promise;

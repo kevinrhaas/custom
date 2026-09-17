@@ -5,27 +5,29 @@
   "domain": "church",
   "source_id": "st_marys_baptismal_register_1833_1835",
   "pass": "T-0503",
-  "what": "Every ADULT named in the eleven page images — parents, godparents, sponsors, witnesses, spouses and the officiant — held against the 849 people of data/residents/.",
-  "the_rule": "A merge needs a written rule naming BOTH spellings verbatim; a surname-only merge is always a refusal; a refusal is declared as explicitly as a merge. Nothing here mints or regrades a resident — T-0514 and T-0515 spend this file.",
+  "what": "Every ADULT named in the eleven page images — parents, godparents, sponsors, witnesses, spouses and the officiant — held against the 1287 people data/residents/ holds today. That count is DERIVED and it moves: the layer stood at 849 when T-0503 wrote this pass, and a crosswalk built against a layer that has since grown is stale rather than wrong — which is what T-1110 found and why --check now says which of the three it is.",
+  "the_rule": "A merge needs a written rule naming BOTH spellings verbatim; a surname-only merge is always a refusal; an EXACT name with no written rule is neither, and is held in exact_name_unruled[] rather than filed under a refusal whose stated ground is untrue of it; a refusal is declared as explicitly as a merge. Nothing here mints or regrades a resident — T-0514 and T-0515 spend this file.",
   "counts": {
     "adult_readings": 211,
     "distinct_adult_names": 143,
-    "residents_examined": 849,
+    "residents_examined": 1287,
     "all_places": {
-      "merged": 8,
-      "refused": 17,
-      "refused_surname_only": 5,
-      "no_candidate": 113
+      "merged": 9,
+      "refused": 20,
+      "exact_name_unruled": 0,
+      "refused_surname_only": 19,
+      "no_candidate": 95
     },
     "chicago_entries_only": {
-      "merged": 8,
-      "refused": 17,
-      "refused_surname_only": 1,
-      "no_candidate": 85
+      "merged": 9,
+      "refused": 19,
+      "exact_name_unruled": 0,
+      "refused_surname_only": 4,
+      "no_candidate": 79
     },
-    "chicago_adults_present_nowhere_else": 85
+    "chicago_adults_present_nowhere_else": 79
   },
-  "the_finding": "Of the 111 distinct adults the register names in its CHICAGO entries, 85 reach no surname in the residents layer at all. They are the French, Métis, Irish and German Catholic town that the poll books (which recorded only men who voted) and the post office's letter lists do not reach — and they are what the owner's ask was for.",
+  "the_finding": "Of the 111 distinct adults the register names in its CHICAGO entries, 79 reach no surname in the residents layer at all. They are the French, Métis, Irish and German Catholic town that the poll books (which recorded only men who voted) and the post office's letter lists do not reach — and they are what the owner's ask was for.",
   "chicago_adults_present_nowhere_else": [
     "Adam Schwartz",
     "Adelaide Bouchard",
@@ -48,7 +50,6 @@
     "Claudia Pierrette Choulet",
     "Edward Daly",
     "François Tranche",
-    "Frederick Daniel",
     "Geneviève Medera",
     "George David Roi",
     "Godfrey Coslet",
@@ -66,14 +67,12 @@
     "Jean Baptiste Lavigne",
     "Jean Pottier",
     "John Molony",
-    "John Welsh",
     "John Whistler",
     "John Wode",
     "Joseph Duplas",
     "Joseph Laframboise",
     "Joseph Pallet",
     "Josette Aspam",
-    "Josette Chevalier",
     "Josette Laframboise",
     "Josette Vieau",
     "Joséphine Guy",
@@ -82,7 +81,6 @@
     "Louis Trombere",
     "Louise Caroline Choulet",
     "Lucy Kennedy",
-    "Léon Bourassa",
     "M. Rowe",
     "Manqua Masqua",
     "Marguerite Laframboise",
@@ -104,22 +102,21 @@
     "Miranda",
     "N. Thob",
     "O'Waichiquoi",
-    "Patrick Carroll",
     "Patrick Wagon",
     "Paul Vieau",
     "Pierre Riffe",
-    "Solomon Juneau",
     "Thomas Forester",
     "Victoire Madera",
     "William Dird"
   ],
+  "exact_name_unruled": [],
   "counts_by_ruling": {
     "child_not_crosswalked": 56,
-    "merged": 18,
-    "no_candidate": 160,
+    "merged": 22,
+    "no_candidate": 130,
     "not_a_person": 8,
-    "refused": 28,
-    "refused_surname_only": 5
+    "refused": 33,
+    "refused_surname_only": 26
   },
   "merges": [
     {
@@ -189,6 +186,17 @@
       "rule": "The register writes \"Joseph Chandler\" and the residents layer writes \"Joseph Chandler\": forename and surname agree exactly. The resident is known from one return of uncalled-for letters at the Chicago post office in April 1834, printed 'Joveph Chandler'; the register puts a Joseph Chandler at a Chicago font on 9 November 1835 as godfather to the daughter of Catherine Chandler, which establishes a Chandler household in the town and is exactly the second source a letter-list name has always lacked. Two independent agreements — the name and the town — plus a household the letter list could not show. THE RESIDUAL RISK IS STATED: the name is not rare and no third attribute agrees.",
       "evidence": [
         "st_marys_bapt_1835_13_4_godfather"
+      ]
+    },
+    {
+      "into": "Solomon Juneau",
+      "from": "Solomon Juneau",
+      "rule": "The register writes \"Salomon Juneau\" in 1833 entry 5 and 1834 entry 17 and \"Solomon Juneau\" in 1833 entries 8 and 10 — the French and the English form of one forename, in one hand — and the residents layer writes \"Solomon Juneau\". THE SURNAME IS RARE HERE: one Juneau among the people the layer holds and one across every adult reading of this book. Three agreements stand beyond the name, and the two sources did not copy each other. FIRST, THE FAMILY THE REGISTER ITSELF GIVES HIM: he is the father of Marguerite by 'Josette Vieau' (1833 entry 5), he stands godfather WITH Josette Vieau (1833 entry 10), and he stands godfather to the daughter of Jacob Vieau (1833 entry 8). A husband, his wife and her kin named together across three entries is not a surname match. SECOND, THE TRADE AND THE TWO TOWNS: the resident card is minted from the Chicago Democrat, and the newspaper gazetteer's entity for this name carries the occupation merchant and the associated places Chicago AND Milwaukee — while this book's own reading notes name him 'Salomon Juneau of Milwaukee'. Milwaukee is the agreement; it is the one attribute that would separate a second Solomon Juneau and instead it joins them. THIRD, THE WINDOW CLOSES: his last reading here is 29 June 1834, and his advertisement is dated over his own name 'Chicago, July 2, 1834' — three days later. RESIDENCE IS NOT CLAIMED AND IS NOT IMPLIED. Sponsorship at a font is not residence, and `at_chicago` on a reading is about the ENTRY, not the man: he had every reason to stand godfather at Chicago and the record gives him none to sleep there. His own advertisement is the proof of it — he offers a corner parcel of Block 18 on South Water Street to lease and sends enquiries 'to the Printing office', which is how an owner lets ground he is not in the town to show. The resident card already carries present_on_scene_date 'uncertain'; THIS PASS DOES NOT DISTURB IT, and what is merged is an IDENTITY, not a residence.",
+      "evidence": [
+        "st_marys_bapt_1833_05_2_father",
+        "st_marys_bapt_1833_08_4_godfather",
+        "st_marys_bapt_1833_10_4_godfather",
+        "st_marys_bapt_1834_17_4_sponsor"
       ]
     }
   ],
@@ -354,6 +362,33 @@
         "data/research/church/records/st_marys_baptisms_1833_1835.json",
         "data/residents/households/"
       ]
+    },
+    {
+      "a": "Josette Chevalier",
+      "b": "Josette Chevalier",
+      "rule": "\"Josette Chevalier\" sponsors 1833 entries 11 and 12 and stands godmother at 1834 entry 12, and \"Josette Chevalier\" is in the residents layer as the bride of Mark Bourassa, married at Chicago in March 1835. THE NAMES AGREE EXACTLY AND THAT IS THE WHOLE OF WHAT AGREES. Everything else the pair shares — the parish, the priest, the town, the nineteen months — is a restatement of WHERE BOTH READINGS WERE FOUND, because both sides are ONE MANUSCRIPT: the layer's person is minted from st_cyr_marriage_005_2, the marriage list of the same Father St Cyr whose baptism book this is. That fails the test every merge above passes, which is two sources that did not copy each other. And this book holds a SECOND Chevalier presence — Joseph Chevalier, a child born at the Rivière au Sable and baptised at Chicago on 20 October 1833, and 'L. Chevalier', a witness of 6 June 1835 who is refused above — so a Chevalier kin group stands at Chicago from which a second Josette is not excluded by anything read here. SHE IS VERY PROBABLY ONE WOMAN. Probably is not a confidence grade, and writing the merge would put the word 'documented' over an inference. WHAT WOULD OVERTURN THIS: a source outside St Cyr's own register that names her, or an entry naming the same husband or household on both sides.",
+      "evidence": [
+        "data/research/church/records/st_marys_baptisms_1833_1835.json",
+        "data/residents/households/"
+      ]
+    },
+    {
+      "a": "Patrick Carroll",
+      "b": "Patrick Carroll",
+      "rule": "\"Patrick Carroll\" sponsors 1835 entry 1, the first entry of the scene year, and \"Patrick Carroll\" is in the residents layer as the groom of Mary Hogan, married at Chicago on 21 April 1835. Refused on the ground that refuses Josette Chevalier above, and more heavily. The names agree exactly and nothing else agrees that is independent of where the readings were found: the layer's person is minted from st_cyr_marriage_007_1, the marriage list of this book's own priest, so the shared parish and the eight weeks between 23 February and 21 April are ONE FACT and not two agreements. THE NAME IS ALSO A COMMON ONE: the layer holds six Patricks, and the priest's margin against this very entry reads one word, 'Irish' — this register exists to show that the Irish and French Catholic town was larger than the poll books knew, which is exactly why a second Patrick Carroll in it cannot be ruled out. John Murphy is MERGED above because a wife and a hotel stand beside his equally common name. Nothing stands beside this one.",
+      "evidence": [
+        "data/research/church/records/st_marys_baptisms_1833_1835.json",
+        "data/residents/households/"
+      ]
+    },
+    {
+      "a": "Mary Durbin",
+      "b": "Mary Durbin",
+      "rule": "\"Mary Durbin\" is the mother of 1834 entry 8 and \"Mary Durbin\" is in the residents layer. The names agree exactly and the two records CONTRADICT each other on the single attribute both carry — a husband. The register makes her the mother of Marguerite, daughter of Samuel Henriks, born 13 December 1833 and baptised on 25 May 1834; this register writes mothers under their MAIDEN names throughout (Josette Vieau, Adelaide Bouchard, Monique Nadeau), so its Mary Durbin is Samuel Henriks' wife. The layer's Mary Durbin is minted from st_cyr_marriage_002_2: the bride of JOHN SIMMONS, married five days earlier on 20 May 1834. One woman does not marry two men in five days and nothing read here widows her. NEITHER READING IS AT CHICAGO: the baptism is written at the South Fork of the Sangamon and the marriage at Bear Creek, Sangamon County, in the house the article's footnote calls Hy Durbin's — central Illinois, not Cook County. AND THE SURNAME IS THAT SETTLEMENT'S, NOT A PERSON'S: one week of the priest's journey names John, Philipp, Thomas, William, Elisabeth, Marguerite, Ann, Oro and Mary Durbin across six entries, and it repeats its forenames across generations — a Marguerite Durbin is BAPTISED AS A CHILD in 1834 entry 3 and a Marguerite Durbin stands as a MOTHER in 1834 entry 6. An exact name inside a clan that reuses its names, disagreeing on the husband, in a county this town is not in, is a refusal three times over. A SEPARATE FINDING, not this crosswalk's to fix: the layer's card reads that the church list 'names this person at Chicago by 20 May 1834' while the marriage record it cites says in capitals that it is not Chicago and 'is not evidence of anybody standing in Chicago'. That is a defect in the residents layer and it is filed as its own ticket.",
+      "evidence": [
+        "data/research/church/records/st_marys_baptisms_1833_1835.json",
+        "data/residents/households/"
+      ]
     }
   ],
   "adults": [
@@ -368,6 +403,7 @@
         "1835/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -382,6 +418,7 @@
         "1833/12"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -395,6 +432,7 @@
         "1833/15"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -408,6 +446,7 @@
         "1835/11"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -421,6 +460,7 @@
         "1834/7"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -435,6 +475,7 @@
         "1833/12"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -448,6 +489,7 @@
         "1833/15"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -460,8 +502,11 @@
       "entries": [
         "1834/5"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Ann Vinter",
@@ -474,6 +519,7 @@
         "1834/2"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -488,6 +534,7 @@
         "1835/11"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -502,6 +549,7 @@
         "1833/17"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -518,11 +566,16 @@
         "1834/19"
       ],
       "resident_surname_candidates": [
+        "Alexandre Beaubien",
+        "B Beaubien",
+        "Charles H Beaubien",
         "Col. Jean Baptiste Beaubien",
         "Josette LaFramboise Beaubien",
+        "John S Beaubien",
         "Madore Benjamin Beaubien",
         "Mark Beaubien"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -542,6 +595,7 @@
         "1833/7"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -555,6 +609,7 @@
         "1833/10"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -570,6 +625,7 @@
         "1835/13"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -583,6 +639,7 @@
         "1835/2"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -596,6 +653,7 @@
         "1835/3"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -609,6 +667,7 @@
         "1835/1"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -624,6 +683,7 @@
       "resident_surname_candidates": [
         "Jane Forster"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -638,8 +698,10 @@
       ],
       "resident_surname_candidates": [
         "John Murphy",
-        "Harriet Murphy"
+        "Harriet Murphy",
+        "N Murphy"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -655,6 +717,7 @@
       "resident_surname_candidates": [
         "Joseph Chandler"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -668,6 +731,7 @@
         "1835/2"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -681,6 +745,7 @@
         "1833/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -694,8 +759,11 @@
         "1835/12"
       ],
       "resident_surname_candidates": [
-        "John Miller"
+        "George Miller",
+        "John Miller",
+        "Samuel Miller"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -709,8 +777,10 @@
         "1835/9"
       ],
       "resident_surname_candidates": [
-        "Alonzo Murray"
+        "Alonzo Murray",
+        "Patrick Murray"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -724,6 +794,7 @@
         "1835/2"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -737,6 +808,7 @@
         "1834/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -750,11 +822,16 @@
         "1834/21"
       ],
       "resident_surname_candidates": [
+        "Alexandre Beaubien",
+        "B Beaubien",
+        "Charles H Beaubien",
         "Col. Jean Baptiste Beaubien",
         "Josette LaFramboise Beaubien",
+        "John S Beaubien",
         "Madore Benjamin Beaubien",
         "Mark Beaubien"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -769,6 +846,7 @@
         "1834/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -782,6 +860,7 @@
         "1835/7"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -795,6 +874,7 @@
         "1834/24"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -808,6 +888,7 @@
         "1834/17"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -824,6 +905,7 @@
         "Dr William Bradshaw Egan",
         "Emeline Egan"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "merged"
     },
     {
@@ -837,6 +919,7 @@
         "1835/14"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -851,8 +934,11 @@
         "1834/3",
         "1834/6"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Elisabeth Logdson",
@@ -866,8 +952,11 @@
         "1834/1",
         "1834/2"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Cery Logdson"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Elozina Bailly",
@@ -882,6 +971,7 @@
       "resident_surname_candidates": [
         "Joseph Bailly"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -895,6 +985,7 @@
         "1834/10"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -910,6 +1001,7 @@
       "resident_surname_candidates": [
         "Joseph Bailly"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -923,6 +1015,7 @@
         "1833/7"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -937,6 +1030,7 @@
         "1835/6"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -949,8 +1043,11 @@
       "entries": [
         "1835/12"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "B. Clevinger [?] Daniel"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Geneviève Medera",
@@ -963,6 +1060,7 @@
         "1835/3"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -977,6 +1075,7 @@
         "1835/11"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -990,6 +1089,7 @@
         "1834/20"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1003,6 +1103,7 @@
         "1834/22"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1018,6 +1119,7 @@
         "1834/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1031,6 +1133,7 @@
         "1835/2"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1044,6 +1147,7 @@
         "1835/14"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1057,6 +1161,7 @@
         "1833/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1070,6 +1175,7 @@
         "1835/13"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1083,6 +1189,7 @@
         "1833/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1100,6 +1207,7 @@
         "1834/24"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1113,6 +1221,7 @@
         "1833/18"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1125,8 +1234,11 @@
       "entries": [
         "1834/3"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Cery Logdson"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "James O'Marra",
@@ -1139,6 +1251,7 @@
         "1835/7"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1156,11 +1269,16 @@
         "1834/22"
       ],
       "resident_surname_candidates": [
+        "Alexandre Beaubien",
+        "B Beaubien",
+        "Charles H Beaubien",
         "Col. Jean Baptiste Beaubien",
         "Josette LaFramboise Beaubien",
+        "John S Beaubien",
         "Madore Benjamin Beaubien",
         "Mark Beaubien"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "merged"
     },
     {
@@ -1174,6 +1292,7 @@
         "1835/10"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1187,6 +1306,7 @@
         "1835/4"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1201,6 +1321,7 @@
         "1833/17"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1215,6 +1336,7 @@
         "1834/12"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1227,8 +1349,11 @@
       "entries": [
         "1834/1"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "John Johnson",
@@ -1241,8 +1366,12 @@
         "1834/6"
       ],
       "resident_surname_candidates": [
-        "Samuel Johnson"
+        "Lathrop Johnson",
+        "Samuel Johnson",
+        "Sanford Johnson",
+        "Seth Johnson"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused_surname_only"
     },
     {
@@ -1258,6 +1387,7 @@
       "resident_surname_candidates": [
         "Malzacher Louis"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused_surname_only"
     },
     {
@@ -1277,6 +1407,7 @@
       "resident_surname_candidates": [
         "Rev. John Mary Irenaeus St Cyr"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "merged"
     },
     {
@@ -1290,6 +1421,7 @@
         "1834/4"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1303,6 +1435,7 @@
         "1835/14"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1317,7 +1450,11 @@
       ],
       "resident_surname_candidates": [
         "John Murphy",
-        "Harriet Murphy"
+        "Harriet Murphy",
+        "N Murphy"
+      ],
+      "resident_exact_name_matches": [
+        "John Murphy"
       ],
       "adjudication": "merged"
     },
@@ -1332,8 +1469,10 @@
         "1835/9"
       ],
       "resident_surname_candidates": [
-        "Alonzo Murray"
+        "Alonzo Murray",
+        "Patrick Murray"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -1347,8 +1486,12 @@
         "1834/16",
         "1834/17"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Welsh",
+        "T Welsh"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "John Whistler",
@@ -1361,6 +1504,7 @@
         "1833/4"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1374,6 +1518,7 @@
         "1833/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1387,11 +1532,16 @@
         "1833/18"
       ],
       "resident_surname_candidates": [
+        "Alexandre Beaubien",
+        "B Beaubien",
+        "Charles H Beaubien",
         "Col. Jean Baptiste Beaubien",
         "Josette LaFramboise Beaubien",
+        "John S Beaubien",
         "Madore Benjamin Beaubien",
         "Mark Beaubien"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -1407,6 +1557,9 @@
       "resident_surname_candidates": [
         "Joseph Chandler"
       ],
+      "resident_exact_name_matches": [
+        "Joseph Chandler"
+      ],
       "adjudication": "merged"
     },
     {
@@ -1420,6 +1573,7 @@
         "1835/12"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1436,6 +1590,7 @@
         "1834/15"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1449,6 +1604,7 @@
         "1834/12"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1462,6 +1618,7 @@
         "1833/7"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1478,6 +1635,7 @@
         "1835/6"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1493,8 +1651,13 @@
         "1833/12",
         "1834/12"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Josette Chevalier"
+      ],
+      "resident_exact_name_matches": [
+        "Josette Chevalier"
+      ],
+      "adjudication": "refused"
     },
     {
       "name": "Josette Laframboise",
@@ -1511,6 +1674,7 @@
         "1834/22"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1526,10 +1690,17 @@
         "1834/18"
       ],
       "resident_surname_candidates": [
+        "Alexandre Beaubien",
+        "B Beaubien",
+        "Charles H Beaubien",
         "Col. Jean Baptiste Beaubien",
         "Josette LaFramboise Beaubien",
+        "John S Beaubien",
         "Madore Benjamin Beaubien",
         "Mark Beaubien"
+      ],
+      "resident_exact_name_matches": [
+        "Josette LaFramboise Beaubien"
       ],
       "adjudication": "merged"
     },
@@ -1546,6 +1717,7 @@
         "1833/5"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1559,6 +1731,7 @@
         "1835/10"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1571,7 +1744,10 @@
       "entries": [
         "1835/3"
       ],
-      "resident_surname_candidates": [],
+      "resident_surname_candidates": [
+        "Josette Chevalier"
+      ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -1585,6 +1761,7 @@
         "1833/6"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1598,6 +1775,7 @@
         "1833/5"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1611,6 +1789,7 @@
         "1835/5"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1626,6 +1805,7 @@
       "resident_surname_candidates": [
         "John P. Simpson"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused_surname_only"
     },
     {
@@ -1640,6 +1820,7 @@
         "1835/4"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1653,6 +1834,7 @@
         "1834/21"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1666,8 +1848,11 @@
         "1834/23",
         "1835/4"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mark Bourassa"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "M. Rowe",
@@ -1681,6 +1866,7 @@
         "1834/24"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1694,6 +1880,7 @@
         "1834/10"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1707,6 +1894,7 @@
         "1834/24"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1721,8 +1909,11 @@
         "1834/3",
         "1834/6"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Marguerite Laframboise",
@@ -1736,6 +1927,7 @@
         "1835/4"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1749,6 +1941,7 @@
         "1833/2"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1762,6 +1955,7 @@
         "1835/5"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1775,6 +1969,7 @@
         "1834/20"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1788,6 +1983,7 @@
         "1834/20"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1801,6 +1997,7 @@
         "1833/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1815,6 +2012,7 @@
         "1833/17"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1828,6 +2026,7 @@
         "1835/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1841,6 +2040,7 @@
         "1835/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1854,6 +2054,7 @@
         "1835/11"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1868,6 +2069,7 @@
         "1834/17"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -1884,9 +2086,16 @@
         "1834/19"
       ],
       "resident_surname_candidates": [
+        "Alexandre Beaubien",
+        "B Beaubien",
+        "Charles H Beaubien",
         "Col. Jean Baptiste Beaubien",
         "Josette LaFramboise Beaubien",
+        "John S Beaubien",
         "Madore Benjamin Beaubien",
+        "Mark Beaubien"
+      ],
+      "resident_exact_name_matches": [
         "Mark Beaubien"
       ],
       "adjudication": "merged"
@@ -1902,6 +2111,7 @@
         "1835/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1915,6 +2125,7 @@
         "1834/18"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1927,8 +2138,13 @@
       "entries": [
         "1834/8"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [
+        "Mary Durbin"
+      ],
+      "adjudication": "refused"
     },
     {
       "name": "Mary Murphy",
@@ -1942,8 +2158,10 @@
       ],
       "resident_surname_candidates": [
         "John Murphy",
-        "Harriet Murphy"
+        "Harriet Murphy",
+        "N Murphy"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -1957,6 +2175,7 @@
         "1833/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -1970,8 +2189,17 @@
         "1833/6"
       ],
       "resident_surname_candidates": [
-        "Elded Smith"
+        "E Kirby Smith",
+        "Elded Smith",
+        "George Smith",
+        "Jeremiah Smith",
+        "L W Smith",
+        "Lawrence Smith",
+        "Matthias Smith",
+        "William Smith",
+        "William V Smith"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -1984,8 +2212,11 @@
       "entries": [
         "1834/1"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Cery Logdson"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Meskal",
@@ -1998,6 +2229,7 @@
         "1834/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2011,6 +2243,7 @@
         "1835/5"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2024,6 +2257,7 @@
         "1835/6"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2037,6 +2271,7 @@
         "1833/2"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2050,6 +2285,7 @@
         "1835/3"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2063,11 +2299,16 @@
         "1833/16"
       ],
       "resident_surname_candidates": [
+        "Alexandre Beaubien",
+        "B Beaubien",
+        "Charles H Beaubien",
         "Col. Jean Baptiste Beaubien",
         "Josette LaFramboise Beaubien",
+        "John S Beaubien",
         "Madore Benjamin Beaubien",
         "Mark Beaubien"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused_surname_only"
     },
     {
@@ -2091,6 +2332,7 @@
         "1834/21"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -2104,6 +2346,7 @@
         "1834/16"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2117,6 +2360,7 @@
         "1833/10"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2129,8 +2373,11 @@
       "entries": [
         "1834/4"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Patrick Carroll",
@@ -2142,8 +2389,13 @@
       "entries": [
         "1835/1"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Patrick Carroll"
+      ],
+      "resident_exact_name_matches": [
+        "Patrick Carroll"
+      ],
+      "adjudication": "refused"
     },
     {
       "name": "Patrick Wagon",
@@ -2156,6 +2408,7 @@
         "1834/18"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2169,6 +2422,7 @@
         "1833/18"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2184,8 +2438,11 @@
         "1834/3",
         "1834/6"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Pierre Riffe",
@@ -2198,6 +2455,7 @@
         "1835/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2216,6 +2474,9 @@
         "Juliette Augusta Magill Kinzie",
         "Robert Allen Kinzie"
       ],
+      "resident_exact_name_matches": [
+        "Robert Allen Kinzie"
+      ],
       "adjudication": "merged"
     },
     {
@@ -2231,6 +2492,7 @@
         "1834/8"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2244,6 +2506,7 @@
         "1834/11"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2261,8 +2524,13 @@
         "1833/8",
         "1834/17"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Solomon Juneau"
+      ],
+      "resident_exact_name_matches": [
+        "Solomon Juneau"
+      ],
+      "adjudication": "merged"
     },
     {
       "name": "Susanna Johnson",
@@ -2275,8 +2543,12 @@
         "1834/5"
       ],
       "resident_surname_candidates": [
-        "Samuel Johnson"
+        "Lathrop Johnson",
+        "Samuel Johnson",
+        "Sanford Johnson",
+        "Seth Johnson"
       ],
+      "resident_exact_name_matches": [],
       "adjudication": "refused_surname_only"
     },
     {
@@ -2290,6 +2562,7 @@
         "1834/2"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2302,8 +2575,11 @@
       "entries": [
         "1834/5"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     },
     {
       "name": "Thomas Forester",
@@ -2316,6 +2592,7 @@
         "1835/1"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2329,6 +2606,7 @@
         "1834/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2343,6 +2621,7 @@
         "1834/12"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2360,6 +2639,7 @@
         "1834/9"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2373,6 +2653,7 @@
         "1833/6"
       ],
       "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "no_candidate"
     },
     {
@@ -2385,8 +2666,11 @@
       "entries": [
         "1834/5"
       ],
-      "resident_surname_candidates": [],
-      "adjudication": "no_candidate"
+      "resident_surname_candidates": [
+        "Mary Durbin"
+      ],
+      "resident_exact_name_matches": [],
+      "adjudication": "refused_surname_only"
     }
   ],
   "rulings": [
@@ -2563,8 +2847,8 @@
       "name": "Solomon Juneau",
       "role": "father",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "merged",
+      "rule": "Merged to a person in the residents layer; the rule is in merges[] and names both spellings verbatim."
     },
     {
       "record_id": "st_marys_bapt_1833_05_3_mother",
@@ -2691,8 +2975,8 @@
       "name": "Solomon Juneau",
       "role": "godfather",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "merged",
+      "rule": "Merged to a person in the residents layer; the rule is in merges[] and names both spellings verbatim."
     },
     {
       "record_id": "st_marys_bapt_1833_08_5_godmother",
@@ -2779,8 +3063,8 @@
       "name": "Solomon Juneau",
       "role": "godfather",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "merged",
+      "rule": "Merged to a person in the residents layer; the rule is in merges[] and names both spellings verbatim."
     },
     {
       "record_id": "st_marys_bapt_1833_10_5_godmother",
@@ -2827,8 +3111,8 @@
       "name": "Josette Chevalier",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1833_12_1_child",
@@ -2867,8 +3151,8 @@
       "name": "Josette Chevalier",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1833_13_1_child",
@@ -3131,24 +3415,24 @@
       "name": "Matthew Logdson",
       "role": "father",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_01_3_mother",
       "name": "Elisabeth Logdson",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_01_4_sponsor",
       "name": "John Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_01_5_sponsor",
@@ -3187,16 +3471,16 @@
       "name": "Philipp Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_02_5_sponsor",
       "name": "Elisabeth Logdson",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_03_1_child",
@@ -3211,32 +3495,32 @@
       "name": "Philipp Durbin",
       "role": "father",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_03_3_mother",
       "name": "Elisabeth Durbin",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_03_4_sponsor",
       "name": "James Logdson",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_03_5_sponsor",
       "name": "Marguerite Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_04_1_child",
@@ -3259,8 +3543,8 @@
       "name": "Oro Durbin",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_05_1_child",
@@ -3275,8 +3559,8 @@
       "name": "Thomas Durbin",
       "role": "father",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_05_3_mother",
@@ -3291,16 +3575,16 @@
       "name": "William Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_05_5_sponsor",
       "name": "Ann Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_06_1_child",
@@ -3323,24 +3607,24 @@
       "name": "Marguerite Durbin",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_06_4_sponsor",
       "name": "Philipp Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_06_5_sponsor",
       "name": "Elisabeth Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_07_1_child",
@@ -3403,8 +3687,8 @@
       "name": "Mary Durbin",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1834_08_4_sponsor",
@@ -3571,8 +3855,8 @@
       "name": "Josette Chevalier",
       "role": "godmother",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1834_13_1_subject",
@@ -3651,8 +3935,8 @@
       "name": "John Welsh",
       "role": "father",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_16_3_mother",
@@ -3691,8 +3975,8 @@
       "name": "John Welsh",
       "role": "father",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_17_3_mother",
@@ -3707,8 +3991,8 @@
       "name": "Solomon Juneau",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "merged",
+      "rule": "Merged to a person in the residents layer; the rule is in merges[] and names both spellings verbatim."
     },
     {
       "record_id": "st_marys_bapt_1834_17_5_sponsor",
@@ -3923,8 +4207,8 @@
       "name": "Léon Bourassa",
       "role": "father",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1834_23_3_mother",
@@ -4019,8 +4303,8 @@
       "name": "Patrick Carroll",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused",
+      "rule": "Refused against a named rival in the residents layer; the rule is in refusals[]."
     },
     {
       "record_id": "st_marys_bapt_1835_01_5_sponsor",
@@ -4115,8 +4399,8 @@
       "name": "Léon Bourassa",
       "role": "father",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1835_04_3_mother",
@@ -4435,8 +4719,8 @@
       "name": "Frederick Daniel",
       "role": "sponsor",
       "at_chicago": true,
-      "outcome": "no_candidate",
-      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
+      "outcome": "refused_surname_only",
+      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
     },
     {
       "record_id": "st_marys_bapt_1835_12_5_sponsor",

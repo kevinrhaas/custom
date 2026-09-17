@@ -13,7 +13,7 @@
   {
    "household": "hh_abbot_8_g",
    "person": "abbot_8_g",
-   "held_as": "8. G. Abbot",
+   "held_as": "[?] G. Abbot",
    "printed": "8.",
    "printings": [
     "Abbot, 8. G."
@@ -79,7 +79,7 @@
   {
    "household": "hh_gabbs_james_i1",
    "person": "gabbs_james_i1",
-   "held_as": "James I1. Gabbs",
+   "held_as": "James [?] Gabbs",
    "printed": "I1.",
    "printings": [
     "Gabbs, James I1."
@@ -193,7 +193,7 @@
   {
    "household": "hh_perry_a_8",
    "person": "perry_a_8",
-   "held_as": "A. 8. Perry",
+   "held_as": "A. [?] Perry",
    "printed": "8.",
    "printings": [
     "Perry A. 8."

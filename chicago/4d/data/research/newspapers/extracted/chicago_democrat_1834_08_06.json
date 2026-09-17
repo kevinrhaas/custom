@@ -861,7 +861,7 @@
     },
     {
       "kind": "building",
-      "normalized": "LOTS. FOR sale the [s]outh half of Lots No. 5 and [6 …] [in] Chicago, fronting on Ran[dolph street …] [for] cash. […] the property of Dr. Fin[ley …] JOHN H. KİNZIE. Ja[n]e 18, 1[834].",
+      "normalized": "LOTS. FOR sale the [s]outh half of Lots No. 5 and [6 …] [in] Chicago, fronting on Ran[dolph street …] [for] cash. […] the property of Dr. Fin[ley …] JOHN H. KINZIE. Ja[n]e 18, 1[834].",
       "locator": {
         "artifact_role": "primary",
         "issue_page": 1,
@@ -883,7 +883,7 @@
       },
       "entities": [
         {
-          "as_printed": "JOHN H. KİNZIE.",
+          "as_printed": "JOHN H. KINZIE.",
           "normalized": "John H. Kinzie",
           "role": "agent for the sale",
           "occupations": [
@@ -934,6 +934,49 @@
       "reading": "transcription_mediated",
       "id": "c016",
       "quote": "For Sale,\n[uncertain: LOTA]\nOT No 3, in Block 120, in the School Se\nFor terne ap FRUYNE: & CO"
+    },
+    {
+      "id": "c017",
+      "kind": "business",
+      "reading": "transcription_mediated",
+      "quote": "[uncertain: GULACHARD,]\nBonse and Land dgent.\nOTS purchased and Sold, or by commi\n12 Building Lota for aale; in the town an\n[uncertain: Lake it passe Dr. Implegire af the Ofice o]\n1 Houses to Let.\n1001 section.",
+      "normalized": "[…] [BLAN]CHARD, [H]ouse and Land [A]gent. [L]OTS purchased and Sold, or by commi[ssion.] 12 Building Lot[s] for [s]ale, in the town an[d] [Schoo]l section. […] Houses to Let. [En]quire a[t] the Ofice o[n] Lake [st. opposite Dr. Te]mple['s.]",
+      "locator": {
+        "artifact_role": "primary",
+        "issue_page": 1,
+        "column": 3,
+        "lines": [
+          320,
+          326
+        ],
+        "lines_of_claim": [
+          320,
+          321,
+          322,
+          323,
+          324,
+          325,
+          326
+        ],
+        "interleaved": false
+      },
+      "business": {
+        "name": "W. G. Blanchard",
+        "proprietors": [
+          "W. G. Blanchard"
+        ],
+        "trade": "house and land agent",
+        "goods": [],
+        "street": "Lake Street",
+        "placement": {
+          "class": "relative",
+          "anchor": "Dr. Temple's",
+          "offset_text": "[uncertain: Lake it passe Dr. Implegire af the Ofice o]",
+          "offset_normalized": "Lake [st. opposite Dr. Te]mple['s. En]quire a[t] the Ofice o[n]",
+          "street": "Lake Street"
+        }
+      },
+      "notes": "ONE IMPRESSION OF THE STANDING LAKE STREET LAND-AGENCY CARD. The Democrat sets this advertisement, word for word the same, in every issue from 1834-05-14 to 1834-10-01 — twenty consecutive weeks, eighteen of which set the line ‘purchased and Sold, or by commi[s]sion’ recognisably (T-1051). The card is identified by its copy and not by its display line: the same trade (‘House and Land Agent’), the same offer of building lots in the town and the School Section, the same houses to let, and the same office on Lake street opposite Dr. Temple's. The display line at 320 is transcribed '[uncertain: GULACHARD,]' — the transcription's own uncertainty mark, kept as it stands. It is consistent with the surname T-0408 read off the two non-fallback columns and it is NOT read as a witness to it here; nothing is supplied from it and no forename appears. THE PROPRIETOR'S NAME IS NOT READ HERE and none is supplied into the quote: the record's ‘W. G. Blanchard’ stands on T-0408's reading of the two impressions whose columns are NOT Tesseract fallbacks (1834-07-16 line 5527, 1834-09-17 line 3292) and on identity.json's declared firm merge, not on this impression. THE CARD IS SET OUT OF ORDER in this column: the address (324) stands above '1 Houses to Let.' (325) and '1001 section.' (326), which is 'School section.' The normalization puts them back in the card's order; the quote does not."
     }
   ]
 }

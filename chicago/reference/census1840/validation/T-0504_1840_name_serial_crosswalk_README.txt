@@ -52,14 +52,14 @@ COUNTS as of this build
 
   households in the extract          964
   distinct fingerprints among them   622
-  pages held                         39
-  pages carrying committed cells     21
-  lines read on those pages          636
-    unique                           254
-    ambiguous                        271
-    none                             111
-  serials attached                   254
-  contested and withdrawn            1
+  pages held                         63
+  pages carrying committed cells     27
+  lines read on those pages          813
+    unique                           324
+    ambiguous                        363
+    none                             126
+  serials attached                   324
+  contested and withdrawn            2
 
   printed  image           cols   lines  uniq   ambig  none
       221  33S7-9YYJ-2T   24/26   31    11     18     2
@@ -68,7 +68,7 @@ COUNTS as of this build
       234  33S7-9YYJ-99F  25/26   31    15     16     0
       225  33S7-9YYJ-9HY  26/26   31    11     12     8
       219  33S7-9YYJ-9K3  26/26   31    12     15     4
-      229  33S7-9YYJ-9M5  24/26   30    15     14     1
+      229  33S7-9YYJ-9M5  24/26   30     9     14     7
   unknown  33S7-9YYJ-9MX  24/26   31    10     21     0
       210  33S7-9YYJ-9RG  24/26   30    16     13     1
       215  33S7-9YYJ-9WF  25/26   31     2     15    14
@@ -83,6 +83,12 @@ COUNTS as of this build
       209  33SQ-GYYJ-93Y  26/26   31    24      7     0
       211  33SQ-GYYJ-97P  26/26   30    13     17     0
       208  33SQ-GYYJ-992  26/26   30    19      9     2
+      214  33SQ-GYYJ-BP   26/26   30    17     13     0
+      240  33SQ-GYYJ-CK   26/26   27    11     14     2
+      223  33SQ-GYYJ-LV   26/26   28    16     11     1
+      220  33SQ-GYYJ-P5   26/26   31    13     18     0
+      213  33SQ-GYYJ-RK   26/26   30     9     19     2
+      212  33SQ-GYYJ-RY   26/26   31    12     17     2
 
 REPRODUCTION BEFORE EXTENSION. Two prior readings of these pages exist and NEITHER is
 overwritten by this one.
@@ -99,10 +105,10 @@ overwritten by this one.
   PR #670 - the 210 rows recovered from the lost v4 workbook
     lines this pass has cells for   154 of 210
     agree                           15
-    DISAGREE                        30
-    this pass does not resolve      109
-  The 30 disagreements are NOT scattered. They fall into runs at a constant offset (page
-  229: 7 at -3, 6 at -2, 1 at +28, 1 at -1; page 231: 7 at +14, 5 at -17, 2 at -16, 1 at
+    DISAGREE                        23
+    this pass does not resolve      116
+  The 23 disagreements are NOT scattered. They fall into runs at a constant offset (page
+  229: 4 at -3, 2 at -2, 1 at +28, 1 at -1; page 231: 7 at +14, 5 at -17, 2 at -16, 1 at
   +11). #670's own `serial_confidence` column says how those serials were
   attached - "continuation totals + page block" - which is an argument from POSITION, and a
   run at a constant offset is what that produces when a block is started a row or two from
@@ -119,7 +125,7 @@ WHAT SHOULD HAPPEN NEXT
 1. Printed page 215 (image 33S7-9YYJ-9WF) is flagged in `pages_worth_a_second_look`: 12 of
    its 29 read lines carry a pattern no household in the extract carries. Either its
    families were enumerated outside the extract's boundary or its column grid is displaced.
-2. The pages whose names are read but whose age-band cells are not - printed 206, 222, 226, 230, 232, 238 -
+2. The pages whose names are read but whose age-band cells are not - printed 206, 222, 226, 230, 232, 233, 235, 238 -
    are worth about thirty more resolvable lines each. Reading their cells is the cheapest
    remaining gain here, and needs no new source.
 3. The ambiguous rows need a second axis, not a better read of the same columns. The 1839

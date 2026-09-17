@@ -13,9 +13,14 @@
 
 import * as THREE from 'three';
 
+/** The horizontal field of view the walk holds (Hor+ — the vertical follows the
+ *  aspect, see resize()). Named because the framing rule reads it too. */
+const H_FOV_DEG = 76;
+const DEG = Math.PI / 180;
+
 import { loadScene, resolveBases } from './scene-loader.js';
 import { createWorld } from './world.js';
-import { createTerrain, enuToWorld } from './terrain.js';
+import { createTerrain, enuToWorld, groundTiling } from './terrain.js';
 import { createBuildings } from './buildings.js';
 import { createConfidenceView } from './confidence.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
@@ -29,6 +34,8 @@ import { createHud } from './hud.js';
 import { createNavigation } from './navigation.js';
 import { createStreets } from './streets.js';
 import { createEnclosures } from './enclosures.js';
+import { loadOrdinanceLimits } from './ordinances.js';
+import { loadAgencies } from './agencies.js';
 import { createFencedGround } from './yards.js';
 import { createSignage } from './signage.js';
 import { createYardGoods } from './yard.js';
@@ -36,6 +43,7 @@ import { createFrontage } from './frontage.js';
 import { createFarMerge } from './far-merge.js';
 import { createWharves } from './wharves.js';
 import { createBoats } from './boats.js';
+import { createWells } from './wells.js';
 import { mountExclusions } from './exclusions.js';
 import { mountFauna } from './fauna.js';
 import { mountPlants } from './plants.js';
@@ -703,7 +711,7 @@ const BUDGET = { drawCalls: 215, triangles: DETAIL.full.triangles };
  * names — a painted band is two triangles where a bracket board is sixty, and
  * the lettering itself is a texture atlas rather than geometry.
  */
-const FURNITURE_LAYERS = ['enclosures', 'yard', 'frontage', 'wharves', 'boats'];
+const FURNITURE_LAYERS = ['enclosures', 'yard', 'frontage', 'wharves', 'boats', 'wells'];
 
 /**
  * THE NEAR PLANE, AND WHY IT MOVES WITH ALTITUDE — ROADMAP R-BUG1.
@@ -797,6 +805,9 @@ const api = {
   // census resolves, and null forever if it could not be read — the smoke asserts
   // the DISPLAYED figures against this, so a silent failure reads as one.
   census: null,
+  // T-1126: the town's roll call — indexed, expected to draw, and actually
+  // standing, with every absentee named. Null until the buildings are batched.
+  roll: null,
 };
 window.__chicago4d = api;
 
@@ -928,6 +939,38 @@ async function boot() {
   problems.push(...buildings.problems);
   scene3d.add(buildings.group);
 
+  /**
+   * T-1126 — FURNITURE FOLLOWS ITS HOST, and the failure is SAID OUT LOUD.
+   *
+   * Everything a business hung on its wall or stood on its footway is derived
+   * from the structure record, not from the structure's geometry, so when a GLB
+   * failed to fetch the board and the crates went on drawing and the building
+   * did not. The owner found exactly that on Dearborn Street: J. BATES, JR. /
+   * AUCTIONEER floating at head height over a lot-line fence with two crates in
+   * the grass beside it and no auction room between them. A reload had it back,
+   * which is what says the record is sound and the SCENE is what misbehaved.
+   *
+   * Two things follow, and both are here rather than in the layers because only
+   * this file knows both halves:
+   *
+   *   1. The layers below take `hostMissing` and take their furniture down with
+   *      the building. A failed load then degrades into an ABSENCE — an empty
+   *      lot, which is honest — instead of into a false scene, which is not.
+   *   2. The shortfall is reported UNCONDITIONALLY, at error level, naming every
+   *      structure. Everything this renderer knew about its own failures was
+   *      already in `problems`, and `problems` is printed behind `?debug=1` —
+   *      so a visitor, and the owner, got a finished-looking walk and silence.
+   *      A load failure nobody is told about cannot be measured, and a rate
+   *      nobody can measure is indistinguishable from an anomaly.
+   */
+  const hostMissing = (id) => (!!id && buildings.missing.has(id));
+  api.roll = buildings.roll;
+  if (buildings.roll.missing.length) {
+    console.error(`[4D Chicago] ${buildings.roll.standing} of ${buildings.roll.expected} `
+      + 'structures drew; the walk is SHORT of the town it is claiming. Missing: '
+      + buildings.roll.missing.join(', '));
+  }
+
   const footprints = footprintsFrom(loaded.registry);
   // The bridge decks: a walkable surface the heightfield does not carry — the
   // wall you are kept out of and the deck you stand on are the same polygon read
@@ -1001,7 +1044,7 @@ async function boot() {
   // either (T-0039). Mounted after the buildings it hangs on, and its height is
   // measured from the same wall base `buildings.js` anchors them at.
   const signage = await createSignage({
-    dataBase: bases.dataBase, terrain, confidence, problems,
+    dataBase: bases.dataBase, terrain, confidence, problems, hostMissing,
   });
   scene3d.add(signage.group);
   api.signage = signage;
@@ -1015,7 +1058,7 @@ async function boot() {
   // from the other end. Unlike a board, a barrel stands on the TERRAIN rather
   // than on the building's wall base — it is resting on the ground it is on.
   const yard = await createYardGoods({
-    dataBase: bases.dataBase, terrain, confidence, problems,
+    dataBase: bases.dataBase, terrain, confidence, problems, hostMissing,
   });
   scene3d.add(yard.group);
   api.yard = yard;
@@ -1029,7 +1072,7 @@ async function boot() {
   // two divide one building's ground between them — the yard layer owns what
   // stands on its own lot and this owns what lies in the street outside it.
   const frontage = await createFrontage({
-    dataBase: bases.dataBase, terrain, confidence, problems,
+    dataBase: bases.dataBase, terrain, confidence, problems, hostMissing,
   });
   scene3d.add(frontage.group);
   api.frontage = frontage;
@@ -1073,6 +1116,20 @@ async function boot() {
   scene3d.add(boats.group);
   api.boats = boats;
 
+  // The fort's well (T-0887) — the one well head this project can place to a
+  // coordinate, drawn renderer-side for the reason its layer's header gives at
+  // length: there is no well archetype, the nearest builds a roofed shed, and a
+  // structure record with no buildable form does not validate, so until this
+  // layer existed the measurement had nowhere to live at all. It mints no wells
+  // — T-0592's refusal of a well CLASS for the town stands, and `wells.js`
+  // enforces it by refusing any well a source does not PLACE. The curb is
+  // invented and claimed at docs/LIBERTIES.md L232; nothing else is drawn.
+  const wells = await createWells({
+    dataBase: bases.dataBase, terrain, confidence, problems,
+  });
+  scene3d.add(wells.group);
+  api.wells = wells;
+
   /**
    * What the PLANTERS treat as built ground: the buildings' footprints plus the
    * wharf decks. A deck is a floor, and a forb growing up through the planks
@@ -1082,7 +1139,7 @@ async function boot() {
    * building itself.
    */
   const planting = footprints.concat(
-    wharves.keepOut, boats.keepOut,
+    wharves.keepOut, boats.keepOut, wells.keepOut,
     // The plank walks and crossings (T-0085/T-0124): a sidewalk is as much a
     // floor as a wharf deck, and the sward was rooting straight through it.
     frontage.keepOut,
@@ -1444,6 +1501,33 @@ async function boot() {
   let travel = null;
   api.router = router;
 
+  /**
+   * Where the last arrival stood (T-0824). While its card is up the building is
+   * framed into the free part of the screen; when the card closes and the
+   * visitor has not moved, the look swings back to centre the building, so the
+   * crosshair is on it and the view is the plain one.
+   */
+  let lastArrival = null;
+  function reaimAfterCard() {
+    if (!lastArrival) return;
+    const st = walker.state;
+    const moved = Math.hypot(st.e - lastArrival.e, st.n - lastArrival.n) > 0.5;
+    const id = lastArrival.id;
+    lastArrival = null;
+    if (moved || st.flying) return;
+    const aim = focusPoint(id);
+    if (!aim) return;
+    const de = aim.x - st.e, dn = -aim.z - st.n;
+    walker.teleport({
+      local_e: st.e, local_n: st.n,
+      yaw_deg: ((Math.atan2(de, dn) / DEG) + 360) % 360,
+      pitch_deg: Math.atan2(aim.y - st.eyeY, Math.max(Math.hypot(de, dn), 0.1)) / DEG,
+    });
+  }
+  new MutationObserver(() => {
+    if (document.getElementById('popup')?.hasAttribute('hidden')) reaimAfterCard();
+  }).observe(document.getElementById('popup'), { attributes: true, attributeFilter: ['hidden'] });
+
   const hud = createHud({
     root: hudRoot,
     scene: loaded.scene,
@@ -1461,7 +1545,7 @@ async function boot() {
     // Hiding a level removes it from the view outright — see confidence.setHidden.
     onHideLevel: (level, hide) => confidence.setHidden(level, hide),
     onSetting: (key, value) => {
-      if (key === 'speed' || key === 'eyeHeight' || key === 'pace') {
+      if (key === 'speed' || key === 'wagonSpeed' || key === 'horseSpeed' || key === 'eyeHeight' || key === 'pace') {
         // The slider values and the pace compose into WALK in one place —
         // travel.applyPace() — so a wagon seat and a raised eye-height slider
         // add rather than overwrite each other. Applied to the standing eye
@@ -1527,6 +1611,24 @@ async function boot() {
   // the card says what THIS building made up, and neither can drift from the
   // markdown they are both quoting.
   popup.setLiberties(api.liberties.liberties);
+
+  // And the town's own law, which belongs to no attribute either. The 5 August 1835
+  // ordinance fenced the ground the Trustees thought was built up closely enough to
+  // burn — the only documented statement this project holds about where the built
+  // town ended — and nothing is drawn in the scene for it, because a legal limit is
+  // not a fence. The card carries it: pick a building and it says which side of the
+  // line it stood on. A failed fetch leaves the row off rather than guessing a side.
+  api.ordinances = await loadOrdinanceLimits({ dataBase: bases.dataBase, problems });
+  popup.setOrdinanceLimits(api.ordinances);
+
+  // And a relation, which belongs to no attribute at all. A house or a man could hold
+  // an agency for a company that never stood in this town — Hubbard & Co. insured
+  // property against loss by fire for the Howard of New-York, and three weeks before
+  // the scene date the agency left the house for one man. The register has held that
+  // since T-0410 and no surface read it; the card carries it now (T-1041). A failed
+  // fetch leaves the block off rather than claiming the house held nothing.
+  api.agencies = await loadAgencies({ dataBase: bases.dataBase, problems });
+  popup.setAgencies(api.agencies);
 
   // And what the GROUND claims, which no building can carry either: the surface
   // every one of them stands on is graded as carefully as they are, and said so
@@ -1641,13 +1743,15 @@ async function boot() {
   travel = createTravel({
     walker, intent, hud, settings: hud.settings, router, terrain, footprints,
     focusPoint, structurePosition,
+    // Where a ride or a flight ends: the framed stand-off, the same one Go to uses.
+    standFor: (id) => framing(id, { card: true }),
     registry: loaded.registry,
-    frame: (id) => frame(id),
+    frame: (id) => frame(id, { card: true }),
     teleport: (where) => walker.teleport(where),
     goToAnchor: (id) => api.goTo(id),
     setFly: (on) => hud.setFly(on, { announce: false }),
     // Arriving is what opens the card: the menu closes, the building's card opens.
-    onArrive: (id) => { hud.setPanel(false); pick(id); },
+    onArrive: (id) => { hud.setPanel(false); pick(id); lastArrival = { id, e: walker.state.e, n: walker.state.n }; },
   });
   api.travel = travel;
   // The stored pace and travel mode, through the one function that writes WALK
@@ -1789,6 +1893,16 @@ async function boot() {
     if (boat && boat.record && (!hit || boat.distance < hit.distance)) {
       hit = { ...boat };
     }
+    /**
+     * And so can the fort's well, which is the second thing here belonging to no
+     * structure at all: a curb answers with its OWN card record, built by the
+     * well layer from data/wells/ — where it is, what two witnesses say about
+     * the place, and what was invented to draw it (T-0887).
+     */
+    const well = wells.pickAt(ndc, camera);
+    if (well && well.record && (!hit || well.distance < hit.distance)) {
+      hit = { ...well };
+    }
     if (!hit) {
       popup.close();
       hud.say('Nothing there — aim at a building');
@@ -1812,10 +1926,103 @@ async function boot() {
   }
 
   /** Stand back and look at a structure — used by anchors and by the harness. */
-  function frame(id, distance = 26) {
-    const point = focusPoint(id);
-    if (!point) return false;
-    walker.lookAt(point, distance);
+  /**
+   * THE ONE FRAMING RULE (T-0824). Where you stand when you arrive at a building
+   * — by an instant Go to, at the end of a ride, or at the end of a flight — so
+   * that the whole of it is in view: from its front, at the distance that fits
+   * its width across the horizontal field of view and its height within the
+   * vertical one, aimed at its middle. Derived from the footprint and the wall
+   * height the record carries and from the camera's live field of view, never
+   * from a fixed number, so a privy and a long store are each framed to fit.
+   */
+  function framing(id, { card = popup.openId !== null } = {}) {
+    const centre = structurePosition(id);
+    const aim = focusPoint(id);
+    if (!centre || !aim) return null;
+    const fp = footprints.find((f) => f.id === id);
+    let r = 6;
+    if (fp?.pts?.length) {
+      let e0 = Infinity, n0 = Infinity, e1 = -Infinity, n1 = -Infinity;
+      for (const [e, n] of fp.pts) { e0 = Math.min(e0, e); e1 = Math.max(e1, e); n0 = Math.min(n0, n); n1 = Math.max(n1, n); }
+      r = Math.max(2, Math.hypot(e1 - e0, n1 - n0) / 2);
+    }
+    const record = loaded.registry.get(id);
+    const wallH = record?.sidecar?.attributes?.wall_height_m?.value ?? 5;
+    // A gabled roof adds roughly half a wall above the eaves.
+    const h = record?.sidecar?.drawn_by ? (aim.y - terrain.surfaceHeight(centre.e, centre.n)) / 0.55 : wallH * 1.55;
+    // The sphere that holds the whole building — centred at half its height,
+    // reaching its furthest footprint corner — has to fit inside the NARROWER of
+    // the two fields of view, with a margin of air around it. `sin`, not `tan`:
+    // the near side of the sphere is closer than its centre, and a footprint
+    // corner turned toward the eye is what a tangent rule cuts off (measured on
+    // Hogan's store: corners at ±1.11 of the frame under the first draft).
+    const R = Math.hypot(r, h / 2);
+    // THE CARD IS PART OF THE FRAME. Arriving opens the building's card — 440 px
+    // down the right of a desktop, a sheet over the lower 62 % of a phone — so
+    // "centred in view" means centred in what the card leaves free: the sphere
+    // fits inside THAT region's half-angles, and the look is turned so the
+    // building sits at the free region's centre rather than the screen's.
+    const free = freeRegion(card);
+    // In ANGLE space, not screen space: a perspective frame is linear in the
+    // tangent, so a strip at the edge of the screen is angularly narrow, and a
+    // fit done on screen fractions leaves a corner out (measured: −1.05 on the
+    // Sauganash under the first draft). Each axis: the free strip's angular
+    // bounds, its middle as the look offset, its half-width as the largest
+    // half-angle the building's sphere may subtend.
+    const axis = (tanHalf, lo, hi) => {
+      const aLo = Math.atan(lo * tanHalf);
+      const aHi = Math.atan(hi * tanHalf);
+      return { centre: (aLo + aHi) / 2, half: Math.max((aHi - aLo) / 2, 2 * DEG) };
+    };
+    const ax = axis(Math.tan(H_FOV_DEG * DEG / 2), free.x[0], free.x[1]);
+    const ay = axis(Math.tan(camera.fov * DEG / 2), free.y[0], free.y[1]);
+    const fit = (a) => (R * 1.25) / Math.sin(Math.min(a.half, 89 * DEG));
+    const distance = THREE.MathUtils.clamp(Math.max(fit(ax), fit(ay), 10), 10, 90);
+    // Turning RIGHT (a larger compass bearing) moves the building LEFT in frame;
+    // pitching DOWN (a smaller pitch) moves it UP.
+    const yawOffsetDeg = -ax.centre / DEG;
+    const pitchOffsetDeg = -ay.centre / DEG;
+    const stand = router.standOff(id, centre, r, { distance }) ?? centre;
+    const bearingDeg = ((Math.atan2(stand.e - centre.e, stand.n - centre.n) / DEG) + 360) % 360;
+    return { e: stand.e, n: stand.n, distance, bearingDeg, aim, radius: r, height: h,
+      yawOffsetDeg, pitchOffsetDeg, free };
+  }
+
+  /**
+   * The part of the screen the open card leaves free, as NDC ranges per axis. Mirrors card.css — 440 px on the right above 620 px wide, else
+   * a sheet of min(62vh, vh − 120px) from the bottom. Read live, so a resized
+   * window frames for the window it is.
+   */
+  function freeRegion(card = true) {
+    if (!card) return { x: [-1, 1], y: [-1, 1] };
+    const w = Math.max(1, window.innerWidth);
+    const hgt = Math.max(1, window.innerHeight);
+    if (w > 620) {
+      const cardFrac = Math.min(0.9, Math.min(440, w - 24) / w);
+      return { x: [-1, 1 - 2 * cardFrac], y: [-1, 1] };
+    }
+    const sheetFrac = Math.min(0.62, Math.max(0.3, (hgt - 120) / hgt));
+    return { x: [-1, 1], y: [-1 + 2 * sheetFrac, 1] };
+  }
+
+  /** Stand back and look at a structure, framed whole — used by Go to, the rides and the harness. */
+  function frame(id, { card = false } = {}) {
+    // `card`: the arrival will open the building's card, so frame into the part
+    // of the screen it leaves free. The harness's bare frame() aims straight, so
+    // the crosshair lands on the building it was pointed at.
+    const f = framing(id, { card });
+    if (!f) return false;
+    // lookAt places the eye `distance` from the AIM along `bearingDeg` — which is
+    // the stand-off point framing() already probed for free ground — then the
+    // look is turned so the building sits in the part of the screen the card
+    // leaves free.
+    walker.lookAt(f.aim, f.distance, f.bearingDeg);
+    const st = walker.state;
+    walker.teleport({
+      local_e: st.e, local_n: st.n,
+      yaw_deg: walker.bearingDeg + f.yawOffsetDeg,
+      pitch_deg: st.pitch / DEG + f.pitchOffsetDeg,
+    });
     return true;
   }
 
@@ -1898,7 +2105,7 @@ async function boot() {
     camera.aspect = w / h;
     // Hor+ : hold the horizontal field of view and let the vertical follow, so a
     // portrait phone does not end up looking down a drinking straw.
-    const hFov = 76 * Math.PI / 180;
+    const hFov = H_FOV_DEG * DEG;
     const vFov = 2 * Math.atan(Math.tan(hFov / 2) / camera.aspect);
     camera.fov = THREE.MathUtils.clamp(vFov * 180 / Math.PI, 55, 94);
     camera.updateProjectionMatrix();
@@ -2061,6 +2268,14 @@ async function boot() {
     get altitude() { return walker.state.altitude; },
     pick,
     frame,
+    framing,
+    /** A local ENU point (metres, y above datum) through the live camera, as NDC
+     *  — the harness's way of asking "is this corner of the building in frame". */
+    project(e, n, y) {
+      camera.updateMatrixWorld();
+      const v = new THREE.Vector3().copy(enuToWorld(e, n, y)).project(camera);
+      return { x: v.x, y: v.y, z: v.z };
+    },
     goToTarget,
     structurePosition,
     setTravelMode(mode) { return hud.setTravelMode(mode); },
@@ -2085,6 +2300,9 @@ async function boot() {
       });
       return true;
     },
+    /** The culling grid the ground was cut on, and the box it was derived from
+     *  (T-0466). A reading, not a setting: `terrain.js` owns the rule. */
+    groundTiling,
     stats() {
       const info = renderer.info;
       return {
@@ -2095,6 +2313,10 @@ async function boot() {
         textures: info.memory.textures,
         batches: buildings.batches.length,
         structures: loaded.registry.size,
+        // T-1126 § 4: drawn against indexed. `structures` above counts what the
+        // scene was TOLD to place; these two count what it managed to.
+        structuresExpected: buildings.roll.expected,
+        structuresStanding: buildings.roll.standing,
         bytes: loaded.bytes,
         fps: Math.round(fps),
         // R-BUG1: the near plane is no longer a constant, so a harness asking
@@ -2280,8 +2502,12 @@ async function boot() {
   api.ready = true;
   if (gateBtn) { gateBtn.disabled = false; gateBtn.textContent = 'Tap to walk'; }
   if (gateSub) {
-    const n = loaded.registry.size;
-    gateSub.textContent = `${n} structure${n === 1 ? '' : 's'} · ${world.describe()}`;
+    // T-0782: the count that used to open this line was `registry.size` — every
+    // RECORD in the scene, bridges and the pier and the palisade and the parade
+    // ground included — so it read as a building count and contradicted the 359
+    // on the card three lines below it. The card counts the town; this line says
+    // when the town is.
+    gateSub.textContent = world.describe();
   }
 
   if (DEBUG) {

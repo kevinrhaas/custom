@@ -118,6 +118,37 @@ BOOKS_INDEXED = {
                               "(657-858); each restarts its own folio at 1, so a "
                               "printed page number is only unique within its number.",
     },
+    # The third, added by T-0502 for H. H. Porter's Short Autobiography (1915). It
+    # takes the Fergus route and not Hubbard's, for the same reason and one more.
+    # The reason: the Internet Archive emitted this item's hOCR search text AND the
+    # hOCR page index beside it, and the index gives every leaf's exact character
+    # range in that very text, so nothing is aligned and nothing is searched for.
+    # The one more: THE DEPOSIT PDF IS NOT IN THIS CHECKOUT. The 66 MB scan is
+    # offloaded (chicago/reference/hh-porter-a-short-autobiography.yaml names a
+    # local_archive_path outside the repository), so Hubbard's pdftotext transfer
+    # cannot be run here at all, by anybody, ever. The two OCR artifacts are
+    # derived text, they are small, and committing them beside the pointer is what
+    # makes this index re-derivable by someone who does not hold the scan.
+    "porter_hh_short_autobiography_1915": {
+        "title": "H. H. Porter, A Short Autobiography, Written for His Children and "
+                 "Grandchildren (Chicago: privately printed, 1915)",
+        "archive_item": "chicago1835-hh-porter-autobiography",
+        "derivation": "hocr_page_index",
+        "deposit_text": "chicago/reference/hh-porter-a-short-autobiography/4582673_hocr_searchtext",
+        "deposit_page_index": "chicago/reference/hh-porter-a-short-autobiography/4582673_hocr_pageindex.json",
+        "leaves": 70,
+        # NO `folio_runs`, and here the reason is smaller than Fergus's. The book
+        # prints one arabic run over its narrative and nothing at all over its front
+        # matter or its twenty-five leaves of plates; a run carried across the plates
+        # would be inventing folios for pages that print none. A folio is READ off
+        # the running head or it is null.
+        "folios": "read_only",
+        "reading_order_note": "Leaf order throughout. Leaves 1-10 are the covers, "
+                              "the reference-use notice, the frontispiece, the two "
+                              "title pages and the Introduction; leaves 11-45 are the "
+                              "narrative, whose printed folios run 9 to 43; leaves "
+                              "46-70 are the plates, their captions and the endpapers.",
+    },
 }
 
 ROMAN = [(1000, "m"), (900, "cm"), (500, "d"), (400, "cd"), (100, "c"), (90, "xc"),

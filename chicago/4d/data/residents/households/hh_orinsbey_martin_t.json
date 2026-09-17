@@ -5,12 +5,12 @@
  "head": "orinsbey_martin_t",
  "source_pass": "letter_list",
  "arrival": {
-  "value": "1835-07-01",
+  "value": "1835-06-30",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
-  "note": "A BOUND FROM THE PAPER, NOT AN ARRIVAL. Somebody was writing to this name at Chicago by 1835-07-01 and at no stated time before it; nothing says when they came.",
+  "note": "A BOUND FROM THE RETURN, NOT AN ARRIVAL. The office's list of letters uncalled-for is a RETURN — its statement of what was still unclaimed on ONE day — and the paper reprinted one return over as many consecutive issues as it took, so the bound is dated by the return of June 1835 and not by the issue it was read in (T-0425). The earliest issue this project reads the name in is 1835-07-01, 1 day later; that gap is an accident of which impression an extraction pass reached, and it is not evidence. Somebody was writing to this name at Chicago by 1835-06-30 and at no stated time before it; nothing says when they came. The date lines the printings set, and how they were weighed, stand beside this rule in tools/mint_letter_list_residents.py.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -52,6 +52,7 @@
    "name": "martin T. Orinsbey",
    "relationship": "head",
    "grade": "inferred",
+   "ladder_rule": "G3",
    "letter_list_only": true,
    "letter_list_returns": [
     "1835-07-01"
@@ -71,13 +72,7 @@
     "outcome": "no_corroboration_yet",
     "reviewed_on": "2026-09-02",
     "asserted_identity": false,
-    "evidence_for": "Seed Chicago post-office letter-list appearance only.",
-    "evidence_against": "No independent dated Chicago/Cook County identity discriminator was found in the completed open-web sweep.",
-    "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
-    "notes": "Open-web exact-name and reasonable spelling/order variants did not produce a reliable dated Chicago/Cook County discriminator beyond the seed letter-list evidence. Negative search is not evidence of nonexistence.",
-    "source_ids": [
-     "chicago_democrat_1833_1835"
-    ]
+    "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist."
    },
    "resident_subtype": "projected_resident"
   }
