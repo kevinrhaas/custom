@@ -24,7 +24,9 @@ T-1217 — The card for jones_es_high leads with its family name, because the pr
 T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
 T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
 T-1108 — Three generators refuse together and none is gated: inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor
-T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
+T-1230 — The home, workplace and business-location reconciliation table: one row per claim, with its source, date, ids, printed place, resolved street, face and anchor, and the clause that limited it
+T-1231 — Write every defensible location finding as plural dated lives_at/works_at relationships and associated_with[] entries on the person
+T-1232 — Expose the location links, dates and limits in the people and business views, retain or resolve the four standing source questions, and close the research ledger at zero unclassified
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (after T-1157 says GO)

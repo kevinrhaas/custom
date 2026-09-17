@@ -432,6 +432,16 @@
    "resolves": [
     "chicago/4d/data/research/directories/residence_back_projection.json"
    ]
+  },
+  {
+   "why": "The location reconciliation table (T-1230): one row per home, workplace and business-location claim, carried from the five ledgers that adjudicate them. It re-derives from committed files alone, so a conflict on it is never a disagreement about evidence — it is two runs having rebuilt the same read.",
+   "command": [
+    "python3",
+    "tools/reconcile_locations.py"
+   ],
+   "resolves": [
+    "chicago/4d/data/research/location_reconciliation.json"
+   ]
   }
  ]
 }

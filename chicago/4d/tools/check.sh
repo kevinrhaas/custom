@@ -3546,6 +3546,26 @@ step "the street-face adoptions re-derive, and no adopted business claims a lot"
 selftest "…and its own assertions still fire when broken" \
   python3 tools/adopt_street_faces.py --self-test
 
+# T-1230, the first piece of T-1147. Where somebody lived, where he worked and where a
+# house stood is adjudicated in FIVE committed files, each with its own row shape and its
+# own idea of what "placed" means — the register's action, the street-face adoptions, the
+# two back-projection ledgers, and the cards' own `lives_at`/`works_at`. Nothing read all
+# five together, so the plain questions the parent ticket asks ("how many location claims
+# does this project hold, and what stopped each one going narrower?") could only be
+# answered by opening five files and translating between them.
+#
+# The table answers them in one vocabulary and ADJUDICATES NOTHING: every disposition is
+# the verdict its own `ledger` field names. That is exactly why it has to be gated rather
+# than committed once — an unchecked copy is a place to promote a house off a street and
+# onto a roof with no argument, and T-1198's address book is meant to read it as though it
+# were derived. The three business location limits are recomputed from the rows and
+# checked against the counts, so the parent's 56/61/62 cannot drift from what it describes.
+step "the location reconciliation table re-derives, and no claim outruns its ledger" \
+  python3 tools/reconcile_locations.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/reconcile_locations.py --self-test
+
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names
 # a position and no lot": a count of doors off a named corner — "on South-Water st. one
