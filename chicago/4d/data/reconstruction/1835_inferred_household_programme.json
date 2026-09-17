@@ -1694,7 +1694,12 @@
       "anchor_shift_steps": 0,
       "function": "cooperage",
       "occupation": "cooper",
-      "role": "A second cooperage, beside the Newberry & Dole slaughter-house on the South Branch: barrels are made where the packing is done, and this dataset already models the plant."
+      "role": "A second cooperage, beside the Newberry & Dole slaughter-house on the South Branch: barrels are made where the packing is done, and this dataset already models the plant.",
+      "corridor_clearance": {
+        "street": "market",
+        "clear_m": 0.5,
+        "why": "T-0827 re-fitted Market Street off the plat's own 400 ft module on 2026-09-12, instead of off the modern junction on N Wacker Drive it had been hung from, and the platted corridor came 3.0 m west onto this footprint. The building's own placement is a band assignment with no evidence in it, so it has nothing to encroach with and the corridor wins. 0.5 m is T-0827's own margin, kept. The centre above is still the band assignment; the generator moves the least distance that clears the kerb, so re-fitting Market again moves this building again instead of leaving it to disagree with the street in silence."
+      }
     },
     {
       "id": "inf_packer_dwelling",
