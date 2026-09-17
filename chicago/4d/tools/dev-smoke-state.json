@@ -3,135 +3,69 @@
   "readings": [
     {
       "viewport": "desktop",
-      "stage": "12",
+      "stage": "4",
       "parts": [
-        12
+        4
       ],
       "verdict": "fail",
       "target": "published",
-      "passed": 65,
-      "failed": 3,
+      "passed": 27,
+      "failed": 1,
       "failures": [
-        "desktop 1280x800: an intersection result moves the visitor there — arrived (107.00, -103.00) in mode instantly, idle",
-        "desktop 1280x800: closing the drawer brings the tucked card back — back false, hidden false",
-        "desktop 1280x800: ArrowDown steps the list a row at a time — two reach the second, three the third — and Enter goes there — {\"third\":{\"kind\":\"anchor\",\"id\":\"first_post_office\"},\"afterTwo\":{\"active\":\"newberry_dole_wharf\",\"second\":\"newberry_dole_wharf\",\"described\":\"jump-opt-1\"},\"active\":\"first_post_office\",\"dest\":\"first_post_office\",\"panelHidden\":true,\"card\":null,\"distToTarget\":304.1,\"phase\":\"idle\"}"
+        "desktop 1280x800: triangles under budget at the reference stand — 1661275 tris (budget 1460000) — the gate is the worst-stand check below"
       ],
-      "wallSeconds": 198,
-      "takenAt": "2026-09-17T16:17:28.726Z",
-      "ref": "steward/t-1245-ground-grid",
-      "commit": "06cc81691254",
-      "devCommit": "dea21d6fa4c8",
-      "treeHash": "sha256:738399d9b6f42f47",
-      "treeDirty": false,
-      "changelogHash": "sha256:bfff7c5ba91fe1a9",
-      "host": {
-        "kind": "local",
-        "cpus": 9,
-        "memGB": 15.6,
-        "loadavg": [
-          6.5,
-          8.4,
-          6.5
-        ]
-      },
-      "source": "/tmp/t1245-smoke-desktop-12.log"
-    },
-    {
-      "viewport": "desktop",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 90,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 145,
-      "takenAt": "2026-09-17T16:13:51.983Z",
-      "ref": "steward/t-1245-ground-grid",
-      "commit": "06cc81691254",
-      "devCommit": "dea21d6fa4c8",
-      "treeHash": "sha256:738399d9b6f42f47",
-      "treeDirty": false,
-      "changelogHash": "sha256:bfff7c5ba91fe1a9",
-      "host": {
-        "kind": "local",
-        "cpus": 9,
-        "memGB": 15.6,
-        "loadavg": [
-          8.6,
-          8.9,
-          6
-        ]
-      },
-      "source": "/tmp/t1245-smoke-desktop-3.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3",
-      "parts": [
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 90,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 123,
-      "takenAt": "2026-09-17T16:11:16.571Z",
-      "ref": "steward/t-1245-ground-grid",
-      "commit": "06cc81691254",
-      "devCommit": "dea21d6fa4c8",
-      "treeHash": "sha256:738399d9b6f42f47",
-      "treeDirty": false,
-      "changelogHash": "sha256:bfff7c5ba91fe1a9",
-      "host": {
-        "kind": "local",
-        "cpus": 9,
-        "memGB": 15.6,
-        "loadavg": [
-          10.7,
-          8.9,
-          5.5
-        ]
-      },
-      "source": "/tmp/t1245-smoke-mobile-3.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "3,12",
-      "parts": [
-        3,
-        12
-      ],
-      "verdict": "fail",
-      "target": "published",
-      "passed": 111,
-      "failed": 2,
-      "failures": [
-        "mobile 390x780: an intersection result moves the visitor there — arrived (107.00, -103.00) in mode instantly, idle",
-        "mobile 390x780: the suite body ran to completion — Error: clickChrome: .panel-tab[data-tab=\"goto\"] is covered at its own centre by <nothing>"
-      ],
-      "wallSeconds": 132,
-      "takenAt": "2026-09-17T15:59:15.162Z",
-      "ref": "steward/t-1245-ground-grid",
-      "commit": "2b32af3a38a3",
+      "wallSeconds": 87,
+      "takenAt": "2026-09-17T16:10:04.777Z",
+      "ref": "steward/arrival-jaunts-plan-20260917",
+      "commit": "01ce6b7731d7",
       "devCommit": "01ce6b7731d7",
-      "treeHash": "sha256:b3a5b9a97a3de9a0",
+      "treeHash": "sha256:5dd6d847de7227f9",
       "treeDirty": false,
-      "changelogHash": "sha256:92638efefa773809",
+      "changelogHash": "sha256:3aa1de579fd2acee",
       "host": {
         "kind": "local",
         "cpus": 9,
         "memGB": 15.6,
         "loadavg": [
-          4.9,
-          3.1,
-          2.2
+          9.8,
+          8,
+          4.9
         ]
       },
-      "source": "/tmp/t1245-smoke-mobile.log"
+      "source": "/workspace/scratch/66bfc1977486/smoke-desktop.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 30,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: triangles under budget at the reference stand — 1288067 tris (budget 825000) — the gate is the worst-stand check below"
+      ],
+      "wallSeconds": 139,
+      "takenAt": "2026-09-17T16:10:04.556Z",
+      "ref": "steward/arrival-jaunts-plan-20260917",
+      "commit": "01ce6b7731d7",
+      "devCommit": "01ce6b7731d7",
+      "treeHash": "sha256:5dd6d847de7227f9",
+      "treeDirty": false,
+      "changelogHash": "sha256:3aa1de579fd2acee",
+      "host": {
+        "kind": "local",
+        "cpus": 9,
+        "memGB": 15.6,
+        "loadavg": [
+          9.8,
+          8,
+          4.9
+        ]
+      },
+      "source": "/workspace/scratch/66bfc1977486/smoke-mobile.log"
     },
     {
       "viewport": "mobile",
@@ -1434,6 +1368,74 @@
     },
     {
       "viewport": "mobile",
+      "stage": "12-13",
+      "parts": [
+        12,
+        13
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 171,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 357,
+      "takenAt": "2026-09-15T13:25:04.272Z",
+      "ref": "steward/t-1134-town-list-one-letter-pairs",
+      "commit": "0159eaf4ca82",
+      "devCommit": "f7d090ebcd6f",
+      "treeHash": "sha256:4f622056069a9c00",
+      "treeDirty": false,
+      "changelogHash": "sha256:20dbc550138f1f20",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.4,
+          3.6
+        ]
+      },
+      "source": "/tmp/smoke-m1213.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,10",
+      "parts": [
+        3,
+        10
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 112,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: no unexpected loader problems — trees: the light stem budget bound at 1110 trees, so the planting loop stopped partway north and the wood is cut off in a straight line rather than thinned — lower light's keep fraction, do not lower the budget"
+      ],
+      "wallSeconds": 283,
+      "takenAt": "2026-09-15T13:19:03.688Z",
+      "ref": "steward/t-1134-town-list-one-letter-pairs",
+      "commit": "0159eaf4ca82",
+      "devCommit": "f7d090ebcd6f",
+      "treeHash": "sha256:4f622056069a9c00",
+      "treeDirty": false,
+      "changelogHash": "sha256:20dbc550138f1f20",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          4.4,
+          4.2,
+          3.2
+        ]
+      },
+      "source": "/tmp/smoke-m310.log"
+    },
+    {
+      "viewport": "mobile",
       "stage": "1-4",
       "parts": [
         1,
@@ -1926,6 +1928,138 @@
         ]
       },
       "source": "/tmp/s_m5_8.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "12",
+      "parts": [
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 65,
+      "failed": 3,
+      "failures": [
+        "desktop 1280x800: an intersection result moves the visitor there — arrived (107.00, -103.00) in mode instantly, idle",
+        "desktop 1280x800: closing the drawer brings the tucked card back — back false, hidden false",
+        "desktop 1280x800: ArrowDown steps the list a row at a time — two reach the second, three the third — and Enter goes there — {\"third\":{\"kind\":\"anchor\",\"id\":\"first_post_office\"},\"afterTwo\":{\"active\":\"newberry_dole_wharf\",\"second\":\"newberry_dole_wharf\",\"described\":\"jump-opt-1\"},\"active\":\"first_post_office\",\"dest\":\"first_post_office\",\"panelHidden\":true,\"card\":null,\"distToTarget\":304.1,\"phase\":\"idle\"}"
+      ],
+      "wallSeconds": 198,
+      "takenAt": "2026-09-17T16:17:28.726Z",
+      "ref": "steward/t-1245-ground-grid",
+      "commit": "06cc81691254",
+      "devCommit": "dea21d6fa4c8",
+      "treeHash": "sha256:738399d9b6f42f47",
+      "treeDirty": false,
+      "changelogHash": "sha256:bfff7c5ba91fe1a9",
+      "host": {
+        "kind": "local",
+        "cpus": 9,
+        "memGB": 15.6,
+        "loadavg": [
+          6.5,
+          8.4,
+          6.5
+        ]
+      },
+      "source": "/tmp/t1245-smoke-desktop-12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 90,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 145,
+      "takenAt": "2026-09-17T16:13:51.983Z",
+      "ref": "steward/t-1245-ground-grid",
+      "commit": "06cc81691254",
+      "devCommit": "dea21d6fa4c8",
+      "treeHash": "sha256:738399d9b6f42f47",
+      "treeDirty": false,
+      "changelogHash": "sha256:bfff7c5ba91fe1a9",
+      "host": {
+        "kind": "local",
+        "cpus": 9,
+        "memGB": 15.6,
+        "loadavg": [
+          8.6,
+          8.9,
+          6
+        ]
+      },
+      "source": "/tmp/t1245-smoke-desktop-3.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 90,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 123,
+      "takenAt": "2026-09-17T16:11:16.571Z",
+      "ref": "steward/t-1245-ground-grid",
+      "commit": "06cc81691254",
+      "devCommit": "dea21d6fa4c8",
+      "treeHash": "sha256:738399d9b6f42f47",
+      "treeDirty": false,
+      "changelogHash": "sha256:bfff7c5ba91fe1a9",
+      "host": {
+        "kind": "local",
+        "cpus": 9,
+        "memGB": 15.6,
+        "loadavg": [
+          10.7,
+          8.9,
+          5.5
+        ]
+      },
+      "source": "/tmp/t1245-smoke-mobile-3.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3,12",
+      "parts": [
+        3,
+        12
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 111,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: an intersection result moves the visitor there — arrived (107.00, -103.00) in mode instantly, idle",
+        "mobile 390x780: the suite body ran to completion — Error: clickChrome: .panel-tab[data-tab=\"goto\"] is covered at its own centre by <nothing>"
+      ],
+      "wallSeconds": 132,
+      "takenAt": "2026-09-17T15:59:15.162Z",
+      "ref": "steward/t-1245-ground-grid",
+      "commit": "2b32af3a38a3",
+      "devCommit": "01ce6b7731d7",
+      "treeHash": "sha256:b3a5b9a97a3de9a0",
+      "treeDirty": false,
+      "changelogHash": "sha256:92638efefa773809",
+      "host": {
+        "kind": "local",
+        "cpus": 9,
+        "memGB": 15.6,
+        "loadavg": [
+          4.9,
+          3.1,
+          2.2
+        ]
+      },
+      "source": "/tmp/t1245-smoke-mobile.log"
     }
   ]
 }
