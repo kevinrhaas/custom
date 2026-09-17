@@ -1,7 +1,7 @@
 ---
 id: T-1217
 title: The card for jones_es_high leads with its family name, because the printing 'Es,Jones, High' sets it in the middle, and a re-mint would file it in the directory under es
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1384
 claimed_by: run 9/17/2026, 1:51:31 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T08:55:23.538Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35191480414
 ---
 
