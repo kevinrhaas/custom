@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nothing you can see — five gates, now measured and loud', kind: 'change', ts: '',
+  { v: 899, title: 'Nothing you can see — five gates, now measured and loud', kind: 'change', ts: '2026-09-17T02:00:51.625Z', date: 'Sep 16, 2026, 9:00 PM CT',
     items: [
       'Nothing in the scene changed in this pass; it works the pipeline, on the owner\u2019s ask. What a visitor gets is five defects that used to be silent, now loud.',
       'The tool that compresses the town\u2019s 372 3-D assets is pinned. An upstream release used to rewrite every asset with a two-byte stamp diff and nothing else; regenerating any asset now reproduces the committed bytes exactly, file for file.',

@@ -73,8 +73,8 @@
     {
       "tool": "tools/measure_boot_payload.mjs",
       "other_modes_in_check_sh": [],
-      "why_not_gated": "T-0727/T-1155. The --check re-measures the boot payload in a real headless browser against the PUBLISHED mirror (~40 s plus a publish) — check.sh takes seconds and runs no browser. Deliberately ungated until T-1155 wires it into a nightly smoke leg, whose leg budgeting belongs to T-0167.",
-      "owner_ticket": "T-1155"
+      "why_not_gated": "T-0727/T-1156. The --check re-measures the boot payload in a real headless browser against the PUBLISHED mirror (~40 s plus a publish) — check.sh takes seconds and runs no browser. Deliberately ungated until T-1156 wires it into a nightly smoke leg, whose leg budgeting belongs to T-0167.",
+      "owner_ticket": "T-1156"
     }
   ]
 }

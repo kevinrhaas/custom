@@ -342,7 +342,7 @@ T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furn
 # --- band moved together into RESEARCH COMPLETION below on the owner's 2026-09-15 instruction.
 # --- The remaining lines are loop/release machinery and follow that completion programme.
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
-T-1155 — Wire measure_boot_payload.mjs --check into the nightly gate so the 12 MB boot budget refuses without a human
+T-1156 — Wire measure_boot_payload.mjs --check into the nightly gate so the 12 MB boot budget refuses without a human
 T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
 T-0438 — The letter-list cohort is 2.54 MiB of the published tree, and it is now the largest single item in it
 T-0776 — A full tools/web_derivatives.sh rewrites 348 derivatives with identical byte counts: the derivative step is not reproducible
@@ -414,4 +414,4 @@ T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SU
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1154 — The five downtown stands are over every scene-detail ceiling at both viewports, and the town has been over since some point after 6 September
-
+T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity

@@ -17,7 +17,7 @@ bounded (4-minute attempts, re-rolled, elapsed per attempt in the run summary; d
 against an injected slow draw by the committed self-test). The loop's PR operations moved off
 the exhausted GraphQL bucket onto REST (`.github/steward/pr-rest.sh`), with one named
 GraphQL-only exception — arming auto-merge — and `tools/check_gh_rest.mjs` refusing a relapse
-on every gate. T-1155 files the follow-up: wire `measure_boot_payload.mjs --check` into a
+on every gate. T-1156 files the follow-up: wire `measure_boot_payload.mjs --check` into a
 nightly smoke leg (leg budgeting belongs to T-0167).
 
 AND A REPAIR, stated plainly: this file's T-1143 commit shipped with its second half
