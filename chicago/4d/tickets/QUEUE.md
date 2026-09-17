@@ -27,6 +27,9 @@
 # families and businesses ARE reconstructed (owner, 2026-09-17; T-1177), review_required, no figures.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
+T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
+T-1284 — Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
+T-1283 — Wire the dated roles onto the person card, and take the ready renderer from the duplicate branch rather than writing it twice
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
 T-1255 — The people view shows every role as a dated timeline, marks which reach the scene date, and searches controlled and printed wording
 T-1236 — EPIC: rule on the unasserted units the person-fact passes do not own — the land-sale, civic, 1830-census, church, newspaper and directory names, the resident-pass reserved people, and the book readings of ground, harbour, weather, price and institution
@@ -192,3 +195,4 @@ T-1219 — The three re-spelled cards still say in prose that the papers print t
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
+
