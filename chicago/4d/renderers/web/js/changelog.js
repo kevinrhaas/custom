@@ -1,4 +1,11 @@
 export const CHANGELOG = [ // newest first
+  { v: 904, title: 'A resident\u2019s name can no longer disagree with its own record', kind: 'change', ts: '2026-09-17T07:26:08.061Z', date: 'Sep 17, 2026, 2:26 AM CT',
+    items: [
+      'Every person in this town is filed under a handle built from their family name when their card was first made \u2014 and the name shown on the card can be corrected later, when a better impression of the page turns up. Three of them had drifted apart. The card reads \u201cWm. H. Frazer\u201d and the record it lives in says Fraser; \u201cJoshua Pruvis\u201d against Provis; \u201cJohn Vandine\u201d against Vandino. Nothing was wrong with any of the three \u2014 each is a deliberate correction, made two days ago against a sharper scan of the post office\u2019s list of 1 January 1834, which set letters the earlier transcription of the same lines did not.',
+      'What was missing was the rule. Nothing checked that a card\u2019s name and its filing agree, so the only difference between a ruled correction and a quiet mistake was that somebody had happened to notice one of them. A fourth name could have drifted tomorrow and no report would have said so.',
+      'The check now exists, and it is deliberately narrow: a card\u2019s family name is the one its record was filed under, unless the project\u2019s written adjudication of that exact card says otherwise \u2014 and then the filing must be the handle of the reading that was overturned and the card must show the reading that won. A card cannot license its own drift, and it cannot be re-spelled a third way over a ruling that never said so.',
+      'It asks about the letters of a surname and nothing else. Fifteen other cards differ from their filing over an initial the page never delivered, a suffix, or a printed line whose word order is its own open question \u2014 none of those is a disagreement about how a name is spelled, and none of them is touched here.'
+    ] },
   { v: 903, title: 'Nothing you can see — the 1830 census crosswalk had drifted', kind: 'fix', ts: '2026-09-17T07:04:40.789Z', date: 'Sep 17, 2026, 2:04 AM CT',
     items: [
       'Nothing in the scene changed in this pass. It works the pipeline: a gate that was never called, and a check that quietly repaired the thing it was asked to report.',
