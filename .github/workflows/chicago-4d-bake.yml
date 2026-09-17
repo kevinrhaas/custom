@@ -1,3 +1,4 @@
+# T-0437 measurement sample 2 of 5; workflow behavior is identical.
 name: Chicago 4D — content build
 
 # The slow half: pinned Blender generates and bakes geometry. Minutes, so it runs
