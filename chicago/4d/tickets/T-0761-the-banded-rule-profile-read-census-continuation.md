@@ -1,7 +1,7 @@
 ---
 id: T-0761
 title: The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-05
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1290
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:18:38.853Z
 claimed_run: null
 ---
 
