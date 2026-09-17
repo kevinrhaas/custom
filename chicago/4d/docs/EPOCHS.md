@@ -52,12 +52,17 @@ reserved now:
 
 | scene time | epoch | shoreline state | present status |
 |---|---|---|---|
-| 15 August 1812 | `e1830_natural` | `shore_1812_pre_cut` | planned for T-0468; geometry deliberately null |
+| 15 August 1812 | `e1830_natural` | `shore_1812_pre_cut` | **supplied** by T-1243: two shore lines traced off the Harrison 1830 harbour survey. Not `active` — the epoch still has no terrain (T-1244 to T-1246) |
 | 1 July 1835 | `e1834_harbor_cut` | `shore_1835_harbor_cut` | active |
 | 1880s | `e1871_postfire` | `shore_1880s_ic_edge` | planned for T-0473; geometry deliberately null |
 
-`geometry: null` is not permission to fall back. It means that state cannot render
-until its owning ticket supplies its own sourced line. The planned 1812 and 1880s
+A state's `status` says which of three positions it is in. `planned` means geometry is
+null and is not permission to fall back: that state cannot render until its owning
+ticket supplies its own sourced line. `supplied` means the line exists but the ground
+under it does not, which is where 1812 stands today. `active` means both, which is
+where 1835 stands. `tools/check_shoreline_states.py` holds each state to its own
+position and refuses any line adopted from outside the state's own epoch directory.
+The 1880s
 states therefore cannot silently inherit the 1835 coast.
 
 A dated observation may bound a shoreline without becoming it. The Rees & Rucker

@@ -111,21 +111,42 @@ def validate(states_doc: dict, bands_doc: dict, epochs_doc: dict,
     active = states.get(EXPECTED_IDS["1835"], {})
     if active.get("status") != "active" or not active.get("geometry"):
         bad.append("the 1835 shoreline state is not active geometry")
+    # A dated state that is not the live 1835 one is in exactly one of two positions,
+    # and it has to say which: waiting for its ticket with NOTHING in the geometry
+    # slot, or carrying a trace its own ticket supplied.  The check that used to
+    # stand here only knew the first, because on the day it was written no other
+    # state had a line.  What it was really guarding was never "stay empty" but
+    # "never borrow 1835's" — so that is now what is asserted, of a supplied state
+    # as well as of a planned one: every line a state adopts must live under its OWN
+    # epoch's directory.  T-1243.
     for label in ("1812", "1880s"):
-        planned = states.get(EXPECTED_IDS[label], {})
-        if planned.get("status") != "planned":
-            bad.append(f"the {label} shoreline state is not explicitly planned")
-        if planned.get("geometry") is not None:
-            bad.append(f"the planned {label} state borrows geometry before its ticket supplies it")
+        other = states.get(EXPECTED_IDS[label], {})
+        status, geom = other.get("status"), other.get("geometry")
+        if status == "planned":
+            if geom is not None:
+                bad.append(f"the planned {label} state borrows geometry before its "
+                           f"ticket supplies it")
+        elif status == "supplied":
+            if not geom:
+                bad.append(f"the {label} state is supplied but carries no geometry")
+        else:
+            bad.append(f"the {label} shoreline state is neither planned nor supplied")
+        own = f"epochs/{other.get('epoch_id')}/"
+        for ref in (geom or {}).get("dated_lines", []):
+            if not str(ref.get("path", "")).startswith(own):
+                bad.append(f"the {label} state adopts {ref.get('path')!r}, which is "
+                           f"not under its own epoch {other.get('epoch_id')!r}")
 
     source_ids = {p.stem for p in (ROOT / "data" / "sources").glob("*.json")}
+    for sid in EXPECTED_IDS.values():
+        geometry = (states.get(sid, {}) or {}).get("geometry") or {}
+        for ref in geometry.get("dated_lines", []):
+            if ref.get("source_id") not in source_ids:
+                bad.append(f"dated line cites unresolved source {ref.get('source_id')!r}")
+            if feature_at(ref.get("path", ""), ref.get("feature_id", "")) is None:
+                bad.append(f"dated line does not resolve: {ref.get('path')}#"
+                           f"{ref.get('feature_id')}")
     geometry = active.get("geometry") or {}
-    for ref in geometry.get("dated_lines", []):
-        if ref.get("source_id") not in source_ids:
-            bad.append(f"dated line cites unresolved source {ref.get('source_id')!r}")
-        if feature_at(ref.get("path", ""), ref.get("feature_id", "")) is None:
-            bad.append(f"dated line does not resolve: {ref.get('path')}#"
-                       f"{ref.get('feature_id')}")
     band_refs = geometry.get("disagreement_bands", [])
     if band_refs != [{"path": "shoreline_disagreement_bands.geojson",
                       "feature_id": "wright_1834_rees_1849_overlap"}]:
@@ -185,8 +206,22 @@ def self_test(docs: tuple[dict, dict, dict, dict, dict]) -> int:
     cases.append(("duplicate dated state ids fail", bool(validate(*d))))
 
     d = copy.deepcopy(docs)
-    d[0]["states"][0]["geometry"] = d[0]["states"][1]["geometry"]
+    d[0]["states"][2]["status"] = "planned"
+    d[0]["states"][2]["geometry"] = d[0]["states"][1]["geometry"]
     cases.append(("a planned state borrowing 1835 geometry fails", bool(validate(*d))))
+
+    d = copy.deepcopy(docs)
+    d[0]["states"][0]["geometry"] = copy.deepcopy(d[0]["states"][1]["geometry"])
+    cases.append(("a SUPPLIED state borrowing 1835 geometry fails", bool(validate(*d))))
+
+    d = copy.deepcopy(docs)
+    d[0]["states"][0]["geometry"] = None
+    cases.append(("a supplied state with nothing in it fails", bool(validate(*d))))
+
+    d = copy.deepcopy(docs)
+    d[0]["states"][0]["geometry"]["dated_lines"][0]["feature_id"] = "not_a_feature"
+    cases.append(("a supplied state's line that does not resolve fails",
+                  bool(validate(*d))))
 
     d = copy.deepcopy(docs)
     d[1]["features"][0]["properties"]["adopted_line"] = "midpoint"
@@ -212,8 +247,9 @@ def main() -> int:
     for problem in bad:
         print("FAIL", problem)
     if not bad:
-        print("OK 1812, 1835 and 1880s resolve to separate shoreline states; "
-              "the 1834/1849 spread remains an unresolved 50.0-134.4 m band")
+        print("OK 1812, 1835 and 1880s resolve to separate shoreline states, each "
+              "adopting only lines under its own epoch; the 1834/1849 spread remains "
+              "an unresolved 50.0-134.4 m band")
     return 1 if bad else 0
 
 

@@ -12051,3 +12051,33 @@ counted.
 Related: **L121**, which this entry supersedes on the value and keeps on the method, and **L120**
 and **L114**, the other entries about this wood. Ticket **T-1127**; ROADMAP **K45(b3)**.
 **Recorded:** 2026-09-15.
+
+### L240 — an 1830 survey stands in for an 1812 shore
+
+**What was taken:** the shoreline state addressed to 15 August 1812, `shore_1812_pre_cut`,
+adopts lines measured off a sheet drawn on 24 February 1830 — `harrison_1830_river_mouth`,
+the U.S. civil engineer's plan of the mouth made to show the proposed harbour improvements.
+Eighteen years separate the reading from the address.
+
+**Why:** no survey of the mouth from 1812 has been found, and it is not clear one exists. What
+does exist is a bracket: Swearingen, standing on the ground on 17 August 1803, records the river
+as "dead water, owing to its being stopped up at the mouth, by the washing of sand, from the
+lakes", and Harrison in 1830 draws that same closed mouth and its southward outlet. Both
+readings fall inside one terrain epoch, `e1830_natural` (1780-01-01 to 1833-06-30), whose
+defining condition is exactly the bar Swearingen describes and Harrison draws. So the adoption
+is inside the epoch, not across it — which is the line `data/terrain/shoreline_states.json` draws
+between a reading that may be adopted and one that may only bound.
+
+**What it does NOT license:** the bar's planform at any particular date. A baymouth bar migrates,
+and nothing here claims the sand stood in 1812 where Harrison drew it in 1830. The lines are
+graded `inferred` for that reason as well as for the sheet being Andreas's 1884 re-engraving of
+the original. The outlet's own position is adopted from nothing at all: Harrison's neat lines
+stop a quarter-mile short of it, and Swearingen's "half a mile above the mouth" bounds it rather
+than fixing it. The 1828 soldiers' channel the sheet letters is cut out of the trace.
+
+**How to resolve:** a period sheet between 1803 and 1828 that draws the mouth, or a documented
+reading of the bar's movement across those years. Until then the state carries this entry and
+its own `evidence_limit` block.
+
+Related: **T-1243**, piece 1 of **T-0468**; `docs/EPOCHS.md` § shoreline states.
+**Recorded:** 2026-09-17.

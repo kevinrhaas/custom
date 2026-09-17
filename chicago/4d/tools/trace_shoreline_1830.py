@@ -29,14 +29,18 @@ so a different scan or a different rotation stops the trace rather than moving a
 
 WHAT COMES OUT, AND WHAT DELIBERATELY DOES NOT. The hachure field is the water: this
 engraving shades the water side of every shore and leaves the land white, so the water
-body is the dense-ink region and the shore is its boundary. What the boundary is NOT,
+body is the dense-ink region and the shore is its boundary. What that boundary is NOT,
 everywhere, is a shore — east of the bar the lake's hachures simply thin out and stop,
 and that edge is where the engraver's ruling pen stopped, not where Lake Michigan
-began. So a boundary vertex is published only where the draughtsman drew a LINE under
-it: the crisp shore stroke, found as ink that is a ridge rather than a step, within
-`ink_near_px`. Runs that survive that test are claimed by hand-placed anchors; runs no
-anchor claims are dropped and counted. Nothing here publishes a lake edge, and nothing
-here publishes the 1828 soldiers' channel — see EXCLUDED below.
+began. `tools/trace_shoreline.py` separates the two by asking whether Wright INKED a
+line under a vertex, and that test is run here too — but it does not discriminate on
+this sheet and the run says so out loud: Harrison's plate is line art end to end, so
+every boundary vertex is near ink and the test drops nothing. What keeps the lake out
+of the published lines here is therefore not that test but two things that are declared
+rather than inferred: the CUTS below, which sever the lake from the river at the foot
+of the bar, and the ANCHORS, which publish only the two runs a hand-placed anchor
+claims. Nothing here publishes a lake edge, a water polygon or a sand bar, and nothing
+here publishes the 1828 soldiers' channel — see CUTS and `known_defects`.
 """
 from __future__ import annotations
 
