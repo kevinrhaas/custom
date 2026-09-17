@@ -95,6 +95,53 @@ const GROUND_TILE_BUDGET = 36;
 const GROUND_TILE_BEARING_EXP = 1.5;
 
 /**
+ * THE GROUND'S REACH — how far out the ground is submitted at all (T-1154).
+ *
+ * The ground had no distance rule of any kind. Every other far-reaching layer
+ * has one — the furniture its reach (T-0150), the wood its horizon cap, the
+ * flora its falloff — and while the modelled box was 2,020 x 800 m the ground
+ * did not need one: the whole of it was near. Two tickets moved that. T-1123
+ * carried the ground north to Kinzie's Addition (809 x 661 samples) and T-0464
+ * carried it south to Twenty-Second Street (809 x 1,969), so the box went from
+ * 2,020 x 800 m to 2,020 x 4,920 m — 6.1 times the area at an unchanged 2.5 m
+ * sample — in the eight days after the last desktop part-4 PASS. Measured on the
+ * published mirror of `dev`, by hiding one scene layer at a time and reading
+ * `renderer.info` back: at Lake and Market the ground alone is 994,528 of the
+ * frame's 1,432,679 triangles at the `light` tier, and 96.7 per cent of the
+ * WHOLE ground mesh is inside one downtown frustum. The culling grid is not the
+ * problem — T-0466 already measured that, and 12 x 12 buys 58,287 triangles for
+ * fifteen draw calls — because what the frustum is taking is not badly cut, it
+ * is simply all of it, out to the camera's 3,000 m far plane.
+ *
+ * THE RULE IS THE HAZE, AND IT IS DERIVED RATHER THAN CHOSEN. `world.js` draws
+ * the scene under `FogExp2`, whose surviving fraction of a surface's own colour
+ * at distance d is exp(-(d * density)^2). Beyond the distance where that falls
+ * under one part in `steps`, the surface cannot move an 8-bit channel: it is
+ * already the horizon haze, to the last representable step. Solve it and the
+ * reach is sqrt(ln steps) / density — 1,883 m at the scene's 0.00125, against a
+ * fog the lighting note already calls "total by 1500 m" and a far plane at
+ * 3,000. So this is not a cheapening of a tier a visitor chose: it is the
+ * distance past which the ground is provably not drawn even when it is drawn,
+ * and it is why the reach is applied at EVERY tier and not only at `light`.
+ *
+ * WHAT IT IS NOT. Nothing is un-built, re-graded or moved. Every tile is still
+ * loaded, still tiled, still sampled — `surfaceHeight` and `walkableHeight` read
+ * the heightfield and never the mesh, so footing, water, flora roots and every
+ * anchored record are untouched, north, south and on the skirt. A visitor who
+ * walks south gets each tile back as they approach it, at the distance where it
+ * could first show them something. It is a rendering decision, and the test the
+ * furniture's reach is held to is the test here: the pixels do not move.
+ *
+ * @param {number} density  the scene fog's `FogExp2` density
+ * @param {number} steps    how many representable steps the channel has
+ * @returns {number} the reach in metres, or Infinity where there is no fog
+ */
+export function hazeReachM(density, steps = 255) {
+  if (!(density > 0) || !(steps > 1)) return Infinity;
+  return Math.sqrt(Math.log(steps)) / density;
+}
+
+/**
  * The culling grid for a ground of this shape (T-0466).
  *
  * The grid used to be the two literals `12` and `3`, and those two numbers were a
@@ -345,6 +392,10 @@ export async function createTerrain({
   // Cut it into tiles and the half of the world behind you stops being drawn —
   // see tileGround() for the measurements behind the grid below.
   const tiles = tileGround(ground, groundTileGrid);
+  /** One banked WORLD bounding sphere per ground tile, for the reach below.
+   *  Empty when the ground was too coarse to tile, which is the case the reach
+   *  has nothing to say about: one mesh around the camera is always near. */
+  const groundSpheres = [];
   if (tiles) {
     for (const tile of tiles) {
       group.add(tile);
@@ -404,6 +455,27 @@ export async function createTerrain({
 
   let t = 0;
 
+  // ---- the ground's reach (T-1154) --------------------------------------- //
+  // Banked once, here, for the same reason the furniture's spheres are banked:
+  // the per-frame test must be one distance against a number, with no matrix
+  // work and no allocation. The tiles never move, so the sphere never changes.
+  if (tiles) {
+    group.updateWorldMatrix(true, true);
+    for (const tile of tiles) {
+      if (!tile.geometry.boundingSphere) tile.geometry.computeBoundingSphere();
+      const sph = tile.geometry.boundingSphere?.clone();
+      if (!sph) continue;
+      sph.applyMatrix4(tile.matrixWorld);
+      groundSpheres.push({ mesh: tile, c: sph.center, r: sph.radius });
+    }
+  }
+  /** The reach in force, in metres. `Infinity` draws every tile, which is what
+   *  the ground did before this and what it still does until a scene with a fog
+   *  sets one — see hazeReachM(). */
+  let groundReachM = Infinity;
+  let groundDrawn = groundSpheres.length;
+  let groundHeld = 0;
+
   return {
     group,
     mesh: ground,
@@ -421,6 +493,47 @@ export async function createTerrain({
      * and it is a number worth watching rather than asserting, because it
      * belongs to the compressor and not to this renderer. */
     groundFit,
+
+    /**
+     * THE GROUND'S REACH (T-1154) — the setter, the reading and the per-frame
+     * test. See hazeReachM() above for what the distance is and why.
+     *
+     * `reachCulled` is recorded on the mesh as well as counted, so a probe can
+     * tell a tile held back for distance from one the frustum rejected: both
+     * end up `visible === false` to three, and only one of them is this rule.
+     */
+    setGroundReach(m) {
+      groundReachM = typeof m === 'number' && Number.isFinite(m) && m > 0 ? m : Infinity;
+      return groundReachM;
+    },
+    /** What the reach is doing this frame: the distance, and the tile counts. */
+    groundReach() {
+      return { reachM: Number.isFinite(groundReachM) ? groundReachM : null,
+               tiles: groundSpheres.length, drawn: groundDrawn, held: groundHeld };
+    },
+    /** Per frame, before the render: hold back the ground the haze has already
+     *  finished. One subtraction and one comparison per tile, over the few dozen
+     *  the grid comes to. */
+    updateGroundReach(eye) {
+      if (!groundSpheres.length) return groundReachM;
+      let drawn = 0;
+      let held = 0;
+      for (const sph of groundSpheres) {
+        const dx = sph.c.x - eye.x;
+        const dy = sph.c.y - eye.y;
+        const dz = sph.c.z - eye.z;
+        // NEAREST point of the sphere, not its centre: a tile is kept while any
+        // part of it could still be inside the reach, so the boundary falls
+        // beyond the far edge of what is drawn rather than through it.
+        const far = Math.sqrt(dx * dx + dy * dy + dz * dz) - sph.r > groundReachM;
+        sph.mesh.visible = !far;
+        sph.mesh.userData.reachCulled = far;
+        if (far) held++; else drawn++;
+      }
+      groundDrawn = drawn;
+      groundHeld = held;
+      return groundReachM;
+    },
 
     /** The one rendered terrain surface in metres at local ENU (e, n).
      * Buildings, streets, trees and plant roots all anchor to this sampler. */

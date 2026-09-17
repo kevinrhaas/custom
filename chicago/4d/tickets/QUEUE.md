@@ -24,7 +24,10 @@ T-1155 — The resident identity splitter discards square-bracket supplies, so E
 T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
 T-1236 — EPIC: rule on the unasserted units the person-fact passes do not own — the land-sale, civic, 1830-census, church, newspaper and directory names, the resident-pass reserved people, and the book readings of ground, harbour, weather, price and institution
 T-1228 — Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns
-T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
+T-1238 — Plural dated home, workplace and other-significant-location relationships on every person and household, with associated_with[] defined
+T-1239 — Spend the defensible location findings and resolve or explicitly retain T-0251, T-0305, T-0386 and T-1087, keeping placement proportional to evidence
+T-1240 — The people and business views expose the plural links, their dates, confidence and location limits, including street-only and unplaceable businesses
+T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (after T-1157 says GO)
@@ -96,7 +99,6 @@ T-1214 — Build the camps of the summer of 1835: a tent and wagon-camp archetyp
 # --- 5E. STRUCTURES — converge: every person housed, every business roofed, the town complete
 T-1215 — Converge the reconstructed town: every person housed, every business roofed, every roof occupied or its use stated, the census's dwellings ratio met, the programme reconciled, the budgets re-measured and set — the completion report a visitor can open
 # --- 6. SOUTH THROUGH TIME — dated terrain, Fort Dearborn, and Prairie Avenue
-T-0467 — Add south-scene camera anchors, navigation and map extents
 T-1243 — Author the e1830_natural terrain spec and generate the 1812 heightfield and the ground and water meshes across the Fort-to-Eighteenth-Street corridor
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
@@ -108,7 +110,7 @@ T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 # --- 7. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
-T-1154 — The five downtown stands are over every scene-detail ceiling at both viewports, and the town has been over since some point after 6 September
+T-1245 — Re-cut the ground's culling grid so the reach can bite, and bring the downtown five inside all three ceilings at both viewports
 T-1156 — Wire measure_boot_payload.mjs --check into the nightly gate so the 12 MB boot budget refuses without a human
 T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
