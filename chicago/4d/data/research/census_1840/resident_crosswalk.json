@@ -174,7 +174,7 @@
       "what": "residents layer, persons",
       "path": "data/residents/households/",
       "available": true,
-      "n": 1287
+      "n": 1281
     },
     {
       "what": "voter, poll and tax list entries (T-0493)",
@@ -216,19 +216,19 @@
   "counts": {
     "named_heads": 965,
     "matched": 15,
-    "candidate": 16,
-    "refused": 934
+    "candidate": 15,
+    "refused": 935
   },
   "counts_by_rule": {
     "L1 unreadable_name": 249,
     "L2 no_surname_in_the_1835_pools": 411,
-    "L3 given_name_conflict": 194,
+    "L3 given_name_conflict": 195,
     "L4 initial_only": 72,
     "L5 name_is_not_unique": 8,
     "L6 matched": 15,
     "L6a low_confidence_caps_at_candidate": 6,
     "L6b reached_through_a_card_merge_caps_at_candidate": 1,
-    "L7 candidate": 9
+    "L7 candidate": 8
   },
   "printed_pages_read_here": [
     207,
@@ -12184,15 +12184,12 @@
       "surname": "simmons",
       "forename": "henry",
       "same_name_support": [],
-      "person_id": "simmons_henry_fitz",
-      "household_id": "hh_simmons_henry_fitz",
-      "resident_name": "Henry Fitz Simmons",
-      "resident_grade_1835": "inferred",
-      "via_card_merge": null,
-      "discriminators": [],
-      "outcome": "candidate",
-      "rule": "L7 candidate",
-      "reason": "Full forename and surname agree (Henry Fitz Simmons = Henry Fitz Simmons) and the name is unique on both sides, but nothing independent of the name was found: simmons_henry_fitz carries no adjudicated 1843 or 1844 directory entry and no existing 1840 bridge. The name appears on no 1835 list beyond the residents layer."
+      "outcome": "refused",
+      "rule": "L3 given_name_conflict",
+      "reason": "The surname 'simmons' is carried by 1 person(s) of 1835 (Medad I. Simmons) and none of their given names is 'henry'.",
+      "surname_bearers_1835": [
+        "simmons_medad_i"
+      ]
     },
     {
       "familysearch_id": "33SQ-GYYJ-93G",

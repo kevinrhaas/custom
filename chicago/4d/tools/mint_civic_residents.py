@@ -138,6 +138,10 @@ THE REFUSALS, in the order they fire, each one printed by `--report`:
      mint tool's judgement.
   5. `the post office's letter lists are the pass beside this one's pool` — every
      appearance inside the scene year is a letter list. See above.
+ 5b. `every scene-year reading is a church entry the register places outside Chicago`
+     — St Cyr married three couples at Bear Creek, Sangamon County in May 1834 and his
+     register carries those entries beside the Chicago ones. The rows say so themselves
+     (`at_chicago: false`); this pass reads the field and mints nobody off them. T-1129.
   6. `a firm, not a person` — and it fires before the surname rule below, because "&
      Co" reads as a two-letter family name and the firm is the truer finding.
   7. `the transcription bracketed the name as uncertain`.
@@ -283,6 +287,60 @@ def not_in_1835_classes() -> frozenset:
         if records and all(r.get(PLACE_REFUSAL_FIELD) is False for r in records):
             refused.add(cls)
     return frozenset(refused)
+
+
+# THE NOT-CHICAGO REFUSAL (T-1129), and it is a FOURTH refusal — the first one this
+# pass reads at the granularity of a RECORD rather than a class. A parish register is a
+# priest's book, not a town's roll: St Cyr rode down the state in May 1834 and married
+# three couples in a house at Bear Creek, Sangamon County, and his register carries those
+# entries on the same pages as the Chicago ones. The reader that transcribed it said so
+# on every affected row — `at_chicago: false`, with the footnote that places them — and
+# `read_st_cyr_register.py`'s own docstring names the trap in capitals. Nothing read the
+# field, so four households stood in the 1835 town on a marriage celebrated 180 miles
+# away, and their arrival notes said in the project's own words that "church_1833_1835
+# names this person at Chicago by 20 May 1834" — a false statement inside a provenance
+# artifact, which is worse than a misplacement.
+#
+# WHY A RECORD AND NOT A CLASS. The place refusal above (T-1131) is unanimous by
+# construction: a whole file declares that its membership places nobody. Here the same
+# file carries Chicago entries and Sangamon County entries, and the distinction is
+# printed per row. So the refusal is read per row, off the corpus, and never asserted
+# here — a row the reader stops marking drops out of the refusal and `--self-test` goes
+# red on the six it expects, which reopens this ticket rather than re-arguing it from
+# this comment.
+#
+# WHAT IT REFUSES, exactly: an identity whose every scene-year reading is one of these
+# rows has no Chicago appearance at all, and is not minted (refusal 5b). An identity
+# that ALSO holds a clean reading still mints — but the out-of-town row is dropped from
+# the evidence this pass writes, so it never becomes a church_evidence block, never
+# cites its source on the card, and above all never sets the arrival bound. That last is
+# the same asymmetry T-1049 drew for a Michigan City notice: the record is real, the
+# reading is real, and neither says the person was at Chicago.
+CHURCH_RECORDS = DATA / "research" / "church" / "records"
+AT_CHICAGO_FIELD = "at_chicago"
+NOT_CHICAGO_NOTE = ("A PARISH REGISTER IS NOT A TOWN ROLL (T-1129): the reading itself "
+                    "carries `at_chicago: false`, because the entry was celebrated "
+                    "outside Chicago. It dates an act; it never says the person was at "
+                    "Chicago")
+
+
+@functools.lru_cache(maxsize=None)
+def not_chicago_records() -> frozenset:
+    """Church readings whose own row says the entry was not at Chicago (T-1129).
+
+    Read from `data/research/church/records/`, every file, never a list kept here: the
+    reader that transcribed the register is the only thing that knows which of its pages
+    were written at Chicago, and a hand copy of its answer would go stale the first time
+    another leaf was read.
+    """
+    out = set()
+    if not CHURCH_RECORDS.exists():
+        return frozenset()
+    for path in sorted(CHURCH_RECORDS.glob("*.json")):
+        for record_row in (load(path) or {}).get("records") or []:
+            if record_row.get(AT_CHICAGO_FIELD) is False and record_row.get("id"):
+                out.add(record_row["id"])
+    return frozenset(out)
 
 
 MUSTER_LADDER = ("An 1832 enrollment is EARLIER evidence and never an 1835 residence on "
@@ -461,9 +519,17 @@ def bracketed_name_appearance(app: dict) -> bool:
     return in_window(app) and isinstance(raw, str) and bool(UNCERTAIN.search(raw))
 
 
+def not_chicago_appearance(app: dict) -> bool:
+    """Whether this appearance is a church reading its own row places outside Chicago."""
+    return (app.get("domain") == "church"
+            and app.get("record_id") in not_chicago_records())
+
+
 def mintable_appearances(appearances: list) -> list:
-    """The evidence this mint may write: never a bracketed scene-year name."""
-    return [a for a in appearances if not bracketed_name_appearance(a)]
+    """The evidence this mint may write: never a bracketed scene-year name, and never
+    a church reading the register itself places outside the town (T-1129)."""
+    return [a for a in appearances
+            if not bracketed_name_appearance(a) and not not_chicago_appearance(a)]
 
 
 def decide(row: dict, appearances: list, town_person_ids: set,
@@ -493,6 +559,14 @@ def decide(row: dict, appearances: list, town_person_ids: set,
         return False, "an 1832 enrollment alone is earlier evidence and never mints"
     if scene_year and all(a.get("evidence_class") == LETTER_LIST_CLASS for a in scene_year):
         return False, "the post office's letter lists are the pass beside this one's pool"
+    # T-1129, refusal 5b. Every scene-year reading is a church entry whose own row says
+    # the act was not celebrated at Chicago, so there is no Chicago appearance to bound
+    # an arrival with — the same shape as refusal 9 below, reached one step earlier so
+    # the reason names the register rather than reading as a plain absence of evidence.
+    if scene_year and all(not_chicago_appearance(a) for a in scene_year):
+        outside = sorted({a.get("record_id") for a in scene_year})
+        return False, ("every scene-year reading is a church entry the register places "
+                       f"outside Chicago ({', '.join(outside)})")
     if FIRM.search(name):
         return False, "a firm, not a person"
     # T-1115. `row.name` is the consolidation's rebuilt display name, not the
@@ -1474,6 +1548,24 @@ def gate_problems(docs: dict, index: dict) -> list:
                                 f"date range STRADDLES 1 July 1835 is silent about which "
                                 f"side of the day it fell on, and a silence closes no "
                                 f"bracket (T-1136)")
+        # THE NOT-CHICAGO REFUSAL, PROVED ON THE CARD (T-1129). The refusal above lives
+        # in `decide()`, and a refusal that lives only in the code that writes the file
+        # can be undone — by a hand edit, by another pass, by a carry-over — without
+        # anything going red. So the tree is asked directly: a card whose church readings
+        # are ALL rows the register places outside Chicago, and which holds no other
+        # evidence block, is a person standing in this town on a marriage celebrated 180
+        # miles away. It is asked of every card here, not only of this pass's, because
+        # the four T-1129 found were this pass's and the next one need not be.
+        church = [e for p in people for e in p.get("church_evidence") or []]
+        other = [e for p in people for k in BLOCK_KEYS if k != "church_evidence"
+                 for e in p.get(k) or []]
+        if church and not other and all(e.get("record_id") in not_chicago_records()
+                                        for e in church):
+            problems.append(f"{where}: rests on church reading(s) "
+                            f"{', '.join(sorted(e.get('record_id') or '?' for e in church))} "
+                            f"and nothing else, and every one of them carries "
+                            f"`at_chicago: false` — the register places that entry outside "
+                            f"Chicago, so the card claims a town the record denies (T-1129)")
         row = rows.get(where)
         if row is None:
             problems.append(f"{where}: minted here and absent from the manifest")
@@ -1561,6 +1653,17 @@ REFUSAL_CASES = (
     ("an internal supply whose brackets were stripped from the display name",
      _row(name="E K Zie"), [_app(as_read="E. K[in]zie")], set(),
      "bracketed the name as uncertain"),
+    # T-1129. The fixture cites a REAL row of the register — `st_cyr_marriage_002_2`,
+    # Mary Durbin, married at Bear Creek in Sangamon County on 20 May 1834 — because the
+    # refusal is read from the corpus and a fixture id would test the tool against
+    # itself. If the reader stops marking that row, this case goes red, which is the
+    # point: the ruling moved and the ticket reopens.
+    ("a church entry the register places outside Chicago, and nothing else",
+     _row(name="Mary Durbin", rule="G2c", grade="inferred"),
+     [_app(domain="church", source_id="st_cyr_register_ichr_v4",
+           record_id="st_cyr_marriage_002_2", locator="bride", as_read="Mary Durbin",
+           describes_date="1834-05-20", evidence_class="church_1833_1835")],
+     set(), "the register places outside Chicago"),
     ("a name with nothing that could be a surname",
      _row(name="E. S."), [_app()], set(), "no name the corpus prints as a family name"),
     ("a mint with no evidence block",
@@ -1581,6 +1684,36 @@ def self_test() -> int:
     if not ok:
         failed += 1
         print(f"   FAIL the control case is refused: {reason!r}")
+    # THE NOT-CHICAGO REFUSAL (T-1129), and every edge it is supposed to have: the set is
+    # read from the corpus, it refuses the whole identity when nothing else stands inside
+    # the window, and it drops the reading rather than the person when something does.
+    bear_creek = {"st_cyr_marriage_002_1", "st_cyr_marriage_002_2",
+                  "st_cyr_marriage_003_1", "st_cyr_marriage_003_2",
+                  "st_cyr_marriage_004_1", "st_cyr_marriage_004_2"}
+    if not bear_creek <= not_chicago_records():
+        failed += 1
+        print(f"   FAIL the register no longer marks the Bear Creek marriages "
+              f"`at_chicago: false` — missing "
+              f"{sorted(bear_creek - not_chicago_records())}. The refusal is read from "
+              f"data/research/church/, so reopen T-1129 rather than re-arguing it here")
+    _bear = dict(domain="church", source_id="st_cyr_register_ichr_v4",
+                 record_id="st_cyr_marriage_002_2", locator="bride",
+                 as_read="Mary Durbin", describes_date="1834-05-20",
+                 evidence_class="church_1833_1835")
+    ok, reason = decide(_row(), [_app(**_bear), _app(describes_date="1834",
+                                                     evidence_class="poll_1834",
+                                                     record_id="poll_1834_999",
+                                                     locator="poll_1834")],
+                        set(), set(), set(), set())
+    if not ok:
+        failed += 1
+        print(f"   FAIL a Bear Creek reading beside a clean poll entry refused the whole "
+              f"identity; the refusal is about the READING: {reason!r}")
+    kept = mintable_appearances([_app(**_bear), _app()])
+    if any(a.get("record_id") == "st_cyr_marriage_002_2" for a in kept):
+        failed += 1
+        print("   FAIL a reading the register places outside Chicago is still spent onto "
+              "the card, where it would cite its source and bound an arrival (T-1129)")
     mixed = [_app(record_id="press_uncertain", as_read="H. G. Hub[…]"),
              _app(record_id="poll_clean", as_read="Hubbard, Henry G.")]
     ok, reason = decide(_row(name="Henry G Hubbard"), mixed,

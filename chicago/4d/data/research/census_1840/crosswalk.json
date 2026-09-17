@@ -12,10 +12,10 @@
       "outcomes": {
         "named_heads": 965,
         "matched": 15,
-        "candidate": 16,
-        "refused": 934
+        "candidate": 15,
+        "refused": 935
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 15 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -4721,6 +4721,16 @@
       "a": "William A. Gilman",
       "b": "Eli Gilman",
       "rule": "'William A. Gilman' at printed page 207 line 24 (33SQ-GYYJ-93G) is NOT 'Eli Gilman': The surname 'gilman' is carried by 1 person(s) of 1835 (Eli Gilman) and none of their given names is 'william'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Henry Fitz Simmons",
+      "b": "Medad I. Simmons",
+      "rule": "'Henry Fitz Simmons' at printed page 207 line 28 (33SQ-GYYJ-93G) is NOT 'Medad I. Simmons': The surname 'simmons' is carried by 1 person(s) of 1835 (Medad I. Simmons) and none of their given names is 'henry'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",

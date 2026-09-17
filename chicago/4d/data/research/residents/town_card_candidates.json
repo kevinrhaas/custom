@@ -4,7 +4,7 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1287,
+  "town_people": 1281,
   "open_clusters": 19,
   "cards_in_open_clusters": 41,
   "rulings": {
