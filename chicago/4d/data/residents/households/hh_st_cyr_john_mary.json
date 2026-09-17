@@ -52,6 +52,29 @@
   ],
   "note": "data/structures/st_marys_church.json already carries him as pastor."
  },
+ "associated_with": [
+  {
+   "kind": "home",
+   "place_or_structure_id": "st_marys_church",
+   "resolves_to": "structure",
+   "from": null,
+   "to": null,
+   "undated": true,
+   "tier": "inferred",
+   "source_id": "andreas_1884_v1",
+   "note": "The church at the south-west corner of Lake and State is his charge and this dataset holds no separate presbytery; a priest of a mission church of this period commonly lodged at or beside it. Not stated, and not dated, so the row is inferred and undated."
+  },
+  {
+   "kind": "church",
+   "place_or_structure_id": "st_marys_church",
+   "resolves_to": "structure",
+   "from": "1833",
+   "to": null,
+   "tier": "attested",
+   "source_id": "andreas_1884_v1",
+   "note": "The structure record already carries him as pastor. He was ordained 6 April 1833 and sent to Chicago that year, where the society was organised in May, so the charge is dated to the year and no finer. TWO ROWS, ONE ROOF, TWO TIERS: he is attested at this building as its priest and only inferred to have lodged in it, and the pair of singular fields above grades them the same way without being able to say why they differ."
+  }
+ ],
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
