@@ -205,6 +205,15 @@ MACHINERY_LEAVES = frozenset({
 AMBIGUOUS_LEAVES = frozenset({
     "rgb",        # `diffuseColor.rgb` is a three.js shader field, in four files
     "min", "max", # generic range/math leaves; require their data parent to match
+    # T-1238's `associated_with[]` rows. `from` and `to` are the two ends of a
+    # dated relationship and `tier` its confidence, and all three are words the
+    # renderer already owns — a documented range has a `.from`, the tier ladder
+    # is read straight off the structure records. A bare-name scan attributes
+    # those accesses to the new rows and calls them phantoms. The rows have a
+    # data parent to qualify them with, which is what this set is for, so the
+    # scan is narrowed rather than exempted: the day a renderer really does read
+    # `associated_with` it declares the expression and never reaches here.
+    "from", "to", "tier",
 })
 
 # Unread leaves the reverse scan of assertion 3 cannot attribute, STATED rather
