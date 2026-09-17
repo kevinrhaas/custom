@@ -2488,6 +2488,72 @@
         ]
       },
       "source": "/tmp/t1245-smoke-mobile.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 27,
+      "failed": 1,
+      "failures": [
+        "desktop 1280x800: triangles under budget at the reference stand — 1661275 tris (budget 1460000) — the gate is the worst-stand check below"
+      ],
+      "wallSeconds": 87,
+      "takenAt": "2026-09-17T16:10:04.777Z",
+      "ref": "steward/arrival-jaunts-plan-20260917",
+      "commit": "01ce6b7731d7",
+      "devCommit": "01ce6b7731d7",
+      "treeHash": "sha256:5dd6d847de7227f9",
+      "treeDirty": false,
+      "changelogHash": "sha256:3aa1de579fd2acee",
+      "host": {
+        "kind": "local",
+        "cpus": 9,
+        "memGB": 15.6,
+        "loadavg": [
+          9.8,
+          8,
+          4.9
+        ]
+      },
+      "source": "/workspace/scratch/66bfc1977486/smoke-desktop.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "4",
+      "parts": [
+        4
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 30,
+      "failed": 1,
+      "failures": [
+        "mobile 390x780: triangles under budget at the reference stand — 1288067 tris (budget 825000) — the gate is the worst-stand check below"
+      ],
+      "wallSeconds": 139,
+      "takenAt": "2026-09-17T16:10:04.556Z",
+      "ref": "steward/arrival-jaunts-plan-20260917",
+      "commit": "01ce6b7731d7",
+      "devCommit": "01ce6b7731d7",
+      "treeHash": "sha256:5dd6d847de7227f9",
+      "treeDirty": false,
+      "changelogHash": "sha256:3aa1de579fd2acee",
+      "host": {
+        "kind": "local",
+        "cpus": 9,
+        "memGB": 15.6,
+        "loadavg": [
+          9.8,
+          8,
+          4.9
+        ]
+      },
+      "source": "/workspace/scratch/66bfc1977486/smoke-mobile.log"
     }
   ]
 }
