@@ -70,7 +70,20 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — chicago_democrat_1833_1835. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D8",
+     "cluster": "noble-mark-mary",
+     "weighed_against": [
+      "noble_mary"
+     ],
+     "for_merge": "The surname agrees letter for letter and the forenames differ in one letter, which is all the one-letter test looks at.",
+     "against_merge": "ONE IS A MAN AND THE OTHER IS A WOMAN, AND THAT IS THE WHOLE ANSWER. Mark Noble, Esq. is the 1833 tax list and two of Fergus's old-settler death notices; 'Mary Noble' is the Democrat of 3 December 1833 (#c007). Mark and Mary are two given names of different sex, not two spellings of one name, so C10's first condition — that nothing but the SPELLING of the forename stands between the cards — is not merely undemonstrated but false. The town holds four Nobles (noble_john, noble_mark, noble_mary, noble_william_b) and the surname is set 161 times in the corpus. No printing sets both, and none could: a fold here would put a woman's reading on a man's card. This is the clearest refusal in the forty-three and it is recorded so the distance is never trusted again on a forename."
+    }
+   ]
   }
  ],
  "touches_removal": false,

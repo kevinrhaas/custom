@@ -118,6 +118,19 @@
      "claim": null,
      "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "green-greene",
+     "weighed_against": [
+      "green_j"
+     ],
+     "for_merge": "A terminal e and an initial that agrees with John, and the Greene card is the best anchored card the pool touches: Major John Greene, in command at Fort Dearborn on the scene date, with quarters and a post in the record.",
+     "against_merge": "THE ANCHOR IS ON THE WRONG SIDE OF THE FOLD, AND THAT IS X2's POINT. 'J. Green' is the 1835 poll list and the American of 13 June 1835 (#c013); Major John Greene is Andreas and the fort literature, with no letter-list or poll reading at all. The initial J attaches to 'John' only because the candidate test folded the surname first, so the forename inference is a fact about the rest of the town and not evidence about the reading — the direction T-0697 refused. GREEN IS POPULATED AND GREENE IS NOT: the town holds green_damel_m, green_j and green_mary, the reading index thirteen Green identities against one Greene, and no Green of the town is a John. No printing is caught setting both spellings for one man, and the fold would put a serving army major onto a town poll roll on the strength of one letter. D7."
+    }
    ]
   }
  ],

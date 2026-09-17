@@ -79,7 +79,31 @@
     "source_ids": [
      "chicago_democrat_1833_1835"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "curtin-curtis-liman",
+     "weighed_against": [
+      "curtin_l_g"
+     ],
+     "for_merge": "The initial L agrees with 'Liman', an uncommon forename, and the two returns are six weeks apart — 20 May 1835 and 1 July 1835, the scene date.",
+     "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. 'L. G. Curtin' is on the return of 20 May 1835 (#c013), 'Curtis, Liman' on the return of 1 July 1835 (#c004). No return sets both spellings. Neither card is an anchor: T-0483 and T-0510 both closed no_corroboration, and T-0510 recorded that Fergus's death notices carry the surname Curtis with no entry under it bearing these initials. BOTH SPELLINGS ARE POPULATED: the town holds curtin_david beside curtin_l_g and curtis_jacob_s beside curtis_liman, so neither surname is a stem only one man bears. And the fold would have to take the middle initial G on trust, since 'Liman' prints none. D6."
+    },
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "curtis-liman-curtiss-l-g",
+     "weighed_against": [
+      "curtiss_l_g"
+     ],
+     "for_merge": "The initial L agrees with Liman and both cards are Chicago readings of the summer of 1835.",
+     "against_merge": "ONE ISSUE SETS BOTH SPELLINGS IN TWO DIFFERENT COLUMNS, WHICH IS EVIDENCE AGAINST AND NOT FOR. The Democrat of 1 July 1835 prints 'Curtis, Liman' in the post-office return at column 4 and 'L. Curtiss' at column 13 of the same issue. A compositor who set Curtis in one column and Curtiss in another that day was distinguishing two names, not wavering over one; C9 asks for a printing caught setting both spellings FOR ONE MAN and this is a printing caught keeping them apart. L. G. Curtiss is besides set 'L. G. Curtiss' on 22 July and 'Curtiss, L. G.' on 5 August 1835, three settings that never drop the second s, and the town holds curtiss_j beside him. The middle initial G is printed on the Curtiss side and absent on Liman's. D7."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -2752,6 +2752,22 @@ selftest "…and that pass's own assertions still fire when broken" \
 selftest "the one-letter candidate test still measures the blind spot it was written for" \
   python3 tools/measure_card_fuzzy_candidates.py --self-test
 
+# T-1291, which folded T-1027's 68-row epic and four satellites into one ticket on the
+# owner's instruction that the research spend is a CHECK before reconstruction, not a
+# programme. The measurement above says how many pairs the one-letter slack proposes; this
+# gate says every one of them has been ANSWERED, and it is stricter than the pool it
+# replaced: T-1027 counted a pair as ruled when EITHER card stood in some ruled cluster and
+# admitted in its own table that "it does not mean the PAIR is ruled". A ruling weighing
+# `wright_j` against two Wrights says nothing about `wight_j_f`. So this asks for a ruling
+# that names BOTH cards, which is the only thing that answers the question the pair asks —
+# and it fires the moment the resident layer grows a new one-letter neighbour, which is how
+# the pool silted up to 68 rows the first time.
+step "every one-letter card pair carries a ruling naming both its cards" \
+  python3 tools/rule_fuzzy_card_pairs.py --check
+
+selftest "…and pair-level coverage still refuses a ruling that names only one card" \
+  python3 tools/rule_fuzzy_card_pairs.py --self-test
+
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
 

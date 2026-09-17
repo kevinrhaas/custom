@@ -129,6 +129,19 @@
      "claim": null,
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1843."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R2",
+     "cluster": "curtis-jacob-curtiss-j",
+     "weighed_against": [
+      "curtiss_j"
+     ],
+     "for_merge": "A terminal s, and the initial J agrees with Jacob. Both cards are in the town's records for the scene window: 'Curtis, J.' on the 1835 poll and 'J. Curtiss' in the Democrat of 20 May 1835 (#c009) and 5 August 1835 (#c017).",
+     "against_merge": "THE INITIAL J HAS TWO RIVALS ON THE CURTISS SIDE ALONE, AND A THIRD TRADE ON THE CURTIS SIDE. The directories print two J. Curtisses of this town: 'Curtiss, James, State's attorney, 136 Lake' — later the ninth mayor — and 'Curtiss, J. W., gunsmith, res cor North Water and Wolcott', both in Fergus 1843 and again in Norris 1844. An initial that could expand to two full forenames in the cluster attaches to neither: R2, the rule the newspapers' identity.json ratified. And Jacob S. Curtis is a third man with a third trade — 'Curtis, Jacob S., water borer, bds Michael McDonald' in Fergus 1843, 'res M. McDonald's' in Norris 1844 — so the fold would have to pick one of two Curtisses and then overwrite a printed occupation. Refused by a ratified rule; no ballot needed."
+    }
    ]
   }
  ],

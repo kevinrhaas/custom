@@ -75,7 +75,20 @@
     "summary": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R5",
+     "cluster": "gabbs-gibbs",
+     "weighed_against": [
+      "gibbs_james_h"
+     ],
+     "for_merge": "One interior vowel, 'James' identical, and both cards come from the post office inside one town. 'Gabbs' is set nowhere in the deposited corpus.",
+     "against_merge": "THE CARD'S OWN READING IS A BRACKETED UNKNOWN. It is 'James [?] Gabbs' — the middle initial was not read, and T-1027's table prints the underlying line as 'Gabbs, James I1.', which is type damage and not a name. The Gibbs card carries a definite middle initial H from the return of 20 May 1835 (#c013). A reading with an unread name-part cannot be compared at that part, so C9's first condition can be neither met nor refuted, and the fold would supply the letter it is supposed to be testing. R5, and T-0695 owns the image."
+    }
+   ]
   }
  ],
  "touches_removal": false,

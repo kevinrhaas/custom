@@ -77,7 +77,20 @@
     "summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
     "notes": "negative≠absence; no edit"
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "rose-ross",
+     "weighed_against": [
+      "ross_niles"
+     ],
+     "for_merge": "'Niles' is an uncommon forename and it is identical on both, and the surnames differ in one letter that a worn impression confuses.",
+     "against_merge": "TWO ISSUES OF ONE PAPER, NEITHER SETTING BOTH, AND ROSE IS POPULATED HERE. 'Niles Rose' is the post-office return of 2 July 1834 (#c031); 'Niles Ross' the Democrat of 16 April 1834 (#c012) — two and a half months and two instruments apart, and no printing carries both spellings. The town holds rose_ruel beside rose_niles; the reading index holds seven Rose identities and five Ross, and the corpus sets Rose 151 times and Ross 50. Neither card is an anchor and T-0484 closed the letter-list side no_corroboration with 'no discriminator' written against it. D7."
+    }
+   ]
   }
  ],
  "touches_removal": false,

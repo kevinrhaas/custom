@@ -75,7 +75,20 @@
     "evidence_for": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository reference corpus, contemporary newspaper searches, institutional/local histories, directories and regional genealogy/index searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "lewie-lewin",
+     "weighed_against": [
+      "lewie_wm"
+     ],
+     "for_merge": "Two five-letter surnames differing in the last letter, both initials beginning W, and both known to the town from one office inside seven weeks. Neither stem is populated: 'Lewie' is set three times in the whole deposited corpus and 'Lewin' twice.",
+     "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. 'Lewie, Wm.' is on the return of 1 July 1835 (#c005); 'W. Y. Lewin' on the return of 20 May 1835 (#c013). No return sets both. Neither card is an anchor — T-0482 closed no_corroboration and T-0478 no_corroboration_yet, and neither carries a trade, a street or a household. The forenames agree only at the first letter: 'Wm.' is William written short and 'W. Y.' is an initial with a middle initial the other reading does not have, so the fold is not one letter but a letter and a name. D6."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -109,6 +109,19 @@
      "claim": null,
      "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D8",
+     "cluster": "king-byram-hyram",
+     "weighed_against": [
+      "king_hyram"
+     ],
+     "for_merge": "One letter at the head of a forename on a surname that agrees letter for letter, and the Byram card is documented: Byram King, hardware merchant, in the Democrat of 9 July 1834 (#c020), 23 July 1834 as 'Byra[m]' and 3 September 1834 (#c022), in the 1840 census at 207:4 and in Fergus's old-settler notices. The paper is demonstrably unsteady about this very forename — T-1027's own table records the printings BYRA, BYRAM, BYRKAM and BYWAM.",
+     "against_merge": "BYRAM AND HYRAM ARE TWO GIVEN NAMES, NOT TWO SPELLINGS OF ONE. Hyram is Hiram, among the commonest forenames in the corpus; Byram is rare. The paper's instability about Byram runs to its last letters — BYRA, BYRKAM, BYWAM — and never to its first, which is the letter that would have to move. The printings do not touch: every Byram reading is the Democrat of 1834 or later records, and 'Hyram King' is a single reading in the American of 20 June 1835 (#c016). KING IS THE MOST POPULATED SURNAME IN THIS POOL — the town holds seven King cards, including a king_byron whose forename is a third variant nobody proposes folding — and no printing sets Byram and Hyram for one man. D8."
+    }
    ]
   }
  ],

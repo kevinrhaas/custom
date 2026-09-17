@@ -80,7 +80,20 @@
      "chicago_democrat_1833_1835"
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D6",
+     "cluster": "curtin-curtis-liman",
+     "weighed_against": [
+      "curtis_liman"
+     ],
+     "for_merge": "The initial L agrees with 'Liman', an uncommon forename, and the two returns are six weeks apart — 20 May 1835 and 1 July 1835, the scene date.",
+     "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. 'L. G. Curtin' is on the return of 20 May 1835 (#c013), 'Curtis, Liman' on the return of 1 July 1835 (#c004). No return sets both spellings. Neither card is an anchor: T-0483 and T-0510 both closed no_corroboration, and T-0510 recorded that Fergus's death notices carry the surname Curtis with no entry under it bearing these initials. BOTH SPELLINGS ARE POPULATED: the town holds curtin_david beside curtin_l_g and curtis_jacob_s beside curtis_liman, so neither surname is a stem only one man bears. And the fold would have to take the middle initial G on trust, since 'Liman' prints none. D6."
+    }
+   ]
   }
  ],
  "touches_removal": false,

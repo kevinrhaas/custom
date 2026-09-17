@@ -128,6 +128,19 @@
      "claim": null,
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D9",
+     "cluster": "morrison-ordemus-orsemus",
+     "weighed_against": [
+      "morrison_ordemus"
+     ],
+     "for_merge": "The surname agrees letter for letter, d and s are one substitution apart in a worn impression, and Orsemus Morrison is one of the town's documented carpenters: the 1833 tax list, Fergus 1843 ('Morrison, Orsemus, carpenter, res 153 Clark [died Jan. 4,1864, a. 58½]') and Norris 1844 ('carpenter, house Clark st'). 'Ordemus' is a forename that exists nowhere else in the corpus, which is the profile of a mis-read rather than a man.",
+     "against_merge": "TWO ROLLS OF ONE TRANSCRIPTION, AND NEITHER SETS BOTH. 'Morrison, Orsemus' is the 1833 tax list (line 128) and 'Morrison, Ordemus' the poll filed 11 August 1834 (line 245) — and that poll also enters 'Morrison, J. M.' at line 244, so the roll that set Ordemus was setting Morrisons carefully. No roll sets both forenames; a shared source id is not a shared printing. The town holds five Morrison cards, so the surname decides nothing. D9, and the forename's absence from the rest of the corpus is kept in `for_merge` because it is what a reading of the 1834 poll's image would test."
+    }
    ]
   }
  ],
