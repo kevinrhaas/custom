@@ -70,126 +70,6 @@
       "records": 1257,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
-    "residents/household:old_settler_deaths.people[].age_as_printed": {
-      "records": 44
-    },
-    "residents/household:old_settler_deaths.people[].as_read": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].birth_year_arithmetic": {
-      "records": 42
-    },
-    "residents/household:old_settler_deaths.people[].birth_year_earliest": {
-      "records": 42
-    },
-    "residents/household:old_settler_deaths.people[].birth_year_latest": {
-      "records": 42
-    },
-    "residents/household:old_settler_deaths.people[].death_date": {
-      "records": 57
-    },
-    "residents/household:old_settler_deaths.people[].entry_given_as_read": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].entry_given_is_initial_only": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].manner_of_death": {
-      "records": 62
-    },
-    "residents/household:old_settler_deaths.people[].matched_as": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].matched_by": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].matched_on_initial_only": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].person_id": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].place_of_death": {
-      "records": 34
-    },
-    "residents/household:old_settler_deaths.people[].record_id": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].resident_given_is_initial_only": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].the_agreement": {
-      "records": 63
-    },
-    "residents/household:old_settler_deaths.people[].trade_or_office": {
-      "records": 22
-    },
-    "residents/household:old_settler_deaths.the_header_admission": {
-      "records": 63
-    },
-    "residents/household:persons[].merge_ruling[].against_merge": {
-      "records": 80
-    },
-    "residents/household:persons[].merge_ruling[].cluster": {
-      "records": 80
-    },
-    "residents/household:persons[].merge_ruling[].for_merge": {
-      "records": 80
-    },
-    "residents/household:persons[].merge_ruling[].referred_to": {
-      "records": 34
-    },
-    "residents/household:persons[].merge_ruling[].rule": {
-      "records": 80
-    },
-    "residents/household:persons[].merge_ruling[].ticket": {
-      "records": 80
-    },
-    "residents/household:persons[].merge_ruling[].verdict": {
-      "records": 80
-    },
-    "residents/household:persons[].merge_ruling[].weighed_against": {
-      "records": 80
-    },
-    "residents/household:persons[].merged_from[].cards": {
-      "records": 33
-    },
-    "residents/household:persons[].merged_from[].cluster": {
-      "records": 33
-    },
-    "residents/household:persons[].merged_from[].rule": {
-      "records": 33
-    },
-    "residents/household:persons[].merged_from[].ticket": {
-      "records": 33
-    },
-    "residents/household:persons[].name_ruling.displayed_name_was": {
-      "records": 3
-    },
-    "residents/household:persons[].name_ruling.over": {
-      "records": 3
-    },
-    "residents/household:persons[].name_ruling.printed_line": {
-      "records": 3
-    },
-    "residents/household:persons[].name_ruling.reasoning": {
-      "records": 3
-    },
-    "residents/household:persons[].name_ruling.rule": {
-      "records": 3
-    },
-    "residents/household:persons[].name_ruling.ruled_by": {
-      "records": 3
-    },
-    "residents/household:persons[].name_ruling.ruling": {
-      "records": 3
-    },
-    "residents/household:persons[].name_ruling.takes": {
-      "records": 3
-    },
-    "residents/household:persons[].name_ruling.the_id_did_not_move": {
-      "records": 3
-    },
     "residents/household:persons[].occupation.derived_from": {
       "records": 262
     },
@@ -204,75 +84,6 @@
     },
     "residents/household:persons[].occupation.withdrawn_from_scene_date.verdict": {
       "records": 6
-    },
-    "residents/household:persons[].resident_research.asserted_identity": {
-      "records": 836
-    },
-    "residents/household:persons[].resident_research.candidate_ids": {
-      "records": 96
-    },
-    "residents/household:persons[].resident_research.candidates[].asserted": {
-      "records": 68
-    },
-    "residents/household:persons[].resident_research.candidates[].assessment": {
-      "records": 13
-    },
-    "residents/household:persons[].resident_research.candidates[].basis": {
-      "records": 62
-    },
-    "residents/household:persons[].resident_research.candidates[].candidate_id": {
-      "records": 13
-    },
-    "residents/household:persons[].resident_research.candidates[].conflicts": {
-      "records": 62
-    },
-    "residents/household:persons[].resident_research.evidence_against": {
-      "records": 270
-    },
-    "residents/household:persons[].resident_research.evidence_for": {
-      "records": 476
-    },
-    "residents/household:persons[].resident_research.notes": {
-      "records": 484
-    },
-    "residents/household:persons[].resident_research.outcome": {
-      "records": 836
-    },
-    "residents/household:persons[].resident_research.programme": {
-      "records": 836
-    },
-    "residents/household:persons[].resident_research.proposed_facts": {
-      "records": 6
-    },
-    "residents/household:persons[].resident_research.refusals[].reason": {
-      "records": 56
-    },
-    "residents/household:persons[].resident_research.refusals[].regraded_on": {
-      "records": 56
-    },
-    "residents/household:persons[].resident_research.refusals[].rule": {
-      "records": 56
-    },
-    "residents/household:persons[].resident_research.refusals[].withheld": {
-      "records": 56
-    },
-    "residents/household:persons[].resident_research.regraded_on": {
-      "records": 79
-    },
-    "residents/household:persons[].resident_research.reviewed_on": {
-      "records": 836
-    },
-    "residents/household:persons[].resident_research.rule": {
-      "records": 79
-    },
-    "residents/household:persons[].resident_research.source_ids": {
-      "records": 551
-    },
-    "residents/household:persons[].resident_research.summary": {
-      "records": 691
-    },
-    "residents/household:persons[].resident_research.ticket": {
-      "records": 836
     },
     "residents/household:persons[].roles[].as_printed": {
       "records": 134
@@ -302,9 +113,6 @@
       "records": 1178,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping \u2014 which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows \u2014 grade, letter_list_only, sources \u2014 is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
     },
-    "residents/manifest:_merged_doc": {
-      "records": 1
-    },
     "residents/manifest:_roles_doc": {
       "records": 1
     },
@@ -313,14 +121,16 @@
       "refused_because": "The panel renders one row per household and counts the rows. A tally shown beside a list it might disagree with is worse than no tally; validate.py holds the two equal, which is where a disagreement should surface, not on the card."
     },
     "residents/manifest:counts.merged_away": {
-      "records": 1
+      "records": 1,
+      "refused_because": "A tally of the redirect table's rows. Each fold reaches a visitor where it can be checked \u2014 on the card of the person it was folded into \u2014 and a bare total beside no list is the shape this table already refused for `counts.households`. tools/validate.py holds it equal to the rows of `merged[]`, which is where a disagreement should surface."
     },
     "residents/manifest:counts.projected_residents": {
       "records": 1,
       "refused_because": "T-0782, the owner's ruling on the opening card: the aggregate is struck. It reached a visitor in one place \u2014 a parenthesis inside the gate card's inferred count \u2014 where it read as a fourth grade beside attested/inferred/reconstructed and was in fact a subtype OF the inferred, counted on a different axis. The claim itself still reaches the visitor, and better: `people.js` filters and chips `resident_subtype === 'projected_resident'` on the person's own row, where the evidence that made them projected is beside the label. A bare total with nothing beside it was the poorer of the two copies. The field stays in the manifest because the mint tools derive it and validate.py holds it."
     },
     "residents/manifest:counts.reconstructed_removed_in_2026_09_02_synthesis": {
-      "records": 1
+      "records": 1,
+      "refused_because": "Bookkeeping about an OPERATION, not a figure about the town: how many reconstructed cards the synthesis of 2 September 2026 removed. The town it describes no longer exists in this tree, so a visitor has nothing to hold it against; `by_grade.reconstructed` \u2014 which reads 0 \u2014 is the fact about the layer, and the removal itself is docs/LIBERTIES.md's business."
     },
     "residents/manifest:households[].head": {
       "records": 1257,
@@ -331,34 +141,44 @@
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
-      "records": 730
+      "records": 730,
+      "refused_because": "The flat copy of a person-level subtype. `people.js` filters and chips `resident_subtype === 'projected_resident'` on the person's own row, where the evidence that made them projected sits beside the label; the household's boolean carries none of it. The identical ruling T-0782 made about `counts.projected_residents`, one level down."
     },
     "residents/manifest:merged[].cluster": {
-      "records": 65
+      "records": 65,
+      "refused_because": "The same flat copy of the cluster name, refused for the same reason."
     },
     "residents/manifest:merged[].household": {
-      "records": 65
+      "records": 65,
+      "refused_because": "The same foreign key at household scope, refused for the same reason."
     },
     "residents/manifest:merged[].merged_into_household": {
-      "records": 65
+      "records": 65,
+      "refused_because": "The other end of the same redirect at household scope."
     },
     "residents/manifest:merged[].merged_into_person": {
-      "records": 65
+      "records": 65,
+      "refused_because": "The other end of the same redirect. It resolves an id and states nothing about a person."
     },
     "residents/manifest:merged[].person": {
-      "records": 65
+      "records": 65,
+      "refused_because": "T-0839's redirect table, keyed by foreign key. `person` and the three ids beside it name which card was folded into which; they are how a crosswalk resolves a stale id, not a figure about anybody. The fold itself now reaches the visitor on the surviving person's own card, from the record's `merged_from` block, with the rule and the reasoning that made it."
     },
     "residents/manifest:merged[].record_file": {
-      "records": 65
+      "records": 65,
+      "refused_because": "File routing \u2014 where the folded record is kept whole under data/residents/merged/. The same class of key as `file`, which this census strips as machinery wherever it is not nested inside a table."
     },
     "residents/manifest:merged[].rule": {
-      "records": 65
+      "records": 65,
+      "refused_because": "The manifest's flat copy of the fold's rule. The RECORD's `merged_from[].rule` is what residents.js shows, beside the cluster, the ticket and the note that says what the union of the cards means. Showing the manifest's bare copy would be showing less, which is the ruling this table already makes about `households[].present_on_scene_date`."
     },
     "residents/manifest:merged[].ticket": {
-      "records": 65
+      "records": 65,
+      "refused_because": "The same flat copy of the ticket, refused for the same reason."
     },
     "residents/manifest:vocabulary.resident_subtypes": {
-      "records": 1
+      "records": 1,
+      "refused_because": "A closed vocabulary tools/validate.py holds the records against \u2014 its one term, `projected_resident`, reaches the visitor as the People directory's filter and row mark. A card that printed the LIST would be printing the schema rather than anything about the town."
     },
     "residents/manifest:vocabulary.role_date_precision": {
       "records": 1

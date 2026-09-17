@@ -18,7 +18,7 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 
 | Domain | Asserted | Later only | Outside Chicago | Aggregate only | Refused | Unresolved | Total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| books | 2 | 74 | 0 | 27 | 0 | 200 | 303 |
+| books | 2 | 79 | 0 | 27 | 41 | 154 | 303 |
 | census_1830 | 0 | 0 | 0 | 0 | 0 | 204 | 204 |
 | census_1840 | 0 | 1,080 | 0 | 0 | 0 | 0 | 1,080 |
 | church | 8 | 1,402 | 63 | 1 | 0 | 273 | 1,747 |
@@ -29,8 +29,8 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 | newberry_index | 0 | 0 | 0 | 0 | 6,658 | 0 | 6,658 |
 | newspapers | 144 | 0 | 0 | 0 | 0 | 1,045 | 1,189 |
 | old_settlers | 0 | 1,094 | 0 | 0 | 0 | 0 | 1,094 |
-| residents | 15 | 0 | 0 | 0 | 667 | 398 | 1,080 |
-| **Total** | **170** | **11,880** | **63** | **32** | **7,329** | **4,219** | **23,693** |
+| residents | 15 | 0 | 0 | 0 | 683 | 382 | 1,080 |
+| **Total** | **170** | **11,885** | **63** | **32** | **7,386** | **4,157** | **23,693** |
 
 ## Second-hop preservation
 
@@ -42,7 +42,11 @@ Only tickets whose current state is open may own an unresolved unit.
 
 | Ticket | Units |
 | --- | ---: |
+| T-1144 | 1 |
+| T-1145 | 1 |
 | T-1147 | 748 |
-| T-1234 | 3,471 |
+| T-1169 | 21 |
+| T-1170 | 2 |
+| T-1236 | 3,384 |
 
 Nonzero `later_only`, `outside_chicago`, `aggregate_only`, and `refused` counts are closed decisions, not missing work. The gate fails only when a unit is unclassified, an asserted target dies, an unresolved owner closes or disappears, or an assertion survives only as prose.

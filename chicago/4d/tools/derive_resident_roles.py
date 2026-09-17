@@ -44,8 +44,8 @@ the one thing a compatibility view must not have.
 
 WHAT THIS TICKET DOES NOT READ. The newspaper gazetteer's `persons[].occupations[]`, the
 1839 directory and civic-register crosswalks and the 1843/1844 identity-master appearances
-are T-1223, together with each role's stated place and employer and the migration table.
-The people view's dated timeline is T-1224. This tool reads the CARD, and only the card.
+are T-1243, together with each role's stated place and employer and the migration table.
+The people view's dated timeline is T-1244. This tool reads the CARD, and only the card.
 """
 from __future__ import annotations
 
@@ -79,7 +79,7 @@ DATED_BY = ("source_describes_date", "printing_year", "stated_date", "undated")
 # WHICH KIND A CONTROLLED ROLE IS. The residents vocabulary has never separated these —
 # `postmaster` and `blacksmith` sit in one alphabetical list — and T-1145 needs the
 # separation because an office and a trade are held on different evidence and, from
-# T-1223, by different bodies. The two sets below are enumerated rather than matched:
+# T-1243, by different bodies. The two sets below are enumerated rather than matched:
 # a fuzzy rule is how every milliner in this corpus once compiled as a grain MILLER
 # (T-0376). Anything not named here is a `trade`, and `--self-test` refuses a name in
 # either set that the manifest vocabulary does not carry.
@@ -201,7 +201,7 @@ def scene_role(occ: dict, person_id: str) -> dict | None:
             "1835 occupation block and is dated by what the cited source or sources are "
             "ABOUT, which is why `precision` can be no better than the span they cover. "
             "The span reaches 1835, so this role stands in the scene-date view. The "
-            "printing the trade was read off is not on the card and is fetched by T-1223.")
+            "printing the trade was read off is not on the card and is fetched by T-1243.")
     else:
         row["note"] = (
             "A DATED ROLE THAT DOES NOT REACH THE SCENE DATE (T-0991, withdrawn from the "
@@ -239,7 +239,7 @@ def later_role(occ: dict) -> dict | None:
             "year rather than leaving it to a pointer (T-0693, carried here by " + GENERATOR
             + "). `role` is null because the directory's wording has not been adjudicated "
             "into the closed vocabulary — the printing is what the source gives and the "
-            "printing is what is kept. T-1223 is where the controlled term is ruled on. It "
+            "printing is what is kept. T-1243 is where the controlled term is ruled on. It "
             "is not a claim about " + SCENE_DATE + " and never becomes one: the year is "
             + (year or "not stated") + "."),
     }
