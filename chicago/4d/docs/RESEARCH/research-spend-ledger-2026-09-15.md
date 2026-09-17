@@ -34,7 +34,7 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 
 ## Second-hop preservation
 
-The pre-ledger resident-card measure is preserved: **1,643** rulings reach a town person, **1,643** are on a card, **0** are unwritten, and **0** state no source.
+The pre-ledger resident-card measure is preserved: **1,646** rulings reach a town person, **1,646** are on a card, **0** are unwritten, and **0** state no source.
 
 ## Unresolved ownership
 

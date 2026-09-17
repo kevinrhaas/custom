@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: null, title: 'Leonard C. Hugunin moves to the H\u2019s', kind: 'fix', ts: '', date: '',
+    items: [
+      'One man in the People list was filed under the wrong letter. Leonard C. Hugunin sat between Anson Leonard and N Leonard, because the card the post office\u2019s letter list minted him from read \u201cLeonard, C. Hugunin\u201d \u2014 the comma of the printed line, \u201cHugunin, Leonard, C.\u201d, left behind after the words had already been put the other way round. Every reader of that card believed the comma and took Leonard for the family name. He now reads \u201cLeonard C. Hugunin\u201d and stands beside Hiram Hugunin, where the record id and the paper\u2019s other printing of his name both always said he belonged.',
+      'The same comma had reached the 1840 census work, where three refusals of a \u201cJohn Leonard\u201d counted him as one of the town\u2019s three Leonards. There are two, and the refusals now say so. No match or refusal changes \u2014 the man was never a Leonard, so nothing that turned on him was ever decided.',
+      'The mint that writes these cards will not make the mistake again: it drops a punctuation mark the reordering has made untrue, its gate refuses any card whose comma moves the family name, and its name-reading table now proves that a reader of a card lands where a reader of the printed line does, over every printing it holds.',
+    ] },
   { v: 900, title: 'Ten residents no longer stand in the town on a bare year', kind: 'fix', ts: '2026-09-17T04:47:56.455Z', date: 'Sep 16, 2026, 11:47 PM CT',
     items: [
       'Every resident card says whether that person was standing in Chicago on 1 July 1835, the day this town is modelled on. Where no source says it outright, the town BRACKETS the day: one record naming the person here at or before it, another naming them here at or after it, and the two together reach across it. A bracket that closes is read as present.',

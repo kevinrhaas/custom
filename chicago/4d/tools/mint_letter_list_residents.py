@@ -436,6 +436,20 @@ def display(name: str) -> str:
     tools/register_letter_list_suspicions.py, written to
     data/research/residents/letter_list_reading_suspicions.json).
 
+    T-1121 TAKES THE PRINTING'S PUNCTUATION OUT OF WHAT IS REORDERED. The comma
+    is the mark that says which order a line is in; once the tokens have been put
+    in the other order it is a mark saying something untrue, and `surname()` reads
+    it and believes it. `Hugunin, Leonard, C.` sets a second comma inside the
+    forename side, the reordering moved only the head, and the card read `Leonard,
+    C. Hugunin` — which parses back as a surname-first printing and gives the
+    family name `leonard`, against the record id and against the gazetteer's other
+    printing of the same man. Deliberately the SMALLEST fix that closes it: a more
+    general rule — put the token `surname()` picked last, wherever it fell — was
+    measured over the 1,050-name pool and moved 84 readings, most of them correct
+    ones, because a square-bracket supply and a bare honorific are not forenames
+    (`[uncertain: Bester], James`, `Baby, Mrs.`). The rule is not the defect; what
+    the reordering left behind was.
+
     T-0721 ADDS THE ONE THING A CARD MAY SAY ABOUT A READING, WHICH IS THAT THERE
     ISN'T ONE. An initial the scan set as a digit is replaced by `UNREAD`, and by
     nothing else: the surname is never touched, no letter is supplied, and the
@@ -445,8 +459,26 @@ def display(name: str) -> str:
     """
     if "," in name:
         head, _, tail = name.partition(",")
+        # T-1121. A CARD'S NAME IS ORDERED, NOT PUNCTUATED. The office sometimes
+        # sets a SECOND comma inside the forename side — `Hugunin, Leonard, C.` —
+        # and reordering around the first comma alone left that one standing, so
+        # the card read `Leonard, C. Hugunin`. Given-first is the one order a card
+        # shows and it says so by its order; a comma left in it is read straight
+        # back as a surname-first printing, and `surname()` then answers `leonard`.
+        # Only a comma the reordering has made UNTRUE is dropped, and it is
+        # dropped only where it is measurably lying: where the family name read
+        # off the ordered string with the comma is not the one read off it
+        # without. `Es,Jones, High` orders to `Jones, High Es`, whose comma still
+        # marks the family name correctly by accident — that card leads with its
+        # surname for a different reason and carries its own ticket (T-1157),
+        # rather than a migration smuggled in here. No token is recased,
+        # respelled, supplied or removed, which is what keeps this a reordering
+        # and not a correction of the reading.
         tail = tail.strip()
         shown = f"{tail} {head.strip()}".strip() if tail else head.strip()
+        plain = re.sub(r"\s+", " ", shown.replace(",", " ")).strip()
+        if surname(shown) != surname(plain):
+            shown = plain
         return mark_unread(shown, name)
     tokens = name.split()
     if len(tokens) >= 2 and surname_is_first_token(name):
@@ -1215,6 +1247,31 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                                 f"advertisement from reading as the same claim")
             if person.get("letter_list_only"):
                 flagged_persons += 1
+            # T-1121. A COMMA IN A CARD'S NAME MAY NOT CHANGE THE FAMILY NAME
+            # IT GIVES. `display()` makes one order out of the two the papers
+            # print, and a comma left standing in what it made is read straight
+            # back as a surname-first printing: hugunin_leonard_c carried
+            # `Leonard, C. Hugunin`, off the printed `Hugunin, Leonard, C.`, and
+            # every reader of that card — `surname()` here, `surname_of()` in
+            # compile_scene.py, the inverting rule in the 1840 crosswalk — took
+            # `leonard` as the family name while the record id and the
+            # gazetteer's other printing of the same man both said Hugunin.
+            #
+            # Stated as what it is and not one inch wider: the card is not where
+            # a printing is kept verbatim (the extracted column and the
+            # gazetteer's `as_printed` are, and neither is touched by this), so a
+            # comma a card carries earns nothing — but it is only a DEFECT where
+            # it moves the answer. jones_es_high carries one that does not, off a
+            # line whose family name the type set in the middle, and it has its
+            # own ticket rather than a migration smuggled into this one.
+            shown = person.get("name") or ""
+            if "," in shown and surname(shown) != surname(shown.replace(",", " ")):
+                problems.append(f"{hid}/{pid}: display name {shown!r} reads the family "
+                                f"name {surname(shown)!r} with its comma and "
+                                f"{surname(shown.replace(',', ' '))!r} without it — an "
+                                f"ordered name says its order by its order, and a comma "
+                                f"left in one is read back as a surname-first printing "
+                                f"(T-1121)")
             dates = person.get("letter_list_returns")
             if not isinstance(dates, list) or not dates:
                 problems.append(f"{hid}/{pid}: letter_list_returns is "
@@ -1391,6 +1448,24 @@ NAME_READING_CASES = (
     # --- the comma the papers do sometimes print -------------------------------
     ("Hail, Aifred", "hail", "Aifred Hail"),
     ("Foot, S.", "foot", "S. Foot"),
+    # …and the SECOND comma, inside the forename side, which the reordering must
+    # not carry into the card (T-1121). `Hugunin, Leonard, C.` is a printing this
+    # corpus holds, and it minted hugunin_leonard_c, whose card read `Leonard, C.
+    # Hugunin` and gave the family name `leonard` to every reader of it. The row
+    # under it is the assertion that matters: the ordered name is a FIXED POINT
+    # and gives the family name the printing gave, so no reader of the card can
+    # answer differently from a reader of the line.
+    ("Hugunin, Leonard, C.", "hugunin", "Leonard C. Hugunin"),
+    ("Leonard C. Hugunin", "hugunin", "Leonard C. Hugunin"),
+    # `Es,Jones, High` is the other printing this corpus holds with two commas,
+    # and it is the row that says where the rule stops. Ordered, it is `Jones,
+    # High Es`, whose comma a reader takes as a surname-first mark — and taking
+    # it that way gives `jones`, which is RIGHT. The comma is not lying, so it is
+    # not dropped, and the card is left exactly as it stands on dev. What is
+    # wrong with that card is something else: the printing sets the family name
+    # in the MIDDLE, so the ordered string leads with it, and T-1157 carries
+    # that.
+    ("Es,Jones, High", "jones", "Jones, High Es"),
     # --- a genuine two-part surname, which must survive all of it --------------
     ("Rev. John Mary Irenaeus St Cyr", "cyr", "Rev. John Mary Irenaeus St Cyr"),
 )
@@ -1434,6 +1509,16 @@ def name_reading_self_test() -> int:
         if got_d != want_display:
             failed += 1
             print(f"   FAIL display({printed!r}) -> {got_d!r}, expected {want_display!r}")
+    # T-1121. The property the rows above only sample: whatever `display()` makes
+    # of a printing, a reader of the CARD must land on the family name a reader of
+    # the LINE does. This is the assertion that failed on `Hugunin, Leonard, C.`
+    # — `surname()` said hugunin of the printing and leonard of the card it made.
+    for printed, _want_surname, _want_display in NAME_READING_CASES:
+        of_line, of_card = surname(printed), surname(display(printed))
+        if of_line != of_card:
+            failed += 1
+            print(f"   FAIL surname({printed!r}) is {of_line!r} but the card it makes, "
+                  f"{display(printed)!r}, reads {of_card!r}")
     for printed, want_slug, want_fragment in SLUG_CASES:
         got_slug, got_fragment = slug(printed), plain_fragment(printed)
         if got_slug != want_slug:
@@ -1447,7 +1532,8 @@ def name_reading_self_test() -> int:
         print(f"   {failed} name-reading assertion(s) failed")
         return 1
     print(f"   OK: all {len(NAME_READING_CASES)} name readings and "
-          f"{len(SLUG_CASES)} slugs are what the papers print")
+          f"{len(SLUG_CASES)} slugs are what the papers print, and every card each "
+          f"one makes reads back to the family name of its own line")
     return 0
 
 
@@ -1580,7 +1666,27 @@ def self_test() -> int:
             "rule": "G1b",
         })
 
+    # T-1121. The defect exactly as it stood on dev: a card whose ordered name
+    # keeps the second comma of its printing. The mutation is the printing's own
+    # — a comma after the first forename word, which is where `Hugunin, Leonard,
+    # C.` left one — and it is put on a card whose family name a reader would
+    # then get wrong, because a comma that moves nothing is not the defect.
+    def punctuate_the_card(d, i, s):
+        for path, doc in sorted(d.items()):
+            if not minted_by(path, doc, "letter_list", PREFIX):
+                continue
+            person = (doc.get("persons") or [{}])[0]
+            tokens = str(person.get("name") or "").split()
+            if len(tokens) < 3 or "," in person["name"]:
+                continue
+            spoiled = " ".join([tokens[0] + ","] + tokens[1:])
+            if full_word(tokens[0]) and surname(spoiled) != surname(person["name"]):
+                person["name"] = spoiled
+                return
+        raise AssertionError("no card whose name a stray comma would re-read")
+
     cases = [
+        ("a card's ordered name keeps a comma", punctuate_the_card, "T-1121"),
         ("a person loses letter_list_only", drop_flag, "letter_list_only"),
         ("a person loses its returns' dates", drop_dates, "letter_list_returns"),
         ("a household gains a roof", give_a_roof, "lives_at"),
