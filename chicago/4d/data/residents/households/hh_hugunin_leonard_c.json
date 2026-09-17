@@ -97,7 +97,23 @@
       "reason": "This card rests on 2 thing(s) the consolidation did not read — chicago_old_settlers_hugunin_1883, fergus_chicago_directory_1839. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "arrival_at_chicago",
+     "value": "1833-08-17",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_old_settlers_hugunin_1883"
+     ],
+     "describes_date": "1833-08-17",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0479#01",
+     "as_read": "record Leonard C. Hugunin as arriving 17 August 1833",
+     "note": "The Old Settlers' proceedings give the day. The household's 1835-06-30 is a postal bound and stands.",
+     "precision": "day"
+    }
+   ]
   }
  ],
  "touches_removal": false,

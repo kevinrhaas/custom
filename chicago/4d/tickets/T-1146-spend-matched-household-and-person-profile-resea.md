@@ -1,7 +1,7 @@
 ---
 id: T-1146
 title: Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-17
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 5:12:27 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-17T10:16:00.765Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35208861486
 ---
 
 Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible.

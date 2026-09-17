@@ -84,7 +84,22 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — rr_cook_democratic_republicans_1834. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Named among the leading Cook County Democratic-Republicans in the Chicago Democrat’s list of 15 October 1834",
+     "confidence": "inferred",
+     "sources": [
+      "rr_cook_democratic_republicans_1834"
+     ],
+     "describes_date": "1834-10-15",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0485#01",
+     "as_read": "the Chicago Democrat’s October 15, 1834 political list names Sciota Evans among leading Cook County Democratic-Republicans",
+     "note": "A contemporary newspaper list, dated to the day, eight months before the postal seed. It is the reading that made the identity and it was carried only as prose."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -90,7 +90,22 @@
       "reason": "This card rests on 3 thing(s) the consolidation did not read — census_1840_chicago_familysearch_images, kinzie_waubun_1856, nwchicago_elijah_wentworth. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "The Wolf Point tavern keeper, resolved against his son by the ‘sen.’ of the transcription",
+     "confidence": "inferred",
+     "sources": [
+      "nwchicago_elijah_wentworth"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0509#01",
+     "as_read": "identify Elijah Wentworth Sr. as the Wolf Point tavern keeper",
+     "note": "Two independent readings resolve the senior man from the junior. That is a finding about which person this record is, and it was held only in prose."
+    }
+   ]
   }
  ],
  "touches_removal": false,
