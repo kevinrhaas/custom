@@ -25,7 +25,7 @@
  * No network: `claim --no-lock` is not used, so the lock path runs against a real
  * local bare remote, which is the only honest way to assert a compare-and-swap.
  */
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync, cpSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync, readFileSync, cpSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -126,7 +126,47 @@ const markers = (bare) =>
   }
 }
 
+/* ---------------------------------------------- prune: the queue drops finished work */
+
+/**
+ * A branch's QUEUE.md is a snapshot, and `dev` closes tickets under it while the PR is
+ * open. `ticket.mjs check` refuses a queue line whose ticket is not workable, so the
+ * branch goes red on work that is already done — #1387, #1389 and #1392 all did on
+ * 2026-09-17. `prune` applies the gate's own rule, and it can only DELETE a line:
+ * the owner's ranking and the band headers survive it untouched.
+ */
+{
+  const { tmp, APP } = sandbox();
+  try {
+    console.log('\n  a queue carrying work that finished on dev');
+    for (const [id, state] of [['T-2001', 'done'], ['T-2002', 'split'], ['T-2003', 'open']]) {
+      writeFileSync(path.join(APP, 'tickets', `${id}-fixture.md`), ticketFile(id, `fixture ${id}`, state));
+    }
+    writeFileSync(path.join(APP, 'tickets', 'QUEUE.md'),
+      '# QUEUE — top is next. THE OWNER ORDERS THIS FILE.\n# --- 1. A BAND\n'
+      + 'T-2003 — fixture T-2003\nT-2001 — fixture T-2001\nT-2002 — fixture T-2002\n');
+
+    const dry = run(APP, 'prune', '--dry-run');
+    const queueAfterDry = readFileSync(path.join(APP, 'tickets', 'QUEUE.md'), 'utf8');
+    check('5. --dry-run names what would go and writes nothing',
+      /T-2001 \(done\)/.test(dry.out) && /T-2002 \(split\)/.test(dry.out)
+      && queueAfterDry.includes('T-2001'),
+      dry.out.trim());
+
+    const r = run(APP, 'prune');
+    const q = readFileSync(path.join(APP, 'tickets', 'QUEUE.md'), 'utf8');
+    check('6. the finished and split lines go', r.status === 0
+      && !q.includes('T-2001 —') && !q.includes('T-2002 —'), r.out.trim());
+    check('   …the workable line stays, and so does the band the owner wrote',
+      q.includes('T-2003 —') && q.includes('# --- 1. A BAND'));
+    check('   …and a second prune is a no-op, never a second opinion',
+      /nothing to drop/.test(run(APP, 'prune').out));
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
 console.log(failures
   ? `\n  ${failures} failure(s)\n`
-  : '\n  a split keeps its lock, and the parent it leaves on dev cannot be claimed twice\n');
+  : '\n  a split keeps its lock, and the queue drops only work that finished\n');
 process.exit(failures ? 1 : 0);

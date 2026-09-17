@@ -1487,6 +1487,45 @@ switch (cmd) {
     }
     break;
   }
+  /**
+   * PRUNE — drop every queue line whose ticket is no longer workable on THIS tree.
+   *
+   * WHY (2026-09-17). Three branches went red on the same day on `ticket.mjs check`
+   * — #1387, #1389, #1392 — each of them listing a ticket that had finished on `dev`
+   * while the branch was open. It is the commonest red the lap leaves behind, and it
+   * is entirely mechanical: a branch's QUEUE.md is a snapshot, `dev` closes tickets
+   * under it, and the two disagree until somebody deletes a line by hand.
+   *
+   * It is not untidiness. A done ticket at the top of the queue is the exact shape of
+   * available work, and it is how T-0429 came to be rebuilt across 116 files.
+   *
+   * THE RULE IS THE GATE'S OWN, not a second opinion: `check` refuses a queue line
+   * whose ticket is not open/claimed/review, so that is what this removes. It can
+   * only DELETE a line, never add or reorder one, which is what makes it safe for an
+   * automaton to run — the owner's ranking is untouched and a line that should stay
+   * cannot be moved by it. `--dry-run` prints without writing.
+   */
+  case 'prune': {
+    const workable = new Set(tickets.filter((t) => WORKABLE.includes(t.state)).map((t) => t.id));
+    const state = new Map(tickets.map((t) => [t.id, t.state]));
+    const lines = queueLines();
+    const dropped = [];
+    const kept = lines.filter((l) => {
+      const id = queueId(l);
+      if (!id || workable.has(id)) return true;
+      dropped.push(`${id} (${state.get(id) ?? 'no such ticket'})`);
+      return false;
+    });
+    if (!dropped.length) { console.log('queue prune: nothing to drop — every line is workable'); break; }
+    if (has('dry-run')) {
+      console.log(`queue prune: ${dropped.length} line(s) WOULD be dropped — ${dropped.join(', ')}`);
+      break;
+    }
+    writeFileSync(QUEUE, kept.join('\n').replace(/\n+$/, '\n'));
+    generateBoard(loadAll());
+    console.log(`queue prune: dropped ${dropped.length} line(s) — ${dropped.join(', ')}`);
+    break;
+  }
   case 'board': generateBoard(tickets); console.log(`BOARD.md + tickets.json regenerated (${tickets.length} tickets)`); break;
   /**
    * WHAT IS BEING WORKED ON RIGHT NOW — the one question the files cannot answer.
@@ -1714,6 +1753,6 @@ switch (cmd) {
     break;
   }
   default:
-    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|split|list|inflight|landed|claims|board|check');
+    console.log('usage: ticket.mjs new|claim|done|block|unblock|withdraw|restamp|split|list|inflight|landed|claims|prune|board|check');
     process.exit(cmd ? 1 : 0);
 }
