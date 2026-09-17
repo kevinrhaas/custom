@@ -33,6 +33,12 @@
 # the work. If the top is gated or every row is in flight, the run SAYS SO and stops — it
 # does not walk down to band 6, 7 or 8. That fall-through is how T-0467 and T-1154 were
 # picked up out of the bottom of a 148-line queue on 2026-09-17 while the city waited.
+# TICKET BUDGET (T-1295, owner 2026-09-17: "I don't want too many tickets and not making
+# any progress"). `ticket.mjs new` REFUSES at 140 queue lines, and refuses a branch its
+# fourth new ticket. Override is `--anyway --why "<reason>"` and the reason is written into
+# the file. Filing is free and working is not — add a finding to the ticket it was found in
+# first, which is what the line above already asks for. `split` is exempt: it replaces a
+# ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1284 — Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table

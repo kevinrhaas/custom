@@ -60,14 +60,26 @@ This is an EPIC in the band the city is waiting behind, and an epic there is a h
 drains into. It is not folded, because ruling on unasserted units is real work nothing else
 covers. It is BOUNDED, on the same terms as T-1290 and T-1291:
 
-* **One pass over all four bodies** — land-sale, civic, 1830-census, church — not one run each.
+**THE FIRST VERSION OF THIS BOUND SAID "four bodies" AND THAT WAS WRONG** — the table above
+lists NINE corpora and 3,384 units. Corrected here rather than quietly, because the number is
+the whole point: acceptance clause 1 as written says "Each corpus above is taken as its own
+ticket", which licenses **nine tickets** out of one. **Clause 1 is overridden by this section.**
+
+* **THE CAP IS THREE CHILDREN, and they are by WEIGHT, not by corpus.** land_sales (1,572) is
+  the biggest single body and can stand alone; civic (496) with census_1830 (204) and
+  directories (18) are the same question — a name on a roll — and go together; residents (382),
+  newspapers (378), church (272), books (61) and genealogytrails (1) are the remainder and go
+  together. Three tickets, not nine, and never one per corpus.
 * **A unit that cannot be ruled on the evidence is recorded as unasserted WITH ITS REASON, and
   that is a finished answer.** This project prefers a refusal to an invention; an explicit
   refusal is the deliverable, not a deferral.
-* **No ticket may be filed per unruled unit.** One that later blocks reconstruction is picked
-  up by the ticket it blocks.
-* The output is one table — unit, body, ruling or refusal, reason — plus one sentence per body
-  saying what the residue does to the 1835 town. "Nothing" is a complete answer.
-
-**If it cannot be done in one run, split it by BODY, four children at most, and say so — never
-by unit.**
+* **NO TICKET MAY BE FILED PER UNRULED UNIT — and 3,384 units is why that rule exists here
+  more than anywhere else in the queue.** One that later blocks reconstruction is picked up by
+  the ticket it blocks.
+* The output is one table — unit, corpus, ruling or refusal, reason — plus one sentence per
+  corpus saying what the residue does to the 1835 town. **"Nothing" is a complete answer**, and
+  for census_1830 it is very likely the true one: those are 1830 heads, five years before the
+  scene, on the same ladder T-1290 has already closed for 1840.
+* `ticket.mjs new` now enforces a budget (T-1295): three tickets per branch, and nothing at all
+  once the queue is at its ceiling, unless a run signs a written reason into the file. **This
+  ticket is the reason that budget exists.**

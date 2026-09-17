@@ -1229,13 +1229,74 @@ const has = (name) => args.includes(`--${name}`);
 const tickets = loadAll();
 
 switch (cmd) {
+  /**
+   * THE BUDGET (T-1295). Filing is free and working is not, so an unbudgeted `new` is the
+   * one lever every run can pull and none of them feels the cost of. Owner, 2026-09-17:
+   * "we spent all night and all day working on the research spend and we still have the
+   * same number of tickets we started with … I don't want too many tickets and not making
+   * any progress."
+   *
+   * TWO CEILINGS, BOTH REFUSABLE IN WRITING. A branch may add at most NEW_PER_BRANCH
+   * tickets, and nothing may be filed once the queue is at QUEUE_CEILING lines. Either
+   * refusal is overridden by `--anyway --why "<reason>"`, and the reason is WRITTEN INTO
+   * THE TICKET under its own heading — the same trade as `Changelog: none — <why>` and the
+   * liberty ledger: a person had to decide and had to sign it.
+   *
+   * IT IS NOT A BAN ON FILING, it is a prompt to do the cheaper thing first, which the
+   * queue's own header already asks for: "Add findings to an existing ticket first." A
+   * finding appended to the ticket it was found in costs nothing to read and nothing to
+   * schedule; the same finding as a new line costs a claim, a branch, a gate and a merge.
+   *
+   * SPLIT IS DELIBERATELY EXEMPT. Splitting is how an oversized ticket becomes workable,
+   * the gate already REFUSES an effort-L ticket in the queue, and a split replaces its
+   * parent rather than adding to the pile.
+   */
   case 'new': {
+    // Every flag's VALUE has to come out of the title too, or the reason a run gives for
+    // filing over the budget ends up IN the ticket's name — caught by case 18 the day the
+    // budget shipped, which produced `T-4141-filed-over-the-budget-it-blocks-a-merge-...`.
     const title = args.filter((a) => !a.startsWith('--')
       && a !== flag('epic') && a !== flag('by') && a !== flag('effort') && a !== flag('legacy')
-      && a !== flag('after')).join(' ');
-    if (!title) { console.error('usage: ticket.mjs new "title" [--after T-NNNN] [--epic E] [--by owner|loop|steward] [--seen] [--needs-bake] [--effort M] [--legacy OLD-ID]\n'
+      && a !== flag('after') && a !== flag('why') && a !== flag('base')).join(' ');
+    if (!title) { console.error('usage: ticket.mjs new "title" [--after T-NNNN] [--epic E] [--by owner|loop|steward] [--seen] [--needs-bake] [--effort M] [--legacy OLD-ID] [--anyway --why "<reason>"]\n'
       + '  --after T-NNNN  place the new line directly under that ticket, inside its band (a run\'s\n'
       + '                  filings go here — beside the work they serve, never at the foot)'); process.exit(1); }
+    // The budget, measured against the base rather than guessed: the tickets THIS BRANCH
+    // adds are the ones it is accountable for.
+    const QUEUE_CEILING = 140;
+    const NEW_PER_BRANCH = 3;
+    const anyway = has('anyway');
+    const why = flag('why');
+    if (anyway && !String(why ?? '').trim()) {
+      console.error('`--anyway` was written with no `--why "<reason>"` after it.');
+      console.error('The reason is the whole point — say why this must be a ticket rather');
+      console.error('than a paragraph on the ticket it was found in. It is written into the file.');
+      process.exit(1);
+    }
+    let addedHere = 0;
+    try {
+      const base = flag('base') ?? 'origin/dev';
+      addedHere = git(['diff', '--diff-filter=A', '--name-only', `${base}...HEAD`, '--', 'chicago/4d/tickets/'])
+        .split('\n').filter((l) => /T-\d+-.*\.md$/.test(l.trim())).length;
+    } catch { addedHere = 0; }   // no base to compare against is not an accusation
+    const queueNow = queueLines().filter((l) => queueId(l)).length;
+    const refusal = queueNow >= QUEUE_CEILING
+      ? `the queue stands at ${queueNow} lines, at or over its ceiling of ${QUEUE_CEILING}`
+      : addedHere >= NEW_PER_BRANCH
+        ? `this branch already adds ${addedHere} ticket(s), its limit of ${NEW_PER_BRANCH}`
+        : null;
+    if (refusal && !anyway) {
+      console.error(`ticket.mjs new: REFUSED — ${refusal}.\n`);
+      console.error('The queue\'s own header asks for the cheaper thing first: "Add findings to an');
+      console.error('existing ticket first." A paragraph on the ticket a finding was found in costs');
+      console.error('nothing to read and nothing to schedule. A new line costs a claim, a branch, a');
+      console.error('gate and a merge — and the pile is what stops the work being done.\n');
+      console.error('If it genuinely has to be its own ticket, say why and it is taken on your word:\n');
+      console.error('  node tools/ticket.mjs new "title" --after T-NNNN --anyway --why "<reason>"\n');
+      console.error('The reason is written into the ticket. Folding something else out of the queue');
+      console.error('also clears the ceiling, and `prune` drops any line whose work has finished.');
+      process.exit(1);
+    }
     const id = idOf(nextIdNum(tickets));
     const t = {
       file: path.join(DIR, `${id}-${slugOf(title)}.md`),
@@ -1247,7 +1308,9 @@ switch (cmd) {
       opened: today(), closed: null, closed_at: null, pr: null,
       claimed_by: null, claimed_run: null, blocked_on: null,
       needs_bake: has('needs-bake'),
-      body: `\n${title}.\n\n**Acceptance:** (state it before working — the definition of done, never weakened to pass)\n`,
+      body: `\n${title}.\n${refusal && anyway
+        ? `\n## FILED OVER THE BUDGET, AND HERE IS THE REASON\n\nThe ticket budget refused this: ${refusal}. It was filed anyway, on this reason:\n\n> ${String(why).trim()}\n`
+        : ''}\n**Acceptance:** (state it before working — the definition of done, never weakened to pass)\n`,
     };
     writeTicket(t);
     // Where the line goes. `--after` is the run's placement; a bare `new` is the owner's
