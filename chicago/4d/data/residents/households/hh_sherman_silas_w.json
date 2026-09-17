@@ -70,9 +70,16 @@
      ],
      "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1839 is evidence about 1839. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
     },
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "note": "NO TRADE IS RECORDED FOR 1835-07-01, AND ONE IS RECORDED FOR ANOTHER YEAR. The trade this field used to carry — `sheriff` — is not gone: it stands in `roles[]` with the bound its sources permit, and `withdrawn_from_scene_date` above carries the audit's verdict for withdrawing it. The 1835 field asserts what the sources reach, which here is nothing, because no source cited for the trade describes 1835 (T-0837's write rule, T-0872's measurement, T-0991's repair, made by tools/derive_resident_roles.py).",
     "derived_from": "roles",
-    "roles_at_scene_date": []
+    "roles_at_scene_date": [],
+    "withdrawn_from_scene_date": {
+     "value": "sheriff",
+     "confidence": "inferred",
+     "verdict": "unadjudicated",
+     "ticket": "T-0991",
+     "note": "No verdict is recorded for this person in tools/audit_scene_window_trades.py's table."
+    }
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -126,6 +133,25 @@
    ],
    "roles": [
     {
+     "role": "sheriff",
+     "kind": "office",
+     "as_printed": "Sheriff of Cook County",
+     "from": "1833-12-03",
+     "to": "1835-07-15",
+     "precision": "source_span",
+     "dated_by": "stated_date",
+     "covers_scene_date": true,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_silas_w_sherman",
+     "place": "not_stated",
+     "employer_or_body": "cook_county",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1833-12-03 to 1835-07-15, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run."
+    },
+    {
      "role": null,
      "kind": "trade",
      "as_printed": "ex-sheriff",
@@ -134,11 +160,14 @@
      "precision": "year",
      "dated_by": "printing_year",
      "covers_scene_date": false,
+     "fills_scene_view": false,
      "confidence": "attested",
      "sources": [
       "fergus_chicago_directory_1839"
      ],
      "claim": null,
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
     }
    ]

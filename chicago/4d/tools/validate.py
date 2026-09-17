@@ -4769,9 +4769,25 @@ RESIDENT_ROLE_KINDS = ("trade", "profession", "office", "employment", "business_
 RESIDENT_ROLE_PRECISION = ("day", "month", "year", "source_span", "unknown")
 RESIDENT_ROLE_DATED_BY = ("source_describes_date", "printing_year", "stated_date",
                           "undated")
+# `place` and `employer_or_body` are T-1254's (T-1145 acceptance 7 and 8): a role names
+# WHERE it was exercised and WHICH body or firm it was exercised for, when the record
+# says, so T-1147 can carry a role's place onto `works_at[]` and the business band
+# (T-1180 onward) can attach a clerk to the establishment he served without re-reading
+# prose. `not_stated` is the value when the record does not say, and it is an ASSERTION
+# rather than a blank: the row was read, and the reading found no place.
+# `fills_scene_view` is also T-1254's, and it is NOT a second spelling of
+# `covers_scene_date`. One says whether the evidence reaches 1 July 1835; the other says
+# whether this row is what the singular `occupation` field stands on. They came apart
+# when the external volumes arrived: ten press readings reach the scene date and none of
+# them fills the field, because three other tools derive that field (T-0693's
+# tools/qualify_later_trades.py, the ladder resident pass, and T-0837's write gate) and a
+# value none of them derives is a value the next gate run reverts. A row may not fill a
+# view it does not reach; reaching without filling is the honest, recorded state, and
+# T-1295 is where the generators are made to agree.
 RESIDENT_ROLE_KEYS = ("role", "kind", "as_printed", "from", "to", "precision",
-                      "dated_by", "covers_scene_date", "confidence", "sources", "claim",
-                      "note")
+                      "dated_by", "covers_scene_date", "fills_scene_view", "confidence",
+                      "sources", "claim", "place", "employer_or_body", "note")
+RESIDENT_ROLE_NOT_STATED = "not_stated"
 
 # `either_of_two_days` is what a source looks like when it will not choose. Hurlbut
 # prints Hubbard as arriving at Chicago "on the last day of October or first day of
@@ -4923,6 +4939,7 @@ def check_resident_roles(where: str, person: dict, occupations: set, source_ids:
         return
 
     at_scene = []
+    strongest_at_scene = None
     for i, row in enumerate(roles):
         rwhere = f"{where}/roles[{i}]"
         if not isinstance(row, dict):
@@ -4988,10 +5005,25 @@ def check_resident_roles(where: str, person: dict, occupations: set, source_ids:
                               f"sources {sorted(srcs)} is listed by the person; a role "
                               f"about the scene date may not float free of the evidence "
                               f"its card's grade stands on")
+        for key in ("place", "employer_or_body"):
+            value = row.get(key)
+            if not isinstance(value, str) or not value.strip():
+                rep.error(rwhere, f"{key} must be a non-empty string - "
+                                  f"'{RESIDENT_ROLE_NOT_STATED}' is the value for a record "
+                                  f"that does not say, and it is an assertion, not a blank")
         if not (row.get("note") or "").strip():
             rep.error(rwhere, "a role owes a note saying what its bound means")
-        if row.get("covers_scene_date") and role and row.get("confidence") in CLAIMING_GRADES:
+        if not isinstance(row.get("fills_scene_view"), bool):
+            rep.error(rwhere, "fills_scene_view must be true or false")
+        elif row.get("fills_scene_view") and not row.get("covers_scene_date"):
+            rep.error(rwhere, "this role fills the 1835 view and does not reach the scene "
+                              "date. A row may not stand in a field its own evidence does "
+                              "not reach")
+        if (row.get("fills_scene_view") and role
+                and row.get("confidence") in CLAIMING_GRADES and role not in at_scene):
             at_scene.append(role)
+            if row.get("confidence") == "attested" and strongest_at_scene is None:
+                strongest_at_scene = role
 
     # --- the compatibility view ------------------------------------------
     if occ.get("derived_from") != "roles":
@@ -5003,7 +5035,11 @@ def check_resident_roles(where: str, person: dict, occupations: set, source_ids:
         rep.error(where, f"occupation.roles_at_scene_date is {named!r} and the roles that "
                          f"reach the scene date are {at_scene!r}. Run "
                          f"tools/derive_resident_roles.py --write")
-    want = at_scene[0] if at_scene else "none_recorded"
+    # THE SINGULAR FIELD HOLDS THE STRONGEST COVERING CLAIM, not the first row in date
+    # order (T-1254). Once the press gazetteer began offering `inferred` roles beside a
+    # card's own `attested` one, a date sort could have put an inferred trade into the
+    # field a documented one already held - a demotion decided by an ordering.
+    want = strongest_at_scene or (at_scene[0] if at_scene else "none_recorded")
     if occ.get("value") != want:
         rep.error(where, f"occupation '{occ.get('value')}' is not the view its roles "
                          f"derive ('{want}'). A role that does not reach "

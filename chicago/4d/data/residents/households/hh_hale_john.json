@@ -57,7 +57,16 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
+    "note": "NO TRADE IS RECORDED FOR 1835-07-01, AND ONE IS RECORDED FOR ANOTHER YEAR. The trade this field used to carry — `merchant` — is not gone: it stands in `roles[]` with the bound its sources permit, and `withdrawn_from_scene_date` above carries the audit's verdict for withdrawing it. The 1835 field asserts what the sources reach, which here is nothing, because no source cited for the trade describes 1835 (T-0837's write rule, T-0872's measurement, T-0991's repair, made by tools/derive_resident_roles.py).",
+    "derived_from": "roles",
+    "roles_at_scene_date": [],
+    "withdrawn_from_scene_date": {
+     "value": "merchant",
+     "confidence": "inferred",
+     "verdict": "unadjudicated",
+     "ticket": "T-0991",
+     "note": "No verdict is recorded for this person in tools/audit_scene_window_trades.py's table."
+    }
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -82,6 +91,27 @@
      "describes_date": "1835-07-01",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
+    }
+   ],
+   "roles": [
+    {
+     "role": "merchant",
+     "kind": "trade",
+     "as_printed": "merchant",
+     "from": "1834-04-16",
+     "to": "1835-07-29",
+     "precision": "source_span",
+     "dated_by": "stated_date",
+     "covers_scene_date": true,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_john_hale",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-04-16 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run."
     }
    ]
   }
