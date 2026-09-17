@@ -1,7 +1,7 @@
 ---
 id: T-1237
 title: The location reconciliation rows: every home, workplace and business-location claim resolved to street, face and anchor, with the clause that limited it
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1147
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1396
 claimed_by: run 9/17/2026, 7:47:09 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T13:50:15.545Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35222324991
 ---
 

@@ -23,7 +23,6 @@ T-1155 — The resident identity splitter discards square-bracket supplies, so E
 T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
 T-1236 — EPIC: rule on the unasserted units the person-fact passes do not own — the land-sale, civic, 1830-census, church, newspaper and directory names, the resident-pass reserved people, and the book readings of ground, harbour, weather, price and institution
 T-1228 — Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns
-T-1237 — The location reconciliation rows: every home, workplace and business-location claim resolved to street, face and anchor, with the clause that limited it
 T-1238 — Plural dated home, workplace and other-significant-location relationships on every person and household, with associated_with[] defined
 T-1239 — Spend the defensible location findings and resolve or explicitly retain T-0251, T-0305, T-0386 and T-1087, keeping placement proportional to evidence
 T-1240 — The people and business views expose the plural links, their dates, confidence and location limits, including street-only and unplaceable businesses
