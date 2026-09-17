@@ -13,11 +13,18 @@
 # unclassified research does not mean forcing uncertain people or locations into 1835.
 # T-1027 is the one-letter identity epic; Newberry and 1840 deposit work follow
 # their lower resident yield. Read each ticket before splitting or claiming.
-# Reconstruction (owner, 2026-09-17): bands 2-5 run in order and only after T-1157 says GO.
+# Reconstruction (owner, 2026-09-17): BAND 2 IS OPEN NOW — it reads the layer and writes
+# reports, models and an order book, and it needs no sign-off to do that. Bands 3-5 WRITE
+# reconstructed people, businesses and roofs, and those wait for T-1157 to say GO.
+#   The first cut gated 2-5 together, and it starved the top: band 1's rows were all in
+#   flight or self-blocked, so runs fell past 59 gated tickets into SOUTH THROUGH TIME and
+#   LOOP IMPROVEMENTS (T-0467, T-1154, 2026-09-17). A gate that empties the top of the
+#   queue sends the loop to the bottom of it.
 # Every reconstructed value carries tier, basis, seed and replaceable_by (T-1158); the order
 # book (T-1166) is the quota; docs/RESEARCH/1835_reconstruction_plan.md is the map.
 # Sub-bands (3A/3B/3C, 5A-5E) may be taken by different agents; within a sub-band, top first.
-# Build tickets in 5C are needs_bake and hand on a successor. No reconstructed Native presence.
+# Build tickets in 5C are needs_bake and hand on a successor. Native, Métis and Black residents,
+# families and businesses ARE reconstructed (owner, 2026-09-17; T-1177), review_required, no figures.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
@@ -29,7 +36,7 @@ T-1240 — The people and business views expose the plural links, their dates, c
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
-# --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (after T-1157 says GO)
+# --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1158 — Per-attribute tiers on every person, household and business field — attested, inferred or reconstructed, each with its reason — so a profile can be filled at the lowest honest tier and replaced later
 T-1159 — Export the borderline roster: every name the research read and withheld from 1835 — single-source, refused, surname-only, uncertain presence, letter-list-only — with its source, reason and re-admission class, so reconstruction can name real people before it invents any
 T-1160 — Profile the known population of 1 July 1835: sex, age, origin, arrival date and reason, roles, household composition, lodging, division and presence for every attested and inferred person, per attribute and per tier, as a generated report and an in-app card
@@ -51,7 +58,7 @@ T-1173 — Reconstruct the trade households the occupation model still wants aft
 T-1174 — Reconstruct the women and children the age pyramid still lacks after families are drawn: widow-headed households, laundresses, seamstresses, domestics and schoolmistresses, the boarding-house keepers' families and the children of the 1833–35 arrivals, to the population model's sex and age bands
 T-1175 — Fill the beds: boarders, lodgers, hotel guests, boarding-house keepers' households, the crews of the vessels in port and the hands at the works, seated in the named and reconstructed lodging places to the lodging model's capacities
 T-1176 — Reconstruct the Fort Dearborn garrison of 1 July 1835: the officers the sources name, the companies of the 5th Infantry to their strength, the surgeon, the sutler, the laundresses and soldiers' families, the Indian Agency establishment as attested — seated in the fort's roofs
-T-1177 — Reconstruct the under-documented cohorts within their evidence: free Black residents to the bracket the 1833 freedom certificates and the 1840 count allow, the Irish and German Catholic town the parish register implies, French-Canadian households only as attested — and no reconstructed Native or Métis person
+T-1177 — Reconstruct the under-documented cohorts within their evidence: the Native and Métis people, households and businesses in and around the town, the free Black residents, families and Black-owned businesses, and the Irish and German Catholic town the register implies — every one identified, tiered and reviewable
 T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded cohort: the land-sale visitors, the immigrants awaiting lots, the harbour-works gang and the crews ashore — who they were, how many, and where they slept (tents, wagons, floors, vessels) — for the camps the structure band will build
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
@@ -97,8 +104,42 @@ T-1213 — Signboards for every business that would have hung one: the reconstru
 T-1214 — Build the camps of the summer of 1835: a tent and wagon-camp archetype, the encampments on the grounds the transient ticket evidenced — the land-sale crowd south of the fort, the immigrants' wagons at the west approach, the pier gang at the river mouth — bounded, labelled, and empty of figures
 # --- 5E. STRUCTURES — converge: every person housed, every business roofed, the town complete
 T-1215 — Converge the reconstructed town: every person housed, every business roofed, every roof occupied or its use stated, the census's dwellings ratio met, the programme reconciled, the budgets re-measured and set — the completion report a visitor can open
+# Arrival/jaunts: read docs/ARRIVAL-JAUNTS-EXECUTION.md; honor ticket dependencies.
+# Finish each subsection; unavoidable successors stay beside their dependency, not at the tail.
+# --- 5F. ARRIVAL AND SOURCES — measured loading, time rollback, source library, free start
+T-1246 — Expose real boot phases and yield long scene-building tasks
+T-1247 — Roll the year back into a restrained time-machine arrival
+T-1248 — Compile the sources used and their reconstruction backlinks
+T-1275 — Give the loading journey 160 varied source and reconstruction statuses
+T-1276 — Move city statistics into a browsable Sources and City summary
+T-1277 — Share one destination search for Go to and Explore Myself
+T-1278 — Land on a warm mobile welcome with Jaunts and Explore Myself
+# --- 5G. JAUNTS ENGINE — content contract, navigation, travel, choices, history and menu
 T-1253 — Define validated jaunt JSON and render a real pilot preview
+T-1279 — Make the pilot jaunt playable with persistent stop navigation
+T-1280 — Offer live jaunt travel modes and honest quick-play estimates
+T-1256 — Support bounded choices, inventory and alternate jaunt endings
+T-1257 — Connect jaunt stops and travel to optional historical context
+T-1258 — Collect era-themed keepsakes in a five-family Chicago daybook
+T-1259 — Finish the scalable Jaunts Menu and integrated start experience
+# --- 5H. PRIORITY JAUNTS — six short stories, fully authored and playable
+T-1260 — Publish Outfit for the West as a five-minute jaunt
+T-1261 — Publish Taverns of Chicago as a five-minute jaunt
+T-1262 — Publish New in Chicago as a five-minute jaunt
+T-1263 — Publish Shopping South Water Street as a five-minute jaunt
+T-1264 — Publish Across Wolf Point as a five-minute jaunt
+T-1265 — Publish Fort Dearborn Errand as a five-minute jaunt
+# --- 5I. EVERYDAY JAUNTS — nineteen additional outings in five bounded content batches
+T-1266 — Publish news, mail, lodging and work jaunts
+T-1267 — Publish land, freight, household supplies and clothing jaunts
+T-1268 — Publish harness, candles, building materials and leather jaunts
+T-1269 — Publish schooling, social visits and careful news reading jaunts
+T-1270 — Publish harbor, prairie arrival and a quiet stroll jaunts
+# --- 5J. ARRIVAL AND JAUNTS COMPLETE — content convergence and published mobile acceptance
+T-1271 — Reconcile and time the complete 25-jaunt library
+T-1272 — Verify arrival, jaunts and source browsing on the published mobile app
 # --- 6. SOUTH THROUGH TIME — dated terrain, Fort Dearborn, and Prairie Avenue
+T-1243 — Author the e1830_natural terrain spec and generate the 1812 heightfield and the ground and water meshes across the Fort-to-Eighteenth-Street corridor
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
 T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
@@ -147,5 +188,8 @@ T-0934 — A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars f
 T-0944 — Printed 232's continuation foots 198 against a column that reads 193: T-0642's footing key no longer closes on the one pairing made outside the deposit
 T-0971 — The two open columns of printed 240: a repeated two-stroke figure on four cells that closes m_20_30 at 41 or m_30_40 at 13, never both
 T-1219 — The three re-spelled cards still say in prose that the papers print the reading T-1139 overturned: hh_fraser_wm_h reads 'Wm. H. Frazer' and its own note says the papers print 'Wm. H. Fraser'
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
 T-1281 — hh_inf_joiner_north_02 stands in the tree and no pass derives it: the register deal seats four roofs where its own docstring says five, and J. W. Reed's household is owned by nobody
