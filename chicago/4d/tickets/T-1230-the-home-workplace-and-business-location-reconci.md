@@ -1,7 +1,7 @@
 ---
 id: T-1230
 title: The home, workplace and business-location reconciliation table: one row per claim, with its source, date, ids, printed place, resolved street, face and anchor, and the clause that limited it
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1147
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1389
 claimed_by: run 9/17/2026, 5:14:04 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T11:21:29.412Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35208720422
 ---
 
