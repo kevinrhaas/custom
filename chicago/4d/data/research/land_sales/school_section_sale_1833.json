@@ -153,14 +153,14 @@
   "at_the_sale": {
    "purchaser_spellings": 105,
    "readings": {
-    "upheld": 50,
+    "upheld": 49,
     "named": 1,
     "match_refused": 0,
     "match_unruled": 0,
-    "refused_against_a_rival": 41,
+    "refused_against_a_rival": 42,
     "surname_absent": 13
    },
-   "share_upheld_pct": 47.6,
+   "share_upheld_pct": 46.7,
    "share_surname_absent_pct": 12.4
   },
   "everywhere_else": {
@@ -285,11 +285,11 @@
   }
  },
  "rulings_that_already_cite_the_sale": {
-  "total": 50,
+  "total": 49,
   "by_ruling": {
    "named": 1,
    "refused": 10,
-   "upheld": 39
+   "upheld": 38
   },
   "tickets": [
    "T-0850",

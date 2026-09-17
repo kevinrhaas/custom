@@ -19,7 +19,7 @@
       "ticket": "T-0493",
       "what": "The four voter lists of 1833-1835, every entry crosswalked to the residents layer by tools/read_voter_lists.py under the matching rules at the head of that file.",
       "merges": 0,
-      "refusals": 26,
+      "refusals": 29,
       "why_no_merges": "A merge here would be a claim that a poll entry and a resident record are the same man, and this ticket does not make that claim for anybody: where the rules agree the entry is reported as matched in voter_crosswalk.json, and where they do not it is reported as a refusal. The mint (T-0514) is where a merge belongs."
     }
   ],
@@ -354,6 +354,24 @@
     },
     {
       "pass": "T-0493",
+      "a": "Alanson Sweet",
+      "b": "A Sweet",
+      "rule": "Ambiguous: the entry 'Alanson Sweet' agrees equally with 'A Sweet' and 'Alanson Sweet', and the printed row carries nothing that separates them.",
+      "evidence": [
+        {
+          "source_id": "chicago_voter_lists_1833_1835_irad",
+          "locator": "tax_1833 line 151"
+        },
+        {
+          "residents": [
+            "sweet_a",
+            "sweet_alanson"
+          ]
+        }
+      ]
+    },
+    {
+      "pass": "T-0493",
       "a": "Anson N. Taylor",
       "b": "Anson H. Taylor",
       "rule": "The surname agrees and the forenames do not: 'Anson N. Taylor' against 'Anson H. Taylor'. A surname match is a clue, not an identity.",
@@ -542,6 +560,24 @@
     },
     {
       "pass": "T-0493",
+      "a": "Alanson Sweet",
+      "b": "A Sweet",
+      "rule": "Ambiguous: the entry 'Alanson Sweet' agrees equally with 'A Sweet' and 'Alanson Sweet', and the printed row carries nothing that separates them.",
+      "evidence": [
+        {
+          "source_id": "chicago_voter_lists_1833_1835_irad",
+          "locator": "poll_1834 line 274"
+        },
+        {
+          "residents": [
+            "sweet_a",
+            "sweet_alanson"
+          ]
+        }
+      ]
+    },
+    {
+      "pass": "T-0493",
       "a": "William Smith",
       "b": "William Smith",
       "rule": "Ambiguous: the entry 'William Smith' agrees equally with 'William Smith' and 'William V Smith', and the printed row carries nothing that separates them.",
@@ -554,6 +590,24 @@
           "residents": [
             "smith_william",
             "smith_william_v"
+          ]
+        }
+      ]
+    },
+    {
+      "pass": "T-0493",
+      "a": "Alanson Sweet",
+      "b": "A Sweet",
+      "rule": "Ambiguous: the entry 'Alanson Sweet' agrees equally with 'A Sweet' and 'Alanson Sweet', and the printed row carries nothing that separates them.",
+      "evidence": [
+        {
+          "source_id": "chicago_voter_lists_1833_1835_irad",
+          "locator": "poll_1835 line 365"
+        },
+        {
+          "residents": [
+            "sweet_a",
+            "sweet_alanson"
           ]
         }
       ]

@@ -755,7 +755,7 @@
    "person_id": "miller_samuel",
    "household_id": "hh_miller_samuel",
    "resident_name": "Samuel Miller",
-   "grade_left_alone": "inferred",
+   "grade_left_alone": "attested",
    "rule": "Surname 'Miller' folds to the same string as the roll line's, and the given name of both begins S.",
    "roll_lines": [
     "second_presb_0710, printed page 195"
