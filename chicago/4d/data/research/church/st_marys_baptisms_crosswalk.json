@@ -5,18 +5,18 @@
   "domain": "church",
   "source_id": "st_marys_baptismal_register_1833_1835",
   "pass": "T-0503",
-  "what": "Every ADULT named in the eleven page images — parents, godparents, sponsors, witnesses, spouses and the officiant — held against the 1288 people data/residents/ holds today. That count is DERIVED and it moves: the layer stood at 849 when T-0503 wrote this pass, and a crosswalk built against a layer that has since grown is stale rather than wrong — which is what T-1110 found and why --check now says which of the three it is.",
+  "what": "Every ADULT named in the eleven page images — parents, godparents, sponsors, witnesses, spouses and the officiant — held against the 1281 people data/residents/ holds today. That count is DERIVED and it moves: the layer stood at 849 when T-0503 wrote this pass, and a crosswalk built against a layer that has since grown is stale rather than wrong — which is what T-1110 found and why --check now says which of the three it is.",
   "the_rule": "A merge needs a written rule naming BOTH spellings verbatim; a surname-only merge is always a refusal; an EXACT name with no written rule is neither, and is held in exact_name_unruled[] rather than filed under a refusal whose stated ground is untrue of it; a refusal is declared as explicitly as a merge. Nothing here mints or regrades a resident — T-0514 and T-0515 spend this file.",
   "counts": {
     "adult_readings": 211,
     "distinct_adult_names": 143,
-    "residents_examined": 1288,
+    "residents_examined": 1281,
     "all_places": {
       "merged": 9,
       "refused": 20,
       "exact_name_unruled": 0,
-      "refused_surname_only": 19,
-      "no_candidate": 95
+      "refused_surname_only": 8,
+      "no_candidate": 106
     },
     "chicago_entries_only": {
       "merged": 9,
@@ -113,10 +113,10 @@
   "counts_by_ruling": {
     "child_not_crosswalked": 56,
     "merged": 22,
-    "no_candidate": 130,
+    "no_candidate": 146,
     "not_a_person": 8,
     "refused": 33,
-    "refused_surname_only": 26
+    "refused_surname_only": 10
   },
   "merges": [
     {
@@ -502,11 +502,9 @@
       "entries": [
         "1834/5"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "Ann Vinter",
@@ -934,11 +932,9 @@
         "1834/3",
         "1834/6"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "Elisabeth Logdson",
@@ -952,11 +948,9 @@
         "1834/1",
         "1834/2"
       ],
-      "resident_surname_candidates": [
-        "Cery Logdson"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "Elozina Bailly",
@@ -1234,11 +1228,9 @@
       "entries": [
         "1834/3"
       ],
-      "resident_surname_candidates": [
-        "Cery Logdson"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "James O'Marra",
@@ -1349,11 +1341,9 @@
       "entries": [
         "1834/1"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "John Johnson",
@@ -1909,11 +1899,9 @@
         "1834/3",
         "1834/6"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "Marguerite Laframboise",
@@ -2138,12 +2126,8 @@
       "entries": [
         "1834/8"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
-      "resident_exact_name_matches": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
+      "resident_exact_name_matches": [],
       "adjudication": "refused"
     },
     {
@@ -2212,11 +2196,9 @@
       "entries": [
         "1834/1"
       ],
-      "resident_surname_candidates": [
-        "Cery Logdson"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "Meskal",
@@ -2373,11 +2355,9 @@
       "entries": [
         "1834/4"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "Patrick Carroll",
@@ -2438,11 +2418,9 @@
         "1834/3",
         "1834/6"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "Pierre Riffe",
@@ -2575,11 +2553,9 @@
       "entries": [
         "1834/5"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     },
     {
       "name": "Thomas Forester",
@@ -2666,11 +2642,9 @@
       "entries": [
         "1834/5"
       ],
-      "resident_surname_candidates": [
-        "Mary Durbin"
-      ],
+      "resident_surname_candidates": [],
       "resident_exact_name_matches": [],
-      "adjudication": "refused_surname_only"
+      "adjudication": "no_candidate"
     }
   ],
   "rulings": [
@@ -3415,24 +3389,24 @@
       "name": "Matthew Logdson",
       "role": "father",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_01_3_mother",
       "name": "Elisabeth Logdson",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_01_4_sponsor",
       "name": "John Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_01_5_sponsor",
@@ -3471,16 +3445,16 @@
       "name": "Philipp Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_02_5_sponsor",
       "name": "Elisabeth Logdson",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_03_1_child",
@@ -3495,32 +3469,32 @@
       "name": "Philipp Durbin",
       "role": "father",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_03_3_mother",
       "name": "Elisabeth Durbin",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_03_4_sponsor",
       "name": "James Logdson",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_03_5_sponsor",
       "name": "Marguerite Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_04_1_child",
@@ -3543,8 +3517,8 @@
       "name": "Oro Durbin",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_05_1_child",
@@ -3559,8 +3533,8 @@
       "name": "Thomas Durbin",
       "role": "father",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_05_3_mother",
@@ -3575,16 +3549,16 @@
       "name": "William Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_05_5_sponsor",
       "name": "Ann Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_06_1_child",
@@ -3607,24 +3581,24 @@
       "name": "Marguerite Durbin",
       "role": "mother",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_06_4_sponsor",
       "name": "Philipp Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_06_5_sponsor",
       "name": "Elisabeth Durbin",
       "role": "sponsor",
       "at_chicago": false,
-      "outcome": "refused_surname_only",
-      "rule": "REFUSED ON THE STANDING RULE: the residents layer holds this surname and no forename agrees, and a surname-only merge is always a refusal."
+      "outcome": "no_candidate",
+      "rule": "NO CANDIDATE AT ALL — the residents layer holds no person of this surname. This is the finding, not a failure: it is the Catholic town the poll books and the letter lists never reached."
     },
     {
       "record_id": "st_marys_bapt_1834_07_1_child",

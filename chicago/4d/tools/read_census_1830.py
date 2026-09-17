@@ -3,6 +3,7 @@
 
     tools/read_census_1830.py --build    write records/ and resident_crosswalk.json
     tools/read_census_1830.py --check    the generated files still match the text
+    tools/read_census_1830.py --self-test  that check is non-destructive and still fires
 
 WHAT WAS READ, AND WHY IT IS NOT CALLED "THE CHICAGO CENSUS". Chicago was enumerated
 in 1830 inside the district the enumerator headed "Peoria & Putnam Counties &
@@ -47,11 +48,15 @@ import argparse
 import json
 import re
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = ROOT / "data" / "research" / "census_1830"
 TEXTDIR = DOMAIN / "text"
+# The two files --build owns, named once so that --check cannot go looking for a
+# different set than --build writes (T-0856).
+GENERATED = ("records/schedule_chicago_1830.json", "resident_crosswalk.json")
 # Every committed reading of a leaf of this division, in leaf order. One file per pass:
 # a pass declares the leaves it read and appends nothing to anybody else's file, so a
 # later reader can see which run read which page without reading a diff.
@@ -424,7 +429,7 @@ def build_crosswalk(records):
     return matched, variants, candidates, refusals, institutions
 
 
-def build():
+def build(out: Path = DOMAIN):
     records = build_records()
     matched, variants, candidates, refusals, institutions = build_crosswalk(records)
     doc = {
@@ -468,8 +473,8 @@ def build():
         "leaf_totals_as_read": LEAF_TOTALS,
         "records": records,
     }
-    (DOMAIN / "records").mkdir(parents=True, exist_ok=True)
-    write(DOMAIN / "records" / "schedule_chicago_1830.json", doc)
+    (out / "records").mkdir(parents=True, exist_ok=True)
+    write(out / "records" / "schedule_chicago_1830.json", doc)
 
     cross = {
         "schema": 1,
@@ -504,7 +509,7 @@ def build():
         "no_surname_in_town": candidates,
         "refusals": refusals,
     }
-    write(DOMAIN / "resident_crosswalk.json", cross)
+    write(out / "resident_crosswalk.json", cross)
     print("census_1830: %d records, %d matched, %d surname-variant candidates, %d "
           "surname-only refusals, %d with no surname in town"
           % (len(records), len(matched), len(variants), len(refusals), len(candidates)))
@@ -515,35 +520,85 @@ def write(path: Path, doc) -> None:
     path.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def check() -> int:
+def check(quiet: bool = False) -> int:
+    """Re-derive into a scratch tree and diff. It never writes into the domain.
+
+    T-0856. This used to re-derive IN PLACE — snapshot the committed bytes, call
+    `build()` over the top of them, compare. That reads as a check and behaves as a
+    repair: the first run printed FAIL and left the file mended, the second printed
+    pass, and the drift the first run found was gone before anyone could look at it.
+    Which is exactly the state this ticket was filed from — `--check` had been red on
+    `dev` for a day, and running it to confirm that was what silently healed it. A gate
+    built on it would have been worse than none: green on the second commit of every
+    day, and leaving the working tree dirty for every step of check.sh below it.
+    """
     bad = []
-    for rel in ("records/schedule_chicago_1830.json", "resident_crosswalk.json"):
-        path = DOMAIN / rel
-        if not path.exists():
+    for rel in GENERATED:
+        if not (DOMAIN / rel).exists():
             bad.append("%s: missing — run --build" % rel)
     if bad:
         for b in bad:
             print("FAIL %s" % b)
         return 1
-    before = {rel: (DOMAIN / rel).read_text(encoding="utf-8")
-              for rel in ("records/schedule_chicago_1830.json", "resident_crosswalk.json")}
-    build()
-    for rel, text in before.items():
-        if (DOMAIN / rel).read_text(encoding="utf-8") != text:
-            bad.append("%s: hand-edited — it does not match what the committed reading "
-                       "rebuilds" % rel)
+    with tempfile.TemporaryDirectory() as td:
+        out = Path(td)
+        build(out)
+        for rel in GENERATED:
+            if (out / rel).read_text(encoding="utf-8") != \
+                    (DOMAIN / rel).read_text(encoding="utf-8"):
+                bad.append("%s: does not match what the committed reading rebuilds — "
+                           "either it was hand-edited, or something it derives from "
+                           "moved underneath it. Run --build and read the diff." % rel)
     for b in bad:
         print("FAIL %s" % b)
-    if not bad:
+    if not bad and not quiet:
         print("read_census_1830: the generated files match the committed reading")
     return 1 if bad else 0
+
+
+def self_test() -> int:
+    """--check must stay non-destructive, and must still catch a real drift."""
+    failures = []
+    before = {rel: (DOMAIN / rel).read_bytes() for rel in GENERATED}
+
+    if check(quiet=True) != 0:
+        failures.append("--check is red on the committed tree, so nothing below can be read")
+    for rel, blob in before.items():
+        if (DOMAIN / rel).read_bytes() != blob:
+            failures.append("--check REWROTE %s: a gate that repairs what it checks "
+                            "reports green on the second run" % rel)
+
+    # A real drift, made and put back. The crosswalk is the file that moved under
+    # T-0856, so it is the one the fixture edits.
+    victim = DOMAIN / "resident_crosswalk.json"
+    doc = json.loads(victim.read_text(encoding="utf-8"))
+    doc["counts"]["matched"] = doc["counts"]["matched"] + 1
+    try:
+        victim.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n",
+                          encoding="utf-8")
+        if check(quiet=True) == 0:
+            failures.append("--check passed a hand-edited resident_crosswalk.json")
+        if victim.read_bytes() == before["resident_crosswalk.json"]:
+            failures.append("--check REPAIRED the hand-edit it was asked to report")
+    finally:
+        for rel, blob in before.items():
+            (DOMAIN / rel).write_bytes(blob)
+
+    for f in failures:
+        print("FAIL %s" % f)
+    if not failures:
+        print("read_census_1830 --check: non-destructive, and still red on a drift")
+    return 1 if failures else 0
 
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
+    if args.self_test:
+        return self_test()
     if args.check:
         return check()
     if args.build:

@@ -10654,9 +10654,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 398 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 391 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 398 people
+**Scope:** `residents.persons[civic_mint]` — 391 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10791,6 +10791,32 @@ scene-year readings, and gates its own output against any such appearance. The e
 splitter still turns, for example, `E. K[in]zie` into the false surname `Zie`; that separate
 identity defect is preserved as T-1155 rather than hidden inside this mint guard.
 
+**And six fewer, because a parish register is not a town roll (T-1129, 2026-09-17).**
+Father St Cyr rode down the state in May 1834 and married three couples in the house of
+Hy Durbin at Bear Creek, Sangamon County, some 180 miles from this town, and his register
+carries those entries on the same pages as the Chicago ones. The reader that transcribed
+it said so on every affected row — `at_chicago: false`, with the footnote that places them,
+and `tools/read_st_cyr_register.py` names the trap in capitals in its own docstring — but
+nothing downstream read the field, so all six people the three entries name were minted
+into the 1835 town. This scope falls from 397 to 391. FIVE OF THE SIX RESTED ON THAT ENTRY
+AND NOTHING ELSE: Mary Durbin, John Simmons, John Vincent, Marion Simmons and Cery
+Logdson. The sixth, Henry Fitz Simmons, also carried an 1840 census line, which is later
+evidence and no bound on 1835, so with the marriage refused the ladder reaches nothing
+inside the scene window and his container is not minted either. WHAT MADE IT WORSE THAN A
+MISPLACEMENT is that the arrival note the mint generated said, in this project's own
+words, that "church_1833_1835 names this person at Chicago by 20 May 1834" — a false
+statement inside a provenance artifact, standing against a record that says NOT CHICAGO in
+capitals. The refusal is the fourth of its kind here and the first read at the granularity
+of a RECORD rather than a class: T-1049's `newspaper_out_of_town` and T-1131's
+`places_in_1835` both refuse a whole body of evidence, while this register carries Chicago
+entries and Sangamon County entries between the same covers and the distinction is printed
+per row. So `mint_civic_residents.py` reads the field off the corpus, refuses an identity
+whose every scene-year reading is such a row, and drops the reading — never the person —
+where a clean naming stands beside it; and its gate asks the same question of the
+committed tree, so a card that acquires the claim by hand or by carry-over goes red. The
+six are not dropped from the research: the marriages stay read, transcribed and cited, and
+a page that puts one of these people at Chicago after all can mint them again.
+
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
 the splitter that a compound surname is one surname, which parted `H. Van Den Bogart` from
@@ -10874,27 +10900,10 @@ files) and `index.json` from 318 KB to 510 KB. No geometry moves, no triangle is
 and not one of the 531 is placed anywhere: `housed` in the town census does not move at all,
 which is the ruling's own condition, measured.
 
-**And one more, because a supplied letter is part of the name (T-1155, 2026-09-17).**
-T-1115's paragraph above named the defect it was leaving standing: the splitter took the
-square brackets off a printed name *and everything inside them*, so a transcriber's supplied
-letter was deleted along with a directory's aside. T-1155 keeps the supplied letters, and
-this scope rises from 397 to 398. The rise is ONE card and it is A. Sweet, named at Chicago
-by the Democrat of 4 June 1834. That reading used to fold onto Alanson Sweet unopposed,
-because the corpus's other Sweet — printed `Alon[s]on Sweet` — read as the two forenames
-`alon` and `on` and was no rival to an initial. With the letter back it reads as the full
-forename Alonson, the ladder's R3 refuses the initial A to both men rather than choosing,
-and the reading stands on a container of its own. The cluster is ruled `undecided` in
-`data/residents/card_merge_rulings.json` and not merged, because whether Alonson is a second
-man or a compositor's transposition of Alanson is a reading of the page: T-1216 owns it, and
-deciding it one way takes this count back to 397. NOTHING ELSE IN THE SCOPE MOVED by a
-mint or a fold: six people rose from `inferred` to `attested` and nine lost a
-`projected_resident` caveat, on evidence that was always theirs and that the mangled keys
-had been holding apart. No geometry moves and no figure is drawn (L1).
-
 Related: **L214** (the pass beside this one) · **L213** (the test this disagrees with) ·
 **L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514**
 (this), **T-0513**, **T-0515**, **T-0633**, **T-0667**.
-**Recorded:** 2026-09-04; count restated 2026-09-16 (T-1115) and 2026-09-17 (T-1155).
+**Recorded:** 2026-09-04; count restated 2026-09-16 (T-1115).
 
 ### L221 — What the 1835 town may show of the Indian trade: a catalogue of about 130 articles is admitted as corroboration and refused as a warrant
 **Decision:** the American Fur Company's own list of the goods it furnished "for trade of the

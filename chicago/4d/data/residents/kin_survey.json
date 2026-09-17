@@ -14,13 +14,13 @@
  },
  "counts": {
   "statements_read": 263,
-  "both_ends_in_town": 34,
-  "landable": 20,
+  "both_ends_in_town": 30,
+  "landable": 17,
   "same_household": 3,
   "ambiguous": 1,
-  "identity_not_asserted": 10,
+  "identity_not_asserted": 9,
   "other_not_in_town": 12,
-  "subject_unresolved": 217,
+  "subject_unresolved": 221,
   "relation_undeclared": 0
  },
  "proposals": [
@@ -427,78 +427,6 @@
    "outcome": "landable"
   },
   {
-   "id": "st_cyr_marriage_002_1__husband_of__st_cyr_marriage_002_2",
-   "source": "st_cyr_register_ichr_v4",
-   "locator": "st_cyr_marriage_002_1",
-   "as_read": "John Simmons and Mary Durbin, married 1834-05-20",
-   "subject_as_read": "John Simmons",
-   "relation": "husband",
-   "other_as_read": "Mary Durbin",
-   "subject_record": "st_cyr_marriage_002_1",
-   "other_record": "st_cyr_marriage_002_2",
-   "subject": [
-    {
-     "household": "hh_simmons_john",
-     "person": "simmons_john"
-    }
-   ],
-   "other": [
-    {
-     "household": "hh_durbin_mary",
-     "person": "durbin_mary"
-    }
-   ],
-   "outcome": "landable"
-  },
-  {
-   "id": "st_cyr_marriage_003_1__husband_of__st_cyr_marriage_003_2",
-   "source": "st_cyr_register_ichr_v4",
-   "locator": "st_cyr_marriage_003_1",
-   "as_read": "John Vincent and Marion Simmons, married 1834-05-21",
-   "subject_as_read": "John Vincent",
-   "relation": "husband",
-   "other_as_read": "Marion Simmons",
-   "subject_record": "st_cyr_marriage_003_1",
-   "other_record": "st_cyr_marriage_003_2",
-   "subject": [
-    {
-     "household": "hh_vincent_john",
-     "person": "vincent_john"
-    }
-   ],
-   "other": [
-    {
-     "household": "hh_simmons_marion",
-     "person": "simmons_marion"
-    }
-   ],
-   "outcome": "landable"
-  },
-  {
-   "id": "st_cyr_marriage_004_1__husband_of__st_cyr_marriage_004_2",
-   "source": "st_cyr_register_ichr_v4",
-   "locator": "st_cyr_marriage_004_1",
-   "as_read": "Henry Simmons and Cery Logdson, married 1834-05-21",
-   "subject_as_read": "Henry Simmons",
-   "relation": "husband",
-   "other_as_read": "Cery Logdson",
-   "subject_record": "st_cyr_marriage_004_1",
-   "other_record": "st_cyr_marriage_004_2",
-   "subject": [
-    {
-     "household": "hh_simmons_henry_fitz",
-     "person": "simmons_henry_fitz"
-    }
-   ],
-   "other": [
-    {
-     "household": "hh_logdson_cery",
-     "person": "logdson_cery"
-    }
-   ],
-   "outcome": "landable"
-  },
-  {
    "id": "st_cyr_marriage_005_1__husband_of__st_cyr_marriage_005_2",
    "source": "st_cyr_register_ichr_v4",
    "locator": "st_cyr_marriage_005_1",
@@ -689,20 +617,6 @@
    "other_as_read": "Marguerite Juneau",
    "subject_record": "st_marys_bapt_1833_05_2_father",
    "other_record": "st_marys_bapt_1833_05_1_child",
-   "subject": null,
-   "other": null,
-   "outcome": "identity_not_asserted"
-  },
-  {
-   "id": "st_marys_bapt_1834_08_3_mother__parent_of__st_marys_bapt_1834_08_1_child",
-   "source": "st_marys_baptismal_register_1833_1835",
-   "locator": "st_marys_bapt_1834_08_3_mother",
-   "as_read": "On the same day, I the undersigned Baptised Marguerit daughter of Samuel Henriks and of Mary Durbin, born the thirteenth of December 1833. Sponsors were Henry Kinkie and Cicey MacKinzie.",
-   "subject_as_read": "Mary Durbin",
-   "relation": "mother",
-   "other_as_read": "Marguerite Henriks",
-   "subject_record": "st_marys_bapt_1834_08_3_mother",
-   "other_record": "st_marys_bapt_1834_08_1_child",
    "subject": null,
    "other": null,
    "outcome": "identity_not_asserted"
