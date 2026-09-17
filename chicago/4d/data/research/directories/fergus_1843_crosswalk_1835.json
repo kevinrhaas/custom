@@ -36,7 +36,7 @@
   "ties_narrowed_by_a_trade": 1,
   "of_those_contested": 0,
   "of_those_ambiguous": 1,
-  "could_carry_occupation": 76,
+  "could_carry_occupation": 78,
   "could_carry_address": 92,
   "could_carry_death_note": 91,
   "business_directory_notices_with_a_surname": 106,
@@ -1596,8 +1596,8 @@
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "harmon_loomis_store",
    "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins C.",
@@ -1625,6 +1625,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address",
     "death_note"
    ],
@@ -1722,8 +1723,8 @@
    "person_id": "elston_daniel",
    "household_id": "hh_elston_daniel",
    "grade_1835": "attested",
-   "occupation_1835": "soap_and_candle_maker",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "elston_soap_candle_manufactory",
    "rule": "Surname 'Elston' folds to the same string as the 1843 entry's, and the given name of both begins D.",
@@ -1740,6 +1741,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address",
     "death_note"
    ],
@@ -4811,8 +4813,8 @@
    "person_id": "kimball_walter",
    "household_id": "hh_kimball_walter",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "chicago_democrat_office",
    "rule": "Surname 'Kimball' folds to the same string as the 1843 entry's, and the given name of both begins W.",

@@ -34,7 +34,7 @@
   "ties_narrowed_by_a_trade": 0,
   "of_those_contested": 0,
   "of_those_ambiguous": 0,
-  "could_carry_trade": 11,
+  "could_carry_trade": 13,
   "could_carry_place_of_business": 14
  },
  "matches": [
@@ -121,8 +121,8 @@
    "person_id": "jones_benjamin",
    "household_id": "hh_jones_benjamin",
    "grade_1835": "attested",
-   "occupation_1835": "grocer",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "h_jones_store",
    "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins B.",
@@ -136,7 +136,9 @@
      "printed_page": 90
     }
    ],
-   "could_carry": [],
+   "could_carry": [
+    "trade"
+   ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
@@ -175,8 +177,8 @@
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "harmon_loomis_store",
    "rule": "Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C.",
@@ -190,7 +192,9 @@
      "printed_page": 94
     }
    ],
-   "could_carry": [],
+   "could_carry": [
+    "trade"
+   ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move. An advertising card is a paid subscription: it is evidence that the firm existed in 1844 and none at all that it existed in 1835."
   },
   {
