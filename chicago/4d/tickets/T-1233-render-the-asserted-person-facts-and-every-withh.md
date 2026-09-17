@@ -1,7 +1,7 @@
 ---
 id: T-1233
 title: Render the asserted person facts and every withheld candidate's reason on the resident card, and rule on the 83 unread resident field paths — wired, refused in writing, or removed
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1146
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1394
 claimed_by: run 9/17/2026, 6:46:07 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T12:56:31.486Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35217105791
 ---
 
