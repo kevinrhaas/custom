@@ -667,8 +667,231 @@ function profileFactsHtml(facts, citationsById) {
         occupation field rather than to this one.</span></dd>`;
 }
 
+/**
+ * THE WITHHELD HALF OF THE MATCHED RESEARCH (T-1233).
+ *
+ * T-1232 put the ASSERTED facts on the card — 40 of them — and left the other 204 in
+ * `data/residents/person_facts.json`, a file no renderer opens. That is the shape this
+ * project spends most of its effort refusing: a refusal a reader never learns of is
+ * indistinguishable from a reading nobody made, and on this layer the refusals are the
+ * majority and the argument. `tools/spend_person_facts.py` now projects them to
+ * `person_facts_withheld.json` — the full table is 800 kB and three quarters of it says
+ * "read, nothing proposed", which is a fact about the search and not about the person.
+ *
+ * EACH ROW IS THE REASON, NOT THE FACT. The value is printed so the reader can see what
+ * was on offer, and it is printed UNDER a heading that says it was not taken; nothing
+ * here carries a confidence swatch, because a withheld candidate has no grade — granting
+ * it one is the exact move the six rulings exist to stop.
+ */
+const WITHHELD_HEADS = new Map([
+  ['later_only', 'Printed after the scene'],
+  ['outside_chicago', 'Puts the person somewhere else'],
+  ['contradicted', 'Two readings disagree'],
+  ['insufficient_identity', 'Not tied firmly enough to this person'],
+  ['duplicate', 'The record already holds it'],
+  ['unresolved', 'Handed to another ticket'],
+]);
+
+function withheldFactsHtml(rows, citationsById) {
+  const list = (rows || []).filter(Boolean);
+  if (!list.length) return '';
+  const body = list.map((w) => {
+    const verdict = String(w.adjudication ?? '');
+    const [kind, ticket] = verdict.split(':');
+    const cite = citationsById.get(w.source_id);
+    const label = FACT_LABELS.get(w.field) || words(w.field);
+    return `<li><b>${escapeHtml(WITHHELD_HEADS.get(kind) || words(kind))}</b>${
+      ticket ? ` — ${escapeHtml(ticket)}` : ''}
+      ${w.field === 'none' ? '' : `<br>${escapeHtml(label)}: <i>${
+        escapeHtml(String(w.proposed_value ?? ''))}</i>${
+        w.place_class === 'outside_chicago' ? ', and somewhere other than this town' : ''}`}
+      <br><span class="res-why">${escapeHtml(String(w.reason ?? ''))}
+        Describing ${escapeHtml(printedOn(w.describes_date))}.
+        <q>${escapeHtml(String(w.quote ?? ''))}</q>
+        Record ${escapeHtml(String(w.claim_or_record_id ?? ''))}.</span>
+      ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</li>`;
+  }).join('');
+  return `<dt>Withheld from this card, and why</dt>
+    <dd><span class="res-chip res-research">${list.length} ${
+      list.length === 1 ? 'refusal' : 'refusals'}</span>
+      <ul class="res-candidates">${body}</ul>
+      <span class="res-why">These are readings this project made and would not assert. A
+        withheld candidate is NOT a fact about this person and must not be read as one —
+        it is the reasoning, published so it can be argued with. Every row is adjudicated
+        in <code>data/residents/person_facts.json</code>.</span></dd>`;
+}
+
+/**
+ * THE RESEARCH BLOCK ON THE RECORD ITSELF (T-1233).
+ *
+ * `researchHtml` above renders `data/residents/research_pilot.json`, which is the
+ * published review payload and holds 375 reviews. The RECORDS hold 850 research blocks.
+ * So 476 people carried a dated identity review — its verdict, the evidence for and
+ * against, the candidates it weighed and the downgrades it refused — and the card said
+ * nothing about any of it, because the only reader in the project opened the other copy.
+ *
+ * That is the K42 census's own finding arriving on the layer it was written for: twenty-
+ * three figures over hundreds of people, shipped to a browser and read by nothing. The
+ * pilot is not wrong, it is PARTIAL, so this renders the record's block beside it and
+ * suppresses the two lines the pilot has already printed rather than printing them twice.
+ *
+ * `refusals[]` is the part that had to reach a reader. A refusal here is this project
+ * declining to move a grade — "the downgrade to inferred", withheld under rule G3 — and
+ * a grade whose refusal is invisible is a grade a reader cannot weigh.
+ */
+function recordResearchHtml(rr, citationsById, pilotShown) {
+  if (!rr) return '';
+  const cites = (rr.source_ids || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const candidates = (rr.candidates || []).map((c) => {
+    const cc = (c.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+    return `<li><b>${escapeHtml(c.name || words(c.candidate_id) || words(c.id))}</b>${
+      c.candidate_id ? ` <code>${escapeHtml(String(c.candidate_id))}</code>` : ''}
+      · ${escapeHtml(c.asserted ? 'asserted as this person' : 'weighed and not asserted')}${
+      c.assessment ? ` · ${escapeHtml(words(c.assessment))}` : ''}
+      <br><span class="res-why">${escapeHtml(String(c.basis ?? ''))}
+        ${escapeHtml((c.conflicts || []).join(' '))}</span>
+      ${cc.length ? `<ol class="cites">${citationItems(cc)}</ol>` : ''}</li>`;
+  }).join('');
+  const refusals = (rr.refusals || []).map((r) => `<li><b>Withheld: ${
+    escapeHtml(String(r.withheld ?? ''))}</b> · rule ${escapeHtml(String(r.rule ?? ''))}${
+    r.regraded_on ? `, regraded ${escapeHtml(printedOn(r.regraded_on))}` : ''}
+    <br><span class="res-why">${escapeHtml(String(r.reason ?? ''))}</span></li>`).join('');
+  return `<dt>The research block on this record</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${
+      escapeHtml(rr.asserted_identity ? 'identity asserted' : 'identity not asserted')}</span>${
+      pilotShown ? '' : `<span class="res-chip res-research">${
+        escapeHtml(words(rr.outcome))}</span>`}
+      <span class="res-why">${pilotShown ? '' : `${escapeHtml(String(rr.summary ?? ''))} `}Read
+        under ${escapeHtml(String(rr.programme ?? 'the resident research programme'))} for
+        ${escapeHtml(String(rr.ticket ?? ''))}, reviewed ${
+        escapeHtml(printedOn(rr.reviewed_on))}${
+        rr.regraded_on ? `, regraded ${escapeHtml(printedOn(rr.regraded_on))} under rule ${
+          escapeHtml(String(rr.rule ?? ''))}` : ''}.</span>
+      ${rr.evidence_for ? `<br><span class="res-why"><b>For:</b> ${
+        escapeHtml(rr.evidence_for)}</span>` : ''}
+      ${rr.evidence_against ? `<br><span class="res-why"><b>Against:</b> ${
+        escapeHtml(rr.evidence_against)}</span>` : ''}
+      ${rr.proposed_facts ? `<br><span class="res-why"><b>Proposed:</b> ${
+        escapeHtml(rr.proposed_facts)}</span>` : ''}
+      ${rr.notes ? `<br><span class="res-why">${escapeHtml(rr.notes)}</span>` : ''}
+      ${candidates ? `<ul class="res-candidates">${candidates}</ul>` : ''}
+      ${refusals ? `<ul class="res-candidates">${refusals}</ul>` : ''}
+      ${(rr.candidate_ids || []).length ? `<span class="res-why">Candidate records: ${
+        escapeHtml((rr.candidate_ids || []).join(', '))}.</span>` : ''}
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+}
+
+/**
+ * WHY THIS PERSON IS NAMED WHAT THEY ARE NAMED (T-1233).
+ *
+ * Three people on this layer carry a `name_ruling`: two readings of one printed line
+ * disagreed on the letters, and somebody ruled which one the card takes. The ruling names
+ * the line, what it takes, what it takes it OVER, the reasoning, and — the part a reader
+ * of a URL needs — that the id did not move with the name.
+ *
+ * Nine figures, and every one of them unread until now. A displayed name that changed
+ * silently is the same defect as an unattributed grade: the card asserts a spelling and
+ * keeps the argument for it in a file.
+ */
+function nameRulingHtml(ruling) {
+  if (!ruling) return '';
+  return `<dt>Why this name, and not the other one</dt>
+    <dd>${swatch(null)}Ruled by ${escapeHtml(String(ruling.ruled_by ?? ''))} under rule ${
+      escapeHtml(String(ruling.rule ?? ''))}${
+      Number.isFinite(ruling.printed_line) ? `, at printed line ${
+        escapeHtml(String(ruling.printed_line))}` : ''}, and written down in
+      <code>${escapeHtml(String(ruling.ruling ?? ''))}</code>.
+      <br><span class="res-why">The card takes ${escapeHtml(String(ruling.takes ?? ''))},
+        over ${escapeHtml(String(ruling.over ?? ''))}. It had displayed
+        <q>${escapeHtml(String(ruling.displayed_name_was ?? ''))}</q>.
+        ${escapeHtml(String(ruling.reasoning ?? ''))}
+        ${escapeHtml(String(ruling.the_id_did_not_move ?? ''))}</span></dd>`;
+}
+
+/**
+ * THE CARDS FOLDED INTO THIS ONE, AND THE PAIRS THAT WERE WEIGHED AND KEPT APART (T-1233).
+ *
+ * `merged_from` is on 31 people and `merge_ruling` on 78, and both were unread. The
+ * second is the more important of the two: a verdict of `distinct` is this project
+ * deciding that two cards which look like one person are two people, and it carries the
+ * case FOR the merge as well as the case against — written down precisely so a reader who
+ * disagrees has something to disagree with. A verdict published without its losing
+ * argument is an assertion, which is the sentence `laterCensusHtml` above already makes
+ * about the 1840 bridge.
+ */
+function mergedFromHtml(merged) {
+  const list = (merged || []).filter(Boolean);
+  if (!list.length) return '';
+  const body = list.map((m) => `<li><b>${
+    escapeHtml((m.cards || []).map((c) => words(c)).join(', '))}</b>
+    <br><span class="res-why">Folded under rule ${escapeHtml(String(m.rule ?? ''))} by ${
+    escapeHtml(String(m.ticket ?? ''))}, in the ${escapeHtml(String(m.cluster ?? ''))}
+    cluster. ${escapeHtml(String(m.note ?? ''))}</span></li>`).join('');
+  return `<dt>Cards folded into this person</dt>
+    <dd>${swatch(null)}<ul class="res-candidates">${body}</ul></dd>`;
+}
+
+function mergeRulingHtml(rulings) {
+  const list = (rulings || []).filter(Boolean);
+  if (!list.length) return '';
+  const body = list.map((r) => `<li><b>${escapeHtml(words(r.verdict))}</b> from ${
+    escapeHtml((r.weighed_against || []).map((c) => words(c)).join(', '))}, under rule ${
+    escapeHtml(String(r.rule ?? ''))} in the ${escapeHtml(String(r.cluster ?? ''))} cluster
+    (${escapeHtml(String(r.ticket ?? ''))})${
+    r.referred_to ? `, referred to ${escapeHtml(String(r.referred_to))}` : ''}
+    <br><span class="res-why"><b>For a merge:</b> ${escapeHtml(String(r.for_merge ?? ''))}</span>
+    <br><span class="res-why"><b>Against:</b> ${escapeHtml(String(r.against_merge ?? ''))}</span></li>`).join('');
+  return `<dt>Weighed against another card</dt>
+    <dd>${swatch(null)}<ul class="res-candidates">${body}</ul>
+      <span class="res-why">Both sides are printed. A verdict that two look-alike cards are
+        two people is a judgement, and the case for the other answer is what makes it one.</span></dd>`;
+}
+
+/**
+ * THE OLD-SETTLER DEATH NOTICE, ON THE PERSON IT WAS MATCHED TO (T-1233).
+ *
+ * Fergus's 1843 directory (1896) prints an obituary list, and 63 households carry a
+ * reading of it — 19 figures, none of them read. The match is a SURNAME AND A FIRST
+ * INITIAL and the record says so in three separate fields; the birth year is this
+ * project's own subtraction from a printed age, shown with the arithmetic so a reader can
+ * redo it. THE HEADER OF THE LIST IS THE LIMIT THE WHOLE READING TURNS ON — it admits
+ * people who arrived after 1843 and people merely "prominently connected with Illinois
+ * history" — so it is quoted on the card rather than summarised.
+ *
+ * It is a death, not an 1835 fact. Nothing here moves a grade; T-0513's ladder is what
+ * says so and T-0514/T-0515 apply it.
+ */
+function oldSettlerDeathHtml(block, personId, citationsById) {
+  if (!block) return '';
+  const entry = (block.people || []).find((p) => p.person_id === personId);
+  if (!entry) return '';
+  const cites = (block.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const initialOnly = entry.matched_on_initial_only || entry.entry_given_is_initial_only
+    || entry.resident_given_is_initial_only;
+  return `<dt>A death notice that meets this name</dt>
+    <dd>${swatch(null)}${escapeHtml(String(entry.manner_of_death ?? 'died'))} at ${
+      escapeHtml(String(entry.place_of_death ?? 'a place the page does not give'))} on ${
+      escapeHtml(printedOn(entry.death_date))}, ${
+      escapeHtml(String(entry.age_as_printed ?? ''))}${
+      entry.trade_or_office ? ` · ${escapeHtml(words(entry.trade_or_office))}` : ''}
+      <br><span class="res-why">Matched as ${escapeHtml(String(entry.matched_as ?? ''))} — ${
+        escapeHtml(String(entry.matched_by ?? ''))} The agreement is ${
+        escapeHtml(String(entry.the_agreement ?? ''))}; the entry's given name reads
+        <q>${escapeHtml(String(entry.entry_given_as_read ?? ''))}</q>${
+        initialOnly ? ' and the match rests on an initial alone' : ''}.
+        Born between ${escapeHtml(String(entry.birth_year_earliest ?? ''))} and ${
+        escapeHtml(String(entry.birth_year_latest ?? ''))}: ${
+        escapeHtml(String(entry.birth_year_arithmetic ?? ''))}
+        The page reads <q>${escapeHtml(String(entry.as_read ?? ''))}</q>, record ${
+        escapeHtml(String(entry.record_id ?? ''))}.</span>
+      <br><span class="res-why">THE LIST'S OWN HEADER IS THE LIMIT:
+        <q>${escapeHtml(String(block.the_header_admission ?? ''))}</q>
+        ${escapeHtml(String(block.note ?? ''))}</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+}
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
-  directoriesOnRecord, ladderRules) {
+  directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null) {
   const occ = person.occupation || {};
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
@@ -703,9 +926,16 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
           and one waiting eighteen months earlier is a different claim about the same
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
+      ${nameRulingHtml(person.name_ruling)}
       ${profileFactsHtml(person.profile_facts, citationsById)}
+      ${withheldFactsHtml(withheldByPerson.get(person.id), citationsById)}
       ${evidenceLadderHtml(person, citationsById, ladderRules)}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
+      ${recordResearchHtml(person.resident_research, citationsById,
+        Boolean(researchByPerson.get(person.id)))}
+      ${mergedFromHtml(person.merged_from)}
+      ${mergeRulingHtml(person.merge_ruling)}
+      ${oldSettlerDeathHtml(oldSettlerDeaths, person.id, citationsById)}
       ${laterCensusHtml(person.later_census, citationsById)}
       ${laterDirectoryHtml(directoryByPerson.get(person.id), citationsById)}
       ${laterClaimHtml((directoriesOnRecord || []).find((row) => row.person_id === person.id), citationsById)}
@@ -753,7 +983,7 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 
 /** The household record itself, rendered into an opened row. */
 export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules,
-  agencies = null) {
+  agencies = null, withheldByPerson = new Map()) {
   // T-0632's block on the record: `directories.note` states what a later volume is
   // worth and `directories.sources` names every one that met this household.
   const onRecord = hh.directories || {};
@@ -781,7 +1011,8 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
     ${onRecord.note ? `<p class="res-why">${escapeHtml(onRecord.note)} Volumes cited on this record: ${
         escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
     ${agencySectionHtml(agencies, 'household_id', hh.id, escapeHtml)}
-    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules)).join('')}</div>`;
+    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules,
+      withheldByPerson, hh.old_settler_deaths)).join('')}</div>`;
 }
 
 /**
@@ -978,6 +1209,21 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     problems.push(`residents: ${err.message} — resident research reviews are not shown`);
   }
 
+  // T-1233. The refusals — 204 candidate facts this project read and would not assert,
+  // projected out of the 800 kB adjudication table by tools/spend_person_facts.py. Its
+  // own loader, because it degrades the way every other join here does: a miss costs the
+  // withheld block on a card and never the card.
+  const withheldByPerson = new Map();
+  try {
+    const withheld = await getJson('residents/person_facts_withheld.json');
+    for (const row of withheld.rows || []) {
+      if (!withheldByPerson.has(row.person_id)) withheldByPerson.set(row.person_id, []);
+      withheldByPerson.get(row.person_id).push(row);
+    }
+  } catch (err) {
+    problems.push(`residents: ${err.message} — the withheld research facts are not shown`);
+  }
+
   // The four directory crosswalks, joined on person_id (T-0632, replacing T-0569's
   // 1844-only layer). Beside the records as well as on them: the record carries the
   // later trade and street and cites the volume, and this layer carries the printed
@@ -1107,7 +1353,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
         if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson,
-          vocab.ladder_rules, agencies);
+          vocab.ladder_rules, agencies, withheldByPerson);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);
@@ -1159,7 +1405,8 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
  * @param {string} sceneId which scene's citation join to read
  * @param {string[]} [problems] the shared collector
  * @returns {Promise<{citationsById: Map, researchByPerson: Map, directoryByPerson: Map,
- *   ladderRules: object[], agencies: object|null, getJson: (rel: string) => Promise<any>}>}
+ *   withheldByPerson: Map, ladderRules: object[], agencies: object|null,
+ *   getJson: (rel: string) => Promise<any>}>}
  */
 const residentJoinCache = new Map();
 export function loadResidentJoins(dataBase, sceneId, problems = []) {
@@ -1174,8 +1421,9 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
     const citationsById = new Map();
     const researchByPerson = new Map();
     const directoryByPerson = new Map();
+    const withheldByPerson = new Map();
     let ladderRules = [];
-    const [joined, pilot, found, index, agencies] = await Promise.all([
+    const [joined, pilot, found, index, agencies, withheld] = await Promise.all([
       getJson(`sidecars/${sceneId}/residents_sources.json`).catch((err) => {
         problems.push(`people: ${err.message} — person cards are shown without their citations`);
         return null;
@@ -1195,14 +1443,24 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
       // The agency relation. Its own loader, because it degrades the same way and
       // pushes its own problem; a null here costs the block and not the card.
       loadAgencies({ dataBase, problems }),
+      // T-1233's refusals, the same way.
+      getJson('residents/person_facts_withheld.json').catch((err) => {
+        problems.push(`people: ${err.message} — the withheld research facts are not shown`);
+        return null;
+      }),
     ]);
     for (const [id, record] of Object.entries(joined?.citations || {})) citationsById.set(id, record);
     for (const review of pilot?.reviews || []) researchByPerson.set(review.person_id, review);
+    for (const row of withheld?.rows || []) {
+      if (!withheldByPerson.has(row.person_id)) withheldByPerson.set(row.person_id, []);
+      withheldByPerson.get(row.person_id).push(row);
+    }
     for (const row of found?.people || []) {
       directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
     }
     ladderRules = index?.vocabulary?.ladder_rules || [];
-    return { citationsById, researchByPerson, directoryByPerson, ladderRules, agencies, getJson };
+    return { citationsById, researchByPerson, directoryByPerson, withheldByPerson, ladderRules,
+      agencies, getJson };
   })();
   residentJoinCache.set(key, promise);
   return promise;
