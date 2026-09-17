@@ -380,6 +380,21 @@
         "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
       },
       {
+        "person_id": "elston_daniel",
+        "proposed": "occupation=merchant",
+        "refused_because": "no cited source describes the 1835 scene, so this is a later trade and belongs in occupation.later_occupation, which T-0693 already writes; the 1835 field stays as it stands",
+        "source_ids": [
+          "chicago_democrat_1833_11_26",
+          "fergus_chicago_directory_1839",
+          "uiuc_daniel_elston_papers"
+        ],
+        "describes_date": [
+          "1833-11",
+          "1839",
+          "nineteenth century"
+        ]
+      },
+      {
         "person_id": "fowler_elmira",
         "proposed": "source_id=newberry_genealogical_index",
         "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
@@ -393,6 +408,17 @@
         "person_id": "ingersall_david",
         "proposed": "source_id=newberry_genealogical_index",
         "refused_because": "a finding aid points at evidence and is not evidence; no card under data/residents may cite it (read_newberry_index.py --check, T-0837)"
+      },
+      {
+        "person_id": "kimball_walter",
+        "proposed": "occupation=merchant",
+        "refused_because": "no cited source describes the 1835 scene, so this is a later trade and belongs in occupation.later_occupation, which T-0693 already writes; the 1835 field stays as it stands",
+        "source_ids": [
+          "chicago_democrat_1833_11_26"
+        ],
+        "describes_date": [
+          "1833-11"
+        ]
       },
       {
         "person_id": "lewis_samuel",
@@ -1046,10 +1072,10 @@
     "census_1840_linked": 0
   },
   "after": {
-    "households": 1263,
-    "persons": 1287,
+    "households": 1257,
+    "persons": 1281,
     "attested": 404,
-    "inferred": 883,
+    "inferred": 877,
     "reconstructed": 0,
     "letter_list_only": 736,
     "projected_residents": 730,

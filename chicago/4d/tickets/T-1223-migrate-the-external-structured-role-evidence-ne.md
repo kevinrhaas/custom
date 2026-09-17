@@ -24,7 +24,7 @@ Piece 2 of 3 of **T-1145 — Replace the one-occupation resident field with date
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
-**Found by T-1227, 2026-09-17 — four scene-date trades cite a corroborating volume the
+**Found by T-1229, 2026-09-17 — four scene-date trades cite a corroborating volume the
 person does not.** `tools/validate.py`'s new role gate was first written to require every
 source of a scene-date role to appear in the person's own `sources[]`, and it caught
 `cohen_peter` (chicago_democrat_1833_1835), `couch_ira` (chicagology_prefire021),

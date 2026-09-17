@@ -286,7 +286,7 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
     if domain == "residents":
         name = Path(unit["source_file"]).name
         if name == "scene_window_trade_audit.json":
-            # T-1227 emptied this file: the six standing rows became dated pre-scene
+            # T-1229 emptied this file: the six standing rows became dated pre-scene
             # roles and the audit's population is zero, so nothing classifies here today.
             # The pointer moves off T-1145 because that ticket was SPLIT and a split
             # parent is not an open state — a row arriving tomorrow would have cited a

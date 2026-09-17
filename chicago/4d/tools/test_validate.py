@@ -2702,7 +2702,7 @@ def _resident_role(**kw) -> dict:
 
 
 def _resident_person(**kw) -> dict:
-    # T-1227: `roles[]` is canonical and `occupation` is the view of the roles that
+    # T-1229: `roles[]` is canonical and `occupation` is the view of the roles that
     # reach the scene date, so the default fixture carries both halves in agreement.
     # Every test about something else would otherwise be a test about this.
     p = {"id": "p1", "name": "A Person", "sex": "male", "relationship": "head",
@@ -2895,7 +2895,7 @@ def test_the_accuracy_grade_is_a_closed_vocabulary_and_recommended_is_gone() -> 
 
     for g in ("attested", "inferred", "reconstructed"):
         # This test is about the GRADE, so the person carries no trade: `inferred` and
-        # `reconstructed` cite nothing, and T-1227's gate rightly refuses a scene-date
+        # `reconstructed` cite nothing, and T-1229's gate rightly refuses a scene-date
         # role on a card whose own evidence list is empty. Roles get their own tests below.
         rep = _run_residents([_resident_household(
             persons=[_resident_person(grade=g, sources=["s1"] if g == "attested" else [],
@@ -2990,7 +2990,7 @@ def test_a_resident_points_at_a_real_building_or_at_nothing() -> None:
 
 
 def test_a_role_is_dated_and_the_1835_field_is_only_their_view() -> None:
-    """T-1227, of T-1145. The singular field could erase a man's second trade.
+    """T-1229, of T-1145. The singular field could erase a man's second trade.
 
     `persons[].roles[]` is canonical and `persons[].occupation` is a GENERATED view of
     the roles that cover 1 July 1835. The clause the ticket exists for is the last one

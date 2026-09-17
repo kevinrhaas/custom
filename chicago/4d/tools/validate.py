@@ -4758,7 +4758,7 @@ RETIRED_GRADE_TERMS = ("recommended", "recommendation", "suggested")
 RESIDENT_PRECISION = ("day", "either_of_two_days", "month", "season", "year",
                       "not_later_than")
 
-# T-1227 (of T-1145). A ROLE IS PLURAL, DATED, AND CANNOT BE WIDENED TO THE SCENE DATE.
+# T-1229 (of T-1145). A ROLE IS PLURAL, DATED, AND CANNOT BE WIDENED TO THE SCENE DATE.
 # `persons[].roles[]` is canonical and `persons[].occupation` is a generated view of the
 # roles covering 1835-07-01; tools/derive_resident_roles.py writes both. These are the
 # closed sets the manifest must declare and a row must speak, and they are checked here
@@ -4892,7 +4892,7 @@ def check_resident_roles(where: str, person: dict, occupations: set, source_ids:
                          rep: Report) -> None:
     """`roles[]` is canonical; `occupation` is the view of the roles that reach 1835.
 
-    THE CLAUSE THIS EXISTS FOR (T-1145 acceptance 6, T-1227): an undated or later role
+    THE CLAUSE THIS EXISTS FOR (T-1145 acceptance 6, T-1229): an undated or later role
     may not stand in the 1835 compatibility field. A trade printed in a directory of
     1843 is evidence about 1843, and the one field the scene compiler, the people index
     and the popup all read must not be able to carry it. The generator refuses to write

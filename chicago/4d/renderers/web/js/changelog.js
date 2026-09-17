@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A man could have more than one trade', kind: 'change', ts: '',
+  { v: 908, title: 'A man could have more than one trade', kind: 'change', ts: '2026-09-17T10:13:08.559Z', date: 'Sep 17, 2026, 5:13 AM CT',
     items: [
       'Every person in this town carried exactly one trade. One word, one confidence, one date \u2014 and the date was always 1 July 1835, whatever year the source was actually about. Daniel Elston is the case that shows what that cost. The research holds him as a candle manufacturer, a soap manufacturer, a chandler, a pork curer, a provision dealer and a soap boiler in 1833 and 1834; a brickmaker in 1839; a school inspector in the city register of the same year; and a press-brick maker in 1843. His card said `soap and candle maker`, and said it as a fact about the summer of 1835.',
       'Two things were wrong with that and only one of them is obvious. The first is the erasure: eight other readings of the same man had nowhere to go, so they went nowhere. The second is the date. The only Chicago paper that prints the manufactory is the Democrat of 26 November 1833 \u2014 nineteen months before this scene \u2014 and the corpus last prints the business in July 1834. Nothing inside the scene window prints the trade at all.',
