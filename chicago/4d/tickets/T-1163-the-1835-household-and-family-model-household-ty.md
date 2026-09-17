@@ -59,8 +59,9 @@ distribution a reader can inspect rather than by taste.
   count, person count and size distribution it WOULD produce against T-1161's targets —
   the calibration is shown before any card is written; no card is written here.
 - Cross-check: the dry-run's implied dwellings per household vs the census's 398 dwellings.
-- The standing constraint is restated in the file: no rule produces a Native or Métis household
-  member; attested ones stand as they are, `review_required`.
+- Native and Métis households get their own composition rows (the traders' extended households,
+  the register's families), evidenced from the attested ones and the treaty schedules, applied
+  only by T-1177 and always `review_required`; the file says so.
 
 **Stop condition:** T-1170 and T-1171 can generate families from this
 file alone, deterministically, and say for every member which rule produced them.

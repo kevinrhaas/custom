@@ -36,7 +36,8 @@ the old-settler reminiscences, `kin_rulings.json`. Stage `families_named` of T-1
   counting row, `seed`.
 - The 1840 row is used ONLY where the head is already an 1835 resident (the 27 bridged + any
   T-1159 class R4 the ticket admits); the T-0507 line stands for everyone else.
-- A `touches_removal` household gains no reconstructed member; named members only, flagged.
+- A `touches_removal` household gains named members here and counted members through T-1177
+  only; every member it gains inherits `review_required` + `touches_removal` with the sentence.
 
 **Acceptance:**
 

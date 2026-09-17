@@ -90,6 +90,7 @@ const TICKETS = [
   ['T-0100', 'The ticket that is finished', 'done'],
   ['T-0266', 'The ticket whose branch tip this clone does not hold', 'open'],
   ['T-0662', 'The ticket a run put up for review and is still on', 'review'],
+  ['T-0800', 'The ticket whose branch did get a pull request, and it was closed', 'open'],
 ];
 
 // name, age_hours. `null` = the object is not in this clone and the age is unknowable.
@@ -116,6 +117,10 @@ const BRANCHES = [
   { name: 'steward/t-0266-phone-picket-moire', age_hours: null },
   // 11. the near miss: T-0042's lock must not travel to T-0429.
   { name: 'claim/t-0042', age_hours: 9 },
+  // 14. T-1155's shape twice over: two old branches on unfinished tickets with no
+  // lock. Offline they are indistinguishable, and the PR list separates them —
+  // T-0800's PR was opened and closed, T-0055's never existed.
+  { name: 'steward/t-0800-had-a-pr', age_hours: 50 },
 ];
 
 function sandbox() {
@@ -225,5 +230,99 @@ function inflight(APP, file = 'branches.json', ...extra) {
   }
 }
 
-console.log(failures ? `\n  ${failures} failure(s)\n` : '\n  inflight reads a long claim as work and a merged branch as litter\n');
+/* ------------- 14-18: `recoverable` — work on the remote that nobody can see */
+
+/**
+ * T-1155, 2026-09-17. A run claimed the ticket, wrote the whole fix, pushed it, and was
+ * CANCELLED at its timeout cap before opening a pull request. Salvage pushed the branch,
+ * so the work was complete and on the remote; every instrument here called it litter.
+ * The claim went stale at three hours, a second run stole it and rebuilt the same 71-file
+ * fix. `cold` covered two different animals, and only the PR list tells them apart:
+ *
+ *   T-0429's shape — a merged PR names the ticket. The work LANDED; the branch is litter.
+ *   T-0055's shape — no merged PR, and no PR ever carried the branch. The work is LOST.
+ *
+ * So these cases hold both against one constructed PR list, and hold the refusal too: with
+ * no answer from the PR list, nothing is upgraded, because an empty answer is not evidence.
+ */
+const PULLS = [
+  // T-0429's work landed. Its branch is litter, exactly as case 4 says.
+  { number: 597, title: 'T-0429: deepen the south water at LaSalle',
+    merged_at: '2026-09-01T00:40:50Z', created_at: '2026-08-31T00:00:00Z',
+    head: { ref: 'steward/t-0429-south-water-lasalle' } },
+  // T-0800's PR was opened and CLOSED UNMERGED. The work did not land — but it was never
+  // invisible either, and this reading is only for work nobody can see.
+  { number: 1251, title: 'T-0800: the one that was closed', merged_at: null,
+    created_at: '2026-09-12T00:00:00Z', head: { ref: 'steward/t-0800-had-a-pr' } },
+  // T-0987 SHIPPED ITS STRETCHES, and this row is why the case is here. The ticket is
+  // `claimed` on dev permanently by design, so its long-merged branches have exactly the
+  // shape this reading hunts for — old, unfinished, unlocked — and calling them lost would
+  // reintroduce the loudness the lock was added to cure (case 3). The PR list is what
+  // saves it: one merged PR naming the ticket accounts for every branch that carries it.
+  { number: 1200, title: 'T-0987: stretch 10, the Norris surnames',
+    merged_at: '2026-09-08T00:00:00Z', created_at: '2026-09-07T00:00:00Z',
+    head: { ref: 'steward/t-0987-stretch-10-norris' } },
+];
+
+{
+  const { tmp, APP } = sandbox();
+  try {
+    console.log('\n  the same branches, held against a constructed PR list');
+    writeFileSync(path.join(APP, 'pulls.json'), JSON.stringify(PULLS, null, 2));
+    const { status, out } = inflight(APP, 'branches.json', '--pr-json', path.join(APP, 'pulls.json'));
+    const json = inflight(APP, 'branches.json', '--pr-json', path.join(APP, 'pulls.json'), '--json');
+    const rows = JSON.parse(/\[[\s\S]*\]\s*$/.exec(json.out)?.[0] ?? 'null') ?? [];
+    const read = (branch) => rows.find((r) => r.branch === branch)?.reading;
+
+    check('14. THE FAULT: an old branch on an unfinished ticket that no merged PR names',
+      read('steward/t-0055-kinzie-view-plate-source') === 'recoverable',
+      read('steward/t-0055-kinzie-view-plate-source'));
+    check('   …is printed under RECOVERABLE with the compare URL that opens its PR',
+      /RECOVERABLE — 1 branch\(es\) carrying work NOBODY CAN SEE/.test(out)
+      && /compare\/dev\.\.\.steward\/t-0055-kinzie-view-plate-source\?expand=1/.test(out));
+
+    check('15. T-0429 stays cold: a merged PR names it, so the branch really is litter',
+      read('steward/t-0429-south-water-lasalle') === 'cold',
+      read('steward/t-0429-south-water-lasalle'));
+
+    check('16. a branch whose PR was opened and closed is cold — it was never invisible',
+      read('steward/t-0800-had-a-pr') === 'cold', read('steward/t-0800-had-a-pr'));
+
+    check('17. a claim marker is a lock, never recoverable work',
+      rows.filter((r) => r.branch.startsWith('claim/') && r.reading === 'recoverable').length === 0);
+
+    check('   …and live and held readings are untouched by any of it',
+      read('steward/t-1105-tract-aware-generators') === 'live'
+      && read('steward/t-0509-cohort-14') === 'held');
+
+    check('17b. T-0987, claimed on dev by design: its merged stretches stay litter, both of',
+      read('steward/t-0987-stretch-10-norris') === 'cold'
+      && read('steward/t-0987-stretch-11-hidden-surnames') === 'cold',
+      'one PR naming the ticket accounts for every branch carrying it');
+
+    check('   …and it still exits 0', status === 0, `status ${status}`);
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
+{
+  const { tmp, APP } = sandbox();
+  try {
+    console.log('\n  …and with no answer from the PR list');
+    const noPr = inflight(APP, 'branches.json', '--json');
+    const rows = JSON.parse(/\[[\s\S]*\]\s*$/.exec(noPr.out)?.[0] ?? 'null') ?? [];
+    check('18. without the PR list nothing is called recoverable — silence is not evidence',
+      rows.every((r) => r.reading !== 'recoverable')
+      && rows.find((r) => r.branch === 'steward/t-0055-kinzie-view-plate-source')?.reading === 'cold',
+      'the fixture run must reach no network at all');
+    const skipped = inflight(APP, 'branches.json', '--no-landed', '--json');
+    const rows2 = JSON.parse(/\[[\s\S]*\]\s*$/.exec(skipped.out)?.[0] ?? 'null') ?? [];
+    check('   …and --no-landed says the same, without asking', rows2.every((r) => r.reading !== 'recoverable'));
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
+console.log(failures ? `\n  ${failures} failure(s)\n` : '\n  inflight reads a long claim as work, a merged branch as litter, and an unseen branch as recoverable\n');
 process.exit(failures ? 1 : 0);

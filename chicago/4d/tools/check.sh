@@ -2042,6 +2042,17 @@ step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" 
 step "a claim that outlived the window is work, and a merged branch is still litter" \
   node tools/test_ticket_inflight.mjs
 
+# A SPLIT KEEPS ITS CLAIM, so the parent it leaves on `dev` cannot be claimed twice.
+# T-1145 on 2026-09-17: one run claimed it at 03:38:16, split it, and the release
+# handed claim/t-1145 back while its own PR was unopened; a second run read `dev`,
+# where the split had not landed and the parent was still `open` at the top of the
+# queue, and claimed it at 03:57:43. Both split it into different children and built
+# plural dated roles twice, with colliding ids. A split is not finished work — the run
+# carries on for another hour on a child, which is the widest window any terminal state
+# has. The litter that made `split` release is collected by age instead.
+step "a split keeps its claim, and the queue drops only finished work" \
+  node tools/test_ticket_claim_split.mjs
+
 # A QUEUE LINE THAT STILL NAMES A FINISHED BLOCKER. T-0464 closed on 2026-09-14
 # (#1257) and the three lines that LEAD South Through Time — T-0465, T-0466,
 # T-0467 — all went on reading `blocked_on: T-0464` the next day. Nothing had to
