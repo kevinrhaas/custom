@@ -1,7 +1,7 @@
 ---
 id: T-1296
 title: Rule the 1,572 land-sale purchaser units: a sale is never a residence, so say what each row does and does not bound
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1236
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1421
 claimed_by: run 9/17/2026, 5:37:19 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T23:23:30.063Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35281931694
 ---
 
