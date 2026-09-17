@@ -1,18 +1,21 @@
 ---
 id: T-0468
 title: Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
-state: open
+state: claimed
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
 effort: M
 legacy_id: null
+parent: null
 opened: 2026-09-01
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 8:56:05 AM CT
 blocked_on: null
 needs_bake: true
+closed_at: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35229760280
 ---
 
 Create a dedicated terrain epoch for 15 August 1812 rather than reusing the post-1834 harbor-cut ground. Reconstruct the pre-cut river mouth, baymouth bar/old southward outlet, lakeshore sand ridge, prairie, wet ground and South Branch state across the expanded field.
