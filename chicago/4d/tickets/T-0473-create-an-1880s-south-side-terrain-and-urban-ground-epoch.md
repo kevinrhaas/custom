@@ -1,18 +1,21 @@
 ---
 id: T-0473
 title: Create an 1880s South Side terrain and urban-ground epoch
-state: open
+state: split
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
 effort: M
 legacy_id: null
+parent: null
 opened: 2026-09-01
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: true
+closed_at: 2026-09-17T15:16:41.996Z
+claimed_run: null
 ---
 
 Create a later terrain epoch appropriate to an 1880s Prairie Avenue scene. This is not the 1812/1835 surface with houses dropped on it: by then street grading, drainage, railroad works, shoreline change and fill had materially changed the South Side.
