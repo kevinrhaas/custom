@@ -7,6 +7,26 @@ modes and stop counts below are **design targets**, not measured durations; ever
 content ticket measures its final route and the displayed estimate comes from travel.
 Deep reading is always optional. Ordinary outings may finish in 3–4 minutes naturally.
 
+## Verified on 2026-09-17 (second pass) — every proposed stop, with what its record can carry
+
+All 42 ids below resolve in `data/structures/` and `data/sidecars/1835/index.json`; none is
+`review_required`. **No stop's position is attested** — each is `inferred` (placed from a
+corner, address or later directory) or `reconstructed` (invented within bounds). A stop's
+text therefore never claims a placed front door; an exterior stand-off framed by the engine
+is the whole of what a stop asserts about location. Authors read the sidecar and the dossier
+(where one exists) before writing; the authoring rules and field reference live in
+`docs/JAUNTS-AUTHORING.md` (T-1253).
+
+| Stop id | Position | Dossier | Note |
+|---|---|---|---|
+| `sauganash_hotel`, `green_tree_tavern`, `wolf_point_tavern`, `western_hotel`, `western_hotel_stable`, `mansion_house`, `exchange_coffee_house` | inferred | yes (stable: no) | tavern_inn / hotel_stable |
+| `peck_store`, `hogan_store`, `carpenter_south_water_store`, `harmon_loomis_store`, `john_holbrook_store`, `h_jones_store` | inferred (Jones: reconstructed) | yes (Holbrook: no) | store / drug_store / grocery_and_provision_store |
+| `thomas_church_store`, `brown_boarding_house`, `newberry_dole_warehouse`, `elston_soap_candle_manufactory`, `lasalle_slough_crossing`, `lake_house_construction`, `walker_meeting_house`, `chappel_infant_school`, `watkins_school_house` | **reconstructed** | mixed | say so on the stop; the two school records read "use on the scene date unattested" |
+| `chicago_democrat_office`, `chicago_american_office`, `bates_auction_room`, `dole_warehouse_south`, `goss_cobb_saddlery`, `pierce_blacksmith_shop`, `miller_tannery`, `brickyard_north_side`, `north_side_school_1833`, `first_presbyterian_church`, `st_marys_church` | inferred | mixed | printing_office / auction_room / warehouse_and_slaughter_yard / trades / school / church |
+| `fort_dearborn_palisade`, `fort_dearborn_guard_house`, `fort_dearborn_sutlers_store`, `fort_dearborn_store_house`, `fort_dearborn_shop` | inferred | yes (shop: no) | Harrison 1830 plan, continuity to 1835 inferred; "shop" = workshop |
+| `south_branch_raft_bridge`, `dearborn_street_drawbridge`, `north_pier`, `chicago_lighthouse_1832` | inferred | yes | river_crossing / harbour_works / harbour light |
+| `anchor:lake_shore_south` | camera anchor | — | a viewpoint in `data/scenes/1835.json`, not an establishment |
+
 ## Shared historical authoring rule
 
 Proposed destinations below resolve in `data/sidecars/1835/index.json` or the scene's
