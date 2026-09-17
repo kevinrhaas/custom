@@ -40,6 +40,19 @@
   ],
   "note": "The auction room he built on the west side of Dearborn near Water and afterwards occupied in his business. data/structures/bates_auction_room.json carries him as 'auctioneer and deputy postmaster'."
  },
+ "associated_with": [
+  {
+   "kind": "business_premises",
+   "place_or_structure_id": "bates_auction_room",
+   "resolves_to": "structure",
+   "from": null,
+   "to": null,
+   "undated": true,
+   "tier": "attested",
+   "source_id": "andreas_1884_v1",
+   "note": "The auction room he built on the west side of Dearborn near Water and afterwards occupied in his business. Andreas dates neither the building nor the occupancy, so the row says `undated` rather than borrowing a year from somewhere else: an undated relationship is an admission this project counts. THERE IS NO HOME ROW because there is no home claim - `lives_at` above is null and says 'Not attested.', and an absent relationship is an absent row."
+  }
+ ],
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
