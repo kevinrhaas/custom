@@ -41,6 +41,23 @@
    "son",
    "wife"
   ],
+  "association_kinds": [
+   "agency_held",
+   "business_premises",
+   "church",
+   "civic_seat",
+   "home",
+   "land_purchased",
+   "lodging",
+   "school",
+   "workplace"
+  ],
+  "association_resolution": [
+   "structure",
+   "street",
+   "face",
+   "division"
+  ],
   "occupations": [
    "army_officer",
    "army_surgeon",
