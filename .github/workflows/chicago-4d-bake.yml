@@ -554,9 +554,19 @@ jobs:
         viewport: [mobile, desktop]
         stage: ['1-2', '3-6', '7-9', '10-13']
     steps:
+      # T-0437: smoke imports tools and reads its two baseline JSON files;
+      # the boot check also reads docs/SITE-BUDGET.md. All browser inputs come
+      # from the downloaded mirror, not from source assets or another tenant.
+      # Non-cone patterns avoid pulling in large files from ancestor directories.
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.bake.outputs.sha }}
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /chicago/4d/tools/
+            /chicago/4d/docs/SITE-BUDGET.md
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

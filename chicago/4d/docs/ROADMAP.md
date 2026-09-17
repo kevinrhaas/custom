@@ -445,6 +445,48 @@ change to this cap or this cut should quote that, and should decompose the job i
 blaming the suite, because on the evidence above the suite was never the problem.
 
 
+**T-0437 — reduced smoke checkout, 2026-09-17 (measurement in progress).**
+The smoke job selects only `/chicago/4d/tools/` and
+`/chicago/4d/docs/SITE-BUDGET.md`, using non-cone sparse checkout, `blob:none`,
+and depth 1 at the bake's exact output SHA. Non-cone mode excludes ancestor
+files as well as unrelated tenants. At `c66b9a29`, those 423 files contain
+**12,227,359 bytes**, versus **3,783,182,311 bytes** across the tracked repository
+(99.68% fewer selected working-tree bytes). These are file-size counts,
+**not** network-transfer or checkout-duration measurements.
+
+Dependency audit: `smoke_renderer.mjs` imports `critic_metrics.mjs`,
+`drawn_placement_census.mjs`, `drawn_timber_census.mjs`, and
+`road_band_movement.mjs` from `tools/`; their imports are Node built-ins.
+Its disk baselines are `road_band_baseline.json` and `far_timber_baseline.json`
+in that directory. Playwright is installed separately. Page modules, resident
+index, geometry and all HTTP-served resources resolve inside the downloaded
+published mirror. T-1156's boot measurement imports Node built-ins and
+Playwright, serves that mirror, and reads its limit from `SITE-BUDGET.md`.
+The source renderer, data, assets and other monorepo projects are not needed.
+
+A fresh local network fetch at that SHA, using `--depth=1 --filter=blob:none`
+and these exact sparse patterns before checkout, took **30.423 s** (fetch
+8.524 s, checkout 21.899 s), materialized exactly the 423 selected files, and
+stored **5,559,171 bytes** under `.git`. This checks the fetch recipe; it is not
+a GitHub-runner tail sample.
+
+In an isolated sparse checkout with no source renderer/data/assets, the unchanged
+smoke ran stage 9 plus always-on checks at both release viewports against the
+stable published fixture exported for T-1156 (`01ce6b77`): **46 passed, 0 failed**,
+zero page errors, **5 m 21 s**. The boot check passed at **7.270 MB / 12 MB**
+across 916 requests. This proves those browser runs and the audited imports
+resolve without the rest of the repository; it is not a full 13-stage smoke pass.
+
+The **45-minute cap remains unchanged pending the required five-bake sample**.
+The before sample remains T-0181's 104 desktop tail legs: p90 **5 m 31 s**,
+**11 over five minutes**, **7 over thirteen minutes**. Do not infer a new
+checkout tail from a local sparse-tree test: record checkout step timestamps
+from at least five distinct bakes (including failed or cancelled bakes), compare
+the desktop `10-13` leg separately, and use all eight legs as supporting evidence.
+Record any checkout killed before completion as censored rather than silently
+dropping it. Only then reconsider the cap, including install, artifact download,
+T-1156's boot check and worst smoke time.
+
 **AND THE THREE CAPS IN THIS SECTION BOUND THREE DIFFERENT THINGS — corrected
 2026-09-03 by T-0450, on the owner's report.** Everything above is written against the
 **600-second** per-command ceiling, which is the constraint on a steward run and is

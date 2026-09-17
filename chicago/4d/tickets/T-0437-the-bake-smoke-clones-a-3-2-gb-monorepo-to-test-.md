@@ -1,7 +1,7 @@
 ---
 id: T-0437
 title: The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,9 +11,11 @@ parent: null
 opened: 2026-08-29
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 11:54:46 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: null
+claimed_run: null
 ---
 
 The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap.
@@ -108,3 +110,20 @@ The same checkout runs in all eight legs, so whatever is done here applies to ev
   and thirteen minutes given both before and after.
 - If the tail collapses, the 45-minute cap is re-sized on the new spread in the same way T-0181
   sized it — and the reasoning is written next to the number, not in the commit message.
+
+## Implementation and verification — 2026-09-17
+
+Owner selected this ticket and authorized its workflow PR and merge into `dev`.
+Remote lock: `claim/t-0437`; work branch: `steward/t-0437-sparse-bake-smoke`.
+The normal claim tool recorded the claim locally; the connector acquired the
+remote marker after the tool reported unavailable push credentials.
+
+Smoke checkout now uses exact non-cone patterns for `tools/` and
+`docs/SITE-BUDGET.md`, with `blob:none` and depth 1 at the bake output SHA.
+ROADMAP § THE RUN BUDGET records the dependency audit and file-size comparison.
+The 45-minute timeout is unchanged. The five-bake timing requirement remains
+open until the actual job history is recorded; a local test does not close it.
+
+Local sparse-tree stage 9 + always-on smoke: **46 passed, 0 failed**, both
+viewports, zero page errors; boot: **7.270 MB / 12 MB**. A fresh filtered fetch
+materialized exactly 423 files in 30.423 s. Neither is the required CI tail sample.

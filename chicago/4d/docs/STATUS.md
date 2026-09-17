@@ -1,5 +1,20 @@
 # STATUS
 
+## T-0437 — sparse smoke checkout, 2026-09-17
+
+The bake smoke checkout selects tools and the boot-budget document only, at the
+bake output SHA. The published mirror still comes exclusively from the artifact.
+The selected tracked file bytes fall from 3.783 GB to 12.227 MB at `c66b9a29`;
+this is a scope measurement, not a CI timing claim. The 45-minute timeout and
+eight smoke legs are unchanged. The dependency audit and outstanding five-bake
+timing comparison are in ROADMAP § THE RUN BUDGET. Nothing in the scene changes.
+
+Sparse-tree verification: stage 9 plus always-on checks passed at both viewports
+(**46/0**, zero page errors, 5 m 21 s); boot payload passed at 7.270 MB / 12 MB.
+The fixture is the stable T-1156 published export; full bake integration remains
+to be measured. A fresh filtered network fetch materialized exactly the selected
+423 files in 30.423 s, storing 5.56 MB under `.git`.
+
 ## T-1156 — nightly boot-budget enforcement, 2026-09-17
 
 Owner-requested workflow change: the desktop `1-2` smoke leg runs
