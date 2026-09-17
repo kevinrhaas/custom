@@ -12,7 +12,7 @@
   "matched_one_entry": 63,
   "matched_more_than_one_ambiguous": 17,
   "one_entry_contested_by_two_residents": 16,
-  "surname_present_initial_absent_refused": 241,
+  "surname_present_initial_absent_refused": 242,
   "matches_carrying_a_birth_year": 42,
   "matches_carrying_a_date_of_death": 57
  },
@@ -3588,6 +3588,13 @@
    "surname_in_the_list": "Porter",
    "candidates": 2,
    "rule": "The surname 'Porter' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Hibbard Porter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
+   "resident": "High Es Jones",
+   "person_id": "jones_es_high",
+   "surname_in_the_list": "Jones",
+   "candidates": 4,
+   "rule": "The surname 'Jones' is in Fergus's death notices and no entry under it carries the initial 'H' of 'High Es Jones'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Hiram A Adams",
