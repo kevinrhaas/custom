@@ -1,7 +1,7 @@
 ---
 id: T-1145
 title: Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-17
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 3:57:43 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-17T08:59:17.417Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35202200830
 ---
 
 Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence.
