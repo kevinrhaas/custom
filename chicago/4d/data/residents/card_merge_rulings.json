@@ -1481,6 +1481,25 @@
      "on": "2026-09-15"
     }
    ]
+  },
+  {
+   "id": "sweet",
+   "surname": "sweet",
+   "rulings": [
+    {
+     "state": "undecided",
+     "referred_to": "T-1281",
+     "rule": "U1",
+     "members": [
+      "sweet_a",
+      "sweet_alanson"
+     ],
+     "for_merge": "Alanson Sweet is the only Sweet on a card whose full forename the initial A fits, and he is one of the better-evidenced men in the layer \u2014 the 1833 tax roll, the 1834 and 1835 poll lists and the Democrat. On the cards alone this is a one-rival initial, which is the shape T-0839 merges.",
+     "against_merge": "The card layer is not the whole corpus. The newspapers also print 'Alon[s]on Sweet', a second full forename the initial A fits just as well, and the identity ladder refuses 'A. Sweet' to BOTH of them under R3 for exactly that reason. Whether Alonson is a second man or a compositor's transposition of Alanson is a reading of the page and not a rule, so the answer decides this cluster and is not in hand. Filed as T-1281.",
+     "note": "REACHED BY T-1155, AND IT IS THE REPAIR SHOWING ITS WORK. Before the square-bracket supplies were kept, 'Alon[s]on Sweet' split to the forenames `alon` and `on` and 'A. Sweet' merged onto Alanson unopposed. With the supplied letter back the second printing reads as the full forename Alonson, the ladder sees two rivals, and the Democrat's 'A. Sweet' comes off Alanson's card and stands on its own \u2014 refused rather than folded. The card is `undecided` and not merged because the town would otherwise assert a choice between two printings that nobody has made.",
+     "on": "2026-09-17"
+    }
+   ]
   }
  ],
  "also_ruled_on": [
