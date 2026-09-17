@@ -289,6 +289,76 @@ def name_shaped(token: str) -> bool:
     return bool(letters) and (letters[0].isupper() or len(letters) == 1)
 
 
+# ---------------------------------------------------------------------------
+# THE TWO MARKS A SQUARE BRACKET MAKES, AND THEY ARE OPPOSITES (T-1155).
+#
+# Until this existed both sites below ran one regex —
+# `re.sub(r"[\[(][^\])]*[\])]", " ", text)` — that deleted a bracket group and
+# everything inside it before tokenising. That is right for a PARENTHESIS, which on a
+# directory line is an annotation about the man ("Arnold, Isaac Newton, (A. & Ogden,)").
+# It is wrong for a square bracket, which in this corpus is the transcriber saying
+# WHICH LETTERS the page would not give up. Deleting those letters does not lose a
+# note; it loses part of the name, and the name is the key:
+#
+#   `E. K[in]zie`         -> ` E. K zie`        -> surname `zie`
+#   `Esth[e]r M. Bailey`  -> ` Esth r M. Bailey`-> forenames `esth`, `r`
+#   `T[e]mple, John T.`   -> ` T mple, John T.` -> surname `tmple`
+#   `[W]ade, afarvin R.`  -> ` ade, afarvin R.` -> surname `ade`
+#
+# Measured on the committed identity master before the repair: 627 appearances carried
+# a supply of this shape, and the ids minted off them read `id_ad_el_s_jon_s` for Adiel
+# S. Jones and `id_alker_gerge_c` for a Walker.
+#
+# THE TELL IS WELDING, NOT THE DELIMITER. A supply is set INSIDE a word — a letter
+# stands immediately either side of it — because that is what supplying a letter looks
+# like. A bracket group standing FREE, with whitespace or an end of string on both
+# sides, is the 1843/44 directories' own annotation ("[died July 25, 1886, aged 86½]",
+# "[moved to Lockport, Ill.]"): 988 appearances of that shape, and splicing those in
+# would read a death date into a man's forenames. So free groups keep the old deletion.
+#
+# TWO MARKS ARE DELETED WHEREVER THEY STAND, welded or not:
+#   `[?]`            — the transcriber could supply NO letter. `compile_gazetteer.
+#                      unmarked()` deletes it for exactly this parse and the arithmetic
+#                      is the same either way: `[?]rah` cleans to `rah` spliced or cut.
+#   `[uncertain: …]` — the wrapper says the printed form supports no reading at all.
+#                      Reading its contents as a name here would promote a refusal into
+#                      an identity, which is T-1027's question and not this repair's.
+#                      119 appearances; their refusals stand unchanged.
+#
+# ONE FREE GROUP IS STILL A SUPPLY: A SINGLE SUPPLIED LETTER. `[M]. B. Beaubien`,
+# `Mark [B.] Beaubien`, `Stephen [F] Black` — the supplied word IS one letter, so there
+# is no letter beside the bracket for the welding test to find, and deleting it deletes
+# a whole initial. 64 free groups in the committed master are of that shape, against 56
+# `[P]. [R]. F[ie]ld`-style readings that the welding test alone refused outright for
+# naming no forename. A LETTER IS THE WHOLE RULE: `[Henry] G.` keeps the old deletion,
+# because a supplied FORENAME is what T-0855's `bracket_conflict` reads off `as_read`
+# to catch a bad fold, and `[d. 1860.]`, `[J/S]` and `[Dr.]` are not single letters
+# either.
+MARKUP_GROUP = re.compile(r"[\[(][^\])]*[\])]")
+SUPPLIED_INITIAL = re.compile(r"^[A-Za-z]\.?$")
+
+
+def unmark(text: str) -> str:
+    """A printed name with the transcriber's markup off and the supplied letters kept."""
+
+    def one(m: re.Match) -> str:
+        whole = m.group(0)
+        if whole[0] == "(":
+            return " "
+        inner = whole[1:-1]
+        flat = inner.strip().lower()
+        if flat == "?" or flat.startswith("uncertain"):
+            return " "
+        if SUPPLIED_INITIAL.match(inner.strip()):
+            return inner
+        subject, (start, end) = m.string, m.span()
+        before = subject[start - 1] if start else ""
+        after = subject[end] if end < len(subject) else ""
+        return inner if (before.isalpha() or after.isalpha()) else " "
+
+    return MARKUP_GROUP.sub(one, text)
+
+
 def split_name(text: str) -> tuple[str, list[str]] | None:
     """(surname_key, forename tokens) out of a printed name, or None if it names nobody."""
     return split_name_or_reason(text)[0]
@@ -314,11 +384,12 @@ def split_name_or_reason(text: str) -> tuple[tuple[str, list[str]] | None, str |
         return None, ("the name joins two parties with 'and' — a firm style or a "
                       "description of a household, not one person")
     # A bracket holds what the printing could not: "William Cr[…]" is a man whose name
-    # the column cut, and identity.json has already ruled on him. Drop the bracket and
-    # keep the reading — but a DIGIT is never part of a name, and the 1843 directory
-    # lists institutions in the same alphabetical run as people ("Reading Room (Y. M.
-    # A.), 37 Clark, 2d story"), which is how an identity called `a` got minted once.
-    text = re.sub(r"[\[(][^\])]*[\])]", " ", text)
+    # the column cut, and identity.json has already ruled on him. `unmark` keeps a
+    # supplied letter and drops an annotation (T-1155) — but a DIGIT is never part of a
+    # name, and the 1843 directory lists institutions in the same alphabetical run as
+    # people ("Reading Room (Y. M. A.), 37 Clark, 2d story"), which is how an identity
+    # called `a` got minted once.
+    text = unmark(text)
     if "," in text:
         surname_part, _, given_part = text.partition(",")
     else:
@@ -397,7 +468,7 @@ def female_honorific(text: str) -> str | None:
     """
     if not text or not isinstance(text, str):
         return None
-    text = re.sub(r"[\[(][^\])]*[\])]", " ", text)
+    text = unmark(text)
     head = text.partition(",")[2] if "," in text else text
     first = next((clean(t) for t in re.split(r"[\s.]+", head) if clean(t)), None)
     return first if first in FEMALE_HONORIFICS else None
@@ -2427,6 +2498,16 @@ def cmd_self_test() -> int:
         ("BEAUMONT & SKINNER", None),
         ("Reading Room (Y. M. A.), 37 Clark, 2d story", None),
         ("Abbott", None),
+        # T-1155 — a supplied letter is part of the name, an annotation is not.
+        ("E. K[in]zie", ("kinzie", ["e"])),
+        ("Esth[e]r M. Bailey", ("bailey", ["esther", "m"])),
+        ("T[e]mple, John T.", ("temple", ["john", "t"])),
+        ("[W]ade, afarvin R.", ("wade", ["afarvin", "r"])),
+        ("Sam[l] Anderson", ("anderson", ["samuel"])),
+        ("[?] G. Abbot", ("abbot", ["g"])),
+        ("Hubbard, [Henry] G.", ("hubbard", ["g"])),
+        ("Adams, Benjamin F. [died July 25, 1886, aged 86½].", ("adams", ["benjamin", "f"])),
+        ("[uncertain: Abey Blankinship]", None),
     ]
     for text, want in cases:
         got = split_name(text)
@@ -2438,6 +2519,43 @@ def cmd_self_test() -> int:
             ok = got == (want[0], want[1])
         print(f"  {'ok   ' if ok else 'FAIL'} split_name({text!r}) -> {got}")
         failures += 0 if ok else 1
+
+    # ---- T-1155: THE MUTATION THAT SHIPPED -----------------------------------
+    # The defect was `unmark` being one blanket delete, so the cases above are not
+    # enough on their own: they would still pass if a later edit deleted a bracket
+    # group and its contents in some new way that happened to leave these keys alone.
+    # So run the OLD rule beside the new one and require the two to DISAGREE on every
+    # supply and AGREE on every annotation. A change that goes back to discarding
+    # bracket contents fails here, in a name, rather than silently in the ids.
+    def discard(text):
+        return MARKUP_GROUP.sub(" ", text)
+
+    for text, want in [("E. K[in]zie", ("kinzie", ["e"])),
+                       ("Esth[e]r M. Bailey", ("bailey", ["esther", "m"])),
+                       ("T[e]mple, John T.", ("temple", ["john", "t"])),
+                       ("[W]ade, afarvin R.", ("wade", ["afarvin", "r"])),
+                       ("Sam[l] Anderson", ("anderson", ["samuel"]))]:
+        got, mutated = split_name(text), split_name(discard(text))
+        if got == want and mutated != want:
+            print(f"  ok    {text!r} keeps its supplied letters, and discarding them "
+                  f"gives {mutated} instead")
+        else:
+            print(f"  FAIL  {text!r} -> {got}, wanted {want}; the discarding rule gives "
+                  f"{mutated}, so the supply is not being kept")
+            failures += 1
+
+    for text in ["Adams, Benjamin F. [died July 25, 1886, aged 86½].",
+                 "Austin, Chamberlin, farmer [carpenter], res Illinois bet N. Clark",
+                 "[?] G. Abbot", "[?]rah Fowler", "Hubbard, [Henry] G.",
+                 "Dani[e]l O. [uncertain: Robian]".replace("[e]", "e"),
+                 "[uncertain: Abey Blankinship]",
+                 "Reading Room (Y. M. A.), 37 Clark, 2d story"]:
+        if split_name(text) == split_name(discard(text)):
+            print(f"  ok    {text!r} is annotation, unread or parenthesis — unchanged")
+        else:
+            print(f"  FAIL  {text!r} moved: {split_name(text)} against the deleting "
+                  f"rule's {split_name(discard(text))}. Only a welded supply may move")
+            failures += 1
 
     # ---- T-1004: ONE CARD, TWO MEN -------------------------------------------
     # The rule is `splits`, and it is the only thing in this file that overrules a name.

@@ -1831,20 +1831,6 @@
    "reasoning": "THE TOWN'S OWN SURVEYOR AND ASSESSOR, BUYING AT THE TOWN'S OWN SALE SIX WEEKS BEFORE IT APPOINTED HIM. The register enters SNOW GEORGE W for blocks 55 and 46 at the school-section sale of 24 October 1833; the first board of trustees made George W. Snow the town's Assessor and Surveyor on 4 December 1833, and he was one of the twelve who voted for incorporation on 5 August 1833 and one of the twenty-eight electors five days later. The middle initial is on both sides and the middle NAME is printed: the Democrat's “G. W. Snow” of 18 June 1834, Fergus 1843's “Snow, George Washington, lumber merchant”, Norris 1844's “Snow, G. W. lumber merchant, South Water st”. The tax list of 1833 and the poll of 1834 bracket the rows, Andreas's roster has “George W. Snow, came in 1832”, and the layer's only other Snow is Watson M. A LATER TRADE THAT AGREES: a lumber merchant of 1843 is a plausible town-lot buyer of 1833, but the ruling does not rest on 1843 — it rests on the initial, the bracket and the office. Upheld."
   },
   {
-   "purchaser_as_read": "SWEET ALANSON",
-   "resident_id": "sweet_alanson",
-   "ruling": "upheld",
-   "ruled_on": "2026-09-11",
-   "ticket": "T-0990",
-   "checked_against": [
-    "isa_public_domain_land_tract_sales",
-    "andreas_1884_v1",
-    "chicago_voter_lists_1833_1835_irad",
-    "buck_pioneer_milwaukee_alanson_sweet"
-   ],
-   "reasoning": "AN UNCOMMON FORENAME PRINTED WHOLE ON BOTH SIDES, THREE CIVIC ROLLS, AND A TRADE THE SIX 1833 ROWS ARE WHAT YOU WOULD PREDICT FROM. Andreas's roster has “Alanson Sweet, 1832” and, elsewhere, that “the first Tremont House ... was built by Alanson Sweet” in 1833 and kept as a saloon and boarding-house by him and a Canadian named Darwin. A man who put a hotel up at Lake and Dearborn that year entered six town lots and a whole block at the school-section sale of 22 and 23 October 1833 for $991: the purchase is the trade doing what the trade does. The tax list of 1833, the poll of 1834 and the poll of 1835 hold him — three contemporary rolls bracketing the rows on both sides — and the layer's other Sweets are Richard M. and an “Alon On Sweet” whose name is this one read through bad type. THE SEVENTH ROW IS WEAKER AND IS SAID SO: ls0545, 27 June 1835, is inside the ring, and Buck's Pioneer History of Milwaukee has Sweet moving to Milwaukee in 1835 without giving a departure date relative to 1 July. A man buying Cook County ground on his way out of it is ordinary; it is noted rather than leaned on. Upheld."
-  },
-  {
    "purchaser_as_read": "TAYLOR ANSON H",
    "resident_id": "taylor_anson_h",
    "ruling": "upheld",
@@ -3047,6 +3033,23 @@
    "retired_on": "2026-09-10",
    "retired_under": "T-0851",
    "retired_because": "The same absorption as GARRETT A ET CO above, and this ruling's own reasoning said so before the rule existed: 'Refused for the reason T-0700 refused GARRETT A ET CO … AND CO is the page saying the buyer was a PARTNERSHIP.' T-0851's namesake.firm_style() now reads that partnership style off the register and build_resident_crosswalk() refuses every firm against every person BY RULE, before the surname gathers anybody — so the crosswalk no longer proposes PRUYNE P AND CO at all, and a hand ruling on it is a ruling on nothing, which is what read_land_sales.py --check called it. Retired rather than deleted: the argument is what the rule was written from, and this is the second firm it caught — the one whose entry had been written onto Peter Pruyne's card as his own purchase, which a hand ruling on one spelling could never have reached."
+  },
+  {
+   "purchaser_as_read": "SWEET ALANSON",
+   "resident_id": "sweet_alanson",
+   "ruling": "upheld",
+   "ruled_on": "2026-09-11",
+   "ticket": "T-0990",
+   "checked_against": [
+    "isa_public_domain_land_tract_sales",
+    "andreas_1884_v1",
+    "chicago_voter_lists_1833_1835_irad",
+    "buck_pioneer_milwaukee_alanson_sweet"
+   ],
+   "reasoning": "AN UNCOMMON FORENAME PRINTED WHOLE ON BOTH SIDES, THREE CIVIC ROLLS, AND A TRADE THE SIX 1833 ROWS ARE WHAT YOU WOULD PREDICT FROM. Andreas's roster has “Alanson Sweet, 1832” and, elsewhere, that “the first Tremont House ... was built by Alanson Sweet” in 1833 and kept as a saloon and boarding-house by him and a Canadian named Darwin. A man who put a hotel up at Lake and Dearborn that year entered six town lots and a whole block at the school-section sale of 22 and 23 October 1833 for $991: the purchase is the trade doing what the trade does. The tax list of 1833, the poll of 1834 and the poll of 1835 hold him — three contemporary rolls bracketing the rows on both sides — and the layer's other Sweets are Richard M. and an “Alon On Sweet” whose name is this one read through bad type. THE SEVENTH ROW IS WEAKER AND IS SAID SO: ls0545, 27 June 1835, is inside the ring, and Buck's Pioneer History of Milwaukee has Sweet moving to Milwaukee in 1835 without giving a departure date relative to 1 July. A man buying Cook County ground on his way out of it is ordinary; it is noted rather than leaned on. Upheld.",
+   "retired_on": "2026-09-17",
+   "retired_under": "T-1155",
+   "retired_because": "The crosswalk no longer PROPOSES this match, so the judgement has nothing to rule on and --check calls it a ruling on nothing. T-1155 put the transcriber's supplied letters back into the printed names, and one of them is 'Alon[s]on Sweet' — read before as the forenames `alon` and `on`, read now as the full forename Alonson. The identity ladder therefore stops folding the Democrat's 'A. Sweet' onto Alanson Sweet (R3: an initial with two rival full forenames attaches to neither), 'A Sweet' becomes a card of its own, and the mechanical rule in build_resident_crosswalk() — surname agrees, forename agrees in full or as an initial — now finds the forename Alanson naming two of the three Sweets the layer holds and refuses the row by rule before any judgement is asked for. NOTHING HERE IS RETRACTED. The reasoning below is the argument that the hotel-builder of Lake and Dearborn entered the six school-section lots of October 1833, and it is untouched by a change to how a NAME is split; it is kept here rather than deleted because it is what a later pass will re-read. The ruling reopens the moment T-1281 decides whether Alonson Sweet is a second man or a compositor's transposition of Alanson: rule them one man and the third Sweet goes away, the mechanical rule proposes this row again, and this judgement moves back to `ruled` unchanged."
   }
  ],
  "withdrawn": [
