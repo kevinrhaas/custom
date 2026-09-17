@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A date for the 1880s, argued instead of assumed', kind: 'change', ts: '', date: '',
+  { v: 916, title: 'A date for the 1880s, argued instead of assumed', kind: 'change', ts: '2026-09-17T16:10:20.388Z', date: 'Sep 17, 2026, 11:10 AM CT',
     items: [
       'This reconstruction is read at a single instant. Everything is sized against 1 July 1835: a building either stood that day or it is phased out. That is what lets the model refuse things, and a period without such an instant cannot refuse anything.',
       'The 1880s Prairie Avenue scene — the ground for it was carried south a fortnight ago, and six viewpoints reached it yesterday — did not have one. It had a placeholder. A check that keeps this model’s three periods on three separate shorelines has been probing the 1880s at the first of July 1885 since that period was opened, and 1885 appeared in no record and had never been argued by anybody.',
@@ -7,6 +7,7 @@ export const CHANGELOG = [ // newest first
       'The pull was toward 1886: there exists a mapping of who lived on that street made to that year alone, and a scene dated to it could have been filled with real names. But on 1 July 1886 that great house is either days old or eighteen months from finished, depending which page you believe. The list still works, two years early, and said to be.',
       'The lake could not help choose, and knowing that is worth having. The Illinois Central was permitted in 1852 to lay track on a causeway out in the water; the lagoon behind it was filled with the rubble of the Great Fire in 1871; the city did not push the park past the rails until 1896. The downtown shore stands unmoved through the decade, and the modern lakefront parks are a quarter-century too late to appear. Where that shore ran a mile south, off Prairie Avenue itself, nothing read here reaches — so it is left unmapped rather than guessed at.',
       'No ground moved, the period is still marked unbuilt, and the four sources behind the decision are encyclopedias — good enough to choose a year and good for nothing else, which is written on each of them.'
+    ] },
   { v: 915, title: 'The 1812 river mouth, fixed within ten metres by two readings', kind: 'change', ts: '2026-09-17T14:55:57.480Z', date: 'Sep 17, 2026, 9:55 AM CT',
     items: [
       'Before the harbour was cut, the Chicago River did not reach the lake where it does now. A bar of sand thrown up by the waves ran across its mouth and turned it south, and the river ran behind that bar, parallel to the beach, for close to half a mile before it found the water. That is the landscape the fort of 1812 stood in. This project has kept an empty address for it \u2014 a named slot with no coastline in it, so that an 1812 scene could not quietly borrow the coast of 1835 with its cut and its two piers. The slot now has a shore.',
