@@ -258,6 +258,23 @@ const markers = (bare) =>
       ids2[0] === 'T-3006' && ids2.includes('T-3002') && ids2.includes('T-3003'),
       ids2.join(' '));
 
+    // A TITLE EDITED ON THE BASE LEAVES THE BRANCH'S LABEL STALE, and `check` refuses it:
+    // "the ticket wins; rewrite the line as …". #1417 went red on exactly that, one step of
+    // 441, after T-1276 was retitled on dev. Rewriting a label cannot lose the owner's
+    // intent the way reordering could — the ORDER is untouched and the words are the
+    // ticket's own.
+    writeFileSync(path.join(APP, 'tickets', 'T-3001-fixture.md'),
+      ticketFile('T-3001', 'fixture T-3001 RETITLED ON THE TICKET', 'open'));
+    writeFileSync(QUEUE, HEADER + 'T-3001 — fixture T-3001\n');
+    const rel = run(APP, 'reconcile', '--base', 'base');
+    const rq = readFileSync(QUEUE, 'utf8');
+    check('13. a label whose ticket was retitled follows the ticket, not the stale line',
+      rq.includes('T-3001 — fixture T-3001 RETITLED ON THE TICKET')
+      && /label\(s\) rewritten/.test(rel.out),
+      rq.split('\n').find((l) => l.startsWith('T-3001')) ?? '(no line)');
+    check('14. …and the queue still passes its own check afterwards',
+      !/labels T-3001/.test(run(APP, 'check').out));
+
     const missing = run(APP, 'reconcile', '--base', 'no-such-ref');
     check('12. an unreadable base is refused loudly, never treated as an empty queue',
       missing.status !== 0 && /cannot read/.test(missing.out),

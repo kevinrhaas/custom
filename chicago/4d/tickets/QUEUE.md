@@ -116,7 +116,7 @@ T-1292 — Move the town census off the loader into an Evidence → City summary
 T-1247 — Roll the year back into a restrained time-machine arrival
 T-1248 — Compile the sources used and their reconstruction backlinks
 T-1275 — Give the loading journey 160 varied source and reconstruction statuses
-T-1276 — Move city statistics into a browsable Sources and City summary
+T-1276 — Browse every source the reconstruction used, with its counts and used-for links
 T-1277 — Share one destination search for Go to and Explore Myself
 T-1278 — Land on a warm mobile welcome with Jaunts and Explore Myself
 # --- 6B. JAUNTS ENGINE — content contract, navigation, travel, choices, history and menu

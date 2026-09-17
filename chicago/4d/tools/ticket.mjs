@@ -1597,15 +1597,37 @@ switch (cmd) {
       prev = id;
     }
     const lost = restored.length;
+
+    // AND THE LABEL FOLLOWS THE TICKET, because `check` already rules that it does:
+    // "the ticket wins; rewrite the line as …". A title edited on the base while a branch
+    // was open leaves the branch's line carrying the old words, and the gate refuses it —
+    // #1417 went red on exactly that, one step of 441, after T-1276 was retitled on dev.
+    // Rewriting a label can never lose the owner's intent the way reordering could: the
+    // ORDER is untouched and the title is the ticket's own.
+    const relabelled = [];
+    const byId = new Map(tickets.map((t) => [t.id, t]));
+    for (let i = 0; i < out.length; i += 1) {
+      const id = queueId(out[i]);
+      const t = id && byId.get(id);
+      if (!t || !t.title) continue;
+      const label = queueLabel(out[i]);
+      if (label && label !== t.title) {
+        out[i] = `${id} — ${t.title}`;
+        relabelled.push(id);
+      }
+    }
     if (has('dry-run')) {
-      console.log(`queue reconcile: ${lost} line(s) of ${base} WOULD come back; `
+      console.log(`queue reconcile: ${lost} line(s) of ${base} WOULD come back, `
+        + `${relabelled.length} label(s) WOULD follow their ticket; `
         + "this branch's own lines and its headers are untouched");
       for (const r of restored) console.log(`  ${r}`);
       break;
     }
     writeFileSync(QUEUE, out.join('\n').replace(/\n+$/, '\n'));
     generateBoard(loadAll());
-    console.log(`queue reconcile: ${lost} line(s) of ${base} the merge had lost are back; `
+    console.log(`queue reconcile: ${lost} line(s) of ${base} the merge had lost are back, `
+      + `${relabelled.length} label(s) rewritten from their ticket`
+      + `${relabelled.length ? ` (${relabelled.join(', ')})` : ''}; `
       + "this branch's own lines and its headers are untouched");
     for (const r of restored) console.log(`  ${r}`);
     break;
