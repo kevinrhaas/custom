@@ -20,10 +20,8 @@
 # Build tickets in 5C are needs_bake and hand on a successor. No reconstructed Native presence.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
-T-1217 — The card for jones_es_high leads with its family name, because the printing 'Es,Jones, High' sets it in the middle, and a re-mint would file it in the directory under es
 T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
 T-1236 — EPIC: rule on the unasserted units the person-fact passes do not own — the land-sale, civic, 1830-census, church, newspaper and directory names, the resident-pass reserved people, and the book readings of ground, harbour, weather, price and institution
-T-1234 — Spend the person units the matched-research table does not reach: every unasserted book, index and letter-list-suspicion unit in the research ledger named to a structured resident field or refused in writing
 T-1238 — Plural dated home, workplace and other-significant-location relationships on every person and household, with associated_with[] defined
 T-1239 — Spend the defensible location findings and resolve or explicitly retain T-0251, T-0305, T-0386 and T-1087, keeping placement proportional to evidence
 T-1240 — The people and business views expose the plural links, their dates, confidence and location limits, including street-only and unplaceable businesses
@@ -99,7 +97,6 @@ T-1214 — Build the camps of the summer of 1835: a tent and wagon-camp archetyp
 # --- 5E. STRUCTURES — converge: every person housed, every business roofed, the town complete
 T-1215 — Converge the reconstructed town: every person housed, every business roofed, every roof occupied or its use stated, the census's dwellings ratio met, the programme reconciled, the budgets re-measured and set — the completion report a visitor can open
 # --- 6. SOUTH THROUGH TIME — dated terrain, Fort Dearborn, and Prairie Avenue
-T-0467 — Add south-scene camera anchors, navigation and map extents
 T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
@@ -152,4 +149,4 @@ T-1219 — The three re-spelled cards still say in prose that the papers print t
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
 T-1242 — hh_inf_joiner_north_02 stands in the tree and no pass derives it: the register deal seats four roofs where its own docstring says five, and J. W. Reed's household is owned by nobody
 
-T-1237 — The location reconciliation rows: every home, workplace and business-location claim resolved to street, face and anchor, with the clause that limited it
+
