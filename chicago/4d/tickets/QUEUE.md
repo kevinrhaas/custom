@@ -150,4 +150,3 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 T-1219 — The three re-spelled cards still say in prose that the papers print the reading T-1139 overturned: hh_fraser_wm_h reads 'Wm. H. Frazer' and its own note says the papers print 'Wm. H. Fraser'
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
 
-T-1232 — Spend matched household and person-profile research into a candidate-fact table, adjudicate every candidate, and write the asserted names, sexes, dates, origins and life events as structured per-value assertions
