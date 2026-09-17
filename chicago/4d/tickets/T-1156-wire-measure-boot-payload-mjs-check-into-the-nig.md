@@ -1,7 +1,7 @@
 ---
 id: T-1156
 title: Wire measure_boot_payload.mjs --check into the nightly gate so the 12 MB boot budget refuses without a human
-state: claimed
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1404
 claimed_by: run 9/17/2026, 11:04:24 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T16:34:03.688Z
 claimed_run: null
 ---
 
