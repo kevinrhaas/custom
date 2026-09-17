@@ -28,6 +28,8 @@ import re
 import sys
 from pathlib import Path
 
+from associations import (ASSOCIATION_KINDS, ASSOCIATION_RESOLUTION,
+                         check_association_rows, singular_drift)
 from heightfield import Heightfield
 from tiers import (SOLE_EVIDENCE_MAX_TIER, TESTIMONY_MAX_TIER,
                    TRACEABLE_MAX_TIER, tier_ladder)
@@ -5134,7 +5136,8 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
 
     vocab = index.get("vocabulary") or {}
     for key in ("grades", "relationships", "occupations", "sexes", "presence", "divisions",
-                "arrival_precision", "kin_relations", "role_kinds", "role_date_precision",
+                "arrival_precision", "kin_relations", "association_kinds",
+                "association_resolution", "role_kinds", "role_date_precision",
                 "role_dated_by"):
         if not vocab.get(key):
             rep.error("residents index", f"vocabulary.{key} is missing - a renderer and the "
@@ -5151,6 +5154,18 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                                      f"declared inverse cannot be checked for reciprocity, so "
                                      f"the set a record may use is the set validate.py can "
                                      f"mirror")
+    if list(vocab.get("association_kinds") or []) != list(ASSOCIATION_KINDS):
+        rep.error("residents index", f"vocabulary.association_kinds must be exactly "
+                                     f"{list(ASSOCIATION_KINDS)} and is "
+                                     f"{vocab.get('association_kinds')!r}. The set a record "
+                                     f"may use is the set a reading has needed; it grows in "
+                                     f"tools/associations.py with the reading that needed it")
+    if list(vocab.get("association_resolution") or []) != list(ASSOCIATION_RESOLUTION):
+        rep.error("residents index", f"vocabulary.association_resolution must be exactly "
+                                     f"{list(ASSOCIATION_RESOLUTION)} and is "
+                                     f"{vocab.get('association_resolution')!r}. A rung a "
+                                     f"renderer does not implement is a place it will draw "
+                                     f"at a precision the evidence never reached")
     if list(vocab.get("arrival_precision") or []) != list(RESIDENT_PRECISION):
         rep.error("residents index", f"vocabulary.arrival_precision must be exactly "
                                      f"{list(RESIDENT_PRECISION)} and is "
@@ -5257,6 +5272,12 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
             for k in ("lives_at", "works_at"):
                 if k in p:
                     check_resident_link(pwhere, k, p.get(k), structure_ids, rep)
+            if "associated_with" in p:
+                check_association_rows(pwhere, p.get("associated_with"), error=rep.error,
+                                       structure_ids=structure_ids, source_ids=source_ids,
+                                       divisions=divisions, scene=scene)
+                for msg in singular_drift(p, p.get("associated_with")):
+                    rep.error(pwhere, msg)
 
             check_resident_roles(pwhere, p, occupations, source_ids, rep)
 
@@ -5349,6 +5370,18 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
 
         for k in ("lives_at", "works_at"):
             check_resident_link(where, k, h.get(k), structure_ids, rep)
+
+        # --- associated_with: the plural, dated form of the two links above ---
+        # T-1238. `lives_at`/`works_at` are singular and undated, and the sources
+        # are frequently neither; the list says which places, of what kind, on
+        # what dates, at what tier. Both shapes stand until the migration lands,
+        # and `singular_drift` is what stops them saying two different things.
+        if "associated_with" in h:
+            check_association_rows(where, h.get("associated_with"), error=rep.error,
+                                   structure_ids=structure_ids, source_ids=source_ids,
+                                   divisions=divisions, scene=scene)
+            for msg in singular_drift(h, h.get("associated_with")):
+                rep.error(where, msg)
 
         # --- kin: the link out of this record -------------------------------
         # Shape and local resolution here; the other end is checked after the
