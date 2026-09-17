@@ -245,10 +245,10 @@
   ]
  },
  "counts": {
-  "households": 1258,
-  "persons": 1282,
+  "households": 1257,
+  "persons": 1281,
   "by_grade": {
-   "attested": 405,
+   "attested": 404,
    "inferred": 877,
    "reconstructed": 0
   },
@@ -4611,20 +4611,6 @@
    "file": "households/hh_cloud_joseph.json",
    "civic_mint": true,
    "head": "cloud_joseph",
-   "division": "unplaced",
-   "persons": 1,
-   "grades": {
-    "attested": 1
-   },
-   "lives_at": null,
-   "works_at": null,
-   "present_on_scene_date": "uncertain",
-   "review_required": false
-  },
-  {
-   "id": "hh_clybourn_a",
-   "file": "households/hh_clybourn_a.json",
-   "head": "clybourn_a",
    "division": "unplaced",
    "persons": 1,
    "grades": {

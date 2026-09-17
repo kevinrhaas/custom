@@ -1,7 +1,7 @@
 ---
 id: T-0662
 title: check.sh runs synthesize_resident_research.py for three mint steps whose labels name a different pass, so mint_documented and mint_letter_list drift ungated
-state: claimed
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: run 9/17/2026, 2:17:17 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T07:48:59.420Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35193523780
 ---
 `tools/check.sh` has three steps whose labels name three different mint passes and

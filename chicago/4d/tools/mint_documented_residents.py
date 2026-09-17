@@ -56,12 +56,14 @@ THE NINE REFUSALS, AND WHY EACH ONE IS THERE.
                                 town at all. A Chicago street does NOT refuse — this
                                 pass claims no location, so a street in a man's own
                                 record is not contradicted by a household that says
-                                nothing about where he lived. It is a test on a
-                                READING and not on a man: where the register folds
-                                several printings onto one person (T-0662), one
-                                printing that puts him in the town answers the whole
-                                of it, and only a person no printing places here is
-                                refused.
+                                nothing about where he lived. T-0662 made it the
+                                test the place vocabulary says it is: it is a test on
+                                a READING, and a reading that names the town as well
+                                as the other place is a Chicago appearance. So a
+                                reading refuses only when NOTHING in it resolves
+                                inside the town, and where the register folds several
+                                printings onto one person, one printing that places
+                                him here answers for all of them.
   7. `the town already names a <Surname>` — a committed resident, or one of the
                                 index's researched-not-resident findings, carries that
                                 family name. Deliberately blunt: a wrongly refused
@@ -122,7 +124,6 @@ HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
-PLACE_VOCABULARY = DATA / "research" / "newspapers" / "place_vocabulary.json"
 STREETS = DATA / "streets" / "1835.json"
 STRUCTURES = DATA / "structures"
 
@@ -284,18 +285,6 @@ def in_town_places() -> set[str]:
         for aka in doc.get("aka") or []:
             if isinstance(aka, str) and norm(aka):
                 places.add(norm(aka))
-    # T-0662. The derivation above is blunt in one direction the project has since
-    # answered: a premises INSIDE the town that carries no committed roof of its own
-    # — "P. Cohen's store", "the Chicago Book Store" — resolves to nothing here and
-    # so reads as somewhere else. T-1048 adjudicated every printed place string to
-    # `inside`, `outside` or `undecided`, and an `inside` ruling is the project's own
-    # answer to exactly that question; refusing a documented resident against it cost
-    # the town L. W. Montgomery, a shoemaker the papers print seven times. Only
-    # `inside` is read: `undecided` stays undecided and still refuses, and nothing
-    # here can move a string OUT of the town that the derivation already put in it.
-    for ruled in load(PLACE_VOCABULARY)["places"]:
-        if ruled.get("resolution") == "inside" and norm(ruled.get("place")):
-            places.add(norm(ruled["place"]))
     return places
 
 
@@ -532,9 +521,23 @@ def mint(docs: dict, index: dict):
         gaz = gazetteer[cand["id"]]
         name = cand["name"]
         fam = surname(name)
+        # T-0662, and the rule is the place vocabulary's own (T-1048 B2): "a reading
+        # that names only such places is not a Chicago appearance". So a READING is
+        # refused when NOTHING in it resolves inside the town, and a reading that
+        # names the town, one of its streets or one of its structures answers for the
+        # premises printed beside them — 'P. Cohen's store' on South Water Street in
+        # Chicago is not evidence that L. W. Montgomery was somewhere else, and
+        # refusing the shoemaker the papers print seven times against it was the whole
+        # of why he left the town. And the reading is the unit: where the register
+        # folds several printings onto one person, one printing that puts him in the
+        # town answers for him, or the postmaster Levi F. Arnold (printed once beside
+        # Plainfield), the sheriff Stephen Forbes (Cook County) and the justice
+        # Stephen M. Salisbury (the Dupage) would each have gone with him.
         readings = cand.get("place_readings") or [gaz.get("associated_places") or []]
-        beyond = [[p for p in reading if norm(p) not in in_town] for reading in readings]
-        outside = [] if any(not b for b in beyond) else sorted({p for b in beyond for p in b})
+        beyond = [[p for p in reading if norm(p) not in in_town] for reading in readings
+                  if reading and not any(norm(p) in in_town for p in reading)]
+        outside = (sorted({p for b in beyond for p in b})
+                   if beyond and len(beyond) == len(readings) else [])
         reason = None
         if UNCERTAIN.search(name):
             reason = "garbled"
