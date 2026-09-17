@@ -1,7 +1,7 @@
 ---
 id: T-1218
 title: Three letter-list cards spell their surname differently from the id minted off the same printing: fraser_wm_h reads Frazer, provis_joshua reads Pruvis, vandino_john reads Vandine
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 2:00:26 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35192141128
 ---
 
 Three letter-list cards spell their surname differently from the id minted off the same printing: fraser_wm_h reads Frazer, provis_joshua reads Pruvis, vandino_john reads Vandine.

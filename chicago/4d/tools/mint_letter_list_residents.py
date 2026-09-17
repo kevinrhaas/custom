@@ -121,6 +121,8 @@ HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
+NAME_RULINGS = (DATA / "research" / "newspapers"
+                / "letter_list_1834_01_01_name_rulings.json")
 
 SCENE_DATE = "1835-07-01"
 PREFIX = "hh_ll_"
@@ -1201,6 +1203,44 @@ def press_contradicting(person: dict) -> list[dict]:
 BOUND_MARKERS = ("A BOUND FROM THE RETURN", "A BOUND FROM THE PAPER")
 
 
+def id_family_name(pid: str, name: str) -> bool:
+    """Was this id minted off the family name this name gives? (T-1218)
+
+    `plain_fragment()` builds a person id as the family name followed by whatever
+    else the printing set, so the question is answerable without taking the id
+    apart: the id either IS the slugged family name or begins with it and a stop.
+    Deliberately the family name alone and not the whole fragment — fifteen cards
+    differ from a re-minted fragment over an unread initial (`[?] G. Abbot`), a
+    suffix (`Benjamin Jr. Swena`) or a printing whose order is its own ticket
+    (jones_es_high, T-1217), and none of those is a disagreement about WHICH LETTERS
+    THE SURNAME HAS, which is all this asks.
+    """
+    fam = slug(surname(name or ""))
+    return bool(fam) and (pid == fam or str(pid or "").startswith(fam + "_"))
+
+
+def ruled_renamings() -> dict[str, dict]:
+    """person_id -> the adjudication that moved its displayed name off its id.
+
+    T-1139 read nineteen lines of the return of 1 January 1834 where the page image
+    and the transcription disagree, and three of them are rows where the card's
+    letters moved and the id did not (its rule N5: an id is a handle, not a claim).
+    Those three are the only licensed divergences in the cohort, and they are read
+    from the RULING FILE rather than from the cards, so a card cannot license its
+    own divergence by writing a `name_ruling` block onto itself.
+    """
+    if not NAME_RULINGS.exists():
+        return {}
+    out: dict[str, dict] = {}
+    for row in load(NAME_RULINGS).get("rulings") or []:
+        card = row.get("card") or {}
+        pid, was, now = (card.get("person"), card.get("displayed_name_was"),
+                         card.get("displayed_name_is"))
+        if pid and was and now and was != now:
+            out[pid] = dict(row)
+    return out
+
+
 def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
     """Every way the minted cohort could stop being what the owner ruled for.
 
@@ -1219,6 +1259,7 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
 
     rows = {r["id"]: r for r in index.get("households") or []}
     flagged_persons = 0
+    renamings = ruled_renamings()
     for path, doc in sorted(minted.items()):
         hid = doc.get("id")
         persons = doc.get("persons") or []
@@ -1272,6 +1313,61 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                                 f"ordered name says its order by its order, and a comma "
                                 f"left in one is read back as a surname-first printing "
                                 f"(T-1121)")
+
+            # T-1218. A CARD'S NAME GIVES THE FAMILY NAME ITS ID WAS MINTED OFF —
+            # the assertion T-1121 reached for and could not make, because three
+            # cards stood in its way: fraser_wm_h read `Wm. H. Frazer`,
+            # provis_joshua read `Joshua Pruvis`, vandino_john read `John Vandine`.
+            # Those three are not the comma fault. Neither reading is misordered
+            # and no punctuation is involved; the card and the id disagree about
+            # WHICH LETTERS the surname has, because one reading of a printed line
+            # was minted into the id and a different reading of the same line was
+            # later written onto the card.
+            #
+            # T-1139 ruled all three — the scan-verified reading of the ninth
+            # impression overturns the transcription-mediated one, and under its
+            # rule N5 the displayed name moves while the id, a handle cited by
+            # every crosswalk, does not. So the assertion is made here WITH that
+            # licence and with nothing else: the family name read off a card is the
+            # one its id was minted off, unless the ruling file adjudicates that
+            # exact card, in which case the id must be the handle of the reading
+            # the ruling OVERTURNED and the card must wear the one it AWARDED.
+            # Both halves matter. Without the first, an id could drift anywhere and
+            # point at a ruling for cover; without the second, a card could be
+            # respelled a third way over a ruling that never said so.
+            shown_row = renamings.get(pid)
+            if shown_row is None:
+                if not id_family_name(pid, shown):
+                    problems.append(f"{hid}/{pid}: the card reads {shown!r}, whose "
+                                    f"family name is {slug(surname(shown))!r}, and the "
+                                    f"id was minted off a different one — one reading "
+                                    f"of the printed line is in the id and another is "
+                                    f"on the card, and no ruling in "
+                                    f"{NAME_RULINGS.relative_to(ROOT)} adjudicates it "
+                                    f"(T-1218)")
+            else:
+                card_row = shown_row.get("card") or {}
+                was, awarded = (card_row.get("displayed_name_was"),
+                                card_row.get("displayed_name_is"))
+                if not id_family_name(pid, was):
+                    problems.append(f"{hid}/{pid}: the ruling on printed line "
+                                    f"{shown_row.get('n')!r} says this card read "
+                                    f"{was!r} before it moved, and the id was not "
+                                    f"minted off that family name either — the id is "
+                                    f"the overturned reading's handle or the licence "
+                                    f"is not for this card (T-1218)")
+                if shown != awarded:
+                    problems.append(f"{hid}/{pid}: the card reads {shown!r} and its "
+                                    f"ruling on printed line {shown_row.get('n')!r} "
+                                    f"awards {awarded!r} — a card wears the reading it "
+                                    f"was ruled onto, not a third one (T-1218)")
+                block = person.get("name_ruling") or {}
+                if block.get("displayed_name_was") != was:
+                    problems.append(f"{hid}/{pid}: the card's own name_ruling says it "
+                                    f"read {block.get('displayed_name_was')!r} before "
+                                    f"it moved and {NAME_RULINGS.relative_to(ROOT)} "
+                                    f"says {was!r} — the card must carry the "
+                                    f"adjudication it stands on (T-1218)")
             dates = person.get("letter_list_returns")
             if not isinstance(dates, list) or not dates:
                 problems.append(f"{hid}/{pid}: letter_list_returns is "
@@ -1605,6 +1701,16 @@ def self_test() -> int:
                  if minted_by(p, doc, "letter_list", PREFIX)
                  and (doc.get("persons") or [{}])[0].get("letter_list_only"))
 
+    # The three cards T-1139 moved and T-1218 gates. Read from the ruling file so
+    # this harness cannot be satisfied by a card that has quietly stopped being one.
+    RULED = set(ruled_renamings())
+    RULED_PATH = next((path for path, doc in sorted(docs.items())
+                       if any(p.get("id") in RULED for p in doc.get("persons") or [])),
+                      None)
+    if not RULED or RULED_PATH is None:
+        print("   no adjudicated renaming in the tree — T-1218's licence is untested")
+        return 1
+
     def broken(mutate):
         d = json.loads(json.dumps({str(k): v for k, v in docs.items()}))
         d = {pathlib.Path(k): v for k, v in d.items()}
@@ -1685,8 +1791,50 @@ def self_test() -> int:
                 return
         raise AssertionError("no card whose name a stray comma would re-read")
 
+    # T-1218. The defect as it would arrive on a fresh card: one letter of the
+    # surname re-read, the card moved and the id left where it was. No comma, no
+    # reordering — the two readings simply spell the family name differently, and
+    # before this gate nothing in the tree noticed.
+    def respell_a_card(d, i, s):
+        for path, doc in sorted(d.items()):
+            if not minted_by(path, doc, "letter_list", PREFIX):
+                continue
+            person = (doc.get("persons") or [{}])[0]
+            pid, shown = person.get("id"), str(person.get("name") or "")
+            if pid in RULED or not id_family_name(pid, shown):
+                continue
+            fam = next((w for w in reversed(words(shown)) if full_word(w)), None)
+            if not fam or len(fam) < 4:
+                continue
+            spoiled = shown.replace(fam, fam[:-2] + fam[-1] + fam[-2], 1)
+            if not id_family_name(pid, spoiled):
+                person["name"] = spoiled
+                return
+        raise AssertionError("no card whose surname a re-reading would move")
+
+    # And the licence itself, in both directions it can be abused. A ruled card
+    # respelled a THIRD way is the one the ruling file can catch and the card's own
+    # `name_ruling` block cannot, because the block would still be sitting there
+    # saying what it always said.
+    def respell_a_ruled_card(d, i, s):
+        doc = d[RULED_PATH]
+        person = next(p for p in doc["persons"] if p["id"] in RULED)
+        person["name"] = person["name"].replace("z", "s").replace("Z", "S") + "e"
+
+    # A card that loses the adjudication it stands on keeps the divergence and
+    # stops carrying the reason for it — which is how this class went unnoticed
+    # long enough to need a ticket.
+    def unrule_the_card(d, i, s):
+        doc = d[RULED_PATH]
+        person = next(p for p in doc["persons"] if p["id"] in RULED)
+        person["name_ruling"]["displayed_name_was"] = person["name"]
+
     cases = [
         ("a card's ordered name keeps a comma", punctuate_the_card, "T-1121"),
+        ("a card's surname is re-spelled off its id", respell_a_card, "T-1218"),
+        ("a ruled card is re-spelled a third way", respell_a_ruled_card, "awards"),
+        ("a ruled card drops the adjudication it stands on", unrule_the_card,
+         "must carry the adjudication"),
         ("a person loses letter_list_only", drop_flag, "letter_list_only"),
         ("a person loses its returns' dates", drop_dates, "letter_list_returns"),
         ("a household gains a roof", give_a_roof, "lives_at"),
