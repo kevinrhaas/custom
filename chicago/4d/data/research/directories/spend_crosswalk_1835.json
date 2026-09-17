@@ -4000,6 +4000,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Elston' folds to the same string as the 1839 entry's, and the given name of both begins D.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -4023,10 +4024,12 @@
    "rule": "Surname 'Elston' folds to the same string as the 1843 entry's, and the given name of both begins D.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": {
-    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Fergus's Chicago directory of 1843 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4047,10 +4050,12 @@
    "rule": "Surname 'Elston' folds to the same string as the 1844 entry's, and the given name of both begins D.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": {
-    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4889,6 +4894,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Harmon' folds to the same string as the 1843 entry's, and the given name of both begins C.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -4912,10 +4918,12 @@
    "rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": {
-    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
    }
   },
   {
@@ -4935,8 +4943,12 @@
    "match_status": "single_entry",
    "rule": "Surname 'Harmon' folds to the same string as the card's, and the given name of both begins C.",
    "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
+   "refused_to_carry": [
+    "occupation"
+   ],
+   "why_refused": {
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1843 — 1843, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+   }
   },
   {
    "outcome": "matched",
@@ -4995,6 +5007,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Harmon' folds to the same string as the 1839 entry's, and the given name of both begins I.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -5906,6 +5919,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Jones' folds to the same string as the 1839 entry's, and the given name of both begins B.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],
@@ -5929,10 +5943,12 @@
    "rule": "Surname 'Jones' folds to the same string as the 1844 entry's, and the given name of both begins B.",
    "carried": [],
    "refused_to_carry": [
-    "address"
+    "address",
+    "occupation"
    ],
    "why_refused": {
-    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+    "address": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: Norris's Chicago directory of 1844 prints an address against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust.",
+    "occupation": "THE LINE NAMES A FIRM WHERE THE TRADE WOULD GO, so the split yields no trade at all. The volume's construction is \"Surname, initials, of <firm>\" — it says this man stood in that partnership, and the trade, if the book prints one anywhere, is on the firm's own entry or its advertising card. T-0569 refused exactly this shape, citing \"of Loyd\", \"of Horace Norton & Co\" and twice simply \"of\", and the refusal stands; it is now made against the line that has the shape rather than against every line in the volume. The entry goes to the card as the book set it and archive.org read it, damage and all, and what it HOLDS is stated separately for a reader to check against the quote."
    }
   },
   {
@@ -5952,8 +5968,12 @@
    "match_status": "single_entry",
    "rule": "Surname 'Jones' folds to the same string as the card's, and the given name of both begins B.",
    "carried": [],
-   "refused_to_carry": [],
-   "why_refused": null
+   "refused_to_carry": [
+    "occupation"
+   ],
+   "why_refused": {
+    "occupation": "AN EARLIER VOLUME ALREADY CARRIES THIS FIELD. The four volumes are read earliest first because the one closest to 1835 is the reading worth most and the one whose value is carried when two disagree: the advertising cards in Norris's directory of 1844 prints a trade against this person, and Fergus's Chicago directory of 1839 — 1839, nearer the scene — had printed one already. The refusal is the precedence rule and nothing about this line. What this volume prints stands in the layer beside the value that won, and its entry id is named on the card, so a reader can compare them rather than take the earlier reading on trust."
+   }
   },
   {
    "outcome": "refused",
@@ -6252,6 +6272,7 @@
    "match_status": "single_entry",
    "rule": "Surname 'Kimball' folds to the same string as the 1839 entry's, and the given name of both begins W.",
    "carried": [
+    "occupation",
     "address"
    ],
    "refused_to_carry": [],

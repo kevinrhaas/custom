@@ -59,7 +59,11 @@
     "sources": [
      "chicago_democrat_1833_1835"
     ],
-    "note": "THE TRADE IS THE PAPER'S. The corpus reads it as clothier, tailor, at the Democrat of 4 June 1834, column 9. The residents vocabulary's nearest period-correct word for it is `clothier`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take."
+    "note": "THE TRADE IS THE PAPER'S. The corpus reads it as clothier, tailor, at the Democrat of 4 June 1834, column 9. The residents vocabulary's nearest period-correct word for it is `clothier`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "clothier"
+    ]
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -91,6 +95,24 @@
      ],
      "for_merge": "E. L. Thrall is a documented tradesman of the town — the Democrat of 4 June 1834, column 9, gives him the trade (clothier, tailor) at Charles Taylor's old stand on South Water Street, the business handed to him by its previous owner; Fergus 1843 prints 'Thrall, E. L., clerk, Charles Walker & Co.' and Norris 1844 'Thrall, E. L. clerk, at C. Walker & Co.' The only entry of the stem on any of the town's own rolls is 'Trall, E.L.' on the poll list of 1835 (line 367), and a documented tradesman keeping a South Water Street stand is a man who could be expected on it. The town holds exactly one bearer of each spelling, both 'E. L.'",
      "against_merge": "THE TWO BODIES OF EVIDENCE NEVER TOUCH. Searched over every deposited text and every extracted claim: 'Trall' occurs in exactly two places, the 1835 poll list and genealogytrails' transcription of it — and the Chicago Democrat, Fergus 1839, Fergus 1843, Norris 1844, the Newberry locality cards and Moses & Kirkland set only Thrall, never Trall. The rolls know one spelling, the press and the books know the other, and no publication is caught setting both. That is the Pruyne shape exactly, and it is refused for the same reason. A reader may note the paper's own printing of the trade advertisement reads 'E. L. TRRALL' — a garble that is neither spelling cleanly, and could be read toward either — but a single garbled printing is not a title caught SETTING BOTH, which is what C9 requires, and reading it toward the fold is the reader's willingness, not the printer's inconsistency. D7, and the cards stay two. WHAT WOULD SETTLE IT IS NOT A PAGE BUT A COUNT, in C12's shape moved from the forename to the surname — the closed roll leaves the documented man exactly one entry he can be, and the exhaustion is worked over the whole roll and printed rather than asserted. C12 as written reaches a FORENAME only, so firing it on a surname is itself a rule to write. T-1135 owns that question for Pruyne/Pryne and the rule it writes is the one this pair waits on."
+    }
+   ],
+   "roles": [
+    {
+     "role": "clothier",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1833-11",
+     "to": "1835-08",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }

@@ -578,6 +578,14 @@ jobs:
         with:
           name: published-mirror
           path: site/chicago/4d
+      # T-1156: one fresh desktop boot of the exact baked artifact. Run in the
+      # short first leg, before smoke, so a 12 MB breach fails `needs: smoke`
+      # and withholds the bake PR. Do not republish from the source checkout.
+      - name: Enforce the first-visit boot payload budget
+        if: matrix.viewport == 'desktop' && matrix.stage == '1-2'
+        timeout-minutes: 3
+        working-directory: chicago/4d
+        run: node tools/measure_boot_payload.mjs --check
       # No NODE_PATH here: smoke_renderer.mjs's loadPlaywright() already falls
       # back to `npm root -g` when the bare import misses, so pinning the global
       # root would only break the day the runner image moves it.

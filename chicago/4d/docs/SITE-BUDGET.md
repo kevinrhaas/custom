@@ -172,6 +172,15 @@ node tools/measure_boot_payload.mjs        # the report above
 node tools/measure_boot_payload.mjs --check  # exit 1 past the 12 MB budget
 ```
 
+The nightly `chicago-4d-bake.yml` enforces this with `--check` in the desktop
+`1-2` smoke leg (T-1156), after downloading the bake's `published-mirror`
+artifact. A breach fails the smoke dependency and prevents the bake PR from
+opening. It runs once per bake, before that leg's renderer smoke, with a
+three-minute step timeout; the eight smoke legs and their ceilings stay intact.
+GitHub schedules use the default branch's workflow definition, so this change
+reaches the scheduled nightly through the normal owner-controlled promotion to
+`main`; a push or dispatch using the updated workflow exercises it earlier.
+
 The method, stated because the number is only as good as it: a real headless
 Chromium boots the published mirror over a local origin that gzips every
 response — the live origin was verified to serve `content-encoding: gzip` for

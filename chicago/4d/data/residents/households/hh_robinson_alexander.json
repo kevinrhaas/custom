@@ -87,7 +87,11 @@
      "andreas_1884_v1",
      "kinzie_waubun_1856"
     ],
-    "note": "'During the latter part of his residence in Chicago, he lived at Wolf Point, where he had a store or trading-house' (Andreas). He was licensed to keep a tavern in Chicago on 8 June 1830, and the county clerk 'granted permits to sell goods to Alexander Robinson, John B. Beaubien, and Madore B. Beaubien' in 1831. He had earlier served as Indian interpreter under Dr Wolcott in 1825 and 1826 at $365 a year, and he is a chief of the united Potawatomi, Chippewa and Ottawa band - the office is not an occupation and is recorded in the person note."
+    "note": "'During the latter part of his residence in Chicago, he lived at Wolf Point, where he had a store or trading-house' (Andreas). He was licensed to keep a tavern in Chicago on 8 June 1830, and the county clerk 'granted permits to sell goods to Alexander Robinson, John B. Beaubien, and Madore B. Beaubien' in 1831. He had earlier served as Indian interpreter under Dr Wolcott in 1825 and 1826 at $365 a year, and he is a chief of the united Potawatomi, Chippewa and Ottawa band - the office is not an occupation and is recorded in the person note.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "trader"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -108,7 +112,26 @@
      "chicago_democrat_1833_1835",
      "fergus_historical_series_26_29"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "trader",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1",
+      "kinzie_waubun_1856"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   },
   {
    "id": "robinson_catherine",
