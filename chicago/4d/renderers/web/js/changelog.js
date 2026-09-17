@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A Jones in the People list stops being filed under Es', kind: 'fix', ts: '',
+  { v: 908, title: 'A Jones in the People list stops being filed under Es', kind: 'fix', ts: '2026-09-17T10:14:01.703Z', date: 'Sep 17, 2026, 5:14 AM CT',
     items: [
       'One card in the People list led with its family name. The post office\u2019s letter list of 30 June 1835 sets the line as \u201cEs,Jones, High\u201d \u2014 a run-on of two entries, the tail of one name and the head of the next with no break between them \u2014 and the card built from it read \u201cJones, High Es\u201d. A card is written given name first, so that one was back to front, and only the comma it had kept was holding it in the J\u2019s: the town directory files a person under the LAST word of their name, and the last word was Es.',
       'The card was being reordered around the first comma of the printed line, on the standing assumption that a comma is the office\u2019s mark for \u201cfamily name first\u201d. Here the family name is set in the middle, so the first comma is not that mark at all. The reordering now turns on the comma the family name actually stands before. The card reads \u201cHigh Es Jones\u201d, ends on its family name, and sorts beside the other Joneses.',
