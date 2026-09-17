@@ -24,9 +24,9 @@
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 12,
   "residents_that_further_initial_refusal_reaches": 11,
-  "initial_agreed_forenames_disagreed_refused": 81,
+  "initial_agreed_forenames_disagreed_refused": 82,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1843_entry_by_that_refusal": 41,
+  "residents_left_with_no_1843_entry_by_that_refusal": 42,
   "entries_the_whole_name_refused": 11,
   "residents_that_whole_name_refusal_reaches": 9,
   "contests_the_page_named": 5,
@@ -9539,6 +9539,25 @@
     "forename_printed": "Henry",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Hanna' against 'Henry'. An initial standing against a full name is a match; two full names that differ are not."
+   }
+  },
+  {
+   "resident": "High Es Jones",
+   "person_id": "jones_es_high",
+   "grade_1835": "inferred",
+   "entry_1843": {
+    "claim": "f1843_e1428",
+    "as_printed": "Jones, Hiram, clerk, Lewis W. Clark, bds William Jones [died February 5. 1849), aged 27]",
+    "page": "fergus_1843_page_003",
+    "section": "alphabetical directory",
+    "trade_heading": null,
+    "occupation_1843": "clerk, Lewis W. Clark",
+    "address_1843": "bds William Jones",
+    "death_note_1843": "died February 5. 1849), aged 27",
+    "forename_1835": "High",
+    "forename_printed": "Hiram",
+    "garbled_reading": false,
+    "rule": "Both readings print a full forename and the two disagree: 'High' against 'Hiram'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {

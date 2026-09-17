@@ -1858,7 +1858,7 @@
       "resident_name": "Benjamin Jones",
       "household_id": "hh_jones_benjamin",
       "match": "forename_agrees",
-      "rule": "JONES BENJAMIN matches Benjamin Jones: the forename names Benjamin Jones of the 5 people of this surname, and the forename agrees in full.",
+      "rule": "JONES BENJAMIN matches Benjamin Jones: the forename names Benjamin Jones of the 6 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -1875,6 +1875,15 @@
           "name": "D E Jones",
           "forename_agrees": false,
           "why": "the initials differ",
+          "middle_initial": "E",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "jones_es_high",
+          "name": "High Es Jones",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
           "middle_initial": "E",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
@@ -1937,7 +1946,7 @@
       "resident_name": "Willard Jones",
       "household_id": "hh_jones_willard",
       "match": "forename_agrees",
-      "rule": "JONES WILLARD matches Willard Jones: the forename names Willard Jones of the 5 people of this surname, and the forename agrees in full.",
+      "rule": "JONES WILLARD matches Willard Jones: the forename names Willard Jones of the 6 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -1954,6 +1963,15 @@
           "name": "D E Jones",
           "forename_agrees": false,
           "why": "the initials differ",
+          "middle_initial": "E",
+          "reading_middle_initial": null,
+          "outcome": "refused_on_the_forename"
+        },
+        {
+          "key": "jones_es_high",
+          "name": "High Es Jones",
+          "forename_agrees": false,
+          "why": "two full forenames that do not agree (R4)",
           "middle_initial": "E",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
@@ -8931,7 +8949,7 @@
       ],
       "ruled_on": "2026-09-10",
       "ruled_under": "T-0990",
-      "was_proposed_as": "JONES WILLIAM matches William Jones: the forename names William Jones of the 5 people of this surname, and the forename agrees in full."
+      "was_proposed_as": "JONES WILLIAM matches William Jones: the forename names William Jones of the 6 people of this surname, and the forename agrees in full."
     },
     {
       "a": "KIMBERLEY IRA",

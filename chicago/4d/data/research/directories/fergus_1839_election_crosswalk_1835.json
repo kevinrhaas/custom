@@ -4015,6 +4015,11 @@
     "rule": "The surname 'Gifford' stands in the 1837 poll and no man under it carries the initial 'H' of 'Hezekiah Gifford'. A surname-only agreement is a refusal."
    },
    {
+    "name": "High Es Jones",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Jones' stands in the 1837 poll and no man under it carries the initial 'H' of 'High Es Jones'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Hiram A Adams",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Adams' stands in the 1837 poll and no man under it carries the initial 'H' of 'Hiram A Adams'. A surname-only agreement is a refusal."
@@ -4158,11 +4163,6 @@
     "name": "John Watkins",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Watkins' stands in the 1837 poll and no man under it carries the initial 'J' of 'John Watkins'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Jones, High Es",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Jones' stands in the 1837 poll and no man under it carries the initial 'H' of 'Jones, High Es'. A surname-only agreement is a refusal."
    },
    {
     "name": "Joseph Bradley",

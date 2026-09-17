@@ -2699,7 +2699,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 5 bearer(s) of 'jones', none with the forename initial 'n'; same surname, different forename initial never merges"
+    "why": "the residents layer has 6 bearer(s) of 'jones', none with the forename initial 'n'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
@@ -7258,7 +7258,7 @@
     "rule": "OS3",
     "outcome": "refused",
     "person_id": null,
-    "why": "the residents layer has 5 bearer(s) of 'jones', none with the forename initial 'f'; same surname, different forename initial never merges"
+    "why": "the residents layer has 6 bearer(s) of 'jones', none with the forename initial 'f'; same surname, different forename initial never merges"
    },
    "proposed": {
     "rung": "not_a_resident_on_this_evidence",
