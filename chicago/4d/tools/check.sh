@@ -319,8 +319,8 @@ selftest "the QUEUE.md merge driver still does what .gitattributes promises" \
 # check.sh is the required `gate` on dev's ruleset, so this refuses the merge
 # BUTTON, which is the only place the regression actually arrives. What it asserts
 # is not a judgement about ranking — it is that every re-rank the base already
-# records is still present here. A branch missing one predates it, and merging it
-# would put the old order back.
+# records is still present in the compact tickets/QUEUE_ORDER.md ledger. A branch
+# missing one predates it, and merging it would put the old order back.
 step "the owner's queue ranking has not gone backwards" \
   node tools/check_queue_order.mjs
 

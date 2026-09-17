@@ -25,7 +25,7 @@
  * so this refuses the merge button itself, which no driver can reach.
  *
  * WHAT IT ASSERTS, and it is deliberately not a judgement about ranking. The
- * RE-RANK LEDGER at the top of QUEUE.md records one entry per re-rank, each
+ * The RE-RANK LEDGER in tickets/QUEUE_ORDER.md records one entry per re-rank, each
  * quoting the instruction behind it. A branch cut before a re-rank is missing
  * that entry. So:
  *
@@ -53,6 +53,7 @@ import path from 'node:path';
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const ROOT = path.resolve(HERE, '..');
 const QUEUE_REL = 'chicago/4d/tickets/QUEUE.md';
+const LEDGER_REL = 'chicago/4d/tickets/QUEUE_ORDER.md';
 
 /** The ledger's entries, each keyed by its first line (date + instruction). */
 export function ledgerEntries(text) {
@@ -69,26 +70,30 @@ export function ledgerEntries(text) {
   return out;
 }
 
-/** The queue file as the merge base has it, or null when there is no base to read. */
-function baseQueue() {
+/** Read the separate ledger, falling back to the old queue for pre-migration refs. */
+function baseLedger() {
   const ref = process.env.QUEUE_BASE_REF || 'origin/dev';
-  const r = spawnSync('git', ['show', `${ref}:${QUEUE_REL}`],
-    { cwd: path.resolve(ROOT, '../..'), encoding: 'utf8' });
-  return r.status === 0 ? r.stdout : null;
+  for (const file of [LEDGER_REL, QUEUE_REL]) {
+    const r = spawnSync('git', ['show', `${ref}:${file}`],
+      { cwd: path.resolve(ROOT, '../..'), encoding: 'utf8' });
+    if (r.status === 0) return r.stdout;
+  }
+  return null;
 }
 
 function main() {
-  const ours = readFileSync(path.join(ROOT, 'tickets/QUEUE.md'), 'utf8');
+  let ours;
+  try { ours = readFileSync(path.join(ROOT, 'tickets/QUEUE_ORDER.md'), 'utf8'); }
+  catch { ours = readFileSync(path.join(ROOT, 'tickets/QUEUE.md'), 'utf8'); }
   const mine = ledgerEntries(ours);
 
   if (mine === null) {
-    console.error('QUEUE.md carries no RE-RANK LEDGER at all.\n'
-      + 'That header is where the owner\'s instructions live, and a file without it has\n'
-      + 'lost them. Restore it from origin/dev before committing.');
+    console.error('The queue carries no RE-RANK LEDGER in QUEUE_ORDER.md or QUEUE.md.\n'
+      + 'Restore the owner\'s ranking decisions from origin/dev before committing.');
     return 1;
   }
 
-  const baseText = baseQueue();
+  const baseText = baseLedger();
   if (baseText === null) {
     console.log(`queue order: ${mine.length} re-rank(s) recorded `
       + '(no base to compare against — skipped, not failed)');
@@ -103,16 +108,15 @@ function main() {
   const have = new Set(mine);
   const lost = theirs.filter((e) => !have.has(e));
   if (lost.length) {
-    console.error(`QUEUE.md HAS GONE BACKWARDS: ${lost.length} re-rank(s) the base records `
+    console.error(`THE QUEUE HAS GONE BACKWARDS: ${lost.length} re-rank(s) the base records `
       + 'are missing from this branch.\n');
     for (const e of lost) console.error(`   lost:  ${e.slice(0, 140)}`);
     console.error('\nEach line above is an instruction the owner gave and this branch no longer\n'
       + 'carries — which means its QUEUE.md predates that re-rank and merging it would put\n'
       + 'the old order back on dev. That has happened three times.\n\n'
-      + 'THE FIX IS TO TAKE THE BASE\'S FILE, NOT TO EDIT THE LEDGER:\n'
-      + `    git checkout origin/dev -- ${QUEUE_REL}\n`
-      + '    node chicago/4d/tools/ticket.mjs board     # re-append this branch\'s own tickets\n'
-      + '    node chicago/4d/tools/ticket.mjs check\n\n'
+      + 'Restore the missing base entries before merging. If the base uses the\n'
+      + 'separate ledger: git checkout origin/dev -- '
+      + `${LEDGER_REL}\n\n`
       + 'Adding the missing lines by hand would satisfy this check and still ship the old\n'
       + 'ranking, which is the failure it exists to catch.');
     return 1;

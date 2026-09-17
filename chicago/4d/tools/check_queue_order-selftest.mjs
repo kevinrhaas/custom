@@ -35,7 +35,7 @@ const tickets = (...ids) => `${ids.map((i) => `T-0${i} — label ${i}`).join('\n
  * `git show origin/dev:<path>` path rather than stubbing it, because the thing
  * most likely to break quietly is the lookup, not the comparison.
  */
-function run(baseQueue, branchQueue) {
+function run(baseQueue, branchQueue, baseArchive = null, branchArchive = null) {
   const dir = mkdtempSync(path.join(tmpdir(), 'qo-'));
   const rel = 'chicago/4d/tickets';
   mkdirSync(path.join(dir, rel), { recursive: true });
@@ -51,11 +51,15 @@ function run(baseQueue, branchQueue) {
 
   git('init', '-q', '-b', 'dev');
   git('config', 'user.email', 't@t'); git('config', 'user.name', 't');
-  put(baseQueue); git('add', '-A'); git('commit', '-qm', 'base');
+  put(baseQueue);
+  if (baseArchive !== null) writeFileSync(path.join(dir, rel, 'QUEUE_ORDER.md'), baseArchive);
+  git('add', '-A'); git('commit', '-qm', 'base');
   // A real remote-tracking ref, so the gate's own lookup is what is tested.
   git('update-ref', 'refs/remotes/origin/dev', 'HEAD');
   git('checkout', '-q', '-b', 'branch');
-  put(branchQueue); git('add', '-A'); git('commit', '-qm', 'branch');
+  put(branchQueue);
+  if (branchArchive !== null) writeFileSync(path.join(dir, rel, 'QUEUE_ORDER.md'), branchArchive);
+  git('add', '-A'); git('commit', '-qm', 'branch');
 
   const r = spawnSync('node', [gate], {
     cwd: path.join(dir, 'chicago/4d'), encoding: 'utf8',
@@ -77,7 +81,7 @@ console.log('\nthe gate');
   const r = run(base, stale);
   ok(r.code === 1, 'a branch cut BEFORE a re-rank is refused');
   ok(/Rank T-0727/.test(r.out), '…and the refusal names the instruction that was lost');
-  ok(/git checkout origin\/dev/.test(r.out), '…and says to take the base\'s file, not to hand-edit');
+  ok(/Restore the missing base entries/.test(r.out), '…and says to restore the base decisions');
 }
 {
   // The case a date comparison waves through: two re-ranks share one date, and the
@@ -105,6 +109,15 @@ console.log('\nthe gate');
   const withLedger = ledger('2026-09-04  research first') + tickets(1);
   const r = run(noLedgerBase, withLedger);
   ok(r.code === 0, 'a base with no ledger cannot fail a branch that has one');
+}
+{
+  const base = ledger('2026-09-04  research first') + tickets(1);
+  const clean = `${HEAD}${tickets(1)}`;
+  const archive = ledger('2026-09-17  clean queue', '2026-09-04  research first');
+  const r = run(base, clean, null, archive);
+  ok(r.code === 0, 'the legacy ledger can move to a compact companion file');
+  const next = run(clean, clean, archive, ledger('2026-09-17  clean queue'));
+  ok(next.code === 1, 'a later branch dropping an archived decision is refused');
 }
 
 console.log('\nthe parser, since everything above rests on it');
