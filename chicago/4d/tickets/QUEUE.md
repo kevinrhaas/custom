@@ -23,6 +23,7 @@ T-1155 — The resident identity splitter discards square-bracket supplies, so E
 T-1217 — The card for jones_es_high leads with its family name, because the printing 'Es,Jones, High' sets it in the middle, and a re-mint would file it in the directory under es
 T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
 T-1232 — Spend matched household and person-profile research into a candidate-fact table, adjudicate every candidate, and write the asserted names, sexes, dates, origins and life events as structured per-value assertions
+T-1234 — Spend the person units the matched-research table does not reach: every unasserted book, index and letter-list-suspicion unit in the research ledger named to a structured resident field or refused in writing
 T-1233 — Render the asserted person facts and every withheld candidate's reason on the resident card, and rule on the 83 unread resident field paths — wired, refused in writing, or removed
 T-1228 — Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact

@@ -86,7 +86,35 @@
       "reason": "This card rests on 2 thing(s) the consolidation did not read — resident_research_hobson_pioneer, resident_research_hobson_woodruff. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "marriage",
+     "value": "Married Catherine Daugherty at Naperville on 6 April 1835",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_hobson_pioneer"
+     ],
+     "describes_date": "1835-04-06",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0482#01",
+     "as_read": "married Catherine Daugherty at Naperville on April 6, 1835",
+     "note": "A dated marriage, the party named, three months before the scene. It names a spouse and MINTS NOBODY: no person record is created and no household membership follows, which is the rule T-1170 will fill families under."
+    },
+    {
+     "field": "life_event",
+     "value": "Living in Cook County in 1835",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_hobson_woodruff"
+     ],
+     "describes_date": "1835-01-01",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0482#02",
+     "as_read": "Jesse Hobson was living in Cook County in 1835",
+     "note": "The county and not the town. Recorded at the level the source states it, which is why it cannot lift the card's presence."
+    }
+   ]
   }
  ],
  "touches_removal": false,

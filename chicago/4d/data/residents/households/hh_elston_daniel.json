@@ -18,9 +18,12 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested in anything this project holds."
+  "value": "England",
+  "confidence": "inferred",
+  "sources": [
+   "uiuc_daniel_elston_papers"
+  ],
+  "note": "The finding aid says where he was from. The household's origin is null and this fills it with the source that states it. Read from uiuc_daniel_elston_papers: “identifies the English merchant who reached Chicago in 1833”. Spent by T-1232 out of the matched resident research, which held it in prose; the household's other claims are untouched."
  },
  "reason_for_coming": {
   "value": null,
@@ -85,7 +88,22 @@
      "uiuc_daniel_elston_papers"
     ],
     "summary": "The 1837 election return prints 'Daniel Elston' whole. The University of Illinois finding aid, read in pass 3 and never written to a ledger, identifies the English merchant who reached Chicago in 1833, made soap and candles and later ran a distillery and brewery — the same trade the paper prints for him in its first issue, 26 November 1833."
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "origin",
+     "value": "England",
+     "confidence": "inferred",
+     "sources": [
+      "uiuc_daniel_elston_papers"
+     ],
+     "describes_date": "1833-01-01",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0509#01",
+     "as_read": "identifies the English merchant who reached Chicago in 1833",
+     "note": "The finding aid says where he was from. The household's origin is null and this fills it with the source that states it."
+    }
+   ]
   }
  ],
  "touches_removal": false,

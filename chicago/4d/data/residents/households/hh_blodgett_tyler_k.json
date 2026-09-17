@@ -126,7 +126,22 @@
     "source_ids": [
      "chicagology_chicago_brick"
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "origin",
+     "value": "Ann Arbor, Michigan",
+     "confidence": "inferred",
+     "sources": [
+      "chicagology_chicago_brick"
+     ],
+     "describes_date": "1833-03-01",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0479#01",
+     "as_read": "then of Ann Arbor",
+     "note": "The compilation says where he was of when the brickyard engaged him. An origin is a fact about the person and does not depend on a Chicago address."
+    }
+   ]
   }
  ],
  "touches_removal": false,

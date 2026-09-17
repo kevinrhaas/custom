@@ -24,9 +24,10 @@ Piece 2 of 2 of **T-1146 — Spend matched household and person-profile research
 
 **Acceptance:** (state it before working — one demonstration, never weakened to pass)
 
-1. The resident card renders the asserted person facts T-1232 wrote — each with its confidence
-   swatch, the date it describes, its source and the sentence it was read from.
-2. The card also states, in readable text, the reason every withheld candidate was withheld:
+1. T-1232 shipped the first half of this: the card's "Spent from the matched research" row
+   renders every asserted fact with its confidence swatch, the date it describes, its source,
+   its record id and the sentence it was read from. What is left here is the WITHHELD half.
+2. The card states, in readable text, the reason every withheld candidate was withheld:
    later-only, out of town, contradicted, insufficient identity or referred to another ticket.
 3. All 83 unread resident field paths in `tools/layer_reads_baseline.json` are reviewed. Each is
    either wired to a visitor-facing reader and un-banked in the same commit, retained with a
