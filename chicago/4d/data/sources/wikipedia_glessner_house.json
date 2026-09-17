@@ -1,0 +1,27 @@
+{
+  "id": "wikipedia_glessner_house",
+  "type": "website",
+  "citation": "\"John J. Glessner House.\" Wikipedia. Article on H. H. Richardson's house at 1800 S. Prairie Avenue, carrying its design and completion dates, its landmark designations, and citations to Drury, Old Chicago Houses (1976) and Ochsner, H. H. Richardson: Complete Architectural Works (1984).",
+  "date": "accessed 2026-09-17",
+  "describes_date": "1885-1887",
+  "url": "https://en.wikipedia.org/wiki/John_J._Glessner_House",
+  "archived_url": "https://web.archive.org/web/20260828053353/https://en.wikipedia.org/wiki/John_J._Glessner_House",
+  "tier": 4,
+  "rights_status": "no_known_restrictions",
+  "asset_use": "cross_check",
+  "verified": true,
+  "note": "Read in full 2026-09-17 (action=raw, HTTP 200) for the scene-date decision. THE PAGE DOES NOT AGREE WITH ITSELF ON THE ONE FIGURE IT WAS FETCHED FOR, and that disagreement is preserved here rather than averaged. Its prose says the house was 'designed in 1885-1886 by architect Henry Hobson Richardson and completed in late 1887'. Its infobox says 'built 1886-1887'. Its categories say '1886 establishments in Illinois' and 'Houses completed in 1886'. The companion district article (wikipedia_prairie_avenue_district) prints a third form: 'designed and built by Henry Hobson Richardson in 1885-1886' in one paragraph and 'designed in 1885 ... and completed in late 1887' in another. A FOURTH STATEMENT ON THE PAGE IS LOAD-BEARING AND CANNOT BE TRUE AS WRITTEN: 'The Glessner residence was Richardson's last work; he died three weeks after completion.' Richardson died 27 April 1886, so a completion in late 1887 cannot have preceded his death by three weeks; the sentence is a garble of the fact that the design, not the building, was finished shortly before he died. The spread is therefore between a house standing in 1886 and a house standing in late 1887, and this project takes the LATER bound as the safe one: a scene date after both readings needs no ruling on which is right. See docs/RESEARCH/south_side_1880s_epoch_date.md section 3. The records to chase before any statement about this building's fabric: Ochsner, H. H. Richardson: Complete Architectural Works (MIT Press, 1984), p. 134 and the catalogue entry; Drury, Old Chicago Houses (1976), p. 45; and the Glessner House Museum's own history pages (glessnerhouse.org returned HTTP 404 on /history-of-the-house to this session's retrieval).",
+  "access_notes": "glessnerhouse.org/history-of-the-house returned HTTP 404 on 2026-09-17; the museum's own account of the construction chronology was therefore not read and the disagreement above stands unresolved. The archived_url is a specific Wayback capture (2026-08-28), looked up and confirmed HTTP 200 on 2026-09-17, not a wildcard: a wildcard is a search, not a citation. It is a capture of the rendered article and predates the reading recorded here, so a passage quoted above may have been edited since — the quotations are from the live wikitext fetched 2026-09-17 and the capture is the nearest re-readable copy, not the copy read.",
+  "what_it_supplies": [
+    "the bracket within which Richardson's house at 1800 S. Prairie was designed and finished: 1885 at the earliest for the design, late 1887 at the latest for completion",
+    "the landmark designations and their dates, which is what makes this building the district's surviving centrepiece",
+    "the locators for Ochsner 1984 and Drury 1976, where the construction chronology can be settled"
+  ],
+  "what_it_does_not_supply": [
+    "a single completion date: the page prints 1886 and late 1887 in different places and this record does not choose between them",
+    "the date the Glessner family moved in, which is the fact a scene date would most want",
+    "any dimension, elevation or plan of the house",
+    "any statement about the ground it stands on"
+  ],
+  "carries_no_document": "Opened and read in full 2026-09-17 (https://en.wikipedia.org/w/index.php?title=John_J._Glessner_House&action=raw, HTTP 200). Looked for a period document - a permit, a contract date, a dated photograph caption with provenance, a line of John Glessner's own journal - and there is none. The page's one dated image caption, 'Glessner House in 1887, as construction was being completed', is the encyclopedia's own caption on a Cornell University Library photograph and is not evidence this record may lean on. Where it sends you: Ochsner 1984 p. 134; Drury, Old Chicago Houses (1976) p. 45; glessnerhouse.org."
+}

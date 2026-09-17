@@ -7,7 +7,8 @@
 # need the blocked T-0660 -> T-0691 letter-list ruling; do not invent its outcome.
 # South Through Time: 1812 depiction follows AGENTS.md Indigenous-history review;
 # ship no human figures. T-0469/T-0470/T-0471 depend on T-0468; T-0472 on T-0470.
-# Prairie Avenue: T-0474 follows T-0473; T-0475/T-0477 follow T-0474;
+# Prairie Avenue: T-0473 split into T-1249 (date, done) -> T-1250 -> T-1251 -> T-1252,
+# which run in that order; T-0474 follows T-1252; T-0475/T-0477 follow T-0474;
 # T-0476 follows T-0475. Respect needs_bake and other ticket-level blockers.
 # Completion: preserve explicit refusals and later/out-of-town evidence; zero
 # unclassified research does not mean forcing uncertain people or locations into 1835.
@@ -110,7 +111,10 @@ T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 181
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
 T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
 T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
-T-0473 — Create an 1880s South Side terrain and urban-ground epoch
+T-1249 — Decide and source the representative scene date of the 1880s South Side epoch, and make the checker read every dated shoreline state's date from the record that argues for it
+T-1250 — Trace the 1880s lake edge and Illinois Central corridor from period cartography, south past Twelfth Street to the Prairie Avenue blocks, with its sources, confidence and bounds
+T-1251 — Establish the graded streets, drainage and fill of the South Side at the 1880s scene date from engineering records and fire-insurance mapping
+T-1252 — Generate the 1880s terrain spec, heightfield and extent a Prairie Avenue scene stands on, and turn the epoch active
 T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
 T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings

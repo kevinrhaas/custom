@@ -78,8 +78,15 @@
       "from": "1871-10-10",
       "to": "1900-12-31",
       "title": "The burnt district and the fills that followed",
-      "note": "Placeholder. Debris fill along the lakefront; the Illinois Central trestle line already fixed the shore in 1852.",
-      "status": "planned"
+      "note": "The scene date this epoch is cut for is 1 JULY 1888, decided and sourced under T-1249 (split from T-0473); the argument, the rejected candidates and what the choice does not settle are in data/terrain/shoreline_states.json \u00a7 shore_1880s_ic_edge.representative_date_basis and in docs/RESEARCH/south_side_1880s_epoch_date.md. What is established about the ground so far is a characterisation, not geometry: the Illinois Central was permitted in 1852 to lay its track on a causeway built offshore of Lake Park, the lagoon behind it was largely filled with Great Fire debris in 1871, and the fill east of the rail lines begins only in 1896 \u2014 so the downtown lake edge stands unmoved through the whole of the 1880s and the modern Grant Park and Museum Campus ground is a quarter-century out of this epoch. That reading is downtown only and does not reach Prairie Avenue. STILL OWED, each of them a successor ticket: the traced 1880s lake edge and rail corridor with its sources and bounds (T-1250); the graded streets, drainage and fill of the South Side at the scene date (T-1251); and the terrain spec, heightfield and extent that a Prairie Avenue scene stands on (T-1252). status stays `planned` until those land \u2014 T-1249 bought the date, not the ground.",
+      "status": "planned",
+      "research_doc": "docs/RESEARCH/south_side_1880s_epoch_date.md",
+      "sources": [
+        "wikipedia_grant_park_chicago",
+        "wikipedia_prairie_avenue",
+        "wikipedia_prairie_avenue_district",
+        "wikipedia_glessner_house"
+      ]
     }
   ]
 }

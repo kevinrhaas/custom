@@ -1,0 +1,28 @@
+{
+  "id": "wikipedia_grant_park_chicago",
+  "type": "website",
+  "citation": "\"Grant Park (Chicago).\" Wikipedia. History of the lakefront park formerly called Lake Park, carrying the Illinois Central causeway, lagoon and fill chronology after Cremin, 'Waterfront', in The Encyclopedia of Chicago (University of Chicago Press, 2004), pp. 864-6.",
+  "date": "accessed 2026-09-17",
+  "describes_date": "1844-1920s",
+  "url": "https://en.wikipedia.org/wiki/Grant_Park_(Chicago)",
+  "archived_url": "https://web.archive.org/web/20260904214139/https://en.wikipedia.org/wiki/Grant_Park_(Chicago)",
+  "tier": 4,
+  "rights_status": "no_known_restrictions",
+  "asset_use": "cross_check",
+  "verified": true,
+  "note": "Read 2026-09-17 (action=raw, HTTP 200) for one paragraph, which is the whole reason this record exists and is quoted here so that what the project leans on is visible: 'The city officially designated the land as a park on April 29, 1844, naming it Lake Park. When the Illinois Central Railroad was built into Chicago in 1852, it was permitted to lay track along the lakefront on a causeway built offshore from the park. The resulting lagoon became stagnant, and was largely filled in 1871 with debris from the Great Chicago Fire, increasing the parkland. In 1896, the city began extending the park into the lake with landfill, beyond the rail lines.' That is four dated states of the downtown lake edge, footnoted to Cremin's 'Waterfront' article in the Encyclopedia of Chicago. Its consequence for this project is a NEGATIVE one and it is the useful kind: between 1871 and 1896 the downtown lake edge is the Illinois Central causeway with filled ground behind it, and it does not move. So the whole of the 1880s is ONE lakefront state, the choice of a representative year inside the decade cannot be decided on the lake edge, and the modern Grant Park and Museum Campus fill - all of it 1896 and later - is out of the epoch by a quarter-century. IT IS A DOWNTOWN READING AND IT IS NOT A PRAIRIE AVENUE READING: Lake Park lay between Randolph and what is now Roosevelt Road, and Prairie Avenue's blocks are a mile further south. Nothing here says where the Illinois Central ran at 18th Street or where the water stood off it, and this record must not be stretched to say so. The source to chase for that: Cremin, 'Waterfront', pp. 864-6, and the fire-insurance and lakefront-survey mapping the successor trace ticket owns.",
+  "what_it_supplies": [
+    "four dated states of the DOWNTOWN lake edge - 1844 park, 1852 Illinois Central causeway offshore with a lagoon behind it, 1871 lagoon filled with fire debris, 1896 fill begun east of the rail lines",
+    "the finding that the 1880s downtown lake edge is a single unchanging state, so a representative year inside the decade is not decided by the shoreline",
+    "the bound that rules the modern Grant Park and Museum Campus ground out of any 1880s epoch",
+    "the locator for Cremin's 'Waterfront' in the Encyclopedia of Chicago"
+  ],
+  "what_it_does_not_supply": [
+    "the lake edge anywhere south of Lake Park - nothing here reaches 18th Street or Prairie Avenue",
+    "the causeway's alignment, width or elevation, or the lagoon's",
+    "any traceable geometry at all; it is prose with no map",
+    "street grades, drainage or the South Side's own fill history"
+  ],
+  "carries_no_document": "Opened 2026-09-17 (https://en.wikipedia.org/w/index.php?title=Grant_Park_(Chicago)&action=raw, HTTP 200) and the lakefront-history section read in full. Looked for a period survey, ordinance text or engineering report reprinted on the page and there is none: the chronology is the encyclopedia's own prose under a single footnote to Cremin 2004. Where it sends you: Dennis H. Cremin, 'Waterfront', in Grossman, Keating and Reiff (eds.), The Encyclopedia of Chicago (University of Chicago Press, 2004), pp. 864-6.",
+  "access_notes": "The archived_url is a specific Wayback capture (2026-09-04), looked up and confirmed HTTP 200 on 2026-09-17, not a wildcard: a wildcard is a search, not a citation. It is a capture of the rendered article and predates the reading recorded here, so a passage quoted above may have been edited since — the quotations are from the live wikitext fetched 2026-09-17 and the capture is the nearest re-readable copy, not the copy read."
+}

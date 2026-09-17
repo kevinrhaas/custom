@@ -1,0 +1,26 @@
+{
+  "id": "wikipedia_prairie_avenue_district",
+  "type": "website",
+  "citation": "\"Prairie Avenue District.\" Wikipedia. Article on the Chicago Landmark and National Register district covering the 1800 and 1900 blocks of S. Prairie Avenue, the 1800 block of S. Indiana and 211-217 E. Cullerton, citing the City of Chicago Department of Planning and Development landmark designation.",
+  "date": "accessed 2026-09-17",
+  "describes_date": "1836-1892",
+  "url": "https://en.wikipedia.org/wiki/Prairie_Avenue_District",
+  "archived_url": "https://web.archive.org/web/20260822013521/https://en.wikipedia.org/wiki/Prairie_Avenue_District",
+  "tier": 4,
+  "rights_status": "no_known_restrictions",
+  "asset_use": "orientation",
+  "verified": true,
+  "note": "Read in full 2026-09-17 (action=raw, HTTP 200). Two things here bear on the scene date. First, THE DISTRICT'S OWN CONSTRUCTION SPAN, printed in the infobox as 'built 1836-1892' - the Henry B. Clarke House of 1836 at the near end and the 1890s houses at the far end. A representative date for the district's mature state has to sit inside that span and after the buildings that give the district its character, which puts it in the second half of it. Second, the district's EXTENT, which is what the successor terrain and street tickets have to cover: the 1800 and 1900 blocks of South Prairie, the 1800 block of South Indiana, and 211-217 East Cullerton. The page also records that this ground was the site of the 1812 Battle of Fort Dearborn, which is the same ground T-0468 to T-0472 model at their own epoch - the two South Through Time scenes share a location and not a surface, and that is exactly why they need separate terrain epochs. Its Glessner dates disagree with the Glessner article's and with themselves; see wikipedia_glessner_house, which holds the full spread. Graded asset_use=orientation: it is good for which blocks and roughly what period, and it is not a source anything may be traced from.",
+  "what_it_supplies": [
+    "the landmark district's boundary in street blocks",
+    "the district's own construction span, 1836 to 1892, as the outer bracket for a representative date",
+    "the confirmation that the district ground is also the 1812 battle ground, so the two South Through Time epochs are two surfaces on one place"
+  ],
+  "what_it_does_not_supply": [
+    "a per-building construction date anyone may rely on: its Glessner dates contradict both the Glessner article and each other",
+    "any lot line, dimension, grade or ground statement",
+    "the National Register nomination text, which is the document that would carry a period of significance; it was not retrieved here"
+  ],
+  "carries_no_document": "Opened and read in full 2026-09-17 (https://en.wikipedia.org/w/index.php?title=Prairie_Avenue_District&action=raw, HTTP 200). Looked for the National Register nomination or the City of Chicago landmark designation report, either of which would state a period of significance in its own words, and neither is reprinted: the page cites the city's landmarks page (dead, archived 2007-06-07) and paraphrases it. Where it sends you: the City of Chicago Landmarks Division designation report for the Prairie Avenue District (designated 27 December 1979) and the National Register nomination (listed 15 November 1972).",
+  "access_notes": "The archived_url is a specific Wayback capture (2026-08-22), looked up and confirmed HTTP 200 on 2026-09-17, not a wildcard: a wildcard is a search, not a citation. It is a capture of the rendered article and predates the reading recorded here, so a passage quoted above may have been edited since — the quotations are from the live wikitext fetched 2026-09-17 and the capture is the nearest re-readable copy, not the copy read."
+}

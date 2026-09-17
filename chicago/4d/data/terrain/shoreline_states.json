@@ -1,5 +1,5 @@
 {
-  "_doc": "The address book for dated lake-shore states. Terrain epochs select a shoreline by id; they never silently reuse another epoch's line. STATUS is one of three words and they are not interchangeable: `planned` means geometry is null and the state cannot render until its owning ticket supplies a trace; `traced` means the state has its OWN sourced geometry but no ground has been generated from it yet; `active` means the epoch that addresses it is the one the scene renders. An observation from the wrong date may bound a state, but it may not become that state's adopted line. Where independent readings differ, the full spread is named - as a polygon band where neither reading dominates (1835), or as a run of bank with the tier-1 reading adopted and the tier-2 one recorded beside it (1812). Nothing is ever averaged.",
+  "_doc": "The address book for dated lake-shore states. Terrain epochs select a shoreline by id; they never silently reuse another epoch's line. STATUS is one of three words and they are not interchangeable: `planned` means geometry is null and the state cannot render until its owning ticket supplies a trace; `traced` means the state has its OWN sourced geometry but no ground has been generated from it yet; `active` means the epoch that addresses it is the one the scene renders. An observation from the wrong date may bound a state, but it may not become that state's adopted line. Where independent readings differ, the full spread is named - as a polygon band where neither reading dominates (1835), or as a run of bank with the tier-1 reading adopted and the tier-2 one recorded beside it (1812). Nothing is ever averaged. Every dated state carries the address_date its scene is read at, and tools/check_shoreline_states.py resolves the epochs through THOSE dates rather than through a constant of its own (T-1249): a representative date is a sourced decision that belongs in the record beside its reasoning, not a number in a checker that nothing argues for. Where a state also carries an address_range, the address_date must fall inside it.",
   "states": [
     {
       "id": "shore_1812_pre_cut",
@@ -113,10 +113,49 @@
         "from": "1880-01-01",
         "to": "1889-12-31"
       },
+      "address_date": "1888-07-01",
+      "representative_date_basis": {
+        "chosen": "1888-07-01",
+        "owned_by": "T-1249, split from T-0473",
+        "decided": "2026-09-17",
+        "research_doc": "docs/RESEARCH/south_side_1880s_epoch_date.md",
+        "why": [
+          "The scene this epoch is built for is the Prairie Avenue district, and its surviving centrepiece is H. H. Richardson's Glessner House at 1800 S. Prairie. The sources spread its completion between 1886 and late 1887 and do not settle it; 1 July 1888 stands after BOTH readings, so the scene needs no ruling on a disagreement this project has not resolved (wikipedia_glessner_house).",
+          "The downtown lake edge does not move between the 1871 fire-debris fill of the Illinois Central lagoon and the start of the 1896 fill east of the rail lines, so every year in the 1880s buys the same shoreline and none of them is bought at the cost of another (wikipedia_grant_park_chicago).",
+          "1888 sits inside the landmark district's own construction span of 1836-1892 and before its 1890s houses, so the absent buildings are absent by date rather than by omission (wikipedia_prairie_avenue_district).",
+          "It is late enough that the street is built out - the sources put the finest mansions in the city on Prairie Avenue by 1886 and grand houses reaching 26th to 30th from the mid-1880s - and early enough to precede the elite's departure for the Gold Coast and the 1898 press notices of decline (wikipedia_prairie_avenue).",
+          "1 July is the convention the 1835 scene already uses, so the two scenes are read at the same point of the year and seasonal ground, foliage and water differences are not an artefact of the dates."
+        ],
+        "rejected": [
+          {
+            "date": "1885-07-01",
+            "why_not": "The provisional probe date T-1152 hard-coded in tools/check_shoreline_states.py when it opened this state. It was a placeholder for a decision, never a decision: it precedes even the earliest reading of Glessner House's completion and it was never argued from a source. This ticket replaces it, and the checker now reads the date from this record instead of carrying its own constant."
+          },
+          {
+            "date": "1886-07-01",
+            "why_not": "The strongest documentary pull in the decade: the Encyclopedia of Chicago carries an elite mapping made to 1886 alone, which is the nearest thing to a dated house-by-house roster of the street. It was rejected because on 1 July 1886 the district's centrepiece is at best days old on one reading and eighteen months from completion on the other, and the project would have had to rule on a disagreement it has not read the sources for. The 1886 mapping is not lost by this: it remains the roster the successor occupancy ticket should compile from, two years stale and stated as such."
+          },
+          {
+            "date": "1892-07-01 or 1893-07-01",
+            "why_not": "The street's documented peak, at the Columbian Exposition, with the 1890s houses standing. Out of range: this epoch's ticket asks for a date in the 1880s, and the 1890s bring the start of the lakefront fill and the elite's move north, both of which would change the ground and the occupancy this epoch is being cut for."
+          }
+        ],
+        "robust_to": "The unresolved 1886-vs-late-1887 completion spread for Glessner House. Any date from 1 January 1888 clears both bounds; 1 July 1888 is the first 1 July that does.",
+        "does_not_settle": [
+          "the line of the lake edge at Prairie Avenue, a mile south of Lake Park, which no source read here reaches",
+          "the street grades, drainage and fill of the South Side at that date",
+          "which houses stood on which lots, which needs the 1886 elite mapping and the fire-insurance sheets"
+        ]
+      },
       "status": "planned",
       "geometry": null,
-      "sources": [],
-      "note": "Reserved for T-0473. It is deliberately not an alias of either earlier state: the 1880s lake edge must represent the Illinois Central corridor and period fill rather than the natural or 1835 shore. T-0473 owns the representative scene date and the sourced trace."
+      "sources": [
+        "wikipedia_grant_park_chicago",
+        "wikipedia_prairie_avenue",
+        "wikipedia_prairie_avenue_district",
+        "wikipedia_glessner_house"
+      ],
+      "note": "Owned by T-1249, split from T-0473. It is deliberately not an alias of either earlier state: the 1880s lake edge must represent the Illinois Central corridor and period fill rather than the natural or 1835 shore. THE REPRESENTATIVE DATE IS NOW DECIDED AND SOURCED - 1 July 1888, with the argument and the rejected candidates in representative_date_basis above and in full in docs/RESEARCH/south_side_1880s_epoch_date.md. What is settled about the edge itself is a characterisation and not yet a line: the Illinois Central was permitted in 1852 to lay track on a causeway built offshore of Lake Park, the lagoon it left behind was largely filled with Great Fire debris in 1871, and the city began extending the park into the lake beyond the rail lines only in 1896 - so at the scene date the downtown edge is the causeway with filled ground behind it, and every square metre of the modern Grant Park and Museum Campus ground is out of the epoch. That reading is DOWNTOWN. It does not reach Prairie Avenue's blocks a mile to the south, and it must not be stretched to. geometry stays null until T-1250 supplies a line, its sources, its confidence and its bounds from period cartography."
     }
   ]
 }

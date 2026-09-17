@@ -1,0 +1,27 @@
+{
+  "id": "wikipedia_prairie_avenue",
+  "type": "website",
+  "citation": "\"Prairie Avenue.\" Wikipedia. Narrative of the street's rise after the 1871 fire, footnoted throughout to the Electronic Encyclopedia of Chicago (Conzen/Knox/McClendon, Carey, Pacyga, McClendon) and to two New York Times pieces of 1998 and 2005.",
+  "date": "accessed 2026-09-17",
+  "describes_date": "1853-1905",
+  "url": "https://en.wikipedia.org/wiki/Prairie_Avenue",
+  "archived_url": "https://web.archive.org/web/20260311183114/https://en.wikipedia.org/wiki/Prairie_Avenue",
+  "tier": 4,
+  "rights_status": "no_known_restrictions",
+  "asset_use": "cross_check",
+  "verified": true,
+  "note": "Read in full 2026-09-17 (action=raw, HTTP 200) for the scene-date decision in docs/RESEARCH/south_side_1880s_epoch_date.md. It is a finding aid, and what it is worth here is the DATED SEQUENCE it carries and the footnotes under that sequence: 1853 zoning anticipating residential development with 'only one grand villa' standing; 1870 Daniel Thompson's first large upper-Prairie house; 1871 Marshall Field following with a Richard Morris Hunt design; 'By 1877 the eleven-block area of Prairie Avenue as well as Calumet Avenue housed elite residences'; 'By 1886 the finest mansions in the city, each equipped with its own carriage house, stood on Prairie Avenue'; grand houses between 26th and 30th 'starting in the mid-1880s'; and the last mansion of the district built at 2126 Prairie in 1905. The 1886 sentences are footnoted to two Electronic Encyclopedia of Chicago articles written to that year - Conzen, Knox and McClendon, 'Neighborhood Change: Prairie Avenue, 1853-2003', and Conzen and Knox, 'Chicago's Prairie Avenue Elite in 1886'. THOSE ARE THE RECORDS TO CHASE, and the second one in particular: an elite mapping made to a single year is what a street full of documented residents would have to be built from, and this page only reports that it exists. encyclopedia.chicagohistory.org has returned 503 to this project's automated retrieval before (see wikipedia_chicago_river) and was not retried in this session; the archive-url in the page's own citation (web.archive.org snapshot of 2007-11-05) is the route to try first. The page also dates the street's decline - the elite leaving for the Gold Coast after Bertha Palmer's mansion, an 1898 Tribune line about the address being undesirable to those who could afford it - which is what puts the far edge of a defensible 1880s scene date well before 1900.",
+  "what_it_supplies": [
+    "a dated sequence for the street's build-out, 1853 to 1905, with each step footnoted to a named Encyclopedia of Chicago article",
+    "the locator for the two 1886 elite studies that a documented Prairie Avenue population would have to be compiled from",
+    "the near bound on the scene date: no elite street before about 1870, and the district's first large upper-Prairie house in that year"
+  ],
+  "what_it_does_not_supply": [
+    "any statement about ground, grade, drainage, fill or the lake edge - the article is about houses and the people in them",
+    "a house-by-house address roster for any year: it names about a dozen mansions and reports that over fifty stood",
+    "one word of the 1886 elite mapping it footnotes; the mapping is on encyclopedia.chicagohistory.org and was not retrieved here",
+    "a construction date for Glessner House it agrees with itself on - see wikipedia_glessner_house, where three dates are printed on two pages"
+  ],
+  "carries_no_document": "Opened and read in full 2026-09-17 (https://en.wikipedia.org/w/index.php?title=Prairie_Avenue&action=raw, HTTP 200). Looked for a period text - a directory page, a Blue Book extract, an 1880s newspaper column on the street - and there is none: every dated claim is the encyclopedia's own prose carrying a footnote to a modern secondary article. So this record is a judgement about an encyclopedia page, tier 4, and the documents behind it have to be fetched on their own terms. Where it sends you: Conzen, Knox and McClendon, 'Neighborhood Change: Prairie Avenue, 1853-2003' and Conzen and Knox, 'Chicago's Prairie Avenue Elite in 1886', both Electronic Encyclopedia of Chicago (2005); the Chicago Historic Resources Survey, Community Area #33 (1996), pp. 258-264.",
+  "access_notes": "The archived_url is a specific Wayback capture (2026-03-11), looked up and confirmed HTTP 200 on 2026-09-17, not a wildcard: a wildcard is a search, not a citation. It is a capture of the rendered article and predates the reading recorded here, so a passage quoted above may have been edited since — the quotations are from the live wikitext fetched 2026-09-17 and the capture is the nearest re-readable copy, not the copy read."
+}

@@ -38,11 +38,6 @@ READINGS_1812_PATH = TERRAIN / "1812_mouth_readings.json"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import derive_shore_1812  # noqa: E402  (same directory, deliberately not a package)
 
-ADDRESS_DATES = {
-    "1812": date(1812, 8, 15),
-    "1835": date(1835, 7, 1),
-    "1880s": date(1885, 7, 1),
-}
 EXPECTED_IDS = {
     "1812": "shore_1812_pre_cut",
     "1835": "shore_1835_harbor_cut",
@@ -53,6 +48,20 @@ EXPECTED_IDS = {
 # generated from it; `active` is the state the scene renders.
 EXPECTED_STATUS = {"1812": "traced", "1835": "active", "1880s": "planned"}
 
+# THE PROBE DATES ARE READ FROM THE RECORDS, NOT CARRIED HERE (T-0473).
+#
+# This file used to hold `ADDRESS_DATES = {"1812": ..., "1835": ..., "1880s":
+# date(1885, 7, 1)}`.  The first two matched their states' own `address_date`;
+# the third matched nothing in the data, because when T-1152 opened the 1880s
+# state there was no decision yet to match and 1885-07-01 was a placeholder
+# standing in for one.  A representative scene date is a sourced judgement --
+# T-0473 argues 1888-07-01 from the Glessner completion spread, the 1871-1896
+# stillness of the lakefront and the district's own build-out -- and a
+# judgement belongs in the record beside its reasoning, where a reader meets it,
+# rather than in a constant here that nothing argues for and nothing links.
+# So the checker now resolves each epoch through the date its state declares,
+# and `address_date` is required of every dated state.
+
 
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -60,6 +69,39 @@ def load(path: Path) -> dict:
 
 def parse_iso(value: str) -> date:
     return date.fromisoformat(value)
+
+
+def address_dates(states_doc: dict) -> tuple[dict[str, date], list[str]]:
+    """The date each dated state is read at, taken from the state itself.
+
+    Also the place the record's own self-consistency is checked: a state that
+    declares a validity range may not address a date outside it.
+    """
+    dates: dict[str, date] = {}
+    bad: list[str] = []
+    states = {s.get("id"): s for s in states_doc.get("states", [])}
+    for label, sid in EXPECTED_IDS.items():
+        state = states.get(sid)
+        if state is None:
+            bad.append(f"{label} names missing shoreline state {sid!r}")
+            continue
+        raw = state.get("address_date")
+        if not raw:
+            bad.append(f"{sid} declares no address_date, so {label} has no date to be read at")
+            continue
+        try:
+            when = parse_iso(raw)
+        except ValueError:
+            bad.append(f"{sid} address_date {raw!r} is not an ISO date")
+            continue
+        window = state.get("address_range")
+        if window:
+            lo, hi = parse_iso(window["from"]), parse_iso(window["to"])
+            if not lo <= when <= hi:
+                bad.append(f"{sid} addresses {raw}, outside its own range "
+                           f"{window['from']}..{window['to']}")
+        dates[label] = when
+    return dates, bad
 
 
 def epoch_for(epochs: list[dict], target: date) -> dict | None:
@@ -101,8 +143,11 @@ def validate(states_doc: dict, bands_doc: dict, epochs_doc: dict,
     states = {s.get("id"): s for s in states_list}
     epochs = epochs_doc.get("epochs", [])
 
+    address, address_bad = address_dates(states_doc)
+    bad += address_bad
+
     addressed: dict[str, str] = {}
-    for label, target in ADDRESS_DATES.items():
+    for label, target in address.items():
         epoch = epoch_for(epochs, target)
         if epoch is None:
             bad.append(f"{label} does not resolve to exactly one terrain epoch")
@@ -119,7 +164,7 @@ def validate(states_doc: dict, bands_doc: dict, epochs_doc: dict,
             bad.append(f"{sid} points at epoch {state.get('epoch_id')!r}, not "
                        f"{epoch.get('id')!r}")
 
-    if len(set(addressed.values())) != len(ADDRESS_DATES):
+    if len(set(addressed.values())) != len(EXPECTED_IDS):
         bad.append("1812, 1835 and the 1880s do not have separate shoreline-state ids")
 
     active = states.get(EXPECTED_IDS["1835"], {})
@@ -315,6 +360,20 @@ def self_test(docs: tuple[dict, dict, dict, dict, dict, dict]) -> int:
     d = copy.deepcopy(docs)
     d[0]["states"][0]["status"] = "planned"
     cases.append(("calling the traced 1812 state planned fails", bool(validate(*d))))
+
+    d = copy.deepcopy(docs)
+    d[0]["states"][2].pop("address_date")
+    cases.append(("a dated state with no address_date fails", bool(validate(*d))))
+
+    d = copy.deepcopy(docs)
+    d[0]["states"][2]["address_date"] = "1897-07-01"
+    cases.append(("an address_date outside the state's own range fails", bool(validate(*d))))
+
+    d = copy.deepcopy(docs)
+    d[0]["states"][2]["address_date"] = "1840-07-01"
+    d[0]["states"][2]["address_range"] = {"from": "1830-01-01", "to": "1900-12-31"}
+    cases.append(("an address_date that lands in another epoch's interval fails",
+                  bool(validate(*d))))
 
     d = copy.deepcopy(docs)
     d[1]["features"][0]["properties"]["adopted_line"] = "midpoint"

@@ -1,7 +1,7 @@
 ---
 id: T-0473
 title: Create an 1880s South Side terrain and urban-ground epoch
-state: claimed
+state: split
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-01
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: run 9/17/2026, 10:22:37 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-17T15:41:29.101Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35239173744
 ---
 
