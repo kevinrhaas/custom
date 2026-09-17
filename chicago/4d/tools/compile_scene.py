@@ -663,6 +663,74 @@ def how_known(person: dict) -> str:
     return "documented"
 
 
+#: How many role labels a LIST row carries. A person's roles live on the record
+#: and the card reads them from there; the row needs enough to label and to
+#: search, which for this corpus's widest career (five roles) is all of them,
+#: and a cap keeps a future reading from silently fattening 1,282 rows.
+ROLE_LABELS_ON_ROW = 5
+
+
+def role_year(role: dict) -> int | None:
+    """The year a role's bound starts in — `1833-11` → 1833 — or its end where it
+    has no start, or None where the evidence dates it to nothing. The list prints
+    ONE year beside a role word because a row is one line; the card prints the
+    whole bound at its own precision."""
+    for key in ("from", "to"):
+        m = __import__("re").match(r"^\s*(\d{4})", str(role.get(key) or ""))
+        if m:
+            return int(m.group(1))
+    return None
+
+
+def role_word(role: dict) -> str | None:
+    """The controlled word where the source's wording has been adjudicated into
+    the vocabulary, the wording AS PRINTED where it has not (T-1254 is where the
+    rest are ruled on). One of the two is always present on a role."""
+    return role.get("role") or role.get("as_printed") or None
+
+
+def role_row_view(person: dict) -> dict:
+    """The roles of one person, in the shape a LIST needs: labels to print, words
+    to search, and the two counts a filter tests.
+
+    `persons[].roles[]` is the canonical dated record of a trade, a profession or
+    an office (index.json `_roles_doc`), and 262 people carry 267 of them — 127
+    reaching 1 July 1835 and 140 not. The singular `occupation` view only ever
+    showed the first kind, so a man printed as a brickmaker in 1839 read on the
+    directory row as a person with no trade at all. The row carries the label and
+    the search words; the dated timeline, its precision, how it was dated, its
+    note and its sources stay on the record, which the card fetches.
+
+    Sorted by the year the bound opens, undated last, so a row's labels and the
+    card's timeline read in the same order.
+    """
+    roles = [r for r in (person.get("roles") or []) if isinstance(r, dict)]
+    if not roles:
+        return {}
+    ordered = sorted(roles, key=lambda r: (role_year(r) is None, role_year(r) or 0,
+                                           str(role_word(r) or "")))
+    labels = []
+    words_seen: list[str] = []
+    for role in ordered:
+        word = role_word(role)
+        if len(labels) < ROLE_LABELS_ON_ROW:
+            labels.append({
+                "word": word,
+                "kind": role.get("kind"),
+                "year": role_year(role),
+                "at_scene_date": bool(role.get("covers_scene_date")),
+            })
+        for token in (role.get("role"), role.get("as_printed")):
+            if token and str(token) not in words_seen:
+                words_seen.append(str(token))
+    return {
+        "roles": len(roles),
+        "roles_at_scene_date": sum(1 for r in roles if r.get("covers_scene_date")),
+        "role_labels": labels,
+        "role_words": words_seen,
+    }
+
+
 def compile_people(scene_id: str, outdir: Path) -> int:
     """One row per PERSON, flattened from the 1,380 household records, so the
     drawer's People section and its Go-to list can search a town of 1,404 without
@@ -685,6 +753,14 @@ def compile_people(scene_id: str, outdir: Path) -> int:
     household browser uses. The notes, the appearances and the citations stay on
     the record: a figure quoted twice is a figure that drifts, and the census in
     `tools/measure_layer_reads.py` reads the record's own text.
+
+    AND THE ROW SAYS WHAT THE SINGULAR FIELD CANNOT (T-1255). `occupation` is a
+    generated view of the roles that cover 1 July 1835, so a person whose only
+    dated role is a trade printed in 1839 carries no trade on the row at all —
+    262 people hold 267 roles and 140 of those roles are outside the scene
+    window. `role_row_view` above puts the labels, the search words and the two
+    counts a filter tests on the row, marked by whether each role reaches the
+    scene date; the dated timeline itself stays on the record.
 
     `occupation` is `null` where the record says `none_recorded` (1,270 of them).
     That is the same fact — the ABSENCE of a record, which the occupation note
@@ -748,6 +824,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
                 "present": (hh.get("present_on_scene_date") or {}).get("value"),
                 "lives_at": lives.get("value"),
                 "works_at": works.get("value"),
+                **role_row_view(person),
             })
 
     rows.sort(key=lambda r: (surname_of(r["name"], r["id"]), fold(r["name"]), str(r["id"])))
@@ -799,6 +876,11 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "with_lives_at": sum(1 for r in rows if r["lives_at"]),
             "with_works_at": sum(1 for r in rows if r["works_at"]),
             "with_occupation": sum(1 for r in rows if r["occupation"]),
+            "with_roles": sum(1 for r in rows if r.get("roles")),
+            "roles": sum(r.get("roles", 0) for r in rows),
+            "with_a_role_at_scene_date": sum(1 for r in rows if r.get("roles_at_scene_date")),
+            "with_every_role_off_scene_date": sum(
+                1 for r in rows if r.get("roles") and not r.get("roles_at_scene_date")),
         },
         "vocabulary": {
             "occupations": [{"value": k, "count": v} for k, v in occupations.items()],
@@ -808,6 +890,7 @@ def compile_people(scene_id: str, outdir: Path) -> int:
             "relationships": list(vocab.get("relationships") or sorted(tally("relationship"))),
             "arrival_precision": list(vocab.get("arrival_precision") or sorted(tally("arrival_precision"))),
             "how_known": list(HOW_KNOWN),
+            "role_kinds": list(vocab.get("role_kinds") or []),
             "evidence_kinds": [label for _, label in PERSON_EVIDENCE_KINDS],
         },
         "people": rows,

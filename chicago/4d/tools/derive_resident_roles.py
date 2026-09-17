@@ -761,7 +761,7 @@ def view(roles: list[dict]) -> tuple[str, list[str]]:
     which requires the field to cite an 1835 source of its own), and a value written here
     that those three do not derive is a value the gate reverts on the next run. So the
     row says plainly that its evidence reaches the day, and says just as plainly that it
-    does not stand in the field; T-1295 is where the three generators are made to agree.
+    does not stand in the field; T-1296 is where the three generators are made to agree.
 
     THE NAMED LIST IS IN ROW ORDER and the singular value is the STRONGEST claim in it,
     not simply the first, so that an inferred reading can never displace an attested one
@@ -958,7 +958,7 @@ def migration_table() -> str:
     w("  cites no 1835 source of its own — and a block filled from roles cites nothing,")
     w("  because its citations are on the rows. Writing the trade in anyway was measured:")
     w("  17 gate steps went red, one of them the trade-census count, which suddenly saw a")
-    w("  lawyer no practitioner ruling held. T-1295 makes the four agree; until it does,")
+    w("  lawyer no practitioner ruling held. T-1296 makes the four agree; until it does,")
     w("  the rows say plainly that the evidence reaches the day and the field does not")
     w("  carry it, which is a state that can be read and argued with.")
     w("- `" + str(places) + "` carry a stated `place` and `" + str(bodies) + "` a stated")

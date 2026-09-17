@@ -1,7 +1,7 @@
 ---
 id: T-1284
 title: Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-17
+pr: 1419
+claimed_by: run 9/17/2026, 4:47:22 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-17T22:23:56.109Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35278245295
 ---
 
 T-1147 was split twice, by two runs that could not see each other. T-1237 landed on `dev`

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """The location reconciliation rows: one row per home, workplace and business
-location claim, resolved as far as its evidence reaches and no further (T-1237).
+location claim, resolved as far as its evidence reaches and no further (T-1237),
+each row naming the ledger that adjudicated it, the reach of its date and the
+provenance of its grade (T-1284).
 
     tools/location_reconciliation.py --build      write the rows and the report
     tools/location_reconciliation.py --check      re-derive, diff, re-assert the limits
@@ -66,6 +68,40 @@ workplace claim does. The seating-class axis is defined over the whole household
 the empty rows could not answer the question clause 9 asks of it. A workplace has no
 such axis, so an absent workplace is an absent row.
 
+EVERY ROW NAMES ITS OWN PROVENANCE (T-1284). T-1147 was split by two runs that could
+not see each other; the duplicate's table lost on coverage and was closed, but its ROW
+carried six fields this one did not, and T-1284 is the ticket that brings them across.
+Each was decided against the evidence these rows ALREADY hold, because a field this pass
+would have to guess at is a field it may not carry:
+
+  * `ledger` — the committed file whose disposition this row reports. `sources` is not
+    the same statement: a source is what was read, a ledger is what ADJUDICATED, and
+    naming it is what lets a later rung re-read a row without re-adjudicating it. Every
+    row has one and `assertions` requires the file to exist.
+  * `confidence_from` — the file the grade in `confidence` came from, and null where
+    there is no grade. `confidence_silent_because` — for an ungraded row, WHICH ledger is
+    silent and why, rather than a bare null. Exactly one of the two is set on every row.
+  * `describes_date_last` and `date_precision` — a date's REACH. The register dates a
+    business by a run of issues, and the old row published only `last_issue`, so a span
+    of eleven weeks read as a single day. `describes_date` is now the span's first date,
+    `describes_date_last` its last, and `date_precision` names the source's own unit of
+    time: `issue_range`, `issue`, `directory_year` or `scene_date`.
+  * `resolved_street_id` beside `resolved_street` — the committed corridor id, where the
+    ledger itself resolved one. The structure rows take it from `fronting_street`, which
+    is the module that derived the name; the street-only business rows take it from the
+    register's and the adoption ruling's own `street_id`. A LATER-DIRECTORY ROW DOES NOT
+    GET ONE: the back-projection ledgers claim a face by the street's PRINTED name and
+    resolve no id, and mapping printed text onto a corridor is itself an adjudication —
+    `street_face_adoptions.json` records `street_text` beside `street_id` precisely
+    because that step is a ruling someone made. So the field is null there and says so.
+
+`relation` IS THE ONE FIELD NOT ADOPTED. `claim_kind` is already the relation, on a
+five-label vocabulary this file asserts and `location_spend.py` reads; a second field
+restating it would be a duplicate wearing the name of provenance. The one distinction the
+duplicate's vocabulary held that `claim_kind` does not — `premises_superseded`, a
+gazetteer reading a later printing overtook — belongs to rows this pass does not emit at
+all, so the field would have been empty in every row of this table.
+
 NO ROW INVENTS A COORDINATE. `resolved_structure` is only ever an id the dataset already
 carries, `resolved_street` is only ever derived from committed geometry by
 `fronting_street.fronting()`, and `resolved_face` is that module's own vocabulary — "lot
@@ -100,6 +136,20 @@ BUSINESS_LIMITS = ("structure", "street_only", "unplaceable")
 SEATING_CLASSES = ("structure", "lot", "face", "division", "none")
 #: what a row's disposition may say
 DISPOSITIONS = ("resolved", "limited", "refused", "no_claim")
+#: the reach of `describes_date`, so a span is not read as a day. Every label names the
+#: SOURCE's own unit of time, not this pass's guess at one.
+DATE_PRECISIONS = ("scene_date", "issue", "issue_range", "directory_year")
+#: every field a row carries, in the order it is written. Published in the document so a
+#: later rung reads the shape from the file rather than from this source.
+ROW_FIELDS = (
+    "row_id", "claim_kind", "claim_id", "claims", "sources",
+    "describes_date", "describes_date_last", "date_precision",
+    "resident_id", "household_id", "business_id", "printed_place",
+    "resolved_street", "resolved_street_id", "resolved_face", "resolved_anchor",
+    "resolved_structure",
+    "confidence", "confidence_from", "confidence_silent_because",
+    "seating_class", "business_limit", "disposition", "limit_clause", "ledger",
+)
 
 _cache: dict = {}
 
@@ -131,17 +181,22 @@ def _fronting():
 
 
 def frontage(structure_id: str | None):
-    """(street name, face) for a committed structure, or (None, None)."""
+    """(street name, street id, face) for a committed structure, or three nulls.
+
+    The id is not a new derivation: `fronting()` answers in ids and this function was
+    already throwing one away to return the name. T-1284 keeps both, so a row that
+    resolves a street says WHICH committed corridor it means.
+    """
     if not structure_id:
-        return None, None
+        return None, None, None
     fronting, street_name = _fronting()
     if fronting is None:
-        return None, None
+        return None, None, None
     faces = fronting(structure_id)
     if not faces:
-        return None, None
+        return None, None, None
     street_id, how = faces[0]
-    return street_name(street_id), how
+    return street_name(street_id), street_id, how
 
 
 def gazetteer() -> dict:
@@ -192,6 +247,22 @@ def first_sentence(note: str | None, limit: int = 240) -> str | None:
     return text[:limit].strip()
 
 
+def _grade(confidence, ledger: str, silent_because: str) -> dict:
+    """The three confidence fields, filled so that exactly one account is given.
+
+    THIS PASS MAY NOT GRADE. Where the ledger that adjudicated a claim states a
+    confidence, the row carries it and names the file it came from; where the ledger
+    states none, the row carries null and says WHICH ledger is silent and why. A bare
+    null cannot be told apart from a grade nobody bothered to copy, which is the whole
+    reason the field exists. `assertions` requires exactly one of the two.
+    """
+    if confidence:
+        return {"confidence": confidence, "confidence_from": ledger,
+                "confidence_silent_because": None}
+    return {"confidence": None, "confidence_from": None,
+            "confidence_silent_because": silent_because}
+
+
 # ---------------------------------------------------------------------------
 # the rows
 # ---------------------------------------------------------------------------
@@ -223,7 +294,8 @@ def _household_row(hid, head, division, kind, field, claim) -> dict:
     """One `lives_at`/`works_at` claim, seated as far as the record reaches."""
     structure_id = (claim or {}).get("value")
     known = structure_id in structures() if structure_id else False
-    street, face = frontage(structure_id if known else None)
+    street, street_id, face = frontage(structure_id if known else None)
+    ledger = f"{HOUSEHOLDS.relative_to(ROOT)}/{hid}.json"
     if structure_id and known:
         seating, disposition = "structure", "resolved"
         clause = ("The record names a committed structure; the roof is the evidence's "
@@ -246,20 +318,29 @@ def _household_row(hid, head, division, kind, field, claim) -> dict:
         "claims": [],
         "sources": list((claim or {}).get("sources") or []),
         "describes_date": SCENE_DATE if claim else None,
+        # THE CLAIM CARRIES NO DATE OF ITS OWN. `lives_at` states where the household
+        # was on the scene date and says nothing about a span, so the reach is one day
+        # and `date_precision` says which day it is rather than implying a source said so.
+        "describes_date_last": SCENE_DATE if claim else None,
+        "date_precision": "scene_date" if claim else None,
         "resident_id": head,
         "household_id": hid,
         "business_id": None,
         "printed_place": symbolic_location(structure_id) if known else None,
         "resolved_street": street,
+        "resolved_street_id": street_id,
         "resolved_face": face,
         "resolved_anchor": ({"kind": "structure", "target": structure_id}
                             if known else None),
         "resolved_structure": structure_id if known else None,
-        "confidence": (claim or {}).get("confidence"),
+        **_grade((claim or {}).get("confidence"), ledger, (
+            f"{ledger} states this claim and no grade for it." if claim else
+            f"{ledger} reaches no building, so no ledger grades a placement.")),
         "seating_class": seating,
         "business_limit": None,
         "disposition": disposition,
         "limit_clause": clause,
+        "ledger": ledger,
     }
 
 
@@ -291,6 +372,7 @@ def _directory_rows(household, hid, head, division) -> list[dict]:
 
 def _directory_row(hid, pid, division, field, kind, ruling, printed, address) -> dict:
     outcome = ruling.get("outcome")
+    ledger = f"{HOUSEHOLDS.relative_to(ROOT)}/{hid}.json"
     placement = ruling.get("placement")
     clause_id = ruling.get("clause")
     if outcome == "placed" and placement:
@@ -314,20 +396,44 @@ def _directory_row(hid, pid, division, field, kind, ruling, printed, address) ->
         "claims": [],
         "sources": list(ruling.get("sources") or (address or {}).get("sources") or []),
         "describes_date": ruling.get("describes_date"),
+        # THE VOLUME IS THE UNIT. `describes_date` here is a bare year — the year of the
+        # directory the address was printed in — so the first and last date of its reach
+        # are that same year, and `directory_year` says the reading is annual, not daily.
+        "describes_date_last": ruling.get("describes_date"),
+        "date_precision": ("directory_year" if ruling.get("describes_date") is not None
+                           else None),
         "resident_id": pid,
         "household_id": hid,
         "business_id": None,
         "printed_place": printed,
         "resolved_street": ruling.get("value") if outcome == "placed" else None,
+        # NO CORRIDOR ID HERE, AND THAT IS THE ANSWER, NOT A GAP. The ledger claims the
+        # face by the street's PRINTED name and resolves no id; turning printed text into
+        # a committed corridor is a ruling someone makes — street_face_adoptions.json
+        # keeps `street_text` beside `street_id` for exactly that reason — and this pass
+        # reports rulings rather than making them.
+        "resolved_street_id": None,
         "resolved_face": placement if outcome == "placed" else None,
         "resolved_anchor": None,
         "resolved_structure": None,
-        "confidence": ruling.get("confidence"),
+        **_grade(ruling.get("confidence"), ledger, (
+            f"{ledger} carries clause {clause_id}, which places nothing, so it grades "
+            "nothing." if outcome != "placed" else
+            f"{ledger} carries clause {clause_id} and states no grade for it.")),
         "seating_class": seating,
         "business_limit": None,
         "disposition": disposition,
         "limit_clause": clause,
+        "ledger": ledger,
     }
+
+
+def _issue_precision(evidence: dict) -> str | None:
+    """`issue_range` where the register names two issues, `issue` where it names one."""
+    first, last = evidence.get("first_issue"), evidence.get("last_issue")
+    if not first and not last:
+        return None
+    return "issue_range" if first and last and first != last else "issue"
 
 
 def business_rows() -> list[dict]:
@@ -355,9 +461,13 @@ def _business_row(business, adopted, refused) -> dict:
     anchor = business.get("anchor") or {}
     evidence = business.get("evidence") or {}
     target = business.get("action_target")
+    register_path = str(REGISTER.relative_to(ROOT))
+    adoptions_path = str(ADOPTIONS.relative_to(ROOT))
+    ledger = register_path
+    street_id = None
     if action in ("enrich_existing", "new_building"):
         limit, disposition = "structure", "resolved"
-        street, face = frontage(target if target in structures() else None)
+        street, street_id, face = frontage(target if target in structures() else None)
         resolved_structure = target if target in structures() else None
         clause = ("The advertisement's anchor reaches a roof; the register's action is "
                   f"{action} on {target!r}.")
@@ -365,6 +475,15 @@ def _business_row(business, adopted, refused) -> dict:
         limit = "street_only"
         deal, refusal = adopted.get(bid), refused.get(bid)
         street = business.get("street") or (deal or {}).get("street_name")
+        # THE REGISTER RESOLVED THE CORRIDOR, so the id is read and not re-derived; the
+        # adoption ruling carries the same id and stands in where the register's is null.
+        street_id = (business.get("street_id") or (deal or {}).get("street_id")
+                     or (refusal or {}).get("street_id"))
+        # A STREET-ONLY BUSINESS IS DISPOSED OF BY THE ADOPTION RULING, not the register:
+        # the register says the paper reached a street and stopped, and the adoption file
+        # is what then dealt a roof or refused the face.
+        if deal or refusal:
+            ledger = adoptions_path
         if deal:
             disposition, face = "limited", deal.get("face")
             resolved_structure = deal.get("structure_id")
@@ -378,7 +497,7 @@ def _business_row(business, adopted, refused) -> dict:
                       f"face could not be adopted: {uncapitalise(why)}.")
     else:
         limit, disposition = "unplaceable", "limited"
-        street = face = resolved_structure = None
+        street = street_id = face = resolved_structure = None
         clause = ("The paper reaches no street the model holds: "
                   + (uncapitalise(first_sentence(anchor.get("note"), 160))
                      or "no anchor is printed."))
@@ -393,21 +512,34 @@ def _business_row(business, adopted, refused) -> dict:
         "claim_id": bid,
         "claims": mentions,
         "sources": sorted({c.split("#")[0] for c in mentions}),
-        "describes_date": evidence.get("last_issue") or evidence.get("first_issue"),
+        # A RUN OF ISSUES IS A SPAN, NOT A DAY. The register dates a business by its
+        # first and last issue and this row used to publish only the last, which read as
+        # a single day and lost the reach entirely (T-1284). `describes_date` now opens
+        # the span and `describes_date_last` closes it; no disposition moves.
+        "describes_date": evidence.get("first_issue") or evidence.get("last_issue"),
+        "describes_date_last": evidence.get("last_issue") or evidence.get("first_issue"),
+        "date_precision": _issue_precision(evidence),
         "resident_id": None,
         "household_id": None,
         "business_id": bid,
         "printed_place": printed,
         "resolved_street": street,
+        "resolved_street_id": street_id,
         "resolved_face": face,
         "resolved_anchor": ({"kind": anchor.get("kind"), "target": anchor.get("target")}
                             if anchor.get("kind") != "unresolved" else None),
         "resolved_structure": resolved_structure,
-        "confidence": business.get("match_tier"),
+        **_grade(business.get("match_tier"), register_path, (
+            f"{register_path} states no match_tier for this business: the register "
+            "decides the action and grades no placement."
+            + (f" The adoption in {adoptions_path} grades the roof it substituted, which "
+               "is housing and not this claim's reach."
+               if limit == "street_only" and resolved_structure else ""))),
         "seating_class": None,
         "business_limit": limit,
         "disposition": disposition,
         "limit_clause": clause,
+        "ledger": ledger,
     }
 
 
@@ -431,7 +563,10 @@ def build() -> dict:
             "business-location claim, resolved as far as its evidence reaches. Every "
             "row keeps resolved_street, resolved_face, resolved_anchor and the "
             "limit_clause that stopped it, so T-1198's address book starts here. "
+            "Every row also names the ledger that adjudicated it, the reach of its "
+            "date and where its grade came from or which ledger is silent (T-1284). "
             "DERIVED — rebuild with --build, and --check refuses a hand-edit."),
+        "row_fields": ROW_FIELDS,
         "compiled_from": {
             "households": str(HOUSEHOLDS.relative_to(ROOT)),
             "register": str(REGISTER.relative_to(ROOT)),
@@ -454,6 +589,16 @@ def build() -> dict:
             "rows_with_a_resolved_street": sum(1 for r in rows if r["resolved_street"]),
             "rows_with_a_resolved_structure": sum(
                 1 for r in rows if r["resolved_structure"]),
+            "rows_with_a_resolved_street_id": sum(
+                1 for r in rows if r["resolved_street_id"]),
+            "by_date_precision": dict(sorted(
+                Counter(r["date_precision"] or "undated" for r in rows).items())),
+            "by_ledger": dict(sorted(Counter(
+                "households" if r["ledger"].startswith(str(HOUSEHOLDS.relative_to(ROOT)))
+                else r["ledger"] for r in rows).items())),
+            "rows_carrying_a_grade": sum(1 for r in rows if r["confidence"]),
+            "rows_naming_a_silent_ledger": sum(
+                1 for r in rows if r["confidence_silent_because"]),
         },
         "rows": rows,
     }
@@ -476,6 +621,7 @@ def report(doc: dict) -> str:
     counts = doc["counts"]
     seating = counts["households_by_seating_class"]
     limits = counts["businesses_by_location_limit"]
+    precision = counts["by_date_precision"]
     lines = [
         "# The location reconciliation rows",
         "",
@@ -488,9 +634,11 @@ def report(doc: dict) -> str:
         "reached and the clause that stopped it going further. T-1198's address book "
         "starts from these rows rather than from the evidence again.",
         "",
-        f"**{counts['rows']} rows.** "
+        f"**{counts['rows']} rows, {len(doc['row_fields'])} fields each.** "
         f"{counts['rows_with_a_resolved_street']} reach a street, "
-        f"{counts['rows_with_a_resolved_structure']} reach a committed structure.",
+        f"{counts['rows_with_a_resolved_street_id']} of those name the committed "
+        f"corridor, and {counts['rows_with_a_resolved_structure']} reach a committed "
+        "structure.",
         "",
         "## Households, by seating class",
         "",
@@ -551,7 +699,102 @@ def report(doc: dict) -> str:
         "This pass reports those rulings; it does not make them.",
         "",
     ]
-    if not doc["frontage_available"]:
+    lines += [
+        "## What each row says about its own provenance",
+        "",
+        "T-1147 was split by two runs that could not see each other. The duplicate's "
+        "table lost on coverage and was closed, but its ROW carried six fields this one "
+        "did not, and T-1284 brought them across — each decided against the evidence "
+        "these rows already hold, because a field this pass would have to guess at is a "
+        "field it may not carry.",
+        "",
+        "| field | filled | what it says |",
+        "|---|---:|---|",
+        f"| `ledger` | {counts['rows']} | the committed file whose disposition this row "
+        "reports. `sources` says what was READ; the ledger is what ADJUDICATED, and "
+        "naming it is what lets a later rung re-read a row without re-adjudicating it. "
+        "The file has to exist. |",
+        f"| `confidence_from` | {counts['rows_carrying_a_grade']} | the file the grade "
+        "came from. |",
+        f"| `confidence_silent_because` | {counts['rows_naming_a_silent_ledger']} | for "
+        "an ungraded row, WHICH ledger is silent and why. A bare null cannot be told "
+        "apart from a grade nobody copied. Exactly one of these two is set on every "
+        "row. |",
+        f"| `describes_date_last` | {counts['rows'] - precision.get('undated', 0)} | the "
+        "far end of the date's reach. |",
+        f"| `date_precision` | {counts['rows'] - precision.get('undated', 0)} | the "
+        "source's own unit of time, so a span is not read as a day. |",
+        f"| `resolved_street_id` | {counts['rows_with_a_resolved_street_id']} | the "
+        "committed corridor, where the ledger itself resolved one. |",
+        "",
+        "**`relation` is the one field not adopted.** `claim_kind` is already the "
+        "relation, on a five-label vocabulary this file asserts and `location_spend.py` "
+        "reads; a second field restating it would be a duplicate wearing the name of "
+        "provenance. The one distinction the duplicate's vocabulary held that "
+        "`claim_kind` does not — `premises_superseded`, a gazetteer reading a later "
+        "printing overtook — belongs to rows this pass does not emit at all, so the "
+        "field would have been empty in every row of this table.",
+        "",
+        "### Dates, by the reach of the source",
+        "",
+        "| precision | rows | the source's unit |",
+        "|---|---:|---|",
+        f"| issue_range | {precision.get('issue_range', 0)} | the register dates the "
+        "business by a run of issues, first to last |",
+        f"| issue | {precision.get('issue', 0)} | the register names one issue |",
+        f"| directory_year | {precision.get('directory_year', 0)} | a later volume, "
+        "whose unit is the year it was printed in |",
+        f"| scene_date | {precision.get('scene_date', 0)} | the claim carries no date of "
+        "its own: it states where the household was on the scene date |",
+        f"| undated | {precision.get('undated', 0)} | no claim, so no date |",
+        "",
+        "The 83 `issue_range` rows are why the pair exists. `describes_date` used to "
+        "publish the register's LAST issue and nothing else, so a span of weeks read as "
+        "a single day; it now opens the span and `describes_date_last` closes it. That "
+        "is the only value on an existing field that T-1284 moved, and **no disposition "
+        "moved at all** — the row count, the seating classes, the location limits and "
+        "every resolved street, face, anchor and structure are unchanged.",
+        "",
+        "### The corridor id a later directory address does not get",
+        "",
+        f"{counts['rows_with_a_resolved_street']} rows reach a street and "
+        f"{counts['rows_with_a_resolved_street_id']} name the corridor. The "
+        f"{counts['rows_with_a_resolved_street'] - counts['rows_with_a_resolved_street_id']}"
+        " that do not are the back-projected directory addresses, and the null is the "
+        "answer rather than a gap: those ledgers claim a face by the street's PRINTED "
+        "name and resolve no id, and turning printed text into a committed corridor is "
+        "itself a ruling — `street_face_adoptions.json` keeps `street_text` beside "
+        "`street_id` for exactly that reason. This pass reports rulings; it does not "
+        "make them.",
+        "",
+        "### Ledgers",
+        "",
+        "| ledger | rows |",
+        "|---|---:|",
+    ]
+    for ledger, n in counts["by_ledger"].items():
+        lines.append(f"| `{ledger}` | {n} |")
+    lines += [
+        "",
+        "`households` is the per-household file `data/residents/households/<id>.json`, "
+        "which carries both the `lives_at`/`works_at` claim and the back-projection "
+        "ruling on a later address. A street-only business is adjudicated by "
+        "`street_face_adoptions.json` and not by the register: the register says the "
+        "paper reached a street and stopped, and the adoption file is what then dealt a "
+        "roof or refused the face.",
+        "",
+        "### The field list",
+        "",
+        "Published in the document as `row_fields`, so a later rung reads the shape from "
+        "the file rather than from the generator. `assertions` refuses a row whose keys "
+        "are not exactly this list, in this order.",
+        "",
+        "```",
+        ", ".join(doc["row_fields"]),
+        "```",
+        "",
+    ]
+    if not doc["frontage_available"]:  # REPORTMARK
         lines += [
             "> **Frontage unavailable in the run that built this.** "
             f"`{doc['frontage_unavailable_because']}` — so `resolved_street` and "
@@ -599,6 +842,39 @@ def assertions(doc: dict) -> None:
             raise Refused(f"{row['row_id']}: refused, yet it resolves to ground")
         if row["claim_kind"] == "home" and row["seating_class"] not in SEATING_CLASSES:
             raise Refused(f"{row['row_id']}: {row['seating_class']!r} is not a seating class")
+        if tuple(row) != ROW_FIELDS:
+            raise Refused(f"{row['row_id']}: the row's fields are not ROW_FIELDS")
+        # EVERY ROW NAMES WHAT ADJUDICATED IT, and that file has to be in the tree.
+        if not row["ledger"]:
+            raise Refused(f"{row['row_id']}: no ledger — nothing says what adjudicated it")
+        if not (ROOT / row["ledger"]).exists():
+            raise Refused(f"{row['row_id']}: ledger {row['ledger']!r} is not a "
+                          "committed file")
+        # A GRADE NAMES ITS SOURCE; AN UNGRADED ROW NAMES THE SILENT LEDGER. Exactly one.
+        if bool(row["confidence"]) != bool(row["confidence_from"]):
+            raise Refused(f"{row['row_id']}: a grade without its source, or a source "
+                          "without a grade")
+        if bool(row["confidence"]) == bool(row["confidence_silent_because"]):
+            raise Refused(f"{row['row_id']}: a row is either graded or it says which "
+                          "ledger is silent, never both and never neither")
+        if row["confidence_from"] and not (ROOT / row["confidence_from"]).exists():
+            raise Refused(f"{row['row_id']}: confidence_from "
+                          f"{row['confidence_from']!r} is not a committed file")
+        # A DATE CARRIES ITS REACH, so a span is not read as a day.
+        if row["date_precision"] is not None and row["date_precision"] not in DATE_PRECISIONS:
+            raise Refused(f"{row['row_id']}: {row['date_precision']!r} is not a "
+                          "date precision")
+        if bool(row["describes_date"]) != bool(row["date_precision"]):
+            raise Refused(f"{row['row_id']}: a date without its precision, or a "
+                          "precision without a date")
+        if bool(row["describes_date"]) != bool(row["describes_date_last"]):
+            raise Refused(f"{row['row_id']}: a span with only one end")
+        if row["describes_date"] and str(row["describes_date_last"]) < str(
+                row["describes_date"]):
+            raise Refused(f"{row['row_id']}: describes_date_last is before describes_date")
+        # A CORRIDOR ID WITHOUT THE NAME IT RESOLVES IS HALF A STATEMENT.
+        if row["resolved_street_id"] and not row["resolved_street"]:
+            raise Refused(f"{row['row_id']}: a street id with no street name")
     seating = doc["counts"]["households_by_seating_class"]
     homes = sum(1 for row in rows if row["claim_kind"] == "home")
     if sum(seating.values()) != homes:
@@ -692,6 +968,44 @@ def self_test() -> int:
     def limits_stop_partitioning(d):
         d["counts"]["businesses_by_location_limit"]["unplaceable"] += 1
 
+    def ledger_is_not_committed(d):
+        d["rows"][0]["ledger"] = "data/a_ledger_nobody_committed.json"
+
+    def ledger_dropped(d):
+        d["rows"][0]["ledger"] = None
+
+    def grade_without_its_source(d):
+        row = next(r for r in d["rows"] if r["confidence"])
+        row["confidence_from"] = None
+
+    def silence_that_is_not_silent(d):
+        row = next(r for r in d["rows"] if r["confidence"])
+        row["confidence_silent_because"] = "the ledger says nothing"
+
+    def ungraded_and_unexplained(d):
+        row = next(r for r in d["rows"] if not r["confidence"])
+        row["confidence_silent_because"] = None
+
+    def precision_off_the_vocabulary(d):
+        row = next(r for r in d["rows"] if r["date_precision"])
+        row["date_precision"] = "roughly_the_thirties"
+
+    def a_span_read_as_a_day(d):
+        row = next(r for r in d["rows"] if r["describes_date"])
+        row["describes_date_last"] = None
+
+    def the_span_runs_backwards(d):
+        row = next(r for r in d["rows"] if r["date_precision"] == "issue_range")
+        row["describes_date"], row["describes_date_last"] = (
+            row["describes_date_last"], row["describes_date"])
+
+    def a_street_id_with_no_street(d):
+        row = next(r for r in d["rows"] if r["resolved_street_id"])
+        row["resolved_street"] = None
+
+    def a_field_goes_missing(d):
+        d["rows"][0].pop("ledger")
+
     fires("a duplicated row_id", duplicate)
     fires("a resolved_structure the dataset does not hold", invented_structure)
     fires("an unplaceable business that resolves to ground", unplaceable_gains_ground)
@@ -699,11 +1013,21 @@ def self_test() -> int:
     fires("a row with no limit_clause", clause_dropped)
     fires("seating classes that do not partition the home rows", classes_stop_partitioning)
     fires("location limits that do not partition the business rows", limits_stop_partitioning)
+    fires("a ledger that is not a committed file", ledger_is_not_committed)
+    fires("a row with no ledger", ledger_dropped)
+    fires("a grade with no confidence_from", grade_without_its_source)
+    fires("a graded row that also names a silent ledger", silence_that_is_not_silent)
+    fires("an ungraded row that names no silent ledger", ungraded_and_unexplained)
+    fires("a date_precision off the vocabulary", precision_off_the_vocabulary)
+    fires("a span with only one end", a_span_read_as_a_day)
+    fires("a span that runs backwards", the_span_runs_backwards)
+    fires("a street id with no street name", a_street_id_with_no_street)
+    fires("a row that has lost a field", a_field_goes_missing)
 
     if faults:
         print("SELF-TEST FAILED — these assertions did not fire: " + ", ".join(faults))
         return 1
-    print("all 7 assertions fire when broken")
+    print("all 17 assertions fire when broken")
     return 0
 
 

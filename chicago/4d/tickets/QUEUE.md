@@ -33,9 +33,13 @@
 # the work. If the top is gated or every row is in flight, the run SAYS SO and stops — it
 # does not walk down to band 6, 7 or 8. That fall-through is how T-0467 and T-1154 were
 # picked up out of the bottom of a 148-line queue on 2026-09-17 while the city waited.
+# TICKET BUDGET (T-1295, owner 2026-09-17: "I don't want too many tickets and not making
+# any progress"). `ticket.mjs new` REFUSES at 140 queue lines, and refuses a branch its
+# fourth new ticket. Override is `--anyway --why "<reason>"` and the reason is written into
+# the file. Filing is free and working is not — add a finding to the ticket it was found in
+# first, which is what the line above already asks for. `split` is exempt: it replaces a
+# ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
-T-1284 — Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
-T-1255 — The people view shows every role as a dated timeline, marks which reach the scene date, and searches controlled and printed wording
 T-1236 — EPIC: rule on the unasserted units the person-fact passes do not own — the land-sale, civic, 1830-census, church, newspaper and directory names, the resident-pass reserved people, and the book readings of ground, harbour, weather, price and institution
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
@@ -189,4 +193,4 @@ T-1281 — Is the Democrat's 'A. Sweet' of 4 June 1834 Alanson Sweet or the Alon
 T-1294 — hh_inf_joiner_north_02 stands in the tree and no pass derives it: the register deal seats four roofs where its own docstring says five, and J. W. Reed's household is owned by nobody
 T-1273 — Write every committed home and workplace reconciliation row as an associated_with row on the record it belongs to, changing no value, confidence or source
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
-T-1295 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
+T-1296 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree

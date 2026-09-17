@@ -1,5 +1,5 @@
 ---
-id: T-1295
+id: T-1296
 title: Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
 state: open
 epic: META
@@ -60,3 +60,11 @@ in its own right, not a clause of a migration.
 5. No card LOSES a trade it holds today.
 
 **Links:** T-1145 · T-1229 · T-1254 · T-0693 · T-0837 · T-0991.
+
+6. **And the card shows a role's place and employer.** T-1255 shipped `rolesHtml` while
+   T-1254 was in flight, so the timeline reads ten of a role's figures and not the two
+   T-1254 added: `place` (where the role was worked) and `employer_or_body` (the body or
+   firm it was worked for) are banked UNREAD in `tools/layer_reads_baseline.json` because
+   they did not exist when the renderer was written, not because nobody should see them.
+   164 roles carry a place and 56 a body. Declare both in `measure_layer_reads.py` READS
+   with the expression that renders them, in the commit that renders them.

@@ -51,7 +51,7 @@ role once, and the survivor names the other wording in its note.
   cites no 1835 source of its own — and a block filled from roles cites nothing,
   because its citations are on the rows. Writing the trade in anyway was measured:
   17 gate steps went red, one of them the trade-census count, which suddenly saw a
-  lawyer no practitioner ruling held. T-1295 makes the four agree; until it does,
+  lawyer no practitioner ruling held. T-1296 makes the four agree; until it does,
   the rows say plainly that the evidence reaches the day and the field does not
   carry it, which is a state that can be read and argued with.
 - `164` carry a stated `place` and `56` a stated

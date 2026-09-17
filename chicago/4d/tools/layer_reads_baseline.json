@@ -62,27 +62,6 @@
       "records": 2,
       "refused_because": "A units declaration, not a figure. It states what woody_stratum.establishes_m's metres are measured from, for a reader of the record and for tools/validate.py, which requires it. A renderer that read it would be a renderer able to convert between datums; if it ever disagreed with the heightfield's own, the right outcome is this gate failing rather than a silent conversion. T-1056."
     },
-    "residents/household:associated_with[].from": {
-      "records": 3
-    },
-    "residents/household:associated_with[].kind": {
-      "records": 5
-    },
-    "residents/household:associated_with[].place_or_structure_id": {
-      "records": 5
-    },
-    "residents/household:associated_with[].resolves_to": {
-      "records": 5
-    },
-    "residents/household:associated_with[].source_id": {
-      "records": 5
-    },
-    "residents/household:associated_with[].tier": {
-      "records": 5
-    },
-    "residents/household:associated_with[].undated": {
-      "records": 2
-    },
     "residents/household:division": {
       "records": 1258,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
@@ -91,31 +70,7 @@
       "records": 1258,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
-    "residents/household:persons[].associated_with[].from": {
-      "records": 2
-    },
-    "residents/household:persons[].associated_with[].kind": {
-      "records": 2
-    },
-    "residents/household:persons[].associated_with[].place_or_structure_id": {
-      "records": 2
-    },
-    "residents/household:persons[].associated_with[].resolves_to": {
-      "records": 2
-    },
-    "residents/household:persons[].associated_with[].source_id": {
-      "records": 2
-    },
-    "residents/household:persons[].associated_with[].tier": {
-      "records": 2
-    },
-    "residents/household:persons[].associated_with[].to": {
-      "records": 1
-    },
     "residents/household:persons[].occupation.derived_from": {
-      "records": 327
-    },
-    "residents/household:persons[].occupation.roles_at_scene_date": {
       "records": 327
     },
     "residents/household:persons[].occupation.withdrawn_from_scene_date.ticket": {
@@ -127,17 +82,8 @@
     "residents/household:persons[].occupation.withdrawn_from_scene_date.verdict": {
       "records": 6
     },
-    "residents/household:persons[].roles[].as_printed": {
-      "records": 554
-    },
     "residents/household:persons[].roles[].claim": {
       "records": 420
-    },
-    "residents/household:persons[].roles[].covers_scene_date": {
-      "records": 687
-    },
-    "residents/household:persons[].roles[].dated_by": {
-      "records": 687
     },
     "residents/household:persons[].roles[].employer_or_body": {
       "records": 687
@@ -145,22 +91,7 @@
     "residents/household:persons[].roles[].fills_scene_view": {
       "records": 687
     },
-    "residents/household:persons[].roles[].from": {
-      "records": 687
-    },
-    "residents/household:persons[].roles[].kind": {
-      "records": 687
-    },
     "residents/household:persons[].roles[].place": {
-      "records": 687
-    },
-    "residents/household:persons[].roles[].precision": {
-      "records": 687
-    },
-    "residents/household:persons[].roles[].role": {
-      "records": 364
-    },
-    "residents/household:persons[].roles[].to": {
       "records": 687
     },
     "residents/household:source_pass": {
@@ -231,10 +162,12 @@
       "refused_because": "The same flat copy of the ticket, refused for the same reason."
     },
     "residents/manifest:vocabulary.association_kinds": {
-      "records": 1
+      "records": 1,
+      "refused_because": "The closed set of connection kinds an `associated_with` row may carry. The person and household cards print the kind word off the ROW (T-1255's `associationsHtml`) rather than looking it up here, and nothing orders, labels or withholds a row by this set. tools/validate.py is what holds a row to it; a renderer that read it would be a second answer to the same question."
     },
     "residents/manifest:vocabulary.association_resolution": {
-      "records": 1
+      "records": 1,
+      "refused_because": "The closed set of rungs an `associated_with` row may resolve to \u2014 a roof, a street, a part of town. The cards print the row's own `resolves_to` word, because how far the evidence reached is part of the claim; the SET behind it is a schema constraint tools/validate.py enforces, and no renderer implements it as behaviour. It un-banks when one draws a row differently per rung."
     },
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1,

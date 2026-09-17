@@ -4783,7 +4783,7 @@ RESIDENT_ROLE_DATED_BY = ("source_describes_date", "printing_year", "stated_date
 # tools/qualify_later_trades.py, the ladder resident pass, and T-0837's write gate) and a
 # value none of them derives is a value the next gate run reverts. A row may not fill a
 # view it does not reach; reaching without filling is the honest, recorded state, and
-# T-1295 is where the generators are made to agree.
+# T-1296 is where the generators are made to agree.
 RESIDENT_ROLE_KEYS = ("role", "kind", "as_printed", "from", "to", "precision",
                       "dated_by", "covers_scene_date", "fills_scene_view", "confidence",
                       "sources", "claim", "place", "employer_or_body", "note")
