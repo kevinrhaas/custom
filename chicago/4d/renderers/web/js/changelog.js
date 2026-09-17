@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The town\u2019s south end is somewhere you can go', kind: 'feature', ts: '',
+  { v: 913, title: 'The town\u2019s south end is somewhere you can go', kind: 'feature', ts: '2026-09-17T14:04:23.430Z', date: 'Sep 17, 2026, 9:04 AM CT',
     items: [
       'The modelled ground runs from the north line of Wright\u2019s survey all the way south to Cermak Road \u2014 nearly five kilometres of it, carried down there a fortnight ago so that the 1812 shoreline and the Prairie Avenue of the 1880s would have land to stand on when they are built. None of it was reachable. The Go-to list\u2019s southernmost viewpoint was the aerial over the town, and below that the only way south was to walk, off the bottom of the map, for the better part of an hour.',
       'Six viewpoints now go down there. Fort Dearborn itself, from outside the stockade to the south-west \u2014 the fort has stood in this model since the beginning and had never had a camera of its own. The lake shore three-quarters of a mile below it. Sixteenth at Prairie, Eighteenth at Prairie, and Cermak at Prairie, which is the model\u2019s own south wall. And the stretch of beach between the first two, which is where the fighting of 15 August 1812 is usually placed.',
