@@ -1,7 +1,7 @@
 ---
 id: T-1121
 title: The minted person hugunin_leonard_c stores the name 'Leonard, C. Hugunin' with the comma one word to the left, so the surname-first rule reads Leonard as the surname though the record id and the gazetteer's other printing both say Hugunin
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-14
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1377
 claimed_by: run 9/16/2026, 11:28:19 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T05:52:42.614Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35181833062
 ---
 
