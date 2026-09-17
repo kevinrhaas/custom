@@ -1,11 +1,17 @@
 export const CHANGELOG = [ // newest first
-  { v: 898, title: 'Nothing you can see — five gates, now measured and loud', kind: 'change', ts: '2026-09-16T17:40:22.612Z', date: 'Sep 16, 2026, 12:40 PM CT',
+  { v: null, title: 'Nothing you can see — five gates, now measured and loud', kind: 'change', ts: '',
     items: [
       'Nothing in the scene changed in this pass; it works the pipeline, on the owner\u2019s ask. What a visitor gets is five defects that used to be silent, now loud.',
       'The tool that compresses the town\u2019s 372 3-D assets is pinned. An upstream release used to rewrite every asset with a two-byte stamp diff and nothing else; regenerating any asset now reproduces the committed bytes exactly, file for file.',
       'What a first visit actually costs is now measured rather than assumed: 7.2 MB to stand in the 1835 street, counted in a real browser over the published site. That number gets the budget (12 MB) from here on — the old whole-tree cap relaxes into a housekeeping guard, so the record can grow without taxing the door.',
       'After every deploy, the deployed site is now asked whether it answers. The dev preview once served a 404 for hours while every report said success; a dead URL now raises an annotation on the deploy within minutes, and it cannot freeze the deploy to do it.',
       'The switch that ships the town to production used to be a coin toss — one slow download in four killed the whole run while it read \u201cin progress\u201d. A slow draw now costs four minutes and re-rolls, and the machinery that opens pull requests moved off the API quota the fleet kept exhausting.'
+    ] },
+  { v: 898, title: 'Thirteen residents made from bracketed fragments left the town', kind: 'fix', ts: '2026-09-16T20:24:15.690Z', date: 'Sep 16, 2026, 3:24 PM CT',
+    items: [
+      'Some newspaper transcriptions mark missing or supplied letters with square brackets. The resident consolidator kept the raw reading but rebuilt its display name without those brackets, so the final mint guard never saw the warning it was written to refuse. A clipped H. G. Hub[…] could become H G Hub; an internal supply such as E. K[in]zie was split into E K Zie, under the false surname Zie. The audit found eighteen current cards carrying this kind of reading.',
+      'The mint now makes its decision from the source reading as well as the rebuilt display name. A bracketed scene-year appearance cannot create a resident or contribute evidence to one, and the committed resident-tree check asks the same question so a hand edit or future generator change cannot bypass it.',
+      'Thirteen cards whose only usable scene-year name was bracketed have been removed. Five real identities with separate clean records remain, but their bracketed appearance no longer changes their arrival bound, scene-date presence or evidence list. The broader identity-splitting problem is recorded separately because correcting it rekeys a much larger research corpus.'
     ] },
   { v: 897, title: 'The lake below Twelfth Street ran down a ruled line', kind: 'change', ts: '2026-09-16T00:03:13.780Z', date: 'Sep 15, 2026, 7:03 PM CT',
     items: [

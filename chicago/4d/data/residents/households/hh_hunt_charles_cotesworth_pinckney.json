@@ -5,14 +5,13 @@
  "head": "hunt_charles_cotesworth_pinckney",
  "source_pass": "civic",
  "arrival": {
-  "value": "1835-08-12",
+  "value": "1835-08-29",
   "confidence": "inferred",
   "sources": [
    "chicago_american_1835",
-   "chicago_democrat_1833_1835",
    "fergus_1843_old_settler_death_notices"
   ],
-  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 12 August 1835 and nothing says when they came. THE BOUND FALLS AFTER THE SCENE DATE and the record says so rather than narrowing it: the earliest source that names this person is later than 1 July 1835, so they may have arrived after the day this scene models. present_on_scene_date is `uncertain` for that reason.",
+  "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 29 August 1835 and nothing says when they came. THE BOUND FALLS AFTER THE SCENE DATE and the record says so rather than narrowing it: the earliest source that names this person is later than 1 July 1835, so they may have arrived after the day this scene models. present_on_scene_date is `uncertain` for that reason.",
   "precision": "not_later_than"
  },
  "party_size_on_arrival": {
@@ -45,7 +44,6 @@
   "confidence": "inferred",
   "sources": [
    "chicago_american_1835",
-   "chicago_democrat_1833_1835",
    "fergus_1843_old_settler_death_notices"
   ],
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
@@ -68,7 +66,7 @@
     "chicago_democrat_1833_1835",
     "fergus_1843_old_settler_death_notices"
    ],
-   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from death_notice, newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 12 August 1835 and nothing says when they came. THE BOUND FALLS AFTER THE SCENE DATE and the record says so rather than narrowing it: the earliest source that names this person is later than 1 July 1835, so they may have arrived after the day this scene models. present_on_scene_date is `uncertain` for that reason. No figure is drawn (L1).",
+   "note": "A CONTEMPORARY CHICAGO PAPER OF 1833-1835 PRINTS THIS PERSON BY NAME IN THE TOWN. Read from death_notice, newspaper_1833_1835. THE GRADE IS THE OWNER'S RATIFIED LADDER OF 2026-09-03 (G1b), applied to every identity at once by tools/consolidate_resident_evidence.py and spent onto this card by tools/mint_civic_residents.py; the evidence blocks below carry the reading AS READ, its locator and the record it came from, so the page can be gone back to. WHAT IS RECONSTRUCTED: everything except the person and the sources — no dwelling, no trade, no origin, no family, no party. A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 29 August 1835 and nothing says when they came. THE BOUND FALLS AFTER THE SCENE DATE and the record says so rather than narrowing it: the earliest source that names this person is later than 1 July 1835, so they may have arrived after the day this scene models. present_on_scene_date is `uncertain` for that reason. No figure is drawn (L1).",
    "book_evidence": [
     {
      "list": "death_notice",
@@ -81,15 +79,6 @@
     }
    ],
    "press_evidence": [
-    {
-     "list": "newspaper_1833_1835",
-     "as_read": "Hunt, C[harle]s",
-     "locator": "chicago_democrat_1835_08_12#c007",
-     "record_id": "person_hunt_c_harle_s",
-     "describes_date": "1835-08-12",
-     "source": "chicago_democrat_1833_1835",
-     "rule": "G1b"
-    },
     {
      "list": "newspaper_1833_1835",
      "as_read": "Charles Hunt",

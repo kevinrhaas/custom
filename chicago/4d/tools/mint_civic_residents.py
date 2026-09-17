@@ -375,6 +375,22 @@ def has_family_name(name: str) -> bool:
     return bool(fam) and len(re.sub(r"[^a-z]", "", fam)) >= 3
 
 
+def bracketed_name_appearance(app: dict) -> bool:
+    """Whether an in-window appearance carries a bracketed name reading (T-1115).
+
+    Later directory annotations also use square brackets, for death notes and
+    editorial context. They are not evidence this pass may use to mint a person
+    in 1835 and they must not poison a separate clean scene-year reading.
+    """
+    raw = app.get("as_read")
+    return in_window(app) and isinstance(raw, str) and bool(UNCERTAIN.search(raw))
+
+
+def mintable_appearances(appearances: list) -> list:
+    """The evidence this mint may write: never a bracketed scene-year name."""
+    return [a for a in appearances if not bracketed_name_appearance(a)]
+
+
 def decide(row: dict, appearances: list, town_person_ids: set,
            excluded: set | None = None, own: set | None = None,
            taken_above: set | None = None) -> tuple[bool, str]:
@@ -394,14 +410,25 @@ def decide(row: dict, appearances: list, town_person_ids: set,
     if plain_fragment(name) in (excluded or set()):
         return False, (f"the town has researched this person and left them out "
                        f"({plain_fragment(name)})")
-    scene_year = [a for a in appearances if in_window(a)]
+    uncertain_readings = [a.get("as_read") for a in appearances
+                          if bracketed_name_appearance(a)]
+    scene_year = [a for a in appearances
+                  if in_window(a) and not bracketed_name_appearance(a)]
     if scene_year and all(a.get("evidence_class") == MUSTER_CLASS for a in scene_year):
         return False, "an 1832 enrollment alone is earlier evidence and never mints"
     if scene_year and all(a.get("evidence_class") == LETTER_LIST_CLASS for a in scene_year):
         return False, "the post office's letter lists are the pass beside this one's pool"
     if FIRM.search(name):
         return False, "a firm, not a person"
-    if UNCERTAIN.search(name):
+    # T-1115. `row.name` is the consolidation's rebuilt display name, not the
+    # source reading. The clusterer has already stripped square brackets by the
+    # time it writes that value, so checking it alone made this refusal dead:
+    # `H. G. Hub[…]` arrived here as `H G Hub` and minted The Hub household.
+    # Read the in-window appearances' verbatim `as_read` values as well. A
+    # bracketed appearance is excluded from the mint; a separate clean reading
+    # may still support the identity, while a name resting only on the bracketed
+    # reading reaches refusal 7.
+    if UNCERTAIN.search(name) or (uncertain_readings and not scene_year):
         return False, "the transcription bracketed the name as uncertain"
     if not has_family_name(name):
         return False, "no name the corpus prints as a family name"
@@ -809,7 +836,7 @@ def pool(docs: dict, proposal: dict, master: dict, index: dict, own: set):
         appearances = apps.get(row["identity"], [])
         ok, reason = decide(row, appearances, known, excluded, own, above)
         if ok:
-            accepted.append((row, appearances))
+            accepted.append((row, mintable_appearances(appearances)))
         else:
             refusals.append((row, reason))
     return accepted, refusals
@@ -1287,6 +1314,10 @@ def gate_problems(docs: dict, index: dict) -> list:
                     if not e.get("as_read") or not e.get("rule"):
                         problems.append(f"{where}/{p.get('id')}: an evidence row without a "
                                         f"reading or the rule that fired it")
+                    if bracketed_name_appearance(e):
+                        problems.append(f"{where}/{p.get('id')}: civic-minted from bracketed "
+                                        f"name evidence {e['as_read']!r}; T-1115 requires the "
+                                        f"verbatim reading to reach refusal 7")
             classes = {e.get("list") for k in BLOCK_KEYS for e in p.get(k) or []}
             if classes and classes <= {LETTER_LIST_CLASS}:
                 problems.append(f"{where}/{p.get('id')}: rests on a letter list alone, which "
@@ -1412,8 +1443,14 @@ REFUSAL_CASES = (
      set(), "an 1832 enrollment alone"),
     ("a firm, not a person",
      _row(name="Fixture & Co"), [_app()], set(), "a firm, not a person"),
-    ("a bracketed transcription",
+    ("a bracketed display name",
      _row(name="Ezra [Fixture]"), [_app()], set(), "bracketed the name as uncertain"),
+    ("a half surname whose brackets were stripped from the display name",
+     _row(name="H G Hub"), [_app(as_read="H. G. Hub[…]")], set(),
+     "bracketed the name as uncertain"),
+    ("an internal supply whose brackets were stripped from the display name",
+     _row(name="E K Zie"), [_app(as_read="E. K[in]zie")], set(),
+     "bracketed the name as uncertain"),
     ("a name with nothing that could be a surname",
      _row(name="E. S."), [_app()], set(), "no name the corpus prints as a family name"),
     ("a mint with no evidence block",
@@ -1434,6 +1471,17 @@ def self_test() -> int:
     if not ok:
         failed += 1
         print(f"   FAIL the control case is refused: {reason!r}")
+    mixed = [_app(record_id="press_uncertain", as_read="H. G. Hub[…]"),
+             _app(record_id="poll_clean", as_read="Hubbard, Henry G.")]
+    ok, reason = decide(_row(name="Henry G Hubbard"), mixed,
+                        set(), set(), set(), set())
+    if not ok:
+        failed += 1
+        print(f"   FAIL a clean independent appearance cannot rescue an identity from a "
+              f"separate bracketed reading: {reason!r}")
+    if [a["record_id"] for a in mintable_appearances(mixed)] != ["poll_clean"]:
+        failed += 1
+        print("   FAIL a surviving identity still writes its bracketed appearance onto the card")
     ok, reason = decide(_row(), [_app()], set(), set(), set(), {"fixture_ezra"})
     if ok or "the residency-tested pass above this one" not in reason:
         failed += 1
@@ -1577,6 +1625,20 @@ def self_test() -> int:
                              "present_on_scene_date": "present"}]})):
         failed += 1
         print("   FAIL the gate accepts `present` carried by a tax roll alone")
+
+    # T-1115's tree-side witness. The decision fixture above proves a new bad
+    # reading is refused; this mutation proves an already-committed card cannot
+    # keep one if a generator or hand edit bypasses decide().
+    bracketed = record(_row(), [_app()], {}, set())
+    bracketed["persons"][0]["civic_evidence"][0]["as_read"] = "H. G. Hub[…]"
+    if not any("bracketed name evidence" in p for p in gate_problems(
+            {pathlib.Path("hh_fixture.json"): bracketed},
+            {"households": [{"id": bracketed["id"], "civic_mint": True,
+                             "present_on_scene_date":
+                                 bracketed["present_on_scene_date"]["value"]}],
+             "counts": {"civic_mint": 1}})):
+        failed += 1
+        print("   FAIL the gate accepts a civic-minted card carrying bracketed name evidence")
 
     # a foreign block on one of this pass's cards survives a re-derivation
     base = record(_row(), [_app()], {}, set())

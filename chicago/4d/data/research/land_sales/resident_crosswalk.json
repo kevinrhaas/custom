@@ -2246,7 +2246,7 @@
       "resident_name": "Thomas Jefferson Vance Owen",
       "household_id": "hh_owen_thomas_jv",
       "match": "forename_agrees",
-      "rule": "OWEN THOMAS J V matches Thomas Jefferson Vance Owen: the forename names Thomas Jefferson Vance Owen of the 3 people of this surname, and the forename agrees in full.",
+      "rule": "OWEN THOMAS J V matches Thomas Jefferson Vance Owen: the forename names Thomas Jefferson Vance Owen of the 2 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -2266,15 +2266,6 @@
           "middle_initial": "J",
           "reading_middle_initial": "J",
           "outcome": "survives"
-        },
-        {
-          "key": "owen_v",
-          "name": "V Owen",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "J",
-          "outcome": "refused_on_the_forename"
         }
       ],
       "residence_column": "UNKNOWN",
@@ -2631,7 +2622,7 @@
       "resident_name": "Alanson Sweet",
       "household_id": "hh_sweet_alanson",
       "match": "forename_agrees",
-      "rule": "SWEET ALANSON matches Alanson Sweet: the forename names Alanson Sweet of the 3 people of this surname, and the forename agrees in full.",
+      "rule": "SWEET ALANSON matches Alanson Sweet: the forename names Alanson Sweet of the 2 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -2642,15 +2633,6 @@
           "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "survives"
-        },
-        {
-          "key": "sweet_alon_on",
-          "name": "Alon On Sweet",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "O",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "sweet_richard_m",
@@ -4081,7 +4063,7 @@
       "resident_name": "Edward E Hunter",
       "household_id": "hh_hunter_edward_e",
       "match": "forename_agrees",
-      "rule": "HUNTER EDWARD E matches Edward E Hunter: the forename names Edward E Hunter of the 5 people of this surname, and the forename agrees in full.",
+      "rule": "HUNTER EDWARD E matches Edward E Hunter: the forename names Edward E Hunter of the 4 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -4101,15 +4083,6 @@
           "middle_initial": "E",
           "reading_middle_initial": "E",
           "outcome": "survives"
-        },
-        {
-          "key": "hunter_osice",
-          "name": "Osice Hunter",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "E",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "hunter_robert",
@@ -4156,18 +4129,9 @@
       "resident_name": "J D King",
       "household_id": "hh_king_j_d",
       "match": "initial_agrees",
-      "rule": "KING JEREMIAH matches J D King: the forename names J D King of the 8 people of this surname, and the forename agrees as an initial only.",
+      "rule": "KING JEREMIAH matches J D King: the forename names J D King of the 7 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
-        {
-          "key": "king_byra",
-          "name": "Byra King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "king_byram",
           "name": "Byram King",
@@ -5152,7 +5116,7 @@
       "resident_name": "Edward E Hunter",
       "household_id": "hh_hunter_edward_e",
       "match": "initial_agrees",
-      "rule": "HUNTER E E matches Edward E Hunter: the forename names Edward E Hunter of the 5 people of this surname, and the forename agrees as an initial only.",
+      "rule": "HUNTER E E matches Edward E Hunter: the forename names Edward E Hunter of the 4 people of this surname, and the forename agrees as an initial only.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -5172,15 +5136,6 @@
           "middle_initial": "E",
           "reading_middle_initial": "E",
           "outcome": "survives"
-        },
-        {
-          "key": "hunter_osice",
-          "name": "Osice Hunter",
-          "forename_agrees": false,
-          "why": "the initials differ",
-          "middle_initial": null,
-          "reading_middle_initial": "E",
-          "outcome": "refused_on_the_forename"
         },
         {
           "key": "hunter_robert",
@@ -5273,7 +5228,7 @@
       "resident_name": "Amos Bailey",
       "household_id": "hh_bailey_amos",
       "match": "forename_agrees",
-      "rule": "BAILEY AMOS matches Amos Bailey: the forename names Amos Bailey of the 3 people of this surname, and the forename agrees in full.",
+      "rule": "BAILEY AMOS matches Amos Bailey: the forename names Amos Bailey of the 2 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
         {
@@ -5291,15 +5246,6 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "bailey_esth_r_m",
-          "name": "Esth R M Bailey",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": "R",
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         }
@@ -6149,18 +6095,9 @@
       "resident_name": "Tuthill King",
       "household_id": "hh_king_tuthill",
       "match": "forename_agrees",
-      "rule": "KING TUTHILL matches Tuthill King: the forename names Tuthill King of the 8 people of this surname, and the forename agrees in full.",
+      "rule": "KING TUTHILL matches Tuthill King: the forename names Tuthill King of the 7 people of this surname, and the forename agrees in full.",
       "via_card_merge": null,
       "rivals": [
-        {
-          "key": "king_byra",
-          "name": "Byra King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "king_byram",
           "name": "Byram King",
@@ -9693,18 +9630,9 @@
     },
     {
       "a": "KING MARSHALL",
-      "b": "8 residents named King",
-      "rule": "KING MARSHALL is refused against 8 residents named King: the forename names 0 of the 8 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named King",
+      "rule": "KING MARSHALL is refused against 7 residents named King: the forename names 0 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "king_byra",
-          "name": "Byra King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "king_byram",
           "name": "Byram King",
@@ -10665,18 +10593,9 @@
     },
     {
       "a": "KING ANDREW",
-      "b": "8 residents named King",
-      "rule": "KING ANDREW is refused against 8 residents named King: the forename names 0 of the 8 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named King",
+      "rule": "KING ANDREW is refused against 7 residents named King: the forename names 0 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "king_byra",
-          "name": "Byra King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "king_byram",
           "name": "Byram King",
@@ -11776,18 +11695,9 @@
     },
     {
       "a": "KING JOHN R",
-      "b": "8 residents named King",
-      "rule": "KING JOHN R is refused against 8 residents named King: the forename names 0 of the 8 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named King",
+      "rule": "KING JOHN R is refused against 7 residents named King: the forename names 0 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "king_byra",
-          "name": "Byra King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": "R",
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "king_byram",
           "name": "Byram King",
@@ -12530,7 +12440,7 @@
       ],
       "ruled_on": "2026-09-11",
       "ruled_under": "T-0990",
-      "was_proposed_as": "KING NEHEMIAH matches Nehemiah King: the forename names Nehemiah King of the 8 people of this surname, and the forename agrees in full."
+      "was_proposed_as": "KING NEHEMIAH matches Nehemiah King: the forename names Nehemiah King of the 7 people of this surname, and the forename agrees in full."
     },
     {
       "a": "SMITH JEDUTHAN",
@@ -13073,8 +12983,8 @@
     },
     {
       "a": "HUNTER MARIA",
-      "b": "5 residents named Hunter",
-      "rule": "HUNTER MARIA is refused against 5 residents named Hunter: the forename names 0 of the 5 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "4 residents named Hunter",
+      "rule": "HUNTER MARIA is refused against 4 residents named Hunter: the forename names 0 of the 4 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
         {
           "key": "hunter_david",
@@ -13091,15 +13001,6 @@
           "forename_agrees": false,
           "why": "two full forenames that do not agree (R4)",
           "middle_initial": "E",
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
-        {
-          "key": "hunter_osice",
-          "name": "Osice Hunter",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
           "reading_middle_initial": null,
           "outcome": "refused_on_the_forename"
         },
@@ -16984,18 +16885,9 @@
     },
     {
       "a": "KING BYRAM",
-      "b": "8 residents named King",
-      "rule": "KING BYRAM is refused against 8 residents named King: the forename names 3 of the 8 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named King",
+      "rule": "KING BYRAM is refused against 7 residents named King: the forename names 2 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "king_byra",
-          "name": "Byra King",
-          "forename_agrees": true,
-          "why": "the forenames agree in full — contraction (prefix) (M1)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "survives"
-        },
         {
           "key": "king_byram",
           "name": "Byram King",
@@ -17069,18 +16961,9 @@
     },
     {
       "a": "KING HENRY",
-      "b": "8 residents named King",
-      "rule": "KING HENRY is refused against 8 residents named King: the forename names 0 of the 8 people of this surname, and a reading is named onto exactly one or onto none.",
+      "b": "7 residents named King",
+      "rule": "KING HENRY is refused against 7 residents named King: the forename names 0 of the 7 people of this surname, and a reading is named onto exactly one or onto none.",
       "rivals": [
-        {
-          "key": "king_byra",
-          "name": "Byra King",
-          "forename_agrees": false,
-          "why": "two full forenames that do not agree (R4)",
-          "middle_initial": null,
-          "reading_middle_initial": null,
-          "outcome": "refused_on_the_forename"
-        },
         {
           "key": "king_byram",
           "name": "Byram King",

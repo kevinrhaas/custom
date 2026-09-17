@@ -11,7 +11,7 @@
   "directories": 7315,
   "newberry_index": 4914,
   "land_sales": 869,
-  "old_settlers": 460
+  "old_settlers": 463
  },
  "witness": {
   "civic": {
@@ -48,7 +48,7 @@
   },
   "old_settlers": {
    "read": 1094,
-   "spent": 634
+   "spent": 631
   }
  },
  "raised": [
@@ -593,6 +593,14 @@
    "to": 17,
    "date": "2026-09-15",
    "why": "T-1117 read the 1833 tax list for WHAT IT IS rather than for another name: claim v005 records that its entry 110 is a man three years dead, so the list is a property roll and not a residence check. A town finding rules on no person by design — it rules on the instrument every civic card's presence leg rested on — so it can only ever read ahead of the adjudication by one. The thirteen cards it moved are the spend."
+  },
+  {
+   "domain": "old_settlers",
+   "hop": "read",
+   "from": 460,
+   "to": 463,
+   "date": "2026-09-16",
+   "why": "T-1115 withdrew three later old-settler matches that had attached to residents minted only from bracketed scene-year names; those readings are again correctly unspent until a clean 1835 identity can carry them."
   }
  ],
  "lowered": [

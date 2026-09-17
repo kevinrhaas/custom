@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1298
+   "n": 1285
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -40,7 +40,7 @@
   "residents_matched_one_entry": 89,
   "residents_ambiguous": 31,
   "residents_contested": 18,
-  "residents_surname_only_refused": 219,
+  "residents_surname_only_refused": 216,
   "residents_further_initial_disagreed_refused": 4,
   "residents_letter_list_bucket_refused": 1,
   "voters_matched_one_entry": 81,
@@ -3633,11 +3633,6 @@
     "rule": "The surname 'Rogers' stands in the 1837 poll and no man under it carries the initial 'B' of 'Bridget Rogers'. A surname-only agreement is a refusal."
    },
    {
-    "name": "Byra King",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'King' stands in the 1837 poll and no man under it carries the initial 'B' of 'Byra King'. A surname-only agreement is a refusal."
-   },
-   {
     "name": "Byram King",
     "candidates_under_that_surname": 3,
     "rule": "The surname 'King' stands in the 1837 poll and no man under it carries the initial 'B' of 'Byram King'. A surname-only agreement is a refusal."
@@ -3846,11 +3841,6 @@
     "name": "Esq. Mark Noble",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Noble' stands in the 1837 poll and no man under it carries the initial 'M' of 'Esq. Mark Noble'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Esth R M Bailey",
-    "candidates_under_that_surname": 4,
-    "rule": "The surname 'Bailey' stands in the 1837 poll and no man under it carries the initial 'E' of 'Esth R M Bailey'. A surname-only agreement is a refusal."
    },
    {
     "name": "Ezekiel Turner",
@@ -4341,11 +4331,6 @@
     "name": "Osa Kimberly",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Kimberly' stands in the 1837 poll and no man under it carries the initial 'O' of 'Osa Kimberly'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Osice Hunter",
-    "candidates_under_that_surname": 1,
-    "rule": "The surname 'Hunter' stands in the 1837 poll and no man under it carries the initial 'O' of 'Osice Hunter'. A surname-only agreement is a refusal."
    },
    {
     "name": "Otis Hubbard",
