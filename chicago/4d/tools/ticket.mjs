@@ -359,6 +359,24 @@ const RUN_HOURS = 3;
  * Offline, and deliberately: `landed` is where the PR question is asked, and these
  * callers stand between a run and its work.
  */
+/**
+ * AND A FOURTH READING, `recoverable`, WHICH THIS FUNCTION DELIBERATELY CANNOT GIVE.
+ *
+ * T-1155, 2026-09-17. A steward run claimed the ticket, wrote the whole fix, pushed it,
+ * and was CANCELLED at its timeout cap before it opened a pull request. Salvage pushed
+ * the branch, so the work was on the remote and complete; nothing else knew. The claim
+ * lock went stale at three hours, a second run stole it, and rebuilt the same 71-file
+ * fix from scratch. Held against the three readings above, that branch is `cold` — an
+ * unclaimed branch older than a run — which is the heading that says "finished, or
+ * litter". It was neither, and it is the second time this exact sentence has had to be
+ * written (see T-0429 above, whose branch really was litter).
+ *
+ * The two cases are IDENTICAL offline: unfinished ticket, old branch, no lock. What
+ * separates them is whether the work already landed, and only the PR list knows that.
+ * So `recoverable` is decided in the `inflight` command, where `collectLanded` has just
+ * answered, and never here — this function stays offline, pure, and unable to stop a
+ * run that has no network.
+ */
 const HELD_STATES = ['claimed', 'review'];
 function inflightState(state, ageHours, locked = false) {
   if (['done', 'withdrawn', 'split'].includes(state)) return 'cold';
@@ -604,12 +622,35 @@ function coverage(fetched, since) {
 
 /** Prints the report. Returns nothing and throws nothing: every caller is a run on
  *  its way to work, and this is the last thing that should be able to stop one. */
-function reportLanded(tickets, { quiet = false, fixture = null, maxPages = 6 } = {}) {
+/**
+ * THE PR QUESTION, ASKED ONCE AND ANSWERED AS DATA (not printed).
+ *
+ * `inflight` needs this answer BEFORE it prints, because a branch whose ticket no
+ * merged PR names is a different animal from one whose work is already on `dev` —
+ * see `recoverable` below. `reportLanded` then prints from the same collection
+ * rather than asking GitHub twice.
+ *
+ * `ok` is the load-bearing field and it is NOT the same as an empty `found`: rule 2
+ * of this command is that an empty answer from the API is never evidence, so a caller
+ * that cannot tell must say so rather than conclude anything.
+ */
+function collectLanded(tickets, { fixture = null, maxPages = 6 } = {}) {
   const asked = tickets.filter((t) => t.id && asksAbout(t));
   const since = asked.map((t) => t.opened).filter(Boolean).sort()[0] ?? null;
   const fetched = fixture
     ? { ok: true, pulls: fixture, pages: 0, horizon: null, truncated: false }
     : closedPulls({ since, maxPages });
+  return {
+    ok: fetched.ok,
+    found: fetched.ok ? landedFindings(asked, fetched.pulls) : [],
+    pulls: fetched.ok ? (fetched.pulls ?? []) : [],
+    fetched, since, asked,
+  };
+}
+
+function reportLanded(tickets, { quiet = false, fixture = null, maxPages = 6, collected = null } = {}) {
+  const gathered = collected ?? collectLanded(tickets, { fixture, maxPages });
+  const { found, fetched, since, asked } = gathered;
 
   if (!fetched.ok) {
     if (!quiet) {
@@ -617,10 +658,9 @@ function reportLanded(tickets, { quiet = false, fixture = null, maxPages = 6 } =
       console.log('or rate-limited). Reporting nothing: an empty answer is not evidence that');
       console.log('every claimed ticket is still unfinished.\n');
     }
-    return [];
+    return gathered;
   }
 
-  const found = landedFindings(asked, fetched.pulls);
   if (!found.length) {
     if (!quiet) {
       console.log(`MERGED-PR RECONCILIATION — nothing. None of the ${asked.length} workable `
@@ -629,7 +669,7 @@ function reportLanded(tickets, { quiet = false, fixture = null, maxPages = 6 } =
       console.log('invisible here, so absence is silence, not proof.');
       console.log(coverage(fetched, since) + '\n');
     }
-    return found;
+    return gathered;
   }
 
   console.log(`MERGED-PR RECONCILIATION — ${found.length} unfinished ticket(s) named by a MERGED PR:\n`);
@@ -642,7 +682,7 @@ function reportLanded(tickets, { quiet = false, fixture = null, maxPages = 6 } =
   console.log('not a contract, so a naming coincidence must not be able to stop a run —');
   console.log('read the PR before you close the ticket on it.');
   console.log(coverage(fetched, since) + '\n');
-  return found;
+  return gathered;
 }
 
 /* ------------------------------------------------------- the claim lock */
@@ -1464,8 +1504,47 @@ switch (cmd) {
       const t = tickets.find((x) => branchCarries(b.name, x.id));
       if (t) rows.push({ b: b.name, t, age: b.age, how: inflightState(t.state, b.age, locked.has(t.id)) });
     }
-    // Live work first, then the claims that outlived the window, then the cold.
-    const RANK = { live: 0, held: 1, cold: 2 };
+
+    // THE PR LIST, ASKED BEFORE ANYTHING IS PRINTED (T-1155). `recoverable` is the one
+    // reading that needs it: a cold branch on an unfinished ticket is either work whose
+    // PR merged long ago — litter, T-0429's shape — or work that never got a PR at all
+    // and is invisible to every other instrument here. Only this answer tells them apart,
+    // so when it does not come, nothing is upgraded and the report says why.
+    const prFixtureFile = flag('pr-json');
+    // THE FIXTURE MODE REACHES NO NETWORK, EVER. `--branches-json` is the gate's
+    // constructed branch list, and its whole value is that the reading it asserts is
+    // the tool's and not today's GitHub. If that run were allowed to fall through to
+    // the live PR list, `recoverable` would depend on the real repo's merge history
+    // and the test would pass or fail by the hour. Supply `--pr-json` to exercise it.
+    const offlineFixture = typeof fixtureFile === 'string' && typeof prFixtureFile !== 'string';
+    const landed = (has('no-landed') || offlineFixture) ? null : (() => {
+      try {
+        return collectLanded(tickets, {
+          fixture: typeof prFixtureFile === 'string'
+            ? JSON.parse(readFileSync(prFixtureFile, 'utf8')) : null,
+          maxPages: Math.max(1, Math.min(30, Number(flag('pages')) || 6)),
+        });
+      } catch { return null; }                       // rule 3: never stop a run
+    })();
+    if (landed?.ok) {
+      const landedIds = new Set(landed.found.map(({ t }) => t.id));
+      // A branch that ever HAD a pull request was never invisible, whatever became of
+      // it, so it is not what this reading is for. Open PRs are not in this collection
+      // (it reads closed ones), and the report says so rather than implying otherwise.
+      const hadPr = new Set((landed.pulls ?? [])
+        .map((pr) => pr?.head?.ref).filter(Boolean));
+      for (const r of rows) {
+        if (r.how !== 'cold') continue;
+        if (!WORKABLE.includes(r.t.state)) continue;
+        if (isClaimMarker(r.b)) continue;            // a lock is not work
+        if (landedIds.has(r.t.id) || hadPr.has(r.b)) continue;
+        r.how = 'recoverable';
+      }
+    }
+
+    // Live work first, then the claims that outlived the window, then work nobody can
+    // see, then the cold.
+    const RANK = { live: 0, held: 1, recoverable: 2, cold: 3 };
     rows.sort((a, b) => RANK[a.how] - RANK[b.how] || a.t.id.localeCompare(b.t.id));
 
     if (!branches.length) {
@@ -1474,6 +1553,7 @@ switch (cmd) {
     }
     const live = rows.filter((r) => r.how === 'live');
     const held = rows.filter((r) => r.how === 'held');
+    const recoverable = rows.filter((r) => r.how === 'recoverable');
     const cold = rows.filter((r) => r.how === 'cold');
     const age = (r) => ageWords(r.age);
     const say = (r) => {
@@ -1505,8 +1585,24 @@ switch (cmd) {
     console.log('so a merged branch never becomes an ancestor of dev. The PR list is the truth:');
     console.log(`  ${REPO_URL}/pulls\n`);
 
+    if (recoverable.length) {
+      console.log(`RECOVERABLE — ${recoverable.length} branch(es) carrying work NOBODY CAN SEE:\n`);
+      for (const r of recoverable) {
+        console.log(`  ${r.t.id}  ${String(r.t.state).padEnd(9)} ${r.t.requested_by === 'owner' ? 'OWNER ' : '      '}${r.t.title}`);
+        console.log(`          ↳ ${r.b}   ${age(r)}`);
+        console.log(`          no merged PR names this ticket and no PR ever carried this branch.`);
+        console.log(`          READ IT BEFORE YOU REBUILD IT:  ${REPO_URL}/compare/dev...${r.b}?expand=1\n`);
+      }
+      console.log('Each of these is an unfinished ticket with commits on the remote and no pull');
+      console.log('request — the shape of a run cancelled before it could open one (T-1155). The');
+      console.log('queue still offers the ticket, so the next run rebuilds the work unless somebody');
+      console.log('reads the branch first. Open its PR, or take its reasoning into your own and');
+      console.log('delete it; an OPEN PR would not appear here, so check the list above too.\n');
+    }
+
     if (cold.length) {
-      console.log(`Cold — finished tickets, or unclaimed branches older than a run (${cold.length}):`);
+      console.log(`Cold — finished tickets, or unclaimed branches older than a run whose work`);
+      console.log(`       a merged PR accounts for (${cold.length}):`);
       for (const r of cold) {
         console.log(`  ${r.b}  (${r.t.id}, ${r.t.state}${age(r) ? ', ' + age(r) : ''})`);
       }
@@ -1531,7 +1627,8 @@ switch (cmd) {
     // hides (T-0802). Best-effort: `--no-landed` skips it, and a failure is silence.
     if (!has('no-landed')) {
       console.log('');
-      try { reportLanded(tickets); } catch { /* rule 3: never stop a run */ }
+      // The same collection the `recoverable` reading was decided on — asked once.
+      try { reportLanded(tickets, { collected: landed ?? undefined }); } catch { /* rule 3 */ }
     }
     break;
   }
@@ -1551,7 +1648,7 @@ switch (cmd) {
     // oldest workable ticket. The default six is ~600 closed PRs, about a fortnight
     // of this lane, which is the window the fault actually lives in.
     const maxPages = Math.max(1, Math.min(30, Number(flag('pages')) || 6));
-    const found = reportLanded(tickets, { fixture, maxPages });
+    const { found } = reportLanded(tickets, { fixture, maxPages });
     if (has('json')) console.log(JSON.stringify(found.map(({ t, pr }) => ({
       id: t.id, state: t.state, pr: pr.number, merged_at: pr.merged_at, pr_title: pr.title,
     })), null, 2));
