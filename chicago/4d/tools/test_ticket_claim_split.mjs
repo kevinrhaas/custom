@@ -25,7 +25,7 @@
  * No network: `claim --no-lock` is not used, so the lock path runs against a real
  * local bare remote, which is the only honest way to assert a compare-and-swap.
  */
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync, readFileSync, cpSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, rmSync, writeFileSync, readFileSync, readdirSync, cpSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -279,6 +279,66 @@ const markers = (bare) =>
     check('12. an unreadable base is refused loudly, never treated as an empty queue',
       missing.status !== 0 && /cannot read/.test(missing.out),
       missing.out.trim().split('\n')[0] || `status ${missing.status}`);
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
+/* -------------------------------------------- new: the ticket budget, and its signature */
+
+/**
+ * FILING IS FREE AND WORKING IS NOT (T-1295). Owner, 2026-09-17: "we spent all night and
+ * all day working on the research spend and we still have the same number of tickets we
+ * started with … I don't want too many tickets and not making any progress." Every run can
+ * file, none of them feels the cost, and the pile is what stops the work getting done.
+ *
+ * Two ceilings, both refusable IN WRITING — a queue at its limit, and a branch that has
+ * already filed its share. `--anyway` needs a `--why`, and the reason is written into the
+ * ticket, which is the same trade `Changelog: none — <why>` and the liberty ledger make.
+ */
+{
+  const { tmp, APP } = sandbox();
+  try {
+    console.log('\n  a queue at its ceiling, and a run that wants to file anyway');
+    const QUEUE = path.join(APP, 'tickets', 'QUEUE.md');
+    // 140 lines is the ceiling; stand the queue on it.
+    const many = [];
+    for (let i = 0; i < 141; i += 1) {
+      const id = `T-${4000 + i}`;
+      writeFileSync(path.join(APP, 'tickets', `${id}-fixture.md`), ticketFile(id, `fixture ${id}`, 'open'));
+      many.push(`${id} — fixture ${id}`);
+    }
+    writeFileSync(QUEUE, '# QUEUE — top is next. THE OWNER ORDERS THIS FILE.\n# --- 1. A BAND\n'
+      + many.join('\n') + '\n');
+
+    const refused = run(APP, 'new', 'a finding that should be a paragraph', '--after', 'T-4000');
+    check('15. THE BUDGET: at the ceiling, `new` is refused rather than filed',
+      refused.status !== 0 && /REFUSED/.test(refused.out)
+      && !readFileSync(QUEUE, 'utf8').includes('a finding that should be a paragraph'),
+      refused.out.split('\n')[0]);
+    check('16. …and the refusal names the cheaper thing the queue header already asks for',
+      /existing ticket first/.test(refused.out) && /--anyway --why/.test(refused.out));
+
+    const noReason = run(APP, 'new', 'filed over the budget', '--after', 'T-4000', '--anyway');
+    check('17. `--anyway` with no `--why` is refused — the reason is the whole point',
+      noReason.status !== 0 && /was written with no/.test(noReason.out),
+      noReason.out.split('\n')[0]);
+
+    const forced = run(APP, 'new', 'filed over the budget', '--after', 'T-4000',
+      '--anyway', '--why', 'it blocks a merge today and cannot wait behind the fold');
+    check('18. …and with a reason it is taken on the filer\'s word', forced.status === 0,
+      forced.out.split('\n')[0]);
+    const made = readdirSync(path.join(APP, 'tickets'))
+      .find((f) => /filed-over-the-budget/.test(f));
+    const madeText = made ? readFileSync(path.join(APP, 'tickets', made), 'utf8') : '';
+    check('19. …with the reason WRITTEN INTO the ticket, not just accepted at the prompt',
+      /FILED OVER THE BUDGET/.test(madeText)
+      && /it blocks a merge today and cannot wait behind the fold/.test(madeText),
+      made ?? '(no ticket written)');
+    check('20. …and the reason stays OUT of the ticket\'s own title',
+      /^title: filed over the budget$/m.test(madeText)
+      && !/blocks-a-merge/.test(made ?? ''),
+      (made ?? '(none)'));
   } finally {
     rmSync(tmp, { recursive: true, force: true });
   }
