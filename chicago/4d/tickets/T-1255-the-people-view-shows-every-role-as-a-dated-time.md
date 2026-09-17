@@ -1,7 +1,7 @@
 ---
 id: T-1255
 title: The people view shows every role as a dated timeline, marks which reach the scene date, and searches controlled and printed wording
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1145
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1420
 claimed_by: run 9/17/2026, 4:47:16 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T22:53:33.634Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35278258273
 ---
 
