@@ -1,7 +1,7 @@
 ---
 id: T-1227
 title: The dated plural resident role schema, the generated 1835 compatibility view, and the gates that refuse an undated or later role in it
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1145
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1387
 claimed_by: run 9/17/2026, 3:38:35 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T10:06:41.845Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35200021551
 ---
 
