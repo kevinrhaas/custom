@@ -2774,6 +2774,8 @@ def _resident_index(households: list, **kw) -> dict:
             "kin_relations": ["brother", "daughter", "father", "half_brother",
                               "half_sister", "husband", "mother", "sister",
                               "son", "wife"],
+            "association_kinds": list(V.ASSOCIATION_KINDS),
+            "association_resolution": list(V.ASSOCIATION_RESOLUTION),
             "role_kinds": ["trade", "profession", "office", "employment",
                            "business_interest"],
             "role_date_precision": ["day", "month", "year", "source_span", "unknown"],
@@ -2805,6 +2807,76 @@ def _run_residents(households: list, index_patch=None, structures=("st1",),
             (root / "residents" / "households" / f"{h['id']}.json").write_text(json.dumps(h))
         V.check_residents(set(sources), set(structures), rep, {}, data_root=root)
     return rep
+
+
+def test_a_place_relationship_is_plural_dated_and_cannot_drift() -> None:
+    """T-1238. `lives_at`/`works_at` are singular and undated; the sources are not.
+
+    The case that opened this is Jeremiah Porter's loft. Andreas has Peck invite
+    him to make his "temporary lodging place" in the unfinished store loft, the
+    link is dated 1833, and whether he was still there on 1 July 1835 is unknown
+    — none of which a single `lives_at: peck_store` can say, and T-1237's
+    reconciliation row inherits the flattening by dating the same claim to the
+    scene date. `associated_with[]` is the plural, dated, tiered form. These are
+    the refusals that keep it honest; `tools/associations.py --self-test` breaks
+    the row-level rules one at a time, and this is the wiring into the gate.
+    """
+    def row(**kw):
+        r = {"kind": "lodging", "place_or_structure_id": "st1", "resolves_to": "structure",
+             "from": "1833", "to": None, "tier": "attested", "source_id": "s1",
+             "note": "the loft, dated by the source and not by the scene"}
+        r.update(kw)
+        return r
+
+    def hh(**kw):
+        # The fixture's default `works_at` names st1, and a household that carries
+        # BOTH shapes must agree in both of them; these cases are about the home
+        # link, so the work link is withdrawn rather than half-stated.
+        kw.setdefault("works_at", {"value": None, "confidence": "inferred",
+                                   "note": "not modelled"})
+        return _resident_household(**kw)
+
+    rep = _run_residents([hh(
+        lives_at={"value": "st1", "confidence": "attested", "sources": ["s1"], "note": "n"},
+        associated_with=[row()])])
+    check("a plural dated relationship that agrees with the singular link passes",
+          not rep.errors, rep.errors)
+
+    # The drift this is for: two shapes, two answers, and a reader gets whichever
+    # field they happened to load.
+    rep = _run_residents([hh(
+        lives_at={"value": "st1", "confidence": "attested", "sources": ["s1"], "note": "n"},
+        associated_with=[row(place_or_structure_id="st2")])], structures=("st1", "st2"))
+    check("the singular link may not drift from the plural one",
+          any("may not drift" in e for e in rep.errors), rep.errors)
+
+    # A row is defined over CLAIMS, so it always names a place; and the rung it
+    # claims has to be the one the evidence reached.
+    rep = _run_residents([hh(associated_with=[row(resolves_to="street")])])
+    check("a street rung on a committed roof is refused",
+          any("is a structure id" in e for e in rep.errors), rep.errors)
+
+    # The scene-date gate, one shape further out than the arrival it copies.
+    rep = _run_residents([hh(associated_with=[row(**{"from": "1836"})])])
+    check("a relationship that had not started by the scene date is refused",
+          any("begins after the scene date" in e for e in rep.errors), rep.errors)
+
+    # An undated relationship is an admission, not a gap.
+    rep = _run_residents([hh(
+        associated_with=[row(**{"from": None, "to": None})])])
+    check("a row dating neither end must say so",
+          any("undated" in e for e in rep.errors), rep.errors)
+
+    # And the same list on a PERSON, which is where T-1147 clause 7 puts it: a
+    # household's one `works_at` is the head's, and his wife's school is not in it.
+    rep = _run_residents([_resident_household(
+        persons=[{"id": "p1", "name": "A", "relationship": "head", "grade": "attested",
+                  "sources": ["s1"], "note": "n",
+                  "occupation": {"value": "cooper", "confidence": "attested",
+                                 "sources": ["s1"], "note": "n"},
+                  "associated_with": [row(kind="tavern")]}])])
+    check("an undeclared kind is refused on a person as well as a household",
+          any("is not one of" in e and "kind" in e for e in rep.errors), rep.errors)
 
 
 def test_a_resident_who_arrived_after_the_scene_date_is_not_in_the_scene() -> None:
