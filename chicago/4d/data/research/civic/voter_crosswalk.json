@@ -1107,7 +1107,7 @@
       "discriminator": "forenames agree initial for initial: entry 'D. E. Jones' against resident 'D E Jones'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered."
     },
     {
       "record_id": "tax_1833_053",
@@ -1120,7 +1120,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Willard Jones' against resident 'Willard Jones'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered."
     },
     {
       "record_id": "tax_1833_054",
@@ -2720,7 +2720,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Benjamin Jones' against resident 'Benjamin Jones'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1834_061",
@@ -2733,7 +2733,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Willard Jones' against resident 'Willard Jones'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1834_062",
@@ -3940,7 +3940,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Willard Jones' against resident 'Willard Jones'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1835_038",

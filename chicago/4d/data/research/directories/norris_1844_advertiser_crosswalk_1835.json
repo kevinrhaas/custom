@@ -21,7 +21,7 @@
   "matched_one_card": 19,
   "matched_more_than_one_ambiguous": 3,
   "one_printed_proprietor_contested_by_two_residents": 6,
-  "surname_present_initial_absent_refused": 126,
+  "surname_present_initial_absent_refused": 127,
   "letter_list_bucket_refused": 1,
   "residents_that_refusal_reaches": 1,
   "cards_the_whole_name_refused": 0,
@@ -1325,6 +1325,13 @@
    "surname_on_a_card": "Porter",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Porter' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Hibbard Porter'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "High Es Jones",
+   "person_id": "jones_es_high",
+   "surname_on_a_card": "Jones",
+   "cards_under_that_surname": 5,
+   "rule": "The surname 'Jones' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'High Es Jones'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Hiram A Adams",

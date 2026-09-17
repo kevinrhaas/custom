@@ -7228,6 +7228,30 @@
     "lives_at_1835": null
    },
    {
+    "name": "High Es Jones",
+    "entry_1839": {
+     "claim": "f1839_e0811",
+     "as_printed": "Jones, Hiram, bds. Randolph street cor. Dearborn",
+     "printed_page": 20,
+     "occupation_1839": null,
+     "address_1839": "bds. Randolph street cor. Dearborn",
+     "streets_1839": [
+      "Randolph street"
+     ],
+     "address_is_street_only": false,
+     "forename_1835": "High",
+     "forename_printed": "Hiram",
+     "garbled_reading": false,
+     "rule": "Both readings print a full forename and the two disagree: 'High' against 'Hiram'. An initial standing against a full name is a match; two full names that differ are not."
+    },
+    "person_id": "jones_es_high",
+    "household_id": "hh_jones_es_high",
+    "grade_1835": "inferred",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null
+   },
+   {
     "name": "Hyram King",
     "entry_1839": {
      "claim": "f1839_e0855",
@@ -7768,30 +7792,6 @@
     },
     "person_id": "wilson_john",
     "household_id": "hh_wilson_john",
-    "grade_1835": "inferred",
-    "occupation_1835": "none_recorded",
-    "occupation_1835_confidence": "reconstructed",
-    "lives_at_1835": null
-   },
-   {
-    "name": "Jones, High Es",
-    "entry_1839": {
-     "claim": "f1839_e0811",
-     "as_printed": "Jones, Hiram, bds. Randolph street cor. Dearborn",
-     "printed_page": 20,
-     "occupation_1839": null,
-     "address_1839": "bds. Randolph street cor. Dearborn",
-     "streets_1839": [
-      "Randolph street"
-     ],
-     "address_is_street_only": false,
-     "forename_1835": "High",
-     "forename_printed": "Hiram",
-     "garbled_reading": false,
-     "rule": "Both readings print a full forename and the two disagree: 'High' against 'Hiram'. An initial standing against a full name is a match; two full names that differ are not."
-    },
-    "person_id": "jones_es_high",
-    "household_id": "hh_jones_es_high",
     "grade_1835": "inferred",
     "occupation_1835": "none_recorded",
     "occupation_1835_confidence": "reconstructed",

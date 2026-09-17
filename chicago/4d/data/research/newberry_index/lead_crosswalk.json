@@ -20774,7 +20774,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "reason": "Refused twice over. No candidate reaches 'Jone' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Jone' at all. And if it were, a heading against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones would still be a surname against a person, which is always a refusal here.",
+   "reason": "Refused twice over. No candidate reaches 'Jone' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Jone' at all. And if it were, a heading against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones would still be a surname against a person, which is always a refusal here.",
    "record_ids": [
     "nbi_v02_1429"
    ],
@@ -20787,6 +20787,11 @@
     {
      "id": "jones_d_e",
      "name": "D E Jones",
+     "rule": "OCR variant (0.89 similarity to 'jones')"
+    },
+    {
+     "id": "jones_es_high",
+     "name": "High Es Jones",
      "rule": "OCR variant (0.89 similarity to 'jones')"
     },
     {
@@ -20808,6 +20813,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -20897,7 +20903,7 @@
    "layer": "residents",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "reason": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold.",
+   "reason": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold.",
    "record_ids": [
     "nbi_v02_1415",
     "nbi_v02_1416",
@@ -20919,6 +20925,11 @@
      "rule": "exact surname"
     },
     {
+     "id": "jones_es_high",
+     "name": "High Es Jones",
+     "rule": "exact surname"
+    },
+    {
      "id": "jones_m",
      "name": "M Jones",
      "rule": "exact surname"
@@ -20937,6 +20948,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -73330,10 +73342,10 @@
   {
    "record_id": "nbi_v02_1415",
    "a": "See Jones r | .Chicago, III. (Meses, J, end Kirkland, J.) 1895:",
-   "b": "Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
+   "b": "Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'See Jones r | .Chicago, III. (Meses, J, end Kirkland, J.) 1895:' against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
+   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'See Jones r | .Chicago, III. (Meses, J, end Kirkland, J.) 1895:' against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
    "layers": [
     "residents",
     "structures",
@@ -73347,6 +73359,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -73371,10 +73384,10 @@
   {
    "record_id": "nbi_v02_1416",
    "a": "See Jones r | 55.2 Chicago, m . , Dlnrrttiiy, 1839. FFrrrr,, h.'-t. ser",
-   "b": "Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
+   "b": "Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"See Jones r | 55.2 Chicago, m . , Dlnrrttiiy, 1839. FFrrrr,, h.'-t. ser\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
+   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"See Jones r | 55.2 Chicago, m . , Dlnrrttiiy, 1839. FFrrrr,, h.'-t. ser\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
    "layers": [
     "residents",
     "structures",
@@ -73388,6 +73401,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -73412,10 +73426,10 @@
   {
    "record_id": "nbi_v02_1417",
    "a": "See Jones r | 8466.21 Chicago, 111. (Moses, J, end Kirkland, J.) 1815:",
-   "b": "Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
+   "b": "Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'See Jones r | 8466.21 Chicago, 111. (Moses, J, end Kirkland, J.) 1815:' against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
+   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'See Jones r | 8466.21 Chicago, 111. (Moses, J, end Kirkland, J.) 1815:' against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
    "layers": [
     "residents",
     "structures",
@@ -73429,6 +73443,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -73453,10 +73468,10 @@
   {
    "record_id": "nbi_v02_1419",
    "a": "'Jones | __> . — C h r i s t i a n Co., I l l , 'drink, rWionough 4 Co.,",
-   "b": "Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
+   "b": "Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"'Jones | __> . — C h r i s t i a n Co., I l l , 'drink, rWionough 4 Co.,\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
+   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"'Jones | __> . — C h r i s t i a n Co., I l l , 'drink, rWionough 4 Co.,\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
    "layers": [
     "residents",
     "structures",
@@ -73470,6 +73485,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -73494,10 +73510,10 @@
   {
    "record_id": "nbi_v02_1420",
    "a": "Jones | DeWitt Co., Ill, (Brint., V/. Í!, ,': Pr., Pub.) «*i»2*",
-   "b": "Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
+   "b": "Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"Jones | DeWitt Co., Ill, (Brint., V/. Í!, ,': Pr., Pub.) «*i»2*\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
+   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card \"Jones | DeWitt Co., Ill, (Brint., V/. Í!, ,': Pr., Pub.) «*i»2*\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
    "layers": [
     "residents",
     "structures",
@@ -73511,6 +73527,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -73535,10 +73552,10 @@
   {
    "record_id": "nbi_v02_1426",
    "a": "Jones | Sangamon Co., III. (Power, J. C.) 1876., 2 1 , 4 1 4 - J",
-   "b": "Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
+   "b": "Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Jones | Sangamon Co., III. (Power, J. C.) 1876., 2 1 , 4 1 4 - J' against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
+   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Jones | Sangamon Co., III. (Power, J. C.) 1876., 2 1 , 4 1 4 - J' against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
    "layers": [
     "residents",
     "structures",
@@ -73552,6 +73569,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -73576,10 +73594,10 @@
   {
    "record_id": "nbi_v02_1429",
    "a": "Jone | ^3 | _ D u d l e y fan. (Dud..,, D.) ,866-94. S j . inde, III.",
-   "b": "Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
+   "b": "Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
    "outcome": "refused",
    "class": "ocr_variant_only",
-   "rule": "Refused twice over. No candidate reaches 'Jone' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Jone' at all. And if it were, a heading against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones would still be a surname against a person, which is always a refusal here. Ruled on the card 'Jone | ^3 | _ D u d l e y fan. (Dud..,, D.) ,866-94. S j . inde, III.' against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
+   "rule": "Refused twice over. No candidate reaches 'Jone' by an exact surname key - every one of them came through the OCR similarity window, so the heading is not certainly 'Jone' at all. And if it were, a heading against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones would still be a surname against a person, which is always a refusal here. Ruled on the card 'Jone | ^3 | _ D u d l e y fan. (Dud..,, D.) ,866-94. S j . inde, III.' against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
    "layers": [
     "residents",
     "structures",
@@ -73593,6 +73611,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
@@ -73617,10 +73636,10 @@
   {
    "record_id": "nbi_v02_1431",
    "a": "Jones | lii.i.i. t r i (am. (Richmond, J, BJ 1097, Snd",
-   "b": "Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
+   "b": "Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones",
    "outcome": "refused",
    "class": "surname_only_chicago",
-   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Jones | lii.i.i. t r i (am. (Richmond, J, BJ 1097, Snd' against Benjamin Jones; D E Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
+   "rule": "Refused. 3 of the 7 card(s) heading \"'Jones/Jones/See Jones r\" do name Chicago or Cook County and the heading is the surname of Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones exactly, but the index files every family of a surname under one heading and gives no forename, so \"'Jones/Jones/See Jones r\" against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones is a surname against a person. It waits on county_histories_kett_and_co, moses_illinois_historical_and_statistical, moses_kirkland_history_of_chicago, which this project does not hold. Ruled on the card 'Jones | lii.i.i. t r i (am. (Richmond, J, BJ 1097, Snd' against Benjamin Jones; D E Jones; High Es Jones; M Jones; Willard Jones; William Jones; Jones's Grocery and Provision Store; D. E. Jones; Willard Jones; Benjamin Jones; Willard Jones; Willard Jones.",
    "layers": [
     "residents",
     "structures",
@@ -73634,6 +73653,7 @@
    "person_ids": [
     "jones_benjamin",
     "jones_d_e",
+    "jones_es_high",
     "jones_m",
     "jones_willard",
     "jones_william"
