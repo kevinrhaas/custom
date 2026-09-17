@@ -27,9 +27,7 @@
 # families and businesses ARE reconstructed (owner, 2026-09-17; T-1177), review_required, no figures.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
-T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1284 — Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
-T-1283 — Wire the dated roles onto the person card, and take the ready renderer from the duplicate branch rather than writing it twice
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
 T-1255 — The people view shows every role as a dated timeline, marks which reach the scene date, and searches controlled and printed wording
 T-1236 — EPIC: rule on the unasserted units the person-fact passes do not own — the land-sale, civic, 1830-census, church, newspaper and directory names, the resident-pass reserved people, and the book readings of ground, harbour, weather, price and institution
@@ -39,6 +37,8 @@ T-1240 — The people and business views expose the plural links, their dates, c
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
+T-1291 — Rule the remaining one-letter and disputed-name identity pairs in ONE pass and accept the residue as ambiguous
+T-1290 — Close the 1840 census reading to the standard already set, and record the residue as an accepted gap rather than nine more leaf tickets
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1158 — Per-attribute tiers on every person, household and business field — attested, inferred or reconstructed, each with its reason — so a profile can be filled at the lowest honest tier and replaced later
 T-1159 — Export the borderline roster: every name the research read and withheld from 1835 — single-source, refused, surname-only, uncertain presence, letter-list-only — with its source, reason and re-admission class, so reconstruction can name real people before it invents any
@@ -155,6 +155,7 @@ T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 # --- 7. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
+T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
@@ -176,19 +177,6 @@ T-0371 — The lattice path's block rotation is dead code that measure_rank_bias
 T-0433 — T-0346's measured costs for the new desktop parts 4, 5 and 6 were never filed, and the two places they are written down disagree
 T-0030 — A queue card in Manager reading tickets.json
 # --- 8. RESEARCH COMPLETION — remaining readings, identity epics, and deposit closeout
-T-1153 — Rule the 28 readings of the 1 April 1834 return where the page and the extraction set a name differently, and lift the two lines no claim carries
-T-1140 — C12's roll exhaustion reaches a forename only, and five one-letter SURNAME pairs are the shape it would decide
-T-1027 — EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
-T-0835 — The Newberry leads re-parse to 8 fewer cards from unchanged card text, so the parser moved under leads.json and the fingerprint gate could not see it
-T-0958 — The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
-T-0761 — The banded rule profile read_census_continuation.py needs: the printed rules of a continuation leaf lean up to 41 px and one profile over the whole body loses them
-T-0984 — The remaining eight filled continuations of images 51-74 read one leaf per run, and blank 33SQ-GYYJ-BH recorded swept-and-empty
-T-0957 — Two readings of 33S7-9YYJ-L3 disagree on the line count and on the printed footing: 27 lines and 115, or 28 lines and 113
-T-0942 — The SCHOOLS block of 33S7-9YYJ-L3 carries ink and is unread: the landed reading took the TOTAL column and the footer row and swept nothing to their right
-T-0926 — The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 154, and the residue sits among fifteen inferred figures
-T-0934 — A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars footing lost its evidence to the gutter and the deposit holds one image
-T-0944 — Printed 232's continuation foots 198 against a column that reads 193: T-0642's footing key no longer closes on the one pairing made outside the deposit
-T-0971 — The two open columns of printed 240: a repeated two-stroke figure on four cells that closes m_20_30 at 41 or m_30_40 at 13, never both
 T-1219 — The three re-spelled cards still say in prose that the papers print the reading T-1139 overturned: hh_fraser_wm_h reads 'Wm. H. Frazer' and its own note says the papers print 'Wm. H. Fraser'
 
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
