@@ -2666,6 +2666,49 @@ step "the research domains hold one shape" \
 step "the four voter lists, their crosswalk and their refusals re-derive" \
   python3 tools/read_voter_lists.py --check
 
+# T-0856. THE 1830 SCHEDULE, for the same reason and with a second fault underneath.
+# `read_census_1830.py` had a `--check` from the day it was written and check.sh never
+# called it, so the 200-head reading's crosswalk drifted off the town tree exactly as
+# the voter lists above had: T-0839 and its siblings FOLDED `hh_clybourn_archibald`
+# onto `hh_clybourne_archibald`, retired `hh_mann_john`, `hh_reed_george`,
+# `hh_smith_d_a` and `hh_smith_james`, and raised `hh_harkness_j_p` — and the committed
+# crosswalk went on printing sixteen matches and sixty-two refusals against cards that
+# no longer exist. It re-derives at fourteen and sixty-three, with Clybourn demoted from
+# a merge to a spelling CANDIDATE, which is the conservative direction and the whole
+# argument for gating it: nobody chose those numbers, and nobody saw them move.
+#
+# The drift was invisible from below AND from above. `research_domains.py --check` is
+# green because it does not re-derive this file, and `consolidate_resident_evidence.py
+# --check` — which copies these refusal strings verbatim into identity_master.json —
+# was consistent with the stale copy and went red only once the crosswalk beneath it
+# was rebuilt. Both are re-derived elsewhere in this gate; neither could reach this.
+step "the 1830 schedule's reading and its crosswalk re-derive off today's town tree" \
+  python3 tools/read_census_1830.py --check
+
+# And the fault underneath: `--check` used to re-derive IN PLACE — snapshot, `build()`
+# over the committed files, diff. That reads as a check and behaves as a REPAIR, so the
+# first run printed FAIL and mended the file, the second printed pass, and the drift was
+# gone before anyone could look at it. As a gate it would have been worse than none:
+# green on the second commit of every day, and every step below it reading a working
+# tree this one had dirtied. It builds into a scratch tree now, and this holds it there.
+selftest "…and that check stays non-destructive, and still fires on a real drift" \
+  python3 tools/read_census_1830.py --self-test
+
+# T-0856 ask 2, which was "say what ELSE under data/research/ derives from the household
+# tree and is likewise unchecked — this cannot be the only one." Answered in a PR body
+# that is true for a day: the tree is folded and renamed most weeks and a new domain
+# reader lands most weeks, so the only answer that stays true is the enumeration. This
+# walks every generated file under data/research/, keeps the ones whose generator reads
+# data/residents/households/, and requires each to be re-derived by a step above. The
+# answer on the day it was written was "read_census_1830.py, and nothing else" — 25
+# generators, 39 files, one hole — and this goes red on the next one rather than waiting
+# for the next T-0757 to trip over it.
+step "every household-derived file under data/research/ is re-derived by this gate" \
+  python3 tools/check_household_derivations.py --check
+
+selftest "…and that enumeration's own assertions still fire when broken" \
+  python3 tools/check_household_derivations.py --self-test
+
 # T-1135. The Pruyne/Pryne ruling is a COUNT over that 1833 tax roll and not a reading of
 # a page, and every figure it turns on can move underneath it: the roll is re-derived by
 # the step above, the ground it stands on is re-derived by the corporation-limits tool,
