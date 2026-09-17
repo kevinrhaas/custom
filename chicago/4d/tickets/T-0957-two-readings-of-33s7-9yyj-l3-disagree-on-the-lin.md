@@ -1,7 +1,7 @@
 ---
 id: T-0957
 title: Two readings of 33S7-9YYJ-L3 disagree on the line count and on the printed footing: 27 lines and 115, or 28 lines and 113
-state: open
+state: withdrawn
 epic: PAPERS
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1290
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:18:40.430Z
 claimed_run: null
 ---
 

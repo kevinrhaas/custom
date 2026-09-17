@@ -1,7 +1,7 @@
 ---
 id: T-1027
 title: EPIC: the 68 one-letter card pairs the exact candidate test cannot see, ruled on pages one cluster at a time
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-11
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1291
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:18:44.652Z
 claimed_run: null
 ---
 
