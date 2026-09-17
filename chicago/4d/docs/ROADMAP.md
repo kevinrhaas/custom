@@ -509,26 +509,32 @@ it does not guarantee that no future checkout will be slow.
 failed before smoke when the unchanged `drain-selftest.mjs` hit `ENOTEMPTY`
 removing a temporary `.git/objects` directory; it has no checkout reading.
 #616 replaces that missing bake. The timestamped audit is
-[`measurements/T-0437-checkouts.json`](measurements/T-0437-checkouts.json),
-including job outcomes and all step timestamps. At capture, 23 of the 40 smoke
-bodies had finished; all 40 checkout steps had finished. These are checkout
-measurements, **not a claim that five full renderer matrices passed**. Stage
-3–6 triangle-budget failures also occur in baseline #606 and are addressed by
-T-1245 (#1406), already merged into the target `dev`. The sampling refs predate
-that fix. Publishing the final workflow revision may supersede still-running
-smoke bodies on the PR branch; the completed checkout readings are retained.
+[`measurements/T-0437-checkouts.json`](measurements/T-0437-checkouts.json).
+All 40 jobs are now terminal: **27 passed, 8 failed, 5 cancelled**. All 40
+checkout steps succeeded. The eight stage 3–6 triangle-budget failures also
+occur in baseline #606 and are addressed by T-1245 (#1406), already on target
+`dev`; the sampling refs predate it. The five cancellations are #611 smoke
+bodies superseded by the final workflow push, after their checkout readings.
+This is **not a claim that five full renderer matrices passed**.
 
-**The new cap is 30 minutes, sized from the spread rather than the fastest leg.**
-The largest completed successful smoke body in the captured sample is **23 m 07 s**
-(#613 desktop `10-13`), longer than the historical **21 m 48 s**; use 1387 s.
-The largest overhead of a successful completed job is **49 s** (job wall time
-minus smoke), including checkout, Playwright, artifact, boot check where selected,
-and cleanup. Combining those maxima gives **1436 s (23 m 56 s)**. A 25% margin
-gives 1795 s; round up to **1800 s / 30 minutes**, leaving **364 s / 25.3%**.
-Failed or unfinished bodies do not count as successful-duration measurements.
-The same reasoning is written beside `timeout-minutes`; all eight legs and the
-blocking `open-pr` dependency remain. Future growth needs another reading, not
-an assertion that sparse checkout makes every other step cheap.
+**The completed sample refutes the provisional 30-minute cap.** The first
+snapshot contained 23 completed bodies and a largest successful body of 23 m 07 s.
+Three later successful desktop `10-13` bodies took **31 m 49 s** (#615),
+**31 m 59 s** (#614), and **32 m 10 s** (#616); a 30-minute cap would have
+killed all three. PR #1407 landed the partial-snapshot cap before this correction.
+The checkout improvement stands; the smaller body bound does not.
+
+**The corrected cap is 40 minutes**, reduced from the original 45, using the
+completed results. Largest successful body: **1930 s / 32 m 10 s** (#616).
+Largest overhead of a successful job: **51 s** (job wall time minus body),
+including checkout, Playwright, artifact, boot check where selected, and cleanup.
+Combining these maxima gives **1981 s / 33 m 01 s**. Add 20% (**2377.2 s**) and
+round up to the next five-minute interval: **2400 s / 40 minutes**. This leaves
+**419 s / 6 m 59 s / 21.2%** headroom. The failed and cancelled bodies do not
+count as successful-duration samples. The reasoning is beside `timeout-minutes`;
+all eight legs and the blocking `open-pr` dependency remain. Future growth needs
+another complete reading, not an assumption that a faster checkout makes the
+renderer body cheap.
 
 **AND THE THREE CAPS IN THIS SECTION BOUND THREE DIFFERENT THINGS — corrected
 2026-09-03 by T-0450, on the owner's report.** Everything above is written against the

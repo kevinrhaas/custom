@@ -9,19 +9,21 @@ checkout readings: 1–5 s, median 3 s, p90 4 s, zero over five or thirteen minu
 The comparable desktop-tail p90 fell from 331 s (104 historical legs) to 4 s
 (five new legs); historical counts over those thresholds were 11 and 7.
 
-The cap falls from **45 to 30 minutes**: the largest completed successful smoke
-body is 23 m 07 s; maximum observed successful-job overhead is 49 s. Combining
-those maxima leaves 6 m 04 s / 25.3% headroom. ROADMAP § THE RUN BUDGET and
-`measurements/T-0437-checkouts.json` retain raw timestamps, per-bake spread,
-the concurrent unchanged baseline, and the failed pre-smoke attempt #612.
-Five bakes are a short follow-up, not a guarantee against future rare tails.
+The corrected cap is **40 minutes**, down from the original 45. PR #1407's
+provisional 30-minute cap used a partial snapshot; three later successful bodies
+took 31 m 49 s, 31 m 59 s and **32 m 10 s**. The completed sample's largest
+successful-job overhead is **51 s**. Combining these maxima gives 33 m 01 s;
+40 minutes leaves **6 m 59 s / 21.2%** headroom. The calculation and complete
+timestamps are in ROADMAP § THE RUN BUDGET and `measurements/T-0437-checkouts.json`.
 
-This is not a claim of five green renderer matrices: sampling refs predate
-T-1245, whose triangle-budget fix is already on target `dev`; baseline #606
-reproduced those failures. At the evidence snapshot, all checkout steps and 23
-smoke bodies had finished. The final workflow push may supersede remaining PR-
-branch bodies after their checkout measurements; unfinished bodies are not used
-to estimate successful smoke duration. Nothing in the scene changes.
+Final outcomes: **27 smoke jobs passed, 8 failed, 5 were cancelled**; every
+checkout step succeeded. The eight failures are the pre-T-1245 triangle-budget
+failures also reproduced by unchanged baseline #606; the target dev contains
+that fix. The five cancellations are #611 bodies superseded by the final
+workflow push after their checkout readings. Failed/cancelled bodies are not
+used as successful-duration samples. This is not five green renderer matrices;
+five bakes also cannot guarantee that no rare future checkout tail will occur.
+Nothing in the scene changes.
 
 Isolated sparse-tree verification passed stage 9 + always-on checks at both
 viewports (**46/0**, zero page errors); boot passed at 7.270 MB / 12 MB against
