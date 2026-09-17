@@ -2478,6 +2478,17 @@ selftest "…and its own assertions still fire when broken" \
 selftest "…and closed-ledger mutations cannot pass silently" \
   python3 tools/measure_research_spend.py --ledger-self-test
 
+# T-1296. The land-sale ruling register is DERIVED — 1,572 notes nobody typed — so the
+# claim it makes is not "somebody wrote these down" but "these re-derive from the register
+# as read and the crosswalk as adjudicated". That claim is only worth anything if it is
+# checked, and a drifted derived register is worse than an absent one: it reads as
+# judgement and is not.
+step "the land-sale rulings re-derive from the register and the crosswalk (T-1296)" \
+  python3 tools/spend_land_sales_rulings.py --check --quiet
+
+selftest "…and each of its rules still fires on the row it is for" \
+  python3 tools/spend_land_sales_rulings.py --self-test
+
 # T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
 # RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
 # of the tree at the moment the cohort was fixed. The reservation is re-derived and must
