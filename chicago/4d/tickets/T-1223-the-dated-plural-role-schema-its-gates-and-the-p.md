@@ -1,7 +1,7 @@
 ---
 id: T-1223
 title: The dated plural role schema, its gates and the person card's role timeline, with Daniel Elston's four dated roles as the fixture
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1145
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1386
 claimed_by: run 9/17/2026, 3:59:21 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T10:05:33.295Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35202200830
 ---
 

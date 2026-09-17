@@ -21,7 +21,6 @@
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
 T-1217 — The card for jones_es_high leads with its family name, because the printing 'Es,Jones, High' sets it in the middle, and a re-mint would file it in the directory under es
-T-1223 — The dated plural role schema, its gates and the person card's role timeline, with Daniel Elston's four dated roles as the fixture
 T-1224 — Migrate every matched role from the newspaper gazetteer, the later-occupation blocks and the 1839 directory and civic-register crosswalks, and publish the offered/asserted/folded/refused/unresolved reconciliation table
 T-1225 — Resolve T-0991's six 1833 trades as dated pre-scene roles, and extend the resident audit and the layer-read census to roles
 T-1226 — Search and filter the People view on both the controlled role and the source's printed wording
