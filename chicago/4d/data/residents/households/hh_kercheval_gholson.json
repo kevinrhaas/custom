@@ -80,7 +80,22 @@
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Named of Chicago in a federal payment clause of the 1833 treaty transcription",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "describes_date": "1833-09-26",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0493#01",
+     "as_read": "The 1833 treaty transcription names Gholson Kercheval of Chicago in a federal payment clause",
+     "note": "A contemporary federal record that names both the man and the town, two years before the scene. The block calls it a corroboration of the treaty-service chronology and carried it only as prose."
+    }
+   ]
   }
  ],
  "touches_removal": true,
