@@ -93,6 +93,34 @@
      }
     ]
    },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "An early member of Chicago's First Baptist Church after its organisation of October 1833",
+     "confidence": "inferred",
+     "sources": [
+      "rr_baptist_chicago_lathrop"
+     ],
+     "describes_date": "1833-10-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0485#01",
+     "as_read": "names Samuel S. Lathrop as one of the church's early members after its October 1833 organization",
+     "note": "A dated Chicago appearance nearly two years before the postal seed the record is minted from."
+    },
+    {
+     "field": "life_event",
+     "value": "Built the fence around Rev. A. B. Freeman's Chicago grave",
+     "confidence": "inferred",
+     "sources": [
+      "rr_baptist_chicago_lathrop"
+     ],
+     "describes_date": "1835-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0485#02",
+     "as_read": "records him building the fence around Rev. A. B. Freeman's Chicago grave",
+     "note": "An undated act in the source, bounded to the church's early years. Carried at year precision with the source's own vagueness intact."
+    }
+   ],
    "roles": [
     {
      "role": "minister",

@@ -118,6 +118,21 @@
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
     }
    ],
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "One of two American families occupying the old log officers’ quarters inside the pickets of the ungarrisoned fort in July 1827",
+     "confidence": "inferred",
+     "sources": [
+      "census_1830_peoria_county_chicago_precinct"
+     ],
+     "describes_date": "1827-07-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0510#04",
+     "as_read": "one of two American families occupying the old log officers’ quarters inside the pickets of the ungarrisoned fort in July 1827",
+     "note": "A dated Chicago residence eight years before the scene, and the earliest thing the corpus holds about this man. It is contemporary in what it describes and it settles nothing about 1 July 1835, which is why it is a life event and not an arrival."
+    }
+   ],
    "roles": [
     {
      "role": "attorney",

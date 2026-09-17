@@ -49,7 +49,7 @@
  "persons": [
   {
    "id": "jones_es_high",
-   "name": "Jones, High Es",
+   "name": "High Es Jones",
    "relationship": "head",
    "grade": "inferred",
    "letter_list_only": true,

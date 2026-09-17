@@ -88,7 +88,22 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — fcp_treaty_chicago_1833_payments. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Named in the 1833 Treaty of Chicago payment schedule",
+     "confidence": "inferred",
+     "sources": [
+      "fcp_treaty_chicago_1833_payments"
+     ],
+     "describes_date": "1833-09-26",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0484#01",
+     "as_read": "independently in the 1833 Treaty of Chicago payment schedule",
+     "note": "Contemporary and at Chicago. The block's own warning about later Will and Kankakee geography is the next row and is not softened by this one."
+    }
+   ]
   }
  ],
  "touches_removal": false,

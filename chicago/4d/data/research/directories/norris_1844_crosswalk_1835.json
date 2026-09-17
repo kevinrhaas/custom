@@ -23,9 +23,9 @@
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 14,
   "residents_that_further_initial_refusal_reaches": 13,
-  "initial_agreed_forenames_disagreed_refused": 47,
+  "initial_agreed_forenames_disagreed_refused": 48,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1844_entry_by_that_refusal": 26,
+  "residents_left_with_no_1844_entry_by_that_refusal": 27,
   "entries_the_whole_name_refused": 6,
   "residents_that_whole_name_refusal_reaches": 5,
   "entries_a_female_honorific_refused": 0,
@@ -6372,6 +6372,23 @@
     "forename_printed": "Henry",
     "garbled_reading": false,
     "rule": "Both readings print a full forename and the two disagree: 'Hanna' against 'Henry'. An initial standing against a full name is a match; two full names that differ are not."
+   }
+  },
+  {
+   "resident": "High Es Jones",
+   "person_id": "jones_es_high",
+   "grade_1835": "inferred",
+   "entry_1844": {
+    "claim": "n1844_e0976",
+    "as_printed": "Jones, Hiram, clerk at L. W. Clark's, res Wm Jones",
+    "printed_page": 42,
+    "occupation_1844": "clerk at L. W. Clark's",
+    "place_of_business_1844": null,
+    "address_1844": "res Wm Jones",
+    "forename_1835": "High",
+    "forename_printed": "Hiram",
+    "garbled_reading": false,
+    "rule": "Both readings print a full forename and the two disagree: 'High' against 'Hiram'. An initial standing against a full name is a match; two full names that differ are not."
    }
   },
   {

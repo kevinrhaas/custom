@@ -100,6 +100,22 @@
      }
     ]
    },
+   "profile_facts": [
+    {
+     "field": "arrival_at_chicago",
+     "value": "1833-08-17",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_old_settlers_hugunin_1883"
+     ],
+     "describes_date": "1833-08-17",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0479#01",
+     "as_read": "record Leonard C. Hugunin as arriving 17 August 1833",
+     "note": "The Old Settlers' proceedings give the day. The household's 1835-06-30 is a postal bound and stands.",
+     "precision": "day"
+    }
+   ],
    "roles": [
     {
      "role": null,

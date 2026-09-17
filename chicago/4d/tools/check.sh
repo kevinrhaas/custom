@@ -696,6 +696,21 @@ step "the resident synthesizer has not drifted further from the cards it writes"
 selftest "…and that ratchet fires in both directions" \
   python3 tools/synthesize_resident_research.py --drift-self-test
 
+# T-1232. The 94 research blocks whose identity this project asserted held dated arrivals,
+# origins, marriages, deaths and expansions of initials in PROSE, beside structured fields
+# that read "Not attested." `tools/spend_person_facts.py` turns every candidate in every
+# research block into an adjudicated row and writes only the asserted ones onto the records.
+# `--check` holds the table against the readings AND the records against the table, in both
+# directions, so a hand-edited card and a lost row are the same red line.
+step "the person-fact table and the facts it spent agree with the records" \
+  python3 tools/spend_person_facts.py --check
+
+# The adjudication rules, each mutated into the failure it exists to catch: a later volume
+# promoted, an out-of-town fact asserted as a Chicago arrival, a reading graded
+# `reconstructed`, a value the record already holds asserted twice.
+selftest "…and every one of those rules bites when it is broken" \
+  python3 tools/spend_person_facts.py --self-test
+
 step "inferred placeholder GLBs match their records" \
   python3 generators/inferred_placeholder.py --check
 

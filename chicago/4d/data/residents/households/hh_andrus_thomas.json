@@ -92,6 +92,61 @@
      }
     ]
    },
+   "profile_facts": [
+    {
+     "field": "arrival_at_chicago",
+     "value": "1833-12-01",
+     "confidence": "inferred",
+     "sources": [
+      "rr_dupage_andrus_1882"
+     ],
+     "describes_date": "1833-12-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0485#01",
+     "as_read": "arrival in Chicago Dec. 1, 1833",
+     "note": "The DuPage history gives a day, and the household's own arrival block is explicit that its 1835-03-31 is a BOUND FROM THE RETURN and not an arrival. The two are different claims about different things and both stand; the bound is not touched.",
+     "precision": "day"
+    },
+    {
+     "field": "departure_from_chicago",
+     "value": "Returned east in the autumn of 1834",
+     "confidence": "inferred",
+     "sources": [
+      "rr_dupage_andrus_1882"
+     ],
+     "describes_date": "1834-09-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0485#02",
+     "as_read": "return east in autumn 1834",
+     "note": "A dated leaving, carried as a life event. It does not move present_on_scene_date, which stays 'uncertain' on its own reasoning."
+    },
+    {
+     "field": "life_event",
+     "value": "Back at Chicago in June 1835",
+     "confidence": "inferred",
+     "sources": [
+      "rr_dupage_andrus_1882"
+     ],
+     "describes_date": "1835-06-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0485#03",
+     "as_read": "arrival back at Chicago in June 1835",
+     "note": "The month before the scene date, from the same chronology. Recorded as the source states it and not converted into presence on 1 July."
+    },
+    {
+     "field": "departure_from_chicago",
+     "value": "Settled in DuPage in July 1835",
+     "confidence": "inferred",
+     "sources": [
+      "rr_dupage_andrus_1882"
+     ],
+     "describes_date": "1835-07-01",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0485#04",
+     "as_read": "before settling in DuPage in July",
+     "note": "The same month as the scene. It is why the record's presence is 'uncertain' rather than 'present', and writing it down is what makes that grade legible instead of unexplained."
+    }
+   ],
    "roles": [
     {
      "role": "carpenter",

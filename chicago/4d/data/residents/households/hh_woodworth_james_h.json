@@ -119,6 +119,21 @@
      "note": "Age range derived from birth year because birth month/day is not asserted here."
     }
    },
+   "profile_facts": [
+    {
+     "field": "name_as_printed",
+     "value": "James Hutchinson Woodworth",
+     "confidence": "inferred",
+     "sources": [
+      "ushouse_james_h_woodworth"
+     ],
+     "describes_date": "1833-01-01",
+     "place_class": "not_a_place",
+     "record_id": "resident_research:T-0486#02",
+     "as_read": "James Hutchinson Woodworth",
+     "note": "The middle name behind the record's 'James H.'. Carried beside the read name; the card's displayed name does not move."
+    }
+   ],
    "roles": [
     {
      "role": "dry_goods_merchant",

@@ -20,10 +20,10 @@
 # Build tickets in 5C are needs_bake and hand on a successor. No reconstructed Native presence.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
-T-1217 — The card for jones_es_high leads with its family name, because the printing 'Es,Jones, High' sets it in the middle, and a re-mint would file it in the directory under es
 T-1223 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
 T-1224 — The people view shows every role as a dated timeline, marks which reach the scene date, and searches controlled and printed wording
-T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
+T-1234 — Spend the person units the matched-research table does not reach: every unasserted book, index and letter-list-suspicion unit in the research ledger named to a structured resident field or refused in writing
+T-1233 — Render the asserted person facts and every withheld candidate's reason on the resident card, and rule on the 83 unread resident field paths — wired, refused in writing, or removed
 T-1228 — Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
@@ -147,7 +147,9 @@ T-0934 — A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars f
 T-0944 — Printed 232's continuation foots 198 against a column that reads 193: T-0642's footing key no longer closes on the one pairing made outside the deposit
 T-0971 — The two open columns of printed 240: a repeated two-stroke figure on four cells that closes m_20_30 at 41 or m_30_40 at 13, never both
 T-1219 — The three re-spelled cards still say in prose that the papers print the reading T-1139 overturned: hh_fraser_wm_h reads 'Wm. H. Frazer' and its own note says the papers print 'Wm. H. Fraser'
+
+# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
+# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
 
 
-T-1227 — Settle the cooperage against the platted Market Street corridor in the recipe that places it, so no hand-typed coordinate stands in for the ruling

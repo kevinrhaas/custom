@@ -88,6 +88,34 @@
      "chicago_voter_lists_1833_1835_irad"
     ]
    },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Quartermaster's clerk at Fort Dearborn, 1831-1833",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "describes_date": "1831-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0493#01",
+     "as_read": "served as quartermaster's clerk at Fort Dearborn in 1831-33",
+     "note": "A dated Chicago post before the scene, from a 1928 local history that names the fort. The office itself is a role and T-1145's; the dated presence at the fort is the fact carried here."
+    },
+    {
+     "field": "life_event",
+     "value": "A veteran of the War of 1812",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "describes_date": "1812-01-01",
+     "place_class": "not_a_place",
+     "record_id": "resident_research:T-0493#02",
+     "as_read": "identifies Frederick Myers as a War of 1812 veteran",
+     "note": "A biographical fact stated outright. It bears on his age without naming one, and it is not turned into a birth year here."
+    }
+   ],
    "roles": [
     {
      "role": "clerk",

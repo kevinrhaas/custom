@@ -19,9 +19,12 @@
   "note": "Not attested."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "Buffalo, New York",
+  "confidence": "inferred",
+  "sources": [
+   "chicago_voter_lists_1833_1835_irad"
+  ],
+  "note": "Stated in the same sentence as the day he arrived. The household's origin block reads 'Not attested.' and this is the source that attests it. Read from chicago_voter_lists_1833_1835_irad: “arrived from Buffalo June 27, 1833”. Spent by T-1232 out of the matched resident research, which held it in prose; the household's other claims are untouched."
  },
  "reason_for_coming": {
   "value": null,
@@ -92,6 +95,35 @@
      "chicago_voter_lists_1833_1835_irad"
     ]
    },
+   "profile_facts": [
+    {
+     "field": "arrival_at_chicago",
+     "value": "1833-06-27",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "describes_date": "1833-06-27",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0493#01",
+     "as_read": "Samuel Jackson arrived from Buffalo June 27, 1833",
+     "note": "The same journey Andreas dates for Joseph Chandler, from the other end. Two independent readings of one arrival agree to the day.",
+     "precision": "day"
+    },
+    {
+     "field": "origin",
+     "value": "Buffalo, New York",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "describes_date": "1833-06-27",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0493#02",
+     "as_read": "arrived from Buffalo June 27, 1833",
+     "note": "Stated in the same sentence as the day he arrived. The household's origin block reads 'Not attested.' and this is the source that attests it."
+    }
+   ],
    "roles": [
     {
      "role": null,

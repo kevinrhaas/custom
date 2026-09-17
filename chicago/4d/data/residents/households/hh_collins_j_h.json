@@ -84,6 +84,21 @@
     ],
     "summary": "The 1837 election return prints 'James H. Collins.', expanding both initials. The papers carry him as an attorney across three separate runs from 28 January 1834 to 5 August 1835. The Fergus 1839 surname entry is contested between several residents and is NOT carried; the 1837 return is what makes this."
    },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Moved to Illinois in 1833 and practised at Chicago in 1834 with his former student John D. Caton",
+     "confidence": "inferred",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0509#02",
+     "as_read": "says he moved to Illinois in 1833, and records his 1834 Chicago practice with former student John D. Caton",
+     "note": "Dated before the scene, and it names a second person this layer carries. The partnership is a working tie and not a household."
+    }
+   ],
    "roles": [
     {
      "role": "attorney",
