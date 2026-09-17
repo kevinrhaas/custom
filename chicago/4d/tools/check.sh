@@ -3880,5 +3880,17 @@ step "the agency relation still re-derives from the committed register" \
 selftest "…and its own refusals still fire when broken" \
   python3 tools/compile_agencies.py --self-test
 
+# T-1238. `associated_with[]` is the plural, dated form of `lives_at`/`works_at`, and
+# its coverage file is how the migration's remaining distance stays a number rather than
+# an impression: both shapes stand until the last record moves, and a half-migrated layer
+# is exactly the state in which two fields quietly say two different things about one man.
+# The row rules are broken one at a time by the module's own self-test; validate.py wires
+# them into the gate and refuses a singular link that has drifted from its plural rows.
+step "the association coverage still re-derives from the committed records" \
+  python3 tools/associations.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/associations.py --self-test
+
 check_summary
 exit $CHECK_FAILED
