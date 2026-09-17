@@ -13,7 +13,13 @@
 # unclassified research does not mean forcing uncertain people or locations into 1835.
 # T-1027 is the one-letter identity epic; Newberry and 1840 deposit work follow
 # their lower resident yield. Read each ticket before splitting or claiming.
-# Reconstruction (owner, 2026-09-17): bands 2-5 run in order and only after T-1157 says GO.
+# Reconstruction (owner, 2026-09-17): BAND 2 IS OPEN NOW — it reads the layer and writes
+# reports, models and an order book, and it needs no sign-off to do that. Bands 3-5 WRITE
+# reconstructed people, businesses and roofs, and those wait for T-1157 to say GO.
+#   The first cut gated 2-5 together, and it starved the top: band 1's rows were all in
+#   flight or self-blocked, so runs fell past 59 gated tickets into SOUTH THROUGH TIME and
+#   LOOP IMPROVEMENTS (T-0467, T-1154, 2026-09-17). A gate that empties the top of the
+#   queue sends the loop to the bottom of it.
 # Every reconstructed value carries tier, basis, seed and replaceable_by (T-1158); the order
 # book (T-1166) is the quota; docs/RESEARCH/1835_reconstruction_plan.md is the map.
 # Sub-bands (3A/3B/3C, 5A-5E) may be taken by different agents; within a sub-band, top first.
@@ -29,7 +35,7 @@ T-1228 — Three inferred-household passes still derive the 96 households the ow
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
-# --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (after T-1157 says GO)
+# --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1158 — Per-attribute tiers on every person, household and business field — attested, inferred or reconstructed, each with its reason — so a profile can be filled at the lowest honest tier and replaced later
 T-1159 — Export the borderline roster: every name the research read and withheld from 1835 — single-source, refused, surname-only, uncertain presence, letter-list-only — with its source, reason and re-admission class, so reconstruction can name real people before it invents any
 T-1160 — Profile the known population of 1 July 1835: sex, age, origin, arrival date and reason, roles, household composition, lodging, division and presence for every attested and inferred person, per attribute and per tier, as a generated report and an in-app card

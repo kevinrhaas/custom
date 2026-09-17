@@ -1443,18 +1443,37 @@ switch (cmd) {
     queueReplace(t.id, rows, t.title);
     t.state = 'split'; t.closed = today(); t.closed_at = nowIso();
     writeTicket(t); generateBoard(loadAll());
-    // SPLIT IS A TERMINAL STATE AND MUST GIVE THE CLAIM BACK, exactly as `done`,
-    // `block` and `withdraw` do. It did not, and splitting is not a rare path —
-    // it is what a run does the moment it finds its ticket is bigger than one
-    // demonstration. Measured 2026-09-14: nineteen claim markers stood on the
-    // remote, and THIRTEEN of them belonged to tickets in state `split`. Every
-    // one was a run that finished its work correctly and left a lock behind.
+    // SPLIT KEEPS THE CLAIM. It used to give it back, "exactly as `done`, `block`
+    // and `withdraw` do", because on 2026-09-14 thirteen of the nineteen markers
+    // standing on the remote belonged to tickets in state `split`. That reasoning
+    // was right about the litter and wrong about the lock, and T-1145 is what it
+    // cost on 2026-09-17:
     //
-    // Nothing else collects them. The janitor lists open PULL REQUESTS, and a
-    // marker has no pull request; the 3h staleness rule only lets the NEXT claim
-    // on that same ticket steal it, which never comes for a ticket that is now
-    // closed and out of the queue.
-    releaseClaimLock(t.id);
+    //   03:38:16  run 35200021551 claims T-1145, splits it, and the release here
+    //             deletes claim/t-1145 while its own PR is still unopened.
+    //   03:57:43  run 35202200830 reads `dev`, where the split has not landed and
+    //             T-1145 is still `open` at the top of the queue, finds no lock,
+    //             and claims the same ticket.
+    //
+    // Both runs then split T-1145 into DIFFERENT children — #1386 minted T-1224/
+    // T-1225/T-1226, #1387 minted T-1223/T-1224/T-1229 — and built plural dated
+    // roles twice, two ways, with colliding ids. Nineteen minutes apart, and the
+    // lock that exists to stop exactly this had been handed back by the first run.
+    //
+    // A SPLIT IS NOT FINISHED WORK. `done` and `withdraw` end a run: rule 7 has
+    // its PR merging minutes later, so the window where `dev` disagrees is short.
+    // A split is the OPPOSITE — the run carries on for another hour working a
+    // child, and for that whole hour `dev` still offers the parent. That is the
+    // widest window any terminal state has, and it is the one that was opened.
+    //
+    // The litter is collected by age instead, which is what `RUN_HOURS` is for:
+    // `ticket.mjs claims --sweep` deletes any marker older than three hours and
+    // `.github/steward/pr-lap.sh` runs it on every lap. So a marker outlives the
+    // run that took it by at most a sweep, and never outlives the merge that
+    // makes the split visible.
+    //
+    // `tools/test_ticket_claim_split.mjs` holds both halves: the lock stands after
+    // a split, and a second claim on the split parent is refused while it does.
     console.log(`${t.id} → split into ${titles.length}; children hold its place in QUEUE`);
     break;
   }
