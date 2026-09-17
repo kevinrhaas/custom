@@ -1,7 +1,7 @@
 ---
 id: T-1129
 title: Four residents rest only on a Bear Creek, Sangamon County marriage, and their cards say the church list names them at Chicago
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-14
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1378
 claimed_by: run 9/17/2026, 12:03:47 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T06:38:38.472Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35184106653
 ---
 
