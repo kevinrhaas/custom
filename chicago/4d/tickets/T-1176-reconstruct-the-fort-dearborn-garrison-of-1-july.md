@@ -35,9 +35,9 @@ and where it comes from); enlisted men as reconstructed persons (names from the 
 the Army's recruiting communities — Irish, German, Yankee — the model's shares), ages by the
 enlistment band; the four laundresses per company the regulations allowed (reconstructed,
 sex female), soldiers' wives and children at the model's low rate; the sutler and the sutler's
-store; the Agency establishment (the agent, sub-agent, interpreter, blacksmith of the agency)
-ONLY as the sources name them — `review_required`, `touches_removal`, nothing reconstructed
-around them.
+store; the Agency establishment (the agent, sub-agent, interpreter, blacksmith of the agency) as the
+sources name them, its Native and Métis employees and their families reconstructed where only
+counted — through T-1177's rules, `review_required`, `touches_removal`.
 
 **Acceptance:**
 

@@ -6,19 +6,25 @@
 # Research spend: fix identity/date/mint gates before deriving cards. T-0662/T-1144
 # need the blocked T-0660 -> T-0691 letter-list ruling; do not invent its outcome.
 # South Through Time: 1812 depiction follows AGENTS.md Indigenous-history review;
-# ship no human figures. T-0469/T-0470/T-0471 depend on T-1243 (the ground half of the
-# split T-0468; T-1242 is its shoreline half); T-0472 on T-0470.
+# ship no human figures. T-0469/T-0470/T-0471 depend on T-0468; T-0472 on T-0470.
 # Prairie Avenue: T-0474 follows T-0473; T-0475/T-0477 follow T-0474;
 # T-0476 follows T-0475. Respect needs_bake and other ticket-level blockers.
 # Completion: preserve explicit refusals and later/out-of-town evidence; zero
 # unclassified research does not mean forcing uncertain people or locations into 1835.
 # T-1027 is the one-letter identity epic; Newberry and 1840 deposit work follow
 # their lower resident yield. Read each ticket before splitting or claiming.
-# Reconstruction (owner, 2026-09-17): bands 2-5 run in order and only after T-1157 says GO.
+# Reconstruction (owner, 2026-09-17): BAND 2 IS OPEN NOW — it reads the layer and writes
+# reports, models and an order book, and it needs no sign-off to do that. Bands 3-5 WRITE
+# reconstructed people, businesses and roofs, and those wait for T-1157 to say GO.
+#   The first cut gated 2-5 together, and it starved the top: band 1's rows were all in
+#   flight or self-blocked, so runs fell past 59 gated tickets into SOUTH THROUGH TIME and
+#   LOOP IMPROVEMENTS (T-0467, T-1154, 2026-09-17). A gate that empties the top of the
+#   queue sends the loop to the bottom of it.
 # Every reconstructed value carries tier, basis, seed and replaceable_by (T-1158); the order
 # book (T-1166) is the quota; docs/RESEARCH/1835_reconstruction_plan.md is the map.
 # Sub-bands (3A/3B/3C, 5A-5E) may be taken by different agents; within a sub-band, top first.
-# Build tickets in 5C are needs_bake and hand on a successor. No reconstructed Native presence.
+# Build tickets in 5C are needs_bake and hand on a successor. Native, Métis and Black residents,
+# families and businesses ARE reconstructed (owner, 2026-09-17; T-1177), review_required, no figures.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
 T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
@@ -30,7 +36,7 @@ T-1240 — The people and business views expose the plural links, their dates, c
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
-# --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (after T-1157 says GO)
+# --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1158 — Per-attribute tiers on every person, household and business field — attested, inferred or reconstructed, each with its reason — so a profile can be filled at the lowest honest tier and replaced later
 T-1159 — Export the borderline roster: every name the research read and withheld from 1835 — single-source, refused, surname-only, uncertain presence, letter-list-only — with its source, reason and re-admission class, so reconstruction can name real people before it invents any
 T-1160 — Profile the known population of 1 July 1835: sex, age, origin, arrival date and reason, roles, household composition, lodging, division and presence for every attested and inferred person, per attribute and per tier, as a generated report and an in-app card
@@ -52,7 +58,7 @@ T-1173 — Reconstruct the trade households the occupation model still wants aft
 T-1174 — Reconstruct the women and children the age pyramid still lacks after families are drawn: widow-headed households, laundresses, seamstresses, domestics and schoolmistresses, the boarding-house keepers' families and the children of the 1833–35 arrivals, to the population model's sex and age bands
 T-1175 — Fill the beds: boarders, lodgers, hotel guests, boarding-house keepers' households, the crews of the vessels in port and the hands at the works, seated in the named and reconstructed lodging places to the lodging model's capacities
 T-1176 — Reconstruct the Fort Dearborn garrison of 1 July 1835: the officers the sources name, the companies of the 5th Infantry to their strength, the surgeon, the sutler, the laundresses and soldiers' families, the Indian Agency establishment as attested — seated in the fort's roofs
-T-1177 — Reconstruct the under-documented cohorts within their evidence: free Black residents to the bracket the 1833 freedom certificates and the 1840 count allow, the Irish and German Catholic town the parish register implies, French-Canadian households only as attested — and no reconstructed Native or Métis person
+T-1177 — Reconstruct the under-documented cohorts within their evidence: the Native and Métis people, households and businesses in and around the town, the free Black residents, families and Black-owned businesses, and the Irish and German Catholic town the register implies — every one identified, tiered and reviewable
 T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded cohort: the land-sale visitors, the immigrants awaiting lots, the harbour-works gang and the crews ashore — who they were, how many, and where they slept (tents, wagons, floors, vessels) — for the camps the structure band will build
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model

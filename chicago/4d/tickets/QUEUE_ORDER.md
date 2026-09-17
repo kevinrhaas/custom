@@ -1,4 +1,5 @@
 # RE-RANK LEDGER — owner decisions, first lines only; details remain in Git history.
+#   2026-09-17  BAND 2 OPENED, on the owner's report that the loop was working T-0467 and T-1154 from the bottom: band 1 was all in flight or self-blocked and the band-2..5 gate hid the next 59 rows, so the topmost workable ticket really was in SOUTH THROUGH TIME. Only bands 3-5, which write reconstructed records, still wait on T-1157.
 #   2026-09-17  THE RECONSTRUCTION BANDS, on the owner's written direction: confirm the research spend, then 1835 TOWN ANALYSIS, RECONSTRUCT RESIDENTS, BUSINESSES and STRUCTURES as ordered sections inserted between RESEARCH SPEND and SOUTH THROUGH TIME (T-1157 onward); sections over 15 tickets split into lettered sub-bands; four spend tickets enhanced.
 #   2026-09-17  Owner: research spend, South Through Time, loop improvements, then research completion; remove the queue history and rank remaining epics.
 #   2026-09-16  RESEARCH COMPLETION MOVED DIRECTLY ABOVE SOUTH THROUGH TIME, on the owner's
