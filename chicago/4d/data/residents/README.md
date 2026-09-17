@@ -115,6 +115,77 @@ whose mirror row also says `father` is the one-way claim the rule exists to
 catch. `uncle`/`nephew` and `cousin` are still undeclared, because nothing in
 the corpus has needed them.
 
+## `associated_with` — the places a person was, plural and dated (T-1238)
+
+`lives_at` and `works_at` are **singular** and **undated**, and the sources are
+frequently neither. Jeremiah Porter's record says so in its own note: Andreas has
+P. F. W. Peck invite him "to make his **temporary** lodging place and study in the
+unfinished loft of his two-story store", the word is the source's, the link is
+dated 1833 — and "whether he was still in the loft in 1835 ... is unknown". A bare
+`lives_at: peck_store` states none of that; it reads as the household's residence
+on 1 July 1835, which is the one thing Andreas refuses to say. T-1237's
+reconciliation row inherits the flattening and dates the same claim `1835-07-01`,
+because that is all a singular field can mean.
+
+So a relationship between a record and a place is a **list**. `associated_with` is
+optional, may sit on a household **or** on a person, and each row is:
+
+| field | means |
+|---|---|
+| `kind` | from `index.json`'s `vocabulary.association_kinds` |
+| `place_or_structure_id` | a structure id, or the street / face / division the evidence reached |
+| `resolves_to` | which of those it is — `structure`, `street`, `face`, `division` |
+| `from` / `to` | a year, a month (`1833-06`) or an ISO day; either may be null |
+| `tier` | `attested` / `inferred` / `reconstructed` |
+| `source_id` | required above `reconstructed`, refused at it |
+| `note` | the reasoning that dated it and the clause that limited its place |
+
+T-1147 clause 7 names the six-field shape and says it is written on the person;
+`resolves_to` and `note` are added to it for two reasons the rest of this layer
+already insists on — a place that is a street is not a place that is a roof and a
+consumer may not guess which it holds, and a claim here carries its reasoning.
+
+Three rules, and each exists because of a specific way this goes wrong:
+
+- **`place_or_structure_id` is never null. An absent relationship is an absent
+  row.** The four rungs are the four a source can reach; "no place at all" is not
+  one of them, because a relationship with no place is not a finding about where
+  somebody was. John Bates jr has a workplace row and no home row — his `lives_at`
+  says "Not attested." and that is an absence, not a claim. (T-1237's *seating
+  class* axis is a different question and does need a `none` class: it is defined
+  over the whole household layer, this list is defined over claims.)
+- **A row that dates neither end must say `"undated": true`.** An undated
+  relationship is an admission this project counts, not a gap a later reader
+  mistakes for an oversight.
+- **The singular link may not drift from the plural rows.** Both shapes stand
+  until the migration lands, so a record carrying `associated_with` and a non-null
+  `lives_at`/`works_at` must carry that structure among its rows —
+  `lives_at` against a `home`/`lodging` row, `works_at` against one of
+  `agency_held`/`business_premises`/`church`/`civic_seat`/`school`/`workplace`.
+  Otherwise the half-way point of the migration is a record that says two
+  different things about the same man and a reader gets whichever field they
+  happened to load. `tools/validate.py` refuses it.
+
+`land_purchased` is in neither family on purpose: a holding is not a place a man
+was.
+
+**What this buys, in one record.** The Porter household's single `works_at` names
+the First Presbyterian Church for the minister's charge and says nothing whatever
+about his wife. Eliza Chappel Porter kept Chicago's first infant school; her own
+rows carry it at `chappel_infant_school` from 1833 **to 1834** — a relationship
+that was over before the scene date, which no singular field in this layer can
+express — and her founding membership of that same church from June 1833. Two
+kinds, one roof, two people, three dates.
+
+**What is not yet written.** Four records carry rows; the other 1,253 do not, and
+`tools/associations.py --check` prints the distance every run. The `street`,
+`face` and `division` rungs are declared and unused here because the corpus
+already needs them and this ticket does not spend them: T-1237 committed 61
+street-only and 62 unplaceable business locations and 52 households whose evidence
+reaches a division and no further. Those are T-1239's and T-1198's to write, and
+the migration of the singular fields themselves is its own ticket — nothing in
+this layer reads the plural rows yet, so no renderer changes with them.
+
 ## The kinship the corpus states, surveyed and ruled on (T-0734)
 
 The audit that opened T-0734 found **14 of 1,404** people related to anybody at

@@ -1,7 +1,7 @@
 ---
 id: T-1238
 title: Plural dated home, workplace and other-significant-location relationships on every person and household, with associated_with[] defined
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1147
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 9:57:55 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35236460812
 ---
 
 Plural dated home, workplace and other-significant-location relationships on every person and household, with associated_with[] defined.
