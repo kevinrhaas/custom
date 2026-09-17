@@ -430,7 +430,7 @@ the expected breach rate from 7/104 to roughly 6/104 — noise — while adding 
 boot. **Three of the seven breaching checkouts are longer than a split leg's entire budget would
 be.** Splitting is not merely insufficient; it buys nothing.
 
-**THE CAP IS THEREFORE 45 MINUTES** (`chicago-4d-bake.yml`, the `smoke` job), sized on the table
+**T-0181 THEREFORE SET THE CAP TO 45 MINUTES** (`chicago-4d-bake.yml`, the `smoke` job; superseded by T-0437 below), sized on the table
 above: worst measured smoke command 21 m 48 s, plus the ~22 minutes of checkout excursion the
 raise is meant to absorb. That covers five of the seven breaches outright and the sixth against a
 median smoke. It does **not** cover #284 and #288, and it is not supposed to — a 30-minute
@@ -444,6 +444,91 @@ gives per-step `started_at`/`completed_at` for every leg this workflow has ever 
 change to this cap or this cut should quote that, and should decompose the job into steps before
 blaming the suite, because on the evidence above the suite was never the problem.
 
+
+**T-0437 — reduced smoke checkout, measured over five bakes, 2026-09-17.**
+The smoke job selects only `/chicago/4d/tools/` and
+`/chicago/4d/docs/SITE-BUDGET.md`, using non-cone sparse checkout, `blob:none`,
+and depth 1 at the bake's exact output SHA. Non-cone mode excludes ancestor
+files as well as unrelated tenants. At `c66b9a29`, those 423 files contain
+**12,227,359 bytes**, versus **3,783,182,311 bytes** across the tracked repository
+(99.68% fewer selected working-tree bytes). These are file-size counts,
+**not** network-transfer or checkout-duration measurements.
+
+Dependency audit: `smoke_renderer.mjs` imports `critic_metrics.mjs`,
+`drawn_placement_census.mjs`, `drawn_timber_census.mjs`, and
+`road_band_movement.mjs` from `tools/`; their imports are Node built-ins.
+Its disk baselines are `road_band_baseline.json` and `far_timber_baseline.json`
+in that directory. Playwright is installed separately. Page modules, resident
+index, geometry and all HTTP-served resources resolve inside the downloaded
+published mirror. T-1156's boot measurement imports Node built-ins and
+Playwright, serves that mirror, and reads its limit from `SITE-BUDGET.md`.
+The source renderer, data, assets and other monorepo projects are not needed.
+
+A fresh local network fetch at that SHA, using `--depth=1 --filter=blob:none`
+and these exact sparse patterns before checkout, took **30.423 s** (fetch
+8.524 s, checkout 21.899 s), materialized exactly the 423 selected files, and
+stored **5,559,171 bytes** under `.git`. This checks the fetch recipe; it is not
+a GitHub-runner tail sample.
+
+In an isolated sparse checkout with no source renderer/data/assets, the unchanged
+smoke ran stage 9 plus always-on checks at both release viewports against the
+stable published fixture exported for T-1156 (`01ce6b77`): **46 passed, 0 failed**,
+zero page errors, **5 m 21 s**. The boot check passed at **7.270 MB / 12 MB**
+across 916 requests. This proves those browser runs and the audited imports
+resolve without the rest of the repository; it is not a full 13-stage smoke pass.
+
+**The actual job-history comparison:** exact `Run actions/checkout@v4`
+step timestamps from five bake runs, all eight legs per bake, latest attempt.
+Runner queue time is excluded; p90 uses nearest rank. Each of the 40 checkouts
+completed successfully; none was censored. The same sparse configuration was
+used throughout; sample refs differ only by a workflow comment to trigger a bake.
+
+| cohort | n | median | p90 | max | >5 min | >13 min |
+|---|---:|---:|---:|---:|---:|---:|
+| T-0181 historical desktop tail, #271–#391 | 104 | 38 s | 331 s | 1801 s | 11 | 7 |
+| T-0437 desktop tail, five bakes | 5 | 3 s | 4 s | 4 s | 0 | 0 |
+| T-0437 all eight legs, five bakes | 40 | 3 s | 4 s | 5 s | 0 | 0 |
+| Concurrent unchanged full checkout, #606, all eight legs | 8 | 183 s | 414 s | 414 s | 2 | 0 |
+
+The historical and new desktop-tail rows are the like-for-like comparison.
+The all-leg rows are supporting evidence, not 40 independent bake runs.
+The contemporary [full-checkout baseline #606](https://github.com/kevinrhaas/custom/actions/runs/35249224177)
+measured 41, 44, 46, 92, 274, 291, 333 and 414 s; its desktop tail was 291 s.
+This short follow-up shows the previous upper mode absent under these runs;
+it does not guarantee that no future checkout will be slow.
+
+| bake | completed checkouts | range, all legs | p90, all legs | desktop tail | >5 / >13 min |
+|---|---:|---:|---:|---:|---:|
+| [#611](https://github.com/kevinrhaas/custom/actions/runs/35250863185) | 8 | 2–4 s | 4 s | 2 s | 0 / 0 |
+| [#613](https://github.com/kevinrhaas/custom/actions/runs/35251010985) | 8 | 1–4 s | 4 s | 3 s | 0 / 0 |
+| [#614](https://github.com/kevinrhaas/custom/actions/runs/35251015637) | 8 | 2–4 s | 4 s | 3 s | 0 / 0 |
+| [#615](https://github.com/kevinrhaas/custom/actions/runs/35251020803) | 8 | 2–5 s | 5 s | 3 s | 0 / 0 |
+| [#616](https://github.com/kevinrhaas/custom/actions/runs/35252272736) | 8 | 2–4 s | 4 s | 4 s | 0 / 0 |
+
+**No attempt was silently dropped.** [#612](https://github.com/kevinrhaas/custom/actions/runs/35251007292)
+failed before smoke when the unchanged `drain-selftest.mjs` hit `ENOTEMPTY`
+removing a temporary `.git/objects` directory; it has no checkout reading.
+#616 replaces that missing bake. The timestamped audit is
+[`measurements/T-0437-checkouts.json`](measurements/T-0437-checkouts.json),
+including job outcomes and all step timestamps. At capture, 23 of the 40 smoke
+bodies had finished; all 40 checkout steps had finished. These are checkout
+measurements, **not a claim that five full renderer matrices passed**. Stage
+3–6 triangle-budget failures also occur in baseline #606 and are addressed by
+T-1245 (#1406), already merged into the target `dev`. The sampling refs predate
+that fix. Publishing the final workflow revision may supersede still-running
+smoke bodies on the PR branch; the completed checkout readings are retained.
+
+**The new cap is 30 minutes, sized from the spread rather than the fastest leg.**
+The largest completed successful smoke body in the captured sample is **23 m 07 s**
+(#613 desktop `10-13`), longer than the historical **21 m 48 s**; use 1387 s.
+The largest overhead of a successful completed job is **49 s** (job wall time
+minus smoke), including checkout, Playwright, artifact, boot check where selected,
+and cleanup. Combining those maxima gives **1436 s (23 m 56 s)**. A 25% margin
+gives 1795 s; round up to **1800 s / 30 minutes**, leaving **364 s / 25.3%**.
+Failed or unfinished bodies do not count as successful-duration measurements.
+The same reasoning is written beside `timeout-minutes`; all eight legs and the
+blocking `open-pr` dependency remain. Future growth needs another reading, not
+an assertion that sparse checkout makes every other step cheap.
 
 **AND THE THREE CAPS IN THIS SECTION BOUND THREE DIFFERENT THINGS — corrected
 2026-09-03 by T-0450, on the owner's report.** Everything above is written against the

@@ -1,7 +1,7 @@
 ---
 id: T-0437
 title: The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
-state: open
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,11 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-08-29
-closed: null
-pr: null
-claimed_by: null
+closed: 2026-09-17
+pr: 1407
+claimed_by: run 9/17/2026, 11:54:46 AM CT
 blocked_on: null
 needs_bake: false
+closed_at: 2026-09-17T18:03:20.953Z
+claimed_run: null
 ---
 
 The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap.
@@ -108,3 +110,27 @@ The same checkout runs in all eight legs, so whatever is done here applies to ev
   and thirteen minutes given both before and after.
 - If the tail collapses, the 45-minute cap is re-sized on the new spread in the same way T-0181
   sized it — and the reasoning is written next to the number, not in the commit message.
+
+## Implementation and verification — 2026-09-17
+
+Owner selected this ticket and authorized its workflow PR and merge into `dev`.
+Remote lock: `claim/t-0437`; work branch: `steward/t-0437-sparse-bake-smoke`.
+The normal claim tool recorded the claim locally; the connector acquired the
+remote marker after the tool reported unavailable push credentials.
+
+Smoke checkout now uses exact non-cone patterns for `tools/` and
+`docs/SITE-BUDGET.md`, with `blob:none` and depth 1 at the bake output SHA.
+ROADMAP § THE RUN BUDGET records the dependency audit and file-size comparison.
+Five bakes (#611, #613–#616) supplied all 40 checkout readings: **1–5 s,
+p90 4 s, zero over 5 or 13 minutes**. Desktop-tail p90 is 4 s (n=5),
+versus historical 331 s (n=104, 11 over 5 minutes, 7 over 13). The cap is
+**30 minutes**, with the measured 23 m 07 s successful smoke bound and
+49 s overhead leaving 25.3% headroom. ROADMAP records each bake and the
+failed pre-smoke attempt #612; `docs/measurements/T-0437-checkouts.json`
+retains step timestamps and incomplete body outcomes. These are checkout
+measurements, not five green renderer matrices; baseline triangle failures
+are fixed by T-1245 on the target `dev`.
+
+Local sparse-tree stage 9 + always-on smoke: **46 passed, 0 failed**, both
+viewports, zero page errors; boot: **7.270 MB / 12 MB**. A fresh filtered fetch
+materialized exactly 423 files in 30.423 s. Neither is the required CI tail sample.
