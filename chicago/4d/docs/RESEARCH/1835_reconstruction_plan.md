@@ -51,9 +51,11 @@ it; the tickets are the contract. Order is `tickets/QUEUE.md`; nothing here re-r
   `--build` and cannot overfill it; two builds are byte-identical.
 - **Real names before invented ones** (T-1159, T-1172): every name the corpus printed
   and withheld is offered first, under its own read name, with its evidence limit.
-- **The standing constraint** (AGENTS.md): no reconstructed Native or Métis person, household
-  member, camp or depiction; attested households stay `review_required`; no human figure is
-  drawn (L1).
+- **The standing constraint, as re-ruled 2026-09-17** (AGENTS.md): Native and Métis people,
+  households, businesses and camps ARE reconstructed, evidence-bounded, only through T-1177,
+  every record `review_required` + `touches_removal`, review by Native scholars still sought
+  before release; Black residents, families and Black-owned businesses are identified on a
+  `community` filter; no human figure is drawn (L1); the August gathering is not staged.
 - **Documented zeros stay zero** (the bank, the lottery office, the lyceum of the State census).
 - **The frame budget moves consciously or not at all** (AGENTS.md § the frame budget; T-1154):
   every build ticket measures before it pushes and says which it did.

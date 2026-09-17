@@ -658,8 +658,49 @@ def drift_paths():
         return out
 
 
-def drift(write_baseline=False):
+def drift(write_baseline=False, shrink_baseline=False):
     paths = drift_paths()
+    if shrink_baseline:
+        # THE ONE DIRECTION AN AUTOMATON MAY MOVE THIS RATCHET, and the asymmetry is
+        # the whole point. `--write-baseline` regenerates from scratch, so it can ADD
+        # a path — which is how a brand-new drift would be recorded as expected and
+        # never seen again. That is a judgement, and it stays a human's.
+        #
+        # Shrinking is not. A path that no longer drifts is a ratchet that has
+        # TIGHTENED: removing it can only make the gate stricter, and leaving it makes
+        # the gate red for a repair that already happened. That is the red that stopped
+        # four pull requests on 2026-09-17, every one of them after the janitor lapped
+        # the branch onto dev: the lap re-runs this writer (derived_manifest step 19),
+        # the files stop drifting, and nothing shrinks the list behind them.
+        #
+        # So `.github/steward/pr-lap.sh` runs THIS, and never --write-baseline. If a
+        # NEW drift appears, this refuses to record it and the gate stays red, which is
+        # exactly what the ratchet is for.
+        if not DRIFT_BASELINE.exists():
+            print(f"  FAIL {DRIFT_BASELINE.relative_to(REPO)} is missing — run --write-baseline")
+            return 1
+        baseline = load(DRIFT_BASELINE)
+        allowed = list(baseline.get("paths") or [])
+        now = set(paths)
+        new = sorted(now - set(allowed))
+        if new:
+            for path in new[:10]:
+                print(f"  FAIL {path} has drifted and is not on the T-0838 baseline — "
+                      "--shrink-baseline will not record a new drift")
+            if len(new) > 10:
+                print(f"  FAIL …and {len(new) - 10} more")
+            return 1
+        kept = [p for p in allowed if p in now]
+        dropped = [p for p in allowed if p not in now]
+        if not dropped:
+            print(f"  ok    nothing to shrink — {len(kept)} file(s) on the baseline still drift")
+            return 0
+        baseline["paths"], baseline["count"] = kept, len(kept)
+        dump(DRIFT_BASELINE, baseline, 2)
+        for path in dropped:
+            print(f"  shrank the baseline: {path} no longer drifts")
+        print(f"  wrote {DRIFT_BASELINE.relative_to(REPO)}: {len(kept)} file(s) standing")
+        return 0
     if write_baseline:
         dump(DRIFT_BASELINE, {
             "ticket": "T-0838",
@@ -832,10 +873,12 @@ def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--check",action="store_true")
     ap.add_argument("--drift",action="store_true",help="the T-0814 ratchet: what the writer would change, against the committed baseline")
     ap.add_argument("--write-baseline",action="store_true",help="regenerate the drift baseline (never hand-edit it)")
+    ap.add_argument("--shrink-baseline",action="store_true",help="remove paths that no longer drift; REFUSES to add a new one (the lap runs this)")
     ap.add_argument("--drift-self-test",action="store_true")
     args=ap.parse_args()
     if args.drift_self_test: return drift_self_test()
-    if args.drift or args.write_baseline: return drift(write_baseline=args.write_baseline)
+    if args.drift or args.write_baseline or args.shrink_baseline:
+        return drift(write_baseline=args.write_baseline, shrink_baseline=args.shrink_baseline)
     if args.check: return check()
     index=load(INDEX); current_before=snapshot(index)
     prior_ledger=load(LEDGER) if LEDGER.exists() else {}

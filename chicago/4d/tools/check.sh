@@ -136,13 +136,22 @@ step "the pre-fill lake shore below Twelfth still carries what its generator wri
 # T-1152. A late observation can bound an earlier shore; it cannot quietly
 # become that shore, and a pair of fitted lines that disagree stays a polygonal
 # band rather than an invented midpoint. The same contract keeps the planned
-# 1812 and 1880s states from aliasing the active 1835 terrain while their own
-# scene tickets fill them.
+# 1880s state from aliasing the active 1835 terrain while its own scene ticket
+# fills it — and, since T-1242, holds the 1812 state to the same rule from the
+# other side: it HAS a line now, so the check is that the line is its own, that
+# it re-derives from its readings, and that no drafted pier vertex rode in on it.
 step "dated shorelines stay separate and source disagreement stays a band" \
   python3 tools/check_shoreline_states.py
 
 selftest "…and shoreline-state assertions still fire when collapsed" \
   python3 tools/check_shoreline_states.py --self-test
+
+# The 1812 shore is DERIVED, not traced — no survey of the pre-cut mouth exists —
+# so the file has to fall out of data/terrain/1812_mouth_readings.json and the
+# Wright 1834 trace byte for byte. The step above re-derives it semantically; this
+# one catches the whitespace-and-ordering drift a semantic compare forgives.
+step "the 1812 pre-cut shore still re-derives from its readings (T-1242)" \
+  python3 tools/derive_shore_1812.py --check
 
 # ...and for the North Branch north of it (T-1072). Two tools write one
 # branches.geojson through tools/branches_file.py, and each of these two steps
@@ -2054,6 +2063,17 @@ step "a merged PR naming an unfinished ticket is REPORTED, and nothing else is" 
 # alone fails the fault, the file alone fails T-0987 and T-0429.
 step "a claim that outlived the window is work, and a merged branch is still litter" \
   node tools/test_ticket_inflight.mjs
+
+# A SPLIT KEEPS ITS CLAIM, so the parent it leaves on `dev` cannot be claimed twice.
+# T-1145 on 2026-09-17: one run claimed it at 03:38:16, split it, and the release
+# handed claim/t-1145 back while its own PR was unopened; a second run read `dev`,
+# where the split had not landed and the parent was still `open` at the top of the
+# queue, and claimed it at 03:57:43. Both split it into different children and built
+# plural dated roles twice, with colliding ids. A split is not finished work — the run
+# carries on for another hour on a child, which is the widest window any terminal state
+# has. The litter that made `split` release is collected by age instead.
+step "a split keeps its claim, and the queue drops only finished work" \
+  node tools/test_ticket_claim_split.mjs
 
 # A QUEUE LINE THAT STILL NAMES A FINISHED BLOCKER. T-0464 closed on 2026-09-14
 # (#1257) and the three lines that LEAD South Through Time — T-0465, T-0466,

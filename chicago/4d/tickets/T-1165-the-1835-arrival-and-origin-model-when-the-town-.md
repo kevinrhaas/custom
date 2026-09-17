@@ -32,8 +32,9 @@ reason vocabulary. This ticket derives the DISTRIBUTIONS reconstruction will dra
    quarter), corrected by the growth curve of T-1161.
 2. **Origin communities** — the pools of `1835_invented_name_pools.json` (yankee / New York,
    Ohio-Kentucky-southern, Irish, German, French-Canadian, free Black, British) with shares from
-   the attested origins and the 1840 nativity where the sheet gives it; the Métis/French-Canadian
-   share is stated from attested households only and flagged under the standing constraint.
+   the attested origins and the 1840 nativity where the sheet gives it; the Native, Métis and
+   French-Canadian shares from the attested households and the treaty schedules, flagged
+   `review_required` and read by T-1177; the free Black share from its bracket.
 3. **Reasons for coming** — controlled vocabulary with shares BY COHORT AND TRADE: army posting;
    Indian Agency/treaty business; fur and Indian trade; forwarding/commission and lake trade;
    land speculation and the 1835 sales; canal survey and expectation; harbour works; building
