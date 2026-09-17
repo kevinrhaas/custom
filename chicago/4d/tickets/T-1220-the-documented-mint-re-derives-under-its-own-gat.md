@@ -1,7 +1,7 @@
 ---
 id: T-1220
 title: The documented mint re-derives under its own gate: one adjudicated person is one candidate, and refusal 6 is the reading test the place vocabulary says it is
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0662
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1382
 claimed_by: run 9/17/2026, 2:49:31 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T08:42:07.745Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35193523780
 ---
 
