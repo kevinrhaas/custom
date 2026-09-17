@@ -18,20 +18,30 @@ closed_at: null
 claimed_run: null
 ---
 
-Replace the static loading treatment with a modern 1960s instrument-panel feel: warm ivory, ink, muted brass and restrained split-flap year/source motion. Welcome visitors into a digital reconstruction.
+The loading screen becomes the **arrival**: a welcome that says you are entering a digital reconstruction of 1835, a year that rolls back from 2026 and lands on exactly 1835 at the moment the town is ready, and statuses that read like the reconstruction is being assembled as you travel. The owner's brief, verbatim where it matters: *"a tick back rolling back of the years from 2026 … the year ticker … should roll back at a pace so that when the screen is fully loaded it lands exactly at 1835 … it might slow down or speed up over a section towards 1835 so it goes smoothly to the user in a Time Machine fashion. The UI should pick up a modern gently steampunk retro 60s Time Machine feel style, don't get cutesy or go overboard there."* This ticket is the presentation over T-1246's events; T-1275 fills the status library.
 
-**Depends on:** T-1246
+**Depends on:** T-1246. T-1275 and T-1278 depend on this.
 
-**Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
+**What exists today:** `renderers/web/index.html` L53–75 (`#gate` dialog: eyebrow, `#gate-title` "Chicago, summer 1835", `#gate-sub`, `#gate-bar`, `#gate-btn` "Tap to walk", key hints, `#gate-build`); `css/walk.css` L66–112 (`.gate*`) and the tokens at `:root` (`--ink`, `--ink-dim`, `--panel`, `--accent #d8a24a`, `--doc/--inf/--con`, light theme at L28+). `progress()` in main.js is now the adapter over `api.boot` (T-1246). Reduced motion is not honoured anywhere on the gate today.
+
+**Build:**
+1. `renderers/web/js/arrival.js` (~350 lines): subscribes to `api.boot` and drives three regions inside `#gate`: the **year** (`#arrival-year`, tabular digits, split-flap: each digit a two-half card that flips down; a continuous internal year `y ∈ [1835, currentYear]` with integer display), the **phase line** (`#gate-sub`, the real phase label from T-1246, always legible), and a **card slot** (`#arrival-card`) that T-1275 feeds — ship it with the phase label and a neutral "Drawing on previously researched sources" line until then. Keep `#gate-bar` as a thin phase-progress rule under the year.
+2. **Pacing model.** Map boot progress `p ∈ [0,1]` to the year: `p` = Σ(finished phase weights) + current phase's fraction (units where counted, else elapsed/expected clamped to 0.92 of the phase's weight so an overrunning phase eases toward its bound and never lies). Weights come from `boot-weights.js` (T-1246) for the device/tier, refined by local history. Year = `currentYear − (currentYear − 1836) · easeInOut(p)`; hold at ≥ 1836 until `ready`; on `ready`, settle to 1835 within ≤ 300 ms (0 ms under `prefers-reduced-motion` or when the boot took < 1.5 s) and switch the phase line to **"You have arrived in Chicago, summer 1835."** Never roll forward, never overshoot, never show 1835 before `ready`.
+3. **Style — restrained.** A dark instrument panel: `--panel-solid` ground, warm ivory `--ink` type, a new `--brass` token (muted, ~`#b8925a`) for the year card edges, hairline rules and the flip hinge; tabular numerals; one soft inner shadow on the flap. No gears, no rivets, no sound, no theatrical minimum duration. Light theme handled. Mobile: the year card ≤ 60 % of the 390 px width, the card slot two lines max, `#gate-btn` and hints below the fold are fine.
+4. Error: `boot` `error` stops the ticker where it is, the phase line says what failed and offers **Retry** (reload) — never "arrived". Optional-phase failures do not change the arrival copy.
+5. Accessibility: `#arrival-year` is `aria-hidden` (announcing every tick is noise); `#gate-sub` is `aria-live="polite"` and announces phase changes and arrival only; the dialog keeps `role="dialog"` and its labelling.
+6. T-1278 replaces the button and what follows the arrival; this ticket keeps `#gate-btn` ("Tap to enter" wording is fine to set here) and the hints exactly where they are so the smoke's `enterTown()` still works.
 
 **Acceptance:**
+1. On a throttled cold boot (Chromium CPU 4×, network "Fast 3G", 390×780 light, published mirror) the year descends monotonically, pauses/eases through the long flora phase, and reads 1835 only after `api.ready`; recorded as a short screen capture or 6 stills in the PR.
+2. On a sub-1.5-second warm boot the ticker settles immediately (no animation stall); with `prefers-reduced-motion` no flap animates and the year steps in ≤ 5 updates.
+3. Forced essential failure (stub `terrain`) shows the stopped year, the failure text and Retry; the phrase "arrived" is absent. Forced optional failure (stub `people.json`) still arrives.
+4. Both viewports, both themes, 320 px width, a 70-character phase label and a 120-character card line: nothing clips or overlaps (screenshots in the PR).
+5. `tools/test_arrival.mjs` (node, no browser): the pacing function is pure and tested — monotone, bounded, holds ≥ 1836 before ready, lands on 1835 at ready, reduced-motion path is instant.
+6. Screen reader: `#gate-sub` changes are the only live announcements; the year is not announced (assert `aria-hidden`).
 
-1. Use real phase events plus bounded phase interpolation: current calendar year (2026 now) descends monotonically and never shows 1835 before essential readiness.
-2. Readiness settles to exactly 1835 and Welcome to Chicago, summer 1835; the final arrival text, number and welcome transition agree. No minimum animation duration; at most 300 ms cosmetic settle, immediate for reduced motion.
-3. Slow phases ease toward a bound; actual phase text stays legible. An error stops the ticker and offers retry without reporting arrival.
-4. Provide the source/fact flip-card slot consumed by the catalog ticket; initial operational copy does not pretend that archival research happens live.
-5. Check 390x780, 1280x800, reduced motion, 320 px width, long source titles, failed load and a sub-second warm boot; screen readers announce phases rather than every year.
+**Harness and gates:** `./tools/check.sh` (renderer modules parse; add `test_arrival.mjs`); `node tools/smoke_budget.mjs --for-diff` → run the named parts `--published` at both viewports; boot payload `--check` (arrival.js is boot-critical — keep it under 12 KB minified-equivalent; no font download).
 
-**Touch points:** renderers/web/index.html, css/walk.css, proposed js/arrival.js; boot adapter.
+**Out of scope:** the status library (T-1275), the welcome and its buttons (T-1278), the City topic (T-1292).
 
-**Finish:** one gated PR into `dev`, focused checks plus affected published desktop/mobile smoke; no production promotion. Claim through `ticket.mjs`. Meet this acceptance before closing. If an unforeseen piece truly needs a successor, place it beside this dependency inside the same subsection, update the plan, and keep the subsection below 15 tickets. Do not append unfinished work to the queue tail.
+Changelog: one visible entry. Contract: [architecture §A/§B and "Arrival states"](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md#arrival-states-and-honest-readiness) · [plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md). One PR into `dev`; claim with `ticket.mjs`.

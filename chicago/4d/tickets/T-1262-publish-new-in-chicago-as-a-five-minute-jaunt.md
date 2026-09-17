@@ -18,21 +18,34 @@ closed_at: null
 claimed_run: null
 ---
 
-Author the complete priority jaunt `new-in-chicago` from its brief in JAUNTS-INITIAL-LIBRARY.md. Reuse current source/structure/business/resident records and the shared engine.
+Author the complete priority jaunt **New in Chicago** (`new-in-chicago`) — one of the six the owner named first — from [brief 03](../docs/JAUNTS-INITIAL-LIBRARY.md#03-new-in-chicago). Content only: one JSON file, its evidence, its liberties, the regenerated catalog. The engine (5G) is finished; if a story needs an engine change, that is a finding for the engine's ticket, not a change in this PR.
 
-**Depends on:** T-1259, T-1256, T-1257, T-1258
+**Premise:** Find your bearings, a bed and a practical next step on your first day in town.
+**Category:** Orientation · **Recommended mode:** Walk · **Keepsake:** Finding Your Feet (Wayfinding) · **Target:** 4–6 min primary path.
 
-**Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
+**Depends on:** T-1259 (menu), T-1256 (mechanics), T-1257 (links and leg notes), T-1258 (daybook). Runs in parallel with the other 5H tickets — each owns only its own file.
+
+**Stops, in story order** (all verified to exist in `data/sidecars/1835/index.json` on 2026-09-17; positions are inferred or reconstructed, never attested — the stop text must not claim a front door the record does not place):
+1. [`sauganash_hotel`](../data/structures/sauganash_hotel.json) — Sauganash Hotel — arrive
+2. [`hogan_store`](../data/structures/hogan_store.json) — Hogan's store — the FORMER mail corner (the post office moved about July 1834)
+3. [`peck_store`](../data/structures/peck_store.json) — Peck's store — note a supply shop
+4. [`chicago_democrat_office`](../data/structures/chicago_democrat_office.json) — Chicago Democrat office — read one eligible notice
+5. [`brown_boarding_house`](../data/structures/brown_boarding_house.json) — Rufus Brown's boarding house — choose a boarding arrangement
+
+**Mechanics for this jaunt:** none required — one optional preference (cost or convenience) and a route-note keepsake.
+
+**Evidence and route cautions:** This FINISHES the T-1253 pilot file in place — it does not create a second `new-in-chicago`. Hogan's is not the 1835 mail counter. Brown's boarding house position is reconstructed — say so on the stop.
+
+**Authoring checklist (every stop):** read `data/structures/<id>.json`, its sidecar and dossier; state the stop's stand-off kind (exterior stand; no interior is implied); write 25–60 words of primary text; mark each sentence's tier — a DOC claim has a source id **and** locator, an INF claim states its reasoning, invented connective text (the errand, prices, small talk) is `reconstructed` with a LIBERTIES line; no quotation is put in a named person's mouth; nothing after 1 July 1835 is narrated as present; no human figure, ceremony or Indigenous dialogue is depicted. Card `links[]` point at the existing structure/person/source cards, never at a copy.
 
 **Acceptance:**
+1. `data/jaunts/new-in-chicago.json` compiles `available` in `check.sh` (`python3 tools/compile_jaunts.py`); every destination resolves; every claim's source and locator resolve; the compiler's path walk reaches every ending.
+2. Every authored choice and ending is exercised by `tools/play_jaunt.mjs new-in-chicago --all-paths` (T-1256's walker); no dead end, no double keepsake.
+3. Measured on the published mirror: primary path at **Walk** ≈ 4–6 min (opening + stops + rides, deep cards closed), quoted in the PR beside the card's estimate; Fly and Instantly measured too; a run outside 3–6 min is re-cut (fewer words, a nearer stop) or justified in one sentence.
+4. Stills at 390×780 and 1280×800: menu card → opening → one mid-leg mode switch → one detail card and back → ending → menu. Previous/Next/End/Menu all used once.
+5. The keepsake **Finding Your Feet** lands in the daybook once, under **Wayfinding**; replay does not add a second.
+6. The diff contains `data/jaunts/new-in-chicago.json`, its LIBERTIES lines, the regenerated catalog and (if needed) `docs/JAUNTS-INITIAL-LIBRARY.md` route notes — and **no engine, compiler or CSS change**. A stop that cannot be supported is substituted with a typed supported destination and the reason recorded in the brief; it is never invented.
 
-1. Deliver opening, 5 purposeful stops (adjust only with a stated narrative reason), concise actions, supported card links, recommendation and endings in JSON; the catalog card launches it.
-2. Arrive at the Sauganash; learn how the old mail corner oriented the settlement; note a supply shop; inspect a useful notice; choose a boarding arrangement. A low-pressure outing with one optional preference and a route-note keepsake.
-3. Verify each proposed stop against the compiled scene and trace each factual claim to source ID plus locator; retain inference/reconstruction notes and append narrative liberties. Hogan’s held the post office earlier; the record says it moved about July 1834. This is not the current 1835 mail counter. Engine pilot becomes this final authored jaunt, not a duplicate.
-4. Award Finding Your Feet in Wayfinding without forcing extra scoring. Test every authored choice/outcome and no dead ends or double rewards.
-5. Time the primary path in the recommended mode walk aiming at 4-6 minutes (a justified 3-4-minute outing is fine); compare Fly/Instantly and confirm deeper cards are optional.
-6. Show mobile/desktop menu-to-ending evidence, Previous/Next, mid-leg mode switch and End-to-menu. No new engine branch keyed to this jaunt.
+**Harness and gates:** `./tools/check.sh`; `node tools/smoke_budget.mjs --for-diff` (content-only diffs usually name no renderer part — say so); `node tools/play_jaunt.mjs new-in-chicago --all-paths`; `./tools/preflight.sh`.
 
-**Touch points:** data/jaunts/new-in-chicago.json, corresponding brief/dossier and generated catalog; existing cards, not new geometry.
-
-**Finish:** one gated PR into `dev`, focused checks plus affected published desktop/mobile smoke; no production promotion. Claim through `ticket.mjs`. Meet this acceptance before closing. If an unforeseen piece truly needs a successor, place it beside this dependency inside the same subsection, update the plan, and keep the subsection below 15 tickets. Do not append unfinished work to the queue tail.
+Changelog: one visible entry naming the jaunt. Contract: [authoring guide](../docs/JAUNTS-AUTHORING.md) · [brief 03](../docs/JAUNTS-INITIAL-LIBRARY.md#03-new-in-chicago) · [plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md). One PR into `dev`; claim with `ticket.mjs`.
