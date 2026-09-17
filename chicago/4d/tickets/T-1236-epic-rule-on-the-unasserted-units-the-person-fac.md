@@ -5,7 +5,7 @@ state: open
 epic: META
 requested_by: loop
 seen: false
-effort: L
+effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-17
