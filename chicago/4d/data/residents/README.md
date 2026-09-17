@@ -268,3 +268,51 @@ getting done.
 
 **To remove a ruling**, move it into a top-level `withdrawn[]` carrying the cluster `id`,
 the `rule`, a `reason` and the `ticket` that decided it.
+
+## `roles[]` is the trade record; `occupation` is a view of it (T-1222, of T-1145)
+
+A person's trades, professions and offices live in `persons[].roles[]`, and
+`persons[].occupation` is a **generated compatibility view** of the roles that
+actually cover the scene date. `tools/derive_resident_roles.py` writes both;
+`tools/check.sh` re-derives them every commit and `tools/validate.py` holds the
+shape. Never hand-write either.
+
+The singular field was the defect. It holds one word, one confidence and one
+implied date — 1 July 1835 — so a man printed as a candle manufacturer in 1833, a
+brickmaker in 1839 and a school inspector in the 1839 civic register could only be
+one of them on his own card, and the surviving one was dated to a year no source
+cited for it describes. That is exactly what Daniel Elston's card did.
+
+A role row says:
+
+| field | what it is |
+|---|---|
+| `role` | a controlled word from `index.json`'s `vocabulary.occupations`, or **null** where the source's own wording has not been adjudicated into it — null is honest, a near word is not |
+| `as_printed` | the source's own wording, where the card carries it |
+| `kind` | `vocabulary.role_kinds` — a trade, a profession, an office, an employment or a business interest |
+| `from` / `to` | the bound the evidence permits, **both ends or neither** |
+| `precision` | `vocabulary.role_date_precision`; `source_span` is the honest answer when the bound is the span a volume is ABOUT |
+| `dated_by` | `vocabulary.role_dated_by` — a date with no account of where it came from cannot be argued with |
+| `covers_scene_date` | whether the evidence reaches 1 July 1835, on `audit_scene_window_trades.covers_scene`'s rule and deliberately no other |
+| `confidence`, `sources`, `claim`, `note` | as everywhere else in this dataset |
+
+Two rules are load-bearing:
+
+- **An unknown date stays unknown.** It is never widened to the scene date, and a
+  role with no bound may not claim a precision.
+- **A role that does not reach 1835 cannot fill the 1835 field.** Where one used
+  to, `occupation.withdrawn_from_scene_date` carries the trade, the grade it was
+  held at and `tools/audit_scene_window_trades.py`'s verdict for taking it off, so
+  the withdrawal states its reason on the card and not only in a ledger. That is
+  T-0991's repair, and it is why the audit's standing population is now zero.
+
+Two roles covering the scene date are **two roles**: both stand in `roles[]` and
+`occupation.roles_at_scene_date` names both, so the singular field can no longer
+decide which of a man's two trades the town is told about. A person with no role
+evidence carries no `roles[]` and no view keys — and, the assertion that absence
+makes, no trade in the 1835 field either.
+
+What this does not yet read: the newspaper gazetteer's `persons[].occupations[]`,
+the 1839 directory and civic-register crosswalks and the 1843/1844 identity-master
+appearances, together with each role's stated place and employer (T-1223); and the
+People view's dated timeline (T-1224).
