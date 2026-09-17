@@ -98,12 +98,13 @@ export function swatch(level) {
  * is not a database, and a visitor reading which day the post office was holding
  * a letter should not have to parse one.
  */
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+  'August', 'September', 'October', 'November', 'December'];
+
 export function printedOn(iso) {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso ?? ''));
   if (!m) return String(iso ?? '');
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-    'August', 'September', 'October', 'November', 'December'];
-  return `${Number(m[3])} ${months[Number(m[2]) - 1]} ${m[1]}`;
+  return `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}`;
 }
 
 /** A `<dt>/<dd>` pair, omitted entirely when the record carries nothing. */
@@ -943,9 +944,212 @@ function oldSettlerDeathHtml(block, personId, citationsById) {
       ${citesFor(named, citationsById)}</dd>`;
 }
 
+/**
+ * THE PLURAL DATED PLACES (T-1240, folded into T-1255; schema from T-1238).
+ *
+ * A household had exactly one home and exactly one workplace and neither carried
+ * a date, which is not how the sources read: Andreas has Peck invite Porter to
+ * make his "temporary lodging place and study" in the loft of an unfinished store
+ * in 1833, and says nothing about whether he was still in it on 1 July 1835.
+ * Written into a singular `lives_at`, that comes out as the household's residence
+ * at the scene date — the one claim the source refuses to make. `associated_with[]`
+ * is the shape that can hold it, and until this block nothing read it: seven rows
+ * on four records reached a browser and were rendered nowhere.
+ *
+ * WHAT THIS BLOCK WILL NOT DO IS DECIDE WHETHER A ROW REACHES THE SCENE DATE.
+ * A role carries the record's own `covers_scene_date` and this block prints it; a
+ * place carries no such figure, and computing one here is precisely the
+ * flattening the plural shape exists to refuse. An open `to` on this layer means
+ * NO SOURCE CLOSES THE RELATIONSHIP — Porter's loft and his charge both say so in
+ * their own notes — so an open row is printed as open and the question is left
+ * unanswered rather than answered wrongly. Three things can honestly be said, and
+ * each is said in the row's own words: a relationship that ENDED before 1 July
+ * 1835 (Eliza Chappel Porter's infant school, 1833 to 1834, which nothing in the
+ * singular shape could express at all), one that is UNDATED at both ends and
+ * admits it, and one that is open at the far end and therefore undecided.
+ *
+ * The rung is part of the claim, not decoration: `resolves_to` says how far the
+ * evidence reached — a roof, a street, a part of town — and a row that names a
+ * street is not a row that names a building.
+ */
+const SCENE_DATE = '1835-07-01';
+
+/**
+ * Does a closed far end reach 1 July 1835? A bound is stored at the precision its
+ * source permits, so `1834` and `1835-06` have to be read as the LAST day they can
+ * mean before they are compared — `1835-06` is June, and June ends before the day
+ * this scene is set on.
+ */
+function endsOnOrAfterSceneDate(to) {
+  const s = String(to ?? '');
+  if (/^\d{4}$/.test(s)) return `${s}-12-31` >= SCENE_DATE;
+  if (/^\d{4}-\d{2}$/.test(s)) return `${s}-31` >= SCENE_DATE;
+  return s >= SCENE_DATE;
+}
+
+function associationReach(link) {
+  if (link.undated || (!link.from && !link.to)) return ['res-role-off', 'not dated'];
+  if (!link.to) return ['', 'no source closes it'];
+  return endsOnOrAfterSceneDate(link.to)
+    ? ['res-role-scene', 'reaches 1 July 1835']
+    : ['res-role-off', 'ended before 1 July 1835'];
+}
+
+function associationRowHtml(link, citationsById) {
+  const cite = citationsById.get(link.source_id);
+  const [cls, mark] = associationReach(link);
+  const at = cls === 'res-role-scene';
+  const place = link.place_or_structure_id
+    ? escapeHtml(words(link.place_or_structure_id)) : 'a place the record does not name';
+  return `<li class="res-role-row${at ? ' res-role-at' : ''}">
+    <span class="res-role-when">${escapeHtml(associationBound(link))}</span>
+    ${swatch(link.tier)}${escapeHtml(words(link.kind))} · ${place}
+    <span class="res-chips">${link.resolves_to
+      ? `<span class="res-chip">reaches a ${escapeHtml(words(link.resolves_to))}</span>` : ''}<span
+      class="res-chip ${cls}">${escapeHtml(mark)}</span></span>
+    ${link.note ? `<span class="res-why">${escapeHtml(link.note)}</span>` : ''}
+    ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</li>`;
+}
+
+function associationBound(link) {
+  const one = (iso) => {
+    const s = String(iso ?? '');
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return printedOn(s);
+    const m = /^(\d{4})-(\d{2})$/.exec(s);
+    return m ? `${MONTHS[Number(m[2]) - 1]} ${m[1]}` : s;
+  };
+  if (link.undated || (!link.from && !link.to)) return 'no date either end';
+  if (link.from && link.to) {
+    return String(link.from) === String(link.to) ? one(link.from)
+      : `${one(link.from)} to ${one(link.to)}`;
+  }
+  return link.from ? `from ${one(link.from)}, no end recorded`
+    : `until ${one(link.to)}, no start recorded`;
+}
+
+export function associationsHtml(links, citationsById, label) {
+  const list = (links || []).filter(Boolean);
+  if (!list.length) return '';
+  const order = [...list].sort((a, b) => {
+    const key = (l) => (l.undated ? '9999' : String(l.from ?? l.to ?? '9999'));
+    return key(a).localeCompare(key(b));
+  });
+  const undated = order.filter((l) => l.undated || (!l.from && !l.to)).length;
+  return `<dt>${escapeHtml(label)}</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${order.length} dated ${
+      order.length === 1 ? 'connection' : 'connections'}</span>${undated
+      ? `<span class="res-chip res-role-off">${undated} with no date either end</span>` : ''}
+      <br><span class="res-why">A home, a lodging, a workplace, a business premises, a
+        church, a civic seat, a school or land bought — each with how far the evidence
+        reached and the years it permits. An open end means no source closes the
+        relationship, so this list does not say whether such a row held on 1 July 1835;
+        where a source DOES close one before that day, the row says so. The single
+        <q>Lived at</q> and <q>Worked at</q> claims above are the older shape of the same
+        facts, and the build refuses to let the two disagree.</span>
+      <ol class="res-roles">${order.map((l) => associationRowHtml(l, citationsById)).join('')}</ol></dd>`;
+}
+
+/**
+ * THE DATED ROLES, AS A TIMELINE (T-1255, of T-1145; folds in T-1283).
+ *
+ * `persons[].roles[]` is the canonical record of a trade, a profession or an
+ * office — `index.json` `_roles_doc` states it — and `occupation` is a GENERATED
+ * view of the roles that cover 1 July 1835. Until this block the card showed only
+ * the view, which meant a card could show at most one trade and could show none
+ * at all for a man the sources word three times: Daniel Elston is printed a soap
+ * and candle manufacturer in November 1833 and a brickmaker in 1839, and his card
+ * read `none_recorded` for 1835 with both roles unrendered. 262 people carry 267
+ * roles; 140 of them are outside the scene window and were visible nowhere.
+ *
+ * SO IT IS A TIMELINE, AND EACH ROW SAYS WHETHER IT REACHES THE SCENE DATE. The
+ * order is the year a bound opens, undated last. A role that does not reach
+ * 1 July 1835 is marked as not reaching it rather than dropped or dimmed away:
+ * the whole point of the plural field is that a life has more than one year in
+ * it, and `covers_scene_date` is the record's own answer, never recomputed here.
+ *
+ * WHAT A ROW PRINTS AND WHAT IT DOES NOT. The controlled word where the source's
+ * wording has been adjudicated into `vocabulary.occupations`, the wording AS
+ * PRINTED where it has not — and where `role` is null the row SAYS the wording is
+ * not adjudicated, because a printed word standing in for a controlled one is a
+ * weaker claim and T-1254 is where the rest are ruled on. The bound is printed at
+ * the precision the record gives it, `dated_by` says how it was dated, and an
+ * unknown date stays unknown: nothing here widens a bound to the scene date.
+ *
+ * A role carries no PLACE and no employer yet — that is T-1254's migration — so
+ * this block makes no claim about where the work was done. The location half of
+ * T-1240 waits on the same data: no record in the layer carries a dated location
+ * link or a location limit, and the household's `lives_at`/`works_at` are single
+ * undated claims, rendered as such by `householdHtml` above.
+ */
+function roleBound(role) {
+  const one = (iso) => {
+    const s = String(iso ?? '');
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return printedOn(s);
+    const m = /^(\d{4})-(\d{2})$/.exec(s);
+    return m ? `${MONTHS[Number(m[2]) - 1]} ${m[1]}` : s;
+  };
+  const from = role.from ?? null;
+  const to = role.to ?? null;
+  if (!from && !to) return 'not dated';
+  if (from && to) return String(from) === String(to) ? one(from) : `${one(from)} to ${one(to)}`;
+  return from ? `from ${one(from)}` : `until ${one(to)}`;
+}
+
+/** The year a bound opens in, for the order — undated last. */
+function roleOpensIn(role) {
+  const m = /^(\d{4})/.exec(String(role.from ?? role.to ?? ''));
+  return m ? Number(m[1]) : Infinity;
+}
+
+function roleRowHtml(role, citationsById) {
+  const cites = (role.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const printed = role.as_printed ? `<q>${escapeHtml(String(role.as_printed))}</q>` : '';
+  const controlled = role.role ? escapeHtml(words(role.role)) : '';
+  const said = controlled && printed ? `${controlled} · printed ${printed}`
+    : controlled || printed || 'a role the source does not word';
+  const at = Boolean(role.covers_scene_date);
+  const precision = role.precision && role.precision !== 'unknown'
+    ? ` to the ${escapeHtml(words(role.precision))}` : '';
+  return `<li class="res-role-row${at ? ' res-role-at' : ''}">
+    <span class="res-role-when">${escapeHtml(roleBound(role))}</span>
+    ${swatch(role.confidence)}${said}
+    <span class="res-chips">${role.kind
+      ? `<span class="res-chip">${escapeHtml(words(role.kind))}</span>` : ''}<span
+      class="res-chip ${at ? 'res-role-scene' : 'res-role-off'}">${at
+        ? 'reaches 1 July 1835' : 'not on 1 July 1835'}</span>${role.role
+      ? '' : '<span class="res-chip res-role-off">wording not adjudicated</span>'}</span>
+    <span class="res-why">Dated by ${escapeHtml(words(role.dated_by || 'undated'))}${precision}.${
+      role.note ? ` ${escapeHtml(role.note)}` : ''}</span>
+    ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</li>`;
+}
+
+export function rolesHtml(roles, citationsById) {
+  const list = (roles || []).filter(Boolean);
+  if (!list.length) return '';
+  const ordered = [...list].sort((a, b) => roleOpensIn(a) - roleOpensIn(b));
+  const at = ordered.filter((r) => r.covers_scene_date).length;
+  return `<dt>What this person did, and when</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${list.length} dated ${
+      list.length === 1 ? 'role' : 'roles'}</span><span class="res-chip ${
+      at ? 'res-role-scene' : 'res-role-off'}">${at
+        ? `${at} reaching 1 July 1835` : 'none reaching 1 July 1835'}</span>
+      <br><span class="res-why">A trade, a profession or an office, each held to the
+        bound its own sources permit. This is the record; the <q>Occupation</q> row
+        above is a generated view of the roles that cover 1 July 1835, which is why a
+        role printed in another year does not fill it. A role outside the window is
+        kept and marked, not dropped — and nothing here says where the work was done,
+        because a role carries no place yet.</span>
+      <ol class="res-roles">${ordered.map((r) => roleRowHtml(r, citationsById)).join('')}</ol></dd>`;
+}
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null) {
   const occ = person.occupation || {};
+  // The roles are the record and `occupation` is the view of them that covers the
+  // scene date (T-1255): the summary says how many there are so a card with a
+  // trade printed in another year does not read, closed, as a card with no trade.
+  const roles = (person.roles || []).filter(Boolean);
+  const rolesAtScene = roles.filter((r) => r.covers_scene_date).length;
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const born = person.birth_year || null;
@@ -956,7 +1160,9 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
       <span class="res-role">${escapeHtml(words(person.relationship))}${
         occ.value ? ` · ${escapeHtml(words(occ.value))}` : ''}${
         occ.later_occupation ? ` for 1835 · a trade is printed for ${
-          escapeHtml(String(occ.later_occupation.describes_date))}` : ''}</span></summary>
+          escapeHtml(String(occ.later_occupation.describes_date))}` : ''}${
+        roles.length ? ` · ${roles.length} dated ${roles.length === 1 ? 'role' : 'roles'}${
+          rolesAtScene ? '' : ', none on 1 July 1835'}` : ''}</span></summary>
     <dl class="lib-body">
       ${row('In the household as', words(person.relationship))}
       ${row('Sex', words(person.sex))}
@@ -967,6 +1173,9 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
         laterOccupationHtml(occ.later_occupation, citationsById)}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
+      ${rolesHtml(roles, citationsById)}
+      ${associationsHtml(person.associated_with, citationsById,
+        'Where this person was, and when')}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
       ${person.letter_list_only
         ? `<dt>How this person is known</dt><dd>${swatch('attested')}Only from the post office's lists of uncalled-for letters. A name on one of those lists is somebody a correspondent believed was reachable at Chicago; it gives no trade, no street and no household, and it is the weakest evidence this project accepts for a resident. A shopkeeper who advertised his stock is a different claim, and this row is here so the two never read as the same one.</dd>` : ''}
@@ -1053,6 +1262,8 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
       ${claimRow('Worked at', (hh.works_at || {}).value, hh.works_at, citationsById)}
       ${claimRow('Here on 1 July 1835', (hh.present_on_scene_date || {}).value,
         hh.present_on_scene_date, citationsById)}
+      ${associationsHtml(hh.associated_with, citationsById,
+        'Where this household was, and when')}
       ${kinRows(hh, citationsById)}
       ${hh.touches_removal
         ? `<dt>Touches the removal of 1835</dt><dd>Yes — read the standing constraint in

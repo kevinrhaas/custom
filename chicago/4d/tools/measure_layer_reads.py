@@ -234,15 +234,17 @@ STATED_SHARED = frozenset({
     # RECORD's `present_on_scene_date` block is read and shown by residents.js;
     # the manifest's copy of it is read by nothing, and the two are the same word.
     "present_on_scene_date",
-    # T-1229's dated roles. `persons[].roles[].from` and `.to` are the bound a
-    # trade's evidence permits, and a bare `.from`/`.to` is this renderer's own
-    # vocabulary for a span: boats.js and frontage.js index face ranges with it,
-    # popup.js prints a documented range with it and facades.js ages a wall off it.
-    # `as_printed` is the corpus-wide word for a source's own wording and is read on
-    # name variants. None of the three reaches a role today — the People view's dated
-    # timeline is T-1255 — and a bare-name scan cannot say so, which is what this list
-    # is for. All three stay in the unread bank either way.
-    "as_printed", "from", "to",
+    # `as_printed`, `from` and `to` WERE here. T-1229's dated roles held all three and
+    # nothing read any of them, and a bare-name scan could not say so: `.from`/`.to`
+    # are this renderer's own vocabulary for a span — boats.js and frontage.js index
+    # face ranges with them, popup.js prints a documented range and facades.js ages a
+    # wall — and `as_printed` is the corpus-wide word for a source's own wording, read
+    # on name variants. T-1255 put the dated timeline on the card, so all three are
+    # declared reads below on `persons[].roles[]` and no `.from`, `.to` or
+    # `as_printed` leaf is left in the unread bank for the exemption to cover. It goes
+    # rather than being kept as a courtesy, for the reason the `source` exemption went
+    # with T-0668: a stated share is an admission the scan cannot attribute an access,
+    # and these it can.
     # These seven WERE here: they occur in the separately rendered research_pilot
     # payload as well as in the record's own `resident_research` block, and while the
     # embedded block was unread a bare-name scan could not attribute an access to one
@@ -687,6 +689,71 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # a letter waiting on the scene date and one waiting eighteen months earlier say
     # different things about the same person, and only this figure tells them apart.
     "persons[].letter_list_returns": ("shown", "person.letter_list_returns"),
+    # T-1240, folded into T-1255 — THE PLURAL DATED PLACES, ON BOTH CARDS. T-1238
+    # landed `associated_with[]`, its gates and four demonstration records and banked
+    # every leaf of it unread, because a schema has to exist before a view can read
+    # it. `associationsHtml` is that view: seven rows on four records, on the person
+    # card and the household card both, and every leaf of the row is declared here.
+    #
+    # The two figures that do the most work are `to` and `undated`. Neither says
+    # whether a relationship held on 1 July 1835 and the renderer does not decide
+    # that either — an open `to` on this layer means NO SOURCE CLOSES THE
+    # RELATIONSHIP, so the row is printed open and the question left unanswered,
+    # which is the flattening the plural shape exists to refuse. A CLOSED `to` is
+    # compared against the scene date at the precision it was stored at, because
+    # `1835-06` is June and June ends before the day this scene is set on.
+    #
+    # Two paths are deliberately absent because the DATA does not carry them today:
+    # no household row has a closed `to` and no person row carries `undated`. The
+    # renderer handles both — `associationBound` and `associationReach` read whichever
+    # end a row has — and each is declared on the scope that does hold it, which is
+    # where this gate can prove the read. They join when a record writes one.
+    "associated_with[].kind": ("shown", 'escapeHtml(words(link.kind))'),
+    "associated_with[].place_or_structure_id": ("shown", 'escapeHtml(words(link.place_or_structure_id))'),
+    "associated_with[].resolves_to": ("shown", 'escapeHtml(words(link.resolves_to))'),
+    "associated_with[].from": ("shown", "String(l.from ?? l.to ?? '9999')"),
+    "associated_with[].undated": ("shown", 'link.undated || (!link.from && !link.to)'),
+    "associated_with[].tier": ("shown", 'swatch(link.tier)'),
+    "associated_with[].source_id": ("shown", 'citationsById.get(link.source_id)'),
+    "associated_with[].note": ("shown", 'escapeHtml(link.note)'),
+    "persons[].associated_with[].kind": ("shown", 'escapeHtml(words(link.kind))'),
+    "persons[].associated_with[].place_or_structure_id": ("shown", 'escapeHtml(words(link.place_or_structure_id))'),
+    "persons[].associated_with[].resolves_to": ("shown", 'escapeHtml(words(link.resolves_to))'),
+    "persons[].associated_with[].from": ("shown", "String(l.from ?? l.to ?? '9999')"),
+    "persons[].associated_with[].to": ("shown", 'endsOnOrAfterSceneDate(link.to)'),
+    "persons[].associated_with[].tier": ("shown", 'swatch(link.tier)'),
+    "persons[].associated_with[].source_id": ("shown", 'citationsById.get(link.source_id)'),
+    "persons[].associated_with[].note": ("shown", 'escapeHtml(link.note)'),
+    # T-1255 — THE DATED ROLES, ON THE CARD. `persons[].roles[]` is the canonical
+    # record of a trade, a profession or an office and `occupation` is the generated
+    # view of the roles that cover 1 July 1835 (index.json `_roles_doc`). T-1229 wrote
+    # the list and left it unread: 262 people held 267 roles, 140 of them outside the
+    # scene window, and the card showed only the derived word — which for Daniel
+    # Elston was `none_recorded` beside two printed trades. `rolesHtml` prints the run
+    # as a timeline, so every figure on a role is declared here.
+    #
+    # `covers_scene_date` is the record's own answer and the renderer never recomputes
+    # it: it decides which rows are marked as reaching the scene date and which are
+    # marked as not, and the summary count beside the section is read off it too.
+    "persons[].roles[].role": ("shown", "escapeHtml(words(role.role))"),
+    "persons[].roles[].as_printed": ("shown", "escapeHtml(String(role.as_printed))"),
+    "persons[].roles[].kind": ("shown", "escapeHtml(words(role.kind))"),
+    "persons[].roles[].from": ("shown", "const from = role.from ?? null;"),
+    "persons[].roles[].to": ("shown", "const to = role.to ?? null;"),
+    "persons[].roles[].precision": ("shown", "escapeHtml(words(role.precision))"),
+    "persons[].roles[].dated_by": ("shown", "escapeHtml(words(role.dated_by || 'undated'))"),
+    "persons[].roles[].covers_scene_date": (
+        "shown", "const at = Boolean(role.covers_scene_date);"),
+    "persons[].roles[].confidence": ("shown", "swatch(role.confidence)"),
+    "persons[].roles[].note": ("shown", "escapeHtml(role.note)"),
+    "persons[].roles[].sources": (
+        "shown", "(role.sources || []).map((id) => citationsById.get(id))"),
+    # The derived view's own list of which roles reach the scene date. The card reads
+    # its LENGTH — the summary line says how many dated roles a person has and whether
+    # any of them lands on 1 July 1835, so a closed card no longer reads as trade-less
+    # when the record holds a trade printed in another year.
+    "persons[].occupation.roles_at_scene_date": (
+        "shown", "const rolesAtScene = roles.filter((r) => r.covers_scene_date).length;"),
     "persons[].occupation.value": ("shown", "words(occ.value)"),
     "persons[].occupation.confidence": ("shown", "swatch(occ.confidence)"),
     "persons[].occupation.note": ("shown", "escapeHtml(occ.note)"),
@@ -975,6 +1042,34 @@ RECORD_KINDS = ("zone", "manifest", "palette", "household")
 # assertion 4 still fails if a new one appears, and assertion 5 still fails if
 # one of these leaves the data.
 REFUSALS: dict[str, str] = {
+    # T-1238's two closed sets, re-authored HERE by T-1255 because they were written
+    # straight into layer_reads_baseline.json and nowhere else — the same mistake
+    # `flora/zone:woody_stratum.measured_from` below records, and `--update` deletes a
+    # refusal it cannot find in this table. The prose also had to change: it said both
+    # sets "un-bank together with T-1240's view", and T-1240's view has now landed
+    # inside T-1255 without reading either.
+    #
+    # It reads the rung the ROW carries and prints that word, which is the claim a
+    # reader needs — "reaches a structure", "reaches a street". It does not implement
+    # the sets as behaviour: no label is looked up in them, and no row is ordered or
+    # withheld by them. A renderer that drew a row differently per kind, or that
+    # refused a rung the set does not hold, would read them, and would declare them
+    # here. Until one does, these are two closed sets the data states for a reader and
+    # for tools/validate.py, and the honest answer is that nothing reads them.
+    "residents/manifest:vocabulary.association_kinds": (
+        "The closed set of connection kinds an `associated_with` row may carry. The "
+        "person and household cards print the kind word off the ROW (T-1255's "
+        "`associationsHtml`) rather than looking it up here, and nothing orders, "
+        "labels or withholds a row by this set. tools/validate.py is what holds a row "
+        "to it; a renderer that read it would be a second answer to the same question."
+    ),
+    "residents/manifest:vocabulary.association_resolution": (
+        "The closed set of rungs an `associated_with` row may resolve to — a roof, a "
+        "street, a part of town. The cards print the row's own `resolves_to` word, "
+        "because how far the evidence reached is part of the claim; the SET behind it "
+        "is a schema constraint tools/validate.py enforces, and no renderer implements "
+        "it as behaviour. It un-banks when one draws a row differently per rung."
+    ),
     # T-1056, recovered by T-1029. This refusal was written straight into
     # layer_reads_baseline.json and never into this table, so `--update` — which
     # rebuilds the bank from `state["unread"]` and re-attaches a refusal only if it
