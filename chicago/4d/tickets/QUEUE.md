@@ -24,7 +24,8 @@ T-1217 — The card for jones_es_high leads with its family name, because the pr
 T-1224 — Migrate every matched role from the newspaper gazetteer, the later-occupation blocks and the 1839 directory and civic-register crosswalks, and publish the offered/asserted/folded/refused/unresolved reconciliation table
 T-1225 — Resolve T-0991's six 1833 trades as dated pre-scene roles, and extend the resident audit and the layer-read census to roles
 T-1226 — Search and filter the People view on both the controlled role and the source's printed wording
-T-1146 — Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
+T-1234 — Spend the person units the matched-research table does not reach: every unasserted book, index and letter-list-suspicion unit in the research ledger named to a structured resident field or refused in writing
+T-1233 — Render the asserted person facts and every withheld candidate's reason on the resident card, and rule on the 83 unread resident field paths — wired, refused in writing, or removed
 T-1228 — Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns
 T-1147 — Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence

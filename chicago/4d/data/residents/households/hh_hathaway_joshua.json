@@ -112,7 +112,22 @@
      ],
      "note": "Age range derived from birth year because birth month/day is not asserted here."
     }
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Drew the 1834 Chicago cadastral map this project reads as a tier-1 source",
+     "confidence": "attested",
+     "sources": [
+      "hathaway_1834"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0483#01",
+     "as_read": "the named creator of the 1834 Chicago cadastral map already registered as a tier-1 project source",
+     "note": "The map carries his authorship and the project already stands on the map. This is the rare case where the corroborating record is one of the project's own primary sources, so it is graded attested."
+    }
+   ]
   }
  ],
  "touches_removal": false,

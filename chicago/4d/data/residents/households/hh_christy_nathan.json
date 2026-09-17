@@ -97,7 +97,22 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — an adjudicated resident_research outcome (T-0484, corroborated_enrichment). G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Named in the 1834 Chicago letter lists beside the uncommon Rumsey Christy",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0484#01",
+     "as_read": "The 1834 Chicago letter-list evidence places Nathan Christy beside the uncommon Rumsey Christy",
+     "note": "A paired name in a contemporary return is a far stronger discriminator than a lone same-name match, and it is the reading that carried this identity. Written down as the fact it is; it names a second person and mints nobody."
+    }
+   ]
   }
  ],
  "touches_removal": false,

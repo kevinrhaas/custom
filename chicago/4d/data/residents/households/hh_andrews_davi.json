@@ -95,7 +95,35 @@
       "reason": "This card rests on 2 thing(s) the consolidation did not read — isa_public_domain_land_tract_sales, resident_research_cook_county_andrews_1884. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "name_as_printed",
+     "value": "David Andrews",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_cook_county_andrews_1884"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "not_a_place",
+     "record_id": "resident_research:T-0480#01",
+     "as_read": "identifies David Andrews in Cook County from 1834",
+     "note": "The biography prints the forename the postal transcription clipped to 'Davi'. Carried beside the read name — the id and the displayed name do not move, which is the rule the whole layer is minted under."
+    },
+    {
+     "field": "life_event",
+     "value": "In Cook County from 1834",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_cook_county_andrews_1884"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0480#02",
+     "as_read": "in Cook County from 1834 and supports exact-name continuity",
+     "note": "The county, which is what the source says. The block is explicit that it does not reach a 1 July 1835 roof and this row does not either."
+    }
+   ]
   }
  ],
  "touches_removal": false,

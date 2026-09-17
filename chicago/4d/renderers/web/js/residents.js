@@ -683,6 +683,67 @@ function rolesHtml(person, citationsById) {
       <ul class="res-candidates">${items}</ul></dd>`;
 }
 
+/**
+ * WHAT THE RESEARCH ACTUALLY SAID ABOUT THIS PERSON (T-1232).
+ *
+ * The layer carries 94 research blocks whose identity the project ASSERTED — its own
+ * verdict that the person behind the reading is the person on the card — and the facts
+ * inside them sat in paragraphs. `hh_andrus_thomas` is the defect in one record: the
+ * DuPage history gives "arrival in Chicago Dec. 1, 1833" and the card's origin said
+ * "Not attested."
+ *
+ * `tools/spend_person_facts.py` adjudicates every one of those candidates and writes the
+ * asserted ones onto the person as `profile_facts`. This renders them — each with the
+ * DATE IT SPEAKS ABOUT, which is the distinction the whole consolidation rests on, and
+ * the sentence it was read from, so a reader can disagree with the verdict rather than
+ * take it.
+ *
+ * THESE ARE NOT THE PERSON'S 1835 CLAIMS. The household's `arrival` block above is a
+ * separate claim and this section never displaces it: a postal bound and a stated
+ * arrival are different things and both are true at once. A row marked `outside_chicago`
+ * is here because it is the reason a presence could not be lifted.
+ */
+const FACT_LABELS = new Map([
+  ['arrival_at_chicago', 'Came to Chicago'],
+  ['origin', 'Came from'],
+  ['reason_for_coming', 'Why they came'],
+  ['sex', 'Sex'],
+  ['name_as_printed', 'Also printed as'],
+  ['birth_year_bound', 'Born'],
+  ['death', 'Died'],
+  ['marriage', 'Married'],
+  ['life_event', 'What the sources record'],
+  ['departure_from_chicago', 'Left Chicago'],
+  ['workplace', 'Worked at'],
+  ['role', 'Trade or office'],
+]);
+
+function profileFactsHtml(facts, citationsById) {
+  const rows = (facts || []).filter(Boolean);
+  if (!rows.length) return '';
+  const body = rows.map((f) => {
+    const cites = (f.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+    const label = FACT_LABELS.get(f.field) || words(f.field);
+    return `<li><b>${escapeHtml(label)}</b> ${swatch(f.confidence)}${escapeHtml(String(f.value ?? ''))}${
+      f.precision ? ` — the source is exact to the ${escapeHtml(words(f.precision))}` : ''}
+      <br><span class="res-why">Describing ${escapeHtml(printedOn(f.describes_date))}${
+        f.place_class === 'outside_chicago' ? ', and somewhere other than this town' : ''}.
+        <q>${escapeHtml(String(f.as_read ?? ''))}</q> ${escapeHtml(String(f.note ?? ''))}
+        Record ${escapeHtml(String(f.record_id))}.</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</li>`;
+  }).join('');
+  return `<dt>Spent from the matched research</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${rows.length} ${
+      rows.length === 1 ? 'fact' : 'facts'}</span>
+      <ul class="res-candidates">${body}</ul>
+      <span class="res-why">Every candidate the research proposed is adjudicated in
+        <code>data/residents/person_facts.json</code> — these are the ones this project was
+        willing to assert. The rest are withheld WITH THEIR REASON: a volume printed after
+        the scene may date and corroborate and may never promote, a source that puts the
+        person somewhere else cannot make them a resident here, and a trade belongs to the
+        occupation field rather than to this one.</span></dd>`;
+}
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules) {
   const occ = person.occupation || {};
@@ -722,6 +783,7 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
           and one waiting eighteen months earlier is a different claim about the same
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
+      ${profileFactsHtml(person.profile_facts, citationsById)}
       ${evidenceLadderHtml(person, citationsById, ladderRules)}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
       ${laterCensusHtml(person.later_census, citationsById)}

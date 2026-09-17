@@ -325,3 +325,49 @@ exceptions and are T-1225's to spend. Two simultaneous roles remain two roles.
 The other 1,126 structured role rows — the newspaper gazetteer, the later-occupation
 blocks, the 1839 directory and civic-register crosswalks, the 1843/1844 identity
 master — are T-1224's to migrate, with its disposition table.
+
+## `profile_facts` — what the matched research actually said (T-1232)
+
+94 of this layer's `resident_research` blocks carry `asserted_identity: true` — the
+project's own verdict that the person traced through a county history, a family
+genealogy or a church roll is the person on the card. The facts inside those blocks
+lived in their `summary` and `evidence_for` PROSE, beside structured fields on the
+same record that read `"Not attested."` `hh_andrus_thomas` is the defect in one file:
+a DuPage history gives "arrival in Chicago Dec. 1, 1833" and the card's `origin`,
+`reason_for_coming` and every dated life event said nothing.
+
+`tools/spend_person_facts.py` reads
+`data/research/residents/person_fact_readings.json` — the hand reading of those 94
+blocks — turns EVERY candidate in EVERY research block into a row of
+`person_facts.json`, adjudicates it, and writes the asserted ones here.
+
+`persons[].profile_facts` is an optional list. Each row is an ordinary graded claim
+block — `value`, `confidence`, `sources`, `note` — plus five fields that make it a
+dated reading rather than a 1835 claim:
+
+| field | means |
+|---|---|
+| `field` | the fact class: `arrival_at_chicago`, `origin`, `sex`, `name_as_printed`, `birth_year_bound`, `death`, `marriage`, `life_event`, `departure_from_chicago`, … |
+| `describes_date` | the date the reading SPEAKS ABOUT, which is not the date it was printed |
+| `place_class` | `chicago`, `outside_chicago` or `not_a_place` — a fact set somewhere else is why a presence could not be lifted |
+| `record_id` | the research block and the row within it, `resident_research:T-0485#01` |
+| `as_read` | the sentence it was read from, so the verdict can be disagreed with |
+
+**It never displaces anything.** A household's `arrival` is a separate claim and a
+postal bound and a stated arrival are different things; both stand. The only fields
+this tool may fill are a household's NULL `origin` or `reason_for_coming`, and only
+where the household holds one person — a household field speaks for everybody under
+the roof, so one person's origin may not be dealt to a second.
+
+**It mints nobody.** A marriage names a spouse and a chronology names a travelling
+companion; neither becomes a household member. T-1170 fills families from exactly
+these rows, under the household model, where every such person carries a basis and a
+seed.
+
+**The withheld rows are the product.** Most candidates are refused and each refusal is
+written down: `later_only` (T-0513's ladder — a volume printed after the scene may date
+and corroborate and may never promote), `outside_chicago`, `contradicted`,
+`insufficient_identity`, `duplicate`, `no_candidate`, or `unresolved:T-NNNN` where the
+fact belongs to a field another ticket is building (a trade is T-1145's plural roles, a
+premises is T-1147's location spend). T-1159's borderline roster is a FILTER over
+`person_facts.json`, not a second reading of the same corpus.
