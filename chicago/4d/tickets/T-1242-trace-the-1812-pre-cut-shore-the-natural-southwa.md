@@ -1,7 +1,7 @@
 ---
 id: T-1242
 title: Trace the 1812 pre-cut shore: the natural southward river mouth, the baymouth bar and the channel behind it, adopted as shore_1812_pre_cut's own bounded geometry
-state: claimed
+state: done
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-0468
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1399
 claimed_by: run 9/17/2026, 8:58:21 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T14:55:10.220Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35229760280
 ---
 
