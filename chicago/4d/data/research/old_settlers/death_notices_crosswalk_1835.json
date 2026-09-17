@@ -932,7 +932,7 @@
    "person_id": "harmon_isaac_d",
    "household_id": "hh_harmon_brothers",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835": "none_recorded",
    "rule": "Surname 'Harmon' folds to the same string as the entry's, and the given name of both begins I.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -1426,7 +1426,7 @@
    "person_id": "mason_matthias",
    "household_id": "hh_mason_matthias",
    "grade_1835": "attested",
-   "occupation_1835": "blacksmith",
+   "occupation_1835": "none_recorded",
    "rule": "Surname 'Mason' folds to the same string as the entry's, and the given name of both begins M.",
    "resident_given_is_initial_only": false,
    "entries": [

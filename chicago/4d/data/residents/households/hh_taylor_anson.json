@@ -65,7 +65,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'Anson H. and his brother, Charles Taylor, came in 1832.' John Bates, interviewed in 1883, remembered 'a sort of bridge built the year before by Anson Taylor across the South Branch near Randolph Street - a log-bridge, quite near the water, over which teams could pass'; Andreas dates that bridge to 1832 and credits it to Anson H. Taylor and his brother Charles. He hauled the lumber for St Mary's from the schooner to the site with his own team."
+    "note": "'Anson H. and his brother, Charles Taylor, came in 1832.' John Bates, interviewed in 1883, remembered 'a sort of bridge built the year before by Anson Taylor across the South Branch near Randolph Street - a log-bridge, quite near the water, over which teams could pass'; Andreas dates that bridge to 1832 and credits it to Anson H. Taylor and his brother Charles. He hauled the lumber for St Mary's from the schooner to the site with his own team.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "carpenter"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -135,6 +139,24 @@
      ],
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
     }
+   ],
+   "roles": [
+    {
+     "role": "carpenter",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
    ]
   },
   {
@@ -150,7 +172,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "He is named as Anson's partner on the bridge and separately in the 1833 roster as 'Charles H. Taylor, came in 1832', with no trade. The trade is read across from the joint work."
+    "note": "He is named as Anson's partner on the bridge and separately in the 1833 roster as 'Charles H. Taylor, came in 1832', with no trade. The trade is read across from the joint work.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "carpenter"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -183,6 +209,24 @@
      ],
      "for_merge": "Only the initial. Strip \"Mrs.\" and `C.` expands to exactly one full Taylor forename in this town — Charles — with no rival, which is C2's own test and would ordinarily land the merge. It is also true that this is exactly how the period prints a married woman — the honorific standing on her husband's forename, whoever he was — so the shape itself argues nothing either way. That is an argument for a KINSHIP, not for one card: R6 (#998) settled that a wife is not her husband.",
      "against_merge": "A WOMAN AND A MAN, AND THE PAGE PRINTS THE HONORIFIC. The Chicago Democrat of 19 August 1835 (c007) invites the town to a sale \"at the hous[e] of Mrs. C. Taylor, Water-st.\" — she keeps a house and hosts the Juvenile Society in it. The rival card is Charles H. Taylor, Anson's brother on hh_taylor_anson: a carpenter on the 1833, 1834 and 1835 poll lists, in the federal land tract register and in the 1840 census, every one of them a man's record. Merging would assert that the notice named him, which no reading of \"Mrs.\" supports. THE PROOF HERE IS NOT BROWN'S PROOF, and the difference is why this ruling is written out rather than cited: R6 and D3 were built on ONE SOURCE PRINTING BOTH READINGS as separate entries, because `Mrs. Rufus B. Brown` and `Brown, Rufus B.` are identical once the honorific is stripped and nothing in the letters tells a Rufus from an Eliza. These two are not identical after the strip — `Taylor, C.` against `Taylor, Charles H.` — so the pair never needed that proof to be held apart; what joins them is the ordinary initial rule (C2 on the card side, M2 in the derivation) reaching across an honorific it cannot see. That is the shape T-0951 now carries."
+    }
+   ],
+   "roles": [
+    {
+     "role": "carpenter",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "inferred",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }

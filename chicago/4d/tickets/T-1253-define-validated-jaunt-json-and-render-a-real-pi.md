@@ -20,7 +20,7 @@ claimed_run: null
 
 Establish a compact declarative jaunt schema and lazy catalog, with a New in Chicago pilot preview in the welcome. The engine ticket turns the same pilot into a playable path; the priority content ticket finishes its authored narrative.
 
-**Depends on:** T-1248, T-1251, T-1252
+**Depends on:** T-1248, T-1277, T-1278
 
 **Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
 

@@ -1,5 +1,5 @@
 ---
-id: T-1252
+id: T-1278
 title: Land on a warm mobile welcome with Jaunts and Explore Myself
 state: open
 epic: RENDERING
@@ -20,7 +20,7 @@ claimed_run: null
 
 On real readiness, land on the start surface: Welcome to Chicago, summer 1835, a one-sentence digital-reconstruction explanation, and Jaunts / I’ll Explore Myself — Starting At…. Wire a clearly labeled empty state until the jaunt catalog lands.
 
-**Depends on:** T-1247, T-1250, T-1251
+**Depends on:** T-1247, T-1276, T-1277
 
 **Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
 

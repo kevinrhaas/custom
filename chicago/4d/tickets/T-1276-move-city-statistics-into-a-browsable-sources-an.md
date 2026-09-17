@@ -1,5 +1,5 @@
 ---
-id: T-1250
+id: T-1276
 title: Move city statistics into a browsable Sources and City summary
 state: open
 epic: RENDERING

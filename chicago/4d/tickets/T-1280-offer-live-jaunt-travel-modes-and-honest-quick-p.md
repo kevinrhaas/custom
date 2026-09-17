@@ -1,5 +1,5 @@
 ---
-id: T-1255
+id: T-1280
 title: Offer live jaunt travel modes and honest quick-play estimates
 state: open
 epic: RENDERING
@@ -20,7 +20,7 @@ claimed_run: null
 
 Give every jaunt a changeable recommended mode and a duration that follows the actual selected route/pace. Prevent travel from consuming the entire outing.
 
-**Depends on:** T-1254
+**Depends on:** T-1279
 
 **Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
 

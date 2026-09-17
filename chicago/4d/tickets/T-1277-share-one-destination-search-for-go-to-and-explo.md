@@ -1,5 +1,5 @@
 ---
-id: T-1251
+id: T-1277
 title: Share one destination search for Go to and Explore Myself
 state: open
 epic: RENDERING

@@ -20,7 +20,7 @@ claimed_run: null
 
 Complete the welcome’s Jaunts Menu as a content-driven library that stays quick to browse at 25 and 50+ jaunts, alongside the shared Explore Myself option.
 
-**Depends on:** T-1254, T-1255, T-1258, T-1252
+**Depends on:** T-1279, T-1280, T-1258, T-1278
 
 **Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
 

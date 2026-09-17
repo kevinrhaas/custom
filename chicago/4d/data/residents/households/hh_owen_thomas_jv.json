@@ -84,7 +84,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Appointed United States Indian agent for Chicago in the winter of 1830-31 and still agent at his death; Andreas, scan p. 195. He was also the first president of the town's board of trustees, elected 10 August 1833 with 26 of 28 votes, and a commissioner for the United States at the Chicago treaty of 26 September 1833. The occupation recorded is the office he held, not the trustee presidency, which was unpaid and annual."
+    "note": "Appointed United States Indian agent for Chicago in the winter of 1830-31 and still agent at his death; Andreas, scan p. 195. He was also the first president of the town's board of trustees, elected 10 August 1833 with 26 of 28 votes, and a commissioner for the United States at the Chicago treaty of 26 September 1833. The occupation recorded is the office he held, not the trustee presidency, which was unpaid and annual.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "indian_agent"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -202,6 +206,24 @@
       "owen_thomas_j_v"
      ],
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ],
+   "roles": [
+    {
+     "role": "indian_agent",
+     "kind": "office",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   },

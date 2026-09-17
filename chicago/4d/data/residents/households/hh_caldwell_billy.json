@@ -80,7 +80,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Interpreter to the United States Indian agency at Chicago under Col. T. J. V. Owen: Andreas's account of the agency names the establishment - Gholson Kercheval and James Stuart as sub-agents, 'Billy Caldwell (Sauganash) as interpreter; David McKee as blacksmith, and Joseph Porthier as striker'. He had been appointed a justice of the peace for Peoria County in 1826 and appears on the poll lists of 1826 and 1830, usually officiating as one of the clerks of the election."
+    "note": "Interpreter to the United States Indian agency at Chicago under Col. T. J. V. Owen: Andreas's account of the agency names the establishment - Gholson Kercheval and James Stuart as sub-agents, 'Billy Caldwell (Sauganash) as interpreter; David McKee as blacksmith, and Joseph Porthier as striker'. He had been appointed a justice of the peace for Peoria County in 1826 and appears on the poll lists of 1826 and 1830, usually officiating as one of the clerks of the election.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "interpreter"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -109,7 +113,25 @@
      }
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "roles": [
+    {
+     "role": "interpreter",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": true,

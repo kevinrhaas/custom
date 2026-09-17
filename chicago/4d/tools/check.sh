@@ -153,6 +153,21 @@ selftest "…and shoreline-state assertions still fire when collapsed" \
 step "the 1812 pre-cut shore still re-derives from its readings (T-1242)" \
   python3 tools/derive_shore_1812.py --check
 
+# T-1249. A scene date is a claim about WHEN this reconstruction stands, and until
+# now the 1880s one was the only claim in the terrain layer that nothing derived and
+# nothing checked: the step above carried a bare `date(1885, 7, 1)` that T-1152 wrote
+# in as scaffolding. It read like a settled figure. It is three and a half years
+# before the Glessner House was finished, so the Prairie Avenue the 1880s epoch
+# exists to carry could not have stood on it. The date is now the arithmetic of the
+# committed readings — the latest documented lower bound, carried to the 1835 scene's
+# own day-of-year, held inside the decade the parent ticket asked for — and the epoch,
+# the shoreline state and check_shoreline_states.py all read the one file.
+step "the 1880s scene date re-derives from its readings, and nothing has drifted off it" \
+  python3 tools/check_1880s_scene_date.py
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_1880s_scene_date.py --self-test
+
 # ...and for the North Branch north of it (T-1072). Two tools write one
 # branches.geojson through tools/branches_file.py, and each of these two steps
 # also holds the collection's shared fields and its declared feature order, so
@@ -2204,6 +2219,22 @@ step "no standing 1835 trade is cited only to a volume about another year" \
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/audit_scene_window_trades.py --self-test
+
+# T-1229 (of T-1145). THE SINGULAR FIELD THE TWO STEPS ABOVE ARE ARGUING OVER IS NOW A
+# VIEW. `persons[].roles[]` is canonical — a controlled role, the kind of role it is, the
+# bound its evidence permits, how it was dated, a confidence and its sources — and
+# `persons[].occupation` is derived from the roles that actually cover 1 July 1835. That
+# is what lets a card say a man was a candle manufacturer in 1833 AND a school inspector
+# in 1839 without either erasing the other, and it is what took T-0991's six pre-scene
+# trades off the 1835 field: the audit above now stands at zero because the roles carry
+# them with their dates instead. This step is the re-derivation; validate.py holds the
+# shape and refuses an undated or non-covering role standing in the 1835 field, which is
+# the half a generator cannot cover because a hand edit never runs it.
+step "resident roles re-derive, and the 1835 view is the roles that reach it" \
+  python3 tools/derive_resident_roles.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/derive_resident_roles.py --self-test
 
 # Re-deriving is not the same as being STABLE. The allocator dealt each pool by
 # index, so a name was a function of how many people sorted ahead of you and one

@@ -62,7 +62,11 @@
      "chicago_democrat_1833_1835",
      "chicago_american_1835"
     ],
-    "note": "THE TRADE IS THE PAPER'S. The corpus reads it as army officer, engineer, at the Democrat of 25 March 1834, column 2; the American of 18 July 1835, column 1; the Democrat of 13 August 1834, column 2. The residents vocabulary's nearest period-correct word for it is `army_officer`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take."
+    "note": "THE TRADE IS THE PAPER'S. The corpus reads it as army officer, engineer, at the Democrat of 25 March 1834, column 2; the American of 18 July 1835, column 1; the Democrat of 13 August 1834, column 2. The residents vocabulary's nearest period-correct word for it is `army_officer`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "army_officer"
+    ]
    },
    "sources": [
     "census_1840_chicago_familysearch_images",
@@ -145,6 +149,25 @@
       "allen_lieut_j"
      ],
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ],
+   "roles": [
+    {
+     "role": "army_officer",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1833-11",
+     "to": "1835-08",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_american_1835"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }

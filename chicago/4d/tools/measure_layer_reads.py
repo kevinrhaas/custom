@@ -225,6 +225,15 @@ STATED_SHARED = frozenset({
     # RECORD's `present_on_scene_date` block is read and shown by residents.js;
     # the manifest's copy of it is read by nothing, and the two are the same word.
     "present_on_scene_date",
+    # T-1229's dated roles. `persons[].roles[].from` and `.to` are the bound a
+    # trade's evidence permits, and a bare `.from`/`.to` is this renderer's own
+    # vocabulary for a span: boats.js and frontage.js index face ranges with it,
+    # popup.js prints a documented range with it and facades.js ages a wall off it.
+    # `as_printed` is the corpus-wide word for a source's own wording and is read on
+    # name variants. None of the three reaches a role today — the People view's dated
+    # timeline is T-1255 — and a bare-name scan cannot say so, which is what this list
+    # is for. All three stay in the unread bank either way.
+    "as_printed", "from", "to",
     # These seven WERE here: they occur in the separately rendered research_pilot
     # payload as well as in the record's own `resident_research` block, and while the
     # embedded block was unread a bare-name scan could not attribute an access to one

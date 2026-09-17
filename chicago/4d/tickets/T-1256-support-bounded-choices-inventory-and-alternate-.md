@@ -20,7 +20,7 @@ claimed_run: null
 
 Add optional data-driven mechanics without forcing them onto a simple walk: money, inventory, story time, reputation, information, health, sobriety, cargo and readiness only when the content declares them.
 
-**Depends on:** T-1254
+**Depends on:** T-1279
 
 **Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
 

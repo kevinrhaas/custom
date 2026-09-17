@@ -20,7 +20,7 @@ claimed_run: null
 
 Run the integrated published experience from a cold boot through another jaunt or free exploration. Fix concrete integration failures within this slice and finish the section.
 
-**Depends on:** T-1271, T-1249, T-1250, T-1252, T-1259
+**Depends on:** T-1271, T-1275, T-1276, T-1278, T-1259
 
 **Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
 

@@ -20,7 +20,7 @@ claimed_run: null
 
 Keep the primary story concise while linking every stop to existing building, resident, business and source information. Add light optional context between stops.
 
-**Depends on:** T-1254, T-1255, T-1250
+**Depends on:** T-1279, T-1280, T-1276
 
 **Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
 

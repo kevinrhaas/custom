@@ -59,7 +59,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'Ashbel Steele, plastered Calhoun's printing office in November, 1833' - the trade is stated as an act rather than as a title, which is how this roster names several of its artisans."
+    "note": "'Ashbel Steele, plastered Calhoun's printing office in November, 1833' - the trade is stated as an act rather than as a title, which is how this roster names several of its artisans.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "plasterer"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -78,7 +82,25 @@
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "plasterer",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

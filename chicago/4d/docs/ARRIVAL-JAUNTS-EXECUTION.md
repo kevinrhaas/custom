@@ -33,22 +33,22 @@ merge workflow remain in force.
 | [T-1246](../tickets/T-1246-expose-real-boot-phases-and-yield-long-scene-bui.md) | Expose real boot phases and yield long scene-building tasks | Existing dev |
 | [T-1247](../tickets/T-1247-roll-the-year-back-into-a-restrained-time-machin.md) | Roll the year back into a restrained time-machine arrival | T-1246 |
 | [T-1248](../tickets/T-1248-compile-the-sources-used-and-their-reconstructio.md) | Compile the sources used and their reconstruction backlinks | Existing dev |
-| [T-1249](../tickets/T-1249-give-the-loading-journey-160-varied-source-and-r.md) | Give the loading journey 160 varied source and reconstruction statuses | T-1247, T-1248 |
-| [T-1250](../tickets/T-1250-move-city-statistics-into-a-browsable-sources-an.md) | Move city statistics into a browsable Sources and City summary | T-1248 |
-| [T-1251](../tickets/T-1251-share-one-destination-search-for-go-to-and-explo.md) | Share one destination search for Go to and Explore Myself | Existing dev |
-| [T-1252](../tickets/T-1252-land-on-a-warm-mobile-welcome-with-jaunts-and-ex.md) | Land on a warm mobile welcome with Jaunts and Explore Myself | T-1247, T-1250, T-1251 |
+| [T-1275](../tickets/T-1275-give-the-loading-journey-160-varied-source-and-r.md) | Give the loading journey 160 varied source and reconstruction statuses | T-1247, T-1248 |
+| [T-1276](../tickets/T-1276-move-city-statistics-into-a-browsable-sources-an.md) | Move city statistics into a browsable Sources and City summary | T-1248 |
+| [T-1277](../tickets/T-1277-share-one-destination-search-for-go-to-and-explo.md) | Share one destination search for Go to and Explore Myself | Existing dev |
+| [T-1278](../tickets/T-1278-land-on-a-warm-mobile-welcome-with-jaunts-and-ex.md) | Land on a warm mobile welcome with Jaunts and Explore Myself | T-1247, T-1276, T-1277 |
 
 ## 5G. Jaunts Engine — Content Contract, Navigation, Travel, Choices, History And Menu (7 tickets)
 
 | Ticket | Bounded delivery | Prerequisites |
 |---|---|---|
-| [T-1253](../tickets/T-1253-define-validated-jaunt-json-and-render-a-real-pi.md) | Define validated jaunt JSON and render a real pilot preview | T-1248, T-1251, T-1252 |
-| [T-1254](../tickets/T-1254-make-the-pilot-jaunt-playable-with-persistent-st.md) | Make the pilot jaunt playable with persistent stop navigation | T-1253 |
-| [T-1255](../tickets/T-1255-offer-live-jaunt-travel-modes-and-honest-quick-p.md) | Offer live jaunt travel modes and honest quick-play estimates | T-1254 |
-| [T-1256](../tickets/T-1256-support-bounded-choices-inventory-and-alternate-.md) | Support bounded choices, inventory and alternate jaunt endings | T-1254 |
-| [T-1257](../tickets/T-1257-connect-jaunt-stops-and-travel-to-optional-histo.md) | Connect jaunt stops and travel to optional historical context | T-1254, T-1255, T-1250 |
+| [T-1253](../tickets/T-1253-define-validated-jaunt-json-and-render-a-real-pi.md) | Define validated jaunt JSON and render a real pilot preview | T-1248, T-1277, T-1278 |
+| [T-1279](../tickets/T-1279-make-the-pilot-jaunt-playable-with-persistent-st.md) | Make the pilot jaunt playable with persistent stop navigation | T-1253 |
+| [T-1280](../tickets/T-1280-offer-live-jaunt-travel-modes-and-honest-quick-p.md) | Offer live jaunt travel modes and honest quick-play estimates | T-1279 |
+| [T-1256](../tickets/T-1256-support-bounded-choices-inventory-and-alternate-.md) | Support bounded choices, inventory and alternate jaunt endings | T-1279 |
+| [T-1257](../tickets/T-1257-connect-jaunt-stops-and-travel-to-optional-histo.md) | Connect jaunt stops and travel to optional historical context | T-1279, T-1280, T-1276 |
 | [T-1258](../tickets/T-1258-collect-era-themed-keepsakes-in-a-five-family-ch.md) | Collect era-themed keepsakes in a five-family Chicago daybook | T-1256, T-1257 |
-| [T-1259](../tickets/T-1259-finish-the-scalable-jaunts-menu-and-integrated-s.md) | Finish the scalable Jaunts Menu and integrated start experience | T-1254, T-1255, T-1258, T-1252 |
+| [T-1259](../tickets/T-1259-finish-the-scalable-jaunts-menu-and-integrated-s.md) | Finish the scalable Jaunts Menu and integrated start experience | T-1279, T-1280, T-1258, T-1278 |
 
 ## 5H. Priority Jaunts — Six Short Stories, Fully Authored And Playable (6 tickets)
 
@@ -76,20 +76,20 @@ merge workflow remain in force.
 | Ticket | Bounded delivery | Prerequisites |
 |---|---|---|
 | [T-1271](../tickets/T-1271-reconcile-and-time-the-complete-25-jaunt-library.md) | Reconcile and time the complete 25-jaunt library | T-1260, T-1261, T-1262, T-1263, T-1264, T-1265, T-1266, T-1267, T-1268, T-1269, T-1270 |
-| [T-1272](../tickets/T-1272-verify-arrival-jaunts-and-source-browsing-on-the.md) | Verify arrival, jaunts and source browsing on the published mobile app | T-1271, T-1249, T-1250, T-1252, T-1259 |
+| [T-1272](../tickets/T-1272-verify-arrival-jaunts-and-source-browsing-on-the.md) | Verify arrival, jaunts and source browsing on the published mobile app | T-1271, T-1275, T-1276, T-1278, T-1259 |
 
 ## Requirements accounted for
 
 | Owner requirement | Tickets / proof |
 |---|---|
 | Measured stages, responsive long work, year rollback tied to readiness | T-1246, T-1247 |
-| Varied source cards/facts, roughly 100–250 statuses, rare humor, no forced wait | T-1249 |
-| Warm summer 1835 welcome and Tap to enter, mobile controls | T-1252, T-1272 |
-| One shared Go to / Explore Myself picker, safe start, no jaunt state | T-1251, T-1252, T-1259 |
-| City totals moved out of welcome; full searchable source/usage library | T-1248, T-1250 |
+| Varied source cards/facts, roughly 100–250 statuses, rare humor, no forced wait | T-1275 |
+| Warm summer 1835 welcome and Tap to enter, mobile controls | T-1278, T-1272 |
+| One shared Go to / Explore Myself picker, safe start, no jaunt state | T-1277, T-1278, T-1259 |
+| City totals moved out of welcome; full searchable source/usage library | T-1248, T-1276 |
 | Data-driven JSON, provenance, more than 50 through content | T-1253, T-1259, T-1271 |
-| Persistent Previous / Next / End / Menu and immediate End-to-menu | T-1254, T-1272 |
-| Mode choice before and during play; real ETA; skip boring travel | T-1255 |
+| Persistent Previous / Next / End / Menu and immediate End-to-menu | T-1279, T-1272 |
+| Mode choice before and during play; real ETA; skip boring travel | T-1280 |
 | Optional mechanics, conditions, endings, no forced game on every outing | T-1256, T-1271 |
 | Deep cards and optional transit history without extending the main path | T-1257 |
 | Era-themed keepsakes, five families and cross-category progression | T-1258, T-1271 |
