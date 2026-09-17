@@ -272,13 +272,14 @@
       ]
     },
     {
-      "why": "Cohort 14's ruled ledger. It reads the four directory crosswalks and T-0816's rulings, so every stretch of T-0987 and every re-derivation of a crosswalk moves it — and nothing regenerated it, because it was not here. That is T-1109's whole subject: PR #1341's gate went red on `pass_14_findings.json does not match a re-derivation` for refusals the crosswalks had gained (fergus_1839, fergus_1843, norris_1844 appearing in `refusals_seen`), with a CLEAN merge and nothing to flag it — the #1333 shape, where the base changes an input the branch never touched. It is admissible now because #1341 is what made it so: that PR adds `complete_resident_research_pass_14.py --check` to check.sh, which is the gate `_only_gated_tools` requires. Verified idempotent before listing, per `_must_reproduce`.",
+      "why": "Cohort 14's ruled ledger. It reads the four directory crosswalks and T-0816's rulings, so every stretch of T-0987 and every re-derivation of a crosswalk moves it — and nothing regenerated it, because it was not here. That is T-1109's whole subject: PR #1341's gate went red on `pass_14_findings.json does not match a re-derivation` for refusals the crosswalks had gained (fergus_1839, fergus_1843, norris_1844 appearing in `refusals_seen`), with a CLEAN merge and nothing to flag it — the #1333 shape, where the base changes an input the branch never touched. It is admissible now because #1341 is what made it so: that PR adds `complete_resident_research_pass_14.py --check` to check.sh, which is the gate `_only_gated_tools` requires. Verified idempotent before listing, per `_must_reproduce`. IT ALSO WRITES T-0509's WORKING WORKBOOK (line 594), and that path was missing from this list — which is what left six pull requests stranded on 2026-09-17. The workbook is a zip and every run gives it fresh member timestamps, so two branches that both ran this step hold different bytes for the same content and the merge conflicts every time. The lap asks `rederive --resolvable` before it clears anything; an unlisted path is refused BY DESIGN, so the lap abandoned the whole pull request — nine of its refusals that afternoon named this one file. Listing it is the fix, and it is honest: the step rewrites it from source on every run.",
       "command": [
         "python3",
         "tools/complete_resident_research_pass_14.py"
       ],
       "resolves": [
-        "chicago/4d/data/research/residents/pass_14_findings.json"
+        "chicago/4d/data/research/residents/pass_14_findings.json",
+        "chicago/reference/resident-research/T-0509/T-0509_resident_research_working.xlsx"
       ],
       "verify": [
         "python3",
