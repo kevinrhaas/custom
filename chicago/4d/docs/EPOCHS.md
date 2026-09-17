@@ -41,7 +41,7 @@ Planned epochs, in the order they matter:
 | `e1834_harbor_cut` | **active** — piers and the cut through the bar; the old channel silting behind the sand tongue |
 | `e1849_canal_era` | the I&M canal, wharfing, early fills |
 | `e1856_grade_raise` | the city lifts itself out of the mud; the original ground surface is buried |
-| `e1871_postfire` | the burnt district and the fills that followed |
+| `e1871_postfire` | the burnt district and the fills that followed; **representative date 1 July 1888**, derived in `data/terrain/1880s_scene_date_constraints.json` |
 
 ## Shoreline states are addressed through epochs
 
@@ -54,7 +54,7 @@ reserved now:
 |---|---|---|---|
 | 15 August 1812 | `e1830_natural` | `shore_1812_pre_cut` | **traced** (T-1242) — its own derived planform; no ground generated from it yet |
 | 1 July 1835 | `e1834_harbor_cut` | `shore_1835_harbor_cut` | active |
-| 1880s | `e1871_postfire` | `shore_1880s_ic_edge` | planned for T-0473; geometry deliberately null |
+| **1 July 1888** | `e1871_postfire` | `shore_1880s_ic_edge` | date settled by T-1249; geometry deliberately null, and T-1250 owns the line |
 
 Three status words, and they are not interchangeable. **`planned`** is `geometry: null`,
 which is not permission to fall back: that state cannot render until its owning ticket
@@ -85,6 +85,16 @@ can say about where the natural mouth was, and it is why the tier-1 reading was 
 Because the file is derived, it is also re-derivable: `tools/check_shoreline_states.py`
 rebuilds it from the readings and fails on a hand edit, on a pier vertex, on a midpoint
 between the two readings, and on any feature claiming `documented`.
+
+**A date is not a line either (T-1249).** The 1880s address date is now 1 July 1888 —
+derived from the one Prairie Avenue landmark this project can date from a committed
+source, and re-derived on every commit by `tools/check_1880s_scene_date.py`. Settling
+it bought `shore_1880s_ic_edge` nothing: the state is still `planned`, its geometry is
+still `null`, and the gate fails if a ticket that only fixed a day gives it a coast.
+The date it replaced — an undocumented `date(1885, 7, 1)` that lived in
+`tools/check_shoreline_states.py` from T-1152 — is recorded in the constraints file
+under `adopted.supersedes`, because a plausible-looking number in a gate is read as
+settled by the next run that finds it.
 
 A dated observation may bound a shoreline without becoming it. The Rees & Rucker
 1849 trace below Twelfth Street is recorded under the 1835 state as a lower bound,
