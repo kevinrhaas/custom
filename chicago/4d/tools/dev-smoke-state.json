@@ -2,6 +2,69 @@
   "note": "T-0216 — dev's standing smoke result, so a branch can answer \"is this red mine, or did I inherit it?\" from the record instead of re-running the stage on a clean worktree (three agents paid that price on one red on 2026-08-27; T-0215). Written by tools/dev-smoke-state.mjs, which parses a smoke log — local or from a chicago-4d-smoke.yml run. Every reading carries the CONDITIONS it was taken under, because a quiet CI runner does not predict a loaded steward box: T-0215 measured a factor of twenty on one tree. loadavg is sampled when the reading is filed, so it includes the smoke's own load. `treeHash` digests exactly what the smoke exercises (renderers, data, assets, smoke_renderer.mjs, the published mirror), so a reading whose hash matches yours is a reading OF YOUR TREE. A RECORD, NOT A BAR: nothing here gates anything. THE PART NUMBERS CHANGED ON 2026-08-30 (T-0346): part 4 was cut into 4, 5 and 6 and the old parts 5-9 became 7-11; then T-0173 halved part 7 (8-11 -> 9-12) and T-0170 halved part 10 (11-12 -> 12-13). A reading filed before any of those is labelled in the OLD numbering of its day. Each of those also carries a treeHash that cannot match a tree containing the cut, so `ask` already reports them as not taken on your tree — but read the stage number as dated rather than current.",
   "readings": [
     {
+      "viewport": "mobile",
+      "stage": "1-2",
+      "parts": [
+        1,
+        2
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 159,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 391,
+      "takenAt": "2026-09-17T12:19:28.643Z",
+      "ref": "steward/t-1228-inferred-household-passes",
+      "commit": "75e77a34d712",
+      "devCommit": "16e733015998",
+      "treeHash": "sha256:2ae0657e57e0a1f9",
+      "treeDirty": false,
+      "changelogHash": "sha256:c7bbef4ddec3e4b7",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5,
+          4.5,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_m12.log"
+    },
+    {
+      "viewport": "desktop",
+      "stage": "1",
+      "parts": [
+        1
+      ],
+      "verdict": "pass",
+      "target": "published",
+      "passed": 82,
+      "failed": 0,
+      "failures": [],
+      "wallSeconds": 360,
+      "takenAt": "2026-09-17T12:19:28.550Z",
+      "ref": "steward/t-1228-inferred-household-passes",
+      "commit": "75e77a34d712",
+      "devCommit": "16e733015998",
+      "treeHash": "sha256:2ae0657e57e0a1f9",
+      "treeDirty": false,
+      "changelogHash": "sha256:c7bbef4ddec3e4b7",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          5,
+          4.5,
+          3
+        ]
+      },
+      "source": "/tmp/smoke_d1.log"
+    },
+    {
       "viewport": "desktop",
       "stage": "12",
       "parts": [
@@ -1493,37 +1556,6 @@
       "source": "/tmp/d89.log"
     },
     {
-      "viewport": "desktop",
-      "stage": "1",
-      "parts": [
-        1
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 81,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 288,
-      "takenAt": "2026-09-14T08:53:04.623Z",
-      "ref": "steward/t-1067-north-of-the-box",
-      "commit": "510eb511388d",
-      "devCommit": "27ff2d8c44f7",
-      "treeHash": "sha256:8f8ca95b0e59854b",
-      "treeDirty": false,
-      "changelogHash": "sha256:7b0886441d3d9ae6",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          3.5,
-          4.2,
-          3.6
-        ]
-      },
-      "source": "/tmp/smoke_d1.log"
-    },
-    {
       "viewport": "mobile",
       "stage": "1,3,12",
       "parts": [
@@ -1555,39 +1587,6 @@
         ]
       },
       "source": "/tmp/smoke_m.log"
-    },
-    {
-      "viewport": "mobile",
-      "stage": "1-3",
-      "parts": [
-        1,
-        2,
-        3
-      ],
-      "verdict": "pass",
-      "target": "published",
-      "passed": 232,
-      "failed": 0,
-      "failures": [],
-      "wallSeconds": 204,
-      "takenAt": "2026-09-13T17:27:36.023Z",
-      "ref": "steward/t-0891-plate-read-ring-resolver",
-      "commit": "11d079b5dfd4",
-      "devCommit": "6c80b4abc554",
-      "treeHash": "sha256:0c75e341c7cc138b",
-      "treeDirty": false,
-      "changelogHash": "sha256:5f9a0d673730be73",
-      "host": {
-        "kind": "steward-runner",
-        "cpus": 4,
-        "memGB": 15.6,
-        "loadavg": [
-          4,
-          4.1,
-          3.2
-        ]
-      },
-      "source": "/tmp/s2_m13.log"
     },
     {
       "viewport": "mobile",
