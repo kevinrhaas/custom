@@ -18,20 +18,32 @@ closed_at: null
 claimed_run: null
 ---
 
-Build a compact public source catalog and typed source-to-claim-to-entity index from existing compiler inputs. Give the existing Evidence surface a basic source/used-for view in this slice.
+Compile, at build time, **which sources this reconstruction actually used and for what** — the data behind the Sources browser (T-1276) and the loading-screen source cards (T-1275). The owner wants *"all the sources that you have used in building this … a link library or summary link to the items from that source, like what was pulled from that source for the reconstruction."* This ticket is compiler and published data only; no visitor-facing surface changes. (Visible-progress exemption 3: it is the gate blocking T-1275 and T-1276 — name both in the PR body.)
 
-**Depends on:** None within this feature; consume current dev records.
+**Depends on:** nothing. **Runs in parallel with:** T-1246, T-1286, T-1277.
 
-**Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
+**What exists today:**
+- `data/sources/*.json` — 292 registered sources (`data/source.schema.json`: `id, type, citation, author, date, describes_date, repository, url, archived_url, locator, tier 1–6, rights_status, what_it_supplies, what_it_does_not_supply, …`). 193 are `rights_status: check_required`; a registered source is not evidence that it reached the scene.
+- `tools/compile_scene.py` `cite(source_ids, sources)` (~L239) joins citations into sidecar display fields and holds the public/internal field partition (~L215: `id, type, author, date, locator, rights_* , verified` are internal).
+- Per-attribute `sources[]`/`confidence` live in `data/structures/*.json` → `data/sidecars/1835/<id>.json`; residents in `data/residents/` → `sidecars/1835/people.json` + `residents_sources.json`; terrain/flora/fauna in `data/terrain`, `data/flora`, `data/fauna` (+ `sidecars/1835/flora_sources.json`, `fauna_sources.json`); exclusions in `data/exclusions.json` → `sidecars/1835/exclusions.json`; liberties in `data/liberties.json`.
+- `tools/publish.sh` copies `data/sidecars/` whole (~L184), so anything written under `data/sidecars/1835/sources/` is published without a publish.sh change. `data/research/` is never published (a `check.sh` step asserts it).
+
+**Build:**
+1. `tools/compile_source_use.py` (~300 lines), run by `check.sh` after `compile_scene.py`, deterministic (sorted keys, no timestamps): walks the inputs above and emits typed **edges** `{ source_id, entity_type: structure|person|household|business|terrain|flora|fauna|exclusion|liberty|decision, entity_id, claim: "<field path or claim label>", confidence: attested|inferred|reconstructed, locator, use: scene|other_scene|exclusion|research }`. A source with no edge is `unused` in the manifest, never dropped.
+2. Outputs, under `data/sidecars/1835/sources/`: `index.json` — one compact row per source: public citation fields only, `type`, `date`, `tier`, `use`, `counts: { entities, claims }` (entities deduplicated separately from claims), `has_archive_link`; and `<source_id>.json` — that source's edges. Budget: `index.json` ≤ 120 KB; nothing here is fetched at boot.
+3. Newspaper sources keep publication → issue grouping: an edge's `locator` carries issue date, page and column where the input has them.
+4. Coverage report `docs/measurements/source_use_coverage.md` (generated): per input family, how many records were read, how many carried citations, how many source ids did not resolve (must be zero — rule 1), and which families are not yet covered (businesses until T-1180 lands).
+5. `tools/test_compile_source_use.py`: fixture inputs → expected edges; dangling id refused; alias/citation joins; a mixed-tier entity counted once in `entities` and per claim in `claims`; a registered-but-unused source appears with `use: unused`.
 
 **Acceptance:**
+1. `python3 tools/compile_source_use.py` runs in `check.sh` and is deterministic (two runs, identical bytes).
+2. Every one of the 292 sources appears in `index.json` with a `use` value; every edge's `source_id` resolves; every structure in `sidecars/1835/index.json` that carries citations has at least one edge.
+3. The coverage report exists and names each unsupported family honestly.
+4. No internal field (per `compile_scene.py`'s partition), no `data/research/` path, no PDF/image bytes and no `check_required` asset derivation reaches the published tree; the existing publish/research gate stays green.
+5. Boot payload unchanged (`measure_boot_payload.mjs --check`), since nothing new is fetched at boot.
 
-1. Reuse compile_scene.py cite() and its public/internal-field partition; include registered sources with explicit used-in-scene, other-scene, exclusion/research-only or unused status.
-2. Edges name entity type/ID, field or claim, confidence and locator. Cover structures, people, businesses when available, terrain, flora/fauna, exclusions and decision summaries; preserve a coverage report for any unsupported input family.
-3. Show a basic searchable source list and a real used-for backlink on the existing Evidence surface, so the output is inspectable before the later browser refinement.
-4. Deduplicate entity counts separately from attribute claims; validate dangling IDs, alias/citation joins and mixed-tier entities. A registered source alone is not a used-in-scene edge.
-5. Publish compact manifest and lazy per-source detail through resolveBases; no raw research corpus, PDFs, private/internal fields or unlicensed derived imagery enters boot. Use fixture and deterministic generation checks.
+**Harness and gates:** `./tools/check.sh` (add the compile and test steps); `node tools/measure_boot_payload.mjs --check`. No smoke part is affected unless `index.html` changes — it should not.
 
-**Touch points:** tools/compile_scene.py, tools/publish.sh, data/sources/, data/sidecars/1835/, proposed source-use compiler and js/sources.js.
+**Out of scope:** the Sources browser UI (T-1276), loading cards (T-1275), jaunt claims (T-1253 registers those into this index later through the same compiler).
 
-**Finish:** one gated PR into `dev`, focused checks plus affected published desktop/mobile smoke; no production promotion. Claim through `ticket.mjs`. Meet this acceptance before closing. If an unforeseen piece truly needs a successor, place it beside this dependency inside the same subsection, update the plan, and keep the subsection below 15 tickets. Do not append unfinished work to the queue tail.
+Contract: [architecture §D](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md#d-source-use-index) · [plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md). One PR into `dev`; claim with `ticket.mjs`; changelog entry says plainly that nothing visible changed and why (exemption 3).

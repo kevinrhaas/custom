@@ -18,21 +18,24 @@ closed_at: null
 claimed_run: null
 ---
 
-Run the integrated published experience from a cold boot through another jaunt or free exploration. Fix concrete integration failures within this slice and finish the section.
+**The published, integrated experience, end to end** — cold boot → arrival → welcome → a jaunt → a detail card and a source → a mode change → End → a second jaunt → Explore Myself — on the published mirror at both gate viewports, with concrete integration failures fixed inside this slice. This closes the section.
 
-**Depends on:** T-1271, T-1275, T-1276, T-1278, T-1259
+**Depends on:** T-1271, T-1275, T-1276, T-1278, T-1259.
 
-**Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
+**Do:**
+1. Add a smoke section (its own `SMOKE_STAGE` part, priced with `smoke_budget.mjs --legs` so no nightly leg exceeds its 30-minute cap) that runs the full path above at 390×780 and 1280×800 on `--published`, asserting: year never reads 1835 before `api.ready`; the welcome shows no count/percentage; picker spawn takes no pointer lock; a jaunt starts at stop 1; Previous/Next/End/Menu work; mode switch changes motion and ETA; detail card returns to the same stop; End returns to the menu in < 200 ms; Explore Myself clears a paused jaunt; Sources counts still match `index.json` after the 25 jaunts' claims were registered; zero page errors.
+2. Boot variants: warm (service of cached assets), throttled slow (CPU 4×, Fast 3G), essential failure (Retry offered, no arrival), optional failure (people.json 404 → still arrives), `prefers-reduced-motion`, background/resume, stale local timing history, and a failed `statuses.json`/catalog fetch (basic entry still works).
+3. Layout: 320 px width, 780×390 landscape, on-screen keyboard open in the picker, safe-area insets, focus order and restoration, ≥ 44 px targets, no overlap among popup / drawer / jaunt panel / sticky control / touch stick.
+4. Budgets: `measure_boot_payload.mjs --check` (12 MB), `measure_boot_phases.mjs` before/after this section (arrival.js + loading-early.js added to boot), frame cost at the reference stands unchanged (`measure_stand_budget.mjs`); catalog, jaunt files, source index and statuses stay lazy. T-1156 owns CI wiring of the payload check — do not duplicate it; do not raise a budget silently.
+5. Legacy surfaces still work: every Evidence topic, Go to, Travel settings, People, framing, the popup — the existing smoke parts pass unchanged.
+6. Record all evidence in `docs/measurements/arrival_jaunts_acceptance_2026-xx.md` and a STATUS.md section; fix what fails here if it is an integration defect; a defect that belongs to one component's contract goes back as a successor placed beside that ticket, named in the report.
 
 **Acceptance:**
+1. The new smoke part passes on the published mirror at both viewports with zero page errors, and is priced in `smoke_budget.mjs`'s map.
+2. All boot variants and layouts in 2–3 pass, with stills in the report.
+3. Budgets: boot payload under 12 MB; `boot-weights.js` re-measured and updated if the boot changed by > 10 %; reference-stand frame cost within the existing ceilings.
+4. No requirement of this section is relabelled as done; anything left is a named successor inside 5F–5J, not a tail line.
 
-1. Published 390x780 and 1280x800 paths: ticker/source cards -> summer 1835 welcome -> jaunt -> detail/source -> change travel -> finish/End -> second jaunt -> Explore Myself, zero page errors.
-2. Verify warm/slow/failed boot, no premature 1835, reduced motion, no artificial wait, stale timing history, background/resume and optional source/jaunt request failure.
-3. Check 320 px width, short landscape, keyboard/safe areas, focus order/restoration, >=44 px touch targets and persistent navigation without overlay collision. Menu entry does not take pointer lock.
-4. Source search/backlinks and City Summary retain accurate counts after the 25 jaunts add their citations; all legacy Evidence cards, Go to, travel settings and framing remain usable.
-5. Measure boot payload/frame impact against existing budgets; catalog/history detail stays lazy. T-1156 still owns CI wiring; do not duplicate that ticket or silently raise budgets.
-6. Run check.sh, preflight and the appropriate published renderer smoke, record evidence and merge green to dev. Do not promote main. No unfinished requirement may be relabeled completed; unavoidable successors stay inside this band.
+**Harness and gates:** `./tools/check.sh`; the full `smoke_renderer.mjs --published` at both viewports (staged per `docs/SMOKE-BUDGET.md`); `preflight.sh`; merge green into `dev`; do not promote `main`.
 
-**Touch points:** published runtime, smoke_renderer.mjs focused coverage, acceptance report; only fixes justified by observed failures.
-
-**Finish:** one gated PR into `dev`, focused checks plus affected published desktop/mobile smoke; no production promotion. Claim through `ticket.mjs`. Meet this acceptance before closing. If an unforeseen piece truly needs a successor, place it beside this dependency inside the same subsection, update the plan, and keep the subsection below 15 tickets. Do not append unfinished work to the queue tail.
+Changelog: one visible entry. Contract: [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md) · [plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md). One PR into `dev`; claim with `ticket.mjs`.
