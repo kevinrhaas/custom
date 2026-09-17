@@ -1,7 +1,7 @@
 ---
 id: T-1154
 title: The five downtown stands are over every scene-detail ceiling at both viewports, and the town has been over since some point after 6 September
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-15
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 8:03:58 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35224144036
 ---
 
 The five downtown stands are over every scene-detail ceiling at both viewports, and the
