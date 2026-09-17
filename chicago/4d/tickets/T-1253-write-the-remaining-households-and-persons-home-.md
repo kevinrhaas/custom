@@ -1,7 +1,7 @@
 ---
 id: T-1253
 title: Write the remaining households' and persons' home and workplace claims as associated_with rows, and move every reader off the singular lives_at/works_at
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: L
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T16:26:47.568Z
 claimed_run: null
 ---
 
