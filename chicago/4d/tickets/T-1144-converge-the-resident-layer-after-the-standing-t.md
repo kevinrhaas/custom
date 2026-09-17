@@ -1,7 +1,7 @@
 ---
 id: T-1144
 title: Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
-state: withdrawn
+state: open
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: 2026-09-17
+closed: null
 pr: null
 claimed_by: null
-blocked_on: folded into the surviving ticket
+blocked_on: null
 needs_bake: false
-closed_at: 2026-09-17T20:05:42.085Z
+closed_at: null
 claimed_run: null
 ---
 
@@ -67,3 +67,20 @@ be reviewed and enhanced before the reconstruction bands below them run):
 standing confirmed false/overstated resident assertion has either moved or gained new evidence.
 
 **Links:** T-0660 · T-0662 · T-0691 · T-0838 · T-0991 · T-1115 · T-1121 · T-1129 · T-1136 · T-1137 · T-1145.
+
+
+## IT WAS FOLDED INTO T-1157 AND THE GATE REFUSED IT (2026-09-17)
+
+Same refusal as T-1241, and the same invariant. `research_spend_ledger.py` holds that *a
+unit may only defer to work that is still going to happen*, and unresolved research units
+name THIS TICKET BY ID as the work they wait on. Closing it as folded made those units defer
+to finished work, and `measure_research_spend.py --check` failed on every one.
+
+**A ticket that research units defer to by id cannot be consolidated away** — not without
+repointing every unit that names it, which is a bigger and riskier change than a shorter
+queue is worth. That is the real constraint on tightening this band, and it is worth knowing
+before anyone tries again.
+
+**The tightening that DOES apply:** run this in the SAME PASS as T-1157 and T-1241. The drift
+checks here are the sign-off report's evidence section, not a separate expedition, and one run
+produces all three.

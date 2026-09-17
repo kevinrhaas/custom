@@ -78,14 +78,20 @@ T-0856 · T-0662 · T-1108 · `docs/RESEARCH/research-spend-ledger-2026-09-15.md
 `docs/RESEARCH/residents-households-summary-2026-09.md`.
 
 
-## T-1144 AND T-1241 ARE FOLDED IN HERE (owner's tightening, 2026-09-17)
+## T-1144 AND T-1241 COULD NOT BE FOLDED — THEY RUN IN THIS PASS (owner's tightening, 2026-09-17)
 
 Three tickets were standing at the end of the research spend and all three are the same act —
 prove the layer converged, then say so:
 
 * **T-1144** — converge the resident layer: zero synthesis and mint drift, no false Chicago.
+  **Could NOT be folded**: unresolved research units name it BY ID as the work they wait on,
+  and `research_spend_ledger.py` refuses a unit deferred to a closed ticket.
 * **T-1241** — run the T-1143 ledger over the final resident, household, business and
-  structure layers and publish the closing figures.
+  structure layers and publish the closing figures. **This one could NOT be folded and stays
+  a ticket of its own**: 748 unresolved research units defer to T-1147, a split parent counts
+  as live only while a child is open, and T-1241 is now the last open child. Folding it made
+  all 748 defer to finished work and `measure_research_spend.py --check` failed on every one.
+  It is not a separate expedition — run it in THIS pass, as this report's evidence section.
 * **T-1157** (this one) — one owner-readable coverage report, and the GO that opens bands 3-5.
 
 A convergence nobody reports is not finished, and a report on an unconverged layer is not
