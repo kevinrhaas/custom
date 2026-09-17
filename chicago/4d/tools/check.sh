@@ -696,15 +696,37 @@ selftest "…and its own assertions still fire when broken" \
 # list — expanded into households, occupancy blocks and structure records. It also
 # re-runs its own placement gates, so a centre that drifts onto another building,
 # onto water or off the modelled ground fails here rather than in a bake.
-# ...AND IT IS NOT GATED HERE, THOUGH THIS SLOT LONG READ AS IF IT WERE (T-0662).
-# Until 2026-09-17 the two lines below this comment were a step labelled "inferred
-# households, adoptions and their buildings match the programme" running
-# `tools/synthesize_resident_research.py --check` — a different pass, proving a
-# different thing. The programme's own re-derivation is
-# `tools/generate_inferred_households.py --check`; it is RED under T-1108 and is
-# carried, with that reason, in data/research/check_gate_baseline.json. A reader
-# asking whether this layer still re-derives goes there. What they may no longer do
-# is read a green build as the answer.
+# AND IT IS GATED HERE AT LAST (T-1228), on the part of it the owner kept.
+# This slot read as though it were gated until T-0662 found it running a different
+# pass under this label, and the programme's own `--check` was then red for a reason
+# no run could fix by fixing code: the owner's T-0489 ruling of 2026-09-02 retired
+# the reconstructed resident population and kept the geometry, and nothing told the
+# generator. It still derives all 101 households — 96 of which the ruling removed —
+# so demanding its whole output back was demanding the ruling be reversed once per
+# commit. Byte-identity is the wrong contract for a pass that is not the last writer
+# of the files it derives, which is what T-0662 found for the letter-list mint too.
+# So the contract is FIELD-LEVEL and has two halves, both checked: every field this
+# pass still owns re-derives exactly, and every field a ruling or a later ticket took
+# off it is asserted to still say what that ruling left — a retired household that
+# reappears, or an `occupants` block that stops saying anonymous stock, is red. The
+# settlement is authored at
+# data/reconstruction/1835_inferred_household_pass_ownership.json.
+step "the inferred-household programme re-derives the 38 roofs it still owns" \
+  python3 tools/generate_inferred_households.py --check
+
+selftest "…and both halves of that ownership contract fire when broken" \
+  python3 tools/inferred_household_ownership.py --self-test
+
+# The naming pass (K18) owns NOTHING in the tree and that is the finding: every
+# person it ever named was graded `reconstructed`, so T-0489 took all of them, and
+# not one household carries a name_basis block today. Its `--check` used to CRASH
+# rather than report — an unhandled FileNotFoundError on one of the 96 removed
+# households. It now proves the two properties that are still load-bearing, because
+# the other two passes overlay it to derive their own comparisons: the allocation is
+# deterministic, and every invented name carries a name_basis graded `reconstructed`
+# and may claim nothing better. Then it asserts the retirement itself.
+step "the invented names re-deal identically and not one of them stands in the tree" \
+  python3 tools/generate_inferred_names.py --check
 
 # T-0838 (of T-0814). The step above re-derives the population IN MEMORY and checks its invariants;
 # it never asks whether that derivation matches the cards on disk, and on 2026-09-05 it
@@ -2169,13 +2191,18 @@ PY
 # and four of those labels named a pass it does not run — so the gate read as though
 # five derivations were held when one was, and it was the only command in this file
 # that appeared more than once. Each of the four passes those labels named carries a
-# `--check` of its own; every one of them is RED, and every one is carried as ungated,
+# `--check` of its own; on that day every one of them was RED and carried as ungated,
 # with its reason and its owner, in data/research/check_gate_baseline.json:
 #
-#   tools/generate_inferred_households.py  T-1108  (was the K1 households step)
-#   tools/generate_inferred_names.py       T-1108  (was this step's old label)
-#   tools/replace_invented_residents.py    T-1108  (was the T-0264 roof-deal step)
+#   tools/generate_inferred_households.py  (was the K1 households step)
+#   tools/generate_inferred_names.py       (was this step's old label)
+#   tools/replace_invented_residents.py    (was the T-0264 roof-deal step)
 #   tools/mint_letter_list_residents.py    T-0691  --check: 798 file(s) differ
+#
+# T-1228 gated the first three on 2026-09-17, each at its own slot above, on a
+# field-level ownership contract rather than byte-identity — the same shape T-0662
+# found the letter-list mint wants and has not got yet. Only the mint is still
+# carried as ungated in data/research/check_gate_baseline.json.
 #
 # `mint_documented_residents.py` was on that list until T-1220 read its 10 files, fixed
 # the two faults under them and committed the rest; it is a step of its own below.
@@ -2253,10 +2280,14 @@ step "one new household renames only the people it collides with" \
 # deal is a derivation and not a list — six refusals shape it, and a candidate
 # that quietly stopped being refused would otherwise plant a real man on a roof
 # his own record contradicts. `--report` prints the deal and every refusal.
-# NOT GATED (T-0662). This slot ran `synthesize_resident_research.py --check`, which
-# does not re-derive the deal. `tools/replace_invented_residents.py --check` does; it
-# is RED under T-1108, and the baseline carries it with that reason. `--report` still
-# prints the deal and every refusal on demand.
+# GATED (T-1228), on what the deal still owns: WHO IS ON THE ROOF. T-0489 left the
+# four men it seated unplaced and tools/synthesize_resident_research.py then took
+# their households into the resident research layer, so division, name,
+# research_note and the head's grade, sources and note are no longer this pass's —
+# but the head's id and name are, and they are the register's own finding. The
+# withdrawal is asserted, not skipped: a man who quietly becomes placed again fails.
+step "the register's four documented men still head the roofs the deal gives them" \
+  python3 tools/replace_invented_residents.py --check
 
 # And the pass that ADDS one (T-0376). The register's `new_resident` people are
 # the ones this reconstruction does not hold at all; where it can also read a

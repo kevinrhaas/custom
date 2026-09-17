@@ -5,22 +5,10 @@
   "how_to_change_it": "Gate the tool in tools/check.sh and re-run --write, or, if it cannot be gated today, write why_not_gated on its row here — --write carries that field forward — and point owner_ticket at whoever owns the answer. The gate fails on a row with no reason, and on a row the gate has since started running.",
   "counts": {
     "check_capable": 150,
-    "gated": 141,
-    "ungated": 9
+    "gated": 144,
+    "ungated": 6
   },
   "ungated": [
-    {
-      "tool": "tools/generate_inferred_households.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1228, and NOT the corridor any more. T-1108 read this pass as one refusal and was wrong: `--check` stopped at `inf_cooperage_south_branch stands 2.1 m inside the platted Market Street corridor` because `validate` raises before the drift diff ever runs, so nobody had seen what stands behind it. T-1227 settled the corridor on 2026-09-17 — the placement is derived off the corridor now, not typed — and the diff behind it is this, measured the same day: 96 of the 101 households this pass derives are NOT ON DISK, 5 more have drifted, and so have `data/residents/index.json` and 34 structure records. The cause is the owner's T-0489 ruling of 2026-09-02, which retired the reconstructed resident population and kept the geometry; nothing told this generator, which still derives every retired household and would write them back. Running it is therefore a REVERSAL of an owner ruling, and gating it asks a question only he can answer: what does this pass still own after the retirement. T-1228 holds it.",
-      "owner_ticket": "T-1228"
-    },
-    {
-      "tool": "tools/generate_inferred_names.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1228. It no longer refuses on the corridor (T-1227 settled that on 2026-09-17); it CRASHES. `--check` raises an unhandled FileNotFoundError on `data/residents/households/hh_inf_carpenter_south_01.json`, one of the 96 households the owner's T-0489 retirement removed and this pass still names. A `--check` that dies on a missing input cannot report drift at all, which is its own half of T-1228.",
-      "owner_ticket": "T-1228"
-    },
     {
       "tool": "tools/measure_street_widths.py",
       "other_modes_in_check_sh": [],
@@ -39,12 +27,6 @@
       "tool": "tools/rename_household_ids.py",
       "other_modes_in_check_sh": [],
       "why_not_gated": "A spent one-shot. `--check` exits 2 refusing: no household carries a legacy hh_doc_/hh_placed_/hh_ll_ prefix any more, so the migration is done and there is no committed file left for it to re-derive. Retire the mode, or the tool, rather than gate it."
-    },
-    {
-      "tool": "tools/replace_invented_residents.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-1228. Not the corridor either, since T-1227: `--check` reports 5 file(s) differing — hh_inf_cooper_north_04, hh_inf_physician_south_01, hh_inf_tailor_north_02, hh_inf_tavern_keeper_north_01 and data/residents/index.json — measured 2026-09-17. The same T-0489 retirement is behind it: this pass rewrites households the ruling changed under it. T-1228 settles what it owns.",
-      "owner_ticket": "T-1228"
     },
     {
       "tool": "tools/trace_shoreline.py",

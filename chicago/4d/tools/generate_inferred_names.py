@@ -285,46 +285,67 @@ def build(preload: dict | None = None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
-                    help="re-derive and report any drift without writing")
+                    help="re-derive and prove the allocation, and that none of it stands")
     args = ap.parse_args()
 
     files, named = build()
     if args.check:
-        # THE TREE IS NO LONGER THIS PASS'S INPUT (T-0264). Since the newspaper
-        # register began retiring an invented name where it found a documented
-        # person for that trade, five of the roofs this script deals a name to
-        # no longer carry a `reconstructed` person by the time the tree is
-        # written. Re-deriving from the tree would therefore deal 108 names where
-        # the pipeline deals 113, and every one of the other households would
-        # read as drifted — and, worse, retiring a roof would CHURN the invented
-        # names of the people around it, which is the exact property K20's
-        # allocator and tools/measure_name_churn.py exist to protect.
+        # THIS PASS OWNS NOTHING IN THE TREE, and that is the finding (T-1228).
         #
-        # So the comparison is made where the household programme makes its own:
-        # against the END of the pipeline. Build, name, replace.
-        import importlib.util
+        # Until 2026-09-17 --check compared this pass's output against the tree at
+        # the end of the build-name-replace pipeline. It did not report drift; it
+        # CRASHED, with an unhandled FileNotFoundError on
+        # hh_inf_carpenter_south_01.json. That file is one of the 96 households the
+        # owner's T-0489 ruling of 2026-09-02 removed when it retired the
+        # reconstructed resident population — and every person this pass has ever
+        # named was graded `reconstructed`, so the ruling took all of them. Measured
+        # the same day: not one household in data/residents/households carries a
+        # name_basis block. There is nothing left of this pass on disk to diff.
+        #
+        # A pass that owns no committed file cannot have a drift gate over the tree,
+        # so --check proves what is still true and still worth proving. The pass is
+        # a live stage — the other two overlay it to derive their own comparisons —
+        # and two properties of it are load-bearing: the allocation is
+        # DETERMINISTIC (the promise K20's allocator and tools/measure_name_churn.py
+        # exist to protect), and every name it deals carries a name_basis graded
+        # `reconstructed`, which is the rule that stops an invention being laundered
+        # into the documented layer. Then it asserts the retirement itself: if an
+        # invented name reappears in the tree, this goes red.
+        # THE TREE IS NOT THIS PASS'S INPUT and since T-0489 it is not even its
+        # output, so the derivation starts where the pipeline starts: the household
+        # programme's own recipe, expanded in memory. Calling build() bare here
+        # would read the tree, find no reconstructed resident left in it, and deal
+        # nought names — a gate that proves nothing by construction.
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+        import importlib.util  # noqa: PLC0415
 
-        def _stage(name):
-            spec = importlib.util.spec_from_file_location(
-                name, pathlib.Path(__file__).with_name(f"{name}.py"))
-            mod = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(mod)
-            return mod
+        import inferred_household_ownership as ownership  # noqa: PLC0415
 
-        raw, _records, _households = _stage("generate_inferred_households").build_all()
-        files = overlay({q: t for q, t in raw.items() if q.name.startswith("hh_")})
-        named = len(files)
-        files = {q: t for q, t in
-                 _stage("replace_invented_residents").overlay(files).items()
-                 if q.name.startswith("hh_")}
-        drift = [p for p, text in files.items() if p.read_text(encoding="utf-8") != text]
-        for p in drift:
-            print(f"   DRIFT: {p.relative_to(ROOT)}")
+        spec = importlib.util.spec_from_file_location(
+            "gen_households", pathlib.Path(__file__).with_name(
+                "generate_inferred_households.py"))
+        programme = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(programme)
+
+        def deal():
+            raw, _records, _hh = programme.build_all()
+            return {q: json.loads(text) for q, text in
+                    overlay({q: s for q, s in raw.items()
+                             if q.name.startswith("hh_")}).items()}
+
+        files, rederived = deal(), deal()
+        named = sum(1 for doc in files.values() for person in doc.get("persons", [])
+                    if person.get("grade") == "reconstructed")
+        drift = ownership.check_names_pass(files, rederived)
+        for item in drift:
+            print(f"   DRIFT: {item}")
         if drift:
-            print(f"   {len(drift)} household(s) differ from what this script derives")
+            print(f"   {len(drift)} finding(s) — see "
+                  f"data/reconstruction/1835_inferred_household_pass_ownership.json")
             return 1
-        print(f"   OK: {named} household(s) at the end of the build-name-replace "
-              f"pipeline match what tools/generate_inferred_names.py derives")
+        print(f"   OK: {named} invented name(s) re-deal identically on a second "
+              f"derivation, every one carrying a name_basis graded reconstructed, and "
+              f"not one of them stands in the tree — T-0489's retirement holds")
         return 0
 
     for p, text in files.items():
