@@ -1,4 +1,5 @@
 # RE-RANK LEDGER — owner decisions, first lines only; details remain in Git history.
+#   2026-09-17  THE RECONSTRUCTION BANDS, on the owner's written direction: confirm the research spend, then 1835 TOWN ANALYSIS, RECONSTRUCT RESIDENTS, BUSINESSES and STRUCTURES as ordered sections inserted between RESEARCH SPEND and SOUTH THROUGH TIME (T-1157 onward); sections over 15 tickets split into lettered sub-bands; four spend tickets enhanced.
 #   2026-09-17  Owner: research spend, South Through Time, loop improvements, then research completion; remove the queue history and rank remaining epics.
 #   2026-09-16  RESEARCH COMPLETION MOVED DIRECTLY ABOVE SOUTH THROUGH TIME, on the owner's
 #   2026-09-15  RESEARCH COMPLETION GROUPED AT THE BOTTOM, on the owner's instruction after
