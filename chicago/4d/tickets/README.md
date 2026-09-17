@@ -205,6 +205,40 @@ Three refusals make it worth trusting, and each is deliberate:
 the only honest demonstration of a check whose right answer against the real `dev`
 changes hourly.
 
+## GitHub meters GraphQL and REST separately — spend the REST bucket (T-0234)
+
+Measured 2026-08-27 (steward run 1140): `graphql remaining 0 of 5000` while
+`core remaining 4969 of 5000`. The fleet emptied one hourly bucket while the
+other sat untouched, and a finished, gated, pushed slice lost its PR because
+`gh pr create` draws on the empty one. The quota is per ACCOUNT, so slices
+compete for the same bucket — the loser gets a 403 at the last step of a long
+run.
+
+- `gh pr create/list/view/merge/comment` and `gh issue/search` speak
+  **GraphQL**. The same operations through `gh api repos/…/pulls|issues` speak
+  **REST** (the core bucket), which steward work barely touches. Use
+  `.github/steward/pr-rest.sh` (create/list/view/comment/merge/meter) or
+  `gh api` directly. Never reintroduce a bare `gh pr …` — the lap and
+  merge-ready scripts moved to REST once already, and
+  `tools/check_gh_rest.mjs` scans the steward surfaces on every gate and
+  refuses the relapse.
+- **The named exception:** arming auto-merge (`gh pr merge --auto`) is
+  GraphQL-only — `enablePullRequestAutoMerge` has no REST equivalent. Exactly
+  one call, in `chicago-4d-bake.yml`, costing a few points per bake PR against
+  the bucket this rule keeps nearly full.
+- **Read the meter before you spend:** `.github/steward/pr-rest.sh meter` is
+  one cheap core call. If graphql is empty and the call you need is the
+  exception, say so in your summary rather than discovering it at the PR.
+- **A slice that cannot open its PR is neither finished nor lost.** A pushed,
+  gated branch with no PR is recoverable — the recovery is the compare URL,
+  `https://github.com/kevinrhaas/custom/compare/<base>...<branch>?expand=1` —
+  and `pr-rest.sh create` prints it on any refusal. A run that meets a 403 and
+  does not leave that URL in its summary has failed the same way #395 did.
+- The polecat-platform workflows T-0234 also names (`steward-janitor.yml`,
+  `sync-shell.yml`) live in a different repository and remain GraphQL draws
+  there; they are named here rather than converted, and this repo's surfaces
+  are the ones this gate holds.
+
 ## Sizing: effort is measured in RUNS, and L must be split
 
 The owner asked whether tickets should carry work points, split past a threshold.

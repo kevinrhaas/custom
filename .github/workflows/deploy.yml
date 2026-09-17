@@ -80,10 +80,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout main (production is always the artifact root)
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
+        # T-0232 — the bounded, retried partial clone from
+        # .github/chicago-4d-clone.sh, same as promote-to-prod. The
+        # actions/checkout this replaced had no filter and no bound: this job
+        # has no timeout by design, so one slow draw could sit in checkout for
+        # hours while every other tenant's deploy waited. Fetches dev in the
+        # same bounded call so the preview step's fetch below is a no-op
+        # freshness check.
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: .github/chicago-4d-clone.sh main dev
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -202,3 +208,23 @@ jobs:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # T-0968 — a green deploy is not proof the site is reachable: /chicago/4d/dev/
+      # served a 404 for hours while every deploy reported success (found by the owner
+      # opening the page). This requests the LIVE origin for the URL list in
+      # .github/chicago-4d-url-check.json and records what it returns.
+      #
+      # LOUD, NOT BLOCKING, and the reasoning is deliberate: a hard gate on a deploy
+      # step once froze this site ~21 hours (chicago/4d/CLAUDE.md), and #1030 made a
+      # 4D step fatal until #1031 reverted it. A URL smoke that can freeze the
+      # monorepo's deploy is a worse bug than the one it detects. The step retries
+      # over a bounded window because Pages serves the new artifact seconds after the
+      # API reports success, asserts a BODY signal because a stale preview can return
+      # 200 with nothing in it, and never fails this job. Its --self-test (run by
+      # chicago/4d's tools/check.sh) points the same code at a fixture origin with a
+      # URL known to 404 and proves the ::error:: annotation fires.
+      - name: URL smoke — the deployed origin must answer (non-blocking, T-0968)
+        run: |
+          node .github/chicago-4d-url-check.mjs \
+            --origin "${{ steps.deployment.outputs.page_url }}" \
+            || echo "::warning::T-0968 URL smoke crashed — the deploy is unaffected; fix the checker"

@@ -134,35 +134,67 @@ app imports, which is the entire reason the changelog lives inside the app.
 Measured: **31.999 MB → 30.69 MB**, and the growth rate of the changelog on the payload is
 halved.
 
-## 4. Is the ceiling real at 32?
+## 4. The boot payload, measured — and what the whole-tree cap is now for
 
-**No — and its stated defence is not a size argument at all.** The gate's own message reads
-"GitHub Pages cannot serve Git LFS objects, so this has to stay lean", which is a true
-sentence about LFS and not a reason for the number 32. GitHub's documented Pages limits are
-**1 GB for the published site** and 100 GB/month of bandwidth; 32 MB is about 3 % of that.
-The number is this project's own, and nothing in the repo derives it.
+The recommendation at the foot of the old §4 was: measure what a visitor
+actually downloads, budget THAT tightly, and let the whole-tree cap relax into
+the repository-hygiene guard it always was. **T-0727 is that measurement, made
+2026-09-16 on build `62ee9f88d`:**
 
-That does not make it wrong, and **this pass deliberately did not raise it.** Raising a
-budget is the other way to pay for it with the record — the tree gets to keep growing and
-nobody has to say what the growth costs. What is worth saying instead is that **the
-whole-tree total is the wrong proxy for the thing a size budget is actually for.** A
-visitor never downloads this tree. They download the walkthrough's boot payload — the
-entry page, `walk/js/`, the vendored three.js, the scene's GLBs and sidecars — and the
-1,385 household cards, which are more than a quarter of the tree, are fetched one at a
-time, only when someone opens that person. The record can grow to ten times its size
-without costing a visitor a single byte at the door, while a careless import into
-`walk/js/` costs every visitor immediately and moves the total barely at all.
+```
+BOOT PAYLOAD — first visit stands in the 1835 street
+  7.223 MB across 915 request(s), gzip on the wire, fresh browser context,
+  counted from the server side until the app's own ready flag
+  (window.__chicago4d.ready) plus a 3 s settle.
 
-So the recommendation, and the ticket filed for it, is: **measure the boot payload and
-budget THAT tightly, and let the whole-tree cap be the loose repository-hygiene guard it
-actually is.** Until that measurement exists, 32 MB stays where it is — an unexamined
-number is still a working brake, and the queue needs the brake more than it needs the
-room.
+  BY TYPE          2.583 MB .json · 2.515 MB .glb · 1.716 MB .js
+                   0.368 MB .bin · 0.031 MB .css
+  LARGEST          1.099 MB terrain__e1834_harbor_cut.glb
+                   0.713 MB js/changelog.js
+                   0.368 MB the 16-bit heightfield
+                   0.348 MB data/liberties.json
+                   0.272 MB three.core.js
+```
+
+Three consecutive runs produced byte-identical totals — the measurement is a
+property of the tree, not of the run.
+
+**The boot payload budget is 12 MB.** That is 1.66× the measured 7.223 MB:
+tight enough that a careless import into `walk/js/` or an unmetered new boot
+fetches cannot accumulate silently (each is visible against 60 % spent), and
+loose enough that the growing town — South Through Time is ahead, and every
+new 1835 structure adds boot GLBs — does not force a re-budget every quarter.
+Re-measure and check with:
+
+```
+bash tools/publish.sh                      # build the mirror the visitor gets
+node tools/measure_boot_payload.mjs        # the report above
+node tools/measure_boot_payload.mjs --check  # exit 1 past the 12 MB budget
+```
+
+The method, stated because the number is only as good as it: a real headless
+Chromium boots the published mirror over a local origin that gzips every
+response — the live origin was verified to serve `content-encoding: gzip` for
+`.js`, `.json`, `.html` **and** `.glb` alike — from a fresh context (no cache,
+no cookies), counting every byte the server writes per request until the same
+ready flag the smoke gates on. No hand-declared file list anywhere in it.
+
+**What the whole-tree cap is now for:** repository hygiene, not visitor cost.
+The gate's `SITE_BUDGET_MB` moved 40 → **256 MB** on the same commit — a
+quarter of GitHub Pages' documented 1 GB site limit, six and a half times the
+38.87 MB the tree carries today — so the tree cannot approach the platform
+wall by drift and no one has to buy headroom out of the honesty of the record
+again (32 → 36 → 40 were three such purchases). The household cards can grow
+tenfold without costing a first visit a byte; the thing that costs every
+visitor immediately is the boot payload, and that is what the 12 MB defends.
 
 ## 5. What the gate does now
 
-- **Refuses** over 32 MB, as before, and now names `tools/site_budget.py` in the message
-  so the next run does not have to invent the report again.
+- **Refuses** over 256 MB — the repository-hygiene guard, not the visitor-cost
+  budget; the visitor-cost budget is the 12 MB boot payload budget in § 4,
+  enforced by `tools/measure_boot_payload.mjs --check`. The gate names
+  `tools/site_budget.py` in the message so the next run does not have to invent
+  the report again.
 - **Warns at 90 %**, with the headroom in MB. Until T-0722 nothing said a word until the
   tree was already a wall, and the run that discovered it was a run whose finished work
   could not merge. The warning is advisory by design: it is meant to reach the queue while

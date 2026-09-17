@@ -150,6 +150,19 @@ jobs:
     outputs:
       bake: ${{ steps.q.outputs.bake }}
     steps:
+      # T-0232 RULED OUT, in writing, with the reasons — the bounded retried
+      # clone (.github/chicago-4d-clone.sh) is NOT applied to this workflow:
+      #   1. Four checkout sites across three job shapes, each with its own
+      #      contract (this 5-minute gate, the 30-minute bake, and T-0167's two
+      #      split-leg smokes whose 45-minute ceilings were budgeted to ABSORB
+      #      checkout tails — capping those tails is a re-budget of a measured
+      #      decision, which is T-0165/T-0167's call, not T-0232's).
+      #   2. The bake job's checkout feeds tools/bake_ref.py's branch logic,
+      #      which check.sh self-tests assert; changing the checkout shape
+      #      risks a tested contract for a job whose failure costs a scheduled
+      #      runner-hour, not the owner's switch dying silently.
+      # The pack itself (1.31 GiB of superseded GLB masters) remains the root
+      # cause; T-0232 item 4 scopes the cure.
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -635,21 +648,24 @@ jobs:
             exit 0
           fi
 
-          if ! pr_output=$(gh pr create --title "chore: content bake (run ${GITHUB_RUN_ID})" \
+          # REST, not `gh pr create` — that is GraphQL, the bucket the fleet
+          # exhausted while REST sat untouched (T-0234, run 1140). pr-rest.sh
+          # posts to the core bucket and, on any refusal or failure, prints the
+          # recovery itself: the branch is PUSHED and the manual compare URL is
+          # in the log, so finished work is never stranded without a PR.
+          PR_NUM=""
+          if out=$(bash .github/steward/pr-rest.sh create \
+            --title "chore: content bake (run ${GITHUB_RUN_ID})" \
             --base "$BASE" \
             --body "Automated bake from \`tools/bake.sh\`. Regenerated glTF, web derivatives and sidecars. \`check.sh\` ran green at the end of the bake, and the published mirror passed the smoke at BOTH viewports in the \`smoke\` job before this PR was opened (T-0165). Targets \`$BASE\` — the ref this bake was built from (T-0454). Merging a \`dev\` bake publishes the /chicago/4d/dev/ preview only, and production moves on owner dispatch." \
-            --head "$BRANCH" 2>&1); then
-            # GitHub reports this org/repo policy failure as a GraphQL error string.
-            # Match it exactly so other gh failures still stop the workflow.
-            # GitHub varies the exact wording for repo policy blocks; warn for the
-            # known permission-denied cases but still fail for unrelated gh errors.
-            if printf '%s\n' "$pr_output" | grep -Eiq "GitHub Actions.*not permitted.*pull request|pull request creation is disabled for this repository"; then
-              echo "::warning::$pr_output"
-              echo "::notice::Baked changes were pushed to $BRANCH. Open a PR manually at https://github.com/${GITHUB_REPOSITORY}/compare/${BRANCH}?expand=1"
-            else
-              printf '%s\n' "$pr_output" >&2
-              exit 1
-            fi
+            --head "$BRANCH"); then
+            PR_NUM="$out"
+          else
+            # pr-rest.sh exited 1 on a non-permission failure after printing the
+            # recovery line — the bake's content is pushed and safe to open by
+            # hand, and that is stated in the log; the workflow still fails so
+            # the run reads honestly.
+            exit 1
           fi
 
           # ARM AUTO-MERGE, BECAUSE NOTHING ELSE WILL. The trailer above lets a
@@ -669,13 +685,21 @@ jobs:
           # turned off, a base with no required checks, a PR already mergeable —
           # and none of them is a reason to fail a bake that has already produced
           # good content and opened its PR. The PR stands either way.
-          PR_NUM=$(printf '%s\n' "$pr_output" | grep -oE '[0-9]+$' | tail -1)
+          # PR_NUM came from pr-rest.sh (empty when creation was refused but
+          # recoverable — the log already carries the manual compare URL).
           if [ -n "$PR_NUM" ]; then
+            # T-0234 NAMED EXCEPTION — the ONE GraphQL call this repo keeps:
+            # arming auto-merge (enablePullRequestAutoMerge) has NO REST
+            # equivalent. Cost, stated: one mutation plus gh's repo query per
+            # bake PR — a few points against the 5,000-point hourly bucket
+            # that the REST migration above leaves nearly full. tools/check_gh_
+            # rest.mjs allowlists exactly this line and refuses any other
+            # `gh pr/issue/search` re-entering the steward surfaces.
             gh pr merge "$PR_NUM" --auto --squash \
               && echo "::notice::auto-merge armed on #$PR_NUM — it lands when the gate is green" \
               || echo "::warning::could not arm auto-merge on #$PR_NUM; the PR is open and needs a merge by hand"
           else
-            echo "::warning::could not read a PR number out of gh's output, so auto-merge was not armed"
+            echo "::warning::no PR number — creation was refused or failed; the recovery line with the manual compare URL is above"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

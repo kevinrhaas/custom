@@ -305,9 +305,17 @@ if [ -d data/fauna ]; then
   cp -a data/fauna "$SITE/data/fauna"
 fi
 
-# every URL-targeted directory needs an index.html or Pages 404s the bare path
+# every URL-targeted directory needs an index.html or Pages 404s the bare path.
+# The document keeps its <head> and </body> ON PURPOSE, minimal as it is:
+# .github/chicago-4d-dev-preview.mjs marks every preview page by regex — a robots
+# meta after <head>, the DEV PREVIEW banner before </body> — and an opener with
+# no <head> or </body> at all slipped past all three markings (measured 2026-09-16
+# by T-0968's URL smoke: /chicago/4d/dev/ returned 200 unmarked). Structure is
+# what makes the preview honest at the door.
 [ -f "$SITE/index.html" ] || cat > "$SITE/index.html" <<'HTML'
 <!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <title>4D Chicago — opening the walkthrough</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -318,6 +326,8 @@ fi
        text-align:center;padding:24px}
   a{color:#58a6ff}
 </style>
+</head>
+<body>
 <div>
   <p>Opening the <strong>4D Chicago</strong> walkthrough…</p>
   <p><a id="go" href="walk/?year=1835">Continue to the walkthrough</a></p>
@@ -331,6 +341,8 @@ fi
   })();
 </script>
 <noscript><meta http-equiv="refresh" content="0; url=walk/?year=1835"></noscript>
+</body>
+</html>
 HTML
 
 # The build stamp the gate shows. Written here because publish IS the build: the
@@ -370,5 +382,8 @@ JSON
 
 echo "   build $BUILD_VERSION  $BUILD_CT"
 
-BYTES=$(du -sb "$SITE" | cut -f1)
+# PORTABLE SIZE (T-0727): `du -sb` is GNU-only and dies on the macOS stewards
+# (exit 64, whole publish marked failed after every byte landed). wc -c over
+# the same files is the exact byte count on both flavors.
+BYTES=$(find "$SITE" -type f -exec wc -c {} + | tail -1 | awk '{print $1}')
 printf 'published %s  (%.2f MB)\n' "$SITE" "$(echo "scale=4; $BYTES/1048576" | bc)"

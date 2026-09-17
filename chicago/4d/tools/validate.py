@@ -189,7 +189,20 @@ WIDE_RANGE_YEARS = 12
 # a third, which this unit created and should be said plainly: T-0466, the south-terrain
 # tiling and culling plan, is what makes a four-kilometre field affordable, and it sits
 # BELOW this ticket in the queue. The field arrived before the plan for carrying it.
-SITE_BUDGET_MB = 40
+#
+# AND THE NUMBER MOVED AGAIN, 2026-09-16 (T-0727) — 40 -> 256, AS A RE-BUDGET, NOT A
+# WEAKENING. The whole-tree total is the wrong proxy for what a size budget defends:
+# measured on this day's tree, a first-time visitor downloads 7.223 MB to stand in
+# the 1835 street while the tree carries 38.87 MB — the 1,385 household cards are
+# 28 % of the tree and cost a first visit nothing until one is opened. The number
+# that defends the visitor is the BOOT PAYLOAD budget in docs/SITE-BUDGET.md §4
+# (12 MB, enforced by tools/measure_boot_payload.mjs --check); this cap becomes the
+# repository-hygiene guard it always was, set at a quarter of GitHub Pages' 1 GB
+# documented site limit so the tree cannot approach the platform wall by drift.
+# Raising it removes the recurring "pay for the budget out of the record" raises
+# (32 -> 36 -> 40, each bought with a doc edit); the honest guard on visitor cost
+# is the boot budget now.
+SITE_BUDGET_MB = 256
 # Warn at 90 % of it. See run_site_check for why this band exists (T-0722).
 SITE_WARN_FRACTION = 0.90
 # Identical files smaller than this are not worth a merge refusal (T-0722).

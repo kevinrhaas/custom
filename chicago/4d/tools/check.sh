@@ -68,6 +68,18 @@ step "the gate's own output tells a fired assertion from a failure" \
 selftest "…and its own assertions still fire when broken" \
   bash tools/test_check_harness.sh --self-test
 
+selftest "…and the post-deploy URL smoke still fires on a 404 (T-0968)" \
+  node ../../.github/chicago-4d-url-check.mjs --self-test
+
+selftest "…and the bounded clone abandons a bad draw and re-rolls (T-0232)" \
+  bash ../../.github/chicago-4d-clone.sh --self-test
+
+step "the steward surfaces spend the REST bucket, not GraphQL (T-0234)" \
+  node tools/check_gh_rest.mjs
+
+selftest "…and a reintroduced gh pr draw is refused (T-0234)" \
+  node tools/check_gh_rest.mjs --self-test
+
 step "dataset (schema, provenance, date gates, licenses, staleness, publish)" \
   python3 tools/validate.py --all $STRICT
 

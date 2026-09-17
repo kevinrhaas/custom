@@ -45,15 +45,17 @@ jobs:
     # enough.
     timeout-minutes: 30
     steps:
-      # `filter: blob:none` — a PARTIAL clone, not a shallow one.
-      #
-      # This job needs the full COMMIT history (rev-list main..dev, merge-base,
-      # a real merge), so fetch-depth: 0 has to stay. What it does not need is
-      # every historical BLOB, and that is what got expensive: the nightly bake
-      # rewrites ~287 GLB masters, so the pack is 1.31 GiB and almost all of it
-      # is superseded binaries this job never opens. blob:none fetches commits
-      # and trees up front and pulls blobs on demand — here, essentially just
-      # the one tree that gets checked out.
+      # T-0232 — the checkout is a BOUNDED, RETRIED partial clone, not
+      # actions/checkout. The lottery it replaces is the measured record above
+      # and below this step: the same fetch could take 35 seconds or eighteen
+      # minutes, and a slow draw consumed the whole promotion while the run
+      # read "in progress" (runs #12 and #15). The mechanism — plain git under
+      # timeout(1), an attempt abandoned at a 4-minute bound, elapsed per
+      # attempt written to the run summary — lives in .github/chicago-4d-clone.sh
+      # next to its self-test, which proves a bad draw costs one bound and then
+      # a later attempt succeeds. blob:none is kept: this job needs the full
+      # commit history (rev-list, merge-base, two real merges) and not one
+      # historical blob beyond the checked-out tree.
       #
       # Measured, on 2026-08-24: the same fetch-depth-0 checkout of this repo
       # took 37 s, 47 s, 54 s, 2m20s, 3m32s, 3m40s, 4m45s and 7m11s across the
@@ -61,11 +63,10 @@ jobs:
       # when it was cancelled. It is a lottery, and promotion run #12 drew the
       # bad ticket and burned its 15-minute cap without reaching a single
       # promotion step.
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-          fetch-depth: 0
-          filter: blob:none
+      - name: Checkout main (bounded, retried — T-0232)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: .github/chicago-4d-clone.sh main dev
 
       # No Python. This job runs git and one node script (check-changelog.mjs)
       # and nothing else — `pip install jsonschema pyproj` was inherited from
