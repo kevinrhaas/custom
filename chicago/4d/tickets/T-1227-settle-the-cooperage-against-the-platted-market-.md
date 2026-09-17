@@ -1,7 +1,7 @@
 ---
 id: T-1227
 title: Settle the cooperage against the platted Market Street corridor in the recipe that places it, so no hand-typed coordinate stands in for the ruling
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1108
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1385
 claimed_by: run 9/17/2026, 4:19:35 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T10:00:49.217Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35203627603
 ---
 
