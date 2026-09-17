@@ -52,7 +52,7 @@ reserved now:
 
 | scene time | epoch | shoreline state | present status |
 |---|---|---|---|
-| 15 August 1812 | `e1830_natural` | `shore_1812_pre_cut` | **supplied** by T-1243: two shore lines traced off the Harrison 1830 harbour survey. Not `active` — the epoch still has no terrain (T-1244 to T-1246) |
+| 15 August 1812 | `e1830_natural` | `shore_1812_pre_cut` | **supplied** by T-1243: two shore lines traced off the Harrison 1830 harbour survey. Not `active` — the epoch still has no terrain (T-1247 to T-1246) |
 | 1 July 1835 | `e1834_harbor_cut` | `shore_1835_harbor_cut` | active |
 | 1880s | `e1871_postfire` | `shore_1880s_ic_edge` | planned for T-0473; geometry deliberately null |
 

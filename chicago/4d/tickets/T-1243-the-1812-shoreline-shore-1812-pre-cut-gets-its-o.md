@@ -49,5 +49,5 @@ rather than smoothed away — about 60 m of the 1828 channel's western entrance,
 building-glyph spurs, and up to 5.2 m of standoff on a tight convex bend.
 
 **What this piece does NOT do:** no water polygon, no sand bar, no hydrology
-(T-1244), no terrain spec (T-1245), no heightfield, meshes or scene selection
+(T-1247), no terrain spec (T-1248), no heightfield, meshes or scene selection
 (T-1246). The state's status is `supplied`, not `active`, for exactly that reason.

@@ -1,5 +1,5 @@
 ---
-id: T-1245
+id: T-1248
 title: The e1830_natural terrain spec: the authored zone table, grid and evidence limits for the ground before the cut
 state: open
 epic: SOUTH_TIME
