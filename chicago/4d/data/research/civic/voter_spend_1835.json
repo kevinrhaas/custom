@@ -1487,7 +1487,7 @@
      "list_date": "1833",
      "as_read": "Jones, D. E.",
      "line": 104,
-     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'D. E. Jones' against resident 'D E Jones'"
     }
    ]
@@ -1504,7 +1504,7 @@
      "list_date": "1833",
      "as_read": "Jones, Willard",
      "line": 105,
-     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Willard Jones' against resident 'Willard Jones'"
     },
     {
@@ -1514,7 +1514,7 @@
      "list_date": "1834-08-11",
      "as_read": "Jones, Willard",
      "line": 230,
-     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Willard Jones' against resident 'Willard Jones'"
     },
     {
@@ -1524,7 +1524,7 @@
      "list_date": "1835",
      "as_read": "Jones, Willard",
      "line": 324,
-     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Willard Jones' against resident 'Willard Jones'"
     }
    ]
@@ -2997,7 +2997,7 @@
      "list_date": "1834-08-11",
      "as_read": "Jones, Benjamin",
      "line": 229,
-     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 5 bearer(s) of the surname were considered.",
+     "rule": "one resident of the surname 'Jones' agrees with the entry's forenames; 6 bearer(s) of the surname were considered.",
      "discriminator": "forenames agree initial for initial: entry 'Benjamin Jones' against resident 'Benjamin Jones'"
     }
    ]
