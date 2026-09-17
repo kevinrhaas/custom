@@ -89,7 +89,22 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — early_illinois_barrows_school. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Associate and assistant of Miss Chappel in the town's first school",
+     "confidence": "inferred",
+     "sources": [
+      "early_illinois_barrows_school"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0484#01",
+     "as_read": "name Mary Barrows as Miss Chappel's associate/assistant",
+     "note": "A dated Chicago role stated by the education histories. The teaching trade itself is T-1145's field; the association with a named person is this one."
+    }
+   ]
   }
  ],
  "touches_removal": false,
