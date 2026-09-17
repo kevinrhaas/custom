@@ -1,7 +1,7 @@
 ---
 id: T-1238
 title: The ground beyond the distance where the haze is total stops being submitted, and the eight days that put the town over are named with a measured before and after
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1154
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1397
 claimed_by: run 9/17/2026, 8:35:35 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T14:03:55.961Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35224144036
 ---
 
