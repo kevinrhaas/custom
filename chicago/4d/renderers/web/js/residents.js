@@ -606,6 +606,83 @@ function laterOccupationHtml(later, citationsById) {
     ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}`;
 }
 
+/**
+ * WHEN a person did each of the things the sources say they did (T-1223, the first
+ * piece of T-1145).
+ *
+ * The singular `occupation` block holds one trade and carries no date of its own,
+ * and Daniel Elston is what that costs. Five records in this dataset name four
+ * different things the man did — the Chicago Soap and Candle Manufactory in the
+ * Democrat's first number, the same standing advertisement fourteen months later,
+ * a school inspectorship in the city register of 1839, and a patent press-brick
+ * works in the directories of 1843 and 1844 — and the card showed one of them,
+ * `soap_and_candle_maker`, graded as an ATTESTED 1835 occupation out of an
+ * advertisement printed nineteen months before the scene.
+ *
+ * So a role is rendered as one ASSERTION out of one ROW of one source, with its own
+ * date, its own confidence, the line as it was printed, and where it was exercised
+ * when the source says. The clause that matters most to a reader is the one about
+ * 1835: `reaches_scene` is derived from the role's own dates by `tools/roles.py` and
+ * is stated on every row, so a trade printed in 1843 cannot read as a trade held on
+ * the day this town is set. Two roles held at once stay two rows.
+ *
+ * Rendered from the RECORD, like every other graded claim here — `people.json` is a
+ * pointer and says so in its own standard, and a figure quoted twice is a figure
+ * that drifts.
+ */
+function roleWhen(role) {
+  if (!role || role.precision === 'unknown') return 'Date not stated';
+  const shown = (value) => {
+    const v = String(value ?? '');
+    if (/^\d{4}$/.test(v)) return v;
+    if (/^\d{4}-\d{2}$/.test(v)) return printedOn(`${v}-01`).replace(/^1 /, '');
+    return printedOn(v);
+  };
+  if (role.on) return shown(role.on);
+  if (role.from && role.to) return `${shown(role.from)} to ${shown(role.to)}`;
+  if (role.from) return `From ${shown(role.from)}`;
+  if (role.to) return `Until ${shown(role.to)}`;
+  return 'Date not stated';
+}
+
+function rolesHtml(person, citationsById) {
+  const roles = person.roles || [];
+  if (!roles.length) return '';
+  const kinds = {
+    trade: 'trade', profession: 'profession', office: 'office',
+    employment: 'employment', business_interest: 'business interest',
+  };
+  const reaching = roles.filter((r) => r.reaches_scene).length;
+  const items = roles.map((r) => {
+    const cite = citationsById.get(r.source);
+    return `<li>
+      <strong>${escapeHtml(roleWhen(r))}</strong> — ${swatch(r.confidence)}${
+        escapeHtml(words(r.role))}
+      <span class="res-chip res-research">${escapeHtml(kinds[r.kind] || words(r.kind))}</span>
+      <span class="res-chip res-research">${r.reaches_scene
+        ? 'held on 1 July 1835' : 'not 1835'}</span>
+      ${r.employer_or_body
+        ? `<span class="res-chip res-research">of ${escapeHtml(words(r.employer_or_body))}</span>`
+        : ''}
+      <br><q>${escapeHtml(r.as_read || '')}</q>
+      <br><span class="res-why">${r.place && r.place !== 'not_stated'
+        ? `At ${escapeHtml(words(String(r.place)))}. `
+        : 'The source states no place for it. '}${escapeHtml(r.note || '')}</span>
+      ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</li>`;
+  }).join('');
+  return `<dt>What this person did, and when</dt>
+    <dd>${swatch('attested')}${roles.length} dated ${
+      roles.length === 1 ? 'role' : 'roles'}, ${reaching === 0
+        ? 'none of which the sources date to 1 July 1835'
+        : `${reaching} of which the sources date to 1 July 1835`}.
+      <br><span class="res-why">Each row is one assertion out of one line of one
+        source, kept apart from the others because each carries its own date. Whether
+        a role reaches the scene is worked out from that role's own dates and never
+        widened to fit the town: a trade printed before or after 1835 is evidence
+        about the year it was printed in.</span>
+      <ul class="res-candidates">${items}</ul></dd>`;
+}
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
   directoriesOnRecord, ladderRules) {
   const occ = person.occupation || {};
@@ -619,7 +696,9 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
       <span class="res-role">${escapeHtml(words(person.relationship))}${
         occ.value ? ` · ${escapeHtml(words(occ.value))}` : ''}${
         occ.later_occupation ? ` for 1835 · a trade is printed for ${
-          escapeHtml(String(occ.later_occupation.describes_date))}` : ''}</span></summary>
+          escapeHtml(String(occ.later_occupation.describes_date))}` : ''}${
+        (person.roles || []).length
+          ? ` · ${(person.roles || []).length} dated roles` : ''}</span></summary>
     <dl class="lib-body">
       ${row('In the household as', words(person.relationship))}
       ${row('Sex', words(person.sex))}
@@ -630,6 +709,7 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
         laterOccupationHtml(occ.later_occupation, citationsById)}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
+      ${rolesHtml(person, citationsById)}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
       ${person.letter_list_only
         ? `<dt>How this person is known</dt><dd>${swatch('attested')}Only from the post office's lists of uncalled-for letters. A name on one of those lists is somebody a correspondent believed was reachable at Chicago; it gives no trade, no street and no household, and it is the weakest evidence this project accepts for a resident. A shopkeeper who advertised his stock is a different claim, and this row is here so the two never read as the same one.</dd>` : ''}
@@ -823,6 +903,12 @@ function vocabularyHtml(vocab) {
     // not have rather than one nobody printed.
     ['Sex, as the records give it', vocab.sexes],
     ['Trades', vocab.occupations],
+    // T-1223. A dated role draws its controlled word from one of two closed sets,
+    // and an office is not a trade: the city register makes a man a school
+    // inspector, which says what he was of the town and nothing about how he
+    // earned. Listed here for the same reason the trades are.
+    ['Offices, as the registers give them', vocab.offices],
+    ['Kinds of role', vocab.role_kinds],
   ];
   const rows = sets
     .filter(([, list]) => Array.isArray(list) && list.length)
@@ -1000,6 +1086,17 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
           + `That is ${Math.round((counts.civic_mint / persons) * 100)} per cent of the `
           + `people here, and the rung and its lines are on each of their cards so that `
           + `the grade can be disagreed with rather than taken. ` : '')
+      + (counts.persons_with_roles
+        // T-1223. What a person DID is plural and dated now: one assertion per row of
+        // one source, each carrying its own date, and a derived clause saying whether
+        // that date reaches 1 July 1835. The count is here because the migration of the
+        // rest (T-1224) is visible in it — this is how much of the town has moved off
+        // the single undated `occupation` field so far.
+        ? `${counts.persons_with_roles} of them carry dated ROLES rather than one `
+          + `undated trade — ${counts.role_assertions} dated assertion`
+          + `${counts.role_assertions === 1 ? '' : 's'} in all, each read off one line `
+          + `of one source and each saying for itself whether it reaches 1 July 1835. `
+          + `A trade printed in 1843 is evidence about 1843. ` : '')
       + (researchByPerson.size
         ? `${researchByPerson.size} real named people (${Math.round((researchByPerson.size / researchEligible) * 100)}% of the eligible research population) received a dated identity review: `
           + `${researchCounts.corroborated_enrichment || 0} corroborated findings, `

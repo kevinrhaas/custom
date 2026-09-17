@@ -1,5 +1,6 @@
 {
  "_doc": "Manifest for data/residents/. Person grade is the top-level resident-evidence classification: attested = confidently corroborated real named circa-1835 Chicago resident; inferred = real named person reasonably believed to belong to the circa-1835 population; reconstructed is reserved for a later explicit reconstruction pass and is intentionally zero after the 2026-09-02 synthesis. resident_subtype projected_resident is the weakest evidence-based inferred subset. Per-attribute confidence is independent. later_census is explicitly 1840 evidence and is never silently back-projected to 1835.",
+ "_roles_doc": "persons[].roles[] is the plural, dated record of what a person did: one assertion per row of one source, each carrying a controlled role (from vocabulary.occupations, or vocabulary.offices where kind is 'office'), the source's own printing in as_read, a kind from vocabulary.role_kinds, its own dates and precision, a confidence, the source and the claim_id or entry_id of the row it was read out of, the place it was exercised or 'not_stated', and employer_or_body for an office or an employment. reaches_scene is DERIVED by tools/roles.py from the role's own dates and is never written by hand. The singular occupation block is now a compatibility view of the roles that cover scene_date; two simultaneous roles remain two roles. T-1223.",
  "version": 1,
  "scene_date": "1835-07-01",
  "dossier": "docs/RESEARCH/residents_1835.md",
@@ -153,6 +154,28 @@
    "watchmaker",
    "wheelwright"
   ],
+  "offices": [
+   "alderman",
+   "assessor",
+   "chief_engineer",
+   "city_attorney",
+   "collector",
+   "coroner",
+   "fire_warden",
+   "mayor",
+   "school_inspector",
+   "sealer_of_weights_and_measures",
+   "sheriff_of_cook_county",
+   "street_commissioner",
+   "treasurer"
+  ],
+  "role_kinds": [
+   "trade",
+   "profession",
+   "office",
+   "employment",
+   "business_interest"
+  ],
   "sexes": [
    "male",
    "female"
@@ -257,7 +280,9 @@
   "census_1840_linked": 3,
   "reconstructed_removed_in_2026_09_02_synthesis": 108,
   "civic_mint": 391,
-  "merged_away": 65
+  "merged_away": 65,
+  "persons_with_roles": 1,
+  "role_assertions": 5
  },
  "households": [
   {

@@ -70,7 +70,8 @@ ROW_KEYS = ("id", "file", "letter_list_only", "civic_mint", "head", "division",
 # The count keys this derivation owns. Anything else in `counts` is authored and
 # is carried through untouched, in its committed position.
 DERIVED_COUNTS = ("households", "persons", "by_grade", "letter_list_only",
-                  "projected_residents", "census_1840_linked", "civic_mint")
+                  "projected_residents", "census_1840_linked", "civic_mint",
+                  "persons_with_roles", "role_assertions")
 
 
 def _value(field):
@@ -165,6 +166,12 @@ def rebuild(index: dict, docs=None) -> dict:
                                    if p.get("resident_subtype") == PROJECTED),
         "census_1840_linked": sum(1 for p in people if p.get("later_census")),
         "civic_mint": sum(1 for p in people if p.get("civic_mint")),
+        # T-1223: people carrying a dated role, and the assertions themselves.
+        # Two figures because they answer two questions - how much of the town
+        # has roles at all, and how many readings the layer is standing on -
+        # and T-1224 has to watch both as it migrates the other 1,126 rows.
+        "persons_with_roles": sum(1 for p in people if p.get("roles")),
+        "role_assertions": sum(len(p.get("roles") or []) for p in people),
     }
     counts = dict(index.get("counts") or {})
     counts.update(derived)                       # in place for keys already there

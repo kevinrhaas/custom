@@ -2756,10 +2756,18 @@ def _resident_index(households: list, **kw) -> dict:
             "kin_relations": ["brother", "daughter", "father", "half_brother",
                               "half_sister", "husband", "mother", "sister",
                               "son", "wife"],
+            # T-1223: the two closed sets a dated role draws on.
+            "offices": ["school_inspector", "street_commissioner"],
+            "role_kinds": ["trade", "profession", "office", "employment",
+                           "business_interest"],
         },
         "counts": {"households": len(households),
                    "persons": sum(len(h["persons"]) for h in households),
-                   "by_grade": counts},
+                   "by_grade": counts,
+                   "persons_with_roles": sum(1 for h in households
+                                             for p in h["persons"] if p.get("roles")),
+                   "role_assertions": sum(len(p.get("roles") or []) for h in households
+                                          for p in h["persons"])},
         "households": entries,
         "researched_not_resident": [],
     }
@@ -3243,6 +3251,107 @@ def test_real_dataset_passes() -> None:
           r.stdout[-400:] + r.stderr[-400:])
 
 
+def _role(**kw) -> dict:
+    """One well-formed role assertion: a cooper, dated to the scene date itself."""
+    r = {"role": "cooper", "kind": "trade", "as_read": "A Person, cooper",
+         "on": "1835-07-01", "precision": "day", "confidence": "attested",
+         "source": "s1", "claim_id": "c001", "place": "not_stated",
+         "employer_or_body": None, "reaches_scene": True}
+    r.update(kw)
+    return r
+
+
+def test_a_role_is_dated_sourced_and_cannot_talk_itself_into_1835() -> None:
+    """`persons[].roles[]` — the plural, dated replacement for one `occupation`.
+
+    T-1223, the first piece of T-1145. The fault it was filed against is Daniel
+    Elston's card: five records in this dataset name four different things he did,
+    the model showed one of them, and it showed it as an ATTESTED 1835 occupation out
+    of an advertisement printed nineteen months before the scene. Every check below is
+    one of the ways that could go on happening.
+    """
+    rep = _run_residents([_resident_household(persons=[_resident_person(roles=[_role()])])])
+    check("a dated, sourced, scene-covering role passes", not rep.errors, rep.errors)
+
+    # THE ONE THAT MATTERS. `reaches_scene` is derived by tools/roles.py from the
+    # role's own dates; a record that sets it by hand is asserting a year no source
+    # gives, which is the whole of the ticket.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(on="1843", precision="year", reaches_scene=True)],
+        occupation={"value": "none_recorded", "confidence": "reconstructed",
+                    "note": "no trade in the window"})])])
+    check("a role that claims 1835 on 1843 dates is an error",
+          any("reaches_scene is True and this role's own dates" in e for e in rep.errors),
+          rep.errors)
+
+    # …and the same role told the truth about itself passes, so the check above is
+    # about the CLAIM and not about the year.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(on="1843", precision="year", reaches_scene=False)],
+        occupation={"value": "none_recorded", "confidence": "reconstructed",
+                    "note": "no trade in the window"})])])
+    check("the same later role, honestly flagged, passes", not rep.errors, rep.errors)
+
+    # The singular field is a COMPATIBILITY VIEW now. A trade in it that only a later
+    # record prints is the back-projection this ticket exists to stop.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(on="1843", precision="year", reaches_scene=False)])])])
+    check("an 1835 occupation no scene-reaching role supports is an error",
+          any("is not supported by any role whose own dates reach" in e
+              for e in rep.errors), rep.errors)
+
+    # An undated role stays undated. Writing a date beside `precision: unknown` is
+    # the widening the precision exists to refuse.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(on="1835-07-01", precision="unknown", reaches_scene=False)],
+        occupation={"value": "none_recorded", "confidence": "reconstructed",
+                    "note": "no trade in the window"})])])
+    check("a date written beside an 'unknown' precision is an error",
+          any("precision is 'unknown' and" in e for e in rep.errors), rep.errors)
+
+    # A role names the ROW it was read from. A source id alone puts a reader on a
+    # volume rather than a line.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(claim_id=None)])])])
+    check("a role with no claim_id or entry_id is an error",
+          any("names the ROW it was read from" in e for e in rep.errors), rep.errors)
+
+    # An office is held OF something, and the business band attaches officers to
+    # establishments out of that field.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(role="school_inspector", kind="office", reaches_scene=True)],
+        occupation={"value": "none_recorded", "confidence": "reconstructed",
+                    "note": "an office is not a trade"})])])
+    check("an office with no employer_or_body is an error",
+          any("carries no employer_or_body" in e for e in rep.errors), rep.errors)
+
+    # …and the two closed sets are held apart: a trade is not an office and an
+    # office is not a trade, whichever list the word happens to be on.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(role="cooper", kind="office", employer_or_body="the town board",
+                     reaches_scene=True)],
+        occupation={"value": "none_recorded", "confidence": "reconstructed",
+                    "note": "an office is not a trade"})])])
+    check("a trade word used as an office is an error",
+          any("is not in the manifest vocabulary.offices" in e for e in rep.errors),
+          rep.errors)
+
+    # A role says where it was exercised, or says the source does not. It never
+    # just omits the question.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(place="a shop on South Water")])])])
+    check("a place that is neither 'not_stated' nor a structure is an error",
+          any("nor a structure in data/structures/" in e for e in rep.errors), rep.errors)
+
+    # And a role may not cite a source the PERSON does not, or the card shows a
+    # role resting on a citation it never lists.
+    rep = _run_residents([_resident_household(persons=[_resident_person(
+        roles=[_role(source="s2")])])], sources=("s1", "s2"))
+    check("a role citing a source the person does not is an error",
+          any("cited by this role and not by the person" in e for e in rep.errors),
+          rep.errors)
+
+
 def main() -> int:
     print("validator tests\n")
     for fn in sorted((f for name, f in globals().items()
@@ -3260,3 +3369,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+

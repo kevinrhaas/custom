@@ -654,6 +654,24 @@ step "the residents manifest re-derives from the household cards" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/rebuild_resident_index.py --self-test
 
+# Roles: plural, dated, and never able to talk themselves into the scene (T-1223,
+# the first piece of T-1145). `persons[].roles[]` replaces the one `occupation`
+# block a person could hold, and `reaches_scene` on each role is DERIVED from that
+# role's own dates. The fault it was filed against is on the acceptance fixture:
+# Daniel Elston's card showed `soap_and_candle_maker`, graded as an ATTESTED 1835
+# occupation, out of an advertisement printed nineteen months before the scene,
+# while four other things the sources say he did were not in the model at all.
+# This refuses a `reaches_scene` that the role's own dates do not support, in
+# either direction.
+step "every resident role's reach into 1835 re-derives from its own dates" \
+  python3 tools/roles.py --check
+
+# And the arithmetic under it, broken on purpose in each of the ways a role could
+# back-project itself: an open span read as continuing, a year read as a point, an
+# undated role read as covering everything.
+selftest "…and the window rule still fires when broken" \
+  python3 tools/roles.py --self-test
+
 # The kinship the corpus already states (T-0734). The audit that opened that ticket
 # found 14 of 1,404 people related to anybody at all, and the reason was never that
 # the sources were silent: the register marries couples this town holds both halves

@@ -187,7 +187,7 @@ RENDERER_SKIP = ("changelog.js",)
 # business — the same strip `compile_scene.ground_fields` does before the
 # ground's geometry check sees a claim. A path declared in READS outranks this.
 MACHINERY_LEAVES = frozenset({
-    "_doc", "_researched_not_resident_doc",
+    "_doc", "_researched_not_resident_doc", "_roles_doc",
     "id", "zone", "file", "version", "scene_date", "dossier", "sources",
     "note", "name", "binomial", "synonym", "review_required", "palette",
     "species_count", "confidence", "reads_as",
@@ -502,6 +502,11 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # person's card and this was the one closed set the panel withheld.
     "vocabulary.sexes": ("shown", "['Sex, as the records give it', vocab.sexes]"),
     "vocabulary.occupations": ("shown", "vocab.occupations"),
+    # T-1223. The two closed sets a dated role draws on: offices are not trades and
+    # never were, and the panel has to hold them apart for the same reason it holds
+    # `brother` and `half_brother` apart above.
+    "vocabulary.offices": ("shown", "['Offices, as the registers give them', vocab.offices]"),
+    "vocabulary.role_kinds": ("shown", "['Kinds of role', vocab.role_kinds]"),
     # T-0668. The ratified grading ladder, carried in the manifest because the card
     # prints a rung id beside a person's grade and the rung's text lived in Python.
     # `tools/consolidate_resident_evidence.py --check` holds this block equal to its
@@ -514,6 +519,13 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     # banked unread, and both collide by leaf name with `persons[].civic_mint`,
     # which is why they are shown rather than exempted.
     "counts.civic_mint": ("shown", "${counts.civic_mint} of these people were minted"),
+    # T-1223. Two figures because they answer two questions - how much of the town
+    # has dated roles at all, and how many readings the layer stands on - and the
+    # migration of the other 1,126 structured rows (T-1224) has to move both. A
+    # count shipped to a browser that the browser does not say is a count nobody
+    # can check, which is what this census is for.
+    "counts.persons_with_roles": ("shown", "${counts.persons_with_roles} of them carry"),
+    "counts.role_assertions": ("shown", "${counts.role_assertions} dated assertion"),
     "households[].civic_mint": ("shown", "entry.civic_mint"),
 }
 
@@ -661,6 +673,26 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # a letter waiting on the scene date and one waiting eighteen months earlier say
     # different things about the same person, and only this figure tells them apart.
     "persons[].letter_list_returns": ("shown", "person.letter_list_returns"),
+    # T-1223, the first piece of T-1145: the plural, dated roles that the singular
+    # `occupation` block above is now a compatibility view of. EVERY figure here is
+    # shown, and that is the point of the ticket rather than an accident of it - the
+    # fault it was filed against is a card that showed one trade out of five records
+    # and dated it to a year no source puts it in. A role a reader cannot see the
+    # date, the printing, the row and the place of is a role they cannot argue with.
+    # `reaches_scene` is the clause that matters most: it is derived by
+    # tools/roles.py from the role's own dates, and the card states it on every row.
+    "persons[].roles[].role": ("shown", "escapeHtml(words(r.role))"),
+    "persons[].roles[].kind": ("shown", "kinds[r.kind] || words(r.kind)"),
+    "persons[].roles[].as_read": ("shown", "<q>${escapeHtml(r.as_read || '')}</q>"),
+    "persons[].roles[].on": ("shown", "if (role.on) return shown(role.on);"),
+    "persons[].roles[].precision": ("shown", "if (!role || role.precision === 'unknown')"),
+    "persons[].roles[].source": ("shown", "citationsById.get(r.source)"),
+    "persons[].roles[].claim_id": ("shown", "citationsById.get(r.source)"),
+    "persons[].roles[].entry_id": ("shown", "citationsById.get(r.source)"),
+    "persons[].roles[].place": ("shown", "`At ${escapeHtml(words(String(r.place)))}. `"),
+    "persons[].roles[].employer_or_body": (
+        "shown", "of ${escapeHtml(words(r.employer_or_body))}"),
+    "persons[].roles[].reaches_scene": ("shown", "${r.reaches_scene"),
     "persons[].occupation.value": ("shown", "words(occ.value)"),
     "persons[].occupation.confidence": ("shown", "swatch(occ.confidence)"),
     "persons[].occupation.note": ("shown", "escapeHtml(occ.note)"),

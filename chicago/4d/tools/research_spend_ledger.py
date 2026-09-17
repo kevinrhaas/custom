@@ -286,8 +286,13 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
     if domain == "residents":
         name = Path(unit["source_file"]).name
         if name == "scene_window_trade_audit.json":
-            return {"disposition": "unresolved", "ticket": "T-1145",
-                    "reason": "The dated plural-role migration owns this temporal role ruling."}
+            # T-1145 was split into four on 2026-09-17 and a split parent is not open,
+            # so the pointer moves to the child that owns these six rows: T-1225 is
+            # "resolve T-0991's six 1833 trades as dated pre-scene roles". The schema
+            # they will be resolved INTO landed in T-1223.
+            return {"disposition": "unresolved", "ticket": "T-1225",
+                    "reason": "The dated pre-scene role resolution owns this temporal "
+                              "role ruling."}
         if name == "letter_list_reading_suspicions.json":
             return {"disposition": "unresolved", "ticket": "T-1146",
                     "reason": "The structured resident-fact pass owns this surviving name suspicion."}
