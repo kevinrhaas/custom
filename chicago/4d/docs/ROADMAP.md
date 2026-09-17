@@ -15,6 +15,13 @@ S2 ──► S6 flora + fauna ──► S7 polish, audio, perf ──► release
 **Critical path: S1 → S2 → S3.** The datum gates every coordinate in the project. Work that does
 not need coordinates is deliberately structured to proceed in parallel.
 
+### Boot-budget enforcement — T-1156
+
+The nightly bake's desktop `1-2` smoke leg runs the existing boot-payload
+measurement with `--check` against the downloaded baked mirror. Its failure
+withholds the bake PR through `needs: smoke`; the 12 MB budget and the smoke
+matrix remain unchanged. See `docs/SITE-BUDGET.md` §4 and the ticket for evidence.
+
 ### Research completion accounting — T-1143 complete 2026-09-15
 
 The completion sequence at the bottom of `tickets/QUEUE.md` now starts from a closed unit ledger,
