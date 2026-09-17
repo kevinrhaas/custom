@@ -1,7 +1,7 @@
 ---
 id: T-1228
 title: Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-1108
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 6:26:54 AM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35215510528
 ---
 
 Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns.
