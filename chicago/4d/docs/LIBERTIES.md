@@ -10654,9 +10654,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 410 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 397 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 410 people
+**Scope:** `residents.persons[civic_mint]` — 397 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10778,6 +10778,19 @@ this ticket was being written.
 
 **And one fewer again, on where the ground is rather than on how the name looks (T-1135, 2026-09-15).** The Pruyne/Pryne pair the paragraph above left undecided is decided, and this entry's count falls from 411 to 410. `pryne_peter` was minted here off the town's own tax list of 1833 and poll lists of 1834 and 1835 — three appearances, a name and nothing else — while the town already held Peter Pruyne the druggist, who with E. S. Kimberly opened Chicago's second drug store early in 1833. NO PAGE SETTLES IT AND NONE IS CLAIMED TO: the IRAD rolls print Pryne three times and Pruyne never, the deposited Democrat run prints the stem 239 times and every one of them Pruyne, and the two bodies of evidence never touch — which is exactly why C9 could not fire, and why T-1134's D7, written the night before, describes this pair in its own words as the shape it refuses. WHAT DISPLACES THAT REFUSAL IS NOT A PAGE BUT A COUNT, under a new rule C14 that is C12's exhaustion with its two halves swapped so that it reaches a surname. The 1833 tax list is a roll of the owners and estates of ground inside the town — this project's own finding, settled out of the list's own membership, its entry 110 being a man three years dead whose estate was taxed. The land tract register enters PRUYNE P for lot 3 of block 119 of the school section on 25 October 1833, and that block's polygon falls with all four corners inside the ring the Trustees walked in their first village ordinance of 7 November 1833. Then every one of the roll's 115 entries is scored by the letters between its surname and `pruyne`: one entry stands at one letter, and it is number 86, `Pryne, Peter`; the next nearest on the whole roll is `Price, Jeremiah` at three, with a forename that is not Peter and a card of its own. Nothing stands in the gap. THE RULE NEVER FOLDS ON THE RESEMBLANCE — it excludes on the difference, which is the direction T-1001's measurement permits, and it would read the same way if the two strings looked nothing alike. TWO THINGS ARE DELIBERATELY NOT LEANED ON. His own fullest rows — lots 1 and 8 of block 23, bought under the spelling PRUYNE PETER — fall OUTSIDE that ring, west of Jefferson, and are printed as the control that makes the geometry a test rather than a gesture. And the weaker argument one step along — that a man who bought at the town's own auction is the kind of man its tax roll carries — is T-1017's, which measured it and refused it, PRUYNE being one of the twenty surnames that sale itself prints more than one way. The whole count is at `tools/exhaust_tax_1833.py` and its seven invariants are asserted by the gate, so the ruling goes red out loud if the roll, the ground or the corpus moves under it.
 
+**And thirteen fewer, because a bracketed supply is not an attested name (T-1115,
+2026-09-16).** Eighteen civic-minted cards carried at least one scene-year reading whose
+`as_read` name contained square brackets: editorially supplied or uncertain letters which
+the identity consolidation had already stripped before the mint saw the name. Thirteen of
+those cards stood on no clean scene-year naming at all and are withdrawn, taking this scope
+from 410 to 397. Five people — B. Beaubien, George Chapman, William Hogue, Henry G. Hubbard
+and Charles C. P. Hunt — remain because another unbracketed source names them independently;
+the bracketed appearance itself is no longer written onto their cards. The mint now tests
+the raw `as_read` value before normalization, refuses an identity that has only bracketed
+scene-year readings, and gates its own output against any such appearance. The earlier
+splitter still turns, for example, `E. K[in]zie` into the false surname `Zie`; that separate
+identity defect is preserved as T-1155 rather than hidden inside this mint guard.
+
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
 the splitter that a compound surname is one surname, which parted `H. Van Den Bogart` from
@@ -10864,7 +10877,7 @@ which is the ruling's own condition, measured.
 Related: **L214** (the pass beside this one) · **L213** (the test this disagrees with) ·
 **L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514**
 (this), **T-0513**, **T-0515**, **T-0633**, **T-0667**.
-**Recorded:** 2026-09-04.
+**Recorded:** 2026-09-04; count restated 2026-09-16 (T-1115).
 
 ### L221 — What the 1835 town may show of the Indian trade: a catalogue of about 130 articles is admitted as corroboration and refused as a warrant
 **Decision:** the American Fur Company's own list of the goods it furnished "for trade of the

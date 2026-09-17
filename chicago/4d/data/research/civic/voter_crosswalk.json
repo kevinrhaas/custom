@@ -5,7 +5,7 @@
   "source_id": "chicago_voter_lists_1833_1835_irad",
   "publication_source_id": "chicago_genealogist_1993_voter_lists",
   "crosswalk_target": "data/residents/households/*.json",
-  "residents_compared": 1300,
+  "residents_compared": 1287,
   "counts": {
     "entries": 345,
     "matched": 295,
@@ -310,7 +310,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Col. T. J. V. Owen' against resident 'Thomas Jefferson Vance Owen'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Owen' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Owen' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1833_022",
@@ -1042,7 +1042,7 @@
       "discriminator": "forenames agree initial for initial: entry 'David Hunter' against resident 'David Hunter'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Hunter' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Hunter' agrees with the entry's forenames; 4 bearer(s) of the surname were considered."
     },
     {
       "record_id": "tax_1833_048",
@@ -1724,7 +1724,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
     },
     {
       "record_id": "tax_1833_100",
@@ -1737,7 +1737,7 @@
       "discriminator": "forenames agree initial for initial: entry 'R. M. Sweet' against resident 'Richard M Sweet'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
     },
     {
       "record_id": "tax_1833_101",
@@ -2694,7 +2694,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Edward E. Hunter' against resident 'Edward E Hunter'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Hunter' agrees with the entry's forenames; 5 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Hunter' agrees with the entry's forenames; 4 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1834_059",
@@ -3038,7 +3038,7 @@
       "discriminator": null,
       "candidate": null,
       "rivals": [],
-      "rule": "no resident of the surname 'Owen' agrees with the entry's forenames (3 bearer(s) of the surname considered), and no bridge row carries the entry."
+      "rule": "no resident of the surname 'Owen' agrees with the entry's forenames (2 bearer(s) of the surname considered), and no bridge row carries the entry."
     },
     {
       "record_id": "poll_1834_085",
@@ -3317,7 +3317,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1834_106",
@@ -3473,7 +3473,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Amos Bailey' against resident 'Amos Bailey'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Bailey' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Bailey' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1835_003",
@@ -4004,7 +4004,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Byron King' against resident 'Byron King'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'King' agrees with the entry's forenames; 8 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'King' agrees with the entry's forenames; 7 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1835_042",
@@ -4017,7 +4017,7 @@
       "discriminator": "forenames agree initial for initial: entry 'J. D. King' against resident 'J D King'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'King' agrees with the entry's forenames; 8 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'King' agrees with the entry's forenames; 7 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1835_043",
@@ -4500,7 +4500,7 @@
       "discriminator": "forenames agree initial for initial: entry 'Alanson Sweet' against resident 'Alanson Sweet'",
       "candidate": null,
       "rivals": [],
-      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 3 bearer(s) of the surname were considered."
+      "rule": "one resident of the surname 'Sweet' agrees with the entry's forenames; 2 bearer(s) of the surname were considered."
     },
     {
       "record_id": "poll_1835_079",
