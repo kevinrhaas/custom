@@ -538,20 +538,23 @@ jobs:
   # T-0437 RE-MEASURED FIVE BAKES (#611, #613-#616), 2026-09-17:
   # all 40 sparse checkouts took 1-5 s, p90 4 s; none exceeded 5 or 13 min.
   # Comparable desktop-tail p90: 4 s (n=5), formerly 5 m 31 s (n=104).
-  # The cap is now 30 MINUTES. Largest completed successful smoke: 23 m 07 s
-  # (#613 desktop 10-13), ABOVE the historical 21 m 48 s, so use the new bound.
-  # Largest successful-job overhead: 49 s, including checkout, install,
-  # artifact, boot check where selected, and cleanup. 1387 + 49 = 1436 s;
-  # 125% = 1795 s, rounded up to 30 min (364 s / 25.3% headroom).
-  # This sizes from completed smoke bodies, never an early failing body.
-  # Five bakes are a follow-up sample, not proof against every future tail.
-  # ROADMAP THE RUN BUDGET and docs/measurements/T-0437-checkouts.json retain
-  # timestamps, all attempts, baseline comparison and unfinished body status.
+  # The cap is 40 MINUTES after the COMPLETE job results replaced the partial
+  # snapshot. Three later passing desktop tails took 31m49s, 31m59s, 32m10s;
+  # the provisional 30-minute cap (23m07s body bound) would kill all three.
+  # Largest successful body: 1930 s (#616 desktop 10-13). Largest overhead
+  # among successful jobs: 51 s, including checkout, install, artifact, boot
+  # check where selected, and cleanup. Combined bound: 1981 s / 33m01s.
+  # Add 20% (2377.2 s), round up to 40 min: 419 s / 21.2% headroom.
+  # All 40 checkout steps succeeded; final smoke jobs: 27 passed, 8 inherited
+  # triangle-budget failures, 5 superseded/cancelled. Failed/cancelled bodies
+  # do not stand in for successful-duration measurements. Five bakes are a
+  # short follow-up, not proof against every future tail. ROADMAP THE RUN
+  # BUDGET and docs/measurements/T-0437-checkouts.json retain the full record.
   # Re-measure before changing this number; the eight-leg coverage is unchanged.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:

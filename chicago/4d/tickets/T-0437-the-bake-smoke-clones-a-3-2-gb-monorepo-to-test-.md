@@ -123,13 +123,14 @@ Smoke checkout now uses exact non-cone patterns for `tools/` and
 ROADMAP § THE RUN BUDGET records the dependency audit and file-size comparison.
 Five bakes (#611, #613–#616) supplied all 40 checkout readings: **1–5 s,
 p90 4 s, zero over 5 or 13 minutes**. Desktop-tail p90 is 4 s (n=5),
-versus historical 331 s (n=104, 11 over 5 minutes, 7 over 13). The cap is
-**30 minutes**, with the measured 23 m 07 s successful smoke bound and
-49 s overhead leaving 25.3% headroom. ROADMAP records each bake and the
-failed pre-smoke attempt #612; `docs/measurements/T-0437-checkouts.json`
-retains step timestamps and incomplete body outcomes. These are checkout
-measurements, not five green renderer matrices; baseline triangle failures
-are fixed by T-1245 on the target `dev`.
+versus historical 331 s (n=104, 11 over 5 minutes, 7 over 13). The completed sample corrects the provisional 30-minute cap to **40 minutes**:
+the latest successful body is **32 m 10 s**, and maximum successful-job
+overhead is **51 s**, leaving **6 m 59 s / 21.2%** headroom. All 40 checkout
+steps succeeded; final body outcomes are 27 passed, 8 inherited triangle-budget
+failures, and 5 superseded/cancelled. ROADMAP and
+`docs/measurements/T-0437-checkouts.json` retain the completed timestamps,
+failed pre-smoke attempt #612, and why the partial-snapshot cap was refuted.
+The target `dev` already carries T-1245's renderer-budget fix.
 
 Local sparse-tree stage 9 + always-on smoke: **46 passed, 0 failed**, both
 viewports, zero page errors; boot: **7.270 MB / 12 MB**. A fresh filtered fetch
