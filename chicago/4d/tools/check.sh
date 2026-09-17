@@ -153,6 +153,21 @@ selftest "…and shoreline-state assertions still fire when collapsed" \
 step "the 1812 pre-cut shore still re-derives from its readings (T-1242)" \
   python3 tools/derive_shore_1812.py --check
 
+# T-1249. A scene date is a claim about WHEN this reconstruction stands, and until
+# now the 1880s one was the only claim in the terrain layer that nothing derived and
+# nothing checked: the step above carried a bare `date(1885, 7, 1)` that T-1152 wrote
+# in as scaffolding. It read like a settled figure. It is three and a half years
+# before the Glessner House was finished, so the Prairie Avenue the 1880s epoch
+# exists to carry could not have stood on it. The date is now the arithmetic of the
+# committed readings — the latest documented lower bound, carried to the 1835 scene's
+# own day-of-year, held inside the decade the parent ticket asked for — and the epoch,
+# the shoreline state and check_shoreline_states.py all read the one file.
+step "the 1880s scene date re-derives from its readings, and nothing has drifted off it" \
+  python3 tools/check_1880s_scene_date.py
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/check_1880s_scene_date.py --self-test
+
 # ...and for the North Branch north of it (T-1072). Two tools write one
 # branches.geojson through tools/branches_file.py, and each of these two steps
 # also holds the collection's shared fields and its declared feature order, so
