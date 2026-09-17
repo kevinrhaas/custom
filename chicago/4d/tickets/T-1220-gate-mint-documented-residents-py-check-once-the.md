@@ -1,7 +1,7 @@
 ---
 id: T-1220
 title: Gate mint_documented_residents.py --check once the resident name-splitting tickets land
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1383
 claimed_by: run 9/17/2026, 3:44:27 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T08:53:26.810Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35193523780
 ---
 
