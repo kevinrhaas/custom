@@ -101,7 +101,9 @@ T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 181
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
 T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
 T-0472 — Build the 1812 interpretive scene with Indigenous-history review gates
-T-0473 — Create an 1880s South Side terrain and urban-ground epoch
+T-1250 — Trace the 1880s Illinois Central lake edge and fill shore_1880s_ic_edge from a sourced period sheet
+T-1251 — The e1871_postfire terrain spec: the graded, filled and raised South Side ground as an authored zone table
+T-1252 — Generate and bake the e1871_postfire heightfield over the Prairie Avenue reach
 T-0474 — Reconstruct the 1880s Prairie Avenue street, parcel and service grid
 T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
@@ -146,3 +148,4 @@ T-0971 — The two open columns of printed 240: a repeated two-stroke figure on 
 T-1219 — The three re-spelled cards still say in prose that the papers print the reading T-1139 overturned: hh_fraser_wm_h reads 'Wm. H. Frazer' and its own note says the papers print 'Wm. H. Fraser'
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
 T-1253 — hh_inf_joiner_north_02 stands in the tree and no pass derives it: the register deal seats four roofs where its own docstring says five, and J. W. Reed's household is owned by nobody
+
