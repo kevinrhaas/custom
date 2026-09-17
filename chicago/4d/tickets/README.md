@@ -130,6 +130,27 @@ one of three readings:
 - **held** — older than that, and the ticket's CLAIM LOCK still stands on the remote.
 - **cold** — a finished ticket, or an unclaimed branch older than any run could be.
 
+…and a fourth, **recoverable**, added 2026-09-17 after T-1155: a branch older than a run, on
+an unfinished ticket, with no claim lock — and which **no merged pull request accounts for**.
+That is work sitting on the remote that nothing else in this directory can see.
+
+**Why it needed its own reading.** A steward run claimed T-1155, wrote the whole fix, pushed it,
+and was cancelled at its timeout cap before it opened a pull request. Salvage pushed the branch,
+so the work was complete and on the remote. But the claim never reached `dev`, so the ticket read
+`open`; `landed` looks for a merged PR and there was none; and `inflight` filed the branch under
+*Cold — finished tickets, or unclaimed branches older than a run*, which says litter. The claim
+went stale at three hours, a second run stole it, and rebuilt the same 71-file fix from scratch.
+
+**It takes the PR list, and it says so when it cannot get one.** Offline, a lost branch and a
+merged one are identical: unfinished ticket, old branch, no lock. T-0429's branch really was
+litter — its work had landed — and T-1155's was not. Only the pull-request list separates them,
+so `inflight` now asks once, before it prints, and upgrades nothing when the answer does not
+come. An empty answer is not evidence, the same rule `landed` has always been held to.
+
+Each recoverable branch is printed with its age and the compare URL that opens its pull request.
+**Read it before you rebuild it.** An OPEN pull request does not appear in that collection, so
+the PR list is still the authority.
+
 It also lists claims sitting in the merged files with no branch behind them, which is the
 shape of a run that claimed and died.
 
