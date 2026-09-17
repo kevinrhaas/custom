@@ -1755,6 +1755,23 @@ step "the shipped ground stands where the master does, and inside the road lift"
 step "the town off the modelled ground is still the town the reading measured" \
   node tools/measure_north_of_box.mjs --gate
 
+# T-0467. The other half of the same question, asked of the places a visitor is
+# OFFERED rather than of the streets. `data/scenes/*.json` § anchors is the list
+# the Go-to menu paints and the smoke harness drives, and until this step nothing
+# asked whether an anchor stands on modelled ground at all. That was cheap to
+# ignore while every viewpoint sat inside the 1834 plat; T-0467 put six of them
+# up to 3.8 km down the southern field, where the pre-fill shore crosses 390 m of
+# easting between Twelfth Street and the box floor, so a coordinate that is dry
+# at one row is in the lake at another and the diff looks identical either way.
+# The rule is written on the walk surface rather than made an exception for one
+# id: `north_branch_bridge_deck` stands mid-span over a channel 2.38 m under the
+# water plane and is CORRECT, because the bridge record declares walk_surface_m.
+step "every viewpoint the app offers stands on modelled, dry, unbuilt ground" \
+  node tools/measure_anchors.mjs --gate
+
+selftest "…and the anchor-ground rules still hold on synthetic ground" \
+  node tools/measure_anchors.mjs --self-test
+
 # T-0466. The ground's culling grid used to be the literals 12 x 3, and those two
 # numbers were a measurement of a 2,020 x 800 m box with its long axis east-west.
 # The southern field turned the box's long axis north-south and the literals could

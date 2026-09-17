@@ -98,7 +98,6 @@ T-1214 — Build the camps of the summer of 1835: a tent and wagon-camp archetyp
 # --- 5E. STRUCTURES — converge: every person housed, every business roofed, the town complete
 T-1215 — Converge the reconstructed town: every person housed, every business roofed, every roof occupied or its use stated, the census's dwellings ratio met, the programme reconciled, the budgets re-measured and set — the completion report a visitor can open
 # --- 6. SOUTH THROUGH TIME — dated terrain, Fort Dearborn, and Prairie Avenue
-T-0467 — Add south-scene camera anchors, navigation and map extents
 T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
@@ -152,3 +151,4 @@ T-1219 — The three re-spelled cards still say in prose that the papers print t
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
+
