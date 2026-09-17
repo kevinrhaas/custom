@@ -2153,7 +2153,7 @@ step "the documented residents on reconstructed roofs re-derive from the registe
 # St. Joseph, or a second copy of a real resident into the town's people.
 # `--report` prints the mint and every refusal with its reason.
 step "the minted documented residents re-derive from the register" \
-  python3 tools/synthesize_resident_research.py --check
+  python3 tools/mint_documented_residents.py --check
 
 # And the pass that adds the rest of that half (T-0373): the `new_resident` people
 # the papers name with NO trade at all. There is no trade to anchor them, so the
@@ -2191,8 +2191,21 @@ selftest "all four resident mints preserve findings across a derived-note change
 # one of them quietly ceasing to fire would now be worth hundreds of records rather than
 # one. `--report` prints the mint and every refusal with its reason; `--scale` counts
 # what the ruling did to the town on whatever tree it is run against.
-step "the minted letter-list residents re-derive from the register" \
-  python3 tools/synthesize_resident_research.py --check
+# T-0662, AND THE STEP IS NOT HERE YET — DELIBERATELY, AND THIS SAYS SO RATHER THAN
+# LETTING A LABEL STAND IN FOR IT. The two steps above and this one all ran
+# `synthesize_resident_research.py --check`, so the two passes their labels named went
+# ungated; the documented one is fixed above and its drift is committed. The letter-list
+# pass CANNOT be gated by the same re-derive-and-diff here, and that is a finding and
+# not an omission: `synthesize_resident_research.py` runs AFTER the mint and rewrites
+# `grade`, `resident_subtype`, `note`, `sources` and `resident_research` on every
+# letter-list person it projects, which is what the PROJECTED RESIDENT downgrade IS.
+# Measured on dev, 2026-09-17: of 798 files the mint re-derives differently, 648 differ
+# in nothing but those five downstream-owned keys — so a text-equality check at this
+# point in the pipeline is red against a correct tree, and green only against one the
+# projection has not run on. The remaining 150 — 81 households the re-read no longer
+# names, 54 ids the splitter now mints differently, 14 with mint-owned changes — are a
+# reading of their own, and both halves are ticketed. The pass keeps the `--gate` and
+# `--self-test` it already has below in the meantime — this does not repeat them here.
 
 # T-0491. The 1840 identity bridges — three adjudicated links from a canonical 1835
 # resident to a named head of household in the federal census five years later. The

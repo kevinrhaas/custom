@@ -56,7 +56,12 @@ THE NINE REFUSALS, AND WHY EACH ONE IS THERE.
                                 town at all. A Chicago street does NOT refuse — this
                                 pass claims no location, so a street in a man's own
                                 record is not contradicted by a household that says
-                                nothing about where he lived.
+                                nothing about where he lived. It is a test on a
+                                READING and not on a man: where the register folds
+                                several printings onto one person (T-0662), one
+                                printing that puts him in the town answers the whole
+                                of it, and only a person no printing places here is
+                                refused.
   7. `the town already names a <Surname>` — a committed resident, or one of the
                                 index's researched-not-resident findings, carries that
                                 family name. Deliberately blunt: a wrongly refused
@@ -117,6 +122,7 @@ HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
+PLACE_VOCABULARY = DATA / "research" / "newspapers" / "place_vocabulary.json"
 STREETS = DATA / "streets" / "1835.json"
 STRUCTURES = DATA / "structures"
 
@@ -278,6 +284,18 @@ def in_town_places() -> set[str]:
         for aka in doc.get("aka") or []:
             if isinstance(aka, str) and norm(aka):
                 places.add(norm(aka))
+    # T-0662. The derivation above is blunt in one direction the project has since
+    # answered: a premises INSIDE the town that carries no committed roof of its own
+    # — "P. Cohen's store", "the Chicago Book Store" — resolves to nothing here and
+    # so reads as somewhere else. T-1048 adjudicated every printed place string to
+    # `inside`, `outside` or `undecided`, and an `inside` ruling is the project's own
+    # answer to exactly that question; refusing a documented resident against it cost
+    # the town L. W. Montgomery, a shoemaker the papers print seven times. Only
+    # `inside` is read: `undecided` stays undecided and still refuses, and nothing
+    # here can move a string OUT of the town that the derivation already put in it.
+    for ruled in load(PLACE_VOCABULARY)["places"]:
+        if ruled.get("resolution") == "inside" and norm(ruled.get("place")):
+            places.add(norm(ruled["place"]))
     return places
 
 
@@ -386,6 +404,95 @@ def town_family_names(docs: dict, index: dict, skip=MINTED_PASSES) -> set[str]:
 # the mint
 # ---------------------------------------------------------------------------
 
+def fold_adjudicated(candidates: list[dict], gazetteer: dict) -> list[dict]:
+    """One adjudicated person, one candidate — T-0662.
+
+    The register does not only read names; it ADJUDICATES them. Two printings it has
+    resolved onto the same person carry the same `action_target`, which is that
+    person's committed id. This pass used to iterate the printings instead of the
+    people, so `Grant, J., Jr.` (militia officer, 3 September 1834) and `James Grant`
+    (attorney, La Salle Street, 10 June 1835) — one man by the register's own ruling —
+    arrived as RIVALS for one surname, and refusal 8 threw the loser out as a duplicate
+    of himself. Whichever printing sorted first took the household; the other's name
+    and trade were lost. `hh_grant_james` became `hh_grant_j` and the town's attorney
+    became a militia officer.
+
+    So the group is folded before the refusals are applied: the evidence is the union
+    of every printing's mentions, variants, trades and places, and the representative
+    is the printing whose name the committed id is built from — the register's answer
+    about who this is, not an artefact of the sort. Fifteen people in the pool are read
+    from more than one printing; every one of them now carries all of it.
+
+    The two transcription refusals are NOT folded past: a name the transcription
+    bracketed as uncertain, or a firm, stays its own candidate and is refused as one.
+    Folding it would launder an uncertain reading into a clean man's evidence.
+    """
+    groups: dict[str, list[dict]] = {}
+    order: list = []
+    for cand in candidates:
+        target = str(cand.get("action_target") or "")
+        if (cand.get("action") != "enrich" or not target
+                or UNCERTAIN.search(cand["name"]) or FIRM.search(cand["name"])):
+            order.append(cand)
+            continue
+        groups.setdefault(target, []).append(cand)
+        if len(groups[target]) == 1:
+            order.append(target)
+
+    folded: list[dict] = []
+    for item in order:
+        if isinstance(item, dict):
+            folded.append(item)
+            continue
+        rows = groups[item]
+        if len(rows) == 1:
+            folded.append(rows[0])
+            continue
+        # The register's own id for this person is what the card is filed under, so the
+        # printing that re-derives it leads. Where several do (the papers print the same
+        # name in both orders), the best-evidenced of them does, on the pass's own sort.
+        named = [r for r in rows if plain_fragment(display(r["name"])) == item]
+        rep = sorted(named or rows,
+                     key=lambda r: (-len(gazetteer[r["id"]]["mentions"]),
+                                    r["first_seen"], r["id"]))[0]
+        merged = dict(rep)
+        merged["first_seen"] = min(r["first_seen"] for r in rows)
+        merged["last_seen"] = max(r["last_seen"] for r in rows)
+        merged["folded_from"] = sorted(r["id"] for r in rows)
+        gaz = dict(gazetteer[rep["id"]])
+        for key in ("mentions", "occupations", "associated_places"):
+            seen, out = set(), []
+            for r in rows:
+                for v in gazetteer[r["id"]].get(key) or []:
+                    if v not in seen:
+                        seen.add(v)
+                        out.append(v)
+            gaz[key] = out
+        seen, variants = set(), []
+        for r in rows:
+            for v in gazetteer[r["id"]].get("variants") or []:
+                mark = (v.get("as_printed"), v.get("claim"))
+                if mark not in seen:
+                    seen.add(mark)
+                    variants.append(v)
+        gaz["variants"] = variants
+        # Refusal 6 is a test on a READING — "a reading that names only such places is
+        # not a Chicago appearance" — so the union must not be allowed to make it
+        # stricter than it was on the printings it folded. The postmaster Levi F.
+        # Arnold, the sheriff Stephen Forbes and the justice Stephen M. Salisbury are
+        # each printed once beside somewhere else (Plainfield, Cook County, the Dupage)
+        # and elsewhere plainly in the town; folding their places into one list would
+        # have withdrawn all three. The readings travel separately and the refusal
+        # reads them one at a time.
+        merged["place_readings"] = [list(gazetteer[r["id"]].get("associated_places") or [])
+                                    for r in rows]
+        gaz["first_seen"] = merged["first_seen"]
+        gaz["last_seen"] = merged["last_seen"]
+        gazetteer[rep["id"]] = gaz
+        folded.append(merged)
+    return folded
+
+
 def mint(docs: dict, index: dict):
     """Choose who joins the town. Returns (accepted, refusals)."""
     register = load(REGISTER)
@@ -415,6 +522,7 @@ def mint(docs: dict, index: dict):
                   and (p.get("action") == "new_resident"
                        or (p.get("action") == "enrich"
                            and is_own_prior_answer(str(p.get("action_target") or ""))))]
+    candidates = fold_adjudicated(candidates, gazetteer)
     candidates.sort(key=lambda p: (-len(gazetteer[p["id"]]["mentions"]),
                                    p["first_seen"], p["id"]))
 
@@ -424,8 +532,9 @@ def mint(docs: dict, index: dict):
         gaz = gazetteer[cand["id"]]
         name = cand["name"]
         fam = surname(name)
-        outside = [p for p in (gaz.get("associated_places") or [])
-                   if norm(p) not in in_town]
+        readings = cand.get("place_readings") or [gaz.get("associated_places") or []]
+        beyond = [[p for p in reading if norm(p) not in in_town] for reading in readings]
+        outside = [] if any(not b for b in beyond) else sorted({p for b in beyond for p in b})
         reason = None
         if UNCERTAIN.search(name):
             reason = "garbled"

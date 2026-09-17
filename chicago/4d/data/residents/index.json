@@ -245,10 +245,10 @@
   ]
  },
  "counts": {
-  "households": 1257,
-  "persons": 1281,
+  "households": 1258,
+  "persons": 1282,
   "by_grade": {
-   "attested": 404,
+   "attested": 405,
    "inferred": 877,
    "reconstructed": 0
   },
@@ -568,7 +568,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false
   },
   {
@@ -4622,6 +4622,20 @@
    "review_required": false
   },
   {
+   "id": "hh_clybourn_a",
+   "file": "households/hh_clybourn_a.json",
+   "head": "clybourn_a",
+   "division": "unplaced",
+   "persons": 1,
+   "grades": {
+    "attested": 1
+   },
+   "lives_at": null,
+   "works_at": null,
+   "present_on_scene_date": "uncertain",
+   "review_required": false
+  },
+  {
    "id": "hh_clybourn_s",
    "file": "households/hh_clybourn_s.json",
    "civic_mint": true,
@@ -4766,7 +4780,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false
   },
   {
@@ -8986,7 +9000,7 @@
    },
    "lives_at": null,
    "works_at": null,
-   "present_on_scene_date": "uncertain",
+   "present_on_scene_date": "present",
    "review_required": false
   },
   {
