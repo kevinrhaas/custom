@@ -14746,7 +14746,7 @@
         },
         {
           "label": "How to resolve",
-          "text": "**T-1254**, which authors `e1830_natural`'s terrain spec and generates its heightfield, is where the isthmus gets a surface and a height or is written down as absent. A pre-1833 chart or sounding of the bar would resolve it outright; none has been reached. Related: **L3** (flatness), and the 1835 state's Wright/Rees band, which is the same refusal to average two readings applied to a different shore. Ticket **T-1242** (piece 1 of **T-0468**)."
+          "text": "**T-1243**, which authors `e1830_natural`'s terrain spec and generates its heightfield, is where the isthmus gets a surface and a height or is written down as absent. A pre-1833 chart or sounding of the bar would resolve it outright; none has been reached. Related: **L3** (flatness), and the 1835 state's Wright/Rees band, which is the same refusal to average two readings applied to a different shore. Ticket **T-1242** (piece 1 of **T-0468**)."
         },
         {
           "label": "Recorded",
