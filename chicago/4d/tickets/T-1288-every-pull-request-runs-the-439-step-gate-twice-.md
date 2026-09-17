@@ -1,7 +1,7 @@
 ---
 id: T-1288
 title: Every pull request runs the 439-step gate TWICE, because the check fires on push and on pull_request for the same commit
-state: open
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1414
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:48:56.356Z
 claimed_run: null
 ---
 
