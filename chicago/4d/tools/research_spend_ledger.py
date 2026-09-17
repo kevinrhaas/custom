@@ -20,7 +20,7 @@ AS_OF = "2026-09-15"
 DISPOSITIONS = (
     "asserted", "later_only", "outside_chicago", "aggregate_only", "refused", "unresolved",
 )
-OPEN_TICKET_STATES = {"open", "claimed", "review", "in-progress"}
+OPEN_TICKET_STATES = {"open", "claimed", "review", "in-progress", "split_live"}
 STRUCTURED_CONFIDENCE = {"attested", "inferred", "documented"}
 NAME_FIELDS = ("normalized", "as_read", "quote")
 
@@ -73,13 +73,36 @@ def resolve_pointer(doc, pointer: str):
 
 
 def ticket_states(root: Path = ROOT) -> dict[str, str]:
-    states = {}
+    """Ticket id -> state, with one derived state: `split_live` (T-1237).
+
+    A `split` parent is a terminal state in the ticket tool — the children take its
+    place in the queue and carry its work — so read flatly it looks exactly like a
+    ticket that FINISHED. That difference is load-bearing here, because the only thing
+    this state is asked is whether an unresolved research unit is still deferred to live
+    work. When T-1147 was split into five pieces, 748 units across the book, directory
+    and letter-list claims were suddenly reading as deferred to a closed ticket, and the
+    gate said so; none of them had changed, and the work they wait on had not stopped.
+
+    So a `split` parent reports `split_live` while at least one of its children is
+    itself open, and plain `split` once every child has closed. The invariant is
+    unchanged and is the strict one: a unit may only defer to work that is still going
+    to happen. What changes is that re-filing work no longer reads as finishing it.
+    """
+    states, parents = {}, {}
     for path in sorted((root / "tickets").glob("T-*.md")):
         text = path.read_text(encoding="utf-8", errors="replace")
         tid = re.search(r"(?m)^id:\s*(T-\d+)\s*$", text)
         state = re.search(r"(?m)^state:\s*([^\s#]+)", text)
+        parent = re.search(r"(?m)^parent:\s*(T-\d+)\s*$", text)
         if tid and state:
             states[tid.group(1)] = state.group(1)
+            if parent:
+                parents[tid.group(1)] = parent.group(1)
+    live = {parent for child, parent in parents.items()
+            if states.get(child) in {"open", "claimed", "review", "in-progress"}}
+    for ticket in live:
+        if states.get(ticket) == "split":
+            states[ticket] = "split_live"
     return states
 
 
@@ -686,6 +709,11 @@ def self_test() -> int:
         run("an unresolved unit owned by a closed ticket",
             lambda r: (r.update(disposition="unresolved", ticket="T-1", reason="fixture"),
                        r.pop("target")), "missing or not open", {"T-1": "closed"})
+        # T-1237. A SPLIT PARENT WHOSE CHILDREN HAVE ALL CLOSED IS CLOSED WORK, and a
+        # unit deferred to it is stranded exactly as it would be behind a done ticket.
+        run("an unresolved unit owned by a spent split parent",
+            lambda r: (r.update(disposition="unresolved", ticket="T-1", reason="fixture"),
+                       r.pop("target")), "missing or not open", {"T-1": "split"})
         good = {"unit": "u1", "rule": "r", "note": "The row says so in its own last word."}
         rule = {"disposition": "refused",
                 "statement": "A stated rule, long enough to be a sentence a reader can weigh."}
@@ -728,5 +756,5 @@ def self_test() -> int:
             print("  fires: a duplicate stable unit id")
     for failure in failures:
         print("   SILENT: " + failure)
-    print("LEDGER SELF-TEST %s — 12 case(s)" % ("FAIL" if failures else "PASS"))
+    print("LEDGER SELF-TEST %s — 13 case(s)" % ("FAIL" if failures else "PASS"))
     return 1 if failures else 0

@@ -1755,6 +1755,23 @@ step "the shipped ground stands where the master does, and inside the road lift"
 step "the town off the modelled ground is still the town the reading measured" \
   node tools/measure_north_of_box.mjs --gate
 
+# T-0467. The other half of the same question, asked of the places a visitor is
+# OFFERED rather than of the streets. `data/scenes/*.json` § anchors is the list
+# the Go-to menu paints and the smoke harness drives, and until this step nothing
+# asked whether an anchor stands on modelled ground at all. That was cheap to
+# ignore while every viewpoint sat inside the 1834 plat; T-0467 put six of them
+# up to 3.8 km down the southern field, where the pre-fill shore crosses 390 m of
+# easting between Twelfth Street and the box floor, so a coordinate that is dry
+# at one row is in the lake at another and the diff looks identical either way.
+# The rule is written on the walk surface rather than made an exception for one
+# id: `north_branch_bridge_deck` stands mid-span over a channel 2.38 m under the
+# water plane and is CORRECT, because the bridge record declares walk_surface_m.
+step "every viewpoint the app offers stands on modelled, dry, unbuilt ground" \
+  node tools/measure_anchors.mjs --gate
+
+selftest "…and the anchor-ground rules still hold on synthetic ground" \
+  node tools/measure_anchors.mjs --self-test
+
 # T-0466. The ground's culling grid used to be the literals 12 x 3, and those two
 # numbers were a measurement of a 2,020 x 800 m box with its long axis east-west.
 # The southern field turned the box's long axis north-south and the literals could
@@ -3560,6 +3577,27 @@ step "the street-face adoptions re-derive, and no adopted business claims a lot"
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/adopt_street_faces.py --self-test
+
+# T-1237, the first piece of T-1147. The two steps above each answer one half of "where
+# is this business", and the household layer answers "where does this family live" in a
+# third place again — so a run that wanted the address book had to re-adjudicate all
+# three. These rows are that join, derived: one row per home, workplace and
+# business-location claim, carrying the street, face and anchor its evidence reached and
+# the `limit_clause` that stopped it. T-1198's seating pass starts from the rows rather
+# than from the evidence, which is why the clause is a FIELD and not prose.
+#
+# Gated rather than committed once, for the same reason the two steps above are: the
+# counts it publishes are the location axis T-1157 reads at the research sign-off — 56
+# businesses on a roof, 61 on a street face, 62 unplaceable; 20 households on a roof, 52
+# in a division and 1,185 nowhere — and each of those is an assertion about a moving
+# town. A business that quietly acquires a roof, a refused later address that acquires a
+# street, or a row that loses the clause limiting it are each a silent breach, and each
+# one fails here. `--report` prints both axes.
+step "the location reconciliation rows re-derive, and no row resolves past its evidence" \
+  python3 tools/location_reconciliation.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/location_reconciliation.py --self-test
 
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names
