@@ -303,6 +303,13 @@ def resident_finding(root: Path, unit: dict) -> dict | None:
     return finding
 
 
+# T-1232 SPLIT T-1146 AND THIS FILE HELD ITS NAME IN FOUR PLACES. The ledger refuses an
+# unresolved unit whose owner is not an OPEN ticket, which is the rule that makes "owned"
+# mean something — so the moment the parent went to `split` the gate went red on 61 units
+# it had been perfectly happy with the hour before. That is the rule working. The owner of
+# an unasserted PERSON unit is now T-1234, which is the piece of the parent that still has
+# this corpus to spend: T-1232 read the 94 matched resident-research blocks and T-1234 has
+# the book claims, the Newberry index units and the letter-list name suspicions.
 def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
     row = unit["record"]
     domain = unit["domain"]
@@ -314,7 +321,7 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
             return {"disposition": "unresolved", "ticket": "T-1145",
                     "reason": "The dated plural-role migration owns this temporal role ruling."}
         if name == "letter_list_reading_suspicions.json":
-            return {"disposition": "unresolved", "ticket": "T-1146",
+            return {"disposition": "unresolved", "ticket": "T-1234",
                     "reason": "The structured resident-fact pass owns this surviving name suspicion."}
         finding = resident_finding(root, unit)
         if finding:
@@ -323,7 +330,7 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
                 return {"disposition": "refused", "rule": outcome,
                         "evidence": finding.get("summary") or finding["default_summary"]}
             if not finding.get("completed"):
-                return {"disposition": "unresolved", "ticket": "T-1146",
+                return {"disposition": "unresolved", "ticket": "T-1234",
                         "reason": "The resident research pass has not completed this reserved person."}
         # The pilot is a reservation without a committed findings file; positive
         # pass findings that have no exact structured target also remain owned here.
@@ -332,7 +339,7 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
             if not unit["source_ids"] or set(unit["source_ids"]) & set(target["sources"]):
                 target = {k: v for k, v in target.items() if k != "sources"}
                 return {"disposition": "asserted", "target": target}
-        return {"disposition": "unresolved", "ticket": "T-1146",
+        return {"disposition": "unresolved", "ticket": "T-1234",
                 "reason": "No exact source-bearing structured resident field is named yet."}
 
     if domain == "newberry_index":
@@ -363,7 +370,7 @@ def classify(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
             return {"disposition": "asserted", "target": target}
 
     kind = row.get("kind")
-    owner = "T-1147" if kind in {"business", "building", "street", "infrastructure"} else "T-1146"
+    owner = "T-1147" if kind in {"business", "building", "street", "infrastructure"} else "T-1234"
     reason = ("The place and enterprise completion pass owns this unasserted unit."
               if owner == "T-1147" else
               "The structured resident-fact pass owns this unasserted unit.")

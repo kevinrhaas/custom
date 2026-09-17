@@ -19,9 +19,12 @@
   "note": "Not attested."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "Buffalo, New York",
+  "confidence": "inferred",
+  "sources": [
+   "resident_research_chandler_cook_history"
+  ],
+  "note": "Where he came from, in the same sentence as the day he came. Read from resident_research_chandler_cook_history: “arrived from Buffalo on 27 June 1833”. Spent by T-1232 out of the matched resident research, which held it in prose; the household's other claims are untouched."
  },
  "reason_for_coming": {
   "value": null,
@@ -100,7 +103,49 @@
       "reason": "This card rests on 3 thing(s) the consolidation did not read — fergus_chicago_directory_1839, isa_public_domain_land_tract_sales, resident_research_chandler_cook_history. G2e fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "arrival_at_chicago",
+     "value": "1833-06-27",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_chandler_cook_history"
+     ],
+     "describes_date": "1833-06-27",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0483#01",
+     "as_read": "Chandler arrived from Buffalo on 27 June 1833 with Samuel Jackson and Shapley",
+     "note": "Andreas gives the day. The household's 1834-04-01 is a postal bound and is not touched.",
+     "precision": "day"
+    },
+    {
+     "field": "origin",
+     "value": "Buffalo, New York",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_chandler_cook_history"
+     ],
+     "describes_date": "1833-06-27",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0483#02",
+     "as_read": "arrived from Buffalo on 27 June 1833",
+     "note": "Where he came from, in the same sentence as the day he came."
+    },
+    {
+     "field": "life_event",
+     "value": "Travelled to Chicago with Samuel Jackson and Morgan L. Shapley",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_chandler_cook_history"
+     ],
+     "describes_date": "1833-06-27",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0483#03",
+     "as_read": "with Samuel Jackson and Shapley",
+     "note": "Two named companions, one of whom (Samuel Jackson) this layer carries. A shared journey is not a household and mints nobody; it is the kind of tie T-1170 will read."
+    }
+   ]
   }
  ],
  "touches_removal": false,

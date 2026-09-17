@@ -696,6 +696,25 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # ARGUMENT — a transcribed name, a normalised reading of it, the page, the row,
     # the serial, and three separate confidences in three separate steps — and each
     # of those is a thing a reader can disagree with only if they can see it.
+    # T-1232 — the facts the matched research stated and the record had only in prose.
+    # `tools/spend_person_facts.py` adjudicates every candidate in those 94 asserted-identity
+    # blocks and writes the asserted ones here; `profileFactsHtml()` prints each one with the
+    # DATE IT SPEAKS ABOUT and the sentence it was read from, which is the distinction the
+    # whole consolidation rests on. `place_class` is shown as a clause rather than a word,
+    # because a fact the source sets outside this town is the reason a presence could not be
+    # lifted and it has to read that way.
+    "persons[].profile_facts[].field": ("shown", "FACT_LABELS.get(f.field) || words(f.field)"),
+    "persons[].profile_facts[].value": ("shown", "escapeHtml(String(f.value ?? ''))"),
+    "persons[].profile_facts[].confidence": ("shown", "swatch(f.confidence)"),
+    "persons[].profile_facts[].sources": ("shown", "(f.sources || []).map((id) => citationsById.get(id))"),
+    "persons[].profile_facts[].describes_date": ("shown", "escapeHtml(printedOn(f.describes_date))"),
+    "persons[].profile_facts[].place_class": (
+        "shown", "f.place_class === 'outside_chicago' ? ', and somewhere other than this town' : ''"),
+    "persons[].profile_facts[].as_read": ("shown", "escapeHtml(String(f.as_read ?? ''))"),
+    "persons[].profile_facts[].note": ("shown", "escapeHtml(String(f.note ?? ''))"),
+    "persons[].profile_facts[].record_id": ("shown", "Record ${escapeHtml(String(f.record_id))}"),
+    "persons[].profile_facts[].precision": (
+        "shown", "the source is exact to the ${escapeHtml(words(f.precision))}"),
     "persons[].later_census.year": ("shown", "Found again in the ${escapeHtml(String(census.year))} census"),
     "persons[].later_census.source_id": ("shown", "citationsById.get(census.source_id)"),
     "persons[].later_census.serial": ("shown", "enumeration serial ${\n        escapeHtml(String(census.serial))}"),
