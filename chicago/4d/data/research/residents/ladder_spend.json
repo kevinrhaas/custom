@@ -23,8 +23,8 @@
    "G3": 630
   },
   "conflicts_by_kind": {
-   "abstention": 44,
-   "downgrade": 35,
+   "abstention": 43,
+   "downgrade": 36,
    "subtype": 1
   }
  },
@@ -7918,17 +7918,17 @@
   {
    "person_id": "hugunin_leonard_c",
    "household_id": "hh_hugunin_leonard_c",
-   "name": "Leonard, C. Hugunin",
-   "identity": "id_leonard_c_hugunin",
-   "rule": "G5",
+   "name": "Leonard C. Hugunin",
+   "identity": "id_hugunin_leonard_c",
+   "rule": "G2e",
    "grade": "attested",
    "resident_subtype": null,
-   "kind": "abstention",
+   "kind": "downgrade",
    "proposed": {
-    "grade": null,
+    "grade": "inferred",
     "resident_subtype": null
    },
-   "why": "the ladder abstains (G5): every appearance it can see describes a date after the scene year, and it declines to demote a resident on evidence it has not read. An abstention is not a rung, so there is none to write."
+   "why": "the rung proposes a LOWER grade than the card carries. T-0515 ruled on this row and declined it, because the card rests on evidence the consolidation never read; the refusal is on the card. Writing the rung here would say the card carries a grade it does not."
   },
   {
    "person_id": "jones_es_high",

@@ -51,6 +51,18 @@ do not re-decide it here: state the dependency and leave this ticket open.
    the closing report gives the exact household/person/grade deltas and names every retired id's
    redirect. Relevant resident and ticket gates pass.
 
+**Owner review, 2026-09-17 — added acceptance** (the owner asked that the research-spend tickets
+be reviewed and enhanced before the reconstruction bands below them run):
+
+7. The convergence report names, per person, which of the plural `roles[]` (T-1145) and which
+   home/work/other locations (T-1147) reach 1 July 1835, so the sign-off ticket T-1157 can read
+   coverage per axis off one table rather than re-deriving it.
+8. The `reconstructed` grade stays at zero in this ticket and the three writers refuse to emit it:
+   reconstruction begins only at T-1167 under its own programme file, never inside a mint.
+9. Every household `present_on_scene_date: uncertain` keeps the dated evidence leg that made it
+   uncertain (the last appearance and its date) as a structured field, because T-1159 classifies
+   the 893 uncertain presences by that date.
+
 **Stop condition:** the three resident derivations agree byte-for-byte with the tree and every
 standing confirmed false/overstated resident assertion has either moved or gained new evidence.
 

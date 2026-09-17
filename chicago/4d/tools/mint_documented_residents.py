@@ -172,12 +172,26 @@ def surname(name: str) -> str:
 
 
 def display(name: str) -> str:
-    """'Foot, S.' → 'S. Foot'. The papers print both orders; a card shows one."""
+    """'Foot, S.' → 'S. Foot'. The papers print both orders; a card shows one.
+
+    T-1121. A second comma inside the forename side — `Hugunin, Leonard, C.` —
+    must not survive the reordering where it would LIE. Given-first is the one
+    order a card shows and it says so by its order; a comma left standing in what
+    the reordering made is read straight back as a surname-first mark, which is
+    how the letter-list pass came to store `Leonard, C. Hugunin` and answer
+    `leonard` for the family name. So the ordered string is compared with and
+    without its commas, and they are dropped exactly where the answer moves. The
+    same rule, and the same wording, as `display()` in
+    mint_letter_list_residents.py — duplicated rather than imported, for the
+    reason this file's own note gives for the other duplications.
+    """
     if "," not in name:
         return name.strip()
     head, _, tail = name.partition(",")
     tail = tail.strip()
-    return f"{tail} {head.strip()}".strip() if tail else head.strip()
+    shown = f"{tail} {head.strip()}".strip() if tail else head.strip()
+    plain = re.sub(r"\s+", " ", shown.replace(",", " ")).strip()
+    return plain if surname(shown) != surname(plain) else shown
 
 
 def slug(name: str) -> str:

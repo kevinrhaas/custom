@@ -143,7 +143,7 @@
     "the_comma_inverts": "The letter lists print surname-first — 'Aiker, Samuel'. Taking the last word as the surname read them backwards. A comma inverts only where the word before it is longer than one letter and something follows it, so an OCR comma standing for a period ('Augustus H, Conant') and a bare suffix tail ('E. Wentworth, Jr.') do not invert.",
     "the_wrapper_is_stripped": "'[uncertain: Aaron Wallace]' is Aaron Wallace, read with doubt. The doubt is in the stored reading, which is where it belongs; the word 'uncertain' was becoming the forename.",
     "an_unsupplied_name_is_no_name": "Where the side before the comma supplies no word, the printing gave no name and what follows is the office — refused here, as identity_master.json already refuses it under R5.",
-    "one_stored_name_the_rule_reads_wrongly": "T-1121. The comma inverts 1,007 pool names and ONE of them is a stored name with the comma in the wrong place: the minted person hugunin_leonard_c carries name 'Leonard, C. Hugunin', which inverts to the surname leonard though the record's own id, and the gazetteer's other printing of the same man ('Hugunin, Leonard, C.'), both say Hugunin. The defect is in the minted name, not in the rule — refusing the inversion for a tail shaped 'initial then word' would take 16 correct readings down with it, John Dean Caton's among them — so it is named here rather than papered over. No 1840 head turns on it: the adjudication is identical with and without.",
+    "one_stored_name_the_rule_read_wrongly": "T-1121, FIXED. The comma inverts 1,007 pool names and ONE of them WAS a stored name with the comma in the wrong place: the minted person hugunin_leonard_c carried name 'Leonard, C. Hugunin', which inverted to the surname leonard though the record's own id, and the gazetteer's other printing of the same man ('Hugunin, Leonard, C.'), both say Hugunin. The defect was in the minted name, not in the rule — refusing the inversion for a tail shaped 'initial then word' would take 16 correct readings down with it, John Dean Caton's among them — so the fix was made where the name is written: mint_letter_list_residents.py `display()` no longer carries a printing's second comma into the card it orders, the card now reads 'Leonard C. Hugunin', and the mint's own gate refuses any ordered name that still holds one. No 1840 head turned on it then and none turns on it now: the adjudication is identical before and after.",
     "pool_names_reached": {
       "supplied_letters": {
         "census_1835_bridge_candidates": 40,
@@ -152,7 +152,7 @@
       },
       "surname_first": {
         "newspapers": 1000,
-        "residents": 7
+        "residents": 6
       },
       "unsupplied_name": {
         "newspapers": 2
@@ -174,7 +174,7 @@
       "what": "residents layer, persons",
       "path": "data/residents/households/",
       "available": true,
-      "n": 1308
+      "n": 1287
     },
     {
       "what": "voter, poll and tax list entries (T-0493)",
@@ -198,7 +198,7 @@
       "what": "Fergus 1843 and Norris 1844 directory adjudications — the independent discriminator",
       "path": "data/research/directories/",
       "available": true,
-      "n": 151
+      "n": 150
     },
     {
       "what": "the 1839 Chicago directory",
@@ -1590,9 +1590,8 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'leonard' is carried by 3 person(s) of 1835 (Leonard, C. Hugunin, Anson Leonard, N Leonard) and none of their given names is 'john'.",
+      "reason": "The surname 'leonard' is carried by 2 person(s) of 1835 (Anson Leonard, N Leonard) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "hugunin_leonard_c",
         "leonard_anson",
         "leonard_n"
       ]
@@ -6701,9 +6700,8 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "reason": "The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathaniel'.",
       "surname_bearers_1835": [
-        "king_byra",
         "king_byram",
         "king_byron",
         "king_hyram",
@@ -9784,10 +9782,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'sweet' is carried by 3 person(s) of 1835 (Alanson Sweet, Alon On Sweet, Richard M Sweet) and none of their given names is 'charles'.",
+      "reason": "The surname 'sweet' is carried by 2 person(s) of 1835 (Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
       "surname_bearers_1835": [
         "sweet_alanson",
-        "sweet_alon_on",
         "sweet_richard_m"
       ]
     },
@@ -10734,9 +10731,17 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearson) and none of their given names is 'john'.",
+      "reason": "The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearsons) and none of their given names is 'john'.",
       "surname_bearers_1835": [
-        "pearson_hiram"
+        "pearsons_hiram"
+      ],
+      "surname_bearers_via_card_merge": [
+        {
+          "folded_person_id": "pearson_hiram",
+          "folded_card_name": "Hiram Pearson",
+          "survivor_person_id": "pearsons_hiram",
+          "survivor_live_name": "Hiram Pearsons"
+        }
       ]
     },
     {
@@ -10982,11 +10987,10 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L4 initial_only",
-      "reason": "The head is written 'J. Bailey' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'bailey'. A surname and a letter is not an identity.",
+      "reason": "The head is written 'J. Bailey' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'bailey'. A surname and a letter is not an identity.",
       "surname_bearers_1835": [
         "bailey_amos",
-        "bailey_bennet",
-        "bailey_esth_r_m"
+        "bailey_bennet"
       ]
     },
     {
@@ -15710,9 +15714,17 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearson) and none of their given names is 'william'.",
+      "reason": "The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearsons) and none of their given names is 'william'.",
       "surname_bearers_1835": [
-        "pearson_hiram"
+        "pearsons_hiram"
+      ],
+      "surname_bearers_via_card_merge": [
+        {
+          "folded_person_id": "pearson_hiram",
+          "folded_card_name": "Hiram Pearson",
+          "survivor_person_id": "pearsons_hiram",
+          "survivor_live_name": "Hiram Pearsons"
+        }
       ]
     },
     {
@@ -16405,9 +16417,8 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "reason": "The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathan'.",
       "surname_bearers_1835": [
-        "king_byra",
         "king_byram",
         "king_byron",
         "king_hyram",

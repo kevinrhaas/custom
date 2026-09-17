@@ -45,7 +45,7 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 163,
+  "residents_matched_one_entry": 164,
   "residents_ambiguous": 11,
   "residents_contested": 4,
   "residents_surname_only_refused": 260,
@@ -76,7 +76,7 @@
   "of_those_ambiguous": 2,
   "residents_narrowings_withdrawn_as_a_collision": 0,
   "residents_ties_left_standing": 13,
-  "residents_could_carry_occupation": 86,
+  "residents_could_carry_occupation": 87,
   "residents_could_carry_street": 102
  },
  "residents": {
@@ -3104,6 +3104,31 @@
     "lives_at_1835": null,
     "could_carry": [
      "street_1839"
+    ],
+    "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
+   },
+   {
+    "name": "Leonard C. Hugunin",
+    "rule": "Surname 'Hugunin' folds to the same string as the 1839 entry's, and the given name of both begins L.",
+    "entries_1839": [
+     {
+      "claim": "f1839_e0755",
+      "as_printed": "Hugunin, Leonard C., speculator",
+      "printed_page": 19,
+      "occupation_1839": "speculator",
+      "address_1839": null,
+      "streets_1839": [],
+      "address_is_street_only": false
+     }
+    ],
+    "person_id": "hugunin_leonard_c",
+    "household_id": "hh_hugunin_leonard_c",
+    "grade_1835": "attested",
+    "occupation_1835": "none_recorded",
+    "occupation_1835_confidence": "reconstructed",
+    "lives_at_1835": null,
+    "could_carry": [
+     "occupation"
     ],
     "carry_rule": "Whatever is carried is carried as 1839 evidence with describes_date 1839 on the note, never as an 1835 fact, and the grade of the person does not move. The street NAME may cross; the street NUMBER may not — see address_is_street_only."
    },
