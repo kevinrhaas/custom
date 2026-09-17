@@ -2108,8 +2108,10 @@ PY
 #   tools/generate_inferred_households.py  T-1108  (was the K1 households step)
 #   tools/generate_inferred_names.py       T-1108  (was this step's old label)
 #   tools/replace_invented_residents.py    T-1108  (was the T-0264 roof-deal step)
-#   tools/mint_documented_residents.py     T-0662  --check: 10 file(s) differ
 #   tools/mint_letter_list_residents.py    T-0691  --check: 798 file(s) differ
+#
+# `mint_documented_residents.py` was on that list until T-1220 read its 10 files, fixed
+# the two faults under them and committed the rest; it is a step of its own below.
 #
 # The invented names the old label spoke of are re-derived by
 # `generate_inferred_names.py --check`, not here. `audit_check_gates.py --gate` now
@@ -2181,14 +2183,31 @@ step "one new household renames only the people it collides with" \
 # them quietly ceasing to fire would put a firm, a man at the mouth of the
 # St. Joseph, or a second copy of a real resident into the town's people.
 # `--report` prints the mint and every refusal with its reason.
-# NOT GATED (T-0662, and this is the pass the ticket was opened for). The command
-# this slot ran does not touch the mint. `tools/mint_documented_residents.py --check`
-# does, and on 2026-09-17 it reports 10 file(s) differing — the baseline said 42, so
-# the number had gone stale as well as ungated. That drift is NOT a re-derivation to
-# commit: it renames hh_grant_james to hh_grant_j and rewrites the person's name to
-# "J. Jr. Grant", which is the resident name-splitting fault T-1155, T-1217 and T-1218
-# are open on, and it retires hh_montgomery_l_w on a register reading that now gives
-# only a surname and a trade. It is read here and left for the pass that owns it.
+# GATED (T-1220, which is what T-0662 left here). The command this slot used to run does
+# not touch the mint; this one does. The 10 files it reported differing were read, and
+# two of them were not the name splitter's doing at all — they were faults in this pass,
+# and both had quietly taken a documented man out of the town:
+#
+#   - `register_1835.json` ADJUDICATES: two printings it resolves onto one person carry
+#     the same `action_target`. The mint iterated the printings, so 'Grant, J., Jr.'
+#     (militia officer, 1834) and 'James Grant' (attorney, La Salle Street, 1835) — one
+#     man by the register's own ruling — competed for the one Grant household refusal 8
+#     allows, and the loser was refused as a duplicate of himself. Whichever printing
+#     sorted first took the card. `fold_adjudicated()` mints one household per
+#     adjudicated person now; fifteen of the pool's people are read from more than one
+#     printing and every one of them carries all of it.
+#   - Refusal 6 read 'P. Cohen's store' as somewhere else, and retired L. W. Montgomery,
+#     a shoemaker the papers print seven times on South Water Street. The rule the
+#     refusal is meant to be is written in the place vocabulary (T-1048, B2): a reading
+#     that names ONLY such places is not a Chicago appearance. It is a test on a reading
+#     now, and a person is refused only when every one of his readings fails it.
+#
+# 39 minted, was 38; the other 7 files were the corpus growing under a pass nothing
+# re-ran. The letter-list mint's 798 stay ungated and carry their own ticket: 648 of them
+# differ in nothing but the five keys `synthesize_resident_research.py` rewrites AFTER
+# this pass, so a re-derive-and-diff there is red against a correct tree.
+step "the minted documented residents re-derive from the register" \
+  python3 tools/mint_documented_residents.py --check
 
 # And the pass that adds the rest of that half (T-0373): the `new_resident` people
 # the papers name with NO trade at all. There is no trade to anchor them, so the
