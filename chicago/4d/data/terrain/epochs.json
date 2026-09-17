@@ -59,9 +59,21 @@
       "shoreline_state": "shore_1880s_ic_edge",
       "from": "1871-10-10",
       "to": "1900-12-31",
+      "representative_date": "1888-07-01",
+      "representative_date_confidence": "inferred",
+      "representative_date_derivation": "1880s_scene_date_constraints.json",
       "title": "The burnt district and the fills that followed",
-      "note": "Placeholder. Debris fill along the lakefront; the Illinois Central trestle line already fixed the shore in 1852.",
-      "status": "planned"
+      "note": "The ground state the 1880s South Side scene stands on, and as of T-1249 it has a DATE but still no GROUND. The date is 1 July 1888, derived in data/terrain/1880s_scene_date_constraints.json from the one Prairie Avenue landmark this project can date from a committed source: HABS IL-1015 puts the Glessner House at 1800 South Prairie finished no earlier than the end of 1887, so a scene meant to show that avenue cannot be dated before 1888, and 1 July matches the 1835 scene's own day for comparability. The date REPLACED an undocumented 1885-07-01 that T-1152 had written into tools/check_shoreline_states.py as scaffolding. WHAT IS STILL NOT ASSERTED HERE: this epoch's placeholder note used to say that the Illinois Central trestle line had already fixed the shore in 1852, and no source in this corpus says so. The claim is not repeated and it is not denied — establishing the 1880s lake edge, the Illinois Central corridor and the post-fire fill from a sourced period sheet is T-1250's whole job, and until it lands this epoch draws no ground at all. No scene file selects this epoch yet; the 1880s scene is written by T-1252 alongside the heightfield it needs to stand on.",
+      "status": "planned",
+      "layer_status": {
+        "shoreline": "T-1250 — shore_1880s_ic_edge is still geometry: null and may not fall back to either earlier state",
+        "terrain_spec": "T-1251 — the graded, filled and raised South Side ground as an authored zone table",
+        "heightfield": "T-1252 — generated and baked over the Prairie Avenue reach, with the scene file that selects this epoch",
+        "extent": "undecided; the 1835 box already reaches Cermak Road (local N -3800), which is the reach an 1880s Prairie Avenue scene needs"
+      },
+      "research_doc": "docs/RESEARCH/scene_1880s_prairie_avenue.md",
+      "date_sources": ["habs_glessner_house_il_1015", "habs_kimball_house_il_1077"],
+      "sources": []
     }
   ]
 }

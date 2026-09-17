@@ -12051,3 +12051,45 @@ counted.
 Related: **L121**, which this entry supersedes on the value and keeps on the method, and **L120**
 and **L114**, the other entries about this wood. Ticket **T-1127**; ROADMAP **K45(b3)**.
 **Recorded:** 2026-09-15.
+
+### L240 — the 1880s scene stands on 1 July because the 1835 scene does, and no source says anything about that day
+
+**Decision:** the representative date of the 1880s South Side scene is **1 July 1888**
+(`data/terrain/1880s_scene_date_constraints.json`, epoch `e1871_postfire`, shoreline state
+`shore_1880s_ic_edge`). The **year** is evidence: HABS IL-1015 states that the Glessner House at
+1800 South Prairie Avenue was "Designed and built between May 1885 and December 1887", so a scene
+that wants the avenue's one datable landmark standing cannot be dated before 1888, and T-0473 asks
+for a date inside the 1880s, which closes the window at 1889. **The day and the month are not
+evidence.** Nothing in this corpus says a word about 1 July 1888. It is chosen so that the two
+scenes this project intends to carry — summer 1835 and the 1880s Prairie Avenue — stand on the
+same reach of ground, in the same season, at the same hour of light, fifty-three years apart, and
+so that the only season for which this project has built flora, fauna and lighting behaviour is
+the season both scenes are in.
+
+**What it lets through, stated plainly.** Anything on the South Side that was built, burnt, moved
+or demolished between 1 January and 1 July 1888 will be resolved by this model as though the whole
+half-year had already happened, and anything finished in the second half of 1888 will be resolved
+as absent. No such building is in the model yet — the 1880s epoch has no ground, no shoreline and
+no structures — so the liberty currently costs nothing. It is recorded now, before the first
+1880s record lands, because the cheapest moment to admit an arbitrary day is before anything is
+dated against it.
+
+**What is NOT invented here.** The 1888 floor is documented and re-derived on every commit. The
+Kimball House opposite is commonly dated 1890–1892 and that number appears **nowhere** in this
+project: HABS IL-1077 was opened specifically to date it and carries no date at all, and the
+record is committed in that state (`habs_kimball_house_il_1077`) so the absence is a finding
+rather than a gap somebody fills off the open web.
+
+**What this replaces.** `tools/check_shoreline_states.py` carried `date(1885, 7, 1)` for the 1880s
+address from T-1152 until today. It was scaffolding for a different assertion, nothing documented
+it, and it was three and a half years too early for the avenue the epoch exists to show. It is
+gone; the gate reads the derived date out of the committed readings.
+
+**How to resolve:** a period source that fixes a day — a dated photograph of the avenue, a dated
+Sanborn sheet, a newspaper account of a specific afternoon — would turn the day from a convention
+into a reading. Until then `tools/check_1880s_scene_date.py` keeps the convention honest by
+re-deriving the date and refusing any hand edit of it.
+
+Related: ticket **T-1249**, piece 1 of **T-0473**; **T-1250** owns the lake edge, **T-1251** the
+terrain spec, **T-1252** the heightfield and the scene file.
+**Recorded:** 2026-09-17.

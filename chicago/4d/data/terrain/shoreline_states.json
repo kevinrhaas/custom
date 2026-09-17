@@ -55,10 +55,12 @@
         "from": "1880-01-01",
         "to": "1889-12-31"
       },
+      "address_date": "1888-07-01",
+      "address_date_derivation": "1880s_scene_date_constraints.json",
       "status": "planned",
       "geometry": null,
       "sources": [],
-      "note": "Reserved for T-0473. It is deliberately not an alias of either earlier state: the 1880s lake edge must represent the Illinois Central corridor and period fill rather than the natural or 1835 shore. T-0473 owns the representative scene date and the sourced trace."
+      "note": "Reserved for T-0473. It is deliberately not an alias of either earlier state: the 1880s lake edge must represent the Illinois Central corridor and period fill rather than the natural or 1835 shore. THE DATE IS SETTLED AND THE LINE IS NOT (T-1249). address_date is now 1 July 1888, derived in 1880s_scene_date_constraints.json and re-derived by tools/check_1880s_scene_date.py; the decade-wide address_range is kept because it is the window the date was chosen inside, not because the state is vague about which day it addresses. geometry stays null and status stays planned: T-1250 owns the sourced trace, and a date is not permission to borrow a line."
     }
   ]
 }

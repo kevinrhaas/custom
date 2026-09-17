@@ -28,10 +28,29 @@ EPOCHS_PATH = TERRAIN / "epochs.json"
 DATUM_PATH = ROOT / "data" / "datum.json"
 OVERLAP_PATH = TERRAIN / "epochs" / "e1834_harbor_cut" / "lake_shore_below_twelfth.geojson"
 
+CONSTRAINTS_PATH = TERRAIN / "1880s_scene_date_constraints.json"
+
+
+def scene_date_1880s() -> date:
+    """The 1880s address date, READ rather than typed (T-1249).
+
+    This constant used to be the literal ``date(1885, 7, 1)``.  T-1152 needed
+    some day inside the decade to prove that the 1880s address resolved through
+    its own epoch to its own shoreline state, and nothing documented the day it
+    picked — it was scaffolding for a different assertion.  It was also three
+    and a half years before the Glessner House was finished, so the one scene
+    the 1880s epoch exists to carry could not have stood on it.  The date now
+    comes out of the committed readings that derive it, and
+    tools/check_1880s_scene_date.py re-derives those readings on every commit.
+    """
+    doc = json.loads(CONSTRAINTS_PATH.read_text(encoding="utf-8"))
+    return date.fromisoformat(doc["adopted"]["date"])
+
+
 ADDRESS_DATES = {
     "1812": date(1812, 8, 15),
     "1835": date(1835, 7, 1),
-    "1880s": date(1885, 7, 1),
+    "1880s": scene_date_1880s(),
 }
 EXPECTED_IDS = {
     "1812": "shore_1812_pre_cut",
