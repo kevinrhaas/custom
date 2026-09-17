@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Daniel Elston made soap, inspected schools and pressed brick', kind: 'change', ts: '',
+  { v: 908, title: 'Daniel Elston made soap, inspected schools and pressed brick', kind: 'change', ts: '2026-09-17T10:13:36.972Z', date: 'Sep 17, 2026, 5:13 AM CT',
     items: [
       'Open Daniel Elston\u2019s card and it used to say one thing about him: soap and candle maker, marked as his trade in 1835. Five records in this project name four different things the man did, and none of them is dated to 1835.',
       'The reason was the shape of the record rather than the reading. A person could hold exactly ONE trade and it carried no date, so whichever line was written in became the answer for ever \u2014 and here the line was an advertisement printed on 26 November 1833, nineteen months before the Wednesday this town is set on.',
