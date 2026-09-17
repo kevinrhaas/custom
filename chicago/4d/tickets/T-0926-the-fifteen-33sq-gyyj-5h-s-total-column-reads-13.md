@@ -1,7 +1,7 @@
 ---
 id: T-0926
 title: The fifteen: 33SQ-GYYJ-5H's TOTAL column reads 139 against a footed 154, and the residue sits among fifteen inferred figures
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1290
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:18:41.833Z
 claimed_run: null
 ---
 

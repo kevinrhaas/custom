@@ -1,7 +1,7 @@
 ---
 id: T-0934
 title: A second exposure of 33S7-9YYJ-6H's right edge: the No. of Scholars footing lost its evidence to the gutter and the deposit holds one image
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-06
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1290
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:18:42.563Z
 claimed_run: null
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: T-0958
 title: The Newberry bleed-in test withholds 15 cards under a 15-character run and 43 under a unique-prefix run: one corpus, two rules, and only one is on dev
-state: open
+state: withdrawn
 epic: PAPERS
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1291
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:18:47.549Z
 claimed_run: null
 ---
 
