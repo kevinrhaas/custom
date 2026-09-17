@@ -99,7 +99,10 @@ T-1214 — Build the camps of the summer of 1835: a tent and wagon-camp archetyp
 T-1215 — Converge the reconstructed town: every person housed, every business roofed, every roof occupied or its use stated, the census's dwellings ratio met, the programme reconciled, the budgets re-measured and set — the completion report a visitor can open
 # --- 6. SOUTH THROUGH TIME — dated terrain, Fort Dearborn, and Prairie Avenue
 T-0467 — Add south-scene camera anchors, navigation and map extents
-T-0468 — Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
+T-1243 — The 1812 shoreline: shore_1812_pre_cut gets its own dated trace, its bounds and its sources, and the state gate accepts a supplied 1812 line instead of requiring an empty one
+T-1244 — The e1830_natural water traces: the pre-cut main stem, the natural southward outlet behind the bar, and the north-side hydrology
+T-1245 — The e1830_natural terrain spec: the authored zone table, grid and evidence limits for the ground before the cut
+T-1246 — Generate and bake the e1830_natural heightfield and ground/water meshes, and let an 1812 scene select the epoch
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
 T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
