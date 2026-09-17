@@ -115,7 +115,11 @@
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
     ],
-    "note": "'Cobb' in the firm name is the documented part. Silas B. Cobb is Andreas's 'S. B. Cobb, a minor, came June 1, 1833' - AN ARRIVAL DATED TO THE DAY, which is rare - and this project's building record notes that DRLOIH names a Silas B. Cobb as the carpenter who built the Green Tree Tavern on the opposite corner of the same crossing in the same year."
+    "note": "'Cobb' in the firm name is the documented part. Silas B. Cobb is Andreas's 'S. B. Cobb, a minor, came June 1, 1833' - AN ARRIVAL DATED TO THE DAY, which is rare - and this project's building record notes that DRLOIH names a Silas B. Cobb as the carpenter who built the Green Tree Tavern on the opposite corner of the same crossing in the same year.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "saddler"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -186,6 +190,25 @@
      "describes_date": "1844",
      "source": "norris_directory_1844",
      "rule": "G1b"
+    }
+   ],
+   "roles": [
+    {
+     "role": "saddler",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "inferred",
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
     }
    ]
   }

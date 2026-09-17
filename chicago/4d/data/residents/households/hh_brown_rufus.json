@@ -64,7 +64,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Andreas names the house as his - 'the log house of Rufus Brown, where Mr. Porter found table board' - and names his wife as the keeper: 'Mrs. Rufus Brown kept one of the first-class boarding houses.' Which of them the trade belongs to is a question the source answers in favour of his wife and the record says so."
+    "note": "Andreas names the house as his - 'the log house of Rufus Brown, where Mr. Porter found table board' - and names his wife as the keeper: 'Mrs. Rufus Brown kept one of the first-class boarding houses.' Which of them the trade belongs to is a question the source answers in favour of his wife and the record says so.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "boarding_house_keeper"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -106,6 +110,24 @@
      "for_merge": "Nothing but the strip. After it, both readings are `Rufus B Brown` letter for letter, which is M1 — and M1 firing here is the defect, not the argument.",
      "against_merge": "Fergus 1843 prints them as two entries, one after the other: 458 `Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]` and 459 `Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]`. Two trades, two death notices eighteen years apart, one address — a husband and a wife at 189 Lake, and a directory does not enter one person twice under two spellings. The cards read as one person only because the splitter strips `Mrs` before it compares the names."
     }
+   ],
+   "roles": [
+    {
+     "role": "boarding_house_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "inferred",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
    ]
   },
   {
@@ -120,7 +142,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'Mrs. Rufus Brown kept one of the first-class boarding houses' - the trade is attributed to her in terms, in a sentence about how the town housed its transients when 'full meant three in a bed sometimes, with the floor covered besides'."
+    "note": "'Mrs. Rufus Brown kept one of the first-class boarding houses' - the trade is attributed to her in terms, in a sentence about how the town housed its transients when 'full meant three in a bed sometimes, with the floor covered besides'.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "boarding_house_keeper"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -153,6 +179,24 @@
      ],
      "for_merge": "Nothing but the strip. After it, both readings are `Rufus B Brown` letter for letter, which is M1 — and M1 firing here is the defect, not the argument.",
      "against_merge": "Fergus 1843 prints them as two entries, one after the other: 458 `Brown, Rufus B., warehouse man, John P. Chapin & Co., res 189 Lake [died, Burlington, Wis., September 2, 1872, aged 69]` and 459 `Brown, Mrs. Rufus B., dress and cloak maker, 189 Lake, up stairs [died February 2, 1890, aged 73.]`. Two trades, two death notices eighteen years apart, one address — a husband and a wife at 189 Lake, and a directory does not enter one person twice under two spellings. The cards read as one person only because the splitter strips `Mrs` before it compares the names."
+    }
+   ],
+   "roles": [
+    {
+     "role": "boarding_house_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
     }
    ]
   }

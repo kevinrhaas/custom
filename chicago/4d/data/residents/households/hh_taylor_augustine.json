@@ -61,7 +61,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'Augustin Taylor, builder, still living in Chicago, arrived June, 1833' - and Andreas's account of St Mary's calls him the architect and builder of the church: 'Augustine D. Taylor was the architect' of the twenty-five by thirty-five foot building whose lumber came by scow from St Joseph at $12 per thousand."
+    "note": "'Augustin Taylor, builder, still living in Chicago, arrived June, 1833' - and Andreas's account of St Mary's calls him the architect and builder of the church: 'Augustine D. Taylor was the architect' of the twenty-five by thirty-five foot building whose lumber came by scow from St Joseph at $12 per thousand.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "carpenter"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -86,7 +90,25 @@
      "fergus_chicago_directory_1843",
      "st_cyr_register_ichr_v4"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "carpenter",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

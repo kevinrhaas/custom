@@ -73,7 +73,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "One of the eight physicians Andreas counts in the town at the close of 1833; he graduated at Middlebury College, Castleton, Vt., on 29 December 1830, and performed the first autopsy made in Chicago. Andreas adds that he 'is more intimately identified with these early days by reason of his stage line than of his medical practice' - he held the contract to carry the mail to Ottawa and made the first trip on 1 January 1834 with John Dean Caton as a passenger."
+    "note": "One of the eight physicians Andreas counts in the town at the close of 1833; he graduated at Middlebury College, Castleton, Vt., on 29 December 1830, and performed the first autopsy made in Chicago. Andreas adds that he 'is more intimately identified with these early days by reason of his stage line than of his medical practice' - he held the contract to carry the mail to Ottawa and made the first trip on 1 January 1834 with John Dean Caton as a passenger.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "physician"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -158,6 +162,24 @@
      "referred_to": "owner",
      "for_merge": "'T. Temple' in the Democrat of 3 December 1834 is most probably Dr John Taylor Temple with the first initial dropped — the paper prints him as J. T. Temple the year before.",
      "against_merge": "T matches neither Temple's forename initial: the town's two documented Temples are John and Peter. A card whose only forename token is a MIDDLE initial has no rule in this project that attaches it, and inventing one here would attach every stray middle initial in the corpus. His call."
+    }
+   ],
+   "roles": [
+    {
+     "role": "physician",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
     }
    ]
   },
@@ -244,7 +266,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Andreas: 'Dr. Peter Temple was an early practitioner in Chicago, and advertised in the Democrat of July 7, 1834, that he was located at Franklin Street, near Lake, adjacent to the dwelling of Dr. J. T. Temple, and was there to practice dentistry. In August, 1834, he became associated with Dr. John T. Temple in the practice of medicine, Dr. Peter Temple attending to such cases as were exclusively dental.'"
+    "note": "Andreas: 'Dr. Peter Temple was an early practitioner in Chicago, and advertised in the Democrat of July 7, 1834, that he was located at Franklin Street, near Lake, adjacent to the dwelling of Dr. J. T. Temple, and was there to practice dentistry. In August, 1834, he became associated with Dr. John T. Temple in the practice of medicine, Dr. Peter Temple attending to such cases as were exclusively dental.'",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "dentist"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -295,6 +321,24 @@
      ],
      "for_merge": "The surname, and the household.",
      "against_merge": "Dr Peter Temple is John Taylor Temple's brother and Mrs Temple is his wife; both are already members of his household record and both are named separately by Andreas."
+    }
+   ],
+   "roles": [
+    {
+     "role": "dentist",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
     }
    ]
   }

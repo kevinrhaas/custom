@@ -58,7 +58,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "NO TRADE IS GIVEN IN THE ROSTER, which says only 'Stephen F. Gale, from New Hampshire'. Andreas's index carries him under bookbinders and stationers, and this record reads him as a merchant one grade below that rather than asserting a bookselling business the roster does not mention."
+    "note": "NO TRADE IS GIVEN IN THE ROSTER, which says only 'Stephen F. Gale, from New Hampshire'. Andreas's index carries him under bookbinders and stationers, and this record reads him as a merchant one grade below that rather than asserting a bookselling business the roster does not mention.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "merchant"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -88,7 +92,25 @@
      }
     ],
     "summary": "The 1833 poll list prints 'Gale, Stephen F.' with the middle initial, and Fergus 1839 prints 'Gale, Stephen F., bookseller and stationer, 159 Lake st' — the same trade the 1839 statute imprint carries. A contemporary list and a continuous trade."
-   }
+   },
+   "roles": [
+    {
+     "role": "merchant",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

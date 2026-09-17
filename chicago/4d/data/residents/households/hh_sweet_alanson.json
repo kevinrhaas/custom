@@ -59,7 +59,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'Alanson Sweet, 1832' in the roster, with no trade. Andreas supplies it elsewhere: 'In 1833, the first Tremont House, situated then on the northwest corner of Lake and Dearborn streets, was built by Alanson Sweet. It was kept as a saloon and boarding-house by him and a man from Canada, named Darwin.'"
+    "note": "'Alanson Sweet, 1832' in the roster, with no trade. Andreas supplies it elsewhere: 'In 1833, the first Tremont House, situated then on the northwest corner of Lake and Dearborn streets, was built by Alanson Sweet. It was kept as a saloon and boarding-house by him and a man from Canada, named Darwin.'",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "tavern_keeper"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -77,7 +81,25 @@
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "tavern_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

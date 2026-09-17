@@ -62,7 +62,11 @@
     "sources": [
      "ushouse_james_h_woodworth"
     ],
-    "note": "T-0486: independently corroborated resident research. U.S. House historian biography independently states James Hutchinson Woodworth moved to Chicago in 1833 and entered the dry-goods business; exact name and chronology match the postal person."
+    "note": "T-0486: independently corroborated resident research. U.S. House historian biography independently states James Hutchinson Woodworth moved to Chicago in 1833 and entered the dry-goods business; exact name and chronology match the postal person.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "dry_goods_merchant"
+    ]
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -114,7 +118,25 @@
      ],
      "note": "Age range derived from birth year because birth month/day is not asserted here."
     }
-   }
+   },
+   "roles": [
+    {
+     "role": "dry_goods_merchant",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1833",
+     "to": "1840",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "ushouse_james_h_woodworth"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

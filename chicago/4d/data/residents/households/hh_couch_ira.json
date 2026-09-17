@@ -72,7 +72,11 @@
      "andreas_1884_v1",
      "chicagology_prefire021"
     ],
-    "note": "Proprietor of the first Tremont House. Andreas: 'the Couch brothers purchased the property and Ira Couch opened it as a hotel. He ran it until 1836, when his brother James took control.'"
+    "note": "Proprietor of the first Tremont House. Andreas: 'the Couch brothers purchased the property and Ira Couch opened it as a hotel. He ran it until 1836, when his brother James took control.'",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "hotel_keeper"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -96,7 +100,26 @@
      "andreas_1884_v1"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "roles": [
+    {
+     "role": "hotel_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1871",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1",
+      "chicagology_prefire021"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   },
   {
    "id": "couch_james",
@@ -110,7 +133,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Andreas's phrase is 'the Couch brothers purchased the property', which makes James a partner in the house from the purchase; he did not take control until 1836. What he was doing in it on 1 July 1835 is not stated."
+    "note": "Andreas's phrase is 'the Couch brothers purchased the property', which makes James a partner in the house from the purchase; he did not take control until 1836. What he was doing in it on 1 July 1835 is not stated.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "hotel_keeper"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -136,7 +163,25 @@
      "cand_james_couch_later_tremont_house_proprietor__couch_james"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "roles": [
+    {
+     "role": "hotel_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "inferred",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

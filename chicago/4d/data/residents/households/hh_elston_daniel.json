@@ -57,12 +57,21 @@
    "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
-    "value": "soap_and_candle_maker",
-    "confidence": "attested",
+    "value": "none_recorded",
+    "confidence": "reconstructed",
     "sources": [
      "chicago_democrat_1833_11_26"
     ],
-    "note": "'Daniel Elston & [illegible]', soap and candle manufactory, paying cash for tallow and house ashes - Chicago Democrat, 26 November 1833. The word after the ampersand is obliterated by an ink blot on the scan and 'Co.' is a reasonable expansion rather than a reading."
+    "note": "NO TRADE IS RECORDED FOR 1835-07-01, AND ONE IS RECORDED FOR ANOTHER YEAR. The trade this field used to carry — `soap_and_candle_maker` — is not gone: it stands in `roles[]` with the bound its sources permit, and `withdrawn_from_scene_date` above carries the audit's verdict for withdrawing it. The 1835 field asserts what the sources reach, which here is nothing, because no source cited for the trade describes 1835 (T-0837's write rule, T-0872's measurement, T-0991's repair, made by tools/derive_resident_roles.py).",
+    "withdrawn_from_scene_date": {
+     "value": "soap_and_candle_maker",
+     "confidence": "attested",
+     "verdict": "pre_scene_printing",
+     "ticket": "T-0991",
+     "note": "Soap and candle manufactory, Chicago Democrat, 26 November 1833. The corpus last prints the manufactory at the issue of 2 July 1834 (business_daniel_elston_co, business_chicago_soap_and_candle_manufactory); nothing inside the scene window prints the trade."
+    },
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "andreas_1884_v1",
@@ -85,7 +94,25 @@
      "uiuc_daniel_elston_papers"
     ],
     "summary": "The 1837 election return prints 'Daniel Elston' whole. The University of Illinois finding aid, read in pass 3 and never written to a ledger, identifies the English merchant who reached Chicago in 1833, made soap and candles and later ran a distillery and brewery — the same trade the paper prints for him in its first issue, 26 November 1833."
-   }
+   },
+   "roles": [
+    {
+     "role": "soap_and_candle_maker",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1833-11",
+     "to": "1833-11",
+     "precision": "month",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": false,
+     "confidence": "attested",
+     "sources": [
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "A DATED ROLE THAT DOES NOT REACH THE SCENE DATE (T-0991, withdrawn from the 1835 field by tools/derive_resident_roles.py). No source cited for this trade describes 1835, so it is retained here with the bound its evidence permits and the 1835 compatibility view reads `none_recorded` instead. tools/audit_scene_window_trades.py's verdict is `pre_scene_printing`: Soap and candle manufactory, Chicago Democrat, 26 November 1833. The corpus last prints the manufactory at the issue of 2 July 1834 (business_daniel_elston_co, business_chicago_soap_and_candle_manufactory); nothing inside the scene window prints the trade."
+    }
+   ]
   }
  ],
  "touches_removal": false,

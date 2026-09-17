@@ -73,7 +73,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Pastor of the First Presbyterian Church of Chicago, which he organised on Wednesday 26 June 1833 with twenty-six members - seventeen of them from the garrison church at Fort Brady and nine of them citizens of the village. He came to Chicago as chaplain with the troops transferred from Fort Brady."
+    "note": "Pastor of the First Presbyterian Church of Chicago, which he organised on Wednesday 26 June 1833 with twenty-six members - seventeen of them from the garrison church at Fort Brady and nine of them citizens of the village. He came to Chicago as chaplain with the troops transferred from Fort Brady.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "minister"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -93,7 +97,25 @@
      "chicago_democrat_1833_1835",
      "fergus_1843_old_settler_death_notices"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "minister",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   },
   {
    "id": "porter_eliza_chappel",
@@ -123,7 +145,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "She kept Chicago's first infant school - this dataset holds the building as chappel_infant_school - and Andreas gives her a full biographical notice: 'Miss Eliza Chappel is entitled to especial distinction in this work.' Born at Geneseo, N.Y., 5 November 1807, of parents 'who united Huguenot and Pilgrim blood'. She was also one of the twenty-six founding members of the First Presbyterian Church in June 1833, listed among the seventeen from the garrison."
+    "note": "She kept Chicago's first infant school - this dataset holds the building as chappel_infant_school - and Andreas gives her a full biographical notice: 'Miss Eliza Chappel is entitled to especial distinction in this work.' Born at Geneseo, N.Y., 5 November 1807, of parents 'who united Huguenot and Pilgrim blood'. She was also one of the twenty-six founding members of the First Presbyterian Church in June 1833, listed among the seventeen from the garrison.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "schoolteacher"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -141,7 +167,25 @@
     "source_ids": [
      "chicago_democrat_1833_1835"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "schoolteacher",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

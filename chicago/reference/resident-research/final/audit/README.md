@@ -26,7 +26,7 @@ Each line is *how many of the 1281 people carry at least one record of that kind
 | coverage | of 1281 | % | what counts |
 | --- | ---: | ---: | --- |
 | identities | **1278** | 99.8% | a name with at least one source id anywhere on the card |
-| occupations | **133** | 10.4% | an occupation that is not `none_recorded` |
+| occupations | **127** | 9.9% | an occupation that is not `none_recorded` |
 | household membership | **44** | 3.4% | recorded inside a household of two or more people |
 | kinship | **14** | 1.1% | a stated kin relationship (brother, child, daughter, father, husband, mother, sister, son, wife) |
 | property / address | **76** | 5.9% | the household resolves a `lives_at` or a `works_at` |

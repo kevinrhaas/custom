@@ -59,7 +59,11 @@
     "sources": [
      "chicago_democrat_1833_1835"
     ],
-    "note": "THE TRADE IS THE PAPER'S. The corpus reads it as attorney, counsellor at law, solicitor in chancery, at the Democrat of 20 May 1835, column 9; the Democrat of 17 June 1835, column 2; the Democrat of 1 July 1835, column 11. The residents vocabulary's nearest period-correct word for it is `attorney`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take."
+    "note": "THE TRADE IS THE PAPER'S. The corpus reads it as attorney, counsellor at law, solicitor in chancery, at the Democrat of 20 May 1835, column 9; the Democrat of 17 June 1835, column 2; the Democrat of 1 July 1835, column 11. The residents vocabulary's nearest period-correct word for it is `attorney`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "attorney"
+    ]
    },
    "sources": [
     "chicago_democrat_1833_1835"
@@ -83,7 +87,25 @@
      "cand_james_curtiss__curtiss_j"
     ],
     "summary": "Fergus 1839 prints 'Curtiss, James, attorney and counsellor at law, 17 Lake st' and the library's biography of the later mayor gives the same man's Chicago arrival and practice. The 1835 papers already carry him as an attorney between 20 May and 5 August, so the expansion of the bare J. is safe."
-   }
+   },
+   "roles": [
+    {
+     "role": "attorney",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1833-11",
+     "to": "1835-08",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

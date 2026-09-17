@@ -59,7 +59,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Striker to the government blacksmith at the Indian agency - the man who swings the sledge for the smith. Andreas names him in the agency establishment under Owen: 'David McKee as blacksmith, and Joseph Porthier as striker'. The occupation vocabulary has no separate entry for a striker and blacksmith is the trade he was in."
+    "note": "Striker to the government blacksmith at the Indian agency - the man who swings the sledge for the smith. Andreas names him in the agency establishment under Owen: 'David McKee as blacksmith, and Joseph Porthier as striker'. The occupation vocabulary has no separate entry for a striker and blacksmith is the trade he was in.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "blacksmith"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -77,7 +81,25 @@
     "source_ids": [
      "buck_pioneer_milwaukee_porthier_1835"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "blacksmith",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": true,

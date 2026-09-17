@@ -63,7 +63,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'John S. C. Hogan, Postmaster, came in 1832'. He also kept a store in the same log building, which is why this dataset's hogan_store record is both a shop and the place where Chicago's mail began."
+    "note": "'John S. C. Hogan, Postmaster, came in 1832'. He also kept a store in the same log building, which is why this dataset's hogan_store record is both a shop and the place where Chicago's mail began.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "postmaster"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -131,6 +135,24 @@
      ],
      "for_merge": "Surname and forename agree exactly, which is why the candidate test raises it.",
      "against_merge": "hh_hogan_john was minted from st_cyr_death_03_1, where John Hogan is the DECEDENT, and the register dates that death to October 1834. John S. C. Hogan is documented in the town as postmaster and keeping his store on the scene date of 1 July 1835 and is named on the 1833-1835 voter rolls. A man cannot be buried in 1834 and vote in 1835: these are two men, and the ruling is written onto both cards so no later pass folds the postmaster onto his own namesake's burial."
+    }
+   ],
+   "roles": [
+    {
+     "role": "postmaster",
+     "kind": "office",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
     }
    ]
   }

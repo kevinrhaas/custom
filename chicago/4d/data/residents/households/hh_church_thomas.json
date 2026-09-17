@@ -58,7 +58,11 @@
     "sources": [
      "chicagology_prefire275"
     ],
-    "note": "NAMED AS THE BUILDER AND NOT AS THE OCCUPANT, which is all the source says: 'The first store building on Lake Street, a two-story frame structure, was built by Thomas Church.' A man who builds a store is usually a merchant and this record reads it that way one grade down."
+    "note": "NAMED AS THE BUILDER AND NOT AS THE OCCUPANT, which is all the source says: 'The first store building on Lake Street, a two-story frame structure, was built by Thomas Church.' A man who builds a store is usually a merchant and this record reads it that way one grade down.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "merchant"
+    ]
    },
    "sources": [
     "chicagology_prefire275",
@@ -80,7 +84,25 @@
      "fergus_chicago_directory_1843"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "roles": [
+    {
+     "role": "merchant",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1830",
+     "to": "1853",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "inferred",
+     "sources": [
+      "chicagology_prefire275"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

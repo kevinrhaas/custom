@@ -64,7 +64,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Andreas's 1833 roster: 'Oscar Pratt and Beckford, printers, were in the employ of Mr. Calhoun at that time.'"
+    "note": "Andreas's 1833 roster: 'Oscar Pratt and Beckford, printers, were in the employ of Mr. Calhoun at that time.'",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "printer"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -79,7 +83,25 @@
     "evidence_for": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist.",
     "summary": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist.",
     "notes": "The exact-name and variant sweep did not identify a reliable Chicago/Cook County record that can be tied to this printer by an address, date, occupation-specific linkage or relative. This documented no-find is not evidence that Oscar Pratt did not exist."
-   }
+   },
+   "roles": [
+    {
+     "role": "printer",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   },
   {
    "id": "beckford_printer",
@@ -92,7 +114,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Named in the same clause as Pratt and in the same employment."
+    "note": "Named in the same clause as Pratt and in the same employment.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "printer"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -111,7 +137,25 @@
      "chicago_antiquities_pratt",
      "andreas_1884_v1"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "printer",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -67,7 +67,11 @@
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
     ],
-    "note": "'John Calhoun, printer and editor of the first newspaper published in Chicago, arrived in November, 1833, and issued the first number of the Chicago Democrat November 26, 1833.' The paper's own imprint in that issue reads: 'THE DEMOCRAT, Is published every Tuesday, in the village of Chicago, Cook co. Ill. in the building on the corner of South Water and Clark-streets.'"
+    "note": "'John Calhoun, printer and editor of the first newspaper published in Chicago, arrived in November, 1833, and issued the first number of the Chicago Democrat November 26, 1833.' The paper's own imprint in that issue reads: 'THE DEMOCRAT, Is published every Tuesday, in the village of Chicago, Cook co. Ill. in the building on the corner of South Water and Clark-streets.'",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "editor"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -91,7 +95,26 @@
      "chicago_voter_lists_1833_1835_irad"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "roles": [
+    {
+     "role": "editor",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

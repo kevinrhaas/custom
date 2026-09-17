@@ -71,7 +71,11 @@
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
     ],
-    "note": "Landlord of the Green Tree Tavern 1834-1837 per this project's building record, and before that of the old Wolf Point house which he re-christened 'The Travelers' Home'. The Democrat of 26 November 1833 carries his own advertisement, dated 4 October 1833, for a tavern stand 'lately occupied by Mr. Wm. W. Wattles'."
+    "note": "Landlord of the Green Tree Tavern 1834-1837 per this project's building record, and before that of the old Wolf Point house which he re-christened 'The Travelers' Home'. The Democrat of 26 November 1833 carries his own advertisement, dated 4 October 1833, for a tavern stand 'lately occupied by Mr. Wm. W. Wattles'.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "tavern_keeper"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -93,7 +97,26 @@
      "chicago_democrat_1833_1835",
      "isa_public_domain_land_tract_sales"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "tavern_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

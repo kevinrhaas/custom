@@ -72,7 +72,11 @@
      "andreas_1884_v1",
      "drloih_hotels"
     ],
-    "note": "Keeper of the Exchange Coffee House at the north-west corner of Lake and Wells from August 1834 until 1836."
+    "note": "Keeper of the Exchange Coffee House at the north-west corner of Lake and Wells from August 1834 until 1836.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "tavern_keeper"
+    ]
    },
    "later_census": {
     "year": 1840,
@@ -120,7 +124,26 @@
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "tavern_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1871",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1",
+      "drloih_hotels"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   },
   {
    "id": "murphy_harriet",
@@ -134,7 +157,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Andreas names her as a keeper in her own right - 'Mr. and Mrs. Murphy took charge' and 'they christened' - not as a wife who happened to live there. A public house of this period was run by a couple and the source says so."
+    "note": "Andreas names her as a keeper in her own right - 'Mr. and Mrs. Murphy took charge' and 'they christened' - not as a wife who happened to live there. A public house of this period was run by a couple and the source says so.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "tavern_keeper"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -171,7 +198,25 @@
       "candidate_id": "cand_harriet_murphy_us_hotel"
      }
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "tavern_keeper",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -62,7 +62,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'Frederick Thomas, in the American of June 8, 1835, advertised the proprietorship of the Chicago New Drug, Medical and Paint Store, on Water Street, two doors from the American office, near the drawbridge; and also advertised that he performed \"bleeding, leeching and tooth-drawing;\" thus establishing himself as Chicago's first barber-surgeon' (Andreas, scan p. 955)."
+    "note": "'Frederick Thomas, in the American of June 8, 1835, advertised the proprietorship of the Chicago New Drug, Medical and Paint Store, on Water Street, two doors from the American office, near the drawbridge; and also advertised that he performed \"bleeding, leeching and tooth-drawing;\" thus establishing himself as Chicago's first barber-surgeon' (Andreas, scan p. 955).",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "barber_surgeon"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -79,7 +83,25 @@
     "source_ids": [
      "encyclopedia_chicago_frederick_thomas"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "barber_surgeon",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1223."
+    }
+   ]
   }
  ],
  "touches_removal": false,
