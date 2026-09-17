@@ -1312,63 +1312,79 @@ def build_all() -> tuple[dict[Path, str], list[dict], list[dict]]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true",
-                        help="report missing, changed, or extra outputs")
+                        help="report drift in the fields this pass still owns")
+    parser.add_argument("--write-anyway", action="store_true",
+                        help="write, knowing it reverses the owner's T-0489 ruling")
     args = parser.parse_args()
     files, records, households = build_all()
 
-    # The naming pass runs AFTER this programme and edits the same household
-    # files: it gives every reconstructed resident an invented name and a
-    # name_basis (tools/generate_inferred_names.py, roadmap K18). Comparing this
-    # programme's raw output against the tree would therefore report all eighty
-    # households as drift on every run, which would train everyone to ignore a
-    # real drift report. So the pipeline is modelled as it actually is — build,
-    # then name — and the comparison is made against the end of it.
+    # WHAT THIS PASS STILL OWNS, AND WHY THE COMPARISON IS NOT BYTE-IDENTITY (T-1228).
+    #
+    # Until 2026-09-17 this compared its whole output against the tree, after
+    # overlaying the naming pass and the newspaper deal, because those two rewrite
+    # the same household files and a raw comparison would have reported all eighty
+    # as drift. That modelled the pipeline correctly and still could not pass: on
+    # 2026-09-02 the owner's T-0489 ruling retired the reconstructed resident
+    # population and kept the geometry as anonymous stock, and nothing told this
+    # generator. It still derives all 101 households — 96 of which the ruling
+    # removed — and still derives an occupant for each of the 31 roofs the ruling
+    # emptied. Byte-identity against the tree is therefore a demand that the ruling
+    # be reversed, once per commit, which is why this could not be gated.
+    #
+    # What it IS still the last writer of is the geometry the owner kept: 38
+    # structure records, minus the three paths T-0489 withdrew on 31 of them and
+    # the paths four later tickets took (T-0415's renamed Wright pair, T-0884's
+    # move of the Heacock house onto Monroe, T-0230's function note on the
+    # physician's office). That settlement is authored at
+    # data/reconstruction/1835_inferred_household_pass_ownership.json, and the
+    # withdrawn paths are ASSERTED rather than skipped — a retired household that
+    # reappears, or an `occupants` block that stops saying anonymous stock, is red
+    # here. tools/inferred_household_ownership.py holds both halves.
     if args.check:
-        import importlib.util
-        spec = importlib.util.spec_from_file_location(
-            "gen_names", Path(__file__).with_name("generate_inferred_names.py"))
-        gen_names = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(gen_names)
-        files = gen_names.overlay(files)
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import inferred_household_ownership as ownership  # noqa: PLC0415
 
-        # And the THIRD stage, for the same reason: since T-0264 the newspaper
-        # register retires an invented name where it found a documented person
-        # for that trade, rewriting the head's name, grade, sources, occupation
-        # and the household's own arrival bound. Comparing this programme's
-        # output against the tree without it would report every retired roof as
-        # drift on every run.
-        spec = importlib.util.spec_from_file_location(
-            "replace_invented", Path(__file__).with_name("replace_invented_residents.py"))
-        replace_invented = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(replace_invented)
-        files = replace_invented.overlay(files)
+        drift = ownership.check_households_pass(files)
+        if drift:
+            print("INFERRED HOUSEHOLD PROGRAMME DRIFT")
+            for item in drift:
+                print(f"  - {item}")
+            return 1
+        owned = ownership.settlement()["passes"][
+            "tools/generate_inferred_households.py"]["still_owns"]["data/structures"]
+        print(f"   OK: {len(owned['ids'])} structure record(s) re-derive in every field "
+              f"this pass still owns, and T-0489's retirement stands on all of them")
 
-    drift = []
-    for path, text in sorted(files.items()):
-        if args.check:
-            if not path.exists():
-                drift.append(f"{path.relative_to(ROOT)} is missing")
-            elif path.read_text(encoding="utf-8") != text:
-                drift.append(f"{path.relative_to(ROOT)} has drifted from the household programme")
-        else:
+    elif not args.write_anyway:
+        # Writing is the reversal itself. This run watched it try: regenerating
+        # inf_cooperage_south_branch whole re-claimed the withdrawn occupant, put
+        # `status` back to `inferred_household` and dropped the resident_assignment
+        # block T-0489 wrote. A tool that can undo an owner ruling by being run
+        # without an argument is a hazard, so it now says so and stops.
+        print("REFUSING TO WRITE. The owner's T-0489 ruling of 2026-09-02 retired the "
+              "reconstructed\nresident population this pass derives and kept the geometry "
+              "as anonymous stock.\nWriting would put all 96 retired households back and "
+              "re-claim the occupants of the\n31 roofs the ruling emptied — see "
+              "data/reconstruction/1835_inferred_household_pass_ownership.json.\n"
+              "Use --check to re-derive what this pass still owns, or --write-anyway if "
+              "reversing\nthat ruling is genuinely what you were asked to do.")
+        return 2
+
+    else:
+        for path, text in sorted(files.items()):
             path.write_text(text, encoding="utf-8")
 
-    expected = {p.name for p in files}
-    extras = sorted(p.name for p in HOUSEHOLDS.glob(f"{PREFIX}*.json") if p.name not in expected)
-    drift.extend(f"data/residents/households/{name} is outside the household programme"
-                 for name in extras)
-    if drift:
-        print("INFERRED HOUSEHOLD PROGRAMME DRIFT")
-        for item in drift:
-            print(f"  - {item}")
-        return 1
-    mode = "verified" if args.check else "generated"
+    # WHAT THE PROGRAMME ARGUES, which is not what the tree holds: since T-0489
+    # the households below are the recipe's reasoning, kept as history, and not a
+    # population. The figure is printed as the programme's, not the town's.
     persons = sum(len(h["persons"]) for h in households)
     adopted = len({sid for h in load(PROGRAMME)["households"]
                    for sid in (h.get("lives_at"), h.get("works_at"))
                    if sid and sid.startswith("recon_")})
-    print(f"{mode} {len(households)} reconstructed households ({persons} persons), "
-          f"{len(records)} structure records, {adopted} anonymous roofs adopted")
+    print(f"   the programme still argues {len(households)} households "
+          f"({persons} persons) behind {len(records)} structure records, "
+          f"{adopted} anonymous roofs adopted; T-0489 retired the households "
+          f"and kept the roofs")
     # K21: the figure the gate above guarantees, printed rather than assumed. A
     # trade whose dwelling families are known is a trade rule 6's second test can
     # be evaluated for; before this parcel four of them could not be, and the

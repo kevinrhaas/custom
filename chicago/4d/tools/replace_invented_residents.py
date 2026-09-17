@@ -757,15 +757,40 @@ def main() -> int:
         report(pairs, refusals)
         return 0
     if args.check:
-        drift = [p for p, text in files.items()
-                 if not p.exists() or p.read_text(encoding="utf-8") != text]
-        for p in drift:
-            print(f"   DRIFT: {p.relative_to(ROOT)}")
+        # WHAT SURVIVED OF THIS PASS, AND WHAT TOOK THE REST (T-1228).
+        #
+        # Until 2026-09-17 this compared its whole output against the tree and
+        # reported five files differing. Two things had happened underneath it. The
+        # owner's T-0489 ruling of 2026-09-02 retired the reconstructed resident
+        # population and left the real men this pass had seated UNPLACED, so their
+        # `lives_at` and `works_at` are null in the tree while this pass still deals
+        # each of them the roof the register matched. And
+        # tools/synthesize_resident_research.py then took those four households into
+        # the resident research layer, raising each head from `inferred` to
+        # `attested` under a ladder rule and adding press, civic, book, directory
+        # and old-settler evidence blocks this pass knows nothing about. Between
+        # them they own division, name, research_note and the head's grade, sources
+        # and note. Demanding the whole file back is demanding both be reverted.
+        #
+        # What is still this pass's, and only this pass's, is WHO IS ON THE ROOF:
+        # the head's id and name. That is the register's finding, and if the
+        # register changes under these four roofs this goes red. The withdrawal is
+        # asserted rather than skipped — a man who quietly becomes placed again
+        # fails here.
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+        import inferred_household_ownership as ownership  # noqa: PLC0415
+
+        seated = {doc["id"]: person for (_p, doc, person), _c, _g, _t, _s in pairs}
+        drift = ownership.check_replace_pass(seated)
+        for item in drift:
+            print(f"   DRIFT: {item}")
         if drift:
-            print(f"   {len(drift)} file(s) differ from what this pass derives")
+            print(f"   {len(drift)} finding(s) — see "
+                  f"data/reconstruction/1835_inferred_household_pass_ownership.json")
             return 1
-        print(f"   OK: {len(pairs)} documented resident(s) hold the roofs this pass "
-              f"deals them, {len(refusals)} candidate(s) refused")
+        print(f"   OK: {len(pairs)} documented resident(s) still head the roofs this pass "
+              f"deals them, {len(refusals)} candidate(s) refused, and T-0489 still "
+              f"leaves every one of them unplaced")
         return 0
 
     for p, text in files.items():
