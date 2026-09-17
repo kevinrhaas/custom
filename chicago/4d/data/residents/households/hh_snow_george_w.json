@@ -59,7 +59,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'George W. Snow, came in 1832'; appointed the town's Assessor and Surveyor on 4 December 1833 by the first board of trustees. He was one of the twelve who voted for incorporation on 5 August 1833 and one of the twenty-eight electors five days later."
+    "note": "'George W. Snow, came in 1832'; appointed the town's Assessor and Surveyor on 4 December 1833 by the first board of trustees. He was one of the twelve who voted for incorporation on 5 August 1833 and one of the twenty-eight electors five days later.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "surveyor"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -118,6 +122,24 @@
       "snow_g_w"
      ],
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ],
+   "roles": [
+    {
+     "role": "surveyor",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }

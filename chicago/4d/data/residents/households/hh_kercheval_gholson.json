@@ -62,7 +62,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Sub-agent of the United States Indian agency at Chicago under Col. Owen, and before that acting agent: 'Colonel Owen was appointed Indian agent in the winter of 1830-31, but did not arrive in Chicago until the spring of 1831, the sub-agent, Mr. Kercheval, attending to the duties of the office until that time.' Andreas's 1833 roster calls him 'Gholson Kercheval, Government Agent and clerk, came in 1831'."
+    "note": "Sub-agent of the United States Indian agency at Chicago under Col. Owen, and before that acting agent: 'Colonel Owen was appointed Indian agent in the winter of 1830-31, but did not arrive in Chicago until the spring of 1831, the sub-agent, Mr. Kercheval, attending to the duties of the office until that time.' Andreas's 1833 roster calls him 'Gholson Kercheval, Government Agent and clerk, came in 1831'.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "sub_agent"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -94,6 +98,24 @@
      "record_id": "resident_research:T-0493#01",
      "as_read": "The 1833 treaty transcription names Gholson Kercheval of Chicago in a federal payment clause",
      "note": "A contemporary federal record that names both the man and the town, two years before the scene. The block calls it a corroboration of the treaty-service chronology and carried it only as prose."
+    }
+   ],
+   "roles": [
+    {
+     "role": "sub_agent",
+     "kind": "office",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }

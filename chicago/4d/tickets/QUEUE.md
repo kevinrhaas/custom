@@ -13,21 +13,15 @@
 # unclassified research does not mean forcing uncertain people or locations into 1835.
 # T-1027 is the one-letter identity epic; Newberry and 1840 deposit work follow
 # their lower resident yield. Read each ticket before splitting or claiming.
-# Reconstruction (owner, 2026-09-17): BAND 2 IS OPEN NOW — it reads the layer and writes
-# reports, models and an order book, and it needs no sign-off to do that. Bands 3-5 WRITE
-# reconstructed people, businesses and roofs, and those wait for T-1157 to say GO.
-#   The first cut gated 2-5 together, and it starved the top: band 1's rows were all in
-#   flight or self-blocked, so runs fell past 59 gated tickets into SOUTH THROUGH TIME and
-#   LOOP IMPROVEMENTS (T-0467, T-1154, 2026-09-17). A gate that empties the top of the
-#   queue sends the loop to the bottom of it.
+# Reconstruction (owner, 2026-09-17): bands 2-5 run in order and only after T-1157 says GO.
 # Every reconstructed value carries tier, basis, seed and replaceable_by (T-1158); the order
 # book (T-1166) is the quota; docs/RESEARCH/1835_reconstruction_plan.md is the map.
 # Sub-bands (3A/3B/3C, 5A-5E) may be taken by different agents; within a sub-band, top first.
-# Build tickets in 5C are needs_bake and hand on a successor. Native, Métis and Black residents,
-# families and businesses ARE reconstructed (owner, 2026-09-17; T-1177), review_required, no figures.
+# Build tickets in 5C are needs_bake and hand on a successor. No reconstructed Native presence.
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1155 — The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
-T-1145 — Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
+T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
+T-1255 — The people view shows every role as a dated timeline, marks which reach the scene date, and searches controlled and printed wording
 T-1236 — EPIC: rule on the unasserted units the person-fact passes do not own — the land-sale, civic, 1830-census, church, newspaper and directory names, the resident-pass reserved people, and the book readings of ground, harbour, weather, price and institution
 T-1228 — Three inferred-household passes still derive the 96 households the owner retired in T-0489, so none of them can be gated: settle what each pass still owns
 T-1238 — Plural dated home, workplace and other-significant-location relationships on every person and household, with associated_with[] defined
@@ -36,7 +30,7 @@ T-1240 — The people and business views expose the plural links, their dates, c
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
-# --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
+# --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (after T-1157 says GO)
 T-1158 — Per-attribute tiers on every person, household and business field — attested, inferred or reconstructed, each with its reason — so a profile can be filled at the lowest honest tier and replaced later
 T-1159 — Export the borderline roster: every name the research read and withheld from 1835 — single-source, refused, surname-only, uncertain presence, letter-list-only — with its source, reason and re-admission class, so reconstruction can name real people before it invents any
 T-1160 — Profile the known population of 1 July 1835: sex, age, origin, arrival date and reason, roles, household composition, lodging, division and presence for every attested and inferred person, per attribute and per tier, as a generated report and an in-app card
@@ -104,8 +98,8 @@ T-1213 — Signboards for every business that would have hung one: the reconstru
 T-1214 — Build the camps of the summer of 1835: a tent and wagon-camp archetype, the encampments on the grounds the transient ticket evidenced — the land-sale crowd south of the fort, the immigrants' wagons at the west approach, the pier gang at the river mouth — bounded, labelled, and empty of figures
 # --- 5E. STRUCTURES — converge: every person housed, every business roofed, the town complete
 T-1215 — Converge the reconstructed town: every person housed, every business roofed, every roof occupied or its use stated, the census's dwellings ratio met, the programme reconciled, the budgets re-measured and set — the completion report a visitor can open
-# --- 6. SOUTH THROUGH TIME — dated terrain, Fort Dearborn, and Prairie Avenue
 T-1243 — Author the e1830_natural terrain spec and generate the 1812 heightfield and the ground and water meshes across the Fort-to-Eighteenth-Street corridor
+# --- 6. SOUTH THROUGH TIME — dated terrain, Fort Dearborn, and Prairie Avenue
 T-0469 — Reconstruct the first Fort Dearborn complex as it stood in August 1812
 T-0470 — Map the 15 August 1812 evacuation route and battle-location confidence zone
 T-0471 — Build the 1812 lakeshore prairie, vegetation and landscape features
@@ -159,3 +153,4 @@ T-1219 — The three re-spelled cards still say in prose that the papers print t
 # --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
 # --- appended here rather than guessed into a band. Rank them or leave them.
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
+
