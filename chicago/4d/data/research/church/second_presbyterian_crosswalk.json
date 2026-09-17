@@ -17,7 +17,7 @@
     "residents_considered": 1285,
     "residents_matched_one_line": 81,
     "residents_ambiguous": 36,
-    "residents_surname_only_refused": 319
+    "residents_surname_only_refused": 318
   },
   "matched": [
     {
@@ -4061,15 +4061,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 5,
       "rule": "The surname 'Hubbard' stands on the Second Presbyterian roll and no line under it carries the initial 'O' of 'Otis Hubbard'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Leonard, C. Hugunin",
-      "person_id": "hugunin_leonard_c",
-      "household_id": "hh_hugunin_leonard_c",
-      "grade": "attested",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 1,
-      "rule": "The surname 'Leonard' stands on the Second Presbyterian roll and no line under it carries the initial 'C' of 'Leonard, C. Hugunin'. A surname-only agreement is a refusal."
     },
     {
       "name": "Lemuel fre.Humphrey",

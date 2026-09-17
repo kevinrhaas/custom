@@ -600,10 +600,10 @@ def surname_of(name: str, person_id: str) -> str:
     folded — derived from the name, never typed.
 
     Last word after stripping a parenthetical ("Billy Caldwell (Sauganash)"), a
-    trailing comma clause ("Leonard, C. Hugunin" keeps its first clause) and
-    trailing honorifics; a particle before it is kept ("St Cyr"). A placeholder
-    entry — "the rest of the Robinson household" — falls back to the record id's
-    leading token, which the mint writes as the surname.
+    trailing comma clause ("Mark Beaubien's family, unnamed" keeps its first
+    clause) and trailing honorifics; a particle before it is kept ("St Cyr"). A
+    placeholder entry — "the rest of the Robinson household" — falls back to the
+    record id's leading token, which the mint writes as the surname.
     """
     import re
     import unicodedata

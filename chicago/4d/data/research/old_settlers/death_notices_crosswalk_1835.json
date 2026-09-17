@@ -3961,11 +3961,11 @@
    "rule": "The surname 'Brown' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Lemuel Brown'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
-   "resident": "Leonard, C. Hugunin",
+   "resident": "Leonard C. Hugunin",
    "person_id": "hugunin_leonard_c",
    "surname_in_the_list": "Hugunin",
    "candidates": 6,
-   "rule": "The surname 'Hugunin' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Leonard, C. Hugunin'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+   "rule": "The surname 'Hugunin' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Leonard C. Hugunin'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Levi Ayres",

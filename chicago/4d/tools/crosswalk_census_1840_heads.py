@@ -1166,17 +1166,22 @@ def build() -> dict:
                     "no word, the printing gave no name and what follows is the office "
                     "— refused here, as identity_master.json already refuses it under "
                     "R5.",
-            "one_stored_name_the_rule_reads_wrongly": "T-1121. The comma inverts "
-                    "1,007 pool names and ONE of them is a stored name with the comma "
-                    "in the wrong place: the minted person hugunin_leonard_c carries "
-                    "name 'Leonard, C. Hugunin', which inverts to the surname leonard "
-                    "though the record's own id, and the gazetteer's other printing of "
-                    "the same man ('Hugunin, Leonard, C.'), both say Hugunin. The "
-                    "defect is in the minted name, not in the rule — refusing the "
-                    "inversion for a tail shaped 'initial then word' would take 16 "
-                    "correct readings down with it, John Dean Caton's among them — so "
-                    "it is named here rather than papered over. No 1840 head turns on "
-                    "it: the adjudication is identical with and without.",
+            "one_stored_name_the_rule_read_wrongly": "T-1121, FIXED. The comma "
+                    "inverts 1,007 pool names and ONE of them WAS a stored name with "
+                    "the comma in the wrong place: the minted person "
+                    "hugunin_leonard_c carried name 'Leonard, C. Hugunin', which "
+                    "inverted to the surname leonard though the record's own id, and "
+                    "the gazetteer's other printing of the same man ('Hugunin, "
+                    "Leonard, C.'), both say Hugunin. The defect was in the minted "
+                    "name, not in the rule — refusing the inversion for a tail "
+                    "shaped 'initial then word' would take 16 correct readings down "
+                    "with it, John Dean Caton's among them — so the fix was made "
+                    "where the name is written: mint_letter_list_residents.py "
+                    "`display()` no longer carries a printing's second comma into the "
+                    "card it orders, the card now reads 'Leonard C. Hugunin', and the "
+                    "mint's own gate refuses any ordered name that still holds one. No "
+                    "1840 head turned on it then and none turns on it now: the "
+                    "adjudication is identical before and after.",
             "pool_names_reached": markup_bearing_counts(
                 residents, voters, letters, candidates),
         },
