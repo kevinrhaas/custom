@@ -1769,7 +1769,7 @@ step "the town off the modelled ground is still the town the reading measured" \
 step "every viewpoint the app offers stands on modelled, dry, unbuilt ground" \
   node tools/measure_anchors.mjs --gate
 
-step "the anchor-ground rules hold on synthetic ground" \
+selftest "…and the anchor-ground rules still hold on synthetic ground" \
   node tools/measure_anchors.mjs --self-test
 
 # T-0466. The ground's culling grid used to be the literals 12 x 3, and those two
