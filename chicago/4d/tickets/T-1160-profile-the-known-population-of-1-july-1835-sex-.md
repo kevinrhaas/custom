@@ -48,9 +48,9 @@ profile lacks, and publishes it where a visitor can open it.
 8. **Where they meet the buildings** — housed / roofed-workplace / unplaced, by division.
 9. **Composition and types** — a prose section, every sentence quoting a table above: what
    KINDS of people the sources show (merchant-forwarders, army, agency, mechanics, professionals,
-   labourers, women and children as the sources show them, free Black residents as the sources
-   show them, French-Canadian and Métis households as the sources show them — quoted, never
-   improvised, under the standing constraint) and what kinds the sources are silent about.
+   labourers, women and children as the sources show them, free Black residents, French-Canadian, Native and Métis households as
+   the sources show them — quoted here; T-1177 reconstructs the rest) with a `community`
+   axis counted like the others and what kinds the sources are silent about.
 
 **Acceptance:**
 

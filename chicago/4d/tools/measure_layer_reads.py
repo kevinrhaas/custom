@@ -231,7 +231,7 @@ STATED_SHARED = frozenset({
     # popup.js prints a documented range with it and facades.js ages a wall off it.
     # `as_printed` is the corpus-wide word for a source's own wording and is read on
     # name variants. None of the three reaches a role today — the People view's dated
-    # timeline is T-1244 — and a bare-name scan cannot say so, which is what this list
+    # timeline is T-1255 — and a bare-name scan cannot say so, which is what this list
     # is for. All three stay in the unread bank either way.
     "as_printed", "from", "to",
     # These seven WERE here: they occur in the separately rendered research_pilot

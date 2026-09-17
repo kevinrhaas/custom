@@ -413,8 +413,15 @@ while IFS=$'\t' read -r N BR; do
       git merge --abort 2>/dev/null; SKIPPED=$((SKIPPED+1)); continue; }
   fi
 
+  # PRUNE BEFORE THE BOARD. A branch's QUEUE.md is a snapshot and `dev` closes
+  # tickets under it, so an open PR ends up listing work that has already finished —
+  # which `ticket.mjs check` refuses, and which is the commonest red a lap leaves
+  # behind: #1387, #1389 and #1392 all went red on it on 2026-09-17 alone. `prune`
+  # applies the gate's own rule and can only DELETE a line, never add or reorder one,
+  # so the owner's ranking is untouched.
   ( cd chicago/4d \
     && node tools/stamp-changelog.mjs \
+    && node tools/ticket.mjs prune \
     && node tools/ticket.mjs board \
     && python3 tools/compile_scene.py --all \
     && ./tools/publish.sh ) >/tmp/lap-regen.log 2>&1 || {

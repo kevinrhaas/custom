@@ -47,8 +47,10 @@ Andreas's 1833 roster (~350 people), and the growth arithmetic the retired progr
    p99 21) shifted toward the 1835 dwelling ratio, with the rule that a dwelling held more than
    one household stated as a number.
 5. **Free Black residents** — a bracket bounded above by 1840's 53 free coloured and below by
-   the attested individuals; French-Canadian/Métis households are NOT modelled beyond the attested
-   ones (standing constraint) and the file says so in its own words.
+   the attested individuals; the Native and Métis population in and around the town on 1 July 1835 is
+   modelled as its own rows — resident households, the traders' establishments, and families in
+   town to trade or awaiting the annuity — bracketed from the treaty schedules, the registers
+   and the traders' lists (T-1177 reads them), `review_required` on the row.
 6. **The garrison** — companies of the 5th Infantry at Fort Dearborn on 1 July 1835 under
    Maj. John Greene (`docs/RESEARCH/fort_dearborn.md`): strength from the sources the dossier
    cites (Army returns if held; otherwise the company establishment, labelled reconstructed).

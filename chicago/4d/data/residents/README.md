@@ -314,8 +314,8 @@ makes, no trade in the 1835 field either.
 
 What this does not yet read: the newspaper gazetteer's `persons[].occupations[]`,
 the 1839 directory and civic-register crosswalks and the 1843/1844 identity-master
-appearances, together with each role's stated place and employer (T-1243); and the
-People view's dated timeline (T-1244).
+appearances, together with each role's stated place and employer (T-1254); and the
+People view's dated timeline (T-1255).
 
 ## `profile_facts` — what the matched research actually said (T-1232)
 

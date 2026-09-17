@@ -56,7 +56,7 @@ Piece 1 of 3 of **T-1145 — Replace the one-occupation resident field with date
 
 **Not this ticket:** the external structured evidence (gazetteer, 1839 directory and
 civic register, 1843/1844 identity master), the role's place and employer, and the
-migration table are T-1243; the people view's dated timeline is T-1244.
+migration table are T-1254; the people view's dated timeline is T-1255.
 
 **Stop condition:** no card-local trade or later trade is held by a field that can
 only say one thing, and the 1835 field cannot carry a role that does not reach 1835.
