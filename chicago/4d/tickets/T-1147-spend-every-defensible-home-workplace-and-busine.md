@@ -1,7 +1,7 @@
 ---
 id: T-1147
 title: Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-17
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 7:46:54 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-17T12:47:05.057Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35222324991
 ---
 
 Spend every defensible home, workplace and business-location finding, preserve the 123 location limits, and close research with zero unclassified attested or inferred fact.
