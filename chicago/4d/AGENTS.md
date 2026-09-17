@@ -78,6 +78,19 @@ project's first target year. It is the most historically significant event of th
 Note also that the great Potawatomi gathering and the last war dance are **August 1835**,
 weeks after the 1835 scene date. Staging them in the 1835 scene would be wrong twice over.
 
+**Owner ruling, 2026-09-17, verbatim:** *"i think it is fair, in fact required to Reconstruct
+Native or Métis people as part of this. There are some that are certainly in the area
+potentially doing business i believe there were indian businesses and it is also very important
+that we keep and capture and identify the black owned businesses and residents and family
+households."* So, for the 1835 DATA layer (cards, households, businesses, camps): Native and
+Métis people are reconstructed, evidence-bounded, through one ticket (T-1177) and its stage of
+the resident writer only; every such record carries `review_required` + `touches_removal` with
+its sentence, and the review by Native scholars or community organisations is still sought
+before a scene is marked `released`. Unchanged: L1 (no human figure is drawn, for anyone), no
+invented dialogue, ceremony or depiction, and the August gathering is not staged. Black
+residents, families and Black-owned businesses are identified on a `community` field so the
+town can list them.
+
 ## THE VISIBLE-PROGRESS RULE — read this before choosing a parcel
 
 **Measured 2026-08-15, on the owner's report that the loop "just does organization and research

@@ -12052,7 +12052,35 @@ Related: **L121**, which this entry supersedes on the value and keeps on the met
 and **L114**, the other entries about this wood. Ticket **T-1127**; ROADMAP **K45(b3)**.
 **Recorded:** 2026-09-15.
 
-### L240 — the 1880s scene stands on 1 July because the 1835 scene does, and no source says anything about that day
+### L240 — The 1812 spit's attachment to the mainland is asserted; its isthmus is not drawn
+**Decision:** `shore_1812_pre_cut` declares that the baymouth bar ran to the mainland — it names
+the point on the north bank it met (the vertex Wright's survey leaves where the north pier was
+later built out from the shore) and emits the 129.1 m between that point and the bar's nearest
+corner as a feature called `spit_attachment_gap_1812`, kind `unmodelled_gap`, drawn as a straight
+line. **The straight line is not a reading.** The feature claims the attachment and nothing else:
+`does_not_claim` says so on the record — not the isthmus's width, not its lake face, not its
+height, and no ground is asserted between the two points.
+**Why:** Wright draws the bar as an *island* because the 1833-34 cut had made it one by the time he
+surveyed it. In 1812 there was no cut, and a baymouth spit is the entire reason the river was
+deflected south for half a mile before it reached the lake — the landform's behaviour is the
+evidence for its continuity, and Swearingen's 1803 journal describes the consequence ("stopped up
+at the mouth, by the washing of sand, from the lakes"). So the attachment is a sound deduction and
+is graded `inferred`. Its *shape* is not: nothing reached says how wide the isthmus was, whether it
+ran straight, or where its seaward face lay, and the 1834 shore immediately north of it is sand the
+piers themselves caught and therefore cannot be read backwards.
+**Consequence:** an 1812 scene built on this planform has a stated hole in it. The spit is
+continuous as a claim and discontinuous as geometry, and anything that wants to walk across it
+needs a surface that does not exist yet. That is deliberate: an elevation for the isthmus would
+have to be argued for in a terrain spec, where every other elevation in this project is argued
+for, rather than smuggled in as a by-product of closing a polygon.
+**How to resolve:** **T-1243**, which authors `e1830_natural`'s terrain spec and generates its
+heightfield, is where the isthmus gets a surface and a height or is written down as absent. A
+pre-1833 chart or sounding of the bar would resolve it outright; none has been reached.
+Related: **L3** (flatness), and the 1835 state's Wright/Rees band, which is the same refusal to
+average two readings applied to a different shore. Ticket **T-1242** (piece 1 of **T-0468**).
+**Recorded:** 2026-09-17.
+
+### L241 — the 1880s scene stands on 1 July because the 1835 scene does, and no source says anything about that day
 
 **Decision:** the representative date of the 1880s South Side scene is **1 July 1888**
 (`data/terrain/1880s_scene_date_constraints.json`, epoch `e1871_postfire`, shoreline state

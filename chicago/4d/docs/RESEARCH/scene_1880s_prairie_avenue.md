@@ -77,7 +77,7 @@ readings on every commit:
 2. Carry it to the first 1 July on or after that day — **1888-07-01**.
 3. Require the result inside the window T-0473 set, 1880-01-01 … 1889-12-31. It is.
 
-**The year is evidence. The day and the month are not**, and `docs/LIBERTIES.md` § L240 says so
+**The year is evidence. The day and the month are not**, and `docs/LIBERTIES.md` § L241 says so
 in those words. Nothing in this corpus mentions 1 July 1888. The day is chosen so the two scenes
 this project intends to carry stand on the same ground in the same season at the same hour of
 light, fifty-three years apart, and because midsummer is the only season for which any flora,

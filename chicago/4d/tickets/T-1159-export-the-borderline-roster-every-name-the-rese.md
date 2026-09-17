@@ -43,7 +43,8 @@ limit stated. This ticket builds that offer as a generated roster; it mints nobo
 | `R3_1834_return_or_muster` | the 1 April 1834 return (T-1153) / 1832 muster names with no 1835 corroboration | mint reconstructed, presence bounded by the persistence rate |
 | `R4_surname_only_census` | 1830 census surname-only refusals (25) and 1840 heads whose surname matches an 1835 household | may supply a FAMILY (spouse/child bands) to an existing head at `reconstructed`, never a new head |
 | `R5_later_only_backprojectable` | 1839 directory / 1840 census / Fergus 1843 names whose own biography or a second source puts arrival before 1835-07-01 | mint reconstructed with arrival at the biography's date; else NOT eligible |
-| `R0_ineligible` | outside Chicago, Bear Creek couples (T-1129), Native persons (standing constraint), explicit `researched_not_resident`, post-scene arrivals | never |
+| `R6_native_metis_black` | a Native, Métis or free Black person any source names in or near the town in window (the treaty schedules, the registers, the traders' lists, the 1833 freedom certificates) — whatever its ledger disposition | mint at the ladder's grade where the evidence allows, else `reconstructed`; always `review_required` for Native/Métis; `community` set; owned by T-1177 |
+| `R0_ineligible` | outside Chicago, Bear Creek couples (T-1129), explicit `researched_not_resident`, post-scene arrivals | never |
 
 Every row states which rule put it in its class and the ledger row it came from. The roster is
 sized against the ledger: every `refused`/`unresolved`/`later_only` unit that names a person is
@@ -56,8 +57,8 @@ dropped.
   per class per domain; a `docs/RESEARCH/borderline-roster-2026-09.md` review page shows the
   counts and twenty worked examples (five per class R1–R4, with the reason each was withheld).
 - No card, grade, presence or ledger row changes in this ticket.
-- The 10 `researched_not_resident` names and every `review_required` / `touches_removal`
-  household are R0 and the tool proves it with a self-test.
+- The 10 `researched_not_resident` names are R0 and the tool proves it with a self-test; every
+  `review_required` / `touches_removal` household's named-but-uncarded kin are R6.
 - The 1840 IPUMS household extract is used for R4 only as a SHAPE (age bands) attached to a
   head that 1835 evidence already carries — the T-0507 line stands: *1840 household members
   are never minted into 1835 solely from census counts.*

@@ -42,7 +42,9 @@ attribute in the shape T-1158 defines:
   street_id?, face?, primary: bool, from, to, tier, basis, limit_reason? }` — the register's
   `anchor`/`action` folded in, so the 56/61/62 location limits survive as data.
 - `dates` — `{ opened, closed, precision }` per tier; `evidence` (first/last printing) kept.
-- `sources[]`, `claim_ids[]`, `exclusion` (the register's), `review_required`, `replaceable_by`.
+- `proprietor_community` and `customers[]` (the community vocabulary of T-1158/T-1177 — the
+  Indian trade and the Black-owned businesses are identifiable on one field), `sources[]`,
+  `claim_ids[]`, `exclusion` (the register's), `review_required`, `replaceable_by`.
 
 **The compile.** `tools/compile_businesses.py --build|--check` emits one record per register
 business (present at the scene date, plus excluded ones flagged) from the derived layer — no

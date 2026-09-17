@@ -41,7 +41,7 @@ migration below runs):**
 
 - Every scalar person attribute that reconstruction will touch — `sex`, `birth_year` (with
   `precision`), `arrival` (date + precision + `reason`), `origin`, `relationship`,
-  `presence`, `division`, each `roles[]` entry, `lives_at[]`/`works_at[]` entries, `name` (for
+  `presence`, `division`, `community` (the vocabulary T-1177 defines), each `roles[]` entry, `lives_at[]`/`works_at[]` entries, `name` (for
   a reconstructed name) — becomes `{ value, tier: attested|inferred|reconstructed, basis,
   source_id?, claim_id?, model_id?, seed? }`. `attested` requires `source_id`; `inferred`
   requires a `basis` naming the evidence about THIS person; `reconstructed` requires `basis`

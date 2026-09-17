@@ -21,9 +21,11 @@ claimed_run: null
 No tent, encampment, wagon camp or lodge exists in any form: no record, no archetype
 (`generators/archetypes/` has nine), no family, no exclusion, no liberty. T-1178 wrote
 the people and the candidate grounds (`1835_camp_grounds.json`); this ticket gives them ground
-and canvas. The standing constraint: these are settlers' and workmen's camps, never a Native
-encampment — the August 1835 gathering is weeks after the scene date and is not staged
-(AGENTS.md § Standing constraint, restated on every record).
+and canvas. Native and Métis camps of families in town to trade or awaiting the annuity payment are IN
+scope on the owner's 2026-09-17 ruling — sized and placed from T-1177's evidence, every such
+record `review_required` + `touches_removal`, a lodge form added to the archetype only where a
+source describes one; the August 1835 gathering is weeks after the scene date and is NOT
+staged (AGENTS.md § Standing constraint, restated on every record).
 
 **Acceptance:**
 
