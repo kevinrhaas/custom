@@ -668,6 +668,51 @@ function profileFactsHtml(facts, citationsById) {
 }
 
 /**
+ * A SOURCE ID IN A SENTENCE IS NOT A CITATION (T-1233).
+ *
+ * The research blocks are prose, and some of that prose names its sources by their
+ * internal handles: a G2b refusal reads "This card rests on 3 thing(s) the consolidation
+ * did not read — andreas_1884_v1, fergus_chicago_directory_1839, …". Printed as written,
+ * that is the defect the smoke has asserted against since this section was built — the
+ * household records must QUOTE their sources, not print their ids — and it caught this
+ * wiring on its first run, which is what that assertion is for.
+ *
+ * So every token in a rendered sentence that resolves to a citation is swapped for the
+ * head of that citation, and the citations themselves are listed under the block. The
+ * text is escaped BEFORE the swap and the replacement escaped on its way in: the handles
+ * are `[a-z0-9_]` and survive escaping unchanged, so the order is safe and the swapped-in
+ * title cannot carry markup. A token that resolves to nothing is left exactly as written
+ * — inventing a source is worse than showing a handle.
+ */
+// Every lowercase run, not just the snake_cased ones: `baptisthistoryhomepage` is a
+// citation id with no underscore in it, and a pattern that demanded one let exactly that
+// handle through. The MAP is the filter — a token that resolves to no citation is left
+// alone — so widening the match costs nothing and closes the hole.
+const SOURCE_ID = /[a-z][a-z0-9]*(?:_[a-z0-9]+)*/g;
+
+function citeHead(citation) {
+  const text = String(citation ?? '');
+  if (text.length <= 56) return text;
+  const cut = text.slice(0, 56);
+  return `${cut.slice(0, Math.max(cut.lastIndexOf(' '), 32))}…`;
+}
+
+/** The citations a block declares and the ones its own sentences named, as one list. */
+function citesFor(named, citationsById) {
+  const cites = [...named].map((id) => citationsById.get(id)).filter(Boolean);
+  return cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : '';
+}
+
+function prose(text, citationsById, found = null) {
+  return escapeHtml(String(text ?? '')).replace(SOURCE_ID, (id) => {
+    const cite = citationsById.get(id);
+    if (!cite) return id;
+    if (found) found.add(id);
+    return escapeHtml(citeHead(cite.citation ?? id));
+  });
+}
+
+/**
  * THE WITHHELD HALF OF THE MATCHED RESEARCH (T-1233).
  *
  * T-1232 put the ASSERTED facts on the card — 40 of them — and left the other 204 in
@@ -705,9 +750,9 @@ function withheldFactsHtml(rows, citationsById) {
       ${w.field === 'none' ? '' : `<br>${escapeHtml(label)}: <i>${
         escapeHtml(String(w.proposed_value ?? ''))}</i>${
         w.place_class === 'outside_chicago' ? ', and somewhere other than this town' : ''}`}
-      <br><span class="res-why">${escapeHtml(String(w.reason ?? ''))}
+      <br><span class="res-why">${prose(w.reason, citationsById)}
         Describing ${escapeHtml(printedOn(w.describes_date))}.
-        <q>${escapeHtml(String(w.quote ?? ''))}</q>
+        <q>${prose(w.quote, citationsById)}</q>
         Record ${escapeHtml(String(w.claim_or_record_id ?? ''))}.</span>
       ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</li>`;
   }).join('');
@@ -741,44 +786,46 @@ function withheldFactsHtml(rows, citationsById) {
  */
 function recordResearchHtml(rr, citationsById, pilotShown) {
   if (!rr) return '';
-  const cites = (rr.source_ids || []).map((id) => citationsById.get(id)).filter(Boolean);
+  // The sources the block declares, plus any its own sentences name by handle.
+  const named = new Set(rr.source_ids || []);
+
   const candidates = (rr.candidates || []).map((c) => {
     const cc = (c.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
     return `<li><b>${escapeHtml(c.name || words(c.candidate_id) || words(c.id))}</b>${
       c.candidate_id ? ` <code>${escapeHtml(String(c.candidate_id))}</code>` : ''}
       · ${escapeHtml(c.asserted ? 'asserted as this person' : 'weighed and not asserted')}${
       c.assessment ? ` · ${escapeHtml(words(c.assessment))}` : ''}
-      <br><span class="res-why">${escapeHtml(String(c.basis ?? ''))}
-        ${escapeHtml((c.conflicts || []).join(' '))}</span>
+      <br><span class="res-why">${prose(c.basis, citationsById, named)}
+        ${prose((c.conflicts || []).join(' '), citationsById, named)}</span>
       ${cc.length ? `<ol class="cites">${citationItems(cc)}</ol>` : ''}</li>`;
   }).join('');
   const refusals = (rr.refusals || []).map((r) => `<li><b>Withheld: ${
     escapeHtml(String(r.withheld ?? ''))}</b> · rule ${escapeHtml(String(r.rule ?? ''))}${
     r.regraded_on ? `, regraded ${escapeHtml(printedOn(r.regraded_on))}` : ''}
-    <br><span class="res-why">${escapeHtml(String(r.reason ?? ''))}</span></li>`).join('');
+    <br><span class="res-why">${prose(r.reason, citationsById, named)}</span></li>`).join('');
   return `<dt>The research block on this record</dt>
     <dd>${swatch(null)}<span class="res-chip res-research">${
       escapeHtml(rr.asserted_identity ? 'identity asserted' : 'identity not asserted')}</span>${
       pilotShown ? '' : `<span class="res-chip res-research">${
         escapeHtml(words(rr.outcome))}</span>`}
-      <span class="res-why">${pilotShown ? '' : `${escapeHtml(String(rr.summary ?? ''))} `}Read
+      <span class="res-why">${pilotShown ? '' : `${prose(rr.summary, citationsById, named)} `}Read
         under ${escapeHtml(String(rr.programme ?? 'the resident research programme'))} for
         ${escapeHtml(String(rr.ticket ?? ''))}, reviewed ${
         escapeHtml(printedOn(rr.reviewed_on))}${
         rr.regraded_on ? `, regraded ${escapeHtml(printedOn(rr.regraded_on))} under rule ${
           escapeHtml(String(rr.rule ?? ''))}` : ''}.</span>
       ${rr.evidence_for ? `<br><span class="res-why"><b>For:</b> ${
-        escapeHtml(rr.evidence_for)}</span>` : ''}
+        prose(rr.evidence_for, citationsById, named)}</span>` : ''}
       ${rr.evidence_against ? `<br><span class="res-why"><b>Against:</b> ${
-        escapeHtml(rr.evidence_against)}</span>` : ''}
+        prose(rr.evidence_against, citationsById, named)}</span>` : ''}
       ${rr.proposed_facts ? `<br><span class="res-why"><b>Proposed:</b> ${
-        escapeHtml(rr.proposed_facts)}</span>` : ''}
-      ${rr.notes ? `<br><span class="res-why">${escapeHtml(rr.notes)}</span>` : ''}
+        prose(rr.proposed_facts, citationsById, named)}</span>` : ''}
+      ${rr.notes ? `<br><span class="res-why">${prose(rr.notes, citationsById, named)}</span>` : ''}
       ${candidates ? `<ul class="res-candidates">${candidates}</ul>` : ''}
       ${refusals ? `<ul class="res-candidates">${refusals}</ul>` : ''}
-      ${(rr.candidate_ids || []).length ? `<span class="res-why">Candidate records: ${
-        escapeHtml((rr.candidate_ids || []).join(', '))}.</span>` : ''}
-      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+      ${(rr.candidate_ids || []).length ? `<span class="res-why">Candidates weighed: ${
+        escapeHtml((rr.candidate_ids || []).map((id) => words(id)).join(', '))}.</span>` : ''}
+      ${citesFor(named, citationsById)}</dd>`;
 }
 
 /**
@@ -793,19 +840,21 @@ function recordResearchHtml(rr, citationsById, pilotShown) {
  * silently is the same defect as an unattributed grade: the card asserts a spelling and
  * keeps the argument for it in a file.
  */
-function nameRulingHtml(ruling) {
+function nameRulingHtml(ruling, citationsById) {
   if (!ruling) return '';
-  return `<dt>Why this name, and not the other one</dt>
+  const named = new Set();
+  const body = `<dt>Why this name, and not the other one</dt>
     <dd>${swatch(null)}Ruled by ${escapeHtml(String(ruling.ruled_by ?? ''))} under rule ${
       escapeHtml(String(ruling.rule ?? ''))}${
       Number.isFinite(ruling.printed_line) ? `, at printed line ${
         escapeHtml(String(ruling.printed_line))}` : ''}, and written down in
       <code>${escapeHtml(String(ruling.ruling ?? ''))}</code>.
-      <br><span class="res-why">The card takes ${escapeHtml(String(ruling.takes ?? ''))},
-        over ${escapeHtml(String(ruling.over ?? ''))}. It had displayed
+      <br><span class="res-why">The card takes ${prose(ruling.takes, citationsById, named)},
+        over ${prose(ruling.over, citationsById, named)}. It had displayed
         <q>${escapeHtml(String(ruling.displayed_name_was ?? ''))}</q>.
-        ${escapeHtml(String(ruling.reasoning ?? ''))}
-        ${escapeHtml(String(ruling.the_id_did_not_move ?? ''))}</span></dd>`;
+        ${prose(ruling.reasoning, citationsById, named)}
+        ${prose(ruling.the_id_did_not_move, citationsById, named)}</span>`;
+  return `${body}${citesFor(named, citationsById)}</dd>`;
 }
 
 /**
@@ -819,32 +868,36 @@ function nameRulingHtml(ruling) {
  * argument is an assertion, which is the sentence `laterCensusHtml` above already makes
  * about the 1840 bridge.
  */
-function mergedFromHtml(merged) {
+function mergedFromHtml(merged, citationsById) {
   const list = (merged || []).filter(Boolean);
   if (!list.length) return '';
+  const named = new Set();
   const body = list.map((m) => `<li><b>${
     escapeHtml((m.cards || []).map((c) => words(c)).join(', '))}</b>
     <br><span class="res-why">Folded under rule ${escapeHtml(String(m.rule ?? ''))} by ${
     escapeHtml(String(m.ticket ?? ''))}, in the ${escapeHtml(String(m.cluster ?? ''))}
-    cluster. ${escapeHtml(String(m.note ?? ''))}</span></li>`).join('');
+    cluster. ${prose(m.note, citationsById, named)}</span></li>`).join('');
   return `<dt>Cards folded into this person</dt>
-    <dd>${swatch(null)}<ul class="res-candidates">${body}</ul></dd>`;
+    <dd>${swatch(null)}<ul class="res-candidates">${body}</ul>${
+      citesFor(named, citationsById)}</dd>`;
 }
 
-function mergeRulingHtml(rulings) {
+function mergeRulingHtml(rulings, citationsById) {
   const list = (rulings || []).filter(Boolean);
   if (!list.length) return '';
+  const named = new Set();
   const body = list.map((r) => `<li><b>${escapeHtml(words(r.verdict))}</b> from ${
     escapeHtml((r.weighed_against || []).map((c) => words(c)).join(', '))}, under rule ${
     escapeHtml(String(r.rule ?? ''))} in the ${escapeHtml(String(r.cluster ?? ''))} cluster
     (${escapeHtml(String(r.ticket ?? ''))})${
     r.referred_to ? `, referred to ${escapeHtml(String(r.referred_to))}` : ''}
-    <br><span class="res-why"><b>For a merge:</b> ${escapeHtml(String(r.for_merge ?? ''))}</span>
-    <br><span class="res-why"><b>Against:</b> ${escapeHtml(String(r.against_merge ?? ''))}</span></li>`).join('');
+    <br><span class="res-why"><b>For a merge:</b> ${prose(r.for_merge, citationsById, named)}</span>
+    <br><span class="res-why"><b>Against:</b> ${prose(r.against_merge, citationsById, named)}</span></li>`).join('');
   return `<dt>Weighed against another card</dt>
     <dd>${swatch(null)}<ul class="res-candidates">${body}</ul>
       <span class="res-why">Both sides are printed. A verdict that two look-alike cards are
-        two people is a judgement, and the case for the other answer is what makes it one.</span></dd>`;
+        two people is a judgement, and the case for the other answer is what makes it one.</span>${
+      citesFor(named, citationsById)}</dd>`;
 }
 
 /**
@@ -865,7 +918,7 @@ function oldSettlerDeathHtml(block, personId, citationsById) {
   if (!block) return '';
   const entry = (block.people || []).find((p) => p.person_id === personId);
   if (!entry) return '';
-  const cites = (block.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const named = new Set(block.sources || []);
   const initialOnly = entry.matched_on_initial_only || entry.entry_given_is_initial_only
     || entry.resident_given_is_initial_only;
   return `<dt>A death notice that meets this name</dt>
@@ -875,19 +928,19 @@ function oldSettlerDeathHtml(block, personId, citationsById) {
       escapeHtml(String(entry.age_as_printed ?? ''))}${
       entry.trade_or_office ? ` · ${escapeHtml(words(entry.trade_or_office))}` : ''}
       <br><span class="res-why">Matched as ${escapeHtml(String(entry.matched_as ?? ''))} — ${
-        escapeHtml(String(entry.matched_by ?? ''))} The agreement is ${
+        prose(entry.matched_by, citationsById, named)} The agreement is ${
         escapeHtml(String(entry.the_agreement ?? ''))}; the entry's given name reads
         <q>${escapeHtml(String(entry.entry_given_as_read ?? ''))}</q>${
         initialOnly ? ' and the match rests on an initial alone' : ''}.
         Born between ${escapeHtml(String(entry.birth_year_earliest ?? ''))} and ${
         escapeHtml(String(entry.birth_year_latest ?? ''))}: ${
-        escapeHtml(String(entry.birth_year_arithmetic ?? ''))}
+        prose(entry.birth_year_arithmetic, citationsById, named)}
         The page reads <q>${escapeHtml(String(entry.as_read ?? ''))}</q>, record ${
         escapeHtml(String(entry.record_id ?? ''))}.</span>
       <br><span class="res-why">THE LIST'S OWN HEADER IS THE LIMIT:
         <q>${escapeHtml(String(block.the_header_admission ?? ''))}</q>
-        ${escapeHtml(String(block.note ?? ''))}</span>
-      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</dd>`;
+        ${prose(block.note, citationsById, named)}</span>
+      ${citesFor(named, citationsById)}</dd>`;
 }
 
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
@@ -926,15 +979,15 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
           and one waiting eighteen months earlier is a different claim about the same
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
-      ${nameRulingHtml(person.name_ruling)}
+      ${nameRulingHtml(person.name_ruling, citationsById)}
       ${profileFactsHtml(person.profile_facts, citationsById)}
       ${withheldFactsHtml(withheldByPerson.get(person.id), citationsById)}
       ${evidenceLadderHtml(person, citationsById, ladderRules)}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
       ${recordResearchHtml(person.resident_research, citationsById,
         Boolean(researchByPerson.get(person.id)))}
-      ${mergedFromHtml(person.merged_from)}
-      ${mergeRulingHtml(person.merge_ruling)}
+      ${mergedFromHtml(person.merged_from, citationsById)}
+      ${mergeRulingHtml(person.merge_ruling, citationsById)}
       ${oldSettlerDeathHtml(oldSettlerDeaths, person.id, citationsById)}
       ${laterCensusHtml(person.later_census, citationsById)}
       ${laterDirectoryHtml(directoryByPerson.get(person.id), citationsById)}
