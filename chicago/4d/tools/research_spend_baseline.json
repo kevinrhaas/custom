@@ -6,7 +6,7 @@
   "civic": 17,
   "census_1830": 0,
   "census_1840": 284,
-  "church": 505,
+  "church": 508,
   "books": 223,
   "directories": 7315,
   "newberry_index": 4914,
@@ -27,8 +27,8 @@
    "spent": 819
   },
   "church": {
-   "read": 1743,
-   "spent": 1238
+   "read": 1747,
+   "spent": 1239
   },
   "books": {
    "read": 303,
@@ -601,6 +601,14 @@
    "to": 463,
    "date": "2026-09-16",
    "why": "T-1115 withdrew three later old-settler matches that had attached to residents minted only from bracketed scene-year names; those readings are again correctly unspent until a clean 1835 identity can carry them."
+  },
+  {
+   "domain": "church",
+   "hop": "read",
+   "from": 505,
+   "to": 508,
+   "date": "2026-09-17",
+   "why": "T-1129 withdrew six false Chicago residents minted off the three Bear Creek, Sangamon County marriages of May 1834, which the register's own rows mark at_chicago: false. Three of those readings now match no person in the town at all, so they fall back to unmatched: the gap widened because a false spend was withdrawn, not because the domain read further."
   }
  ],
  "lowered": [

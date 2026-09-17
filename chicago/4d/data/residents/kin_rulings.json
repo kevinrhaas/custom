@@ -56,18 +56,6 @@
    "ruling": "landed",
    "why": "Landed. The register is the record of the act: entry, date, place, celebrant and both parties by name, and both cards were minted FROM the two rows this entry produced, so the people linked are the people named. Celebrated at or before the scene date of 1 July 1835, so they are husband and wife in the scene this dataset reconstructs."
   },
-  "st_cyr_marriage_002_1__husband_of__st_cyr_marriage_002_2": {
-   "ruling": "landed",
-   "why": "Landed. The register is the record of the act: entry, date, place, celebrant and both parties by name, and both cards were minted FROM the two rows this entry produced, so the people linked are the people named. Celebrated at or before the scene date of 1 July 1835, so they are husband and wife in the scene this dataset reconstructs."
-  },
-  "st_cyr_marriage_003_1__husband_of__st_cyr_marriage_003_2": {
-   "ruling": "landed",
-   "why": "Landed. The register is the record of the act: entry, date, place, celebrant and both parties by name, and both cards were minted FROM the two rows this entry produced, so the people linked are the people named. Celebrated at or before the scene date of 1 July 1835, so they are husband and wife in the scene this dataset reconstructs."
-  },
-  "st_cyr_marriage_004_1__husband_of__st_cyr_marriage_004_2": {
-   "ruling": "landed",
-   "why": "Landed. The register is the record of the act: entry, date, place, celebrant and both parties by name, and both cards were minted FROM the two rows this entry produced, so the people linked are the people named. Celebrated at or before the scene date of 1 July 1835, so they are husband and wife in the scene this dataset reconstructs."
-  },
   "st_cyr_marriage_005_1__husband_of__st_cyr_marriage_005_2": {
    "ruling": "landed",
    "why": "Landed. The register is the record of the act: entry, date, place, celebrant and both parties by name, and both cards were minted FROM the two rows this entry produced, so the people linked are the people named. Celebrated at or before the scene date of 1 July 1835, so they are husband and wife in the scene this dataset reconstructs."
@@ -87,6 +75,18 @@
   "st_cyr_marriage_010_1__husband_of__st_cyr_marriage_010_2": {
    "ruling": "refused",
    "why": "Refused, and the source is not doubted. The register celebrates this marriage AFTER the scene date of 1 July 1835 — 27 October 1835 — so on the day this dataset reconstructs these two were not yet husband and wife. A kin row carries no date field, so writing it would state in the present tense a tie the source puts in the scene's future. Left alone deliberately: reverse it the day a kin row can carry a `describes_date`, and the reading is already committed in the register records either way."
+  }
+ },
+ "withdrawn_proposals": {
+  "_doc": "Rulings this file once carried for proposals the survey no longer makes. A ruling is a person's reading of a source and is not deleted in silence just because the question stopped being asked; kept here, unanswerable, so the reading survives the card that occasioned it.",
+  "st_cyr_marriages_002_003_004": {
+   "ruling_ids": [
+    "st_cyr_marriage_002_1__husband_of__st_cyr_marriage_002_2",
+    "st_cyr_marriage_003_1__husband_of__st_cyr_marriage_003_2",
+    "st_cyr_marriage_004_1__husband_of__st_cyr_marriage_004_2"
+   ],
+   "was": "landed",
+   "why": "WITHDRAWN BY T-1129, 2026-09-17, and not because the register is doubted. Footnote 5 of the page places the last three couples of May 1834 at Bear Creek, Sangamon County, in the home of Hy Durbin, and every row of the three entries carries `at_chicago: false`. The six people they name had been minted into the 1835 town on that reading alone and are withdrawn, so the survey proposes no kinship here: a kin row is written on two household records and there are no household records to write it on. THE MARRIAGES STAND AS READ — the entries are transcribed, dated, cited and unchanged in data/research/church/records/st_cyr_marriages_1834_1839.json. If a page ever puts one of these people at Chicago, the card returns, the survey proposes the tie again and it is ruled on afresh."
   }
  }
 }

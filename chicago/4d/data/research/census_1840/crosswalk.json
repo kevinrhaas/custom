@@ -12,10 +12,10 @@
       "outcomes": {
         "named_heads": 965,
         "matched": 15,
-        "candidate": 16,
-        "refused": 934
+        "candidate": 15,
+        "refused": 935
       },
-      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 16 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
+      "candidates_are_not_here": "a candidate is neither a merge nor a refusal and has no shape in this file; the 15 of them live in data/research/census_1840/resident_crosswalk.json with their rules."
     }
   ],
   "merges": [
@@ -2669,18 +2669,8 @@
     },
     {
       "a": "Nathaniel A. King",
-      "b": "Byra King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Byra King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
-      "evidence": [
-        "33S7-9YYJ-DD",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Nathaniel A. King",
       "b": "Byram King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Byram King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Byram King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathaniel'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2690,7 +2680,7 @@
     {
       "a": "Nathaniel A. King",
       "b": "Byron King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Byron King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Byron King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathaniel'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2700,7 +2690,7 @@
     {
       "a": "Nathaniel A. King",
       "b": "Hyram King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Hyram King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Hyram King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathaniel'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2710,7 +2700,7 @@
     {
       "a": "Nathaniel A. King",
       "b": "J D King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'J D King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'J D King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathaniel'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2720,7 +2710,7 @@
     {
       "a": "Nathaniel A. King",
       "b": "Nehemiah King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Nehemiah King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Nehemiah King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathaniel'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2730,7 +2720,7 @@
     {
       "a": "Nathaniel A. King",
       "b": "Sherman King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Sherman King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Sherman King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathaniel'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -2740,7 +2730,7 @@
     {
       "a": "Nathaniel A. King",
       "b": "Tuthill King",
-      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Tuthill King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathaniel'.",
+      "rule": "'Nathaniel A. King' at printed page 216 line 20 (33S7-9YYJ-DD) is NOT 'Tuthill King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathaniel'.",
       "evidence": [
         "33S7-9YYJ-DD",
         "T-0505",
@@ -3900,17 +3890,7 @@
     {
       "a": "Charles Sweet",
       "b": "Alanson Sweet",
-      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Alanson Sweet': The surname 'sweet' is carried by 3 person(s) of 1835 (Alanson Sweet, Alon On Sweet, Richard M Sweet) and none of their given names is 'charles'.",
-      "evidence": [
-        "33S7-9YYJ-W6",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Charles Sweet",
-      "b": "Alon On Sweet",
-      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Alon On Sweet': The surname 'sweet' is carried by 3 person(s) of 1835 (Alanson Sweet, Alon On Sweet, Richard M Sweet) and none of their given names is 'charles'.",
+      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Alanson Sweet': The surname 'sweet' is carried by 2 person(s) of 1835 (Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
       "evidence": [
         "33S7-9YYJ-W6",
         "T-0505",
@@ -3920,7 +3900,7 @@
     {
       "a": "Charles Sweet",
       "b": "Richard M Sweet",
-      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Richard M Sweet': The surname 'sweet' is carried by 3 person(s) of 1835 (Alanson Sweet, Alon On Sweet, Richard M Sweet) and none of their given names is 'charles'.",
+      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Richard M Sweet': The surname 'sweet' is carried by 2 person(s) of 1835 (Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
       "evidence": [
         "33S7-9YYJ-W6",
         "T-0505",
@@ -4149,8 +4129,8 @@
     },
     {
       "a": "John Pearson",
-      "b": "Hiram Pearson",
-      "rule": "'John Pearson' at printed page 239 line 16 (33S7-9YYN-3CDH) is NOT 'Hiram Pearson': The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearson) and none of their given names is 'john'.",
+      "b": "Hiram Pearsons",
+      "rule": "'John Pearson' at printed page 239 line 16 (33S7-9YYN-3CDH) is NOT 'Hiram Pearsons': The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearsons) and none of their given names is 'john'.",
       "evidence": [
         "33S7-9YYN-3CDH",
         "T-0505",
@@ -4280,7 +4260,7 @@
     {
       "a": "J. Bailey",
       "b": "Amos Bailey",
-      "rule": "'J. Bailey' at printed page 239 line 31 (33S7-9YYN-3CDH) is NOT 'Amos Bailey': The head is written 'J. Bailey' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'bailey'. A surname and a letter is not an identity.",
+      "rule": "'J. Bailey' at printed page 239 line 31 (33S7-9YYN-3CDH) is NOT 'Amos Bailey': The head is written 'J. Bailey' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'bailey'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYN-3CDH",
         "T-0505",
@@ -4290,17 +4270,7 @@
     {
       "a": "J. Bailey",
       "b": "Bennet Bailey",
-      "rule": "'J. Bailey' at printed page 239 line 31 (33S7-9YYN-3CDH) is NOT 'Bennet Bailey': The head is written 'J. Bailey' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'bailey'. A surname and a letter is not an identity.",
-      "evidence": [
-        "33S7-9YYN-3CDH",
-        "T-0505",
-        "L4 initial_only"
-      ]
-    },
-    {
-      "a": "J. Bailey",
-      "b": "Esth R M Bailey",
-      "rule": "'J. Bailey' at printed page 239 line 31 (33S7-9YYN-3CDH) is NOT 'Esth R M Bailey': The head is written 'J. Bailey' — a surname and initials only — and 3 person(s) of 1835 carry the surname 'bailey'. A surname and a letter is not an identity.",
+      "rule": "'J. Bailey' at printed page 239 line 31 (33S7-9YYN-3CDH) is NOT 'Bennet Bailey': The head is written 'J. Bailey' — a surname and initials only — and 2 person(s) of 1835 carry the surname 'bailey'. A surname and a letter is not an identity.",
       "evidence": [
         "33S7-9YYN-3CDH",
         "T-0505",
@@ -4761,6 +4731,16 @@
       "a": "William A. Gilman",
       "b": "Eli Gilman",
       "rule": "'William A. Gilman' at printed page 207 line 24 (33SQ-GYYJ-93G) is NOT 'Eli Gilman': The surname 'gilman' is carried by 1 person(s) of 1835 (Eli Gilman) and none of their given names is 'william'.",
+      "evidence": [
+        "33SQ-GYYJ-93G",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Henry Fitz Simmons",
+      "b": "Medad I. Simmons",
+      "rule": "'Henry Fitz Simmons' at printed page 207 line 28 (33SQ-GYYJ-93G) is NOT 'Medad I. Simmons': The surname 'simmons' is carried by 1 person(s) of 1835 (Medad I. Simmons) and none of their given names is 'henry'.",
       "evidence": [
         "33SQ-GYYJ-93G",
         "T-0505",
@@ -5769,8 +5749,8 @@
     },
     {
       "a": "William Pearson",
-      "b": "Hiram Pearson",
-      "rule": "'William Pearson' at printed page 233 line 4 (33SQ-GYYJ-RJ) is NOT 'Hiram Pearson': The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearson) and none of their given names is 'william'.",
+      "b": "Hiram Pearsons",
+      "rule": "'William Pearson' at printed page 233 line 4 (33SQ-GYYJ-RJ) is NOT 'Hiram Pearsons': The surname 'pearson' is carried by 1 person(s) of 1835 (Hiram Pearsons) and none of their given names is 'william'.",
       "evidence": [
         "33SQ-GYYJ-RJ",
         "T-0505",
@@ -5919,18 +5899,8 @@
     },
     {
       "a": "Nathan E. King",
-      "b": "Byra King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Byra King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
-      "evidence": [
-        "33SQ-GYYJ-RK",
-        "T-0505",
-        "L3 given_name_conflict"
-      ]
-    },
-    {
-      "a": "Nathan E. King",
       "b": "Byram King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Byram King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Byram King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathan'.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5940,7 +5910,7 @@
     {
       "a": "Nathan E. King",
       "b": "Byron King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Byron King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Byron King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathan'.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5950,7 +5920,7 @@
     {
       "a": "Nathan E. King",
       "b": "Hyram King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Hyram King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Hyram King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathan'.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5960,7 +5930,7 @@
     {
       "a": "Nathan E. King",
       "b": "J D King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'J D King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'J D King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathan'.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5970,7 +5940,7 @@
     {
       "a": "Nathan E. King",
       "b": "Nehemiah King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Nehemiah King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Nehemiah King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathan'.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5980,7 +5950,7 @@
     {
       "a": "Nathan E. King",
       "b": "Sherman King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Sherman King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Sherman King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathan'.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
@@ -5990,7 +5960,7 @@
     {
       "a": "Nathan E. King",
       "b": "Tuthill King",
-      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Tuthill King': The surname 'king' is carried by 8 person(s) of 1835 (Byra King, Byram King, Byron King, Hyram King) and none of their given names is 'nathan'.",
+      "rule": "'Nathan E. King' at printed page 213 line 7 (33SQ-GYYJ-RK) is NOT 'Tuthill King': The surname 'king' is carried by 7 person(s) of 1835 (Byram King, Byron King, Hyram King, J D King) and none of their given names is 'nathan'.",
       "evidence": [
         "33SQ-GYYJ-RK",
         "T-0505",
