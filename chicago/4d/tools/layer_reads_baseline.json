@@ -63,74 +63,60 @@
       "refused_because": "A units declaration, not a figure. It states what woody_stratum.establishes_m's metres are measured from, for a reader of the record and for tools/validate.py, which requires it. A renderer that read it would be a renderer able to convert between datums; if it ever disagreed with the heightfield's own, the right outcome is this gate failing rather than a silent conversion. T-1056."
     },
     "residents/household:associated_with[].from": {
-      "records": 3,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 3
     },
     "residents/household:associated_with[].kind": {
-      "records": 5,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 5
     },
     "residents/household:associated_with[].place_or_structure_id": {
-      "records": 5,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 5
     },
     "residents/household:associated_with[].resolves_to": {
-      "records": 5,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 5
     },
     "residents/household:associated_with[].source_id": {
-      "records": 5,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 5
     },
     "residents/household:associated_with[].tier": {
-      "records": 5,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 5
     },
     "residents/household:associated_with[].undated": {
-      "records": 2,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 2
     },
     "residents/household:division": {
-      "records": 1257,
+      "records": 1258,
       "refused_because": "Denormalised. The MANIFEST's copy is what the panel groups and labels rows by, and validate.py fails the build if the two disagree; reading both would be two answers to one question."
     },
     "residents/household:head": {
-      "records": 1257,
+      "records": 1258,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
     "residents/household:persons[].associated_with[].from": {
-      "records": 2,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 2
     },
     "residents/household:persons[].associated_with[].kind": {
-      "records": 2,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 2
     },
     "residents/household:persons[].associated_with[].place_or_structure_id": {
-      "records": 2,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 2
     },
     "residents/household:persons[].associated_with[].resolves_to": {
-      "records": 2,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 2
     },
     "residents/household:persons[].associated_with[].source_id": {
-      "records": 2,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 2
     },
     "residents/household:persons[].associated_with[].tier": {
-      "records": 2,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 2
     },
     "residents/household:persons[].associated_with[].to": {
-      "records": 1,
-      "refused_because": "T-1238 landed the `associated_with[]` schema, its gates and four demonstration records; T-1240 is the ticket that puts the plural links, their dates, their confidence and their location limits on the people and business views. A schema and its view are two runs' work and the schema has to exist first, so the rows ship ahead of anything that reads them. The bank is where that gap is written down rather than noticed later: this is a dated tally on a layer still being written, and every line of it un-banks in the commit that wires the field up."
+      "records": 1
     },
     "residents/household:persons[].occupation.derived_from": {
-      "records": 262
+      "records": 327
     },
     "residents/household:persons[].occupation.roles_at_scene_date": {
-      "records": 262
+      "records": 327
     },
     "residents/household:persons[].occupation.withdrawn_from_scene_date.ticket": {
       "records": 6
@@ -142,31 +128,43 @@
       "records": 6
     },
     "residents/household:persons[].roles[].as_printed": {
-      "records": 134
+      "records": 554
+    },
+    "residents/household:persons[].roles[].claim": {
+      "records": 420
     },
     "residents/household:persons[].roles[].covers_scene_date": {
-      "records": 267
+      "records": 687
     },
     "residents/household:persons[].roles[].dated_by": {
-      "records": 267
+      "records": 687
+    },
+    "residents/household:persons[].roles[].employer_or_body": {
+      "records": 687
+    },
+    "residents/household:persons[].roles[].fills_scene_view": {
+      "records": 687
     },
     "residents/household:persons[].roles[].from": {
-      "records": 267
+      "records": 687
     },
     "residents/household:persons[].roles[].kind": {
-      "records": 267
+      "records": 687
+    },
+    "residents/household:persons[].roles[].place": {
+      "records": 687
     },
     "residents/household:persons[].roles[].precision": {
-      "records": 267
+      "records": 687
     },
     "residents/household:persons[].roles[].role": {
-      "records": 133
+      "records": 364
     },
     "residents/household:persons[].roles[].to": {
-      "records": 267
+      "records": 687
     },
     "residents/household:source_pass": {
-      "records": 1178,
+      "records": 1179,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping \u2014 which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows \u2014 grade, letter_list_only, sources \u2014 is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."
     },
     "residents/manifest:_roles_doc": {
@@ -189,15 +187,15 @@
       "refused_because": "Bookkeeping about an OPERATION, not a figure about the town: how many reconstructed cards the synthesis of 2 September 2026 removed. The town it describes no longer exists in this tree, so a visitor has nothing to hold it against; `by_grade.reconstructed` \u2014 which reads 0 \u2014 is the fact about the layer, and the removal itself is docs/LIBERTIES.md's business."
     },
     "residents/manifest:households[].head": {
-      "records": 1257,
+      "records": 1258,
       "refused_because": "A foreign key into `persons[].id`, not a figure \u2014 it names which person heads the household, and that fact already reaches the visitor as that person's `relationship`, shown on their own row."
     },
     "residents/manifest:households[].present_on_scene_date": {
-      "records": 1257,
+      "records": 1258,
       "refused_because": "The flat copy of a graded claim. `residents.js` shows the RECORD's block \u2014 its value, its confidence, its reasoning and its sources \u2014 and the manifest's bare value carries none of that. Showing the poorer copy would be showing less."
     },
     "residents/manifest:households[].projected_resident": {
-      "records": 730,
+      "records": 721,
       "refused_because": "The flat copy of a person-level subtype. `people.js` filters and chips `resident_subtype === 'projected_resident'` on the person's own row, where the evidence that made them projected sits beside the label; the household's boolean carries none of it. The identical ruling T-0782 made about `counts.projected_residents`, one level down."
     },
     "residents/manifest:merged[].cluster": {
@@ -233,12 +231,10 @@
       "refused_because": "The same flat copy of the ticket, refused for the same reason."
     },
     "residents/manifest:vocabulary.association_kinds": {
-      "records": 1,
-      "refused_because": "T-1238. The closed set a renderer must implement before it can draw an `associated_with` row at the rung the evidence actually reached. Nothing reads the rows yet, so nothing reads their vocabulary yet either; both un-bank together with T-1240's view."
+      "records": 1
     },
     "residents/manifest:vocabulary.association_resolution": {
-      "records": 1,
-      "refused_because": "T-1238. The closed set a renderer must implement before it can draw an `associated_with` row at the rung the evidence actually reached. Nothing reads the rows yet, so nothing reads their vocabulary yet either; both un-bank together with T-1240's view."
+      "records": 1
     },
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1,

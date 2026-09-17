@@ -59,16 +59,9 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "NO TRADE IS RECORDED FOR 1835-07-01, AND ONE IS RECORDED FOR ANOTHER YEAR. The trade this field used to carry — `army_officer` — is not gone: it stands in `roles[]` with the bound its sources permit, and `withdrawn_from_scene_date` above carries the audit's verdict for withdrawing it. The 1835 field asserts what the sources reach, which here is nothing, because no source cited for the trade describes 1835 (T-0837's write rule, T-0872's measurement, T-0991's repair, made by tools/derive_resident_roles.py).",
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
     "derived_from": "roles",
-    "roles_at_scene_date": [],
-    "withdrawn_from_scene_date": {
-     "value": "army_officer",
-     "confidence": "inferred",
-     "verdict": "unadjudicated",
-     "ticket": "T-0991",
-     "note": "No verdict is recorded for this person in tools/audit_scene_window_trades.py's table."
-    }
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_democrat_1833_1835",

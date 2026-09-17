@@ -214,6 +214,15 @@ AMBIGUOUS_LEAVES = frozenset({
     # scan is narrowed rather than exempted: the day a renderer really does read
     # `associated_with` it declares the expression and never reaches here.
     "from", "to", "tier",
+    # T-1254's `roles[].claim`. `claim` is this renderer's oldest word: every graded
+    # structure attribute is a claim, `popup.js` and the Evidence panel read `.claim` on
+    # things that have nothing to do with a resident's trade, and a role's claim id sat
+    # null on every card until the external volumes were migrated. The moment it carried
+    # a value the bare-name scan attributed all of that to it. Same shape as the three
+    # above and the same narrowing: qualified by its data parent, so the day the people
+    # view really does read a role's claim id (T-1255) it declares the expression and
+    # never reaches here.
+    "claim",
 })
 
 # Unread leaves the reverse scan of assertion 3 cannot attribute, STATED rather
