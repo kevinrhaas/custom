@@ -1,4 +1,12 @@
 export const CHANGELOG = [ // newest first
+  { v: 907, title: 'Daniel Elston made soap, inspected schools and pressed brick', kind: 'change', ts: '2026-09-17T09:56:10.086Z', date: 'Sep 17, 2026, 4:56 AM CT',
+    items: [
+      'Open Daniel Elston\u2019s card and it used to say one thing about him: soap and candle maker, marked as his trade in 1835. Five records in this project name four different things the man did, and none of them is dated to 1835.',
+      'The reason was the shape of the record rather than the reading. A person could hold exactly ONE trade and it carried no date, so whichever line was written in became the answer for ever \u2014 and here the line was an advertisement printed on 26 November 1833, nineteen months before the Wednesday this town is set on.',
+      'His card now carries all five, each as its own dated claim: the Chicago Soap and Candle Manufactory in the Democrat\u2019s first number and the same standing advertisement fourteen months later, a school inspectorship in the city register of 1839, and a patent press-brick works in the directories of 1843 and 1844. Every one shows the line as it was printed, the volume it was read out of, where it was exercised when the source says \u2014 and whether its own dates reach 1 July 1835. None of the five does, and the card says so.',
+      'Whether a role reaches the scene is worked out from that role\u2019s dates and cannot be typed in. A year is read as a whole year; a trade that starts in 1833 and is never said to end does NOT run on to 1835. Two things done at once stay two things.',
+      'This is the first of four passes. The other 1,126 dated role readings this project holds \u2014 the newspapers, the directories, the civic registers \u2014 move onto the same footing next, and the six people whose 1835 trade is printed only outside the window are counted and named until they do.'
+    ] },
   { v: 906, title: 'An attorney and a shoemaker come back to the town', kind: 'fix', ts: '2026-09-17T08:44:26.937Z', date: 'Sep 17, 2026, 3:44 AM CT',
     items: [
       'Two men the newspapers plainly name were missing from the People list, and both were lost by the same pass \u2014 the one that turns a documented tradesman into a resident card. It had drifted off its own sources for weeks without anybody being able to see it, because the gate that was supposed to re-derive it was running a different tool by mistake. It runs the right one now, so this cannot happen again quietly.',

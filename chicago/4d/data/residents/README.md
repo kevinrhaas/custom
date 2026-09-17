@@ -268,3 +268,60 @@ getting done.
 
 **To remove a ruling**, move it into a top-level `withdrawn[]` carrying the cluster `id`,
 the `rule`, a `reason` and the `ticket` that decided it.
+
+## `roles[]` — what a person did, plural and dated (T-1223, the first piece of T-1145)
+
+The singular `occupation` block holds ONE trade and carries no date of its own.
+Daniel Elston is what that costs. Five records in this dataset name four different
+things the man did — the Chicago Soap and Candle Manufactory in the Democrat's first
+number of 26 November 1833 and the same standing advertisement on 7 January 1834, a
+school inspectorship in the city register of 1839, and a patent press-brick works in
+the directories of 1843 and 1844 — and his card showed one of them,
+`soap_and_candle_maker`, graded as an **attested 1835 occupation** out of an
+advertisement printed nineteen months before the scene.
+
+So a role is one ASSERTION out of one ROW of one source:
+
+```json
+{
+  "role": "school_inspector",
+  "kind": "office",
+  "as_read": "SCHOOL INSPECTORS. … Daniel Elston …",
+  "on": "1839", "precision": "year",
+  "confidence": "attested",
+  "source": "fergus_chicago_directory_1839",
+  "claim_id": "f1839_r0039",
+  "place": "not_stated",
+  "employer_or_body": "city_of_chicago",
+  "reaches_scene": false,
+  "note": "The city register of 1839, printed page 38. …"
+}
+```
+
+- `role` is controlled: from `vocabulary.occupations`, or from `vocabulary.offices`
+  where `kind` is `office`. `as_read` keeps the printing, because a controlled list
+  that loses the wording cannot be argued with — `brickmaker` is the word the
+  vocabulary holds and *patent press-brick maker* is what Fergus set.
+- `kind` is one of `vocabulary.role_kinds`. `office` and `employment` REQUIRE
+  `employer_or_body`, so the business band can attach clerks and officers to the
+  establishment they served without re-reading prose.
+- The date is the ROW's: `on` for a point, `from`/`to` for a span, each with its own
+  `precision`. `precision: "unknown"` is how a role says the source dates nothing,
+  and it requires the date fields to be null.
+- `claim_id` **or** `entry_id`, always. A source id alone puts a reader on a volume
+  rather than on a line.
+- `place` is a structure id or the literal `not_stated`. It is never just omitted.
+- `reaches_scene` is **derived** by `tools/roles.py --write` from that role's own
+  dates and gated by `tools/roles.py --check`. A partial date is a range (`"1839"` at
+  year precision covers the whole of 1839); a `from` with no `to` does NOT continue,
+  because "still advertising in August 1834" is not evidence of trading in July 1835.
+
+The singular `occupation` is now a **compatibility view** of the roles that cover
+`scene_date`: where a person carries roles, a trade in that field has to be one of
+them and one that reaches 1835. The six standing rows of
+`data/research/residents/scene_window_trade_audit.json` are the already-adjudicated
+exceptions and are T-1225's to spend. Two simultaneous roles remain two roles.
+
+The other 1,126 structured role rows — the newspaper gazetteer, the later-occupation
+blocks, the 1839 directory and civic-register crosswalks, the 1843/1844 identity
+master — are T-1224's to migrate, with its disposition table.
