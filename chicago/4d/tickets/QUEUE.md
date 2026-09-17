@@ -154,7 +154,6 @@ T-0475 — Build the Prairie Avenue landmark mansion core
 T-0476 — Fill the 1880s Prairie Avenue corridor with documented residences and outbuildings
 T-0477 — Build the 1880s Prairie Avenue streetscape, vegetation and urban furniture
 # --- 7. LOOP IMPROVEMENTS — scene budgets, gates, build cost, and rendering
-T-0437 — The bake smoke clones a 3.2 GB monorepo to test one subtree, and that checkout has killed seven legs at the cap
 T-1118 — A bake whose ref merged mid-run still spends the whole bake before the PR is withheld
 T-0231 — T-0229's expiry was blocked on a flora ticket, so the raised ceilings would never have come down
 T-0673 — The triangle-budget fork was never filed as a ticket, so the owner's answer had nothing to land against: record the ruling and spend it only where a breach is measured
