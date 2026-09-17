@@ -1,3 +1,4 @@
+# T-0437 reserve sample 6: primary bake checkout is delayed; identical behavior.
 name: Chicago 4D — content build
 
 # The slow half: pinned Blender generates and bakes geometry. Minutes, so it runs
