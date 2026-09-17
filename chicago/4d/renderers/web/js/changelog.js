@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Leonard C. Hugunin moves to the H\u2019s', kind: 'fix', ts: '', date: '',
+  { v: 901, title: 'Leonard C. Hugunin moves to the H\u2019s', kind: 'fix', ts: '2026-09-17T05:54:42.363Z', date: 'Sep 17, 2026, 12:54 AM CT',
     items: [
       'One man in the People list was filed under the wrong letter. Leonard C. Hugunin sat between Anson Leonard and N Leonard, because the card the post office\u2019s letter list minted him from read \u201cLeonard, C. Hugunin\u201d \u2014 the comma of the printed line, \u201cHugunin, Leonard, C.\u201d, left behind after the words had already been put the other way round. Every reader of that card believed the comma and took Leonard for the family name. He now reads \u201cLeonard C. Hugunin\u201d and stands beside Hiram Hugunin, where the record id and the paper\u2019s other printing of his name both always said he belonged.',
       'The same comma had reached the 1840 census work, where three refusals of a \u201cJohn Leonard\u201d counted him as one of the town\u2019s three Leonards. There are two, and the refusals now say so. No match or refusal changes \u2014 the man was never a Leonard, so nothing that turned on him was ever decided.',

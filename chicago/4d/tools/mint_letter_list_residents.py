@@ -470,7 +470,7 @@ def display(name: str) -> str:
         # off the ordered string with the comma is not the one read off it
         # without. `Es,Jones, High` orders to `Jones, High Es`, whose comma still
         # marks the family name correctly by accident — that card leads with its
-        # surname for a different reason and carries its own ticket (T-1157),
+        # surname for a different reason and carries its own ticket (T-1217),
         # rather than a migration smuggled in here. No token is recased,
         # respelled, supplied or removed, which is what keeps this a reordering
         # and not a correction of the reading.
@@ -1463,7 +1463,7 @@ NAME_READING_CASES = (
     # it that way gives `jones`, which is RIGHT. The comma is not lying, so it is
     # not dropped, and the card is left exactly as it stands on dev. What is
     # wrong with that card is something else: the printing sets the family name
-    # in the MIDDLE, so the ordered string leads with it, and T-1157 carries
+    # in the MIDDLE, so the ordered string leads with it, and T-1217 carries
     # that.
     ("Es,Jones, High", "jones", "Jones, High Es"),
     # --- a genuine two-part surname, which must survive all of it --------------
