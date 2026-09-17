@@ -1,7 +1,7 @@
 ---
 id: T-0468
 title: Create an e1812 natural terrain epoch for the Fort Dearborn battle landscape
-state: claimed
+state: split
 epic: SOUTH_TIME
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-01
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: run 9/17/2026, 8:56:05 AM CT
 blocked_on: null
 needs_bake: true
-closed_at: null
+closed_at: 2026-09-17T13:58:17.704Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35229760280
 ---
 
