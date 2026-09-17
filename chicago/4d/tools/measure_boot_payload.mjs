@@ -98,7 +98,11 @@ async function measure() {
   const { server, bytes } = serve(SITE);
   await new Promise((r) => server.listen(0, '127.0.0.1', r));
   const port = server.address().port;
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    // T-0153: every Playwright tool must be pointable at a browser — the gate
+    // asserts this line exists in any tool that calls chromium.launch().
+    executablePath: process.env.PW_EXECUTABLE || undefined,
+  });
   try {
     const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
     const page = await context.newPage();

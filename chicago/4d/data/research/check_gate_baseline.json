@@ -4,8 +4,8 @@
   "what": "The tools carrying a --check mode that tools/check.sh does not run with --check, and WHY each one is not. A ratchet, not a target: this list may shrink, and audit_check_gates.py --gate fails when it grows, when it is left standing above what the tree actually shows, or when a row states no reason.",
   "how_to_change_it": "Gate the tool in tools/check.sh and re-run --write, or, if it cannot be gated today, write why_not_gated on its row here — --write carries that field forward — and point owner_ticket at whoever owns the answer. The gate fails on a row with no reason, and on a row the gate has since started running.",
   "counts": {
-    "check_capable": 141,
-    "gated": 130,
+    "check_capable": 149,
+    "gated": 138,
     "ungated": 11
   },
   "ungated": [
@@ -69,6 +69,12 @@
         "--offline"
       ],
       "why_not_gated": "`--check` fetches the leaf images from the archive and needs Pillow, so it cannot be a per-commit gate. check.sh runs `--offline`, which proves a different and gateable thing: that the committed measurement re-derives without the network. Named by T-0896 before it started."
+    },
+    {
+      "tool": "tools/measure_boot_payload.mjs",
+      "other_modes_in_check_sh": [],
+      "why_not_gated": "T-0727/T-1155. The --check re-measures the boot payload in a real headless browser against the PUBLISHED mirror (~40 s plus a publish) — check.sh takes seconds and runs no browser. Deliberately ungated until T-1155 wires it into a nightly smoke leg, whose leg budgeting belongs to T-0167.",
+      "owner_ticket": "T-1155"
     }
   ]
 }
