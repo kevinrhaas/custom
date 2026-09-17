@@ -5,10 +5,10 @@
   "source_id": "census_1830_peoria_county_chicago_precinct",
   "ticket": "T-0498, T-0605, T-0757",
   "counts": {
-    "matched": 16,
-    "surname_variant_candidates": 0,
+    "matched": 14,
+    "surname_variant_candidates": 1,
     "no_surname_in_town": 121,
-    "surname_only_refused": 62,
+    "surname_only_refused": 63,
     "not_a_person": 1
   },
   "calibration": {
@@ -106,17 +106,6 @@
       "grade": "earlier_evidence"
     },
     {
-      "record_id": "census1830_n580_032",
-      "outcome": "earlier_evidence",
-      "source_id": "census_1830_peoria_county_chicago_precinct",
-      "as_read": "John Mann",
-      "normalized": "JOHN MANN",
-      "household": "hh_mann_john",
-      "town_name": "John Mann",
-      "rule": "Surname and given name both agree between the 1830 reading 'John Mann' and the town person 'John Mann' in household hh_mann_john. The 1830 line is carried as EARLIER EVIDENCE for that person and grades nothing on its own.",
-      "grade": "earlier_evidence"
-    },
-    {
       "record_id": "census1830_n580_036",
       "outcome": "earlier_evidence",
       "source_id": "census_1830_peoria_county_chicago_precinct",
@@ -125,17 +114,6 @@
       "household": "hh_beaubien_jean_baptiste",
       "town_name": "Col. Jean Baptiste Beaubien",
       "rule": "Surname and given name both agree between the 1830 reading 'John B Beaubien' and the town person 'Col. Jean Baptiste Beaubien' in household hh_beaubien_jean_baptiste. The 1830 line is carried as EARLIER EVIDENCE for that person and grades nothing on its own.",
-      "grade": "earlier_evidence"
-    },
-    {
-      "record_id": "census1830_n582_003",
-      "outcome": "earlier_evidence",
-      "source_id": "census_1830_peoria_county_chicago_precinct",
-      "as_read": "Archibald Clybourn",
-      "normalized": "ARCHIBALD CLYBOURN",
-      "household": "hh_clybourn_archibald",
-      "town_name": "Archibald Clybourn",
-      "rule": "Surname and given name both agree between the 1830 reading 'Archibald Clybourn' and the town person 'Archibald Clybourn' in household hh_clybourn_archibald. The 1830 line is carried as EARLIER EVIDENCE for that person and grades nothing on its own.",
       "grade": "earlier_evidence"
     },
     {
@@ -194,7 +172,19 @@
       "grade": "earlier_evidence"
     }
   ],
-  "surname_variant_candidates": [],
+  "surname_variant_candidates": [
+    {
+      "record_id": "census1830_n582_003",
+      "outcome": "surname_variant_candidate",
+      "source_id": "census_1830_peoria_county_chicago_precinct",
+      "as_read": "Archibald Clybourn",
+      "normalized": "ARCHIBALD CLYBOURN",
+      "household": "hh_clybourne_archibald",
+      "town_name": "Archibald Clybourne",
+      "rule": "The given names agree and the surnames differ only by a silent terminal e or a doubled consonant: the 1830 reading 'Archibald Clybourn' against the town person 'Archibald Clybourne'. CANDIDATE, not a merge — the identification is T-0513's to make with the rest of the evidence in front of it.",
+      "grade": "candidate"
+    }
+  ],
   "not_a_person": [
     {
       "record_id": "census1830_n582_007",
@@ -527,15 +517,6 @@
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "as_read": "Isaac Egman",
       "normalized": "ISAAC EGMAN",
-      "household": null,
-      "note": "No person in the town's 825 households carries this surname. Either the man had gone by 1835, or he lived in the part of the district that was never Chicago — the Fox River and Du Page settlements are in it too — or he is somebody the reconstruction has not found. All three are findings and none of them is settled here."
-    },
-    {
-      "record_id": "census1830_n578_003",
-      "outcome": "no_surname_in_town",
-      "source_id": "census_1830_peoria_county_chicago_precinct",
-      "as_read": "James P Harkness",
-      "normalized": "JAMES P HARKNESS",
       "household": null,
       "note": "No person in the town's 825 households carries this surname. Either the man had gone by 1835, or he lived in the part of the district that was never Chicago — the Fox River and Du Page settlements are in it too — or he is somebody the reconstruction has not found. All three are findings and none of them is settled here."
     },
@@ -990,6 +971,15 @@
       "note": "No person in the town's 825 households carries this surname. Either the man had gone by 1835, or he lived in the part of the district that was never Chicago — the Fox River and Du Page settlements are in it too — or he is somebody the reconstruction has not found. All three are findings and none of them is settled here."
     },
     {
+      "record_id": "census1830_n580_032",
+      "outcome": "no_surname_in_town",
+      "source_id": "census_1830_peoria_county_chicago_precinct",
+      "as_read": "John Mann",
+      "normalized": "JOHN MANN",
+      "household": null,
+      "note": "No person in the town's 825 households carries this surname. Either the man had gone by 1835, or he lived in the part of the district that was never Chicago — the Fox River and Du Page settlements are in it too — or he is somebody the reconstruction has not found. All three are findings and none of them is settled here."
+    },
+    {
       "record_id": "census1830_n580_033",
       "outcome": "no_surname_in_town",
       "source_id": "census_1830_peoria_county_chicago_precinct",
@@ -1422,8 +1412,8 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "Simon Reed",
-      "b": "George Reed (hh_reed_george); J. W. Reed (hh_inf_joiner_north_02); S W Reed (hh_reed_s_w); Thomas Reed (hh_reed_thomas); William Reed (hh_reed_william)",
-      "rule": "The 1830 reading 'Simon Reed' shares only a surname with the town person(s) George Reed (hh_reed_george); J. W. Reed (hh_inf_joiner_north_02); S W Reed (hh_reed_s_w); Thomas Reed (hh_reed_thomas); William Reed (hh_reed_william). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "J. W. Reed (hh_inf_joiner_north_02); S W Reed (hh_reed_s_w); Thomas Reed (hh_reed_thomas); William Reed (hh_reed_william)",
+      "rule": "The 1830 reading 'Simon Reed' shares only a surname with the town person(s) J. W. Reed (hh_inf_joiner_north_02); S W Reed (hh_reed_s_w); Thomas Reed (hh_reed_thomas); William Reed (hh_reed_william). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n576_033",
         "data/residents/households/"
@@ -1434,8 +1424,8 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "Samuel Reed",
-      "b": "George Reed (hh_reed_george); J. W. Reed (hh_inf_joiner_north_02); S W Reed (hh_reed_s_w); Thomas Reed (hh_reed_thomas); William Reed (hh_reed_william)",
-      "rule": "The 1830 reading 'Samuel Reed' shares only a surname with the town person(s) George Reed (hh_reed_george); J. W. Reed (hh_inf_joiner_north_02); S W Reed (hh_reed_s_w); Thomas Reed (hh_reed_thomas); William Reed (hh_reed_william). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "J. W. Reed (hh_inf_joiner_north_02); S W Reed (hh_reed_s_w); Thomas Reed (hh_reed_thomas); William Reed (hh_reed_william)",
+      "rule": "The 1830 reading 'Samuel Reed' shares only a surname with the town person(s) J. W. Reed (hh_inf_joiner_north_02); S W Reed (hh_reed_s_w); Thomas Reed (hh_reed_thomas); William Reed (hh_reed_william). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n576_034",
         "data/residents/households/"
@@ -1530,10 +1520,22 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "Rice Smith",
-      "b": "D A Smith (hh_smith_d_a); E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); James Smith (hh_smith_james); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v)",
-      "rule": "The 1830 reading 'Rice Smith' shares only a surname with the town person(s) D A Smith (hh_smith_d_a); E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); James Smith (hh_smith_james); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v)",
+      "rule": "The 1830 reading 'Rice Smith' shares only a surname with the town person(s) E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n578_001",
+        "data/residents/households/"
+      ]
+    },
+    {
+      "record_id": "census1830_n578_003",
+      "outcome": "refused_surname_only",
+      "source_id": "census_1830_peoria_county_chicago_precinct",
+      "a": "James P Harkness",
+      "b": "J. P. Harkness (hh_harkness_j_p)",
+      "rule": "The 1830 reading 'James P Harkness' shares only a surname with the town person(s) J. P. Harkness (hh_harkness_j_p). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "evidence": [
+        "census_1830 record census1830_n578_003",
         "data/residents/households/"
       ]
     },
@@ -1578,8 +1580,8 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "David Smith",
-      "b": "D A Smith (hh_smith_d_a); E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); James Smith (hh_smith_james); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v)",
-      "rule": "The 1830 reading 'David Smith' shares only a surname with the town person(s) D A Smith (hh_smith_d_a); E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); James Smith (hh_smith_james); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v)",
+      "rule": "The 1830 reading 'David Smith' shares only a surname with the town person(s) E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n578_010",
         "data/residents/households/"
@@ -1638,8 +1640,8 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "Benjamin Smith",
-      "b": "D A Smith (hh_smith_d_a); E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); James Smith (hh_smith_james); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v)",
-      "rule": "The 1830 reading 'Benjamin Smith' shares only a surname with the town person(s) D A Smith (hh_smith_d_a); E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); James Smith (hh_smith_james); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v)",
+      "rule": "The 1830 reading 'Benjamin Smith' shares only a surname with the town person(s) E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n578_024",
         "data/residents/households/"
@@ -1650,8 +1652,8 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "John C Owen",
-      "b": "J V Owen (hh_owen_j_v); Thomas Jefferson Vance Owen (hh_owen_thomas_jv); V Owen (hh_owen_v)",
-      "rule": "The 1830 reading 'John C Owen' shares only a surname with the town person(s) J V Owen (hh_owen_j_v); Thomas Jefferson Vance Owen (hh_owen_thomas_jv); V Owen (hh_owen_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "J V Owen (hh_owen_j_v); Thomas Jefferson Vance Owen (hh_owen_thomas_jv)",
+      "rule": "The 1830 reading 'John C Owen' shares only a surname with the town person(s) J V Owen (hh_owen_j_v); Thomas Jefferson Vance Owen (hh_owen_thomas_jv). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n578_025",
         "data/residents/households/"
@@ -1842,8 +1844,8 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "Barnabas Laughton",
-      "b": "Barnardus H Laughton (hh_laughton_barnardus_h); David Laughton (hh_laughton_david); Sophia Laughton (hh_laughton_sophia)",
-      "rule": "The 1830 reading 'Barnabas Laughton' shares only a surname with the town person(s) Barnardus H Laughton (hh_laughton_barnardus_h); David Laughton (hh_laughton_david); Sophia Laughton (hh_laughton_sophia). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "David Laughton (hh_laughton_david); Sophia Laughton (hh_laughton_sophia)",
+      "rule": "The 1830 reading 'Barnabas Laughton' shares only a surname with the town person(s) David Laughton (hh_laughton_david); Sophia Laughton (hh_laughton_sophia). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n580_015",
         "data/residents/households/"
@@ -1890,8 +1892,8 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "Horatio G Smith",
-      "b": "D A Smith (hh_smith_d_a); E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); James Smith (hh_smith_james); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v)",
-      "rule": "The 1830 reading 'Horatio G Smith' shares only a surname with the town person(s) D A Smith (hh_smith_d_a); E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); James Smith (hh_smith_james); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v)",
+      "rule": "The 1830 reading 'Horatio G Smith' shares only a surname with the town person(s) E Kirby Smith (hh_smith_e_kirby); Elded Smith (hh_smith_elded); George Smith (hh_smith_george); Jeremiah Smith (hh_smith_jeremiah); L W Smith (hh_smith_l_w); Lawrence Smith (hh_smith_lawrence); Matthias Smith (hh_smith_matthias); William Smith (hh_smith_william); William V Smith (hh_smith_william_v). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n582_002",
         "data/residents/households/"
@@ -1914,8 +1916,8 @@
       "outcome": "refused_surname_only",
       "source_id": "census_1830_peoria_county_chicago_precinct",
       "a": "Jonathan Nash Bailey",
-      "b": "Amos Bailey (hh_bailey_amos); Bennet Bailey (hh_bailey_bennet); Esth R M Bailey (hh_bailey_esth_r_m)",
-      "rule": "The 1830 reading 'Jonathan Nash Bailey' shares only a surname with the town person(s) Amos Bailey (hh_bailey_amos); Bennet Bailey (hh_bailey_bennet); Esth R M Bailey (hh_bailey_esth_r_m). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
+      "b": "Amos Bailey (hh_bailey_amos); Bennet Bailey (hh_bailey_bennet)",
+      "rule": "The 1830 reading 'Jonathan Nash Bailey' shares only a surname with the town person(s) Amos Bailey (hh_bailey_amos); Bennet Bailey (hh_bailey_bennet). A surname match is a clue and not an identity, so it is REFUSED rather than merged, and the refusal is written down so the next sweep does not make the same match again.",
       "evidence": [
         "census_1830 record census1830_n582_008",
         "data/residents/households/"

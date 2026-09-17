@@ -4,9 +4,9 @@
   "what": "The tools carrying a --check mode that tools/check.sh does not run with --check, and WHY each one is not. A ratchet, not a target: this list may shrink, and audit_check_gates.py --gate fails when it grows, when it is left standing above what the tree actually shows, or when a row states no reason.",
   "how_to_change_it": "Gate the tool in tools/check.sh and re-run --write, or, if it cannot be gated today, write why_not_gated on its row here — --write carries that field forward — and point owner_ticket at whoever owns the answer. The gate fails on a row with no reason, and on a row the gate has since started running.",
   "counts": {
-    "check_capable": 149,
-    "gated": 138,
-    "ungated": 11
+    "check_capable": 150,
+    "gated": 140,
+    "ungated": 10
   },
   "ungated": [
     {
@@ -40,12 +40,6 @@
       ],
       "why_not_gated": "RED — T-0691, itself blocked on T-0660's ruling. `--check` reports 798 file(s) differing. check.sh runs --gate and --self-test, which prove different things: only --check proves the committed cohort still follows from its inputs.",
       "owner_ticket": "T-0691"
-    },
-    {
-      "tool": "tools/read_census_1830.py",
-      "other_modes_in_check_sh": [],
-      "why_not_gated": "RED — T-0856. `--check` fails on resident_crosswalk.json having been hand-edited, AND it rewrites that file as a side effect of being asked. A --check that dirties the tree it measures cannot be gated before that is fixed; T-0856 carries both.",
-      "owner_ticket": "T-0856"
     },
     {
       "tool": "tools/rename_household_ids.py",
