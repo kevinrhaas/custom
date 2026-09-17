@@ -84,7 +84,22 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — resident_research_cook_morrison_album. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "name_as_printed",
+     "value": "Orsemus Morrison",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_cook_morrison_album"
+     ],
+     "describes_date": "1833-01-01",
+     "place_class": "not_a_place",
+     "record_id": "resident_research:T-0482#02",
+     "as_read": "Orsemus Morrison",
+     "note": "The record displays 'Morrison Orsemus' — the same two words the other way round. The album prints Orsemus as the forename. The printing is carried; whether the CARD should lead with it is the question T-1217 owns, and this row is not allowed to answer it."
+    }
+   ]
   }
  ],
  "touches_removal": false,

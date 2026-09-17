@@ -19,9 +19,12 @@
   "note": "Not attested."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "Near Utica, New York",
+  "confidence": "inferred",
+  "sources": [
+   "resident_research_pugsley_barrien_vanburen"
+  ],
+  "note": "Where he set out from, with the month he set out. The household's origin block reads 'Not attested.' and an 1880 county history is an ordinary source for where a family was of. Read from resident_research_pugsley_barrien_vanburen: “left near Utica, New York in June 1835”. Spent by T-1232 out of the matched resident research, which held it in prose; the household's other claims are untouched."
  },
  "reason_for_coming": {
   "value": null,
@@ -86,7 +89,35 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — resident_research_pugsley_barrien_vanburen. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "origin",
+     "value": "Near Utica, New York",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_pugsley_barrien_vanburen"
+     ],
+     "describes_date": "1835-06-01",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0483#01",
+     "as_read": "left near Utica, New York in June 1835",
+     "note": "Where he set out from, with the month he set out. The household's origin block reads 'Not attested.' and an 1880 county history is an ordinary source for where a family was of."
+    },
+    {
+     "field": "life_event",
+     "value": "Travelled to Chicago in June 1835 and prospected there",
+     "confidence": "inferred",
+     "sources": [
+      "resident_research_pugsley_barrien_vanburen"
+     ],
+     "describes_date": "1835-06-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0483#02",
+     "as_read": "traveled to Chicago, prospected there",
+     "note": "Dated to the month before the scene, directly adjacent to the 1 July letter-list return the record is minted from."
+    }
+   ]
   }
  ],
  "touches_removal": false,

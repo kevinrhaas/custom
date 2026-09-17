@@ -163,6 +163,51 @@
       "tier": 4,
       "tier_label": "later scholarship"
     },
+    "census_1830_peoria_county_chicago_precinct": {
+      "source_id": "census_1830_peoria_county_chicago_precinct",
+      "citation": "Fifth Census of the United States, 1830: population schedules, Illinois — the enumeration district headed \"Peoria & Putnam Counties & Territory attached\", which is where the Chicago settlement was enumerated. NARA microfilm publication M19, Illinois, reel 24 (Greene, Morgan, Sangamon, Calhoun, Pike, Fulton, Knox, Henry, Adams, Hancock, Warren, Mercer, Peoria, Putnam and Jo Daviess counties), digitised and republished by the Internet Archive as item populationsc18300024unit. Leaves n576, n578, n580, n582 and n584 — printed pages 299 to 303 — are the whole of the division's names and all five are read here: 200 heads of family in the enumerator's hand. Leaf n586 (page 304) is the division's recapitulation and carries no name.",
+      "url": "https://archive.org/details/populationsc18300024unit",
+      "archived_url": "",
+      "tier": 1,
+      "tier_label": "period/eyewitness",
+      "transcribes": [
+        {
+          "work": "The assistant marshal's manuscript schedule for the district headed \"Peoria & Putnam Counties & Territory attached\", Fifth Census of the United States",
+          "date": "1830",
+          "tier": 1,
+          "note": "The assistant marshal's manuscript schedule, written in the summer of 1830. The paper original is at NARA. Nobody here has handled it. NOT SEEN BY THIS PROJECT: the paper original is at NARA and nobody here has handled it."
+        },
+        {
+          "work": "NARA microfilm publication M19, Illinois, reel 24 — a photographic copy of that manuscript",
+          "date": "1830",
+          "tier": 1,
+          "note": "NOT SEEN BY THIS PROJECT either. The film itself was not handled; what was read is a digitisation of it."
+        },
+        {
+          "work": "Internet Archive item populationsc18300024unit — the Archive's scan of reel 24, 620 leaves",
+          "date": "1830",
+          "tier": 1,
+          "note": "THIS IS THE LAYER READ. Two leaves were fetched as JPEG page images, cropped and read by eye. The item carries NO usable text layer — its own OCR metadata records \"language not currently OCRable\" and its search-text file is 28 bytes — so nothing was extracted, matched or searched, and no transcriber stands between this project and the enumerator's hand. That is why every record citing this source is graded `scan_verified` and not `transcription_mediated`. The mediation is photographic and not editorial, which is the whole reason the tier stays at 1."
+        }
+      ],
+      "what_it_supplies": [
+        "200 heads of family standing in the district that contained Chicago in the summer of 1830, five years before the scene — the earliest name-by-name list of the place this project holds, and now the WHOLE of the enumerator's division rather than a middle slice of it",
+        "the enumerator's own order, which is a walking order: Kinzie, Caldwell, Woolley, Walker, Laughton and See on one stretch of leaf n580; Robinson, Mark Beaubien, the two LaFramboises, Jean Baptiste Beaubien on another; Clybourn, Clark, Wolcott, Miller, Ouilmette and Heacock on n582",
+        "the front of the division, which is Peoria itself — n576 opens with Augustus Langworthy, John Hamlin, John L Bogardus and Abner Eades, and n578 runs on through the Prestons, Thomases and Hammetts. None of them is a Chicago household and the district's shape is the point: the settlement at the mouth of the river is a run of names inside a list of northern Illinois",
+        "the United States garrison of Fort Dearborn enumerated as a single household under Major John Fowle, commanding — the only line on either leaf that is an institution rather than a family",
+        "a heavy rule ruled under William See on leaf n580, and a change of hand spacing after it, which is the enumerator marking a break in his round",
+        "the printed age-band columns beside each name, and each leaf's own totals row, of which the first five male columns were read as a calibration (n576: 25, 33, 23, 15, 39 as the enumerator corrected them; n578: 37, 16, 29, 21, 37; n580: 20, 9, 9, 2, 3; n582: 16, 5, 14, 8, 10; n584: 15, 8, 8, 5, 13)",
+        "the division's own recapitulation on n586 — five page rows, a division total written as 199 families, and a \"Free White Males / do Females\" line. It does not close: the family column as read sums to 247 and the leaves as read carry 200 heads, with pages 1 and 3 the two that disagree. The discrepancy is recorded and nothing is graded on it"
+      ],
+      "what_it_does_not_supply": [
+        "the word Chicago. The schedule never writes it, because in 1830 there was no Chicago to write — the district is Peoria and Putnam and everything hung off them, and the Chicago settlement is a run of households inside it that the page does not head or separate",
+        "any evidence that a man on it was in Chicago on 1 July 1835. Five years is two migrations in this town; the schedule dates and corroborates and never mints",
+        "any address, lot, trade, or building",
+        "any name but the head of family's. Everybody else on both leaves is a tally mark in an age band",
+        "the full age-band composition of any household: only each leaf's totals row was read column by column, and the per-household cells were left to a later pass rather than half-read",
+        "the rest of its own district. Leaves n584 and beyond carry the Du Page and Fox River part of it and are unread"
+      ]
+    },
     "census_1840_chicago_familysearch_images": {
       "source_id": "census_1840_chicago_familysearch_images",
       "citation": "1840 U.S. Census, population schedules, Chicago, Cook County, Illinois — FamilySearch digital images of the enumerator's sheets, division of S. W. Sherman.",
