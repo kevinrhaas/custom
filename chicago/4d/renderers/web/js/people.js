@@ -98,6 +98,13 @@ const KNOWN = {
  * Declared as data so the count-per-pill pass can run every row against every
  * OTHER row's filter without special-casing any of them.
  */
+/** The three answers the roles filter offers, read off the compiled counts. */
+const ROLE_FILTERS = {
+  at_scene: (r) => (r.roles_at_scene_date || 0) > 0,
+  off_scene: (r) => (r.roles || 0) > 0 && !(r.roles_at_scene_date || 0),
+  none: (r) => !(r.roles || 0),
+};
+
 function filterSpecs(people) {
   const occCounts = new Map((people.vocabulary?.occupations || []).map((o) => [o.value, o.count]));
   const topTrades = [...occCounts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
@@ -143,6 +150,17 @@ function filterSpecs(people) {
       key: 'address', label: '', toggle: true, group: 'facts',
       options: [['yes', 'Has an address']],
       test: () => (r) => !!(r.lives_at || r.works_at),
+    },
+    // The dated roles, as the one question the plural field makes askable (T-1255):
+    // who the sources word at the scene date, and who they word only in another
+    // year. The second pill is the whole reason the field went plural — 135 people
+    // hold a role and none of it reaches 1 July 1835, and the singular `occupation`
+    // view showed them as having no trade.
+    {
+      key: 'roles', label: 'Dated roles',
+      options: [['at_scene', 'a role on 1 July 1835'], ['off_scene', 'only in another year'],
+        ['none', 'no role recorded']],
+      test: (v) => ROLE_FILTERS[v] || (() => false),
     },
   ];
 }
@@ -197,7 +215,14 @@ export async function mountPeople({
     ...r,
     _name: fold(r.name),
     _words: fold(r.name).split(' '),
+    // Both wordings of every role (T-1255): the controlled word where the source's
+    // wording has been adjudicated into the vocabulary and the wording AS PRINTED
+    // where it has not. A visitor who types "brickmaker" is typing what a directory
+    // printed, and before this the search could only match the one trade the
+    // singular `occupation` view carried for 1 July 1835 — so 135 people whose every
+    // role falls outside the scene window were unfindable by any trade at all.
     _text: fold([r.name, r.household_name, r.occupation ? words(r.occupation) : '',
+      ...(r.role_words || []).map((w) => words(w)),
       r.division ? words(r.division) : '', r.relationship ? words(r.relationship) : ''].join(' ')),
   }));
   const byId = new Map(rows.map((r) => [r.id, r]));
@@ -400,9 +425,25 @@ export async function mountPeople({
     return r.arrival_precision === 'not_later_than' ? `here by ${r.arrival_year}` : `came ${r.arrival_year}`;
   }
 
+  /**
+   * The trade on a LIST row (T-1255). `occupation` is the generated view of the
+   * roles that cover 1 July 1835, so where it is null the row said nothing about
+   * a trade even when the record holds one — 135 people whose every dated role
+   * falls outside the scene window read as trade-less. Those get their earliest
+   * role word and its year instead, with the year doing the marking: "brickmaker
+   * 1839" is visibly not a claim about the scene date, and the card's timeline
+   * says so in words.
+   */
+  function tradeText(r) {
+    if (r.occupation) return words(r.occupation);
+    const off = (r.role_labels || []).find((l) => l.word);
+    if (!off) return '';
+    return off.year ? `${words(off.word)} ${off.year}` : words(off.word);
+  }
+
   function rowHtml(r) {
     const sub = [
-      r.occupation ? words(r.occupation) : '',
+      tradeText(r),
       r.division ? `${words(r.division)}${r.division === 'unplaced' ? '' : ' division'}` : '',
       arrivalText(r),
     ].filter(Boolean).join(' · ');
