@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'Nothing you can see \u2014 where everybody was, in one table', kind: 'change', ts: '',
+  { v: 908, title: 'Nothing you can see \u2014 where everybody was, in one table', kind: 'change', ts: '2026-09-17T11:22:00.908Z', date: 'Sep 17, 2026, 6:22 AM CT',
     items: [
       'Nothing in the scene changed in this pass. It works the record underneath it, and what it found is worth saying plainly: this project has never been able to answer, in one place, how many statements it holds about where somebody lived, where they worked, or where a shop stood \u2014 nor what stopped each of those statements getting any more exact.',
       'The reason is that the answers were spread across five files, each written by a different pass and each with its own idea of what \u201cplaced\u201d means: what the town does about an address printed in a newspaper; which roof a shop takes when the paper names a street and nothing narrower; whether an address printed in a directory of 1839, 1843 or 1844 may be read backwards onto 1835 ground (two of these); and the cards themselves. To count the town\u2019s location evidence you had to open all five and translate between them, and so nobody did.',
