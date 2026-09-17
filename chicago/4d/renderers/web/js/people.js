@@ -551,7 +551,7 @@ export async function mountPeople({
         .map((s) => s.textContent.replace(/\s+/g, ' ').trim()));
       body.innerHTML = '<h4 class="people-card-h">The household record</h4>'
         + householdHtml(hh, joins.citationsById, joins.researchByPerson, joins.directoryByPerson, joins.ladderRules,
-          joins.agencies);
+          joins.agencies, joins.withheldByPerson);
       for (const det of body.querySelectorAll('details')) {
         const summary = det.querySelector(':scope > summary')?.textContent.replace(/\s+/g, ' ').trim() || '';
         const title = det.querySelector(':scope > summary .lib-title')?.textContent?.trim();
@@ -562,7 +562,8 @@ export async function mountPeople({
     try {
       const [hh, citationsById] = await Promise.all([getJson(`residents/${r.file}`), citations()]);
       if (seq !== openSeq) return false; // a later open won
-      render(hh, { citationsById, researchByPerson: new Map(), directoryByPerson: new Map(), ladderRules: [] });
+      render(hh, { citationsById, researchByPerson: new Map(), directoryByPerson: new Map(),
+        withheldByPerson: new Map(), ladderRules: [] });
       const why = cardEl.querySelector('.people-noaddr-why');
       if (why) {
         const note = hh?.lives_at?.note || hh?.works_at?.note || '';

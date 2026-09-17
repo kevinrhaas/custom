@@ -7926,7 +7926,7 @@
   {
    "person_id": "jones_es_high",
    "household_id": "hh_jones_es_high",
-   "name": "Jones, High Es",
+   "name": "High Es Jones",
    "identity": "id_jones_high_es",
    "rule": "G5",
    "grade": "inferred",

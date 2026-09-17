@@ -427,6 +427,47 @@ def unread_initial(token: str) -> bool:
     return any(ch.isdigit() for ch in token)
 
 
+def comma_is_not_the_divider(name: str) -> bool:
+    """Does the first comma of this printing fail to be the surname/forename mark?
+
+    T-1217. `display()` reorders around the FIRST comma, on the standing assumption
+    that a comma in a letter-list line is the office's mark for "family name first".
+    One printing in this corpus breaks that assumption by setting the family name in
+    the MIDDLE: `Es,Jones, High`, whose first comma divides `Es` from `Jones, High`
+    and is not a divider at all. Reordered around it the card reads `Jones, High Es`
+    and LEADS with the family name, which is the one order a card must never be in.
+
+    The condition is stated as what it literally is, so it can be counted: the family
+    name `surname()` reads lies PAST the first comma while a word stands before it.
+    That is the only way a first comma can be sitting where no divider belongs — a
+    true surname-first printing has its family name in the head (`Hail, Aifred`), and
+    a forename-first printing with a stray comma has it in the tail with an EMPTY
+    head (`, Phitip D,`, whose surname the crop lost altogether, and which this rule
+    therefore leaves exactly where it stands rather than promoting a lost reading).
+
+    A SQUARE-BRACKET SUPPLY IS REFUSED HERE RATHER THAN REORDERED. `words()` drops
+    bracketed text before `surname()` ever sees it, so on `Lo[vering], Richard` the
+    family name comes back `richard` — the defect T-1155 carries, and this rule will
+    not move a card on a reading it knows to be unreliable. Twelve readings in the
+    pool are in that state and every one of them is left alone.
+
+    MEASURED, as this ticket's acceptance requires, over the whole letter-list pool:
+    1,970 distinct printings in data/research/newspapers/register_1835.json, of which
+    877 carry a comma, of which this predicate is true of exactly ONE — `Es,Jones,
+    High`. Across the 736 letter-list cards on disk it moves one card. The wider rule
+    T-1121 measured and refused — put the token `surname()` picked last, wherever it
+    fell — moved 84.
+    """
+    if "," not in name or "[" in name:
+        return False
+    fam = surname(name)
+    if not fam:
+        return False
+    head = [w.lower().strip("'").replace("'", "") for w in words(name.partition(",")[0])]
+    tail = [w.lower().strip("'").replace("'", "") for w in words(name.partition(",")[2])]
+    return bool(head) and fam not in head and fam in tail
+
+
 def display(name: str) -> str:
     """'Foot, S.' -> 'S. Foot'. The papers print both orders; a card shows one.
 
@@ -460,6 +501,46 @@ def display(name: str) -> str:
     alone. What changes is that the card stops asserting `8.` is a name.
     """
     if "," in name:
+        if comma_is_not_the_divider(name):
+            # T-1217. REORDER AROUND THE COMMA THE FAMILY NAME STANDS BEFORE,
+            # NOT AROUND THE FIRST ONE. A card is forename-then-family, and in a
+            # surname-first printing it is the office's comma that says which
+            # tokens are the forenames: the ones AFTER it. On `Es,Jones, High`
+            # that divider is the SECOND comma — the entry is `Jones, High`, and
+            # `Es` stands in front of the family name where nothing of this name
+            # belongs. So the forenames lead, what stood before the family name
+            # follows them, and the family name ends the card: `High Es Jones`.
+            #
+            # `Es` IS KEPT AND NOT PROMOTED, which is the whole of the judgement
+            # here. This project's own registry of suspected misreadings already
+            # holds this printing (tools/register_letter_list_suspicions.py):
+            # "reads as a run-on of two entries — the tail of one name and the
+            # head of the next, set without the break between them", with the
+            # right-hand side NULL, meaning the letters cannot be read with
+            # confidence and the project declines to guess. A card must not turn
+            # that into a forename. Leading with `Es` would do exactly that: every
+            # crosswalk in the layer reads the first token's initial, and the card
+            # would have acquired a new `inferred` tie to `E. M. Jones`, cabinet
+            # and chair manufacturer of Dearborn street in 1844, off a letter the
+            # project has said it cannot read.
+            #
+            # THE TRAP THE TICKET NAMES IS THE COMMA-ONLY FIX. Dropping the
+            # punctuation and nothing else gives `Jones High Es`, whose last word
+            # is `Es` — and compile_scene.py's `surname_of()` files a card under
+            # its last word, so it would sort in the town directory under `es`,
+            # away from the other Joneses. Moving the family name is what keeps
+            # the directory right, and it is why the comma may only go once the
+            # order has been made true.
+            #
+            # No token is recased, respelled, supplied or removed. The verbatim
+            # setting stays where verbatim settings belong — the extracted column
+            # and the gazetteer's `as_printed`, neither of which this touches.
+            fam = surname(name)
+            tokens = [t for t in re.split(r"[,\s]+", name.strip()) if t]
+            at = next(i for i, t in enumerate(tokens)
+                      if t.lower().strip("'.,").replace("'", "") == fam)
+            shown = tokens[at + 1:] + tokens[:at] + [tokens[at]]
+            return mark_unread(" ".join(shown), name)
         head, _, tail = name.partition(",")
         # T-1121. A CARD'S NAME IS ORDERED, NOT PUNCTUATED. The office sometimes
         # sets a SECOND comma inside the forename side — `Hugunin, Leonard, C.` —
@@ -470,12 +551,11 @@ def display(name: str) -> str:
         # Only a comma the reordering has made UNTRUE is dropped, and it is
         # dropped only where it is measurably lying: where the family name read
         # off the ordered string with the comma is not the one read off it
-        # without. `Es,Jones, High` orders to `Jones, High Es`, whose comma still
-        # marks the family name correctly by accident — that card leads with its
-        # surname for a different reason and carries its own ticket (T-1217),
-        # rather than a migration smuggled in here. No token is recased,
-        # respelled, supplied or removed, which is what keeps this a reordering
-        # and not a correction of the reading.
+        # without. No token is recased, respelled, supplied or removed, which is
+        # what keeps this a reordering and not a correction of the reading.
+        # (`Es,Jones, High` used to reach this branch and leave by it carrying a
+        # comma that was right by accident; T-1217 turned it back above, because
+        # its first comma is not a divider at all.)
         tail = tail.strip()
         shown = f"{tail} {head.strip()}".strip() if tail else head.strip()
         plain = re.sub(r"\s+", " ", shown.replace(",", " ")).strip()
@@ -1306,6 +1386,29 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
             # line whose family name the type set in the middle, and it has its
             # own ticket rather than a migration smuggled into this one.
             shown = person.get("name") or ""
+            # T-1217. A CARD ENDS ON ITS FAMILY NAME. Given-first is the one
+            # order a card is in, and the town directory depends on that
+            # literally: compile_scene.py's `surname_of()` files a person under
+            # the LAST word of the name, so a card that leads with its family
+            # name is filed under whatever trails it. jones_es_high read `Jones,
+            # High Es` off a printing that sets the family name in the middle,
+            # and only its comma — right by accident — kept it out of the
+            # directory under `es`.
+            #
+            # Bracketed readings stand outside this assertion, not because they
+            # are exempt but because `words()` strips a square-bracket supply
+            # before `surname()` can see it, so the family name it returns for
+            # `Lo[vering], Richard` is `richard`: T-1155's defect, and a gate may
+            # not fire on a reading it cannot take. All 736 letter-list cards on
+            # disk pass this.
+            tokens = words(shown)
+            if ("[" not in shown and tokens and surname(shown)
+                    and tokens[-1].lower().strip("'").replace("'", "")
+                    != surname(shown)):
+                problems.append(f"{hid}/{pid}: display name {shown!r} does not end "
+                                f"on its family name {surname(shown)!r} — a card is "
+                                f"given-first and the town directory files it under "
+                                f"its last word (T-1217)")
             if "," in shown and surname(shown) != surname(shown.replace(",", " ")):
                 problems.append(f"{hid}/{pid}: display name {shown!r} reads the family "
                                 f"name {surname(shown)!r} with its comma and "
@@ -1554,14 +1657,17 @@ NAME_READING_CASES = (
     ("Hugunin, Leonard, C.", "hugunin", "Leonard C. Hugunin"),
     ("Leonard C. Hugunin", "hugunin", "Leonard C. Hugunin"),
     # `Es,Jones, High` is the other printing this corpus holds with two commas,
-    # and it is the row that says where the rule stops. Ordered, it is `Jones,
-    # High Es`, whose comma a reader takes as a surname-first mark — and taking
-    # it that way gives `jones`, which is RIGHT. The comma is not lying, so it is
-    # not dropped, and the card is left exactly as it stands on dev. What is
-    # wrong with that card is something else: the printing sets the family name
-    # in the MIDDLE, so the ordered string leads with it, and T-1217 carries
-    # that.
-    ("Es,Jones, High", "jones", "Jones, High Es"),
+    # and T-1217 is what its first comma turned out to be: not a divider. The
+    # family name is set in the MIDDLE, so reordering around that comma led the
+    # card with it (`Jones, High Es`). The divider is the SECOND comma, so the
+    # forename `High` leads, the run-on remnant `Es` follows it unpromoted, and the
+    # family name ends the card. The trap it avoids is the comma-only fix: dropping
+    # the punctuation alone gives `Jones High Es`, whose last word is `Es`, and
+    # compile_scene.py's `surname_of()` files a card under its last word — so that
+    # card would have sorted in the town directory under `es`, away from the other
+    # Joneses. (`surname()` here would still answer `jones`, by T-0638's first-token
+    # rule; two readers of one card disagreeing is the defect, not a safety net.)
+    ("Es,Jones, High", "jones", "High Es Jones"),
     # --- a genuine two-part surname, which must survive all of it --------------
     ("Rev. John Mary Irenaeus St Cyr", "cyr", "Rev. John Mary Irenaeus St Cyr"),
 )
