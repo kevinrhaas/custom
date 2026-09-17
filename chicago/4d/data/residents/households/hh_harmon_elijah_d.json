@@ -86,7 +86,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'The Father of Medicine in Chicago' in Andreas's phrase. He arrived in May 1830, took the place of the absent Dr Finley as post surgeon at Fort Dearborn, isolated and treated the cholera cases of July 1832 and quarrelled with General Scott over it, and in the winter of 1832 performed 'the first surgical operation of any importance' in Chicago - an amputation on a half-breed Canadian who had frozen his feet carrying the mail on horseback from Green Bay."
+    "note": "'The Father of Medicine in Chicago' in Andreas's phrase. He arrived in May 1830, took the place of the absent Dr Finley as post surgeon at Fort Dearborn, isolated and treated the cholera cases of July 1832 and quarrelled with General Scott over it, and in the winter of 1832 performed 'the first surgical operation of any importance' in Chicago - an amputation on a half-breed Canadian who had frozen his feet carrying the mail on horseback from Green Bay.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "physician"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -119,7 +123,25 @@
       "reason": "This card rests on 3 thing(s) the consolidation did not read — andreas_1884_v1, isa_public_domain_land_tract_sales, second_presbyterian_chicago_1892. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "physician",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

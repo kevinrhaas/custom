@@ -83,7 +83,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "One of the eight physicians Andreas counts at the close of 1833. He studied surgery and medicine in Lancashire under a Dr Maguire, attended lectures in Dublin and 'walked' the Dublin Lying-in Hospital, and was licensed by the medical board of New Jersey in the spring of 1830."
+    "note": "One of the eight physicians Andreas counts at the close of 1833. He studied surgery and medicine in Lancashire under a Dr Maguire, attended lectures in Dublin and 'walked' the Dublin Lying-in Hospital, and was licensed by the medical board of New Jersey in the spring of 1830.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "physician"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -113,7 +117,25 @@
      }
     ],
     "summary": "The 1833 tax list and the 1834 poll both print the whole name 'Egan, William Bradshaw' — the middle name in full, which is as strong a discriminator as this corpus offers. Fergus 1839 then prints 'Egan, Dr. William B., real estate dealer, bds. City Hotel' and the 1837 election return 'William B. Egan'."
-   }
+   },
+   "roles": [
+    {
+     "role": "physician",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   },
   {
    "id": "egan_emeline",

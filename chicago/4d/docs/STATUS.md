@@ -2,18 +2,33 @@
 
 ## T-0437 — sparse smoke checkout, 2026-09-17
 
-The bake smoke checkout selects tools and the boot-budget document only, at the
-bake output SHA. The published mirror still comes exclusively from the artifact.
-The selected tracked file bytes fall from 3.783 GB to 12.227 MB at `c66b9a29`;
-this is a scope measurement, not a CI timing claim. The 45-minute timeout and
-eight smoke legs are unchanged. The dependency audit and outstanding five-bake
-timing comparison are in ROADMAP § THE RUN BUDGET. Nothing in the scene changes.
+The bake smoke checkout selects only tools and `docs/SITE-BUDGET.md`, at the
+bake output SHA. The published mirror still comes from the artifact. All eight
+legs and the blocking PR dependency remain. Five actual bakes supplied **40
+checkout readings: 1–5 s, median 3 s, p90 4 s, zero over five or thirteen minutes**.
+The comparable desktop-tail p90 fell from 331 s (104 historical legs) to 4 s
+(five new legs); historical counts over those thresholds were 11 and 7.
 
-Sparse-tree verification: stage 9 plus always-on checks passed at both viewports
-(**46/0**, zero page errors, 5 m 21 s); boot payload passed at 7.270 MB / 12 MB.
-The fixture is the stable T-1156 published export; full bake integration remains
-to be measured. A fresh filtered network fetch materialized exactly the selected
-423 files in 30.423 s, storing 5.56 MB under `.git`.
+The cap falls from **45 to 30 minutes**: the largest completed successful smoke
+body is 23 m 07 s; maximum observed successful-job overhead is 49 s. Combining
+those maxima leaves 6 m 04 s / 25.3% headroom. ROADMAP § THE RUN BUDGET and
+`measurements/T-0437-checkouts.json` retain raw timestamps, per-bake spread,
+the concurrent unchanged baseline, and the failed pre-smoke attempt #612.
+Five bakes are a short follow-up, not a guarantee against future rare tails.
+
+This is not a claim of five green renderer matrices: sampling refs predate
+T-1245, whose triangle-budget fix is already on target `dev`; baseline #606
+reproduced those failures. At the evidence snapshot, all checkout steps and 23
+smoke bodies had finished. The final workflow push may supersede remaining PR-
+branch bodies after their checkout measurements; unfinished bodies are not used
+to estimate successful smoke duration. Nothing in the scene changes.
+
+Isolated sparse-tree verification passed stage 9 + always-on checks at both
+viewports (**46/0**, zero page errors); boot passed at 7.270 MB / 12 MB against
+the stable T-1156 fixture. A fresh filtered fetch materialized exactly 423 files
+in 30.423 s: 12.227 MB selected tracked bytes versus 3.783 GB, with 5.56 MB in
+`.git`. The dependency audit is in ROADMAP; these local checks supplement the
+actual five-bake timing sample.
 
 ## T-1156 — nightly boot-budget enforcement, 2026-09-17
 

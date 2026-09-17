@@ -153,7 +153,7 @@
    "id": "hh_couch_ira__brother__james",
    "source": "card_prose",
    "locator": "hh_couch_ira",
-   "as_read": "ers purchased the property and Ira Couch opened it as a hotel. He ran it until 1836, when his brother James took control.'\"}, \"sources\": [\"andreas_1884_v1\", \"fergus_ch",
+   "as_read": "ers purchased the property and Ira Couch opened it as a hotel. He ran it until 1836, when his brother James took control.'\", \"derived_from\": \"roles\", \"roles_at_scene_d",
    "subject_as_read": "Ira Couch",
    "relation": "brother",
    "other_as_read": "James",

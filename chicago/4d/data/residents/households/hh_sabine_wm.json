@@ -59,7 +59,11 @@
     "sources": [
      "chicago_american_1835"
     ],
-    "note": "THE TRADE IS THE PAPER'S. The corpus reads it as forwarding and commission merchant, at the American of 13 June 1835, column 5. The residents vocabulary's nearest period-correct word for it is `forwarding_and_commission`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take."
+    "note": "THE TRADE IS THE PAPER'S. The corpus reads it as forwarding and commission merchant, at the American of 13 June 1835, column 5. The residents vocabulary's nearest period-correct word for it is `forwarding_and_commission`, and where the corpus prints more than one trade they are all named here rather than reduced to the one the vocabulary could take.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "forwarding_and_commission"
+    ]
    },
    "sources": [
     "chicago_american_1835",
@@ -78,7 +82,25 @@
     "source_ids": [
      "fergus_chicago_directory_1839"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "forwarding_and_commission",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1835-06",
+     "to": "1835-08",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "chicago_american_1835"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -61,7 +61,11 @@
      "chicago_democrat_1833_1835",
      "chicago_democrat_1833_11_26"
     ],
-    "note": "PRINTED INSIDE THE SCENE WINDOW, WHICH IS WHY THE CITATION MOVED (T-0872). This field claimed a trade for July 1835 while citing one issue of 26 November 1833 — a volume about 1833, twenty months before the scene, and the only source T-0837's write gate would refuse if the trade were proposed today. The corpus settles it: he advertises as a clothier and grocer at the EAST END OF SOUTH WATER-STREET in the Democrat of 26 November 1833, and again over his own name in the Democrat of 8 July 1835 — '[New] and cheap Goods, [AT] HIS OLD STAND … [Dry] Goods, Groceries, [Boots, Shoes,] Clothing and Miscellaneous Arti-[cles]' — so the trade stands on a printing inside the window and the run of the paper (describes_date 1833-11/1835-08) is the source now cited beside the issue. THE LIMIT OF THE WINDOW'S OWN WORD: the July 1835 copy advertises a general assortment in which clothing is one line among five, not the word 'clothier'. `clothier` is the residents vocabulary's nearest period-correct term and is carried from the 1833 copy, where he names it himself; the register compiles the whole of him as 'clothier, grocer and liquor dealer' (business_peter_cohen, first issue 1833-11-26, last 1835-07-08). No trade was widened or narrowed here — only the date the claim stands on."
+    "note": "PRINTED INSIDE THE SCENE WINDOW, WHICH IS WHY THE CITATION MOVED (T-0872). This field claimed a trade for July 1835 while citing one issue of 26 November 1833 — a volume about 1833, twenty months before the scene, and the only source T-0837's write gate would refuse if the trade were proposed today. The corpus settles it: he advertises as a clothier and grocer at the EAST END OF SOUTH WATER-STREET in the Democrat of 26 November 1833, and again over his own name in the Democrat of 8 July 1835 — '[New] and cheap Goods, [AT] HIS OLD STAND … [Dry] Goods, Groceries, [Boots, Shoes,] Clothing and Miscellaneous Arti-[cles]' — so the trade stands on a printing inside the window and the run of the paper (describes_date 1833-11/1835-08) is the source now cited beside the issue. THE LIMIT OF THE WINDOW'S OWN WORD: the July 1835 copy advertises a general assortment in which clothing is one line among five, not the word 'clothier'. `clothier` is the residents vocabulary's nearest period-correct term and is carried from the 1833 copy, where he names it himself; the register compiles the whole of him as 'clothier, grocer and liquor dealer' (business_peter_cohen, first issue 1833-11-26, last 1835-07-08). No trade was widened or narrowed here — only the date the claim stands on.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "clothier"
+    ]
    },
    "sources": [
     "chicago_democrat_1833_11_26",
@@ -83,7 +87,26 @@
      "fergus_chicago_directory_1843"
     ],
     "summary": "Independently corroborated; confirmed, not moved."
-   }
+   },
+   "roles": [
+    {
+     "role": "clothier",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1833-11",
+     "to": "1835-08",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "chicago_democrat_1833_1835",
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

@@ -63,7 +63,11 @@
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
     ],
-    "note": "'John Wright, came in 1832, a merchant'. His advertisement in the Chicago Democrat of 26 November 1833 offers cut nails and general merchandise, and he separately advertises TWO BUILDINGS TO LET until 1 June 1834 - which makes him the only documented landlord of rental property in this parcel."
+    "note": "'John Wright, came in 1832, a merchant'. His advertisement in the Chicago Democrat of 26 November 1833 offers cut nails and general merchandise, and he separately advertises TWO BUILDINGS TO LET until 1 June 1834 - which makes him the only documented landlord of rental property in this parcel.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "merchant"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -100,6 +104,25 @@
      "for_merge": "'J. Wright' in the American of 11 July 1835 is a Wright in the town in the scene year.",
      "against_merge": "The initial J has two rivals — the father and the son, who share a forename. R2 refuses. Refused by a ratified rule; no ballot needed."
     }
+   ],
+   "roles": [
+    {
+     "role": "merchant",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
    ]
   },
   {
@@ -115,7 +138,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "NO TRADE IS RECORDED FOR HIM IN 1833-35 and this value is a reconstruction. Andreas calls him 'John S. Wright, then a minor, afterward editor of Prairie Farmer, and one of the most meritorious pioneers of Chicago, came in 1832'. A minor in his merchant father's business is a clerk on the ordinary reading of the period; the source says only that he was young and that he came."
+    "note": "NO TRADE IS RECORDED FOR HIM IN 1833-35 and this value is a reconstruction. Andreas calls him 'John S. Wright, then a minor, afterward editor of Prairie Farmer, and one of the most meritorious pioneers of Chicago, came in 1832'. A minor in his merchant father's business is a clerk on the ordinary reading of the period; the source says only that he was young and that he came.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "clerk"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -186,6 +213,24 @@
      "record_id": "resident_research:T-0479#01",
      "as_read": "identifies John S. Wright's Chicago land purchases and original-town lots",
      "note": "Landholding, stated by the library's finding aid. The block is explicit that later deed dates are not back-projected, and this row carries no deed date."
+    }
+   ],
+   "roles": [
+    {
+     "role": "clerk",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "inferred",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }
