@@ -12,7 +12,7 @@
     "structures": 384,
     "structures_sharing_a_name": 37,
     "streets": 77,
-    "resident_persons": 1288
+    "resident_persons": 1282
   },
   "counts": {
     "businesses": {
@@ -59,11 +59,11 @@
         "boarding_house_keeper": 1,
         "hotel_keeper": 1,
         "merchant": 1,
-        "none_recorded": 869,
+        "none_recorded": 863,
         "printer": 1,
         "tavern_keeper": 2
       },
-      "households_total": 875,
+      "households_total": 869,
       "retirable_by_trade": {
         "merchant": 1,
         "tavern_keeper": 2

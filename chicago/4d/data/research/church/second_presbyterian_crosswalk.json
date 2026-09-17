@@ -14,10 +14,10 @@
   ],
   "counts": {
     "roll_records": 941,
-    "residents_considered": 1286,
-    "residents_matched_one_line": 81,
+    "residents_considered": 1280,
+    "residents_matched_one_line": 80,
     "residents_ambiguous": 36,
-    "residents_surname_only_refused": 318
+    "residents_surname_only_refused": 316
   },
   "matched": [
     {
@@ -1167,24 +1167,6 @@
           "as_read": "Sherman, Mrs. William W. | Letter. | February 2, 18S7.",
           "admitted": null,
           "how_admitted": "letter",
-          "printed_page": 171,
-          "a_married_womans_entry": true
-        }
-      ]
-    },
-    {
-      "name": "Marion Simmons",
-      "person_id": "simmons_marion",
-      "household_id": "hh_simmons_marion",
-      "grade": "inferred",
-      "source_id": "second_presbyterian_chicago_1892",
-      "rule": "Surname 'Simmons' folds to the same string as the roll line's, and the given name of both begins M.",
-      "roll_lines": [
-        {
-          "record": "second_presb_0303",
-          "as_read": "Simmons, Mrs. Mary E. | Profession. | April 5, 1858.",
-          "admitted": "1858-04-05",
-          "how_admitted": "profession",
           "printed_page": 171,
           "a_married_womans_entry": true
         }
@@ -5141,24 +5123,6 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 7,
       "rule": "The surname 'Sherman' stands on the Second Presbyterian roll and no line under it carries the initial 'S' of 'Silas W Sherman'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "Henry Fitz Simmons",
-      "person_id": "simmons_henry_fitz",
-      "household_id": "hh_simmons_henry_fitz",
-      "grade": "inferred",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 1,
-      "rule": "The surname 'Simmons' stands on the Second Presbyterian roll and no line under it carries the initial 'H' of 'Henry Fitz Simmons'. A surname-only agreement is a refusal."
-    },
-    {
-      "name": "John Simmons",
-      "person_id": "simmons_john",
-      "household_id": "hh_simmons_john",
-      "grade": "inferred",
-      "source_id": "second_presbyterian_chicago_1892",
-      "candidates_under_that_surname": 1,
-      "rule": "The surname 'Simmons' stands on the Second Presbyterian roll and no line under it carries the initial 'J' of 'John Simmons'. A surname-only agreement is a refusal."
     },
     {
       "name": "John P. Simpson",

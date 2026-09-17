@@ -10654,9 +10654,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 391 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 392 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 391 people
+**Scope:** `residents.persons[civic_mint]` — 392 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10816,6 +10816,25 @@ where a clean naming stands beside it; and its gate asks the same question of th
 committed tree, so a card that acquires the claim by hand or by carry-over goes red. The
 six are not dropped from the research: the marriages stay read, transcribed and cited, and
 a page that puts one of these people at Chicago after all can mint them again.
+
+**And one stands apart, because a supplied letter gave him a rival.** T-1155 took the scope
+to 392 on 2026-09-17. The splitter that reads a printed name into a surname and forenames
+deleted a square-bracket group and everything inside it, which is right for a directory's own
+aside and wrong for a transcriber's supplied letter: `E. K[in]zie` read as a surname `zie`,
+`T[e]mple, John T.` as a `tmple`. The Chicago Democrat of 16 July 1834 prints `Alon[s]on
+Sweet`, and the old rule read him as forenames `alon` and `on` — a reading no full forename,
+so the initial-only `A. Sweet` of 4 June 1834 met exactly one candidate in that surname,
+`Alanson`, and was folded onto him. With the supply kept the reading is `alonson`, a second
+full forename under the same surname carrying the same initial, and the consolidation's own
+rule — an initial attaches to a full forename only when ONE carries it, two rivals being a
+refusal and not a coin toss — declines to choose. So `A. Sweet` no longer stands on Alanson's
+card; he is his own identity on the Democrat's own naming, and `mint_civic_residents.py`
+writes the 392nd container round him. NOTHING WAS INVENTED AND NOTHING WAS UPGRADED: the same
+printing, the same date, the same source, read by the same ladder rung it always had. What
+changed is that a fold made by a damaged parse stopped being made. Which of the two — or
+neither — the 4 June printing names is a question about the page, filed as T-1216 and not
+decided here; until it is read the two stand apart, which is this file's rule for a merge
+nobody has ruled on.
 
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught

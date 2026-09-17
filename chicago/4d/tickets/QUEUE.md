@@ -147,4 +147,4 @@ T-0944 — Printed 232's continuation foots 198 against a column that reads 193:
 T-0971 — The two open columns of printed 240: a repeated two-stroke figure on four cells that closes m_20_30 at 41 or m_30_40 at 13, never both
 T-1219 — The three re-spelled cards still say in prose that the papers print the reading T-1139 overturned: hh_fraser_wm_h reads 'Wm. H. Frazer' and its own note says the papers print 'Wm. H. Fraser'
 T-1222 — Read the letter-list mint's 798-file drift and give the pass a check the gate can run at its own place in the pipeline
-T-1216 — Is the Democrat's 'A. Sweet' of 4 June 1834 Alanson Sweet or the Alon[s]on Sweet of the same column
+T-1216 — Is the Democrat's 'A. Sweet' of 4 June 1834 Alanson Sweet, the Alonson Sweet of 16 July 1834, or a third man
