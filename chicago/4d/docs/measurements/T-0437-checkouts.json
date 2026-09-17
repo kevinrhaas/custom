@@ -1,6 +1,6 @@
 {
   "ticket": "T-0437",
-  "captured_at": "2026-09-17T18:01:42.397754+00:00",
+  "captured_at": "2026-09-17T19:15:53.354034+00:00",
   "method": "GitHub Actions jobs API, latest attempt, completed Run actions/checkout@v4 timestamps; queue time excluded. Nearest-rank p90. Historical cohort is desktop tail only; all legs are supporting evidence.",
   "historical_desktop_tail": {
     "runs": "#271-#391",
@@ -1560,10 +1560,10 @@
           "name": "smoke (mobile, 10-13)",
           "head_sha": "e3dd22e59278fd0b25fe5eefd5cfe64d65244d30",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35250863185/job/105314073222",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "cancelled",
           "started_at": "2026-09-17T17:55:39Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:05:56Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:55:41Z",
@@ -1622,28 +1622,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:05:53Z",
+              "conclusion": "cancelled",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:56:14Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:05:53Z",
+              "conclusion": "skipped",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:05:53Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:05:53Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:05:53Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:05:53Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:05:53Z",
+              "status": "completed"
             }
           ]
         },
@@ -1652,10 +1660,10 @@
           "name": "smoke (mobile, 3-6)",
           "head_sha": "e3dd22e59278fd0b25fe5eefd5cfe64d65244d30",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35250863185/job/105314073224",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "cancelled",
           "started_at": "2026-09-17T17:56:23Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:06:38Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:56:25Z",
@@ -1714,28 +1722,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:36Z",
+              "conclusion": "cancelled",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:56:51Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:36Z",
+              "conclusion": "skipped",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:36Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:37Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:36Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:06:37Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:06:37Z",
+              "status": "completed"
             }
           ]
         },
@@ -1744,10 +1760,10 @@
           "name": "smoke (desktop, 3-6)",
           "head_sha": "e3dd22e59278fd0b25fe5eefd5cfe64d65244d30",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35250863185/job/105314073270",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "cancelled",
           "started_at": "2026-09-17T17:56:28Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:06:43Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:56:30Z",
@@ -1806,28 +1822,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:41Z",
+              "conclusion": "cancelled",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:56:56Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:41Z",
+              "conclusion": "skipped",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:41Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:42Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:41Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:06:42Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:06:42Z",
+              "status": "completed"
             }
           ]
         },
@@ -1836,10 +1860,10 @@
           "name": "smoke (desktop, 10-13)",
           "head_sha": "e3dd22e59278fd0b25fe5eefd5cfe64d65244d30",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35250863185/job/105314073331",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "cancelled",
           "started_at": "2026-09-17T17:57:46Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:06:46Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:57:48Z",
@@ -1898,28 +1922,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:44Z",
+              "conclusion": "cancelled",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:58:13Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:44Z",
+              "conclusion": "skipped",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:44Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:44Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:44Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:06:44Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:06:44Z",
+              "status": "completed"
             }
           ]
         },
@@ -1928,10 +1960,10 @@
           "name": "smoke (mobile, 7-9)",
           "head_sha": "e3dd22e59278fd0b25fe5eefd5cfe64d65244d30",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35250863185/job/105314073366",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "cancelled",
           "started_at": "2026-09-17T17:56:51Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:06:43Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:56:52Z",
@@ -1990,30 +2022,49 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:41Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:57:29Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:41Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:41Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:41Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:41Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:06:41Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:06:41Z",
+              "status": "completed"
             }
           ]
+        },
+        {
+          "id": 105322420287,
+          "name": "open-pr",
+          "head_sha": "e3dd22e59278fd0b25fe5eefd5cfe64d65244d30",
+          "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35250863185/job/105322420287",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "started_at": "2026-09-17T18:06:47Z",
+          "completed_at": "2026-09-17T18:06:46Z",
+          "steps": []
         }
       ]
     },
@@ -3859,10 +3910,10 @@
           "name": "smoke (desktop, 3-6)",
           "head_sha": "15a22e1757419169c32eb8d88f5a2a4ec47e4327",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35251015637/job/105311995372",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "failure",
           "started_at": "2026-09-17T17:44:32Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:01:42Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:44:33Z",
@@ -3921,28 +3972,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:01:41Z",
+              "conclusion": "failure",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:44:58Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:01:41Z",
+              "conclusion": "skipped",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:01:41Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:01:41Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:01:41Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:01:41Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:01:41Z",
+              "status": "completed"
             }
           ]
         },
@@ -3951,10 +4010,10 @@
           "name": "smoke (desktop, 10-13)",
           "head_sha": "15a22e1757419169c32eb8d88f5a2a4ec47e4327",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35251015637/job/105311995568",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T17:48:39Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:21:10Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:48:40Z",
@@ -4013,30 +4072,49 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:21:08Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:49:09Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:21:08Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:21:08Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:21:08Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:21:08Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:21:08Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:21:08Z",
+              "status": "completed"
             }
           ]
+        },
+        {
+          "id": 105327336500,
+          "name": "open-pr",
+          "head_sha": "15a22e1757419169c32eb8d88f5a2a4ec47e4327",
+          "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35251015637/job/105327336500",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-09-17T18:21:11Z",
+          "completed_at": "2026-09-17T18:21:11Z",
+          "steps": []
         }
       ]
     },
@@ -4457,10 +4535,10 @@
           "name": "smoke (mobile, 10-13)",
           "head_sha": "2bb1f5b8b137fdaf5c6a0f75714de3d80aa66be1",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35251020803/job/105312096130",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T17:52:02Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:11:11Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:52:04Z",
@@ -4519,28 +4597,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:09Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:52:36Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:09Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:11:09Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:10Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:11:09Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:11:10Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:11:10Z",
+              "status": "completed"
             }
           ]
         },
@@ -4549,10 +4635,10 @@
           "name": "smoke (desktop, 10-13)",
           "head_sha": "2bb1f5b8b137fdaf5c6a0f75714de3d80aa66be1",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35251020803/job/105312096140",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T17:38:45Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:11:17Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:38:46Z",
@@ -4611,28 +4697,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:15Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:39:26Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:15Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:11:15Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:15Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:11:15Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:11:15Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:11:15Z",
+              "status": "completed"
             }
           ]
         },
@@ -5035,6 +5129,17 @@
               "status": "completed"
             }
           ]
+        },
+        {
+          "id": 105323919920,
+          "name": "open-pr",
+          "head_sha": "2bb1f5b8b137fdaf5c6a0f75714de3d80aa66be1",
+          "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35251020803/job/105323919920",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-09-17T18:11:18Z",
+          "completed_at": "2026-09-17T18:11:17Z",
+          "steps": []
         }
       ]
     },
@@ -5255,10 +5360,10 @@
           "name": "smoke (mobile, 10-13)",
           "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105317417804",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T17:57:36Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:11:11Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:57:38Z",
@@ -5317,28 +5422,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:08Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:58:05Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:08Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:11:08Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:09Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:11:08Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:11:09Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:11:09Z",
+              "status": "completed"
             }
           ]
         },
@@ -5347,10 +5460,10 @@
           "name": "smoke (desktop, 1-2)",
           "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105317417809",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T17:54:40Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:06:05Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:54:42Z",
@@ -5409,28 +5522,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:01Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:55:27Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:01Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:01Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:06:01Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:06:01Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:06:02Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:06:01Z",
+              "status": "completed"
             }
           ]
         },
@@ -5439,10 +5560,10 @@
           "name": "smoke (desktop, 7-9)",
           "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105317417840",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T17:58:23Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:13:43Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:58:24Z",
@@ -5501,28 +5622,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:13:42Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:58:56Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:13:42Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:13:42Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:13:42Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:13:42Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:13:42Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:13:42Z",
+              "status": "completed"
             }
           ]
         },
@@ -5531,10 +5660,10 @@
           "name": "smoke (mobile, 1-2)",
           "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105317417842",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T17:57:12Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:04:05Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:57:13Z",
@@ -5593,28 +5722,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:04:04Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:57:39Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:04:04Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:04:04Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:04:04Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:04:04Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:04:04Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:04:04Z",
+              "status": "completed"
             }
           ]
         },
@@ -5623,10 +5760,10 @@
           "name": "smoke (mobile, 3-6)",
           "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105317417866",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "failure",
           "started_at": "2026-09-17T17:58:43Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:11:10Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:58:45Z",
@@ -5685,28 +5822,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:08Z",
+              "conclusion": "failure",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:59:11Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:08Z",
+              "conclusion": "skipped",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:11:08Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:11:08Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:11:08Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:11:08Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:11:08Z",
+              "status": "completed"
             }
           ]
         },
@@ -5715,10 +5860,10 @@
           "name": "smoke (desktop, 10-13)",
           "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105317417958",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T17:59:07Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:31:53Z",
           "steps": [
             {
               "completed_at": "2026-09-17T17:59:10Z",
@@ -5777,28 +5922,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:31:51Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T17:59:41Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:31:51Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:31:51Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:31:51Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:31:51Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:31:51Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:31:51Z",
+              "status": "completed"
             }
           ]
         },
@@ -5807,10 +5960,10 @@
           "name": "smoke (mobile, 7-9)",
           "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105317418021",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "started_at": "2026-09-17T18:00:35Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:10:23Z",
           "steps": [
             {
               "completed_at": "2026-09-17T18:00:37Z",
@@ -5869,28 +6022,36 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:10:21Z",
+              "conclusion": "success",
               "name": "Smoke the published mirror",
               "number": 8,
               "started_at": "2026-09-17T18:01:09Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:10:21Z",
+              "conclusion": "success",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:10:21Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:10:21Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:10:21Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:10:21Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:10:21Z",
+              "status": "completed"
             }
           ]
         },
@@ -5899,10 +6060,10 @@
           "name": "smoke (desktop, 3-6)",
           "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
           "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105317418030",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "failure",
           "started_at": "2026-09-17T18:01:19Z",
-          "completed_at": null,
+          "completed_at": "2026-09-17T18:18:18Z",
           "steps": [
             {
               "completed_at": "2026-09-17T18:01:20Z",
@@ -5929,62 +6090,81 @@
               "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:01:48Z",
+              "conclusion": "success",
               "name": "Install Playwright",
               "number": 4,
               "started_at": "2026-09-17T18:01:23Z",
-              "status": "in_progress"
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:01:48Z",
+              "conclusion": "success",
               "name": "Clear the mirror directory",
               "number": 5,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:01:48Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:01:49Z",
+              "conclusion": "success",
               "name": "Take the mirror the bake published",
               "number": 6,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:01:48Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:01:49Z",
+              "conclusion": "skipped",
               "name": "Enforce the first-visit boot payload budget",
               "number": 7,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:01:49Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:18:16Z",
+              "conclusion": "failure",
               "name": "Smoke the published mirror",
               "number": 8,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:01:49Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:18:16Z",
+              "conclusion": "skipped",
               "name": "Post Run actions/setup-node@v4",
               "number": 15,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:18:16Z",
+              "status": "completed"
             },
             {
-              "completed_at": null,
-              "conclusion": null,
+              "completed_at": "2026-09-17T18:18:17Z",
+              "conclusion": "success",
               "name": "Post Run actions/checkout@v4",
               "number": 16,
-              "started_at": null,
-              "status": "pending"
+              "started_at": "2026-09-17T18:18:16Z",
+              "status": "completed"
+            },
+            {
+              "completed_at": "2026-09-17T18:18:17Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 17,
+              "started_at": "2026-09-17T18:18:17Z",
+              "status": "completed"
             }
           ]
+        },
+        {
+          "id": 105330989737,
+          "name": "open-pr",
+          "head_sha": "8378771330febf2aec96f1134a5c58d483185f63",
+          "html_url": "https://github.com/kevinrhaas/custom/actions/runs/35252272736/job/105330989737",
+          "status": "completed",
+          "conclusion": "skipped",
+          "started_at": "2026-09-17T18:31:54Z",
+          "completed_at": "2026-09-17T18:31:54Z",
+          "steps": []
         }
       ]
     }
@@ -6231,12 +6411,12 @@
           {
             "job_id": 105314073222,
             "name": "smoke (mobile, 10-13)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "cancelled",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 617.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -6275,30 +6455,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "cancelled",
+                "seconds": 579.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "skipped",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105314073224,
             "name": "smoke (mobile, 3-6)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "cancelled",
             "checkout_s": 2.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 2.0,
-            "job_s": null,
+            "job_s": 615.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -6337,30 +6522,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "cancelled",
+                "seconds": 585.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "skipped",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105314073270,
             "name": "smoke (desktop, 3-6)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "cancelled",
             "checkout_s": 2.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 2.0,
-            "job_s": null,
+            "job_s": 615.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -6399,30 +6589,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "cancelled",
+                "seconds": 585.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "skipped",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105314073331,
             "name": "smoke (desktop, 10-13)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "cancelled",
             "checkout_s": 2.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 2.0,
-            "job_s": null,
+            "job_s": 540.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -6461,30 +6656,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "cancelled",
+                "seconds": 511.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "skipped",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105314073366,
             "name": "smoke (mobile, 7-9)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "cancelled",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 592.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -6523,18 +6723,23 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 552.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           }
@@ -7515,12 +7720,12 @@
           {
             "job_id": 105311995372,
             "name": "smoke (desktop, 3-6)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "failure",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 1030.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -7559,30 +7764,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "failure",
+                "seconds": 1003.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "skipped",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105311995568,
             "name": "smoke (desktop, 10-13)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 1951.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -7621,18 +7831,23 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1919.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           }
@@ -7791,12 +8006,12 @@
           {
             "job_id": 105312096130,
             "name": "smoke (mobile, 10-13)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 1149.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -7835,30 +8050,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1113.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105312096140,
             "name": "smoke (desktop, 10-13)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 1952.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -7897,18 +8117,23 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1909.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
@@ -8201,12 +8426,12 @@
           {
             "job_id": 105317417804,
             "name": "smoke (mobile, 10-13)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 4.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 4.0,
-            "job_s": null,
+            "job_s": 815.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -8245,30 +8470,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 783.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105317417809,
             "name": "smoke (desktop, 1-2)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 4.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 4.0,
-            "job_s": null,
+            "job_s": 685.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -8307,30 +8537,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 634.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 1.0
               }
             ]
           },
           {
             "job_id": 105317417840,
             "name": "smoke (desktop, 7-9)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 920.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -8369,30 +8604,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 886.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105317417842,
             "name": "smoke (mobile, 1-2)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 413.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -8431,30 +8671,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 385.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105317417866,
             "name": "smoke (mobile, 3-6)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "failure",
             "checkout_s": 2.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 2.0,
-            "job_s": null,
+            "job_s": 747.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -8493,30 +8738,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "failure",
+                "seconds": 717.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "skipped",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105317417958,
             "name": "smoke (desktop, 10-13)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 4.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 4.0,
-            "job_s": null,
+            "job_s": 1966.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -8555,30 +8805,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1930.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105317418021,
             "name": "smoke (mobile, 7-9)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 588.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -8617,30 +8872,35 @@
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 552.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           },
           {
             "job_id": 105317418030,
             "name": "smoke (desktop, 3-6)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "failure",
             "checkout_s": 3.0,
             "checkout_conclusion": "success",
             "checkout_elapsed_s": 3.0,
-            "job_s": null,
+            "job_s": 1019.0,
             "steps": [
               {
                 "name": "Set up job",
@@ -8659,57 +8919,70 @@
               },
               {
                 "name": "Install Playwright",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 25.0
               },
               {
                 "name": "Clear the mirror directory",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 0.0
               },
               {
                 "name": "Take the mirror the bake published",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1.0
               },
               {
                 "name": "Enforce the first-visit boot payload budget",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "skipped",
+                "seconds": 0.0
               },
               {
                 "name": "Smoke the published mirror",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "failure",
+                "seconds": 987.0
               },
               {
                 "name": "Post Run actions/setup-node@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "skipped",
+                "seconds": 0.0
               },
               {
                 "name": "Post Run actions/checkout@v4",
-                "conclusion": null,
-                "seconds": null
+                "conclusion": "success",
+                "seconds": 1.0
+              },
+              {
+                "name": "Complete job",
+                "conclusion": "success",
+                "seconds": 0.0
               }
             ]
           }
         ]
       }
-    ]
+    ],
+    "smoke_job_outcomes": {
+      "success": 27,
+      "cancelled": 5,
+      "failure": 8
+    }
   },
   "budget": {
     "historical_worst_successful_body_s": 1308,
-    "sample_worst_successful_body_s": 1387.0,
-    "sample_max_successful_job_overhead_s": 49.0,
-    "body_bound_s": 1387.0,
-    "margin_fraction": 0.25,
-    "timeout_minutes": 30,
-    "rounding": "Round 125% of body bound + measured maximum overhead up to a five-minute interval, with 30-minute floor."
+    "sample_worst_successful_body_s": 1930.0,
+    "sample_max_successful_job_overhead_s": 51.0,
+    "body_bound_s": 1930.0,
+    "margin_fraction": 0.2,
+    "timeout_minutes": 40,
+    "rounding": "Round 120% of (largest successful body + largest successful-job overhead) up to a five-minute interval.",
+    "headroom_s": 419.0,
+    "supersedes": "The partial 23-body snapshot used 1387 + 49 seconds and proposed 30 minutes. Three later successful bodies took 1909, 1919 and 1930 seconds, refuting that cap."
   },
   "limitations": [
-    "Five bakes are a short follow-up, not a guarantee that rare future checkout tails cannot recur.",
-    "Measurement refs precede T-1245; stage 3-6 triangle-budget failures also occur in unchanged baseline. Target dev includes that renderer fix. No complete green renderer matrix is claimed.",
-    "Job statuses are a timestamped snapshot; pending smoke bodies do not invalidate completed checkout measurements or count as successful bodies."
+    "Five bakes are a short follow-up, not a guarantee against rare future checkout tails.",
+    "Measurement refs predate T-1245; eight stage 3-6 failures are inherited triangle-budget failures also present in unchanged baseline. Target dev includes that fix.",
+    "Run #611 has five cancelled smoke bodies after the final workflow push superseded its branch. All eight checkout steps completed successfully before cancellation; cancelled bodies are excluded from successful-duration sizing.",
+    "All 40 jobs have reached terminal states: 27 success, 8 failure, 5 cancelled. This is not a claim of five green renderer matrices."
   ]
 }
