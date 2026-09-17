@@ -1,7 +1,7 @@
 ---
 id: T-1155
 title: The resident identity splitter discards square-bracket supplies, so E. K[in]zie becomes surname Zie and bracketed names can tie to the wrong identity
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1388
 claimed_by: run 9/17/2026, 12:02:16 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T18:02:46.042Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35249185077
 ---
 
