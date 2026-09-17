@@ -56,6 +56,19 @@ around them.
    prose, zero dead target, and zero resident-generator drift. Publish the final audit and exact
    counts; wire all checks and mutation self-tests into `check.sh`.
 
+**Owner review, 2026-09-17 — added acceptance:**
+
+7. "Other significant locations" are in scope, not only home and workplace: a civic office's seat,
+   a church, an agency held, land purchased, a school taught, a tavern kept — written as
+   `associated_with[]` on the person `{ kind, place_or_structure_id, from, to, tier, source_id }`
+   (the shape T-1182 also writes for the business audit; one schema, defined here).
+8. The address book the seating ticket T-1198 builds starts from this ticket's reconciliation rows:
+   every row keeps `resolved_street`, `resolved_face`, `resolved_anchor` and the clause that limited
+   it, so a later rung can be added without re-adjudicating the evidence.
+9. The closing report states the three location-limit counts (structure / street-only /
+   unplaceable) for businesses AND the four seating classes for households (structure / lot /
+   face / division / none), which T-1157 reads as the sign-off's location axis.
+
 **Stop condition:** the research phase has a reproducible closed ledger. Every usable fact is on a
 structured model target; every unusable or unresolved unit says why; reconstruction can begin
 without silently inheriting an unspent attested/inferred claim.

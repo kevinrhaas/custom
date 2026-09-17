@@ -53,6 +53,19 @@ shows only `soap_and_candle_maker`, incorrectly graded as an attested 1835 occup
    role loses its source/claim id, an undated/later role enters the 1835 compatibility field, or a
    structured role is retained in research but absent from the migration disposition table.
 
+**Owner review, 2026-09-17 — added acceptance:**
+
+7. The Elston fixture is extended to LOCATION: each dated role names where it was exercised when
+   a source says (the manufactory on the North Side for the candles and soap; the school
+   inspectorship's seat), so T-1147 can carry a role's place as a `works_at[]`/`associated_with[]`
+   entry with the role's dates. A role with no stated place says `place: not_stated`.
+8. The role kinds `office` and `employment` carry an `employer_or_body` field (the town board, the
+   county, a named firm) so the business band (T-1180 onward) can attach clerks and officers to
+   the establishment they served without re-reading prose.
+9. The migration table is published as `docs/RESEARCH/roles-migration-2026-09.md` with one row per
+   person carrying 2+ roles (the audit found 176), because the population profile (T-1160) counts
+   multi-role persons from it.
+
 **Stop condition:** every matched trade/profession/office row has a dated role, a documented fold,
 or a refusal; the singular field is no longer capable of erasing a second role.
 
