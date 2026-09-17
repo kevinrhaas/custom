@@ -18,21 +18,34 @@ closed_at: null
 claimed_run: null
 ---
 
-Author the complete priority jaunt `fort-dearborn-errand` from its brief in JAUNTS-INITIAL-LIBRARY.md. Reuse current source/structure/business/resident records and the shared engine.
+Author the complete priority jaunt **Fort Dearborn Errand** (`fort-dearborn-errand`) — one of the six the owner named first — from [brief 06](../docs/JAUNTS-INITIAL-LIBRARY.md#06-fort-dearborn-errand). Content only: one JSON file, its evidence, its liberties, the regenerated catalog. The engine (5G) is finished; if a story needs an engine change, that is a finding for the engine's ticket, not a change in this PR.
 
-**Depends on:** T-1259, T-1256, T-1257, T-1258
+**Premise:** Carry a small fictional supply request through the fort's everyday service places.
+**Category:** Fort Dearborn · **Recommended mode:** Walk · **Keepsake:** Accounted for at the Fort (Livelihood) · **Target:** 4–6 min primary path.
 
-**Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
+**Depends on:** T-1259 (menu), T-1256 (mechanics), T-1257 (links and leg notes), T-1258 (daybook). Runs in parallel with the other 5H tickets — each owns only its own file.
+
+**Stops, in story order** (all verified to exist in `data/sidecars/1835/index.json` on 2026-09-17; positions are inferred or reconstructed, never attested — the stop text must not claim a front door the record does not place):
+1. [`fort_dearborn_palisade`](../data/structures/fort_dearborn_palisade.json) — the stockade — approach at the supported entrance stand-off
+2. [`fort_dearborn_guard_house`](../data/structures/fort_dearborn_guard_house.json) — guard house vicinity — state the errand
+3. [`fort_dearborn_sutlers_store`](../data/structures/fort_dearborn_sutlers_store.json) — sutler's store — choose a supply
+4. [`fort_dearborn_store_house`](../data/structures/fort_dearborn_store_house.json) — store house — account for the package
+5. [`fort_dearborn_shop`](../data/structures/fort_dearborn_shop.json) — the shop — finish (a workshop by record; not automatically a blacksmith)
+
+**Mechanics for this jaunt:** `cargo` and `readiness`; a concise ending that makes the fort a working neighbour, not a museum.
+
+**Evidence and route cautions:** Harrison 1830 plan continuity to 1835 is inferred — say so; invent no interior access, military procedure, figure or Indigenous dialogue; use exterior stops throughout; the August 1835 gathering is not staged.
+
+**Authoring checklist (every stop):** read `data/structures/<id>.json`, its sidecar and dossier; state the stop's stand-off kind (exterior stand; no interior is implied); write 25–60 words of primary text; mark each sentence's tier — a DOC claim has a source id **and** locator, an INF claim states its reasoning, invented connective text (the errand, prices, small talk) is `reconstructed` with a LIBERTIES line; no quotation is put in a named person's mouth; nothing after 1 July 1835 is narrated as present; no human figure, ceremony or Indigenous dialogue is depicted. Card `links[]` point at the existing structure/person/source cards, never at a copy.
 
 **Acceptance:**
+1. `data/jaunts/fort-dearborn-errand.json` compiles `available` in `check.sh` (`python3 tools/compile_jaunts.py`); every destination resolves; every claim's source and locator resolve; the compiler's path walk reaches every ending.
+2. Every authored choice and ending is exercised by `tools/play_jaunt.mjs fort-dearborn-errand --all-paths` (T-1256's walker); no dead end, no double keepsake.
+3. Measured on the published mirror: primary path at **Walk** ≈ 4–6 min (opening + stops + rides, deep cards closed), quoted in the PR beside the card's estimate; Fly and Instantly measured too; a run outside 3–6 min is re-cut (fewer words, a nearer stop) or justified in one sentence.
+4. Stills at 390×780 and 1280×800: menu card → opening → one mid-leg mode switch → one detail card and back → ending → menu. Previous/Next/End/Menu all used once.
+5. The keepsake **Accounted for at the Fort** lands in the daybook once, under **Livelihood**; replay does not add a second.
+6. The diff contains `data/jaunts/fort-dearborn-errand.json`, its LIBERTIES lines, the regenerated catalog and (if needed) `docs/JAUNTS-INITIAL-LIBRARY.md` route notes — and **no engine, compiler or CSS change**. A stop that cannot be supported is substituted with a typed supported destination and the reason recorded in the brief; it is never invented.
 
-1. Deliver opening, 5 purposeful stops (adjust only with a stated narrative reason), concise actions, supported card links, recommendation and endings in JSON; the catalog card launches it.
-2. Approach the supported entrance stand-off; check the errand at the guard-house vicinity; choose a supply at the sutler’s; account for the package at the storehouse; finish at the service shop. A concise cargo/readiness ending makes the fort a working neighbor.
-3. Verify each proposed stop against the compiled scene and trace each factual claim to source ID plus locator; retain inference/reconstruction notes and append narrative liberties. Harrison plan and record dates support locations with stated limits; shop is not automatically a documented blacksmith. Do not invent access to closed interiors or military procedures, figures or Indigenous dialogue; use exterior stops when the route requires.
-4. Award Accounted for at the Fort in Livelihood without forcing extra scoring. Test every authored choice/outcome and no dead ends or double rewards.
-5. Time the primary path in the recommended mode walk aiming at 4-6 minutes (a justified 3-4-minute outing is fine); compare Fly/Instantly and confirm deeper cards are optional.
-6. Show mobile/desktop menu-to-ending evidence, Previous/Next, mid-leg mode switch and End-to-menu. No new engine branch keyed to this jaunt.
+**Harness and gates:** `./tools/check.sh`; `node tools/smoke_budget.mjs --for-diff` (content-only diffs usually name no renderer part — say so); `node tools/play_jaunt.mjs fort-dearborn-errand --all-paths`; `./tools/preflight.sh`.
 
-**Touch points:** data/jaunts/fort-dearborn-errand.json, corresponding brief/dossier and generated catalog; existing cards, not new geometry.
-
-**Finish:** one gated PR into `dev`, focused checks plus affected published desktop/mobile smoke; no production promotion. Claim through `ticket.mjs`. Meet this acceptance before closing. If an unforeseen piece truly needs a successor, place it beside this dependency inside the same subsection, update the plan, and keep the subsection below 15 tickets. Do not append unfinished work to the queue tail.
+Changelog: one visible entry naming the jaunt. Contract: [authoring guide](../docs/JAUNTS-AUTHORING.md) · [brief 06](../docs/JAUNTS-INITIAL-LIBRARY.md#06-fort-dearborn-errand) · [plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md). One PR into `dev`; claim with `ticket.mjs`.

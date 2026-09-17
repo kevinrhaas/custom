@@ -13,7 +13,15 @@ Content briefs: [JAUNTS-INITIAL-LIBRARY.md](JAUNTS-INITIAL-LIBRARY.md).
 - The visitor enters a digital reconstruction. The opening explains that in one
   warm sentence, then offers **Jaunts** and **I’ll Explore Myself — Starting At…**.
   The census, completeness percentages and reconstruction statistics belong in
-  **Sources & City**, reached through the existing Evidence surface.
+  **Evidence → City** (T-1292) and the source library in **Evidence → Sources**
+  (T-1248 + T-1276), reached through the existing Evidence surface — no new tab
+  on the narrow mobile rail.
+- **Reviewed 2026-09-17 (owner-directed second pass).** Every ticket now names the
+  real symbols it extends, the harness ids it must keep, its tests and its
+  measurements; the shared contracts below (§A–§H) are the single place a field or
+  event name is defined. T-1292 was cut out of T-1276 so the welcome (T-1278) does
+  not wait on the whole Sources browser; T-1253 lost its dependency on the welcome
+  so the jaunt contract can be written while 5F is in flight.
 - Primary jaunt path: about five minutes, normally 4–8 stops. Optional source,
   resident and building cards are outside that timing. Short outings need no
   artificial choices or scoring. No 30–60 minute tour assumptions.
@@ -64,8 +72,8 @@ stateDiagram-v2
     FreeExplore --> Welcome: open start menu
 ```
 
-1. Boot emits `phaseStart`, `phaseProgress` where work can be counted,
-   `phaseEnd`, `ready`, and `error`. Use `performance.now()` durations, explicit
+1. Boot emits `phasestart`, `phaseprogress` where work can be counted,
+   `phaseend`, `ready`, and `error` (§A). Use `performance.now()` durations, explicit
    completed units and monotone real progress. Report fetching, terrain/buildings,
    flora, interaction setup and first usable frame separately. Essential readiness
    includes a rendered frame, usable destinations and controls, not a fabricated timer.
@@ -140,10 +148,14 @@ state, every branch completable. A historical location with uncertain coordinate
 uncertain: choose a supported street/anchor stand-off or declare it unavailable, never
 invent a precise front door. Unavailable jaunts get a clear menu reason while others work.
 
-Suggested components: `jaunts.js` (reducer/engine), `jaunt-menu.js`,
-`jaunt-panel.js`, `destinations.js` (shared), a thin existing-travel adapter,
-`arrival.js`, `loading-content.js`, `sources.js`, and a small versioned local journal.
-Names are proposals, not a mandate to reorganize all of `main.js`.
+Components, as the tickets name them: `boot-phases.js` + `boot-weights.js` (T-1246),
+`arrival.js` (T-1247), `loading-content.js` + `loading-early.js` (T-1275),
+`destinations.js` (T-1277), `sources.js` (T-1276), `jaunts.js` (T-1279 reducer),
+`jaunt-panel.js` (T-1279), `travel-estimate.js` (T-1280), `jaunt-journal.js` (T-1258),
+`jaunt-menu.js` (T-1259), and `css/jaunt.css`. Everything after the arrival loads lazily
+on first use; only `boot-phases.js`, `arrival.js` and `loading-early.js` join the boot
+payload. `main.js` is extended at `progress()`, `openWorld()` and `goToTarget()`; it is
+not reorganised.
 
 Runtime state is `menu → opening → travelling → atStop → outcome → menu`, with
 optional detail/pause states. `End Jaunt` cancels the active leg and returns immediately
@@ -276,3 +288,108 @@ measure the experience, rather than being the first place defects are tested. Ke
 the existing boot/frame budgets, historical constraints, zero-page-error requirement,
 generated-mirror discipline and preflight/merge gates. A later fiftieth jaunt must need
 content plus catalog regeneration only, demonstrated by the acceptance fixture.
+
+## Shared contracts — the one place each name is defined
+
+Tickets cite these sections; an implementer who changes a name here changes it in the
+ticket that owns it in the same PR.
+
+### A. Boot phases and readiness
+
+`api.boot` (T-1246): `phases[]` in this order — `scene`, `terrain`, `buildings`, `ground`,
+`flora`, `people` (optional), `census` (optional), `interaction` — each
+`{ id, label, essential, startedAt, endedAt, units, unitsDone, error }`, and
+`on('phasestart' | 'phaseprogress' | 'phaseend' | 'ready' | 'error', fn)`. `ready` fires
+after the last essential phase and the first rendered frame; `api.ready` keeps its meaning
+(the smoke and `measure_boot_payload.mjs` wait on it). `boot-weights.js` holds measured
+seconds per phase for `{desktop, mobile} × {full, balanced, light}`, cold and warm, dated;
+local refinement lives at `localStorage['c4d.boot.timings.v1']` keyed by build stamp and
+tier, clamped to 0.25×–4× of the table.
+
+**Pacing (T-1247):** `p` = Σ finished weights + current phase fraction (counted units, else
+elapsed / expected clamped to 0.92 of the phase); `year = now − (now − 1836) · easeInOut(p)`;
+integer display; hold ≥ 1836 until `ready`; settle to 1835 in ≤ 300 ms (0 under reduced
+motion or a < 1.5 s boot). Arrival line: **"You have arrived in Chicago, summer 1835."**
+
+### B. Loading content entries
+
+`data/loading/statuses.json` (T-1275): `{ schema_version, entries: [{ id, phase:
+assess | collect | prepare | resolve | land, kind: source | build | fact | operational | humor,
+text, source_ids?, entity?: { type, id }, fact?: { locator, confidence, reasoning },
+weight, min_dwell_ms }] }`. Phase arc → boot phases: assess→`scene`; collect→`terrain`,
+`buildings`; prepare→`ground`, `flora`; resolve→`people`, `interaction`; land→`ready`.
+Humor ≤ 1 % of sessions, never at `land` or on error. Early subset inlined in
+`loading-early.js`; the full file is fetched in parallel and never awaited for `ready`.
+
+### C. Jaunt JSON contract
+
+`data/jaunts/<id>.json` validated by `data/jaunts/schema.json` and `tools/compile_jaunts.py`
+(T-1253), compiled to `data/sidecars/1835/jaunts/catalog.json` (summary) and
+`data/sidecars/1835/jaunts/<id>.json` (content). Top level: `schema_version`, `id`,
+`content_version`, `title`, `premise`, `category`, `scene` (`1835`), `featured?`,
+`opening { text, read_s }`, `default_mode`, `allowed_modes[]`, `variables? { name: { min, max,
+initial, unit } }` (money in integer cents), `inventory? { capacity? }`, `stops[]`, `legs?[]`,
+`endings[]`, `keepsake { family, id, title, text }`, `secondary_family?`, `evidence[]`,
+`review_required`, `liberties[]`.
+
+`stops[]`: `{ id, destination: { kind: structure | anchor | intersection | business | person,
+id }, text (25–60 words), read_s, choices?[0–3] { id, label, consequence, when?, effects?,
+next? }, links?[] { kind: structure | person | business | source | topic, id, label },
+next? }`. `legs[]` (optional, by index): `{ note?, story? }` — otherwise T-1257 generates a
+pass-by note from the route. `when`: `{ all: [...] } | { any: [...] } | { not: ... } |
+{ var, op: < <= == >= > !=, value } | { has: item }`. `effects[]`: `{ op: add | remove |
+set | inc, var | item, value }`. `endings[]`: `{ id, when?, text, default? }`. `evidence[]`:
+`{ text, confidence: attested | inferred | reconstructed, sources[], locator?, reasoning?,
+liberty? }` — a `reconstructed` sentence never cites as if attested; a quotation is never
+attributed to a named person. No `eval`, no HTML, no per-jaunt code.
+
+### D. Source-use index
+
+`tools/compile_source_use.py` (T-1248) → `data/sidecars/1835/sources/index.json`
+(rows: public citation fields, `type`, `date`, `tier`, `use: scene | other_scene |
+exclusion | research | unused`, `counts { entities, claims }`, `has_archive_link`) and
+`sources/<source_id>.json` (edges `{ source_id, entity_type, entity_id, claim, confidence,
+locator, use }`). Entity types: `structure, person, household, business, terrain, flora,
+fauna, exclusion, liberty, decision, loading_fact, jaunt`. Fetched only when Evidence →
+Sources opens.
+
+### E. Destination model
+
+`destinations.js` (T-1277): `createDestinations({ scene, index, registry, people,
+positionOf, businesses = null })` → `{ targets, kinds, search(q, { kind,
+includeReconstructed }), byId(kind, id), resolve(target) → { kind, id, label, e, n,
+standOff, limit } | null }`. Kinds: `anchor, intersection, structure, business, person`.
+`business` reads the authored layer when present, else derives one row per trade-function
+structure (`derived_from: 'structure'`). Unlocated rows open their card and never gain
+coordinates.
+
+### F. Harness contract — ids and signals the gate reads
+
+Keep: `#gate` (the loader/welcome dialog; `hidden` once the world is entered),
+`#gate-btn` (enters free exploration at the spawn — "Enter Chicago"), `#gate-sub`
+(the live phase/arrival line), `#gate-bar`, `#gate-build`, `#control-help` /
+`#control-help-gotit`, `window.__chicago4d.ready`. New: `#arrival-year`, `#arrival-card`,
+`api.boot`, `api.welcome { state, enter(kind, id) }`, `api.destinations`, `api.jaunts
+{ start, state, next, prev, end, menu, catalog }`, `api.daybook`. The smoke's `enterTown()`
+prefers `api.welcome.enter('spawn')` and falls back to `#gate-btn` (T-1278). The part-1
+gate-census assertions move to the Evidence part with T-1292. Budgets: boot payload
+12 MB (`measure_boot_payload.mjs --check`), smoke per-leg 30 min (`smoke_budget.mjs
+--legs`), both gate viewports 390×780 and 1280×800.
+
+### G. Daybook
+
+`data/jaunts/daybook.json` (T-1258): families `provisions, livelihood, wayfinding, news,
+neighbors`; ranks `new_arrival → finding_your_feet → knows_the_town → seasoned_chicagoan`
+at `[0, 1, 2, 3]` distinct keepsakes in every family. Storage
+`localStorage['c4d.daybook.v1']` = `{ schema_version, content_version, keepsakes[] }`;
+session resume `localStorage['c4d.jaunt.session.v1']` = `{ content_version, jaunt,
+events[] }` (T-1256). Awards are idempotent per `jaunt + keepsake`.
+
+### H. Travel estimate
+
+`travel-estimate.js` (T-1280): ground `route.length_m / paceSpeed(mode, settings)`; fly =
+ascent + cruise + descent with `PACES.fly.cruise(d)`; instantly = framing settle;
+unroutable → straight line × 1.3, `approx: true`; no positions → `null` ("no estimate").
+`estimateJaunt = opening.read_s + Σ stops.read_s + Σ legs`; displayed as "about N min",
+nearest half-minute. A mode change mid-leg stops and re-plans from the current position
+with the same target and session.

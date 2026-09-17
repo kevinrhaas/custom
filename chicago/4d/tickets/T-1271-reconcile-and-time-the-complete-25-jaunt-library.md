@@ -18,21 +18,25 @@ closed_at: null
 claimed_run: null
 ---
 
-Converge the content into one coherent library. This is a bounded acceptance pass with in-scope corrections, not a fresh research epic or deferral list.
+**Converge the 25-jaunt library** into one coherent, measured collection. A bounded acceptance pass with in-scope corrections — not a research epic and not a deferral list. The owner: *"a normal jaunt should take roughly 5 minutes … roughly 4–8 stops … jaunts should not all feel like games … a varied initial set of approximately 25."*
 
-**Depends on:** T-1260, T-1261, T-1262, T-1263, T-1264, T-1265, T-1266, T-1267, T-1268, T-1269, T-1270
+**Depends on:** T-1260–T-1265 and T-1266–T-1270 (all 25 authored). T-1272 depends on this.
 
-**Execution contract:** [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md), [ordered plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md), [content briefs](../docs/JAUNTS-INITIAL-LIBRARY.md). Read these before claiming.
+**Build / do:**
+1. `tools/play_jaunt.mjs --all` (extend the walker from 5H): walks every reachable path of every jaunt through the reducer; records per-jaunt stop count, primary-path word count, declared resources, endings reached, keepsake family, and the estimate at recommended / fastest mode; prints one table.
+2. `tools/audit_jaunts.py`: for every claim — source resolves, locator present on DOC, entity date-eligible, no `review_required` content released, no reconstructed Indigenous encounter, no human-figure depiction, no quotation attributed to a named person, asset rights respected; per jaunt — 4–8 stops (exceptions listed with their sentence), 25–60 words per stop, at least five quiet outings with no declared resource, every family with ≥ 3 distinct keepsakes, every rank reachable without replay.
+3. Measure the primary path of all 25 on the published mirror at the recommended mode (the harness ride, `travel.simulate`, plus the content's read times) and at Fly/Instantly; fix within this PR anything outside 3–6 min by re-cutting text, choosing a nearer supported stop or changing the recommended mode; never touch the displayed estimate formula.
+4. Diversity check against the owner's list — commerce, travel, taverns, lodging, employment, land, newspapers, mail, river transportation, Fort Dearborn, household provisioning, trades, repairs, migration, social life — one table mapping each subject to its jaunts.
+5. Prove the growth path: add a 26th fixture jaunt by JSON + `compile_jaunts.py` only, show it on the menu, then remove it (or keep it if it is a real 26th; say which).
+6. `docs/measurements/jaunts_acceptance_2026-xx.md`: the tables above, every correction made, every justified exception.
 
 **Acceptance:**
+1. Exactly the 25 named premises are `available` (a substituted stop is recorded in its brief); no duplicate pilot; all six priority titles are complete and featured.
+2. The audit passes with zero findings in `check.sh` (it stays in the gate).
+3. All 25 recommended-mode primary paths measure 3–6 min, or carry a one-sentence justification in the report; Fly/Instantly are faster for each.
+4. ≥ 5 quiet outings; every family ≥ 3 keepsakes; Seasoned Chicagoan reachable in ≤ 15 distinct completions and not by replay (walker proof).
+5. The 26th-jaunt demonstration needed no JS/CSS diff.
 
-1. Exactly the initial 25 named premises are available or have an explicitly resolved supported replacement; no duplicate engine pilot inflates the count. All six priority jaunts are complete.
-2. Generate an entity/claim/source/date/review audit; no uncited DOC claim, unsupported current business, later-only event or reconstructed Indigenous encounter. Respect source asset rights and no-human-figures rules.
-3. Run every reachable content path automatically and record primary-path timing at recommended and faster travel modes. Correct routes/text/defaults that cannot meet about five minutes; never falsify displayed estimates.
-4. Inspect primary stops for 25-60-word pacing, 4-8-stop norm, diverse premises and at least five quiet outings with no compulsory resource puzzle.
-5. Verify every collection family has at least three distinct available keepsakes, all ranks are reachable and repeat/Previous/Revise do not farm rewards.
-6. Demonstrate adding a 51st fixture by JSON plus regeneration only; publish a concise acceptance report with measured results and any justified short/long exceptions.
+**Harness and gates:** `./tools/check.sh` (+ audit); `smoke_budget.mjs --for-diff`; `preflight.sh`.
 
-**Touch points:** all data/jaunts content and validators, docs acceptance report; narrowly scoped content corrections.
-
-**Finish:** one gated PR into `dev`, focused checks plus affected published desktop/mobile smoke; no production promotion. Claim through `ticket.mjs`. Meet this acceptance before closing. If an unforeseen piece truly needs a successor, place it beside this dependency inside the same subsection, update the plan, and keep the subsection below 15 tickets. Do not append unfinished work to the queue tail.
+Changelog: one visible entry (the full library). Contract: [architecture](../docs/ARRIVAL-JAUNTS-ARCHITECTURE.md) · [briefs](../docs/JAUNTS-INITIAL-LIBRARY.md) · [plan](../docs/ARRIVAL-JAUNTS-EXECUTION.md). One PR into `dev`; claim with `ticket.mjs`.

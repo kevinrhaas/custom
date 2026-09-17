@@ -1,113 +1,147 @@
 # Arrival and jaunts — execution plan
 
-Owner-directed ticket plan, 17 September 2026. **Planning is complete; implementation is queued.**
-The owner approved **summer 1835** wording; the scene date stays 1835-07-01.
+Owner-directed ticket plan, 17 September 2026, **reviewed and re-cut the same day on the
+owner's second instruction** ("review the queue and the overall project … make these tickets
+very detailed and clear for execution so it all comes together in the end"). Planning is
+complete; implementation is queued. The owner approved **summer 1835** wording; the scene
+date stays 1835-07-01.
 
-[Architecture and acceptance contracts](ARRIVAL-JAUNTS-ARCHITECTURE.md) · [25 content briefs](JAUNTS-INITIAL-LIBRARY.md) · [Queue](../tickets/QUEUE.md)
+[Architecture and shared contracts §A–§H](ARRIVAL-JAUNTS-ARCHITECTURE.md) ·
+[25 content briefs](JAUNTS-INITIAL-LIBRARY.md) · [Queue](../tickets/QUEUE.md) ·
+authoring guide `docs/JAUNTS-AUTHORING.md` (written by T-1253)
 
-## Where this work sits
+## Where this work sits, and how to take a ticket
 
-The five subsections sit after reconstruction convergence (T-1215) and immediately
-before South Through Time. All previous ticket ordering is preserved. The owner
-explicitly requested this multi-ticket plan here; the normal rule to park unrequested
-large epics at the foot does not apply to this promoted work. No existing research,
-business or boot-budget ticket is duplicated. Every new ticket is open, owner-requested,
-and M (one run, tight); none is claimed or completed by this planning PR.
+The five subsections sit after reconstruction convergence (T-1215) and immediately before
+South Through Time. Inside each subsection the queue is **dependency order**: every ticket
+names its predecessors under **Depends on**; take the topmost ticket whose predecessors are
+all `done`, and skip one whose predecessor is still `open`/`claimed` (state the skip in the
+PR). Tickets marked *(opener)* have no predecessor and may be taken by different agents at
+once. Shared engine and compiler contracts land before the content batches; a content batch
+owns only its own JSON files and never changes engine behaviour to fit a story.
 
-Work top-down after checking remote claims and named predecessors. A preceding band
-is not permission to bypass a held claim. Shared compiler/engine files land first;
-content batches then own separate JSON files and can be allocated independently.
-Do not change engine behavior in a content batch merely to fit a story. Each ticket
-owns its focused tests; the final two tickets are integration checks with corrections.
+Every ticket is one run (`M`, or `S` for T-1292). Each states what exists today with real
+symbols, what to build, a numbered acceptance clause with the command or measurement that
+demonstrates it, the harness ids and budgets it must keep (§F), and what is out of scope.
+Finish each subsection; if a genuine remaining piece cannot fit, insert one focused
+successor `--after` its dependency inside the band, update this matrix, and keep the
+subsection below 15 tickets. Never send unfinished work to the queue tail and never close
+an incomplete ticket. Claims, sizing, provenance, preflight and the dev-only merge workflow
+remain in force.
 
-Finish each subsection. Only if a genuine remaining piece cannot fit should a focused
-successor be inserted beside its dependency in this band. Update this mapping, keep
-subsections below 15 tickets, and do not send unfinished work to the bottom or close
-an incomplete ticket. The existing claims, sizing, provenance, preflight and dev-only
-merge workflow remain in force.
+## Lanes — what can run at the same time
 
-## 5F. Arrival And Sources — Measured Loading, Time Rollback, Source Library, Free Start (7 tickets)
+```
+5F  T-1246 boot phases ──► T-1247 arrival ──► T-1275 statuses
+    T-1292 city topic ─────────────┐              ▲
+    T-1248 source index ──► T-1276 sources ───────┘ (T-1275 needs T-1247 + T-1248)
+    T-1277 destinations ──┐
+                          ├──► T-1278 welcome  (needs T-1247, T-1292, T-1277)
+5G  T-1253 jaunt contract (opener; parallel with 5F)
+    T-1279 engine + navigation (needs T-1253, T-1277, T-1278)
+      ├─► T-1280 travel modes ─┐
+      └─► T-1256 mechanics ────┼─► T-1257 context (needs T-1279, T-1280, T-1276)
+                               └─► T-1258 daybook (needs T-1256, T-1257)
+    T-1259 menu (needs T-1279, T-1280, T-1258, T-1278)
+5H  six priority jaunts — parallel, content only (need T-1259, T-1256, T-1257, T-1258)
+5I  five batches of everyday jaunts — parallel, content only (same predecessors)
+5J  T-1271 library convergence (needs all of 5H + 5I) ──► T-1272 published acceptance
+```
 
-| Ticket | Bounded delivery | Prerequisites |
+Five agents can start today: T-1246, T-1292, T-1248, T-1277 and T-1253.
+
+## 5F. Arrival and sources — measured loading, time rollback, source library, city summary, free start (8 tickets)
+
+| Ticket | Bounded delivery | Depends on |
 |---|---|---|
-| [T-1246](../tickets/T-1246-expose-real-boot-phases-and-yield-long-scene-bui.md) | Expose real boot phases and yield long scene-building tasks | Existing dev |
-| [T-1247](../tickets/T-1247-roll-the-year-back-into-a-restrained-time-machin.md) | Roll the year back into a restrained time-machine arrival | T-1246 |
-| [T-1248](../tickets/T-1248-compile-the-sources-used-and-their-reconstructio.md) | Compile the sources used and their reconstruction backlinks | Existing dev |
-| [T-1275](../tickets/T-1275-give-the-loading-journey-160-varied-source-and-r.md) | Give the loading journey 160 varied source and reconstruction statuses | T-1247, T-1248 |
-| [T-1276](../tickets/T-1276-move-city-statistics-into-a-browsable-sources-an.md) | Move city statistics into a browsable Sources and City summary | T-1248 |
-| [T-1277](../tickets/T-1277-share-one-destination-search-for-go-to-and-explo.md) | Share one destination search for Go to and Explore Myself | Existing dev |
-| [T-1278](../tickets/T-1278-land-on-a-warm-mobile-welcome-with-jaunts-and-ex.md) | Land on a warm mobile welcome with Jaunts and Explore Myself | T-1247, T-1276, T-1277 |
+| [T-1246](../tickets/T-1246-expose-real-boot-phases-and-yield-long-scene-bui.md) *(opener)* | `api.boot` phase events, measured `boot-weights.js`, time-sliced flora phase, essential/optional readiness | — |
+| [T-1292](../tickets/T-1292-move-the-town-census-off-the-loader-into-an-evid.md) *(opener, S)* | The gate census moves to Evidence → City; part-1 smoke checks relocated | — |
+| [T-1248](../tickets/T-1248-compile-the-sources-used-and-their-reconstructio.md) *(opener)* | `compile_source_use.py` → `sidecars/1835/sources/` index + per-source edges, coverage report, tests | — |
+| [T-1277](../tickets/T-1277-share-one-destination-search-for-go-to-and-explo.md) *(opener)* | `destinations.js` shared by Go to and the start picker; derived business rows; spawn-at-destination | — |
+| [T-1247](../tickets/T-1247-roll-the-year-back-into-a-restrained-time-machin.md) | `arrival.js`: split-flap year paced by §A, restrained instrument style, error/retry, a11y | T-1246 |
+| [T-1276](../tickets/T-1276-move-city-statistics-into-a-browsable-sources-an.md) | Evidence → Sources: searchable, filtered, windowed list; counts; used-for link library | T-1248, T-1292 |
+| [T-1275](../tickets/T-1275-give-the-loading-journey-160-varied-source-and-r.md) | `data/loading/statuses.json` (≥160), `loading-content.js` bags, content validator | T-1247, T-1248 |
+| [T-1278](../tickets/T-1278-land-on-a-warm-mobile-welcome-with-jaunts-and-ex.md) | The welcome: Jaunts · Explore Myself · Enter Chicago; no pointer lock on menus; Start route back | T-1247, T-1292, T-1277 |
 
-## 5G. Jaunts Engine — Content Contract, Navigation, Travel, Choices, History And Menu (7 tickets)
+## 5G. Jaunts engine — content contract, navigation, travel, mechanics, history, daybook, menu (7 tickets)
 
-| Ticket | Bounded delivery | Prerequisites |
+| Ticket | Bounded delivery | Depends on |
 |---|---|---|
-| [T-1253](../tickets/T-1253-define-validated-jaunt-json-and-render-a-real-pi.md) | Define validated jaunt JSON and render a real pilot preview | T-1248, T-1277, T-1278 |
-| [T-1279](../tickets/T-1279-make-the-pilot-jaunt-playable-with-persistent-st.md) | Make the pilot jaunt playable with persistent stop navigation | T-1253 |
-| [T-1280](../tickets/T-1280-offer-live-jaunt-travel-modes-and-honest-quick-p.md) | Offer live jaunt travel modes and honest quick-play estimates | T-1279 |
-| [T-1256](../tickets/T-1256-support-bounded-choices-inventory-and-alternate-.md) | Support bounded choices, inventory and alternate jaunt endings | T-1279 |
-| [T-1257](../tickets/T-1257-connect-jaunt-stops-and-travel-to-optional-histo.md) | Connect jaunt stops and travel to optional historical context | T-1279, T-1280, T-1276 |
-| [T-1258](../tickets/T-1258-collect-era-themed-keepsakes-in-a-five-family-ch.md) | Collect era-themed keepsakes in a five-family Chicago daybook | T-1256, T-1257 |
-| [T-1259](../tickets/T-1259-finish-the-scalable-jaunts-menu-and-integrated-s.md) | Finish the scalable Jaunts Menu and integrated start experience | T-1279, T-1280, T-1258, T-1278 |
+| [T-1253](../tickets/T-1253-define-validated-jaunt-json-and-render-a-real-pi.md) *(opener)* | `schema.json`, `compile_jaunts.py`, catalog, the `new-in-chicago` pilot file, fixtures, `docs/JAUNTS-AUTHORING.md` | — (T-1248 if landed) |
+| [T-1279](../tickets/T-1279-make-the-pilot-jaunt-playable-with-persistent-st.md) | `jaunts.js` reducer + `jaunt-panel.js`; Previous / Next / End / Menu; pilot played end to end | T-1253, T-1277, T-1278 |
+| [T-1280](../tickets/T-1280-offer-live-jaunt-travel-modes-and-honest-quick-p.md) | `travel-estimate.js`; per-jaunt mode, mid-leg switch that re-plans; Go straight to next stop | T-1279 |
+| [T-1256](../tickets/T-1256-support-bounded-choices-inventory-and-alternate-.md) | Declared, bounded, once-only mechanics; Revise choice; endings; session resume | T-1279 |
+| [T-1257](../tickets/T-1257-connect-jaunt-stops-and-travel-to-optional-histo.md) | Typed card links with exact return; route-aware leg notes ("passing …"); provenance chips | T-1279, T-1280, T-1276 |
+| [T-1258](../tickets/T-1258-collect-era-themed-keepsakes-in-a-five-family-ch.md) | `daybook.json` five families + ranks; `jaunt-journal.js`; outcome card; reset | T-1256, T-1257 |
+| [T-1259](../tickets/T-1259-finish-the-scalable-jaunts-menu-and-integrated-s.md) | `jaunt-menu.js`: six-field cards, featured row, search/pills, windowing, resume strip | T-1279, T-1280, T-1258, T-1278 |
 
-## 5H. Priority Jaunts — Six Short Stories, Fully Authored And Playable (6 tickets)
+## 5H. Priority jaunts — six short stories, fully authored and playable (6 tickets, parallel)
 
-| Ticket | Bounded delivery | Prerequisites |
+All need T-1259, T-1256, T-1257, T-1258. Each ticket carries its stops, mechanics, cautions and
+the per-stop authoring checklist; content only.
+
+| Ticket | Jaunt | Mode · keepsake |
 |---|---|---|
-| [T-1260](../tickets/T-1260-publish-outfit-for-the-west-as-a-five-minute-jau.md) | Publish Outfit for the West as a five-minute jaunt | T-1259, T-1256, T-1257, T-1258 |
-| [T-1261](../tickets/T-1261-publish-taverns-of-chicago-as-a-five-minute-jaun.md) | Publish Taverns of Chicago as a five-minute jaunt | T-1259, T-1256, T-1257, T-1258 |
-| [T-1262](../tickets/T-1262-publish-new-in-chicago-as-a-five-minute-jaunt.md) | Publish New in Chicago as a five-minute jaunt | T-1259, T-1256, T-1257, T-1258 |
-| [T-1263](../tickets/T-1263-publish-shopping-south-water-street-as-a-five-mi.md) | Publish Shopping South Water Street as a five-minute jaunt | T-1259, T-1256, T-1257, T-1258 |
-| [T-1264](../tickets/T-1264-publish-across-wolf-point-as-a-five-minute-jaunt.md) | Publish Across Wolf Point as a five-minute jaunt | T-1259, T-1256, T-1257, T-1258 |
-| [T-1265](../tickets/T-1265-publish-fort-dearborn-errand-as-a-five-minute-ja.md) | Publish Fort Dearborn Errand as a five-minute jaunt | T-1259, T-1256, T-1257, T-1258 |
+| [T-1260](../tickets/T-1260-publish-outfit-for-the-west-as-a-five-minute-jau.md) | Outfit for the West | Wagon · Ready for the Road (Provisions) |
+| [T-1261](../tickets/T-1261-publish-taverns-of-chicago-as-a-five-minute-jaun.md) | Taverns of Chicago | Horse · A Sensible Evening (Neighbors) |
+| [T-1262](../tickets/T-1262-publish-new-in-chicago-as-a-five-minute-jaunt.md) | New in Chicago (finishes the T-1253 pilot in place) | Walk · Finding Your Feet (Wayfinding) |
+| [T-1263](../tickets/T-1263-publish-shopping-south-water-street-as-a-five-mi.md) | Shopping South Water Street | Walk · The Household List (Provisions) |
+| [T-1264](../tickets/T-1264-publish-across-wolf-point-as-a-five-minute-jaunt.md) | Across Wolf Point | Walk · Knows the Crossing (Wayfinding) |
+| [T-1265](../tickets/T-1265-publish-fort-dearborn-errand-as-a-five-minute-ja.md) | Fort Dearborn Errand | Walk · Accounted for at the Fort (Livelihood) |
 
-## 5I. Everyday Jaunts — Nineteen Additional Outings In Five Bounded Content Batches (5 tickets)
+## 5I. Everyday jaunts — nineteen additional outings in five bounded content batches (5 tickets, parallel)
 
-| Ticket | Bounded delivery | Prerequisites |
+Same predecessors as 5H. Each batch names its quiet outing (no declared resource).
+
+| Ticket | Jaunts |
+|---|---|
+| [T-1266](../tickets/T-1266-publish-news-mail-lodging-and-work-jaunts.md) | news-before-breakfast · letter-home · bed-for-the-night (quiet) · work-on-waterfront |
+| [T-1267](../tickets/T-1267-publish-land-freight-household-supplies-and-clot.md) | inspect-a-lot · freight-for-the-store · household-provisions · a-decent-coat (quiet) |
+| [T-1268](../tickets/T-1268-publish-harness-candles-building-materials-and-l.md) | mend-the-harness · soap-and-candles (quiet) · materials-for-a-roof · boots-and-leather |
+| [T-1269](../tickets/T-1269-publish-schooling-social-visits-and-careful-news.md) | schoolday-errand · sunday-circuit (quiet) · calling-on-neighbors · gossip-or-notice |
+| [T-1270](../tickets/T-1270-publish-harbor-prairie-arrival-and-a-quiet-strol.md) | along-the-harbor · from-prairie-to-town · an-evening-stroll (quiet) |
+
+## 5J. Arrival and jaunts complete — content convergence and published mobile acceptance (2 tickets)
+
+| Ticket | Bounded delivery | Depends on |
 |---|---|---|
-| [T-1266](../tickets/T-1266-publish-news-mail-lodging-and-work-jaunts.md) | Publish news, mail, lodging and work jaunts | T-1259, T-1256, T-1257, T-1258 |
-| [T-1267](../tickets/T-1267-publish-land-freight-household-supplies-and-clot.md) | Publish land, freight, household supplies and clothing jaunts | T-1259, T-1256, T-1257, T-1258 |
-| [T-1268](../tickets/T-1268-publish-harness-candles-building-materials-and-l.md) | Publish harness, candles, building materials and leather jaunts | T-1259, T-1256, T-1257, T-1258 |
-| [T-1269](../tickets/T-1269-publish-schooling-social-visits-and-careful-news.md) | Publish schooling, social visits and careful news reading jaunts | T-1259, T-1256, T-1257, T-1258 |
-| [T-1270](../tickets/T-1270-publish-harbor-prairie-arrival-and-a-quiet-strol.md) | Publish harbor, prairie arrival and a quiet stroll jaunts | T-1259, T-1256, T-1257, T-1258 |
-
-## 5J. Arrival And Jaunts Complete — Content Convergence And Published Mobile Acceptance (2 tickets)
-
-| Ticket | Bounded delivery | Prerequisites |
-|---|---|---|
-| [T-1271](../tickets/T-1271-reconcile-and-time-the-complete-25-jaunt-library.md) | Reconcile and time the complete 25-jaunt library | T-1260, T-1261, T-1262, T-1263, T-1264, T-1265, T-1266, T-1267, T-1268, T-1269, T-1270 |
-| [T-1272](../tickets/T-1272-verify-arrival-jaunts-and-source-browsing-on-the.md) | Verify arrival, jaunts and source browsing on the published mobile app | T-1271, T-1275, T-1276, T-1278, T-1259 |
+| [T-1271](../tickets/T-1271-reconcile-and-time-the-complete-25-jaunt-library.md) | `play_jaunt.mjs --all`, `audit_jaunts.py` in the gate, all 25 measured and corrected, 26th-by-JSON proof, report | all of 5H and 5I |
+| [T-1272](../tickets/T-1272-verify-arrival-jaunts-and-source-browsing-on-the.md) | A priced smoke part for the whole path at both viewports; boot variants; layouts; budgets; report | T-1271, T-1275, T-1276, T-1278, T-1259 |
 
 ## Requirements accounted for
 
 | Owner requirement | Tickets / proof |
 |---|---|
-| Measured stages, responsive long work, year rollback tied to readiness | T-1246, T-1247 |
-| Varied source cards/facts, roughly 100–250 statuses, rare humor, no forced wait | T-1275 |
-| Warm summer 1835 welcome and Tap to enter, mobile controls | T-1278, T-1272 |
-| One shared Go to / Explore Myself picker, safe start, no jaunt state | T-1277, T-1278, T-1259 |
-| City totals moved out of welcome; full searchable source/usage library | T-1248, T-1276 |
-| Data-driven JSON, provenance, more than 50 through content | T-1253, T-1259, T-1271 |
-| Persistent Previous / Next / End / Menu and immediate End-to-menu | T-1279, T-1272 |
-| Mode choice before and during play; real ETA; skip boring travel | T-1280 |
-| Optional mechanics, conditions, endings, no forced game on every outing | T-1256, T-1271 |
-| Deep cards and optional transit history without extending the main path | T-1257 |
-| Era-themed keepsakes, five families and cross-category progression | T-1258, T-1271 |
-| Six named priority jaunts and nineteen varied everyday jaunts | T-1260, T-1261, T-1262, T-1263, T-1264, T-1265, T-1266, T-1267, T-1268, T-1269, T-1270 |
-| About five minutes, normally 4–8 stops, measured paths | T-1271 |
-| Published mobile/desktop, fast/slow/failure/reduced-motion cases and budgets | T-1272 |
+| Loader knows how long each section takes and should take; year rolls back smoothly and lands on 1835 exactly at readiness | T-1246 (`boot-weights.js`, phase events), T-1247 (§A pacing, ≤300 ms settle) |
+| Welcome explains a digital reconstruction of 1835; statuses show sources ("Assessing newspapers… Chicago Democrat"), flip cards, facts, assess→collect→prepare→resolve→land arc, 100–few-hundred entries, rare humour incl. "reticulating splines" | T-1247 (card slot, copy), T-1275 (≥160 entries, phase arc, 1 % humour), T-1248 (facts trace to real sources) |
+| Gently steampunk, retro-60s time-machine feel, not cutesy | T-1247 (restrained instrument style, `--brass` token, no gears/sound) |
+| Fast load shows only a couple of statuses; long prairie phase keeps repainting | T-1246 (time-slicing), T-1275 (dwell scaled to expected phase length) |
+| Land on the Jaunts / Explore Myself page; "Tap to enter", not "Tap to walk"; mobile fits | T-1278, T-1259, T-1272 |
+| Counts and percentages off the opening screen, into a city summary tab | T-1292 (Evidence → City) |
+| All sources used, easy to consume, with attested/inferred/reconstructed counts and a used-for link library | T-1248 (index), T-1276 (browser) |
+| Explore Myself: search structure / business / resident place / street & intersection, then free exploration; not a duplicate of Go to | T-1277 (one `destinations.js`, derived business rows), T-1278 |
+| Recommended travel mode per jaunt, changeable on the card and mid-jaunt; duration follows the mode | T-1280, T-1259 |
+| Sites along the way and the story between stops; deeper cards without slowing the jaunt | T-1257 (route-aware leg notes, typed links with exact return) |
+| Persistent Previous / Next / End / Jaunts Menu; End returns to the menu immediately | T-1279 |
+| Menu shows title, premise, stops, duration, category, travel mode; 25 → 50+ by data | T-1253 (catalog), T-1259 (windowing, 55-item fixture), T-1271 (26th by JSON) |
+| Optional mechanics, alternate endings, matched to the subject | T-1256, the quiet outing per batch |
+| 3–5 collection systems, level up across categories, modern low-pressure gameplay | T-1258 (five families, four ranks, no streaks/leaderboards) |
+| Six priority jaunts; ~25 varied everyday outings; provenance model preserved | 5H, 5I, T-1271 (audit in the gate) |
+| About five minutes, 4–8 stops, measured | T-1280 (estimate), T-1271 (measured paths) |
+| Published mobile and desktop, slow/fast/failed boots, reduced motion, budgets | T-1272 |
 
 ## Planning validation and implementation handoff
 
-The proposed routes were checked against the compiled scene and authored anchors,
-not merely against files existing in `data/structures/`. These are **content briefs**,
-not a claim that every suggested transaction or present-tense role is documented.
-Each content ticket verifies the relevant claim and locator when it is authored.
-Known traps are called out in the briefs: the future courthouse is excluded, the Lake
-House is construction, Hogan's mail role is historical, and fort service functions
-and access must not be silently strengthened.
+All 42 proposed stop ids were re-verified against `data/structures/` and
+`data/sidecars/1835/index.json` on 2026-09-17 (second pass); every one resolves, none is
+`review_required`, and positions are `inferred` or `reconstructed` throughout — the
+library's per-stop table records which, so a stop's text never claims a placed front door.
+The anchor `lake_shore_south` resolves in `data/scenes/1835.json`. These remain **content
+briefs**: each content ticket verifies the claim and locator it uses when it authors the stop.
+Known traps stay called out: the future court-house is excluded, the Lake House is under
+construction, Hogan's mail role is historical, and fort service functions and access must
+not be silently strengthened.
 
-No new geometry or human figures are required by this plan. Missing source precision
-can be bounded and labeled reconstructed; restricted depiction/rights constraints
-still apply. Code checks on this planning change do not validate a future runtime.
-The published integration ticket is responsible for that evidence after implementation.
+No new geometry and no human figures are required by this plan. A missing number is handled
+at the reconstructed tier with a liberty, never a new epic. Code checks on this planning
+change do not validate a future runtime; T-1272 owns that evidence after implementation.
