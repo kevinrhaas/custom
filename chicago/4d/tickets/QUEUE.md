@@ -28,7 +28,6 @@
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1282 — The lap cannot re-derive a resident household card, so any PR that conflicts on hh_*.json is refused whole
 T-1289 — Each merge into dev makes every other open PR dirty, so N pull requests cost N-squared lap-and-gate rounds
-T-1288 — Every pull request runs the 439-step gate TWICE, because the check fires on push and on pull_request for the same commit
 T-1287 — A split mints its children's ids from the local maximum, so two runs splitting one parent mint the SAME ids for DIFFERENT tickets and the parent's claim lock covers neither
 T-1286 — Cross-check the derived 1812 pre-cut shore against the Harrison 1830 trace, and record what the two readings disagree about
 T-1284 — Carry the six per-row provenance fields the duplicate reconciliation table had into T-1237's rows
@@ -187,3 +186,4 @@ T-1222 — Read the letter-list mint's 798-file drift and give the pass a check 
 T-1281 — Is the Democrat's 'A. Sweet' of 4 June 1834 Alanson Sweet or the Alon[s]on Sweet of the same column
 T-1273 — Write every committed home and workplace reconciliation row as an associated_with row on the record it belongs to, changing no value, confidence or source
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
+
