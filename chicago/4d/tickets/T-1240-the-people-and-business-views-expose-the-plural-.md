@@ -1,7 +1,7 @@
 ---
 id: T-1240
 title: The people and business views expose the plural links, their dates, confidence and location limits, including street-only and unplaceable businesses
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1147
 opened: 2026-09-17
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into the surviving ticket
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T20:05:41.120Z
 claimed_run: null
 ---
 

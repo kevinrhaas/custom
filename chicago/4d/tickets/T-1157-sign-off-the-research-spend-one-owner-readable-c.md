@@ -76,3 +76,36 @@ the exact blockers, in which case this ticket stays open and the band below it w
 **Links:** T-1143 · T-1144 · T-1145 · T-1146 · T-1147 · T-1155 · T-1121 · T-1136 · T-1129 ·
 T-0856 · T-0662 · T-1108 · `docs/RESEARCH/research-spend-ledger-2026-09-15.md` ·
 `docs/RESEARCH/residents-households-summary-2026-09.md`.
+
+
+## T-1144 AND T-1241 COULD NOT BE FOLDED — THEY RUN IN THIS PASS (owner's tightening, 2026-09-17)
+
+Three tickets were standing at the end of the research spend and all three are the same act —
+prove the layer converged, then say so:
+
+* **T-1144** — converge the resident layer: zero synthesis and mint drift, no false Chicago.
+  **Could NOT be folded**: unresolved research units name it BY ID as the work they wait on,
+  and `research_spend_ledger.py` refuses a unit deferred to a closed ticket.
+* **T-1241** — run the T-1143 ledger over the final resident, household, business and
+  structure layers and publish the closing figures. **This one could NOT be folded and stays
+  a ticket of its own**: 748 unresolved research units defer to T-1147, a split parent counts
+  as live only while a child is open, and T-1241 is now the last open child. Folding it made
+  all 748 defer to finished work and `measure_research_spend.py --check` failed on every one.
+  It is not a separate expedition — run it in THIS pass, as this report's evidence section.
+* **T-1157** (this one) — one owner-readable coverage report, and the GO that opens bands 3-5.
+
+A convergence nobody reports is not finished, and a report on an unconverged layer is not
+true, so they cannot happen apart. Running them as three tickets means three runs each
+re-establishing the same tree and re-reading the same ledgers.
+
+**One run, and it ends in a signature.** The drift checks and the ledger pass are the EVIDENCE
+SECTION of the report, not their own deliverables.
+
+**Good, not great — and this is the ticket that most needs it, because it is the gate the city
+is waiting behind.** The report answers, per layer: what is attested, what is inferred, what
+is still unclassified, and what is knowingly left as a gap. **A stated gap is a finished
+answer.** Zero unclassified is NOT the bar and never was — the queue's own header says so:
+"zero unclassified research does not mean forcing uncertain people or locations into 1835."
+If a class cannot be closed, name it, say what it would take, and sign anyway. The GO is a
+judgement about whether reconstruction can start on what is known, not a certificate that
+nothing is unknown.

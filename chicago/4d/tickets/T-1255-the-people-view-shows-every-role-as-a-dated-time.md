@@ -43,3 +43,17 @@ carries over.
 **Good, not great:** a dated list on the card that shows which roles reach 1 July 1835 and
 which do not, each with its dates and source. Search and filter are worth having and are NOT
 a reason to hold the card; ship the card, and say in the PR if filtering did not fit.
+
+
+## T-1240 IS FOLDED IN HERE TOO (owner's tightening, 2026-09-17)
+
+T-1240 asked for the people and business views to expose the plural dated LOCATION links —
+their dates, confidence and location limits. This ticket asks for the same views to show the
+plural dated ROLES. **It is one screen.** A person's card shows what they did and where they
+were, both as dated lists with their sources; building it twice means opening the same view,
+the same renderer and the same schema on two separate runs.
+
+**Good, not great, and in this order:** the dated list on the card first — roles and
+locations, each with its dates, its source and whether it reaches 1 July 1835. Search,
+filtering and the business-side view are worth having and are NOT a reason to hold the card.
+Ship the card, and say in the pull request what did not fit.

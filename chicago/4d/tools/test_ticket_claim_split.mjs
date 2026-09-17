@@ -220,23 +220,60 @@ const markers = (bare) =>
     check('7. …in the base\'s own order, which is the owner\'s',
       ids.indexOf('T-3001') < ids.indexOf('T-3002')
       && ids.indexOf('T-3002') < ids.indexOf('T-3003'), ids.join(' '));
-    check('8. the branch\'s own lines go back after the line they followed, not at the foot',
-      ids[ids.indexOf('T-3001') + 1] === 'T-3004'
-      && ids[ids.indexOf('T-3004') + 1] === 'T-3005', ids.join(' '));
+    check('8. the branch\'s own lines are not moved — its relative order is untouched',
+      ids.indexOf('T-3001') < ids.indexOf('T-3004')
+      && ids.indexOf('T-3004') < ids.indexOf('T-3005'), ids.join(' '));
     check('9. the band header survives — a reconcile is not a regeneration',
       q.includes('# --- 1. A BAND') && q.includes('THE OWNER ORDERS THIS FILE'));
+
+    // THE REGRESSION THAT COST THE OWNER'S RULING. The first cut rebuilt on the BASE's
+    // file, so every non-ticket line the branch had written was silently replaced by the
+    // base's. On 2026-09-17 the owner renumbered the parked jaunts bands and wrote the
+    // fall-through rule into the header; the lap ran `reconcile`, and #1413 merged with
+    // neither, because the tool had quietly taken dev's headers back.
+    writeFileSync(QUEUE, '# QUEUE — top is next. THE OWNER ORDERS THIS FILE.\n'
+      + '# --- 1. A BAND RENAMED BY THIS BRANCH\n# Owner ruling this branch is here to make.\n'
+      + 'T-3001 — fixture T-3001\n');
+    run(APP, 'reconcile', '--base', 'base');
+    const hq = readFileSync(QUEUE, 'utf8');
+    check('9b. a header THIS BRANCH rewrote is kept, and the base\'s is not restored over it',
+      hq.includes('A BAND RENAMED BY THIS BRANCH')
+      && hq.includes('Owner ruling this branch is here to make.')
+      && !hq.includes('# --- 1. A BAND\n'),
+      hq.split('\n').filter((l) => l.startsWith('#')).join(' | '));
+    check('9c. …and the base\'s missing ticket lines still came back',
+      /T-3002/.test(hq) && /T-3003/.test(hq));
+    writeFileSync(QUEUE, q);
     check('10. every line the base had is still there, and nothing is duplicated',
       new Set(ids).size === ids.length && ids.length === 5, ids.join(' '));
 
-    // The only line with no predecessor: one that LED the branch's queue. Leading the
-    // queue is itself a ranking, so it goes back to the top and not to the foot.
+    // A branch line the base has never seen keeps the place the branch gave it, even at
+    // the very top — the branch's ordering of its own work is not the tool's to move.
     T('T-3006');
     writeFileSync(QUEUE, HEADER + 'T-3006 — fixture T-3006\nT-3001 — fixture T-3001\n');
-    const led = run(APP, 'reconcile', '--base', 'base');
+    run(APP, 'reconcile', '--base', 'base');
     const ids2 = readFileSync(QUEUE, 'utf8').split('\n')
       .map((l) => /^(T-\d{4})/.exec(l)?.[1]).filter(Boolean);
-    check('11. a line that LED the branch\'s queue goes back to the top, not the foot',
-      ids2[0] === 'T-3006' && /to the top/.test(led.out), ids2.join(' '));
+    check('11. a branch line the base lacks keeps its place, even leading the queue',
+      ids2[0] === 'T-3006' && ids2.includes('T-3002') && ids2.includes('T-3003'),
+      ids2.join(' '));
+
+    // A TITLE EDITED ON THE BASE LEAVES THE BRANCH'S LABEL STALE, and `check` refuses it:
+    // "the ticket wins; rewrite the line as …". #1417 went red on exactly that, one step of
+    // 441, after T-1276 was retitled on dev. Rewriting a label cannot lose the owner's
+    // intent the way reordering could — the ORDER is untouched and the words are the
+    // ticket's own.
+    writeFileSync(path.join(APP, 'tickets', 'T-3001-fixture.md'),
+      ticketFile('T-3001', 'fixture T-3001 RETITLED ON THE TICKET', 'open'));
+    writeFileSync(QUEUE, HEADER + 'T-3001 — fixture T-3001\n');
+    const rel = run(APP, 'reconcile', '--base', 'base');
+    const rq = readFileSync(QUEUE, 'utf8');
+    check('13. a label whose ticket was retitled follows the ticket, not the stale line',
+      rq.includes('T-3001 — fixture T-3001 RETITLED ON THE TICKET')
+      && /label\(s\) rewritten/.test(rel.out),
+      rq.split('\n').find((l) => l.startsWith('T-3001')) ?? '(no line)');
+    check('14. …and the queue still passes its own check afterwards',
+      !/labels T-3001/.test(run(APP, 'check').out));
 
     const missing = run(APP, 'reconcile', '--base', 'no-such-ref');
     check('12. an unreadable base is refused loudly, never treated as an empty queue',

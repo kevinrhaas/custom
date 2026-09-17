@@ -1,7 +1,7 @@
 ---
 id: T-1162
 title: The 1835 occupation model: how many of each trade, profession, office and employment a lake-port town of this size held in July 1835, from the 1839 directory, the 1840 industry columns, the 1833 roster and Andreas's business lists, net of the documented practitioners
-state: open
+state: withdrawn
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1293
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T20:06:17.707Z
 claimed_run: null
 ---
 

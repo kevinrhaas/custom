@@ -52,3 +52,22 @@ not work it until the owner promotes pieces out of it.
    ruled the ledger carries no unresolved unit owned by this ticket.
 
 **Links:** T-1234 (the pass that filed this) · T-1232 · T-1143 · T-1147 · T-1157.
+
+
+## BOUNDED, 2026-09-17 (owner's tightening)
+
+This is an EPIC in the band the city is waiting behind, and an epic there is a hole the queue
+drains into. It is not folded, because ruling on unasserted units is real work nothing else
+covers. It is BOUNDED, on the same terms as T-1290 and T-1291:
+
+* **One pass over all four bodies** — land-sale, civic, 1830-census, church — not one run each.
+* **A unit that cannot be ruled on the evidence is recorded as unasserted WITH ITS REASON, and
+  that is a finished answer.** This project prefers a refusal to an invention; an explicit
+  refusal is the deliverable, not a deferral.
+* **No ticket may be filed per unruled unit.** One that later blocks reconstruction is picked
+  up by the ticket it blocks.
+* The output is one table — unit, body, ruling or refusal, reason — plus one sentence per body
+  saying what the residue does to the 1835 town. "Nothing" is a complete answer.
+
+**If it cannot be done in one run, split it by BODY, four children at most, and say so — never
+by unit.**
