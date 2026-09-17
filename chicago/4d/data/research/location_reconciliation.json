@@ -4,7 +4,7 @@
   "scene_date": "1835-07-01",
   "_doc": "DERIVED, NEVER AUTHORED. One row per home, workplace and business-location CLAIM this project holds, gathered from the five committed ledgers that already adjudicate them and translated into one vocabulary. Rebuilt by tools/reconcile_locations.py; tools/check.sh refuses a committed copy a rebuild would not produce. Nothing is adjudicated here — every disposition is the verdict its `ledger` reached, and a row that wants a different verdict is a change to that ledger, not to this file.",
   "nothing_is_adjudicated_here": "Every disposition below is carried from the committed ledger named in the row's own `ledger` field. Where that ledger states no confidence — the scene-date register decides an action, not a grade — the row carries a null confidence and says which ledger is silent. A grade invented here would put a number on the card that no source ever said.",
-  "the_standing_questions_stay_open": "A claim under one of the four owner-retained source questions carries `standing_question` beside the disposition its ledger reached. The question is not answered here; T-1232 retains or resolves it.",
+  "the_standing_questions_stay_open": "A claim under one of the four owner-retained source questions carries `standing_question` beside the disposition its ledger reached. The question is not answered here; T-1235 retains or resolves it.",
   "compiled_from": [
     "data/research/newspapers/gazetteer.json",
     "data/research/newspapers/register_1835.json",

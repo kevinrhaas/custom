@@ -53,4 +53,4 @@ single input T-1231 (writing the relationships) and T-1198 (the address book) re
 
 **Out of scope, and owned by the siblings:** writing plural dated `lives_at` / `works_at`
 and `associated_with[]` onto the records (T-1231); the people and business views, the four
-standing questions and the ledger closeout (T-1232).
+standing questions and the ledger closeout (T-1235).

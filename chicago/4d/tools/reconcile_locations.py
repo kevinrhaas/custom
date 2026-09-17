@@ -48,7 +48,7 @@ here would put a number on the card that no source ever said.
 It may not close a standing question. Four printings in the Chicago American contradict
 themselves about a street (T-0305), and three more questions stand open at T-0251,
 T-0386 and T-1087. A claim under one of them carries `standing_question` BESIDE the
-disposition its ledger reached; the question stays the owner's, and T-1232 retains or
+disposition its ledger reached; the question stays the owner's, and T-1235 retains or
 resolves it. The four are read from `measure_american_contradictions.QUESTIONS` rather
 than restated, so a question that closes there closes here in the same commit.
 """
@@ -490,7 +490,7 @@ def derive() -> dict:
         "the_standing_questions_stay_open":
             "A claim under one of the four owner-retained source questions carries "
             "`standing_question` beside the disposition its ledger reached. The "
-            "question is not answered here; T-1232 retains or resolves it.",
+            "question is not answered here; T-1235 retains or resolves it.",
         "compiled_from": [
             str(p.relative_to(ROOT)) for p in
             (GAZETTEER, REGISTER, ADOPTIONS, ADDRESS_BP, RESIDENCE_BP)

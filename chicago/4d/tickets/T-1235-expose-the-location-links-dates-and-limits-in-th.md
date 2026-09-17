@@ -1,5 +1,5 @@
 ---
-id: T-1232
+id: T-1235
 title: Expose the location links, dates and limits in the people and business views, retain or resolve the four standing source questions, and close the research ledger at zero unclassified
 state: open
 epic: META
