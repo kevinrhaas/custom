@@ -239,7 +239,7 @@ def leg_for(doc: dict) -> dict:
                     "date nothing about them, so the presence is uncertain with no "
                     "date to be uncertain from. A reading that dates one of the "
                     "blocks above fills this in by re-running " + GENERATOR + ".")
-        return {"date": None, "as_read": None, "precision": None, "reaches": None,
+        return {"as_read": None, "precision": None, "reaches": None,
                 "includes_scene_date": False, "days_before_scene_date": None,
                 "leg": "none", "person": None, "record": None, "sources": [],
                 "note": note}
@@ -277,7 +277,10 @@ def leg_for(doc: dict) -> dict:
             "and T-1159 and T-1172 classify this household by this date instead of "
             "reading it out of the prose (T-1144 acceptance 9).")
     return {
-        "date": best["as_read"] if best["tier"] != "source_span" else None,
+        # ONE DATE FIELD, NOT TWO. An earlier draft carried `date` beside `as_read` —
+        # the same string for a sighting and a bound, and null for a span — which is a
+        # second representation of one fact and a figure a reader has to reconcile.
+        # `leg` already says which kind of date this is, so `as_read` is the date.
         "as_read": best["as_read"],
         "precision": best["precision"],
         "reaches": reaches,
@@ -416,7 +419,7 @@ def self_test() -> int:
          "source": "chicago_democrat_1833_1835"}]})
     leg = leg_for(sighting)
     holds("a dated reading is a sighting", leg["leg"], "sighting")
-    holds("…and it carries the date it was read as", leg["date"], "1835-05-20")
+    holds("…and it carries the date it was read as", leg["as_read"], "1835-05-20")
     holds("…and the days it falls short", leg["days_before_scene_date"], 42)
     holds("…and the record it came from", leg["record"], "r1")
 
@@ -449,7 +452,8 @@ def self_test() -> int:
     span = leg_for(span_only)
     holds("a span alone is the leg, and reaches what the source covers",
           (span["leg"], span["reaches"]), ("source_span", "1835-08-31"))
-    holds("…and a span is not written as a date", span["date"], None)
+    holds("…and a span has no field a reader could take for a sighting date",
+          "date" in span, False)
     holds("…and a window over the scene date states no gap",
           (span["includes_scene_date"], span["days_before_scene_date"]), (True, None))
 

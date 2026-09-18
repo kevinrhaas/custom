@@ -207,9 +207,16 @@ function presenceLegRow(hh, citationsById) {
       <dd>${swatch('unknown')}none${
         leg.note ? `<br><span class="res-why">${escapeHtml(leg.note)}</span>` : ''}</dd>`;
   }
+  // A COARSE READING SAYS SO. `precision` is how exact the source was — a day, a
+  // month, a year — and `reaches` the latest day that reading can still mean. A year
+  // whose window covers 1 July 1835 pins nothing before it, and the row says which.
+  const exactness = { day: 'to the day', month: 'to the month', year: 'to the year' }[
+    leg.precision] || leg.precision;
   const reach = leg.includes_scene_date
-    ? 'a window that covers the day itself, so it pins nothing before it'
-    : `${leg.days_before_scene_date} day(s) before it`;
+    ? `read ${exactness}, so it can mean any day up to ${leg.reaches} — a window that `
+      + 'covers 1 July 1835 itself, and pins nothing before it'
+    : `read ${exactness}, reaching ${leg.reaches} — ${leg.days_before_scene_date} `
+      + 'day(s) before the scene date';
   const cites = (leg.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const list = cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : '';
   return `<dt>Last dated evidence before that day</dt>

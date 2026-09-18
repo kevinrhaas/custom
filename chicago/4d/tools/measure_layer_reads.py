@@ -223,6 +223,15 @@ AMBIGUOUS_LEAVES = frozenset({
     # view really does read a role's claim id (T-1255) it declares the expression and
     # never reaches here.
     "claim",
+    # T-1144's `present_on_scene_date.last_dated_appearance.record`. `record` is a word
+    # this renderer has used from the start for the thing a popup is showing —
+    # `hit.record`, `z.record`, `task.record.id`, `boat.record` — none of which is a
+    # resident's evidence row id. A bare-name scan attributes all of it to the presence
+    # leg's audit pointer and calls it a phantom read. Same shape and same narrowing as
+    # the four above: the pointer has a data parent to qualify it with, so the day the
+    # card really does print the row a leg came from it declares the expression and
+    # never reaches here.
+    "record",
 })
 
 # Unread leaves the reverse scan of assertion 3 cannot attribute, STATED rather
@@ -572,6 +581,25 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.value": ("shown", "(hh.lives_at || {}).value"),
     "works_at.value": ("shown", "(hh.works_at || {}).value"),
     "present_on_scene_date.value": ("shown", "(hh.present_on_scene_date || {}).value"),
+    # T-1144 acceptance 9. The dated evidence leg under an `uncertain` presence — the
+    # last day the corpus can still see this person — has its own row on the card,
+    # `presenceLegRow`, and the row's whole job is to keep a date from reading as a
+    # sighting when it is not one. So each of the five figures it turns on is named at
+    # the line that reads it: the date as the source printed it, which of the three
+    # kinds of leg it is, how exact the reading was, the latest day it can mean, and
+    # how far short of the scene date that falls.
+    "present_on_scene_date.last_dated_appearance.as_read":
+        ("shown", "escapeHtml(leg.as_read)"),
+    "present_on_scene_date.last_dated_appearance.leg":
+        ("shown", "escapeHtml(kind || leg.leg)"),
+    "present_on_scene_date.last_dated_appearance.precision":
+        ("shown", "leg.precision] || leg.precision"),
+    "present_on_scene_date.last_dated_appearance.reaches":
+        ("shown", "reaching ${leg.reaches}"),
+    "present_on_scene_date.last_dated_appearance.includes_scene_date":
+        ("shown", "leg.includes_scene_date"),
+    "present_on_scene_date.last_dated_appearance.days_before_scene_date":
+        ("shown", "${leg.days_before_scene_date}"),
     # T-1158. The chip the card draws is the TIER now, and `confidence` is what the
     # tier is derived from — `tierOf(block)` reads it, and falls back to the raw
     # confidence for a block whose shape predates the four-tier vocabulary. The
@@ -1127,6 +1155,17 @@ REFUSALS: dict[str, str] = {
         "A foreign key into `persons[].id`, not a figure — it names which person heads "
         "the household, and that fact already reaches the visitor as that person's "
         "`relationship`, shown on their own row."),
+    # T-1144 acceptance 9, the two figures of the presence leg the card does NOT show.
+    "residents/household:present_on_scene_date.last_dated_appearance.person": (
+        "A foreign key into `persons[].id` — which person of the household the leg was "
+        "read on. It is there so the derivation and the roster can be audited against "
+        "the card, and the card already names every person of the household on their "
+        "own rows; printing the id beside the date would say nothing a reader can use."),
+    "residents/household:present_on_scene_date.last_dated_appearance.record": (
+        "The `record_id` or locator of the evidence block the leg came from — an "
+        "audit pointer, null on the 383 legs read off a post-office return, which "
+        "carries no per-return record. The card shows the SOURCE the block cites, "
+        "which is the part a reader can follow; an internal row id is not."),
     "residents/household:head": (
         "The record's own copy of the same foreign key. Refused for the same reason, and "
         "it is the record that is authoritative."),
