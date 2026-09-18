@@ -47,9 +47,6 @@
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
-#     QUOTA: data/reconstruction/1835_reconstruction_order_book.json (T-1166). Every person
-#     bucket names the ticket that owes it; a filler records its fill there or the gate is red.
-T-1167 — The 1835 resident reconstruction programme: one recipe file, one generator, the `reconstructed` grade turned on — superseding the retired programme without restoring it, and stating the owner's 2026-09-17 override of the no-estimation rule
 T-1168 — Fill sex and age for every attested and inferred person: recorded where a source says, inferred from forename, office or register role where the evidence about that person allows, reconstructed from the population model otherwise — each value with its tier and reason
 T-1169 — Fill arrival date, origin and reason for coming for every attested and inferred person: the earliest dated appearance as the bound, the biographies where they speak, the arrival model otherwise — dated, tiered and explained
 T-1170 — Give the attested and inferred heads the families the sources name: spouses, children, kin and dependants from the baptism and marriage registers, the 1840 census rows of heads the layer carries, Andreas and old-settler biographies and the ruled kin ties — inferred where named, reconstructed where only counted
@@ -65,8 +62,6 @@ T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded coho
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-#     QUOTA: data/reconstruction/1835_reconstruction_order_book.json (T-1166) — the December 1835
-#     State census classes set against the register, per class, with the ticket that owes each.
 T-1180 — An authored business layer: one record per business with tiered proprietors, partners, staff, dated primary and secondary locations and sources — compiled into the register beside the newspaper-derived firms, with the structure function vocabulary normalised
 T-1181 — A Businesses view in the app: every firm by trade, street and tier, with its proprietors, staff, dated locations and location limit on one card — the visible surface for the audit and reconstruction bands
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
@@ -79,8 +74,6 @@ T-1188 — Complete the civic, church, school and press establishments as busine
 T-1189 — Staff every business — attested, inferred and reconstructed — with real persons: attested partners and clerks first, then the reconstructed residents, then new reconstructed staff to the staffing model, so every working person has a workplace and every workplace its people
 T-1190 — Converge the business layer: register, businesses, persons and structures agree by id; every reconstructed firm carries its substitution rule and liberty; the trade-census crosswalk, the order book and the Businesses view print the finished count
 # --- 5A. STRUCTURES — ground: north and west streets and alleys, terrain extent, the lot grid beyond the river
-#     QUOTA: data/reconstruction/1835_reconstruction_order_book.json (T-1166) — roofs by archetype
-#     group and division, and the ground buckets each one waits on before it can be built.
 T-1191 — Seat the North Division's streets and alleys as platted corridors: Kinzie's Addition and the Kinzie–Michigan tier off Wright and Hathaway, with block faces, mid-block alleys and corridor control, so a north-side roof can be dealt to a lot
 T-1192 — Seat the West Division's and Wabansia's streets and alleys as platted corridors off Wright and Hathaway — Canal, Clinton, West Water, Carroll, Fulton, the School Section tier and the Wabansia grid north-west of the forks — with the small lots the sheets draw
 T-1193 — Extend the modelled ground to N +760 and E −700: heightfield, collision, water mask, North and South Branch banks, flora and minimap together, so the North Division's second parcel and the West Division's held slots have ground to stand on

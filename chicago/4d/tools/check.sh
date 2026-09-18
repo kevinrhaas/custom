@@ -2240,6 +2240,19 @@ step "no research writer can mint a reconstructed resident" \
 selftest "...and the refusal fires, while leaving per-attribute confidence alone" \
   python3 tools/refuse_reconstructed_grade.py --self-test
 
+# T-1167, the other side of that boundary. One tool MAY mint the grade, and this is it:
+# it does not call the refusal above, and in exchange every person it writes has to show
+# which model row or rule drew them, the seed that redraws them, what evidence would
+# retire them, and which stage of the programme wrote them. `--check` re-derives every
+# implemented stage and holds the committed layer to that contract, so a reconstructed
+# resident nobody can audit cannot reach dev. The 2026-09-02 retirement had to remove a
+# whole population because no record answered those four questions.
+step "the reconstruction programme answers for every reconstructed resident" \
+  python3 tools/reconstruct_residents_1835.py --check
+
+selftest "...and each rule of the record contract refuses its own mutation" \
+  python3 tools/reconstruct_residents_1835.py --self-test
+
 step "the resident synthesis re-derives the population it writes" \
   python3 tools/synthesize_resident_research.py --check
 

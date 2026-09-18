@@ -32,6 +32,8 @@ from associations import (ASSOCIATION_KINDS, ASSOCIATION_RESOLUTION,
                          check_association_rows, singular_drift)
 from heightfield import Heightfield
 from migrate_attribute_tiers import check_tier_block
+from reconstruct_residents_1835 import (PROGRAMME as RECONSTRUCTION_PROGRAMME,
+                                        check_reconstructed_person)
 from tiers import (SOLE_EVIDENCE_MAX_TIER, TESTIMONY_MAX_TIER,
                    TRACEABLE_MAX_TIER, tier_ladder)
 
@@ -4756,7 +4758,12 @@ RESIDENT_SCENE_DATE = "1835-07-01"
 # person, so it stays optional and off the manifest's public vocabulary block:
 # the ~70-odd hand-authored households were never minted by any pass and never
 # carry the key at all.
-RESIDENT_SOURCE_PASSES = ("documented", "placed", "letter_list", "civic")
+# `reconstructed_readmission` is T-1167's: a person the research READ and withheld,
+# re-admitted by the reconstruction programme under their own read name. It is a pass
+# and not a mint, which is why it is named here rather than given an id prefix - the
+# id scheme marks an INVENTED person (`rc_`), and a re-admitted one is not invented.
+RESIDENT_SOURCE_PASSES = ("documented", "placed", "letter_list", "civic",
+                          "reconstructed_readmission")
 
 # The per-domain evidence blocks tools/mint_civic_residents.py writes onto a person
 # (T-0514). Each row is a READING: the list it came from, the transcription as read,
@@ -5077,6 +5084,29 @@ def check_resident_roles(where: str, person: dict, occupations: set, source_ids:
         rep.error(where, "withdrawn_from_scene_date must be an object")
 
 
+_RECONSTRUCTION_STAGES: tuple | None = None
+
+
+def _reconstruction_stage_keys() -> set:
+    """The stages the reconstruction programme declares, read once.
+
+    A reconstructed person names the stage that wrote them. The keys live in
+    `data/reconstruction/1835_resident_reconstruction_programme.json` rather than
+    here so that adding a stage is a data change and not a validator change - and
+    an absent programme file yields an empty set, which refuses every reconstructed
+    person by name. That is the correct answer: with no programme there is no
+    authority to write one.
+    """
+    global _RECONSTRUCTION_STAGES
+    if _RECONSTRUCTION_STAGES is None:
+        try:
+            prog = json.loads(RECONSTRUCTION_PROGRAMME.read_text(encoding="utf-8"))
+            _RECONSTRUCTION_STAGES = tuple(s["key"] for s in prog.get("stages", []))
+        except (OSError, ValueError, KeyError, TypeError):
+            _RECONSTRUCTION_STAGES = ()
+    return set(_RECONSTRUCTION_STAGES)
+
+
 def check_resident_grade(where: str, grade, sources, note: str, source_ids: set,
                          rep: Report, person: dict | None = None) -> None:
     """The accuracy vocabulary, and what each rung owes the reader."""
@@ -5143,6 +5173,17 @@ def check_resident_grade(where: str, grade, sources, note: str, source_ids: set,
         rep.error(where, "name_basis belongs only on a reconstructed person. On an attested or "
                          "inferred one the name comes from a source, and marking it as invented "
                          "would understate what is known about a real person")
+
+    # --- and the invention must show its working ------------------------------
+    #
+    # T-1167. `name_basis` says the NAME was invented; these say the PERSON was, and
+    # by what. The contract is the reconstruction programme's own, imported rather
+    # than restated, so the writer that mints a person and the gate that reads one
+    # back cannot drift apart - which is exactly how the 2026-09-02 population came
+    # to be unaccountable and had to be retired whole.
+    if grade == "reconstructed":
+        check_reconstructed_person(where, person or {}, _reconstruction_stage_keys(),
+                                   rep.error)
 
 
 def check_resident_link(where: str, key: str, node, structure_ids: set, rep: Report) -> None:
