@@ -3849,6 +3849,20 @@ step "the scene-date register re-derives, and every action names its target" \
 selftest "…and its own assertions still fire when broken" \
   python3 tools/compile_register.py --self-test
 
+# T-1310, of T-1180. AND WHERE A BUSINESS IS ACTUALLY WRITTEN DOWN. The register is a
+# reading of the newspapers; data/businesses/ is the layer that reading compiles into,
+# where a house of trade carries a tier on every field, the people it names carry a link
+# to a town card or a stated reason there is none, and the 61 street-only and 62
+# unplaceable businesses carry their LIMIT as a location kind rather than as prose in an
+# action note. Compiled, never authored, for the same reason as the two files above: a
+# hand-edited record is a place to promote a business — or a proprietor, or a premises —
+# without an argument.
+step "the business layer re-derives, and every register row has a record" \
+  python3 tools/compile_businesses.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/compile_businesses.py --self-test
+
 # And what the town DOES with the register's `street_only` businesses (T-0354). The owner
 # ruled on 2026-08-29 that a business the paper places on a platted street and nothing
 # narrower adopts a reconstructed roof already standing on that street face;

@@ -1,0 +1,96 @@
+{
+  "id": "biz_j_bates_jr_auction_store",
+  "register_id": "business_j_bates_jr_auction_store",
+  "name": "J. Bates jr., Auction Store",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "auction store",
+  "occupation": "auctioneer",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "J. Bates jr.",
+      "person_id": null,
+      "register_person_id": null,
+      "role": "partner",
+      "from": "1834-07-16",
+      "to": "1834-08-20",
+      "tier": "attested",
+      "basis": "A proprietor string the gazetteer reads as a person, which the register's own person list does not carry under this spelling. The name is the evidence; no link is claimed. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_07_16#c014",
+        "chicago_democrat_1834_07_30#c009",
+        "chicago_democrat_1834_08_20#c005"
+      ]
+    },
+    {
+      "name": "J. Bates, jr.",
+      "person_id": null,
+      "register_person_id": "person_j_bates_jr",
+      "role": "partner",
+      "from": "1834-07-16",
+      "to": "1834-08-20",
+      "tier": "attested",
+      "basis": "The register holds this printed name as person_j_bates_jr with action 'new_resident': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_07_16#c014",
+        "chicago_democrat_1834_07_30#c009",
+        "chicago_democrat_1834_08_20#c005"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "bates_auction_room",
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1834-07-16",
+      "to": null,
+      "tier": "attested",
+      "basis": "The register matches this business onto the committed structure bates_auction_room on its occupants. bates_auction_room already stands and its occupants carries bates — 'John Bates Jr.; auctioneer and deputy postmaster'. The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    }
+  ],
+  "dates": {
+    "opened": "1834-07-16",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-07-16, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-07-16",
+    "last_issue": "1834-08-20",
+    "copy_dates": [
+      "1834-07-15"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_07_16#c014",
+    "chicago_democrat_1834_07_30#c009",
+    "chicago_democrat_1834_08_20#c005"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

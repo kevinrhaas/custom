@@ -1,0 +1,122 @@
+{
+  "id": "biz_j_h_mulford",
+  "register_id": "business_j_h_mulford",
+  "name": "J. H. Mulford",
+  "provenance": "compiled_from_register",
+  "type": [
+    "silversmith_jeweller"
+  ],
+  "trade": "watches, jewelry, engravings and fancy goods",
+  "occupation": "jeweller",
+  "goods": [
+    "Clocks",
+    "Cutlery",
+    "Engravings",
+    "Indian silver work",
+    "Jewelry",
+    "Music Boxes",
+    "Silver Ware",
+    "Spectacles",
+    "Watches",
+    "clocks",
+    "cutlery",
+    "fowling pieces",
+    "jewelry",
+    "music boxes",
+    "silver ware",
+    "spectacles",
+    "watches"
+  ],
+  "firm_styles": [],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "J. H. Mulford",
+      "person_id": "mulford_james_h",
+      "register_person_id": "person_j_h_mulford",
+      "role": "partner",
+      "from": "1834-06-04",
+      "to": "1835-08-12",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card mulford_james_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_06_04#c004",
+        "chicago_democrat_1834_07_02#c022",
+        "chicago_democrat_1834_07_09#c023",
+        "chicago_democrat_1834_12_03#c012",
+        "chicago_democrat_1835_08_12#c013"
+      ]
+    },
+    {
+      "name": "Mulford, J. H.",
+      "person_id": "mulford_james_h",
+      "register_person_id": "person_mulford_j_h",
+      "role": "partner",
+      "from": "1834-06-04",
+      "to": "1835-08-12",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card mulford_james_h (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_06_04#c004",
+        "chicago_democrat_1834_07_02#c022",
+        "chicago_democrat_1834_07_09#c023",
+        "chicago_democrat_1834_12_03#c012",
+        "chicago_democrat_1835_08_12#c013"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1834-06-04",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names South Water Street and nothing narrower; the anchor 'the Printing Office' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1834-06-04",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-06-04, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-06-04",
+    "last_issue": "1835-08-12",
+    "copy_dates": [
+      "1834-06-04",
+      "1834-09-17",
+      "1835-05-01"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_06_04#c004",
+    "chicago_democrat_1834_07_02#c022",
+    "chicago_democrat_1834_07_09#c023",
+    "chicago_democrat_1834_12_03#c012",
+    "chicago_democrat_1835_08_12#c013"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

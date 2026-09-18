@@ -1,0 +1,90 @@
+{
+  "id": "biz_cooley_and_hol_b_man",
+  "register_id": "business_cooley_and_hol_b_man",
+  "name": "Cooley and Hol[b]man",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "tailoring",
+  "occupation": "tailor",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "Cooley",
+      "person_id": null,
+      "register_person_id": "person_cooley",
+      "role": "partner",
+      "from": "1835-08-05",
+      "to": "1835-08-05",
+      "tier": "attested",
+      "basis": "The register holds this printed name as person_cooley with action 'new_resident': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_08_05#c005"
+      ]
+    },
+    {
+      "name": "Hol[b]man",
+      "person_id": null,
+      "register_person_id": "person_hol_b_man",
+      "role": "partner",
+      "from": "1835-08-05",
+      "to": "1835-08-05",
+      "tier": "attested",
+      "basis": "The register holds this printed name as person_hol_b_man with action 'new_resident': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_08_05#c005"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "dearborn",
+      "face": null,
+      "primary": true,
+      "from": "1835-08-05",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names Dearborn Street and nothing narrower; the anchor 'the Eagle Coffee House' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1835-07-22",
+    "closed": null,
+    "precision": "exact",
+    "tier": "attested",
+    "basis": "The paper announces the opening: chicago_democrat_1835_08_05#c005 (1835-07-22)."
+  },
+  "evidence": {
+    "first_issue": "1835-08-05",
+    "last_issue": "1835-08-05",
+    "copy_dates": [
+      "1835-07-22"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1835_08_05#c005"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": true
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

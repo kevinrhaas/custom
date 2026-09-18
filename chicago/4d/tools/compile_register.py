@@ -1365,6 +1365,22 @@ def minted_link_problems(persons, minted_card):
     return out
 
 
+def business_record_id(register_id):
+    """The data/businesses/ record this row compiles (T-1310).
+
+    A pure function of the register id and nothing else, so the register does not have to
+    read the business layer to name it and the two cannot drift. The layer's own
+    `--check` is what proves the record on the other end actually exists.
+    """
+    prefix = "business_"
+    # The self-test's fixtures are named `b1`, `b2` — they are not gazetteer ids and were
+    # never meant to be — so the prefix is stripped where it is there and the id stands
+    # where it is not. A real register id always carries it; refusing the fixture here
+    # would only prove that a fixture is a fixture.
+    stem = register_id[len(prefix):] if register_id.startswith(prefix) else register_id
+    return "biz_" + stem
+
+
 def compile_register(gazetteer, town, quiet=True):
     """Derive the register. Returns (doc, problems). Nothing here reads the clock."""
     problems = []
@@ -1403,6 +1419,13 @@ def compile_register(gazetteer, town, quiet=True):
 
         entry = {
             "id": b["id"],
+            # T-1310. THE ROW POINTS AT ITS RECORD. data/businesses/ is where a business
+            # gets a tier, a staff list, dated locations and sources; this register row is
+            # the reading the record compiles. The id is a pure function of this one —
+            # `business_` swapped for `biz_` — so the register can name it without reading
+            # the layer, and tools/compile_businesses.py --check refuses the pair the
+            # moment the layer stops holding a row's record.
+            "business_record_id": business_record_id(b["id"]),
             "name": b["name"],
             "trade": b.get("trade"),
             "occupation": occupation_of(b.get("trade")),
@@ -1872,6 +1895,27 @@ def check():
             bad.append("%s: action %r is not in the vocabulary" % (p["id"], p["action"]))
         if not p["action_note"]:
             bad.append("%s: an action with no note" % p["id"])
+
+    # T-1310. EVERY ROW HAS A RECORD. The row points at data/businesses/ by id, and a
+    # pointer nothing answers is exactly the state the layer was built to make
+    # impossible — so the register refuses a business the layer lacks, here, rather
+    # than leaving it to whoever reads the field next. The layer is required: an absent
+    # data/businesses/ is a red gate and not a skip, because a register that stopped
+    # carrying records would otherwise pass by having none at all.
+    layer = ROOT / "data" / "businesses"
+    held = {p.stem for p in layer.glob("biz_*.json")} | {p.stem for p in layer.glob("rcb_*.json")}
+    held |= {p.stem for p in (layer / "authored").glob("*.json")} if (layer / "authored").is_dir() else set()
+    if not layer.is_dir():
+        bad.append("data/businesses/ is missing — the register points at it; run "
+                   "tools/compile_businesses.py --build")
+    else:
+        for b in on_disk.get("businesses", []):
+            pointed = b.get("business_record_id")
+            if not pointed:
+                bad.append("%s: carries no business_record_id" % b["id"])
+            elif pointed not in held:
+                bad.append("%s: points at data/businesses/%s.json, which the layer lacks"
+                           % (b["id"], pointed))
 
     # The two T-0257 fixtures, named in the ticket's acceptance: they resolve to an
     # action with a committed target, or the register says precisely why not. Pinned

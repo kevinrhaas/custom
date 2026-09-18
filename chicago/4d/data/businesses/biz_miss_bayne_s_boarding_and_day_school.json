@@ -1,0 +1,74 @@
+{
+  "id": "biz_miss_bayne_s_boarding_and_day_school",
+  "register_id": "business_miss_bayne_s_boarding_and_day_school",
+  "name": "Miss Bayne's Boarding and Day School",
+  "provenance": "compiled_from_register",
+  "type": [
+    "school"
+  ],
+  "trade": "boarding and day school for young ladies",
+  "occupation": "schoolteacher",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "[uncertain: Miss Bayne]",
+      "person_id": null,
+      "register_person_id": null,
+      "role": "proprietor",
+      "from": "1834-07-23",
+      "to": "1834-07-23",
+      "tier": "attested",
+      "basis": "A proprietor string the gazetteer reads as a person, which the register's own person list does not carry under this spelling. The name is the evidence; no link is claimed. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_07_23#c002"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "randolph",
+      "face": null,
+      "primary": true,
+      "from": "1834-07-23",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names Randolph Street and nothing narrower; the anchor is a reach of dearborn and names nothing narrower."
+    }
+  ],
+  "dates": {
+    "opened": "1834-07-23",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-07-23, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-07-23",
+    "last_issue": "1834-07-23",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_07_23#c002"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

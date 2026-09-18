@@ -1,0 +1,92 @@
+{
+  "id": "biz_w_kimball_s_new_store",
+  "register_id": "business_w_kimball_s_new_store",
+  "name": "W. Kimball's New Store",
+  "provenance": "compiled_from_register",
+  "type": [
+    "store"
+  ],
+  "trade": "dry goods, crockery, hardware and cutlery",
+  "occupation": "dry_goods_merchant",
+  "goods": [
+    "blankets",
+    "caps",
+    "cotton batting",
+    "crockery",
+    "crockery and glass ware",
+    "cutlery",
+    "dry goods",
+    "glass ware",
+    "hardware",
+    "sheeting",
+    "shirting",
+    "wicking",
+    "yarn"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "W. Kimball",
+      "person_id": "kimball_walter",
+      "register_person_id": "person_w_kimball",
+      "role": "proprietor",
+      "from": "1833-12-10",
+      "to": "1834-01-21",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card kimball_walter (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1833_12_10#c002",
+        "chicago_democrat_1834_01_21#c003"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "chicago_democrat_office",
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1833-12-10",
+      "to": null,
+      "tier": "attested",
+      "basis": "The register matches this business onto the committed structure chicago_democrat_office on its occupants. chicago_democrat_office already stands and its occupants carries kimball — \"and; on the reading argued here; W. Kimball's new dry-goods store\". The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    }
+  ],
+  "dates": {
+    "opened": "1833-12-10",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1833-12-10, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1833-12-10",
+    "last_issue": "1834-01-21",
+    "copy_dates": [
+      "1833-11-01"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1833_12_10#c002",
+    "chicago_democrat_1834_01_21#c003"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

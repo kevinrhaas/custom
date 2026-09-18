@@ -1,0 +1,66 @@
+{
+  "id": "biz_andrews_eells",
+  "register_id": "business_andrews_eells",
+  "name": "Andrews & Eells",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "fashionable tailoring",
+  "occupation": "tailor",
+  "goods": [
+    "ready made clothing"
+  ],
+  "firm_styles": [
+    "Andrews & Eells"
+  ],
+  "proprietors": [],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "anchored",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1834-10-29",
+      "to": null,
+      "tier": "inferred",
+      "basis": "Placeable against the committed town. The landmark is the committed structure tremont_house_1.",
+      "limit_reason": "The register places this house against tremont_house_1 and the town holds no roof of its own for it (action: new_building), so the anchor is as far as the reading goes."
+    }
+  ],
+  "dates": {
+    "opened": "1834-10-29",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-10-29, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-10-29",
+    "last_issue": "1834-12-03",
+    "copy_dates": [
+      "1834-10-22"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_10_29#c003",
+    "chicago_democrat_1834_12_03#c017"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}
