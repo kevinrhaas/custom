@@ -30,21 +30,21 @@
     "tiers_written_on_the_card": 5547,
     "by_tier": {
       "attested": 591,
-      "inferred": 3299,
-      "reconstructed": 5473,
+      "inferred": 3310,
+      "reconstructed": 5462,
       "unknown": 4865
     },
     "by_attribute": {
       "arrival": {
         "attested": 52,
-        "inferred": 1200,
-        "reconstructed": 6,
+        "inferred": 1201,
+        "reconstructed": 5,
         "unknown": 0
       },
       "arrival_year": {
         "attested": 0,
-        "inferred": 16,
-        "reconstructed": 1182,
+        "inferred": 23,
+        "reconstructed": 1175,
         "unknown": 0
       },
       "directories.people[].address_later": {
@@ -85,8 +85,8 @@
       },
       "origin": {
         "attested": 11,
-        "inferred": 32,
-        "reconstructed": 1215,
+        "inferred": 35,
+        "reconstructed": 1212,
         "unknown": 0
       },
       "party_size_on_arrival": {
@@ -165,7 +165,7 @@
     "reconstructed_by_basis": {
       "address_back_projection": 18,
       "arrival_bound_from_the_record": 1,
-      "arrival_earliest_year_forced": 4,
+      "arrival_earliest_year_forced": 3,
       "arrival_uncited_literature": 1,
       "inferred_household_hypothesis": 5,
       "origin_uncited_literature": 1,
@@ -262,24 +262,6 @@
       "replaceable_by": {
         "kind": "person",
         "match": "an 1835-window source that gives this person a Chicago work address"
-      }
-    },
-    {
-      "card": "hh_church_thomas",
-      "attribute": "arrival",
-      "value": "1834",
-      "confidence": "reconstructed",
-      "tier": "reconstructed",
-      "note": "NOT ATTESTED. The store he built is 'the first store building on Lake Street' and this project's building record dates it to the mid-1830s; 1834 is the earliest year that reading supports and it is a guess.",
-      "precision": "year",
-      "basis": {
-        "kind": "rule",
-        "id": "arrival_earliest_year_forced",
-        "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-      },
-      "replaceable_by": {
-        "kind": "person",
-        "match": "a dated source that says when this person came to Chicago"
       }
     },
     {
@@ -1132,11 +1114,11 @@
         "kind": "person",
         "match": "a dated source that says which year this household came to Chicago"
       },
-      "values": 1182,
+      "values": 1175,
       "by_value": {
-        "1834": 600,
-        "1835": 259,
-        "1833": 215,
+        "1834": 597,
+        "1835": 257,
+        "1833": 213,
         "1832": 39,
         "1831": 33,
         "1830": 13,
@@ -1160,11 +1142,11 @@
         "kind": "person",
         "match": "a source that says where this household came from"
       },
-      "values": 1204,
+      "values": 1201,
       "by_value": {
-        "New York State": 494,
+        "New York State": 492,
         "New England": 421,
-        "The Mid-Atlantic states": 108,
+        "The Mid-Atlantic states": 107,
         "England": 94,
         "The Southern states": 53,
         "Ireland": 19,
