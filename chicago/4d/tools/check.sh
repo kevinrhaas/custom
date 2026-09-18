@@ -4018,6 +4018,28 @@ step "the location spend re-derives: no placement past its evidence, four retent
 selftest "…and its own assertions still fire when broken" \
   python3 tools/location_spend.py --self-test
 
+# T-1144 acceptance 7, and the owner asked for it in those words on 2026-09-17: the
+# convergence report must NAME, per person, which of the plural roles[] and which home,
+# work and other locations reach 1 July 1835, so the sign-off reads coverage per axis off
+# one table instead of re-deriving it. The two axes were both already counted in aggregate
+# and neither could be asked about a PERSON without walking 1,258 household files and
+# joining 1,705 reconciliation rows by hand.
+#
+# Gated here rather than higher up because every input it copies is gated ABOVE it — the
+# roles at the roles step, the home/work/later rows at the reconciliation and spend steps
+# just above, the premises on the business register's own present_at_scene_date. This table
+# re-decides none of them: it copies each reach flag from the derivation that owns it, which
+# is why a drift here means one of those layers moved and this join was not rebuilt with it.
+# The self-test holds each rule over a fixture and proves it moves when its input moves,
+# including the one that is easy to get wrong in the safe-looking direction: a `no_claim`
+# home row is a STATED ABSENCE, not a failed placement, and reading the 1,186 of them as
+# `limited` would turn the reconciliation's honesty into a manufactured gap.
+step "every person says which roles and which places reach the scene date" \
+  python3 tools/report_convergence_coverage.py --check --quiet
+
+selftest "…and each of those rules moves when its input moves" \
+  python3 tools/report_convergence_coverage.py --self-test
+
 # T-1160. THE PROFILE OF THE KNOWN POPULATION, held to the layer it is read from.
 #
 # The owner asked for a population analysis of the known people before anything is
