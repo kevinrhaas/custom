@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'How much town is still missing, counted', kind: 'feature', ts: '',
+  { v: 938, title: 'How much town is still missing, counted', kind: 'feature', ts: '2026-09-18T07:10:43.670Z', date: 'Sep 18, 2026, 2:10 AM CT',
     items: [
       'Yesterday this project published who is actually known, and a model of what a lake port this size implied. Two documents, one the known and the other the wanted, and nobody had done the subtraction. It is done, and the Evidence panel has a new list showing it: what the town of the first of July 1835 still owes, bucket by bucket, with the piece of work that owes each one.',
       'The shape of it is blunt. The models put 2,533 people in 643 households under 668 roofs. The sources name 456 of those people with their presence on that day actually established, and 384 of the roofs are standing. So 2,080 people, 209 households, 24 of the enumerated trades and 297 roofs are still to be reconstructed \u2014 every one of them marked as reconstructed, with its reason and the rule that would let a later finding replace it.',
