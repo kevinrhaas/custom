@@ -2489,6 +2489,18 @@ step "the land-sale rulings re-derive from the register and the crosswalk (T-129
 selftest "…and each of its rules still fires on the row it is for" \
   python3 tools/spend_land_sales_rulings.py --self-test
 
+# T-1298. The remainder of T-1236 — the resident-pass reservations, the newspaper person,
+# notice, event, shipping and price units, the church register entries, the non-person book
+# readings and the one Genealogy Trails reading — ruled across five derived registers on the
+# same terms. The corpus they cover is fixed by `natural_disposition`, the derivation that
+# reads no ruling register at all, so writing them cannot change what they must cover; this
+# gate is the proof that they still re-derive from the readings as committed.
+step "the remainder rulings re-derive from their five corpora (T-1298)" \
+  python3 tools/spend_remainder_rulings.py --check --quiet
+
+selftest "…and each of its rules still fires, and hands on only to live work" \
+  python3 tools/spend_remainder_rulings.py --self-test
+
 # T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
 # RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
 # of the tree at the moment the cohort was fixed. The reservation is re-derived and must
