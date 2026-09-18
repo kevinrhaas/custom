@@ -2206,7 +2206,7 @@ PY
 #   tools/generate_inferred_households.py  (was the K1 households step)
 #   tools/generate_inferred_names.py       (was this step's old label)
 #   tools/replace_invented_residents.py    (was the T-0264 roof-deal step)
-#   tools/mint_letter_list_residents.py    T-0691  --check: 798 file(s) differ
+#   tools/mint_letter_list_residents.py    T-1222  --check: 798 file(s) differ
 #
 # T-1228 gated the first three on 2026-09-17, each at its own slot above, on a
 # field-level ownership contract rather than byte-identity — the same shape T-0662
@@ -2388,7 +2388,9 @@ selftest "all four resident mints preserve findings across a derived-note change
 # one of them quietly ceasing to fire would now be worth hundreds of records rather than
 # one. `--report` prints the mint and every refusal with its reason; `--scale` counts
 # what the ruling did to the town on whatever tree it is run against.
-# NOT GATED (T-0662; the drift itself is T-0691's, and T-0691 is blocked on T-0660).
+# NOT GATED (T-0662; the drift itself is T-1222's. It was T-0691's until 2026-09-18,
+# when the owner's ruling landed and T-0691 shrank to the card gate below — the 798
+# files are a pipeline-ordering question and were never the collisions).
 # This slot ran `synthesize_resident_research.py --check`, which is not the mint.
 # `tools/mint_letter_list_residents.py --check` is, and it reports 798 file(s)
 # differing — but a byte-identity check is the wrong contract for this pass, because
@@ -2727,6 +2729,19 @@ step "the letter-list collision report still describes the tree" \
 
 selftest "…and its two readings of a printed name are still two" \
   python3 tools/report_letter_list_collisions.py --self-test
+
+# T-0691. The ruling was made on 2026-09-18 — option (c), refusals 7 and 8 are MINT-TIME
+# rules and un-mint nobody — and its whole content is that the collision is SAID rather
+# than acted on. So the thing to gate is no longer the measurement but the saying: every
+# standing card a mint-time refusal lands on carries the block, and a card that stops
+# saying its collision is red. T-0660 shipped eight of the seventy-five and left the rest
+# to the cohort's next full re-derive; that re-derive is T-1222's and its byte-identity
+# contract is the wrong one for this pass (see the note above the mint), so waiting for it
+# meant sixty-seven readers meeting a card whose awkwardness was invisible. The block is
+# composed by `mint_letter_list_residents.record()` and written by --write-records, which
+# touches nothing else on the card; --check-records re-derives and compares.
+step "every card a mint-time refusal lands on still says its collision" \
+  python3 tools/report_letter_list_collisions.py --check-records
 
 # T-1290. The 1840 census is CLOSED for the 1835 reconstruction and what closed it is a
 # residue table: eight leaf-by-leaf tickets folded into one statement of what did not

@@ -1,4 +1,10 @@
 export const CHANGELOG = [ // newest first
+  { v: 939, title: 'Sixty-seven more cards say whose surname they share', kind: 'change', ts: '2026-09-18T07:45:21.464Z', date: 'Sep 18, 2026, 2:45 AM CT',
+    items: [
+      'The town holds several hundred people known only from the post office\u2019s lists of uncalled-for letters, and the pass that mints them keeps one family name to one household. Where a better-evidenced record already holds the name \u2014 a man the papers gave a trade \u2014 that rule lands on the letter-list card. The owner ruled in September that such a refusal decides only whether a NEW card may be minted: it does not un-mint one already standing, and the card should say the collision out loud instead.',
+      'Eight cards were given that line when the ruling landed. Seventy-five carry the refusal. The other sixty-seven were left for a full rebuild of the cohort that turns out not to be coming \u2014 the rebuild has a separate fault under it \u2014 so sixty-seven readers would have met a card with no hint that another Andrews, another Clark, another Smith stands beside it. They all say it now: which refusal fell on them, who else holds the name, and that nobody was retired for it.',
+      'Nothing else on any card moved. No person was added or removed, no confidence changed, no identifier redirected. The line is composed by the minting pass itself, so a card and the refusal that produced it cannot drift apart, and the build now fails if any of the seventy-five stops saying its collision.',
+    ] },
   { v: 938, title: 'How much town is still missing, counted', kind: 'feature', ts: '2026-09-18T07:10:43.670Z', date: 'Sep 18, 2026, 2:10 AM CT',
     items: [
       'Yesterday this project published who is actually known, and a model of what a lake port this size implied. Two documents, one the known and the other the wanted, and nobody had done the subtraction. It is done, and the Evidence panel has a new list showing it: what the town of the first of July 1835 still owes, bucket by bucket, with the piece of work that owes each one.',
