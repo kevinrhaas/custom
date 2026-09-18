@@ -1,7 +1,7 @@
 ---
 id: T-1304
 title: Reconstruct the sex and age no evidence can settle: the population model's sex × age band per bucket seeded by person id, the letter lists at their measured adult-male rate, the known-profile report showing three tiers, and the person card printing sex and age with its tier and reason
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1168
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1450
 claimed_by: run 9/18/2026, 4:20:24 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T10:29:08.974Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35328745449
 ---
 
