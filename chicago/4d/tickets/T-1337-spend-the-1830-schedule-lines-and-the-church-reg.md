@@ -1,5 +1,5 @@
 ---
-id: T-1330
+id: T-1337
 title: Spend the 1830 schedule lines and the church register sponsorships onto the cards they name: a dated bound where the identification already stands, and a written refusal under a named rule where it does not
 state: done
 epic: META

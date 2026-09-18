@@ -15,20 +15,12 @@
  },
  "arrival_year": {
   "value": 1833,
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1834-01-01 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
-  "basis": {
-   "kind": "model",
-   "id": "arrival",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1834."
-  },
-  "seed": "hh_tuller_elam:arrival_year",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a dated source that says which year this household came to Chicago"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A STATED YEAR, WHERE THE FIELD HELD A DRAW. The same county biography says the family of tuller_elam reached Chicago in July 1833. The year drawn by the arrival stage read 1833 as well, so the value does not move — what moves is that it is now a reading with a source behind it rather than a figure taken from a distribution. The MONTH is stated by the source and is not written into this field, which carries a year; the household's own `arrival` block holds its separate bound of 1834-01-01 from the Chicago Democrat and is untouched, because a bound and an arrival are two claims. Under the evidence ladder ratified 2026-09-03 a source earlier than 1 July 1835 corroborates and dates and never promotes: the person's grade does not move on this.",
+  "sources": [
+   "whiteside_elam_tuller"
+  ]
  },
  "party_size_on_arrival": {
   "value": null,
@@ -36,21 +28,13 @@
   "note": "Not attested."
  },
  "origin": {
-  "value": "The Mid-Atlantic states",
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
-  "basis": {
-   "kind": "model",
-   "id": "origin",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
-  },
-  "seed": "hh_tuller_elam:origin_region",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a source that says where this household came from"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "value": "Connecticut",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A SOURCE, WHERE THE FIELD HELD A DRAW. The completed resident-research pass on tuller_elam read a county biography as saying that Elam Tuller's family reached Chicago in July 1833 and as identifying his Connecticut origin and his farmer, mechanic and steam-engine manufacturing background. The block this replaces read “The Mid-Atlantic states”, drawn from the Old Settlers birthplace sample and resting on nothing about this household.",
+  "sources": [
+   "whiteside_elam_tuller"
+  ]
  },
  "reason_for_coming": {
   "value": "The 1833 season: the harbour appropriation, the treaty at Chicago and the first rush of settlers",

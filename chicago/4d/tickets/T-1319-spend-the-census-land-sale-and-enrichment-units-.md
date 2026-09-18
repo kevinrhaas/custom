@@ -1,7 +1,7 @@
 ---
 id: T-1319
 title: Spend the land-sale and enrichment units: the entered tracts whose purchaser join the adjudication upheld, and the corroborated_enrichment rows naming an arrival or origin no structured field carries
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1316
 opened: 2026-09-18
-closed: null
+closed: 2026-09-18
 pr: null
-claimed_by: null
+claimed_by: run 9/18/2026, 12:09:18 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-18T17:13:12.579Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35371938176
 ---
 
 Spend the census, land-sale and enrichment units: the 1830 schedule lines that bound a held resident, the entered tracts whose purchaser join was upheld, and the corroborated_enrichment rows naming an arrival or origin no field carries.

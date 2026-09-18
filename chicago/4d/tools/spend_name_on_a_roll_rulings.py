@@ -74,7 +74,7 @@ CENSUS_CROSSWALK = ROOT / "data/research/census_1830/resident_crosswalk.json"
 # each rename forced by the same rule — a split ticket is not an open one, the rule that
 # went red on 61 units when T-1146 was split and on 3,384 when T-1236 was. Two passes
 # ended it rather than renaming it again. T-1326 asserted the town's own poll and tax
-# rolls onto the cards the crosswalk names, and T-1330 did the same for the 14 matched
+# rolls onto the cards the crosswalk names, and T-1337 did the same for the 14 matched
 # 1830 schedule lines: `tools/spend_appearance_bounds.py` writes each onto its person as
 # `persons[].appearance_bounds[]`, so those units close `asserted` and `still_open()`
 # drops them before this register is built. The one row left over — the single
@@ -245,9 +245,9 @@ CIVIC_RULES = {
 }
 
 CENSUS_RULES = {
-    # THE RULE THAT USED TO STAND HERE IS GONE BECAUSE THE UNITS ARE SPENT (T-1330).
+    # THE RULE THAT USED TO STAND HERE IS GONE BECAUSE THE UNITS ARE SPENT (T-1337).
     # `the_1830_line_bounds_a_held_residents_presence` handed all 14 matched lines of the
-    # 1830 Peoria & Putnam division to an arrival pass. T-1330 ran that pass:
+    # 1830 Peoria & Putnam division to an arrival pass. T-1337 ran that pass:
     # tools/spend_appearance_bounds.py writes each matched line onto the person the
     # resident crosswalk named, under `persons[].appearance_bounds[]`, at `inferred`,
     # `bound_kind: "district_presence"` with `here_by: null` — the division never writes
@@ -263,7 +263,7 @@ CENSUS_RULES = {
             "The given names agree and the surnames differ only by a silent terminal e or a "
             "doubled consonant, and the crosswalk is explicit that this is a CANDIDATE and "
             "never a merge. This file does not make the identification either, and as of "
-            "T-1330 it no longer hands the row to an arrival pass to make: a candidate is "
+            "T-1337 it no longer hands the row to an arrival pass to make: a candidate is "
             "a rival still standing, this project's standing rule is that an identity is "
             "not promoted by being written down a second time, and a fifth successive "
             "deferral is not a disposition. The row is REFUSED as a person unit, and the "
@@ -505,7 +505,7 @@ def census_rule(row: dict, outcome: str, entry: dict) -> tuple[str, str]:
              f"{row['locator'].get('entry')}, in the division headed 'Peoria & Putnam "
              f"Counties & Territory attached'")
     if outcome == "earlier_evidence":
-        # SPENT, NOT RULED (T-1330). A matched line is written onto the card the resident
+        # SPENT, NOT RULED (T-1337). A matched line is written onto the card the resident
         # crosswalk names by tools/spend_appearance_bounds.py and closes `asserted`, so
         # this register states nothing about it: a ruling on a unit something else already
         # closed reads as work done and is not, and

@@ -691,7 +691,19 @@ selftest "…and its own assertions still fire when broken" \
 # found 18 such households by hand. This re-derives every row and every derived
 # count from data/residents/households/*.json and fails if the committed file is not
 # what the derivation produces.
-step "the residents manifest re-derives from the household cards" \
+#
+# T-1144 acceptance 6 put the REDIRECT TABLE under the same rule. `merged` is one
+# row per card folded onto another, it is the only way a retired id resolves, and
+# it was the one list here nobody re-derived - so it had drifted both ways:
+# `hh_vanderbogart_h` (T-0842) had a record and no row, so the id resolved to
+# nothing while its own note said the table redirected it, and
+# `hh_blanchard_gantry` was carried under `C7` after T-0993 minted `C8` for that
+# fold, naming a reader the compound-surname rule for a middle-name argument. Both
+# are now derived from data/residents/merged/*.json, and on top of the tally this
+# refuses a redirect that does not ARRIVE - a target that is not a live card, a
+# person in no card, a redirect onto another retired card, a retired id shadowing a
+# live one - because a table can re-derive perfectly and still be a dead end.
+step "the residents manifest re-derives from the household cards and the retired records" \
   python3 tools/rebuild_resident_index.py --check
 
 # T-0871. It was the only re-derivation gate in this tree whose own assertions had
@@ -2662,6 +2674,22 @@ step "the remainder rulings re-derive from their five corpora (T-1298)" \
 selftest "…and each of its rules still fires, and hands on only to live work" \
   python3 tools/spend_remainder_rulings.py --self-test
 
+# T-1330. THE SPEND ITSELF, where the two steps above only ROUTE. Thirty of T-1301's
+# `corroborated_enrichment` findings named an arrival, an origin, a departure or a dated
+# appearance, and they had been handed from arrival ticket to arrival ticket without being
+# read against the cards they name. Nine of them retire a value the arrival stage DREW —
+# an origin region taken from the Old Settlers birthplace sample, an arrival year drawn
+# from a distribution truncated at the household's bound — and the block that replaces one
+# carries no `written_by_stage` mark, which is how reconstruct_residents_1835.py's
+# `writable()` yields the field. So two gates have to agree here and this is the first of
+# them: the blocks re-derive from the adjudication, and the adjudication still covers every
+# unit the ruling register hands this pass, in both directions.
+step "the enrichment arrival and origin spend re-derives onto its nine cards (T-1330)" \
+  python3 tools/spend_enrichment_arrivals.py --check
+
+selftest "…and its citation, naming and retirement rules still fire when broken" \
+  python3 tools/spend_enrichment_arrivals.py --self-test
+
 # T-1297. The same instrument over the name-on-a-roll body: the 1833-1835 poll and tax
 # lists, the 1832 Black Hawk War enrollments, the 1830 heads of family, and the town
 # findings of Andreas, Norris and Fergus that describe a year at or before the scene. 718
@@ -3337,7 +3365,7 @@ step "…and each of those rulings is a bound on the card, not only a paragraph"
 selftest "…and a roll bounds a presence, a tax roll bounds property, and neither reaches the scene" \
   python3 tools/spend_civic_roll_bounds.py --self-test
 
-# T-1330. THE SAME HOP FOR TWO MORE CORPORA, AND THIS TIME NOT A LEGIBILITY PASS. T-1329
+# T-1337. THE SAME HOP FOR TWO MORE CORPORA, AND THIS TIME NOT A LEGIBILITY PASS. T-1329
 # held 238 units — the 1830 Peoria & Putnam schedule, St Mary's and St Cyr's registers, and
 # the town's press — and only ten of them sat on a card in any form, so an identification
 # had to already stand before a bound could be written. Two did: the resident crosswalk's
@@ -3346,7 +3374,7 @@ selftest "…and a roll bounds a presence, a tax roll bounds property, and neith
 # DISTRICT and not at Chicago (`here_by: null` — the division never writes the word
 # Chicago), and three register appearances are dated after 1 July 1835, so they date an
 # appearance and bound nothing at the scene. The other 83 are refused by name in the ruling
-# registers, and the 128 press units went to T-1331 with the id collision that blocks them.
+# registers, and the 128 press units went to T-1338 with the id collision that blocks them.
 step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards they name" \
   python3 tools/spend_appearance_bounds.py --check
 

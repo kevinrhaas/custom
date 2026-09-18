@@ -203,7 +203,7 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
             person.pop("dated_bounds", None)
             _insert_after(person, "dated_bounds", bounds, "sources")
 
-        # T-1330: AND THE SAME FOR THE SECOND EVIDENCE BLOCK, IN A FIXED ORDER BEHIND THE
+        # T-1337: AND THE SAME FOR THE SECOND EVIDENCE BLOCK, IN A FIXED ORDER BEHIND THE
         # FIRST. `tools/spend_appearance_bounds.py` writes `persons[].appearance_bounds[]`
         # — the 1830 schedule lines and St Mary's register appearances — and it puts the
         # block after `dated_bounds` where the card carries one, precisely so two passes

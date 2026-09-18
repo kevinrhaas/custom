@@ -350,7 +350,44 @@ def structure_function(sid: str) -> str:
     return value(doc.get("function")) or "unstated"
 
 
-LODGING_FUNCTIONS = {"hotel", "tavern", "boarding_house", "inn", "coffee_house"}
+# T-1323. The lodging test, stated in terms a building can actually spell.
+#
+# `function` became a closed vocabulary at T-1311 and this set is a SELECTION from it,
+# not a second vocabulary. Until this ticket it named `tavern`, `inn` and `coffee_house`,
+# and no record ever used any of the three: the town's public houses spell `tavern_inn`
+# (seven roofs, the Exchange Coffee House among them) and the reconstructed stock spells
+# `small_inn_or_tavern` and the three sized boarding houses. So five households — the
+# Mansion House keeper, Ingersoll, Murphy, Stow, Walters — were counted under "a dwelling
+# or a place of business" and the Lodging section under-reported the houses of
+# entertainment by exactly the taverns.
+#
+# BOTH DIRECTIONS ARE GATED, by `tools/normalise_structure_function.py --check`: a term
+# here that no structure can spell is refused the way a signage trade is, and a vocabulary
+# term that READS like lodging and appears in neither set below is refused too — which is
+# what stops the next `inn`-shaped term from being added to the schema and silently
+# missed here.
+LODGING_FUNCTIONS = {
+    "boarding_house",
+    "hotel",
+    "large_boarding_house",
+    "medium_boarding_house",
+    "small_boarding_house",
+    "small_inn_or_tavern",
+    "tavern_inn",
+}
+
+# The lodging-shaped terms that are deliberately NOT a house of entertainment, each with
+# its reason. A ruling, not an oversight — the gate requires one or the other.
+NOT_LODGING_FUNCTIONS = {
+    # A roof still going up on 1835-07-01 lodges nobody; the Lake House opened in 1836.
+    "hotel_under_construction",
+    # Lodging over a professional office is a dwelling, not a house of entertainment:
+    # Dr Temple's building on Lake Street housed him, it did not take the town's guests.
+    "office_and_lodging",
+    # Stabling is for the horses of a house of entertainment, not for its people.
+    "hotel_stable",
+    "tavern_stable",
+}
 
 
 def function_words(term: str) -> str:
@@ -716,7 +753,14 @@ def sec_lodging(L) -> dict:
             {"title": "Every household with a lives_at", **plain_table(
                 ["household", "structure", "its function", "class", "tier"], rows, "lllll")},
         ],
-        "notes": ["No household in the known layer lodges on a vessel. The crews ashore on "
+        "notes": ["A household is classed a house of entertainment when the roof it names "
+                  "carries one of the %d function terms that mean lodging for pay: %s. The "
+                  "test used to name `tavern`, `inn` and `coffee_house`, which the function "
+                  "vocabulary cannot spell and no record ever used, so the taverns counted "
+                  "as dwellings (T-1323)."
+                  % (len(LODGING_FUNCTIONS),
+                     ", ".join("`%s`" % t for t in sorted(LODGING_FUNCTIONS))),
+                  "No household in the known layer lodges on a vessel. The crews ashore on "
                   "1 July 1835 are T-1178's cohort and none of them is named here."],
     }
 

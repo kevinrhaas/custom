@@ -1,5 +1,5 @@
 ---
-id: T-1331
+id: T-1338
 title: Spend the 128 press notices onto the cards they name, once a newspaper claim unit carries a file-qualified ledger id: the 22 raw claim ids these units share would close 937 other units as asserted
 state: open
 epic: META

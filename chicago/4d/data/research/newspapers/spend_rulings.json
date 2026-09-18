@@ -15,8 +15,8 @@
   "rules": {
     "a_dated_appearance_bounds_a_presence": {
       "disposition": "unresolved",
-      "ticket": "T-1331",
-      "statement": "The unit puts a named person at Chicago on a dated day in the town's PRINT and states nothing else about them. A dated appearance BOUNDS a presence and is never itself a presence, and the earliest dated appearance is the bound the arrival pass works from -- T-1169 until it closed on 2026-09-18, T-1318 and T-1329 through their splits, and T-1331 now. This ruling hands the date on and writes nothing: it does not decide that a named party is a resident, that a name is a person rather than a firm, or that it is the individual a card of that name already holds. The register half of this rule is gone, spent by T-1330 or refused by the four rules below; what is left here is the press, and T-1331 states in its title the id collision that has to be fixed before a press claim can name a card at all."
+      "ticket": "T-1338",
+      "statement": "The unit puts a named person at Chicago on a dated day in the town's PRINT and states nothing else about them. A dated appearance BOUNDS a presence and is never itself a presence, and the earliest dated appearance is the bound the arrival pass works from -- T-1169 until it closed on 2026-09-18, T-1318 and T-1329 through their splits, and T-1338 now. This ruling hands the date on and writes nothing: it does not decide that a named party is a resident, that a name is a person rather than a firm, or that it is the individual a card of that name already holds. The register half of this rule is gone, spent by T-1337 or refused by the four rules below; what is left here is the press, and T-1338 states in its title the id collision that has to be fixed before a press claim can name a card at all."
     },
     "the_column_names_nobody": {
       "disposition": "aggregate_only",

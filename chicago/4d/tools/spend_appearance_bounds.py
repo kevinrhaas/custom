@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The 1830 schedule and St Mary's register, written onto the cards they name (T-1330).
+"""The 1830 schedule and St Mary's register, written onto the cards they name (T-1337).
 
     python3 tools/spend_appearance_bounds.py             write the ledger and the bounds
     python3 tools/spend_appearance_bounds.py --check      everything re-derives; nothing drifted
@@ -13,7 +13,7 @@ source-bearing, `attested`/`inferred` node NAMES the unit. Its sibling T-1329 he
 further corpora on the same footing and in a worse state: the 1830 Peoria & Putnam
 schedule, St Mary's baptismal register, St Cyr's marriage pages and the town's press, 238
 units, of which only ten sat on a card in any form at all. This pass is the register and
-the schedule half of that — T-1330 — and unlike T-1326 it is NOT a legibility pass: an
+the schedule half of that — T-1337 — and unlike T-1326 it is NOT a legibility pass: an
 identification has to already stand before a bound can be written, and where none does the
 answer here is a written refusal in the ruling registers and no card is touched.
 
@@ -101,7 +101,7 @@ LEDGER = RESEARCH / "appearance_bounds_1835.json"
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 
 SCHEMA = 1
-TICKET = "T-1330"
+TICKET = "T-1337"
 GENERATOR = "tools/spend_appearance_bounds.py"
 BLOCK = "appearance_bounds"
 SCENE_DATE = "1835-07-01"

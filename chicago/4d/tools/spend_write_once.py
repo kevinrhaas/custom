@@ -40,7 +40,7 @@ what decides who needs this module:
                                     the block route deliberately, for the reason the two
                                     rows above it demonstrate)
   spend_appearance_bounds.py        an `appearance_bounds` BLOCK, the same route for the
-                                    same reason (T-1330; the tenth pass). Its own key and
+                                    same reason (T-1337; the tenth pass). Its own key and
                                     not T-1326's: that pass's `--check` re-derives
                                     `dated_bounds` byte for byte against the voter
                                     crosswalk, so a second corpus written into the same

@@ -133,22 +133,55 @@ RULES = {
             "T-1315 owns spending them, and a hand-off must name LIVE work rather than a "
             "spent parent."),
     },
-    "the_enrichment_names_an_arrival_or_origin_no_field_carries": {
-        "disposition": "unresolved",
-        "ticket": "T-1319",
+    "the_enrichment_is_written_onto_the_card_it_names": {
+        "disposition": "asserted",
         "statement": (
-            "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
-            "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
-            "extends the card and that no exact source-bearing structured field on that card "
-            "carries today. It is not refused, because it is true research; it is not written here, "
-            "because writing one attribute at a time, out of one pass and without the other sources "
-            "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
-            "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
-            "fact it names; this unit's own note says which field that is. This one names an "
-            "ARRIVAL, a departure, an origin or a dated appearance that bounds one, and T-1169 is "
-            "the pass that fills arrival date, origin and reason for coming -- its acceptance takes "
-            "the earliest dated appearance as the bound, which is exactly what a voter roll, a "
-            "letter list or a treaty payment naming a man of Chicago is."),
+            "The completed pass returned `corroborated_enrichment` naming an arrival year or "
+            "an origin, and T-1330 WROTE IT ONTO THE CARD -- over a value the arrival stage "
+            "had drawn from a distribution, or over a year this project's own note called a "
+            "guess. tools/spend_enrichment_arrivals.py holds the adjudication, writes the "
+            "block and re-derives it under --check; the block is `inferred`, cites the volume "
+            "the finding names, says which person it is about, and carries no "
+            "`written_by_stage` mark, which is how reconstruct_residents_1835.py's "
+            "`writable()` yields the field to it. This ruling exists because the ledger's own "
+            "assertion test cannot see a spend of this kind: it closes a unit only where the "
+            "card cites a source the READING already carried, and the whole value of these "
+            "nine is that they bring a volume it did not. The `wrote` list on each row names "
+            "the file and the field, and tools/research_spend_ledger.py re-reads every one of "
+            "them -- an assertion a register cannot show is a fault, not an assertion."),
+    },
+    "the_enrichment_dates_an_appearance_the_card_already_carries": {
+        "disposition": "refused",
+        "statement": (
+            "The completed pass returned `corroborated_enrichment` naming an arrival, an "
+            "origin or a dated appearance, and T-1330 read it against the card it names: the "
+            "card ALREADY carries that date or that place, from a source of its own, at equal "
+            "or better precision. Under the evidence ladder ratified 2026-09-03 corroboration "
+            "corroborates; it does not promote, and a second volume agreeing that a man "
+            "Andreas puts at Chicago in 1833 was at Chicago in 1833 names no field to fill. "
+            "This is a finished answer rather than a deferral, and the finer detail some of "
+            "these carry -- a month inside a year the card states, a roster naming inside a "
+            "residence the card states -- is recorded in this unit's own note rather than "
+            "written over a reading that owns the field. The nine of the thirty that DID "
+            "retire a drawn or guessed value are not here: they are asserted on their cards "
+            "by tools/spend_enrichment_arrivals.py and the ledger closes them by reading the "
+            "card, which is why a ruling on one of them would be a fault."),
+    },
+    "the_enrichment_names_a_departure_from_chicago_no_field_carries": {
+        "disposition": "unresolved",
+        "ticket": "T-1144",
+        "statement": (
+            "The completed pass returned `corroborated_enrichment` naming a DEPARTURE from "
+            "Chicago -- a removal, a migration to another town, a prospecting journey that "
+            "ended somewhere else -- for a person this town holds a card for. T-1330 read all "
+            "thirty arrival-and-origin enrichments one at a time and these six name a going "
+            "rather than a coming. No field on a resident card carries a departure: the only "
+            "thing a removal bears on is `present_on_scene_date`, and whether a man "
+            "documented as leaving in 1835 was at Chicago on 1 July of that year is exactly "
+            "the question T-1144 owns -- \"no false Chicago resident, and no 1835 claim above "
+            "its dated evidence\". It is handed there and asserted nowhere: this pass does "
+            "not move a presence, because a removal read out of one volume without the "
+            "others beside it is how a layer loses a resident it had evidence for."),
     },
     "the_enrichment_names_kin_no_field_carries": {
         "disposition": "unresolved",
@@ -407,33 +440,33 @@ RULES = {
         # and asserted it.
         # AND T-1329 WAS SPLIT AGAIN ON 2026-09-18, WHICH IS WHY THIS RULE IS NOW THE
         # PRESS ALONE. That ticket held three corpora and two of them could be answered
-        # off adjudications already made: T-1330 wrote the 14 matched 1830 schedule lines
+        # off adjudications already made: T-1337 wrote the 14 matched 1830 schedule lines
         # and the 13 merged St Mary's register appearances onto the cards, as
         # `persons[].appearance_bounds[]`, and refused the other 83 by name in the four
         # rules below. The 128 PRESS units could not follow them, and not for want of an
         # identification: a newspaper claim's ledger id is its bare `c004`, which 55 held
         # issues each carry, so a bound naming one would close 937 other units of this
-        # corpus as `asserted`. That measurement is T-1331, which owns them and has to
+        # corpus as `asserted`. That measurement is T-1338, which owns them and has to
         # give a claim unit a file-qualified id before it can spend one.
-        "ticket": "T-1331",
+        "ticket": "T-1338",
         "statement": (
             "The unit puts a named person at Chicago on a dated day in the town's PRINT "
             "and states nothing else about them. A dated appearance BOUNDS a presence and "
             "is never itself a presence, and the earliest dated appearance is the bound "
             "the arrival pass works from -- T-1169 until it closed on 2026-09-18, T-1318 "
-            "and T-1329 through their splits, and T-1331 now. This ruling hands the date "
+            "and T-1329 through their splits, and T-1338 now. This ruling hands the date "
             "on and writes nothing: it does not decide that a named party is a resident, "
             "that a name is a person rather than a firm, or that it is the individual a "
             "card of that name already holds. The register half of this rule is gone, "
-            "spent by T-1330 or refused by the four rules below; what is left here is the "
-            "press, and T-1331 states in its title the id collision that has to be fixed "
+            "spent by T-1337 or refused by the four rules below; what is left here is the "
+            "press, and T-1338 states in its title the id collision that has to be fixed "
             "before a press claim can name a card at all."),
     },
-    # ---- T-1330: THE REGISTER APPEARANCES THE CROSSWALKS DID NOT IDENTIFY ------------
+    # ---- T-1337: THE REGISTER APPEARANCES THE CROSSWALKS DID NOT IDENTIFY ------------
     #
     # 95 register units reached the rule above as one undifferentiated hand-off, and 13 of
     # them had an identification standing in
-    # `data/research/church/st_marys_baptisms_crosswalk.json` the whole time. T-1330 wrote
+    # `data/research/church/st_marys_baptisms_crosswalk.json` the whole time. T-1337 wrote
     # those 13 onto their cards, so they close `asserted` and never reach a register again
     # (`mine()` drops them, and `research_spend_ledger.ruling_coverage_faults` would fail a
     # ruling on one).
@@ -484,7 +517,7 @@ RULES = {
             "equal and the forenames agree initial for initial, which its own rule says is "
             "a candidate because a merge needs a second attribute to agree as well. A "
             "candidate is a rival still standing, and a bound written off one would print "
-            "an undecided identity as a decided one -- which is why T-1330 wrote nothing "
+            "an undecided identity as a decided one -- which is why T-1337 wrote nothing "
             "off St Cyr's pages, where the crosswalk proposes one merge in 531 entries and "
             "makes none. The row is refused as a person unit; the candidate stands where it "
             "is, and a second agreeing attribute is what would reopen it."),
@@ -549,7 +582,9 @@ def issue_date(doc: dict) -> str | None:
 # NOTHING HERE WRITES A CARD. A hand-off is not a spend; it names the field and the open
 # ticket that owns it, and that ticket closing turns this file red, which is the point.
 AGE = "the_enrichment_names_a_birth_or_age_no_field_carries"
-ARRIVAL = "the_enrichment_names_an_arrival_or_origin_no_field_carries"
+WRITTEN = "the_enrichment_is_written_onto_the_card_it_names"
+CARRIED = "the_enrichment_dates_an_appearance_the_card_already_carries"
+DEPARTURE = "the_enrichment_names_a_departure_from_chicago_no_field_carries"
 KIN = "the_enrichment_names_kin_no_field_carries"
 TRADE = "the_enrichment_names_a_trade_or_premises_no_field_carries"
 CIVIC = "the_enrichment_names_a_civic_church_or_school_post_no_field_carries"
@@ -557,43 +592,46 @@ LAND = "the_enrichment_names_a_landholding_no_field_carries"
 LATER = "the_later_volume_enriches_a_biography_and_names_no_1835_field"
 
 ENRICHMENT_ROUTE: dict[tuple[str, str], tuple[str, str]] = {
+    ("02", "peck_philip"): (WRITTEN, "a Providence origin and a dated July 1831 arrival"),
+    ("02", "temple_john_t"): (WRITTEN, "a July 1833 arrival with a family"),
+    ("02", "tuller_elam"): (WRITTEN, "a July 1833 family arrival and a Connecticut origin"),
+    ("03", "church_thomas"): (WRITTEN, "an 1834 arrival"),
+    ("07", "jackson_samuel"): (WRITTEN, "an arrival from Buffalo dated 27 June 1833"),
+    ("11", "andrus_thomas"): (WRITTEN, "an arrival dated 1 December 1833 and a June 1835 return"),
+    ("11", "evans_sciota"): (WRITTEN, "a dated October 1834 list and a later Milwaukee office"),
     ("02", "bates_john_jr"): (TRADE, "an auctioneer's trade and a directory address"),
     ("02", "beaubien_josette"): (KIN, "a daughter and a wife the source names"),
-    ("02", "caldwell_billy"): (ARRIVAL, "a dated removal that conflicts with the record's own migration year"),
+    ("02", "caldwell_billy"): (DEPARTURE, "a dated removal that conflicts with the record's own migration year"),
     ("02", "calhoun_john"): (TRADE, "the founding and operation of a printing office"),
     ("02", "clybourne_archibald"): (TRADE, "a slaughterhouse and a meat trade with their premises"),
     ("02", "couch_ira"): (TRADE, "the keeping of the Tremont House"),
     ("02", "hamilton_richard_j"): (CIVIC, "county clerk and recorder, and the later county offices"),
     ("02", "hogan_john_s_c"): (CIVIC, "a corporate trustee named in the 1835 incorporation act"),
-    ("02", "kinzie_juliette"): (ARRIVAL, "a dated pre-Chicago residence at the Fort Winnebago agency house"),
+    ("02", "kinzie_juliette"): (CARRIED, "a dated pre-Chicago residence at the Fort Winnebago agency house"),
     ("02", "owen_thomas_jv"): (KIN, "a wife and four sons the sources name"),
     ("02", "pearsons_hiram"): (TRADE, "a house painter's trade the household carried as speculator"),
-    ("02", "peck_philip"): (ARRIVAL, "a Providence origin and a dated July 1831 arrival"),
     ("02", "porter_eliza_chappel"): (KIN, "an 1835 marriage"),
     ("02", "porter_jeremiah"): (KIN, "a marriage dated 15 June 1835"),
     ("02", "robinson_alexander"): (AGE, "a birth year current scholarship disputes"),
     ("02", "robinson_catherine"): (KIN, "a husband, a marriage year, parents and a grandfather"),
     ("02", "sen_elijah_wentworth"): (TRADE, "a tavern kept at Wolf Point and later at Sand Ridge"),
     ("02", "snow_george_w"): (CIVIC, "election as assessor and surveyor in December 1833"),
-    ("02", "spring_giles"): (ARRIVAL, "a relocation to Chicago dated June 1833"),
+    ("02", "spring_giles"): (CARRIED, "a relocation to Chicago dated June 1833"),
     ("02", "taylor_augustine"): (TRADE, "a builder's trade and the building of St Mary's"),
-    ("02", "temple_john_t"): (ARRIVAL, "a July 1833 arrival with a family"),
-    ("02", "tuller_elam"): (ARRIVAL, "a July 1833 family arrival and a Connecticut origin"),
-    ("02", "wright_john"): (ARRIVAL, "a joint arrival dated 29 October 1832"),
+    ("02", "wright_john"): (CARRIED, "a joint arrival dated 29 October 1832"),
     ("03", "blodgett_tyler_k"): (TRADE, "an 1833 north-bank brickyard and a brick house"),
     ("03", "brown_rufus"): (TRADE, "a log boarding house kept full"),
-    ("03", "carver_david"): (ARRIVAL, "a dated 1833 voter-roster appearance, which is an arrival bound"),
-    ("03", "casey_edward_w"): (ARRIVAL, "an 1833 arrival remembered by a near participant"),
-    ("03", "church_thomas"): (ARRIVAL, "an 1834 arrival"),
+    ("03", "carver_david"): (CARRIED, "a dated 1833 voter-roster appearance, which is an arrival bound"),
+    ("03", "casey_edward_w"): (CARRIED, "an 1833 arrival remembered by a near participant"),
     ("03", "cobb_silas_b"): (TRADE, "saddlery and harness work and a later Lake Street address"),
     ("03", "cohen_peter"): (TRADE, "incorporation of the Chicago Hydraulic Company"),
     ("03", "davis_t_o"): (TRADE, "the establishing of the Whig newspaper in 1835"),
     ("03", "elston_daniel"): (TRADE, "soap and candle manufacture and a later distillery and brewery"),
     ("03", "fullerton_alexander"): (CIVIC, "the 1835 town-clerk chronology"),
-    ("03", "gale_stephen_f"): (ARRIVAL, "a dated 1833 voter-roster appearance"),
+    ("03", "gale_stephen_f"): (CARRIED, "a dated 1833 voter-roster appearance"),
     ("03", "heacock_russel_e"): (KIN, "a household the 1843 directory distinguishes"),
     ("03", "ingersoll_chester"): (TRADE, "the Green Tree house held as landlord 1834-37"),
-    ("03", "jones_benjamin"): (ARRIVAL, "a dated 1835 purchase and an 1836 removal"),
+    ("03", "jones_benjamin"): (DEPARTURE, "a dated 1835 purchase and an 1836 removal"),
     ("04", "handy_major"): (TRADE, "a named role in the 1833 river-improvement works"),
     ("04", "kimberly_edmund_s"): (AGE, "an exact birth date of 7 April 1803"),
     ("04", "kinzie_robert_a"): (TRADE, "a frame store and membership of Kinzie, Davis & Hyde"),
@@ -602,43 +640,38 @@ ENRICHMENT_ROUTE: dict[tuple[str, str], tuple[str, str]] = {
     ("04", "mckee_david"): (TRADE, "the agency blacksmith's shop at the foot of State Street"),
     ("04", "meeker_joseph"): (CIVIC, "church membership, a Sunday-school office and the first meeting house"),
     ("04", "murphy_john"): (TRADE, "the keeping of the Exchange Coffee House from August 1834"),
-    ("04", "norton_nelson_r"): (ARRIVAL, "an arrival dated 16 November 1833"),
-    ("04", "paine_seth"): (ARRIVAL, "an 1834 migration from Montpelier, Vermont"),
-    ("04", "pierce_asahel"): (ARRIVAL, "an October 1833 arrival"),
-    ("04", "porthier_joseph"): (ARRIVAL, "a departure dated 27 February 1835 and a return"),
+    ("04", "norton_nelson_r"): (CARRIED, "an arrival dated 16 November 1833"),
+    ("04", "pierce_asahel"): (CARRIED, "an October 1833 arrival"),
+    ("04", "porthier_joseph"): (DEPARTURE, "a departure dated 27 February 1835 and a return"),
     ("04", "pruyne_peter"): (TRADE, "a drug store kept in partnership from early 1833"),
     ("04", "sproat_grenville"): (CIVIC, "an English and Classical School opened in the fall of 1833"),
     ("04", "st_cyr_john_mary"): (CIVIC, "an 1833 appointment, the first Mass and the first church"),
     ("04", "steele_ashbel"): (CIVIC, "the county coroner's office in the 1835 period"),
-    ("04", "sweet_alanson"): (ARRIVAL, "a removal to Milwaukee in 1835"),
+    ("04", "sweet_alanson"): (DEPARTURE, "a removal to Milwaukee in 1835"),
     ("04", "thomas_frederick"): (TRADE, "a barber-surgeon's and retail druggist's trade"),
     ("04", "walters_william"): (TRADE, "the Wolf Point Tavern kept 1833-36"),
     ("04", "watkins_john"): (CIVIC, "a school taught in Chicago in 1835"),
-    ("05", "hugunin_leonard_c"): (ARRIVAL, "an arrival dated 17 August 1833"),
-    ("05", "kercheval_gholson"): (ARRIVAL, "a dated 1833 treaty payment naming him of Chicago"),
+    ("05", "kercheval_gholson"): (CARRIED, "a dated 1833 treaty payment naming him of Chicago"),
     ("05", "kimball_walter"): (TRADE, "a New Store at the South Water and Clark junction"),
     ("05", "lampman_henry_s"): (TRADE, "a brickmaker's trade and the yard that engaged him"),
     ("05", "wright_john_s"): (LAND, "Chicago land purchases and original-town lots"),
-    ("06", "andrews_davi"): (ARRIVAL, "a dated Cook County presence from 1834"),
+    ("06", "andrews_davi"): (CARRIED, "a dated Cook County presence from 1834"),
     ("06", "blakesley_harvey_a"): (LATER, "later Chicago directories, backfilling no occupation and no roof"),
     ("06", "mitchell_henry"): (TRADE, "wagon-factory work in 1834"),
-    ("07", "jackson_samuel"): (ARRIVAL, "an arrival from Buffalo dated 27 June 1833"),
     ("08", "hobson_jesse"): (KIN, "a marriage at Naperville dated 6 April 1835"),
-    ("08", "orsemus_morrison"): (ARRIVAL, "an 1833 arrival"),
+    ("08", "orsemus_morrison"): (CARRIED, "an 1833 arrival"),
     ("09", "chandler_joseph"): (TRADE, "executive charge of the harbour work begun 1 July 1833"),
     ("09", "hathaway_joshua"): (TRADE, "the making of the 1834 cadastral map"),
     ("09", "myers_frederick"): (CIVIC, "a quartermaster's clerkship at Fort Dearborn, 1831-33"),
-    ("09", "pugsley_john_k"): (ARRIVAL, "a June 1835 journey from near Utica, and a return"),
+    ("09", "pugsley_john_k"): (DEPARTURE, "a June 1835 journey from near Utica, and a return"),
     ("10", "barrows_mary"): (CIVIC, "an assistant's post in Miss Chappel's school"),
-    ("10", "boilvin_nicholas"): (ARRIVAL, "dated 1834 post-office returns and an 1833 treaty schedule"),
-    ("10", "christy_nathan"): (ARRIVAL, "a dated 1834 letter-list appearance"),
-    ("10", "cleland_martin"): (ARRIVAL, "an 1834 prospecting journey from Chautauqua, New York"),
-    ("10", "vasseur_noel"): (ARRIVAL, "an 1835 postal list and an 1833 treaty schedule"),
-    ("11", "andrus_thomas"): (ARRIVAL, "an arrival dated 1 December 1833 and a June 1835 return"),
-    ("11", "evans_sciota"): (ARRIVAL, "a dated October 1834 list and a later Milwaukee office"),
+    ("10", "boilvin_nicholas"): (CARRIED, "dated 1834 post-office returns and an 1833 treaty schedule"),
+    ("10", "christy_nathan"): (CARRIED, "a dated 1834 letter-list appearance"),
+    ("10", "cleland_martin"): (DEPARTURE, "an 1834 prospecting journey from Chautauqua, New York"),
+    ("10", "vasseur_noel"): (CARRIED, "an 1835 postal list and an 1833 treaty schedule"),
     ("11", "kingston_paul"): (LAND, "a Chicago landholding and a dated January 1835 departure"),
     ("11", "lathrop_samuel_s"): (CIVIC, "First Baptist membership from October 1833"),
-    ("12", "woodworth_james_h"): (ARRIVAL, "a move to Chicago in 1833"),
+    ("12", "woodworth_james_h"): (CARRIED, "a move to Chicago in 1833"),
     ("14", "bailey_bennet"): (TRADE, "a carpenter and builder's trade printed in 1839"),
     ("14", "chapman_chas_h"): (TRADE, "a real-estate dealer's trade and a Randolph Street address"),
     ("14", "clarke_h_b"): (TRADE, "a hardware merchant's trade the 1835 papers carry"),
@@ -763,7 +796,7 @@ CHURCH_CROSSWALKS = (
     "data/research/church/st_cyr_crosswalk.json",
 )
 CHURCH_OUTCOME_RULES = {
-    "merged": None,                       # spent on a card by T-1330; see below
+    "merged": None,                       # spent on a card by T-1337; see below
     "no_candidate": "the_register_appearance_names_nobody_this_town_holds",
     "unmatched": "the_register_appearance_names_nobody_this_town_holds",
     "refused": "the_register_appearance_identity_was_refused_in_the_crosswalk",
@@ -804,7 +837,7 @@ def church_appearance_rule(row: dict, where: str, seen: str,
     rule = CHURCH_OUTCOME_RULES[str(entry.get("outcome"))]
     told = f"{entry['crosswalk'].rsplit('/', 1)[-1]} rules it {entry.get('outcome')!r}"
     if rule is None:
-        # SPENT, NOT RULED (T-1330). tools/spend_appearance_bounds.py has written this
+        # SPENT, NOT RULED (T-1337). tools/spend_appearance_bounds.py has written this
         # appearance onto the card the crosswalk merges it into, so it closes `asserted`
         # and this register states nothing about it: a ruling on a unit something else
         # closed reads as work done and is not, and
@@ -912,6 +945,15 @@ def classify(root: Path, unit: dict, cache: dict) -> tuple[str, str]:
     return rule_books(unit)
 
 
+def wrote_by_spend(person_id: str) -> list[dict]:
+    """Where tools/spend_enrichment_arrivals.py put this finding, from its own table."""
+    from spend_enrichment_arrivals import ADJUDICATION, household_of
+    row = ADJUDICATION[person_id]
+    path = household_of(person_id)
+    return [{"file": path.relative_to(ROOT).as_posix(), "field": field}
+            for field in sorted(row["writes"])]
+
+
 def build_documents(root: Path = ROOT) -> dict[str, dict]:
     cache: dict = {}
     per_domain: dict[str, list[dict]] = {domain: [] for domain in DOMAINS}
@@ -921,7 +963,14 @@ def build_documents(root: Path = ROOT) -> dict[str, dict]:
         rule, note = classify(root, unit, cache)
         if rule is None:                   # spent on a card; see church_appearance_rule
             continue
-        per_domain[unit["domain"]].append({"unit": unit["unit_id"], "rule": rule, "note": note})
+        row = {"unit": unit["unit_id"], "rule": rule, "note": note}
+        if rule == WRITTEN:
+            # THE FIELDS ARE THE WRITING PASS'S TO NAME, not this one's. Importing the
+            # adjudication keeps one table in charge of both halves: the pass that put the
+            # block on the card is the pass that says where it went, and a field renamed
+            # there cannot drift out of the register that vouches for it.
+            row["wrote"] = wrote_by_spend(unit["source_record_id"])
+        per_domain[unit["domain"]].append(row)
     documents = {}
     for domain, rulings in per_domain.items():
         rulings.sort(key=lambda row: row["unit"])
@@ -986,7 +1035,7 @@ def self_test() -> int:
     def held(label, unit, want, **kw):
         got = classify(ROOT, unit, {}) if not kw else kw["fn"](unit)
         if want is None:
-            # SPENT, NOT RULED (T-1330): the note has to say where the unit went instead,
+            # SPENT, NOT RULED (T-1337): the note has to say where the unit went instead,
             # or the register is silent about a unit for no stated reason.
             if got[0] is not None:
                 failures.append(f"{label}: is ruled here and it is spent on a card "
@@ -1031,7 +1080,7 @@ def self_test() -> int:
     church = {"source_file": "x/st_marys_baptisms_1833_1835.json",
               "record": {"id": "e1", "normalized": "George Beaubien", "describes_date": "1833-05-22",
                          "cells": {"role": "child"}, "notes": "Child of entry 1."}}
-    # T-1330: AN APPEARANCE'S RULE IS ITS CROSSWALK'S OUTCOME, so these fixtures carry a
+    # T-1337: AN APPEARANCE'S RULE IS ITS CROSSWALK'S OUTCOME, so these fixtures carry a
     # pre-seeded crosswalk index rather than reading the committed one. The point of each
     # case is the MAPPING, and a fixture standing on a real record would move the day that
     # record was re-adjudicated.
@@ -1125,7 +1174,9 @@ def self_test() -> int:
 
     for label, pass_no, person, want in (
             ("a birth date", "04", "kimberly_edmund_s", "the_enrichment_names_a_birth_or_age_no_field_carries"),
-            ("an arrival", "04", "norton_nelson_r", "the_enrichment_names_an_arrival_or_origin_no_field_carries"),
+            ("an arrival the card already carries", "04", "norton_nelson_r", "the_enrichment_dates_an_appearance_the_card_already_carries"),
+            ("an arrival written onto the card", "02", "peck_philip", "the_enrichment_is_written_onto_the_card_it_names"),
+            ("a departure", "04", "sweet_alanson", "the_enrichment_names_a_departure_from_chicago_no_field_carries"),
             ("a marriage", "08", "hobson_jesse", "the_enrichment_names_kin_no_field_carries"),
             ("a trade", "14", "sabine_wm", "the_enrichment_names_a_trade_or_premises_no_field_carries"),
             ("a county office", "04", "steele_ashbel", "the_enrichment_names_a_civic_church_or_school_post_no_field_carries"),
