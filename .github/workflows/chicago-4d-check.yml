@@ -48,10 +48,12 @@ on:
     branches: [dev, main]
     paths:
       - 'chicago/4d/**'
+      - 'chicago/reference/**'
       - '.github/workflows/**'
   pull_request:
     paths:
       - 'chicago/4d/**'
+      - 'chicago/reference/**'
       - '.github/workflows/**'
   workflow_dispatch:
 
