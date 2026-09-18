@@ -3438,6 +3438,19 @@ step "every family member the sources name is ruled on, and the ruled writes are
 selftest "…and an unruled statement, a lost write and a stale report all still fire" \
   python3 tools/spend_stated_families.py --self-test
 
+# T-1320. Both passes above read the CARDS. Neither has ever read data/research/books/ —
+# nine committed books, 267 adjudicated claims — for the kinship the books state, so a
+# book sentence only reached a card when somebody happened to quote it onto one. This
+# pass reads them, resolves both ends through the books' own crosswalk and by nothing
+# else, and answers every claim that states kinship in
+# data/research/books/kin_rulings.json. It mints nobody: a relative who was never in this
+# scene is EVIDENCE and not structure, which is validate.py's own rule for a kin row.
+step "every kinship the book corpus states is ruled on, and the ruled ties are on the cards" \
+  python3 tools/spend_book_kin.py --check
+
+selftest "…and a half brother flattened to a brother, a one-sided tie and a lost claim all still fire" \
+  python3 tools/spend_book_kin.py --self-test
+
 # T-0992. T-0962 widened the second hop to read the `matched` container and church entered
 # that report for the first time: 83 rulings reached a person this town holds a card for and
 # NOT ONE card cited the roll. The pass that closes that gap is checked the way every other
