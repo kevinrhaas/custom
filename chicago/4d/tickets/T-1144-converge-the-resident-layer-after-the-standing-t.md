@@ -1,7 +1,7 @@
 ---
 id: T-1144
 title: Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
-state: claimed
+state: open
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: null
 opened: 2026-09-15
 closed: null
 pr: null
-claimed_by: run 9/17/2026, 9:55:25 PM CT
+claimed_by: null
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35300782271
+claimed_run: null
 ---
 
 Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence.
@@ -84,3 +84,50 @@ before anyone tries again.
 **The tightening that DOES apply:** run this in the SAME PASS as T-1157 and T-1241. The drift
 checks here are the sign-off report's evidence section, not a separate expedition, and one run
 produces all three.
+
+
+## ACCEPTANCE 8 IS DONE, AND THE TICKET STAYS OPEN (2026-09-18)
+
+`tools/refuse_reconstructed_grade.py`, gated in `check.sh` as *"no research writer can
+mint a reconstructed resident"* with its self-test beside it, and called by all four
+writers of `data/residents/` on the way out — `synthesize_resident_research.py`,
+`mint_documented_residents.py`, `mint_letter_list_residents.py`,
+`mint_placed_residents.py`.
+
+The refusal runs in EVERY mode, including `--check` and `--report`, so a mint is red on
+the same rule its write is. What it checks is the **call**, not the import: a refusal
+imported and never called is the failure shape it exists for, so `WIRED_WRITERS` names
+the exact call each writer must carry and `--check` fails if one goes missing.
+
+What it deliberately leaves alone: per-attribute `confidence: "reconstructed"` — the
+`{"value": null, "confidence": "reconstructed", "note": "Not attested."}` block on one
+field of a real attested person. That is a statement about a fact, not about whether the
+person existed; hundreds of committed records carry it and refusing it would be wrong.
+The self-test asserts that distinction directly, so a later tightening cannot quietly
+widen the refusal onto it.
+
+Measured before the wiring and unchanged after it: `synthesize_resident_research.py
+--check` 1,282 people, 410 attested, 872 inferred, 0 reconstructed; documented mint 39
+minted / 96 refused, no drift; placed mint 5 minted / 165 refused, no drift; letter-list
+mint the standing 798 (T-0691's, untouched here). Proved end-to-end as well as by
+self-test: `mint_documented_residents.record()` was monkeypatched to grade one person
+`reconstructed` and `build()` refused all 39, naming each household.
+
+This was the one acceptance clause that does not wait on anything — and it is the one the
+bands below need FIRST, because T-1167 is what turns the grade on. The boundary is now one
+line per writer to see, and the reconstruction generator T-1167 brings simply does not
+call it.
+
+**Why the ticket is still open.** Acceptance 1 is not reachable today: letter-list-mint
+drift is 798 files, that drift is T-0691's, and T-0691 is `blocked-tech` behind T-0660 —
+which is still `open` at row 2 of the queue. Per this ticket's own rule, that dependency
+is stated rather than re-decided here. Acceptances 3 and 5 are satisfied on `dev` and were
+re-measured today: Mary Durbin, John Simmons, John Vincent and Cery Logdson hold no
+household or person record, and `audit_scene_window_trades.py --check` reads 0 standing
+rows and re-derives. Acceptance 2 was closed by T-1228 except for the letter-list slot,
+which is acceptance 1's blocker again. What remains for the convergence run is 1, 2's last
+slot, 6, 7 and 9 — and the note above still holds: take it in the same pass as T-1157 and
+T-1241.
+
+`claimed_by` is cleared with this, and the `claim/t-1144` marker released: nobody holds
+this ticket.
