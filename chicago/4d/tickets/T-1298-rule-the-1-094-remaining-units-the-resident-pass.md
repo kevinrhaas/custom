@@ -1,7 +1,7 @@
 ---
 id: T-1298
 title: Rule the 1,094 remaining units: the resident-pass reserved people, the newspaper person units, the church register entries, the non-person book readings and the one genealogytrails unit
-state: open
+state: claimed
 epic: META
 requested_by: loop
 seen: false
@@ -11,11 +11,11 @@ parent: T-1236
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 7:24:10 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35290782143
 ---
 
 Rule the 1,094 remaining units: the resident-pass reserved people, the newspaper person units, the church register entries, the non-person book readings and the one genealogytrails unit.
