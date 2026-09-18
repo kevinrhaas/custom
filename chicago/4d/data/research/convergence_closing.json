@@ -1,0 +1,1480 @@
+{
+ "_doc": "T-1144 acceptance 6 — where every standing household, person and grade came from, and what was retired to get there. Derived by tools/report_convergence_closing.py; --check re-derives it.",
+ "ticket": "T-1144",
+ "scene_date": "1835-07-01",
+ "as_of": "2026-09-18",
+ "standing": {
+  "households": 1258,
+  "persons": 1288,
+  "by_grade": {
+   "attested": 410,
+   "inferred": 875,
+   "reconstructed": 3
+  },
+  "retired": 66
+ },
+ "by_pass": {
+  "authored": {
+   "households": 79,
+   "persons": 109,
+   "grades": {
+    "attested": 88,
+    "inferred": 18,
+    "reconstructed": 3
+   },
+   "letter_list_only_persons": 0
+  },
+  "civic": {
+   "households": 392,
+   "persons": 392,
+   "grades": {
+    "attested": 235,
+    "inferred": 157,
+    "reconstructed": 0
+   },
+   "letter_list_only_persons": 0
+  },
+  "documented": {
+   "households": 39,
+   "persons": 39,
+   "grades": {
+    "attested": 39,
+    "inferred": 0,
+    "reconstructed": 0
+   },
+   "letter_list_only_persons": 0
+  },
+  "letter_list": {
+   "households": 743,
+   "persons": 743,
+   "grades": {
+    "attested": 43,
+    "inferred": 700,
+    "reconstructed": 0
+   },
+   "letter_list_only_persons": 736
+  },
+  "placed": {
+   "households": 5,
+   "persons": 5,
+   "grades": {
+    "attested": 5,
+    "inferred": 0,
+    "reconstructed": 0
+   },
+   "letter_list_only_persons": 0
+  }
+ },
+ "unowned": {
+  "authored_core": [
+   {
+    "household": "hh_adams_william_h",
+    "head": "William Hanford Adams",
+    "grades": {
+     "attested": 1,
+     "reconstructed": 1
+    }
+   },
+   {
+    "household": "hh_bates_john_jr",
+    "head": "John Bates Jr.",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_beaubien_jean_baptiste",
+    "head": "Col. Jean Baptiste Beaubien",
+    "grades": {
+     "attested": 1,
+     "inferred": 2
+    }
+   },
+   {
+    "household": "hh_beaubien_madore",
+    "head": "Madore Benjamin Beaubien",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_beaubien_mark",
+    "head": "Mark Beaubien",
+    "grades": {
+     "attested": 1,
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_blodgett_tyler_k",
+    "head": "Tyler K. Blodgett",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_brown_lemuel",
+    "head": "Lemuel Brown",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_brown_rufus",
+    "head": "Rufus Brown",
+    "grades": {
+     "attested": 1,
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_caldwell_billy",
+    "head": "Billy Caldwell (Sauganash)",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_calhoun_john",
+    "head": "John Calhoun",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_carpenter_philo",
+    "head": "Philo Carpenter",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_carver_david",
+    "head": "David Carver",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_casey_edward_w",
+    "head": "Edward W. Casey",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_caton_john_dean",
+    "head": "John Dean Caton",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_church_thomas",
+    "head": "Thomas Church",
+    "grades": {
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_clybourne_archibald",
+    "head": "Archibald Clybourne",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_cohen_peter",
+    "head": "Peter Cohen",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_couch_ira",
+    "head": "Ira Couch",
+    "grades": {
+     "attested": 1,
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_davis_john",
+    "head": "John Davis",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_davis_t_o",
+    "head": "T. O. Davis",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_democrat_printers",
+    "head": "Oscar Pratt",
+    "grades": {
+     "inferred": 2
+    }
+   },
+   {
+    "household": "hh_dole_george_w",
+    "head": "George Washington Dole",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_egan_william_b",
+    "head": "Dr William Bradshaw Egan",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_elston_daniel",
+    "head": "Daniel Elston",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_fullerton_alexander",
+    "head": "Alexander N. Fullerton",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_gale_stephen_f",
+    "head": "Stephen F. Gale",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_goss_cobb",
+    "head": "O. Goss",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_greene_john",
+    "head": "Major John Greene",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_haddock_edward",
+    "head": "Edward H. Haddock",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_hamilton_richard_j",
+    "head": "Richard Jones Hamilton",
+    "grades": {
+     "attested": 1,
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_handy_major",
+    "head": "Major Handy",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_harmon_brothers",
+    "head": "Charles Loomis Harmon",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_harmon_elijah_d",
+    "head": "Dr Elijah Dewey Harmon",
+    "grades": {
+     "attested": 1,
+     "inferred": 2
+    }
+   },
+   {
+    "household": "hh_heacock_russel_e",
+    "head": "Russel E. Heacock",
+    "grades": {
+     "attested": 1,
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_hogan_john_s_c",
+    "head": "John S. C. Hogan",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_hubbard_gurdon",
+    "head": "Gurdon Saltonstall Hubbard",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_ingersoll_chester",
+    "head": "Chester Ingersoll",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_jones_benjamin",
+    "head": "Benjamin Jones",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_kercheval_gholson",
+    "head": "Gholson Kercheval",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_kimball_walter",
+    "head": "W. Kimball",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_kinzie_james",
+    "head": "James Kinzie",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_kinzie_john_h",
+    "head": "John Harris Kinzie",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_kinzie_robert_a",
+    "head": "Robert Allen Kinzie",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_mason_matthias",
+    "head": "Matthias Mason",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_maxwell_philip",
+    "head": "Dr Philip Maxwell",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_mckee_david",
+    "head": "David McKee",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_meeker_joseph",
+    "head": "Joseph Meeker",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_miller_john",
+    "head": "John Miller",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_mulford_e_h",
+    "head": "E. H. Mulford",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_murphy_john",
+    "head": "John Murphy",
+    "grades": {
+     "attested": 1,
+     "inferred": 1,
+     "reconstructed": 2
+    }
+   },
+   {
+    "household": "hh_norton_nelson_r",
+    "head": "Nelson R. Norton",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_owen_thomas_jv",
+    "head": "Thomas Jefferson Vance Owen",
+    "grades": {
+     "attested": 1,
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_pearsons_hiram",
+    "head": "Hiram Pearsons",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_peck_philip",
+    "head": "Philip F. W. Peck",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_pierce_asahel",
+    "head": "Asahel Pierce",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_porter_jeremiah",
+    "head": "Rev. Jeremiah Porter",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_porthier_joseph",
+    "head": "Joseph Porthier",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_pruyne_kimberly",
+    "head": "Peter Pruyne",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_robinson_alexander",
+    "head": "Alexander Robinson (Che-che-pin-qua)",
+    "grades": {
+     "attested": 2,
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_snow_george_w",
+    "head": "George W. Snow",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_spring_giles",
+    "head": "Giles Spring",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_sproat_grenville",
+    "head": "Grenville Temple Sproat",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_st_cyr_john_mary",
+    "head": "Rev. John Mary Irenaeus St Cyr",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_steele_ashbel",
+    "head": "Ashbel Steele",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_stow_william_h",
+    "head": "William H. Stow",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_sweet_alanson",
+    "head": "Alanson Sweet",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_taylor_anson",
+    "head": "Anson H. Taylor",
+    "grades": {
+     "attested": 2
+    }
+   },
+   {
+    "household": "hh_taylor_augustine",
+    "head": "Augustine Deodat Taylor",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_taylor_c",
+    "head": "Mrs. C. Taylor",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_temple_john_t",
+    "head": "Dr John Taylor Temple",
+    "grades": {
+     "attested": 2,
+     "inferred": 2
+    }
+   },
+   {
+    "household": "hh_thomas_frederick",
+    "head": "Frederick Thomas",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_walters_william",
+    "head": "William Walters",
+    "grades": {
+     "inferred": 1
+    }
+   },
+   {
+    "household": "hh_watkins_john",
+    "head": "John Watkins",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_wright_john",
+    "head": "John Wright",
+    "grades": {
+     "attested": 2
+    }
+   }
+  ],
+  "invented_name_survivor": [
+   {
+    "household": "hh_inf_cooper_north_04",
+    "head": "J. Garland",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_inf_joiner_north_02",
+    "head": "J. W. Reed",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_inf_physician_south_01",
+    "head": "Dr. Josiah C. Goodhue",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_inf_tailor_north_02",
+    "head": "Thomas S. Eels",
+    "grades": {
+     "attested": 1
+    }
+   },
+   {
+    "household": "hh_inf_tavern_keeper_north_01",
+    "head": "J. Shrigley",
+    "grades": {
+     "attested": 1
+    }
+   }
+  ]
+ },
+ "reconstructed_persons": [
+  {
+   "person": "rc_adams_nancy",
+   "name": "Nancy Adams",
+   "household": "hh_adams_william_h",
+   "household_pass": "authored",
+   "basis_kind": "model",
+   "basis_id": "household_size",
+   "has_seed": true,
+   "has_replaceable_by": true
+  },
+  {
+   "person": "rc_murphy_honora",
+   "name": "Honora Murphy",
+   "household": "hh_murphy_john",
+   "household_pass": "authored",
+   "basis_kind": "model",
+   "basis_id": "household_size",
+   "has_seed": true,
+   "has_replaceable_by": true
+  },
+  {
+   "person": "rc_murphy_thomas",
+   "name": "Thomas Murphy",
+   "household": "hh_murphy_john",
+   "household_pass": "authored",
+   "basis_kind": "model",
+   "basis_id": "household_size",
+   "has_seed": true,
+   "has_replaceable_by": true
+  }
+ ],
+ "retirements": [
+  {
+   "household": "hh_adams_william",
+   "person": "adams_william",
+   "name": "William Adams",
+   "into_household": "hh_adams_william_h",
+   "into_person": "adams_william_h",
+   "rule": "C3",
+   "cluster": "adams",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_allen_james",
+   "person": "allen_james",
+   "name": "James Allen",
+   "into_household": "hh_allen_lieut_james",
+   "into_person": "allen_lieut_james",
+   "rule": "C0",
+   "cluster": "allen",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_allen_lieut",
+   "person": "allen_lieut",
+   "name": "Lieut Allen",
+   "into_household": "hh_allen_lieut_james",
+   "into_person": "allen_lieut_james",
+   "rule": "C0",
+   "cluster": "allen",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_allen_lieut_j",
+   "person": "allen_lieut_j",
+   "name": "Lieut J Allen",
+   "into_household": "hh_allen_lieut_james",
+   "into_person": "allen_lieut_james",
+   "rule": "C0",
+   "cluster": "allen",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_anight_clark",
+   "person": "anight_clark",
+   "name": "Clark Anight",
+   "into_household": "hh_knight_clark",
+   "into_person": "knight_clark",
+   "rule": "C13",
+   "cluster": "anight-knight",
+   "ticket": "T-1134",
+   "arrives": true
+  },
+  {
+   "household": "hh_bates_harriet_e",
+   "person": "bates_harriet_e",
+   "name": "Harriet E Bates",
+   "into_household": "hh_bates_harriet_ellen",
+   "into_person": "bates_harriet_ellen",
+   "rule": "C1",
+   "cluster": "bates-harriet",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_beaubien_j_b",
+   "person": "beaubien_j_b",
+   "name": "J B Beaubien",
+   "into_household": "hh_beaubien_jean_baptiste",
+   "into_person": "beaubien_jean_baptiste",
+   "rule": "C2",
+   "cluster": "beaubien",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_beaubien_john_b",
+   "person": "beaubien_john_b",
+   "name": "John B Beaubien",
+   "into_household": "hh_beaubien_jean_baptiste",
+   "into_person": "beaubien_jean_baptiste",
+   "rule": "C2",
+   "cluster": "beaubien",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_beaubien_medard",
+   "person": "beaubien_medard",
+   "name": "Medard Beaubien",
+   "into_household": "hh_beaubien_madore",
+   "into_person": "beaubien_madore",
+   "rule": "C12",
+   "cluster": "beaubien-medard",
+   "ticket": "T-1026",
+   "arrives": true
+  },
+  {
+   "household": "hh_beaubien_medore_b",
+   "person": "beaubien_medore_b",
+   "name": "Medore B Beaubien",
+   "into_household": "hh_beaubien_madore",
+   "into_person": "beaubien_madore",
+   "rule": "C11",
+   "cluster": "beaubien-madore",
+   "ticket": "T-1002",
+   "arrives": true
+  },
+  {
+   "household": "hh_blanchard_gantry",
+   "person": "blanchard_gantry",
+   "name": "Gantry Blanchard",
+   "into_household": "hh_blanchard_f_gantry",
+   "into_person": "blanchard_f_gantry",
+   "rule": "C8",
+   "cluster": "blanchard",
+   "ticket": "T-0993",
+   "arrives": true
+  },
+  {
+   "household": "hh_brown_w_h",
+   "person": "brown_w_h",
+   "name": "W H Brown",
+   "into_household": "hh_brown_william_h",
+   "into_person": "brown_william_h",
+   "rule": "C2",
+   "cluster": "brown-william-h",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_clybourn_archibald",
+   "person": "clybourn_archibald",
+   "name": "Archibald Clybourn",
+   "into_household": "hh_clybourne_archibald",
+   "into_person": "clybourne_archibald",
+   "rule": "C9",
+   "cluster": "clybourne",
+   "ticket": "T-1002",
+   "arrives": true
+  },
+  {
+   "household": "hh_cobb_s_b",
+   "person": "cobb_s_b",
+   "name": "S B Cobb",
+   "into_household": "hh_goss_cobb",
+   "into_person": "cobb_silas_b",
+   "rule": "C2",
+   "cluster": "cobb",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_dole_g_w",
+   "person": "dole_g_w",
+   "name": "G W Dole",
+   "into_household": "hh_dole_george_w",
+   "into_person": "dole_george_w",
+   "rule": "C2",
+   "cluster": "dole",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_eldredge_john_w",
+   "person": "eldredge_john_w",
+   "name": "John W Eldredge",
+   "into_household": "hh_eldridge_john_w",
+   "into_person": "eldridge_john_w",
+   "rule": "C9",
+   "cluster": "eldredge-eldridge",
+   "ticket": "T-1134",
+   "arrives": true
+  },
+  {
+   "household": "hh_frazer_wm_h",
+   "person": "frazer_wm_h",
+   "name": "Wm. H. Frazer",
+   "into_household": "hh_fraser_wm_h",
+   "into_person": "fraser_wm_h",
+   "rule": "C9",
+   "cluster": "fraser-frazer",
+   "ticket": "T-1133",
+   "arrives": true
+  },
+  {
+   "household": "hh_fullerton_a_n",
+   "person": "fullerton_a_n",
+   "name": "A N Fullerton",
+   "into_household": "hh_fullerton_alexander",
+   "into_person": "fullerton_alexander",
+   "rule": "C0",
+   "cluster": "fullerton",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_fullerton_alex_n",
+   "person": "fullerton_alex_n",
+   "name": "Alex N Fullerton",
+   "into_household": "hh_fullerton_alexander",
+   "into_person": "fullerton_alexander",
+   "rule": "C0",
+   "cluster": "fullerton",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_fullerton_alexander_m",
+   "person": "fullerton_alexander_m",
+   "name": "Alexander M Fullerton",
+   "into_household": "hh_fullerton_alexander",
+   "into_person": "fullerton_alexander",
+   "rule": "C0",
+   "cluster": "fullerton",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_haddock_e",
+   "person": "haddock_e",
+   "name": "E Haddock",
+   "into_household": "hh_haddock_edward",
+   "into_person": "haddock_edward",
+   "rule": "C0",
+   "cluster": "haddock",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_haddock_e_w",
+   "person": "haddock_e_w",
+   "name": "E W Haddock",
+   "into_household": "hh_haddock_edward",
+   "into_person": "haddock_edward",
+   "rule": "C0",
+   "cluster": "haddock",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_haddock_edward_e",
+   "person": "haddock_edward_e",
+   "name": "Edward E Haddock",
+   "into_household": "hh_haddock_edward",
+   "into_person": "haddock_edward",
+   "rule": "C0",
+   "cluster": "haddock",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_hamilton_r_j",
+   "person": "hamilton_r_j",
+   "name": "R J Hamilton",
+   "into_household": "hh_hamilton_richard_j",
+   "into_person": "hamilton_richard_j",
+   "rule": "C2",
+   "cluster": "hamilton",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_harmon_c_l",
+   "person": "harmon_c_l",
+   "name": "C L Harmon",
+   "into_household": "hh_harmon_brothers",
+   "into_person": "harmon_charles_l",
+   "rule": "C2",
+   "cluster": "harmon-isaac",
+   "ticket": "T-0997",
+   "arrives": true
+  },
+  {
+   "household": "hh_harmon_isaac",
+   "person": "harmon_isaac",
+   "name": "Isaac Harmon",
+   "into_household": "hh_harmon_brothers",
+   "into_person": "harmon_isaac_d",
+   "rule": "C3",
+   "cluster": "harmon-isaac",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_heacock_russell_e",
+   "person": "heacock_russell_e",
+   "name": "Russell E Heacock",
+   "into_household": "hh_heacock_russel_e",
+   "into_person": "heacock_russel_e",
+   "rule": "C10",
+   "cluster": "heacock",
+   "ticket": "T-1002",
+   "arrives": true
+  },
+  {
+   "household": "hh_hogan_j_s_c",
+   "person": "hogan_j_s_c",
+   "name": "J S C Hogan",
+   "into_household": "hh_hogan_john_s_c",
+   "into_person": "hogan_john_s_c",
+   "rule": "C2",
+   "cluster": "hogan",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_hubbard_g",
+   "person": "hubbard_g",
+   "name": "G Hubbard",
+   "into_household": "hh_hubbard_henry_g",
+   "into_person": "hubbard_henry_g",
+   "rule": "C5",
+   "cluster": "hubbard",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_hubbard_g_s",
+   "person": "hubbard_g_s",
+   "name": "G S Hubbard",
+   "into_household": "hh_hubbard_gurdon",
+   "into_person": "hubbard_gurdon",
+   "rule": "C0",
+   "cluster": "hubbard",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_hubbard_g_t",
+   "person": "hubbard_g_t",
+   "name": "G T Hubbard",
+   "into_household": "hh_hubbard_gurdon",
+   "into_person": "hubbard_gurdon",
+   "rule": "C0",
+   "cluster": "hubbard",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_hubbard_gordon_s",
+   "person": "hubbard_gordon_s",
+   "name": "Gordon S Hubbard",
+   "into_household": "hh_hubbard_gurdon",
+   "into_person": "hubbard_gurdon",
+   "rule": "C0",
+   "cluster": "hubbard",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_hubbard_gurdon_s",
+   "person": "hubbard_gurdon_s",
+   "name": "Gurdon S Hubbard",
+   "into_household": "hh_hubbard_gurdon",
+   "into_person": "hubbard_gurdon",
+   "rule": "C0",
+   "cluster": "hubbard",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_hunt_c_s",
+   "person": "hunt_c_s",
+   "name": "C S Hunt",
+   "into_household": "hh_hunt_charles_cotesworth_pinckney",
+   "into_person": "hunt_charles_cotesworth_pinckney",
+   "rule": "C5",
+   "cluster": "hunt-c",
+   "ticket": "T-0844",
+   "arrives": true
+  },
+  {
+   "household": "hh_kennicott_w_h",
+   "person": "kennicott_w_h",
+   "name": "W H Kennicott",
+   "into_household": "hh_kennicott_william_h",
+   "into_person": "kennicott_william_h",
+   "rule": "C2",
+   "cluster": "kennicott",
+   "ticket": "T-0997",
+   "arrives": true
+  },
+  {
+   "household": "hh_kennicott_w_l",
+   "person": "kennicott_w_l",
+   "name": "W L Kennicott",
+   "into_household": "hh_kennicott_william_h",
+   "into_person": "kennicott_william_h",
+   "rule": "C4",
+   "cluster": "kennicott",
+   "ticket": "T-0844",
+   "arrives": true
+  },
+  {
+   "household": "hh_kimberley_ed",
+   "person": "kimberley_ed",
+   "name": "Ed Kimberley",
+   "into_household": "hh_pruyne_kimberly",
+   "into_person": "kimberly_edmund_s",
+   "rule": "C9",
+   "cluster": "kimberley",
+   "ticket": "T-1001",
+   "arrives": true
+  },
+  {
+   "household": "hh_kimberly_e_s",
+   "person": "kimberly_e_s",
+   "name": "E S Kimberly",
+   "into_household": "hh_pruyne_kimberly",
+   "into_person": "kimberly_edmund_s",
+   "rule": "C0",
+   "cluster": "kimberly",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_kimberly_ed_s",
+   "person": "kimberly_ed_s",
+   "name": "Ed S Kimberly",
+   "into_household": "hh_pruyne_kimberly",
+   "into_person": "kimberly_edmund_s",
+   "rule": "C0",
+   "cluster": "kimberly",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_kimberly_edmund_l",
+   "person": "kimberly_edmund_l",
+   "name": "Edmund L Kimberly",
+   "into_household": "hh_pruyne_kimberly",
+   "into_person": "kimberly_edmund_s",
+   "rule": "C0",
+   "cluster": "kimberly",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_kinzie_j_h",
+   "person": "kinzie_j_h",
+   "name": "J H Kinzie",
+   "into_household": "hh_kinzie_john_h",
+   "into_person": "kinzie_john_h",
+   "rule": "C2",
+   "cluster": "kinzie-john",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_kinzie_john_s",
+   "person": "kinzie_john_s",
+   "name": "John S Kinzie",
+   "into_household": "hh_kinzie_john_h",
+   "into_person": "kinzie_john_h",
+   "rule": "C3",
+   "cluster": "kinzie-john",
+   "ticket": "T-0844",
+   "arrives": true
+  },
+  {
+   "household": "hh_kinzie_r_a",
+   "person": "kinzie_r_a",
+   "name": "R A Kinzie",
+   "into_household": "hh_kinzie_robert_a",
+   "into_person": "kinzie_robert_a",
+   "rule": "C2",
+   "cluster": "kinzie-robert",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_norton_n_r",
+   "person": "norton_n_r",
+   "name": "N. R. Norton",
+   "into_household": "hh_norton_nelson_r",
+   "into_person": "norton_nelson_r",
+   "rule": "C2",
+   "cluster": "norton",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_owen_t_j_v",
+   "person": "owen_t_j_v",
+   "name": "T J V Owen",
+   "into_household": "hh_owen_thomas_jv",
+   "into_person": "owen_thomas_jv",
+   "rule": "C0",
+   "cluster": "owen",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_owen_th_j_v",
+   "person": "owen_th_j_v",
+   "name": "Th J V Owen",
+   "into_household": "hh_owen_thomas_jv",
+   "into_person": "owen_thomas_jv",
+   "rule": "C0",
+   "cluster": "owen",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_owen_thomas",
+   "person": "owen_thomas",
+   "name": "Thomas Owen",
+   "into_household": "hh_owen_thomas_jv",
+   "into_person": "owen_thomas_jv",
+   "rule": "C0",
+   "cluster": "owen",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_owen_thomas_j_v",
+   "person": "owen_thomas_j_v",
+   "name": "Thomas J V Owen",
+   "into_household": "hh_owen_thomas_jv",
+   "into_person": "owen_thomas_jv",
+   "rule": "C0",
+   "cluster": "owen",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_pearson_hiram",
+   "person": "pearson_hiram",
+   "name": "Hiram Pearson",
+   "into_household": "hh_pearsons_hiram",
+   "into_person": "pearsons_hiram",
+   "rule": "C9",
+   "cluster": "pearson-pearsons",
+   "ticket": "T-1132",
+   "arrives": true
+  },
+  {
+   "household": "hh_peck_p_f",
+   "person": "peck_p_f",
+   "name": "P F Peck",
+   "into_household": "hh_peck_philip",
+   "into_person": "peck_philip",
+   "rule": "C4",
+   "cluster": "peck",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_peck_p_f_w",
+   "person": "peck_p_f_w",
+   "name": "P F W Peck",
+   "into_household": "hh_peck_philip",
+   "into_person": "peck_philip",
+   "rule": "C4",
+   "cluster": "peck",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_pryne_peter",
+   "person": "pryne_peter",
+   "name": "Peter Pryne",
+   "into_household": "hh_pruyne_kimberly",
+   "into_person": "pruyne_peter",
+   "rule": "C14",
+   "cluster": "pruyne-pryne",
+   "ticket": "T-1135",
+   "arrives": true
+  },
+  {
+   "household": "hh_salsbury_stephen_m",
+   "person": "salsbury_stephen_m",
+   "name": "Stephen M Salsbury",
+   "into_household": "hh_salisbury_stephen_m",
+   "into_person": "salisbury_stephen_m",
+   "rule": "C9",
+   "cluster": "salsbury-salisbury",
+   "ticket": "T-1134",
+   "arrives": true
+  },
+  {
+   "household": "hh_scarritt_isaac",
+   "person": "scarritt_isaac",
+   "name": "Isaac Scarritt",
+   "into_household": "hh_scarrett_isaac",
+   "into_person": "scarrett_isaac",
+   "rule": "C9",
+   "cluster": "scarrett-scarritt",
+   "ticket": "T-1134",
+   "arrives": true
+  },
+  {
+   "household": "hh_snow_g_w",
+   "person": "snow_g_w",
+   "name": "G W Snow",
+   "into_household": "hh_snow_george_w",
+   "into_person": "snow_george_w",
+   "rule": "C2",
+   "cluster": "snow",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_sproat_g_n",
+   "person": "sproat_g_n",
+   "name": "G N Sproat",
+   "into_household": "hh_sproat_grenville",
+   "into_person": "sproat_grenville",
+   "rule": "C4",
+   "cluster": "sproat",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_sproat_g_t",
+   "person": "sproat_g_t",
+   "name": "G T Sproat",
+   "into_household": "hh_sproat_grenville",
+   "into_person": "sproat_grenville",
+   "rule": "C4",
+   "cluster": "sproat",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_taylor_anson_n",
+   "person": "taylor_anson_n",
+   "name": "Anson N Taylor",
+   "into_household": "hh_taylor_anson",
+   "into_person": "taylor_anson_h",
+   "rule": "C4",
+   "cluster": "taylor-anson",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_taylor_anson_w",
+   "person": "taylor_anson_w",
+   "name": "Anson W Taylor",
+   "into_household": "hh_taylor_anson",
+   "into_person": "taylor_anson_h",
+   "rule": "C4",
+   "cluster": "taylor-anson",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_taylor_e_d",
+   "person": "taylor_e_d",
+   "name": "E D Taylor",
+   "into_household": "hh_taylor_edmund_d",
+   "into_person": "taylor_edmund_d",
+   "rule": "C2",
+   "cluster": "taylor-edmund",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_temple_j_t",
+   "person": "temple_j_t",
+   "name": "J T Temple",
+   "into_household": "hh_temple_john_t",
+   "into_person": "temple_john_t",
+   "rule": "C2",
+   "cluster": "temple",
+   "ticket": "T-0839",
+   "arrives": true
+  },
+  {
+   "household": "hh_temple_t",
+   "person": "temple_t",
+   "name": "T Temple",
+   "into_household": "hh_temple_john_t",
+   "into_person": "temple_john_t",
+   "rule": "C6",
+   "cluster": "temple",
+   "ticket": "T-0844",
+   "arrives": true
+  },
+  {
+   "household": "hh_vandenbogart_h",
+   "person": "vandenbogart_h",
+   "name": "H Vandenbogart",
+   "into_household": "hh_vanderbogart_henry",
+   "into_person": "vanderbogart_henry",
+   "rule": "C7",
+   "cluster": "vanderbogart",
+   "ticket": "T-0842",
+   "arrives": true
+  },
+  {
+   "household": "hh_vanderbogart_h",
+   "person": "vanderbogart_h",
+   "name": "H. Vanderbogart",
+   "into_household": "hh_vanderbogart_henry",
+   "into_person": "vanderbogart_henry",
+   "rule": "C7",
+   "cluster": "vanderbogart",
+   "ticket": "T-0842",
+   "arrives": true
+  },
+  {
+   "household": "hh_vandine_john",
+   "person": "vandine_john",
+   "name": "John Vandine",
+   "into_household": "hh_vandino_john",
+   "into_person": "vandino_john",
+   "rule": "C9",
+   "cluster": "vandine-vandino",
+   "ticket": "T-1133",
+   "arrives": true
+  },
+  {
+   "household": "hh_wright_j_s",
+   "person": "wright_j_s",
+   "name": "J S Wright",
+   "into_household": "hh_wright_john",
+   "into_person": "wright_john_s",
+   "rule": "C2",
+   "cluster": "wright",
+   "ticket": "T-0997",
+   "arrives": true
+  }
+ ],
+ "letter_list_carried_out_of_cohort": [
+  {
+   "household": "hh_ambrose_joshua",
+   "head": "Joshua Ambrose",
+   "grades": {
+    "attested": 1
+   }
+  },
+  {
+   "household": "hh_bradford_harriet",
+   "head": "Harriet Bradford",
+   "grades": {
+    "attested": 1
+   }
+  },
+  {
+   "household": "hh_chapman_chas_h",
+   "head": "Chas. H. Chapman",
+   "grades": {
+    "attested": 1
+   }
+  },
+  {
+   "household": "hh_fitzgerald_thos",
+   "head": "Thos. Fitzgerald",
+   "grades": {
+    "attested": 1
+   }
+  },
+  {
+   "household": "hh_murray_alonzo",
+   "head": "Alonzo Murray",
+   "grades": {
+    "attested": 1
+   }
+  },
+  {
+   "household": "hh_neff_r_a",
+   "head": "R. A. Neff",
+   "grades": {
+    "attested": 1
+   }
+  },
+  {
+   "household": "hh_simons_e",
+   "head": "E. Simons",
+   "grades": {
+    "attested": 1
+   }
+  }
+ ],
+ "fixed_points": [
+  {
+   "artefact": "data/residents/index.json",
+   "verify": "python3 tools/rebuild_resident_index.py --check"
+  },
+  {
+   "artefact": "the scene sidecars",
+   "verify": "python3 tools/compile_scene.py --all --check"
+  },
+  {
+   "artefact": "the town census",
+   "verify": "python3 tools/town_census.py --check"
+  },
+  {
+   "artefact": "the published residents layer",
+   "verify": "node tools/check_published_residents.mjs"
+  },
+  {
+   "artefact": "the final resident audit",
+   "verify": "python3 tools/export_resident_audit.py --check"
+  }
+ ],
+ "not_a_fixed_point": {
+  "tool": "tools/mint_letter_list_residents.py",
+  "drift": "798 file(s) differ under --check",
+  "ticket": "T-1222",
+  "why": "byte-identity is the wrong contract for a pass that is not the last writer of its own files: tools/synthesize_resident_research.py rewrites the letter_list_only cohort's grade, subtype and note after this mint runs, so re-deriving over the committed tree REVERTS that work. T-0662 read the drift and T-1228 holds the field-level ownership settlement it wants instead. data/research/check_gate_baseline.json carries the standing row."
+ },
+ "faults": []
+}

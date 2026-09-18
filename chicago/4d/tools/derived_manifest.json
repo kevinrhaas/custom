@@ -1297,6 +1297,24 @@
       ]
     },
     {
+      "why": "T-1144 acceptance 6: the closing convergence accounting and its report — every standing household attributed to the writer that minted it, the grade tallies asserted against data/residents/index.json's own counts, and all 66 retirements with the redirect each one resolves to. A gated writer, so it belongs here: it re-derives whenever a mint runs or the index is rebuilt, and a lap that moved either without rebuilding this would leave check.sh red with nothing to run.",
+      "command": [
+        "python3",
+        "tools/report_convergence_closing.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/convergence_closing.json",
+        "chicago/4d/docs/RESEARCH/convergence-closing-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/report_convergence_closing.py",
+        "--check",
+        "--quiet"
+      ]
+    },
+    {
       "why": "The known population profiled on ten axes (T-1160). It also writes the age-band and reason vocabulary into data/residents/index.json, which rebuild_resident_index.py owns — measured 2026-09-18: running that rebuild AFTER this changes nothing, so the order between them is free, and index.json stays listed against the index step alone rather than twice. MUST RUN BEFORE model_town_1835.py, which reads that vocabulary.",
       "command": [
         "python3",

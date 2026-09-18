@@ -4103,6 +4103,33 @@ step "every person says which roles and which places reach the scene date" \
 selftest "…and each of those rules moves when its input moves" \
   python3 tools/report_convergence_coverage.py --self-test
 
+# T-1144 acceptance 6, the other half of the same convergence report: the five derived
+# resident artefacts rebuilt, the household, person and grade deltas stated exactly, and
+# every retired id's redirect named. The five rebuilds are each gated already — the index
+# above, the sidecars at compile_scene, the town census, the published layer and the final
+# audit — so what was missing was never a fixed point, it was the ACCOUNTING: a reader who
+# asked what this layer is made of had to walk 1,258 cards and join them to a 66-row
+# redirect table by hand.
+#
+# The delta is deliberately an accounting and not a diff against a remembered date. A diff
+# needs a snapshot nothing derives, and a snapshot nothing derives is exactly the failure
+# the pass before this one found sitting in index.json's own `merged` table. So the delta
+# is the one every card can be asked for directly — which writer put it in the tree — and
+# both sums are asserted: minted plus authored equals standing, retired plus standing
+# equals everything the passes ever held.
+#
+# Four refusals, all of which fail --build as well as --check because writing one down
+# publishes it. The one worth naming here is `mint_owns_reconstructed`: it is acceptance 8
+# asked of the TREE rather than of the writers. refuse_reconstructed_grade.py above proves
+# the four mints CALL the refusal; this proves the promise actually holds in the committed
+# records. Two gates on one rule, from opposite ends, because that grade is the boundary
+# the reconstruction bands from T-1167 down turn on.
+step "every household says which writer put it in the tree, and the sums close" \
+  python3 tools/report_convergence_closing.py --check --quiet
+
+selftest "…and each of those refusals fires when its input breaks" \
+  python3 tools/report_convergence_closing.py --self-test
+
 # T-1160. THE PROFILE OF THE KNOWN POPULATION, held to the layer it is read from.
 #
 # The owner asked for a population analysis of the known people before anything is
