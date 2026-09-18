@@ -73,3 +73,31 @@ a reconstructed person.
 
 **Links:** T-1158 · T-1166 · T-0489 · T-0516 · T-1146 · AGENTS.md § RECONSTRUCTED IS
 A TIER · `1835_invented_name_pools.json`.
+
+
+## THIS BAND SPENDS RESEARCH; IT DOES NOT START MORE (owner, 2026-09-18)
+
+> "i dont want new research tickets spun up off of that they should use the existing
+> research … i do not want a ton of tickets sprung up from them starting a whole new
+> stream of research on everything"
+
+This ticket and everything it governs — bands 3, 4 and 5, T-1167 onward — **read the layer
+that bands 1 and 2 signed off and write reconstructed people, businesses and roofs from
+it.** No run in these bands may open a new reading of a source, re-read a corpus, or file a
+ticket to do so.
+
+**A gap is an expected output here, not a defect, and it already has two places to go:**
+
+* **the order book (T-1166)**, as a quantity — how many of a thing the model says the town
+  held that the research cannot name;
+* **the reconstructed record's own `basis` and `replaceable_by` (T-1158)** — the fields that
+  exist precisely to say what a value rests on and what would replace it when better
+  evidence turns up.
+
+A reconstructed value standing on thin evidence, labelled and replaceable, is the job. A new
+research ticket to firm it up is not.
+
+**The one exception is narrow:** a gap that makes this band's work IMPOSSIBLE rather than
+merely uncertain. That is a blocker. It goes on the ticket it blocks, and only if it survives
+there does it become a research ticket — filed under `--anyway --why`, because the budget
+(T-1295) refuses it otherwise and the reason is written into the file.
