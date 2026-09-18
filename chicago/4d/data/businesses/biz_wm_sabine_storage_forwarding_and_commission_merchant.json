@@ -1,0 +1,80 @@
+{
+  "id": "biz_wm_sabine_storage_forwarding_and_commission_merchant",
+  "register_id": "business_wm_sabine_storage_forwarding_and_commission_merchant",
+  "name": "Wm. Sabine, storage, forwarding and commission merchant",
+  "provenance": "compiled_from_register",
+  "type": [
+    "storage_and_forwarding"
+  ],
+  "trade": "storage, forwarding and commission merchant",
+  "occupation": "forwarding_and_commission",
+  "goods": [
+    "Lumber Waggons",
+    "One Horse Pleasure Carriages",
+    "Whiskey"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Wm. Sabine",
+      "person_id": "sabine_wm",
+      "register_person_id": "person_wm_sabine",
+      "role": "proprietor",
+      "from": "1835-06-13",
+      "to": "1835-07-11",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card sabine_wm (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_06_13#c005",
+        "chicago_american_1835_07_11#c005"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "north_water",
+      "face": null,
+      "primary": true,
+      "from": "1835-06-13",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names North Water Street and nothing narrower; the anchor 'Commission Merc[hant]. N[ORT]H WATER [S]TREET Commission Mere NbeEM WATER ITREET,' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1835-06-13",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-06-13, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-06-13",
+    "last_issue": "1835-07-11",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_american_1835_06_13#c005",
+    "chicago_american_1835_07_11#c005"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

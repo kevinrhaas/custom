@@ -117,7 +117,13 @@
     "summary": "No reliable record in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional records and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place/occupation/kinship discriminators. This is a documented no-corroboration result, not evidence that the person did not exist.",
     "notes": "negative≠absence; no edit"
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "'Wm.' IS THE PERIOD CONTRACTION OF William, and every expansion of it attested in this project is a man's name — so the contraction settles the sex without settling which name was contracted. The table is data/research/residents/forename_sex.json."
+   }
   }
  ],
  "touches_removal": false,

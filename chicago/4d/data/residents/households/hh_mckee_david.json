@@ -137,7 +137,20 @@
      "employer_or_body": "not_stated",
      "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
-   ]
+   ],
+   "birth_year": {
+    "value": 1800,
+    "precision": "band",
+    "band": [
+     1800,
+     1801
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'April 9, 1881' and the age as 'aged 80¼'. An age of 80 years and 3 months means at least that and less than 80 years and 4 months, so the birth falls between 1800-12-10 and 1801-01-09: the birth year is 1800 or 1801. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"McKee, David, died near Aurora, Ill., April 9, 1881, aged 80¼\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": true,

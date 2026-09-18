@@ -125,6 +125,12 @@
      "cand_eliza_chappel_porter__chappel_eliza_mir"
     ],
     "summary": "The entry is a near-certain duplicate of Eliza Chappel Porter: Mir likely misreads Miss, and the letter appeared 16 days after her marriage. It is not merged until the original scan is inspected. [Read for pass 02 on 2026-09-01, which never completed a findings ledger; re-checked against the crosswalks and carried into T-0509 unchanged.]"
+   },
+   "sex": "female",
+   "sex_basis": {
+    "value": "female",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Eliza' is read as female because 1 person in this layer whose sex a source records bears it (porter_eliza_chappel), and it stands in the yankee female forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
    }
   }
  ],

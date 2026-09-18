@@ -127,7 +127,22 @@
      "source": "fergus_1843_old_settler_death_notices",
      "rule": "G2b"
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'David' is read as male because 2 persons in this layer whose sex a source records bear it (carver_david, mckee_david), and it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1802,
+    "precision": "year",
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'February 2, 1886' and the age as 'aged 83-6-11'. An age printed to the day is exact: 83 years, 6 months and 11 days back from the death, so the birth falls between 1802-07-22 and 1802-07-22: the birth year is 1802. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Hunter, Gen. David, died, Washington, D.C., February 2, 1886, aged 83-6-11.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

@@ -127,7 +127,13 @@
      "for_merge": "THE STEM IS ALL BUT UNIQUE AND THE TOWN HAS ONE CHARLES OF EACH SPELLING. Charles Wesencraft is documented: the Democrat of 3 December 1833, column 7, prints the marriage of 'Mark Nobles, Esq. of this place, to Miss CHARLOTTE, only daughter of Mr. Charles Wesencraft, late of Buffalo', and his daughter Charlotte stands on her own card; Fergus 1843 prints 'Wesencraft, Charles, carpenter and wagon[maker], cor S. Clinton and W. Monroe' and Norris 1844 repeats the trade. 'Wessencraft, Charles' stands on the 1833 tax list. A carpenter and wagonmaker marrying a daughter into the Noble family in December 1833 is a man the town's tax roll of that year should hold.",
      "against_merge": "NO TITLE SETS BOTH, AND THE DOUBLE-S IS NOT A ONE-OFF SLIP — A SECOND, LATER TITLE SETS IT TOO. Searched over every deposited text: 'Wessencraft' occurs twice in the whole corpus and the two are independent — 'Wessencraft, Charles' on the 1833 tax list (line 159) and 'Wessencraft, Mrs. Jane' on the Second Presbyterian Church roll of 1842-1892 (line 7270). Two documents sixty years apart, neither derived from the other, both doubling the S. Against them the Democrat, Fergus 1839, Fergus 1843 and Norris 1844 set the single S and never the double. The two bodies of evidence do not touch, and a spelling attested by two unrelated sources is exactly the kind a fold should not quietly absorb. D7, and the cards stay two. WHAT WOULD SETTLE IT IS NOT A PAGE BUT A COUNT, in C12's shape moved from the forename to the surname — the closed roll leaves the documented man exactly one entry he can be, and the exhaustion is worked over the whole roll and printed rather than asserted. C12 as written reaches a FORENAME only, so firing it on a surname is itself a rule to write. T-1135 owns that question for Pruyne/Pryne and the rule it writes is the one this pair waits on."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Charles' is read as male because 2 persons in this layer whose sex a source records bear it (harmon_charles_l, taylor_charles), and it stands in the french_colonial and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

@@ -1,0 +1,84 @@
+{
+  "id": "biz_thomas_s_eels",
+  "register_id": "business_thomas_s_eels",
+  "name": "Thomas S. Eels",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "tailoring",
+  "occupation": "tailor",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Thomas S. Eels",
+      "person_id": "inf_tailor_north_02",
+      "register_person_id": "person_thomas_s_eels",
+      "role": "proprietor",
+      "from": "1834-07-23",
+      "to": "1834-10-01",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card inf_tailor_north_02 (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_07_23#c004",
+        "chicago_democrat_1834_09_03#c019",
+        "chicago_democrat_1834_09_24#c010",
+        "chicago_democrat_1834_10_01#c007"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "unplaceable",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1834-07-23",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The register resolved no place for this house at the scene date.",
+      "limit_reason": "No street the model holds. The anchor 'the store of Messrs. Hubbard & Co.' names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1834-07-23",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-07-23, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-07-23",
+    "last_issue": "1834-10-01",
+    "copy_dates": [
+      "1834-07-22",
+      "1834-07-23",
+      "1834-07-28"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_07_23#c004",
+    "chicago_democrat_1834_09_03#c019",
+    "chicago_democrat_1834_09_24#c010",
+    "chicago_democrat_1834_10_01#c007"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

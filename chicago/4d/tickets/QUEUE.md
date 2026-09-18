@@ -47,7 +47,7 @@
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
-T-1168 — Fill sex and age for every attested and inferred person: recorded where a source says, inferred from forename, office or register role where the evidence about that person allows, reconstructed from the population model otherwise — each value with its tier and reason
+T-1304 — Reconstruct the sex and age no evidence can settle: the population model's sex × age band per bucket seeded by person id, the letter lists at their measured adult-male rate, the known-profile report showing three tiers, and the person card printing sex and age with its tier and reason
 T-1170 — Give the attested and inferred heads the families the sources name: spouses, children, kin and dependants from the baptism and marriage registers, the 1840 census rows of heads the layer carries, Andreas and old-settler biographies and the ruled kin ties — inferred where named, reconstructed where only counted
 T-1313 — Spend the books' arrival units: the dated arrivals, nativities and presence bounds Hubbard's autobiography, Andreas and Moses and Kirkland state about people this town holds, onto the cards they name
 T-1314 — Spend the roll-and-appearance units: the 1830 schedule lines, the poll books, the 1833 tax roll, the 1832 Black Hawk enrolment, the church register sponsorships and the press notices, each as a bound on a held resident's presence and never more
@@ -64,7 +64,7 @@ T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded coho
 # --- 3C. RECONSTRUCT RESIDENTS — converge
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1180 — An authored business layer: one record per business with tiered proprietors, partners, staff, dated primary and secondary locations and sources — compiled into the register beside the newspaper-derived firms, with the structure function vocabulary normalised
+T-1311 — Normalise the structure function vocabulary: enumerate function in the structure schema, migrate the 109 free strings by tool, refuse the rest, and re-derive the signage byte-for-byte
 T-1181 — A Businesses view in the app: every firm by trade, street and tier, with its proprietors, staff, dated locations and location limit on one card — the visible surface for the audit and reconstruction bands
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
 T-1183 — The 1835 business staffing model: how many clerks, journeymen, apprentices, printers, bar-keepers, hostlers, cooks and teachers each kind of business employed, from the sources the project holds — the rule every business is staffed by

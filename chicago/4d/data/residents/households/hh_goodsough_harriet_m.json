@@ -116,7 +116,13 @@
     "summary": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "sex": "female",
+   "sex_basis": {
+    "value": "female",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Harriet' is read as female because 1 person in this layer whose sex a source records bears it (murphy_harriet), and it stands in the yankee female forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

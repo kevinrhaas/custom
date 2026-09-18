@@ -190,7 +190,26 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED IN THE 1844 DIRECTORY, 9 years after the scene, carried here by its crosswalk (T-1254, by tools/derive_resident_roles.py). It is NOT a claim about 1835-07-01 and never becomes one: back-projecting a later volume onto the scene is the defect T-1145 exists to refuse. `place` is the address or place of business the record states in its own column; a firm named only inside the printed line stays in `as_printed` for the business band to rule on."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Amos' is read as male because it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1801,
+    "precision": "band",
+    "band": [
+     1801,
+     1802
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'February 7, 1832' and the age as 'aged 30'. An age of 30 completed years means at least 30 and less than 31, so the birth falls between 1801-02-08 and 1802-02-07: the birth year is 1801 or 1802. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Foster, Lieut. Amos Bancroft, shot by a private, at Fort Howard, Green Bay, Wis., February 7, 1832, aged 30.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

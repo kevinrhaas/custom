@@ -144,7 +144,13 @@
      "as_read": "name Mary Barrows as Miss Chappel's associate/assistant",
      "note": "A dated Chicago role stated by the education histories. The teaching trade itself is T-1145's field; the association with a named person is this one."
     }
-   ]
+   ],
+   "sex": "female",
+   "sex_basis": {
+    "value": "female",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Mary' is read as female because it stands in the irish and yankee female forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

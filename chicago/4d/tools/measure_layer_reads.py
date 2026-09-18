@@ -725,6 +725,13 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].grade": ("shown", "swatch(person.grade)"),
     "persons[].relationship": ("shown", "words(person.relationship)"),
     "persons[].sex": ("shown", "words(person.sex)"),
+    # T-1303. Where the sex was READ rather than recorded, the row is a graded claim and
+    # carries the rule that fired — a gendered title, or a forename that stands in one
+    # sex's naming only. `confidence` and `note` go through `claimRow` with every other
+    # block; `value` is what the row prints.
+    "persons[].sex_basis.value": ("shown", "claimRow('Sex', words(basis.value)"),
+    "persons[].sex_basis.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "persons[].sex_basis.note": ("shown", "escapeHtml(block.note)"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
     # The evidence strength, on the person the register minted from a letter list.
     # It reached `gazetteer.json` and `register_1835.json` and stopped there, so
@@ -826,7 +833,12 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # this map arrived in. See the module docstring: they are graded claim blocks
     # like the household's own, and they go through `claimRow` now.
     "persons[].age_on_scene_date.value": ("shown", "claimRow('Age on 1 July 1835', aged && aged.value"),
-    "persons[].birth_year.value": ("shown", "claimRow('Born', born && born.value"),
+    "persons[].birth_year.value": ("shown", "return born.value;"),
+    # T-1303. An age at death or an age given in 1879 leaves the birth in one year or in
+    # two, and the card prints both years where there are two rather than picking the
+    # lower one and reading as exact.
+    "persons[].birth_year.precision": ("shown", "if (born.precision === 'band'"),
+    "persons[].birth_year.band": ("shown", "`${born.band[0]} or ${born.band[1]}`"),
     "persons[].age_on_scene_date.confidence": ("shown", "tierOf(block) || block.confidence"),
     "persons[].birth_year.confidence": ("shown", "tierOf(block) || block.confidence"),
     "persons[].age_on_scene_date.note": ("shown", "escapeHtml(block.note)"),

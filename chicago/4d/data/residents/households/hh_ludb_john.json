@@ -126,7 +126,13 @@
      "for_merge": "A terminal y lost, 'John' identical, and 'Ludb' is set NOWHERE in the deposited corpus while Ludby is set three times — the profile of a truncated reading rather than a family. John Ludby is a documented man: Fergus 1843 has 'Ludby, John, soap and candle maker, South Branch, 3 miles south [died January 24, 1872, aged 78.]', and the Democrat prints him on 19 November 1834.",
      "against_merge": "THE TWO INSTRUMENTS NEVER TOUCH. 'John Ludb' is the post-office return of 2 July 1834 (#c029) and nothing else; John Ludby is the Democrat of 19 November 1834 (#c006) and Fergus 1843 — a letter list against a newspaper and a directory, D7's own example. No issue and no return is caught setting both spellings, and the letter-list card is not an anchor: T-0482 closed it no_corroboration. The fold is admissible in shape and has no demonstration behind it, which is exactly what D7 is for. `for_merge` is kept because a later reading of the 2 July 1834 return's image could show the terminal y in the impression and close this."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'John' is read as male because 14 persons in this layer whose sex a source records bear it (bates_john_jr, calhoun_john, caton_john_dean, davis_john, greene_john, hogan_john_s_c, and others), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

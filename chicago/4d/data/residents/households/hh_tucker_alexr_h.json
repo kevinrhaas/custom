@@ -117,6 +117,12 @@
     "notes": "Candidate facts remain unasserted until a source bridges the candidate to the historical record by more than name similarity.",
     "evidence_against": "Surname only, in civic rolls, directories, Newberry index and more — each a committed refusal on the forename.",
     "summary": "No independent bridge; see the ledger."
+   },
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "'Alexr.' IS THE PERIOD CONTRACTION OF Alexander, and every expansion of it attested in this project is a man's name — so the contraction settles the sex without settling which name was contracted. The table is data/research/residents/forename_sex.json."
    }
   }
  ],

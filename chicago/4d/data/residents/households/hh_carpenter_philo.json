@@ -132,7 +132,20 @@
      "employer_or_body": "not_stated",
      "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
-   ]
+   ],
+   "birth_year": {
+    "value": 1804,
+    "precision": "band",
+    "band": [
+     1804,
+     1805
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "calumet_club_early_chicago_1879"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A MAN'S OWN STATEMENT OF HIS AGE. He registered at the Calumet Club's reception to the settlers of Chicago on 27 May 1879 and gave his age as 74: \"Carpenter, Philo, | 1832, | Mass. | 74 | Chicago.\". An age of 74 completed years given on that day means the birth falls after 27 May 1804 and on or before 27 May 1805, so the birth year is 1804 or 1805. The subtraction is this project's; the page states no year of birth. IT IS A RECOLLECTION, forty-four years after the scene date — better than a recollection about somebody else, and still not a record. The merge onto this person is the old-settler crosswalk's own (OS1), in data/research/old_settlers/people.json."
+   }
   }
  ],
  "touches_removal": false,

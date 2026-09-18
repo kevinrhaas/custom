@@ -165,7 +165,26 @@
      "employer_or_body": "not_stated",
      "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-03-18 to 1834-03-25, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Henry' is read as male because 1 person in this layer whose sex a source records bears it (lampman_henry_s), and it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1803,
+    "precision": "band",
+    "band": [
+     1803,
+     1804
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as '1846' and the age as 'a. 42'. An age of 42 completed years means at least 42 and less than 43, so the birth falls between 1803-01-02 and 1804-12-31: the birth year is 1803 or 1804. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Handy, Maj. Henry S., contractor, died, Bayfield, Mich., 1846, a. 42.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

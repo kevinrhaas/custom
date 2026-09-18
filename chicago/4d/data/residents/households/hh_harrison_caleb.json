@@ -116,7 +116,16 @@
     "summary": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "birth_year": {
+    "value": 1825,
+    "precision": "year",
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'Oct. 28, 1893' and the age as 'aged 68-8-13'. An age printed to the day is exact: 68 years, 8 months and 13 days back from the death, so the birth falls between 1825-02-15 and 1825-02-15: the birth year is 1825. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Harrison, Carter Henry, 25th mayor of Chicago, assassinated at his home, Oct. 28, 1893, 8 p.m., by Eugene Patrick Joseph Prendergast, aged 68-8-13.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

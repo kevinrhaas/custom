@@ -143,7 +143,13 @@
      "for_merge": "F against W is one letter to a distance, and the initial J agrees with both James Walker the justice of the peace. 'Falker' is set nowhere at all in the deposited corpus, which is the profile of a mis-read surname rather than a family.",
      "against_merge": "THE INITIAL J HAS TWO RIVALS AND THE SAME COLUMN PRINTS THEM BOTH. The Democrat of 26 November 1833, column 31, sets 'Walker, James' and 'Walker, Jeremiah' — two Walkers of this town whose forenames both begin with J, in one printing. An initial with two rivals attaches to neither: R2. The town holds four Walker cards in all (walker_george_e, walker_george_h, walker_james, walker_jeremiah) and the surname is set 396 times in the corpus, while 'J. B. Falker' is one post-office reading of 1 July 1835 (#c006) with a middle initial B that neither Walker carries. Refused by a ratified rule; no ballot needed."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'James' is read as male because 2 persons in this layer whose sex a source records bear it (couch_james, kinzie_james), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

@@ -197,10 +197,10 @@
       "refused_because": "The closed set of rungs an `associated_with` row may resolve to \u2014 a roof, a street, a part of town. The cards print the row's own `resolves_to` word, because how far the evidence reached is part of the claim; the SET behind it is a schema constraint tools/validate.py enforces, and no renderer implements it as behaviour. It un-banks when one draws a row differently per rung."
     },
     "residents/manifest:vocabulary.reasons_for_coming[].means": {
-      "records": 13
+      "records": 21
     },
     "residents/manifest:vocabulary.reasons_for_coming[].term": {
-      "records": 13
+      "records": 21
     },
     "residents/manifest:vocabulary.resident_subtypes": {
       "records": 1,
