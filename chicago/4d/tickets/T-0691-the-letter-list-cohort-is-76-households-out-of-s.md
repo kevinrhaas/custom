@@ -67,3 +67,21 @@ answer there settles the rule and this applies it at scale.
    together, and the movement is itemised against the table above.
 4. No record's grade moves in either direction, and `bash tools/check.sh` green.
 
+
+
+## THE RULING CAME, AND MOST OF THIS TICKET DISSOLVES (owner: (c), 2026-09-18)
+
+T-0660 is ruled **(c)**: refusals 7 and 8 are MINT-TIME rules and do not un-mint a record
+that already stands.
+
+This ticket's subject was the 76 letter-list households out of step with their own pass —
+727 standing in the tree against 658 the derivation gives. **Under this ruling they are not
+out of step.** A standing record is not un-minted by a mint-time refusal, so there is no
+discrepancy to resolve and nothing to retire.
+
+**What survives is acceptance 1 alone:** wire `--check` into `check.sh`. That could not ship
+before, because the check was red by construction while the ruling was open. It is no longer
+red by construction, so it can.
+
+**What is explicitly NOT in scope any more:** retiring any of the 76, changing `rank()`, or
+re-deriving the cohort. If the work starts to look like any of those, it is the wrong branch.
