@@ -2012,6 +2012,22 @@
         "tools/report_letter_list_collisions.py",
         "--check"
       ]
+    },
+    {
+      "why": "THE CLOSING SET'S OWN REPORT, AND IT GOES LAST (T-1333). docs/RESEARCH/closing-convergence-2026-09.md states the resident layer's closing numbers as deltas against a frozen baseline, so it is a function of the WHOLE tree the 143 steps above leave behind — index.json, the 1835 sidecars, the town census, the audit workbook and the standing readings T-1144 banked to this pass. Anywhere but the foot of the manifest it would report the tree half-rebuilt. `--build` measures and renders only; the rebuild of the five members themselves is the steps above, which is why this does not re-run them and cannot recurse.",
+      "command": [
+        "python3",
+        "tools/rebuild_closing_set.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/docs/RESEARCH/closing-convergence-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/rebuild_closing_set.py",
+        "--check"
+      ]
     }
   ],
   "_a_writer_belongs_here": "IF YOU ADD A GATED WRITER, ADD IT HERE, AND THAT IS ENFORCED RATHER THAN ASKED. A tool check.sh runs with --check, and which can also --build or --write, produces DERIVED content by definition: if this file has never heard of it, rederive.mjs never runs it, pr-lap.sh leaves every open PR stale against it, and the gate goes red with no automated remedy and no clue in the message. Owner, 2026-09-18, after four separate hand-fixes in one night on exactly that — derive_resident_roles.py went red on FOUR merges, location_spend.py on the splitter change, profile_population_1835.py and model_town_1835.py the same night: \"add a note to things to say if you add a writer it should be in that manifest, right?\" A note is what this preamble already was, and it did not hold. tools/audit_manifest_coverage.mjs is the gate: every gated writer is listed here, or it is in that file's NOT_DERIVABLE list with the measurement that says why it cannot be. It found four MORE on the day it was written. Before listing anything, measure what `_must_reproduce` asks: run the build on a clean tree and confirm it changes no committed byte. A tool that does not reproduce belongs in the exemption list, never here."
