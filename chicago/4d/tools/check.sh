@@ -2253,6 +2253,22 @@ step "the reconstruction programme answers for every reconstructed resident" \
 selftest "...and each rule of the record contract refuses its own mutation" \
   python3 tools/reconstruct_residents_1835.py --self-test
 
+# T-1304, stage `attribute_fill_sex_age` of that programme, and the first one to draw at
+# scale. 593 people carried no sex after T-1303 had read every title and forename the
+# evidence licenses, and 1,218 carried no age at all. This stage draws the rest: a sex at
+# the male rate MEASURED on the roll the person was named off, and an age BAND from the
+# 1840 schedule's sex x age columns, each seeded by the person's own id and each carrying
+# what would retire it. The gate below is what keeps that honest rather than decorative -
+# the rates re-derive from the layer, every drawn block re-derives from its seed, no birth
+# year is written out of a decadal band, and the six collective descriptions that name
+# nobody stay refused. `--check` proves the whole draw reproduces; a hand-edited card or a
+# rate nudged toward a nicer figure fails here.
+step "every drawn sex and age band re-derives from its seed, and the rates from the layer" \
+  python3 tools/reconstruct_sex_age.py --check
+
+selftest "...and a draw with no seed, a band turned into a year and a sexed group are refused" \
+  python3 tools/reconstruct_sex_age.py --self-test
+
 step "the resident synthesis re-derives the population it writes" \
   python3 tools/synthesize_resident_research.py --check
 

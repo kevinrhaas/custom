@@ -232,6 +232,12 @@ AMBIGUOUS_LEAVES = frozenset({
     # by its data parent, so the day a card really does print which STATEMENT seated a
     # wife it declares `stated_family.statement` and never reaches here.
     "statement",
+    # T-1304's `vocabulary.age_bands[].age_band`. The profile report's vocabulary names
+    # each age RULE — `birth_year_known`, `adult_by_civic_list` — under the key
+    # `age_band`, and the card reads a PERSON's `age_band` block, which is a different
+    # thing with the same word. A bare-name scan hands the card's reads to the vocabulary
+    # row and calls it a phantom. Qualified by its data parent, like the four above.
+    "age_band",
 })
 
 # Unread leaves the reverse scan of assertion 3 cannot attribute, STATED rather
@@ -716,6 +722,35 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].sex_basis.value": ("shown", "claimRow('Sex', words(basis.value)"),
     "persons[].sex_basis.confidence": ("shown", "tierOf(block) || block.confidence"),
     "persons[].sex_basis.note": ("shown", "escapeHtml(block.note)"),
+    # T-1304. THE SAME ROW, ONE TIER DOWN, AND THAT IS THE POINT. A sex the model DREW
+    # goes through `claimRow` exactly as a read one does, so `tier`, `basis` and
+    # `replaceable_by` reach the card through `basisHtml` — the collapsed "Drawn from a
+    # model" disclosure that prints the model row, the reasoning, the seed a reader can
+    # retype and the evidence that would retire the value. A drawn figure shipped to a
+    # browser with no way to see what drew it is the one thing this whole tier is against,
+    # so every field of it is declared read here rather than banked.
+    "persons[].sex_basis.tier": ("shown", "tierOf(block) || block.confidence"),
+    "persons[].sex_basis.basis.kind": ("shown", "basis.kind === 'model'"),
+    "persons[].sex_basis.basis.id": ("shown", "escapeHtml(String(basis.id || ''))"),
+    "persons[].sex_basis.basis.note": ("shown", "escapeHtml(String(basis.note || ''))"),
+    "persons[].sex_basis.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "persons[].sex_basis.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
+    "persons[].sex_basis.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    # And the age band, which is the second half of the same stage. `value` is the
+    # machine-readable label; the card prints the interval out of `low` and `high`, so a
+    # reader meets "20 to 29" rather than "20-29" and the top band reads "70 or older".
+    "persons[].age_band.value": ("shown", "bandYears(person.age_band)"),
+    "persons[].age_band.low": ("shown", "const low = band.low"),
+    "persons[].age_band.high": ("shown", "const high = band.high"),
+    "persons[].age_band.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "persons[].age_band.tier": ("shown", "tierOf(block) || block.confidence"),
+    "persons[].age_band.note": ("shown", "escapeHtml(block.note)"),
+    "persons[].age_band.basis.kind": ("shown", "basis.kind === 'model'"),
+    "persons[].age_band.basis.id": ("shown", "escapeHtml(String(basis.id || ''))"),
+    "persons[].age_band.basis.note": ("shown", "escapeHtml(String(basis.note || ''))"),
+    "persons[].age_band.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "persons[].age_band.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
+    "persons[].age_band.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
     # The evidence strength, on the person the register minted from a letter list.
     # It reached `gazetteer.json` and `register_1835.json` and stopped there, so

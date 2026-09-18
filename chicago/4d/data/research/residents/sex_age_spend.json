@@ -15,10 +15,7 @@
    "forename": 558
   },
   "sex_not_written_by_reason": {
-   "already_recorded": 102,
-   "ambiguous_forename": 3,
-   "forename_not_in_table": 379,
-   "initial_only": 205,
+   "already_recorded": 689,
    "no_forename": 6
   },
   "birth_year_from_the_calumet_registry": 24,
@@ -32,5 +29,5 @@
   "female": 41,
   "refused": 5
  },
- "what_is_left_for_the_model": "593 people without a sex and 1221 without a birth year. The 205 known only as an initial are the letter lists' cohort and the ticket asks for them to be sexed at the model's measured adult-male rate; the rest bear a forename this project has no evidence about. Neither is this pass's to decide."
+ "what_is_left_for_the_model": "593 people without a sex and 1221 without a birth year. The 0 known only as an initial are the letter lists' cohort and the ticket asks for them to be sexed at the model's measured adult-male rate; the rest bear a forename this project has no evidence about. Neither is this pass's to decide."
 }

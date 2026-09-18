@@ -1,304 +1,318 @@
 {
-  "_doc": "THE 1835 RESIDENT RECONSTRUCTION PROGRAMME (T-1167). The recipe every stage of the resident reconstruction reads, and the ONLY authority under which a person graded `reconstructed` may be written into data/residents/. It writes nobody itself. tools/reconstruct_residents_1835.py is the one writer; each ticket in bands 3A-3C is a STAGE of that writer, so the whole reconstructed layer is one deterministic build that `--check` re-derives and check.sh holds.\n\nWHY A FILE AND NOT A DOCSTRING. The previous reconstructed population was retired by the owner on 2026-09-02 because nothing said, in one place, what had been invented or what would replace it. This file is that place: id scheme, seed rule, naming rule, the model rows each stage draws from, the liberties it will owe, and the constraints it may not cross. A stage that cannot point at a row here is a stage that may not run.",
-  "id": "chicago_july_1835_resident_reconstruction_programme",
-  "ticket": "T-1167",
-  "target_date": "1835-07-01",
-  "written_by": "tools/reconstruct_residents_1835.py",
-  "checked_by": "tools/reconstruct_residents_1835.py --check (wired in tools/check.sh)",
-  "dossier": "docs/RESEARCH/1835_resident_reconstruction.md",
-  "resident_population_active": true,
-  "the_owners_direction": {
-    "date": "2026-09-17",
-    "quote": "create reconstructed residents households businesses structures and any other items … including what I think are a fair number of missing women and children and perhaps former slaves or other less documented individuals, certainly mark these family members and people as reconstructed.",
-    "and": "we should make the expected number of residents and data of the town complete with these reconstructed residents.",
-    "what_it_overrides": "docs/RESEARCH/1835_resident_reconstruction.md § the three supersessions."
-  },
-  "spends_research_does_not_start_more": {
-    "date": "2026-09-18",
-    "quote": "i dont want new research tickets spun up off of that they should use the existing research … i do not want a ton of tickets sprung up from them starting a whole new stream of research on everything",
-    "rule": "Every stage READS the layer bands 1 and 2 signed off and the model folded into data/reconstruction/1835_town_model.json. No stage opens a new reading of a source. A gap is an expected output: it goes to the order book (T-1166) as a quantity and to the record's own `basis` and `replaceable_by` as a statement of what would retire it."
-  },
-  "id_scheme": {
-    "invented_person": "rc_<surname>_<given>",
-    "invented_household": "hh_rc_<surname>_<given>",
-    "collision_suffix": "_2, _3, … appended to the GIVEN part, in stage order, never reordered",
-    "readmission_person": "the read name's own id, unchanged",
-    "readmission_household": "hh_<read name>, unchanged",
-    "readmission_source_pass": "reconstructed_readmission",
-    "note": "An invented person is marked in the id itself, so a grep for `rc_` finds every one of them without opening a card. A RE-ADMITTED person is a real read name and keeps the id the research gave it — renaming a real person to look invented would be the same misrepresentation in the other direction."
-  },
-  "seed_rule": {
-    "form": "<household_id>:<bucket>",
-    "bucket": "the model row the value is drawn from, e.g. `household_size` or `sex_ratio`",
-    "algorithm": "blake2s(seed.encode('utf-8'), digest_size=8) read as a big-endian integer",
-    "note": "The seed is a STRING a reader can retype, not a run counter. Two runs of the same stage over the same layer draw the same values; a stage that renumbered its households would redraw them, which is why the id scheme forbids reordering a collision suffix."
-  },
-  "naming_rule": {
-    "pools": "data/reconstruction/1835_invented_name_pools.json",
-    "community_from": "the stage's own community assignment; `yankee` where a stage states none",
-    "collision_check": "Against every person id and every person NAME in data/residents/ (the identity master) and against every name already drawn in this build. A reconstructed person may never carry the name of an attested or inferred one: a reader who met the name as a finding would meet it again as an invention.",
-    "name_basis": {
-      "confidence": "reconstructed",
-      "required": true,
-      "note": "tools/generate_inferred_names.py writes the block; validate.py refuses it above the bottom tier."
-    }
-  },
-  "record_contract": {
-    "note": "What a person graded `reconstructed` MUST carry, over and above the per-attribute tier contract T-1158 already enforces on every block. validate.py refuses each of these.",
-    "name_basis": "the invented name's pool and bound, graded `reconstructed` (T-0489's rule, kept)",
-    "basis": "{kind: model|rule, id: <model row or rule id>, note: why this person follows from it}",
-    "seed": "required when basis.kind is `model`; refused when it is `rule`",
-    "replaceable_by": "{kind: person|household|business, match: what evidence retires this person}",
-    "reconstruction": "{stage: <a stage key below>, programme: this file's id}",
-    "shapes_reused_from": "tools/migrate_attribute_tiers.py — BASIS_KINDS, REPLACEABLE_KINDS"
-  },
-  "model_inputs": {
-    "town_model": "data/reconstruction/1835_town_model.json",
-    "rows": {
-      "population": "data/reconstruction/1835_town_model.json#population.population_on_1_july_1835",
-      "known_named": "data/reconstruction/1835_town_model.json#population.people_the_layer_can_name",
-      "sex_ratio": "data/reconstruction/1835_town_model.json#population.males_per_100_females",
-      "under_ten": "data/reconstruction/1835_town_model.json#population.share_under_ten",
-      "by_division": "data/reconstruction/1835_town_model.json#population.tables.by_division",
-      "occupations": "data/reconstruction/1835_town_model.json#occupations.tables.against_the_state_census",
-      "employment_shape": "data/reconstruction/1835_town_model.json#occupations.tables.employment_shape_1840",
-      "households": "data/reconstruction/1835_town_model.json#households_and_families.households_on_1_july_1835",
-      "household_size": "data/reconstruction/1835_town_model.json#households_and_families.tables.size_histogram_1840",
-      "head_rule": "data/reconstruction/1835_town_model.json#households_and_families.tables.the_rule_for_a_head_no_source_names",
-      "lodging": "data/reconstruction/1835_town_model.json#lodging_and_institutions.tables.lodging_and_institutional_roofs",
-      "arrival": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer",
-      "origin": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835"
-    },
-    "order_book": {
-      "file": "data/reconstruction/1835_reconstruction_order_book.json",
-      "ticket": "T-1166",
-      "status": "expected",
-      "note": "The QUOTA — known minus model, per bucket and per division. Until it lands, a stage may be written and self-tested but may not BUILD: a reconstruction with no quota has nothing to stop at. `--check` states this rather than assuming a number."
-    },
-    "roster": "data/reconstruction/1835_borderline_roster.json",
-    "name_pools": "data/reconstruction/1835_invented_name_pools.json",
-    "population_profile": "data/reconstruction/1835_population_profile.json"
-  },
-  "constraints": [
-    {
-      "id": "L1",
-      "rule": "No human figure is drawn, anywhere, ever. This programme writes RECORDS.",
-      "liberty": "docs/LIBERTIES.md § L1"
-    },
-    {
-      "id": "underdocumented_only",
-      "rule": "Native and Metis persons, households, kin and businesses ARE reconstructed — the owner re-ruled this on 2026-09-17 — and ONLY through stage `underdocumented`. Every such record carries `review_required: true` and `touches_removal: true`, and follows AGENTS.md § the Indigenous-history review.",
-      "refused_by": "tools/reconstruct_residents_1835.py --self-test case 3"
-    },
-    {
-      "id": "no_promotion",
-      "rule": "A reconstructed value may never be promoted to inferred or attested, and a reconstructed person may never be given a source_id. The evidence is for the NEED, and it is argued in the note.",
-      "refused_by": "tools/validate.py check_resident_grade + check_tier_block"
-    },
-    {
-      "id": "attested_names_are_not_stock",
-      "rule": "An invented name may not collide with an attested or inferred person's name.",
-      "refused_by": "tools/reconstruct_residents_1835.py --self-test case 4"
-    },
-    {
-      "id": "one_writer",
-      "rule": "No other tool may write `grade: reconstructed`. The four research writers each call tools/refuse_reconstructed_grade.py; this writer deliberately does not, and that is the whole boundary.",
-      "refused_by": "tools/refuse_reconstructed_grade.py --check"
-    }
-  ],
-  "liberties_this_programme_will_owe": [
-    {
-      "id": "L-rc-persons",
-      "when": "the first stage writes an invented person",
-      "states": "how many people the town gained that no source names, and the model row that set the count"
-    },
-    {
-      "id": "L-rc-families",
-      "when": "T-1170/T-1171 draw families onto real heads",
-      "states": "that a real person's household composition is drawn from the 1840 distribution"
-    },
-    {
-      "id": "L-rc-readmission",
-      "when": "T-1172 re-admits the borderline roster",
-      "states": "which names were withheld by the research and on what limit they return"
-    },
-    {
-      "id": "L-rc-underdocumented",
-      "when": "T-1177 runs",
-      "states": "the cohorts reconstructed within their evidence, and the review they carry"
-    }
-  ],
-  "stages": [
-    {
-      "key": "attribute_fill_sex_age",
-      "ticket": "T-1168",
-      "title": "Sex and age for every attested and inferred person",
-      "writes": "reconstructed ATTRIBUTE blocks on existing persons; no new person",
-      "draws_from": [
-        "sex_ratio",
-        "under_ten"
-      ],
-      "note": "Recorded where a source says, inferred from forename, office or register role, reconstructed from the population model otherwise.",
-      "implemented": false
-    },
-    {
-      "key": "attribute_fill_arrival",
-      "ticket": "T-1169",
-      "title": "Arrival date, origin and reason for coming",
-      "writes": "reconstructed ATTRIBUTE blocks on existing persons; no new person",
-      "draws_from": [
-        "arrival",
-        "origin"
-      ],
-      "note": "The earliest dated appearance is the bound; the arrival model fills the rest.",
-      "implemented": false
-    },
-    {
-      "key": "named_families",
-      "ticket": "T-1314",
-      "title": "The families the sources COUNT and do not name, onto the heads that have them",
-      "writes": "inferred kin persons where a source names them; reconstructed where only counted",
-      "draws_from": [
-        "household_size"
-      ],
-      "note": "Registers, 1840 census rows, biographies and the ruled kin ties come first; the model is what fills a counted-but-unnamed dependant.",
-      "implemented": false
-    },
-    {
-      "key": "modelled_families",
-      "ticket": "T-1171",
-      "title": "Reconstructed families for the remaining heads",
-      "writes": "reconstructed persons inside existing households",
-      "draws_from": [
-        "household_size",
-        "head_rule",
-        "sex_ratio"
-      ],
-      "note": "Drawn at the head's own size band, never at the mean — the head_rule row says why.",
-      "implemented": false
-    },
-    {
-      "key": "readmissions",
-      "ticket": "T-1172",
-      "title": "The borderline roster re-admitted under its own read names",
-      "writes": "persons under their READ names, source_pass `reconstructed_readmission`",
-      "draws_from": [
-        "known_named"
-      ],
-      "note": "These are not invented names and do not take an rc_ id. Each carries its evidence limit and its reopen rule.",
-      "implemented": false,
-      "uses_name_pools": false
-    },
-    {
-      "key": "trade_households",
-      "ticket": "T-1173",
-      "title": "The trade households the occupation model still wants",
-      "writes": "reconstructed heads and their households, by division",
-      "draws_from": [
-        "occupations",
-        "employment_shape",
-        "by_division"
-      ],
-      "note": "Counted after the known and re-admitted people, against the order book's quota.",
-      "implemented": false
-    },
-    {
-      "key": "women_and_children",
-      "ticket": "T-1174",
-      "title": "The women and children the age pyramid still lacks",
-      "writes": "reconstructed persons and widow-headed households",
-      "draws_from": [
-        "sex_ratio",
-        "under_ten",
-        "household_size"
-      ],
-      "note": "Run after families are drawn, so the pyramid is measured against what the town already holds rather than against an empty layer.",
-      "implemented": false
-    },
-    {
-      "key": "lodgers",
-      "ticket": "T-1175",
-      "title": "Boarders, lodgers, guests and crews, seated in the lodging places",
-      "writes": "reconstructed persons with a lodging seat",
-      "draws_from": [
-        "lodging",
-        "sex_ratio"
-      ],
-      "note": "The surplus adult men the 1840 sex ratio implies are boarders, not husbands.",
-      "implemented": false
-    },
-    {
-      "key": "garrison",
-      "ticket": "T-1176",
-      "title": "The Fort Dearborn garrison of 1 July 1835",
-      "writes": "attested officers where named; reconstructed rank and file, families and agency staff",
-      "draws_from": [
-        "by_division"
-      ],
-      "note": "The fort is its own division in the lodging table and is seated in the fort's roofs.",
-      "implemented": false
-    },
-    {
-      "key": "underdocumented",
-      "ticket": "T-1177",
-      "title": "The under-documented cohorts, within their evidence",
-      "writes": "reconstructed Native, Metis, free Black, Irish and German persons, households and businesses",
-      "draws_from": [
-        "by_division",
-        "occupations"
-      ],
-      "note": "THE ONLY STAGE that may write a Native or Metis reconstruction. Every record here carries review_required and touches_removal.",
-      "implemented": false,
-      "review_required": true,
-      "touches_removal": true
-    },
-    {
-      "key": "transients",
-      "ticket": "T-1178",
-      "title": "The transient population of 1 July 1835, as a bounded cohort",
-      "writes": "reconstructed persons marked transient, with where they slept",
-      "draws_from": [
-        "population",
-        "lodging"
-      ],
-      "note": "Land-sale visitors, immigrants awaiting lots, the harbour gang and crews ashore.",
-      "implemented": false
-    },
-    {
-      "key": "converge",
-      "ticket": "T-1179",
-      "title": "Converge the reconstructed resident layer",
-      "writes": "nothing — this stage only re-derives and reports",
-      "draws_from": [],
-      "note": "Index, sidecars, town census, People view and gates agree, and the population profile is re-run against the model.",
-      "implemented": false
-    }
-  ],
-  "supersedes": {
-    "note": "Three standing readings the owner's direction reverses, for the reconstructed tier ONLY. Stated here and argued in the dossier, because a reversal nobody wrote down is one the next run re-applies.",
-    "items": [
-      {
-        "what": "docs/RESEARCH/residents-households-summary-2026-09.md § 'What this layer must not be asked to do is estimate'",
-        "status": "superseded for the reconstructed tier",
-        "kept": "Attested and inferred grades stay exactly what the ladder says."
-      },
-      {
-        "what": "T-1146 acceptance ¶4 — 'aggregate age/sex buckets … mint no spouse, child, boarder or servant'",
-        "status": "binds the attested/inferred spend; does not bind this programme",
-        "kept": "Every such person written here is graded `reconstructed`, with a basis and a seed."
-      },
-      {
-        "what": "data/research/census_1840/composition_1840.json#what_this_may_not_do[] — 'never names anybody'",
-        "status": "still true, unchanged",
-        "kept": "The 1840 shape is a distribution the models draw from; it supplies no name and no row."
-      }
-    ]
-  },
-  "the_retired_programme_stays_retired": {
-    "file": "data/reconstruction/1835_inferred_household_programme.json",
-    "resident_population_active": false,
-    "its_roofs": "the 31 `inferred_anonymous` roofs remain anonymous stock for T-1197",
-    "its_occupation_census": "superseded by the occupations fold of the town model (T-1162, folded into data/reconstruction/1835_town_model.json by T-1293) and kept as history",
-    "note": "This programme does NOT restore it. Turning that file's flag back to true would seat 101 households nobody decided to seat; the stages above write their own people, under their own ids, with a basis apiece."
+ "_doc": "THE 1835 RESIDENT RECONSTRUCTION PROGRAMME (T-1167). The recipe every stage of the resident reconstruction reads, and the ONLY authority under which a person graded `reconstructed` may be written into data/residents/. It writes nobody itself. tools/reconstruct_residents_1835.py is the one writer; each ticket in bands 3A-3C is a STAGE of that writer, so the whole reconstructed layer is one deterministic build that `--check` re-derives and check.sh holds.\n\nWHY A FILE AND NOT A DOCSTRING. The previous reconstructed population was retired by the owner on 2026-09-02 because nothing said, in one place, what had been invented or what would replace it. This file is that place: id scheme, seed rule, naming rule, the model rows each stage draws from, the liberties it will owe, and the constraints it may not cross. A stage that cannot point at a row here is a stage that may not run.",
+ "id": "chicago_july_1835_resident_reconstruction_programme",
+ "ticket": "T-1167",
+ "target_date": "1835-07-01",
+ "written_by": "tools/reconstruct_residents_1835.py",
+ "checked_by": "tools/reconstruct_residents_1835.py --check (wired in tools/check.sh)",
+ "dossier": "docs/RESEARCH/1835_resident_reconstruction.md",
+ "resident_population_active": true,
+ "the_owners_direction": {
+  "date": "2026-09-17",
+  "quote": "create reconstructed residents households businesses structures and any other items … including what I think are a fair number of missing women and children and perhaps former slaves or other less documented individuals, certainly mark these family members and people as reconstructed.",
+  "and": "we should make the expected number of residents and data of the town complete with these reconstructed residents.",
+  "what_it_overrides": "docs/RESEARCH/1835_resident_reconstruction.md § the three supersessions."
+ },
+ "spends_research_does_not_start_more": {
+  "date": "2026-09-18",
+  "quote": "i dont want new research tickets spun up off of that they should use the existing research … i do not want a ton of tickets sprung up from them starting a whole new stream of research on everything",
+  "rule": "Every stage READS the layer bands 1 and 2 signed off and the model folded into data/reconstruction/1835_town_model.json. No stage opens a new reading of a source. A gap is an expected output: it goes to the order book (T-1166) as a quantity and to the record's own `basis` and `replaceable_by` as a statement of what would retire it."
+ },
+ "id_scheme": {
+  "invented_person": "rc_<surname>_<given>",
+  "invented_household": "hh_rc_<surname>_<given>",
+  "collision_suffix": "_2, _3, … appended to the GIVEN part, in stage order, never reordered",
+  "readmission_person": "the read name's own id, unchanged",
+  "readmission_household": "hh_<read name>, unchanged",
+  "readmission_source_pass": "reconstructed_readmission",
+  "note": "An invented person is marked in the id itself, so a grep for `rc_` finds every one of them without opening a card. A RE-ADMITTED person is a real read name and keeps the id the research gave it — renaming a real person to look invented would be the same misrepresentation in the other direction."
+ },
+ "seed_rule": {
+  "form": "<household_id>:<bucket>",
+  "bucket": "the model row the value is drawn from, e.g. `household_size` or `sex_ratio`",
+  "algorithm": "blake2s(seed.encode('utf-8'), digest_size=8) read as a big-endian integer",
+  "note": "The seed is a STRING a reader can retype, not a run counter. Two runs of the same stage over the same layer draw the same values; a stage that renumbered its households would redraw them, which is why the id scheme forbids reordering a collision suffix.",
+  "attribute_fill": "<person_id>:<bucket>. An ATTRIBUTE fill seeds by the PERSON: two people share a household id and would otherwise draw the same value. T-1304 uses `sex_ratio` and `age_bands_1840` as its buckets."
+ },
+ "naming_rule": {
+  "pools": "data/reconstruction/1835_invented_name_pools.json",
+  "community_from": "the stage's own community assignment; `yankee` where a stage states none",
+  "collision_check": "Against every person id and every person NAME in data/residents/ (the identity master) and against every name already drawn in this build. A reconstructed person may never carry the name of an attested or inferred one: a reader who met the name as a finding would meet it again as an invention.",
+  "name_basis": {
+   "confidence": "reconstructed",
+   "required": true,
+   "note": "tools/generate_inferred_names.py writes the block; validate.py refuses it above the bottom tier."
   }
+ },
+ "record_contract": {
+  "note": "What a person graded `reconstructed` MUST carry, over and above the per-attribute tier contract T-1158 already enforces on every block. validate.py refuses each of these.",
+  "name_basis": "the invented name's pool and bound, graded `reconstructed` (T-0489's rule, kept)",
+  "basis": "{kind: model|rule, id: <model row or rule id>, note: why this person follows from it}",
+  "seed": "required when basis.kind is `model`; refused when it is `rule`",
+  "replaceable_by": "{kind: person|household|business, match: what evidence retires this person}",
+  "reconstruction": "{stage: <a stage key below>, programme: this file's id}",
+  "shapes_reused_from": "tools/migrate_attribute_tiers.py — BASIS_KINDS, REPLACEABLE_KINDS"
+ },
+ "model_inputs": {
+  "town_model": "data/reconstruction/1835_town_model.json",
+  "rows": {
+   "population": "data/reconstruction/1835_town_model.json#population.population_on_1_july_1835",
+   "known_named": "data/reconstruction/1835_town_model.json#population.people_the_layer_can_name",
+   "sex_ratio": "data/reconstruction/1835_town_model.json#population.males_per_100_females",
+   "under_ten": "data/reconstruction/1835_town_model.json#population.share_under_ten",
+   "by_division": "data/reconstruction/1835_town_model.json#population.tables.by_division",
+   "occupations": "data/reconstruction/1835_town_model.json#occupations.tables.against_the_state_census",
+   "employment_shape": "data/reconstruction/1835_town_model.json#occupations.tables.employment_shape_1840",
+   "households": "data/reconstruction/1835_town_model.json#households_and_families.households_on_1_july_1835",
+   "household_size": "data/reconstruction/1835_town_model.json#households_and_families.tables.size_histogram_1840",
+   "head_rule": "data/reconstruction/1835_town_model.json#households_and_families.tables.the_rule_for_a_head_no_source_names",
+   "lodging": "data/reconstruction/1835_town_model.json#lodging_and_institutions.tables.lodging_and_institutional_roofs",
+   "arrival": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer",
+   "origin": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835",
+   "age_bands_1840": "data/research/census_1840/composition_1840.json#age_bands.free_white"
+  },
+  "order_book": {
+   "file": "data/reconstruction/1835_reconstruction_order_book.json",
+   "ticket": "T-1166",
+   "status": "expected",
+   "note": "The QUOTA — known minus model, per bucket and per division. Until it lands, a stage may be written and self-tested but may not BUILD: a reconstruction with no quota has nothing to stop at. `--check` states this rather than assuming a number."
+  },
+  "roster": "data/reconstruction/1835_borderline_roster.json",
+  "name_pools": "data/reconstruction/1835_invented_name_pools.json",
+  "population_profile": "data/reconstruction/1835_population_profile.json"
+ },
+ "constraints": [
+  {
+   "id": "L1",
+   "rule": "No human figure is drawn, anywhere, ever. This programme writes RECORDS.",
+   "liberty": "docs/LIBERTIES.md § L1"
+  },
+  {
+   "id": "underdocumented_only",
+   "rule": "Native and Metis persons, households, kin and businesses ARE reconstructed — the owner re-ruled this on 2026-09-17 — and ONLY through stage `underdocumented`. Every such record carries `review_required: true` and `touches_removal: true`, and follows AGENTS.md § the Indigenous-history review.",
+   "refused_by": "tools/reconstruct_residents_1835.py --self-test case 3"
+  },
+  {
+   "id": "no_promotion",
+   "rule": "A reconstructed value may never be promoted to inferred or attested, and a reconstructed person may never be given a source_id. The evidence is for the NEED, and it is argued in the note.",
+   "refused_by": "tools/validate.py check_resident_grade + check_tier_block"
+  },
+  {
+   "id": "attested_names_are_not_stock",
+   "rule": "An invented name may not collide with an attested or inferred person's name.",
+   "refused_by": "tools/reconstruct_residents_1835.py --self-test case 4"
+  },
+  {
+   "id": "one_writer",
+   "rule": "No other tool may write `grade: reconstructed`. The four research writers each call tools/refuse_reconstructed_grade.py; this writer deliberately does not, and that is the whole boundary.",
+   "refused_by": "tools/refuse_reconstructed_grade.py --check"
+  }
+ ],
+ "liberties_this_programme_will_owe": [
+  {
+   "id": "L-rc-persons",
+   "when": "the first stage writes an invented person",
+   "states": "how many people the town gained that no source names, and the model row that set the count"
+  },
+  {
+   "id": "L-rc-families",
+   "when": "T-1170/T-1171 draw families onto real heads",
+   "states": "that a real person's household composition is drawn from the 1840 distribution"
+  },
+  {
+   "id": "L-rc-readmission",
+   "when": "T-1172 re-admits the borderline roster",
+   "states": "which names were withheld by the research and on what limit they return"
+  },
+  {
+   "id": "L-rc-underdocumented",
+   "when": "T-1177 runs",
+   "states": "the cohorts reconstructed within their evidence, and the review they carry"
+  },
+  {
+   "id": "L-rc-age-conditioning",
+   "when": "T-1304 draws an age band",
+   "states": "that the bands a draw is conditioned on - 20 and over for a poll, tax or muster list, 15 and over for any other roll naming a person in their own right - are the MODEL's assumption and no source's statement"
+  },
+  {
+   "id": "L-rc-sex-rate",
+   "when": "T-1304 draws a sex",
+   "states": "that every roll's measured male rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names"
+  }
+ ],
+ "stages": [
+  {
+   "key": "attribute_fill_sex_age",
+   "ticket": "T-1168 (T-1303 read it; T-1304 drew the rest)",
+   "title": "Sex and age for every attested and inferred person",
+   "writes": "reconstructed ATTRIBUTE blocks on existing persons; no new person",
+   "draws_from": [
+    "sex_ratio",
+    "under_ten",
+    "age_bands_1840"
+   ],
+   "note": "Recorded where a source says, inferred from forename, office or register role, reconstructed from the population model otherwise. The read tiers are tools/spend_person_sex_age.py (T-1303); the drawn tier is tools/reconstruct_sex_age.py (T-1304), which writes no person and fills `sex_basis` and `age_band` blocks on people the sources already name. The sex rates are measured on this layer's own rolls; the age bands are the 1840 schedule's, and no birth year is written.",
+   "implemented": true,
+   "built_by": "tools/reconstruct_sex_age.py"
+  },
+  {
+   "key": "attribute_fill_arrival",
+   "ticket": "T-1169",
+   "title": "Arrival date, origin and reason for coming",
+   "writes": "reconstructed ATTRIBUTE blocks on existing persons; no new person",
+   "draws_from": [
+    "arrival",
+    "origin"
+   ],
+   "note": "The earliest dated appearance is the bound; the arrival model fills the rest.",
+   "implemented": false
+  },
+  {
+   "key": "named_families",
+   "ticket": "T-1314",
+   "title": "The families the sources COUNT and do not name, onto the heads that have them",
+   "writes": "inferred kin persons where a source names them; reconstructed where only counted",
+   "draws_from": [
+    "household_size"
+   ],
+   "note": "Registers, 1840 census rows, biographies and the ruled kin ties come first; the model is what fills a counted-but-unnamed dependant.",
+   "implemented": false
+  },
+  {
+   "key": "modelled_families",
+   "ticket": "T-1171",
+   "title": "Reconstructed families for the remaining heads",
+   "writes": "reconstructed persons inside existing households",
+   "draws_from": [
+    "household_size",
+    "head_rule",
+    "sex_ratio"
+   ],
+   "note": "Drawn at the head's own size band, never at the mean — the head_rule row says why.",
+   "implemented": false
+  },
+  {
+   "key": "readmissions",
+   "ticket": "T-1172",
+   "title": "The borderline roster re-admitted under its own read names",
+   "writes": "persons under their READ names, source_pass `reconstructed_readmission`",
+   "draws_from": [
+    "known_named"
+   ],
+   "note": "These are not invented names and do not take an rc_ id. Each carries its evidence limit and its reopen rule.",
+   "implemented": false,
+   "uses_name_pools": false
+  },
+  {
+   "key": "trade_households",
+   "ticket": "T-1173",
+   "title": "The trade households the occupation model still wants",
+   "writes": "reconstructed heads and their households, by division",
+   "draws_from": [
+    "occupations",
+    "employment_shape",
+    "by_division"
+   ],
+   "note": "Counted after the known and re-admitted people, against the order book's quota.",
+   "implemented": false
+  },
+  {
+   "key": "women_and_children",
+   "ticket": "T-1174",
+   "title": "The women and children the age pyramid still lacks",
+   "writes": "reconstructed persons and widow-headed households",
+   "draws_from": [
+    "sex_ratio",
+    "under_ten",
+    "household_size"
+   ],
+   "note": "Run after families are drawn, so the pyramid is measured against what the town already holds rather than against an empty layer.",
+   "implemented": false
+  },
+  {
+   "key": "lodgers",
+   "ticket": "T-1175",
+   "title": "Boarders, lodgers, guests and crews, seated in the lodging places",
+   "writes": "reconstructed persons with a lodging seat",
+   "draws_from": [
+    "lodging",
+    "sex_ratio"
+   ],
+   "note": "The surplus adult men the 1840 sex ratio implies are boarders, not husbands.",
+   "implemented": false
+  },
+  {
+   "key": "garrison",
+   "ticket": "T-1176",
+   "title": "The Fort Dearborn garrison of 1 July 1835",
+   "writes": "attested officers where named; reconstructed rank and file, families and agency staff",
+   "draws_from": [
+    "by_division"
+   ],
+   "note": "The fort is its own division in the lodging table and is seated in the fort's roofs.",
+   "implemented": false
+  },
+  {
+   "key": "underdocumented",
+   "ticket": "T-1177",
+   "title": "The under-documented cohorts, within their evidence",
+   "writes": "reconstructed Native, Metis, free Black, Irish and German persons, households and businesses",
+   "draws_from": [
+    "by_division",
+    "occupations"
+   ],
+   "note": "THE ONLY STAGE that may write a Native or Metis reconstruction. Every record here carries review_required and touches_removal.",
+   "implemented": false,
+   "review_required": true,
+   "touches_removal": true
+  },
+  {
+   "key": "transients",
+   "ticket": "T-1178",
+   "title": "The transient population of 1 July 1835, as a bounded cohort",
+   "writes": "reconstructed persons marked transient, with where they slept",
+   "draws_from": [
+    "population",
+    "lodging"
+   ],
+   "note": "Land-sale visitors, immigrants awaiting lots, the harbour gang and crews ashore.",
+   "implemented": false
+  },
+  {
+   "key": "converge",
+   "ticket": "T-1179",
+   "title": "Converge the reconstructed resident layer",
+   "writes": "nothing — this stage only re-derives and reports",
+   "draws_from": [],
+   "note": "Index, sidecars, town census, People view and gates agree, and the population profile is re-run against the model.",
+   "implemented": false
+  }
+ ],
+ "supersedes": {
+  "note": "Three standing readings the owner's direction reverses, for the reconstructed tier ONLY. Stated here and argued in the dossier, because a reversal nobody wrote down is one the next run re-applies.",
+  "items": [
+   {
+    "what": "docs/RESEARCH/residents-households-summary-2026-09.md § 'What this layer must not be asked to do is estimate'",
+    "status": "superseded for the reconstructed tier",
+    "kept": "Attested and inferred grades stay exactly what the ladder says."
+   },
+   {
+    "what": "T-1146 acceptance ¶4 — 'aggregate age/sex buckets … mint no spouse, child, boarder or servant'",
+    "status": "binds the attested/inferred spend; does not bind this programme",
+    "kept": "Every such person written here is graded `reconstructed`, with a basis and a seed."
+   },
+   {
+    "what": "data/research/census_1840/composition_1840.json#what_this_may_not_do[] — 'never names anybody'",
+    "status": "still true, unchanged",
+    "kept": "The 1840 shape is a distribution the models draw from; it supplies no name and no row."
+   }
+  ]
+ },
+ "the_retired_programme_stays_retired": {
+  "file": "data/reconstruction/1835_inferred_household_programme.json",
+  "resident_population_active": false,
+  "its_roofs": "the 31 `inferred_anonymous` roofs remain anonymous stock for T-1197",
+  "its_occupation_census": "superseded by the occupations fold of the town model (T-1162, folded into data/reconstruction/1835_town_model.json by T-1293) and kept as history",
+  "note": "This programme does NOT restore it. Turning that file's flag back to true would seat 101 households nobody decided to seat; the stages above write their own people, under their own ids, with a basis apiece."
+ }
 }

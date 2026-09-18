@@ -143,7 +143,42 @@
      "for_merge": "The second half of the pattern above, and this side carries the documented man: 'Foot, Starr' is the 1833 tax list, the Democrat of 3 September 1834 (#c007), Fergus 1843 ('Foot, Starr, teamster, 180 Clark, cor Monroe [died June, 1862. a 62.]') and Norris 1844 ('Foot, S. teamster, corner of Clark and Monroe sts'), while 'Foote, Star' is the poll of 1834 alone — the same roll that set his neighbour John as Foote.",
      "against_merge": "AND THE SAME ANSWER FOR THE SAME REASON. No roll sets both spellings: tax 1833 and the 1835 poll set FOOT, the 1834 poll sets FOOTE, and the directories and the Democrat set FOOT only. One source id over four rolls is not one printing. Two further facts are worth recording and neither decides: the forenames are 'Starr' and 'Star', a second one-letter difference the fold would also have to absorb; and the documented Starr Foot is a teamster at Clark and Monroe with a trade the Foote card knows nothing of, so a fold would move a bare poll entry onto a documented man rather than the other way. D9."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "sex_share_of_the_roll",
+     "note": "Drawn at 93.6% male, the rate measured on the documented roll's own people whose sex the evidence settles (pooled across every roll: this one settles too few names to measure on its own). data/reconstruction/1835_sex_age_model.json holds the measurement."
+    },
+    "seed": "foot_s:sex_ratio",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that records this person's sex, a gendered title on their name, or a forename the project's evidence lets fire"
+    },
+    "note": "A DRAW, NOT A READING. Nothing about this person says which sex they were: T-1303 refused the name and was right to. This value is drawn from the measured male share of the roll the person was named on, seeded by their own id so the draw reproduces - retype 'foot_s:sex_ratio' and the same face comes up. It carries no weight as evidence about this person and it is never promoted. The rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names."
+   },
+   "age_band": {
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 30 under 40', one of its male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "foot_s:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('foot_s:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   }
   }
  ],
  "touches_removal": false,

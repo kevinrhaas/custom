@@ -51,7 +51,8 @@ WHAT IT REFUSES, and why the refusals are the point.
 
   * AN INITIAL FIRES NOTHING. 223 of these people are known only as "J. W. Smith" off a
      post-office list. There is no rule that sexes an initial, and the letter lists'
-     measured lean is the population model's business (T-1304), not this pass's.
+     measured lean is the population model's business (T-1304, which since 2026-09-18
+     draws for them at the rate measured on the letter lists themselves), not this pass's.
   * A NAME OUTSIDE THE TABLE FIRES NOTHING. 384 people bear a forename this project has
      no evidence about. Extending the table to period names at large would be invention
      wearing an inference's clothes.
@@ -99,8 +100,9 @@ SCENE_DATE = "1835-07-01"
 # that step the forename table would read its own fills back in as evidence and grade its
 # own homework, and every re-run would sex a few more people off the last run's guesses.
 #
-# A `sex_basis` block is this pass's by construction — nothing else writes one — and a
-# `birth_year` is this pass's when it cites one of the two rolls below, which nothing
+# A `sex_basis` block graded `inferred` is this pass's by construction — T-1304 writes
+# the only other kind and grades it `reconstructed`, which is what `ours_sex` reads — and
+# a `birth_year` is this pass's when it cites one of the two rolls below, which nothing
 # else spends onto a person. Neither is a marker key on the card: a `derived_by` string
 # repeated on 644 blocks is 24 kB of bookkeeping shipped to a browser that has no use for
 # it, and `tools/measure_layer_reads.py` is right to ask what a figure nobody reads is
@@ -264,7 +266,16 @@ def households() -> dict:
 
 
 def ours_sex(block) -> bool:
-    return isinstance(block, dict) and bool(block.get("note"))
+    """A `sex_basis` THIS pass wrote — one it READ, and so graded `inferred`.
+
+    T-1304 draws a sex for the people this pass refuses and leaves a `sex_basis` of its
+    own, graded `reconstructed`. That block is not this pass's to strip: stripping it
+    would make `--check` re-derive a card without it, find the committed card carrying a
+    sex this pass never writes, and fail every one of the 587 drawn people. The tier is
+    the boundary, and each pass owns its own side of it.
+    """
+    return (isinstance(block, dict) and bool(block.get("note"))
+            and block.get("confidence") != "reconstructed")
 
 
 def ours_birth(block) -> bool:
@@ -311,11 +322,20 @@ def attested_bearers(cards: dict) -> dict:
     is a woman's name — which is exactly what it did before this rule: Rufus and Nelson
     were the two names this layer's own evidence appeared to split, and both splits were
     a wife recorded under her husband's name.
+
+    AND A BEARER WHOSE SEX WAS DRAWN TEACHES NOTHING EITHER (T-1304). That stage draws a
+    sex for the 587 people this pass refuses, at a rate measured on the rolls, and grades
+    it `reconstructed`. Counting those bearers would teach this table a forename off a
+    coin toss and then let the table fire it as evidence on the next name — the exact
+    circularity `without_this_pass` exists to stop, arriving by the other door. A draw is
+    never evidence, here least of all.
     """
     table = {}
     for _hid, person in persons(cards):
         sex = person.get("sex")
         if not sex:
+            continue
+        if (person.get("sex_basis") or {}).get("confidence") == "reconstructed":
             continue
         title, fore, why = read_name(person.get("name") or "")
         if title or why not in ("forename", "contraction") or not fore:
@@ -608,12 +628,18 @@ def tally(cards: dict, fresh: dict, table: dict, lookup: dict,
             sex_rules[rule] = sex_rules.get(rule, 0) + 1
         else:
             refusals[rule] = refusals.get(rule, 0) + 1
-    with_sex = sum(1 for _h, p in persons(fresh) if p.get("sex"))
+    # THIS PASS'S OWN BEFORE AND AFTER, which is the READ tier and not the layer's total.
+    # T-1304 draws a sex for the people refused below and grades it `reconstructed`; those
+    # draws are counted in data/reconstruction/1835_sex_age_model.json, and counting them
+    # here would turn this ledger's headline — 99 -> 689 people whose sex the evidence
+    # settles — into a number about a different pass's work.
+    drawn = lambda p: (p.get("sex_basis") or {}).get("confidence") == "reconstructed"
+    with_sex = sum(1 for _h, p in persons(fresh) if p.get("sex") and not drawn(p))
     with_birth = sum(1 for _h, p in persons(fresh) if p.get("birth_year"))
     total = sum(1 for _ in persons(cards))
     return {
         "persons": total,
-        "sex_before": sum(1 for _h, p in persons(cards) if p.get("sex")),
+        "sex_before": sum(1 for _h, p in persons(cards) if p.get("sex") and not drawn(p)),
         "sex_after": with_sex,
         "birth_year_before": sum(1 for _h, p in persons(cards) if p.get("birth_year")),
         "birth_year_after": with_birth,
@@ -788,8 +814,12 @@ def self_test() -> int:
             before_keys |= set(old)
             after_keys |= set(new)
             if old.get("sex"):
+                # A sex already on the card is either a mint's (no reason block) or a
+                # draw of T-1304's (graded `reconstructed`). Neither is this pass's, and
+                # what is asserted here is that this pass leaves both alone.
                 want("a recorded sex is never changed (%s)" % old["id"],
-                     new.get("sex") == old["sex"] and "sex_basis" not in new)
+                     new.get("sex") == old["sex"]
+                     and (new.get("sex_basis") or {}).get("confidence") != "inferred")
             if old.get("birth_year"):
                 want("a recorded birth year is never changed (%s)" % old["id"],
                      new["birth_year"] == old["birth_year"])
@@ -805,7 +835,9 @@ def self_test() -> int:
     # only where one exists.
     for _hid, person in persons(fresh):
         basis = person.get("sex_basis")
-        if basis:
+        # T-1304's drawn blocks travel through this pass untouched and are graded
+        # `reconstructed`; the assertions below are about the sexes this pass READS.
+        if basis and basis.get("confidence") != "reconstructed":
             want("a written sex is inferred with a note (%s)" % person["id"],
                  basis["confidence"] == "inferred" and basis["note"].strip()
                  and basis["value"] == person["sex"])
