@@ -38,6 +38,12 @@ source "$_check_tools/check_harness.sh"
 step "publish the mirror the gate measures (site/chicago/4d/ is generated, T-0938)" \
   bash tools/publish.sh
 
+# THE ONE ORDERING THIS GATE HAS, and under CHECK_JOBS>1 it has to be said out loud.
+# Everything below reads the mirror the step above writes, so the pool may not start
+# any of it until that publish has finished. `check_flush` is the barrier: it drains
+# what is queued and returns, and it is a no-op on the serial path.
+check_flush
+
 # T-0763. The gate's own OUTPUT is a gate. 114 of the steps below prove a derivation by
 # breaking it and require its assertions to fire, so a green run prints dozens of lines
 # that read exactly like a broken gate — and three tickets (T-0745, and the misreports in
