@@ -1,7 +1,7 @@
 ---
 id: T-1297
 title: Rule the 718 name-on-a-roll units: the civic poll, voter and Black Hawk War lists, the 1830 census heads and the unruled directory entries
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1236
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1427
 claimed_by: run 9/17/2026, 7:23:23 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T01:38:07.618Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35290777493
 ---
 
