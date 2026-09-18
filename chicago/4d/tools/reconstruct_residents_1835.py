@@ -180,6 +180,42 @@ def read_layer():
 
 
 # --------------------------------------------------------------------------
+# the stages, and the modules that build them
+# --------------------------------------------------------------------------
+#
+# A STAGE IS A TICKET, and a stage large enough to need its own measurement, its own
+# model file and its own gate gets its own module rather than another thousand lines
+# here. The programme file names the module in `built_by`; this table is the writer's
+# own copy, and `--check` holds the two together so a stage cannot be marked implemented
+# with nothing behind it.
+
+def _build_attribute_fill_sex_age() -> int:
+    import reconstruct_sex_age
+    return reconstruct_sex_age.build()
+
+
+def _check_attribute_fill_sex_age() -> int:
+    import reconstruct_sex_age
+    return reconstruct_sex_age.check()
+
+
+def _build_readmissions() -> int:
+    import readmit_borderline_roster
+    return readmit_borderline_roster.build()
+
+
+def _check_readmissions() -> int:
+    import readmit_borderline_roster
+    return readmit_borderline_roster.check()
+
+
+STAGE_BUILDERS = {"attribute_fill_sex_age": _build_attribute_fill_sex_age,
+                  "readmissions": _build_readmissions}
+STAGE_CHECKERS = {"attribute_fill_sex_age": _check_attribute_fill_sex_age,
+                  "readmissions": _check_readmissions}
+
+
+# --------------------------------------------------------------------------
 # modes
 # --------------------------------------------------------------------------
 
@@ -194,30 +230,6 @@ def cmd_list(prog: dict) -> int:
         print("  no stage may BUILD until it does - a reconstruction with no quota has "
               "nothing to stop at.")
     return 0
-
-
-# --------------------------------------------------------------------------
-# the stages, and the modules that build them
-# --------------------------------------------------------------------------
-#
-# A STAGE IS A TICKET, and a stage large enough to need its own measurement, its own
-# model file and its own gate gets its own module rather than another thousand lines
-# here. The programme file names the module in `built_by`; this table is the writer's
-# own copy, and `--check` holds the two together so a stage cannot be marked implemented
-# with nothing behind it.
-
-def _build_readmissions() -> int:
-    import readmit_borderline_roster
-    return readmit_borderline_roster.build()
-
-
-def _check_readmissions() -> int:
-    import readmit_borderline_roster
-    return readmit_borderline_roster.check()
-
-
-STAGE_BUILDERS = {"readmissions": _build_readmissions}
-STAGE_CHECKERS = {"readmissions": _check_readmissions}
 
 
 def cmd_build(prog: dict, key: str) -> int:

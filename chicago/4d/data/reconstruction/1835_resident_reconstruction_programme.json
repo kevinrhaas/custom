@@ -31,7 +31,8 @@
   "form": "<household_id>:<bucket>",
   "bucket": "the model row the value is drawn from, e.g. `household_size` or `sex_ratio`",
   "algorithm": "blake2s(seed.encode('utf-8'), digest_size=8) read as a big-endian integer",
-  "note": "The seed is a STRING a reader can retype, not a run counter. Two runs of the same stage over the same layer draw the same values; a stage that renumbered its households would redraw them, which is why the id scheme forbids reordering a collision suffix."
+  "note": "The seed is a STRING a reader can retype, not a run counter. Two runs of the same stage over the same layer draw the same values; a stage that renumbered its households would redraw them, which is why the id scheme forbids reordering a collision suffix.",
+  "attribute_fill": "<person_id>:<bucket>. An ATTRIBUTE fill seeds by the PERSON: two people share a household id and would otherwise draw the same value. T-1304 uses `sex_ratio` and `age_bands_1840` as its buckets."
  },
  "naming_rule": {
   "pools": "data/reconstruction/1835_invented_name_pools.json",
@@ -67,7 +68,8 @@
    "head_rule": "data/reconstruction/1835_town_model.json#households_and_families.tables.the_rule_for_a_head_no_source_names",
    "lodging": "data/reconstruction/1835_town_model.json#lodging_and_institutions.tables.lodging_and_institutional_roofs",
    "arrival": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer",
-   "origin": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835"
+   "origin": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835",
+   "age_bands_1840": "data/research/census_1840/composition_1840.json#age_bands.free_white"
   },
   "order_book": {
    "file": "data/reconstruction/1835_reconstruction_order_book.json",
@@ -126,20 +128,32 @@
    "id": "L-rc-underdocumented",
    "when": "T-1177 runs",
    "states": "the cohorts reconstructed within their evidence, and the review they carry"
+  },
+  {
+   "id": "L-rc-age-conditioning",
+   "when": "T-1304 draws an age band",
+   "states": "that the bands a draw is conditioned on - 20 and over for a poll, tax or muster list, 15 and over for any other roll naming a person in their own right - are the MODEL's assumption and no source's statement"
+  },
+  {
+   "id": "L-rc-sex-rate",
+   "when": "T-1304 draws a sex",
+   "states": "that every roll's measured male rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names"
   }
  ],
  "stages": [
   {
    "key": "attribute_fill_sex_age",
-   "ticket": "T-1168",
+   "ticket": "T-1168 (T-1303 read it; T-1304 drew the rest)",
    "title": "Sex and age for every attested and inferred person",
    "writes": "reconstructed ATTRIBUTE blocks on existing persons; no new person",
    "draws_from": [
     "sex_ratio",
-    "under_ten"
+    "under_ten",
+    "age_bands_1840"
    ],
-   "note": "Recorded where a source says, inferred from forename, office or register role, reconstructed from the population model otherwise.",
-   "implemented": false
+   "note": "Recorded where a source says, inferred from forename, office or register role, reconstructed from the population model otherwise. The read tiers are tools/spend_person_sex_age.py (T-1303); the drawn tier is tools/reconstruct_sex_age.py (T-1304), which writes no person and fills `sex_basis` and `age_band` blocks on people the sources already name. The sex rates are measured on this layer's own rolls; the age bands are the 1840 schedule's, and no birth year is written.",
+   "implemented": true,
+   "built_by": "tools/reconstruct_sex_age.py"
   },
   {
    "key": "attribute_fill_arrival",
@@ -155,8 +169,8 @@
   },
   {
    "key": "named_families",
-   "ticket": "T-1170",
-   "title": "The families the sources name, onto the heads that have them",
+   "ticket": "T-1314",
+   "title": "The families the sources COUNT and do not name, onto the heads that have them",
    "writes": "inferred kin persons where a source names them; reconstructed where only counted",
    "draws_from": [
     "household_size"

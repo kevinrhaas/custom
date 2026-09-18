@@ -88,6 +88,24 @@
      "against_merge": "PAINE AND PAYNE ARE BOTH POPULATED SURNAMES IN THIS CORPUS AND THIS TOWN, WHICH IS WHAT THE OTHER NINE PAIRS ARE NOT. The town already holds Seth Paine beside William Paine, and L. W. Payne beside William Payne — two bearers of each spelling, ruled apart by their own forenames. The 1835 poll enters 'Payne, L. W.' (line 343) while the 1834 poll enters 'Paine, William' (line 254), so the town's rolls carry both surnames in their own right. The post office's list of 30 June 1835 prints THREE Paynes in one column — 'Payne Barney', 'Payne Barrey W.', 'Payne Win.' — and no Paine at all. Fergus 1843 prints Paine five times and Payne never; Norris 1844 prints Paine five times. No title reached is caught setting both spellings for one WILLIAM, and where two surnames each have several live bearers a one-letter distance is at its weakest, not its strongest — it is the case T-1001's measurement was about. D7, and the cards stay two. WHAT WOULD SETTLE IT IS NOT A PAGE BUT A COUNT, in C12's shape moved from the forename to the surname — the closed roll leaves the documented man exactly one entry he can be, and the exhaustion is worked over the whole roll and printed rather than asserted. C12 as written reaches a FORENAME only, so firing it on a surname is itself a rule to write. T-1135 owns that question for Pruyne/Pryne and the rule it writes is the one this pair waits on."
     }
    ],
+   "age_band": {
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 30 under 40', one of its male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+    },
+    "seed": "paine_william:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('paine_william:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
    "sex": "male",
    "sex_basis": {
     "value": "male",

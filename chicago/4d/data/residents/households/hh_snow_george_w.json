@@ -233,7 +233,25 @@
      "for_merge": "m FOR n IN A FOUR-LETTER SURNAME, AND THE OTHER SIDE IS ONE OF THE TOWN'S BEST-KNOWN MEN. George W. Snow — surveyor, lumber merchant, the 1833 tax list, the poll of 1834, the Democrat of 10 December 1833 and 18 June 1834, Fergus 1843 ('Snow, George Washington, lumber merchant') and Norris 1844 — carries 'George W.' letter for letter with the Smow card. 'Smow' is set twice in the whole deposited corpus and both are this one reading; the stem has no family, no trade and no second bearer anywhere.",
      "against_merge": "AND NO ONE ROLL SETS BOTH. 'Smow, George W.' is the poll of 10 August 1833 (voter_lists_1833_1835.txt line 46); 'Snow, George W.' is the 1833 tax list (line 148) and the 1834 poll (line 271). Three rolls in one transcription and not one of them carries both spellings, so the printer is never caught and C9's demonstration is missing. T-1027 files this card under the garbles that R5 refuses and T-0695 reads, and that is the second reason not to fold it here: repairing a wreck by guessing at it is what R5 exists to prevent, and the poll's own image is what would repair it. D9 on the rolls, R5's caution behind it, and the `snow` cluster's C2 merge of 'G. W.' onto George W. Snow is untouched because that card is spelled Snow."
     }
-   ]
+   ],
+   "age_band": {
+    "value": "15-19",
+    "low": 15,
+    "high": 19,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's column 'free white males 15 under 20', one of its male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "snow_george_w:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('snow_george_w:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   }
   }
  ],
  "touches_removal": false,

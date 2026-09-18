@@ -48,10 +48,10 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1180 | 494 | split_live | yes |
 | T-1198 | 271 | open | yes |
 | T-1179 | 260 | open | yes |
-| T-1170 | 168 | open | yes |
+| T-1170 | 168 | split_live | yes |
 | T-1182 | 37 | open | yes |
 | T-1188 | 12 | open | yes |
-| T-1168 | 3 | split_live | yes |
+| T-1315 | 3 | open | yes |
 | T-1144 | 1 | open | yes |
 | T-1299 | 1 | open | yes |
 
