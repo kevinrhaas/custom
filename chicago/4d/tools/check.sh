@@ -2220,6 +2220,26 @@ PY
 # `generate_inferred_names.py --check`, not here. `audit_check_gates.py --gate` now
 # refuses a check.sh in which any one command runs under more than one label, so a
 # step cannot borrow another pass's command again.
+# T-1144 acceptance 8, and the gate the reconstruction bands are about to need.
+# `grade` says whether the sources name a person at all: `attested`, `inferred`, or
+# the reserved `reconstructed` — someone the sources do NOT name, drawn from the
+# population model. The owner retired that population on 2026-09-02 and ruled it
+# returns only under an explicit programme file; T-1167 is where it does. Until
+# 2026-09-18 the boundary held only because all three mints happen to hardcode
+# `"grade": "attested"` and the synthesis happens to retire anything else. Nothing
+# asserted it, and T-1228's finding two slots below is what an unasserted invariant
+# is worth. Each of the four writers now refuses on the way out, in EVERY mode, so
+# `--check` is red on the same rule the write is; this step proves the committed
+# layer holds none and that all four calls are still there. It is the CALL that is
+# checked, not the import: a refusal imported and not called is the shape this
+# guards. Per-attribute `confidence: reconstructed` — "Not attested", on one field
+# of a real person — is untouched and must stay that way.
+step "no research writer can mint a reconstructed resident" \
+  python3 tools/refuse_reconstructed_grade.py --check
+
+selftest "...and the refusal fires, while leaving per-attribute confidence alone" \
+  python3 tools/refuse_reconstructed_grade.py --self-test
+
 step "the resident synthesis re-derives the population it writes" \
   python3 tools/synthesize_resident_research.py --check
 

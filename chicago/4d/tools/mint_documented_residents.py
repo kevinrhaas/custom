@@ -115,6 +115,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
+from refuse_reconstructed_grade import refuse_texts  # noqa: E402  (T-1144; reconstruction begins at T-1167, never in a mint)
 from identity_master_guard import (  # noqa: E402  (T-0843; refusal 9)
     IdentityGuard, blind_person_ids, refusal as guard_refusal,
 )
@@ -751,6 +752,12 @@ def build(preload: dict | None = None):
                   if path != INDEX})
     rebuild(index, final)
     files[INDEX] = dumps(index, 1)
+    # T-1144 acceptance 8. Every mode leaves through here, so `--check` and
+    # `--report` are refused on the same rule the write is: a research mint may
+    # emit `attested` or `inferred` and nothing else. The `reconstructed` grade
+    # belongs to the reconstruction programme (T-1167), which has its own writer
+    # and does not call this.
+    refuse_texts(files, "mint_documented_residents.py")
     return files, accepted, refusals, mine_paths
 
 
