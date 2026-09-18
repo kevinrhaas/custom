@@ -1,7 +1,7 @@
 ---
 id: T-0660
 title: The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
-state: blocked-owner
+state: open
 epic: META
 requested_by: loop
 seen: false
@@ -12,7 +12,7 @@ opened: 2026-09-04
 closed: null
 pr: null
 claimed_by: run 9/4/2026, 4:03:06 PM CT
-blocked_on: When a standing, researched letter-list record collides with a family name another record holds, what happens to it? (a) retire it as the acceptance says, stranding 9 research rows and 11 directory matches; (b) retire the weaker record instead of the later-ranked one, which needs rank() changed and re-derives the whole cohort; (c) rule that refusals 7 and 8 are mint-time rules that do not un-mint a standing record, and make the pass SAY the collision instead. The derived evidence is in docs/RESEARCH/letter-list-surname-collisions.md and the options are in this ticket.
+blocked_on: null
 needs_bake: false
 closed_at: null
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/33918572428
@@ -124,3 +124,33 @@ The loop cannot pick between these: (a) and (b) remove people from the town, and
 changes what a refusal means. All three are implementable in one run once the ruling is
 made. `ticket.mjs unblock T-0660` appends this at the QUEUE bottom — it belongs back in
 the research band where it was.
+
+
+## THE OWNER RULED: (c), 2026-09-18
+
+> "go with c"
+
+**Refusals 7 and 8 are MINT-TIME rules. They do not un-mint a record that already
+stands.** Nothing is retired. The nine records keep their evidence, and each gains a block
+naming the other holder of the surname so a reader sees the collision and why both records
+are there.
+
+**What this settles, in the ruling's own terms:**
+
+* population is **unchanged** — no person leaves the town;
+* the nine research rows and eleven directory matches are **not stranded**;
+* **T-0691 dissolves.** Its whole subject was what to do about 76 letter-list households
+  out of step with their own pass — 727 in the tree against 658 derived. Under this ruling
+  they are not out of step: a standing record is not un-minted by a mint-time refusal. What
+  survives of T-0691 is its acceptance 1, wiring `--check` into `check.sh`, and that can now
+  ship because the check is no longer red by construction.
+* `rank()` is **not** changed, so the cohort is not re-derived. That was (b)'s cost and this
+  ruling does not pay it.
+
+**What the implementing run must do, and must NOT do.** It writes the collision block on
+each of the nine, changes the pass so a collision is SAID rather than acted on, and wires
+T-0691's check. **It retires nobody and it re-ranks nothing** — if the work starts to look
+like either, that is the wrong branch and it should stop and say so.
+
+This unblocks T-0660, T-0691 and T-1144, which is the queue's second row and had been
+correctly skipped by every run since the header told them to wait for this.

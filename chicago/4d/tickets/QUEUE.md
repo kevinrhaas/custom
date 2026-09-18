@@ -3,8 +3,12 @@
 # Add findings to an existing ticket first. Put new one-run work beside its dependency;
 # add new research readings to RESEARCH COMPLETION so the spend band can drain.
 # Split multi-run epics into bounded tickets when reached; do not create a refill at the top.
-# Research spend: fix identity/date/mint gates before deriving cards. T-0662/T-1144
-# need the blocked T-0660 -> T-0691 letter-list ruling; do not invent its outcome.
+# Research spend: fix identity/date/mint gates before deriving cards. THE LETTER-LIST
+# RULING IS MADE (owner, 2026-09-18: option (c) on T-0660) — refusals 7 and 8 are
+# mint-time rules and do not un-mint a standing record; nothing is retired, rank() is
+# unchanged, and the pass SAYS a collision instead of acting on it. T-1144 is no longer
+# waiting on anything and is the queue's second row; the line that told runs to skip it
+# is gone with this. T-0691 shrinks to wiring its --check into check.sh.
 # South Through Time: 1812 depiction follows AGENTS.md Indigenous-history review;
 # ship no human figures. T-0469/T-0470/T-0471 depend on T-0468; T-0472 on T-0470.
 # Prairie Avenue: T-0474 follows T-0473; T-0475/T-0477 follow T-0474;
@@ -41,6 +45,7 @@
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
+T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
