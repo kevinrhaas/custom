@@ -1198,6 +1198,20 @@ RECORD_KINDS = ("zone", "manifest", "palette", "household")
 # one of these leaves the data.
 REFUSALS: dict[str, str] = {
     # -------------------------------------------------------------------------
+    # T-1320 reads the book corpus for kinship. A kin row it writes or corroborates names
+    # the book claim behind it, so `--check` can hold the row to a live ruling and a row
+    # that outlived its ruling goes red. It is a foreign key into
+    # data/research/books/kin_rulings.json and data/research/books/claims/*.json, in the
+    # same class as `stated_family.statement` below.
+    "residents/household:kin[].book_kin": (
+        "The id of the book claim this kin row was read out of — a foreign key into "
+        "data/research/books/claims/ and the ruling that answers it. It is what makes "
+        "the write re-derivable and what lets the gate notice a tie that lost its "
+        "reading; it states nothing about either person. What a visitor judges the "
+        "relationship by is on the row already and is read there: the relation, the "
+        "confidence, the sources and the note that quotes the sentence."
+    ),
+    # -------------------------------------------------------------------------
     # T-1313 seated the three relatives T-1170's reading ruled `write`, and every seated
     # person carries the marker that makes the write re-derivable. Six keys, none of them
     # a figure about a person: one names the pass, one the ticket, one resolves the read

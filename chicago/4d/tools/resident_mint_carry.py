@@ -203,6 +203,18 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
             person.pop("dated_bounds", None)
             _insert_after(person, "dated_bounds", bounds, "sources")
 
+        # T-1337: AND THE SAME FOR THE SECOND EVIDENCE BLOCK, IN A FIXED ORDER BEHIND THE
+        # FIRST. `tools/spend_appearance_bounds.py` writes `persons[].appearance_bounds[]`
+        # — the 1830 schedule lines and St Mary's register appearances — and it puts the
+        # block after `dated_bounds` where the card carries one, precisely so two passes
+        # writing evidence beside the same `sources` cannot disagree about which comes
+        # first and report drift by turns. Carrying it back in at the tail would undo that.
+        appearances = old.get("appearance_bounds")
+        if appearances is not None and "appearance_bounds" not in owned:
+            person.pop("appearance_bounds", None)
+            _insert_after(person, "appearance_bounds", appearances,
+                          "dated_bounds" if "dated_bounds" in person else "sources")
+
         # A later trade is another pass's pointer inside an object the mints own.
         pointer = (old.get("occupation") or {}).get("later_occupation")
         if pointer is not None and isinstance(person.get("occupation"), dict):

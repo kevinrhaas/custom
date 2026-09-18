@@ -3365,6 +3365,42 @@ step "…and each of those rulings is a bound on the card, not only a paragraph"
 selftest "…and a roll bounds a presence, a tax roll bounds property, and neither reaches the scene" \
   python3 tools/spend_civic_roll_bounds.py --self-test
 
+# T-1337. THE SAME HOP FOR TWO MORE CORPORA, AND THIS TIME NOT A LEGIBILITY PASS. T-1329
+# held 238 units — the 1830 Peoria & Putnam schedule, St Mary's and St Cyr's registers, and
+# the town's press — and only ten of them sat on a card in any form, so an identification
+# had to already stand before a bound could be written. Two did: the resident crosswalk's
+# 14 matched 1830 lines and the baptismal crosswalk's 13 merged register appearances. This
+# pass writes those 27 as `persons[].appearance_bounds[]`; an 1830 row bounds presence in a
+# DISTRICT and not at Chicago (`here_by: null` — the division never writes the word
+# Chicago), and three register appearances are dated after 1 July 1835, so they date an
+# appearance and bound nothing at the scene. The other 83 are refused by name in the ruling
+# registers, and the 128 press units went to T-1338 with the id collision that blocks them.
+step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards they name" \
+  python3 tools/spend_appearance_bounds.py --check
+
+selftest "…and a district is not the town, a later appearance bounds nothing, and no kin tie is taken" \
+  python3 tools/spend_appearance_bounds.py --self-test
+
+# T-1332. THE SAME HOP, FOR THE LAND REGISTER, INTO THE SAME BLOCK. T-1296 ruled all 1,572
+# land-sale purchaser units and could not close 313 of them: the tract was entered on or
+# before 1 July 1835 and the T-0700 / T-0850 adjudication UPHELD the purchaser against a
+# card this town holds. It handed them to this ticket and said of itself that a hand-off is
+# not a spend. This pass is the spend, and it writes into `persons[].dated_bounds[]` rather
+# than inventing a second shape for a dated appearance — so the block now has two owners and
+# `tools/dated_bounds_block.py` is the rule that keeps them from wiping each other. It is
+# gated in four directions: a bound that stops reaching its card, a card carrying a bound off
+# a purchase the crosswalk never upheld, a drifted ledger, and — the one that is not about
+# this pass at all — the ruling register STILL ruling the 313, which
+# `research_spend_ledger.ruling_coverage_faults` fails as work that reads done and is not.
+step "…and the 313 upheld land-sale purchases are bounds on the cards they name (T-1332)" \
+  python3 tools/spend_land_sale_bounds.py --check
+
+selftest "…and a purchase is a dated appearance, never a residence, and never a Chicago presence" \
+  python3 tools/spend_land_sale_bounds.py --self-test
+
+selftest "…and two owners of one block replace their own rows and nobody else's" \
+  python3 tools/dated_bounds_block.py --self-test
+
 # T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
 # Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
 # had matched 101 entries to people this town holds, and the second hop could not even see
@@ -3465,6 +3501,19 @@ step "every family member the sources name is ruled on, and the ruled writes are
 
 selftest "…and an unruled statement, a lost write and a stale report all still fire" \
   python3 tools/spend_stated_families.py --self-test
+
+# T-1320. Both passes above read the CARDS. Neither has ever read data/research/books/ —
+# nine committed books, 267 adjudicated claims — for the kinship the books state, so a
+# book sentence only reached a card when somebody happened to quote it onto one. This
+# pass reads them, resolves both ends through the books' own crosswalk and by nothing
+# else, and answers every claim that states kinship in
+# data/research/books/kin_rulings.json. It mints nobody: a relative who was never in this
+# scene is EVIDENCE and not structure, which is validate.py's own rule for a kin row.
+step "every kinship the book corpus states is ruled on, and the ruled ties are on the cards" \
+  python3 tools/spend_book_kin.py --check
+
+selftest "…and a half brother flattened to a brother, a one-sided tie and a lost claim all still fire" \
+  python3 tools/spend_book_kin.py --self-test
 
 # T-0992. T-0962 widened the second hop to read the `matched` container and church entered
 # that report for the first time: 83 rulings reached a person this town holds a card for and

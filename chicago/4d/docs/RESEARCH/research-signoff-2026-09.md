@@ -32,32 +32,31 @@ Reproduce: `python3 tools/report_research_signoff.py --check`.
 | Disposition | Units |
 | --- | ---: |
 | aggregate_only | 173 |
-| asserted | 483 |
+| asserted | 812 |
 | later_only | 12,568 |
 | outside_chicago | 109 |
-| refused | 8,549 |
-| unresolved | 1,811 |
+| refused | 8,630 |
+| unresolved | 1,401 |
 
-Unclassified: **0** (C1). Asserted units whose named field does not resolve on the record: **0** of 483 (C2). The resident synthesizer's declared drift from the cards it writes: **0** file(s) (C4).
+Unclassified: **0** (C1). Asserted units whose named field does not resolve on the record: **0** of 812 (C2). The resident synthesizer's declared drift from the cards it writes: **0** file(s) (C4).
 
 An `unresolved` unit is research read and not yet spent, and it is only legitimate while the ticket it defers to is still going to happen. Read the owners column carefully — it is the most informative table in this report:
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
 | T-1182 | 531 | open | yes |
-| T-1332 | 313 | open | yes |
-| T-1198 | 271 | open | yes |
+| T-1198 | 270 | open | yes |
 | T-1172 | 260 | open | yes |
-| T-1329 | 238 | open | yes |
-| T-1320 | 168 | open | yes |
+| T-1335 | 168 | open | yes |
+| T-1338 | 128 | open | yes |
+| T-1317 | 21 | open | yes |
 | T-1188 | 12 | open | yes |
-| T-1337 | 7 | open | yes |
 | T-1144 | 6 | split_live | yes |
 | T-1315 | 3 | open | yes |
 | T-1299 | 1 | open | yes |
 | T-1334 | 1 | open | yes |
 
-Not one of those owners asks for another READING. The heaviest are T-1182 (531), T-1332 (313), T-1198 (271), T-1172 (260), T-1329 (238) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
+Not one of those owners asks for another READING. The heaviest are T-1182 (531), T-1198 (270), T-1172 (260), T-1335 (168), T-1338 (128) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
 
 | The town as the layer holds it | Count |
 | --- | ---: |
@@ -226,16 +225,16 @@ Reproduce: `python3 tools/location_reconciliation.py --check` · `python3 tools/
 
 ## 5. Withheld is legible
 
-**21,399** reading units were deliberately kept out of the town, and **0** of them do so without a stated reason (C8). A refusal that cannot say why is indistinguishable from an oversight, which is the whole point of keeping them.
+**21,480** reading units were deliberately kept out of the town, and **0** of them do so without a stated reason (C8). A refusal that cannot say why is indistinguishable from an oversight, which is the whole point of keeping them.
 
 | Withheld as | Units |
 | --- | ---: |
 | `aggregate_only` | 173 |
 | `later_only` | 12,568 |
 | `outside_chicago` | 109 |
-| `refused` | 8,549 |
+| `refused` | 8,630 |
 
-The same rule over the gate itself: of **171** tools carrying a `--check`, **165** are run by `tools/check.sh` and **6** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
+The same rule over the gate itself: of **179** tools carrying a `--check`, **173** are run by `tools/check.sh` and **6** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
 
 | Ungated check | Owner | States why |
 | --- | ---: | ---: |
