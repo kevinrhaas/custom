@@ -63,7 +63,7 @@ WIRED_WRITERS = {
     # members the sources NAME on a head this layer already carries. The counted ones are
     # the reconstruction programme's and are on the other side of this boundary.
     "tools/spend_stated_families.py":
-        'refusal.refuse(written, WRITER)',
+        'refusal.refuse(changed, WRITER)',
 }
 
 
