@@ -3681,6 +3681,30 @@ step "the trade-census gap is spent from the layers that hold it, and nobody is 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/trade_census_spend_1835.py --self-test
 
+# T-1293, WHICH FOLDS T-1161 THROUGH T-1165. The step above compares the town to ONE
+# count of the trades. This is the whole model the reconstruction bands spend: population,
+# occupations, households, lodging and arrival, each figure a RANGE with its method and a
+# named comparandum, derived from files this gate already holds — the town census, the
+# authored roof programme, the T-1006 crosswalk, the 1840 composition and the Old Settlers
+# roll. It reads no page and it names nobody; `--self-test` refuses a build that does.
+#
+# WHY A GATE AND NOT A DOCUMENT. Every figure is a function of a file that MOVES: the
+# arrival distribution is recomputed whenever the resident layer is, and the population
+# floor is derived from it. Left ungated, the model would go quietly stale against its own
+# inputs while reading as a finished decision, which is the failure the order book (T-1166)
+# can least afford — it is the quota bands 3-5 build to.
+#
+# The refusals worth knowing: an inverted range, a figure with no method or no file behind
+# it, a point reading outside its own bounds, a section that takes more than one sentence
+# to say what it is not claiming, and an EMPTY arrival distribution — which would otherwise
+# return the November ceiling at both ends and stop being a range while still looking like
+# one.
+step "the 1835 town model re-derives, and every figure is bounded and says what it rests on" \
+  python3 tools/model_town_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/model_town_1835.py --self-test
+
 # T-0440. A house is minted from whichever printing the corpus carries first, and it took
 # `placement` and `street` from it — so a standing advertisement that ran without an
 # address in its first week and with one afterwards stood at `{"class": "none"}` for good
