@@ -60,7 +60,9 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in."
+    "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -75,7 +77,28 @@
     "reviewed_on": "2026-09-02",
     "asserted_identity": false
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "roles": [
+    {
+     "role": "sheriff",
+     "kind": "office",
+     "as_printed": "sheriff of cook county",
+     "from": "1864",
+     "to": "1864",
+     "precision": "year",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "claim": "f1839_r0104",
+     "place": "not_stated",
+     "employer_or_body": "cook_county",
+     "note": "AN OFFICE FROM THE FERGUS 1839 CITY REGISTER, carried here by its own crosswalk (T-1254, by tools/derive_resident_roles.py). The register is a retrospective table set in 1876, and its carry rule is explicit: a later office is corroboration of CONTINUED RESIDENCE and never an 1835 fact. It therefore does not stand in the 1835 view."
+    }
+   ]
   }
  ],
  "touches_removal": false,

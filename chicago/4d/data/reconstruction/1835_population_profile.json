@@ -23,7 +23,7 @@
   },
   "persons_with_a_sex": 582,
   "persons_with_a_dated_age": 10,
-  "persons_with_a_role": 262,
+  "persons_with_a_role": 327,
   "households_naming_an_origin": 23,
   "households_naming_a_reason": 25,
   "households_naming_a_lives_at": 20
@@ -597,7 +597,7 @@
   {
    "id": "age",
    "title": "Age",
-   "lead": "10 of 1282 persons carry a year or an age; 410 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage. 862 persons carry nothing that bears on age. THERE IS NO AGE PYRAMID HERE: 10 dated ages cannot make one, which is T-1174's brief.",
+   "lead": "10 of 1282 persons carry a year or an age; 467 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage. 805 persons carry nothing that bears on age. THERE IS NO AGE PYRAMID HERE: 10 dated ages cannot make one, which is T-1174's brief.",
    "tables": [
     {
      "title": "Age bands",
@@ -629,8 +629,8 @@
       ],
       [
        "adult_by_role",
-       184,
-       "14.4%",
+       241,
+       "18.8%",
        "an adult: a trade, profession or office is not held by a child"
       ],
       [
@@ -647,8 +647,8 @@
       ],
       [
        "unknown",
-       862,
-       "67.2%",
+       805,
+       "62.8%",
        "nothing on the card bears on age at all"
       ]
      ],
@@ -1059,7 +1059,7 @@
   {
    "id": "roles",
    "title": "Roles — plural and dated",
-   "lead": "262 of 1282 persons carry at least one role and 5 carry two or more. 127 of the 267 roles in the layer reach 1 July 1835; the other 140 are printed against the name in a later volume and say so.",
+   "lead": "327 of 1282 persons carry at least one role and 173 carry two or more. 160 of the 687 roles in the layer reach 1 July 1835; the other 527 are printed against the name in a later volume and say so.",
    "tables": [
     {
      "title": "Persons by number of roles",
@@ -1072,18 +1072,53 @@
      "rows": [
       [
        "0",
-       1020,
-       "79.6%"
+       955,
+       "74.5%"
       ],
       [
        "1",
-       257,
-       "20.0%"
+       154,
+       "12.0%"
       ],
       [
        "2 or more",
-       5,
-       "0.4%"
+       67,
+       "5.2%"
+      ],
+      [
+       "3 or more",
+       67,
+       "5.2%"
+      ],
+      [
+       "4 or more",
+       18,
+       "1.4%"
+      ],
+      [
+       "5 or more",
+       8,
+       "0.6%"
+      ],
+      [
+       "6 or more",
+       8,
+       "0.6%"
+      ],
+      [
+       "7 or more",
+       3,
+       "0.2%"
+      ],
+      [
+       "8 or more",
+       1,
+       "0.1%"
+      ],
+      [
+       "9 or more",
+       1,
+       "0.1%"
       ]
      ],
      "note": ""
@@ -1098,15 +1133,19 @@
      "rows": [
       [
        "trade",
-       221
+       556
       ],
       [
        "profession",
-       36
+       80
       ],
       [
        "office",
-       10
+       50
+      ],
+      [
+       "employment",
+       1
       ]
      ],
      "note": ""
@@ -1379,7 +1418,7 @@
     }
    ],
    "notes": [
-    "Offices held: Gholson Kercheval, James Walker, James Whitlock, John S. C. Hogan, Levi F. Arnold, Richard Jones Hamilton, Stephen Forbes, Stephen M. Salisbury, Thomas Galaher, Thomas Jefferson Vance Owen.",
+    "Offices held: Alexander Loyd, Asahel Pierce, Ashbel Steele, Col. Jean Baptiste Beaubien, Daniel Elston, Edmund D Taylor, Erastus Bowen, George Davis, George W. Snow, George Washington Dole, Gholson Kercheval, Isaac Dewey Harmon, James Walker, James Whitlock, Jeremiah Price, Jeremiah Smith, John Harris Kinzie, John M. Nelson, John Miller, John Murphy, John S. C. Hogan, John Scott, Josiah Stillman, Levi F. Arnold, Mark Beaubien, O I Thompson, Richard Jones Hamilton, Russel E. Heacock, Silas W Sherman, Stephen Forbes, Stephen M. Salisbury, Thomas Galaher, Thomas Jefferson Vance Owen, W B Ogden, William H Brown, William H. Stow.",
     "Houses of entertainment kept: Alanson Sweet, Chester Ingersoll, Edward H. Haddock, Harriet Murphy, Ira Couch, J. Shrigley, James Couch, John Davis, John Murphy, Mark Beaubien, Mrs Rufus Brown, Rufus Brown, William H. Stow, William Walters."
    ]
   },

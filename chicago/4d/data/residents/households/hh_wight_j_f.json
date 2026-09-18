@@ -57,7 +57,9 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -108,6 +110,27 @@
      ],
      "for_merge": "A dropped r, and the initial J agrees with John S. Wright his son — 'J. S. Wright' in the Democrat of 29 October 1834, and Fergus 1843's 'Wright, John Stephen, editor and proprietor Prairie Farmer'.",
      "against_merge": "THE INITIAL J HAS TWO RIVALS AMONG THE WRIGHTS AND THE `wright` CLUSTER HAS ALREADY SAID SO. Its standing U1/R2 ruling refuses a bare 'J. Wright' because the father and the son share the forename John and the initial cannot choose between them; folding the surname as well adds a third candidate and removes nothing. 'J. F. Wight' is one reading, the Democrat of 11 June 1834 (#c007), and its middle initial F is carried by no Wright of this town — John S. Wright's is S, and T-0997's C2 merge inside that cluster turned on exactly that printed letter. The town holds six Wright cards and one Wight. Refused by a ratified rule; no ballot needed."
+    }
+   ],
+   "roles": [
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "steamboat owner",
+     "from": "1834-06-11",
+     "to": "1834-06-18",
+     "precision": "source_span",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_j_f_wight",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-06-11 to 1834-06-18, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
     }
    ]
   }

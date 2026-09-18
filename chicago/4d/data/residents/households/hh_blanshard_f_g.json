@@ -57,7 +57,9 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_democrat_1833_1835"
@@ -85,6 +87,27 @@
      ],
      "for_merge": "'F. G.' agrees with 'F. Gantry' initial for initial, the surnames differ by one letter (c against s) in a ten-letter name, and 'Blanshard' is set NOWHERE in the deposited corpus — not once — while Blanchard is set 65 times. A stem with no independent life in the corpus is the shape a mis-set card usually takes.",
      "against_merge": "THE TOWN HOLDS TWO BLANSHARDS, AND NO TITLE SETS BOTH SPELLINGS. Against the corpus silence stands the resident layer: blanshard_f_g and blanshard_g are two cards of that spelling, so within this town the stem is populated in its own right and a fold of one of them says nothing about the other. The readings do not touch: 'Blanchard, F. Gantry' is the poll of 1834 and 'Blanchard, Gantry' the tax list of 1833, with Fergus 1843 ('Francis Gurtrey Blanchard, capitalist, res 45 Wells') and Norris 1844 ('Francis G.') behind them; 'F. G. Blanshard' is the Democrat of 12 November 1834 (#c012) and nothing else. No single printing is caught setting both spellings for one man. D7 — and the `blanchard` cluster's C8 merge of Gantry onto F. Gantry is untouched, because that fold had the directory printing the name whole and this one has nothing of the kind."
+    }
+   ],
+   "roles": [
+    {
+     "role": "land_agent",
+     "kind": "trade",
+     "as_printed": "house and lot agent",
+     "from": "1834-11-12",
+     "to": "1834-11-12",
+     "precision": "day",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_f_g_blanshard",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-11-12 to 1834-11-12, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
     }
    ]
   }

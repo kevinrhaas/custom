@@ -59,7 +59,9 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in."
+    "note": "No source records an occupation for this person. A list of uncalled-for letters prints a name and no trade, and this pass will not read one in.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_democrat_1833_1835"
@@ -96,6 +98,27 @@
      "describes_date": "1834-09-10",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
+    }
+   ],
+   "roles": [
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "administratrix",
+     "from": "1834-09-10",
+     "to": "1834-09-10",
+     "precision": "day",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_bradford_harriet",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-09-10 to 1834-09-10, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
     }
    ]
   }

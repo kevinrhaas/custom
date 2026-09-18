@@ -122,12 +122,34 @@
      "precision": "month",
      "dated_by": "source_describes_date",
      "covers_scene_date": false,
+     "fills_scene_view": false,
      "confidence": "attested",
      "sources": [
       "chicago_democrat_1833_11_26"
      ],
      "claim": null,
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
      "note": "A DATED ROLE THAT DOES NOT REACH THE SCENE DATE (T-0991, withdrawn from the 1835 field by tools/derive_resident_roles.py). No source cited for this trade describes 1835, so it is retained here with the bound its evidence permits and the 1835 compatibility view reads `none_recorded` instead. tools/audit_scene_window_trades.py's verdict is `pre_scene_printing`: 'Matthias Mason & Co., blacksmiths', Chicago Democrat, 26 November 1833. The MAN is printed in the paper to 20 May 1835, inside the window; the FIRM is last printed 10 December 1834, outside it. A card may not read the second off the first."
+    },
+    {
+     "role": "blacksmith",
+     "kind": "trade",
+     "as_printed": "blacksmith",
+     "from": "1834-01-07",
+     "to": "1835-05-20",
+     "precision": "source_span",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_matthias_mason",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-01-07 to 1835-05-20, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
     }
    ]
   }

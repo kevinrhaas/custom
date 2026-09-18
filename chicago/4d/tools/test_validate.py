@@ -2695,9 +2695,15 @@ def _resident_role(**kw) -> dict:
     r = {"role": "cooper", "kind": "trade", "as_printed": "a cooper",
          "from": "1835", "to": "1835", "precision": "year",
          "dated_by": "source_describes_date", "covers_scene_date": True,
-         "confidence": "attested", "sources": ["s1"], "claim": None,
+         "fills_scene_view": True, "confidence": "attested", "sources": ["s1"],
+         "claim": None, "place": "not_stated", "employer_or_body": "not_stated",
          "note": "s1 is about 1835 and names the trade"}
     r.update(kw)
+    # T-1254: `fills_scene_view` follows `covers_scene_date` unless a test says
+    # otherwise, because a row cannot stand in a view its evidence does not reach and
+    # every fixture that turns coverage off means to turn the standing off with it.
+    if "covers_scene_date" in kw and "fills_scene_view" not in kw:
+        r["fills_scene_view"] = kw["covers_scene_date"]
     return r
 
 
@@ -3187,6 +3193,32 @@ def test_a_role_is_dated_and_the_1835_field_is_only_their_view() -> None:
     check("a withdrawal standing beside a live trade is an error",
           any("carries a withdrawal and a trade at once" in e for e in rep.errors),
           rep.errors)
+
+    # T-1254. A role says WHERE and FOR WHOM, and `not_stated` is the value where the
+    # record does not say - a blank is a field nobody filled and is refused.
+    for key in ("place", "employer_or_body"):
+        rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                    "note": "n", "derived_from": "roles",
+                    "roles_at_scene_date": ["cooper"]},
+                   [_resident_role(**{key: ""})])
+        check(f"a role with an empty {key} is an error",
+              any(f"{key} must be a non-empty string" in e for e in rep.errors),
+              rep.errors)
+
+    # T-1254. Reaching the scene date and STANDING in the 1835 field are two readings,
+    # and the second may not outrun the first.
+    rep = view({"value": "none_recorded", "confidence": "reconstructed", "note": "n",
+                "derived_from": "roles", "roles_at_scene_date": []},
+               [_resident_role(covers_scene_date=False, fills_scene_view=True)])
+    check("a role filling a view its evidence does not reach is an error",
+          any("fills the 1835 view and does not reach" in e for e in rep.errors),
+          rep.errors)
+
+    rep = view({"value": "none_recorded", "confidence": "reconstructed", "note": "n",
+                "derived_from": "roles", "roles_at_scene_date": []},
+               [_resident_role(fills_scene_view=False)])
+    check("…and one that reaches it without standing in it is legal, and empties the "
+          "field", not rep.errors, rep.errors)
 
     rep = view({"value": "none_recorded", "confidence": "reconstructed", "note": "n",
                 "derived_from": "roles", "roles_at_scene_date": [],

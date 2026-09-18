@@ -121,12 +121,15 @@
      "precision": "year",
      "dated_by": "printing_year",
      "covers_scene_date": false,
+     "fills_scene_view": false,
      "confidence": "attested",
      "sources": [
       "fergus_chicago_directory_1843"
      ],
      "claim": null,
-     "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1843."
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1843. SYNONYM-FOLDED (T-1254): the same source prints this role as (sign of the three hats), hat, cap, and fur manufacturer, 10S Lake Street, Chicago; hats and caps of all qualities and of the latest fashions to suit customers; also every variety of articles belonging to his line of business, such as buckskin mittens, gloves, overshoes, umbrellas, gentlemen's neck stocks, life preservers, and money and riding belts. N.B.- Hatters' stock and trimmings always on hand; buffalo robes for sale, wholesale and retail; cash paid for furs and deer-skins as well, and one source asserting one role over one bound is one row."
     }
    ]
   }

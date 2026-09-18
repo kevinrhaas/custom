@@ -59,7 +59,9 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_american_1835",
@@ -99,6 +101,27 @@
      ],
      "for_merge": "A terminal e and an initial that agrees with John, and the Greene card is the best anchored card the pool touches: Major John Greene, in command at Fort Dearborn on the scene date, with quarters and a post in the record.",
      "against_merge": "THE ANCHOR IS ON THE WRONG SIDE OF THE FOLD, AND THAT IS X2's POINT. 'J. Green' is the 1835 poll list and the American of 13 June 1835 (#c013); Major John Greene is Andreas and the fort literature, with no letter-list or poll reading at all. The initial J attaches to 'John' only because the candidate test folded the surname first, so the forename inference is a fact about the rest of the town and not evidence about the reading — the direction T-0697 refused. GREEN IS POPULATED AND GREENE IS NOT: the town holds green_damel_m, green_j and green_mary, the reading index thirteen Green identities against one Greene, and no Green of the town is a John. No printing is caught setting both spellings for one man, and the fold would put a serving army major onto a town poll roll on the strength of one letter. D7."
+    }
+   ],
+   "roles": [
+    {
+     "role": "army_officer",
+     "kind": "profession",
+     "as_printed": "Major, 5th Infantry, commanding the post",
+     "from": "1835-05-27",
+     "to": "1835-06-13",
+     "precision": "source_span",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_american_1835"
+     ],
+     "claim": "person_j_green",
+     "place": "not_stated",
+     "employer_or_body": "united_states_army",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-05-27 to 1835-06-13, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view. SYNONYM-FOLDED (T-1254): the same source prints this role as army officer as well, and one source asserting one role over one bound is one row."
     }
    ]
   }

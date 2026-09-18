@@ -57,7 +57,9 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_democrat_1833_1835"
@@ -95,6 +97,65 @@
      "referred_to": "rule",
      "for_merge": "Paul J. Carli is the only Carli the town documents at all, and `P. S. Carli` is printed in the same paper inside the same four months — 9 July and 10 September 1834 against his own 18 June and 8 October.",
      "against_merge": "THE SAME PAPER SETS BOTH MIDDLE INITIALS AND SETS THEM APART: `P. J. Carli` on 18 June 1834 stands on the Paul J. Carli card, and `P. S. Carli` is a second reading, twice, under a different letter. A compositor's slip would have to have been made twice and never made in the other direction. Nothing else is recorded of either — no trade, no address — so there is no evidence beyond the initials to settle it. R3."
+    }
+   ],
+   "roles": [
+    {
+     "role": "tavern_keeper",
+     "kind": "trade",
+     "as_printed": "tavern keeper",
+     "from": "1834-07-09",
+     "to": "1834-07-09",
+     "precision": "day",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_p_s_carli",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-07-09 to 1834-07-09, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
+    },
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "fancy store keeper",
+     "from": "1834-09-10",
+     "to": "1834-09-17",
+     "precision": "source_span",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_carli_p_s",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-09-10 to 1834-09-17, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
+    },
+    {
+     "role": "tavern_keeper",
+     "kind": "trade",
+     "as_printed": "tavern keeper",
+     "from": "1834-09-10",
+     "to": "1834-09-17",
+     "precision": "source_span",
+     "dated_by": "stated_date",
+     "covers_scene_date": false,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_carli_p_s",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-09-10 to 1834-09-17, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
     }
    ]
   }
