@@ -7,9 +7,10 @@
   "value": "1827",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "'Russel E. Heacock, who had come in 1827' - the earliest arrival of any Anglo-American household in this parcel, four years before the town's incorporation and six before the treaty.",
+  "note": "'Russel E. Heacock, who had come in 1827' - the earliest arrival of any Anglo-American household in this parcel, four years before the town's incorporation and six before the treaty. CORROBORATED, AND THE OTHER HALF OF THE ROW IS REFUSED IN WRITING. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. Row bk_mose1_as_014 reads 'Heacock, Russel E', YEAR 1827, remarks 'Voted in 1830, died at Summit, 1849', and the spellings agree letter for letter — one l in Russel, the middle initial E. The year is the year this card already carries in Andreas's own clause. THE NATIVITY CELL IS NOT TAKEN: it is a printer's DITTO reading Ohio, and the books crosswalk merged this row ON THE YEAR ALONE because Andreas's account of the man does not make him an Ohioan and a ditto is the easiest cell in a printed table to set one row out of place. `origin` is therefore not edited here and keeps its drawn region and its replacement rule; a ditto this project distrusts is not evidence of a birthplace. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here.",
   "precision": "year"
  },
  "party_size_on_arrival": {

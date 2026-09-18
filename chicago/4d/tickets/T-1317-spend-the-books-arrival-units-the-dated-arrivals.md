@@ -1,7 +1,7 @@
 ---
 id: T-1317
 title: Spend the books' arrival units: the dated arrivals, nativities and presence bounds Hubbard's autobiography, Andreas and Moses and Kirkland state about people this town holds, onto the cards they name
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1316
 opened: 2026-09-18
-closed: null
+closed: 2026-09-18
 pr: null
-claimed_by: null
+claimed_by: run 9/18/2026, 9:46:52 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-18T14:49:50.845Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35357917317
 ---
 
 Spend the books' arrival units: the dated arrivals, nativities and presence bounds Hubbard's autobiography, Andreas and Moses and Kirkland state about people this town holds, onto the cards they name.

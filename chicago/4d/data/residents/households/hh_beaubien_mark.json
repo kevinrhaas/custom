@@ -5,8 +5,11 @@
  "head": "beaubien_mark",
  "arrival": {
   "value": "1826",
-  "confidence": "reconstructed",
-  "note": "NOT ATTESTED HERE. Beaubien is in the settlement well before the town exists - he is a ferryman by 1831 and has built the Sauganash by 1829-31 - but no passage reached gives the year he came. 1826 is the figure in general circulation and it is carried as a conjecture that cites nothing, precisely so that a reader can see it is not evidence.",
+  "confidence": "inferred",
+  "sources": [
+   "moses_kirkland_history_of_chicago_v1"
+  ],
+  "note": "A CONJECTURE THAT CITED NOTHING NOW CITES A PAGE, AND THE YEAR IS UNCHANGED BECAUSE THE PAGE PRINTS THE SAME YEAR. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. Row bk_mose1_as_004 reads 'Beaubien, Mark', nativity by ditto (Michigan), YEAR 1826, remarks 'Voted in 1830, died April 11, 1881'; the books crosswalk merges it onto this card on the death date, exact to the day against John Wentworth's roll. WHAT THIS RECORD USED TO SAY, and why the change is a gain rather than a restatement: \"NOT ATTESTED HERE. Beaubien is in the settlement well before the town exists - he is a ferryman by 1831 and has built the Sauganash by 1829-31 - but no passage reached gives the year he came. 1826 is the figure in general circulation and it is carried as a conjecture that cites nothing, precisely so that a reader can see it is not evidence.\" — 1826 was the commonplace of the Chicago literature and no sentence. It is now a row of a printed table with a nativity column beside it. INFERRED AND NOT ATTESTED: an 1895 compilation at second hand from Hurlbut dates a claim and does not prove it, which is the same rung this project gives the Old Settlers roll. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here.",
   "precision": "year"
  },
  "party_size_on_arrival": {
@@ -18,9 +21,10 @@
   "value": "A French-descended trading family of the Detroit and Milwaukee country",
   "confidence": "inferred",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "Andreas's life of his brother Jean Baptiste gives the family's trading history at Milwaukee from about 1800 and the move to Chicago in 1812; Mark's own route is not traced."
+  "note": "Andreas's life of his brother Jean Baptiste gives the family's trading history at Milwaukee from about 1800 and the move to Chicago in 1812; Mark's own route is not traced. Row bk_mose1_as_004's nativity cell is the printer's ditto of the row above it — Michigan, carried down from the row above it, which is Jean Baptiste Beaubien's — and the record resolves it as a ditto rather than as a cell of its own. It agrees with the Detroit and Milwaukee country this field already names and does not narrow it."
  },
  "reason_for_coming": {
   "value": "Trade and tavern keeping at the forks",
