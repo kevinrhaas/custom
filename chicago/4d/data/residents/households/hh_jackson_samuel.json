@@ -7,7 +7,6 @@
  "arrival": {
   "value": "1834-10-01",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -17,13 +16,11 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": "Buffalo, New York",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_voter_lists_1833_1835_irad"
   ],
@@ -32,25 +29,21 @@
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested: a letter list gives a name and no address."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested. No trade is recorded, so there is no premises to seek."
  },
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -70,7 +63,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "tier": "unknown",
     "later_occupation": {
      "value": "Government works, near Garrison",
      "describes_date": 1839,
@@ -108,7 +100,6 @@
      "field": "arrival_at_chicago",
      "value": "1833-06-27",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "chicago_voter_lists_1833_1835_irad"
      ],
@@ -123,7 +114,6 @@
      "field": "origin",
      "value": "Buffalo, New York",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "chicago_voter_lists_1833_1835_irad"
      ],
@@ -170,7 +160,6 @@
     "occupation_later": {
      "value": "Government works, near Garrison",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -180,7 +169,6 @@
     "address_later": {
      "value": "res Fort Dearborn",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1844,
      "sources": [
       "norris_directory_1844"

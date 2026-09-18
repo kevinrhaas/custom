@@ -40,10 +40,31 @@ THE SHAPE (additive — no existing field moves, and `confidence` is untouched):
 
 `tier` is DERIVED from `confidence` and the value and may not disagree with that
 derivation — `validate.py` refuses the disagreement, which is what stops a tier being
-quietly promoted above the evidence its own confidence admits to. The tier is written
-into the card rather than computed by each reader because the reconstruction bands
-(T-1167 onward) need somewhere to WRITE one, and a value invented without a basis and
-without a seed must be refusable at the moment it is written.
+quietly promoted above the evidence its own confidence admits to.
+
+WHY THE EXISTING LAYER'S TIERS ARE DERIVED RATHER THAN WRITTEN INTO THE CARDS, which
+is the one design decision here worth arguing with. The obvious move is to write `tier`
+into all 1,258 household records, and it was tried first. It cannot stand: those bytes
+are owned by NINE derivations that each rebuild a card from its sources and compare the
+result to the committed file —
+
+    synthesize_resident_research.py --drift    mint_documented_residents.py --check
+    mint_civic_residents.py --check            mint_placed_residents.py --check
+    back_project_addresses.py --check          back_project_residences.py --check
+    qualify_later_trades.py --check            survey_stated_kin.py --write
+    the four directory crosswalks
+
+— and none of them knows the field exists, so ten of `check.sh`'s steps go red the
+moment a tier lands in a card, and stay red until every writer emits one. Teaching nine
+writers is real work and it belongs with T-1144's convergence pass, which owns the
+drift in that layer. A field nine writers silently drop is a field that lies.
+
+So the tier of an EXISTING value is derived, here and in `attribute-tiers.js`, from the
+provenance the card already carries, and the derivation is published as a table. What a
+record MAY carry, and what `validate.py` refuses if it carries it wrongly, is the full
+shape below — because the reconstruction bands (T-1167 onward) mint their own records
+and need somewhere to write a tier, and a value invented without a basis and without a
+seed has to be refusable at the moment it is written.
 
 TWO RULES THAT ARE NOT OBVIOUS, AND ARE THE POINT.
 
@@ -63,9 +84,9 @@ TWO RULES THAT ARE NOT OBVIOUS, AND ARE THE POINT.
     below is that reading, one row an attribute, and it is why the migration can
     write the field without inventing anything.
 
-RUN `--build` AFTER ANY WRITER. The mints and the synthesizer do not know about the
-tier and will drop it from a card they rewrite; `--check` is wired into `check.sh`
-and goes red when one does, which is the intended way to find out.
+RUN `--build` AFTER ANY WRITER. The table counts the committed cards, so a pass that
+changes one changes the table; `--check` is wired into `check.sh` and goes red when the
+two part company, which is the intended way to find out.
 """
 from __future__ import annotations
 
@@ -77,7 +98,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 HOUSEHOLDS = DATA / "residents" / "households"
-COVERAGE = DATA / "research" / "residents" / "attribute_tier_coverage.json"
+TIER_TABLE = DATA / "research" / "residents" / "attribute_tiers.json"
 
 # The four tiers, best evidenced first. `unknown` is last on purpose: it is not a
 # weaker claim than `reconstructed`, it is the absence of a claim.
@@ -319,25 +340,29 @@ def lift(card_id: str, path: str, block: dict) -> dict:
     return out
 
 
-def lift_record(doc, card_id: str = ""):
-    """A whole household card, lifted. Returns a new document."""
-    def rec(node, prefix=""):
-        if isinstance(node, dict):
-            if "confidence" in node and "value" in node:
-                return lift(card_id, prefix, node)
-            return {k: rec(v, f"{prefix}.{k}" if prefix else k) for k, v in node.items()}
-        if isinstance(node, list):
-            return [rec(v, f"{prefix}[]") for v in node]
-        return node
-    return rec(doc)
+def reconstructed_rows() -> list[dict]:
+    """Every genuinely reconstructed value in the layer, with the basis it rests on.
+
+    Forty rows out of ten and a half thousand claims, and they are the ones a reader and
+    a reconstruction band both need: the value this project supplied rather than read,
+    the rule or model it came from, and the evidence that would retire it.
+    """
+    rows: list[dict] = []
+    for f in cards():
+        doc = json.loads(f.read_text(encoding="utf-8"))
+        for path, block in walk_blocks(doc):
+            if tier_for(block) != "reconstructed":
+                continue
+            rows.append({"card": f.stem, "attribute": path, **lift(f.stem, path, block)})
+    return sorted(rows, key=lambda r: (r["card"], r["attribute"]))
 
 
 def derive() -> dict:
     by_tier: Counter = Counter()
     by_attribute: dict = {}
-    per_card_missing = 0
     blocks = 0
-    reconstructed_rules: Counter = Counter()
+    on_the_card = 0
+    rules: Counter = Counter()
     for f in cards():
         doc = json.loads(f.read_text(encoding="utf-8"))
         for path, block in walk_blocks(doc):
@@ -348,43 +373,47 @@ def derive() -> dict:
             by_tier[tier] += 1
             row = by_attribute.setdefault(path, {t: 0 for t in TIERS})
             row[tier] += 1
-            if block.get("tier") is None:
-                per_card_missing += 1
-            if tier == "reconstructed":
-                rule = (block.get("basis") or {}).get("id")
-                reconstructed_rules[rule or "(none)"] += 1
+            if block.get("tier") is not None:
+                on_the_card += 1
+    for r in reconstructed_rows():
+        rules[(r.get("basis") or {}).get("id") or "(none)"] += 1
     return {
         "cards": len(cards()),
         "blocks": blocks,
-        "blocks_not_yet_lifted": per_card_missing,
+        "tiers_written_on_the_card": on_the_card,
         "by_tier": {t: by_tier.get(t, 0) for t in TIERS},
         "by_attribute": {k: by_attribute[k] for k in sorted(by_attribute)},
-        "reconstructed_by_basis": dict(sorted(reconstructed_rules.items())),
+        "reconstructed_by_basis": dict(sorted(rules.items())),
     }
 
 
 def payload() -> dict:
     return {
-        "schema": "attribute_tier_coverage/1",
+        "schema": "attribute_tiers/1",
         "generated_by": "tools/migrate_attribute_tiers.py",
         "_doc": ("T-1158. Which tier every attribute of every household and person stands "
-                 "on — attested, inferred, reconstructed, or unknown, meaning nothing is "
-                 "asserted yet. DERIVED from the committed cards: rebuild with --build, and "
-                 "--check refuses a hand-edit and a writer that dropped the tier."),
+                 "on - attested, inferred, reconstructed, or unknown, meaning nothing is "
+                 "asserted yet - together with every genuinely reconstructed value and the "
+                 "basis it rests on. DERIVED from the committed cards: rebuild with --build, "
+                 "and --check refuses a hand-edit and a card that has moved under it. "
+                 "renderers/web/js/attribute-tiers.js derives the same tier for the card a "
+                 "visitor opens, and tools/check_attribute_tiers.mjs holds the two answers "
+                 "together."),
         "vocabulary": {
             "tiers": list(TIERS),
             "basis_kinds": list(BASIS_KINDS),
             "replaceable_kinds": list(REPLACEABLE_KINDS),
-            "not_asserted_values": ["null", "", "none_recorded"],
+            "not_asserted_values": [None, "", "none_recorded"],
         },
         "counts": derive(),
+        "reconstructed": reconstructed_rows(),
     }
 
 
 def render(p: dict) -> str:
     c = p["counts"]
     lines = [f"attribute tiers: {c['blocks']} block(s) on {c['cards']} card(s), "
-             f"{c['blocks_not_yet_lifted']} not yet lifted"]
+             f"{len(p['reconstructed'])} reconstructed value(s)"]
     for t in TIERS:
         lines.append(f"  tier  {t:16} {c['by_tier'][t]}")
     lines.append("  per attribute (attested / inferred / reconstructed / unknown):")
@@ -397,48 +426,39 @@ def render(p: dict) -> str:
 
 
 def build() -> int:
-    changed = 0
-    for f in cards():
-        before = f.read_text(encoding="utf-8")
-        doc = json.loads(before)
-        after = json.dumps(lift_record(doc, f.stem), indent=1, ensure_ascii=False) + "\n"
-        if after != before:
-            f.write_text(after, encoding="utf-8")
-            changed += 1
     p = payload()
-    COVERAGE.parent.mkdir(parents=True, exist_ok=True)
-    COVERAGE.write_text(json.dumps(p, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"lifted {changed} card(s); wrote {COVERAGE.relative_to(ROOT)}")
+    TIER_TABLE.parent.mkdir(parents=True, exist_ok=True)
+    TIER_TABLE.write_text(json.dumps(p, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"wrote {TIER_TABLE.relative_to(ROOT)}")
     print(render(p))
     return 0
 
 
 def check() -> int:
-    stale = [f.name for f in cards()
-             if json.dumps(lift_record(json.loads(f.read_text(encoding="utf-8")), f.stem),
-                           indent=1, ensure_ascii=False) + "\n"
-             != f.read_text(encoding="utf-8")]
-    if stale:
-        print(f"FAIL {len(stale)} household card(s) do not carry the tiers their own "
-              f"provenance derives — e.g. {stale[:5]}. A writer that rewrote a card dropped "
-              f"them, or a tier was hand-edited. Rebuild with --build.", file=sys.stderr)
-        return 1
-    if not COVERAGE.exists():
-        print(f"FAIL {COVERAGE.relative_to(ROOT)} is missing", file=sys.stderr)
+    if not TIER_TABLE.exists():
+        print(f"FAIL {TIER_TABLE.relative_to(ROOT)} is missing", file=sys.stderr)
         return 1
     p = payload()
-    committed = json.loads(COVERAGE.read_text(encoding="utf-8"))
-    bad = [k for k in ("vocabulary", "counts") if committed.get(k) != p[k]]
+    committed = json.loads(TIER_TABLE.read_text(encoding="utf-8"))
+    bad = [k for k in ("vocabulary", "counts", "reconstructed") if committed.get(k) != p[k]]
     if bad:
-        print(f"FAIL {COVERAGE.relative_to(ROOT)} does not re-derive: {bad} differ. Rebuild "
+        print(f"FAIL {TIER_TABLE.relative_to(ROOT)} does not re-derive: {bad} differ. Rebuild "
               f"with --build; the file is derived and a hand-edit loses.", file=sys.stderr)
         return 1
-    if p["counts"]["blocks_not_yet_lifted"]:
-        print(f"FAIL {p['counts']['blocks_not_yet_lifted']} block(s) carry no tier",
-              file=sys.stderr)
+    # Every row this table publishes is held to the contract it documents, so the table
+    # cannot ship a reconstruction that a RECORD carrying the same shape would be refused
+    # for. The two would otherwise drift apart the moment a rule above is tightened.
+    errs: list = []
+    for row in p["reconstructed"]:
+        check_tier_block(row["card"], row["attribute"], row,
+                         lambda w, m: errs.append(f"{w}: {m}"))
+    if errs:
+        print(f"FAIL the derived table publishes {len(errs)} row(s) the tier contract "
+              f"refuses: {errs[:3]}", file=sys.stderr)
         return 1
     print("ok  " + render(p))
     return 0
+
 
 
 def self_test() -> int:

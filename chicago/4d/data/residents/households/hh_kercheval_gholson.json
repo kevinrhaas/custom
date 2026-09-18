@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1831",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -16,31 +15,26 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "cobweb_castle",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -49,7 +43,6 @@
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -66,7 +59,6 @@
    "occupation": {
     "value": "sub_agent",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -98,7 +90,6 @@
      "field": "life_event",
      "value": "Named of Chicago in a federal payment clause of the 1833 treaty transcription",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "chicago_voter_lists_1833_1835_irad"
      ],
@@ -143,7 +134,6 @@
     "address_later": {
      "value": "bds Mrs. Post",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1843,
      "sources": [
       "fergus_chicago_directory_1843"

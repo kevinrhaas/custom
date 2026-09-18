@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1831-07-01",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -16,19 +15,16 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To open a store with a shipped stock of goods",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -37,7 +33,6 @@
  "lives_at": {
   "value": "peck_store",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -46,7 +41,6 @@
  "works_at": {
   "value": "peck_store",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ]
@@ -54,7 +48,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -71,7 +64,6 @@
    "occupation": {
     "value": "merchant",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -215,7 +207,6 @@
     "address_later": {
      "value": "Clark street",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

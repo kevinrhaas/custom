@@ -6,41 +6,27 @@
  "arrival": {
   "value": "1835",
   "confidence": "reconstructed",
-  "tier": "reconstructed",
   "note": "NOT ATTESTED. He is documented in the town in 1835 and nothing dates his coming. The value is the earliest year the evidence forces and it is graded conjectural; the attested fact is in present_on_scene_date, not here.",
-  "precision": "year",
-  "basis": {
-   "kind": "rule",
-   "id": "arrival_earliest_year_forced",
-   "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
-  },
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a dated source that says when this person came to Chicago"
-  }
+  "precision": "year"
  },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": "steamboat_hotel",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -50,7 +36,6 @@
  "works_at": {
   "value": "steamboat_hotel",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -59,7 +44,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -77,7 +61,6 @@
    "occupation": {
     "value": "hotel_keeper",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "drloih_hotels"
@@ -159,7 +142,6 @@
     "address_later": {
      "value": "North Water street, near Kinzie",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

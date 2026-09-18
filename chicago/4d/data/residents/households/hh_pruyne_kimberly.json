@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1832",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "history_medicine_chicago_kimberly_maxwell"
@@ -17,31 +16,26 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested for either man. Note that this is a BUSINESS household rather than a domestic one - see the research note."
  },
  "works_at": {
   "value": "pruyne_kimball_drugstore",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "history_medicine_chicago_kimberly_maxwell"
@@ -51,7 +45,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "history_medicine_chicago_kimberly_maxwell"
@@ -69,7 +62,6 @@
    "occupation": {
     "value": "druggist",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "history_medicine_chicago_kimberly_maxwell"
@@ -184,7 +176,6 @@
    "birth_year": {
     "value": 1803,
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "history_medicine_chicago_kimberly_maxwell"
     ],
@@ -193,7 +184,6 @@
    "age_on_scene_date": {
     "value": 32,
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "history_medicine_chicago_kimberly_maxwell"
     ],
@@ -202,7 +192,6 @@
    "occupation": {
     "value": "physician",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "history_medicine_chicago_kimberly_maxwell"
@@ -389,7 +378,6 @@
     "address_later": {
      "value": "res. N. Water st next Lake House",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -428,7 +416,6 @@
     "address_later": {
      "value": "South Water street",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

@@ -7,7 +7,6 @@
  "arrival": {
   "value": "1834-06-04",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -17,37 +16,31 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested. NOTHING IS BEING WITHHELD HERE: no source reached says where this person lived, and 52 households in this dataset were already in that position before this one was written."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested as a structure this project models. The trade is documented; the premises are not one of the committed records."
  },
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -63,7 +56,6 @@
    "occupation": {
     "value": "clothier",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "chicago_democrat_1833_1835"
     ],

@@ -7,7 +7,6 @@
  "arrival": {
   "value": "1835-06-17",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -17,37 +16,31 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested. NOTHING IS BEING WITHHELD HERE: no source reached says where this person lived, and 52 households in this dataset were already in that position before this one was written."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested, and no trade is recorded either — the papers name this person without saying what they did."
  },
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -63,7 +56,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "tier": "unknown",
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work: the papers name them in a proceedings column, a public card or an advertisement and simply do not say what they did for a living, and `data/research/newspapers/register_1835.json` reads no trade for them. Reasoning a trade out of the company they keep would be inventing one, so the vocabulary's own word for an absent record is what stands here."
    },
    "sources": [

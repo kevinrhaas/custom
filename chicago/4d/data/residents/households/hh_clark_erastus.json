@@ -7,7 +7,6 @@
  "arrival": {
   "value": "1835-06-30",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -17,37 +16,31 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested: a letter list gives a name and no address."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested. No trade is recorded, so there is no premises to seek."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -67,7 +60,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "tier": "unknown",
     "later_occupation": {
      "value": "dry goods and groceries",
      "describes_date": 1844,
@@ -164,7 +156,6 @@
     "occupation_later": {
      "value": "dry goods and groceries",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1844,
      "sources": [
       "norris_directory_1844"
@@ -174,7 +165,6 @@
     "address_later": {
      "value": "residence Hum phrey Clark's",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1844,
      "sources": [
       "norris_directory_1844"

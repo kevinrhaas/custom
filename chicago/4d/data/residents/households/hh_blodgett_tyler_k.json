@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1833-03-01",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -16,19 +15,16 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": "To open a brickyard where there was none",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -37,13 +33,11 @@
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "brickyard_north_side",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -52,7 +46,6 @@
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -68,7 +61,6 @@
    "occupation": {
     "value": "brickmaker",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -135,7 +127,6 @@
    "occupation": {
     "value": "brickmaker",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -167,7 +158,6 @@
      "field": "origin",
      "value": "Ann Arbor, Michigan",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "chicagology_chicago_brick"
      ],
@@ -212,7 +202,6 @@
     "address_later": {
      "value": "Michigan ave",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

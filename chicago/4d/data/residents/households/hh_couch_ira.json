@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1834",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "chicagology_prefire021"
@@ -17,7 +16,6 @@
  "party_size_on_arrival": {
   "value": 2,
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -26,13 +24,11 @@
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To buy and run a hotel in a booming town",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -41,7 +37,6 @@
  "lives_at": {
   "value": "tremont_house_1",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -50,7 +45,6 @@
  "works_at": {
   "value": "tremont_house_1",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "chicagology_prefire021"
@@ -59,7 +53,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -75,7 +68,6 @@
    "occupation": {
     "value": "hotel_keeper",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "chicagology_prefire021"
@@ -138,7 +130,6 @@
    "occupation": {
     "value": "hotel_keeper",
     "confidence": "inferred",
-    "tier": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -209,7 +200,6 @@
     "address_later": {
      "value": "Lake sts",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

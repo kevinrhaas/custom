@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1832",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -16,7 +15,6 @@
  "party_size_on_arrival": {
   "value": 2,
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -25,25 +23,21 @@
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "south_branch_raft_bridge",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -52,7 +46,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -69,7 +62,6 @@
    "occupation": {
     "value": "carpenter",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -177,7 +169,6 @@
    "occupation": {
     "value": "carpenter",
     "confidence": "inferred",
-    "tier": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -250,7 +241,6 @@
    "household": "hh_taylor_augustine",
    "value": "taylor_augustine",
    "confidence": "inferred",
-   "tier": "inferred",
    "sources": [
     "encyclopedia_chicago_church_architecture"
    ],

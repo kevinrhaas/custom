@@ -7,7 +7,6 @@
  "arrival": {
   "value": "1835-06-30",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -17,37 +16,31 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested: a letter list gives a name and no address."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested. No trade is recorded, so there is no premises to seek."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -66,7 +59,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "tier": "unknown",
     "later_occupation": {
      "value": "tailor, north side",
      "describes_date": 1839,
@@ -111,7 +103,6 @@
      "field": "name_as_printed",
      "value": "David Andrews",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "resident_research_cook_county_andrews_1884"
      ],
@@ -125,7 +116,6 @@
      "field": "life_event",
      "value": "In Cook County from 1834",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "resident_research_cook_county_andrews_1884"
      ],
@@ -199,7 +189,6 @@
     "occupation_later": {
      "value": "tailor, north side",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

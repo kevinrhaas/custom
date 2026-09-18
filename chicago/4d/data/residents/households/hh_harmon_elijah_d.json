@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1830-05-01",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -16,7 +15,6 @@
  "party_size_on_arrival": {
   "value": 1,
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -25,7 +23,6 @@
  "origin": {
   "value": "Burlington, Vermont",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -34,7 +31,6 @@
  "reason_for_coming": {
   "value": "Financial reverses and an attempt to recover in the West",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -43,7 +39,6 @@
  "lives_at": {
   "value": "harmon_log_cabin",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -52,13 +47,11 @@
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "He was post surgeon at the fort in 1830-32 and in private practice besides; by the scene date he was neither, on his own record. No link is made."
  },
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -74,7 +67,6 @@
    "birth_year": {
     "value": 1782,
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -83,7 +75,6 @@
    "age_on_scene_date": {
     "value": 52,
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -92,7 +83,6 @@
    "occupation": {
     "value": "physician",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -164,7 +154,6 @@
    "household": "hh_harmon_brothers",
    "value": "harmon_charles_l",
    "confidence": "inferred",
-   "tier": "inferred",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -176,7 +165,6 @@
    "household": "hh_harmon_brothers",
    "value": "harmon_isaac_d",
    "confidence": "inferred",
-   "tier": "inferred",
    "sources": [
     "andreas_1884_v1"
    ],

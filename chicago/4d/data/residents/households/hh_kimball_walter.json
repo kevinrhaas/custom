@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1833-11-26",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -16,31 +15,26 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "chicago_democrat_office",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -49,7 +43,6 @@
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "chicago_democrat_1833_11_26"
@@ -67,7 +60,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "tier": "unknown",
     "later_occupation": {
      "value": "probate judge, cor. Clark and",
      "describes_date": 1839,
@@ -177,7 +169,6 @@
     "occupation_later": {
      "value": "probate judge, cor. Clark and",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -187,7 +178,6 @@
     "address_later": {
      "value": "South Water st",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1833",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -16,19 +15,16 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To build and keep a hotel in the boom",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -37,7 +33,6 @@
  "lives_at": {
   "value": "western_hotel",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -47,7 +42,6 @@
  "works_at": {
   "value": "western_hotel",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -56,7 +50,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -72,7 +65,6 @@
    "occupation": {
     "value": "hotel_keeper",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "drloih_hotels"
@@ -136,7 +128,6 @@
     "address_later": {
      "value": "West Randolph street",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

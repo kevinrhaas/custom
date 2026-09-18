@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1831",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -16,28 +15,16 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": "Connecticut, by way of Detroit",
   "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "NOT ATTESTED IN ANYTHING THIS PROJECT HOLDS. Dole's New England origin and his Detroit connection through Oliver Newberry are widely repeated in the Chicago literature and could not be traced to a source in this dataset, so the value is carried as a conjecture, cites nothing, and is flagged for a later parcel to settle or delete. T-0396 WEAKENS THIS FURTHER (2026-09-12) AND IT IS RECORDED RATHER THAN QUIETLY KEPT: half of the received story is the partnership with Oliver Newberry of Detroit, and that partnership is now REFUSED — the firm's own card prints Oliver Newberry as its Detroit reference, not as its partner. So 'by way of Detroit' has lost the one thing the literature offered in its support. The value is left standing because it was already `reconstructed`, cites nothing, and is flagged for a later parcel to settle or delete; this note is the reason that parcel should expect to delete it.",
-  "basis": {
-   "kind": "rule",
-   "id": "origin_uncited_literature",
-   "note": "The origin is repeated in the Chicago literature and could not be traced to a source this project holds, so it is carried as a conjecture that cites nothing."
-  },
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a source that says where this person came from"
-  }
+  "note": "NOT ATTESTED IN ANYTHING THIS PROJECT HOLDS. Dole's New England origin and his Detroit connection through Oliver Newberry are widely repeated in the Chicago literature and could not be traced to a source in this dataset, so the value is carried as a conjecture, cites nothing, and is flagged for a later parcel to settle or delete. T-0396 WEAKENS THIS FURTHER (2026-09-12) AND IT IS RECORDED RATHER THAN QUIETLY KEPT: half of the received story is the partnership with Oliver Newberry of Detroit, and that partnership is now REFUSED — the firm's own card prints Oliver Newberry as its Detroit reference, not as its partner. So 'by way of Detroit' has lost the one thing the literature offered in its support. The value is left standing because it was already `reconstructed`, cites nothing, and is flagged for a later parcel to settle or delete; this note is the reason that parcel should expect to delete it."
  },
  "reason_for_coming": {
   "value": "Trade at the head of the lake, as the Chicago end of a lake-and-canal forwarding house",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "chicago_democrat_1833_11_26",
@@ -48,13 +35,11 @@
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested. Dole's warehouse and packing buildings are in the dataset; his dwelling is not, and no source places him under a roof."
  },
  "works_at": {
   "value": "newberry_dole_warehouse",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "chicago_democrat_1833_11_26"
@@ -64,7 +49,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -81,7 +65,6 @@
    "occupation": {
     "value": "forwarding_and_commission",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
@@ -184,7 +167,6 @@
     "address_later": {
      "value": "Michigan st",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1833",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "drloih_hotels",
    "drloih_wolf_point"
@@ -17,25 +16,21 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": "wolf_point_tavern",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -44,7 +39,6 @@
  "works_at": {
   "value": "wolf_point_tavern",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -53,7 +47,6 @@
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "drloih_hotels"
   ],
@@ -69,7 +62,6 @@
    "occupation": {
     "value": "tavern_keeper",
     "confidence": "inferred",
-    "tier": "inferred",
     "sources": [
      "andreas_1884_v1",
      "drloih_hotels",

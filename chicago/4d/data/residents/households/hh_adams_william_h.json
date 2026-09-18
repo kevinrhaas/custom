@@ -7,52 +7,36 @@
   "value": "1835-12-31",
   "precision": "not_later_than",
   "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "NOT AN ARRIVAL DATE, AND THE RECORD HAD NONE AT ALL. The recovered v4 research places William H. Adams on an 1835 Chicago poll list; it does not say when the poll was taken, and nothing in the corpus says when he came. The only thing the evidence bears is that he was in Chicago at some point during 1835, so the value carried here is the last day that evidence can reach, at 'not_later_than' precision — the same shape the town's letter-list arrivals take, and a bound rather than a date. Whether he was standing here on 1 July 1835 is the open question present_on_scene_date records as uncertain. The block arrived from PR #670 with a null value and no precision, which the gate could not read.",
-  "basis": {
-   "kind": "rule",
-   "id": "arrival_bound_from_the_record",
-   "note": "Not an arrival date. The evidence bears only that the person was at Chicago at some point in the year, so the value is the last day that evidence can reach, at `not_later_than` precision — a bound rather than a date."
-  },
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a dated source that says when this person came to Chicago"
-  }
+  "note": "NOT AN ARRIVAL DATE, AND THE RECORD HAD NONE AT ALL. The recovered v4 research places William H. Adams on an 1835 Chicago poll list; it does not say when the poll was taken, and nothing in the corpus says when he came. The only thing the evidence bears is that he was in Chicago at some point during 1835, so the value carried here is the last day that evidence can reach, at 'not_later_than' precision — the same shape the town's letter-list arrivals take, and a bound rather than a date. Whether he was standing here on 1 July 1835 is the open question present_on_scene_date records as uncertain. The block arrived from PR #670 with a null value and no precision, which the gate could not read."
  },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "No 1835 dwelling is asserted by the recovered bridge research."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "No 1835 workplace is asserted by the recovered bridge research."
  },
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "resident_research_v4_1835_census_bridge"
   ],
@@ -69,7 +53,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "inferred",
-    "tier": "inferred",
     "later_occupation": {
      "value": "(W. H. A. & Co.)",
      "describes_date": 1843,
@@ -227,7 +210,6 @@
     "occupation_later": {
      "value": "(W. H. A. & Co.)",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1843,
      "sources": [
       "fergus_chicago_directory_1843"
@@ -237,7 +219,6 @@
     "address_later": {
      "value": "res 121 LaSalle, bet Washington and Madison",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1843,
      "sources": [
       "fergus_chicago_directory_1843"

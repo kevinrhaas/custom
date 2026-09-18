@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1816",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -16,13 +15,11 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": "Mackinaw; his father a Scots trader, his mother an Ottawa woman",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -31,13 +28,11 @@
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "NOT ATTESTED, and the question is differently shaped for this household than for the emigrant ones. Robinson was here before the town was; asking why he 'came' imports a frame that fits a New England merchant and not a man whose people the land belonged to. The field is left null on purpose rather than filled with a trader's motive."
  },
  "lives_at": {
   "value": "robinson_caldwell_cabins",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "kinzie_waubun_1856"
   ],
@@ -46,7 +41,6 @@
  "works_at": {
   "value": "robinson_caldwell_cabins",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "kinzie_waubun_1856"
@@ -56,7 +50,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "kinzie_waubun_1856"
@@ -74,7 +67,6 @@
    "birth_year": {
     "value": 1762,
     "confidence": "inferred",
-    "tier": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -83,7 +75,6 @@
    "age_on_scene_date": {
     "value": 72,
     "confidence": "inferred",
-    "tier": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -92,7 +83,6 @@
    "occupation": {
     "value": "trader",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "kinzie_waubun_1856"
@@ -152,7 +142,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "tier": "unknown",
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
    },
    "sources": [
@@ -181,7 +170,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "tier": "unknown",
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
    },
    "sources": [

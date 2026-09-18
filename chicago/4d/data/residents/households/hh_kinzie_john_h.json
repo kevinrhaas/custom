@@ -6,7 +6,6 @@
  "arrival": {
   "value": "1834",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -16,7 +15,6 @@
  "party_size_on_arrival": {
   "value": 2,
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "kinzie_waubun_1856"
@@ -26,7 +24,6 @@
  "origin": {
   "value": "Chicago, by way of Fort Winnebago",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -35,7 +32,6 @@
  "reason_for_coming": {
   "value": "Family property and the forwarding trade",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -44,13 +40,11 @@
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "NOT ATTESTED, AND ONE CANDIDATE IS EXPLICITLY RULED OUT. Charles Butler in 1833 recollected that the old Kinzie house on the north side 'had been previously destroyed by fire'; an 1830s list Andreas prints says it 'was then unoccupied and in a dilapidated state'. Either way it is not a residence for this household and this dataset does not model it."
  },
  "works_at": {
   "value": "jh_kinzie_forwarding_store",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -59,7 +53,6 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
-  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -72,7 +65,6 @@
    "household": "hh_kinzie_james",
    "value": "kinzie_james",
    "confidence": "inferred",
-   "tier": "inferred",
    "sources": [
     "chicago_antiquities_american_fur_co"
    ],
@@ -90,7 +82,6 @@
    "occupation": {
     "value": "forwarding_and_commission",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -221,7 +212,6 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "tier": "unknown",
     "note": "No trade is recorded for her; she is the author of Wau-Bun, published in 1856, which is a tier-2 source in this dataset."
    },
    "sources": [
@@ -275,7 +265,6 @@
     "address_later": {
      "value": "h c Mich dc Cass",
      "confidence": "attested",
-     "tier": "attested",
      "describes_date": 1844,
      "sources": [
       "norris_directory_1844"

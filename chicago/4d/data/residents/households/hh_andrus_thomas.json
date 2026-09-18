@@ -7,7 +7,6 @@
  "arrival": {
   "value": "1835-03-31",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -17,37 +16,31 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested: a letter list gives a name and no address."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested. No trade is recorded, so there is no premises to seek."
  },
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -66,7 +59,6 @@
    "occupation": {
     "value": "carpenter",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "rr_dupage_andrus_1882"
     ],
@@ -105,7 +97,6 @@
      "field": "arrival_at_chicago",
      "value": "1833-12-01",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "rr_dupage_andrus_1882"
      ],
@@ -120,7 +111,6 @@
      "field": "departure_from_chicago",
      "value": "Returned east in the autumn of 1834",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "rr_dupage_andrus_1882"
      ],
@@ -134,7 +124,6 @@
      "field": "life_event",
      "value": "Back at Chicago in June 1835",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "rr_dupage_andrus_1882"
      ],
@@ -148,7 +137,6 @@
      "field": "departure_from_chicago",
      "value": "Settled in DuPage in July 1835",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "rr_dupage_andrus_1882"
      ],

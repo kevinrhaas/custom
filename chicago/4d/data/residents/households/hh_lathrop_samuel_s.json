@@ -7,7 +7,6 @@
  "arrival": {
   "value": "1835-03-31",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -17,37 +16,31 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested: a letter list gives a name and no address."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
-  "tier": "unknown",
   "note": "Not attested. No trade is recorded, so there is no premises to seek."
  },
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
-  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -66,7 +59,6 @@
    "occupation": {
     "value": "minister",
     "confidence": "attested",
-    "tier": "attested",
     "sources": [
      "rr_baptist_chicago_lathrop"
     ],
@@ -106,7 +98,6 @@
      "field": "life_event",
      "value": "An early member of Chicago's First Baptist Church after its organisation of October 1833",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "rr_baptist_chicago_lathrop"
      ],
@@ -120,7 +111,6 @@
      "field": "life_event",
      "value": "Built the fence around Rev. A. B. Freeman's Chicago grave",
      "confidence": "inferred",
-     "tier": "inferred",
      "sources": [
       "rr_baptist_chicago_lathrop"
      ],

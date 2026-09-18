@@ -91,12 +91,27 @@ recorded", so no reader can mistake a gap for a liberty.
 }
 ```
 
-**A tier is derived, never granted.** `tools/migrate_attribute_tiers.py` writes it from the
-block's own confidence and value; `validate.py` refuses a `tier` that disagrees with that
-derivation, and `check.sh` refuses a card whose tier has drifted. Without that rule the tier
-would be a second, softer grade that a writer could set to whatever flattered the record —
-and the whole value of the fourth tier is that a band cannot quietly reuse `unknown` for
-something it invented, or `reconstructed` for something it merely failed to find.
+**A tier is derived, never granted.** It is read out of the block's own confidence and
+value; `validate.py` refuses a `tier` that disagrees with that derivation. Without that rule
+the tier would be a second, softer grade that a writer could set to whatever flattered the
+record — and the whole value of the fourth tier is that a band cannot quietly reuse `unknown`
+for something it invented, or `reconstructed` for something it merely failed to find.
+
+**Where the tier of an EXISTING value lives, and why it is not in the card.** Writing it into
+the 1,258 household records was tried first and cannot stand: those bytes are owned by nine
+derivations that each rebuild a card from its sources and compare the result to the committed
+file — the resident synthesizer, the four mints, the two back-projections, the later-trade
+qualifier, the kin survey and the four directory crosswalks. None of them knows the field
+exists, so ten of `check.sh`'s steps go red the moment a tier lands in a card and stay red
+until every writer emits one. Teaching nine writers is real work and it belongs with T-1144,
+which owns that layer's drift. **A field nine writers silently drop is a field that lies.**
+
+So the existing layer's tiers are derived — in `tools/migrate_attribute_tiers.py` for the
+gate and the published table, and in `renderers/web/js/attribute-tiers.js` for the one card
+a visitor has open, with `tools/check_attribute_tiers.mjs` holding the two to the same
+answer. What a RECORD may carry is the full shape above, enforced by `validate.py` wherever
+it appears: the reconstruction bands mint their own records and a value invented without a
+basis and without a seed has to be refusable at the moment it is written.
 
 **A reconstructed value owes a basis, and there are two kinds.** `kind: "model"` was DRAWN —
 from the population, household or occupation model — so it owes the `seed` that redraws it: a
@@ -119,9 +134,10 @@ carries a named tier — the four words above, "what kind of thing is this value
 integer on a record in `data/sources/`, the other a string on a claim block; nothing reads
 both off the same field.
 
-Counts per attribute per tier are re-derived, never typed:
-`data/research/residents/attribute_tier_coverage.json`, or
-`python3 tools/summarize_residents.py tiers`.
+Counts per attribute per tier, and every reconstructed value with its basis and its
+replacement rule, are re-derived and never typed:
+`data/research/residents/attribute_tiers.json`, or `python3 tools/summarize_residents.py
+tiers`.
 
 ## Evidence tiers
 
