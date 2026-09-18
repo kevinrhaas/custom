@@ -10997,7 +10997,7 @@ for (const [label, viewport, touch] of [
     });
     // Was "Go to is a tab of its own, immediately after Controls" (five tabs).
     // The claim is the same — the rail's order is exact and Go to leads it —
-    // over the eight sections the drawer carries since T-1318 put the town's
+    // over the eight sections the drawer carries since T-1324 put the town's
     // firms beside its people.
     check(`${label}: the rail lists the eight sections in order, Go to first`,
       tabStrip.order.join(',') === 'goto,travel,people,businesses,evidence,settings,controls,whatsnew',
@@ -11781,7 +11781,7 @@ for (const [label, viewport, touch] of [
       && goThere.cardClosed,
       JSON.stringify(goThere));
 
-    // T-1318: the Businesses directory — every firm the register knows, searched,
+    // T-1324: the Businesses directory — every firm the register knows, searched,
     // narrowed by how far the record could place it, and opened. The point of the
     // view is the 140 firms with no roof in this town, so the check that matters
     // is that the unplaceable ones are REACHABLE and print their limit: a house

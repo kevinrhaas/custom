@@ -1,5 +1,5 @@
 ---
-id: T-1319
+id: T-1325
 title: Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
 state: open
 epic: RENDERING

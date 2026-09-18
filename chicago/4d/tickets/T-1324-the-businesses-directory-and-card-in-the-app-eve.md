@@ -1,5 +1,5 @@
 ---
-id: T-1318
+id: T-1324
 title: The Businesses directory and card in the app: every firm in the layer findable by trade, street, division, tier and location limit, and read on one card with its proprietors, staff, dated locations, goods, liberties and evidence
 state: claimed
 epic: RENDERING
@@ -44,5 +44,5 @@ locator is its street; a division filter would have had to derive one, which is 
 record does not make. The parent's "by division" waits for a ticket that gives a business a
 division from evidence.
 
-**Not in this piece** (T-1319): a person's card does not yet list the firms they hold a role
+**Not in this piece** (T-1325): a person's card does not yet list the firms they hold a role
 in, and a signboard tap and a building card's "Use" line still open the building.
