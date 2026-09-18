@@ -1,7 +1,7 @@
 ---
 id: T-1329
 title: Spend the 1830 schedule lines, the church register sponsorships and the press notices onto the cards they name, each as a dated bound on a held resident's presence and never more
-state: open
+state: split
 epic: META
 requested_by: loop
 seen: false
@@ -9,13 +9,13 @@ effort: S
 legacy_id: null
 parent: T-1318
 opened: 2026-09-18
-closed: null
+closed: 2026-09-18
 pr: null
-claimed_by: null
+claimed_by: run 9/18/2026, 12:54:27 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-18T17:58:31.741Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35376396531
 ---
 
 Spend the 1830 schedule lines, the church register sponsorships and the press notices onto the cards they name, each as a dated bound on a held resident's presence and never more.
