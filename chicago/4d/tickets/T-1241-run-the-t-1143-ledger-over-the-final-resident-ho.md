@@ -1,7 +1,7 @@
 ---
 id: T-1241
 title: Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
-state: open
+state: claimed
 epic: META
 requested_by: owner
 seen: true
@@ -11,11 +11,11 @@ parent: T-1147
 opened: 2026-09-17
 closed: null
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 8:59:37 PM CT
 blocked_on: null
 needs_bake: false
 closed_at: null
-claimed_run: null
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35297188435
 ---
 
 Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units.
