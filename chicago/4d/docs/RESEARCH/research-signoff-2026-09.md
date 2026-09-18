@@ -54,7 +54,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1317 | 21 | open | yes |
 | T-1188 | 12 | open | yes |
 | T-1315 | 3 | open | yes |
-| T-1144 | 1 | open | yes |
+| T-1144 | 1 | claimed | yes |
 | T-1299 | 1 | open | yes |
 
 Not one of those owners asks for another READING. The heaviest are T-1318 (538), T-1180 (494), T-1319 (343), T-1198 (271), T-1172 (260) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
@@ -117,6 +117,8 @@ Of the rows that reach the scene date, every one names a source that describes i
 Read it as written: Elston carries 5 dated roles and **0** of them reaches 1 July 1835. The soap and candle manufactory is real and attested, and the corpus last prints it at the issue of 2 July 1834, so T-0991 withdrew it from the 1835 field and left it standing in `roles[]` with the bound its evidence permits; the brickmaking and the school inspectorship are printed against his name in the later Fergus directories and are carried as the years those volumes print. The plural field is therefore doing exactly the work it was built for — holding a career the scene date cannot see, without letting any of it claim the scene date.
 
 Reproduce: `python3 tools/derive_resident_roles.py --check`.
+
+**Per person, rather than in aggregate.** The counts above and the location counts in section 4 are the two axes T-1144 acceptance 7 asks to be readable one person at a time. They are, in `docs/RESEARCH/convergence-coverage-2026-09.md` and the table under it (`data/research/convergence_coverage.json.gz`): one row per person naming which of his roles and which of his home, work and other places reach 1 July 1835, each verdict copied from the derivation that owns it. This section counts; that table names.
 
 ## 3. Business structures, and who works where
 

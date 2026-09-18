@@ -585,6 +585,16 @@ def render(model: dict) -> str:
     out.append("")
     out.append("Reproduce: `python3 tools/derive_resident_roles.py --check`.")
     out.append("")
+    out.append(
+        "**Per person, rather than in aggregate.** The counts above and the location counts "
+        "in section 4 are the two axes T-1144 acceptance 7 asks to be readable one person at "
+        "a time. They are, in `docs/RESEARCH/convergence-coverage-2026-09.md` and the table "
+        "under it (`data/research/convergence_coverage.json.gz`): one row per person naming "
+        "which of his roles and which of his home, work and other places reach 1 July 1835, "
+        "each verdict copied from the derivation that owns it. This section counts; that "
+        "table names."
+    )
+    out.append("")
 
     out.append("## 3. Business structures, and who works where")
     out.append("")

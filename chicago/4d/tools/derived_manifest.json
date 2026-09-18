@@ -457,6 +457,24 @@
       ]
     },
     {
+      "why": "T-1144 acceptance 7: the per-person convergence coverage table and its report — which roles[] and which home/work/other locations reach 1 July 1835, joined from the roles, the location reconciliation and the business register. A gated writer, so it belongs here: it re-derives whenever any of those three layers moves, and a lap that rebuilt them without rebuilding this join would leave check.sh red with nothing to run.",
+      "command": [
+        "python3",
+        "tools/report_convergence_coverage.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/convergence_coverage.json.gz",
+        "chicago/4d/docs/RESEARCH/convergence-coverage-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/report_convergence_coverage.py",
+        "--check",
+        "--quiet"
+      ]
+    },
+    {
       "why": "The known population profiled on ten axes (T-1160). It also writes the age-band and reason vocabulary into data/residents/index.json, which rebuild_resident_index.py owns — measured 2026-09-18: running that rebuild AFTER this changes nothing, so the order between them is free, and index.json stays listed against the index step alone rather than twice. MUST RUN BEFORE model_town_1835.py, which reads that vocabulary.",
       "command": [
         "python3",

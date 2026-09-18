@@ -195,3 +195,45 @@ gitignored, so nothing escaped). To leave this ticket open with its claim releas
 `claimed_by` and `claimed_run` by hand, as the pass before this one did.
 
 `claimed_by` is cleared with this: nobody holds this ticket.
+
+
+## ACCEPTANCE 7 IS DONE, AND THE TICKET STAYS OPEN (2026-09-18)
+
+`tools/report_convergence_coverage.py`, gated in `check.sh` as *"every person says which
+roles and which places reach the scene date"* with its self-test beside it, writing
+`data/research/convergence_coverage.json.gz` (1,288 rows, one per person) and
+`docs/RESEARCH/convergence-coverage-2026-09.md`. Listed in `tools/derived_manifest.json`
+so a lap that rebuilds roles, the reconciliation or the register rebuilds this join too.
+
+**It re-decides nothing.** Every reach flag is COPIED from the derivation that owns it — a
+role from `roles[].covers_scene_date` (`derive_resident_roles.py`), a home or a workplace
+from the reconciliation's `resolved`-at-`scene_date` grading, a business premises from the
+firm's own `present_at_scene_date`. The step sits below all three in `check.sh` for that
+reason: a drift here means one of those layers moved and the join was not rebuilt with it,
+never that this file formed a second opinion. The `later_home_address` and
+`later_workplace_address` kinds can never reach the day, by construction rather than by
+measurement, which is why the reconciliation holds them as separate kinds at all.
+
+**The verdict vocabulary is three-valued, deliberately.** Per person per axis: `reaches`
+(at least one claim reaches the day), `limited` (claims, none reaching — a preserved
+refusal with a date on it) and `none` (the corpus says nothing). The queue's own header
+holds that zero unclassified research does not mean forcing uncertain people into 1835, so
+these may not be totalled. The trap is the reconciliation's `no_claim` home row: all 1,258
+households carry one, and 1,186 of them say the corpus places that household nowhere.
+Reading those as `limited` would manufacture a gap out of the project's own honesty; the
+self-test asserts the distinction directly, so a later change cannot quietly lose it.
+
+Measured on this branch: 1,288 people in 1,258 households. `roles[]` 138 reach / 189
+limited / 961 no claim; home 34 / 67 / 1,187; work 72 / 0 / 1,216; other places 93 / 128 /
+1,067. Two people are reached by all four axes, 1,093 by none. Underneath: 687 dated role
+rows of which 160 reach the day (the sign-off's own figure, unchanged), and 1,719 location
+rows carried to a person of which 225 reach it. Section 2 of
+`docs/RESEARCH/research-signoff-2026-09.md` now points at the table — that section counts,
+this table names, which is what acceptance 7 asked for.
+
+**What is still open here.** Acceptance 1's letter-list leg is T-1222's 798-file drift and
+is not re-decided here; acceptance 6's closing rebuild and deltas remain. Acceptances 3, 5
+and 9 measure clean on this branch (no Mary Durbin, John Simmons, John Vincent or Cery
+Logdson; `audit_scene_window_trades.py --check` reports 0 standing rows; all 820 uncertain
+households carry their `last_dated_appearance` leg), but they are left to the closing pass
+to state as deltas rather than claimed closed from a spot reading.
