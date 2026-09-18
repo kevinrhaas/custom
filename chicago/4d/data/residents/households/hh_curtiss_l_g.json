@@ -57,9 +57,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
-    "derived_from": "roles",
-    "roles_at_scene_date": []
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
    },
    "sources": [
     "chicago_democrat_1833_1835"
@@ -94,63 +92,17 @@
      "rule": "G1b"
     }
    ],
-   "roles": [
+   "merge_ruling": [
     {
-     "role": "attorney",
-     "kind": "profession",
-     "as_printed": "attorney",
-     "from": "1835-07-01",
-     "to": "1835-07-01",
-     "precision": "day",
-     "dated_by": "stated_date",
-     "covers_scene_date": true,
-     "fills_scene_view": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "curtis-liman-curtiss-l-g",
+     "weighed_against": [
+      "curtis_liman"
      ],
-     "claim": "person_l_curtiss",
-     "place": "not_stated",
-     "employer_or_body": "not_stated",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-01 to 1835-07-01, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run."
-    },
-    {
-     "role": "surveyor",
-     "kind": "profession",
-     "as_printed": "deputy surveyor of Cook County",
-     "from": "1835-07-22",
-     "to": "1835-07-29",
-     "precision": "source_span",
-     "dated_by": "stated_date",
-     "covers_scene_date": false,
-     "fills_scene_view": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "claim": "person_l_g_curtiss",
-     "place": "not_stated",
-     "employer_or_body": "cook_county",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-07-22 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view. SYNONYM-FOLDED (T-1254): the same source prints this role as surveyor as well, and one source asserting one role over one bound is one row."
-    },
-    {
-     "role": "surveyor",
-     "kind": "profession",
-     "as_printed": "deputy surveyor of Cook County",
-     "from": "1835-08-05",
-     "to": "1835-08-05",
-     "precision": "day",
-     "dated_by": "stated_date",
-     "covers_scene_date": false,
-     "fills_scene_view": false,
-     "confidence": "inferred",
-     "sources": [
-      "chicago_democrat_1833_1835"
-     ],
-     "claim": "person_curtiss_l_g",
-     "place": "not_stated",
-     "employer_or_body": "cook_county",
-     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1835-08-05 to 1835-08-05, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
+     "for_merge": "The initial L agrees with Liman and both cards are Chicago readings of the summer of 1835.",
+     "against_merge": "ONE ISSUE SETS BOTH SPELLINGS IN TWO DIFFERENT COLUMNS, WHICH IS EVIDENCE AGAINST AND NOT FOR. The Democrat of 1 July 1835 prints 'Curtis, Liman' in the post-office return at column 4 and 'L. Curtiss' at column 13 of the same issue. A compositor who set Curtis in one column and Curtiss in another that day was distinguishing two names, not wavering over one; C9 asks for a printing caught setting both spellings FOR ONE MAN and this is a printing caught keeping them apart. L. G. Curtiss is besides set 'L. G. Curtiss' on 22 July and 'Curtiss, L. G.' on 5 August 1835, three settings that never drop the second s, and the town holds curtiss_j beside him. The middle initial G is printed on the Curtiss side and absent on Liman's. D7."
     }
    ]
   }

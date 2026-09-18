@@ -78,6 +78,17 @@
    "resident_subtype": "projected_resident",
    "merge_ruling": [
     {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R3",
+     "cluster": "barre-barry-j-r",
+     "weighed_against": [
+      "barre_john_s"
+     ],
+     "for_merge": "One letter of surname and the forename initial J on both, and the town's only other Barry readings are these three cards.",
+     "against_merge": "R AND S ARE BOTH PRINTED AND THEY DISAGREE. 'John S. Barre' is the post-office return of 9 July 1834 (#c003); 'Barry, J. R.' is the poll filed 11 August 1834. Neither card is documented beyond a list — no trade, no address, no arrival — so C4's anchor is missing and the contradiction has nothing to be weighed against. This is exactly the `barry-j` cluster's ruling, which refuses J. R. against John S. within the Barry spelling; folding the surname as well cannot rescue it. R3."
+    },
+    {
      "ticket": "T-0839",
      "verdict": "undecided",
      "rule": "R3",

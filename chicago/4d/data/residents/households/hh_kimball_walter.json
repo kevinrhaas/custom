@@ -144,6 +144,19 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D10",
+     "cluster": "kimbal-kimball",
+     "weighed_against": [
+      "kimbal_wm"
+     ],
+     "for_merge": "A doubled terminal l, and the Kimball card is an anchor with a workplace — W. Kimball of the Democrat's own junction, in the paper of 26 November and 10 December 1833, in Andreas's 1835 town officers list, and in Fergus 1843 as 'Kimball, Walter'. 'Wm.' and 'W.' agree at the initial. 'Kimbal' is set nowhere in the deposited corpus.",
+     "against_merge": "WM. IS NOT WALTER. The anchor's forename is printed whole — Walter — by Fergus 1843, and the 1840 census sets him 'W. R. Kimball' with a middle initial R the other card does not carry; the letter-list card is printed 'Wm. Kimbal', which is William written short. Two different given names that happen to share an initial is D10's shape, not C9's, and the fold would rename a documented man. The two readings besides never touch: a post-office return of 9 July 1834 (#c012) against a newspaper, a directory and a census. D10."
+    }
    ]
   }
  ],

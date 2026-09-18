@@ -572,13 +572,18 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.value": ("shown", "(hh.lives_at || {}).value"),
     "works_at.value": ("shown", "(hh.works_at || {}).value"),
     "present_on_scene_date.value": ("shown", "(hh.present_on_scene_date || {}).value"),
-    "arrival.confidence": ("shown", "swatch(block.confidence)"),
-    "party_size_on_arrival.confidence": ("shown", "swatch(block.confidence)"),
-    "origin.confidence": ("shown", "swatch(block.confidence)"),
-    "reason_for_coming.confidence": ("shown", "swatch(block.confidence)"),
-    "lives_at.confidence": ("shown", "swatch(block.confidence)"),
-    "works_at.confidence": ("shown", "swatch(block.confidence)"),
-    "present_on_scene_date.confidence": ("shown", "swatch(block.confidence)"),
+    # T-1158. The chip the card draws is the TIER now, and `confidence` is what the
+    # tier is derived from — `tierOf(block)` reads it, and falls back to the raw
+    # confidence for a block whose shape predates the four-tier vocabulary. The
+    # declaration names that line rather than the `swatch()` call, because that line is
+    # where the field is actually read.
+    "arrival.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "party_size_on_arrival.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "origin.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "reason_for_coming.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "lives_at.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "works_at.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "present_on_scene_date.confidence": ("shown", "tierOf(block) || block.confidence"),
     # The reasoning, and on this layer it is the point: a note here routinely
     # says the record is NOT attested and why the figure is carried anyway.
     "arrival.note": ("shown", "escapeHtml(block.note)"),
@@ -598,7 +603,7 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "kin[].relation": ("shown", "the ${words(k.relation)} of"),
     "kin[].value": ("shown", "${words(k.value)}, "),
     "kin[].household": ("shown", "words(String(k.household ?? '').replace(/^hh_/, ''))"),
-    "kin[].confidence": ("shown", "swatch(block.confidence)"),
+    "kin[].confidence": ("shown", "tierOf(block) || block.confidence"),
     "kin[].note": ("shown", "escapeHtml(block.note)"),
     # T-0632. The later directories, on the record rather than only beside it. The
     # printed lines and the crosswalks' arithmetic stay in
@@ -764,7 +769,7 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].occupation.roles_at_scene_date": (
         "shown", "const rolesAtScene = roles.filter((r) => r.covers_scene_date).length;"),
     "persons[].occupation.value": ("shown", "words(occ.value)"),
-    "persons[].occupation.confidence": ("shown", "swatch(occ.confidence)"),
+    "persons[].occupation.confidence": ("shown", "swatch(tierOf(occ))"),
     "persons[].occupation.note": ("shown", "escapeHtml(occ.note)"),
     # T-0693. `none_recorded` was carrying two facts — "no trade anywhere" and "no
     # trade for 1835, and a dated one for 1839" — and a reader could not tell them
@@ -787,8 +792,8 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     # like the household's own, and they go through `claimRow` now.
     "persons[].age_on_scene_date.value": ("shown", "claimRow('Age on 1 July 1835', aged && aged.value"),
     "persons[].birth_year.value": ("shown", "claimRow('Born', born && born.value"),
-    "persons[].age_on_scene_date.confidence": ("shown", "swatch(block.confidence)"),
-    "persons[].birth_year.confidence": ("shown", "swatch(block.confidence)"),
+    "persons[].age_on_scene_date.confidence": ("shown", "tierOf(block) || block.confidence"),
+    "persons[].birth_year.confidence": ("shown", "tierOf(block) || block.confidence"),
     "persons[].age_on_scene_date.note": ("shown", "escapeHtml(block.note)"),
     "persons[].birth_year.note": ("shown", "escapeHtml(block.note)"),
     # T-0491. The 1840 identity bridge, on the three people that carry one. PR #670

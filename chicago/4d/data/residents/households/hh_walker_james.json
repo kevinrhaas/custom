@@ -90,6 +90,19 @@
      "employer_or_body": "not_stated",
      "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R2",
+     "cluster": "falker-walker-james",
+     "weighed_against": [
+      "falker_j_b"
+     ],
+     "for_merge": "F against W is one letter to a distance, and the initial J agrees with both James Walker the justice of the peace. 'Falker' is set nowhere at all in the deposited corpus, which is the profile of a mis-read surname rather than a family.",
+     "against_merge": "THE INITIAL J HAS TWO RIVALS AND THE SAME COLUMN PRINTS THEM BOTH. The Democrat of 26 November 1833, column 31, sets 'Walker, James' and 'Walker, Jeremiah' — two Walkers of this town whose forenames both begin with J, in one printing. An initial with two rivals attaches to neither: R2. The town holds four Walker cards in all (walker_george_e, walker_george_h, walker_james, walker_jeremiah) and the surname is set 396 times in the corpus, while 'J. B. Falker' is one post-office reading of 1 July 1835 (#c006) with a middle initial B that neither Walker carries. Refused by a ratified rule; no ballot needed."
+    }
    ]
   }
  ],

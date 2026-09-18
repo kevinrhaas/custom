@@ -417,6 +417,19 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D9",
+     "cluster": "harman-harmon-isaac",
+     "weighed_against": [
+      "harman_isaac"
+     ],
+     "for_merge": "'Isaac' is identical and the surnames differ by one interior vowel. Isaac Dewey Harmon is documented and anchored — Fergus's old-settler notice of 9 April 1886, the 1833 tax list, the Black Hawk muster of 1832, the Democrat of 17 December 1833 and 5 August 1835 — and the `harmon-isaac` cluster has already folded a bare 'Isaac Harmon' onto him under C3 as the one Isaac Harmon the town documents. An 'Isaac Harman' on the 1834 poll looks like the same man with the vowel mis-set.",
+     "against_merge": "THE ROLL THAT SETS HARMAN SETS HARMON ON THE NEXT TWO LINES, FOR OTHER MEN. The poll filed 11 August 1834 enters 'Harman, Isaac' at voter_lists_1833_1835.txt line 219 and then 'Harmon, C. L.' at 220 and 'Harmon, M. D.' at 221 — one roll, one clerk, both spellings, deliberately distinguished within three lines. That is the opposite of C9's demonstration: the printing is caught keeping the spellings apart. Isaac Dewey Harmon's own readings are on the 1833 tax list and not on that poll, so no roll sets both spellings for HIM; and the Harmon stem is heavily populated here — harmon_charles_l, harmon_d, harmon_elijah_d, harmon_isaac_d, harmon_m_d, five cards — while Harman has one. D9, and the C3 fold inside the `harmon-isaac` cluster is untouched because it folded a card spelled Harmon."
+    }
    ]
   }
  ],

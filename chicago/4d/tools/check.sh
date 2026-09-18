@@ -2478,6 +2478,41 @@ selftest "…and its own assertions still fire when broken" \
 selftest "…and closed-ledger mutations cannot pass silently" \
   python3 tools/measure_research_spend.py --ledger-self-test
 
+# T-1296. The land-sale ruling register is DERIVED — 1,572 notes nobody typed — so the
+# claim it makes is not "somebody wrote these down" but "these re-derive from the register
+# as read and the crosswalk as adjudicated". That claim is only worth anything if it is
+# checked, and a drifted derived register is worse than an absent one: it reads as
+# judgement and is not.
+step "the land-sale rulings re-derive from the register and the crosswalk (T-1296)" \
+  python3 tools/spend_land_sales_rulings.py --check --quiet
+
+selftest "…and each of its rules still fires on the row it is for" \
+  python3 tools/spend_land_sales_rulings.py --self-test
+
+# T-1298. The remainder of T-1236 — the resident-pass reservations, the newspaper person,
+# notice, event, shipping and price units, the church register entries, the non-person book
+# readings and the one Genealogy Trails reading — ruled across five derived registers on the
+# same terms. The corpus they cover is fixed by `natural_disposition`, the derivation that
+# reads no ruling register at all, so writing them cannot change what they must cover; this
+# gate is the proof that they still re-derive from the readings as committed.
+step "the remainder rulings re-derive from their five corpora (T-1298)" \
+  python3 tools/spend_remainder_rulings.py --check --quiet
+
+selftest "…and each of its rules still fires, and hands on only to live work" \
+  python3 tools/spend_remainder_rulings.py --self-test
+
+# T-1297. The same instrument over the name-on-a-roll body: the 1833-1835 poll and tax
+# lists, the 1832 Black Hawk War enrollments, the 1830 heads of family, and the town
+# findings of Andreas, Norris and Fergus that describe a year at or before the scene. 718
+# notes nobody typed, derived from the rolls as read and the crosswalks as adjudicated, so
+# the same claim needs the same check: a drifted derived register reads as judgement and
+# is not.
+step "the name-on-a-roll rulings re-derive from the rolls and the crosswalks (T-1297)" \
+  python3 tools/spend_name_on_a_roll_rulings.py --check --quiet
+
+selftest "…and each of its rules still fires on the row it is for" \
+  python3 tools/spend_name_on_a_roll_rulings.py --self-test
+
 # T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
 # RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
 # of the tree at the moment the cohort was fixed. The reservation is re-derived and must
@@ -2621,6 +2656,20 @@ step "the letter-list collision report still describes the tree" \
 selftest "…and its two readings of a printed name are still two" \
   python3 tools/report_letter_list_collisions.py --self-test
 
+# T-1290. The 1840 census is CLOSED for the 1835 reconstruction and what closed it is a
+# residue table: eight leaf-by-leaf tickets folded into one statement of what did not
+# settle, on which leaf, against which competing reading, and why. A stated gap is a
+# finished answer — but only while it still describes the tree. Every figure in that
+# table is resolved out of the committed page files at render time, so a leaf re-read
+# afterwards either moves the report or turns this red. The rot it closes is the one
+# T-0926 already suffered: an argument resting on 15 of 29 figures reading `inferred`,
+# on a tree that carries 17.
+step "the 1840 residue table still describes the leaves it closed" \
+  python3 tools/report_census_1840_residue.py --check
+
+selftest "…and its figures still come off the page files, not out of the prose" \
+  python3 tools/report_census_1840_residue.py --self-test
+
 # T-1008. And the ledger that puts T-0424's 170 printed lines beside T-0310's cohort,
 # line by line. It is DERIVED — from the roster, from the extractions of the return's
 # impressions, and from `mint_letter_list_residents.mint()` itself — so it has three
@@ -2751,6 +2800,22 @@ selftest "…and that pass's own assertions still fire when broken" \
 # measurement that quietly stopped firing would report "the class is only the three".
 selftest "the one-letter candidate test still measures the blind spot it was written for" \
   python3 tools/measure_card_fuzzy_candidates.py --self-test
+
+# T-1291, which folded T-1027's 68-row epic and four satellites into one ticket on the
+# owner's instruction that the research spend is a CHECK before reconstruction, not a
+# programme. The measurement above says how many pairs the one-letter slack proposes; this
+# gate says every one of them has been ANSWERED, and it is stricter than the pool it
+# replaced: T-1027 counted a pair as ruled when EITHER card stood in some ruled cluster and
+# admitted in its own table that "it does not mean the PAIR is ruled". A ruling weighing
+# `wright_j` against two Wrights says nothing about `wight_j_f`. So this asks for a ruling
+# that names BOTH cards, which is the only thing that answers the question the pair asks —
+# and it fires the moment the resident layer grows a new one-letter neighbour, which is how
+# the pool silted up to 68 rows the first time.
+step "every one-letter card pair carries a ruling naming both its cards" \
+  python3 tools/rule_fuzzy_card_pairs.py --check
+
+selftest "…and pair-level coverage still refuses a ruling that names only one card" \
+  python3 tools/rule_fuzzy_card_pairs.py --self-test
 
 step "the three levels mean what they say" \
   python3 tools/audit_confidence.py --strict
@@ -3891,6 +3956,39 @@ step "the association coverage still re-derives from the committed records" \
 
 selftest "…and its own refusals still fire when broken" \
   python3 tools/associations.py --self-test
+
+# T-1158. The per-attribute tier, and the three things that can go wrong with it.
+#
+# The first is DRIFT. The tier of an existing value is DERIVED from the confidence and the
+# value the card already carries — the cards themselves are byte-owned by nine writers that
+# each re-derive them, so a field written into one would be dropped by the next pass and
+# quietly go stale. `--check` re-derives the table and refuses a hand-edit or a card that
+# has moved under it. Rebuild with `--build`.
+#
+# The second is PROMOTION. A tier that could be set independently of the evidence would be
+# a second, softer grade, and the whole point of the fourth tier — `unknown`, for the 7,314
+# blocks that assert nothing — is that a reconstruction band cannot quietly reuse it for
+# something it invented. So a tier may not disagree with its derivation, an invented value
+# owes a basis and a replacement rule, and a value DRAWN from a model owes the seed that
+# redraws it. `validate.py` enforces that on any record carrying the shape, through the
+# module's own `check_tier_block`; the self-test below breaks each rule in turn.
+step "every attribute's tier still re-derives from the card it sits on" \
+  python3 tools/migrate_attribute_tiers.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/migrate_attribute_tiers.py --self-test
+
+# The third is the two derivations parting company. The gate derives the tier in Python and
+# the walkthrough derives it in JavaScript, because a card a visitor opens may not fetch a
+# table of ten thousand rows to learn its own tiers. That failure would not crash: the card
+# would draw the hatched `reconstructed` chip over a field nobody invented — the exact
+# defect this ticket removes — while the published table went on reporting the right
+# number. So both readers are run over the same 1,258 cards and required to agree.
+step "the walkthrough's tier reader agrees with the published table" \
+  node tools/check_attribute_tiers.mjs
+
+selftest "…and its own derivation still answers each case" \
+  node tools/check_attribute_tiers.mjs --self-test
 
 check_summary
 exit $CHECK_FAILED

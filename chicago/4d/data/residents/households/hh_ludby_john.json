@@ -121,6 +121,19 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1843. SYNONYM-FOLDED (T-1254): the same source prints this role as soap and candle maker, South Branch, 3 miles south as well, and one source asserting one role over one bound is one row."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "ludb-ludby",
+     "weighed_against": [
+      "ludb_john"
+     ],
+     "for_merge": "A terminal y lost, 'John' identical, and 'Ludb' is set NOWHERE in the deposited corpus while Ludby is set three times — the profile of a truncated reading rather than a family. John Ludby is a documented man: Fergus 1843 has 'Ludby, John, soap and candle maker, South Branch, 3 miles south [died January 24, 1872, aged 78.]', and the Democrat prints him on 19 November 1834.",
+     "against_merge": "THE TWO INSTRUMENTS NEVER TOUCH. 'John Ludb' is the post-office return of 2 July 1834 (#c029) and nothing else; John Ludby is the Democrat of 19 November 1834 (#c006) and Fergus 1843 — a letter list against a newspaper and a directory, D7's own example. No issue and no return is caught setting both spellings, and the letter-list card is not an anchor: T-0482 closed it no_corroboration. The fold is admissible in shape and has no demonstration behind it, which is exactly what D7 is for. `for_merge` is kept because a later reading of the 2 July 1834 return's image could show the terminal y in the impression and close this."
+    }
    ]
   }
  ],

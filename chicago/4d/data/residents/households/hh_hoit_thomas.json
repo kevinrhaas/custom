@@ -78,7 +78,20 @@
     "candidate_ids": [
      "cand_thomas_hoit_fergus_1843_carpenter"
     ]
-   }
+   },
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "hoit-hoyt",
+     "weighed_against": [
+      "hoyt_thomas"
+     ],
+     "for_merge": "Hoit and Hoyt are one surname's two current spellings in 1830s America, 'Thomas' is identical, and the Democrat carries both cards.",
+     "against_merge": "EACH SPELLING HAS A SECOND BEARER AT THIS TOWN. The resident layer holds hoit_sarah beside hoit_thomas and hoyt_l_g beside hoyt_thomas: two families, not one, which is precisely the Paine/Payne case D7 was extended over. The printings do not touch — 'Hoit, Thomas' is the Democrat of 24 September 1834 (#c002); 'Thomas Hoyt' the Democrat of 17 December 1833 (#c008) and the 1835 poll list — and no issue or roll sets both spellings. T-0510 stopped this pair at candidate_identity and recorded that Fergus's death notices carry the surname Hoit with no entry under it bearing the initial. D7."
+    }
+   ]
   }
  ],
  "touches_removal": false,

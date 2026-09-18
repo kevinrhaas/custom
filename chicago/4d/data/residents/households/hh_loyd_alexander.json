@@ -173,6 +173,19 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED IN THE 1843 DIRECTORY, 8 years after the scene, carried here by its crosswalk (T-1254, by tools/derive_resident_roles.py). It is NOT a claim about 1835-07-01 and never becomes one: back-projecting a later volume onto the scene is the defect T-1145 exists to refuse. `place` is the address or place of business the record states in its own column; a firm named only inside the printed line stays in `as_printed` for the business band to rule on."
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "lloyd-loyd",
+     "weighed_against": [
+      "lloyd_alexander"
+     ],
+     "for_merge": "THIS IS THE STRONGEST MERGE ARGUMENT IN THE FORTY-THREE AND IT IS RECORDED IN FULL. Two consecutive directories print the same man's trade, firm and street under the two spellings: Fergus 1843 has 'Loyd, Alexander, carpenter and builder, (L., Blakesley & Co.), res 52 Wells [4th mayor…]' and Norris 1844 has 'Lloyd, Alexander, builder, of L. Blakesly & Co. res Wells b Lake and Randolph sts'. Same given name, same trade, same firm, same street. Moses & Kirkland's History sets both spellings inside one work and for one man — v1 indexes 'Loyd, Alexander, 102' and prints 'Alexander Lloyd' at four places, v2 prints 'Alexander Loyd, Mayor of the city' and 'with Alexander Lloyd for the building of…' — and the Democrat prints 'A. Lloyd' on 29 October 1834 and 'A. Loyd' on 19 November 1834, three weeks apart. The firm and the address are NON-NAME discriminators and they agree; the town is carrying its own fourth mayor as two residents.",
+     "against_merge": "AND IT IS STILL REFUSED HERE, BECAUSE NO LANDED RULE REACHES IT AND THIS PASS MAY NOT WRITE ONE. C9 wants one publication caught setting both spellings for one man INSIDE THE WINDOW: the Democrat's two settings are two different issues, and Moses & Kirkland is an 1895 history describing 1840, so the catch is outside the window and its v2 index besides carries a 'Lloyd, Alexander C., 384' whose middle initial neither card has. C11 is the rule this evidence actually fits — two spellings discharging one documented office, tied by a non-name discriminator — but C11 as drafted requires THE SURNAME TO AGREE LETTER FOR LETTER and varies the forename, and it is the surname that varies here. That asymmetry is the same one C14 was written to fix for C12, and fixing it for C11 is a new MERGE rule. T-1027 is explicit that the one-letter pool may not be closed by widening the join, and a merge is a card DELETION that moves the town's count; drawing a rule to make one is the owner's call and not this pass's. So the argument is kept verbatim, as D7 requires, and the cards stay two."
+    }
    ]
   }
  ],
