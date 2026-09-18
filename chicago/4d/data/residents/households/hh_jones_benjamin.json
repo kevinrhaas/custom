@@ -87,6 +87,20 @@
   "sources": [
    "andreas_1884_v1"
   ],
+  "last_dated_appearance": {
+   "as_read": "1833-11/1833-11",
+   "precision": "month",
+   "reaches": "1833-11-30",
+   "includes_scene_date": false,
+   "days_before_scene_date": 578,
+   "leg": "source_span",
+   "person": "jones_benjamin",
+   "record": null,
+   "sources": [
+    "chicago_democrat_1833_11_26"
+   ],
+   "note": "NO SIGHTING, SO THE LEG IS A SOURCE'S SPAN. The card holds no dated reading of this person at or before the scene date; the date here is the far end of what a cited source COVERS, which the role's own note calls the source's bound and not the man's. Read from `roles[] (month)` as `1833-11/1833-11`, which reaches 1833-11-30 — 578 day(s) short of 1835-07-01. THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim: nothing here moves the presence off `uncertain`, and T-1159 and T-1172 classify this household by this date instead of reading it out of the prose (T-1144 acceptance 9)."
+  },
   "note": "He resigned a town office for ill health in 1833-34 and nothing reached follows him to 1835. A resignation for ill health is the one biographical fact in the parcel that argues AGAINST assuming continuity, and the value follows it."
  },
  "persons": [

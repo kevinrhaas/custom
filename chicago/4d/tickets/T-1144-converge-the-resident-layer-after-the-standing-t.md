@@ -131,3 +131,67 @@ T-1241.
 
 `claimed_by` is cleared with this, and the `claim/t-1144` marker released: nobody holds
 this ticket.
+
+
+## ACCEPTANCE 9 IS DONE, AND THE TICKET STAYS OPEN (2026-09-18, second pass)
+
+`tools/derive_presence_evidence_leg.py`, gated in `check.sh` as *"every uncertain
+presence carries the dated evidence leg under it"* with its self-test beside it, and
+carried through all four mints by `tools/resident_mint_carry.py`.
+
+820 uncertain presences, 820 legs, **779 of them dated**: 733 a dated reading of the
+person, 43 the far end of a cited source's SPAN, 3 an arrival bound, 41 no date at or
+before the scene date. The leg is derived from the blocks the card already holds —
+`press_evidence`, `civic_evidence`, `book_evidence`, `church_evidence`,
+`census_evidence`, `profile_facts`, `letter_list_returns`, `roles[]`, `arrival` — and
+never from prose.
+
+**The tiers are the honesty, and they are asserted.** A sighting outranks a span even
+when the span reaches further, because the role's own note says that bound is the
+source's and not the man's: a Democrat run covering 1833-11 to 1835-08 is not a sighting
+in August. And a reading is NOT clipped to the scene date — a source that says `1835`
+does not say which half, so `reaches` stays 1835-12-31, `includes_scene_date` is true,
+and the card states that it pins no last sighting before the day. 102 legs are in that
+position. Clipping them would have been a confidence upgrade by arithmetic, which is
+the thing this field exists to prevent; the self-test holds both rules.
+
+**The field may not outlive the verdict.** A leg is written only under `uncertain` and
+removed when the presence is settled — `--check` holds both halves, and
+`resident_mint_carry.py --self-test` proves a mint that now derives `present` does not
+get the leg back.
+
+`tools/export_borderline_roster.py` was the reason to do this: its
+`last_dated_appearance()` reached into `present_on_scene_date.note` with a regular
+expression, which found a date on the handful of notes that happened to print one and
+fell back to the arrival bound for the rest. It reads the derived field now — one
+implementation — and each R1 row carries `describes_date` (the source's own words),
+`dated_evidence_reaches` (the comparable day) and `dated_evidence_includes_scene_date`.
+T-1159's 814 R1 rows are 773 dated where they were a scattering before. The resident
+card prints the leg under the presence row and names which of the three kinds it is.
+
+**Why the ticket is still open.** Acceptance 1's letter-list slot and the last slot of
+acceptance 2 are one and the same, they are **T-1222's** — read that ticket, it holds
+the measurement — and they are not a hand's turn: `mint_letter_list_residents.py
+--check` reports 798 files, of which 648 differ in nothing but the five keys the
+synthesis owns, 81 are households the mint no longer derives, 54 are ids the name
+splitter now mints differently and 14 are genuinely mint-owned. T-0662 read that drift
+and found byte-identity to be the WRONG CONTRACT for a pass that is not the last writer
+of its files; the shape it wants is T-1228's field-level ownership settlement, and
+`data/research/check_gate_baseline.json` carries the row saying exactly that. It is
+re-measured and unchanged today, and this pass did not make it worse.
+
+Acceptances 6 and 7 remain, and they are a pass of their own: 7 is a per-person table
+of which `roles[]` and which locations reach 1 July 1835, and this ticket's leg is the
+presence axis of it — `days_before_scene_date` and `includes_scene_date` are the two
+columns that axis needs, so 7 now has one of its three axes derived rather than
+re-argued.
+
+**A WARNING PAID FOR HERE.** `node tools/ticket.mjs restamp T-1144` does not re-stamp a
+ticket's dates — it RENUMBERS it, and it renumbered this one to T-1305 mid-run. That is
+the one edit this ticket's own tombstone note forbids: research units defer to T-1144 BY
+ID, and `measure_research_spend.py --check` fails on every one of them the moment the id
+moves. It was reverted in the same minute (the `site/` mirror is generated and
+gitignored, so nothing escaped). To leave this ticket open with its claim released, edit
+`claimed_by` and `claimed_run` by hand, as the pass before this one did.
+
+`claimed_by` is cleared with this: nobody holds this ticket.

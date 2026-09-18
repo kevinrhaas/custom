@@ -371,11 +371,12 @@ def lift(card_id: str, path: str, block: dict) -> dict:
             return out
         rule = BASIS_RULE_BY_CARD.get((card_id, path)) or BASIS_RULE.get(path)
         rep = REPLACEABLE_BY.get(path)
-        if rep is None:
+        if rule is None or rep is None:
             raise SystemExit(
                 f"FAIL {path}: a reconstructed value on an attribute with no rule and no "
                 f"replacement row. Add it to BASIS_RULE/REPLACEABLE_BY in "
                 f"tools/migrate_attribute_tiers.py — this tool will not invent one.")
+        out["basis"] = {"kind": "rule", "id": rule[0], "note": rule[1]}
         out["replaceable_by"] = {"kind": rep[0], "match": rep[1]}
     return out
 
@@ -434,7 +435,14 @@ def drawn_rows() -> list[dict]:
                 "a_card": f.stem,
             })
             row["values"] += 1
-            row["by_value"][block.get("value")] += 1
+            # KEYED BY THE VALUE AS JSON WILL HOLD IT, which is a string always.
+            # `check()` compares this payload against the PARSED file, and a JSON
+            # object key is a string, so an integer value counted here comes back as
+            # a string there and the two can never agree. Every drawn attribute
+            # before T-1169 happened to carry string values (a sex, an age band), so
+            # the mismatch had nothing to bite on; `arrival_year` draws a YEAR, and
+            # with it `--build` immediately followed by `--check` failed.
+            row["by_value"][str(block.get("value"))] += 1
     out = []
     for key in sorted(groups):
         row = dict(groups[key])

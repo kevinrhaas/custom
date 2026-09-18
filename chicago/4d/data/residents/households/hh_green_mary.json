@@ -84,6 +84,18 @@
   "sources": [
    "st_cyr_register_ichr_v4"
   ],
+  "last_dated_appearance": {
+   "as_read": null,
+   "precision": null,
+   "reaches": null,
+   "includes_scene_date": false,
+   "days_before_scene_date": null,
+   "leg": "none",
+   "person": null,
+   "record": null,
+   "sources": [],
+   "note": "NO DATED EVIDENCE AT OR BEFORE 1835-07-01. The earliest date this card carries is 1835-08-29, which is after the scene, so it is a later appearance rather than the leg under this verdict — T-1159 class R5 is where a later record is back-projected, and it is not done here."
+  },
   "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
  "persons": [
