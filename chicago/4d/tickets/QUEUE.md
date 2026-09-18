@@ -189,3 +189,4 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
 T-1315 — Spend the three dated birth and age enrichments T-1301 routed to T-1168: robinson_alexander, kimberly_edmund_s and maxwell_philip each carry a sourced birth date or age no field held when the reading was made, and both fields exist now
 T-1331 — The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
+T-1336 — The parallel gate from T-1289 races: a self-test that breaks a live file to prove a check fires runs concurrently with the step that reads it, so any PR in the queue can go red on a tree that is green
