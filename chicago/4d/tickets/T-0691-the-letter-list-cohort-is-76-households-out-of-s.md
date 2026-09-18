@@ -1,7 +1,7 @@
 ---
 id: T-0691
 title: The letter-list cohort is 76 households out of step with its own derivation, and check.sh never looks
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-04
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1445
 claimed_by: run 9/18/2026, 1:54:28 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T07:55:40.692Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35316372496
 ---
 
