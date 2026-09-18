@@ -155,8 +155,8 @@
     },
     {
       "key": "named_families",
-      "ticket": "T-1170",
-      "title": "The families the sources name, onto the heads that have them",
+      "ticket": "T-1314",
+      "title": "The families the sources COUNT and do not name, onto the heads that have them",
       "writes": "inferred kin persons where a source names them; reconstructed where only counted",
       "draws_from": [
         "household_size"
