@@ -31,6 +31,7 @@ from pathlib import Path
 from associations import (ASSOCIATION_KINDS, ASSOCIATION_RESOLUTION,
                          check_association_rows, singular_drift)
 from heightfield import Heightfield
+from migrate_attribute_tiers import check_tier_block
 from tiers import (SOLE_EVIDENCE_MAX_TIER, TESTIMONY_MAX_TIER,
                    TRACEABLE_MAX_TIER, tier_ladder)
 
@@ -322,6 +323,22 @@ def check_attested(where: str, key: str, att: dict, source_ids: set, rep: Report
 
     srcs = att.get("sources") or []
     note = (att.get("note") or "").strip()
+
+    # THE PER-ATTRIBUTE TIER (T-1158), checked wherever a block carries one.
+    #
+    # `confidence` says how well a value is evidenced; `tier` says which of the
+    # four kinds of thing the value IS — read from a source, reasoned about this
+    # person, invented from a model or a rule, or not asserted at all. They are not
+    # the same axis, and the fourth tier is the reason: 7,314 blocks in the resident
+    # layer carry `confidence: "reconstructed"` over a value that asserts nothing,
+    # which is the opposite of what a reconstruction band will mean by the word.
+    #
+    # The tier is DERIVED from the confidence and the value and may not disagree
+    # with that derivation, so this cannot become a second, softer grade that a
+    # writer sets to whatever flatters the record. What it adds is the obligations:
+    # a genuinely invented value owes a basis, a replacement rule, and — when it was
+    # drawn rather than argued — the seed that redraws it.
+    check_tier_block(where, key, att, rep.error)
 
     if conf == "attested":
         if not srcs:
