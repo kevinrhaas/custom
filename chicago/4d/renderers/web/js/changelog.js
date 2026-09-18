@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The town\u2019s people, profiled \u2014 and the profile is in the walkthrough', kind: 'feature', ts: '',
+  { v: 930, title: 'The town\u2019s people, profiled \u2014 and the profile is in the walkthrough', kind: 'feature', ts: '2026-09-18T02:29:53.520Z', date: 'Sep 17, 2026, 9:29 PM CT',
     items: [
       'Before anybody in this town is invented, it is worth saying plainly who is actually known. The Evidence panel has a new list for it: the known population of the first of July 1835, profiled one axis at a time \u2014 headcount, sex, age, origin and arrival, roles, households, lodging, where they meet the buildings, and what kinds of people the sources show.',
       'It is not a flattering read, and it is not meant to be. There are 1,282 people on 1,258 cards against a town census that counts 3,265. Ten carry a dated age. Twenty households name a place they live. Ninety-five arrival dates in a hundred are not arrivals but a bound \u2014 somebody was writing to that name at Chicago by a date, and nothing says when they came. Ninety-eight households in a hundred are one person and nobody else, because a letter waiting at the post office names a man and says nothing about a wife.',
