@@ -51,3 +51,25 @@ what is attested, inferred or reconstructed."*
 fact says how it will be replaced.
 
 **Links:** every ticket in this band · T-1144 · T-1160 · T-1166 · T-1190.
+
+---
+
+**Finding (T-1314, 2026-09-18): the model a stage draws from is re-derived FROM the layer
+that stage writes into.** `data/reconstruction/1835_town_model.json` counts the resident
+layer — `people_the_layer_can_name`, the household-per-record ratio, the arrival-year
+shares — and the reconstruction programme's `model_inputs.rows` point at that same file.
+So every stage that adds a person moves the model the NEXT stage draws from. The first
+stage to land measured the size of it: three people moved `share_of_the_layer_arriving_in_1835`
+from 0.449 to 0.448 and moved no derived population figure at all, so nothing is wrong
+today. It will not stay that size once T-1173–T-1178 add hundreds.
+
+The model's own prose is already careful — "A count of the layer, not of the town" — and
+that is exactly why this is convergence's problem rather than any one stage's: the fix is
+a rule about WHICH people the model may count (the sources' people, not the programme's),
+and it has to be made once, for every stage, with the order book re-derived under it. Three
+other gates were narrowed the same way by T-1314 and are the precedent for the shape of it:
+`spend_person_sex_age` (a reconstructed person no longer teaches the forename table),
+`read_newberry_index` (an invented name is no longer a candidate for an archival lead) and
+`profile_population_1835` (the refusal is now "no reconstructed person the programme cannot
+re-derive", not "none at all").
+

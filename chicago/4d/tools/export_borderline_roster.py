@@ -313,24 +313,35 @@ def census_1830_rulings(root: Path = ROOT) -> dict[str, dict]:
     return out
 
 
-def last_dated_appearance(doc: dict) -> tuple[str | None, str]:
-    """The dated leg that made a presence uncertain, and where it was read."""
-    returns = []
-    for person in doc.get("persons") or []:
-        for value in person.get("letter_list_returns") or []:
-            if isinstance(value, str):
-                returns.append(value)
-    if returns:
-        return max(returns), "the last post-office return that prints the name"
+def last_dated_appearance(doc: dict) -> tuple[dict, str]:
+    """The dated leg that made a presence uncertain, and where it was read.
+
+    READ OFF THE CARD, NOT OUT OF ITS PROSE (T-1144 acceptance 9). Until 2026-09-18
+    this reached into `present_on_scene_date.note` with a regular expression and fell
+    back to the arrival bound, which found a date on one card in a thousand and a
+    second representation of the same fact everywhere else. The leg is now DERIVED by
+    `tools/derive_presence_evidence_leg.py` from the card's own evidence blocks, gated
+    in check.sh, and written into `present_on_scene_date.last_dated_appearance`; this
+    function reads that field so the roster and the card cannot disagree.
+    """
     presence = doc.get("present_on_scene_date")
-    if isinstance(presence, dict):
-        found = DATE.search(str(presence.get("note") or ""))
-        if found:
-            return found.group(0), "the last date the presence note reaches"
-    arrival = doc.get("arrival")
-    if isinstance(arrival, dict) and isinstance(arrival.get("value"), str):
-        return arrival["value"], "the arrival bound, which is the only date the card holds"
-    return None, "the card holds no dated appearance"
+    leg = presence.get("last_dated_appearance") if isinstance(presence, dict) else None
+    if not isinstance(leg, dict):
+        return {}, "the card carries no derived presence leg"
+    kind = leg.get("leg")
+    if kind == "sighting":
+        where = ("the last post-office return that prints the name"
+                 if leg.get("sources") == [] and leg.get("record") is None
+                 else "the last dated reading of this person the corpus holds")
+    elif kind == "source_span":
+        where = "the far end of a cited source's span, which is not a sighting"
+    elif kind == "arrival_bound":
+        where = "the arrival bound, which is the only date the card holds"
+    else:
+        where = "the card holds no dated appearance at or before the scene date"
+    if leg.get("includes_scene_date"):
+        where += ", and its window covers the scene date, so it pins no day before it"
+    return leg, where
 
 
 # ---------------------------------------------------------------- names out of a unit
@@ -668,7 +679,8 @@ def card_rows(layer: dict) -> list[dict]:
         if card["presence"] != "uncertain":
             continue
         doc = card["doc"]
-        date, leg = last_dated_appearance(doc)
+        dated, leg = last_dated_appearance(doc)
+        date = dated.get("as_read")
         presence = doc.get("present_on_scene_date")
         sources = presence.get("sources") if isinstance(presence, dict) else None
         text = words_of(doc)
@@ -703,6 +715,14 @@ def card_rows(layer: dict) -> list[dict]:
             "claim_or_record_id": card["id"],
             "describes_date": date,
             "dated_evidence_leg": leg,
+            # THE SOURCE'S OWN WORDS AND A COMPARABLE DAY ARE TWO FIELDS, NOT ONE
+            # (T-1144 acceptance 9). `describes_date` is what the reading says —
+            # `1835` stays `1835` — and these two are what a classifier sorts by:
+            # the latest day that reading can mean, and whether its window covers
+            # 1 July 1835, in which case it pins no last sighting before the day.
+            "dated_evidence_reaches": dated.get("reaches"),
+            "dated_evidence_includes_scene_date": bool(
+                dated.get("includes_scene_date")),
             "domain": "residents_layer",
             "ledger_disposition": None,
             "ledger_reason": None,
@@ -904,7 +924,20 @@ def review_text(doc: dict) -> str:
             reason = re.sub(r"\s+", " ", str(reason))
             if len(reason) > 240:
                 reason = reason[:237].rstrip() + "…"
-            add(f"| {row['name_as_read']} | {row.get('describes_date') or '—'} "
+            # A DATE IS NOT ALWAYS A SIGHTING. An R1 card whose only dated evidence is
+            # a cited source's SPAN carries that span's far end, and a bare date in
+            # this column would read as the day somebody saw the person. The leg the
+            # card derives says which kind it is (T-1144 acceptance 9), so the column
+            # says so too rather than leaving the reader to open the card.
+            dated = row.get("describes_date") or "—"
+            leg = str(row.get("dated_evidence_leg") or "")
+            if dated != "—" and "not a sighting" in leg:
+                dated += " (a source's span, not a sighting)"
+            elif dated != "—" and "arrival bound" in leg:
+                dated += " (an arrival bound, not a sighting)"
+            elif dated != "—" and row.get("dated_evidence_includes_scene_date"):
+                dated += " (a window over the scene date, so no day before it)"
+            add(f"| {row['name_as_read']} | {dated} "
                 f"| `{source}` | {reason} |")
         add("")
 

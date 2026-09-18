@@ -118,6 +118,14 @@
       "records": 3,
       "refused_because": "Which ticket seated this person. Repository provenance of the same class as `source_pass` — useful to a reader of the JSON and to the run that has to audit a pass, and not part of what a visitor judges the record by. What the visitor needs is the evidence, and the card already shows it: the grade, the sources and the note that says what the source does NOT say."
     },
+    "residents/household:present_on_scene_date.last_dated_appearance.person": {
+      "records": 776,
+      "refused_because": "A foreign key into `persons[].id` — which person of the household the leg was read on. It is there so the derivation and the roster can be audited against the card, and the card already names every person of the household on their own rows; printing the id beside the date would say nothing a reader can use."
+    },
+    "residents/household:present_on_scene_date.last_dated_appearance.record": {
+      "records": 348,
+      "refused_because": "The `record_id` or locator of the evidence block the leg came from — an audit pointer, null on the 383 legs read off a post-office return, which carries no per-return record. The card shows the SOURCE the block cites, which is the part a reader can follow; an internal row id is not."
+    },
     "residents/household:source_pass": {
       "records": 1179,
       "refused_because": "T-0599/T-0604: provenance for the three mint tools' OWN bookkeeping — which pass (documented/placed/letter_list) minted this record, so a re-run can tell 'a household I minted' from a plain hand-authored one without an id prefix. Not a finding about the person: the evidence the panel already shows — grade, letter_list_only, sources — is what a visitor judges the record by, and which internal tool produced it is not part of that judgment. See data/residents/README.md."

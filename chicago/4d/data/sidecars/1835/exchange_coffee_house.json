@@ -150,6 +150,20 @@
           "grade": "inferred",
           "occupation": "tavern_keeper",
           "note": "DOCUMENTED AS A PERSON, DERIVED AS A NAME. Andreas calls her only 'Mrs. Murphy'. The forename Harriet reaches this project through data/structures/exchange_coffee_house.json, whose occupants field carries 'John and Harriet Murphy, keepers', and it could not be traced back to a sentence in Andreas. The woman is documented; the forename is the reconstructed part, and that is exactly what the derived grade is for."
+        },
+        {
+          "name": "Thomas Murphy",
+          "relationship": "child",
+          "grade": "reconstructed",
+          "occupation": "none_recorded",
+          "note": "RECONSTRUCTED PERSON. The 1840 census counts this household member and does not name them; the relation is 'child' because a band tally states an age and a sex and no relation at all. The band is the one the card's named people leave over once they have absorbed the senior bands of their sex, and that allocation writes no age onto any of THEM. Nothing here is evidence about a named individual: the need is the count, and any source naming this household's people retires them."
+        },
+        {
+          "name": "Honora Murphy",
+          "relationship": "household_member",
+          "grade": "reconstructed",
+          "occupation": "none_recorded",
+          "note": "RECONSTRUCTED PERSON. The 1840 census counts this household member and does not name them; the relation is 'household_member' because a band tally states an age and a sex and no relation at all. The band is the one the card's named people leave over once they have absorbed the senior bands of their sex, and that allocation writes no age onto any of THEM. Nothing here is evidence about a named individual: the need is the count, and any source naming this household's people retires them."
         }
       ],
       "research_note": "THE CLEANEST HOUSEHOLD-TO-BUILDING LINK IN THIS PARCEL, and the reason it is worth writing the residents layer at all: a building record that says 'tavern_inn' becomes a household of two people with a trade, a date and a tenancy with ends. THE CONFLICT ALREADY RECORDED ON THE BUILDING IS NOT RESOLVED HERE: Abram A. Markle's name is on this house in a Chicago American advertisement of August 1836 while Andreas has Markle taking the Mansion House in 1835, and this project holds both readings without choosing. The Murphy tenancy is the one with dates on both sides of 1 July 1835 and it is what this record carries."

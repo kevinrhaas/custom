@@ -278,6 +278,112 @@
     },
     "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('murphy_harriet:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
    }
+  },
+  {
+   "id": "rc_murphy_thomas",
+   "name": "Thomas Murphy",
+   "relationship": "child",
+   "grade": "reconstructed",
+   "sex": "male",
+   "name_basis": {
+    "confidence": "reconstructed",
+    "note": "INVENTED. The given name is drawn from the irish given-name pool in data/reconstruction/1835_invented_name_pools.json by the seed below; the surname is the head's own, which is the household the count places this person in and not a claim of kinship. No source names this person."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "household_size",
+    "note": "COUNTED, NOT NAMED. The 1840 federal census household of Murphy (IPUMS serial 5102066, printed page 233 row 30) tallies one 'free white males 10 under 15'. Enumerated 1840-06-01 and back-projected 5 years, that person was 5-9 on 1835-07-01 and so was already alive and in this town's head's household; the card names 2 of the row's 6 people and this is one it does not. The bridge is 'validated' and rests on 1835 evidence for the HEAD, never on this composition."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "A band tally states a sex and an age and nothing else. What this person did is not claimed, and a null here is the claim that the count cannot say - not that they did nothing."
+   },
+   "seed": "hh_murphy_john:household_size/nwm1014/1",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "any source naming a member of the Murphy household at or before 1835-07-01"
+   },
+   "reconstruction": {
+    "stage": "named_families",
+    "programme": "chicago_july_1835_resident_reconstruction_programme",
+    "community": "irish",
+    "band_1840": "free white males 10 under 15",
+    "age_on_scene_date": {
+     "low": 5,
+     "high": 9
+    },
+    "counted_by": "census_1840 serial 5102066"
+   },
+   "note": "RECONSTRUCTED PERSON. The 1840 census counts this household member and does not name them; the relation is 'child' because a band tally states an age and a sex and no relation at all. The band is the one the card's named people leave over once they have absorbed the senior bands of their sex, and that allocation writes no age onto any of THEM. Nothing here is evidence about a named individual: the need is the count, and any source naming this household's people retires them.",
+   "age_band": {
+    "value": "5-9",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "note": "READ OFF A COUNT, NOT DRAWN. The `named_families` stage wrote this person from a census column - “free white males 10 under 15” - and the band back-projects to 5-9 on the scene date. This pass draws an age only where nothing dates one, and a tally in an age column dates one.",
+    "basis": {
+     "kind": "rule",
+     "id": "counted_by_a_census_column",
+     "note": "ARGUED, NOT DRAWN. The `named_families` stage wrote this person BECAUSE the 1840 schedule tallies them in “free white males 10 under 15”; that column is the only thing said about their age, and five years off it is the whole derivation. No model row is consulted and nothing is drawn, so this block carries no seed."
+    },
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    }
+   }
+  },
+  {
+   "id": "rc_murphy_honora",
+   "name": "Honora Murphy",
+   "relationship": "household_member",
+   "grade": "reconstructed",
+   "sex": "female",
+   "name_basis": {
+    "confidence": "reconstructed",
+    "note": "INVENTED. The given name is drawn from the irish given-name pool in data/reconstruction/1835_invented_name_pools.json by the seed below; the surname is the head's own, which is the household the count places this person in and not a claim of kinship. No source names this person."
+   },
+   "basis": {
+    "kind": "model",
+    "id": "household_size",
+    "note": "COUNTED, NOT NAMED. The 1840 federal census household of Murphy (IPUMS serial 5102066, printed page 233 row 30) tallies one 'free white females 30 under 40'. Enumerated 1840-06-01 and back-projected 5 years, that person was 25-34 on 1835-07-01 and so was already alive and in this town's head's household; the card names 2 of the row's 6 people and this is one it does not. The bridge is 'validated' and rests on 1835 evidence for the HEAD, never on this composition."
+   },
+   "occupation": {
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "note": "A band tally states a sex and an age and nothing else. What this person did is not claimed, and a null here is the claim that the count cannot say - not that they did nothing."
+   },
+   "seed": "hh_murphy_john:household_size/nwf30/1",
+   "replaceable_by": {
+    "kind": "person",
+    "match": "any source naming a member of the Murphy household at or before 1835-07-01"
+   },
+   "reconstruction": {
+    "stage": "named_families",
+    "programme": "chicago_july_1835_resident_reconstruction_programme",
+    "community": "irish",
+    "band_1840": "free white females 30 under 40",
+    "age_on_scene_date": {
+     "low": 25,
+     "high": 34
+    },
+    "counted_by": "census_1840 serial 5102066"
+   },
+   "note": "RECONSTRUCTED PERSON. The 1840 census counts this household member and does not name them; the relation is 'household_member' because a band tally states an age and a sex and no relation at all. The band is the one the card's named people leave over once they have absorbed the senior bands of their sex, and that allocation writes no age onto any of THEM. Nothing here is evidence about a named individual: the need is the count, and any source naming this household's people retires them.",
+   "age_band": {
+    "value": "25-34",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "note": "READ OFF A COUNT, NOT DRAWN. The `named_families` stage wrote this person from a census column - “free white females 30 under 40” - and the band back-projects to 25-34 on the scene date. This pass draws an age only where nothing dates one, and a tally in an age column dates one.",
+    "basis": {
+     "kind": "rule",
+     "id": "counted_by_a_census_column",
+     "note": "ARGUED, NOT DRAWN. The `named_families` stage wrote this person BECAUSE the 1840 schedule tallies them in “free white females 30 under 40”; that column is the only thing said about their age, and five years off it is the whole derivation. No model row is consulted and nothing is drawn, so this block carries no seed."
+    },
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    }
+   }
   }
  ],
  "touches_removal": false,

@@ -26,8 +26,8 @@
   },
   "handed_to_the_family_pass": {
    "disposition": "unresolved",
-   "ticket": "T-1170",
-   "statement": "The unit names kin — a wife, a marriage, a household member — of a head this town holds. T-1170 gives the attested and inferred heads the families the sources name; a marriage names a spouse and creates nobody, and no household member is minted here."
+   "ticket": "T-1317",
+   "statement": "The unit names kin — a wife, a marriage, a household member — of a head this town holds. T-1170 gives the attested and inferred heads the families the sources name; a marriage names a spouse and creates nobody, and no household member is minted here. T-1170 is SPLIT AND FULLY CLOSED as of 2026-09-18 (T-1312 read the statements, T-1313 seated the three the rulings said `write`, T-1314 back-projected the counted family members), so this row may no longer wait on it: the ledger holds an `unresolved` row to a ticket that is still going to happen, and a closed epic is not one. Re-pointed at T-1317, which owns exactly this re-routing. Nothing about the READING changes here and no verdict moves — T-1312's rulings already answer several of these rows (Josette LaFramboise Beaubien and Catherine Chevalier Robinson are `already_held`, Jesse Hobson's wife is `no_seat` under the letter-list mint's one-name rule), and turning each into its own disposition is an adjudication per row, which is T-1317's demonstration and not a line this ticket may slip in behind a re-derivation."
   },
   "handed_to_the_dated_role_pass": {
    "disposition": "unresolved",

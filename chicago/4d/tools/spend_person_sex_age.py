@@ -335,7 +335,14 @@ def attested_bearers(cards: dict) -> dict:
         sex = person.get("sex")
         if not sex:
             continue
-        if (person.get("sex_basis") or {}).get("confidence") == "reconstructed":
+        # AND A RECONSTRUCTED SEX TEACHES NOTHING EITHER. T-1304 drew a sex from the
+        # population model where no evidence could settle one, and T-1314 wrote whole
+        # PEOPLE the sources do not name, whose forenames come out of the pools below.
+        # Either one counted as a bearer would feed this table's own output back in as
+        # though it were evidence about the town, and every stage that adds a person
+        # would make it look better attested than the sources ever made it.
+        if (person.get("grade") == "reconstructed"
+                or (person.get("sex_basis") or {}).get("confidence") == "reconstructed"):
             continue
         title, fore, why = read_name(person.get("name") or "")
         if title or why not in ("forename", "contraction") or not fore:

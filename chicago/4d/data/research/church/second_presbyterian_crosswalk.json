@@ -14,10 +14,10 @@
   ],
   "counts": {
     "roll_records": 941,
-    "residents_considered": 1283,
+    "residents_considered": 1286,
     "residents_matched_one_line": 80,
-    "residents_ambiguous": 36,
-    "residents_surname_only_refused": 318
+    "residents_ambiguous": 37,
+    "residents_surname_only_refused": 320
   },
   "matched": [
     {
@@ -1516,6 +1516,32 @@
           "admitted": "1853-08-31",
           "how_admitted": "letter",
           "printed_page": 176,
+          "a_married_womans_entry": false
+        }
+      ]
+    },
+    {
+      "name": "Nancy Adams",
+      "person_id": "rc_adams_nancy",
+      "household_id": "hh_adams_william_h",
+      "grade": "reconstructed",
+      "source_id": "second_presbyterian_chicago_1892",
+      "rule": "Surname 'Adams' folds to the same string as the roll line's, and the given name of both begins N.",
+      "roll_lines": [
+        {
+          "record": "second_presb_0053",
+          "as_read": "Adams, Miss Nettie Roberts | Letter. | March i, 1891.",
+          "admitted": "1891-03-01",
+          "how_admitted": "letter",
+          "printed_page": 157,
+          "a_married_womans_entry": false
+        },
+        {
+          "record": "second_presb_0054",
+          "as_read": "Adams, Miss Nilla M. | Profession. | June 29, 1864.",
+          "admitted": "1864-06-29",
+          "how_admitted": "profession",
+          "printed_page": 157,
           "a_married_womans_entry": false
         }
       ]
@@ -4637,6 +4663,24 @@
       "source_id": "second_presbyterian_chicago_1892",
       "candidates_under_that_surname": 1,
       "rule": "The surname 'Murphy' stands on the Second Presbyterian roll and no line under it carries the initial 'H' of 'Harriet Murphy'. A surname-only agreement is a refusal."
+    },
+    {
+      "name": "Thomas Murphy",
+      "person_id": "rc_murphy_thomas",
+      "household_id": "hh_murphy_john",
+      "grade": "reconstructed",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 1,
+      "rule": "The surname 'Murphy' stands on the Second Presbyterian roll and no line under it carries the initial 'T' of 'Thomas Murphy'. A surname-only agreement is a refusal."
+    },
+    {
+      "name": "Honora Murphy",
+      "person_id": "rc_murphy_honora",
+      "household_id": "hh_murphy_john",
+      "grade": "reconstructed",
+      "source_id": "second_presbyterian_chicago_1892",
+      "candidates_under_that_surname": 1,
+      "rule": "The surname 'Murphy' stands on the Second Presbyterian roll and no line under it carries the initial 'H' of 'Honora Murphy'. A surname-only agreement is a refusal."
     },
     {
       "name": "N Murphy",

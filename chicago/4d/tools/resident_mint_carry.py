@@ -128,6 +128,25 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
         if key not in doc:
             doc[key] = value
 
+    # T-1144 ACCEPTANCE 9: THE DATED EVIDENCE LEG UNDER AN UNCERTAIN PRESENCE.
+    # `tools/derive_presence_evidence_leg.py` runs after the mints and writes
+    # `last_dated_appearance` INSIDE `present_on_scene_date`, which the mints rebuild
+    # whole — so it is lost the same way `later_occupation` was before T-1137, and it
+    # is carried in the same fixed slot, immediately after `sources`.
+    #
+    # THE ONE CONDITION: the leg is the evidence under a VERDICT, so it may not outlive
+    # it. A mint that now derives a presence other than `uncertain` has answered the
+    # question the leg annotates, and carrying it there would resurrect a field the
+    # deriver's own --check deletes.
+    prior_presence = prior.get("present_on_scene_date")
+    presence = doc.get("present_on_scene_date")
+    if isinstance(prior_presence, dict) and isinstance(presence, dict) \
+            and presence.get("value") == "uncertain" \
+            and "last_dated_appearance" not in presence \
+            and prior_presence.get("last_dated_appearance") is not None:
+        _insert_after(presence, "last_dated_appearance",
+                      prior_presence["last_dated_appearance"], "sources")
+
     # Kinship has one conventional household slot: immediately before persons.
     if "kin" in doc:
         kin = doc.pop("kin")
@@ -221,7 +240,8 @@ def self_test() -> int:
          carry_note(changed, old_derived + " an unmarked suffix", (marker,)) == changed)
 
     fresh = {
-        "id": "hh_x", "present_on_scene_date": {},
+        "id": "hh_x",
+        "present_on_scene_date": {"value": "uncertain", "sources": ["s"], "note": "n"},
         "persons": [{
             "id": "p_x", "grade": "attested",
             "occupation": {"value": "none_recorded", "confidence": "reconstructed"},
@@ -229,7 +249,10 @@ def self_test() -> int:
         }],
     }
     prior = {
-        "id": "hh_x", "present_on_scene_date": {},
+        "id": "hh_x",
+        "present_on_scene_date": {"value": "uncertain", "sources": ["s"],
+                                  "last_dated_appearance": {"date": "1834-04-01"},
+                                  "note": "n"},
         "kin": [{"person": "p_x", "relation": "head"}],
         "persons": [{
             "id": "p_x", "grade": "attested", "ladder_rule": "G1b",
@@ -272,6 +295,20 @@ def self_test() -> int:
          [k for k in person["occupation"]
           if k in ("withdrawn_from_scene_date", "derived_from", "roles_at_scene_date")]
          == ["withdrawn_from_scene_date", "derived_from", "roles_at_scene_date"])
+    # T-1144 acceptance 9. The leg lives inside a block the mints rebuild whole.
+    want("the presence leg survives inside the newly derived presence",
+         kept["present_on_scene_date"].get("last_dated_appearance")
+         == {"date": "1834-04-01"})
+    want("…in the slot after `sources`",
+         list(kept["present_on_scene_date"])
+         == ["value", "sources", "last_dated_appearance", "note"])
+    moved = carry_resident_mint(
+        {"id": "hh_x", "persons": [],
+         "present_on_scene_date": {"value": "present", "sources": ["s"], "note": "n"}},
+        prior)
+    want("a presence the mint now settles does not get the leg back",
+         "last_dated_appearance" not in moved["present_on_scene_date"])
+
     want("another pass's citation survives",
          "source_another_pass_added" in person["sources"])
     want("the marker-bounded finding survives the changed note",

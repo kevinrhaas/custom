@@ -152,7 +152,7 @@ RULES = {
     },
     "the_enrichment_names_kin_no_field_carries": {
         "disposition": "unresolved",
-        "ticket": "T-1170",
+        "ticket": "T-1317",
         "statement": (
             "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
             "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
@@ -164,7 +164,19 @@ RULES = {
             "fact it names; this unit's own note says which field that is. This one names KIN -- a "
             "spouse, a marriage, a child, a parent or a household the source distinguishes -- and "
             "T-1170 is the pass that gives the attested and inferred heads the families the sources "
-            "name."),
+            "name."
+            " T-1170 IS SPLIT AND FULLY CLOSED as of 2026-09-18 -- T-1312 read the "
+            "statements, T-1313 seated the three the rulings said `write`, T-1314 "
+            "back-projected the family members the 1840 census counts -- so this rule may "
+            "no longer hand a unit to it. The ledger holds an `unresolved` row to a ticket "
+            "that is still going to happen, and a closed epic is not one; this file's own "
+            "doc says a ticket closing turns it red and that that is the point. T-1317 "
+            "owns the re-routing. Nothing about the READING moves here: T-1312's verdicts "
+            "already answer several of these units -- Josette LaFramboise Beaubien and "
+            "Catherine Chevalier Robinson are `already_held`, Jesse Hobson's wife is "
+            "`no_seat` under the letter-list mint's one-name rule of 2026-08-30 -- and "
+            "turning each into its own disposition is one adjudication per unit, which is "
+            "T-1317's demonstration and not a line a re-derivation may slip in behind."),
     },
     "the_enrichment_names_a_trade_or_premises_no_field_carries": {
         "disposition": "unresolved",
@@ -347,25 +359,49 @@ RULES = {
     },
     "the_family_column_names_kin": {
         "disposition": "unresolved",
-        "ticket": "T-1170",
+        "ticket": "T-1317",
         "statement": (
             "The unit is the paper's own MARRIED or DIED column, printed under that "
             "heading: it names a bride and a groom, or a decedent and the survivor they "
             "are named by, and the magistrate or minister who officiated. A marriage names "
             "a spouse and creates nobody; T-1170 gives the attested and inferred heads the "
             "families the sources name, from exactly these ruled kin ties. No household "
-            "member is minted here and no kin tie is written here."),
+            "member is minted here and no kin tie is written here."
+            " T-1170 IS SPLIT AND FULLY CLOSED as of 2026-09-18 -- T-1312 read the "
+            "statements, T-1313 seated the three the rulings said `write`, T-1314 "
+            "back-projected the family members the 1840 census counts -- so this rule may "
+            "no longer hand a unit to it. The ledger holds an `unresolved` row to a ticket "
+            "that is still going to happen, and a closed epic is not one; this file's own "
+            "doc says a ticket closing turns it red and that that is the point. T-1317 "
+            "owns the re-routing. Nothing about the READING moves here: T-1312's verdicts "
+            "already answer several of these units -- Josette LaFramboise Beaubien and "
+            "Catherine Chevalier Robinson are `already_held`, Jesse Hobson's wife is "
+            "`no_seat` under the letter-list mint's one-name rule of 2026-08-30 -- and "
+            "turning each into its own disposition is one adjudication per unit, which is "
+            "T-1317's demonstration and not a line a re-derivation may slip in behind."),
     },
     "the_register_entry_names_kin": {
         "disposition": "unresolved",
-        "ticket": "T-1170",
+        "ticket": "T-1317",
         "statement": (
             "The entry's own `cells.role` puts this person in the KIN of a dated "
             "sacrament at Chicago -- the child, the father, the mother, the groom, the "
             "bride, the spouse or the decedent of a baptism, a marriage or a death. "
             "T-1170's field is the spouses, children, kin and dependants the baptism and "
             "marriage registers name. The tie is handed on whole; nobody is minted, no "
-            "household is edited, and the entry's `confidence` is untouched."),
+            "household is edited, and the entry's `confidence` is untouched."
+            " T-1170 IS SPLIT AND FULLY CLOSED as of 2026-09-18 -- T-1312 read the "
+            "statements, T-1313 seated the three the rulings said `write`, T-1314 "
+            "back-projected the family members the 1840 census counts -- so this rule may "
+            "no longer hand a unit to it. The ledger holds an `unresolved` row to a ticket "
+            "that is still going to happen, and a closed epic is not one; this file's own "
+            "doc says a ticket closing turns it red and that that is the point. T-1317 "
+            "owns the re-routing. Nothing about the READING moves here: T-1312's verdicts "
+            "already answer several of these units -- Josette LaFramboise Beaubien and "
+            "Catherine Chevalier Robinson are `already_held`, Jesse Hobson's wife is "
+            "`no_seat` under the letter-list mint's one-name rule of 2026-08-30 -- and "
+            "turning each into its own disposition is one adjudication per unit, which is "
+            "T-1317's demonstration and not a line a re-derivation may slip in behind."),
     },
     "a_dated_appearance_bounds_a_presence": {
         "disposition": "unresolved",

@@ -26,13 +26,13 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 13024,
-    "tiers_written_on_the_card": 1878,
+    "blocks": 13030,
+    "tiers_written_on_the_card": 1881,
     "by_tier": {
       "attested": 591,
       "inferred": 3262,
-      "reconstructed": 1841,
-      "unknown": 7330
+      "reconstructed": 1844,
+      "unknown": 7333
     },
     "by_attribute": {
       "arrival": {
@@ -92,7 +92,7 @@
       "persons[].age_band": {
         "attested": 7,
         "inferred": 57,
-        "reconstructed": 1214,
+        "reconstructed": 1217,
         "unknown": 7
       },
       "persons[].age_on_scene_date": {
@@ -123,7 +123,7 @@
         "attested": 119,
         "inferred": 9,
         "reconstructed": 0,
-        "unknown": 1157
+        "unknown": 1160
       },
       "persons[].profile_facts[]": {
         "attested": 1,
@@ -1140,6 +1140,25 @@
       },
       "a_seed": "abbot_8_g:age_bands_1840",
       "a_card": "hh_abbot_8_g"
+    },
+    {
+      "attribute": "persons[].age_band",
+      "basis": {
+        "kind": "rule",
+        "id": "counted_by_a_census_column"
+      },
+      "replaceable_by": {
+        "kind": "person",
+        "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+      },
+      "values": 3,
+      "by_value": {
+        "15-24": 1,
+        "25-34": 1,
+        "5-9": 1
+      },
+      "a_seed": null,
+      "a_card": "hh_adams_william_h"
     },
     {
       "attribute": "persons[].sex_basis",

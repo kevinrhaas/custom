@@ -232,6 +232,15 @@ AMBIGUOUS_LEAVES = frozenset({
     # by its data parent, so the day a card really does print which STATEMENT seated a
     # wife it declares `stated_family.statement` and never reaches here.
     "statement",
+    # T-1144's `present_on_scene_date.last_dated_appearance.record`. `record` is a word
+    # this renderer has used from the start for the thing a popup is showing —
+    # `hit.record`, `z.record`, `task.record.id`, `boat.record` — none of which is a
+    # resident's evidence row id. A bare-name scan attributes all of it to the presence
+    # leg's audit pointer and calls it a phantom read. Same shape and same narrowing as
+    # the four above: the pointer has a data parent to qualify it with, so the day the
+    # card really does print the row a leg came from it declares the expression and
+    # never reaches here.
+    "record",
     # T-1304's `vocabulary.age_bands[].age_band`. The profile report's vocabulary names
     # each age RULE — `birth_year_known`, `adult_by_civic_list` — under the key
     # `age_band`, and the card reads a PERSON's `age_band` block, which is a different
@@ -524,6 +533,10 @@ RESIDENTS_MANIFEST_READS: dict[str, tuple[str, str]] = {
     "households[].persons": ("shown", "entry.persons === 1"),
     "households[].grades.attested": ("shown", "(grades || {})[g]"),
     "households[].grades.inferred": ("shown", "(grades || {})[g]"),
+    # The third chip. It was absent from this map for as long as the tally was zero
+    # everywhere; T-1314 put people back under the grade and `gradeChips` has always
+    # drawn all three from one expression.
+    "households[].grades.reconstructed": ("shown", "(grades || {})[g]"),
     # The finding the section was built to carry: a household with neither
     # residence nor workplace attested reaches no building sidecar, so these two
     # copies are what puts "on no building card" on the row.
@@ -587,6 +600,25 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "lives_at.value": ("shown", "(hh.lives_at || {}).value"),
     "works_at.value": ("shown", "(hh.works_at || {}).value"),
     "present_on_scene_date.value": ("shown", "(hh.present_on_scene_date || {}).value"),
+    # T-1144 acceptance 9. The dated evidence leg under an `uncertain` presence — the
+    # last day the corpus can still see this person — has its own row on the card,
+    # `presenceLegRow`, and the row's whole job is to keep a date from reading as a
+    # sighting when it is not one. So each of the five figures it turns on is named at
+    # the line that reads it: the date as the source printed it, which of the three
+    # kinds of leg it is, how exact the reading was, the latest day it can mean, and
+    # how far short of the scene date that falls.
+    "present_on_scene_date.last_dated_appearance.as_read":
+        ("shown", "escapeHtml(leg.as_read)"),
+    "present_on_scene_date.last_dated_appearance.leg":
+        ("shown", "escapeHtml(kind || leg.leg)"),
+    "present_on_scene_date.last_dated_appearance.precision":
+        ("shown", "leg.precision] || leg.precision"),
+    "present_on_scene_date.last_dated_appearance.reaches":
+        ("shown", "reaching ${leg.reaches}"),
+    "present_on_scene_date.last_dated_appearance.includes_scene_date":
+        ("shown", "leg.includes_scene_date"),
+    "present_on_scene_date.last_dated_appearance.days_before_scene_date":
+        ("shown", "${leg.days_before_scene_date}"),
     # T-1158. The chip the card draws is the TIER now, and `confidence` is what the
     # tier is derived from — `tierOf(block)` reads it, and falls back to the raw
     # confidence for a block whose shape predates the four-tier vocabulary. The
@@ -752,6 +784,24 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].age_band.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
     "persons[].age_band.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
+    # T-1314. What a RECONSTRUCTED person owes the reader, on their own card:
+    # `reconstructionHtml` says which stage of the programme wrote them and what
+    # counted them, and hands the basis, the seed that redraws a model draw and the
+    # replacement rule to `basisHtml` — the same three parts a reconstructed ATTRIBUTE
+    # already showed, rather than a second vocabulary for the same idea.
+    "persons[].basis.kind": ("shown", "const drawn = basis.kind === 'model'"),
+    "persons[].seed": ("shown", "drawn && block.seed"),
+    "persons[].replaceable_by.kind": ("shown", "const rep = block.replaceable_by"),
+    "persons[].replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    "persons[].reconstruction.stage": ("shown", "escapeHtml(String(rc.stage || ''))"),
+    "persons[].reconstruction.programme": (
+        "shown", "escapeHtml(String(rc.programme || 'the reconstruction programme'))"),
+    "persons[].reconstruction.community": ("shown", "escapeHtml(String(rc.community))"),
+    "persons[].reconstruction.counted_by": ("shown", "escapeHtml(String(rc.counted_by))"),
+    "persons[].reconstruction.band_1840": ("shown", "escapeHtml(String(rc.band_1840))"),
+    "persons[].reconstruction.age_on_scene_date.low": ("shown", "`${age.low} or older`"),
+    "persons[].reconstruction.age_on_scene_date.high": (
+        "shown", "age.high === null || age.high === undefined"),
     # The evidence strength, on the person the register minted from a letter list.
     # It reached `gazetteer.json` and `register_1835.json` and stopped there, so
     # for as long as it was unread a letter-list name and a documented tradesman
@@ -1222,6 +1272,17 @@ REFUSALS: dict[str, str] = {
         "A foreign key into `persons[].id`, not a figure — it names which person heads "
         "the household, and that fact already reaches the visitor as that person's "
         "`relationship`, shown on their own row."),
+    # T-1144 acceptance 9, the two figures of the presence leg the card does NOT show.
+    "residents/household:present_on_scene_date.last_dated_appearance.person": (
+        "A foreign key into `persons[].id` — which person of the household the leg was "
+        "read on. It is there so the derivation and the roster can be audited against "
+        "the card, and the card already names every person of the household on their "
+        "own rows; printing the id beside the date would say nothing a reader can use."),
+    "residents/household:present_on_scene_date.last_dated_appearance.record": (
+        "The `record_id` or locator of the evidence block the leg came from — an "
+        "audit pointer, null on the 383 legs read off a post-office return, which "
+        "carries no per-return record. The card shows the SOURCE the block cites, "
+        "which is the part a reader can follow; an internal row id is not."),
     "residents/household:head": (
         "The record's own copy of the same foreign key. Refused for the same reason, and "
         "it is the record that is authoritative."),
