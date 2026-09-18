@@ -1,7 +1,7 @@
 ---
 id: T-1324
 title: The Businesses directory and card in the app: every firm in the layer findable by trade, street, division, tier and location limit, and read on one card with its proprietors, staff, dated locations, goods, liberties and evidence
-state: claimed
+state: done
 epic: RENDERING
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1181
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1455
 claimed_by: run 9/18/2026, 8:49:31 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T15:36:37.826Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35351828193
 ---
 
