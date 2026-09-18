@@ -34,15 +34,25 @@ name: Chicago 4D — gate
 # before opening one now gets a DRAFT PR from the steward's salvage step (T-1155),
 # which fires `pull_request` and gates it. Nothing that was covered stops being
 # covered; only the second copy goes.
+# AND IT MUST RUN ON A WORKFLOW-ONLY CHANGE, or such a change can never merge.
+# `gate` is a REQUIRED check on dev. A pull request that touches only
+# .github/workflows/ produced no gate run at all, so the requirement could never be
+# satisfied and the PR sat `blocked` for ever. Found on #1433 — the fix for an
+# eleven-hour production deploy outage, which changes deploy.yml and
+# chicago-4d-promote-to-prod.yml and nothing else, and was therefore unmergeable by
+# construction. The paths below now cover the whole workflow directory rather than
+# this one file. A workflow edit is rare and consequential, and check.sh already
+# holds assertions about these files, so paying the gate for one is right.
 on:
   push:
     branches: [dev, main]
     paths:
       - 'chicago/4d/**'
-      - '.github/workflows/chicago-4d-check.yml'
+      - '.github/workflows/**'
   pull_request:
     paths:
       - 'chicago/4d/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
