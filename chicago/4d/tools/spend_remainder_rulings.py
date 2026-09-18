@@ -115,7 +115,7 @@ RULES = {
     },
     "the_enrichment_names_a_birth_or_age_no_field_carries": {
         "disposition": "unresolved",
-        "ticket": "T-1168",
+        "ticket": "T-1315",
         "statement": (
             "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
             "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
@@ -125,8 +125,13 @@ RULES = {
             "beside it, is how a layer acquires facts it cannot defend. T-1301 read all 98 of them "
             "one at a time and handed each to the OPEN ticket whose acceptance owns the kind of "
             "fact it names; this unit's own note says which field that is. This one names a BIRTH "
-            "DATE, a birth year or an age, and T-1168 is the pass that fills sex and age for every "
-            "attested and inferred person, each value with its tier and its reason."),
+            "DATE, a birth year or an age. It was routed to T-1168, the pass that fills sex and "
+            "age for every attested and inferred person with its tier and its reason; that "
+            "ticket was split into T-1303 (the tiers the evidence pays for) and T-1304 (the "
+            "tier the model draws), and both are done, so `birth_year` and `age_band` both "
+            "exist on the card and there is at last a field for these three to go in. "
+            "T-1315 owns spending them, and a hand-off must name LIVE work rather than a "
+            "spent parent."),
     },
     "the_enrichment_names_an_arrival_or_origin_no_field_carries": {
         "disposition": "unresolved",
