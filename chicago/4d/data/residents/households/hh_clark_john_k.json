@@ -13,23 +13,6 @@
   "note": "A BOUND FROM THE RECORD, NOT AN ARRIVAL. newspaper_1833_1835 names this person at Chicago by 11 July 1835 and nothing says when they came. THE BOUND FALLS AFTER THE SCENE DATE and the record says so rather than narrowing it: the earliest source that names this person is later than 1 July 1835, so they may have arrived after the day this scene models. present_on_scene_date is `uncertain` for that reason.",
   "precision": "not_later_than"
  },
- "arrival_year": {
-  "value": 1834,
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1835-07-11 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
-  "basis": {
-   "kind": "model",
-   "id": "arrival",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1835."
-  },
-  "seed": "hh_clark_john_k:arrival_year",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a dated source that says which year this household came to Chicago"
-  },
-  "written_by_stage": "attribute_fill_arrival"
- },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
@@ -245,6 +228,15 @@
  "touches_removal": false,
  "review_required": false,
  "research_note": "MINTED FROM THE CONSOLIDATED CIVIC, CHURCH, PRESS, BOOK AND CENSUS EVIDENCE (T-0513, T-0514). THE HOUSEHOLD IS A CONTAINER, NOT AN ARGUMENT: every other record here is written unattested in its own block, because the lists that name this person name a person and not a family. What is claimed is that the sources cited on the member below name them at Chicago, and the grade is the owner's ratified ladder applied by tools/consolidate_resident_evidence.py --build and spent by tools/mint_civic_residents.py, which prints every refusal. docs/LIBERTIES.md L215 carries the liberty and the tension with L213.",
+ "arrival_year": {
+  "value": 1817,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A COMPILER'S TABLE, NOT A CONTEMPORARY RECORD, AND IT IS THE ONLY THING THAT PUTS THIS MAN AT CHICAGO BEFORE THE SCENE DATE. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830, row bk_mose1_as_008: 'Clark, John K' — the scan closes the spaces to 'Clark.JohnK' — nativity ILLEGIBLE, YEAR 1817, remarks 'Paid taxes in 1825, voted in 1826'. The books crosswalk merges the row onto this card on the forename AND the middle initial, K being the rarest middle initial among the ten Clark cards this layer holds. WHY IT MATTERS HERE MORE THAN ON MOST CARDS: this household's `arrival` bound is 11 July 1835, which is AFTER the scene, so until this reading the layer held nothing that could see him at Chicago on 1 July 1835 at all. A man assessed in 1825 and polled in 1826 was living at the settlement. INFERRED AND NOT ATTESTED: the table is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8, every row transcription_mediated and none scan_verified; it dates a claim and does not prove it, which is the rung this project gives the Old Settlers roll for the same reason. THE NATIVITY IS A HOLE AND IS LEFT OPEN: the cell reads 'In-1' in the scan, with Ind. and Ire. both two characters away, and the reading records it as illegible rather than guessing — so `origin` is not edited by this and keeps its drawn region and its own replacement rule. WHAT DOES NOT FOLLOW: the table's preamble bounds it BEFORE 1830 and a man on it is not thereby at Chicago on 1835-07-01. `arrival`, `present_on_scene_date` and the grade are untouched; T-1144 owns the presence verdict and this reading is offered to it, not spent on its behalf.",
+  "sources": [
+   "moses_kirkland_history_of_chicago_v1"
+  ]
+ },
  "directories": {
   "note": "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT INSIDE THEM. A Chicago directory of 1839, 1843 or 1844 meets somebody of this name and this pass records what it prints. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. WHAT THIS PASS RULED ONTO THIS HOUSEHOLD, named so the ruling can be found again: each volume below is followed by the printed entries it set against this person and the status the crosswalk ruled them at — a single entry carries what its own `could_carry` declares, and an ambiguous or contested match carries nothing and is shown so that the silence is legible. clark_john_k, Fergus's Chicago directory of 1839 — f1839_e0286 (contested, so nothing crossed); clark_john_k, the advertising cards in Norris's directory of 1844 — n1844_ad0020 (contested, so nothing crossed).",
   "sources": [
