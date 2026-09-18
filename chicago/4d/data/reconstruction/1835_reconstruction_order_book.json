@@ -29,12 +29,12 @@
     "households_total": 1258,
     "households_present": 436,
     "households_uncertain": 820,
-    "persons_total": 1288,
-    "persons_present": 459,
+    "persons_total": 1578,
+    "persons_present": 457,
     "persons_present_attested": 133,
     "persons_present_inferred": 324,
     "persons_present_by_division": {
-      "south": 52,
+      "south": 50,
       "west": 6,
       "north": 11,
       "fort": 2
@@ -71,8 +71,8 @@
   },
   "totals": {
     "persons_target": 2535,
-    "persons_known": 459,
-    "persons_to_reconstruct": 2079,
+    "persons_known": 457,
+    "persons_to_reconstruct": 2081,
     "households_target": 643,
     "households_known": 436,
     "households_to_reconstruct": 209,
@@ -117,7 +117,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 26,
-          "filled": 0,
+          "filled": 3,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -151,7 +151,7 @@
           "known_attested": 4,
           "known_inferred": 11,
           "to_reconstruct": 61,
-          "filled": 0,
+          "filled": 7,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -236,7 +236,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 28,
-          "filled": 0,
+          "filled": 18,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -301,10 +301,10 @@
             "trade": "none"
           },
           "target": 81,
-          "known_attested": 5,
+          "known_attested": 4,
           "known_inferred": 11,
-          "to_reconstruct": 65,
-          "filled": 0,
+          "to_reconstruct": 66,
+          "filled": 36,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -372,7 +372,7 @@
           "known_attested": 1,
           "known_inferred": 4,
           "to_reconstruct": 25,
-          "filled": 0,
+          "filled": 9,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -440,7 +440,7 @@
           "known_attested": 1,
           "known_inferred": 2,
           "to_reconstruct": 13,
-          "filled": 0,
+          "filled": 3,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -508,7 +508,7 @@
           "known_attested": 2,
           "known_inferred": 5,
           "to_reconstruct": 31,
-          "filled": 0,
+          "filled": 11,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -576,7 +576,7 @@
           "known_attested": 1,
           "known_inferred": 1,
           "to_reconstruct": 12,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -712,7 +712,7 @@
           "known_attested": 1,
           "known_inferred": 2,
           "to_reconstruct": 11,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -916,7 +916,7 @@
           "known_attested": 0,
           "known_inferred": 1,
           "to_reconstruct": 8,
-          "filled": 0,
+          "filled": 1,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1035,7 +1035,7 @@
           "known_attested": 3,
           "known_inferred": 6,
           "to_reconstruct": 46,
-          "filled": 0,
+          "filled": 29,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1069,7 +1069,7 @@
           "known_attested": 7,
           "known_inferred": 18,
           "to_reconstruct": 107,
-          "filled": 0,
+          "filled": 54,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1103,7 +1103,7 @@
           "known_attested": 3,
           "known_inferred": 6,
           "to_reconstruct": 40,
-          "filled": 0,
+          "filled": 23,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1137,7 +1137,7 @@
           "known_attested": 2,
           "known_inferred": 5,
           "to_reconstruct": 30,
-          "filled": 0,
+          "filled": 2,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1171,7 +1171,7 @@
           "known_attested": 5,
           "known_inferred": 12,
           "to_reconstruct": 71,
-          "filled": 0,
+          "filled": 5,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1205,7 +1205,7 @@
           "known_attested": 2,
           "known_inferred": 4,
           "to_reconstruct": 26,
-          "filled": 0,
+          "filled": 6,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -1305,8 +1305,8 @@
           },
           "target": 73,
           "known_attested": 4,
-          "known_inferred": 10,
-          "to_reconstruct": 59,
+          "known_inferred": 9,
+          "to_reconstruct": 60,
           "filled": 0,
           "owning_ticket": "T-1173",
           "basis": "an adult at a trade"
@@ -2055,7 +2055,7 @@
           "known_attested": 3,
           "known_inferred": 7,
           "to_reconstruct": 51,
-          "filled": 0,
+          "filled": 23,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -2089,7 +2089,7 @@
           "known_attested": 8,
           "known_inferred": 20,
           "to_reconstruct": 120,
-          "filled": 0,
+          "filled": 38,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -2123,7 +2123,7 @@
           "known_attested": 3,
           "known_inferred": 6,
           "to_reconstruct": 46,
-          "filled": 0,
+          "filled": 20,
           "owning_ticket": "T-1174",
           "basis": "a woman or a person under twenty"
         },
@@ -3506,5 +3506,139 @@
       "measured_now": "enforced by --check on every gate run."
     }
   ],
-  "fills": []
+  "fills": [
+    {
+      "bucket": "persons/female/10_19/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 3,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/10_19/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 7,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 18,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 36,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/20_29/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 9,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 3,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 11,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/30_39/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 1,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/40_49/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 1,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/50_plus/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 1,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/under_10/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 29,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/under_10/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 54,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/female/under_10/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 23,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 2,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 5,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/10_19/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 6,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/under_10/north/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 23,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/under_10/south/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 38,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    },
+    {
+      "bucket": "persons/male/under_10/west/family/none",
+      "ticket": "T-1171",
+      "stage": "modelled_families",
+      "records": 20,
+      "by": "tools/reconstruct_modelled_families.py --build"
+    }
+  ]
 }

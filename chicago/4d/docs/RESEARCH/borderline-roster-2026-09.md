@@ -59,10 +59,10 @@ The research spend was, correctly, conservative. This page does not overturn one
 
 | class / rule | rows |
 |---|---:|
-| `R0_ineligible/already_carried_as_present` | 845 |
+| `R0_ineligible/already_carried_as_present` | 848 |
 | `R0_ineligible/carried_by_the_cards_own_row` | 842 |
 | `R0_ineligible/earlier_than_the_window` | 137 |
-| `R0_ineligible/later_only_and_not_backprojectable` | 9997 |
+| `R0_ineligible/later_only_and_not_backprojectable` | 9994 |
 | `R0_ineligible/ledger_a_sale_is_never_a_residence` | 413 |
 | `R0_ineligible/ledger_earlier_evidence_adds_no_1835_fact` | 21 |
 | `R0_ineligible/ledger_identity_refused_in_the_crosswalk` | 13 |

@@ -199,6 +199,17 @@ def eligibility(card: dict) -> tuple:
         return False, "presence on the scene date is not settled (T-1172's roster holds it)"
     if str(card.get("source_pass") or "") == "letter_list":
         return False, "a letter-list mint argues for a person and not for a household"
+    # AN EVIDENCE-ONLY RECORD HOLDS AN ARGUMENT, NOT A HOUSE. The five `hh_inf_`
+    # records T-0489 kept exist to carry the reading that the town needed a trade it
+    # has nobody for - "a town packing thousands of hogs a season needs coopers, and
+    # this dataset held none" - with one head the papers name, on no roof, unplaced.
+    # A family drawn into one puts invented people inside a record whose whole purpose
+    # is to hold read evidence, and the households those trades want are T-1173's to
+    # build from the occupation model. T-1327's gate states this promise from the
+    # renderer's side; this is the same rule, refused before it is written.
+    if str(card.get("name") or "").startswith("Evidence-only household"):
+        return False, ("an evidence-only record holds a reading about a trade the town "
+                       "lacks, and the households it wants are T-1173's")
     persons = card.get("persons") or []
     if len(persons) > 1:
         return False, "a source already names, counts or rules on this household's family"

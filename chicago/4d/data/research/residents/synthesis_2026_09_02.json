@@ -1082,10 +1082,10 @@
   },
   "after": {
     "households": 1258,
-    "persons": 1588,
+    "persons": 1578,
     "attested": 410,
     "inferred": 875,
-    "reconstructed": 303,
+    "reconstructed": 293,
     "letter_list_only": 736,
     "projected_residents": 721,
     "census_1840_linked": 3

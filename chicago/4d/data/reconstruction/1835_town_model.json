@@ -77,7 +77,7 @@
           "high": 1285,
           "point": null,
           "is_a_count": true,
-          "method": "The resident layer carries 1,285 people — 410 attested, 875 inferred, 303 reconstructed. A count of the layer, not of the town.",
+          "method": "The resident layer carries 1,285 people — 410 attested, 875 inferred, 293 reconstructed. A count of the layer, not of the town.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -148,7 +148,7 @@
           ]
         },
         "known_by_presence": {
-          "present": 759,
+          "present": 749,
           "absent": 2,
           "uncertain": 827
         }
@@ -785,11 +785,11 @@
       "figures": [
         {
           "figure": "arrived_in_the_three_years_before_the_scene",
-          "low": 1.172,
-          "high": 1.172,
+          "low": 1.164,
+          "high": 1.164,
           "point": null,
           "is_a_count": true,
-          "method": "1,506 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -221 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less.",
+          "method": "1,496 of the 1,285 people the layer carries give an arrival year of 1833, 1834 or 1835; only -211 came before 1833. The town of 1 July 1835 is overwhelmingly three years old or less.",
           "comparanda": [],
           "derived_from": [
             "data/sidecars/1835/people.json"
@@ -898,13 +898,13 @@
             },
             {
               "year": 1833,
-              "people": 212,
-              "share": 0.165
+              "people": 208,
+              "share": 0.1619
             },
             {
               "year": 1834,
-              "people": 658,
-              "share": 0.5121
+              "people": 652,
+              "share": 0.5074
             },
             {
               "year": 1835,
