@@ -1,5 +1,5 @@
 ---
-id: T-1337
+id: T-1340
 title: Spend the books' arrival and presence lists: the 1832 and spring-1833 arrival lists, the Baptist fourteen of 1833 and the Episcopal eleven of 1834, each name first ruled against the residents layer by the crosswalk's own join rules
 state: open
 epic: META

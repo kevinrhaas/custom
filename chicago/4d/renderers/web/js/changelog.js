@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'A table printed in 1895 moves twelve of this town\u2019s oldest arrivals', kind: 'change', ts: '', date: '',
+  { v: 959, title: 'A table printed in 1895 moves twelve of this town\u2019s oldest arrivals', kind: 'change', ts: '2026-09-18T22:23:21.189Z', date: 'Sep 18, 2026, 5:23 PM CT',
     items: [
       'Moses and Kirkland\u2019s History of Chicago of 1895 prints a table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 \u2014 a name, a birthplace, a year of coming and a note of taxes paid or votes cast. This project transcribed it a fortnight ago and then did nothing with it, because reading a row and putting it on somebody\u2019s card are two different acts. Twelve of those rows name people this town holds, and all twelve are spent now.',
       'Four cards gain a birthplace. Archibald Clybourne and David McKee came from Virginia, James Kinzie from Detroit \u2014 and Madore Benjamin Beaubien from Chicago itself, which is the one that was actively wrong: his card carried a region DRAWN from a sample of old settlers, for a man born at the settlement. The table says so twice, once in the nativity column and once by leaving his year of arrival blank where every other row prints one.',
