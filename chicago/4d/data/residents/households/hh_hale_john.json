@@ -57,7 +57,9 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -95,6 +97,27 @@
      ],
      "for_merge": "H and V are one letter apart to a distance and one glyph apart to a worn impression, 'John' is identical, and both readings are the Democrat inside sixteen months.",
      "against_merge": "THREE DIFFERENT ISSUES, AND NEITHER SPELLING EVER SHARES ONE. 'John Hale' is the Democrat of 16 April 1834 (#c005) and 'Hale, John' the return of 1 July 1835 (#c005); 'Vale, John' is the Democrat of 5 August 1835 (#c006). No issue sets both. Both stems are alive in the corpus — Hale 83 settings, Vale 33 — and neither card is an anchor: no trade, no street, no household on either. H against V is not the substitution a period compositor's case makes, and the reading index holds three Hale identities to Vale's one. D7."
+    }
+   ],
+   "roles": [
+    {
+     "role": "merchant",
+     "kind": "trade",
+     "as_printed": "merchant",
+     "from": "1834-04-16",
+     "to": "1835-07-29",
+     "precision": "source_span",
+     "dated_by": "stated_date",
+     "covers_scene_date": true,
+     "fills_scene_view": false,
+     "confidence": "inferred",
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "claim": "person_john_hale",
+     "place": "not_stated",
+     "employer_or_body": "not_stated",
+     "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-04-16 to 1835-07-29, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls inside that run."
     }
    ]
   }
