@@ -42,6 +42,10 @@ from migrate_attribute_tiers import BASIS_KINDS, REPLACEABLE_KINDS  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 PROGRAMME = ROOT / "data" / "reconstruction" / "1835_resident_reconstruction_programme.json"
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
+# T-1172. A re-admitted card is a reconstruction too, and it lives OUTSIDE the mints'
+# directory precisely so a mint re-run stays byte-identical. The record contract still
+# reaches it: the layer this programme answers for is both directories, not one.
+READMITTED = ROOT / "data" / "residents" / "readmitted"
 RETIRED = ROOT / "data" / "reconstruction" / "1835_inferred_household_programme.json"
 NAME_POOLS = ROOT / "data" / "reconstruction" / "1835_invented_name_pools.json"
 
@@ -158,7 +162,8 @@ def check_invented_name(where: str, person: dict, taken_names: set, error) -> No
 def read_layer():
     """(reconstructed persons as (where, person), names borne by real people)."""
     reconstructed, real_names = [], set()
-    for path in sorted(HOUSEHOLDS.glob("hh_*.json")):
+    paths = sorted(HOUSEHOLDS.glob("hh_*.json")) + sorted(READMITTED.glob("hh_*.json"))
+    for path in paths:
         try:
             rec = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
@@ -191,6 +196,30 @@ def cmd_list(prog: dict) -> int:
     return 0
 
 
+# --------------------------------------------------------------------------
+# the stages, and the modules that build them
+# --------------------------------------------------------------------------
+#
+# A STAGE IS A TICKET, and a stage large enough to need its own measurement, its own
+# model file and its own gate gets its own module rather than another thousand lines
+# here. The programme file names the module in `built_by`; this table is the writer's
+# own copy, and `--check` holds the two together so a stage cannot be marked implemented
+# with nothing behind it.
+
+def _build_readmissions() -> int:
+    import readmit_borderline_roster
+    return readmit_borderline_roster.build()
+
+
+def _check_readmissions() -> int:
+    import readmit_borderline_roster
+    return readmit_borderline_roster.check()
+
+
+STAGE_BUILDERS = {"readmissions": _build_readmissions}
+STAGE_CHECKERS = {"readmissions": _check_readmissions}
+
+
 def cmd_build(prog: dict, key: str) -> int:
     table = stages(prog)
     if key not in table:
@@ -209,9 +238,12 @@ def cmd_build(prog: dict, key: str) -> int:
               f"stage in {stage['ticket']} and set `implemented` in the programme file.",
               file=sys.stderr)
         return 1
-    print(f"FAIL stage '{key}' is marked implemented but carries no build - the programme file "
-          f"and this writer disagree", file=sys.stderr)
-    return 2
+    builder = STAGE_BUILDERS.get(key)
+    if builder is None:
+        print(f"FAIL stage '{key}' is marked implemented but carries no build - the programme "
+              f"file and this writer disagree", file=sys.stderr)
+        return 2
+    return builder()
 
 
 def cmd_check(prog: dict) -> int:
@@ -255,6 +287,10 @@ def cmd_check(prog: dict) -> int:
         check_invented_name(where, person, real_names, error)
 
     built = [s["key"] for s in prog["stages"] if s.get("implemented")]
+    for key in built:
+        if key not in STAGE_BUILDERS:
+            error(f"stage {key}", "is marked implemented and this writer has no build for "
+                                  "it - the programme file and the writer disagree")
     if problems:
         for p in problems:
             print(f"  FAIL {p}")
@@ -266,6 +302,13 @@ def cmd_check(prog: dict) -> int:
     if not built:
         print("  ok    no stage has been built yet (T-1167 opened the programme and wrote "
               "nobody), so there is no draw to re-derive")
+    for key in built:
+        checker = STAGE_CHECKERS.get(key)
+        if checker is None:
+            continue
+        print(f"  ---   stage '{key}' re-derives its own draw:")
+        if checker() != 0:
+            return 1
     return 0
 
 
