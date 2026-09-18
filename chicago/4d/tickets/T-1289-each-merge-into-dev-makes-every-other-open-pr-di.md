@@ -1,7 +1,7 @@
 ---
 id: T-1289
 title: Each merge into dev makes every other open PR dirty, so N pull requests cost N-squared lap-and-gate rounds
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1456
 claimed_by: run 9/18/2026, 10:40:09 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T17:08:43.319Z
 claimed_run: null
 ---
 
