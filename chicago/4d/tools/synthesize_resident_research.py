@@ -895,7 +895,14 @@ def main():
     for path in list(docs):
         doc=docs[path]; kept=[]
         for p in doc.get("persons") or []:
-            if p.get("grade")=="reconstructed": stats["removed_people"]+=1; removed_people.add(p.get("id")); continue
+            # T-1171: …and a person a STAGE of T-1167's programme drew is not one of the
+            # people this synthesis retired. The owner's ruling of 2026-09-02 retired the
+            # old reconstructed population and said it comes back only under an explicit
+            # programme; that programme is what wrote these, they carry the stage that can
+            # re-derive them, and retiring them here would undo the thing the ruling
+            # allowed. The retirement still takes any reconstructed person no stage claims.
+            if p.get("grade")=="reconstructed" and not is_reconstructed(p):
+                stats["removed_people"]+=1; removed_people.add(p.get("id")); continue
             kept.append(p)
         doc["persons"]=kept
         if not kept: stats["removed_households"]+=1; removed_hh.add(doc.get("id") or path.stem); del docs[path]; continue

@@ -770,6 +770,30 @@ RESIDENTS_HOUSEHOLD_READS: dict[str, tuple[str, str]] = {
     "persons[].age_band.seed": ("shown", "escapeHtml(String(block.seed))"),
     "persons[].age_band.replaceable_by.kind": ("shown", "block.replaceable_by || null"),
     "persons[].age_band.replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
+    # T-1171. …and the household block beside them: what size the 1840 histogram drew
+    # this house at, and how much of that size is kin rather than the servants and lodgers
+    # later stages seat. `modelledFamilyHtml` prints all of it.
+    "modelled_family.household_type": ("shown", "escapeHtml(words(block.household_type))"),
+    "modelled_family.size_drawn": ("shown", "escapeHtml(String(block.size_drawn))"),
+    "modelled_family.kin_seated": ("shown", "escapeHtml(String(block.kin_seated))"),
+    "modelled_family.seed": ("shown", "escapeHtml(String(block.seed))"),
+    "modelled_family.note": ("shown", "escapeHtml(String(block.note || ''))"),
+    # T-1171. A RECONSTRUCTED PERSON IS THE DRAWN THING, so the disclosure the attribute
+    # tiers hang off a value is printed about the person instead: the stage that wrote
+    # them, the model row, the seed a reader can retype and what would retire them.
+    # `reconstructedHtml` passes the person record straight to `basisHtml`, which is why
+    # `basis`, `seed` and `replaceable_by` read through the same expressions the blocks do.
+    "persons[].reconstruction.stage": ("shown", "escapeHtml(String(rc.stage || ''))"),
+    "persons[].reconstruction.ticket": ("shown", "escapeHtml(String(rc.ticket))"),
+    "persons[].reconstruction.community": ("shown", "escapeHtml(words(rc.community))"),
+    "persons[].reconstruction.review_required": (
+        "shown", "rc.review_required ? ' This reconstruction carries a standing review.'"),
+    "persons[].basis.kind": ("shown", "basis.kind === 'model'"),
+    "persons[].basis.id": ("shown", "escapeHtml(String(basis.id || ''))"),
+    "persons[].basis.note": ("shown", "escapeHtml(String(basis.note || ''))"),
+    "persons[].seed": ("shown", "escapeHtml(String(block.seed))"),
+    "persons[].replaceable_by.kind": ("shown", "block.replaceable_by || null"),
+    "persons[].replaceable_by.match": ("shown", "escapeHtml(String(rep.match || ''))"),
     "persons[].note": ("shown", "escapeHtml(person.note)"),
     # The evidence strength, on the person the register minted from a letter list.
     # It reached `gazetteer.json` and `register_1835.json` and stopped there, so

@@ -70,26 +70,11 @@
       "records": 1258,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
-    "residents/household:modelled_family.household_type": {
-      "records": 94
-    },
-    "residents/household:modelled_family.kin_seated": {
-      "records": 94
-    },
-    "residents/household:modelled_family.seed": {
-      "records": 94
-    },
-    "residents/household:modelled_family.size_drawn": {
-      "records": 94
-    },
     "residents/household:modelled_family.stage": {
       "records": 94
     },
     "residents/household:modelled_family.ticket": {
       "records": 94
-    },
-    "residents/household:persons[].basis.kind": {
-      "records": 312
     },
     "residents/household:persons[].name_basis.basis.kind": {
       "records": 312
@@ -121,22 +106,7 @@
     "residents/household:persons[].occupation.withdrawn_from_scene_date.verdict": {
       "records": 6
     },
-    "residents/household:persons[].reconstruction.community": {
-      "records": 312
-    },
     "residents/household:persons[].reconstruction.programme": {
-      "records": 312
-    },
-    "residents/household:persons[].reconstruction.stage": {
-      "records": 312
-    },
-    "residents/household:persons[].reconstruction.ticket": {
-      "records": 312
-    },
-    "residents/household:persons[].replaceable_by.kind": {
-      "records": 312
-    },
-    "residents/household:persons[].replaceable_by.match": {
       "records": 312
     },
     "residents/household:persons[].roles[].claim": {
@@ -150,9 +120,6 @@
     },
     "residents/household:persons[].roles[].place": {
       "records": 687
-    },
-    "residents/household:persons[].seed": {
-      "records": 312
     },
     "residents/household:present_on_scene_date.last_dated_appearance.person": {
       "records": 776,

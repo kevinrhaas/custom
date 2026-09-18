@@ -526,16 +526,17 @@ def fill(base: dict) -> tuple:
             drawn_band[book_band(low)] += 1
             counts["children"] += 1
 
-        # THE BLOCK GOES IMMEDIATELY BEFORE `persons`, not at the end of the card.
+        # THE BLOCK GOES IMMEDIATELY AFTER `present_on_scene_date`, not at the end.
         # Several research passes own a trailing key and rebuild the card by popping
         # theirs and appending it again (`old_settler_deaths` before `directories`, in
         # spend_old_settlers.py); a new key at the end would move under them and their
-        # byte-for-byte --check would read it as drift.
+        # byte-for-byte --check would read it as drift. `resident_mint_carry` puts it in
+        # this same slot when a mint rebuilds the card, and the two have to agree.
         rebuilt = {}
         for key, value in card.items():
-            if key == "persons":
-                rebuilt["modelled_family"] = None  # placed, filled in below
             rebuilt[key] = value
+            if key == "present_on_scene_date":
+                rebuilt["modelled_family"] = None  # placed, filled in below
         card.clear()
         card.update(rebuilt)
         card["persons"] = (card.get("persons") or []) + members

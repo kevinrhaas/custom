@@ -155,6 +155,15 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
         kin = doc.pop("kin")
         _insert_after(doc, "kin", kin, "present_on_scene_date")
 
+    # T-1171: and so does the block a reconstruction stage writes about the household it
+    # drew a family for. It is carried by the loop above, which appends what it does not
+    # recognise to the END of the card — and the end is where `spend_old_settlers` pops
+    # and re-appends its own trailing key, so a block left there would move under that
+    # pass and read as drift on both sides.
+    if "modelled_family" in doc:
+        block = doc.pop("modelled_family")
+        _insert_after(doc, "modelled_family", block, "present_on_scene_date")
+
     by_id = {person.get("id"): person for person in prior.get("persons") or []}
     for person in doc.get("persons") or []:
         old = by_id.get(person.get("id")) or {}
