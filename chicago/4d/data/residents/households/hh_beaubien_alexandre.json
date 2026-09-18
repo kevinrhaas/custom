@@ -49,6 +49,7 @@
    "as_read": "1834-04-16",
    "precision": "day",
    "reaches": "1834-04-16",
+   "includes_scene_date": false,
    "days_before_scene_date": 441,
    "leg": "sighting",
    "person": "beaubien_alexandre",

@@ -49,6 +49,7 @@
    "as_read": null,
    "precision": null,
    "reaches": null,
+   "includes_scene_date": false,
    "days_before_scene_date": null,
    "leg": "none",
    "person": null,

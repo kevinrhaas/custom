@@ -52,6 +52,7 @@
    "as_read": "1833-11/1833-11",
    "precision": "month",
    "reaches": "1833-11-30",
+   "includes_scene_date": false,
    "days_before_scene_date": 578,
    "leg": "source_span",
    "person": "jones_benjamin",

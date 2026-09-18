@@ -49,6 +49,7 @@
    "as_read": "1835-06-10",
    "precision": "day",
    "reaches": "1835-06-10",
+   "includes_scene_date": false,
    "days_before_scene_date": 21,
    "leg": "sighting",
    "person": "breese_judge_sidney",

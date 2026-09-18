@@ -49,6 +49,7 @@
    "as_read": "1834-08-13",
    "precision": "day",
    "reaches": "1834-08-13",
+   "includes_scene_date": false,
    "days_before_scene_date": 322,
    "leg": "sighting",
    "person": "chapman_chas_h",

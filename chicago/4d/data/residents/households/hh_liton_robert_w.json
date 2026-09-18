@@ -49,6 +49,7 @@
    "as_read": "1833",
    "precision": "year",
    "reaches": "1833-12-31",
+   "includes_scene_date": false,
    "days_before_scene_date": 547,
    "leg": "sighting",
    "person": "liton_robert_w",

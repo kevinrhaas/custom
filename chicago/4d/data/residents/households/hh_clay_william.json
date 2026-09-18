@@ -49,6 +49,7 @@
    "as_read": "1834-06-04",
    "precision": "day",
    "reaches": "1834-06-04",
+   "includes_scene_date": false,
    "days_before_scene_date": 392,
    "leg": "sighting",
    "person": "clay_william",

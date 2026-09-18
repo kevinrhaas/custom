@@ -49,6 +49,7 @@
    "as_read": "1834-06",
    "precision": "month",
    "reaches": "1834-06-30",
+   "includes_scene_date": false,
    "days_before_scene_date": 366,
    "leg": "sighting",
    "person": "colewell_m",

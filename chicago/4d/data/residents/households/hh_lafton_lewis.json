@@ -49,6 +49,7 @@
    "as_read": "1834-01-28",
    "precision": "day",
    "reaches": "1834-01-28",
+   "includes_scene_date": false,
    "days_before_scene_date": 519,
    "leg": "sighting",
    "person": "lafton_lewis",

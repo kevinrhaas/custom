@@ -51,6 +51,7 @@
    "as_read": "1834-08-20",
    "precision": "day",
    "reaches": "1834-08-20",
+   "includes_scene_date": false,
    "days_before_scene_date": 315,
    "leg": "sighting",
    "person": "laughton_david",

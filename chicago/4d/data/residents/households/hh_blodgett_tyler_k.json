@@ -54,6 +54,7 @@
    "as_read": "1833-03-01",
    "precision": "day",
    "reaches": "1833-03-01",
+   "includes_scene_date": false,
    "days_before_scene_date": 852,
    "leg": "sighting",
    "person": "lampman_henry_s",

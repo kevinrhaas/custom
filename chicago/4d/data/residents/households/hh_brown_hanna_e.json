@@ -49,6 +49,7 @@
    "as_read": "1833-11-26",
    "precision": "day",
    "reaches": "1833-11-26",
+   "includes_scene_date": false,
    "days_before_scene_date": 582,
    "leg": "sighting",
    "person": "brown_hanna_e",

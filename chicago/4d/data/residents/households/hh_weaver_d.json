@@ -49,6 +49,7 @@
    "as_read": "1834-11-12",
    "precision": "day",
    "reaches": "1834-11-12",
+   "includes_scene_date": false,
    "days_before_scene_date": 231,
    "leg": "sighting",
    "person": "weaver_d",

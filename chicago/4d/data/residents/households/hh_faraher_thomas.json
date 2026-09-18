@@ -49,6 +49,7 @@
    "as_read": "1835-04-26",
    "precision": "day",
    "reaches": "1835-04-26",
+   "includes_scene_date": false,
    "days_before_scene_date": 66,
    "leg": "sighting",
    "person": "faraher_thomas",

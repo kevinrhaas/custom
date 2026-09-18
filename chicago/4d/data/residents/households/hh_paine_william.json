@@ -49,6 +49,7 @@
    "as_read": "1834",
    "precision": "year",
    "reaches": "1834-12-31",
+   "includes_scene_date": false,
    "days_before_scene_date": 182,
    "leg": "sighting",
    "person": "paine_william",

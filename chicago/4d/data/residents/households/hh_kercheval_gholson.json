@@ -51,6 +51,7 @@
    "as_read": "1833-09-26",
    "precision": "day",
    "reaches": "1833-09-26",
+   "includes_scene_date": false,
    "days_before_scene_date": 643,
    "leg": "sighting",
    "person": "kercheval_gholson",

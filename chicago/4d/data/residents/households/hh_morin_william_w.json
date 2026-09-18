@@ -49,6 +49,7 @@
    "as_read": "1834-03-25",
    "precision": "day",
    "reaches": "1834-03-25",
+   "includes_scene_date": false,
    "days_before_scene_date": 463,
    "leg": "sighting",
    "person": "morin_william_w",

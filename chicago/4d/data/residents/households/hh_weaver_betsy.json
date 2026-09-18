@@ -49,6 +49,7 @@
    "as_read": "1833-12-17",
    "precision": "day",
    "reaches": "1833-12-17",
+   "includes_scene_date": false,
    "days_before_scene_date": 561,
    "leg": "sighting",
    "person": "weaver_betsy",

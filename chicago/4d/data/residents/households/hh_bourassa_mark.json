@@ -49,6 +49,7 @@
    "as_read": "1835-03",
    "precision": "month",
    "reaches": "1835-03-31",
+   "includes_scene_date": false,
    "days_before_scene_date": 92,
    "leg": "sighting",
    "person": "bourassa_mark",

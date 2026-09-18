@@ -49,6 +49,7 @@
    "as_read": "1834-10-29",
    "precision": "day",
    "reaches": "1834-10-29",
+   "includes_scene_date": false,
    "days_before_scene_date": 245,
    "leg": "sighting",
    "person": "whittier_daniel",

@@ -49,6 +49,7 @@
    "as_read": "1834-11-19",
    "precision": "day",
    "reaches": "1834-11-19",
+   "includes_scene_date": false,
    "days_before_scene_date": 224,
    "leg": "sighting",
    "person": "baxley_mary",

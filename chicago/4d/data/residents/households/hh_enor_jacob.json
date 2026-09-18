@@ -49,6 +49,7 @@
    "as_read": "1834-12-03",
    "precision": "day",
    "reaches": "1834-12-03",
+   "includes_scene_date": false,
    "days_before_scene_date": 210,
    "leg": "sighting",
    "person": "enor_jacob",

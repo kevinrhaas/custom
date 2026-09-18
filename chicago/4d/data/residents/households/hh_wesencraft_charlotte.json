@@ -49,6 +49,7 @@
    "as_read": "1833-12-03",
    "precision": "day",
    "reaches": "1833-12-03",
+   "includes_scene_date": false,
    "days_before_scene_date": 575,
    "leg": "sighting",
    "person": "wesencraft_charlotte",

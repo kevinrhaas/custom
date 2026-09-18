@@ -49,6 +49,7 @@
    "as_read": "1834-07-09",
    "precision": "day",
    "reaches": "1834-07-09",
+   "includes_scene_date": false,
    "days_before_scene_date": 357,
    "leg": "sighting",
    "person": "howland_daniel",

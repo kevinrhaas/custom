@@ -49,6 +49,7 @@
    "as_read": "1834-09-10",
    "precision": "day",
    "reaches": "1834-09-10",
+   "includes_scene_date": false,
    "days_before_scene_date": 294,
    "leg": "sighting",
    "person": "bennett_c_h",

@@ -49,6 +49,7 @@
    "as_read": "1835-05-27",
    "precision": "day",
    "reaches": "1835-05-27",
+   "includes_scene_date": false,
    "days_before_scene_date": 35,
    "leg": "sighting",
    "person": "barney_anne_maria",

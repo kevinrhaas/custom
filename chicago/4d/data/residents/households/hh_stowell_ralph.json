@@ -49,6 +49,7 @@
    "as_read": "1834-03-04",
    "precision": "day",
    "reaches": "1834-03-04",
+   "includes_scene_date": false,
    "days_before_scene_date": 484,
    "leg": "sighting",
    "person": "stowell_ralph",

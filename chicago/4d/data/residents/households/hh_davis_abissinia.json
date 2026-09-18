@@ -49,6 +49,7 @@
    "as_read": "1835-01-21",
    "precision": "day",
    "reaches": "1835-01-21",
+   "includes_scene_date": false,
    "days_before_scene_date": 161,
    "leg": "sighting",
    "person": "davis_abissinia",

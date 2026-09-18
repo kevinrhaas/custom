@@ -240,16 +240,26 @@ def leg_for(doc: dict) -> dict:
                     "date to be uncertain from. A reading that dates one of the "
                     "blocks above fills this in by re-running " + GENERATOR + ".")
         return {"date": None, "as_read": None, "precision": None, "reaches": None,
-                "days_before_scene_date": None, "leg": "none", "person": None,
-                "record": None, "sources": [], "note": note}
+                "includes_scene_date": False, "days_before_scene_date": None,
+                "leg": "none", "person": None, "record": None, "sources": [],
+                "note": note}
 
     for tier in TIERS:
         tiered = [row for row in rows if row["tier"] == tier]
         if tiered:
             break
     best = max(tiered, key=_order)
-    reaches = min(best["reaches"], SCENE_DATE)
-    gap = days_between(reaches, SCENE_DATE)
+    # THE READING'S OWN WINDOW IS NOT SHORTENED TO THE SCENE DATE. A source that
+    # describes `1835` reaches 1835-12-31, and clipping that to 1835-07-01 would make
+    # the card say the person was still visible ON the scene date — a confidence
+    # upgrade by arithmetic, and the exact overstatement this field exists to avoid.
+    # So `reaches` is what the reading can mean, `includes_scene_date` says when that
+    # window covers the day, and the gap is stated only when the window closes before
+    # it. A reading whose window covers the scene date pins no last sighting before it,
+    # which is one of the reasons a presence stands `uncertain`.
+    reaches = best["reaches"]
+    covers = reaches >= SCENE_DATE
+    gap = None if covers else days_between(reaches, SCENE_DATE)
     where = (best["family"] if best["family"] != "roles"
              else "roles[] (" + best["precision"] + ")")
     uncited = ("" if best["family"] != "letter_list_returns" else
@@ -258,8 +268,10 @@ def leg_for(doc: dict) -> dict:
                "is named in the person's own `sources`.")
     note = (LEG_WORDS[best["tier"]] + " Read from `" + where + "` as `"
             + best["as_read"] + "`, which reaches " + reaches + " — "
-            + (str(gap) + " day(s) short of " + SCENE_DATE if gap
-               else "the scene date itself") + "." + uncited + " THE FIELD IS THE "
+            + (str(gap) + " day(s) short of " + SCENE_DATE if gap is not None
+               else "a window that covers " + SCENE_DATE + " itself, so it pins no "
+               "last sighting before the day and cannot be read as one")
+            + "." + uncited + " THE FIELD IS THE "
             "EVIDENCE UNDER THE "
             "VERDICT, not a new claim: nothing here moves the presence off `uncertain`, "
             "and T-1159 and T-1172 classify this household by this date instead of "
@@ -269,6 +281,7 @@ def leg_for(doc: dict) -> dict:
         "as_read": best["as_read"],
         "precision": best["precision"],
         "reaches": reaches,
+        "includes_scene_date": covers,
         "days_before_scene_date": gap,
         "leg": best["tier"],
         "person": best["person"],
@@ -333,8 +346,11 @@ def report() -> int:
     tiers = collections.Counter(leg.get("leg") for _, _, leg in rows)
     families = collections.Counter()
     gaps = []
+    covering = 0
     for _, _, leg in rows:
-        if leg.get("reaches"):
+        if leg.get("includes_scene_date"):
+            covering += 1
+        elif leg.get("days_before_scene_date") is not None:
             gaps.append(leg["days_before_scene_date"])
     print(f"{len(rows)} uncertain presence(s); {sum(1 for _, _, leg in rows if leg)} "
           f"carry a dated evidence leg")
@@ -344,6 +360,8 @@ def report() -> int:
         gaps.sort()
         print(f"   the leg falls {gaps[0]}-{gaps[-1]} day(s) before {SCENE_DATE}; "
               f"median {gaps[len(gaps) // 2]}")
+    print(f"   {covering} leg(s) read a window that covers {SCENE_DATE}, so they pin "
+          f"no last sighting before it")
     del families
     return 0
 
@@ -429,9 +447,22 @@ def self_test() -> int:
         {"from": "1833-11", "to": "1835-08", "precision": "source_span",
          "sources": ["s"]}]})
     span = leg_for(span_only)
-    holds("a span alone is the leg, capped at the scene date",
-          (span["leg"], span["reaches"]), ("source_span", SCENE_DATE))
+    holds("a span alone is the leg, and reaches what the source covers",
+          (span["leg"], span["reaches"]), ("source_span", "1835-08-31"))
     holds("…and a span is not written as a date", span["date"], None)
+    holds("…and a window over the scene date states no gap",
+          (span["includes_scene_date"], span["days_before_scene_date"]), (True, None))
+
+    # A COARSE READING IS NOT SHORTENED TO THE SCENE DATE. `1835` could be either half
+    # of the year, and clipping it to 1835-07-01 would claim the later half.
+    coarse = card(person={"press_evidence": [
+        {"describes_date": "1835", "record_id": "r2", "source": "s"}]})
+    year = leg_for(coarse)
+    holds("a year that covers the scene date is not clipped to it",
+          (year["as_read"], year["reaches"]), ("1835", "1835-12-31"))
+    holds("…and it pins no gap", year["days_before_scene_date"], None)
+    holds("…and the note says it cannot be read as a sighting on the day",
+          "pins no last sighting" in year["note"], True)
 
     bound_only = card(arrival={"value": "1834-12-31", "precision": "not_later_than",
                                "sources": ["st_cyr_register_ichr_v4"]})

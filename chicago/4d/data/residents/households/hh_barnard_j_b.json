@@ -49,6 +49,7 @@
    "as_read": "1835-06-13",
    "precision": "day",
    "reaches": "1835-06-13",
+   "includes_scene_date": false,
    "days_before_scene_date": 18,
    "leg": "sighting",
    "person": "barnard_j_b",

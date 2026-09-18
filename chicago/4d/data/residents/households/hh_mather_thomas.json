@@ -49,6 +49,7 @@
    "as_read": "1835-06-27",
    "precision": "day",
    "reaches": "1835-06-27",
+   "includes_scene_date": false,
    "days_before_scene_date": 4,
    "leg": "sighting",
    "person": "mather_thomas",

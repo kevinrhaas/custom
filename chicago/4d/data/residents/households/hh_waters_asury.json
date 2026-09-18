@@ -49,6 +49,7 @@
    "as_read": "1835-06-20",
    "precision": "day",
    "reaches": "1835-06-20",
+   "includes_scene_date": false,
    "days_before_scene_date": 11,
    "leg": "sighting",
    "person": "waters_asury",

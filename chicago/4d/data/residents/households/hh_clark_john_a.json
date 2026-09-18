@@ -49,6 +49,7 @@
    "as_read": "1834-02-11",
    "precision": "day",
    "reaches": "1834-02-11",
+   "includes_scene_date": false,
    "days_before_scene_date": 505,
    "leg": "sighting",
    "person": "clark_john_a",

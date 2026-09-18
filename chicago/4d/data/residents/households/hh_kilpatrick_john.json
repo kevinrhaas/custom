@@ -49,6 +49,7 @@
    "as_read": "1834-04-01",
    "precision": "day",
    "reaches": "1834-04-01",
+   "includes_scene_date": false,
    "days_before_scene_date": 456,
    "leg": "sighting",
    "person": "kilpatrick_john",

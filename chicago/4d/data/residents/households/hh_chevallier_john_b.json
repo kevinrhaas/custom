@@ -49,6 +49,7 @@
    "as_read": "1834-01-21",
    "precision": "day",
    "reaches": "1834-01-21",
+   "includes_scene_date": false,
    "days_before_scene_date": 526,
    "leg": "sighting",
    "person": "chevallier_john_b",

@@ -49,6 +49,7 @@
    "as_read": "1834-07-30",
    "precision": "day",
    "reaches": "1834-07-30",
+   "includes_scene_date": false,
    "days_before_scene_date": 336,
    "leg": "sighting",
    "person": "cloud_joseph",

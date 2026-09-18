@@ -49,6 +49,7 @@
    "as_read": "1835-04-21",
    "precision": "day",
    "reaches": "1835-04-21",
+   "includes_scene_date": false,
    "days_before_scene_date": 71,
    "leg": "sighting",
    "person": "hogan_mary",

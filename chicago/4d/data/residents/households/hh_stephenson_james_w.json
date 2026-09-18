@@ -49,6 +49,7 @@
    "as_read": "1834-08-06",
    "precision": "day",
    "reaches": "1834-08-06",
+   "includes_scene_date": false,
    "days_before_scene_date": 329,
    "leg": "sighting",
    "person": "stephenson_james_w",

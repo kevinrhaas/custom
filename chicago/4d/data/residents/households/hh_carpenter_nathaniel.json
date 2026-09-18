@@ -49,6 +49,7 @@
    "as_read": "1834-01-14",
    "precision": "day",
    "reaches": "1834-01-14",
+   "includes_scene_date": false,
    "days_before_scene_date": 533,
    "leg": "sighting",
    "person": "carpenter_nathaniel",

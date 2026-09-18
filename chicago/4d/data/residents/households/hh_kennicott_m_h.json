@@ -49,6 +49,7 @@
    "as_read": "1835-06-24",
    "precision": "day",
    "reaches": "1835-06-24",
+   "includes_scene_date": false,
    "days_before_scene_date": 7,
    "leg": "sighting",
    "person": "kennicott_m_h",

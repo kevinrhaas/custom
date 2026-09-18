@@ -49,6 +49,7 @@
    "as_read": "1834-10-22",
    "precision": "day",
    "reaches": "1834-10-22",
+   "includes_scene_date": false,
    "days_before_scene_date": 252,
    "leg": "sighting",
    "person": "lansing_andrew",
