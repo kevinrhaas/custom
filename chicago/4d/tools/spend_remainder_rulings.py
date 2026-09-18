@@ -223,14 +223,17 @@ RULES = {
     },
     "the_notice_names_a_firm": {
         "disposition": "unresolved",
-        "ticket": "T-1147",
+        "ticket": "T-1180",
         "statement": (
             "The unit carries a `business` block: the reading pulled a firm name, and "
             "where it could a trade, a proprietor and a street placement, out of the "
-            "advertisement or notice. That is enterprise evidence, and the ledger already "
-            "routes every business, building, street and infrastructure unit to the place "
-            "and enterprise completion pass. A firm is not minted here, a placement is not "
-            "written here, and a contradiction between two notices is not resolved here."),
+            "advertisement or notice. That is enterprise evidence, and the ledger routes "
+            "every business unit to the authored business layer, which is the piece that "
+            "still has this corpus to spend -- one record per firm, compiled beside the "
+            "newspaper-derived register. It read T-1147 until the place and enterprise "
+            "completion pass closed (T-1241). A firm is not minted here, a placement is "
+            "not written here, and a contradiction between two notices is not resolved "
+            "here."),
     },
     "the_family_column_names_kin": {
         "disposition": "unresolved",

@@ -2478,6 +2478,20 @@ selftest "…and its own assertions still fire when broken" \
 selftest "…and closed-ledger mutations cannot pass silently" \
   python3 tools/measure_research_spend.py --ledger-self-test
 
+# T-1241. The ledger above is the SOURCE side of the research: every reading unit gets one
+# durable disposition and an unclassified one fails. It is silent on the town side, and the
+# two are not the same book — a ledger at zero unclassified is perfectly compatible with
+# firms that name no keeper and roofs that hold nobody. The closing audit reads the same
+# ledger onto the resident, household, business and structure layers, reads those layers
+# directly, and prints the gaps it finds with the ticket that carries each one. It is
+# checked rather than merely written because a report nobody re-derives is a report that
+# quietly stops being true, and this one is the evidence section T-1157 signs over.
+step "the closing research audit still re-derives from the ledger and the four layers" \
+  python3 tools/report_research_closing_audit.py --check --quiet
+
+selftest "…and a moved measurement cannot pass as an unchanged report" \
+  python3 tools/report_research_closing_audit.py --self-test
+
 # T-1296. The land-sale ruling register is DERIVED — 1,572 notes nobody typed — so the
 # claim it makes is not "somebody wrote these down" but "these re-derive from the register
 # as read and the crosswalk as adjudicated". That claim is only worth anything if it is
