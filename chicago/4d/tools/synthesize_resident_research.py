@@ -49,6 +49,11 @@ REFERENCE = CHICAGO / "reference" / "resident-research"
 CENSUS_DIR = CHICAGO / "reference" / "census1840" / "validation"
 CENSUS_CSV = CENSUS_DIR / "H_1840_chicago_with_names_partial.csv"
 PROGRAMME = DATA / "reconstruction" / "1835_inferred_household_programme.json"
+# The programme that SUPERSEDED it (T-1167). The retirement of 2026-09-02 removed a
+# reconstructed population nothing could account for; this file is the authority under
+# which one may be written again, one stage per ticket. The gate below therefore asks
+# whether a stage CLAIMS each reconstructed person rather than whether any exist.
+RECONSTRUCTION_PROGRAMME = DATA / "reconstruction" / "1835_resident_reconstruction_programme.json"
 LEDGER = RESEARCH / "synthesis_2026_09_02.json"
 SUMMARY = ROOT / "docs" / "RESEARCH" / "resident-household-synthesis-2026-09-02.md"
 CENSUS_SOURCE = DATA / "sources" / "census_1840_chicago_name_crosswalk.json"
@@ -551,7 +556,7 @@ def rebuild_index(index,docs,stats):
     index.setdefault("vocabulary",{})["grades"]=["attested","inferred","reconstructed"]
     index["vocabulary"]["resident_subtypes"]=[PROJECTED]
     index["counts"]["reconstructed_removed_in_2026_09_02_synthesis"]=stats["removed_people"]
-    index["_doc"]=("Manifest for data/residents/. Person grade is the top-level resident-evidence classification: attested = confidently corroborated real named circa-1835 Chicago resident; inferred = real named person reasonably believed to belong to the circa-1835 population; reconstructed is reserved for a later explicit reconstruction pass and is intentionally zero after the 2026-09-02 synthesis. resident_subtype projected_resident is the weakest evidence-based inferred subset. Per-attribute confidence is independent. later_census is explicitly 1840 evidence and is never silently back-projected to 1835.")
+    index["_doc"]=("Manifest for data/residents/. Person grade is the top-level resident-evidence classification: attested = confidently corroborated real named circa-1835 Chicago resident; inferred = real named person reasonably believed to belong to the circa-1835 population; reconstructed = a person no source names, written ONLY by tools/reconstruct_residents_1835.py under the programme at data/reconstruction/1835_resident_reconstruction_programme.json, and carrying the stage that re-derives them. It was intentionally zero between the 2026-09-02 synthesis and T-1167, which reopened it under that programme. resident_subtype projected_resident is the weakest evidence-based inferred subset. Per-attribute confidence is independent. later_census is explicitly 1840 evidence and is never silently back-projected to 1835.")
     return index
 
 
@@ -826,8 +831,17 @@ def drift_self_test():
 
 def check():
     index=load(INDEX); docs=[load(p) for p in HOUSEHOLDS.glob("*.json")]; people=[p for d in docs for p in d.get("persons") or []]; problems=[]
-    rec=[p.get("id") for p in people if p.get("grade")=="reconstructed"]
-    if rec: problems.append(f"{len(rec)} reconstructed people remain")
+    # T-1314. Not "no reconstructed person exists" any more - T-1167 reopened that door
+    # under a programme - but "no reconstructed person exists that no stage of the
+    # programme claims". An unaccountable invention is exactly what 2026-09-02 retired,
+    # and that is still refused here; a person a named stage re-derives is not one.
+    stage_keys = set()
+    if RECONSTRUCTION_PROGRAMME.exists():
+        stage_keys = {s.get("key") for s in load(RECONSTRUCTION_PROGRAMME).get("stages") or []}
+    rec=[p.get("id") for p in people if p.get("grade")=="reconstructed"
+         and (p.get("reconstruction") or {}).get("stage") not in stage_keys]
+    if rec: problems.append(f"{len(rec)} reconstructed people answer to no programme stage: "
+                            f"{', '.join(str(r) for r in sorted(rec)[:5])}")
     bad=[p.get("id") for p in people if p.get("resident_subtype")==PROJECTED and p.get("grade")!="inferred"]
     if bad: problems.append(f"{len(bad)} projected residents are not inferred")
     actual=Counter(p.get("grade") for p in people); declared=(index.get("counts") or {}).get("by_grade") or {}
@@ -866,7 +880,7 @@ def check():
     if dead: problems.append(f"{len(dead)} retired household id(s) are still named by a structure record: {', '.join(dead[:3])}")
     if problems:
         print("RESIDENT SYNTHESIS FAIL"); [print(" -",p) for p in problems]; return 1
-    print(f"OK: {len(people)} people; {actual.get('attested',0)} attested, {actual.get('inferred',0)} inferred, 0 reconstructed; {sum(p.get('resident_subtype')==PROJECTED for p in people)} projected")
+    print(f"OK: {len(people)} people; {actual.get('attested',0)} attested, {actual.get('inferred',0)} inferred, {actual.get('reconstructed',0)} reconstructed; {sum(p.get('resident_subtype')==PROJECTED for p in people)} projected")
     return 0
 
 

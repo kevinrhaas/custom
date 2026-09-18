@@ -31,9 +31,12 @@ cases. No stage is implemented by T-1167 itself: this ticket writes no person, a
 
 import argparse
 import ast
+import csv
 import hashlib
 import json
+import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -53,6 +56,22 @@ REVIEWED_COMMUNITIES = ("native", "potawatomi", "metis", "métis", "indigenous")
 # The id a reconstructed person's own record must wear, so a grep finds every invention.
 INVENTED_PERSON_PREFIX = "rc_"
 READMISSION_PASS = "reconstructed_readmission"
+
+# --- stage `named_families` (T-1314) ---------------------------------------
+NAMED_FAMILIES_STAGE = "named_families"
+BRIDGES = ROOT / "data" / "research" / "residents" / "census_1840_identity_bridges.csv"
+SERIAL_CROSSWALK = ROOT / "data" / "research" / "census_1840" / "serial_crosswalk.json"
+COMPOSITION = ROOT / "data" / "research" / "census_1840" / "composition_1840.json"
+# The IPUMS extract lives beside the other 1840 validation material, outside this app.
+IPUMS_EXTRACT = ROOT.parent / "reference" / "census1840" / "validation" / \
+    "H_1840_chicago_with_names_partial.csv"
+SCENE_DATE = "1835-07-01"
+ENUMERATION_1840 = "1840-06-01"
+BACK_PROJECTION_YEARS = 5
+# ONLY a validated bridge may write a person. A provisional bridge is an identity the
+# research itself holds at medium confidence, and spending it would put invented people
+# in a household that may not be the head's at all.
+BRIDGE_STATUS_THAT_SPENDS = "validated"
 
 
 # --------------------------------------------------------------------------
@@ -175,6 +194,393 @@ def read_layer():
 
 
 # --------------------------------------------------------------------------
+# stage `named_families` (T-1314) - the members the 1840 row COUNTS, not names
+# --------------------------------------------------------------------------
+#
+# The 1840 federal census counts a household by sex and age band and names only its
+# head. Where THIS layer has already bridged that head to an 1835 resident - a
+# separate adjudication, made in `census_1840_identity_bridges.csv` on 1835 evidence
+# and never on the household composition - the row's other tallies are a count of
+# people who were alive, in that head's house, five years later. Back-projected, the
+# ones born before the scene date were alive on 1 July 1835 too, and the card names
+# almost none of them.
+#
+# THREE THINGS THIS DELIBERATELY DOES NOT DO.
+#   * It does not use an unbridged 1840 row. T-0507's line stands for everyone else:
+#     1840 Chicago had roughly doubled, so its households are a SHAPE to test against
+#     and not a population to fill from.
+#   * It does not carry the under-5 band. Under 5 on 1840-06-01 means born on or after
+#     1835-06-02, and all but the first month of that span is after the scene date.
+#     Nothing in the band says which, so the whole band is dropped rather than a
+#     fraction of it guessed.
+#   * It does not claim a relation the count does not state. A row that says "one free
+#     white female 30 under 40" says a woman lived there; it does not say wife, mother,
+#     sister or servant. These people are `household_member`, or `child` where the
+#     back-projected band is under fifteen, and nothing more.
+
+
+def band_table() -> list:
+    """The twenty-six free-white age bands, read from T-0504's committed column map.
+
+    The map is the project's own statement of which IPUMS variable is which column of
+    the 1840 schedule. Restating it here would be a second copy to rot.
+    """
+    doc = json.loads(SERIAL_CROSSWALK.read_text(encoding="utf-8"))
+    out = []
+    for col in doc["column_map"]:
+        label = col["band"]
+        sex = "male" if " males " in label else "female"
+        m = re.search(r"Under (\d+)$", label)
+        if m:
+            lo, hi = 0, int(m.group(1)) - 1
+        elif label.endswith("and upwards"):
+            lo, hi = int(re.search(r"(\d+) and upwards$", label).group(1)), None
+        else:
+            m = re.search(r"(\d+) under (\d+)$", label)
+            if not m:
+                raise SystemExit(f"band label not understood: {label!r}")
+            lo, hi = int(m.group(1)), int(m.group(2)) - 1
+        out.append({"column": col["column"], "variable": col["ipums_variable"],
+                    "label": label, "sex": sex, "lo": lo, "hi": hi})
+    return out
+
+
+def back_project(band: dict) -> dict | None:
+    """The band five years earlier, or None when the whole band postdates the scene."""
+    if band["lo"] == 0:
+        return None  # born after 1835-07-01, all but a month of it - see above
+    lo = band["lo"] - BACK_PROJECTION_YEARS
+    hi = None if band["hi"] is None else band["hi"] - BACK_PROJECTION_YEARS
+    return {"low": lo, "high": hi}
+
+
+def ipums_by_serial() -> dict:
+    """The committed 1840 extract, keyed by IPUMS SERIAL, with its sha256 held.
+
+    composition_1840.json records the sha256 of the copy every 1840 figure in this
+    project is derived from. Reading the file without checking it would let a
+    different extract write people into the town silently.
+    """
+    want = json.loads(COMPOSITION.read_text(encoding="utf-8"))["inputs"]["committed_extract"]
+    raw = IPUMS_EXTRACT.read_bytes()
+    got = hashlib.sha256(raw).hexdigest()
+    if got != want["sha256"]:
+        raise SystemExit(f"{IPUMS_EXTRACT.name}: sha256 {got} is not the committed "
+                         f"{want['sha256']} that every 1840 figure here is derived from")
+    rows = {}
+    for row in csv.DictReader(raw.decode("utf-8").splitlines()):
+        rows[str(row["serial"]).strip()] = row
+    return rows
+
+
+def bridged_heads() -> list:
+    """Every 1835 resident the 1840 bridge has matched, in the file's own order."""
+    with BRIDGES.open(encoding="utf-8") as fh:
+        return list(csv.DictReader(fh))
+
+
+def surname_community(surname: str, pools: dict) -> str:
+    """The pool a head's own surname is already listed in; `yankee` where none is.
+
+    The naming rule's default. A member of the Murphy household is named out of the
+    Irish pool because the project's own pool file lists Murphy there - not because
+    anything here has decided what the Murphys were.
+    """
+    for community in pools["communities"]:
+        if surname in (community.get("surnames") or []):
+            return community["id"]
+    return "yankee"
+
+
+def draw_given_name(pool: list, seed: str, surname: str, taken: set) -> str:
+    """A given name the seed picks out of the pool, stepping past a collision.
+
+    Deterministic and retypable: the seed indexes the pool, and a name already borne
+    by a real person - or already drawn in this build - is stepped past in pool order.
+    """
+    n = len(pool)
+    start = draw(seed) % n
+    for step in range(n):
+        given = pool[(start + step) % n]
+        if f"{given} {surname}".lower() not in taken:
+            return given
+    raise SystemExit(f"the {surname} pool is exhausted; every name collides")
+
+
+def plan_named_families(prog: dict) -> dict:
+    """What the stage would write, derived from nothing but committed files."""
+    pools = json.loads(NAME_POOLS.read_text(encoding="utf-8"))
+    pool_by_id = {c["id"]: c for c in pools["communities"]}
+    bands = band_table()
+    ipums = ipums_by_serial()
+
+    # every name any real person in the layer bears, so an invention never collides
+    _, real_names = read_layer()
+    taken = set(real_names)
+
+    households, notes, refusals = [], [], []
+    for bridge in bridged_heads():
+        person_id = bridge["person_id"].strip()
+        hh_path = HOUSEHOLDS / f"hh_{person_id}.json"
+        status = bridge["bridge_status"].strip()
+        serial = bridge["serial"].strip()
+        if status != BRIDGE_STATUS_THAT_SPENDS:
+            notes.append(f"{person_id}: bridge_status '{status}' - held. Only a "
+                         f"'{BRIDGE_STATUS_THAT_SPENDS}' bridge may write a person, because a "
+                         f"bridge the research itself holds at medium confidence may not be "
+                         f"this head's household at all.")
+            continue
+        if not hh_path.exists():
+            refusals.append(f"{person_id}: the bridge names a head this layer holds no "
+                            f"household card for ({hh_path.name})")
+            continue
+        if serial not in ipums:
+            refusals.append(f"{person_id}: IPUMS serial {serial} is not in the committed extract")
+            continue
+        row = ipums[serial]
+        card = json.loads(hh_path.read_text(encoding="utf-8"))
+        # This stage's own previous output is not "held": the derivation has to see the
+        # card as it was before the stage ran, or a second run would find its own people
+        # already absorbing the bands and derive nobody.
+        held = [p for p in card.get("persons") or []
+                if (p.get("reconstruction") or {}).get("stage") != NAMED_FAMILIES_STAGE]
+        unsexed = [p.get("id") for p in held if p.get("sex") not in ("male", "female")]
+        if unsexed:
+            refusals.append(f"{person_id}: the card holds {len(unsexed)} person(s) whose sex "
+                            f"this layer does not state ({', '.join(map(str, unsexed))}), so the "
+                            f"1840 row's bands cannot be allocated against what is already known")
+            continue
+
+        # the row, band by band, with the under-5 band dropped
+        present, dropped = [], []
+        for band in bands:
+            count = int(str(row.get(band["variable"]) or "0").strip() or 0)
+            if not count:
+                continue
+            age = back_project(band)
+            if age is None:
+                dropped.append((band, count))
+                continue
+            present.extend({**band, "age_1835": age} for _ in range(count))
+
+        head_name = str(next((p.get("name") for p in held if p.get("id") == person_id), ""))
+        if not head_name.strip():
+            refusals.append(f"{person_id}: the card carries no name for its own head, so a "
+                            f"household member has no surname to take")
+            continue
+        surname = head_name.split()[-1]
+        community = surname_community(surname, pools)
+
+        members, overflow = [], {}
+        for sex in ("male", "female"):
+            of_sex = [b for b in present if b["sex"] == sex]
+            # the card's named people absorb the SENIOR bands first: a source that had
+            # reason to name somebody named the household's adults - the head, the wife
+            # who kept the house with him, the partner - and not its children.
+            of_sex.sort(key=lambda b: (-b["lo"], b["column"]))
+            held_of_sex = [p for p in held if p.get("sex") == sex]
+            if len(held_of_sex) > len(of_sex):
+                overflow[sex] = len(held_of_sex) - len(of_sex)
+            spare = of_sex[len(held_of_sex):]
+            spare.sort(key=lambda b: b["column"])  # written youngest first, as the schedule prints
+            for ordinal, band in enumerate(spare, start=1):
+                bucket = f"household_size/{band['variable']}/{ordinal}"
+                seed = seed_for(card["id"], bucket)
+                key = "given_male" if sex == "male" else "given_female"
+                given = draw_given_name(pool_by_id[community][key], seed, surname, taken)
+                taken.add(f"{given} {surname}".lower())
+                age = band["age_1835"]
+                span = f"{age['low']}" if age["high"] is None else f"{age['low']}-{age['high']}"
+                members.append({
+                    "id": f"{INVENTED_PERSON_PREFIX}{surname.lower()}_{given.lower()}",
+                    "name": f"{given} {surname}",
+                    "relationship": "child" if (age["high"] is not None and age["high"] < 15)
+                                    else "household_member",
+                    "grade": RECONSTRUCTED,
+                    "sex": sex,
+                    "name_basis": {
+                        "confidence": RECONSTRUCTED,
+                        "note": f"INVENTED. The given name is drawn from the {community} "
+                                f"given-name pool in "
+                                f"data/reconstruction/1835_invented_name_pools.json by the seed "
+                                f"below; the surname is the head's own, which is the household "
+                                f"the count places this person in and not a claim of kinship. "
+                                f"No source names this person.",
+                    },
+                    "basis": {
+                        "kind": "model",
+                        "id": "household_size",
+                        "note": f"COUNTED, NOT NAMED. The 1840 federal census household of "
+                                f"{row.get('head_name_transcribed') or surname} (IPUMS serial "
+                                f"{serial}, printed page {bridge['census_page']} row "
+                                f"{bridge['census_row']}) tallies one "
+                                f"'{band['label']}'. Enumerated {ENUMERATION_1840} and "
+                                f"back-projected {BACK_PROJECTION_YEARS} years, that person was "
+                                f"{span} on {SCENE_DATE} and so was already alive and in this "
+                                f"town's head's household; the card names "
+                                f"{len(held)} of the row's {row.get('numperhh')} people and this "
+                                f"is one it does not. The bridge is "
+                                f"'{BRIDGE_STATUS_THAT_SPENDS}' and rests on 1835 evidence for "
+                                f"the HEAD, never on this composition.",
+                    },
+                    "seed": seed,
+                    "replaceable_by": {
+                        "kind": "person",
+                        "match": f"any source naming a member of the "
+                                 f"{surname} household at or before {SCENE_DATE}",
+                    },
+                    "reconstruction": {
+                        "stage": NAMED_FAMILIES_STAGE,
+                        "programme": prog["id"],
+                        "community": community,
+                        "band_1840": band["label"],
+                        "age_on_scene_date": age,
+                        "counted_by": f"census_1840 serial {serial}",
+                    },
+                    "note": f"RECONSTRUCTED PERSON. The 1840 census counts this household "
+                            f"member and does not name them; the relation is "
+                            f"'{'child' if (age['high'] is not None and age['high'] < 15) else 'household_member'}' "
+                            f"because a band tally states an age and a sex and no relation at "
+                            f"all. The band is the one the card's named people leave over once "
+                            f"they have absorbed the senior bands of their sex, and that "
+                            f"allocation writes no age onto any of THEM. Nothing here is "
+                            f"evidence about a named individual: the need is the count, and any "
+                            f"source naming this household's people retires them.",
+                })
+
+        households.append({
+            "household": card["id"], "head": person_id, "serial": serial,
+            "path": hh_path, "held": len(held), "row_persons": int(row.get("numperhh") or 0),
+            "dropped": [(b["label"], n) for b, n in dropped],
+            "overflow": overflow, "members": members, "community": community,
+        })
+
+    return {"households": households, "notes": notes, "refusals": refusals}
+
+
+def size_histogram(extra: dict | None = None) -> Counter:
+    """The layer's households by person count, optionally with a stage's members added."""
+    hist = Counter()
+    for path in sorted(HOUSEHOLDS.glob("hh_*.json")):
+        rec = json.loads(path.read_text(encoding="utf-8"))
+        n = len([p for p in rec.get("persons") or []
+                 if (p.get("reconstruction") or {}).get("stage") != NAMED_FAMILIES_STAGE])
+        hist[n + (extra or {}).get(rec.get("id"), 0)] += 1
+    return hist
+
+
+def print_size_distribution(prog: dict, before: Counter, after: Counter) -> None:
+    """Before and after, against the model row the stage draws from."""
+    rows = None
+    model = json.loads((ROOT / prog["model_inputs"]["town_model"]).read_text(encoding="utf-8"))
+    for section in model["sections"]:
+        if section.get("key") == "households_and_families":
+            rows = section["tables"]["size_histogram_1840"]["rows"]
+    model_total = sum(r["households"] for r in rows)
+    model_share = {r["size"]: r["households"] / model_total for r in rows}
+    moved = sorted(s for s in set(before) | set(after) if before[s] != after[s])
+    print("  household size, before -> after, against size_histogram_1840 "
+          f"({model_total} households, 1840 city):")
+    b_total, a_total = sum(before.values()), sum(after.values())
+    for size in sorted(set(before) | set(after)):
+        if size not in moved and size > 8:
+            continue
+        mark = " <-" if size in moved else "   "
+        share = model_share.get(size, 0.0)
+        print(f"    size {size:>2}  {before[size]:>4} ({before[size]/b_total:6.2%})"
+              f" -> {after[size]:>4} ({after[size]/a_total:6.2%})"
+              f"   model {share:6.2%}{mark}")
+    b_people = sum(s * n for s, n in before.items())
+    a_people = sum(s * n for s, n in after.items())
+    print(f"    people in households {b_people} -> {a_people}; mean size "
+          f"{b_people/b_total:.2f} -> {a_people/a_total:.2f}; the 1840 city's mean is "
+          f"{sum(r['size'] * r['households'] for r in rows)/model_total:.2f}")
+
+
+def report_named_families(plan: dict) -> None:
+    for note in plan["notes"]:
+        print(f"  held  {note}")
+    for hh in plan["households"]:
+        dropped = ", ".join(f"{n}x {label}" for label, n in hh["dropped"]) or "none"
+        print(f"  {hh['household']}  serial {hh['serial']}  row counts {hh['row_persons']}, "
+              f"card names {hh['held']}, pool {hh['community']}")
+        print(f"      dropped as born after the scene date: {dropped}")
+        for sex, n in sorted(hh["overflow"].items()):
+            print(f"      the card holds {n} more {sex}(s) than the 1840 row counts - the row "
+                  f"is 1840's household, not 1835's, and nobody is removed for it")
+        for m in hh["members"]:
+            age = m["reconstruction"]["age_on_scene_date"]
+            span = age["low"] if age["high"] is None else f"{age['low']}-{age['high']}"
+            print(f"      + {m['id']:<28} {m['name']:<22} {m['sex']:<6} aged {span} "
+                  f"({m['relationship']})")
+
+
+def build_named_families(prog: dict, write: bool) -> int:
+    plan = plan_named_families(prog)
+    if plan["refusals"]:
+        for r in plan["refusals"]:
+            print(f"  FAIL {r}", file=sys.stderr)
+        return 1
+    report_named_families(plan)
+
+    before = size_histogram()
+    added = {hh["household"]: len(hh["members"]) for hh in plan["households"]}
+    after = size_histogram(added)
+    print_size_distribution(prog, before, after)
+
+    if not write:
+        return 0
+    written = 0
+    for hh in plan["households"]:
+        card = json.loads(hh["path"].read_text(encoding="utf-8"))
+        keep = [p for p in card.get("persons") or []
+                if (p.get("reconstruction") or {}).get("stage") != NAMED_FAMILIES_STAGE]
+        card["persons"] = keep + hh["members"]
+        hh["path"].write_text(json.dumps(card, indent=1, ensure_ascii=False) + "\n",
+                              encoding="utf-8")
+        written += len(hh["members"])
+    print(f"  wrote {written} reconstructed person(s) into "
+          f"{len(plan['households'])} household card(s)")
+    return 0
+
+
+def check_named_families(prog: dict) -> list:
+    """The committed layer against a fresh derivation. Returns problems."""
+    plan = plan_named_families(prog)
+    problems = list(plan["refusals"])
+    want = {}
+    for hh in plan["households"]:
+        for m in hh["members"]:
+            want[m["id"]] = m
+    have = {}
+    for path in sorted(HOUSEHOLDS.glob("hh_*.json")):
+        for person in json.loads(path.read_text(encoding="utf-8")).get("persons") or []:
+            if (person.get("reconstruction") or {}).get("stage") == NAMED_FAMILIES_STAGE:
+                have[person.get("id")] = person
+    for pid in sorted(set(want) | set(have)):
+        if pid not in have:
+            problems.append(f"{pid}: the 1840 row counts this person and the layer does not "
+                            f"carry them - re-run --stage {NAMED_FAMILIES_STAGE} --build")
+        elif pid not in want:
+            problems.append(f"{pid}: carries stage '{NAMED_FAMILIES_STAGE}' and no 1840 "
+                            f"bridged row derives them")
+        elif have[pid] != want[pid]:
+            differing = sorted(k for k in set(want[pid]) | set(have[pid])
+                               if want[pid].get(k) != have[pid].get(k))
+            problems.append(f"{pid}: the committed record does not re-derive; "
+                            f"{', '.join(differing)} differ(s)")
+    return problems
+
+
+# --------------------------------------------------------------------------
+# the stage registry - a stage is implemented exactly when it is in here
+# --------------------------------------------------------------------------
+
+BUILDERS = {NAMED_FAMILIES_STAGE: build_named_families}
+CHECKERS = {NAMED_FAMILIES_STAGE: check_named_families}
+
+
+# --------------------------------------------------------------------------
 # modes
 # --------------------------------------------------------------------------
 
@@ -209,6 +615,8 @@ def cmd_build(prog: dict, key: str) -> int:
               f"stage in {stage['ticket']} and set `implemented` in the programme file.",
               file=sys.stderr)
         return 1
+    if key in BUILDERS:
+        return BUILDERS[key](prog, write=True)
     print(f"FAIL stage '{key}' is marked implemented but carries no build - the programme file "
           f"and this writer disagree", file=sys.stderr)
     return 2
@@ -253,6 +661,18 @@ def cmd_check(prog: dict) -> int:
     for where, person in reconstructed:
         check_reconstructed_person(where, person, set(table), error)
         check_invented_name(where, person, real_names, error)
+
+    # every IMPLEMENTED stage re-derives, so the committed layer is the programme's
+    # output and not a thing a run once wrote and nobody can rebuild
+    for stage in prog["stages"]:
+        if not stage.get("implemented"):
+            continue
+        if stage["key"] not in CHECKERS:
+            error(f"stage {stage['key']}", "is marked implemented and this writer carries no "
+                                           "derivation for it")
+            continue
+        for problem in CHECKERS[stage["key"]](prog):
+            error(f"stage {stage['key']}", problem)
 
     built = [s["key"] for s in prog["stages"] if s.get("implemented")]
     if problems:
@@ -387,6 +807,49 @@ def cmd_self_test() -> int:
     else:
         print("  ok    the one writer of the grade does not call the refusal the four "
               "research writers carry")
+
+    # --- the back-projection stage `named_families` rests on (T-1314) -------------
+    #
+    # The one arithmetic in this file that turns a 1840 tally into an 1835 person, so
+    # it is proved by cases rather than by the paragraph above it.
+    bands = band_table()
+    males = [b for b in bands if b["sex"] == "male"]
+    females = [b for b in bands if b["sex"] == "female"]
+    if len(males) != 13 or len(females) != 13:
+        failures += 1
+        print(f"  FAIL the 1840 schedule has thirteen free-white age bands per sex; the "
+              f"committed column map reads {len(males)} male and {len(females)} female")
+    else:
+        print("  ok    the 1840 schedule's twenty-six bands are read from T-0504's column map")
+
+    under5 = next(b for b in males if b["label"].endswith("Under 5"))
+    if back_project(under5) is not None:
+        failures += 1
+        print("  FAIL a child under 5 in 1840 was born after the scene date and must not be "
+              "carried back into it")
+    else:
+        print("  ok    the under-5 band of 1840 is dropped whole, not apportioned")
+
+    five_to_nine = next(b for b in males if b["lo"] == 5)
+    got = back_project(five_to_nine)
+    if got != {"low": 0, "high": 4}:
+        failures += 1
+        print(f"  FAIL a person 5 under 10 in 1840 was 0-4 on the scene date, not {got}")
+    else:
+        print("  ok    a band back-projects by exactly five years")
+
+    oldest = next(b for b in males if b["hi"] is None)
+    if back_project(oldest) != {"low": oldest["lo"] - 5, "high": None}:
+        failures += 1
+        print("  FAIL the open top band loses its open top under back-projection")
+    else:
+        print("  ok    the open '100 and upwards' band stays open when back-projected")
+
+    if BRIDGE_STATUS_THAT_SPENDS != "validated":
+        failures += 1
+        print("  FAIL only a validated 1840 bridge may write a person")
+    else:
+        print("  ok    only a `validated` 1840 identity bridge spends")
 
     return 1 if failures else 0
 
