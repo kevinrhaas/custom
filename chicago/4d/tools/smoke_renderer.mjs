@@ -11804,7 +11804,7 @@ for (const [label, viewport, touch] of [
       dir.search('');
       const all = dir.state?.matched;
       out.pill = { all, matched: dir.filter('place', 'unplaceable'),
-        stated: idx.counts?.by_location_kind?.unplaceable,
+        stated: idx.counts?.by_where_kind?.unplaceable,
         pressed: document.querySelector('.pill[data-filter="place"][aria-pressed="true"]')?.dataset.value,
         offKind: rows().filter((r) => !/unplaceable/.test(r.querySelector('.person-mark')?.textContent ?? ''))
           .map((r) => r.dataset.businessId).slice(0, 5), rows: rows().length };

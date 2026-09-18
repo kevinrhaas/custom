@@ -231,7 +231,7 @@ for q in Path(sys.argv[1]).rglob("*.json"):
 MINIFY
 fi
 
-# The business layer. 196 firms compiled from the register — and 140 of them
+# The business layer. 196 firms compiled from the register — and 166 of them
 # have no roof in this town, so a card in the Businesses directory is the ONLY
 # place a visitor can reach them. `businesses/index.json` is what the directory
 # lists; each `biz_*.json` is fetched when its card opens. Leave this out and the

@@ -5,9 +5,10 @@
  * WHY THIS EXISTS. The renderer never opened `register_1835.json` or the
  * business layer at all: a firm reached a visitor only through a building
  * card's "Use"/"Keepers" lines, a signboard tap, or the agencies panel. That
- * works for the 56 houses the town holds a roof or a landmark for, and it
- * leaves the other 140 — 61 known to a street and no further, 83 the register
- * could place nowhere at all — invisible in a walk of the town. They are not
+ * works for the 30 houses that stand in a roof of their own, and it leaves the
+ * other 166 — 26 placed against a landmark and no closer, 61 known to a street
+ * and no further, 79 the register could place nowhere at all — invisible in a
+ * walk of the town. They are not
  * lesser evidence. A printed advertisement with no address is still a house
  * that traded here, and the one thing it must never become is a building
  * invented to carry it. So it gets a card instead of a roof.
@@ -28,7 +29,12 @@
  * `anchored` is "next door to the Sauganash" and no roof, `street_only` is a
  * street and no more, `unplaceable` is a house the register could not put
  * anywhere — and every one of those says, in the record's own words, WHY it
- * stops there. A visitor can ask for the unplaceable ones and read 83 limits.
+ * stops there. A visitor can ask for the unplaceable ones and read 79 limits.
+ *
+ * It files a firm ONCE, under its primary location, so the tally it counts by is
+ * `counts.by_where_kind` (firms) and never `counts.by_location_kind` (locations).
+ * Four of these houses moved inside the window and carry two addresses; a firm
+ * filed under the street it ended on still holds the unplaceable one it left.
  *
  * Contract (main.js): `mountBusinesses({ mount, index, registry, dataBase,
  * onGoTo, onPerson, onTitle, problems })` -> `{ businesses, error, search,
@@ -187,7 +193,7 @@ export async function mountBusinesses({
     <div class="people-home biz-home">
       <p class="people-count" id="businesses-count">${n(counts.records)} firms the record knows
         · ${n(counts.present_at_scene_date)} trading on 1 July 1835
-        · ${n((counts.by_location_kind || {}).premises)} with a roof of their own</p>
+        · ${n((counts.by_where_kind || {}).premises)} with a roof of their own</p>
       <div class="field people-field">
         <input type="search" id="businesses-search" placeholder="A firm, a keeper, a trade, a good…"
           autocomplete="off" spellcheck="false" aria-label="Search the businesses of the town"
@@ -382,7 +388,7 @@ export async function mountBusinesses({
     resultsEl.innerHTML = current.length
       ? current.map(rowHtml).join('')
       : `<p class="people-empty">No firm by that name. Try a trade — "tailor", "forwarding" — or a good
-         the papers advertised, like "crockery". ${n((counts.by_location_kind || {}).unplaceable)} of these
+         the papers advertised, like "crockery". ${n((counts.by_where_kind || {}).unplaceable)} of these
          houses are known from a printing and nothing else, so a street will not find them.</p>`;
     const narrowing = state.q.trim() || Object.keys(state.filters).length;
     noteEl.textContent = narrowing

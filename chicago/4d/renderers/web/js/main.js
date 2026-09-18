@@ -1674,8 +1674,9 @@ async function boot() {
   });
 
   // …and the town's FIRMS, which until now reached a visitor only through the
-  // roof they stood in. 140 of the 196 the register knows have no roof here — 61
-  // are a street and no further, 83 could be placed nowhere at all — and the one
+  // roof they stood in. 166 of the 196 the register knows have no roof here — 26
+  // reach a landmark, 61 a street and no further, 79 could be placed nowhere at
+  // all — and the one
   // thing this project will not do to make them visible is invent a building for
   // them. So they get a directory and a card: every firm findable by trade,
   // street, grade and how far the record could place it, and every limit printed.

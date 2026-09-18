@@ -510,6 +510,12 @@ def build_index(records, authored, rows):
     named = sum(1 for r in everything for p in r["proprietors"] + r["partners"] + r["staff"])
     counts_by_grade = {}
     counts_by_street = {}
+    # By the PRIMARY location, which is not the same tally as `by_location_kind`
+    # above: that one counts LOCATIONS, and four of these houses moved inside the
+    # window, so a firm filed under the street it ended on still carries an
+    # unplaceable earlier address. The directory files a firm once, so it needs
+    # the count of FIRMS — 83 unplaceable locations are 79 unplaceable houses.
+    counts_by_where = {}
     streets = street_names()
     directory = [index_row(r, streets) for r in sorted(everything, key=lambda r: r["id"])]
     for row in directory:
@@ -517,6 +523,9 @@ def build_index(records, authored, rows):
         street = (row["where"] or {}).get("street")
         if street:
             counts_by_street[street] = counts_by_street.get(street, 0) + 1
+        kind = (row["where"] or {}).get("kind")
+        if kind:
+            counts_by_where[kind] = counts_by_where.get(kind, 0) + 1
     walk = crosswalk(everything, rows)
     return {
         "schema": 1,
@@ -537,6 +546,7 @@ def build_index(records, authored, rows):
             "works_at_households": len(walk),
             "works_at_households_resolving_to_a_business": sum(1 for w in walk if w["business_ids"]),
             "by_grade": dict(sorted(counts_by_grade.items())),
+            "by_where_kind": dict(sorted(counts_by_where.items())),
             "by_street": dict(sorted(counts_by_street.items())),
         },
         "_businesses_doc": ("THE DIRECTORY'S ROWS. Each carries what the Businesses list, its "

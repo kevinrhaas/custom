@@ -39,6 +39,12 @@
       "attested": 158,
       "inferred": 38
     },
+    "by_where_kind": {
+      "anchored": 26,
+      "premises": 30,
+      "street_only": 61,
+      "unplaceable": 79
+    },
     "by_street": {
       "Canal Street": 1,
       "Dearborn Street": 23,
