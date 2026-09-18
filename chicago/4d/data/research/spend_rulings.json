@@ -34,11 +34,6 @@
       "ticket": "T-1299",
       "statement": "The unit's only person content is a dated office or trade. T-1145 replaced the one-occupation resident field with dated plural roles and is SPLIT and spent — T-1229 wrote the schema, T-1254 migrated the external evidence, T-1255 put the run on the card. The handoff moves to T-1296, which is the open ticket on the singular field: flattening a dated office into it is the back-projection this line exists to stop, and T-1296 is where the four generators that own that field are made to agree."
     },
-    "identity_open_one_letter_apart": {
-      "disposition": "unresolved",
-      "ticket": "T-1334",
-      "statement": "The read name and a name in the residents layer differ by one letter, and this domain's crosswalk may only join them through a rule naming both spellings verbatim. T-1144 SPLIT ON 2026-09-18 and a split parent is not a place a unit may wait: this is its child T-1334, which holds acceptance 1 and the last slot of acceptance 2 — one question, read by T-1222. The convergence ticket owns mint drift and false residents; a pass that closed this by eye would be manufacturing the identity it claims to find."
-    },
     "named_as_a_visitor_not_a_resident": {
       "disposition": "refused",
       "statement": "The source itself names the person as a visitor to the settlement who went home again. That is stronger than the standing rule that a transaction is never a residence, because the document states the man was not living here, and the reading's value is the negative."
@@ -305,8 +300,8 @@
     },
     {
       "unit": "books:data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json#records/bk_mose1_as_028",
-      "rule": "identity_open_one_letter_apart",
-      "note": "Pothier, Joseph — the reading's note says this project holds no card for either spelling, and that is NO LONGER TRUE: the residents layer holds Joseph Porthier, one letter away, and Andreas names a Joseph Porthier as striker to the government blacksmith at the Chicago agency. A one-letter identity is a crosswalk merge with a rule naming both spellings verbatim, and this pass does not make one."
+      "rule": "handed_to_the_arrival_pass",
+      "note": "Pothier, Joseph — THE IDENTITY IS SETTLED AND THE ARRIVAL IS NOT. This unit waited under `identity_open_one_letter_apart` because the read name stood one letter from 'Joseph Porthier' in the residents layer and no rule named both spellings. T-1334 wrote that rule: data/research/books/crosswalk.json now carries a merge of 'Pothier, Joseph' into 'Joseph Porthier', upheld not on the one-letter likeness but on Moses and Kirkland's own index, which gathers its Pothier pages and its Porthier page under the single heading 'Porthier, Joseph, 72, 76, 85, 89.' — plus four agreements in the row's own cells, the trade among them. What is left of the unit is what the row says and the card does not: a dated arrival of 1823 and a nativity of French, for a person this town holds whose `arrival` is 1830, reconstructed, and says of itself that it cites nothing. That is a books-corpus dated arrival onto a card this town holds, which is T-1317 exactly. Nothing on any resident record was edited to reach this and nobody was minted; the man is `absent` on the scene date on a dated 1835 migration to Milwaukee and stays so."
     },
     {
       "unit": "books:data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json#records/bk_mose1_as_030",
