@@ -78,3 +78,14 @@ graded `reconstructed` without the reconstruction contract on the record. `tools
 already holds that half — "3 reconstructed person(s) in data/residents/, each holding the record
 contract" — which is why the gate is green while the smoke is red. (T-1328 was filed for this
 before dev's copy was visible on the branch, and is withdrawn to here.)
+
+**A SECOND DEAD ASSERTION IN THE SAME PART, FOUND 2026-09-18 BY T-1320's SMOKE LEG.**
+`desktop 1280x800: the placeholder label agrees with the asset it describes` cannot pass
+and never has. `tools/smoke_renderer.mjs:7218` reads `placeholder.whereholderFlag`; the
+object the page evaluates carries `placeholderFlag`, so the left side is always
+`undefined` and the comparison is always false. It is the "both directions" half added
+beside the three placeholder checks that DO pass, and it has been red on every desktop
+part 2-3 run since. Filed here rather than as a new queue line because this ticket
+already owns "a smoke assertion in this part has rotted and says nothing"; the
+`dev-smoke-state` record for desktop parts 2 and 3 names only the K18 failure, so
+whoever takes this should expect two.
