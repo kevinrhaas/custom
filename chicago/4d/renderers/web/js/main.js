@@ -46,6 +46,7 @@ import { createBoats } from './boats.js';
 import { createWells } from './wells.js';
 import { mountExclusions } from './exclusions.js';
 import { mountPopulation } from './population.js';
+import { mountOrderBook } from './orderbook.js';
 import { mountFauna } from './fauna.js';
 import { mountPlants } from './plants.js';
 import { mountResidents } from './residents.js';
@@ -1729,6 +1730,18 @@ async function boot() {
   api.population = await mountPopulation({
     mount: document.getElementById('population'),
     noteMount: document.getElementById('population-note'),
+    dataBase: bases.dataBase,
+    problems,
+  });
+
+  // …and the other half of the same question (T-1166). The profile says who the
+  // sources name; the order book says how many people, households, businesses and
+  // roofs the models say were here and the sources cannot, which ticket owes each
+  // bucket, and how much of it has been built. It is the progress view of the three
+  // reconstruction bands, filled by their own builds rather than by hand.
+  api.orderBook = await mountOrderBook({
+    mount: document.getElementById('order-book'),
+    noteMount: document.getElementById('order-book-note'),
     dataBase: bases.dataBase,
     problems,
   });

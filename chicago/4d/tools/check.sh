@@ -3896,6 +3896,30 @@ step "the 1835 population profile re-derives from the resident layer, on every a
 selftest "…and its own assertions still fire when broken" \
   python3 tools/profile_population_1835.py --self-test
 
+# T-1166. THE RECONSTRUCTION ORDER BOOK, held to every file it subtracts.
+#
+# The book is the quota the three reconstruction bands are built against: known
+# minus model, per bucket, with the ticket that owes each one. It rots in exactly
+# the way the profile does and in one worse way — a filler that writes more records
+# than its bucket allows has silently overrun the town, and nothing else in this
+# gate would notice. So `--check` re-derives every bucket from the town model, the
+# profile's own layer, the roster, the roof programme, the inventory, the trade
+# census and the 1840 composition, CARRIES the committed `filled` counters across
+# unchanged, and refuses both drift and an overfilled bucket.
+#
+# The three judgements it makes are asserted rather than trusted. A range becomes a
+# point by MIDPOINT and says so; a known person the layer cannot place is subtracted
+# pro rata rather than dropped, so nobody is ordered twice; and only a household
+# recorded `present` counts as known, because an `uncertain` one is already on the
+# roster being offered to T-1172. The self-test also holds the one place the 1840
+# age pyramid could silently disagree with the 1835 model — the child share — inside
+# the model's own bracket.
+step "the 1835 reconstruction order book re-derives, and no bucket is overfilled" \
+  python3 tools/build_order_book_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/build_order_book_1835.py --self-test
+
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names
 # a position and no lot": a count of doors off a named corner — "on South-Water st. one

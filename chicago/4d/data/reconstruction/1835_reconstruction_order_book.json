@@ -1,0 +1,3510 @@
+{
+  "$schema_note": "DERIVED — regenerate with tools/build_order_book_1835.py --build; tools/check.sh re-derives it. Do not hand-edit. The `fills` ledger and each bucket's `filled` are written by the reconstruction tools.",
+  "id": "chicago_july_1835_reconstruction_order_book",
+  "ticket": "T-1166",
+  "target_date": "1835-07-01",
+  "generated_by": "tools/build_order_book_1835.py --build",
+  "not_a_reading": "an adjudication over committed derived files — no page of any source was opened, nobody is named, nobody is aged, nobody is housed",
+  "inputs": [
+    "data/reconstruction/1835_town_model.json",
+    "data/reconstruction/1835_population_profile.json",
+    "data/reconstruction/1835_borderline_roster.json",
+    "data/reconstruction/1835_665_roof_programme.json",
+    "data/reconstruction/1835_building_inventory.json",
+    "data/research/books/trade_census_1835_crosswalk.json",
+    "data/research/census_1840/composition_1840.json",
+    "data/residents/index.json",
+    "data/research/newspapers/register_1835.json",
+    "data/structures/*.json"
+  ],
+  "method": {
+    "point_from_range": "Where the town model gives a point the book takes it; where it gives only a range the book takes the MIDPOINT, rounded half up, and carries the range beside it. A quota cannot be a range.",
+    "unresolved_known": "A named person or household the layer cannot place on an axis is subtracted PRO RATA across that axis's cells, so the book never orders a replacement for somebody already standing in the town.",
+    "presence_is_the_test": "Only a household recorded `present` on the scene date counts as known. An `uncertain` one is the roster's R1 class and is offered to T-1172 — counting it in both places orders one person twice.",
+    "the_fort_is_read_not_apportioned": "The garrison and its households carry a null target; T-1176 reads the return and the civilian quota is re-cut at the next --build.",
+    "rounding": "Largest remainder throughout, ties broken on the bucket key, so two builds on one set of inputs are byte-identical.",
+    "real_names_first": "The roster (T-1159) offers every name the corpus printed and withheld. It is a licence on WHICH name a filler uses and never a quota, so it is counted against its ticket rather than smeared across cells that cannot hold it."
+  },
+  "known_layer": {
+    "households_total": 1258,
+    "households_present": 436,
+    "households_uncertain": 820,
+    "persons_total": 1282,
+    "persons_present": 456,
+    "persons_present_attested": 133,
+    "persons_present_inferred": 323,
+    "persons_present_by_division": {
+      "south": 50,
+      "west": 6,
+      "north": 10,
+      "fort": 2
+    },
+    "households_present_by_division": {
+      "south": 34,
+      "west": 4,
+      "north": 8,
+      "fort": 2
+    },
+    "persons_present_unplaced": 388,
+    "households_present_unplaced": 388,
+    "households_with_a_lives_at": 16,
+    "households_with_a_works_at": 36
+  },
+  "roster_offered": {
+    "total": 1490,
+    "by_class": {
+      "R1_in_window_uncertain": 814,
+      "R2_in_window_single_source": 40,
+      "R3_1834_return_or_muster": 28,
+      "R4_surname_only_census": 424,
+      "R5_later_only_backprojectable": 55,
+      "R6_native_metis_black": 129
+    },
+    "tickets": {
+      "R1_in_window_uncertain": "T-1172",
+      "R2_in_window_single_source": "T-1172",
+      "R3_1834_return_or_muster": "T-1172",
+      "R4_surname_only_census": "T-1170",
+      "R5_later_only_backprojectable": "T-1172",
+      "R6_native_metis_black": "T-1177"
+    }
+  },
+  "totals": {
+    "persons_target": 2533,
+    "persons_known": 456,
+    "persons_to_reconstruct": 2080,
+    "households_target": 643,
+    "households_known": 436,
+    "households_to_reconstruct": 209,
+    "businesses_target": 120,
+    "businesses_known": 118,
+    "businesses_to_reconstruct": 24,
+    "roofs_target": 668,
+    "roofs_standing": 384,
+    "roofs_to_build": 297
+  },
+  "bucket_families": [
+    {
+      "key": "persons",
+      "title": "Persons",
+      "lead": "Who the town still has to be given, by sex, age, division, household and trade.",
+      "summary": {
+        "town_target": 2533,
+        "town_target_basis": "the model's own point within 2,350-3,265",
+        "town_target_range": [
+          2350,
+          3265
+        ],
+        "employed_target": 506,
+        "employed_basis": "the midpoint of the model's 423-588, rounded half up",
+        "lodging_share": 0.26,
+        "lodging_share_range": [
+          0.143,
+          0.377
+        ]
+      },
+      "buckets": [
+        {
+          "key": "persons/female/10_19/north/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "10_19",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 32,
+          "known_attested": 2,
+          "known_inferred": 4,
+          "to_reconstruct": 26,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/10_19/north/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "10_19",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 11,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 9,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/10_19/south/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "10_19",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 76,
+          "known_attested": 4,
+          "known_inferred": 11,
+          "to_reconstruct": 61,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/10_19/south/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "10_19",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 27,
+          "known_attested": 1,
+          "known_inferred": 4,
+          "to_reconstruct": 22,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/10_19/west/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "10_19",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 28,
+          "known_attested": 1,
+          "known_inferred": 3,
+          "to_reconstruct": 24,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/10_19/west/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "10_19",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 10,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 8,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/20_29/north/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "north",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 18,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 15,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/20_29/north/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 34,
+          "known_attested": 2,
+          "known_inferred": 4,
+          "to_reconstruct": 28,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/20_29/north/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 6,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 5,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/20_29/north/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 12,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 10,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/20_29/south/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "south",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 43,
+          "known_attested": 2,
+          "known_inferred": 6,
+          "to_reconstruct": 35,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/20_29/south/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 81,
+          "known_attested": 4,
+          "known_inferred": 11,
+          "to_reconstruct": 66,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/20_29/south/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 15,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 12,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/20_29/south/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 29,
+          "known_attested": 2,
+          "known_inferred": 4,
+          "to_reconstruct": 23,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/20_29/west/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "west",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 16,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 13,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/20_29/west/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 30,
+          "known_attested": 1,
+          "known_inferred": 4,
+          "to_reconstruct": 25,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/20_29/west/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 6,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 5,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/20_29/west/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "20_29",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 10,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 9,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/30_39/north/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "north",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 8,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 6,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/30_39/north/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 16,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 13,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/30_39/north/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/30_39/north/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 5,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/30_39/south/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "south",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 20,
+          "known_attested": 1,
+          "known_inferred": 3,
+          "to_reconstruct": 16,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/30_39/south/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 38,
+          "known_attested": 2,
+          "known_inferred": 5,
+          "to_reconstruct": 31,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/30_39/south/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 7,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 6,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/30_39/south/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 13,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 10,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/30_39/west/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "west",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 7,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 6,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/30_39/west/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 14,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 12,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/30_39/west/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/30_39/west/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "30_39",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 5,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/40_49/north/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "north",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/40_49/north/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 6,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 5,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/40_49/north/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/40_49/north/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/40_49/south/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "south",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 7,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 6,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/40_49/south/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 14,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 11,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/40_49/south/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/40_49/south/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 5,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/40_49/west/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "west",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/40_49/west/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 5,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/40_49/west/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/40_49/west/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "40_49",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/50_plus/north/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "north",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/50_plus/north/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 4,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/50_plus/north/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/50_plus/north/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/50_plus/south/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "south",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 5,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/50_plus/south/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 9,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 8,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/50_plus/south/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/50_plus/south/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/50_plus/west/family/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "west",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/female/50_plus/west/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/50_plus/west/lodging/trade",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/50_plus/west/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "50_plus",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/under_10/north/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "under_10",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 55,
+          "known_attested": 3,
+          "known_inferred": 6,
+          "to_reconstruct": 46,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/under_10/north/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "under_10",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 19,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 16,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/under_10/south/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "under_10",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 132,
+          "known_attested": 7,
+          "known_inferred": 18,
+          "to_reconstruct": 107,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/under_10/south/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "under_10",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 46,
+          "known_attested": 3,
+          "known_inferred": 6,
+          "to_reconstruct": 37,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/female/under_10/west/family/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "under_10",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 49,
+          "known_attested": 3,
+          "known_inferred": 6,
+          "to_reconstruct": 40,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/female/under_10/west/lodging/none",
+          "axes": {
+            "sex": "female",
+            "age_band": "under_10",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 17,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 14,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/10_19/north/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "10_19",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 37,
+          "known_attested": 2,
+          "known_inferred": 5,
+          "to_reconstruct": 30,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/male/10_19/north/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "10_19",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 13,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 11,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/10_19/south/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "10_19",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 88,
+          "known_attested": 5,
+          "known_inferred": 12,
+          "to_reconstruct": 71,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/male/10_19/south/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "10_19",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 31,
+          "known_attested": 2,
+          "known_inferred": 4,
+          "to_reconstruct": 25,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/10_19/west/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "10_19",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 32,
+          "known_attested": 2,
+          "known_inferred": 4,
+          "to_reconstruct": 26,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/male/10_19/west/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "10_19",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 11,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 9,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/20_29/north/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "north",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 30,
+          "known_attested": 1,
+          "known_inferred": 4,
+          "to_reconstruct": 25,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/20_29/north/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 58,
+          "known_attested": 3,
+          "known_inferred": 8,
+          "to_reconstruct": 47,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/20_29/north/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 11,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 9,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/20_29/north/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 20,
+          "known_attested": 1,
+          "known_inferred": 3,
+          "to_reconstruct": 16,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/20_29/south/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "south",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 73,
+          "known_attested": 4,
+          "known_inferred": 9,
+          "to_reconstruct": 60,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/20_29/south/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 139,
+          "known_attested": 8,
+          "known_inferred": 18,
+          "to_reconstruct": 113,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/20_29/south/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 26,
+          "known_attested": 1,
+          "known_inferred": 4,
+          "to_reconstruct": 21,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/20_29/south/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 48,
+          "known_attested": 3,
+          "known_inferred": 6,
+          "to_reconstruct": 39,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/20_29/west/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "west",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 27,
+          "known_attested": 1,
+          "known_inferred": 3,
+          "to_reconstruct": 23,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/20_29/west/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 51,
+          "known_attested": 2,
+          "known_inferred": 6,
+          "to_reconstruct": 43,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/20_29/west/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 10,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 9,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/20_29/west/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "20_29",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 18,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 15,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/30_39/north/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "north",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 18,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 15,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/30_39/north/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 34,
+          "known_attested": 2,
+          "known_inferred": 4,
+          "to_reconstruct": 28,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/30_39/north/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 6,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 5,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/30_39/north/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 12,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 10,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/30_39/south/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "south",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 43,
+          "known_attested": 2,
+          "known_inferred": 6,
+          "to_reconstruct": 35,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/30_39/south/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 81,
+          "known_attested": 4,
+          "known_inferred": 11,
+          "to_reconstruct": 66,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/30_39/south/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 15,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 12,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/30_39/south/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 29,
+          "known_attested": 2,
+          "known_inferred": 4,
+          "to_reconstruct": 23,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/30_39/west/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "west",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 16,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 13,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/30_39/west/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 30,
+          "known_attested": 1,
+          "known_inferred": 4,
+          "to_reconstruct": 25,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/30_39/west/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 5,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/30_39/west/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "30_39",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 11,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 10,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/40_49/north/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "north",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 5,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/40_49/north/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 10,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 9,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/40_49/north/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/40_49/north/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/40_49/south/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "south",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 12,
+          "known_attested": 1,
+          "known_inferred": 1,
+          "to_reconstruct": 10,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/40_49/south/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 24,
+          "known_attested": 1,
+          "known_inferred": 4,
+          "to_reconstruct": 19,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/40_49/south/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 4,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/40_49/south/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 9,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 8,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/40_49/west/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "west",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 4,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/40_49/west/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 9,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 8,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/40_49/west/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/40_49/west/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "40_49",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 3,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/50_plus/north/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "north",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/50_plus/north/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 5,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/50_plus/north/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/50_plus/north/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/50_plus/south/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "south",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 6,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 5,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/50_plus/south/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 11,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 8,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/50_plus/south/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/50_plus/south/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 4,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/50_plus/west/family/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "west",
+            "household_type": "family",
+            "trade": "trade"
+          },
+          "target": 2,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1173",
+          "basis": "an adult at a trade"
+        },
+        {
+          "key": "persons/male/50_plus/west/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 4,
+          "known_attested": 0,
+          "known_inferred": 1,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "otherwise: a family drawn from the household model"
+        },
+        {
+          "key": "persons/male/50_plus/west/lodging/trade",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "trade"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/50_plus/west/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "50_plus",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 1,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/under_10/north/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "under_10",
+            "division": "north",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 61,
+          "known_attested": 3,
+          "known_inferred": 7,
+          "to_reconstruct": 51,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/male/under_10/north/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "under_10",
+            "division": "north",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 22,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 19,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/under_10/south/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "under_10",
+            "division": "south",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 147,
+          "known_attested": 8,
+          "known_inferred": 20,
+          "to_reconstruct": 119,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/male/under_10/south/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "under_10",
+            "division": "south",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 52,
+          "known_attested": 3,
+          "known_inferred": 7,
+          "to_reconstruct": 42,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/male/under_10/west/family/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "under_10",
+            "division": "west",
+            "household_type": "family",
+            "trade": "none"
+          },
+          "target": 55,
+          "known_attested": 3,
+          "known_inferred": 6,
+          "to_reconstruct": 46,
+          "filled": 0,
+          "owning_ticket": "T-1174",
+          "basis": "a woman or a person under twenty"
+        },
+        {
+          "key": "persons/male/under_10/west/lodging/none",
+          "axes": {
+            "sex": "male",
+            "age_band": "under_10",
+            "division": "west",
+            "household_type": "lodging",
+            "trade": "none"
+          },
+          "target": 19,
+          "known_attested": 1,
+          "known_inferred": 2,
+          "to_reconstruct": 16,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "a bed rather than a household"
+        },
+        {
+          "key": "persons/garrison/fort",
+          "axes": {
+            "sex": "any",
+            "age_band": "any",
+            "division": "fort",
+            "household_type": "garrison",
+            "trade": "any"
+          },
+          "target": null,
+          "known_attested": 2,
+          "known_inferred": 0,
+          "to_reconstruct": null,
+          "filled": 0,
+          "owning_ticket": "T-1176",
+          "basis": "NOT APPORTIONED. The garrison of 1 July 1835 is a return to be read — the companies of the 5th Infantry to their strength, the staff and the soldiers' families — and T-1176 bounds it from the sources. Whatever it returns is subtracted from the civilian quota at the next --build."
+        },
+        {
+          "key": "persons/transient/town",
+          "axes": {
+            "sex": "any",
+            "age_band": "any",
+            "division": "any",
+            "household_type": "transient",
+            "trade": "any"
+          },
+          "target": null,
+          "known_attested": 0,
+          "known_inferred": 0,
+          "to_reconstruct": null,
+          "filled": 0,
+          "owning_ticket": "T-1178",
+          "basis": "NOT APPORTIONED. The town model bounds the town's RESIDENTS; the land-sale crowd, the immigrants awaiting lots, the harbour gang and the crews ashore are in the town on 1 July 1835 and not of it. T-1178 bounds the cohort and says where it slept."
+        }
+      ]
+    },
+    {
+      "key": "households",
+      "title": "Households",
+      "lead": "The households the model wants, by kind and division.",
+      "summary": {
+        "households_target": 643,
+        "households_target_basis": "the midpoint of the model's 469-816, rounded half up",
+        "households_target_range": [
+          469,
+          816
+        ],
+        "known_present": 436,
+        "known_uncertain_offered_to_T-1172": 820
+      },
+      "buckets": [
+        {
+          "key": "households/boarding_house/north",
+          "axes": {
+            "household_type": "boarding_house",
+            "division": "north"
+          },
+          "target": 11,
+          "known": 8,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the north division"
+        },
+        {
+          "key": "households/boarding_house/south",
+          "axes": {
+            "household_type": "boarding_house",
+            "division": "south"
+          },
+          "target": 40,
+          "known": 28,
+          "to_reconstruct": 12,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the south division"
+        },
+        {
+          "key": "households/boarding_house/west",
+          "axes": {
+            "household_type": "boarding_house",
+            "division": "west"
+          },
+          "target": 9,
+          "known": 6,
+          "to_reconstruct": 3,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "the model's 643 households apportioned on the inventory's own boarding_house roof count in the west division"
+        },
+        {
+          "key": "households/family_dwelling/north",
+          "axes": {
+            "household_type": "family_dwelling",
+            "division": "north"
+          },
+          "target": 121,
+          "known": 80,
+          "to_reconstruct": 41,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "the model's 643 households apportioned on the inventory's own family_dwelling roof count in the north division"
+        },
+        {
+          "key": "households/family_dwelling/south",
+          "axes": {
+            "household_type": "family_dwelling",
+            "division": "south"
+          },
+          "target": 253,
+          "known": 176,
+          "to_reconstruct": 77,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "the model's 643 households apportioned on the inventory's own family_dwelling roof count in the south division"
+        },
+        {
+          "key": "households/family_dwelling/west",
+          "axes": {
+            "household_type": "family_dwelling",
+            "division": "west"
+          },
+          "target": 108,
+          "known": 69,
+          "to_reconstruct": 39,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "the model's 643 households apportioned on the inventory's own family_dwelling roof count in the west division"
+        },
+        {
+          "key": "households/inn_tavern/north",
+          "axes": {
+            "household_type": "inn_tavern",
+            "division": "north"
+          },
+          "target": 3,
+          "known": 2,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the north division"
+        },
+        {
+          "key": "households/inn_tavern/south",
+          "axes": {
+            "household_type": "inn_tavern",
+            "division": "south"
+          },
+          "target": 7,
+          "known": 5,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the south division"
+        },
+        {
+          "key": "households/inn_tavern/west",
+          "axes": {
+            "household_type": "inn_tavern",
+            "division": "west"
+          },
+          "target": 4,
+          "known": 2,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1175",
+          "basis": "the model's 643 households apportioned on the inventory's own inn_tavern roof count in the west division"
+        },
+        {
+          "key": "households/institutional/north",
+          "axes": {
+            "household_type": "institutional",
+            "division": "north"
+          },
+          "target": 4,
+          "known": 2,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1188",
+          "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the north division"
+        },
+        {
+          "key": "households/institutional/south",
+          "axes": {
+            "household_type": "institutional",
+            "division": "south"
+          },
+          "target": 7,
+          "known": 5,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1188",
+          "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the south division"
+        },
+        {
+          "key": "households/institutional/west",
+          "axes": {
+            "household_type": "institutional",
+            "division": "west"
+          },
+          "target": 1,
+          "known": 1,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1188",
+          "basis": "the model's 643 households apportioned on the inventory's own institutional roof count in the west division"
+        },
+        {
+          "key": "households/store_residence/north",
+          "axes": {
+            "household_type": "store_residence",
+            "division": "north"
+          },
+          "target": 6,
+          "known": 4,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "the model's 643 households apportioned on the inventory's own store_residence roof count in the north division"
+        },
+        {
+          "key": "households/store_residence/south",
+          "axes": {
+            "household_type": "store_residence",
+            "division": "south"
+          },
+          "target": 60,
+          "known": 41,
+          "to_reconstruct": 19,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "the model's 643 households apportioned on the inventory's own store_residence roof count in the south division"
+        },
+        {
+          "key": "households/store_residence/west",
+          "axes": {
+            "household_type": "store_residence",
+            "division": "west"
+          },
+          "target": 9,
+          "known": 5,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1171",
+          "basis": "the model's 643 households apportioned on the inventory's own store_residence roof count in the west division"
+        },
+        {
+          "key": "households/garrison/fort",
+          "axes": {
+            "household_type": "garrison",
+            "division": "fort"
+          },
+          "target": null,
+          "known": 2,
+          "to_reconstruct": null,
+          "filled": 0,
+          "owning_ticket": "T-1176",
+          "basis": "NOT APPORTIONED — the fort's establishment is read, not modelled (rule 4)."
+        }
+      ]
+    },
+    {
+      "key": "businesses",
+      "title": "Businesses",
+      "lead": "The December 1835 State census set against the register the town already holds.",
+      "summary": {
+        "register_total": 196,
+        "at_scene_date": 180,
+        "census_enumerated_total": 118,
+        "register_businesses_read": 196,
+        "division_note": "EVERY BUSINESS BUCKET IS `unassigned` BY DIVISION TODAY, and that is a reading rather than a hole: the register carries a street where the paper printed one and no division at all, and assigning premises to a division is T-1182's audit and T-1198's seating. The key carries the axis so those tickets fill it rather than re-cut the book.",
+        "staffing_note": "The STAFF each business implies is T-1183's model and is not guessed at here; T-1189 staffs them from it."
+      },
+      "buckets": [
+        {
+          "key": "businesses/bank",
+          "axes": {
+            "class": "bank",
+            "division": "unassigned"
+          },
+          "census_line": "one bank",
+          "target": 0,
+          "known": 0,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1182",
+          "documented_zero": true,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": "the town holds nothing for this line",
+          "basis": "a DOCUMENTED ZERO of the December 1835 State census — the town held none, and none is reconstructed"
+        },
+        {
+          "key": "businesses/book_store",
+          "axes": {
+            "class": "book_store",
+            "division": "unassigned"
+          },
+          "census_line": "two book stores",
+          "target": 2,
+          "known": 2,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1184",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 2; the register holds 2 at the scene date"
+        },
+        {
+          "key": "businesses/brewery",
+          "axes": {
+            "class": "brewery",
+            "division": "unassigned"
+          },
+          "census_line": "two breweries",
+          "target": 2,
+          "known": 1,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1185",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 2; the register holds 1 at the scene date"
+        },
+        {
+          "key": "businesses/church",
+          "axes": {
+            "class": "church",
+            "division": "unassigned"
+          },
+          "census_line": "five churches",
+          "target": 5,
+          "known": 0,
+          "to_reconstruct": 5,
+          "filled": 0,
+          "owning_ticket": "T-1188",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": false,
+          "crosswalk_note": "a church is a structure and not a trade; T-0988 leaves this row to the roof programme and it is not compared here",
+          "basis": "the December 1835 State census prints 5; the register holds 0 at the scene date"
+        },
+        {
+          "key": "businesses/druggist",
+          "axes": {
+            "class": "druggist",
+            "division": "unassigned"
+          },
+          "census_line": "four druggists",
+          "target": 4,
+          "known": 2,
+          "to_reconstruct": 2,
+          "filled": 0,
+          "owning_ticket": "T-1184",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 4; the register holds 2 at the scene date"
+        },
+        {
+          "key": "businesses/iron_foundry",
+          "axes": {
+            "class": "iron_foundry",
+            "division": "unassigned"
+          },
+          "census_line": "one iron foundry",
+          "target": 1,
+          "known": 1,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1185",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 1; the register holds 1 at the scene date"
+        },
+        {
+          "key": "businesses/lawyer",
+          "axes": {
+            "class": "lawyer",
+            "division": "unassigned"
+          },
+          "census_line": "twenty-two lawyers",
+          "target": 22,
+          "known": 18,
+          "to_reconstruct": 4,
+          "filled": 0,
+          "owning_ticket": "T-1186",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 22; the register holds 18 at the scene date"
+        },
+        {
+          "key": "businesses/lottery_office",
+          "axes": {
+            "class": "lottery_office",
+            "division": "unassigned"
+          },
+          "census_line": "one lottery office",
+          "target": 0,
+          "known": 0,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1182",
+          "documented_zero": true,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": "the town holds nothing for this line",
+          "basis": "a DOCUMENTED ZERO of the December 1835 State census — the town held none, and none is reconstructed"
+        },
+        {
+          "key": "businesses/lyceum_and_reading_room",
+          "axes": {
+            "class": "lyceum_and_reading_room",
+            "division": "unassigned"
+          },
+          "census_line": "a lyceum and reading room",
+          "target": 0,
+          "known": 0,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1182",
+          "documented_zero": true,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": "the town holds nothing for this line",
+          "basis": "a DOCUMENTED ZERO of the December 1835 State census — the town held none, and none is reconstructed"
+        },
+        {
+          "key": "businesses/physician",
+          "axes": {
+            "class": "physician",
+            "division": "unassigned"
+          },
+          "census_line": "fourteen physicians",
+          "target": 14,
+          "known": 3,
+          "to_reconstruct": 11,
+          "filled": 0,
+          "owning_ticket": "T-1186",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 14; the register holds 3 at the scene date"
+        },
+        {
+          "key": "businesses/printing_office",
+          "axes": {
+            "class": "printing_office",
+            "division": "unassigned"
+          },
+          "census_line": "two printing offices",
+          "target": 2,
+          "known": 3,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1188",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 2; the register holds 3 at the scene date"
+        },
+        {
+          "key": "businesses/school",
+          "axes": {
+            "class": "school",
+            "division": "unassigned"
+          },
+          "census_line": "seven schools",
+          "target": 7,
+          "known": 7,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1188",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": "the enumeration may be counting school HOUSES; this register holds school-keeping as a trade, and the two need not be the same thing",
+          "basis": "the December 1835 State census prints 7; the register holds 7 at the scene date"
+        },
+        {
+          "key": "businesses/silversmith_jeweller",
+          "axes": {
+            "class": "silversmith_jeweller",
+            "division": "unassigned"
+          },
+          "census_line": "two silversmiths and jewellers",
+          "target": 2,
+          "known": 1,
+          "to_reconstruct": 1,
+          "filled": 0,
+          "owning_ticket": "T-1185",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 2; the register holds 1 at the scene date"
+        },
+        {
+          "key": "businesses/steam_saw_mill",
+          "axes": {
+            "class": "steam_saw_mill",
+            "division": "unassigned"
+          },
+          "census_line": "one steam saw-mill",
+          "target": 1,
+          "known": 2,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1187",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 1; the register holds 2 at the scene date"
+        },
+        {
+          "key": "businesses/storage_and_forwarding",
+          "axes": {
+            "class": "storage_and_forwarding",
+            "division": "unassigned"
+          },
+          "census_line": "four storage and forwarding houses",
+          "target": 4,
+          "known": 7,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1187",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 4; the register holds 7 at the scene date"
+        },
+        {
+          "key": "businesses/store",
+          "axes": {
+            "class": "store",
+            "division": "unassigned"
+          },
+          "census_line": "forty-four stores (dry goods, hardware and groceries)",
+          "target": 44,
+          "known": 59,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1184",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": "the enumeration's largest line, and its parenthetical is read as a gloss (B5)",
+          "basis": "the December 1835 State census prints 44; the register holds 59 at the scene date"
+        },
+        {
+          "key": "businesses/tavern",
+          "axes": {
+            "class": "tavern",
+            "division": "unassigned"
+          },
+          "census_line": "eight taverns",
+          "target": 8,
+          "known": 8,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1187",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 8; the register holds 8 at the scene date"
+        },
+        {
+          "key": "businesses/tin_and_copper_manufactory",
+          "axes": {
+            "class": "tin_and_copper_manufactory",
+            "division": "unassigned"
+          },
+          "census_line": "two tin and copper manufactories",
+          "target": 2,
+          "known": 4,
+          "to_reconstruct": 0,
+          "filled": 0,
+          "owning_ticket": "T-1185",
+          "documented_zero": false,
+          "staff_implied": null,
+          "staff_owning_ticket": "T-1183",
+          "compared_by_the_crosswalk": true,
+          "crosswalk_note": null,
+          "basis": "the December 1835 State census prints 2; the register holds 4 at the scene date"
+        }
+      ]
+    },
+    {
+      "key": "structures",
+      "title": "Structures",
+      "lead": "The roofs the 668-roof programme still owes, by archetype group and division.",
+      "summary": {
+        "roof_target": 668,
+        "standing_records": 384,
+        "standing_with_an_occupant": 124,
+        "standing_without_an_occupant": 260,
+        "to_build_total": 297,
+        "redeal_note": "A roof standing where the order book has nobody to put in it is a SUBSTITUTION for T-1197, never a demolition: 260 of the 384 standing records carry no occupants block today, and T-1197 re-audits them against this book."
+      },
+      "buckets": [
+        {
+          "key": "structures/barns_stables/south",
+          "axes": {
+            "group": "barns_stables",
+            "division": "south"
+          },
+          "target": 35,
+          "standing": 19,
+          "to_build": 16,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1212",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 35; the 668-roof programme leaves 16 of them to build"
+        },
+        {
+          "key": "structures/barns_stables/west",
+          "axes": {
+            "group": "barns_stables",
+            "division": "west"
+          },
+          "target": 20,
+          "standing": 8,
+          "to_build": 12,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1212",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 20; the 668-roof programme leaves 12 of them to build"
+        },
+        {
+          "key": "structures/barns_stables/north",
+          "axes": {
+            "group": "barns_stables",
+            "division": "north"
+          },
+          "target": 17,
+          "standing": 7,
+          "to_build": 10,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1212",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 17; the 668-roof programme leaves 10 of them to build"
+        },
+        {
+          "key": "structures/barns_stables/fort",
+          "axes": {
+            "group": "barns_stables",
+            "division": "fort"
+          },
+          "target": 1,
+          "standing": 1,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1204",
+          "ground_waits_on": [],
+          "basis": "the inventory's district/group matrix sets 1; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/fort_principal/fort",
+          "axes": {
+            "group": "fort_principal",
+            "division": "fort"
+          },
+          "target": 10,
+          "standing": 10,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1204",
+          "ground_waits_on": [],
+          "basis": "the inventory's district/group matrix sets 10; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/inns_taverns/south",
+          "axes": {
+            "group": "inns_taverns",
+            "division": "south"
+          },
+          "target": 5,
+          "standing": 5,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1201",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 5; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/inns_taverns/west",
+          "axes": {
+            "group": "inns_taverns",
+            "division": "west"
+          },
+          "target": 3,
+          "standing": 3,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1207",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 3; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/inns_taverns/north",
+          "axes": {
+            "group": "inns_taverns",
+            "division": "north"
+          },
+          "target": 2,
+          "standing": 2,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1205",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 2; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/institutional_public/south",
+          "axes": {
+            "group": "institutional_public",
+            "division": "south"
+          },
+          "target": 5,
+          "standing": 5,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1202",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 5; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/institutional_public/west",
+          "axes": {
+            "group": "institutional_public",
+            "division": "west"
+          },
+          "target": 1,
+          "standing": 1,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1208",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 1; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/institutional_public/north",
+          "axes": {
+            "group": "institutional_public",
+            "division": "north"
+          },
+          "target": 3,
+          "standing": 3,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1205",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 3; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/larger_boarding_houses/south",
+          "axes": {
+            "group": "larger_boarding_houses",
+            "division": "south"
+          },
+          "target": 28,
+          "standing": 7,
+          "to_build": 21,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1209",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 28; the 668-roof programme leaves 21 of them to build"
+        },
+        {
+          "key": "structures/larger_boarding_houses/west",
+          "axes": {
+            "group": "larger_boarding_houses",
+            "division": "west"
+          },
+          "target": 6,
+          "standing": 1,
+          "to_build": 5,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1209",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 6; the 668-roof programme leaves 5 of them to build"
+        },
+        {
+          "key": "structures/larger_boarding_houses/north",
+          "axes": {
+            "group": "larger_boarding_houses",
+            "division": "north"
+          },
+          "target": 8,
+          "standing": 4,
+          "to_build": 4,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1209",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 8; the 668-roof programme leaves 4 of them to build"
+        },
+        {
+          "key": "structures/ordinary_dwellings/south",
+          "axes": {
+            "group": "ordinary_dwellings",
+            "division": "south"
+          },
+          "target": 176,
+          "standing": 110,
+          "to_build": 66,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1203",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 176; the 668-roof programme leaves 66 of them to build"
+        },
+        {
+          "key": "structures/ordinary_dwellings/west",
+          "axes": {
+            "group": "ordinary_dwellings",
+            "division": "west"
+          },
+          "target": 75,
+          "standing": 21,
+          "to_build": 54,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1208",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 75; the 668-roof programme leaves 54 of them to build"
+        },
+        {
+          "key": "structures/ordinary_dwellings/north",
+          "axes": {
+            "group": "ordinary_dwellings",
+            "division": "north"
+          },
+          "target": 84,
+          "standing": 42,
+          "to_build": 42,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1206",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 84; the 668-roof programme leaves 42 of them to build"
+        },
+        {
+          "key": "structures/small_outbuildings/south",
+          "axes": {
+            "group": "small_outbuildings",
+            "division": "south"
+          },
+          "target": 48,
+          "standing": 25,
+          "to_build": 23,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1212",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 48; the 668-roof programme leaves 23 of them to build"
+        },
+        {
+          "key": "structures/small_outbuildings/west",
+          "axes": {
+            "group": "small_outbuildings",
+            "division": "west"
+          },
+          "target": 14,
+          "standing": 3,
+          "to_build": 11,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1212",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 14; the 668-roof programme leaves 11 of them to build"
+        },
+        {
+          "key": "structures/small_outbuildings/north",
+          "axes": {
+            "group": "small_outbuildings",
+            "division": "north"
+          },
+          "target": 20,
+          "standing": 9,
+          "to_build": 11,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1212",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 20; the 668-roof programme leaves 11 of them to build"
+        },
+        {
+          "key": "structures/small_outbuildings/fort",
+          "axes": {
+            "group": "small_outbuildings",
+            "division": "fort"
+          },
+          "target": 3,
+          "standing": 3,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1204",
+          "ground_waits_on": [],
+          "basis": "the inventory's district/group matrix sets 3; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/stores_mixed_use/south",
+          "axes": {
+            "group": "stores_mixed_use",
+            "division": "south"
+          },
+          "target": 42,
+          "standing": 32,
+          "to_build": 10,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1201",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 42; the 668-roof programme leaves 10 of them to build"
+        },
+        {
+          "key": "structures/stores_mixed_use/west",
+          "axes": {
+            "group": "stores_mixed_use",
+            "division": "west"
+          },
+          "target": 6,
+          "standing": 3,
+          "to_build": 3,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1207",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 6; the 668-roof programme leaves 3 of them to build"
+        },
+        {
+          "key": "structures/stores_mixed_use/north",
+          "axes": {
+            "group": "stores_mixed_use",
+            "division": "north"
+          },
+          "target": 4,
+          "standing": 4,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1205",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 4; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/stores_mixed_use/fort",
+          "axes": {
+            "group": "stores_mixed_use",
+            "division": "fort"
+          },
+          "target": 1,
+          "standing": 1,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1204",
+          "ground_waits_on": [],
+          "basis": "the inventory's district/group matrix sets 1; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/warehouses_freight/south",
+          "axes": {
+            "group": "warehouses_freight",
+            "division": "south"
+          },
+          "target": 11,
+          "standing": 5,
+          "to_build": 6,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1200",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 11; the 668-roof programme leaves 6 of them to build"
+        },
+        {
+          "key": "structures/warehouses_freight/west",
+          "axes": {
+            "group": "warehouses_freight",
+            "division": "west"
+          },
+          "target": 2,
+          "standing": 0,
+          "to_build": 2,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1207",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 2; the 668-roof programme leaves 2 of them to build"
+        },
+        {
+          "key": "structures/warehouses_freight/north",
+          "axes": {
+            "group": "warehouses_freight",
+            "division": "north"
+          },
+          "target": 7,
+          "standing": 7,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1205",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 7; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/workshops/south",
+          "axes": {
+            "group": "workshops",
+            "division": "south"
+          },
+          "target": 15,
+          "standing": 14,
+          "to_build": 1,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1201",
+          "ground_waits_on": [
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 15; the 668-roof programme leaves 1 of them to build"
+        },
+        {
+          "key": "structures/workshops/west",
+          "axes": {
+            "group": "workshops",
+            "division": "west"
+          },
+          "target": 8,
+          "standing": 8,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1207",
+          "ground_waits_on": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 8; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/workshops/north",
+          "axes": {
+            "group": "workshops",
+            "division": "north"
+          },
+          "target": 7,
+          "standing": 7,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1205",
+          "ground_waits_on": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "basis": "the inventory's district/group matrix sets 7; the 668-roof programme leaves 0 of them to build"
+        },
+        {
+          "key": "structures/workshops/fort",
+          "axes": {
+            "group": "workshops",
+            "division": "fort"
+          },
+          "target": 1,
+          "standing": 1,
+          "to_build": 0,
+          "to_retire_or_redeal": 0,
+          "filled": 0,
+          "owning_ticket": "T-1204",
+          "ground_waits_on": [],
+          "basis": "the inventory's district/group matrix sets 1; the 668-roof programme leaves 0 of them to build"
+        }
+      ]
+    },
+    {
+      "key": "ground",
+      "title": "Ground first",
+      "lead": "The streets, terrain and lots a structure bucket waits on.",
+      "summary": {
+        "roofs_on_committed_ground": 12,
+        "roofs_gated_on_coverage": 285,
+        "statement": "12 of the 297 remaining roofs stand on ground this project has already surveyed, platted and modelled. The other 285 have nowhere to go until street control, terrain and hydrology reach them. The binding constraint on the 668-roof programme is coverage, not recipes."
+      },
+      "buckets": [
+        {
+          "key": "ground/blk_south_water_market",
+          "axes": {
+            "division": "south"
+          },
+          "roofs_gated": 27,
+          "waiting_on": "South Water Street's committed centreline stops 32 m short of this block — the street control ROADMAP S9 records as owed. Measured dry: tools/measure_block_gating.py carries South Water toward this block over 25 m of ground with no wet sample on it, so this one really is waiting on a trace. What is missing is one control point at Market and South Water: the committed set holds four (Lake-Canal, Lake-Market, Randolph-Canal, Kinzie-Canal) and NONE anywhere on South Water, and Market's centreline stops at its single control point where Lake crosses it. AND THAT POINT CANNOT BE DERIVED, MEASURED 2026-08-27 BY T-0183. Under the node rule in data/traces/street_control.json the two modern successors — North Upper Wacker Drive and West Upper Wacker Drive — share exactly two nodes, and they are lake_market's own committed pair: Wacker changes name through a bend at the Lake Street junction rather than crossing at South Water, so the rule returns a plausible point 110 m south of the corner it names. Re-run it with tools/refetch_control.py --discover market_south_water, which now refuses the set rather than reporting it; the reading is filed under `refused_control` in street_control.json. So this block is NOT waiting on somebody fetching a junction. It is waiting on an owner decision — close South Water's west end onto Market from the 1834 sheets and the committed bank, which is what the rest of that curve already stands on, or return these 27 roofs to the South balance. HE RULED FOR THE CLOSURE ON 2026-08-29, AND THE GROUND REFUSED IT. Executed on the line as committed, the closure emits this block as a bowtie — South Water has converged on Lake Street before it reaches Market and their platted corridors overlap by 14.9 m there — and carried as far north as the committed waterline allows it leaves 2.8 m of block depth at Market against the 24.384 m one platted lot fronts. So these 27 roofs are not on the ground the ruling was about: the block is a wedge the South Branch pinches out at its west corner, and only its eastern two thirds could ever carry a lot. The refusal now fires in tools/generate_plat_lots.py --self-test rather than emitting a 4,411 m2 block with a plausible depth; the measurement is under `refused_control.market_south_water` in street_control.json and in docs/RESEARCH/thompson_plat_grid.md § 6.2, and what to do with the wedge is back with the owner.",
+          "owning_tickets": [
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/west_wolf_point_outer",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 35,
+          "waiting_on": "unified terrain, hydrology, collision, flora and map coverage west to local E -700 m; the recipe's placements are already written and reviewed",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/south_plat_beyond_committed_control",
+          "axes": {
+            "division": "south"
+          },
+          "roofs_gated": 104,
+          "waiting_on": "STREET CONTROL — the S9 line ROADMAP has recorded as owed since before this schedule was written — and, for the first time, nothing else. THE TERRAIN IS NO LONGER THE BLOCKER: T-0219 carried the heightfield south to local N -3800.0 m, 3274.8 m past Madison Street's line at State, and the plat's last tier — 6 blocks and 48 lots between Market and State, 6.31 ha — now stands on modelled ground at all 24 of its 24 block-boundary points. Washington Street's platted corridor is fully on the field (0.00 ha off it, against 0.33 ha before), and south of that corridor the field holds 566.2413 ha of land above the water surface, 437.3369 ha of it in the South Division — where the same measurement returned 0.0000 ha before. What is left is the control itself: the plat's north-south columns still end at local N -400, -400, -400, -400, -400, -400, -400, the OLD south edge of the field, because they were cut where the ground used to stop. Carrying them to Madison is street work on ground that is now under them, and tools/generate_block_infill.py will accept what it emits. Ground east of State is still not coming at any date — it is the United States Reservation (T-E2). Measured by tools/measure_southern_ground.py.",
+          "owning_tickets": [
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/west_division_beyond_committed_control",
+          "axes": {
+            "division": "west"
+          },
+          "roofs_gated": 52,
+          "waiting_on": "West Division ground beyond the Wolf Point approaches: no committed street control west of Clinton and Canal, and no unified terrain, hydrology or map coverage past the recipe's own gate at local E -700 m.",
+          "owning_tickets": [
+            "T-1192",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        },
+        {
+          "key": "ground/north_division_beyond_modelled_ground",
+          "axes": {
+            "division": "north"
+          },
+          "roofs_gated": 67,
+          "waiting_on": "North Division ground beyond the initial parcel: the plat grid covers no North Division block at all — that street control is what ROADMAP S9 records as owed — and terrain, hydrology, flora and map coverage stop short of local N +760 m.",
+          "owning_tickets": [
+            "T-1191",
+            "T-1193",
+            "T-1194"
+          ],
+          "filled": 0
+        }
+      ]
+    }
+  ],
+  "programme_deltas": [
+    {
+      "id": "households_against_dwellings",
+      "owning_ticket": "T-1196",
+      "model": 643,
+      "programme": 335,
+      "delta": 308,
+      "statement": "The household model wants 643 households and the programme schedules 335 ordinary dwellings (335-377 in the model's own reading). More than one household to a roof is the resolution the census's own 8.204 people per dwelling implies; T-1196 re-cuts the schedule to say how many."
+    },
+    {
+      "id": "boarding_houses",
+      "owning_ticket": "T-1196",
+      "model": 42,
+      "programme": 42,
+      "delta": 0,
+      "statement": "The lodging model and the programme agree on the larger boarding houses."
+    },
+    {
+      "id": "inns_and_taverns",
+      "owning_ticket": "T-1196",
+      "model": 10,
+      "programme": 10,
+      "delta": 0,
+      "statement": "The model reads 8-10 inns and taverns; the programme schedules 10."
+    },
+    {
+      "id": "institutional_and_public",
+      "owning_ticket": "T-1196",
+      "model": 19,
+      "programme": 9,
+      "delta": 10,
+      "statement": "The model reads 9-19 institutional and public roofs; the programme schedules 9."
+    },
+    {
+      "id": "people_per_roof",
+      "owning_ticket": "T-1196",
+      "model": 2533,
+      "programme": 668,
+      "delta": 0,
+      "statement": "2,533 people under 668 roofs is the ratio the completed town must meet; the census's own reading for November 1835 is 8.204 people per dwelling over 398 dwellings."
+    }
+  ],
+  "invariants": [
+    {
+      "id": "every_person_housed",
+      "owning_ticket": "T-1215",
+      "statement": "Every person in the layer — attested, inferred or reconstructed — is a member of a household or a lodging place that is seated on a roof.",
+      "measured_now": "16 of 436 present households name a lives_at."
+    },
+    {
+      "id": "every_working_person_has_a_workplace",
+      "owning_ticket": "T-1189",
+      "statement": "Every person carrying a trade, profession or employment has a workplace, or a stated `no fixed workplace`.",
+      "measured_now": "36 of 436 present households name a works_at."
+    },
+    {
+      "id": "every_business_has_staff",
+      "owning_ticket": "T-1189",
+      "statement": "Every business — attested, inferred or reconstructed — carries the staff T-1183's model implies for its kind.",
+      "measured_now": "not yet measurable: the authored business layer is T-1180."
+    },
+    {
+      "id": "every_structure_occupied_or_its_use_stated",
+      "owning_ticket": "T-1197",
+      "statement": "Every standing roof carries an occupant or a stated use.",
+      "measured_now": "260 of 384 standing records carry no occupants block."
+    },
+    {
+      "id": "dwellings_ratio_within_its_bracket",
+      "owning_ticket": "T-1215",
+      "statement": "The town census's people-per-dwelling ratio is met within the model's bracket.",
+      "measured_now": "the book orders 2,533 people into 643 households."
+    },
+    {
+      "id": "no_bucket_overfilled",
+      "owning_ticket": "T-1166",
+      "statement": "No bucket's `filled` exceeds its `to_reconstruct`; a filler that bypasses the book is red in check.sh.",
+      "measured_now": "enforced by --check on every gate run."
+    }
+  ],
+  "fills": []
+}
