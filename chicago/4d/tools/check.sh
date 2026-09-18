@@ -3957,5 +3957,38 @@ step "the association coverage still re-derives from the committed records" \
 selftest "…and its own refusals still fire when broken" \
   python3 tools/associations.py --self-test
 
+# T-1158. The per-attribute tier, and the three things that can go wrong with it.
+#
+# The first is DRIFT. The tier of an existing value is DERIVED from the confidence and the
+# value the card already carries — the cards themselves are byte-owned by nine writers that
+# each re-derive them, so a field written into one would be dropped by the next pass and
+# quietly go stale. `--check` re-derives the table and refuses a hand-edit or a card that
+# has moved under it. Rebuild with `--build`.
+#
+# The second is PROMOTION. A tier that could be set independently of the evidence would be
+# a second, softer grade, and the whole point of the fourth tier — `unknown`, for the 7,314
+# blocks that assert nothing — is that a reconstruction band cannot quietly reuse it for
+# something it invented. So a tier may not disagree with its derivation, an invented value
+# owes a basis and a replacement rule, and a value DRAWN from a model owes the seed that
+# redraws it. `validate.py` enforces that on any record carrying the shape, through the
+# module's own `check_tier_block`; the self-test below breaks each rule in turn.
+step "every attribute's tier still re-derives from the card it sits on" \
+  python3 tools/migrate_attribute_tiers.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/migrate_attribute_tiers.py --self-test
+
+# The third is the two derivations parting company. The gate derives the tier in Python and
+# the walkthrough derives it in JavaScript, because a card a visitor opens may not fetch a
+# table of ten thousand rows to learn its own tiers. That failure would not crash: the card
+# would draw the hatched `reconstructed` chip over a field nobody invented — the exact
+# defect this ticket removes — while the published table went on reporting the right
+# number. So both readers are run over the same 1,258 cards and required to agree.
+step "the walkthrough's tier reader agrees with the published table" \
+  node tools/check_attribute_tiers.mjs
+
+selftest "…and its own derivation still answers each case" \
+  node tools/check_attribute_tiers.mjs --self-test
+
 check_summary
 exit $CHECK_FAILED
