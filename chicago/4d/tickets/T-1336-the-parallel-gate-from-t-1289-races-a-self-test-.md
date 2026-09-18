@@ -1,7 +1,7 @@
 ---
 id: T-1336
 title: The parallel gate from T-1289 races: a self-test that breaks a live file to prove a check fires runs concurrently with the step that reads it, so any PR in the queue can go red on a tree that is green
-state: open
+state: done
 epic: META
 requested_by: steward
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1474
 claimed_by: null
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T20:53:52.311Z
 claimed_run: null
 ---
 
