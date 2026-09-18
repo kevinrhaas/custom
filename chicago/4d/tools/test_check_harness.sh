@@ -178,5 +178,61 @@ else
   bad "the pool printed in completion order, not declaration order"
 fi
 
+# T-1336: A STEP THAT FAILS BESIDE A NEIGHBOUR AND PASSES ALONE.
+#
+# The race this answers is real and it is in this repo's own gate:
+# read_census_1830.py's self-test writes a drift into the live
+# data/research/.../resident_crosswalk.json to prove `--check` catches it, and puts
+# it back in a `finally`. The step declared immediately BEFORE it reads that same
+# file. Serially that is fine. In the pool they run together, and the check reads
+# the drift the self-test is holding — a red gate on a tree that is green.
+#
+# The fixture below is that shape with the timing made certain instead of likely:
+# a step that fails while a marker exists, beside a step that holds the marker for
+# a moment and removes it.
+race_dir="$(mktemp -d)"
+trap 'rm -rf "$race_dir"' EXIT
+
+raced="$(CHECK_JOBS=4 bash -c '
+  source tools/check_harness.sh
+  step "the neighbour that holds the tree wrong" sh -c "touch '"$race_dir"'/drift; sleep 0.4; rm -f '"$race_dir"'/drift"
+  step "the step that reads it"                  sh -c "sleep 0.1; if [ -e '"$race_dir"'/drift ]; then echo DRIFT SEEN; exit 1; fi; echo quiet"
+  check_flush
+  printf "VERDICT failed=%s raced=%s\n" "$CHECK_FAILED" "${#CHECK_RACED_LABELS[@]}"' 2>&1)"
+
+want "$(printf '%s\n' "$raced" | grep -o 'failed=[01]')" "failed=0" \
+     "a step that fails in the pool and passes alone does NOT fail the gate"
+want "$(printf '%s\n' "$raced" | grep -o 'raced=[0-9]*')" "raced=1" \
+     "and it is counted as a race rather than forgotten"
+if printf '%s\n' "$raced" | grep -q 'PASSED ALONE'; then
+  ok "the race is named inline, with the step's own label"
+else
+  bad "a retried step passed silently — a race must never be quiet:"
+  printf '%s\n' "$raced" | sed 's/^/        /'
+fi
+
+# THE OTHER HALF, WHICH MATTERS MORE: the retry must not turn a real failure green.
+real="$(CHECK_JOBS=4 bash -c '
+  source tools/check_harness.sh
+  step "genuinely broken" sh -c "echo BROKEN; exit 1"
+  step "fine"             sh -c "echo ok"
+  check_flush
+  printf "VERDICT failed=%s raced=%s\n" "$CHECK_FAILED" "${#CHECK_RACED_LABELS[@]}"' 2>&1)"
+want "$(printf '%s\n' "$real" | grep -o 'failed=[01]')" "failed=1" \
+     "a step that is red on a quiet tree too still fails the gate"
+want "$(printf '%s\n' "$real" | grep -o 'raced=[0-9]*')" "raced=0" \
+     "and it is not miscounted as a race"
+want "$(printf '%s\n' "$real" | grep -c 'BROKEN')" "1" \
+     "the failure's own output is printed once, not twice by the retry"
+
+# The serial path has no pool, so it has no race to report and must not grow a field.
+serial_race="$(CHECK_JOBS=1 bash -c '
+  source tools/check_harness.sh
+  step "fine" sh -c "echo ok"
+  check_flush
+  printf "raced=%s\n" "${#CHECK_RACED_LABELS[@]}"' 2>&1)"
+want "$(printf '%s\n' "$serial_race" | grep -o 'raced=[0-9]*')" "raced=0" \
+     "CHECK_JOBS=1 reports no races, because it cannot have one"
+
 printf '\n%d passed, %d failed\n' "$PASS" "$FAILN"
 [ "$FAILN" -eq 0 ]

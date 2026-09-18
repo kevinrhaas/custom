@@ -69,6 +69,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import dated_bounds_block  # noqa: E402  — the block this pass shares with T-1332
+
 ROOT = Path(__file__).resolve().parents[1]
 CIVIC = ROOT / "data" / "research" / "civic"
 CROSSWALK = CIVIC / "voter_crosswalk.json"
@@ -79,7 +82,7 @@ HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 SCHEMA = 1
 TICKET = "T-1326"
 GENERATOR = "tools/spend_civic_roll_bounds.py"
-BLOCK = "dated_bounds"
+BLOCK = dated_bounds_block.BLOCK
 SCENE_DATE = "1835-07-01"
 
 # The archival source, and the only id written onto a card — the same one T-0634 chose,
@@ -286,45 +289,21 @@ def ledger_doc() -> dict:
 
 # --- writing the cards ----------------------------------------------------------------
 
-def _insert_after(row: dict, key: str, value, after: str) -> None:
-    """One field, in a stable slot — the convention `resident_mint_carry` already uses.
-
-    A NEW KEY APPENDED AT THE END IS NOT A STABLE SLOT, and two gates measure that rather
-    than assert it: `tools/spend_person_sex_age.py --check` and
-    `tools/reconstruct_sex_age.py` both re-derive a whole card and compare it byte for
-    byte, and both pop `sex`, `sex_basis`, `age_band` and `birth_year` and re-append them.
-    A block written after those keys therefore lands BEFORE them on the next re-derivation
-    and 235 cards read as drift — measured, on this branch, before this function existed.
-    The slot is immediately after `sources`, which every person this pass writes to
-    carries, because the block is evidence and belongs beside the sources it cites.
-    """
-    rebuilt = {}
-    for old_key, old_value in row.items():
-        rebuilt[old_key] = old_value
-        if old_key == after:
-            rebuilt[key] = value
-    if key not in rebuilt:
-        rebuilt[key] = value
-    row.clear()
-    row.update(rebuilt)
-
-
 def apply_to_person(person: dict, row: dict) -> bool:
-    """The ONLY mutation this tool performs: one key, rewritten whole.
+    """The ONLY mutation this tool performs: this pass's group of one key, rewritten whole.
 
     The block is DERIVED and therefore replaced rather than appended to — which is how it
     holds the once-each rule that `tools/spend_write_once.py` had to give the six
     prose-writing passes a module for. A JSON key exists once by construction and
-    `--check` compares the whole list against what this pass re-derives, so a doubled or
-    a superseded row cannot survive a run.
+    `--check` compares this pass's rows against what it re-derives, so a doubled or a
+    superseded row cannot survive a run.
+
+    SINCE T-1332 THE BLOCK HAS A SECOND OWNER — the land register's dated appearances —
+    so "rewritten whole" is scoped to the rows citing THIS pass's source.
+    `tools/dated_bounds_block.py` holds that scoping and the stable group order, so that
+    both passes' byte-for-byte checks are true at once and in either run order.
     """
-    if person.get(BLOCK) == row["bounds"]:
-        return False
-    if BLOCK in person:
-        person[BLOCK] = row["bounds"]
-    else:
-        _insert_after(person, BLOCK, row["bounds"], "sources")
-    return True
+    return dated_bounds_block.write(person, SOURCE_ID, row["bounds"])
 
 
 def apply(quiet: bool = False) -> int:
@@ -368,7 +347,7 @@ def gaps(rows: list) -> list:
             bad.append("%s: person is no longer in %s"
                        % (row["person_id"], row["household_id"]))
             continue
-        if person.get(BLOCK) != row["bounds"]:
+        if dated_bounds_block.mine(person, SOURCE_ID) != row["bounds"]:
             bad.append("%s is matched to %d roll entr%s and its %s does not re-derive — "
                        "run %s" % (row["person_id"], len(row["bounds"]),
                                    "y" if len(row["bounds"]) == 1 else "ies", BLOCK,
@@ -486,6 +465,13 @@ def self_test() -> int:
     ok("the applier is idempotent", apply_to_person(after, rows[0]) is False)
     ok("the block lands in its slot and not at the end of the record",
        list(after) == ["id", "grade", "sources", BLOCK, "note", "sex"])
+
+    # T-1332 put a second owner on this block. A rewrite here must not touch its rows.
+    land = {"record_id": "ls0959", "sources": ["isa_public_domain_land_tract_sales"]}
+    shared = {"id": "doe_john", "sources": ["x"], BLOCK: [land]}
+    apply_to_person(shared, rows[0])
+    ok("a rewrite carries the land register's group through untouched",
+       shared[BLOCK] == rows[0]["bounds"] + [land])
 
     print("  %d check(s), %d failure(s)" % (len(ran), len(failures)))
     return 1 if failures else 0

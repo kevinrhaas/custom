@@ -3381,6 +3381,26 @@ step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards
 selftest "…and a district is not the town, a later appearance bounds nothing, and no kin tie is taken" \
   python3 tools/spend_appearance_bounds.py --self-test
 
+# T-1332. THE SAME HOP, FOR THE LAND REGISTER, INTO THE SAME BLOCK. T-1296 ruled all 1,572
+# land-sale purchaser units and could not close 313 of them: the tract was entered on or
+# before 1 July 1835 and the T-0700 / T-0850 adjudication UPHELD the purchaser against a
+# card this town holds. It handed them to this ticket and said of itself that a hand-off is
+# not a spend. This pass is the spend, and it writes into `persons[].dated_bounds[]` rather
+# than inventing a second shape for a dated appearance — so the block now has two owners and
+# `tools/dated_bounds_block.py` is the rule that keeps them from wiping each other. It is
+# gated in four directions: a bound that stops reaching its card, a card carrying a bound off
+# a purchase the crosswalk never upheld, a drifted ledger, and — the one that is not about
+# this pass at all — the ruling register STILL ruling the 313, which
+# `research_spend_ledger.ruling_coverage_faults` fails as work that reads done and is not.
+step "…and the 313 upheld land-sale purchases are bounds on the cards they name (T-1332)" \
+  python3 tools/spend_land_sale_bounds.py --check
+
+selftest "…and a purchase is a dated appearance, never a residence, and never a Chicago presence" \
+  python3 tools/spend_land_sale_bounds.py --self-test
+
+selftest "…and two owners of one block replace their own rows and nobody else's" \
+  python3 tools/dated_bounds_block.py --self-test
+
 # T-0635, consolidation pass 2. The same defect again, in the volume the window opened on:
 # Fergus 1839's two LATER lists — the 1837 city-election poll and the 1839 city register —
 # had matched 101 entries to people this town holds, and the second hop could not even see

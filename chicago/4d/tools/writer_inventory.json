@@ -1039,6 +1039,13 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "spend_land_sale_bounds.py": {
+      "placement": "pending",
+      "write_mode": "(bare)",
+      "measured": "2026-09-18",
+      "finding": "Reproduces: ran `(bare)` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
+      "pending_reason": "T-1332 landed after T-1302 batch 2 placed its layer; placement in the manifest dependency order is that pass's to make, not this one's"
+    },
     "spend_land_sales.py": {
       "placement": "manifest",
       "write_mode": null,
