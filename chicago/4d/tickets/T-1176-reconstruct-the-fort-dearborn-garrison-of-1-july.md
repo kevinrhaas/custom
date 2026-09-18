@@ -1,7 +1,7 @@
 ---
 id: T-1176
 title: Reconstruct the Fort Dearborn garrison of 1 July 1835: the officers the sources name, the companies of the 5th Infantry to their strength, the surgeon, the sutler, the laundresses and soldiers' families, the Indian Agency establishment as attested — seated in the fort's roofs
-state: claimed
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-18
 pr: null
 claimed_by: run 9/18/2026, 6:56:02 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T23:58:43.759Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35407285744
 ---
 
