@@ -97,6 +97,16 @@ const TOPICS = [
     // under it, and a pill per axis would be a pill per entry.
     facet: () => null,
   },
+  {
+    id: 'orderbook',
+    gloss: 'What the town still owes: the quota, bucket by bucket',
+    icon: SVG('<path d="M4 5.5h6.5a2 2 0 0 1 2 2V19a2 2 0 0 0-2-2H4z"/>'
+      + '<path d="M20 5.5h-5.5a2 2 0 0 0-2 2V19a2 2 0 0 1 2-2H20z"/>'
+      + '<path d="M12.5 7.5V19"/>'),
+    // The chip is the family's own filled/to-do count, which the summary row
+    // already carries — a pill per bucket would be a pill per cell of the town.
+    facet: () => null,
+  },
 ];
 
 /** The chip text on an entry's own summary row — not a nested entry's. */

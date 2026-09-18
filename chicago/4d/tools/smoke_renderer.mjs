@@ -11777,9 +11777,11 @@ for (const [label, viewport, touch] of [
       && goThere.cardClosed,
       JSON.stringify(goThere));
 
-    // T-0710: the Evidence hub — eight tiles whose counts are their mounts'
+    // T-0710: the Evidence hub — nine tiles whose counts are their mounts'
     // entries, a topic that searches, and a way back. The eighth is T-1160's
-    // population profile, whose "entries" are the axes it is profiled on.
+    // population profile, whose "entries" are the axes it is profiled on; the
+    // ninth is T-1166's order book, whose entries are its five bucket families
+    // plus the programme deltas and the closing invariants.
     await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
     await clickChrome('.panel-tab[data-tab="evidence"]');
     const hub = await page.evaluate(async () => {
@@ -11791,7 +11793,10 @@ for (const [label, viewport, touch] of [
       }
       const mountCount = (id) => (id === 'grades'
         ? document.querySelectorAll('.ev-topic[data-topic="grades"] .legend-list > li').length
-        : document.querySelectorAll(`#${id} > details`).length);
+        // The mount's id is not always the topic's: the order book's topic is
+        // `orderbook` and its mount is `#order-book`, so the count is taken from
+        // the topic's own mount rather than from a guessed id.
+        : document.querySelectorAll(`.ev-topic[data-topic="${id}"] .liberties > details`).length);
       const out = {
         hubShown: hubEl.checkVisibility(), title: document.getElementById('panel-title').textContent.trim(),
         tiles: tiles().map((t) => ({ id: t.dataset.topic, count: Number(t.querySelector('.ev-count')?.textContent),
@@ -11819,8 +11824,8 @@ for (const [label, viewport, touch] of [
         topic: api.evidenceHub.topic, backHidden: document.getElementById('panel-back').hasAttribute('hidden') };
       return out;
     });
-    check(`${label}: the Evidence hub shows eight topics, each counting its own entries`,
-      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 8
+    check(`${label}: the Evidence hub shows nine topics, each counting its own entries`,
+      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 9
       && hub.tiles.every((t) => Number.isFinite(t.count) && t.count > 0 && t.count === t.mount && t.title && t.title === t.h3),
       JSON.stringify(hub.tiles.map((t) => `${t.id} ${t.count}/${t.mount}`)));
     check(`${label}: a topic opens with the hub gone, and its search narrows the list and says so`,

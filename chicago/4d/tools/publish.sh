@@ -174,6 +174,14 @@ cp -f data/reconstruction/1835_agencies.json "$SITE/data/reconstruction/"
 # Evidence tile that counts zero on the deployed site while the dev tree shows ten.
 cp -f data/reconstruction/1835_population_profile.json "$SITE/data/reconstruction/"
 
+# And the reconstruction order book (T-1166). Derived by
+# tools/build_order_book_1835.py and re-derived by tools/check.sh; orderbook.js
+# fetches it at data/reconstruction/1835_reconstruction_order_book.json to render the
+# Evidence hub's "Reconstructing the town" topic — the progress view the three
+# reconstruction bands fill — so leaving it behind is a 404 and a tile that counts
+# zero on the deployed site while the dev tree shows seven.
+cp -f data/reconstruction/1835_reconstruction_order_book.json "$SITE/data/reconstruction/"
+
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —
 # publishing heightfield.json without heightfield.bin gives a flat world and a

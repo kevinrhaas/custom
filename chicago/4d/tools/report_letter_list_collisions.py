@@ -34,6 +34,8 @@ counts it, and splits it by cause.
     python3 tools/report_letter_list_collisions.py            # print the report
     python3 tools/report_letter_list_collisions.py --write    # write the committed copy
     python3 tools/report_letter_list_collisions.py --check    # committed copy still true?
+    python3 tools/report_letter_list_collisions.py --write-records   # say it on the cards
+    python3 tools/report_letter_list_collisions.py --check-records   # do the cards say it?
     python3 tools/report_letter_list_collisions.py --self-test
 """
 from __future__ import annotations
@@ -402,37 +404,66 @@ def render() -> str:
 # ---------------------------------------------------------------------------
 
 def blocks() -> dict:
-    """The `surname_collision` block for each of this fault's standing cards.
+    """The `surname_collision` block for EVERY standing card the pass collides.
 
     DERIVED FROM THE PASS, NOT WRITTEN HERE. `mint_letter_list_residents.record()`
     composes the block, so the card and the refusal that produced it cannot drift
-    apart, and this tool only says WHICH cards T-0660 owns: the ones the corrected
-    reading collides and the pre-T-0638 reading did not. The other collisions the
-    pass now says — the ones the town's LATER passes caused, which were T-0691's
-    subject — are written when the cohort is next re-derived; they are not this
-    ticket's rows and are not hand-picked into it.
+    apart, and this tool only says WHICH cards carry one.
+
+    T-0660 SHIPPED EIGHT OF THESE AND SCOPED THE REST OUT; T-0691 IS THE REST.
+    That ticket wrote only the cards the corrected reading of T-0638 newly collides,
+    and left the ones the town's LATER passes caused — a surname this cohort minted
+    first and another pass then gave to a better-evidenced record — to "when the
+    cohort is next re-derived". That re-derive is T-1222's, it is a 798-file drift
+    whose byte-identity contract T-0662 already found to be the WRONG one for this
+    pass, and it is not coming soon. Meanwhile 67 standing cards carried a mint-time
+    refusal the owner ruled must be SAID and said nothing, which is the half of
+    option (c) that had not landed. The cause of a collision changes nothing about
+    the ruling: refusals 7 and 8 are mint-time rules either way, nobody is retired
+    either way, and a reader meeting either card deserves the same line. So the
+    carve-out is gone and the set is the pass's own.
 
     Returns {path: block}, and nothing else on the card is touched: a full re-derive
-    of this cohort is a different unit of work (T-1222 holds its 798-file drift) and
-    landing it through here would bury eight blocks in it.
+    of this cohort is still a different unit of work (T-1222), and this stays the
+    narrow write that lands the ruling without it.
     """
     docs = {q: m.load(q) for q in sorted(m.HOUSEHOLDS.glob("*.json"))}
     index = m.load(m.INDEX)
     new_accepted, _ = mint_with(m.surname, docs, index)
-    old_accepted, _ = mint_with(pre_t0638_surname, docs, index)
-    old_collided = {cand["id"] for cand, _ in old_accepted
-                    if cand.get("surname_collision")}
 
     out, seen = {}, set()
     for cand, gaz in new_accepted:
         doc = m.record(cand, gaz, docs, seen)
         seen.add(doc["id"])
-        if not cand.get("surname_collision") or cand["id"] in old_collided:
+        if not cand.get("surname_collision"):
             continue
         path = m.HOUSEHOLDS / f"{doc['id']}.json"
         if path not in docs:
             continue          # not standing, so the ruling has nothing to protect
         out[path] = doc["surname_collision"]
+    return out
+
+
+def said(doc: dict, block: dict) -> dict:
+    """`doc` with the collision block in the place the mint's own `record()` puts it.
+
+    WHERE IT GOES IS NOT COSMETIC. Appending it at the end instead cost this unit a
+    whole gate run: `spend_directories.py` and `spend_old_settlers.py` re-derive the
+    cards they write and compare them byte for byte, so the first of them to run moved
+    the block up to `record()`'s position and turned 19 cards red against passes that
+    had nothing to do with the collision. The block therefore lands directly after
+    `research_note`, which is where the mint emits it, and every other key keeps its
+    order — so this write is a fixed point under the passes downstream of it.
+    """
+    if "research_note" not in doc:
+        return {**doc, "surname_collision": block}
+    out = {}
+    for key, value in doc.items():
+        if key == "surname_collision":
+            continue
+        out[key] = value
+        if key == "research_note":
+            out["surname_collision"] = block
     return out
 
 
@@ -446,15 +477,16 @@ def carded(write: bool) -> int:
         if not write:
             drifted.append(path)
             continue
-        doc["surname_collision"] = block
-        path.write_text(m.dumps(doc, 1), encoding="utf-8")
+        path.write_text(m.dumps(said(doc, block), 1), encoding="utf-8")
         print(f"   said the collision on {path.stem}")
     if drifted:
         for path in drifted:
             print(f"   DRIFT: {path.relative_to(ROOT)} does not say its collision")
+        print(f"   {len(drifted)} standing card(s) carry a mint-time refusal and do "
+              f"not say it")
         return 1
-    print("   OK: every card this fault collides says so" if not write else
-          "   done")
+    print(f"   OK: all {len(blocks())} standing card(s) a mint-time refusal lands on "
+          f"say so" if not write else "   done")
     return 0
 
 
@@ -478,6 +510,37 @@ def self_test() -> int:
            for p in d["pairs"]):
         failures.append("a collision is reported whose surname did not move and whose "
                         "refusal is not a within-pass one")
+
+    # T-0691. The card gate, proved by breaking it. A reader is the point of the
+    # ruling, so the failure that matters is a card that stops saying its collision —
+    # and a check that cannot see that happen is not a check. `m.load` is stubbed for
+    # ONE path so the gate reads a card with the block struck off; nothing is written.
+    carded_blocks = blocks()
+    if not carded_blocks:
+        failures.append("no standing card carries a collision block at all — the ruling "
+                        "has nothing to say and refusals 7 and 8 have stopped firing")
+    else:
+        victim = sorted(carded_blocks)[0]
+        real_load = m.load
+
+        def struck(path):
+            doc = real_load(path)
+            if path == victim:
+                doc.pop("surname_collision", None)
+            return doc
+
+        m.load = struck
+        try:
+            caught = carded(False) == 1
+        finally:
+            m.load = real_load
+        if not caught:
+            failures.append(f"the card gate does not fire when {victim.stem} stops "
+                            f"saying its collision")
+        if carded(False) != 0:
+            failures.append("the card gate is red on the committed tree: a standing "
+                            "card a mint-time refusal lands on does not say so")
+
     for line in failures:
         print(f"   FAIL: {line}")
     if failures:

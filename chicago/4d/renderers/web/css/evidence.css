@@ -229,3 +229,27 @@
 }
 .pop-lead { margin: 0; }
 .pop-note { margin: 10px 0 0; font-style: italic; }
+
+/* THE ORDER BOOK'S PROGRESS BARS (T-1166). The panel reuses the population
+   profile's table shell — same `.pop-table` box, same right-aligned `.num`
+   columns — and adds exactly one thing it does not have: a bar per bucket
+   family showing filled against to-do. The bar is a ratio and nothing else, so
+   it carries its own `aria-label` with both numbers rather than leaving a
+   screen reader a coloured box. `currentColor` keeps it a single-colour mark in
+   both themes, the fleet's icon rule applied to a meter. */
+.ob-bar {
+  margin: 12px 0 0; height: 8px; border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+  overflow: hidden;
+}
+.ob-bar > span {
+  display: block; height: 100%; min-width: 0;
+  background: color-mix(in srgb, currentColor 62%, transparent);
+}
+/* The measured pair beside a programme delta: small, monospaced-in-feel, and
+   never wrapped away from the sentence it qualifies. */
+.ob-delta {
+  display: inline-block; margin-left: 4px; white-space: nowrap;
+  font-style: normal; font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+}

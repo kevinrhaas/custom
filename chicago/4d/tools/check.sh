@@ -2206,7 +2206,7 @@ PY
 #   tools/generate_inferred_households.py  (was the K1 households step)
 #   tools/generate_inferred_names.py       (was this step's old label)
 #   tools/replace_invented_residents.py    (was the T-0264 roof-deal step)
-#   tools/mint_letter_list_residents.py    T-0691  --check: 798 file(s) differ
+#   tools/mint_letter_list_residents.py    T-1222  --check: 798 file(s) differ
 #
 # T-1228 gated the first three on 2026-09-17, each at its own slot above, on a
 # field-level ownership contract rather than byte-identity — the same shape T-0662
@@ -2401,7 +2401,9 @@ selftest "all four resident mints preserve findings across a derived-note change
 # one of them quietly ceasing to fire would now be worth hundreds of records rather than
 # one. `--report` prints the mint and every refusal with its reason; `--scale` counts
 # what the ruling did to the town on whatever tree it is run against.
-# NOT GATED (T-0662; the drift itself is T-0691's, and T-0691 is blocked on T-0660).
+# NOT GATED (T-0662; the drift itself is T-1222's. It was T-0691's until 2026-09-18,
+# when the owner's ruling landed and T-0691 shrank to the card gate below — the 798
+# files are a pipeline-ordering question and were never the collisions).
 # This slot ran `synthesize_resident_research.py --check`, which is not the mint.
 # `tools/mint_letter_list_residents.py --check` is, and it reports 798 file(s)
 # differing — but a byte-identity check is the wrong contract for this pass, because
@@ -2740,6 +2742,19 @@ step "the letter-list collision report still describes the tree" \
 
 selftest "…and its two readings of a printed name are still two" \
   python3 tools/report_letter_list_collisions.py --self-test
+
+# T-0691. The ruling was made on 2026-09-18 — option (c), refusals 7 and 8 are MINT-TIME
+# rules and un-mint nobody — and its whole content is that the collision is SAID rather
+# than acted on. So the thing to gate is no longer the measurement but the saying: every
+# standing card a mint-time refusal lands on carries the block, and a card that stops
+# saying its collision is red. T-0660 shipped eight of the seventy-five and left the rest
+# to the cohort's next full re-derive; that re-derive is T-1222's and its byte-identity
+# contract is the wrong one for this pass (see the note above the mint), so waiting for it
+# meant sixty-seven readers meeting a card whose awkwardness was invisible. The block is
+# composed by `mint_letter_list_residents.record()` and written by --write-records, which
+# touches nothing else on the card; --check-records re-derives and compares.
+step "every card a mint-time refusal lands on still says its collision" \
+  python3 tools/report_letter_list_collisions.py --check-records
 
 # T-1290. The 1840 census is CLOSED for the 1835 reconstruction and what closed it is a
 # residue table: eight leaf-by-leaf tickets folded into one statement of what did not
@@ -3908,6 +3923,30 @@ step "the 1835 population profile re-derives from the resident layer, on every a
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/profile_population_1835.py --self-test
+
+# T-1166. THE RECONSTRUCTION ORDER BOOK, held to every file it subtracts.
+#
+# The book is the quota the three reconstruction bands are built against: known
+# minus model, per bucket, with the ticket that owes each one. It rots in exactly
+# the way the profile does and in one worse way — a filler that writes more records
+# than its bucket allows has silently overrun the town, and nothing else in this
+# gate would notice. So `--check` re-derives every bucket from the town model, the
+# profile's own layer, the roster, the roof programme, the inventory, the trade
+# census and the 1840 composition, CARRIES the committed `filled` counters across
+# unchanged, and refuses both drift and an overfilled bucket.
+#
+# The three judgements it makes are asserted rather than trusted. A range becomes a
+# point by MIDPOINT and says so; a known person the layer cannot place is subtracted
+# pro rata rather than dropped, so nobody is ordered twice; and only a household
+# recorded `present` counts as known, because an `uncertain` one is already on the
+# roster being offered to T-1172. The self-test also holds the one place the 1840
+# age pyramid could silently disagree with the 1835 model — the child share — inside
+# the model's own bracket.
+step "the 1835 reconstruction order book re-derives, and no bucket is overfilled" \
+  python3 tools/build_order_book_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/build_order_book_1835.py --self-test
 
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names

@@ -10,10 +10,10 @@ Registered reading units: **23,693**, as of 2026-09-15. Unclassified: **0**. Ass
 | --- | ---: |
 | aggregate_only | 173 |
 | asserted | 170 |
-| later_only | 12,561 |
+| later_only | 12,568 |
 | outside_chicago | 109 |
 | refused | 8,524 |
-| unresolved | 2,156 |
+| unresolved | 2,149 |
 
 Every asserted unit names the record and field it wrote to. Grouped by the layer that file belongs to:
 
@@ -117,12 +117,14 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
 | T-1144 | 1 | open | yes |
-| T-1160 | 98 | split_live | yes |
-| T-1169 | 872 | open | yes |
-| T-1170 | 161 | open | yes |
+| T-1168 | 3 | open | yes |
+| T-1169 | 902 | open | yes |
+| T-1170 | 168 | open | yes |
 | T-1172 | 260 | open | yes |
 | T-1180 | 494 | open | yes |
-| T-1198 | 269 | open | yes |
+| T-1182 | 37 | open | yes |
+| T-1188 | 12 | open | yes |
+| T-1198 | 271 | open | yes |
 | T-1299 | 1 | open | yes |
 
 Reproduce: `python3 tools/measure_research_spend.py --check`.
