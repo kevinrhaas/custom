@@ -61,7 +61,7 @@ The research spend was, correctly, conservative. This page does not overturn one
 | `R0_ineligible/already_carried_as_present` | 1005 |
 | `R0_ineligible/carried_by_the_cards_own_row` | 1087 |
 | `R0_ineligible/earlier_than_the_window` | 123 |
-| `R0_ineligible/later_only_and_not_backprojectable` | 9946 |
+| `R0_ineligible/later_only_and_not_backprojectable` | 9947 |
 | `R0_ineligible/ledger_a_sale_is_never_a_residence` | 413 |
 | `R0_ineligible/ledger_earlier_evidence_adds_no_1835_fact` | 21 |
 | `R0_ineligible/ledger_identity_refused_in_the_crosswalk` | 13 |
@@ -74,10 +74,10 @@ The research spend was, correctly, conservative. This page does not overturn one
 | `R0_ineligible/ledger_the_registers_date_is_unreadable` | 7 |
 | `R0_ineligible/not_a_town_finding` | 9 |
 | `R0_ineligible/outside_chicago` | 109 |
-| `R0_ineligible/owned_by_the_attribute_band` | 461 |
+| `R0_ineligible/owned_by_the_attribute_band` | 469 |
 | `R0_ineligible/researched_not_resident` | 9 |
 | `R0_ineligible/surname_only_and_unmatched` | 252 |
-| `R0_ineligible/undated_reading` | 206 |
+| `R0_ineligible/undated_reading` | 197 |
 | `R1_in_window_uncertain/card_presence_is_uncertain` | 814 |
 | `R2_in_window_single_source/in_window_read_and_withheld` | 40 |
 | `R3_1834_return_or_muster/blackhawk_muster_1832_at_chicago` | 28 |
