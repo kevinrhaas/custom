@@ -36,6 +36,7 @@ ROOT = Path(os.environ["SYNTH_SCRATCH_ROOT"]) if os.environ.get("SYNTH_SCRATCH_R
 # copy carries data and no tools: measured, ModuleNotFoundError on rebuild_resident_index.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
+from refuse_reconstructed_grade import refuse  # noqa: E402  (T-1144; the retirement above must actually have happened)
 
 CHICAGO = ROOT.parent
 REPO = CHICAGO.parent
@@ -978,6 +979,11 @@ def main():
             if retire_roof(doc): stats["roofs_enrolled_anonymous"]+=1
         if json.dumps(doc,sort_keys=True,ensure_ascii=False)!=old: dump(path,doc,1); changed.append(path)
     index=rebuild_index(index,docs,stats); dump(INDEX,index,1)
+    # T-1144 acceptance 8. This pass RETIRES a `reconstructed` person rather than
+    # refusing it (that retirement, T-0489, is most of what it exists to do), so the
+    # refusal belongs here, on the way out: whatever reached the tree, nothing graded
+    # `reconstructed` leaves this writer. Reconstruction begins at T-1167.
+    refuse(docs, "synthesize_resident_research.py")
     for path,doc in docs.items(): dump(path,doc,1)
     for path in HOUSEHOLDS.glob("*.json"):
         if path not in docs: path.unlink()
