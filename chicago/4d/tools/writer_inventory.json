@@ -987,6 +987,12 @@
       "finding": "Reproduces, and it is a REAL writer rather than a silent no-op — the `_must_actually_write` trap batch 1 caught four tools in. It declares no write flag at all (--check, --report, --self-test only) and writes on its BARE run, which is the read_fergus_1839.py shape: a write mode that is the default branch. Measured by perturbation, not by a content diff: `_t1336_probe` was added to data/research/appearance_bounds_1835.json, `--check` went red on it (\"does not re-derive\"), the bare run restored the file, and git came back to the renumber alone.",
       "placed": "NOT PLACED. It reproduces, so it is pending rather than not_derivable, and it is counted out loud on every run instead of sitting silently outside the layer — which is the mechanism T-1302 batch 1 exists for. Placing it is a measured pass of its own; this branch has no evidence about its slot."
     },
+    "spend_book_kin.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-18",
+      "finding": "Measured on a clean tree the day it landed: `--build` wrote its rows and changed no committed byte, so it reproduces. The build appends a note only when the sentence is not already on the row and sorts `sources` and `book_kin`, which is what makes it idempotent. In the manifest beside the other card writers, so `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate from here on."
+    },
     "spend_census_1840_heads.py": {
       "placement": "manifest",
       "write_mode": "(bare)",
