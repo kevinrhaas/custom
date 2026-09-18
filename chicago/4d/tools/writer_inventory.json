@@ -980,6 +980,12 @@
       "finding": "Reproduces: ran `--build` on a clean tree in 0s, wrote its outputs, changed no committed byte.",
       "pending_reason": "T-1302 batch 2: placement in the manifest dependency order"
     },
+    "spend_book_kin.py": {
+      "placement": "manifest",
+      "write_mode": "--build",
+      "measured": "2026-09-18",
+      "finding": "Measured on a clean tree the day it landed: `--build` wrote its rows and changed no committed byte, so it reproduces. The build appends a note only when the sentence is not already on the row and sorts `sources` and `book_kin`, which is what makes it idempotent. In the manifest beside the other card writers, so `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate from here on."
+    },
     "spend_census_1840_heads.py": {
       "placement": "pending",
       "write_mode": "(bare)",
