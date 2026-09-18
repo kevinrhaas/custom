@@ -7,6 +7,7 @@
  "arrival": {
   "value": "1834-05-14",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -16,31 +17,37 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested: the lists that name this person give no address. The placement sweep assigns homes once the resident list is complete (T-0514, the owner's own sequencing) and this pass will not guess one."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested. No trade is recorded here, so there is no premises to seek; T-0633 is where a later directory's address gets back-projected."
  },
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -57,6 +64,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
    },
    "sources": [

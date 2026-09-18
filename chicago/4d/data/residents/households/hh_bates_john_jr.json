@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1832",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,26 +16,31 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "works_at": {
   "value": "bates_auction_room",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -56,6 +62,7 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -72,6 +79,7 @@
    "occupation": {
     "value": "auctioneer",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -138,6 +146,7 @@
     "address_later": {
      "value": "Lake street",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

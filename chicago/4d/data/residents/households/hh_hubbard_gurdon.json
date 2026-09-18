@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1818-10-31",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_antiquities_american_fur_co"
   ],
@@ -15,11 +16,13 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": "Windsor, Vermont, by way of Montreal",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_antiquities_american_fur_co",
    "calumet_club_early_chicago_1879"
@@ -29,16 +32,19 @@
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "old_bank_building",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -47,6 +53,7 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -63,6 +70,7 @@
    "birth_year": {
     "value": 1802,
     "confidence": "inferred",
+    "tier": "inferred",
     "sources": [
      "chicago_antiquities_american_fur_co",
      "calumet_club_early_chicago_1879"
@@ -72,6 +80,7 @@
    "occupation": {
     "value": "packer",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -267,6 +276,7 @@
     "address_later": {
      "value": "near Clark, res 300 Indiana, near Rush",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1843,
      "sources": [
       "fergus_chicago_directory_1843"

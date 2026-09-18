@@ -6,32 +6,47 @@
  "arrival": {
   "value": "1834",
   "confidence": "reconstructed",
+  "tier": "reconstructed",
   "note": "NOT ATTESTED. The store he built is 'the first store building on Lake Street' and this project's building record dates it to the mid-1830s; 1834 is the earliest year that reading supports and it is a guess.",
-  "precision": "year"
+  "precision": "year",
+  "basis": {
+   "kind": "rule",
+   "id": "arrival_earliest_year_forced",
+   "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a dated source that says when this person came to Chicago"
+  }
  },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "thomas_church_store",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicagology_prefire275"
   ],
@@ -40,6 +55,7 @@
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicagology_prefire275"
   ],
@@ -55,6 +71,7 @@
    "occupation": {
     "value": "merchant",
     "confidence": "inferred",
+    "tier": "inferred",
     "sources": [
      "chicagology_prefire275"
     ],
@@ -121,6 +138,7 @@
     "address_later": {
      "value": "Lake st",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1834-06-11",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -15,32 +16,47 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not claimed. The layer infers households, not families: the person entries here are the ones the trade argument requires and nothing counts wives or children, because counting them would multiply a hypothesis by an invention."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not claimed. Where a hypothesised resident came from is unknowable by construction, and the documented layer's origins (Vermont, Washington, Ann Arbor) are evidence about those men and not a distribution to sample from."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not claimed for the person. The reason the HOUSEHOLD is in the dataset is the trade argument in research_note, which is a statement about the town and not about a motive."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "T-0489: former dwelling assignment came from the retired reconstructed-household programme; real resident retained unplaced."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "T-0489: no workplace is assigned from a reconstructed household; later placement requires evidence."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "reconstructed",
-  "note": "Presence on the scene date IS the hypothesis: this household exists in the dataset because the town of 1 July 1835 demonstrably needed households of this trade. It is not a finding about anybody's whereabouts."
+  "tier": "reconstructed",
+  "note": "Presence on the scene date IS the hypothesis: this household exists in the dataset because the town of 1 July 1835 demonstrably needed households of this trade. It is not a finding about anybody's whereabouts.",
+  "basis": {
+   "kind": "rule",
+   "id": "inferred_household_hypothesis",
+   "note": "Presence on the scene date IS this household's hypothesis: the record exists because the town of 1 July 1835 demonstrably needed a household of this trade."
+  },
+  "replaceable_by": {
+   "kind": "household",
+   "match": "a source that puts this household at Chicago on 1 July 1835, or takes it away"
+  }
  },
  "persons": [
   {
@@ -52,6 +68,7 @@
    "occupation": {
     "value": "cooper",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "chicago_democrat_1833_1835"
     ],

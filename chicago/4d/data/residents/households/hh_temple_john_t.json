@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1833-07-04",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "baptisthistoryhomepage"
@@ -16,6 +17,7 @@
  "party_size_on_arrival": {
   "value": 6,
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -24,6 +26,7 @@
  "origin": {
   "value": "Washington, D. C.",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -32,6 +35,7 @@
  "reason_for_coming": {
   "value": "A federal mail contract, Chicago to Fort Howard at Green Bay",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -40,11 +44,13 @@
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "NOT ATTESTED, AND ONE NEAR MISS WORTH RECORDING. Peter Temple's advertisement of July 1834 puts 'the dwelling of Dr. J. T. Temple' on Franklin Street near Lake. This dataset holds no structure at that address, and the Temple Building at Franklin and South Water is a different building on the same street - a meeting house and school, not a residence. Linking the two would be wrong by a block and by a use."
  },
  "works_at": {
   "value": "temple_building",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "baptisthistoryhomepage"
@@ -54,6 +60,7 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -70,6 +77,7 @@
    "occupation": {
     "value": "physician",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -192,6 +200,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "note": "No trade is recorded for her. The absence is the ordinary one for a married woman in this literature and is not evidence that she did no work."
    },
    "sources": [
@@ -233,6 +242,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
    },
    "sources": [
@@ -263,6 +273,7 @@
    "occupation": {
     "value": "dentist",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -387,6 +398,7 @@
     "address_later": {
      "value": "218 Lake st",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

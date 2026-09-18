@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1833-12-18",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -16,6 +17,7 @@
  "party_size_on_arrival": {
   "value": 1,
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -24,11 +26,13 @@
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "Ordered to command the post",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -37,6 +41,7 @@
  "lives_at": {
   "value": "fort_dearborn_commandants_quarters",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -46,6 +51,7 @@
  "works_at": {
   "value": "fort_dearborn_palisade",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -55,6 +61,7 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_fort_dearborn"
@@ -71,6 +78,7 @@
    "occupation": {
     "value": "army_officer",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "drloih_fort_dearborn"

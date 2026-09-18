@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1833",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,21 +16,25 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": "brown_boarding_house",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -38,6 +43,7 @@
  "works_at": {
   "value": "brown_boarding_house",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -46,6 +52,7 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -61,6 +68,7 @@
    "occupation": {
     "value": "boarding_house_keeper",
     "confidence": "inferred",
+    "tier": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -139,6 +147,7 @@
    "occupation": {
     "value": "boarding_house_keeper",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

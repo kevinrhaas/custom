@@ -7,6 +7,7 @@
  "arrival": {
   "value": "1834-12-31",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_voter_lists_1833_1835_irad",
    "fergus_chicago_directory_1843"
@@ -17,31 +18,37 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested: the lists that name this person give no address. The placement sweep assigns homes once the resident list is complete (T-0514, the owner's own sequencing) and this pass will not guess one."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested. No trade is recorded here, so there is no premises to seek; T-0633 is where a later directory's address gets back-projected."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_voter_lists_1833_1835_irad",
    "fergus_chicago_directory_1843"
@@ -59,6 +66,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "later_occupation": {
      "value": "gardener",
      "describes_date": 1839,
@@ -135,6 +143,7 @@
     "occupation_later": {
      "value": "gardener",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -144,6 +153,7 @@
     "address_later": {
      "value": "North Dearborn st, near North ave",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

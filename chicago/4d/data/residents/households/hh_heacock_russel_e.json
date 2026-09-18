@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1827",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,16 +16,19 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested for 1827. What IS attested is the household's size later: a wife and five sons by the spring of 1835."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": "Professional and business interests at the settlement",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -33,6 +37,7 @@
  "lives_at": {
   "value": "heacock_house_monroe",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -41,11 +46,13 @@
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "NOT MODELLED. He practised law, kept a tavern at Heacock's Point on the South Branch some five miles up, farmed there, and worked as a carpenter. None of the four has a record and the tavern is outside the modelled box."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -62,6 +69,7 @@
    "occupation": {
     "value": "attorney",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -123,6 +131,7 @@
      "field": "life_event",
      "value": "One of two American families occupying the old log officers’ quarters inside the pickets of the ungarrisoned fort in July 1827",
      "confidence": "inferred",
+     "tier": "inferred",
      "sources": [
       "census_1830_peoria_county_chicago_precinct"
      ],
@@ -160,6 +169,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
    },
    "sources": [

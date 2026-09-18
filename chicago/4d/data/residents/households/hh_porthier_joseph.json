@@ -6,32 +6,47 @@
  "arrival": {
   "value": "1830",
   "confidence": "reconstructed",
+  "tier": "reconstructed",
   "note": "NOT ATTESTED. He is a member of the agency establishment under Owen, whose agency runs from 1831; the Porthier family is at Chicago earlier. 1830 is the earliest year this project can argue and it cites nothing.",
-  "precision": "year"
+  "precision": "year",
+  "basis": {
+   "kind": "rule",
+   "id": "arrival_earliest_year_forced",
+   "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a dated source that says when this person came to Chicago"
+  }
  },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "works_at": {
   "value": "blacksmith_shop_state_st",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -40,6 +55,7 @@
  "present_on_scene_date": {
   "value": "absent",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "buck_pioneer_milwaukee_porthier_1835"
@@ -56,6 +72,7 @@
    "occupation": {
     "value": "blacksmith",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

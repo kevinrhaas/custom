@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1834-02-04",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835"
   ],
@@ -15,32 +16,47 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not claimed. The layer infers households, not families: the person entries here are the ones the trade argument requires and nothing counts wives or children, because counting them would multiply a hypothesis by an invention."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not claimed. Where a hypothesised resident came from is unknowable by construction, and the documented layer's origins (Vermont, Washington, Ann Arbor) are evidence about those men and not a distribution to sample from."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not claimed for the person. The reason the HOUSEHOLD is in the dataset is the trade argument in research_note, which is a statement about the town and not about a motive."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "T-0489: former dwelling assignment came from the retired reconstructed-household programme; real resident retained unplaced."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "T-0489: no workplace is assigned from a reconstructed household; later placement requires evidence."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "reconstructed",
-  "note": "Presence on the scene date IS the hypothesis: this household exists in the dataset because the town of 1 July 1835 demonstrably needed households of this trade. It is not a finding about anybody's whereabouts."
+  "tier": "reconstructed",
+  "note": "Presence on the scene date IS the hypothesis: this household exists in the dataset because the town of 1 July 1835 demonstrably needed households of this trade. It is not a finding about anybody's whereabouts.",
+  "basis": {
+   "kind": "rule",
+   "id": "inferred_household_hypothesis",
+   "note": "Presence on the scene date IS this household's hypothesis: the record exists because the town of 1 July 1835 demonstrably needed a household of this trade."
+  },
+  "replaceable_by": {
+   "kind": "household",
+   "match": "a source that puts this household at Chicago on 1 July 1835, or takes it away"
+  }
  },
  "persons": [
   {
@@ -52,6 +68,7 @@
    "occupation": {
     "value": "physician",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "chicago_democrat_1833_1835"
     ],
@@ -202,6 +219,7 @@
     "address_later": {
      "value": "Dearborn street north of Lake street",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -213,6 +231,7 @@
      "clause": "3 and 4",
      "value": "Dearborn Street",
      "confidence": "reconstructed",
+     "tier": "reconstructed",
      "describes_date": 1839,
      "read_back_years": 4,
      "placement": "anchored",
@@ -223,7 +242,16 @@
      "sources": [
       "fergus_chicago_directory_1839"
      ],
-     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is a point on the street face, anchored on a crossing the directory names but at a distance from it this pass does not claim and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. Dearborn Street and Lake Street both stand in 1835 under those names, and the directory sets the door against that crossing without claiming the corner — it prints 'north of' — so the point is the crossing and the distance from it is not a claim this pass makes. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited."
+     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is a point on the street face, anchored on a crossing the directory names but at a distance from it this pass does not claim and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. Dearborn Street and Lake Street both stand in 1835 under those names, and the directory sets the door against that crossing without claiming the corner — it prints 'north of' — so the point is the crossing and the distance from it is not a claim this pass makes. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited.",
+     "basis": {
+      "kind": "rule",
+      "id": "address_back_projection",
+      "note": "The work address is a later directory's, carried back to the scene window under docs/ADDRESS-BACK-PROJECTION.md (liberty L218) rather than read from an 1835 source. What is claimed is the street face and nothing narrower."
+     },
+     "replaceable_by": {
+      "kind": "person",
+      "match": "an 1835-window source that gives this person a Chicago work address"
+     }
     }
    }
   ]

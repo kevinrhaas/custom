@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1833-10-04",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -15,16 +16,19 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": "To take over an existing tavern stand",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "chicago_democrat_1833_11_26"
   ],
@@ -33,6 +37,7 @@
  "lives_at": {
   "value": "green_tree_tavern",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -42,6 +47,7 @@
  "works_at": {
   "value": "green_tree_tavern",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1",
    "drloih_hotels"
@@ -51,6 +57,7 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -67,6 +74,7 @@
    "occupation": {
     "value": "tavern_keeper",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"

@@ -6,17 +6,29 @@
  "arrival": {
   "value": "1826",
   "confidence": "reconstructed",
+  "tier": "reconstructed",
   "note": "NOT ATTESTED HERE. Beaubien is in the settlement well before the town exists - he is a ferryman by 1831 and has built the Sauganash by 1829-31 - but no passage reached gives the year he came. 1826 is the figure in general circulation and it is carried as a conjecture that cites nothing, precisely so that a reader can see it is not evidence.",
-  "precision": "year"
+  "precision": "year",
+  "basis": {
+   "kind": "rule",
+   "id": "arrival_uncited_literature",
+   "note": "The year is the figure in general circulation in the Chicago literature and no passage this project holds gives it, so it is carried as a conjecture that cites nothing."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a dated source that says when this person came to Chicago"
+  }
  },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": "A French-descended trading family of the Detroit and Milwaukee country",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -25,6 +37,7 @@
  "reason_for_coming": {
   "value": "Trade and tavern keeping at the forks",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -33,16 +46,19 @@
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "NOT ATTESTED AT THE SCENE DATE, AND THAT IS THE FINDING. He had left the Sauganash by 1834 - the hotel chronology gives 'Davis (1835)' as its operator - and the Exchange Coffee House he built at Lake and Wells was in the hands of the Murphys from August 1834. Where Mark Beaubien slept on 1 July 1835 is simply not in the record, and this field says so rather than putting him back in a house he had left."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Same problem as the residence. The ferry, the Sauganash and the Exchange are all attested for him at other dates and none of them is attested for this one."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -59,6 +75,7 @@
    "occupation": {
     "value": "tavern_keeper",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -118,6 +135,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "note": "No source records an occupation for this person. This is the ABSENCE of a record rather than a claim that they did no work — the sources of 1835 name the occupations of household heads and almost never those of wives, children or the people counted with them."
    },
    "sources": [],
@@ -134,6 +152,7 @@
    "household": "hh_beaubien_jean_baptiste",
    "value": "beaubien_jean_baptiste",
    "confidence": "inferred",
+   "tier": "inferred",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -152,6 +171,7 @@
     "address_later": {
      "value": "Lake st",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -163,6 +183,7 @@
      "clause": "3 and 4",
      "value": "Lake Street",
      "confidence": "reconstructed",
+     "tier": "reconstructed",
      "describes_date": 1839,
      "read_back_years": 4,
      "placement": "face",
@@ -170,7 +191,16 @@
      "sources": [
       "fergus_chicago_directory_1839"
      ],
-     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is the street face and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. Lake Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited."
+     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is the street face and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. Lake Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited.",
+     "basis": {
+      "kind": "rule",
+      "id": "address_back_projection",
+      "note": "The work address is a later directory's, carried back to the scene window under docs/ADDRESS-BACK-PROJECTION.md (liberty L218) rather than read from an 1835 source. What is claimed is the street face and nothing narrower."
+     },
+     "replaceable_by": {
+      "kind": "person",
+      "match": "an 1835-window source that gives this person a Chicago work address"
+     }
     }
    }
   ]

@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1833-02-03",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,6 +16,7 @@
  "party_size_on_arrival": {
   "value": 1,
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -23,6 +25,7 @@
  "origin": {
   "value": "Sackett's Harbor, New York; born at Guilford, Vermont",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ]
@@ -30,6 +33,7 @@
  "reason_for_coming": {
   "value": "Posted to Fort Dearborn by the Army",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -38,6 +42,7 @@
  "lives_at": {
   "value": "fort_dearborn_officers_quarters",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -46,11 +51,13 @@
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "NOT MODELLED. The post surgeon worked in a hospital and this dataset holds no Fort Dearborn hospital record, although the fort's surgeon's prescription book with an entry of 15 March 1835 is one of the things that proves the post was garrisoned in the scene year. Left null so the missing building is visible rather than papered over with the palisade."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -67,6 +74,7 @@
    "birth_year": {
     "value": 1799,
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -75,6 +83,7 @@
    "age_on_scene_date": {
     "value": 36,
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -83,6 +92,7 @@
    "occupation": {
     "value": "army_surgeon",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

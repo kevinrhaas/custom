@@ -3919,5 +3919,26 @@ step "the association coverage still re-derives from the committed records" \
 selftest "…and its own refusals still fire when broken" \
   python3 tools/associations.py --self-test
 
+# T-1158. The per-attribute tier, and the two things that can go wrong with it.
+#
+# The first is DRIFT. The tier is derived from the block's own confidence and value and
+# written into the card, because the reconstruction bands need somewhere to write one —
+# and the mints and the synthesizer do not know the field exists, so a card they rewrite
+# comes back without it. `--check` re-derives every card and refuses the difference, which
+# is the intended way to find out that a writer has run. Rebuild with `--build`.
+#
+# The second is PROMOTION. A tier that could be set independently of the evidence would be
+# a second, softer grade, and the whole point of the fourth tier — `unknown`, for the 7,314
+# blocks that assert nothing — is that a reconstruction band cannot quietly reuse it for
+# something it invented. So the tier may not disagree with its derivation, an invented
+# value owes a basis and a replacement rule, and a value DRAWN from a model owes the seed
+# that redraws it. `validate.py` enforces all of that through the module's own
+# `check_tier_block`; the self-test below breaks each rule in turn.
+step "every attribute's tier still re-derives from the card it sits on" \
+  python3 tools/migrate_attribute_tiers.py --check
+
+selftest "…and its own refusals still fire when broken" \
+  python3 tools/migrate_attribute_tiers.py --self-test
+
 check_summary
 exit $CHECK_FAILED

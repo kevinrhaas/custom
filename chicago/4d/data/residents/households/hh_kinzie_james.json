@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1831",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,21 +16,25 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested in anything this project holds."
  },
  "lives_at": {
   "value": "james_kinzie_house",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "kinzie_waubun_1856"
@@ -39,11 +44,13 @@
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "NOT ATTESTED AT THE SCENE DATE. He built the Green Tree and Chester Ingersoll kept it; he built a tavern on the west side of the South Branch and a Mr Crook kept it. This dataset holds james_kinzie_house as his residence and that is a lives_at, not a works_at."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -56,6 +63,7 @@
    "household": "hh_kinzie_john_h",
    "value": "kinzie_john_h",
    "confidence": "inferred",
+   "tier": "inferred",
    "sources": [
     "chicago_antiquities_american_fur_co"
    ],
@@ -73,6 +81,7 @@
    "occupation": {
     "value": "merchant",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -159,6 +168,7 @@
     "address_later": {
      "value": "North Canal street",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -170,6 +180,7 @@
      "clause": "3 and 4",
      "value": "Canal Street",
      "confidence": "reconstructed",
+     "tier": "reconstructed",
      "describes_date": 1839,
      "read_back_years": 4,
      "placement": "face",
@@ -177,7 +188,16 @@
      "sources": [
       "fergus_chicago_directory_1839"
      ],
-     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is the street face and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. Canal Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited."
+     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is the street face and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. Canal Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited.",
+     "basis": {
+      "kind": "rule",
+      "id": "address_back_projection",
+      "note": "The work address is a later directory's, carried back to the scene window under docs/ADDRESS-BACK-PROJECTION.md (liberty L218) rather than read from an 1835 source. What is claimed is the street face and nothing narrower."
+     },
+     "replaceable_by": {
+      "kind": "person",
+      "match": "an 1835-window source that gives this person a Chicago work address"
+     }
     }
    }
   ]

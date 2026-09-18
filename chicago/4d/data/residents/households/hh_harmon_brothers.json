@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1831",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,11 +16,13 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested. The doctor's family that followed him in 1831 comprised a wife and up to nine children, four of whom died in infancy, and no source counts who travelled."
  },
  "origin": {
   "value": "Burlington, Vermont",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -28,6 +31,7 @@
  "reason_for_coming": {
   "value": "Following their father west after his business reverses",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -36,11 +40,13 @@
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "works_at": {
   "value": "harmon_loomis_store",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1",
    "chicago_democrat_1833_11_26"
@@ -50,6 +56,7 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -66,6 +73,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "later_occupation": {
      "value": "dry goods and groceries, 145 South Water. s.-w",
      "describes_date": 1843,
@@ -198,6 +206,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "later_occupation": {
      "value": "dry goods merchant",
      "describes_date": 1839,
@@ -355,6 +364,7 @@
    "household": "hh_harmon_elijah_d",
    "value": "harmon_elijah_d",
    "confidence": "inferred",
+   "tier": "inferred",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -366,6 +376,7 @@
    "household": "hh_harmon_elijah_d",
    "value": "harmon_elijah_d",
    "confidence": "inferred",
+   "tier": "inferred",
    "sources": [
     "andreas_1884_v1"
    ],
@@ -414,6 +425,7 @@
     "occupation_later": {
      "value": "dry goods and groceries, 145 South Water. s.-w",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1843,
      "sources": [
       "fergus_chicago_directory_1843"
@@ -423,6 +435,7 @@
     "address_later": {
      "value": "cor Clark, res Dearborn, bet Washington and Madison",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1843,
      "sources": [
       "fergus_chicago_directory_1843"
@@ -461,6 +474,7 @@
     "occupation_later": {
      "value": "dry goods merchant",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -470,6 +484,7 @@
     "address_later": {
      "value": "Clark street",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

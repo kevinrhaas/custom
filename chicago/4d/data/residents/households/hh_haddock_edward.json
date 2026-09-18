@@ -6,27 +6,41 @@
  "arrival": {
   "value": "1835",
   "confidence": "reconstructed",
+  "tier": "reconstructed",
   "note": "NOT ATTESTED AND VERY LIKELY EARLIER. Nothing dates Haddock's arrival at Chicago; what is dated is his tenancy of a tavern ending in 1835. A year-precision 1835 value would straddle the scene date, so the earliest year the evidence permits is used and the whole field is graded conjectural. TO RESOLVE: Dexter Graves's household and the marriage that made Haddock his son-in-law would date this properly.",
-  "precision": "year"
+  "precision": "year",
+  "basis": {
+   "kind": "rule",
+   "id": "arrival_earliest_year_forced",
+   "note": "No source dates the coming. The value is the earliest year the committed evidence forces, carried at the precision the note states."
+  },
+  "replaceable_by": {
+   "kind": "person",
+   "match": "a dated source that says when this person came to Chicago"
+  }
  },
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": "mansion_house",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -35,6 +49,7 @@
  "works_at": {
   "value": "mansion_house",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -43,6 +58,7 @@
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -59,6 +75,7 @@
    "occupation": {
     "value": "tavern_keeper",
     "confidence": "inferred",
+    "tier": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -205,6 +222,7 @@
     "address_later": {
      "value": "South Water st",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"

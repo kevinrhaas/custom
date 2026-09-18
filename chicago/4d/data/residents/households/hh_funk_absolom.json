@@ -7,6 +7,7 @@
  "arrival": {
   "value": "1834-12-03",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835",
    "fergus_chicago_directory_1843",
@@ -18,31 +19,37 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested: the lists that name this person give no address. The placement sweep assigns homes once the resident list is complete (T-0514, the owner's own sequencing) and this pass will not guess one."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested. No trade is recorded here, so there is no premises to seek; T-0633 is where a later directory's address gets back-projected."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "chicago_democrat_1833_1835",
    "fergus_chicago_directory_1843",
@@ -61,6 +68,7 @@
    "occupation": {
     "value": "none_recorded",
     "confidence": "reconstructed",
+    "tier": "unknown",
     "later_occupation": {
      "value": "Funk & Doyle, butchers",
      "describes_date": 1839,
@@ -148,6 +156,7 @@
     "occupation_later": {
      "value": "Funk & Doyle, butchers",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -157,6 +166,7 @@
     "address_later": {
      "value": "res Wells, bet Washington and Randolph",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1843,
      "sources": [
       "fergus_chicago_directory_1843"
@@ -182,13 +192,23 @@
      "kind": "resides",
      "value": "Wells Street",
      "confidence": "reconstructed",
+     "tier": "reconstructed",
      "describes_date": 1843,
      "read_back_years": 8,
      "placement": "face",
      "sources": [
       "fergus_chicago_directory_1843"
      ],
-     "note": "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS. The street is not an 1835 reading: Fergus's Chicago directory of 1843 printed where this person lived in 1843, and this pass carries it back to the scene date because nothing in the 1835 corpus says where the house stood. What is claimed is the street FACE and nothing narrower — no lot, no roof, no door count, and no corner even where the volume prints one — and the grade is `reconstructed`, this dataset's word for a figure the reconstruction supplies rather than a source. Wells Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names Washington Street and Randolph Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt. A home is carried back on a weaker argument than a shop is: a shopfront is capital sunk into one street's trade and a lodging is a month's rent, which is why this policy claims less than docs/ADDRESS-BACK-PROJECTION.md does from the same volume. The rule is docs/RESIDENCE-BACK-PROJECTION.md and the liberty is L223; a reader who thinks 8 years is too far to carry a house should read the grade as the disagreement being invited."
+     "note": "A LATER HOME ADDRESS, READ BACKWARDS 8 YEARS. The street is not an 1835 reading: Fergus's Chicago directory of 1843 printed where this person lived in 1843, and this pass carries it back to the scene date because nothing in the 1835 corpus says where the house stood. What is claimed is the street FACE and nothing narrower — no lot, no roof, no door count, and no corner even where the volume prints one — and the grade is `reconstructed`, this dataset's word for a figure the reconstruction supplies rather than a source. Wells Street stands in 1835 under that name and in that place, and the entry prints it as this person's home. The volume narrows it further — it names Washington Street and Randolph Street — and clause R5 declines to take the point: a corner or a run between two crossings is a fact about the numbered grid of the 1840s, and a house moves more than a shopfront does. So the placement is the FACE and nothing narrower, and no roof is dealt. A home is carried back on a weaker argument than a shop is: a shopfront is capital sunk into one street's trade and a lodging is a month's rent, which is why this policy claims less than docs/ADDRESS-BACK-PROJECTION.md does from the same volume. The rule is docs/RESIDENCE-BACK-PROJECTION.md and the liberty is L223; a reader who thinks 8 years is too far to carry a house should read the grade as the disagreement being invited.",
+     "basis": {
+      "kind": "rule",
+      "id": "residence_back_projection",
+      "note": "The home address is a later directory's, carried back to the scene window under docs/RESIDENCE-BACK-PROJECTION.md (liberty L223) rather than read from an 1835 source. What is claimed is the street face and nothing narrower."
+     },
+     "replaceable_by": {
+      "kind": "person",
+      "match": "an 1835-window source that gives this person a Chicago home address"
+     }
     }
    }
   ]

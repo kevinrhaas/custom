@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1832",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,6 +16,7 @@
  "party_size_on_arrival": {
   "value": 2,
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -23,26 +25,31 @@
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "works_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "NOT MODELLED. Wright's store is documented by his own advertisement of November 1833 and has no record in data/structures/, so there is nothing to link to. A second gap from the same advertisement: the TWO BUILDINGS he had to let are two more documented structures with no records, and they are evidence about the town's rental housing stock, which is otherwise invisible."
  },
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -59,6 +66,7 @@
    "occupation": {
     "value": "merchant",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
@@ -146,6 +154,7 @@
    "occupation": {
     "value": "clerk",
     "confidence": "inferred",
+    "tier": "inferred",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -227,6 +236,7 @@
      "field": "life_event",
      "value": "Bought Chicago land and original-town lots",
      "confidence": "inferred",
+     "tier": "inferred",
      "sources": [
       "cpl_john_s_wright_papers"
      ],
@@ -272,6 +282,7 @@
     "address_later": {
      "value": "Michigan ave. cor. Madison st",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -297,6 +308,7 @@
     "address_later": {
      "value": "N. Water st",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
@@ -308,6 +320,7 @@
      "clause": "3 and 4",
      "value": "North Water Street",
      "confidence": "reconstructed",
+     "tier": "reconstructed",
      "describes_date": 1839,
      "read_back_years": 4,
      "placement": "face",
@@ -315,7 +328,16 @@
      "sources": [
       "fergus_chicago_directory_1839"
      ],
-     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is the street face and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. North Water Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited."
+     "note": "A LATER ADDRESS, READ BACKWARDS 4 YEARS. The door is not an 1835 reading: Fergus's Chicago directory of 1839 printed it in 1839, and this pass carries it back to the scene date because the 1835 record attests a trade for this person and nothing in the corpus places it better. What is claimed is the street face and nothing narrower — no lot, no roof, no door count — and the grade is `reconstructed`, which is this dataset's word for a figure the reconstruction supplies rather than a source. North Water Street stands in 1835 under that name and in that place. The directory gives a street and nothing this pass can resolve narrower, so the placement is the FACE — the unit the owner's ruling of 2026-08-29 says a street name constrains — and no roof is dealt. The rule this stands on is docs/ADDRESS-BACK-PROJECTION.md and the liberty is L218; a reader who thinks 4 years is too far to carry a shop should read the grade as the disagreement being invited.",
+     "basis": {
+      "kind": "rule",
+      "id": "address_back_projection",
+      "note": "The work address is a later directory's, carried back to the scene window under docs/ADDRESS-BACK-PROJECTION.md (liberty L218) rather than read from an 1835 source. What is claimed is the street face and nothing narrower."
+     },
+     "replaceable_by": {
+      "kind": "person",
+      "match": "an 1835-window source that gives this person a Chicago work address"
+     }
     }
    }
   ]

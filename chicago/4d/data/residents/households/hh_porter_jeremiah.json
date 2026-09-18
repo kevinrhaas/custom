@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1833-05-01",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,6 +16,7 @@
  "party_size_on_arrival": {
   "value": 1,
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -23,6 +25,7 @@
  "origin": {
   "value": "New England, by way of the garrison church at Fort Brady, Sault Ste Marie",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -31,6 +34,7 @@
  "reason_for_coming": {
   "value": "Sent as a home missionary with a transferred garrison",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -39,6 +43,7 @@
  "lives_at": {
   "value": "peck_store",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -47,6 +52,7 @@
  "works_at": {
   "value": "first_presbyterian_church",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -77,6 +83,7 @@
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -92,6 +99,7 @@
    "occupation": {
     "value": "minister",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -148,6 +156,7 @@
    "birth_year": {
     "value": 1807,
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -156,6 +165,7 @@
    "age_on_scene_date": {
     "value": 27,
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],
@@ -164,6 +174,7 @@
    "occupation": {
     "value": "schoolteacher",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1"
     ],

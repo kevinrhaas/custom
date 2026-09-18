@@ -6,6 +6,7 @@
  "arrival": {
   "value": "1832-07-01",
   "confidence": "attested",
+  "tier": "attested",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -15,26 +16,31 @@
  "party_size_on_arrival": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "origin": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "reason_for_coming": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested. A druggist arriving in July 1832 arrived four months after the Black Hawk War and a month after the cholera; nothing says whether either brought him."
  },
  "lives_at": {
   "value": null,
   "confidence": "reconstructed",
+  "tier": "unknown",
   "note": "Not attested."
  },
  "works_at": {
   "value": "carpenter_south_water_store",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -43,6 +49,7 @@
  "present_on_scene_date": {
   "value": "present",
   "confidence": "inferred",
+  "tier": "inferred",
   "sources": [
    "andreas_1884_v1"
   ],
@@ -59,6 +66,7 @@
    "occupation": {
     "value": "druggist",
     "confidence": "attested",
+    "tier": "attested",
     "sources": [
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
@@ -132,6 +140,7 @@
     "address_later": {
      "value": "South Water st",
      "confidence": "attested",
+     "tier": "attested",
      "describes_date": 1839,
      "sources": [
       "fergus_chicago_directory_1839"
