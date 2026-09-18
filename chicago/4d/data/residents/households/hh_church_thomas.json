@@ -5,9 +5,12 @@
  "head": "church_thomas",
  "arrival": {
   "value": "1834",
-  "confidence": "reconstructed",
-  "note": "NOT ATTESTED. The store he built is 'the first store building on Lake Street' and this project's building record dates it to the mid-1830s; 1834 is the earliest year that reading supports and it is a guess.",
-  "precision": "year"
+  "confidence": "inferred",
+  "precision": "year",
+  "sources": [
+   "ingale_early_chicago_reminiscence"
+  ],
+  "note": "A SOURCE, WHERE THIS PROJECT HAD A GUESS. The block this replaces said so itself — “NOT ATTESTED … 1834 is the earliest year that reading supports and it is a guess”, argued from the date of the store he built rather than from anything about the man. The completed resident-research pass on church_thomas read a published early-Chicago reminiscence as saying that Thomas Church arrived in 1834 and describing his Lake Street building activity. The year does not move; what moves is that it is now a reading with a source, at `inferred` because a reminiscence corroborates an uncommon name, a migration year and a merchant setting without proving the identity. This is the one `arrival` block this pass touches and it qualifies on the stated rule: reconstructed, and citing no source. Under the evidence ladder ratified 2026-09-03 a source earlier than 1 July 1835 corroborates and dates and never promotes: the person's grade does not move on this."
  },
  "party_size_on_arrival": {
   "value": null,

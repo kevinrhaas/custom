@@ -49,7 +49,7 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1317 — Spend the books' arrival units: the dated arrivals, nativities and presence bounds Hubbard's autobiography, Andreas and Moses and Kirkland state about people this town holds, onto the cards they name
 T-1329 — Spend the 1830 schedule lines, the church register sponsorships and the press notices onto the cards they name, each as a dated bound on a held resident's presence and never more
-T-1319 — Spend the land-sale and enrichment units: the entered tracts whose purchaser join the adjudication upheld, and the corroborated_enrichment rows naming an arrival or origin no structured field carries
+T-1332 — Spend the 313 upheld land-sale purchase bounds: each tract entered on or before 1 July 1835 by a purchaser the crosswalk joined to a card this town holds, written onto that card as a dated appearance and never as a residence
 T-1320 — Spend the kin the committed sources state for a head this town holds and T-1312's card reading never saw: the ties whose relative is ALSO a held resident, written onto both cards as a tie, and the book-corpus relatives who are nobody here, ruled the way T-1312 ruled the card ones — no person minted by either
 T-1171 — Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
 T-1172 — Re-admit the borderline roster as reconstructed residents under their own read names: fix the uncertain presences, mint the single-source and 1834-return names, back-project the biographied later names — every re-admission with its evidence limit and its reopen rule
@@ -64,7 +64,6 @@ T-1178 — Reconstruct the transient population of 1 July 1835 as a bounded coho
 T-1179 — Converge the reconstructed resident layer: index, sidecars, town census, People view and gates agree; every reconstructed person carries basis, seed, liberty and substitution rule; the population profile is re-run and the town reads complete against the model
 T-1327 — Dev's smoke asserts the resident layer holds no reconstructed person, and since T-1314 it holds three: the retargeted K18 check is stale again
 # --- 4. BUSINESSES — the authored layer and view, the audit, staffing model, five reconstruction groups, staff, converge
-T-1323 — The population profile's lodging test names three functions no building can spell: tavern, inn and coffee_house are not vocabulary terms, so every house of entertainment is classed a dwelling
 T-1325 — Open a firm from where the visitor already is: a person's card lists every business they hold a role in, and a signboard tap and a building card's Use line open that firm's card
 T-1182 — Audit every attested and inferred business against the research: proprietors, partners, dates, primary and secondary premises, the Dec 1835 State census classes and the August 1835 American count — and raise an inferred business for every in-window trade that has none
 T-1183 — The 1835 business staffing model: how many clerks, journeymen, apprentices, printers, bar-keepers, hostlers, cooks and teachers each kind of business employed, from the sources the project holds — the rule every business is staffed by
@@ -189,3 +188,4 @@ T-1273 — Write every committed home and workplace reconciliation row as an ass
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
 T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
 T-1315 — Spend the three dated birth and age enrichments T-1301 routed to T-1168: robinson_alexander, kimberly_edmund_s and maxwell_philip each carry a sourced birth date or age no field held when the reading was made, and both fields exist now
+T-1331 — The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
