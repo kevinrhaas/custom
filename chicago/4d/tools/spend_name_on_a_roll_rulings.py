@@ -66,7 +66,7 @@ CENSUS_CROSSWALK = ROOT / "data/research/census_1830/resident_crosswalk.json"
 # borderline roster takes every name a roll carries that the town does not hold. Both are
 # open tickets with exactly that field, and a hand-off is not a spend: when either closes,
 # these registers go red and the units come back for a real answer. That is the point.
-ARRIVAL = "T-1169"
+ARRIVAL = "T-1314"  # was T-1169 until it closed on 2026-09-18; see below
 # NOT T-1159: that ticket CLOSES with the roster it builds, and the comment above is the
 # reason this matters — "when either closes, these registers go red and the units come back
 # for a real answer". The real answer for a roster name is T-1172, which re-admits the

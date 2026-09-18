@@ -130,7 +130,7 @@ RULES = {
     },
     "the_enrichment_names_an_arrival_or_origin_no_field_carries": {
         "disposition": "unresolved",
-        "ticket": "T-1169",
+        "ticket": "T-1315",
         "statement": (
             "The completed pass returned `corroborated_enrichment`: a real, sourced fact about a "
             "person this town holds -- a trade, an address, an origin, a kinship, a date -- that "
@@ -364,7 +364,7 @@ RULES = {
     },
     "a_dated_appearance_bounds_a_presence": {
         "disposition": "unresolved",
-        "ticket": "T-1169",
+        "ticket": "T-1314",
         "statement": (
             "The unit puts a named person at Chicago on a dated day and states nothing "
             "else about them -- standing sponsor or witness at a register entry, or named "

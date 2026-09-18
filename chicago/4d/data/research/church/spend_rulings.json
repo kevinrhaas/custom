@@ -12,7 +12,7 @@
   "rules": {
     "a_dated_appearance_bounds_a_presence": {
       "disposition": "unresolved",
-      "ticket": "T-1169",
+      "ticket": "T-1314",
       "statement": "The unit puts a named person at Chicago on a dated day and states nothing else about them -- standing sponsor or witness at a register entry, or named in a dated notice of the town's print. A dated appearance BOUNDS a presence and is never itself a presence, and the earliest dated appearance is the bound T-1169 works from. This ruling hands the date on and writes nothing: it does not decide that a named party is a resident, that a name is a person rather than a firm, or that it is the individual a card of that name already holds."
     },
     "a_town_reading_with_no_record_to_write": {
