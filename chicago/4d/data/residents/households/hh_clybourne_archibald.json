@@ -7,9 +7,10 @@
   "value": "1823",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "'Came in 1823' - the second-earliest Anglo-American arrival in the parcel after nobody, and twelve years before the scene date.",
+  "note": "'Came in 1823' - the second-earliest Anglo-American arrival in the parcel after nobody, and twelve years before the scene date. Row bk_mose1_as_009 of the settlers table prints the year 1823 against his name, agreeing with Andreas's clause to the year; it corroborates and does not promote.",
   "precision": "year"
  },
  "party_size_on_arrival": {
@@ -18,21 +19,12 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": "New York State",
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
-  "basis": {
-   "kind": "model",
-   "id": "origin",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
-  },
-  "seed": "hh_clybourne_archibald:origin_region",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a source that says where this household came from"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "value": "Virginia",
+  "confidence": "inferred",
+  "sources": [
+   "moses_kirkland_history_of_chicago_v1"
+  ],
+  "note": "A DRAWN REGION IS REPLACED BY A PRINTED NATIVITY. This field held 'New York State', drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a survivorship sample carrying `replaceable_by` 'a source that says where this household came from'. This is that source. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. Row bk_mose1_as_009 reads 'Clybourn, Archibald', nativity Va, YEAR 1823, remarks a ditto of 'Paid taxes in 1825, voted in 1826'; the books crosswalk merges it onto this card, the two spellings differing by the final e alone and the year agreeing exactly with Andreas's 'came in 1823' which this card already quotes. THAT AGREEMENT IS WHY THE NATIVITY IS WORTH CARRYING: the row is right about the one thing the layer can check it on. INFERRED AND NOT ATTESTED: 1895, at second hand, transcription_mediated. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here."
  },
  "reason_for_coming": {
   "value": "A store for the traffic of a town filling up",

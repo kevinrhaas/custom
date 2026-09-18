@@ -2136,6 +2136,31 @@ step "a split keeps its claim, and the queue drops only finished work and regain
 step "every gated writer is in the derived manifest, or exempted in writing" \
   node tools/audit_manifest_coverage.mjs
 
+# T-1339, and it sits beside the writer coverage above because it is the same argument one
+# question over. That gate asks WHICH TOOLS WRITE; this one asks WHICH OF THEM WRITE WHILE
+# THE GATE IS RUNNING, which is a different failure with a worse signature.
+#
+# check.sh runs its steps in a job pool over ONE working tree (T-1289). A step that mutates
+# that tree is read by whatever runs beside it, so the gate reports red on a tree that is
+# green — four PRs went red that way on 2026-09-18 before the cause was found, and every one
+# of them looked like a defect in the branch. T-1336 fixed the six self-tests responsible and
+# put a retry behind them, which keeps the VERDICT correct; it does not stop the seventh
+# being written, and TWO OF THE SIX carried comments claiming they already worked on a copy.
+#
+# So the answer is a measurement and not a convention, exactly as T-1302 answered "which
+# tools write?" with a measured inventory rather than a pattern over the source. The slow
+# half is tools/measure_step_isolation.mjs --build (one instrumented gate run); this reads
+# what it wrote and costs milliseconds. An unmeasured step fails here, because an empty file
+# would otherwise read as proof.
+step "no gate step writes the live tree, and every one of them has been measured" \
+  node tools/audit_step_isolation.mjs --check --quiet
+
+selftest "…and it refuses an unmeasured step as well as a mutating one" \
+  node tools/audit_step_isolation.mjs --self-test
+
+selftest "…and the measurement's own readers still parse what check.sh declares" \
+  node tools/measure_step_isolation.mjs --self-test
+
 # A QUEUE LINE THAT STILL NAMES A FINISHED BLOCKER. T-0464 closed on 2026-09-14
 # (#1257) and the three lines that LEAD South Through Time — T-0465, T-0466,
 # T-0467 — all went on reading `blocked_on: T-0464` the next day. Nothing had to

@@ -7,9 +7,10 @@
   "value": "1820",
   "confidence": "inferred",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "'At what time Caldwell took up his residence near Fort Dearborn is not definitely known, but probably about the year 1820.' The word 'probably' is the source's and the grade carries it.",
+  "note": "'At what time Caldwell took up his residence near Fort Dearborn is not definitely known, but probably about the year 1820.' The word 'probably' is the source's and the grade carries it. A SECOND COMPILATION PRINTS THE YEAR FLAT, AND THE GRADE STILL DOES NOT MOVE. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. Row bk_mose1_as_006 reads 'Caldwell, Billy', nativity Michigan, YEAR 1820, remarks 'Paid taxes in 1825, voted in 1826'. Where Andreas hedges with 'probably', the table prints 1820 in a year column with no hedge in it. THAT IS NOT ENOUGH TO PROMOTE THIS FIELD and it is deliberately not promoted: an 1895 compilation working from Hurlbut is not an independent witness to a date of 1820, and a hedge answered by a table is still a hedge. What it is worth is recorded and no more. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here.",
   "precision": "year"
  },
  "party_size_on_arrival": {
@@ -21,9 +22,10 @@
   "value": "Detroit; his father an Irish officer in the British army, his mother Potawatomi",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "Andreas states both parents, the birthplace and the Jesuit schooling."
+  "note": "Andreas states both parents, the birthplace and the Jesuit schooling. Row bk_mose1_as_006 prints his nativity as Michigan, agreeing with the Detroit this field already names from Andreas and adding nothing to it."
  },
  "reason_for_coming": {
   "value": "The country trade at the forks",

@@ -7,9 +7,10 @@
   "value": "1816",
   "confidence": "inferred",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "NOT DATED AND BOUNDED FROM ABOVE. 'It is not known just when Robinson settled in Chicago, but he had been here, at least two seasons, and with Antoine Ouilmette had cultivated the field belonging to the fort, raising thereon corn, when Captain Bradley arrived to rebuild Fort Dearborn in 1816.' Two seasons before 1816 would put him here by 1814; 1816 is the year the source actually fixes and is the conservative reading. THE SOURCE'S OWN WORDS ARE 'IT IS NOT KNOWN' and the grade says so.",
+  "note": "NOT DATED AND BOUNDED FROM ABOVE. 'It is not known just when Robinson settled in Chicago, but he had been here, at least two seasons, and with Antoine Ouilmette had cultivated the field belonging to the fort, raising thereon corn, when Captain Bradley arrived to rebuild Fort Dearborn in 1816.' Two seasons before 1816 would put him here by 1814; 1816 is the year the source actually fixes and is the conservative reading. THE SOURCE'S OWN WORDS ARE 'IT IS NOT KNOWN' and the grade says so. AN INDEPENDENT TABLE PRINTS THE YEAR THIS CARD'S OWN REASONING ALREADY IMPLIES, AND THE VALUE STILL DOES NOT MOVE. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. Row bk_mose1_as_029 reads 'Robinson, Alex', YEAR 1814, remarks 'Paid taxes in 1825, voted in 1826 and 1830' — three civic acts at three dates, all three of which this card already holds, which is what makes the books crosswalk call it the strongest merge in its pass. 1814 IS EXACTLY TWO SEASONS BEFORE 1816, which is the interval Andreas's sentence gives and the interval this field was bounded from. THE VALUE IS LEFT AT 1816 ON PURPOSE: this field is a bound and says so, the table is an 1895 compilation at second hand, and replacing a stated upper bound with a tier-3 year would trade a defensible shape for a sharper number. The agreement is what is recorded. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here.",
   "precision": "year"
  },
  "party_size_on_arrival": {
@@ -21,9 +22,10 @@
   "value": "Mackinaw; his father a Scots trader, his mother an Ottawa woman",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "Andreas states both parents and the birthplace, and the route by way of the St Joseph in Michigan, where he traded and married before coming here."
+  "note": "Andreas states both parents and the birthplace, and the route by way of the St Joseph in Michigan, where he traded and married before coming here. THE SETTLERS TABLE'S NATIVITY CELL FOR HIM IS NOT A NATIVITY AND IS REFUSED AS WHAT IT IS. Row bk_mose1_as_029 prints 'Indian Chief' in the column where a birthplace belongs — an office set in a nativity cell. It says nothing about where he was born, it does not touch the Mackinaw this field carries from Andreas, and it is recorded here so that a later pass does not read the cell as a place."
  },
  "reason_for_coming": {
   "value": "The country trade at the forks",
