@@ -42,11 +42,9 @@
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
 T-1254 — Migrate the external structured role evidence — newspaper gazetteer, 1839 directory and civic register, 1843/1844 identity master — with each role's stated place and employer, and publish the migration table
 T-1297 — Rule the 718 name-on-a-roll units: the civic poll, voter and Black Hawk War lists, the 1830 census heads and the unruled directory entries
-T-1298 — Rule the 1,094 remaining units: the resident-pass reserved people, the newspaper person units, the church register entries, the non-person book readings and the one genealogytrails unit
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
-T-1290 — Close the 1840 census reading to the standard already set, and record the residue as an accepted gap rather than nine more leaf tickets
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1159 — Export the borderline roster: every name the research read and withheld from 1835 — single-source, refused, surname-only, uncertain presence, letter-list-only — with its source, reason and re-admission class, so reconstruction can name real people before it invents any
 T-1160 — Profile the known population of 1 July 1835: sex, age, origin, arrival date and reason, roles, household composition, lodging, division and presence for every attested and inferred person, per attribute and per tier, as a generated report and an in-app card

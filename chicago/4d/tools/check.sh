@@ -2489,6 +2489,18 @@ step "the land-sale rulings re-derive from the register and the crosswalk (T-129
 selftest "…and each of its rules still fires on the row it is for" \
   python3 tools/spend_land_sales_rulings.py --self-test
 
+# T-1298. The remainder of T-1236 — the resident-pass reservations, the newspaper person,
+# notice, event, shipping and price units, the church register entries, the non-person book
+# readings and the one Genealogy Trails reading — ruled across five derived registers on the
+# same terms. The corpus they cover is fixed by `natural_disposition`, the derivation that
+# reads no ruling register at all, so writing them cannot change what they must cover; this
+# gate is the proof that they still re-derive from the readings as committed.
+step "the remainder rulings re-derive from their five corpora (T-1298)" \
+  python3 tools/spend_remainder_rulings.py --check --quiet
+
+selftest "…and each of its rules still fires, and hands on only to live work" \
+  python3 tools/spend_remainder_rulings.py --self-test
+
 # T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
 # RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
 # of the tree at the moment the cohort was fixed. The reservation is re-derived and must
@@ -2631,6 +2643,20 @@ step "the letter-list collision report still describes the tree" \
 
 selftest "…and its two readings of a printed name are still two" \
   python3 tools/report_letter_list_collisions.py --self-test
+
+# T-1290. The 1840 census is CLOSED for the 1835 reconstruction and what closed it is a
+# residue table: eight leaf-by-leaf tickets folded into one statement of what did not
+# settle, on which leaf, against which competing reading, and why. A stated gap is a
+# finished answer — but only while it still describes the tree. Every figure in that
+# table is resolved out of the committed page files at render time, so a leaf re-read
+# afterwards either moves the report or turns this red. The rot it closes is the one
+# T-0926 already suffered: an argument resting on 15 of 29 figures reading `inferred`,
+# on a tree that carries 17.
+step "the 1840 residue table still describes the leaves it closed" \
+  python3 tools/report_census_1840_residue.py --check
+
+selftest "…and its figures still come off the page files, not out of the prose" \
+  python3 tools/report_census_1840_residue.py --self-test
 
 # T-1008. And the ledger that puts T-0424's 170 printed lines beside T-0310's cohort,
 # line by line. It is DERIVED — from the roster, from the extractions of the return's
