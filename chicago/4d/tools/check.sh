@@ -3681,6 +3681,30 @@ step "the trade-census gap is spent from the layers that hold it, and nobody is 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/trade_census_spend_1835.py --self-test
 
+# T-1293, WHICH FOLDS T-1161 THROUGH T-1165. The step above compares the town to ONE
+# count of the trades. This is the whole model the reconstruction bands spend: population,
+# occupations, households, lodging and arrival, each figure a RANGE with its method and a
+# named comparandum, derived from files this gate already holds — the town census, the
+# authored roof programme, the T-1006 crosswalk, the 1840 composition and the Old Settlers
+# roll. It reads no page and it names nobody; `--self-test` refuses a build that does.
+#
+# WHY A GATE AND NOT A DOCUMENT. Every figure is a function of a file that MOVES: the
+# arrival distribution is recomputed whenever the resident layer is, and the population
+# floor is derived from it. Left ungated, the model would go quietly stale against its own
+# inputs while reading as a finished decision, which is the failure the order book (T-1166)
+# can least afford — it is the quota bands 3-5 build to.
+#
+# The refusals worth knowing: an inverted range, a figure with no method or no file behind
+# it, a point reading outside its own bounds, a section that takes more than one sentence
+# to say what it is not claiming, and an EMPTY arrival distribution — which would otherwise
+# return the November ceiling at both ends and stop being a range while still looking like
+# one.
+step "the 1835 town model re-derives, and every figure is bounded and says what it rests on" \
+  python3 tools/model_town_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/model_town_1835.py --self-test
+
 # T-0440. A house is minted from whichever printing the corpus carries first, and it took
 # `placement` and `street` from it — so a standing advertisement that ran without an
 # address in its first week and with one afterwards stood at `{"class": "none"}` for good
@@ -3790,6 +3814,29 @@ step "the location spend re-derives: no placement past its evidence, four retent
 
 selftest "…and its own assertions still fire when broken" \
   python3 tools/location_spend.py --self-test
+
+# T-1160. THE PROFILE OF THE KNOWN POPULATION, held to the layer it is read from.
+#
+# The owner asked for a population analysis of the known people before anything is
+# reconstructed, and a profile is exactly the kind of document that rots quietly: the
+# resident layer moves under it every time a mint runs, and a markdown table of
+# percentages cannot say that it has. So the numbers live in
+# `data/reconstruction/1835_population_profile.json`, the markdown is rendered FROM that
+# json, and this step re-derives both from `data/residents/` and refuses a mismatch —
+# which means a resident pass that changes the layer and does not re-run `--build` is
+# red here rather than published wrong.
+#
+# It also holds the two judgements the profile makes. `REASON_RULES` buckets a stated
+# reason for coming under a controlled term, and an unmatched reason is REFUSED rather
+# than swept into an `other` row, so a new reason cannot fall silently through the axis.
+# And the closing section — "what the town should have held" — is asserted to carry NO
+# NUMBERS: the quantities belong to T-1293's model and T-1166's order book, and a figure
+# typed into the profile would be a second, unsourced answer to the same question.
+step "the 1835 population profile re-derives from the resident layer, on every axis" \
+  python3 tools/profile_population_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/profile_population_1835.py --self-test
 
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names

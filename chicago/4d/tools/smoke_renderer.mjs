@@ -11777,8 +11777,9 @@ for (const [label, viewport, touch] of [
       && goThere.cardClosed,
       JSON.stringify(goThere));
 
-    // T-0710: the Evidence hub — seven tiles whose counts are their mounts'
-    // entries, a topic that searches, and a way back.
+    // T-0710: the Evidence hub — eight tiles whose counts are their mounts'
+    // entries, a topic that searches, and a way back. The eighth is T-1160's
+    // population profile, whose "entries" are the axes it is profiled on.
     await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
     await clickChrome('.panel-tab[data-tab="evidence"]');
     const hub = await page.evaluate(async () => {
@@ -11818,8 +11819,8 @@ for (const [label, viewport, touch] of [
         topic: api.evidenceHub.topic, backHidden: document.getElementById('panel-back').hasAttribute('hidden') };
       return out;
     });
-    check(`${label}: the Evidence hub shows seven topics, each counting its own entries`,
-      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 7
+    check(`${label}: the Evidence hub shows eight topics, each counting its own entries`,
+      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 8
       && hub.tiles.every((t) => Number.isFinite(t.count) && t.count > 0 && t.count === t.mount && t.title && t.title === t.h3),
       JSON.stringify(hub.tiles.map((t) => `${t.id} ${t.count}/${t.mount}`)));
     check(`${label}: a topic opens with the hub gone, and its search narrows the list and says so`,
@@ -12544,7 +12545,7 @@ for (const [label, viewport, touch] of [
       const out = [];
       api.hud.setPanel(true);
       api.hud.selectTab('evidence');
-      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain', 'population']) {
         api.evidenceHub.showTopic(id);
         await new Promise((r) => setTimeout(r, 30));
         out.push(measure(id));
@@ -12559,8 +12560,8 @@ for (const [label, viewport, touch] of [
       return out;
     });
     const unfit = mountFit.filter((m) => !(m.client > 0 && m.scroll <= m.client && m.client <= m.panel));
-    check(`${label}: all seven evidence mounts wrap inside their panel rather than clipping`,
-      mountFit.length === 7 && unfit.length === 0,
+    check(`${label}: all eight evidence mounts wrap inside their panel rather than clipping`,
+      mountFit.length === 8 && unfit.length === 0,
       unfit.length ? unfit.map((m) => `${m.id} ${m.scroll}/${m.client} in ${m.panel}`).join('; ')
         : mountFit.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 
@@ -12604,7 +12605,7 @@ for (const [label, viewport, touch] of [
       const rows = [];
       api.hud.setPanel(true);
       api.hud.selectTab('evidence');
-      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain', 'population']) {
         api.evidenceHub.showTopic(id);
         await new Promise((r) => setTimeout(r, 30));
         rows.push(stress(id));
@@ -12618,8 +12619,8 @@ for (const [label, viewport, touch] of [
       return rows;
     });
     const clipped = mountStress.filter((m) => !(m.client > 0 && m.leaves > 0 && m.scroll <= m.client));
-    check(`${label}: a run longer than the column breaks inside all seven mounts, not past them`,
-      mountStress.length === 7 && clipped.length === 0,
+    check(`${label}: a run longer than the column breaks inside all eight mounts, not past them`,
+      mountStress.length === 8 && clipped.length === 0,
       clipped.length ? clipped.map((m) => `${m.id} ${m.scroll}/${m.client} on ${m.leaves} leaves`).join('; ')
         : mountStress.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 

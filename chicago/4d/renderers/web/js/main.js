@@ -45,6 +45,7 @@ import { createWharves } from './wharves.js';
 import { createBoats } from './boats.js';
 import { createWells } from './wells.js';
 import { mountExclusions } from './exclusions.js';
+import { mountPopulation } from './population.js';
 import { mountFauna } from './fauna.js';
 import { mountPlants } from './plants.js';
 import { mountResidents } from './residents.js';
@@ -1719,6 +1720,18 @@ async function boot() {
   // provenance card shows the claim carrying the doubt; the card is where a
   // visitor who walked up to that building would think to ask.
   popup.setOpenQuestions(api.exclusions.uncertain);
+
+  // …and the shape of what is known about the people themselves (T-1160). The
+  // walkthrough can stand a visitor next to a named resident; only this says how
+  // few of them there are, how thin each attribute is, and what the reconstruction
+  // bands below still have to supply. Rendered from the generated profile, so a
+  // resident pass that moves the layer moves this panel too.
+  api.population = await mountPopulation({
+    mount: document.getElementById('population'),
+    noteMount: document.getElementById('population-note'),
+    dataBase: bases.dataBase,
+    problems,
+  });
 
   // Apply the visitor's stored settings before the first frame, so nothing
   // visibly snaps a moment after load.

@@ -1,7 +1,7 @@
 ---
 id: T-1160
 title: Profile the known population of 1 July 1835: sex, age, origin, arrival date and reason, roles, household composition, lodging, division and presence for every attested and inferred person, per attribute and per tier, as a generated report and an in-app card
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
+closed: 2026-09-17
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 8:44:31 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-18T02:32:41.854Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35296201573
 ---
 
 The owner, 2026-09-17: *"do a population analysis of the known population … analyze
