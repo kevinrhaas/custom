@@ -1,7 +1,7 @@
 ---
 id: T-1171
 title: Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-16
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 0
 claimed_by: run 9/18/2026, 8:01:51 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T15:08:57.347Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35347479721
 ---
 
