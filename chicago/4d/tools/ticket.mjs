@@ -1228,6 +1228,42 @@ const flag = (name) => { const i = args.indexOf(`--${name}`); return i < 0 ? nul
 const has = (name) => args.includes(`--${name}`);
 const tickets = loadAll();
 
+// CLOSING THE LAST CHILD OF A SPLIT KILLS THE PARENT, AND NOTHING SAID SO.
+//
+// A split parent counts as live work only while a child is still open (`split_live`);
+// close the last one and the parent is spent, and every research unit that defers to
+// it by id is stranded exactly as it would be behind a done ticket (T-1237). The
+// ledger refuses those units, so the re-derivation fails — but it fails on the
+// MERGE, in a tool the closing PR never runs, long after the author has stopped
+// looking. The author cannot see it on their own branch either: there the parent
+// still has an open child, which is the one they are closing.
+//
+// Three times on 2026-09-18: #1452 closed T-1313 and stranded nine units on T-1170;
+// #1454 closed T-1311 and stranded seven on T-1180. Each cost a full re-derive to
+// discover and a merge round to repair.
+//
+// This does not refuse the close — the close is usually right, and what the stranded
+// units need is a new owner, which is a judgement. It says so at the moment the
+// author can still act on it, and names what to look for.
+function warnIfThisClosedASplit(closed, all) {
+  const parentId = closed.parent;
+  if (!parentId) return;
+  const parent = all.find((t) => t.id === parentId);
+  if (!parent || parent.state !== 'split') return;
+  const siblings = all.filter((t) => t.parent === parentId);
+  const live = siblings.filter((t) => WORKABLE.includes(t.state));
+  if (live.length) return;
+  console.log('');
+  console.log(`  NOTE: ${closed.id} was the last open child of ${parentId}, which is `
+    + `\`split\`. A split parent whose children have all closed is SPENT WORK, and any`);
+  console.log('  research unit that defers to it by id is now stranded (T-1237). That fails');
+  console.log('  the re-derivation, in a tool this PR does not run — so check it here:');
+  console.log('');
+  console.log(`      grep -rn '"${parentId}"' chicago/4d/tools/*.py chicago/4d/data/research/spend_rulings.json`);
+  console.log('');
+  console.log('  Anything that hands units to it needs a LIVE owner before this merges.');
+}
+
 switch (cmd) {
   /**
    * THE BUDGET (T-1295). Filing is free and working is not, so an unbudgeted `new` is the
@@ -1405,6 +1441,7 @@ switch (cmd) {
     writeTicket(t); queueRemove(t.id); generateBoard(loadAll());
     releaseClaimLock(t.id);
     console.log(`${t.id} done (PR #${t.pr}) — removed from QUEUE`);
+    warnIfThisClosedASplit(t, loadAll());
     break;
   }
   case 'block': {
@@ -1644,10 +1681,28 @@ switch (cmd) {
     const mineIds = new Set(mine.map(queueId).filter(Boolean));
     const out = [...mine];
     const restored = [];
+    const skipped = [];
+    // …AND A LINE THE BRANCH CLOSED IS NOT A LINE THE BRANCH LOST.
+    //
+    // The base's queue is the base's view of what is open. A branch that CLOSES a
+    // ticket removes its line, and to this reconcile that is indistinguishable from
+    // the loss it exists to repair — so it put the line back, and `check` then failed
+    // the branch for queueing a ticket the same branch had marked done. Measured on
+    // #1454 (T-1311): reconcile restored two lines, one genuinely lost and one the PR
+    // had just closed. The branch's own ticket files are the authority on state here,
+    // exactly as they are for `check`, so a base line whose ticket is no longer
+    // workable is reported and left out rather than restored.
+    const workable = new Set(tickets.filter((t) => WORKABLE.includes(t.state)).map((t) => t.id));
     let prev = null;
     for (const line of baseLines) {
       const id = queueId(line);
       if (!id) continue;
+      if (!mineIds.has(id) && !workable.has(id)) {
+        const t = tickets.find((x) => x.id === id);
+        skipped.push(`${id} (${t ? t.state : 'no ticket file'})`);
+        prev = id;
+        continue;
+      }
       if (!mineIds.has(id)) {
         const at = prev === null ? -1 : out.findIndex((l) => queueId(l) === prev);
         if (at >= 0) { out.splice(at + 1, 0, line); restored.push(`${id} (after ${prev})`); }
@@ -1660,6 +1715,11 @@ switch (cmd) {
       prev = id;
     }
     const lost = restored.length;
+    if (skipped.length) {
+      console.log(`queue reconcile: ${skipped.length} line(s) of the base were NOT restored — `
+        + 'this branch closed them:');
+      for (const row of skipped) console.log(`  ${row}`);
+    }
 
     // AND THE LABEL FOLLOWS THE TICKET, because `check` already rules that it does:
     // "the ticket wins; rewrite the line as …". A title edited on the base while a branch
