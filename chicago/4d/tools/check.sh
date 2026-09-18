@@ -2501,6 +2501,18 @@ step "the remainder rulings re-derive from their five corpora (T-1298)" \
 selftest "…and each of its rules still fires, and hands on only to live work" \
   python3 tools/spend_remainder_rulings.py --self-test
 
+# T-1297. The same instrument over the name-on-a-roll body: the 1833-1835 poll and tax
+# lists, the 1832 Black Hawk War enrollments, the 1830 heads of family, and the town
+# findings of Andreas, Norris and Fergus that describe a year at or before the scene. 718
+# notes nobody typed, derived from the rolls as read and the crosswalks as adjudicated, so
+# the same claim needs the same check: a drifted derived register reads as judgement and
+# is not.
+step "the name-on-a-roll rulings re-derive from the rolls and the crosswalks (T-1297)" \
+  python3 tools/spend_name_on_a_roll_rulings.py --check --quiet
+
+selftest "…and each of its rules still fires on the row it is for" \
+  python3 tools/spend_name_on_a_roll_rulings.py --self-test
+
 # T-0764. What the eight gates below assert, and what they do not: a cohort manifest is a
 # RESERVATION — these ids, in this order, each still a real named person — plus a SNAPSHOT
 # of the tree at the moment the cohort was fixed. The reservation is re-derived and must
