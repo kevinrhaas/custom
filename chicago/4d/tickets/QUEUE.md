@@ -49,7 +49,7 @@
 T-1333 — The closing convergence rebuild: index.json, the sidecars, the town census, the published residents and the final resident audit, with the exact household, person and grade deltas and every retired id's redirect, and acceptances 3, 5 and 9 stated as measured deltas rather than spot readings
 T-1334 — The letter-list mint's drift and the one-letter-apart identity rule: acceptance 1 and the last slot of acceptance 2, which are one question and are read by T-1222 — this child holds the deferral so no research unit points at a spent parent
 T-1317 — Spend the books' arrival units: the dated arrivals, nativities and presence bounds Hubbard's autobiography, Andreas and Moses and Kirkland state about people this town holds, onto the cards they name
-T-1329 — Spend the 1830 schedule lines, the church register sponsorships and the press notices onto the cards they name, each as a dated bound on a held resident's presence and never more
+T-1338 — Spend the 128 press notices onto the cards they name, once a newspaper claim unit carries a file-qualified ledger id: the 22 raw claim ids these units share would close 937 other units as asserted
 T-1171 — Give the remaining attested and inferred heads reconstructed families from the household model: wives, children, servants and apprentices drawn by the head's age, trade and household type, seeded, named from the pools, every member marked reconstructed
 T-1172 — Re-admit the borderline roster as reconstructed residents under their own read names: fix the uncertain presences, mint the single-source and 1834-return names, back-project the biographied later names — every re-admission with its evidence limit and its reopen rule
 # --- 3B. RECONSTRUCT RESIDENTS — fill the model: trades, women and children, lodgers, garrison, cohorts, transients
@@ -186,11 +186,5 @@ T-1274 — Move the renderers and tools off the singular lives_at/works_at once 
 T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
 T-1315 — Spend the three dated birth and age enrichments T-1301 routed to T-1168: robinson_alexander, kimberly_edmund_s and maxwell_philip each carry a sourced birth date or age no field held when the reading was made, and both fields exist now
 T-1335 — Spend the kin the church registers, the papers' family columns and the completed resident enrichments state — the 166 units T-1320's book pass was never scoped for, plus the two book relatives it left unruled: ties written onto held cards, nobody minted
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 T-1331 — The placeholder-label smoke check reads a field that does not exist, so parts 2-3 have been permanently red on a typo
-
-# --- MERGED IN, NOT YET PLACED. These arrived on the branch being merged and were
-# --- appended here rather than guessed into a band. Rank them or leave them.
 

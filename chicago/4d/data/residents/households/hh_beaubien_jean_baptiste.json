@@ -424,6 +424,30 @@
      "note": "A DATED APPEARANCE IN A LAND REGISTER, AND NOTHING FURTHER. The Residence column reads UNKNOWN, which places this purchaser nowhere: the register did not record where the purchaser lived. A purchase is a TRANSACTION and not a RESIDENCE, so `here_by` is null: nothing in this register says this person was at Chicago on or before any day. Its only column that speaks to residence reads a county, a state, or UNKNOWN, and never a town. THE IDENTITY IS INFERRED AND THE REGISTER IS NOT. The date, the tract and the purchase number are the register's own, indexed by the Illinois State Archives from the land offices' sale volumes. What no source states is that the purchaser is the person on this card: data/research/land_sales/resident_crosswalk.json joins BEAUBIEN J B to this card on a name, upheld under T-0990, on the ground “initial_agrees”. A bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
     }
    ],
+   "appearance_bounds": [
+    {
+     "bound_kind": "district_presence",
+     "corpus": "census_1830",
+     "source_title": "Fifth census of the United States, 1830 — the division headed 'Peoria & Putnam Counties & Territory attached'",
+     "record_id": "census1830_n580_036",
+     "as_read": "John B Beaubien",
+     "role": "head_of_family",
+     "locator": "leaf n580 entry 36, peoria_putnam_1830_leaves_580_582.txt line 55",
+     "describes_date": "1830",
+     "date_confidence": "documented",
+     "precision": "year",
+     "reaches": "1830-12-31",
+     "here_by": null,
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "census_1830_peoria_county_chicago_precinct"
+     ],
+     "identity_rule": "Surname and given name both agree between the 1830 reading 'John B Beaubien' and the town person 'Col. Jean Baptiste Beaubien' in household hh_beaubien_jean_baptiste. The 1830 line is carried as EARLIER EVIDENCE for that person and grades nothing on its own.",
+     "note": "A BOUND ON PRESENCE IN A DISTRICT, AND NOT AT CHICAGO. The division is headed 'Peoria & Putnam Counties & Territory attached' and the schedule never writes the word Chicago — the Fox River and Du Page settlements are inside it — so this row bounds presence in that district in the summer of 1830 and puts no body in the town, which is why `here_by` is null. The record's own note says it first: 'Presence in that district in the summer of 1830; not a Chicago residence, and never an 1835 one'. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT: the leaf is read scan_verified off the federal schedule, and what no source states is that the head of family on it is the person on this card. data/research/census_1830/resident_crosswalk.json joins them on a name agreement and says in terms that it grades nothing on its own. No grade moves here and the identity is neither reopened nor hardened."
+    }
+   ],
    "note": "HE CAME TO CHICAGO AND BOUGHT THE CABIN AND CULTIVATED FIELD SOUTH OF THE OLD FORT IN 1812, and the house remained his residence until 1839. He was a trader at Milwaukee as early as 1800. He was one of the twenty-eight electors of 10 August 1833 and took six votes for trustee. HIS TWO MARRIAGES ARE DOCUMENTED AND THEY ARE WHY THIS HOUSEHOLD IS FLAGGED: he married first Mah-naw-bun-no-quah, an Ottawa woman, the mother of his sons Charles Henry and Madore; and in 1812 he married Josette LaFramboise, daughter of Francois LaFramboise, of an influential French trading family. THE TOWN'S OWN ROLLS, 1833-1835 — CORROBORATION, NOT A GRADE. The early Chicago voter and tax lists held by the Illinois Regional Archives Depository name this person 2 times: Poll list of the first election of the Board of Trustees of the Town of Chicago, 10 August 1833 — “Beaubien, J. B.” (poll_1833_003, line 24); Poll list of 1835 — “Beaubien, Col. J. B.” (poll_1835_005, line 290). These are the town's own contemporary paper rather than a recollection of it, and each appearance says that a man of that name stood on that roll in that year — no more. The reading is twice mediated (Schulz's transcription, then Genealogy Trails' republication) and this project has not seen the IRAD originals. Under the ratified ladder (T-0513) the 1835 poll with a second independent source is attested, the 1835 poll alone or a 1833/1834 list with another source is inferred, and a single appearance with nothing else is a projected resident. This pass WRITES THE EVIDENCE AND MOVES NO GRADE — T-0515 applies the ladder against every source at once. Identity by the crosswalk's own rule: one resident of the surname 'Beaubien' agrees with the entry's forenames; 4 bearer(s) of the surname were considered. (data/research/civic/voter_crosswalk.json). THE FEDERAL LAND TRACT SALES — A PURCHASE, AND NEVER A RESIDENCE. The Illinois State Archives' Public Domain Land Tract Sales register enters this person 13 times, as “BEAUBIEN J B”, 1830-09-27 to 1830-09-29: 4 federal land entries — NFR2NEVO sec 29 T39N R14E; NFRNE sec 29 T39N R14E; NWFRPTNW sec 29 T39N R14E; NWFRPTNWVO sec 29 T39N R14E and 9 lots in the platted town — lot 1 of block 17 in the town the register codes CHIOT (L1B17CHIOT, as printed); lot 1 of block 18 in the town the register codes CHIOT (L1BL18CHIOT, as printed); lot 2 of block 17 in the town the register codes CHIOT (L2B17CHIOT, as printed); lot 3 of block 36 in the town the register codes CHIOT (L3BL36CHIOT, as printed); lot 4 of block 36 in the town the register codes CHIOT (L4BL36CHIOT, as printed); lot 6 of block 35 in the town the register codes CHIOT (L6BL35CHIOT, as printed); lot 7 of block 16 in the town the register codes CHIOT (L7B16CHIOT, as printed); lot 7 of block 17 in the town the register codes CHIOT (L7BL17CHIOT, as printed); lot 8 of block 17 in the town the register codes CHIOT (L8BL17CHIOT, as printed), 425.22 acres stated in all, for $2472.40 (ls0454, ls0455, ls0456, ls0457, ls0959, ls0960, ls0961, ls0962, ls0963, ls0964, ls0965, ls0966, ls0967). THE REGISTER'S OWN RESIDENCE COLUMN READS ILLINOIS, UNKNOWN on these rows: a county, a state or nothing, and never a town, which is why a purchase here places nobody. THE TOWN LOTS ARE THE PLAT ITSELF, AND THEY ARE NOT ACRES: Cook County's register describes them by lot and block in a platted town and gives them no section, no township and no acreage at all, so they add nothing to the acre figure above and $346.00 to the money. This project does not expand the register's town codes, so which addition a lot stands in is carried as the code and not as a name. It is still a purchase and it still places nobody. A purchase and nothing more. It dates and places a transaction; it proposes no residence, and under the ratified ladder it corroborates rather than mints. Identity by the crosswalk's own rule: BEAUBIEN J B matches Col. Jean Baptiste Beaubien: the forename names Col. Jean Baptiste Beaubien of the 8 people of this surname, and the forename agrees as an initial only. (data/research/land_sales/resident_crosswalk.json). This pass WRITES THE EVIDENCE AND MOVES NO GRADE. Under the ratified ladder (T-0513) a second independent source is what lifts a projected resident, and a land entry is a second source about a TRANSACTION rather than about who was living at Chicago on 1 July 1835 — a man may buy a quarter-section he never sees. T-0515 applies the ladder against every source at once; this pass hands it the evidence and not the verdict.",
    "resident_research": {
     "programme": "resident-research-2026",
@@ -591,6 +615,31 @@
    },
    "sources": [
     "andreas_1884_v1"
+   ],
+   "appearance_bounds": [
+    {
+     "bound_kind": "presence",
+     "corpus": "st_marys_baptisms",
+     "source_title": "St Mary's baptismal register, Chicago, 1833-1835, read off the deposited page images",
+     "record_id": "st_marys_bapt_1834_18_5_sponsor",
+     "as_read": "Josette Beaubien",
+     "role": "sponsor",
+     "locator": "image S3HT-DHG9-S1C, page 12, entry 18 of the 1834 series",
+     "describes_date": "1834-07-16",
+     "date_confidence": "documented",
+     "precision": "day",
+     "reaches": "1834-07-16",
+     "here_by": "1834-07-16",
+     "side_of_scene_date": "earlier",
+     "covers_scene_date": false,
+     "confidence": "inferred",
+     "sources": [
+      "st_marys_baptismal_register_1833_1835"
+     ],
+     "identity_rule": "data/research/church/st_marys_baptisms_crosswalk.json merges the register's 'Josette Laframboise Beaubien' into the residents layer's 'Josette LaFramboise Beaubien' under a written rule naming both spellings verbatim; the rule is read there and is not copied here.",
+     "identity_rule_source": "data/research/church/st_marys_baptisms_crosswalk.json — merges[] into 'Josette LaFramboise Beaubien'",
+     "note": "A BOUND ON PRESENCE AT CHICAGO, AND NOTHING FURTHER. The entry is dated 1834-07-16 at Chicago, Cook County, Illinois and this person stood at the font as sponsor, so the register places a body in the town no later than 1834-07-16. Under the evidence ladder ratified 2026-09-03 a source EARLIER than the scene date corroborates and dates and never promotes, and a source LATER than it does not promote either. THE IDENTITY IS INFERRED AND THE PAGE IS NOT. The entry is read scan_verified off the page image at `documented` confidence. What no source states is that the sponsor the register names is the person on this card: data/research/church/st_marys_baptisms_crosswalk.json merges the register's 'Josette Laframboise Beaubien' into the residents layer's 'Josette LaFramboise Beaubien' under a written rule, and a bound whose subject is inferred is an inferred bound. No grade moves here and the identity is neither reopened nor hardened."
+    }
    ],
    "note": "NAMED AND DATED IN THE SOURCE - married to J. B. Beaubien in 1812, daughter of Francois LaFramboise - and nothing places her in the household on 1 July 1835. She is written because a named wife of a named head is exactly the person this layer exists to record, and graded derived because the presence on the day is the reconstruction. The LaFramboise family is separately in the 1833 treaty schedules, where 'Joseph Laframboise and children' receive $1,000.",
    "resident_research": {

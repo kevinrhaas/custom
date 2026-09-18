@@ -3365,6 +3365,22 @@ step "…and each of those rulings is a bound on the card, not only a paragraph"
 selftest "…and a roll bounds a presence, a tax roll bounds property, and neither reaches the scene" \
   python3 tools/spend_civic_roll_bounds.py --self-test
 
+# T-1337. THE SAME HOP FOR TWO MORE CORPORA, AND THIS TIME NOT A LEGIBILITY PASS. T-1329
+# held 238 units — the 1830 Peoria & Putnam schedule, St Mary's and St Cyr's registers, and
+# the town's press — and only ten of them sat on a card in any form, so an identification
+# had to already stand before a bound could be written. Two did: the resident crosswalk's
+# 14 matched 1830 lines and the baptismal crosswalk's 13 merged register appearances. This
+# pass writes those 27 as `persons[].appearance_bounds[]`; an 1830 row bounds presence in a
+# DISTRICT and not at Chicago (`here_by: null` — the division never writes the word
+# Chicago), and three register appearances are dated after 1 July 1835, so they date an
+# appearance and bound nothing at the scene. The other 83 are refused by name in the ruling
+# registers, and the 128 press units went to T-1338 with the id collision that blocks them.
+step "…and the 1830 schedule and St Mary's register are bounds on the 21 cards they name" \
+  python3 tools/spend_appearance_bounds.py --check
+
+selftest "…and a district is not the town, a later appearance bounds nothing, and no kin tie is taken" \
+  python3 tools/spend_appearance_bounds.py --self-test
+
 # T-1332. THE SAME HOP, FOR THE LAND REGISTER, INTO THE SAME BLOCK. T-1296 ruled all 1,572
 # land-sale purchaser units and could not close 313 of them: the tract was entered on or
 # before 1 July 1835 and the T-0700 / T-0850 adjudication UPHELD the purchaser against a
