@@ -1,0 +1,122 @@
+{
+  "id": "biz_matthias_mason_co",
+  "register_id": "business_matthias_mason_co",
+  "name": "Matthias Mason & Co.",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "blacksmith",
+  "occupation": "blacksmith",
+  "goods": [
+    "Chains",
+    "Horse Shoes",
+    "Scythes",
+    "Shoes",
+    "blacksmith work",
+    "chains",
+    "horse shoes",
+    "horseshoes"
+  ],
+  "firm_styles": [
+    "Matthias Mason & Co.",
+    "Matthias Mason & Co"
+  ],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "Matthias Mason",
+      "person_id": "mason_matthias",
+      "register_person_id": "person_matthias_mason",
+      "role": "partner",
+      "from": "1833-11-26",
+      "to": "1834-12-10",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card mason_matthias (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1833_11_26#c020",
+        "chicago_democrat_1833_12_24#c003",
+        "chicago_democrat_1834_01_07#c008",
+        "chicago_democrat_1834_02_18#c010",
+        "chicago_democrat_1834_02_25#c006",
+        "chicago_democrat_1834_03_04#c015",
+        "chicago_democrat_1834_04_01#c012",
+        "chicago_democrat_1834_06_11#c013",
+        "chicago_democrat_1834_09_10#c013",
+        "chicago_democrat_1834_10_15#c007",
+        "chicago_democrat_1834_11_19#c008",
+        "chicago_democrat_1834_12_10#c007"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "mason_blacksmith_shop",
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1833-11-26",
+      "to": null,
+      "tier": "attested",
+      "basis": "The register matches this business onto the committed structure mason_blacksmith_shop on its occupants. mason_blacksmith_shop already stands and its occupants carries mason — 'Matthias Mason & Co.; blacksmiths'. The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    },
+    {
+      "kind": "unplaceable",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": false,
+      "from": "1834-06-11",
+      "to": "1834-09-10",
+      "tier": "inferred",
+      "basis": "An earlier anchor for this house, printed as “Graves' Tavern” and superseded by “the Tremont House”.",
+      "limit_reason": "A prose anchor the register did not resolve to a committed id; kept because the house moved and the move is dated."
+    }
+  ],
+  "dates": {
+    "opened": "1833-11-26",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1833-11-26, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1833-11-26",
+    "last_issue": "1834-12-10",
+    "copy_dates": [
+      "1833-11-26"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1833_11_26#c020",
+    "chicago_democrat_1833_12_24#c003",
+    "chicago_democrat_1834_01_07#c008",
+    "chicago_democrat_1834_02_18#c010",
+    "chicago_democrat_1834_02_25#c006",
+    "chicago_democrat_1834_03_04#c015",
+    "chicago_democrat_1834_04_01#c012",
+    "chicago_democrat_1834_06_11#c013",
+    "chicago_democrat_1834_09_10#c013",
+    "chicago_democrat_1834_10_15#c007",
+    "chicago_democrat_1834_11_19#c008",
+    "chicago_democrat_1834_12_10#c007"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

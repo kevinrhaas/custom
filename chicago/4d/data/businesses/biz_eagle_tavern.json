@@ -1,0 +1,82 @@
+{
+  "id": "biz_eagle_tavern",
+  "register_id": "business_eagle_tavern",
+  "name": "Eagle Tavern",
+  "provenance": "compiled_from_register",
+  "type": [
+    "tavern"
+  ],
+  "trade": "tavern and hotel",
+  "occupation": "hotel_keeper",
+  "goods": [
+    "Chairs",
+    "Harnesses",
+    "Saddles"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "P. J. Carli",
+      "person_id": "carli_paul_j",
+      "register_person_id": "person_p_j_carli",
+      "role": "proprietor",
+      "from": "1834-06-18",
+      "to": "1834-09-10",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card carli_paul_j (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_06_18#c013",
+        "chicago_democrat_1834_09_10#c014"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "unplaceable",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1834-06-18",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The register resolved no place for this house at the scene date.",
+      "limit_reason": "No street the model holds. The paper gives no anchor."
+    }
+  ],
+  "dates": {
+    "opened": "1834-06-18",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-06-18, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-06-18",
+    "last_issue": "1834-09-10",
+    "copy_dates": [
+      "1834-06-11"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_06_18#c013",
+    "chicago_democrat_1834_09_10#c014"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

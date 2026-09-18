@@ -1,0 +1,76 @@
+{
+  "id": "biz_b_jones_storage_and_forwarding",
+  "register_id": "business_b_jones_storage_and_forwarding",
+  "name": "B. Jones, storage and forwarding",
+  "provenance": "compiled_from_register",
+  "type": [
+    "storage_and_forwarding"
+  ],
+  "trade": "storage, forwarding and commission",
+  "occupation": "forwarding_and_commission",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "B. Jones",
+      "person_id": "jones_benjamin",
+      "register_person_id": "person_b_jones",
+      "role": "proprietor",
+      "from": "1833-11-26",
+      "to": "1833-11-26",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card jones_benjamin (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1833_11_26#c014"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "h_jones_store",
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1833-11-26",
+      "to": null,
+      "tier": "attested",
+      "basis": "The register matches this business onto the committed structure h_jones_store on its occupants. h_jones_store already stands and its occupants carries jones — 'Jones; grocer and provision merchant'. The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    }
+  ],
+  "dates": {
+    "opened": "1833-11-26",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1833-11-26, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1833-11-26",
+    "last_issue": "1833-11-26",
+    "copy_dates": [
+      "1833-11-26"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1833_11_26#c014"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

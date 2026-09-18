@@ -189,6 +189,25 @@ DRAWN_AT_LOAD = {
     "yard": "yard.js",
 }
 
+# AND THE LAYERS THAT CARRY AN INDEX AND ARE NOT DRAWN AT ALL (T-1310). The test above
+# reads `data/*/index.json` and was right that a manifest means a layer; it was not
+# right that a layer means the renderer draws it. A directory under `data/` needs an
+# index for the reason every one of them does — a static host cannot be globbed — and
+# that says nothing about whether anything on screen consumes it. `data/businesses/` is
+# the first of these: 196 compiled records of who traded where, read by the research
+# tools and by tools/validate.py, and drawn by nothing. It owes no generator half
+# because there is no geometry it could generate.
+#
+# This is a third class and not a loophole: a layer must still be NAMED in one of the
+# two tables before the gate goes green, so a renderer-drawn layer that arrives without
+# a module still fails here. What changed is that "not drawn" became a thing a layer is
+# allowed to be, with its reason written next to it, which is what the refusal's own
+# sentence asked for.
+NOT_DRAWN_AT_LOAD = {
+    "businesses": "compiled business records (T-1310); read by the research tools and "
+                  "tools/validate.py, drawn by no renderer module and baked into no asset",
+}
+
 
 def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -270,12 +289,13 @@ def layer_debt() -> tuple[list, list]:
 
     # Derived and named, held against each other. See the module docstring.
     found = {p.parent.name for p in sorted(DATA.glob("*/index.json"))}
-    for extra in sorted(found - set(DRAWN_AT_LOAD)):
+    named = set(DRAWN_AT_LOAD) | set(NOT_DRAWN_AT_LOAD)
+    for extra in sorted(found - named):
         problems.append(f"data/{extra}/index.json is a manifested layer this file "
-                        f"does not name; it is either a tenth drawn layer — in which "
-                        f"case the reading below is out of date — or it is baked, in "
-                        f"which case say so here")
-    for gone in sorted(set(DRAWN_AT_LOAD) - found):
+                        f"does not name; it is a drawn layer — in which case the reading "
+                        f"below is out of date — or it is baked, or nothing draws it at "
+                        f"all, and this file has to say which")
+    for gone in sorted(named - found):
         problems.append(f"data/{gone}/index.json is named here and is not in the "
                         f"tree, so this reading counts a layer that no longer exists")
 

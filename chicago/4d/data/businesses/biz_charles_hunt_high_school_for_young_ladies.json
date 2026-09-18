@@ -1,0 +1,74 @@
+{
+  "id": "biz_charles_hunt_high_school_for_young_ladies",
+  "register_id": "business_charles_hunt_high_school_for_young_ladies",
+  "name": "Charles Hunt, High School for Young Ladies",
+  "provenance": "compiled_from_register",
+  "type": [
+    "school"
+  ],
+  "trade": "school",
+  "occupation": "schoolteacher",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Hunt, C[harle]s",
+      "person_id": "hunt_charles_cotesworth_pinckney",
+      "register_person_id": "person_hunt_c_harle_s",
+      "role": "proprietor",
+      "from": "1835-08-12",
+      "to": "1835-08-12",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card hunt_charles_cotesworth_pinckney (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_08_12#c007"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "unplaceable",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1835-08-12",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The register resolved no place for this house at the scene date.",
+      "limit_reason": "Excluded from the scene-date town: chicago_democrat_1835_08_12#c007 announces this house opening on 1835-08-17, after the scene date — “The first te[rm] will co[m]mence Monday August 17”. The paper names the date in full. Hunt 'proposes to establish' the school and asks for names to be left beforehand, so nothing was teaching on 1 July 1835. No action; the record is kept so the exclusion can be argued with."
+    }
+  ],
+  "dates": {
+    "opened": "1835-08-17",
+    "closed": null,
+    "precision": "exact",
+    "tier": "attested",
+    "basis": "The paper announces the opening: chicago_democrat_1835_08_12#c007 (1835-08-17)."
+  },
+  "evidence": {
+    "first_issue": "1835-08-12",
+    "last_issue": "1835-08-12",
+    "copy_dates": []
+  },
+  "present_at_scene_date": false,
+  "exclusion": "opening_announced_after_scene_date",
+  "exclusion_note": "chicago_democrat_1835_08_12#c007 announces this house opening on 1835-08-17, after the scene date — “The first te[rm] will co[m]mence Monday August 17”. The paper names the date in full. Hunt 'proposes to establish' the school and asks for names to be left beforehand, so nothing was teaching on 1 July 1835.",
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1835_08_12#c007"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

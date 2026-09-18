@@ -1,0 +1,77 @@
+{
+  "id": "biz_john_watkins",
+  "register_id": "business_john_watkins",
+  "name": "John Watkins",
+  "provenance": "compiled_from_register",
+  "type": [
+    "book_store",
+    "school"
+  ],
+  "trade": "school books, and a school room",
+  "occupation": "schoolteacher",
+  "goods": [
+    "School Books"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "John Watkins",
+      "person_id": "watkins_john",
+      "register_person_id": "person_john_watkins",
+      "role": "proprietor",
+      "from": "1834-07-09",
+      "to": "1834-07-09",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card watkins_john (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_07_09#c017"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "watkins_school_house",
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1834-07-09",
+      "to": null,
+      "tier": "attested",
+      "basis": "The register matches this business onto the committed structure watkins_school_house on its occupants. watkins_school_house already stands and its occupants carries watkins — 'John Watkins; schoolmaster; occupants on the scene date unattested'. The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    }
+  ],
+  "dates": {
+    "opened": "1834-07-09",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-07-09, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-07-09",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_07_09#c017"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

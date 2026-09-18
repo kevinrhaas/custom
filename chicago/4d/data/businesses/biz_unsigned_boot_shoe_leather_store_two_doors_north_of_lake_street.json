@@ -1,0 +1,68 @@
+{
+  "id": "biz_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street",
+  "register_id": "business_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street",
+  "name": "[unsigned] Boot, Shoe & Leather Store, two doors north of Lake street",
+  "provenance": "compiled_from_register",
+  "type": [
+    "store"
+  ],
+  "trade": "boot, shoe and leather store",
+  "occupation": "shoemaker",
+  "goods": [
+    "band leather",
+    "boots",
+    "bridle leather",
+    "calf skins",
+    "harness leather",
+    "shoes",
+    "sole leather",
+    "upper leather"
+  ],
+  "firm_styles": [],
+  "proprietors": [],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "unplaceable",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1835-08-05",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The register resolved no place for this house at the scene date.",
+      "limit_reason": "No street the model holds. The anchor is a reach of lake and names nothing narrower."
+    }
+  ],
+  "dates": {
+    "opened": "1835-08-05",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-08-05, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-08-05",
+    "last_issue": "1835-08-05",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1835_08_05#c025"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": true
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

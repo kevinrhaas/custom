@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chicago4d/schemas/business.schema.json",
+  "title": "4D Chicago Business",
+  "description": "One business, one file, under data/businesses/. A business is an identity — a house of trade that persists across the window the sources cover — and this record is the place its people, its premises and its dates are written with a tier on each. The 196 records compiled from the newspaper register are DERIVED (tools/compile_businesses.py --build) and must not be hand-edited; --check re-derives them and refuses one that has been. Records authored by hand live under data/businesses/authored/ and are merged in by the same compiler. Semantic rules — a tier that requires sources, a person id that must resolve, a location that must name what it points at — are enforced by the compiler's self-test and by tools/validate.py.",
+  "type": "object",
+  "required": ["id", "name", "provenance", "type", "proprietors", "partners", "staff", "locations", "dates", "sources"],
+  "additionalProperties": false,
+  "$defs": {
+    "tier": {
+      "type": "string",
+      "enum": ["attested", "inferred", "reconstructed"],
+      "description": "The grade ladder of data/residents/index.json .vocabulary.grades, unchanged. `attested` requires at least one source_id; `inferred` and `reconstructed` require a basis stating the reasoning."
+    },
+    "date": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$",
+      "description": "ISO, to whatever precision the source gives. Null where the record does not bound that end."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["proprietor", "partner", "clerk", "journeyman", "apprentice", "servant",
+               "boarder", "lodger", "bar_keeper", "hostler", "printer", "teacher",
+               "cook", "porter", "labourer", "household_member"],
+      "description": "Agrees with data/residents/index.json .vocabulary.relationships wherever a word appears in both, so a person's household role and their workplace role are the same word. The workplace-only additions (proprietor, bar_keeper, hostler, printer, teacher, cook, porter, labourer) are the roles T-1183's staffing model will fill."
+    },
+    "person": {
+      "type": "object",
+      "required": ["name", "person_id", "role", "tier", "basis"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string", "description": "The name as the source reads it. Never normalised away — the printed string is the evidence."},
+        "person_id": {"type": ["string", "null"], "pattern": "^[a-z0-9_]+$",
+          "description": "A town resident id (data/residents/), or null where the register could not match the printed name to a card. Null is a statement about the evidence, not a placeholder: `basis` says which."},
+        "register_person_id": {"type": ["string", "null"], "pattern": "^person_[a-z0-9_]+$",
+          "description": "The register's own id for the printed name, kept so a reader can walk back to the notice."},
+        "role": {"$ref": "#/$defs/role"},
+        "from": {"$ref": "#/$defs/date"},
+        "to": {"$ref": "#/$defs/date"},
+        "tier": {"$ref": "#/$defs/tier"},
+        "basis": {"type": "string", "minLength": 1},
+        "source_id": {"type": ["string", "null"]},
+        "claim_ids": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": ["kind", "primary", "tier", "basis"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["premises", "yard", "warehouse", "office", "stand", "anchored", "street_only", "unplaceable"],
+          "description": "`anchored` is the register's `new_building`: the paper anchors the house against a landmark the town holds and the town holds no roof of the house's own, so the location is real and stops at the anchor. `street_only` and `unplaceable` are LIMITS, not places: the register found a street and no house, or no anchor at all. They are carried as locations so that the 61 street-only and 62 unplaceable businesses of the 1835 register are data a query can count, rather than prose in an action note."
+        },
+        "structure_id": {"type": ["string", "null"], "pattern": "^[a-z0-9_]+$"},
+        "street_id": {"type": ["string", "null"], "pattern": "^[a-z0-9_]+$"},
+        "face": {"type": ["string", "null"]},
+        "primary": {"type": "boolean", "description": "Exactly one location per record is primary."},
+        "from": {"$ref": "#/$defs/date"},
+        "to": {"$ref": "#/$defs/date"},
+        "tier": {"$ref": "#/$defs/tier"},
+        "basis": {"type": "string", "minLength": 1},
+        "limit_reason": {"type": ["string", "null"],
+          "description": "Required on `street_only` and `unplaceable`: WHY the record stops where it does, in the register's own words."}
+      }
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(biz|rcb)_[a-z0-9_]+$",
+      "description": "Stable slug, matching the filename. `biz_` for an attested or inferred house, `rcb_` for a reconstructed one. The 196 compiled records take the register's own id with its `business_` prefix replaced, which is 1:1 with the printed notice; the parent ticket's `biz_<surname>_<trade>` form is reserved for records a human authors, because derived over the register it collides 27 times and every collision is an identity question tools/compile_businesses.py must not answer by itself."
+    },
+    "register_id": {"type": ["string", "null"], "description": "The data/research/newspapers/register_1835.json business this record compiles, or null for an authored record with no printed notice."},
+    "name": {"type": "string", "description": "The firm style as printed, or — for a reconstruction — a period form."},
+    "provenance": {
+      "type": "string",
+      "enum": ["compiled_from_register", "authored", "reconstructed"],
+      "description": "Where the record came from. `compiled_from_register` records are rewritten on every --build and a hand edit is refused."
+    },
+    "type": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["store", "book_store", "druggist", "silversmith_jeweller", "tin_and_copper_manufactory",
+                 "printing_office", "brewery", "steam_saw_mill", "iron_foundry", "storage_and_forwarding",
+                 "tavern", "lottery_office", "bank", "church", "school", "lawyer", "physician",
+                 "lyceum_and_reading_room", "other", "not_stated"]
+      },
+      "description": "The census classes of data/research/newspapers/trade_class_rulings.json — the ONE taxonomy, so a business counts against the December 1835 State census without a second crosswalk. A house may hold more than one."
+    },
+    "trade": {"type": ["string", "null"], "description": "The printed trade, verbatim. Never replaced by the class."},
+    "occupation": {"type": ["string", "null"], "description": "The finer trade from data/residents/index.json .vocabulary.occupations, where the register derived one."},
+    "goods": {"type": "array", "items": {"type": "string"}},
+    "firm_styles": {"type": "array", "items": {"type": "string"},
+      "description": "The house's own trading styles as printed — 'Clark, Filer & Co.' — kept apart from the people, because a style carries surnames and a surname pass that reads it as a person invents one."},
+    "proprietors": {"type": "array", "items": {"$ref": "#/$defs/person"}},
+    "partners": {"type": "array", "items": {"$ref": "#/$defs/person"}},
+    "staff": {"type": "array", "items": {"$ref": "#/$defs/person"},
+      "description": "Empty on every compiled record: the newspapers name proprietors and partners and almost never a clerk. T-1183 rules the staffing model and T-1189 fills this."},
+    "locations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/location"}},
+    "dates": {
+      "type": "object",
+      "required": ["opened", "closed", "precision", "tier"],
+      "additionalProperties": false,
+      "properties": {
+        "opened": {"$ref": "#/$defs/date"},
+        "closed": {"$ref": "#/$defs/date"},
+        "precision": {"type": "string", "enum": ["exact", "not_later_than", "not_earlier_than", "bracketed", "unbounded"]},
+        "tier": {"$ref": "#/$defs/tier"},
+        "basis": {"type": "string", "minLength": 1}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "first_issue": {"$ref": "#/$defs/date"},
+        "last_issue": {"$ref": "#/$defs/date"},
+        "copy_dates": {"type": "array", "items": {"$ref": "#/$defs/date"}}
+      },
+      "description": "The printing window, kept as it was: the dates the notice ran, which bound the record and are not the same claim as when the house opened."
+    },
+    "present_at_scene_date": {"type": "boolean"},
+    "exclusion": {"type": ["string", "null"], "description": "The register's exclusion, if the house is not in the July 1835 town."},
+    "exclusion_note": {"type": ["string", "null"]},
+    "proprietor_community": {
+      "type": ["string", "null"],
+      "enum": [null, "anglo_american", "french_canadian", "metis", "native", "black", "irish", "german", "other", "unattested"],
+      "description": "The community vocabulary shared with the resident layer (T-1158/T-1177), so the Indian trade and the Black-owned businesses are identifiable on one field rather than by reading names. `unattested` where no source speaks; never inferred from a surname alone."
+    },
+    "customers": {"type": "array", "items": {"type": "string"}},
+    "sources": {"type": "array", "items": {"type": "string"}},
+    "claim_ids": {"type": "array", "items": {"type": "string"},
+      "description": "The newspaper claim ids the record rests on, so every line walks back to a quoted printing."},
+    "liberties": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "survival_required": {"type": "boolean", "description": "Documented before the scene date and assumed still standing on it."},
+        "backdating_required": {"type": "boolean", "description": "Documented only after the scene date and assumed already open on it."}
+      }
+    },
+    "review_required": {"type": "boolean"},
+    "replaceable_by": {"type": ["string", "null"],
+      "description": "What evidence would retire this record or this reading — the standing instruction to the next researcher."}
+  }
+}

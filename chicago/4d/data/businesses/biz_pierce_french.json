@@ -1,0 +1,110 @@
+{
+  "id": "biz_pierce_french",
+  "register_id": "business_pierce_french",
+  "name": "Pierce & French",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "blacksmithing and edge tool making",
+  "occupation": "blacksmith",
+  "goods": [
+    "Edge Tools",
+    "Ox Chains",
+    "Prairie Ploughs",
+    "edge tools",
+    "prairie ploughs"
+  ],
+  "firm_styles": [
+    "Pierce & French"
+  ],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "Asahel Pierce",
+      "person_id": "pierce_asahel",
+      "register_person_id": "person_asahel_pierce",
+      "role": "partner",
+      "from": "1834-06-25",
+      "to": "1834-12-17",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card pierce_asahel (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_06_25#c005",
+        "chicago_democrat_1834_07_02#c051",
+        "chicago_democrat_1834_09_10#c017",
+        "chicago_democrat_1834_11_19#c007",
+        "chicago_democrat_1834_12_17#c008"
+      ]
+    },
+    {
+      "name": "French",
+      "person_id": null,
+      "register_person_id": null,
+      "role": "partner",
+      "from": "1834-06-25",
+      "to": "1834-12-17",
+      "tier": "attested",
+      "basis": "A proprietor string the gazetteer reads as a person, which the register's own person list does not carry under this spelling. The name is the evidence; no link is claimed. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_06_25#c005",
+        "chicago_democrat_1834_07_02#c051",
+        "chicago_democrat_1834_09_10#c017",
+        "chicago_democrat_1834_11_19#c007",
+        "chicago_democrat_1834_12_17#c008"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "canal",
+      "face": null,
+      "primary": true,
+      "from": "1834-06-25",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names Canal Street and nothing narrower; a corner of '[—]' and 'Canal streets in the old shop formerly [', and the plat resolves both sides to ['canal']."
+    }
+  ],
+  "dates": {
+    "opened": "1834-06-25",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-06-25, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-06-25",
+    "last_issue": "1834-12-17",
+    "copy_dates": [
+      "1834-06-25"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_06_25#c005",
+    "chicago_democrat_1834_07_02#c051",
+    "chicago_democrat_1834_09_10#c017",
+    "chicago_democrat_1834_11_19#c007",
+    "chicago_democrat_1834_12_17#c008"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

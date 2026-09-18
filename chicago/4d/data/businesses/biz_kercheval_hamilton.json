@@ -1,0 +1,90 @@
+{
+  "id": "biz_kercheval_hamilton",
+  "register_id": "business_kercheval_hamilton",
+  "name": "Kercheval & Hamilton",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "agents for lots in the School Section",
+  "occupation": "schoolteacher",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "[uncertain: G. H. Kercheval]",
+      "person_id": "kercheval_gholson",
+      "register_person_id": "person_uncertain_g_h_kercheval",
+      "role": "partner",
+      "from": "1834-07-09",
+      "to": "1834-07-09",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card kercheval_gholson (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_07_09#c029"
+      ]
+    },
+    {
+      "name": "Rich'd J. Hamilton",
+      "person_id": null,
+      "register_person_id": "person_rich_d_j_hamilton",
+      "role": "partner",
+      "from": "1834-07-09",
+      "to": "1834-07-09",
+      "tier": "attested",
+      "basis": "The register holds this printed name as person_rich_d_j_hamilton with action 'new_resident': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1834_07_09#c029"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "unplaceable",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1834-07-09",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The register resolved no place for this house at the scene date.",
+      "limit_reason": "No street the model holds. The paper gives no anchor."
+    }
+  ],
+  "dates": {
+    "opened": "1834-07-09",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1834-07-09, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1834-07-09",
+    "last_issue": "1834-07-09",
+    "copy_dates": [
+      "1834-06-04"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1834_07_09#c029"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

@@ -1,0 +1,2569 @@
+{
+  "schema": 1,
+  "_doc": "DERIVED, NEVER AUTHORED. Rebuilt from register_1835.json, gazetteer.json and data/residents/ by tools/compile_businesses.py; tools/check.sh refuses a committed copy a rebuild would not produce. Edit the gazetteer, the dataset or data/businesses/authored/, not this file.",
+  "generated_by": "tools/compile_businesses.py",
+  "counts": {
+    "records": 196,
+    "compiled_from_register": 196,
+    "authored": 0,
+    "present_at_scene_date": 179,
+    "by_type": {
+      "book_store": 2,
+      "brewery": 1,
+      "druggist": 2,
+      "iron_foundry": 1,
+      "lawyer": 18,
+      "not_stated": 5,
+      "other": 79,
+      "physician": 3,
+      "printing_office": 3,
+      "school": 7,
+      "silversmith_jeweller": 1,
+      "steam_saw_mill": 4,
+      "storage_and_forwarding": 8,
+      "store": 67,
+      "tavern": 9,
+      "tin_and_copper_manufactory": 4
+    },
+    "by_location_kind": {
+      "anchored": 26,
+      "premises": 30,
+      "street_only": 61,
+      "unplaceable": 83
+    },
+    "named_people": 209,
+    "named_people_linked_to_a_town_card": 157,
+    "works_at_households": 50,
+    "works_at_households_resolving_to_a_business": 21
+  },
+  "businesses": [
+    {
+      "id": "biz_a_chicago_stove_and_hollow_ware_dealer_august_1835",
+      "file": "biz_a_chicago_stove_and_hollow_ware_dealer_august_1835.json",
+      "name": "a Chicago stove and hollow ware dealer, August 1835",
+      "register_id": "business_a_chicago_stove_and_hollow_ware_dealer_august_1835",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_clybourn_s_market_on_the_market_square",
+      "file": "biz_a_clybourn_s_market_on_the_market_square.json",
+      "name": "A. Clybourn's market on the market square",
+      "register_id": "business_a_clybourn_s_market_on_the_market_square",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_filer_co",
+      "file": "biz_a_filer_co.json",
+      "name": "A. Filer & Co.",
+      "register_id": "business_a_filer_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_garrett",
+      "file": "biz_a_garrett.json",
+      "name": "A. Garrett",
+      "register_id": "business_a_garrett",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_garrett_auctioneer",
+      "file": "biz_a_garrett_auctioneer.json",
+      "name": "A. Garrett, auctioneer",
+      "register_id": "business_a_garrett_auctioneer",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_leather_stock_chicago_june_1835",
+      "file": "biz_a_leather_stock_chicago_june_1835.json",
+      "name": "a leather stock, Chicago, June 1835",
+      "register_id": "business_a_leather_stock_chicago_june_1835",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_new_auction_and_commission_room_south_water_street",
+      "file": "biz_a_new_auction_and_commission_room_south_water_street.json",
+      "name": "a new auction and commission room, South Water Street",
+      "register_id": "business_a_new_auction_and_commission_room_south_water_street",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_new_tailoring_establishment_chicago_june_1835",
+      "file": "biz_a_new_tailoring_establishment_chicago_june_1835.json",
+      "name": "a new tailoring establishment, Chicago, June 1835",
+      "register_id": "business_a_new_tailoring_establishment_chicago_june_1835",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_o_t_breed",
+      "file": "biz_a_o_t_breed.json",
+      "name": "A. O. T. Breed",
+      "register_id": "business_a_o_t_breed",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_travelling_dentist_at_the_new_york_house",
+      "file": "biz_a_travelling_dentist_at_the_new_york_house.json",
+      "name": "a travelling dentist at the New York House",
+      "register_id": "business_a_travelling_dentist_at_the_new_york_house",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_a_wholesale_wine_and_liquor_store_dearborn_street",
+      "file": "biz_a_wholesale_wine_and_liquor_store_dearborn_street.json",
+      "name": "a wholesale wine and liquor store, Dearborn Street",
+      "register_id": "business_a_wholesale_wine_and_liquor_store_dearborn_street",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_an_iron_and_hardware_stock_chicago_june_1835",
+      "file": "biz_an_iron_and_hardware_stock_chicago_june_1835.json",
+      "name": "an iron and hardware stock, Chicago, June 1835",
+      "register_id": "business_an_iron_and_hardware_stock_chicago_june_1835",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_andrews_eells",
+      "file": "biz_andrews_eells.json",
+      "name": "Andrews & Eells",
+      "register_id": "business_andrews_eells",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_b_jones_grocery_and_provision_store",
+      "file": "biz_b_jones_grocery_and_provision_store.json",
+      "name": "B. Jones, grocery and provision store",
+      "register_id": "business_b_jones_grocery_and_provision_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_b_jones_storage_and_forwarding",
+      "file": "biz_b_jones_storage_and_forwarding.json",
+      "name": "B. Jones, storage and forwarding",
+      "register_id": "business_b_jones_storage_and_forwarding",
+      "provenance": "compiled_from_register",
+      "type": [
+        "storage_and_forwarding"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_boot_shoe_and_leather_store_lake_street_proprietor_not_recovered",
+      "file": "biz_boot_shoe_and_leather_store_lake_street_proprietor_not_recovered.json",
+      "name": "[boot, shoe and leather store, Lake street, proprietor not recovered]",
+      "register_id": "business_boot_shoe_and_leather_store_lake_street_proprietor_not_recovered",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_brewster_hogan_co",
+      "file": "biz_brewster_hogan_co.json",
+      "name": "Brewster, Hogan & Co.",
+      "register_id": "business_brewster_hogan_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "storage_and_forwarding",
+        "store"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_briggs_humphrey",
+      "file": "biz_briggs_humphrey.json",
+      "name": "Briggs & Humphrey",
+      "register_id": "business_briggs_humphrey",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_brown_painter",
+      "file": "biz_brown_painter.json",
+      "name": "Brown, painter",
+      "register_id": "business_brown_painter",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_c_h_chapman",
+      "file": "biz_c_h_chapman.json",
+      "name": "C. H. Chapman",
+      "register_id": "business_c_h_chapman",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_c_i_harmon",
+      "file": "biz_c_i_harmon.json",
+      "name": "C. & I. Harmon",
+      "register_id": "business_c_i_harmon",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_carpenter_chicago_merchant",
+      "file": "biz_carpenter_chicago_merchant.json",
+      "name": "Carpenter, Chicago merchant",
+      "register_id": "business_carpenter_chicago_merchant",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_charles_hunt_high_school_for_young_ladies",
+      "file": "biz_charles_hunt_high_school_for_young_ladies.json",
+      "name": "Charles Hunt, High School for Young Ladies",
+      "register_id": "business_charles_hunt_high_school_for_young_ladies",
+      "provenance": "compiled_from_register",
+      "type": [
+        "school"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_charles_taylor",
+      "file": "biz_charles_taylor.json",
+      "name": "Charles Taylor",
+      "register_id": "business_charles_taylor",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_chase_ballard",
+      "file": "biz_chase_ballard.json",
+      "name": "Chase & Ballard",
+      "register_id": "business_chase_ballard",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_chicago_bakery",
+      "file": "biz_chicago_bakery.json",
+      "name": "Chicago Bakery",
+      "register_id": "business_chicago_bakery",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_chicago_democrat_printing_office",
+      "file": "biz_chicago_democrat_printing_office.json",
+      "name": "Chicago Democrat printing office",
+      "register_id": "business_chicago_democrat_printing_office",
+      "provenance": "compiled_from_register",
+      "type": [
+        "printing_office"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_chicago_soap_and_candle_manufactory",
+      "file": "biz_chicago_soap_and_candle_manufactory.json",
+      "name": "Chicago Soap and Candle Manufactory",
+      "register_id": "business_chicago_soap_and_candle_manufactory",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_chicago_st_joseph_packet_schooner_llewellyn",
+      "file": "biz_chicago_st_joseph_packet_schooner_llewellyn.json",
+      "name": "Chicago & St. Joseph Packet (schooner Llewellyn)",
+      "register_id": "business_chicago_st_joseph_packet_schooner_llewellyn",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_clark_filer_co",
+      "file": "biz_clark_filer_co.json",
+      "name": "Clark, Filer & Co.",
+      "register_id": "business_clark_filer_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_collins_caton",
+      "file": "biz_collins_caton.json",
+      "name": "Collins & Caton",
+      "register_id": "business_collins_caton",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_cook_george",
+      "file": "biz_cook_george.json",
+      "name": "Cook & George",
+      "register_id": "business_cook_george",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_cooley_and_halsman",
+      "file": "biz_cooley_and_halsman.json",
+      "name": "Cooley and Halsman",
+      "register_id": "business_cooley_and_halsman",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_cooley_and_hol_b_man",
+      "file": "biz_cooley_and_hol_b_man.json",
+      "name": "Cooley and Hol[b]man",
+      "register_id": "business_cooley_and_hol_b_man",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_cromelien_brothers_co",
+      "file": "biz_cromelien_brothers_co.json",
+      "name": "Cromelien, Brothers & Co.",
+      "register_id": "business_cromelien_brothers_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_d_carver_co",
+      "file": "biz_d_carver_co.json",
+      "name": "D. Carver & Co.",
+      "register_id": "business_d_carver_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_d_graves",
+      "file": "biz_d_graves.json",
+      "name": "D. Graves",
+      "register_id": "business_d_graves",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_d_o_robinson_and_r_a_neff",
+      "file": "biz_d_o_robinson_and_r_a_neff.json",
+      "name": "D. O. Robinson and R. A. Neff",
+      "register_id": "business_d_o_robinson_and_r_a_neff",
+      "provenance": "compiled_from_register",
+      "type": [
+        "not_stated"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_dally_youngs",
+      "file": "biz_dally_youngs.json",
+      "name": "Dally & Youngs",
+      "register_id": "business_dally_youngs",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_daniel_elston_co",
+      "file": "biz_daniel_elston_co.json",
+      "name": "Daniel Elston & [Co.]",
+      "register_id": "business_daniel_elston_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_dart_co_castings",
+      "file": "biz_dart_co_castings.json",
+      "name": "Dart & Co., castings",
+      "register_id": "business_dart_co_castings",
+      "provenance": "compiled_from_register",
+      "type": [
+        "iron_foundry"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_david_carver",
+      "file": "biz_david_carver.json",
+      "name": "David Carver",
+      "register_id": "business_david_carver",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_deacon_mccaleb",
+      "file": "biz_deacon_mccaleb.json",
+      "name": "Deacon & McCaleb",
+      "register_id": "business_deacon_mccaleb",
+      "provenance": "compiled_from_register",
+      "type": [
+        "steam_saw_mill",
+        "store"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_dr_j_h_barnard",
+      "file": "biz_dr_j_h_barnard.json",
+      "name": "Dr. J. H. Barnard",
+      "register_id": "business_dr_j_h_barnard",
+      "provenance": "compiled_from_register",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_dr_w_g_austin",
+      "file": "biz_dr_w_g_austin.json",
+      "name": "Dr. W. G. Austin",
+      "register_id": "business_dr_w_g_austin",
+      "provenance": "compiled_from_register",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_e_l_thrall",
+      "file": "biz_e_l_thrall.json",
+      "name": "E. L. Thrall",
+      "register_id": "business_e_l_thrall",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_e_p_deacon",
+      "file": "biz_e_p_deacon.json",
+      "name": "E. P. Deacon",
+      "register_id": "business_e_p_deacon",
+      "provenance": "compiled_from_register",
+      "type": [
+        "steam_saw_mill",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_e_w_haddock",
+      "file": "biz_e_w_haddock.json",
+      "name": "E. W. Haddock",
+      "register_id": "business_e_w_haddock",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_e_wentworth",
+      "file": "biz_e_wentworth.json",
+      "name": "E. Wentworth",
+      "register_id": "business_e_wentworth",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_e_wentworth_s_public_house_on_flag_creek",
+      "file": "biz_e_wentworth_s_public_house_on_flag_creek.json",
+      "name": "E. Wentworth's public house on Flag Creek",
+      "register_id": "business_e_wentworth_s_public_house_on_flag_creek",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_e_wentworth_s_tavern_flag_creek",
+      "file": "biz_e_wentworth_s_tavern_flag_creek.json",
+      "name": "E. Wentworth's tavern, Flag Creek",
+      "register_id": "business_e_wentworth_s_tavern_flag_creek",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_e_wentworth_s_tavern_on_flag_creek",
+      "file": "biz_e_wentworth_s_tavern_on_flag_creek.json",
+      "name": "E. Wentworth's tavern on Flag Creek",
+      "register_id": "business_e_wentworth_s_tavern_on_flag_creek",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_eagle_hotel",
+      "file": "biz_eagle_hotel.json",
+      "name": "Eagle Hotel",
+      "register_id": "business_eagle_hotel",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_eagle_tavern",
+      "file": "biz_eagle_tavern.json",
+      "name": "Eagle Tavern",
+      "register_id": "business_eagle_tavern",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_ebenezer_s_more_attorney_at_law",
+      "file": "biz_ebenezer_s_more_attorney_at_law.json",
+      "name": "Ebenezer S. More, attorney at law",
+      "register_id": "business_ebenezer_s_more_attorney_at_law",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_edward_w_casey",
+      "file": "biz_edward_w_casey.json",
+      "name": "Edward W. Casey",
+      "register_id": "business_edward_w_casey",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_elmira_fowler",
+      "file": "biz_elmira_fowler.json",
+      "name": "Elmira Fowler",
+      "register_id": "business_elmira_fowler",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_everson_co",
+      "file": "biz_everson_co.json",
+      "name": "Everson & Co.",
+      "register_id": "business_everson_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_frederick_thomas_drugs_and_paints",
+      "file": "biz_frederick_thomas_drugs_and_paints.json",
+      "name": "Frederick Thomas, drugs and paints",
+      "register_id": "business_frederick_thomas_drugs_and_paints",
+      "provenance": "compiled_from_register",
+      "type": [
+        "druggist"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_fullerton_botsford",
+      "file": "biz_fullerton_botsford.json",
+      "name": "Fullerton & Botsford",
+      "register_id": "business_fullerton_botsford",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_fullerton_g_attorneys_and_counsellors",
+      "file": "biz_fullerton_g_attorneys_and_counsellors.json",
+      "name": "Fullerton & G., attorneys and counsellors",
+      "register_id": "business_fullerton_g_attorneys_and_counsellors",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_g_blanshard",
+      "file": "biz_g_blanshard.json",
+      "name": "G. Blanshard",
+      "register_id": "business_g_blanshard",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_g_spring",
+      "file": "biz_g_spring.json",
+      "name": "G. Spring",
+      "register_id": "business_g_spring",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_g_w_w_laird",
+      "file": "biz_g_w_w_laird.json",
+      "name": "G. W. & W. Laird",
+      "register_id": "business_g_w_w_laird",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_geo_w_laird_naper_s_settlement",
+      "file": "biz_geo_w_laird_naper_s_settlement.json",
+      "name": "Geo. W. Laird, Naper's Settlement",
+      "register_id": "business_geo_w_laird_naper_s_settlement",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_george_holsman",
+      "file": "biz_george_holsman.json",
+      "name": "George Holsman",
+      "register_id": "business_george_holsman",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_goss_cobb",
+      "file": "biz_goss_cobb.json",
+      "name": "Goss & Cobb",
+      "register_id": "business_goss_cobb",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_h_c_bennett",
+      "file": "biz_h_c_bennett.json",
+      "name": "H. C. Bennett",
+      "register_id": "business_h_c_bennett",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_h_doty_co",
+      "file": "biz_h_doty_co.json",
+      "name": "H. Doty & Co.",
+      "register_id": "business_h_doty_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_harmon_loomis_co",
+      "file": "biz_harmon_loomis_co.json",
+      "name": "Harmon, Loomis & Co.",
+      "register_id": "business_harmon_loomis_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_henry_moore",
+      "file": "biz_henry_moore.json",
+      "name": "Henry Moore",
+      "register_id": "business_henry_moore",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_henry_moore_attorney_counsellor_at_law",
+      "file": "biz_henry_moore_attorney_counsellor_at_law.json",
+      "name": "Henry Moore, Attorney & Counsellor at Law",
+      "register_id": "business_henry_moore_attorney_counsellor_at_law",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_hiram_everts_high_school_for_young_gentlemen",
+      "file": "biz_hiram_everts_high_school_for_young_gentlemen.json",
+      "name": "Hiram Everts, High School for Young Gentlemen",
+      "register_id": "business_hiram_everts_high_school_for_young_gentlemen",
+      "provenance": "compiled_from_register",
+      "type": [
+        "school"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_hiram_pearsons",
+      "file": "biz_hiram_pearsons.json",
+      "name": "Hiram Pearsons",
+      "register_id": "business_hiram_pearsons",
+      "provenance": "compiled_from_register",
+      "type": [
+        "storage_and_forwarding"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_hubbard_co",
+      "file": "biz_hubbard_co.json",
+      "name": "Hubbard & Co.",
+      "register_id": "business_hubbard_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "storage_and_forwarding"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_ingersoll_s_tavern_stand",
+      "file": "biz_ingersoll_s_tavern_stand.json",
+      "name": "Ingersoll's tavern stand",
+      "register_id": "business_ingersoll_s_tavern_stand",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_a_marshall_s_dancing_school",
+      "file": "biz_j_a_marshall_s_dancing_school.json",
+      "name": "J. A. Marshall's dancing school",
+      "register_id": "business_j_a_marshall_s_dancing_school",
+      "provenance": "compiled_from_register",
+      "type": [
+        "school"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_b_brown_dearborn_street_grocery",
+      "file": "biz_j_b_brown_dearborn_street_grocery.json",
+      "name": "J. B. Brown, Dearborn Street grocery",
+      "register_id": "business_j_b_brown_dearborn_street_grocery",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_bates_jr_auction_store",
+      "file": "biz_j_bates_jr_auction_store.json",
+      "name": "J. Bates jr., Auction Store",
+      "register_id": "business_j_bates_jr_auction_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_c_goodhue_land_agent",
+      "file": "biz_j_c_goodhue_land_agent.json",
+      "name": "J. C. Goodhue, land agent",
+      "register_id": "business_j_c_goodhue_land_agent",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_curtiss",
+      "file": "biz_j_curtiss.json",
+      "name": "J. Curtiss",
+      "register_id": "business_j_curtiss",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_curtiss_attorney_and_counsellor_at_law",
+      "file": "biz_j_curtiss_attorney_and_counsellor_at_law.json",
+      "name": "J. Curtiss, Attorney and Counsellor at Law",
+      "register_id": "business_j_curtiss_attorney_and_counsellor_at_law",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_d_caton_attorney_and_counsellor_at_law",
+      "file": "biz_j_d_caton_attorney_and_counsellor_at_law.json",
+      "name": "J. D. Caton, attorney and counsellor at law",
+      "register_id": "business_j_d_caton_attorney_and_counsellor_at_law",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_h_kinzie_merchant",
+      "file": "biz_j_h_kinzie_merchant.json",
+      "name": "J. H. Kinzie, merchant",
+      "register_id": "business_j_h_kinzie_merchant",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_h_mulford",
+      "file": "biz_j_h_mulford.json",
+      "name": "J. H. Mulford",
+      "register_id": "business_j_h_mulford",
+      "provenance": "compiled_from_register",
+      "type": [
+        "silversmith_jeweller"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_k_botsford",
+      "file": "biz_j_k_botsford.json",
+      "name": "J. K. Botsford",
+      "register_id": "business_j_k_botsford",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store",
+        "tin_and_copper_manufactory"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_k_botsford_tin_sheet_iron_and_copper_factory",
+      "file": "biz_j_k_botsford_tin_sheet_iron_and_copper_factory.json",
+      "name": "J. K. Botsford, Tin, Sheet Iron and Copper Factory",
+      "register_id": "business_j_k_botsford_tin_sheet_iron_and_copper_factory",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tin_and_copper_manufactory"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_l_wilson_co",
+      "file": "biz_j_l_wilson_co.json",
+      "name": "J. L. Wilson & Co.",
+      "register_id": "business_j_l_wilson_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_s_c_hogan",
+      "file": "biz_j_s_c_hogan.json",
+      "name": "J. S. C. Hogan",
+      "register_id": "business_j_s_c_hogan",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_j_wellmaker_co",
+      "file": "biz_j_wellmaker_co.json",
+      "name": "J. Wellmaker & Co.",
+      "register_id": "business_j_wellmaker_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "not_stated"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_j_wright_merchant",
+      "file": "biz_j_wright_merchant.json",
+      "name": "J. Wright, merchant",
+      "register_id": "business_j_wright_merchant",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_james_grant",
+      "file": "biz_james_grant.json",
+      "name": "James Grant",
+      "register_id": "business_james_grant",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_bates_jr",
+      "file": "biz_john_bates_jr.json",
+      "name": "John Bates, Jr.",
+      "register_id": "business_john_bates_jr",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_dave_north_water_street",
+      "file": "biz_john_dave_north_water_street.json",
+      "name": "John Dave, North Water Street",
+      "register_id": "business_john_dave_north_water_street",
+      "provenance": "compiled_from_register",
+      "type": [
+        "not_stated"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_dean_caton",
+      "file": "biz_john_dean_caton.json",
+      "name": "John Dean Caton",
+      "register_id": "business_john_dean_caton",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_dean_caton_attorney_and_counsellor_at_law",
+      "file": "biz_john_dean_caton_attorney_and_counsellor_at_law.json",
+      "name": "John Dean Caton, Attorney and Counsellor at Law",
+      "register_id": "business_john_dean_caton_attorney_and_counsellor_at_law",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_h_kinzie",
+      "file": "biz_john_h_kinzie.json",
+      "name": "John H. Kinzie",
+      "register_id": "business_john_h_kinzie",
+      "provenance": "compiled_from_register",
+      "type": [
+        "storage_and_forwarding"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_holbrook",
+      "file": "biz_john_holbrook.json",
+      "name": "John Holbrook",
+      "register_id": "business_john_holbrook",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_s_kinzie_forwarding_and_commission_merchant",
+      "file": "biz_john_s_kinzie_forwarding_and_commission_merchant.json",
+      "name": "John S. Kinzie, forwarding and commission merchant",
+      "register_id": "business_john_s_kinzie_forwarding_and_commission_merchant",
+      "provenance": "compiled_from_register",
+      "type": [
+        "storage_and_forwarding"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_watkins",
+      "file": "biz_john_watkins.json",
+      "name": "John Watkins",
+      "register_id": "business_john_watkins",
+      "provenance": "compiled_from_register",
+      "type": [
+        "book_store",
+        "school"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_john_wright",
+      "file": "biz_john_wright.json",
+      "name": "John Wright",
+      "register_id": "business_john_wright",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_jones_king",
+      "file": "biz_jones_king.json",
+      "name": "Jones & King",
+      "register_id": "business_jones_king",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_jones_king_co",
+      "file": "biz_jones_king_co.json",
+      "name": "Jones, King & Co.",
+      "register_id": "business_jones_king_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_kercheval_hamilton",
+      "file": "biz_kercheval_hamilton.json",
+      "name": "Kercheval & Hamilton",
+      "register_id": "business_kercheval_hamilton",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_kinzie_forsyth",
+      "file": "biz_kinzie_forsyth.json",
+      "name": "Kinzie & Forsyth",
+      "register_id": "business_kinzie_forsyth",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_kinzie_hall",
+      "file": "biz_kinzie_hall.json",
+      "name": "Kinzie & Hall",
+      "register_id": "business_kinzie_hall",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_l_g_curtiss",
+      "file": "biz_l_g_curtiss.json",
+      "name": "L. G. Curtiss",
+      "register_id": "business_l_g_curtiss",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_l_g_curtiss_deputy_surveyor_of_cook_county",
+      "file": "biz_l_g_curtiss_deputy_surveyor_of_cook_county.json",
+      "name": "L. G. Curtiss, Deputy Surveyor of Cook County",
+      "register_id": "business_l_g_curtiss_deputy_surveyor_of_cook_county",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_l_w_montgomery_boot_and_shoe_maker",
+      "file": "biz_l_w_montgomery_boot_and_shoe_maker.json",
+      "name": "L. W. Montgomery, boot and shoe maker",
+      "register_id": "business_l_w_montgomery_boot_and_shoe_maker",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_lathrop_johnson_co_livery",
+      "file": "biz_lathrop_johnson_co_livery.json",
+      "name": "Lathrop Johnson & Co., livery",
+      "register_id": "business_lathrop_johnson_co_livery",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_m_cormick_moon",
+      "file": "biz_m_cormick_moon.json",
+      "name": "M'Cormick & Moon",
+      "register_id": "business_m_cormick_moon",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_magie_wilkinson",
+      "file": "biz_magie_wilkinson.json",
+      "name": "Magie & Wilkinson",
+      "register_id": "business_magie_wilkinson",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_marsh_simons",
+      "file": "biz_marsh_simons.json",
+      "name": "Marsh & Simons",
+      "register_id": "business_marsh_simons",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_matthias_mason_co",
+      "file": "biz_matthias_mason_co.json",
+      "name": "Matthias Mason & Co.",
+      "register_id": "business_matthias_mason_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_miss_bayne_s_boarding_and_day_school",
+      "file": "biz_miss_bayne_s_boarding_and_day_school.json",
+      "name": "Miss Bayne's Boarding and Day School",
+      "register_id": "business_miss_bayne_s_boarding_and_day_school",
+      "provenance": "compiled_from_register",
+      "type": [
+        "school"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_montgomery_auction_and_commission_house",
+      "file": "biz_montgomery_auction_and_commission_house.json",
+      "name": "Montgomery, auction and commission house",
+      "register_id": "business_montgomery_auction_and_commission_house",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_mrs_h_sherman",
+      "file": "biz_mrs_h_sherman.json",
+      "name": "Mrs. H. Sherman",
+      "register_id": "business_mrs_h_sherman",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_mrs_herman",
+      "file": "biz_mrs_herman.json",
+      "name": "[Mrs.] Herman",
+      "register_id": "business_mrs_herman",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_new_york_clothing_store",
+      "file": "biz_new_york_clothing_store.json",
+      "name": "New York Clothing Store",
+      "register_id": "business_new_york_clothing_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_newberry_dole",
+      "file": "biz_newberry_dole.json",
+      "name": "Newberry & Dole",
+      "register_id": "business_newberry_dole",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_noble_wesencraft",
+      "file": "biz_noble_wesencraft.json",
+      "name": "Noble & Wesencraft",
+      "register_id": "business_noble_wesencraft",
+      "provenance": "compiled_from_register",
+      "type": [
+        "steam_saw_mill"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_north_western_fire_and_marine_insurance_company_of_oswego_chicago_agency",
+      "file": "biz_north_western_fire_and_marine_insurance_company_of_oswego_chicago_agency.json",
+      "name": "North Western Fire and Marine Insurance Company of Oswego, Chicago agency",
+      "register_id": "business_north_western_fire_and_marine_insurance_company_of_oswego_chicago_agency",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_p_f_peck",
+      "file": "biz_p_f_peck.json",
+      "name": "P. F. Peck",
+      "register_id": "business_p_f_peck",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_p_pruyne_co",
+      "file": "biz_p_pruyne_co.json",
+      "name": "P. Pruyne & Co.",
+      "register_id": "business_p_pruyne_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_p_s_carli_eagle_tavern",
+      "file": "biz_p_s_carli_eagle_tavern.json",
+      "name": "P. S. Carli, Eagle Tavern",
+      "register_id": "business_p_s_carli_eagle_tavern",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store",
+        "tavern"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_peter_cohen",
+      "file": "biz_peter_cohen.json",
+      "name": "Peter Cohen",
+      "register_id": "business_peter_cohen",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_peter_cohen_s_store",
+      "file": "biz_peter_cohen_s_store.json",
+      "name": "Peter Cohen's store",
+      "register_id": "business_peter_cohen_s_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_philo_carpenter",
+      "file": "biz_philo_carpenter.json",
+      "name": "Philo Carpenter",
+      "register_id": "business_philo_carpenter",
+      "provenance": "compiled_from_register",
+      "type": [
+        "druggist"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_pierce_abbott",
+      "file": "biz_pierce_abbott.json",
+      "name": "Pierce & Abbott",
+      "register_id": "business_pierce_abbott",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_pierce_french",
+      "file": "biz_pierce_french.json",
+      "name": "Pierce & French",
+      "register_id": "business_pierce_french",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_r_a_kinzie",
+      "file": "biz_r_a_kinzie.json",
+      "name": "R. A. Kinzie",
+      "register_id": "business_r_a_kinzie",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_r_stewart_attorney",
+      "file": "biz_r_stewart_attorney.json",
+      "name": "R. Stewart, attorney",
+      "register_id": "business_r_stewart_attorney",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_richard_m_sweet_corn_at_his_barn_on_the_dupage",
+      "file": "biz_richard_m_sweet_corn_at_his_barn_on_the_dupage.json",
+      "name": "Richard M. Sweet, corn at his barn on the Dupage",
+      "register_id": "business_richard_m_sweet_corn_at_his_barn_on_the_dupage",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_riggs_humphrey",
+      "file": "biz_riggs_humphrey.json",
+      "name": "Riggs & Humphrey",
+      "register_id": "business_riggs_humphrey",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_rockwell_cabinet_furniture_warehouse",
+      "file": "biz_rockwell_cabinet_furniture_warehouse.json",
+      "name": "Rockwell, cabinet furniture warehouse",
+      "register_id": "business_rockwell_cabinet_furniture_warehouse",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_russell_brown",
+      "file": "biz_russell_brown.json",
+      "name": "Russell & Brown",
+      "register_id": "business_russell_brown",
+      "provenance": "compiled_from_register",
+      "type": [
+        "not_stated"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_russell_clift",
+      "file": "biz_russell_clift.json",
+      "name": "Russell & Clift",
+      "register_id": "business_russell_clift",
+      "provenance": "compiled_from_register",
+      "type": [
+        "book_store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_russell_e_heacock",
+      "file": "biz_russell_e_heacock.json",
+      "name": "Russell E. Heacock",
+      "register_id": "business_russell_e_heacock",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer",
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_s_abell_attorney_and_counsellor",
+      "file": "biz_s_abell_attorney_and_counsellor.json",
+      "name": "S. Abell, attorney and counsellor",
+      "register_id": "business_s_abell_attorney_and_counsellor",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_s_abell_attorney_counsellor_at_law",
+      "file": "biz_s_abell_attorney_counsellor_at_law.json",
+      "name": "S. Abell, Attorney & Counsellor at Law",
+      "register_id": "business_s_abell_attorney_counsellor_at_law",
+      "provenance": "compiled_from_register",
+      "type": [
+        "lawyer"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_s_b_cobb_saddle_harness_and_trunk_manufactory",
+      "file": "biz_s_b_cobb_saddle_harness_and_trunk_manufactory.json",
+      "name": "S. B. Cobb, saddle, harness and trunk manufactory",
+      "register_id": "business_s_b_cobb_saddle_harness_and_trunk_manufactory",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_s_dewey",
+      "file": "biz_s_dewey.json",
+      "name": "S. Dewey",
+      "register_id": "business_s_dewey",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_s_foot",
+      "file": "biz_s_foot.json",
+      "name": "S. Foot",
+      "register_id": "business_s_foot",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_s_lincoln",
+      "file": "biz_s_lincoln.json",
+      "name": "S. Lincoln",
+      "register_id": "business_s_lincoln",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_samuel_lewis",
+      "file": "biz_samuel_lewis.json",
+      "name": "Samuel Lewis",
+      "register_id": "business_samuel_lewis",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "school"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_sarah_d_howe",
+      "file": "biz_sarah_d_howe.json",
+      "name": "Sarah D. Howe",
+      "register_id": "business_sarah_d_howe",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_stuart_s_confectionary_and_perfumery",
+      "file": "biz_stuart_s_confectionary_and_perfumery.json",
+      "name": "Stuart's confectionary and perfumery",
+      "register_id": "business_stuart_s_confectionary_and_perfumery",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_taylor_handy",
+      "file": "biz_taylor_handy.json",
+      "name": "Taylor & Handy",
+      "register_id": "business_taylor_handy",
+      "provenance": "compiled_from_register",
+      "type": [
+        "not_stated"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_the_boston_market",
+      "file": "biz_the_boston_market.json",
+      "name": "The Boston Market",
+      "register_id": "business_the_boston_market",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_chicago_academy",
+      "file": "biz_the_chicago_academy.json",
+      "name": "the Chicago Academy",
+      "register_id": "business_the_chicago_academy",
+      "provenance": "compiled_from_register",
+      "type": [
+        "school"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_chicago_american_newspaper_and_job_printing_office",
+      "file": "biz_the_chicago_american_newspaper_and_job_printing_office.json",
+      "name": "the Chicago American, newspaper and job printing office",
+      "register_id": "business_the_chicago_american_newspaper_and_job_printing_office",
+      "provenance": "compiled_from_register",
+      "type": [
+        "printing_office"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_chicago_and_st_joseph_packet_schooner_phillips",
+      "file": "biz_the_chicago_and_st_joseph_packet_schooner_phillips.json",
+      "name": "The Chicago and St. Joseph packet, schooner Phillips",
+      "register_id": "business_the_chicago_and_st_joseph_packet_schooner_phillips",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_chicago_brewery",
+      "file": "biz_the_chicago_brewery.json",
+      "name": "the Chicago Brewery",
+      "register_id": "business_the_chicago_brewery",
+      "provenance": "compiled_from_register",
+      "type": [
+        "brewery"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_chicago_democrat",
+      "file": "biz_the_chicago_democrat.json",
+      "name": "The Chicago Democrat",
+      "register_id": "business_the_chicago_democrat",
+      "provenance": "compiled_from_register",
+      "type": [
+        "printing_office"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_dearborn_street_auction_and_commission_rooms",
+      "file": "biz_the_dearborn_street_auction_and_commission_rooms.json",
+      "name": "the Dearborn Street auction and commission rooms",
+      "register_id": "business_the_dearborn_street_auction_and_commission_rooms",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_livery_stable_at_the_point",
+      "file": "biz_the_livery_stable_at_the_point.json",
+      "name": "the Livery Stable at the Point",
+      "register_id": "business_the_livery_stable_at_the_point",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_lumber_yard_and_warehouse_announced_for_the_opening_of_navigation_1834",
+      "file": "biz_the_lumber_yard_and_warehouse_announced_for_the_opening_of_navigation_1834.json",
+      "name": "the lumber yard and warehouse announced for the opening of navigation, 1834",
+      "register_id": "business_the_lumber_yard_and_warehouse_announced_for_the_opening_of_navigation_1834",
+      "provenance": "compiled_from_register",
+      "type": [
+        "storage_and_forwarding",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_man_trap",
+      "file": "biz_the_man_trap.json",
+      "name": "the Man Trap",
+      "register_id": "business_the_man_trap",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_new_blacksmith_shop_opposite_the_chicago_hotel",
+      "file": "biz_the_new_blacksmith_shop_opposite_the_chicago_hotel.json",
+      "name": "the new blacksmith shop opposite the Chicago Hotel",
+      "register_id": "business_the_new_blacksmith_shop_opposite_the_chicago_hotel",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_new_store_at_the_corner_of_water_and_clark_streets",
+      "file": "biz_the_new_store_at_the_corner_of_water_and_clark_streets.json",
+      "name": "the New Store at the corner of Water and Clark streets",
+      "register_id": "business_the_new_store_at_the_corner_of_water_and_clark_streets",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_stove_and_tin_ware_store_in_water_street_near_the_bridge",
+      "file": "biz_the_stove_and_tin_ware_store_in_water_street_near_the_bridge.json",
+      "name": "the stove and tin ware store in Water Street near the bridge",
+      "register_id": "business_the_stove_and_tin_ware_store_in_water_street_near_the_bridge",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_the_traveller_s_home",
+      "file": "biz_the_traveller_s_home.json",
+      "name": "the Traveller's Home",
+      "register_id": "business_the_traveller_s_home",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tavern"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_thomas_s_eels",
+      "file": "biz_thomas_s_eels.json",
+      "name": "Thomas S. Eels",
+      "register_id": "business_thomas_s_eels",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_thos_emerson_co",
+      "file": "biz_thos_emerson_co.json",
+      "name": "Thos. Emerson & Co.",
+      "register_id": "business_thos_emerson_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
+      "file": "biz_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered.json",
+      "name": "[tin, sheet iron and stove manufactory, proprietor not recovered]",
+      "register_id": "business_tin_sheet_iron_and_stove_manufactory_proprietor_not_recovered",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tin_and_copper_manufactory"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_tuttle_brown",
+      "file": "biz_tuttle_brown.json",
+      "name": "Tuttle & Brown",
+      "register_id": "business_tuttle_brown",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_uncertain_datid_gad_auction_and_commission_merchant_south_water_street",
+      "file": "biz_uncertain_datid_gad_auction_and_commission_merchant_south_water_street.json",
+      "name": "[uncertain: DATID GAD], auction and commission merchant, South Water Street",
+      "register_id": "business_uncertain_datid_gad_auction_and_commission_merchant_south_water_street",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_uncertain_j_i_mulford_carriage_and_sleigh_maker",
+      "file": "biz_uncertain_j_i_mulford_carriage_and_sleigh_maker.json",
+      "name": "[uncertain: J. I. Mulford], carriage and sleigh maker",
+      "register_id": "business_uncertain_j_i_mulford_carriage_and_sleigh_maker",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_uncertain_noble_wesencaft",
+      "file": "biz_uncertain_noble_wesencaft.json",
+      "name": "[uncertain: Noble & Wesencaft]",
+      "register_id": "business_uncertain_noble_wesencaft",
+      "provenance": "compiled_from_register",
+      "type": [
+        "steam_saw_mill"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store",
+      "file": "biz_uncertain_taylor_dearborn_street_boot_and_shoe_store.json",
+      "name": "[uncertain: …] Taylor, Dearborn Street boot and shoe store",
+      "register_id": "business_uncertain_taylor_dearborn_street_boot_and_shoe_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_uncertain_the_dentist_lodging_near_lake_street_july_1834",
+      "file": "biz_uncertain_the_dentist_lodging_near_lake_street_july_1834.json",
+      "name": "[uncertain: the dentist lodging near Lake Street, July 1834]",
+      "register_id": "business_uncertain_the_dentist_lodging_near_lake_street_july_1834",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_uncertain_the_physician_lodging_at_the_mansion_house_july_1834",
+      "file": "biz_uncertain_the_physician_lodging_at_the_mansion_house_july_1834.json",
+      "name": "[uncertain: the physician lodging at the Mansion House, July 1834]",
+      "register_id": "business_uncertain_the_physician_lodging_at_the_mansion_house_july_1834",
+      "provenance": "compiled_from_register",
+      "type": [
+        "physician"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+      "file": "biz_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store.json",
+      "name": "[uncertain: W. H. Taylor], Dearborn Street boot and shoe store",
+      "register_id": "business_uncertain_w_h_taylor_dearborn_street_boot_and_shoe_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_unidentified_dentist",
+      "file": "biz_unidentified_dentist.json",
+      "name": "[unidentified dentist]",
+      "register_id": "business_unidentified_dentist",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_unnamed_hat_manufacturer_dealer",
+      "file": "biz_unnamed_hat_manufacturer_dealer.json",
+      "name": "[unnamed] hat manufacturer & dealer",
+      "register_id": "business_unnamed_hat_manufacturer_dealer",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_unnamed_house_and_land_agent",
+      "file": "biz_unnamed_house_and_land_agent.json",
+      "name": "[unnamed] house and land agent",
+      "register_id": "business_unnamed_house_and_land_agent",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_unnamed_new_store_la_salle_street",
+      "file": "biz_unnamed_new_store_la_salle_street.json",
+      "name": "[unnamed] New Store, La Salle street",
+      "register_id": "business_unnamed_new_store_la_salle_street",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street",
+      "file": "biz_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street.json",
+      "name": "[unsigned] Boot, Shoe & Leather Store, two doors north of Lake street",
+      "register_id": "business_unsigned_boot_shoe_leather_store_two_doors_north_of_lake_street",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_g_blanchard",
+      "file": "biz_w_g_blanchard.json",
+      "name": "W. G. Blanchard",
+      "register_id": "business_w_g_blanchard",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_h_brown",
+      "file": "biz_w_h_brown.json",
+      "name": "W. H. Brown",
+      "register_id": "business_w_h_brown",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_h_taylor",
+      "file": "biz_w_h_taylor.json",
+      "name": "[W. H.] Taylor",
+      "register_id": "business_w_h_taylor",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_keeney",
+      "file": "biz_w_keeney.json",
+      "name": "W. Keeney",
+      "register_id": "business_w_keeney",
+      "provenance": "compiled_from_register",
+      "type": [
+        "tin_and_copper_manufactory"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_kimball",
+      "file": "biz_w_kimball.json",
+      "name": "W. Kimball",
+      "register_id": "business_w_kimball",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_kimball_s_new_store",
+      "file": "biz_w_kimball_s_new_store.json",
+      "name": "W. Kimball's New Store",
+      "register_id": "business_w_kimball_s_new_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_montgomery",
+      "file": "biz_w_montgomery.json",
+      "name": "W. Montgomery",
+      "register_id": "business_w_montgomery",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_montgomery_auction_and_commission_house",
+      "file": "biz_w_montgomery_auction_and_commission_house.json",
+      "name": "W. Montgomery, Auction and Commission House",
+      "register_id": "business_w_montgomery_auction_and_commission_house",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_w_reed",
+      "file": "biz_w_reed.json",
+      "name": "W. Reed",
+      "register_id": "business_w_reed",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_whitehead_co",
+      "file": "biz_whitehead_co.json",
+      "name": "Whitehead & Co.",
+      "register_id": "business_whitehead_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_william_clay",
+      "file": "biz_william_clay.json",
+      "name": "William Clay",
+      "register_id": "business_william_clay",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_william_f_lyon_wholesale_grocery_store",
+      "file": "biz_william_f_lyon_wholesale_grocery_store.json",
+      "name": "William F. Lyon, Wholesale Grocery Store",
+      "register_id": "business_william_f_lyon_wholesale_grocery_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": false
+    },
+    {
+      "id": "biz_wm_h_kennicott",
+      "file": "biz_wm_h_kennicott.json",
+      "name": "Wm. H. Kennicott",
+      "register_id": "business_wm_h_kennicott",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_wm_h_kennicott_surgeon_dentist",
+      "file": "biz_wm_h_kennicott_surgeon_dentist.json",
+      "name": "Wm. H. Kennicott, Surgeon Dentist",
+      "register_id": "business_wm_h_kennicott_surgeon_dentist",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_wm_h_taylor",
+      "file": "biz_wm_h_taylor.json",
+      "name": "Wm. H. Taylor",
+      "register_id": "business_wm_h_taylor",
+      "provenance": "compiled_from_register",
+      "type": [
+        "other",
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_wm_h_taylor_boot_shoe_leather_store",
+      "file": "biz_wm_h_taylor_boot_shoe_leather_store.json",
+      "name": "Wm. H. Taylor, Boot, Shoe & Leather Store",
+      "register_id": "business_wm_h_taylor_boot_shoe_leather_store",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_wm_hogue_co",
+      "file": "biz_wm_hogue_co.json",
+      "name": "Wm. Hogue & Co.",
+      "register_id": "business_wm_hogue_co",
+      "provenance": "compiled_from_register",
+      "type": [
+        "store"
+      ],
+      "present_at_scene_date": true
+    },
+    {
+      "id": "biz_wm_sabine_storage_forwarding_and_commission_merchant",
+      "file": "biz_wm_sabine_storage_forwarding_and_commission_merchant.json",
+      "name": "Wm. Sabine, storage, forwarding and commission merchant",
+      "register_id": "business_wm_sabine_storage_forwarding_and_commission_merchant",
+      "provenance": "compiled_from_register",
+      "type": [
+        "storage_and_forwarding"
+      ],
+      "present_at_scene_date": true
+    }
+  ],
+  "_works_at_doc": "THE CROSSWALK, NOT A RULING. A household's `works_at` names a STRUCTURE; this says which business records stand in that structure. Two entries mean two houses share the roof and the evidence does not choose between them; an empty list means the roof carries no business the register knows, which is a finding about the register.",
+  "works_at": [
+    {
+      "household_id": "hh_bates_john_jr",
+      "head": "bates_john_jr",
+      "structure_id": "bates_auction_room",
+      "business_ids": [
+        "biz_j_bates_jr_auction_store",
+        "biz_john_bates_jr"
+      ]
+    },
+    {
+      "household_id": "hh_beaubien_jean_baptiste",
+      "head": "beaubien_jean_baptiste",
+      "structure_id": "jb_beaubien_homestead",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_beaubien_madore",
+      "head": "beaubien_madore",
+      "structure_id": "madore_beaubien_house",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_blodgett_tyler_k",
+      "head": "blodgett_tyler_k",
+      "structure_id": "brickyard_north_side",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_brown_rufus",
+      "head": "brown_rufus",
+      "structure_id": "brown_boarding_house",
+      "business_ids": [
+        "biz_brown_painter"
+      ]
+    },
+    {
+      "household_id": "hh_caldwell_billy",
+      "head": "caldwell_billy",
+      "structure_id": "cobweb_castle",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_calhoun_john",
+      "head": "calhoun_john",
+      "structure_id": "chicago_democrat_office",
+      "business_ids": [
+        "biz_w_kimball",
+        "biz_w_kimball_s_new_store"
+      ]
+    },
+    {
+      "household_id": "hh_carpenter_philo",
+      "head": "carpenter_philo",
+      "structure_id": "carpenter_south_water_store",
+      "business_ids": [
+        "biz_philo_carpenter"
+      ]
+    },
+    {
+      "household_id": "hh_caton_john_dean",
+      "head": "caton_john_dean",
+      "structure_id": "temple_lake_st_building",
+      "business_ids": [
+        "biz_j_d_caton_attorney_and_counsellor_at_law",
+        "biz_john_dean_caton",
+        "biz_john_dean_caton_attorney_and_counsellor_at_law"
+      ]
+    },
+    {
+      "household_id": "hh_church_thomas",
+      "head": "church_thomas",
+      "structure_id": "thomas_church_store",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_clybourne_archibald",
+      "head": "clybourne_archibald",
+      "structure_id": "clybourn_slaughterhouse",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_couch_ira",
+      "head": "couch_ira",
+      "structure_id": "tremont_house_1",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_davis_john",
+      "head": "davis_john",
+      "structure_id": "steamboat_hotel",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_davis_t_o",
+      "head": "davis_t_o",
+      "structure_id": "chicago_american_office",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_democrat_printers",
+      "head": "pratt_oscar",
+      "structure_id": "chicago_democrat_office",
+      "business_ids": [
+        "biz_w_kimball",
+        "biz_w_kimball_s_new_store"
+      ]
+    },
+    {
+      "household_id": "hh_dole_george_w",
+      "head": "dole_george_w",
+      "structure_id": "newberry_dole_warehouse",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_elston_daniel",
+      "head": "elston_daniel",
+      "structure_id": "elston_soap_candle_manufactory",
+      "business_ids": [
+        "biz_chicago_soap_and_candle_manufactory",
+        "biz_daniel_elston_co"
+      ]
+    },
+    {
+      "household_id": "hh_goss_cobb",
+      "head": "goss_o",
+      "structure_id": "goss_cobb_saddlery",
+      "business_ids": [
+        "biz_s_b_cobb_saddle_harness_and_trunk_manufactory"
+      ]
+    },
+    {
+      "household_id": "hh_greene_john",
+      "head": "greene_john",
+      "structure_id": "fort_dearborn_palisade",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_haddock_edward",
+      "head": "haddock_edward",
+      "structure_id": "mansion_house",
+      "business_ids": [
+        "biz_e_w_haddock"
+      ]
+    },
+    {
+      "household_id": "hh_harmon_brothers",
+      "head": "harmon_charles_l",
+      "structure_id": "harmon_loomis_store",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_hogan_john_s_c",
+      "head": "hogan_john_s_c",
+      "structure_id": "hogan_store",
+      "business_ids": [
+        "biz_j_s_c_hogan"
+      ]
+    },
+    {
+      "household_id": "hh_hubbard_gurdon",
+      "head": "hubbard_gurdon",
+      "structure_id": "old_bank_building",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_ingersoll_chester",
+      "head": "ingersoll_chester",
+      "structure_id": "green_tree_tavern",
+      "business_ids": [
+        "biz_ingersoll_s_tavern_stand"
+      ]
+    },
+    {
+      "household_id": "hh_jones_benjamin",
+      "head": "jones_benjamin",
+      "structure_id": "h_jones_store",
+      "business_ids": [
+        "biz_b_jones_grocery_and_provision_store",
+        "biz_b_jones_storage_and_forwarding"
+      ]
+    },
+    {
+      "household_id": "hh_kercheval_gholson",
+      "head": "kercheval_gholson",
+      "structure_id": "cobweb_castle",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_kimball_walter",
+      "head": "kimball_walter",
+      "structure_id": "chicago_democrat_office",
+      "business_ids": [
+        "biz_w_kimball",
+        "biz_w_kimball_s_new_store"
+      ]
+    },
+    {
+      "household_id": "hh_kinzie_john_h",
+      "head": "kinzie_john_h",
+      "structure_id": "jh_kinzie_forwarding_store",
+      "business_ids": [
+        "biz_j_h_kinzie_merchant",
+        "biz_john_h_kinzie"
+      ]
+    },
+    {
+      "household_id": "hh_kinzie_robert_a",
+      "head": "kinzie_robert_a",
+      "structure_id": "robert_kinzie_store",
+      "business_ids": [
+        "biz_r_a_kinzie"
+      ]
+    },
+    {
+      "household_id": "hh_mason_matthias",
+      "head": "mason_matthias",
+      "structure_id": "mason_blacksmith_shop",
+      "business_ids": [
+        "biz_matthias_mason_co"
+      ]
+    },
+    {
+      "household_id": "hh_mckee_david",
+      "head": "mckee_david",
+      "structure_id": "blacksmith_shop_state_st",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_miller_john",
+      "head": "miller_john",
+      "structure_id": "miller_tannery",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_murphy_john",
+      "head": "murphy_john",
+      "structure_id": "exchange_coffee_house",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_norton_nelson_r",
+      "head": "norton_nelson_r",
+      "structure_id": "dearborn_street_drawbridge",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_owen_thomas_jv",
+      "head": "owen_thomas_jv",
+      "structure_id": "cobweb_castle",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_peck_philip",
+      "head": "peck_philip",
+      "structure_id": "peck_store",
+      "business_ids": [
+        "biz_p_f_peck"
+      ]
+    },
+    {
+      "household_id": "hh_pierce_asahel",
+      "head": "pierce_asahel",
+      "structure_id": "pierce_blacksmith_shop",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_porter_jeremiah",
+      "head": "porter_jeremiah",
+      "structure_id": "first_presbyterian_church",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_porthier_joseph",
+      "head": "porthier_joseph",
+      "structure_id": "blacksmith_shop_state_st",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_pruyne_kimberly",
+      "head": "pruyne_peter",
+      "structure_id": "pruyne_kimball_drugstore",
+      "business_ids": [
+        "biz_p_pruyne_co"
+      ]
+    },
+    {
+      "household_id": "hh_robinson_alexander",
+      "head": "robinson_alexander",
+      "structure_id": "robinson_caldwell_cabins",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_sproat_grenville",
+      "head": "sproat_grenville",
+      "structure_id": "temple_building",
+      "business_ids": [
+        "biz_the_chicago_academy"
+      ]
+    },
+    {
+      "household_id": "hh_st_cyr_john_mary",
+      "head": "st_cyr_john_mary",
+      "structure_id": "st_marys_church",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_stow_william_h",
+      "head": "stow_william_h",
+      "structure_id": "western_hotel",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_taylor_anson",
+      "head": "taylor_anson_h",
+      "structure_id": "south_branch_raft_bridge",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_taylor_augustine",
+      "head": "taylor_augustine",
+      "structure_id": "st_marys_church",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_temple_john_t",
+      "head": "temple_john_t",
+      "structure_id": "temple_building",
+      "business_ids": [
+        "biz_the_chicago_academy"
+      ]
+    },
+    {
+      "household_id": "hh_thomas_frederick",
+      "head": "thomas_frederick",
+      "structure_id": "frederick_thomas_shop",
+      "business_ids": [
+        "biz_frederick_thomas_drugs_and_paints"
+      ]
+    },
+    {
+      "household_id": "hh_walters_william",
+      "head": "walters_william",
+      "structure_id": "wolf_point_tavern",
+      "business_ids": []
+    },
+    {
+      "household_id": "hh_watkins_john",
+      "head": "watkins_john",
+      "structure_id": "north_side_school_1833",
+      "business_ids": []
+    }
+  ]
+}

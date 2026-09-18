@@ -1,0 +1,78 @@
+{
+  "id": "biz_montgomery_auction_and_commission_house",
+  "register_id": "business_montgomery_auction_and_commission_house",
+  "name": "Montgomery, auction and commission house",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "auction and commission house, selling merchandize and real estate",
+  "occupation": "auctioneer",
+  "goods": [
+    "goods on commission",
+    "merchandize at auction",
+    "real estate at auction"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Montgomery",
+      "person_id": null,
+      "register_person_id": "person_montgomery",
+      "role": "proprietor",
+      "from": "1835-06-24",
+      "to": "1835-06-24",
+      "tier": "attested",
+      "basis": "The register holds this printed name as person_montgomery with action 'new_resident': the town does not carry a card for them under an id this record can name, so the reading is the name and not yet a person. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_06_24#c008"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1835-06-24",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names South Water Street and nothing narrower; the anchor is a reach of south_water and names nothing narrower."
+    }
+  ],
+  "dates": {
+    "opened": "1835-06-24",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-06-24, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-06-24",
+    "last_issue": "1835-06-24",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1835_06_24#c008"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

@@ -5205,6 +5205,64 @@ def check_resident_link(where: str, key: str, node, structure_ids: set, rep: Rep
                          f"parcel closes the loop by building the structure")
 
 
+def check_business_layer(structure_ids: set, rep: Report, tally: dict,
+                         data_root: Path | None = None) -> None:
+    """data/businesses/ — every id a record points at has to answer (T-1310).
+
+    The business layer is where a house of trade gets its people, its premises and its
+    dates. Three kinds of pointer leave it and each is checked here rather than trusted:
+    a location naming a structure, the index naming its own record files, and the
+    `works_at` crosswalk, which is the bridge between a resident's bare structure id and
+    the business that stood in it. A dangling business id is the failure mode this layer
+    replaces — the register's `works_at` was a structure id nobody could resolve to a
+    firm — so it is refused, not noted.
+    """
+    root = (data_root or DATA) / "businesses"
+    index_path = root / "index.json"
+    if not index_path.exists():
+        rep.note("businesses: no data/businesses/index.json - the town carries no business layer")
+        return
+    index = load_json(index_path, rep)
+    if not isinstance(index, dict):
+        return
+
+    records = {}
+    for path in sorted(root.glob("*.json")) + sorted((root / "authored").glob("*.json")):
+        if path.name == "index.json":
+            continue
+        doc = load_json(path, rep)
+        if not isinstance(doc, dict):
+            continue
+        where = f"businesses/{path.name}"
+        if doc.get("id") != path.stem:
+            rep.error(where, f"id '{doc.get('id')}' does not match the filename")
+        records[doc.get("id")] = doc
+        for loc in doc.get("locations") or []:
+            sid = loc.get("structure_id")
+            if sid is not None and sid not in structure_ids:
+                rep.error(where, f"a location names structure '{sid}', which is not a structure "
+                                 f"id in data/structures/")
+
+    for row in index.get("businesses") or []:
+        if row.get("id") not in records:
+            rep.error("businesses/index.json",
+                      f"the index lists '{row.get('id')}' and no record answers to it")
+
+    for row in index.get("works_at") or []:
+        where = "businesses/index.json"
+        sid = row.get("structure_id")
+        if sid is not None and sid not in structure_ids:
+            rep.error(where, f"the works_at crosswalk names structure '{sid}' for household "
+                             f"'{row.get('household_id')}', which is not a structure id")
+        for bid in row.get("business_ids") or []:
+            if bid not in records:
+                rep.error(where, f"the works_at crosswalk points household "
+                                 f"'{row.get('household_id')}' at business '{bid}', which the "
+                                 f"layer does not hold")
+
+    tally["businesses"] = len(records)
+
+
 def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dict,
                     data_root: Path | None = None) -> dict:
     """Schema, provenance, linkage and the scene-date gate for data/residents/**."""
@@ -5804,6 +5862,11 @@ def main() -> int:
     # (ROADMAP K34).
     households = check_residents(source_ids, {st.get("id") for st in structures.values()
                                               if isinstance(st, dict)}, rep, tally)
+
+    # and the layer the town's businesses live in, whose every outward pointer -
+    # a premises, an index row, a resident's workplace - has to answer (T-1310)
+    check_business_layer({st.get("id") for st in structures.values()
+                          if isinstance(st, dict)}, rep, tally)
 
     # scenes
     for name, sc in scenes.items():

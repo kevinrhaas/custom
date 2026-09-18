@@ -1,0 +1,74 @@
+{
+  "id": "biz_a_garrett_auctioneer",
+  "register_id": "business_a_garrett_auctioneer",
+  "name": "A. Garrett, auctioneer",
+  "provenance": "compiled_from_register",
+  "type": [
+    "other"
+  ],
+  "trade": "auction of town lots and land",
+  "occupation": "auctioneer",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "A. Garrett",
+      "person_id": "garrett_a",
+      "register_person_id": "person_a_garrett",
+      "role": "proprietor",
+      "from": "1835-08-22",
+      "to": "1835-08-22",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card garrett_a (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_08_22#c004"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "dearborn",
+      "face": null,
+      "primary": true,
+      "from": "1835-08-22",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names Dearborn Street and nothing narrower; the paper gives no anchor."
+    }
+  ],
+  "dates": {
+    "opened": "1835-08-22",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-08-22, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-08-22",
+    "last_issue": "1835-08-22",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_american_1835_08_22#c004"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": true
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

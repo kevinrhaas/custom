@@ -1,0 +1,135 @@
+{
+  "id": "biz_philo_carpenter",
+  "register_id": "business_philo_carpenter",
+  "name": "Philo Carpenter",
+  "provenance": "compiled_from_register",
+  "type": [
+    "druggist"
+  ],
+  "trade": "drugs and medicines",
+  "occupation": "druggist",
+  "goods": [
+    "Bedford crown glass",
+    "Boots and Shoes",
+    "Cough lozenges",
+    "Drugs",
+    "Dry Groceries",
+    "Dye Stuffs",
+    "Dye Woods",
+    "Dye stuffs",
+    "Dye woods",
+    "Dye-Stuffs",
+    "Glass",
+    "Glassware",
+    "Grass Scythes",
+    "Hay Forks",
+    "Liniment",
+    "Manure Forks",
+    "Medicines",
+    "Nails",
+    "Oils",
+    "Paints",
+    "Panacea",
+    "Patent medicines",
+    "Perfumery",
+    "Rifles",
+    "School Books",
+    "Scythe Stones",
+    "Shovels",
+    "Surgical Instruments",
+    "Trusses",
+    "Vermifuge",
+    "White lead",
+    "quinine",
+    "ready made clothing",
+    "temperance almanacs",
+    "window glass"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Philo Carpenter",
+      "person_id": "carpenter_philo",
+      "register_person_id": "person_philo_carpenter",
+      "role": "proprietor",
+      "from": "1833-11-26",
+      "to": "1835-07-22",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card carpenter_philo (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_06_27#c013",
+        "chicago_american_1835_07_18#c004",
+        "chicago_democrat_1833_11_26#c011",
+        "chicago_democrat_1833_12_17#c002",
+        "chicago_democrat_1834_04_08#c009",
+        "chicago_democrat_1834_05_07#c010",
+        "chicago_democrat_1834_06_25#c003",
+        "chicago_democrat_1834_07_02#c054",
+        "chicago_democrat_1835_06_04#c011",
+        "chicago_democrat_1835_07_08#c011",
+        "chicago_democrat_1835_07_22#c015"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "carpenter_south_water_store",
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1833-11-26",
+      "to": null,
+      "tier": "attested",
+      "basis": "The register matches this business onto the committed structure carpenter_south_water_store on its occupants. carpenter_south_water_store already stands and its occupants carries carpenter — 'Philo Carpenter; druggist'. The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    }
+  ],
+  "dates": {
+    "opened": "1833-11-26",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1833-11-26, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1833-11-26",
+    "last_issue": "1835-07-22",
+    "copy_dates": [
+      "1833-11-22",
+      "1833-12-16",
+      "1834-06-25",
+      "1835-06-03"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_american_1835_06_27#c013",
+    "chicago_american_1835_07_18#c004",
+    "chicago_democrat_1833_11_26#c011",
+    "chicago_democrat_1833_12_17#c002",
+    "chicago_democrat_1834_04_08#c009",
+    "chicago_democrat_1834_05_07#c010",
+    "chicago_democrat_1834_06_25#c003",
+    "chicago_democrat_1834_07_02#c054",
+    "chicago_democrat_1835_06_04#c011",
+    "chicago_democrat_1835_07_08#c011",
+    "chicago_democrat_1835_07_22#c015"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}
