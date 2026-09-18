@@ -322,6 +322,30 @@ EPIC_PIECES = {
     "directories": ("T-1297", "The name-on-a-roll piece owns this unasserted unit."),
 }
 
+# T-1241 ENDED T-1147, AND THE SAME ROUTING RULE APPLIES A THIRD TIME. The place and
+# enterprise completion pass was split into five pieces; T-1237, T-1238 and T-1239 ran and
+# T-1240 was withdrawn, so the pass has spent what it could spend. What it left behind is
+# 748 newspaper, book, directory, civic and church units that describe a business, a
+# building, a street or a piece of infrastructure and reach no structured target — not
+# because nobody has looked at them, but because THE LAYER THAT WOULD RECEIVE THEM IS NOT
+# BUILT YET. There is no authored business record to carry an enterprise claim (T-1180) and
+# no seat on the ground to carry a place claim (T-1198).
+#
+# Leaving them pointed at T-1147 made the last open child of that parent load-bearing: close
+# T-1241 and the parent falls out of `split_live`, and 748 units that had not changed would
+# suddenly be deferred to finished work. T-1241's own file records that, and records the
+# cost of the alternative — "those 748 units repointed at whatever absorbs it". This is that
+# repointing, and it is the routing EPIC_PIECES already does one comment above: the owner of
+# an unasserted unit is the piece that still has THAT corpus to spend. Here the corpus
+# divides by what the unit describes rather than by which domain read it, because an
+# enterprise claim and a place claim are absorbed by different bands.
+PLACE_AND_ENTERPRISE = {
+    "business": ("T-1180", "The authored business layer owns this unasserted enterprise claim."),
+    "building": ("T-1198", "The seating pass owns this unasserted place claim."),
+    "street": ("T-1198", "The seating pass owns this unasserted place claim."),
+    "infrastructure": ("T-1198", "The seating pass owns this unasserted place claim."),
+}
+
 
 def natural_disposition(root: Path, unit: dict, targets: dict[str, list[dict]]) -> dict:
     row = unit["record"]
@@ -390,9 +414,9 @@ def natural_disposition(root: Path, unit: dict, targets: dict[str, list[dict]]) 
             return {"disposition": "asserted", "target": target}
 
     kind = row.get("kind")
-    if kind in {"business", "building", "street", "infrastructure"}:
-        return {"disposition": "unresolved", "ticket": "T-1147",
-                "reason": "The place and enterprise completion pass owns this unasserted unit."}
+    if kind in PLACE_AND_ENTERPRISE:
+        owner, reason = PLACE_AND_ENTERPRISE[kind]
+        return {"disposition": "unresolved", "ticket": owner, "reason": reason}
     owner, reason = EPIC_PIECES.get(
         domain, ("T-1298", "The remainder piece of the epic owns this unasserted unit."))
     return {"disposition": "unresolved", "ticket": owner, "reason": reason}
