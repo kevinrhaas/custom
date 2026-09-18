@@ -88,6 +88,25 @@
      "against_merge": "THE ROLL ENTERS BOTH, ONE LINE APART, AND IT IS THE SAME ROLL BOTH CARDS CITE. The tax list of the Town of Chicago for 1833 — a closed roll of 115 enumerated taxpayers, alphabetical — prints “David, John” as its entry 23 (tax_1833_023, transcription line 75) and “Davis, John” as its entry 24 (tax_1833_024, line 76), consecutive, between 'Cook, Thomas' and 'Dole, George W.'. A tax roll enters each taxpayer once; two adjacent lines is the document's own count of how many men of that name it held, and it is not the printer's hand wavering, because a wavering hand does not produce two lines where it meant one — it produces one line spelled the other way, which is what the Pearson cluster above is made of. The rolls go on keeping them apart: the poll filed 11 August 1834 enters “Davis, John” (poll_1834_032, line 201) and no David at all, and the whole IRAD run holds no third bearer of either stem. Nothing else reached is caught setting the two spellings for one man; the one page that sets them both sets them as two. D5, and the cards stay two. `for_merge` is kept verbatim so the argument survives its refusal."
     }
    ],
+   "age_band": {
+    "value": "30-39",
+    "census_band": "free white males 30 under 40",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+    },
+    "seed": "david_john:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('david_john:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
    "sex": "male",
    "sex_basis": {
     "value": "male",

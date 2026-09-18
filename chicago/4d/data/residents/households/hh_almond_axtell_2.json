@@ -65,7 +65,43 @@
     "chicago_democrat_1833_1835"
    ],
    "note": "KNOWN ONLY FROM THE POST OFFICE, IN ONE RETURN. The papers print 'Almond Axtell 2' in a single return of letters uncalled-for at the Chicago post office — the Democrat of 4 March 1834, column 33 — dated 1834-03-04. AN INITIAL THIS PROJECT CANNOT READ, MARKED AS ONE. The card shows 'Axtell [?] Almond': the scan sets a DIGIT where the middle initial goes, and a digit is never part of a name, so the character is carried as [?] — the marker the Chicago list of 1 January 1834 already uses for an initial the printing did not deliver. NO LETTER IS SUPPLIED. The deposit holds two transcriptions of this issue and no page image, and the alternate carries no letter list at all, so there is no cleaner impression here to settle it against and the project declines to guess (T-0721; the suspicion is registered, ungraded, at data/research/residents/letter_list_reading_suspicions.json). The verbatim setting is untouched and quoted above; what has stopped is the card asserting that setting is a name. A pass that reaches the page images settles it and this marker goes. Nothing else in the corpus names this person: no trade, no street, no household, no arrival, so every other claim here is written unattested in its own block. WHAT THAT IS WORTH: a correspondent believed a person of this name reachable at Chicago on that date, and nothing further — not that they lived here, kept a trade here, or were here on 1 July 1835. It is the weakest evidence this project accepts for a resident, and a source placing them elsewhere retires the record. THE ARGUMENT EVERY RECORD OF THIS KIND SHARES is written once instead of once per file: the ruling of 2026-08-30 and what it cost the town (docs/LIBERTIES.md L214), the refusals and the transcription standard behind the reading (tools/mint_letter_list_residents.py). No figure is drawn (L1).",
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "sex_share_of_the_roll",
+     "note": "Drawn at 94.3% male, the rate measured on the letter_list roll's own people whose sex the evidence settles. data/reconstruction/1835_sex_age_model.json holds the measurement."
+    },
+    "seed": "almond_axtell_2:sex_ratio",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that records this person's sex, a gendered title on their name, or a forename the project's evidence lets fire"
+    },
+    "note": "A DRAW, NOT A READING. Nothing about this person says which sex they were: T-1303 refused the name and was right to. This value is drawn from the measured male share of the roll the person was named on, seeded by their own id so the draw reproduces - retype 'almond_axtell_2:sex_ratio' and the same face comes up. It carries no weight as evidence about this person and it is never promoted. The rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names."
+   },
+   "age_band": {
+    "value": "20-29",
+    "census_band": "free white males 20 under 30",
+    "low": 20,
+    "high": 29,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "almond_axtell_2:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('almond_axtell_2:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   }
   }
  ],
  "touches_removal": false,

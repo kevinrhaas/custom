@@ -87,6 +87,25 @@
      "against_merge": "hh_hogan_john was minted from st_cyr_death_03_1, where John Hogan is the DECEDENT, and the register dates that death to October 1834. John S. C. Hogan is documented in the town as postmaster and keeping his store on the scene date of 1 July 1835 and is named on the 1833-1835 voter rolls. A man cannot be buried in 1834 and vote in 1835: these are two men, and the ruling is written onto both cards so no later pass folds the postmaster onto his own namesake's burial."
     }
    ],
+   "age_band": {
+    "value": "20-29",
+    "census_band": "free white males 20 under 30",
+    "low": 20,
+    "high": 29,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "hogan_john:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('hogan_john:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
    "sex": "male",
    "sex_basis": {
     "value": "male",

@@ -91,6 +91,25 @@
      "against_merge": "TWO RETURNS NINE MONTHS APART, EACH INTERNALLY CONSISTENT. “Reuben Beech” stands on the return of 1 July 1834 and is printed TWICE, in the impressions of 9 July 1834 (“leaben Beech”, the forename wrecked, the surname clean) and 16 July 1834 (“Reuben Beech”): two settings of that return, and both set BEECH. “Bench, Reuben” stands on the return of 31 March 1835, printed in the Democrat of 20 May 1835, clean and alphabetically seated between “Beaubien” and “Bennet” in the B run. Two impressions on one side and a clean line on the other means the one-letter difference is NOT a damaged impression that a better one repairs — the readings are stable within each return and differ only between them. No return sets both, neither card is an anchor, and the gazetteer holds no third bearer of either stem. D6."
     }
    ],
+   "age_band": {
+    "value": "30-39",
+    "census_band": "free white males 30 under 40",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "bench_reuben:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('bench_reuben:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
    "sex": "male",
    "sex_basis": {
     "value": "male",

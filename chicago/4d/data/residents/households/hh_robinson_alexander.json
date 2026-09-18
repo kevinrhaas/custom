@@ -134,7 +134,15 @@
      "employer_or_body": "not_stated",
      "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
-   ]
+   ],
+   "age_band": {
+    "value": "70-79",
+    "low": 70,
+    "high": 79,
+    "confidence": "inferred",
+    "tier": "inferred",
+    "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
+   }
   },
   {
    "id": "robinson_catherine",
@@ -163,6 +171,25 @@
     "source_ids": [
      "chicago_democrat_1833_1835"
     ]
+   },
+   "age_band": {
+    "value": "20-29",
+    "census_band": "free white females 20 under 30",
+    "low": 20,
+    "high": 29,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's female bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "robinson_catherine:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('robinson_catherine:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
    }
   },
   {
@@ -179,7 +206,19 @@
     "andreas_1884_v1",
     "kinzie_waubun_1856"
    ],
-   "note": "AN ADMISSION, NOT A PERSON. Wau-Bun describes 'two or three log cabins occupied by Robinson, the Pottowattamie chief, and some of his wife's connexions' - so the household extended beyond the couple and the source neither names nor counts it. Andreas has him settling on the Des Plaines reservation 'with his family' after the removal, and two sons and a daughter-in-law buried beside him. Do not count this entry as a person."
+   "note": "AN ADMISSION, NOT A PERSON. Wau-Bun describes 'two or three log cabins occupied by Robinson, the Pottowattamie chief, and some of his wife's connexions' - so the household extended beyond the couple and the source neither names nor counts it. Andreas has him settling on the Des Plaines reservation 'with his family' after the removal, and two sons and a daughter-in-law buried beside him. Do not count this entry as a person.",
+   "sex_basis": {
+    "value": null,
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw. This row stands for more than one person and a single band or a single sex would make a group into a person. The refusal is T-1303's and it is kept here word for word rather than overridden by a model that could not tell."
+   },
+   "age_band": {
+    "value": null,
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no age band to draw. This row stands for more than one person and a single band or a single sex would make a group into a person. The refusal is T-1303's and it is kept here word for word rather than overridden by a model that could not tell."
+   }
   }
  ],
  "touches_removal": true,

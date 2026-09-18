@@ -80,6 +80,25 @@
      "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. “Joseph Babeu” is LINE 10 of the return of 1 January 1834, read at the page image by T-0424 and tied there by T-1010's concordance to the one impression that carries it, the Democrat of 4 March 1834, column 33 — a single tie, no second reading, no disagreement on the row. “Joseph Babeue” stands on the return of 1 July 1834, printed in the impressions of 9 July (“oseph Babeue”, the initial lost) and 16 July 1834 (“Joseph Babeue”) — two impressions of that later return, agreeing with each other and both against the January spelling. So the office closed two returns six months apart, entered one spelling on each, and was never asked to set them together: C9's demonstration is absent and D5's is absent with it. Neither card is an anchor — no trade, no dwelling, no research on either — and neither name appears anywhere else in the corpus; the gazetteer holds these two and no other bearer of the stem. What is left to fold on is one letter, which is what T-1001 measured and refused. D6, and the cards stay two."
     }
    ],
+   "age_band": {
+    "value": "15-19",
+    "census_band": "free white males 15 under 20",
+    "low": 15,
+    "high": 19,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "babeu_joseph:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('babeu_joseph:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
    "sex": "male",
    "sex_basis": {
     "value": "male",

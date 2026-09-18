@@ -105,6 +105,42 @@
     "regraded_on": "2026-09-04",
     "rule": "G1c",
     "summary": "The 1834 poll list prints 'Brooks, Gardner' and one bearer of the surname was considered: an uncommon forename agreeing whole against a town list taken within the scene window. Pass 2 could only offer the Des Plaines settlers' history and called it a candidate; the voter read (T-0493) landed afterwards and settles the man in the town, not merely on the river."
+   },
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "sex_share_of_the_roll",
+     "note": "Drawn at 94.3% male, the rate measured on the letter_list roll's own people whose sex the evidence settles. data/reconstruction/1835_sex_age_model.json holds the measurement."
+    },
+    "seed": "brooks_gardner:sex_ratio",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that records this person's sex, a gendered title on their name, or a forename the project's evidence lets fire"
+    },
+    "note": "A DRAW, NOT A READING. Nothing about this person says which sex they were: T-1303 refused the name and was right to. This value is drawn from the measured male share of the roll the person was named on, seeded by their own id so the draw reproduces - retype 'brooks_gardner:sex_ratio' and the same face comes up. It carries no weight as evidence about this person and it is never promoted. The rate is a ceiling rather than a point reading, because the forename table that settled the rest was built mostly on men's names."
+   },
+   "age_band": {
+    "value": "30-39",
+    "census_band": "free white males 30 under 40",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+    },
+    "seed": "brooks_gardner:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('brooks_gardner:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
    }
   }
  ],

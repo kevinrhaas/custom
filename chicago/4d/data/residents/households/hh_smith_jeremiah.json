@@ -113,6 +113,14 @@
      "note": "AN OFFICE FROM THE FERGUS 1839 CITY REGISTER, carried here by its own crosswalk (T-1254, by tools/derive_resident_roles.py). The register is a retrospective table set in 1876, and its carry rule is explicit: a later office is corroboration of CONTINUED RESIDENCE and never an 1835 fact. It therefore does not stand in the 1835 view."
     }
    ],
+   "age_band": {
+    "value": "15-19",
+    "low": 15,
+    "high": 19,
+    "confidence": "inferred",
+    "tier": "inferred",
+    "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
+   },
    "sex": "male",
    "sex_basis": {
     "value": "male",

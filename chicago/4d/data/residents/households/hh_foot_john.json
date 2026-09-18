@@ -130,6 +130,25 @@
      "against_merge": "AND NO ONE ROLL SETS BOTH, WHICH IS WHAT C9 ASKS FOR. The three rolls are internally consistent: tax 1833 sets FOOT twice, poll 1834 sets FOOTE twice, poll 1835 sets FOOT. The variation is between rolls and never inside one, so the printer is never caught — and a shared source id is not a shared printing. No roll enters both spellings as separate entries either, so D5 does not refuse harder and does not acquit. Neither card is an anchor: foot_john is the 1835 poll and the 1833 tax list with no trade, foote_john the 1834 poll alone. D9, and the pattern is kept verbatim because it is the argument a later page would only have to confirm."
     }
    ],
+   "age_band": {
+    "value": "30-39",
+    "census_band": "free white males 30 under 40",
+    "low": 30,
+    "high": 39,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `civic_list_20_and_over` because the person stands on a poll, a tax list or a muster roll."
+    },
+    "seed": "foot_john:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('foot_john:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a poll, tax or muster list names a person 20 or over - the 1840 schedule's own adult line. THE FRANCHISE'S AGE RULE IS NOT IN ANY SOURCE RECORD THIS PROJECT HOLDS; this is the model's conditioning and not a reading (T-1303's finding, handed to T-1304). No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
    "sex": "male",
    "sex_basis": {
     "value": "male",

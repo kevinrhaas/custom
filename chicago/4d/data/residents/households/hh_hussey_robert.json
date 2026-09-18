@@ -91,6 +91,25 @@
      "against_merge": "TWO RETURNS, NINE MONTHS APART, NEITHER SETTING BOTH. “Hussy, Robert 2” is printed in the Democrat of 22 October 1834, seated between “Williams, Charles C.” and “Winters, Moses” in a surname-first list; “Hussey, Robert” in the Democrat of 1 July 1835, between “Phillips James” and “Park Hezekiah”. Each reading is clean in its own impression and neither return carries the other spelling. Neither card is an anchor; the gazetteer holds these two and no third bearer; nothing outside the post office names either man. C9's page does not exist and D5's roll does not either. D6."
     }
    ],
+   "age_band": {
+    "value": "20-29",
+    "census_band": "free white males 20 under 30",
+    "low": 20,
+    "high": 29,
+    "confidence": "reconstructed",
+    "tier": "reconstructed",
+    "basis": {
+     "kind": "model",
+     "id": "age_bands_1840",
+     "note": "Drawn from the 1840 Chicago schedule's male bands, conditioned on `named_on_a_roll_15_and_over` because the person is named in their own right on any other roll this layer was minted from - a letter list, a subscription, a court docket, a trade notice - or carries a role, a trade, a marriage or a parenthood."
+    },
+    "seed": "hussey_robert:age_bands_1840",
+    "replaceable_by": {
+     "kind": "person",
+     "match": "a source that states this person's age, their birth year, or an interval either can be read out of"
+    },
+    "note": "AN AGE BAND, NEVER A YEAR. No source this project holds bears on when this person was born, so the band is drawn from the only committed sex by age distribution the project has - the 1840 Chicago schedule, five years after the scene and a town twice the size - seeded by this person's own id ('hussey_robert:age_bands_1840'). AND THE CONDITIONING IS THE MODEL'S, NOT A SOURCE'S: that a roll naming a person in their own right names somebody 15 or over. The 1840 schedule counts a child as a tally inside a household and never as a correspondent; 15 rather than 20 because an apprentice or a journeyman stands on a trade roll. No source states this rule. No exact year is written, because a year drawn from a decadal band would read as a record of a birth."
+   },
    "sex": "male",
    "sex_basis": {
     "value": "male",
