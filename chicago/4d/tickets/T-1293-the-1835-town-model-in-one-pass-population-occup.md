@@ -1,7 +1,7 @@
 ---
 id: T-1293
 title: The 1835 town model in one pass: population, occupations, households, lodging and arrival, each with its method and its uncertainty stated as a range
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-17
+pr: 1431
 claimed_by: run 9/17/2026, 9:02:28 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T02:28:06.695Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35296758151
 ---
 
