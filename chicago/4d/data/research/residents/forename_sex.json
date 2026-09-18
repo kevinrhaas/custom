@@ -7,10 +7,10 @@
  "the_bearer_rule": "forename -> sex -> [person ids], out of the people whose sex a source records. A bearer whose name carries a gendered title teaches nothing, because the title and not the forename is what sexes them.",
  "counts": {
   "male": 91,
-  "female": 40,
+  "female": 41,
   "refused": 5,
-  "from_a_bearer_in_this_layer": 55,
-  "from_a_pool_only": 76,
+  "from_a_bearer_in_this_layer": 57,
+  "from_a_pool_only": 75,
   "contractions": 15,
   "not_a_forename": 22,
   "collective": 7
@@ -1019,7 +1019,11 @@
   },
   {
    "forename": "ellen",
-   "attested_bearers": {},
+   "attested_bearers": {
+    "female": [
+     "hamilton_ellen"
+    ]
+   },
    "in_pools": [
     "irish"
    ],
@@ -1252,6 +1256,16 @@
    "in_pools": [
     "french_colonial"
    ],
+   "sex": "female"
+  },
+  {
+   "forename": "welthyan",
+   "attested_bearers": {
+    "female": [
+     "harmon_welthyan"
+    ]
+   },
+   "in_pools": [],
    "sex": "female"
   }
  ],
