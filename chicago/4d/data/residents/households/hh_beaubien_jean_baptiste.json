@@ -7,9 +7,10 @@
   "value": "1812",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "'He came to Chicago and bought the cabin and cultivated field south of the old fort in 1812' - the earliest arrival in the dataset by nineteen years, and inside the year of the Fort Dearborn massacre.",
+  "note": "'He came to Chicago and bought the cabin and cultivated field south of the old fort in 1812' - the earliest arrival in the dataset by nineteen years, and inside the year of the Fort Dearborn massacre. CORROBORATED BY A SECOND COMPILATION, AND THE YEAR AGREES TO THE YEAR. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. Row bk_mose1_as_003 reads 'Beanbien, Jean Baptist' — the scan's u read as an n, in a table whose next two rows print Beaubien — nativity Michigan, YEAR 1812. That is the year this record already carries from Andreas, printed by an independent compiler working from Hurlbut. THE GRADE DOES NOT MOVE: two retrospective secondary works agreeing is corroboration and not a promotion, and `attested` here was earned by Andreas's own sentence. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here.",
   "precision": "year"
  },
  "party_size_on_arrival": {
@@ -21,9 +22,10 @@
   "value": "Detroit and the Milwaukee trade, of a French colonial family",
   "confidence": "attested",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "'He was settled as a trader in Milwaukee as early as 1800, and until 1818 had a trading-house there.'"
+  "note": "'He was settled as a trader in Milwaukee as early as 1800, and until 1818 had a trading-house there.' Row bk_mose1_as_003 of the settlers table prints his nativity as Michigan, which is the same statement this record makes at Detroit, Detroit being in Michigan; it adds a second printing and no new place."
  },
  "reason_for_coming": {
   "value": "The fur trade",

@@ -103,7 +103,7 @@
    "id": "hh_beaubien_mark__brother__jean_baptiste",
    "source": "card_prose",
    "locator": "hh_beaubien_mark",
-   "as_read": "ry\", \"confidence\": \"inferred\", \"sources\": [\"andreas_1884_v1\"], \"note\": \"Andreas's life of his brother Jean Baptiste gives the family's trading history at Milwaukee from about ",
+   "as_read": ": [\"andreas_1884_v1\", \"moses_kirkland_history_of_chicago_v1\"], \"note\": \"Andreas's life of his brother Jean Baptiste gives the family's trading history at Milwaukee from about ",
    "subject_as_read": "Mark Beaubien",
    "relation": "brother",
    "other_as_read": "Jean Baptiste",

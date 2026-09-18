@@ -32,13 +32,13 @@ Reproduce: `python3 tools/report_research_signoff.py --check`.
 | Disposition | Units |
 | --- | ---: |
 | aggregate_only | 173 |
-| asserted | 170 |
+| asserted | 182 |
 | later_only | 12,568 |
 | outside_chicago | 109 |
-| refused | 8,524 |
-| unresolved | 2,149 |
+| refused | 8,526 |
+| unresolved | 2,135 |
 
-Unclassified: **0** (C1). Asserted units whose named field does not resolve on the record: **0** of 170 (C2). The resident synthesizer's declared drift from the cards it writes: **0** file(s) (C4).
+Unclassified: **0** (C1). Asserted units whose named field does not resolve on the record: **0** of 182 (C2). The resident synthesizer's declared drift from the cards it writes: **0** file(s) (C4).
 
 An `unresolved` unit is research read and not yet spent, and it is only legitimate while the ticket it defers to is still going to happen. Read the owners column carefully — it is the most informative table in this report:
 
@@ -51,8 +51,8 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1172 | 260 | open | yes |
 | T-1170 | 168 | split_live | yes |
 | T-1182 | 37 | open | yes |
-| T-1313 | 21 | open | yes |
 | T-1188 | 12 | open | yes |
+| T-1323 | 7 | open | yes |
 | T-1315 | 3 | open | yes |
 | T-1144 | 1 | open | yes |
 | T-1299 | 1 | open | yes |
@@ -224,14 +224,14 @@ Reproduce: `python3 tools/location_reconciliation.py --check` · `python3 tools/
 
 ## 5. Withheld is legible
 
-**21,374** reading units were deliberately kept out of the town, and **0** of them do so without a stated reason (C8). A refusal that cannot say why is indistinguishable from an oversight, which is the whole point of keeping them.
+**21,376** reading units were deliberately kept out of the town, and **0** of them do so without a stated reason (C8). A refusal that cannot say why is indistinguishable from an oversight, which is the whole point of keeping them.
 
 | Withheld as | Units |
 | --- | ---: |
 | `aggregate_only` | 173 |
 | `later_only` | 12,568 |
 | `outside_chicago` | 109 |
-| `refused` | 8,524 |
+| `refused` | 8,526 |
 
 The same rule over the gate itself: of **171** tools carrying a `--check`, **165** are run by `tools/check.sh` and **6** are not. Each of those declares why and who owns the answer, and **0** state no reason (C9):
 

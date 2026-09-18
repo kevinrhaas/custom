@@ -129,7 +129,7 @@ Seating is **held** (T-1170's second piece — see tickets/QUEUE.md). The ruling
 - **from** `hh_caldwell_billy`
 - **verdict** `insufficient_identity` — 'Potawatomi' is a people, not a person. That Billy Caldwell's mother was Potawatomi is on the card and is not in doubt; what the reading does not give is a name, and this pass writes named people only. NOT A REFUSAL OF THE FACT - a woman the sources describe and do not name is the reconstruction half's question, under the stage that carries the Indigenous-history review (T-1177).
 
-> holds."}, "origin": {"value": "Detroit; his father an Irish officer in the British army, his mother Potawatomi", "confidence": "attested", "sources": ["andreas_1884_v1"],
+> holds."}, "origin": {"value": "Detroit; his father an Irish officer in the British army, his mother Potawatomi", "confidence": "attested", "sources": ["andreas_1884_v1",
 
 ### `kin:hh_hamilton_richard_j__daughter__mrs_ellen_hamilton_keenon`
 

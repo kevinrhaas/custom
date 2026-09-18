@@ -4,12 +4,12 @@
  "division": "west",
  "head": "kinzie_james",
  "arrival": {
-  "value": "1831",
+  "value": "1824",
   "confidence": "inferred",
   "sources": [
-   "andreas_1884_v1"
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "He is in the settlement by 1831, when he stands surety on the ferry bond. Nothing dates his coming.",
+  "note": "A BOUND BECOMES A YEAR, ON A CARD THAT SAID IN TERMS THAT NOTHING DATED IT. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. Row bk_mose1_as_018 reads 'Kinzie, James', nativity Detroit, YEAR 1824, remarks 'Voted in 1830, born April 21, 1793, died Jan. 3, 1868'; the table separates the three Kinzies itself and this row carries a full forename rather than an initial, which is what the books crosswalk merged it on. WHAT THIS RECORD USED TO SAY: \"He is in the settlement by 1831, when he stands surety on the ferry bond. Nothing dates his coming.\" — 1831 was the ferry bond, a LATEST-BY and not a coming, and the record admitted it. The table's 1824 is a coming, it is seven years earlier, and it is consistent with the bond: a man in the settlement by 1824 is in it by 1831. INFERRED AND NOT ATTESTED: 1895, at second hand from Hurlbut, transcription_mediated. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here.",
   "precision": "year"
  },
  "party_size_on_arrival": {
@@ -18,21 +18,12 @@
   "note": "Not attested in anything this project holds."
  },
  "origin": {
-  "value": "New York State",
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
-  "basis": {
-   "kind": "model",
-   "id": "origin",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
-  },
-  "seed": "hh_kinzie_james:origin_region",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a source that says where this household came from"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "value": "Detroit",
+  "confidence": "inferred",
+  "sources": [
+   "moses_kirkland_history_of_chicago_v1"
+  ],
+  "note": "A DRAWN REGION IS REPLACED BY A PRINTED NATIVITY. This field held 'New York State', drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a survivorship sample carrying `replaceable_by` 'a source that says where this household came from'. This is that source: row bk_mose1_as_018 of moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. prints his nativity as Detroit. IT IS ALSO THE PLACE THE FAMILY IS ALREADY ATTACHED TO in this layer — the card holds him half-brother to John Harris Kinzie — so the cell agrees with what the town already knows about the household rather than standing alone. INFERRED AND NOT ATTESTED, for the reason the whole table is. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here."
  },
  "reason_for_coming": {
   "value": "A store for the traffic of a town filling up",

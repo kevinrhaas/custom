@@ -7,9 +7,10 @@
   "value": "1834",
   "confidence": "inferred",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "A RETURN RATHER THAN AN ARRIVAL, AND THAT IS THE COMPLICATION. Kinzie was a child of the old Kinzie house on the north bank, went to Fort Winnebago as sub-agent, and is back at Chicago in business by 1834 when his advertisement runs and he is elected trustee. Nothing reached dates the return. 1834 is the earliest year the evidence forces.",
+  "note": "A RETURN RATHER THAN AN ARRIVAL, AND THAT IS THE COMPLICATION. Kinzie was a child of the old Kinzie house on the north bank, went to Fort Winnebago as sub-agent, and is back at Chicago in business by 1834 when his advertisement runs and he is elected trustee. Nothing reached dates the return. 1834 is the earliest year the evidence forces. THE SETTLERS TABLE DATES A DIFFERENT EVENT AND THE VALUE THEREFORE DOES NOT MOVE. Moses and Kirkland, History of Chicago vol. 1 (1895), printed pages 78-79, the table headed LIST OF ACTUAL SETTLERS AT CHICAGO, PRIOR TO 1830 (data/research/books/records/moses_kirkland_v1_actual_settlers_pre_1830.json). It is an 1895 compilation crediting Hurlbut's Chicago Antiquities pp. 37-8 three lines above itself, every row transcription_mediated and none scan_verified, so NOTHING READ OFF IT IS GRADED ABOVE `inferred` HERE. Row bk_mose1_as_017 reads 'Kinzie, John H', nativity Canada, YEAR 1804, remarks 'Born July 7, 1803, died Jan. 21, 1865' — so the table's own remarks cell makes its year cell an arrival IN ARMS at ten months old, with his father's household. That is his first coming to the settlement and it is not the return this field records; the card says in terms that it is 'A RETURN RATHER THAN AN ARRIVAL'. A run reading 1804 into this field would be flattening two events fifty years of history apart into one number. WHAT DOES NOT FOLLOW: the table's own preamble bounds it BEFORE 1830 and its remarks are civic acts of 1825-1830. A man on it is not thereby at Chicago on 1835-07-01, and this edit moves no residence, no `present_on_scene_date` and no grade. The identity is the books crosswalk's landed merge (T-0961) and is not re-opened here.",
   "precision": "year"
  },
  "party_size_on_arrival": {
@@ -25,9 +26,10 @@
   "value": "Chicago, by way of Fort Winnebago",
   "confidence": "inferred",
   "sources": [
-   "andreas_1884_v1"
+   "andreas_1884_v1",
+   "moses_kirkland_history_of_chicago_v1"
   ],
-  "note": "He was born into the Chicago settlement; his wife came from Connecticut by way of Fort Winnebago, which is where Wau-Bun begins. The compound origin is this record's summary."
+  "note": "He was born into the Chicago settlement; his wife came from Connecticut by way of Fort Winnebago, which is where Wau-Bun begins. The compound origin is this record's summary. A CONTRADICTION IS RECORDED HERE AND IS NOT RESOLVED. Row bk_mose1_as_017 of the settlers table prints his NATIVITY as CANADA, with 'Born July 7, 1803' in the same row's remarks — against this field's reading that he was born into the Chicago settlement. Both are retrospective secondary works and neither outranks the other on this project's ladder, so THIS RECORD PICKS NEITHER: the value stands as the reading that earned it and the table's disagreement is written beside it, where the next run with a primary record can settle it. Upgrading or overwriting on a tier-3 compilation would be manufacturing the certainty the sources have not got."
  },
  "reason_for_coming": {
   "value": "Family property and the forwarding trade",

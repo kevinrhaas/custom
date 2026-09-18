@@ -18,7 +18,7 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 
 | Domain | Asserted | Later only | Outside Chicago | Aggregate only | Refused | Unresolved | Total |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| books | 2 | 79 | 0 | 54 | 75 | 93 | 303 |
+| books | 14 | 79 | 0 | 54 | 77 | 79 | 303 |
 | census_1830 | 0 | 0 | 0 | 0 | 189 | 15 | 204 |
 | census_1840 | 0 | 1,080 | 0 | 0 | 0 | 0 | 1,080 |
 | church | 8 | 1,428 | 63 | 5 | 0 | 243 | 1,747 |
@@ -30,7 +30,7 @@ The historical read/spent comparison remains unchanged so new accounting cannot 
 | newspapers | 144 | 51 | 0 | 109 | 0 | 885 | 1,189 |
 | old_settlers | 0 | 1,094 | 0 | 0 | 0 | 0 | 1,094 |
 | residents | 15 | 7 | 0 | 0 | 967 | 91 | 1,080 |
-| **Total** | **170** | **12,568** | **109** | **173** | **8,524** | **2,149** | **23,693** |
+| **Total** | **182** | **12,568** | **109** | **173** | **8,526** | **2,135** | **23,693** |
 
 ## Second-hop preservation
 
@@ -50,9 +50,9 @@ Only tickets whose current state is open may own an unresolved unit.
 | T-1188 | 12 |
 | T-1198 | 271 |
 | T-1299 | 1 |
-| T-1313 | 21 |
 | T-1315 | 3 |
 | T-1318 | 538 |
 | T-1319 | 343 |
+| T-1323 | 7 |
 
 Nonzero `later_only`, `outside_chicago`, `aggregate_only`, and `refused` counts are closed decisions, not missing work. The gate fails only when a unit is unclassified, an asserted target dies, an unresolved owner closes or disappears, or an assertion survives only as prose.

@@ -148,6 +148,7 @@ secondary). A source id no rule reaches stops the build.
 | `michigan_frederick_curtenius` | secondary | website |
 | `michigan_hh_comstock_history` | secondary | website |
 | `migenweb_clark_albee_grand_haven` | secondary | website |
+| `moses_kirkland_history_of_chicago_v1` | book | book |
 | `mower_history_alanson_vaughan` | book | book |
 | `nps_bailly_homestead` | secondary | website |
 | `nwchicago_elijah_wentworth` | secondary | website |
