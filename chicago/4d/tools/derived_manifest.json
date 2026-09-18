@@ -428,6 +428,23 @@
       ]
     },
     {
+      "why": "The borderline roster (T-1159) — every name the research read and withheld from 1835, with its reason and its re-admission class. It is DERIVED from the ledger and the resident layer and mints nobody, so anything that moves a card moves it. Added 2026-09-18 after it went red on #1422 TWICE: it landed on dev after the coverage audit ran, and the audit's first write-mode pattern only matched tools that read argv directly, so an argparse-declared --build slipped past it. Reproduction measured on a clean dev tree first, per `_must_reproduce`: the rebuild changed no committed byte.",
+      "command": [
+        "python3",
+        "tools/export_borderline_roster.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_borderline_roster.json",
+        "chicago/4d/docs/RESEARCH/borderline-roster-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/export_borderline_roster.py",
+        "--check"
+      ]
+    },
+    {
       "why": "One row per home, workplace and business-location claim, resolved as far as its evidence reaches and no further (T-1237). It keys on resident ids, so a change to the identity splitter moves its rows. ADDED 2026-09-18 by tools/audit_manifest_coverage.mjs, the gate that refuses a gated writer the manifest has never heard of. Reproduction measured on a clean dev tree before listing, per `_must_reproduce`: the rebuild changed no committed byte.",
       "command": [
         "python3",
