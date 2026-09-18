@@ -363,6 +363,137 @@
       ]
     },
     {
+      "why": "Writes the dated plural roles onto the person cards, and the 1835 occupation view derived from them (T-1229). MUST RUN AFTER qualify_later_trades.py, which the step above states from its own side: both write hh_elston_daniel and the other order leaves whichever ran first red. `resolves: []` ON PURPOSE — it writes ~1,000 files under data/residents/households/ and this manifest ENUMERATES rather than globs, so listing them is not auditable and listing none is honest: the step runs to keep the tree consistent and clears no conflict. A household-card conflict stays refused (T-1282). Added 2026-09-18 after this exact step went red on FOUR hand-merges in one night — it is gated by check.sh and was in no manifest, so rederive.mjs never ran it.",
+      "command": [
+        "python3",
+        "tools/derive_resident_roles.py",
+        "--write"
+      ],
+      "resolves": [],
+      "verify": [
+        "python3",
+        "tools/derive_resident_roles.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The business location spend — evidence reach apart from model seat, with four retentions a gate holds (T-1239). It keys on resident identities, so anything that moves a card moves its counts: it went red on the T-1155 splitter change and had to be rebuilt by hand because it was gated and unlisted.",
+      "command": [
+        "python3",
+        "tools/location_spend.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/location_spend.json",
+        "chicago/4d/docs/RESEARCH/location-spend.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/location_spend.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The known population profiled on ten axes (T-1160). It also writes the age-band and reason vocabulary into data/residents/index.json, which rebuild_resident_index.py owns — measured 2026-09-18: running that rebuild AFTER this changes nothing, so the order between them is free, and index.json stays listed against the index step alone rather than twice. MUST RUN BEFORE model_town_1835.py, which reads that vocabulary.",
+      "command": [
+        "python3",
+        "tools/profile_population_1835.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_population_profile.json",
+        "chicago/4d/docs/RESEARCH/1835_population_profile.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/profile_population_1835.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The 1835 town model — five sections, every figure a bounded range that says what it rests on (T-1293). Reads the profile's vocabulary, so it runs after it.",
+      "command": [
+        "python3",
+        "tools/model_town_1835.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_town_model.json",
+        "chicago/4d/docs/RESEARCH/1835_town_model.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/model_town_1835.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "One row per home, workplace and business-location claim, resolved as far as its evidence reaches and no further (T-1237). It keys on resident ids, so a change to the identity splitter moves its rows. ADDED 2026-09-18 by tools/audit_manifest_coverage.mjs, the gate that refuses a gated writer the manifest has never heard of. Reproduction measured on a clean dev tree before listing, per `_must_reproduce`: the rebuild changed no committed byte.",
+      "command": [
+        "python3",
+        "tools/location_reconciliation.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/location_reconciliation.json.gz",
+        "chicago/4d/docs/RESEARCH/location-reconciliation-2026-09-17.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/location_reconciliation.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The per-attribute tier table — attested, inferred or reconstructed, per field (T-1158). Derived from the resident layer, so it moves whenever a card does. ADDED 2026-09-18 by tools/audit_manifest_coverage.mjs, the gate that refuses a gated writer the manifest has never heard of. Reproduction measured on a clean dev tree before listing, per `_must_reproduce`: the rebuild changed no committed byte.",
+      "command": [
+        "python3",
+        "tools/migrate_attribute_tiers.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/residents/attribute_tiers.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/migrate_attribute_tiers.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The Fergus 1839 population and Fort Dearborn lot readings, parsed from the committed transcription. ADDED 2026-09-18 by tools/audit_manifest_coverage.mjs, the gate that refuses a gated writer the manifest has never heard of. Reproduction measured on a clean dev tree before listing, per `_must_reproduce`: the rebuild changed no committed byte.",
+      "command": [
+        "python3",
+        "tools/read_fergus_1839_lots.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/directories/claims/fergus_1839_population.json",
+        "chicago/4d/data/research/directories/claims/fergus_1839_ft_dearborn_lots.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/read_fergus_1839_lots.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The survey of kin the records state, read off the resident layer. ADDED 2026-09-18 by tools/audit_manifest_coverage.mjs, the gate that refuses a gated writer the manifest has never heard of. Reproduction measured on a clean dev tree before listing, per `_must_reproduce`: the rebuild changed no committed byte.",
+      "command": [
+        "python3",
+        "tools/survey_stated_kin.py",
+        "--write"
+      ],
+      "resolves": [
+        "chicago/4d/data/residents/kin_survey.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/survey_stated_kin.py",
+        "--check"
+      ]
+    },
+    {
       "why": "The person-fact table (T-1232). It reached dev on 2026-09-17 and was in no lap, so every branch the janitor lapped that day went red on it — four of them — with the gate naming the one command that fixes it.",
       "command": [
         "python3",
@@ -494,5 +625,6 @@
         "--drift"
       ]
     }
-  ]
+  ],
+  "_a_writer_belongs_here": "IF YOU ADD A GATED WRITER, ADD IT HERE, AND THAT IS ENFORCED RATHER THAN ASKED. A tool check.sh runs with --check, and which can also --build or --write, produces DERIVED content by definition: if this file has never heard of it, rederive.mjs never runs it, pr-lap.sh leaves every open PR stale against it, and the gate goes red with no automated remedy and no clue in the message. Owner, 2026-09-18, after four separate hand-fixes in one night on exactly that — derive_resident_roles.py went red on FOUR merges, location_spend.py on the splitter change, profile_population_1835.py and model_town_1835.py the same night: \"add a note to things to say if you add a writer it should be in that manifest, right?\" A note is what this preamble already was, and it did not hold. tools/audit_manifest_coverage.mjs is the gate: every gated writer is listed here, or it is in that file's NOT_DERIVABLE list with the measurement that says why it cannot be. It found four MORE on the day it was written. Before listing anything, measure what `_must_reproduce` asks: run the build on a clean tree and confirm it changes no committed byte. A tool that does not reproduce belongs in the exemption list, never here."
 }
