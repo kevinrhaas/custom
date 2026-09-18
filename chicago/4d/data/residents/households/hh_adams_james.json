@@ -75,7 +75,22 @@
      "rule": "G3"
     }
    ],
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'James' is read as male because 2 persons in this layer whose sex a source records bear it (couch_james, kinzie_james), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1795,
+    "precision": "year",
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'June 9, 1885' and the age as 'a. 89½'. An age of 89 years and 6 months means at least that and less than 89 years and 7 months, so the birth falls between 1795-11-10 and 1795-12-09: the birth year is 1795. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Adams, Sergt. Joseph, died, S. Evanston, Ill., June 9, 1885, a. 89½.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

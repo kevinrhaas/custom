@@ -146,7 +146,20 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
     }
-   ]
+   ],
+   "birth_year": {
+    "value": 1807,
+    "precision": "band",
+    "band": [
+     1807,
+     1808
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'May 29, 1885' and the age as 'aged 77'. An age of 77 completed years means at least 77 and less than 78, so the birth falls between 1807-05-30 and 1808-05-29: the birth year is 1807 or 1808. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Andrews, David, died, Kensington, Ill., May 29, 1885, aged 77.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

@@ -79,6 +79,12 @@
     "source_ids": [
      "chicago_democrat_1833_1835"
     ]
+   },
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "'Wm.' IS THE PERIOD CONTRACTION OF William, and every expansion of it attested in this project is a man's name — so the contraction settles the sex without settling which name was contracted. The table is data/research/residents/forename_sex.json."
    }
   }
  ],

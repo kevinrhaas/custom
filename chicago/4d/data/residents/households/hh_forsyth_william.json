@@ -136,7 +136,13 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'William' is read as male because 4 persons in this layer whose sex a source records bear it (adams_william_h, egan_william_b, stow_william_h, walters_william), and it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

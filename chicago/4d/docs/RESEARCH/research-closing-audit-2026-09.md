@@ -117,7 +117,7 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
 | T-1144 | 1 | open | yes |
-| T-1168 | 3 | open | yes |
+| T-1168 | 3 | split_live | yes |
 | T-1169 | 902 | open | yes |
 | T-1170 | 168 | open | yes |
 | T-1172 | 260 | open | yes |

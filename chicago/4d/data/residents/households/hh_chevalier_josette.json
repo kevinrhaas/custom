@@ -86,7 +86,13 @@
      "source": "st_cyr_register_ichr_v4",
      "rule": "G2c"
     }
-   ]
+   ],
+   "sex": "female",
+   "sex_basis": {
+    "value": "female",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Josette' is read as female because 1 person in this layer whose sex a source records bears it (beaubien_josette), and it stands in the french_colonial female forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

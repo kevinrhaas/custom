@@ -26,11 +26,11 @@
   },
   "counts": {
     "cards": 1258,
-    "blocks": 10499,
+    "blocks": 11143,
     "tiers_written_on_the_card": 0,
     "by_tier": {
       "attested": 584,
-      "inferred": 2561,
+      "inferred": 3205,
       "reconstructed": 40,
       "unknown": 7314
     },
@@ -109,7 +109,7 @@
       },
       "persons[].birth_year": {
         "attested": 7,
-        "inferred": 3,
+        "inferred": 57,
         "reconstructed": 0,
         "unknown": 0
       },
@@ -122,6 +122,12 @@
       "persons[].profile_facts[]": {
         "attested": 1,
         "inferred": 39,
+        "reconstructed": 0,
+        "unknown": 0
+      },
+      "persons[].sex_basis": {
+        "attested": 0,
+        "inferred": 590,
         "reconstructed": 0,
         "unknown": 0
       },

@@ -101,7 +101,26 @@
      "as_read": "places Henry Mitchell in Chicago wagon-factory work in 1834",
      "note": "A dated appearance in the town a year before the postal seed, from an 1883 old-settlers report. Carried as the event it is; the trade itself is T-1145's."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Henry' is read as male because 1 person in this layer whose sex a source records bears it (lampman_henry_s), and it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1809,
+    "precision": "band",
+    "band": [
+     1809,
+     1810
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'Oct. 20, 1893' and the age as 'a. 83'. An age of 83 completed years means at least 83 and less than 84, so the birth falls between 1809-10-21 and 1810-10-20: the birth year is 1809 or 1810. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Mitchell, Henry, wagonmaker, d., Racine, Wis., Oct. 20, 1893, a. 83.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

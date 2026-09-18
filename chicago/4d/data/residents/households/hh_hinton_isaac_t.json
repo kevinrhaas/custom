@@ -124,7 +124,26 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Isaac' is read as male because 1 person in this layer whose sex a source records bears it (harmon_isaac_d). Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1798,
+    "precision": "band",
+    "band": [
+     1798,
+     1799
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'August 28, 1847' and the age as 'aged 48'. An age of 48 completed years means at least 48 and less than 49, so the birth falls between 1798-08-29 and 1799-08-28: the birth year is 1798 or 1799. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Hinton, Rev. Isaac Taylor, died, New Orleans, La., August 28, 1847, aged 48.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

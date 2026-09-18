@@ -145,6 +145,21 @@ export function printedOn(iso) {
 }
 
 /** A `<dt>/<dd>` pair, omitted entirely when the record carries nothing. */
+/**
+ * The birth year as its arithmetic left it (T-1303). Every interval this project derives
+ * from an age — an age at death in Fergus's obituary list, an age a man gave at the
+ * Calumet Club in 1879 — leaves the birth in ONE year or in TWO, and `precision` says
+ * which. A card printing only the lower year would state a precision the page does not
+ * have, which is the direction this project is careful never to lie in.
+ */
+function bornYears(born) {
+  if (!born) return null;
+  if (born.precision === 'band' && Array.isArray(born.band)) {
+    return `${born.band[0]} or ${born.band[1]}`;
+  }
+  return born.value;
+}
+
 function row(label, value) {
   if (value === null || value === undefined || value === '') return '';
   return `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`;
@@ -1197,6 +1212,11 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
   const born = person.birth_year || null;
   const aged = person.age_on_scene_date || null;
   const named = person.name_basis || null;
+  // T-1303. Where a sex was READ — off a gendered title, off a forename that stands in
+  // one sex's naming only — the reasoning travels with it and the row is a graded claim
+  // like every other. Where it came off a source with the rest of the record, the mints
+  // wrote the bare string and there is no reasoning of ours to print.
+  const basis = person.sex_basis || null;
   return `<details class="lib res-person">
     <summary><span class="lib-title">${swatch(person.grade)}${escapeHtml(person.name || 'unnamed')}</span>
       <span class="res-role">${escapeHtml(words(person.relationship))}${
@@ -1207,9 +1227,11 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
           rolesAtScene ? '' : ', none on 1 July 1835'}` : ''}</span></summary>
     <dl class="lib-body">
       ${row('In the household as', words(person.relationship))}
-      ${row('Sex', words(person.sex))}
+      ${basis
+        ? claimRow('Sex', words(basis.value), basis, citationsById)
+        : row('Sex', words(person.sex))}
       ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
-      ${claimRow('Born', born && born.value, born, citationsById)}
+      ${claimRow('Born', bornYears(born), born, citationsById)}
       ${occ.value ? `<dt>Occupation</dt><dd>${swatch(tierOf(occ))}${tierWord(tierOf(occ))}${
         isNotAsserted(occ) ? 'not recorded' : escapeHtml(words(occ.value))}${
         occ.later_occupation ? ' for 1835' : ''}${

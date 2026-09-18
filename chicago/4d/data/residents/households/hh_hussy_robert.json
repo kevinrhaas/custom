@@ -90,7 +90,13 @@
      "for_merge": "One letter, “Robert” on both, and the two returns bracket the scene date: “Hussy, Robert 2” on the return of 1 October 1834 and “Hussey, Robert” on the return of 1 July 1835, the scene date itself. A man with two letters waiting in the autumn of 1834 and another the following summer is a plausible single correspondent, and the surname is one whose two spellings were both current.",
      "against_merge": "TWO RETURNS, NINE MONTHS APART, NEITHER SETTING BOTH. “Hussy, Robert 2” is printed in the Democrat of 22 October 1834, seated between “Williams, Charles C.” and “Winters, Moses” in a surname-first list; “Hussey, Robert” in the Democrat of 1 July 1835, between “Phillips James” and “Park Hezekiah”. Each reading is clean in its own impression and neither return carries the other spelling. Neither card is an anchor; the gazetteer holds these two and no third bearer; nothing outside the post office names either man. C9's page does not exist and D5's roll does not either. D6."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Robert' is read as male because 1 person in this layer whose sex a source records bears it (kinzie_robert_a). Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

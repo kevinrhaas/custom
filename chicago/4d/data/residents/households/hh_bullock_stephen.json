@@ -79,6 +79,12 @@
     "source_ids": [
      "chicago_democrat_1833_1835"
     ]
+   },
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Stephen' is read as male because 1 person in this layer whose sex a source records bears it (gale_stephen_f). Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
    }
   }
  ],

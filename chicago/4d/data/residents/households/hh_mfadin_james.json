@@ -74,7 +74,13 @@
     "asserted_identity": false,
     "summary": "No reliable record in the reviewed repository corpus and targeted exact/variant-name web sweep could be tied to this postal person with sufficient date/place discriminators. This is a documented no-corroboration result, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'James' is read as male because 2 persons in this layer whose sex a source records bear it (couch_james, kinzie_james), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

@@ -122,7 +122,13 @@
      "for_merge": "`Matthews, J. D.` stands on the 1835 poll list and `James G. Matthews` on the letter list of 20 May 1835 — the same town, the same year, one surname, one forename initial.",
      "against_merge": "D against G, both printed, and a poll roll and a letter list are exactly the two kinds of source R3 describes as 'no further than a list'. Neither card knows a trade, a dwelling or an arrival. R3."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'James' is read as male because 2 persons in this layer whose sex a source records bear it (couch_james, kinzie_james), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,
