@@ -48,6 +48,97 @@ total — is exactly what makes the invention defensible rather than arbitrary. 
 never be is silent: the bottom tier owes its reasoning just as the middle tier does, which is
 the gate that stops an invention nobody can defend from shipping as a reconstruction.
 
+## The tier of an attribute, and the fourth one (T-1158, 2026-09-18)
+
+The owner, 17 September 2026: *"note for each attribute of each person what is attested,
+inferred or reconstructed and reasons why."* `confidence` above already grades an attribute.
+What it could not do was tell an ABSENCE from an INVENTION, and on the resident layer that is
+most of the layer:
+
+| | blocks | what the card used to show |
+|---|---:|---|
+| `confidence: "reconstructed"`, `value: null` or `"none_recorded"` | 7,314 | the hatched *reconstructed* chip — "we made this up" |
+| `confidence: "reconstructed"`, a real value | 40 | the hatched *reconstructed* chip — correctly |
+
+Written the same way, they read the same way, and the common case is the misleading one: a
+household whose origin, party, trade and address are simply not in the record was rendered as
+four inventions. It also blocks the reconstruction bands, which need `reconstructed` to mean
+the value they are about to supply.
+
+So an attribute carries a **tier**, derived from its confidence and its value, with a fourth
+value the confidence vocabulary has no word for:
+
+| tier | meaning | validator requires |
+|---|---|---|
+| `attested` | a source says it | what `confidence: attested` requires |
+| `inferred` | reasoned from evidence about THIS person or thing | what `confidence: inferred` requires |
+| `reconstructed` | a value this project supplied, not a source | `basis`, `replaceable_by`, and `seed` when it was drawn |
+| `unknown` | **nothing is asserted.** No source records it and nothing has been invented | `value` is null or the layer's own not-asserted sentinel |
+
+`unknown` is not a weaker claim than `reconstructed`. It is the absence of a claim, and it is
+69.7 % of the resident layer's 10,499 attributes — the single most honest number this dataset
+publishes about itself. The walkthrough gives it an empty dashed chip and the words "not
+recorded", so no reader can mistake a gap for a liberty.
+
+```jsonc
+"arrival": {
+  "value": "1826", "confidence": "reconstructed", "tier": "reconstructed",
+  "note": "NOT ATTESTED HERE. …",
+  "basis": { "kind": "rule", "id": "arrival_uncited_literature",
+             "note": "The year is the figure in general circulation …" },
+  "replaceable_by": { "kind": "person",
+                      "match": "a dated source that says when this person came to Chicago" }
+}
+```
+
+**A tier is derived, never granted.** It is read out of the block's own confidence and
+value; `validate.py` refuses a `tier` that disagrees with that derivation. Without that rule
+the tier would be a second, softer grade that a writer could set to whatever flattered the
+record — and the whole value of the fourth tier is that a band cannot quietly reuse `unknown`
+for something it invented, or `reconstructed` for something it merely failed to find.
+
+**Where the tier of an EXISTING value lives, and why it is not in the card.** Writing it into
+the 1,258 household records was tried first and cannot stand: those bytes are owned by nine
+derivations that each rebuild a card from its sources and compare the result to the committed
+file — the resident synthesizer, the four mints, the two back-projections, the later-trade
+qualifier, the kin survey and the four directory crosswalks. None of them knows the field
+exists, so ten of `check.sh`'s steps go red the moment a tier lands in a card and stay red
+until every writer emits one. Teaching nine writers is real work and it belongs with T-1144,
+which owns that layer's drift. **A field nine writers silently drop is a field that lies.**
+
+So the existing layer's tiers are derived — in `tools/migrate_attribute_tiers.py` for the
+gate and the published table, and in `renderers/web/js/attribute-tiers.js` for the one card
+a visitor has open, with `tools/check_attribute_tiers.mjs` holding the two to the same
+answer. What a RECORD may carry is the full shape above, enforced by `validate.py` wherever
+it appears: the reconstruction bands mint their own records and a value invented without a
+basis and without a seed has to be refusable at the moment it is written.
+
+**A reconstructed value owes a basis, and there are two kinds.** `kind: "model"` was DRAWN —
+from the population, household or occupation model — so it owes the `seed` that redraws it: a
+draw nobody can reproduce is not a reconstruction. `kind: "rule"` was ARGUED — the earliest
+year the evidence forces, an address carried back from an 1843 directory under
+`docs/ADDRESS-BACK-PROJECTION.md` — so it owes the rule's id and the reasoning, and carries
+NO seed, because nothing was drawn. Requiring a seed of an argued value would mean inventing
+one, which is what this document exists to prevent.
+
+**And it says what would retire it.** The owner: *"so if we get new research … we can replace
+the reconstructed person or business with an inferred or attested one later."* Every
+reconstructed value carries `replaceable_by: { kind, match }`, where `match` is the
+attribute's own definition read back as a search — what retires a reconstructed arrival is a
+source that dates the arrival. It is not a prediction about the future, which is why the
+migration can write it without inventing anything.
+
+**Two different things are called a tier, and they never meet.** A SOURCE carries a numbered
+tier — the 1–6 evidence ladder in the next section, "how good is this document". An ATTRIBUTE
+carries a named tier — the four words above, "what kind of thing is this value". One is an
+integer on a record in `data/sources/`, the other a string on a claim block; nothing reads
+both off the same field.
+
+Counts per attribute per tier, and every reconstructed value with its basis and its
+replacement rule, are re-derived and never typed:
+`data/research/residents/attribute_tiers.json`, or `python3 tools/summarize_residents.py
+tiers`.
+
 ## Evidence tiers
 
 Not all sources are equal, and the dataset should not pretend otherwise.
