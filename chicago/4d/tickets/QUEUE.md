@@ -19,7 +19,14 @@
 # their lower resident yield. Read each ticket before splitting or claiming.
 # Reconstruction (owner, 2026-09-17): BAND 2 IS OPEN NOW — it reads the layer and writes
 # reports, models and an order book, and it needs no sign-off to do that. Bands 3-5 WRITE
-# reconstructed people, businesses and roofs, and those wait for T-1157 to say GO.
+# reconstructed people, businesses and roofs, and those waited for T-1157 to say GO.
+#   IT SAYS GO (2026-09-18, docs/RESEARCH/research-signoff-2026-09.md): the entry condition
+# is MET and bands 3-5 are open. Ten conditions, every one a measurement over committed
+# files, and check.sh re-derives the verdict on every commit — so if one breaks the build
+# goes red and the signature has to be earned again rather than inherited. The GO says the
+# research is ACCOUNTED FOR, not that 1835 is known: the report's § 7 names six gaps that
+# stay gaps, and a reconstructed value that fills one carries its tier, basis, seed and
+# replaceable_by (T-1158) so a later reading can displace it.
 #   The first cut gated 2-5 together, and it starved the top: band 1's rows were all in
 #   flight or self-blocked, so runs fell past 59 gated tickets into SOUTH THROUGH TIME and
 #   LOOP IMPROVEMENTS (T-0467, T-1154, 2026-09-17). A gate that empties the top of the
