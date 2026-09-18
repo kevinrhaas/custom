@@ -40,7 +40,7 @@ Reproduce: `python3 tools/measure_research_spend.py --ledger-build` then `python
 | Persons graded `reconstructed` | 3 |
 | Letter-list-only names | 736 |
 | Projected residents | 721 |
-| Merged away | 65 |
+| Merged away | 66 |
 
 Reproduce: `python3 -c "import json;print(json.load(open('data/residents/index.json'))['counts'])"`.
 
@@ -116,7 +116,7 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1144 | 7 | open | yes |
+| T-1144 | 6 | split_live | yes |
 | T-1172 | 260 | open | yes |
 | T-1182 | 531 | open | yes |
 | T-1188 | 12 | open | yes |
@@ -126,6 +126,7 @@ An unresolved unit is research that has been read and not yet spent. The ledger'
 | T-1317 | 21 | open | yes |
 | T-1320 | 168 | open | yes |
 | T-1329 | 238 | open | yes |
+| T-1334 | 1 | open | yes |
 
 Reproduce: `python3 tools/measure_research_spend.py --check`.
 
