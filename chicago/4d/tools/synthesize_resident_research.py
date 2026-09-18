@@ -897,13 +897,35 @@ def main():
     if args.check: return check()
     index=load(INDEX); current_before=snapshot(index)
     prior_ledger=load(LEDGER) if LEDGER.exists() else {}
-    before=(prior_ledger.get("before") if current_before.get("reconstructed")==0 and prior_ledger.get("before") else current_before)
     docs={p:load(p) for p in sorted(HOUSEHOLDS.glob("*.json"))}; research=research_rows()
+    # T-1314. This pass IS the retirement of 2026-09-02: it removes the reconstructed
+    # population that nothing could account for. The people T-1167's programme writes are
+    # not that population coming back - each one names the stage that re-derives it, and
+    # `tools/reconstruct_residents_1835.py --check` rebuilds them from committed files on
+    # every commit. Removing them here would make the writer and the programme fight over
+    # the same cards forever, and the tree would drift the moment either ran.
+    programme_stages=set()
+    if RECONSTRUCTION_PROGRAMME.exists():
+        programme_stages={row.get("key") for row in (load(RECONSTRUCTION_PROGRAMME).get("stages") or [])}
+
+    def retired_grade(p):
+        """The grade this pass removes: reconstructed, and claimed by no stage."""
+        return p.get("grade")=="reconstructed" and (p.get("reconstruction") or {}).get("stage") not in programme_stages
+
+    # The ledger's `before` is the tree as it stood BEFORE that retirement, and it is
+    # kept from the prior ledger once the retirement has happened. "Has happened" was
+    # read as "the reconstructed count is zero", which stopped being the same question
+    # the moment the programme could write people back - the first run after T-1314 would
+    # otherwise overwrite 920 households / 956 people / 108 reconstructed with today's
+    # numbers and lose what the retirement actually did.
+    retirement_done=not any(retired_grade(p) for d in docs.values() for p in d.get("persons") or [])
+    before=(prior_ledger.get("before") if retirement_done and prior_ledger.get("before")
+            else current_before)
     stats={"removed_people":0,"removed_households":0,"retained_hh_inf":0,"structures_unassigned":0,"roofs_enrolled_anonymous":0}; removed_people=set(); removed_hh=set(); unlink_people=set()
     for path in list(docs):
         doc=docs[path]; kept=[]
         for p in doc.get("persons") or []:
-            if p.get("grade")=="reconstructed": stats["removed_people"]+=1; removed_people.add(p.get("id")); continue
+            if retired_grade(p): stats["removed_people"]+=1; removed_people.add(p.get("id")); continue
             kept.append(p)
         doc["persons"]=kept
         if not kept: stats["removed_households"]+=1; removed_hh.add(doc.get("id") or path.stem); del docs[path]; continue
@@ -967,7 +989,7 @@ def main():
             continue
         p["grade"]="inferred"; p["resident_subtype"]=PROJECTED; missing.append(pid)
     ledger={"date":"2026-09-02","scene_date":"1835-07-01","tickets":["T-0487","T-0488","T-0489","T-0490"],
-        "owner_ruling":{"attested":"confidently corroborated real named circa-1835 Chicago resident","inferred":"real named person reasonably believed to belong to circa-1835 Chicago","projected_resident":"inferred subtype documented in at least one relevant source but too thin/ambiguous for stronger profile","reconstructed":"reserved for later explicit reconstruction; zero now"},
+        "owner_ruling":{"attested":"confidently corroborated real named circa-1835 Chicago resident","inferred":"real named person reasonably believed to belong to circa-1835 Chicago","projected_resident":"inferred subtype documented in at least one relevant source but too thin/ambiguous for stronger profile","reconstructed":"a person no source names, written only by the T-1167 programme's own stage and re-derived by it"},
         "research":{"reviewed_people":len(research),"outcome_counts":dict(sorted(outcomes.items())),"unmatched_research_person_ids":unmatched,"letter_list_missing_research_row":missing,"letter_list_deferred_to_ladder":sorted(set(deferred)),"promoted_facts":promoted,
         # T-0837.  A promotion this pass DECLINED, and why, so a refusal is as legible as a
         # landing and nobody re-proposes it by reading the cards and finding nothing there.
