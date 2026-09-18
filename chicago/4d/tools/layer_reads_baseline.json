@@ -82,6 +82,48 @@
     "residents/household:origin.written_by_stage": {
       "records": 1235
     },
+    "residents/household:persons[].dated_bounds[].as_read": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].bound_kind": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].covers_scene_date": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].date_confidence": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].describes_date": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].here_by": {
+      "records": 202
+    },
+    "residents/household:persons[].dated_bounds[].identity_discriminator": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].identity_rule": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].list": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].list_title": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].locator": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].precision": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].reaches": {
+      "records": 292
+    },
+    "residents/household:persons[].dated_bounds[].record_id": {
+      "records": 292
+    },
     "residents/household:persons[].occupation.derived_from": {
       "records": 327
     },
