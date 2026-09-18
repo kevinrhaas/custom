@@ -48,7 +48,6 @@
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1333 — The closing convergence rebuild: index.json, the sidecars, the town census, the published residents and the final resident audit, with the exact household, person and grade deltas and every retired id's redirect, and acceptances 3, 5 and 9 stated as measured deltas rather than spot readings
 T-1334 — The letter-list mint's drift and the one-letter-apart identity rule: acceptance 1 and the last slot of acceptance 2, which are one question and are read by T-1222 — this child holds the deferral so no research unit points at a spent parent
-T-1322 — Spend the settler table: the twelve merged rows of Moses and Kirkland's LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830, nativity and year onto the cards the crosswalk names, and rule Hubbard's contradicted arrival
 T-1337 — Spend the books' arrival and presence lists: the 1832 and spring-1833 arrival lists, the Baptist fourteen of 1833 and the Episcopal eleven of 1834, each name first ruled against the residents layer by the crosswalk's own join rules
 T-1329 — Spend the 1830 schedule lines, the church register sponsorships and the press notices onto the cards they name, each as a dated bound on a held resident's presence and never more
 T-1332 — Spend the 313 upheld land-sale purchase bounds: each tract entered on or before 1 July 1835 by a purchaser the crosswalk joined to a card this town holds, written onto that card as a dated appearance and never as a residence

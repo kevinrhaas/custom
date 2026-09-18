@@ -1,7 +1,7 @@
 ---
 id: T-1322
 title: Spend the settler table: the twelve merged rows of Moses and Kirkland's LIST OF ACTUAL SETTLERS AT CHICAGO PRIOR TO 1830, nativity and year onto the cards the crosswalk names, and rule Hubbard's contradicted arrival
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1317
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1478
 claimed_by: run 9/18/2026, 9:49:54 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T22:21:02.886Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35357917317
 ---
 
