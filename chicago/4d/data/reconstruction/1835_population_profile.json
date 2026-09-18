@@ -14,15 +14,15 @@
   "data/town_census.json"
  ],
  "counts": {
-  "persons": 1285,
+  "persons": 1586,
   "households": 1258,
   "by_grade": {
    "attested": 410,
    "inferred": 872,
-   "reconstructed": 3
+   "reconstructed": 304
   },
   "reconstructed_answering_no_stage": 0,
-  "persons_with_a_sex": 1279,
+  "persons_with_a_sex": 1580,
   "persons_with_a_dated_age": 64,
   "persons_with_a_role": 327,
   "households_naming_an_origin": 1258,
@@ -190,7 +190,7 @@
   {
    "id": "headcount",
    "title": "Headcount",
-   "lead": "1285 person entries in 1258 households. The town census of November 1835 counts 3,265 people in 398 dwellings, so this layer is the part of the town the sources name and no more.",
+   "lead": "1586 person entries in 1258 households. The town census of November 1835 counts 3,265 people in 398 dwellings, so this layer is the part of the town the sources name and no more.",
    "tables": [
     {
      "title": "Persons by grade",
@@ -204,21 +204,21 @@
       [
        "attested",
        410,
-       "31.9%"
+       "25.9%"
       ],
       [
        "inferred",
        872,
-       "67.9%"
+       "55.0%"
       ],
       [
        "reconstructed",
-       3,
-       "0.2%"
+       304,
+       "19.2%"
       ],
       [
        "TOTAL",
-       1285,
+       1586,
        "100.0%"
       ]
      ],
@@ -548,13 +548,13 @@
     }
    ],
    "notes": [
-    "No PERSON carries the `reconstructed` grade (3) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 40 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
+    "No PERSON carries the `reconstructed` grade (304) and this ticket does not move that: reconstruction begins at T-1167 under its own programme. But 40 ATTRIBUTE values already do, and a person-grade count hides them — which is the whole reason T-1158 puts a tier on the field rather than on the card."
    ]
   },
   {
    "id": "sex",
    "title": "Sex",
-   "lead": "1279 of 1285 persons (99.5%) carry a sex, AT THREE DIFFERENT TIERS and the table below is the only honest way to read them together: 102 because a source records it, 590 read off a gendered title, a period contraction or a forename that stands in one sex's naming only, and 587 DRAWN at the male rate measured on the roll the person was named off. A drawn sex is not evidence about that person and never becomes any; the 6 left are collective descriptions that name nobody.",
+   "lead": "1580 of 1586 persons (99.6%) carry a sex, AT THREE DIFFERENT TIERS and the table below is the only honest way to read them together: 403 because a source records it, 590 read off a gendered title, a period contraction or a forename that stands in one sex's naming only, and 587 DRAWN at the male rate measured on the roll the person was named off. A drawn sex is not evidence about that person and never becomes any; the 6 left are collective descriptions that name nobody.",
    "tables": [
     {
      "title": "Sex by the rule that says so",
@@ -573,9 +573,9 @@
      "rows": [
       [
        "male",
-       1199,
-       "93.3%",
-       85,
+       1298,
+       "81.8%",
+       184,
        0,
        32,
        531,
@@ -584,9 +584,9 @@
       ],
       [
        "female",
-       80,
-       "6.2%",
-       17,
+       282,
+       "17.8%",
+       219,
        0,
        0,
        27,
@@ -596,7 +596,7 @@
       [
        "unknown",
        6,
-       "0.5%",
+       "0.4%",
        0,
        0,
        0,
@@ -619,8 +619,8 @@
      "rows": [
       [
        "recorded",
-       102,
-       "7.9%",
+       403,
+       "25.4%",
        "a source records the sex on the card, and no pass had to read it"
       ],
       [
@@ -632,25 +632,25 @@
       [
        "inferred_contraction",
        32,
-       "2.5%",
+       "2.0%",
        "the name is a period contraction every attested expansion of which is one sex's"
       ],
       [
        "inferred_forename",
        558,
-       "43.4%",
+       "35.2%",
        "the forename stands in exactly one sex's naming and in no other (T-1303's derived table, which refuses a name its own evidence splits)"
       ],
       [
        "reconstructed_from_the_roll",
        587,
-       "45.7%",
+       "37.0%",
        "DRAWN at the male rate measured on the roll this person was named off, seeded by their own id (T-1304) — never evidence about this person"
       ],
       [
        "unknown",
        6,
-       "0.5%",
+       "0.4%",
        "the name is an initial no roll rate reaches, or a collective description that names nobody"
       ]
      ],
@@ -664,7 +664,7 @@
   {
    "id": "age",
    "title": "Age",
-   "lead": "64 of 1285 persons carry a year or an age off a source; 419 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage — and 802 carry nothing that bears on age at all. SINCE T-1304 EVERY ONE OF THEM CARRIES AN AGE BAND, and the tier table below says which of the three it stands on. The bands are the 1840 Chicago schedule's and a drawn one is never turned into a year. THIS IS STILL NOT AN AGE PYRAMID OF THE TOWN: these are the people the rolls name, overwhelmingly adult men, and the women and children the pyramid lacks are T-1174's brief.",
+   "lead": "64 of 1586 persons carry a year or an age off a source; 419 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage — and 1103 carry nothing that bears on age at all. SINCE T-1304 EVERY ONE OF THEM CARRIES AN AGE BAND, and the tier table below says which of the three it stands on. The bands are the 1840 Chicago schedule's and a drawn one is never turned into a year. THIS IS STILL NOT AN AGE PYRAMID OF THE TOWN: these are the people the rolls name, overwhelmingly adult men, and the women and children the pyramid lacks are T-1174's brief.",
    "tables": [
     {
      "title": "Age bands",
@@ -679,7 +679,7 @@
       [
        "birth_year_known",
        64,
-       "5.0%",
+       "4.0%",
        "a source gives the year, however loosely"
       ],
       [
@@ -691,19 +691,19 @@
       [
        "adult_by_civic_list",
        192,
-       "14.9%",
+       "12.1%",
        "an adult: a voter, a taxpayer or a man of militia age"
       ],
       [
        "adult_by_role",
        212,
-       "16.5%",
+       "13.4%",
        "an adult: a trade, profession or office is not held by a child"
       ],
       [
        "adult_by_marriage_or_parenthood",
        15,
-       "1.2%",
+       "0.9%",
        "an adult on the register's own face"
       ],
       [
@@ -714,8 +714,8 @@
       ],
       [
        "unknown",
-       802,
-       "62.4%",
+       1103,
+       "69.5%",
        "nothing on the card bears on age at all"
       ]
      ],
@@ -734,25 +734,25 @@
       [
        "attested",
        7,
-       "0.5%",
+       "0.4%",
        "the band this person's own recorded birth year or age puts them in"
       ],
       [
        "inferred",
        57,
-       "4.4%",
+       "3.6%",
        "the band an inferred birth year or age puts them in"
       ],
       [
        "reconstructed",
-       1215,
-       "94.6%",
+       1516,
+       "95.6%",
        "DRAWN from the 1840 Chicago schedule's sex × age bands, conditioned on what the person is recorded doing, seeded by their own id — a band, never a year"
       ],
       [
        "unknown",
        6,
-       "0.5%",
+       "0.4%",
        "a collective description: a row that stands for more than one person has no band of its own"
       ]
      ],
@@ -769,53 +769,58 @@
      "rows": [
       [
        "0-4",
-       1,
-       "0.1%"
+       171,
+       "10.8%"
       ],
       [
        "5-9",
-       1,
-       "0.1%"
+       24,
+       "1.5%"
       ],
       [
        "10-14",
-       2,
-       "0.2%"
+       23,
+       "1.5%"
       ],
       [
        "15-19",
-       108,
-       "8.4%"
+       110,
+       "6.9%"
       ],
       [
        "20-29",
-       619,
-       "48.2%"
+       687,
+       "43.3%"
       ],
       [
        "30-39",
-       361,
-       "28.1%"
+       376,
+       "23.7%"
       ],
       [
        "40-49",
-       116,
-       "9.0%"
+       117,
+       "7.4%"
       ],
       [
        "50-59",
        43,
-       "3.3%"
+       "2.7%"
+      ],
+      [
+       "50+",
+       1,
+       "0.1%"
       ],
       [
        "60-69",
        16,
-       "1.2%"
+       "1.0%"
       ],
       [
        "70-79",
        9,
-       "0.7%"
+       "0.6%"
       ],
       [
        "15-24",
@@ -8948,7 +8953,7 @@
   {
    "id": "roles",
    "title": "Roles — plural and dated",
-   "lead": "327 of 1285 persons carry at least one role and 173 carry two or more. 160 of the 687 roles in the layer reach 1 July 1835; the other 527 are printed against the name in a later volume and say so.",
+   "lead": "327 of 1586 persons carry at least one role and 173 carry two or more. 160 of the 687 roles in the layer reach 1 July 1835; the other 527 are printed against the name in a later volume and say so.",
    "tables": [
     {
      "title": "Persons by number of roles",
@@ -8961,38 +8966,38 @@
      "rows": [
       [
        "0",
-       958,
-       "74.6%"
+       1259,
+       "79.4%"
       ],
       [
        "1",
        154,
-       "12.0%"
+       "9.7%"
       ],
       [
        "2 or more",
        67,
-       "5.2%"
+       "4.2%"
       ],
       [
        "3 or more",
        67,
-       "5.2%"
+       "4.2%"
       ],
       [
        "4 or more",
        18,
-       "1.4%"
+       "1.1%"
       ],
       [
        "5 or more",
        8,
-       "0.6%"
+       "0.5%"
       ],
       [
        "6 or more",
        8,
-       "0.6%"
+       "0.5%"
       ],
       [
        "7 or more",
@@ -9314,7 +9319,7 @@
   {
    "id": "households",
    "title": "Household composition",
-   "lead": "1237 of 1258 households (98.3%) are ONE PERSON — a head and nobody else. That is a statement about the evidence: a post-office return names one man and says nothing about a wife. 21 households name a second person; 70 heads read as women.",
+   "lead": "1152 of 1258 households (91.6%) are ONE PERSON — a head and nobody else. That is a statement about the evidence: a post-office return names one man and says nothing about a wife. 106 households name a second person; 70 heads read as women.",
    "tables": [
     {
      "title": "Persons in the household",
@@ -9327,23 +9332,43 @@
      "rows": [
       [
        "1",
-       1237,
-       "98.3%"
+       1152,
+       "91.6%"
       ],
       [
        "2",
-       17,
-       "1.4%"
+       32,
+       "2.5%"
       ],
       [
        "3",
-       2,
-       "0.2%"
+       16,
+       "1.3%"
       ],
       [
        "4",
-       2,
-       "0.2%"
+       14,
+       "1.1%"
+      ],
+      [
+       "5",
+       16,
+       "1.3%"
+      ],
+      [
+       "6",
+       15,
+       "1.2%"
+      ],
+      [
+       "7",
+       8,
+       "0.6%"
+      ],
+      [
+       "8",
+       5,
+       "0.4%"
       ]
      ],
      "note": ""
@@ -9360,22 +9385,32 @@
       [
        "head",
        1258,
-       "97.9%"
+       "79.3%"
+      ],
+      [
+       "daughter",
+       117,
+       "7.4%"
+      ],
+      [
+       "son",
+       100,
+       "6.3%"
       ],
       [
        "wife",
-       8,
-       "0.6%"
+       93,
+       "5.9%"
       ],
       [
        "household_member",
        7,
-       "0.5%"
+       "0.4%"
       ],
       [
        "partner",
        5,
-       "0.4%"
+       "0.3%"
       ],
       [
        "brother",
@@ -9385,11 +9420,6 @@
       [
        "child",
        2,
-       "0.2%"
-      ],
-      [
-       "son",
-       1,
        "0.1%"
       ]
      ],
@@ -9469,7 +9499,7 @@
     }
    ],
    "notes": [
-    "The index's own relationship vocabulary offers 18 terms; the layer uses 7 of them. Servant, apprentice, journeyman, boarder, lodger and clerk are all at zero — the whole of T-1171, T-1173 and T-1175."
+    "The index's own relationship vocabulary offers 18 terms; the layer uses 8 of them. Servant, apprentice, journeyman, boarder, lodger and clerk are all at zero — the whole of T-1171, T-1173 and T-1175."
    ]
   },
   {
@@ -9671,7 +9701,7 @@
   {
    "id": "buildings",
    "title": "Where they meet the buildings",
-   "lead": "31 persons resolve into a dwelling that stands in the scene, in 20 households; 1238 households have no dwelling. 371 roofs stand against a programme of 668.",
+   "lead": "54 persons resolve into a dwelling that stands in the scene, in 20 households; 1238 households have no dwelling. 371 roofs stand against a programme of 668.",
    "tables": [
     {
      "title": "Households by division and seating",
@@ -9771,7 +9801,7 @@
   {
    "id": "community",
    "title": "Composition and types",
-   "lead": "What KINDS of people the sources show, counted only where a source says so. 0 of 1285 persons carry no community signal at all: the post-office returns that mint most of this layer print a name and a town and nothing else. Every row below is a source speaking, not a reading of a surname.",
+   "lead": "What KINDS of people the sources show, counted only where a source says so. 0 of 1586 persons carry no community signal at all: the post-office returns that mint most of this layer print a name and a town and nothing else. Every row below is a source speaking, not a reading of a surname.",
    "tables": [
     {
      "title": "Community signals on the card",
@@ -9784,18 +9814,18 @@
      "rows": [
       [
        "a source states where they came from",
-       1285,
+       1586,
        "100.0%"
       ],
       [
        "named in the Catholic register",
        32,
-       "2.5%"
+       "2.0%"
       ],
       [
        "named in a record that touches removal",
        13,
-       "1.0%"
+       "0.8%"
       ]
      ],
      "note": ""
@@ -9930,8 +9960,43 @@
        "reconstructed"
       ],
       [
+       "Abigail Eldridge",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Abigail Ingersoll",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Abigail King",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Abigail Porter",
+       "Jefferson Co., N.Y.",
+       "inferred"
+      ],
+      [
        "Abissinia Davis",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Abner Bowen",
+       "New York.",
+       "inferred"
+      ],
+      [
+       "Abner Ingersoll",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Abner Smith",
+       "New England",
        "reconstructed"
       ],
       [
@@ -9983,6 +10048,31 @@
        "Alanson B. Vaughan",
        "New England",
        "reconstructed"
+      ],
+      [
+       "Alanson Boyer",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Alanson Collins",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Alanson Hogan",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Alanson Hubbard",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Alanson Noble",
+       "Yorkshire, Eng.",
+       "inferred"
       ],
       [
        "Alanson Sweet",
@@ -10050,6 +10140,11 @@
        "reconstructed"
       ],
       [
+       "Alexis Johnson",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Alexr. H. Tucker",
        "New England",
        "reconstructed"
@@ -10060,9 +10155,69 @@
        "reconstructed"
       ],
       [
+       "Alice Allen",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Alice Brown",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Alice Burton",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Alice Handy",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Alice Taylor",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Alison B. Vaughn",
        "New York State",
        "reconstructed"
+      ],
+      [
+       "Almira Elston",
+       "England",
+       "inferred"
+      ],
+      [
+       "Almira Hubbard",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Almira Hubbard",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Almira Johnson",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Almira Kinzie",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Almira Lewis",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Almira Porter",
+       "Jefferson Co., N.Y.",
+       "inferred"
       ],
       [
        "Almon Perring",
@@ -10110,6 +10265,46 @@
        "reconstructed"
       ],
       [
+       "Amanda Bradley",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Amanda Collins",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Amanda Hamilton",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Amanda Hubbard",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Amanda Kennicott",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Amanda King",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Amanda King",
+       "New York.",
+       "inferred"
+      ],
+      [
+       "Amanda Kinzie",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Amanda Miner",
        "New York State",
        "reconstructed"
@@ -10117,6 +10312,11 @@
       [
        "Amanda Morrison",
        "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Amanda Peck",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -10140,6 +10340,11 @@
        "reconstructed"
       ],
       [
+       "Amos Boyer",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Amos C Hamilton",
        "New England",
        "reconstructed"
@@ -10150,8 +10355,18 @@
        "reconstructed"
       ],
       [
+       "Amos Kennicott",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Amos Rathburn",
        "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Amos Taylor",
+       "New England",
        "reconstructed"
       ],
       [
@@ -10185,12 +10400,42 @@
        "reconstructed"
       ],
       [
+       "Angelique Johnson",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Angelique Newberry",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Angus M'Vaughton",
        "West of the Alleghenies",
        "reconstructed"
       ],
       [
        "Ann Airs. Day",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Anna Collins",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Anna Courtney",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Anna Palmer",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Anna Tucker",
        "New England",
        "reconstructed"
       ],
@@ -10222,6 +10467,26 @@
       [
        "Aram Winsor",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Archange Lloyd",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Archange Newberry",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Archange Norton",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Archange Thompson",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -10257,6 +10522,11 @@
       [
        "Asa Brundage",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Asa Davis",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -10375,6 +10645,11 @@
        "reconstructed"
       ],
       [
+       "Baptiste Lloyd",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Batist Chanpagne",
        "New York State",
        "reconstructed"
@@ -10397,6 +10672,11 @@
       [
        "Benjamin / Berry",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Benjamin Cohen",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -10455,7 +10735,52 @@
        "reconstructed"
       ],
       [
+       "Betsey Austin",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Betsey Calhoun",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Betsey Crocker",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Betsey Elston",
+       "England",
+       "inferred"
+      ],
+      [
        "Betsey Hateh",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Betsey Knight",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Betsey Lafrombois",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Betsey Pearsons",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Betsey Taylor",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Betsey Tucker",
        "New England",
        "reconstructed"
       ],
@@ -10475,8 +10800,33 @@
        "reconstructed"
       ],
       [
+       "Bridget Allen",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Bridget Brown",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Bridget Handy",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Bridget Rogers",
        "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Bridget Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Bryan Reed",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -10545,6 +10895,21 @@
        "reconstructed"
       ],
       [
+       "Calvin Ingersoll",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Calvin Kinzie",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Calvin Lafrombois",
+       "England",
+       "reconstructed"
+      ],
+      [
        "Calvin Perry",
        "New England",
        "reconstructed"
@@ -10575,6 +10940,21 @@
        "reconstructed"
       ],
       [
+       "Catherine Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Catherine Thomas",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Catherine Trowbridge",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Charl Benubien",
        "New York State",
        "reconstructed"
@@ -10588,6 +10968,11 @@
        "Charles Banstun",
        "New England",
        "reconstructed"
+      ],
+      [
+       "Charles Bowen",
+       "New York.",
+       "inferred"
       ],
       [
        "Charles C. Drake",
@@ -10615,6 +11000,11 @@
        "reconstructed"
       ],
       [
+       "Charles Goodhue",
+       "England",
+       "reconstructed"
+      ],
+      [
        "Charles H Beaubien",
        "New England",
        "reconstructed"
@@ -10638,6 +11028,11 @@
        "Charles Loomis Harmon",
        "Burlington, Vermont",
        "inferred"
+      ],
+      [
+       "Charles Newberry",
+       "New England",
+       "reconstructed"
       ],
       [
        "Charles Rollins",
@@ -10725,6 +11120,56 @@
        "reconstructed"
       ],
       [
+       "Clarissa Barry",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Collins",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Davis",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Garrett",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Kennicott",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Lewis",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Ludby",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Rider",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Clarissa Wesencraft",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Clark B. Albee",
        "New England",
        "reconstructed"
@@ -10761,6 +11206,21 @@
       ],
       [
        "Constant Abbott",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Cornelius Allen",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Cornelius Brown",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Cornelius Reed",
        "New York State",
        "reconstructed"
       ],
@@ -10885,6 +11345,11 @@
        "reconstructed"
       ],
       [
+       "Daniel Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Daniel Whittier",
        "Ireland",
        "reconstructed"
@@ -10950,6 +11415,16 @@
        "reconstructed"
       ],
       [
+       "David Hogan",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "David Hubbard",
+       "England",
+       "reconstructed"
+      ],
+      [
        "David Hunter",
        "New York State",
        "reconstructed"
@@ -10982,6 +11457,11 @@
       [
        "David Savage",
        "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "David Sherman",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -11390,8 +11870,18 @@
        "reconstructed"
       ],
       [
+       "Elisha Bradley",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Elisha H. Hazzard",
        "West of the Alleghenies",
+       "reconstructed"
+      ],
+      [
+       "Elisha Kennicott",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -11400,9 +11890,39 @@
        "reconstructed"
       ],
       [
+       "Elisha Smith",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Eliza Chappel Porter",
        "New England, by way of the garrison church at Fort Brady, Sault Ste Marie",
        "inferred"
+      ],
+      [
+       "Eliza Crocker",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Eliza Davis",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Eliza Eldridge",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Eliza Gage",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Eliza Lafrombois",
+       "England",
+       "reconstructed"
       ],
       [
        "Eliza Mir Chappel",
@@ -11415,8 +11935,28 @@
        "reconstructed"
       ],
       [
+       "Eliza Pearsons",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Elizabeth Adams",
        "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Ellen Taylor",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Ellen Taylor",
+       "Virginia.",
+       "inferred"
+      ],
+      [
+       "Ellen Thomas",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -11427,6 +11967,46 @@
       [
        "Emeline Egan",
        "County Kerry, Ireland, by way of Lancashire, Dublin, Quebec, Montreal, New York, Virginia and Newark",
+       "attested"
+      ],
+      [
+       "Emily Caton",
+       "Orange Co., N.Y.",
+       "inferred"
+      ],
+      [
+       "Emily Cohen",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Emily Cook",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Emily Davis",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Emily Ingersoll",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Emily Kinzie",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Emily Lewis",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Emily Pierce",
+       "Vermont",
        "attested"
       ],
       [
@@ -11450,7 +12030,42 @@
        "reconstructed"
       ],
       [
+       "Erastus Kinzie",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Erastus Tucker",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Esq. Mark Noble",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Esther Davis",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Esther Hubbard",
+       "Windsor, Vermont, by way of Montreal",
+       "inferred"
+      ],
+      [
+       "Esther King",
+       "New York.",
+       "inferred"
+      ],
+      [
+       "Esther Kinzie",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Esther Knapp",
        "New England",
        "reconstructed"
       ],
@@ -11460,12 +12075,42 @@
        "reconstructed"
       ],
       [
+       "Esther Stow",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Esther Taylor",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Esther Wesencraft",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Esther Williams",
+       "Tolland, Conn.",
+       "inferred"
+      ],
+      [
        "Ezekiel Turner",
        "New York State",
        "reconstructed"
       ],
       [
        "Ezra Galusha",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Ezra Garrett",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Ezra Stow",
        "New York State",
        "reconstructed"
       ],
@@ -11512,6 +12157,11 @@
       [
        "Francis Walter",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Francois Goodhue",
+       "England",
        "reconstructed"
       ],
       [
@@ -11695,6 +12345,11 @@
        "reconstructed"
       ],
       [
+       "George King",
+       "New York.",
+       "inferred"
+      ],
+      [
        "George Knapp",
        "New York State",
        "reconstructed"
@@ -11716,6 +12371,11 @@
       ],
       [
        "George Miller",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "George Morrison",
        "New England",
        "reconstructed"
       ],
@@ -11915,13 +12575,43 @@
        "reconstructed"
       ],
       [
+       "Hannah Boyer",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Hannah Curtiss",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Hannah Hogan",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Hannah Hurlburt",
        "New York State",
        "reconstructed"
       ],
       [
+       "Hannah King",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Hannah Knapp",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Harriet Bradford",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Harriet Cohen",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -11961,6 +12651,16 @@
       ],
       [
        "Harvey A. Blakesley",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Harvey Kinzie",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Harvey Pearsons",
        "New York State",
        "reconstructed"
       ],
@@ -12065,6 +12765,11 @@
        "reconstructed"
       ],
       [
+       "Henry Wellmaker",
+       "England",
+       "reconstructed"
+      ],
+      [
        "Henry Whiting",
        "New England",
        "reconstructed"
@@ -12110,6 +12815,11 @@
        "reconstructed"
       ],
       [
+       "Hiram Collins",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
        "Hiram Eager",
        "New York State",
        "reconstructed"
@@ -12135,6 +12845,11 @@
        "reconstructed"
       ],
       [
+       "Hiram Morrison",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Hiram Pearsons",
        "New York State",
        "reconstructed"
@@ -12150,12 +12865,52 @@
        "reconstructed"
       ],
       [
+       "Honora Reed",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Honora Taylor",
+       "Virginia.",
+       "inferred"
+      ],
+      [
+       "Honora Thomas",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Horace Curtiss",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Horace Risley",
        "New England",
        "reconstructed"
       ],
       [
+       "Horace Smith",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Hugh Handy",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Hugh Todd",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Hyacinthe Lloyd",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Hyacinthe Thompson",
        "New York State",
        "reconstructed"
       ],
@@ -12175,12 +12930,27 @@
        "inferred"
       ],
       [
+       "Ira Courtney",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Ira Herrick",
        "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
+       "Ira Ingersoll",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Ira Kimberly",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Ira King",
        "New York State",
        "reconstructed"
       ],
@@ -12540,6 +13310,11 @@
        "reconstructed"
       ],
       [
+       "James Blanchard",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "James Burk",
        "England",
        "reconstructed"
@@ -12567,6 +13342,11 @@
       [
        "James Dowd",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "James Eldridge",
+       "New England",
        "reconstructed"
       ],
       [
@@ -12715,6 +13495,11 @@
        "reconstructed"
       ],
       [
+       "James Taylor",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "James Tindal",
        "New England",
        "reconstructed"
@@ -12737,6 +13522,11 @@
       [
        "James Walker",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "James Wellmaker",
+       "England",
        "reconstructed"
       ],
       [
@@ -12772,6 +13562,16 @@
       [
        "Jaqua Legrand",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Jean Johnson",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Jean Thompson",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -12855,6 +13655,16 @@
        "reconstructed"
       ],
       [
+       "Johanna Brown",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Johanna Thomas",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "John A Clark",
        "The Mid-Atlantic states",
        "reconstructed"
@@ -12876,6 +13686,11 @@
       ],
       [
        "John Abrams",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "John Allen",
        "New England",
        "reconstructed"
       ],
@@ -12910,7 +13725,17 @@
        "inferred"
       ],
       [
+       "John Blanchard",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "John Brink",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "John Brown",
        "New York State",
        "reconstructed"
       ],
@@ -12952,6 +13777,11 @@
       [
        "John Cook",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "John Courtney",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -13038,6 +13868,11 @@
        "John Holbrook",
        "New England",
        "reconstructed"
+      ],
+      [
+       "John Hubbard",
+       "Windsor, Vermont, by way of Montreal",
+       "inferred"
       ],
       [
        "John K Clark",
@@ -13220,6 +14055,11 @@
        "reconstructed"
       ],
       [
+       "John Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "John Stringer",
        "New England",
        "reconstructed"
@@ -13325,6 +14165,11 @@
        "reconstructed"
       ],
       [
+       "Joseph Allen",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Joseph Archer",
        "Ireland",
        "reconstructed"
@@ -13346,6 +14191,11 @@
       ],
       [
        "Joseph Boucher",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Joseph Boyer",
        "New York State",
        "reconstructed"
       ],
@@ -13398,6 +14248,11 @@
        "Joseph Draper",
        "New England",
        "reconstructed"
+      ],
+      [
+       "Joseph Elston",
+       "England",
+       "inferred"
       ],
       [
        "Joseph Gariner",
@@ -13485,9 +14340,24 @@
        "reconstructed"
       ],
       [
+       "Josette Goodhue",
+       "England",
+       "reconstructed"
+      ],
+      [
        "Josette LaFramboise Beaubien",
        "Detroit and the Milwaukee trade, of a French colonial family",
        "attested"
+      ],
+      [
+       "Josette Newberry",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Josette Thompson",
+       "New York State",
+       "reconstructed"
       ],
       [
        "Joshua Ambrose",
@@ -13665,6 +14535,21 @@
        "reconstructed"
       ],
       [
+       "Lemuel Kinzie",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Lemuel Noble",
+       "Yorkshire, Eng.",
+       "inferred"
+      ],
+      [
+       "Lemuel Pierce",
+       "Vermont",
+       "attested"
+      ],
+      [
        "Lemuel Teston",
        "Ireland",
        "reconstructed"
@@ -13795,6 +14680,11 @@
        "reconstructed"
       ],
       [
+       "Louis Goodhue",
+       "England",
+       "reconstructed"
+      ],
+      [
        "Louis P Chevallier",
        "New York State",
        "reconstructed"
@@ -13805,12 +14695,82 @@
        "reconstructed"
       ],
       [
+       "Lucy Barry",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Lucy Bradley",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Lucy Curtiss",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Lucy Hale",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Lucy Hogan",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Lucy Lafrombois",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Lucy Smith",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Lucy Taylor",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Luther Hatch",
        "New England",
        "reconstructed"
       ],
       [
        "Luther Kidder",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Lydia Courtney",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Lydia Curtiss",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Lydia Hale",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Lydia Rider",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Lydia Smith",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Lydia Spring",
        "New York State",
        "reconstructed"
       ],
@@ -13875,6 +14835,26 @@
        "reconstructed"
       ],
       [
+       "Madeleine Johnson",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Madeleine Lloyd",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Madeleine Newberry",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Madeleine Norton",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Madore Benjamin Beaubien",
        "The Mid-Atlantic states",
        "reconstructed"
@@ -13910,8 +14890,58 @@
        "reconstructed"
       ],
       [
+       "Margaret Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Margnret g Paylor",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Maria Cass",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Maria Davis",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Maria Garrett",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Maria Hubbard",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Maria Morrison",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Maria Rider",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Maria Whitlock",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Marie Garland",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Marie Newberry",
+       "New England",
        "reconstructed"
       ],
       [
@@ -13930,6 +14960,46 @@
        "reconstructed"
       ],
       [
+       "Martha Bowen",
+       "New York.",
+       "inferred"
+      ],
+      [
+       "Martha Davis",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Martha Ingersoll",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Martha Porter",
+       "Jefferson Co., N.Y.",
+       "inferred"
+      ],
+      [
+       "Martha Smith",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Martha Tucker",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Martha Wesencraft",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Martha Whitlock",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Martin Cleland",
        "Chautauqua, New York",
        "inferred"
@@ -13937,6 +15007,11 @@
       [
        "Martin Sct",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Mary Adams",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -13950,6 +15025,16 @@
        "reconstructed"
       ],
       [
+       "Mary Blanchard",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Mary Bowen",
+       "New York.",
+       "inferred"
+      ],
+      [
        "Mary Green",
        "The Mid-Atlantic states",
        "reconstructed"
@@ -13960,8 +15045,18 @@
        "reconstructed"
       ],
       [
+       "Mary King",
+       "New York.",
+       "inferred"
+      ],
+      [
        "Mary Meacham",
        "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Mary Moore",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -13972,6 +15067,21 @@
       [
        "Mary Polk",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Mary Reed",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Mary Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Mary Wellmaker",
+       "England",
        "reconstructed"
       ],
       [
@@ -14046,6 +15156,11 @@
       ],
       [
        "Metcalf Joseph",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Michael Blanchard",
        "New York State",
        "reconstructed"
       ],
@@ -14210,6 +15325,31 @@
        "inferred"
       ],
       [
+       "Nancy Austin",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Nancy Davis",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Nancy Elston",
+       "England",
+       "inferred"
+      ],
+      [
+       "Nancy King",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Nancy Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Naper Joln",
        "New England",
        "reconstructed"
@@ -14235,7 +15375,27 @@
        "reconstructed"
       ],
       [
+       "Nathaniel Boyer",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Nathaniel Carpenter",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Nathaniel Hubbard",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Nathaniel Ingersoll",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Nathaniel Smith",
        "New England",
        "reconstructed"
       ],
@@ -14370,6 +15530,11 @@
        "reconstructed"
       ],
       [
+       "Orrin Davis",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Orro Samuel",
        "New York State",
        "reconstructed"
@@ -14412,6 +15577,16 @@
       [
        "Otis Hubbard",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Otis Kinzie",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Owen Thomas",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -14600,6 +15775,41 @@
        "reconstructed"
       ],
       [
+       "Phebe Garrett",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Phebe Johnson",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Phebe Kennicott",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Phebe Ludby",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Phebe Morrison",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Phebe Palmer",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Phebe Porter",
+       "Jefferson Co., N.Y.",
+       "inferred"
+      ],
+      [
        "Philander robes",
        "The Southern states",
        "reconstructed"
@@ -14645,6 +15855,16 @@
        "reconstructed"
       ],
       [
+       "Pierre Johnson",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Pierre Lloyd",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Pike Luke",
        "New York State",
        "reconstructed"
@@ -14667,6 +15887,61 @@
       [
        "Plympton [?] Lauretta",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "Polly Barry",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Polly Elston",
+       "England",
+       "inferred"
+      ],
+      [
+       "Polly Gage",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Polly Garrett",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Polly Hogan",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Polly Hubbard",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Polly Peacock",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Polly Pearsons",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Polly Rider",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Polly Sherman",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Polly Wesencraft",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -14765,6 +16040,11 @@
        "reconstructed"
       ],
       [
+       "Reuben Barry",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Reuben Beech",
        "New York State",
        "reconstructed"
@@ -14772,6 +16052,11 @@
       [
        "Reuben Bench",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Reuben Bradley",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -14801,6 +16086,41 @@
       ],
       [
        "Reynolds John Hon.",
+       "England",
+       "reconstructed"
+      ],
+      [
+       "Rhoda Cohen",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Rhoda Davis",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Rhoda Eldridge",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Rhoda Gage",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Rhoda Porter",
+       "Jefferson Co., N.Y.",
+       "inferred"
+      ],
+      [
+       "Rhoda Taylor",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Rhoda Wellmaker",
        "England",
        "reconstructed"
       ],
@@ -14970,6 +16290,21 @@
        "reconstructed"
       ],
       [
+       "Rufus Cohen",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Rufus Eldridge",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Rufus Pearsons",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Russel E. Heacock",
        "The Southern states",
        "reconstructed"
@@ -14985,8 +16320,28 @@
        "reconstructed"
       ],
       [
+       "Ruth Davis",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Ruth Gage",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Ruth Knickerbacker",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Ruth Sanford",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Ruth Taylor",
+       "New England",
        "reconstructed"
       ],
       [
@@ -15090,6 +16445,11 @@
        "reconstructed"
       ],
       [
+       "Samuel Gage",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Samuel Haviland",
        "West of the Alleghenies",
        "reconstructed"
@@ -15108,6 +16468,11 @@
        "Samuel Kendall",
        "New York State",
        "reconstructed"
+      ],
+      [
+       "Samuel King",
+       "New York.",
+       "inferred"
       ],
       [
        "Samuel Lewis",
@@ -15170,6 +16535,16 @@
        "reconstructed"
       ],
       [
+       "Sarah Allen",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Sarah Barry",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Sarah Childs",
        "New England",
        "reconstructed"
@@ -15180,8 +16555,23 @@
        "reconstructed"
       ],
       [
+       "Sarah Davis",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Sarah Garrett",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "Sarah Hoit",
        "England",
+       "reconstructed"
+      ],
+      [
+       "Sarah Spring",
+       "New York State",
        "reconstructed"
       ],
       [
@@ -15212,6 +16602,21 @@
       [
        "Seth Byam",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Seth Hale",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Seth Hogan",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Seth Hubbard",
+       "England",
        "reconstructed"
       ],
       [
@@ -15260,9 +16665,19 @@
        "reconstructed"
       ],
       [
+       "Silas Allen",
+       "New England",
+       "reconstructed"
+      ],
+      [
        "Silas B. Cobb",
        "Washington County, Vermont",
        "inferred"
+      ],
+      [
+       "Silas Hogan",
+       "New York State",
+       "reconstructed"
       ],
       [
        "Silas P. Otto",
@@ -15296,6 +16711,46 @@
       ],
       [
        "Sophia Laughton",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Sophronia Bradley",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
+       "Sophronia Collins",
+       "Ireland",
+       "reconstructed"
+      ],
+      [
+       "Sophronia Garrett",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Sophronia Johnson",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Sophronia King",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Sophronia Knickerbacker",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Sophronia Noble",
+       "Yorkshire, Eng.",
+       "inferred"
+      ],
+      [
+       "Sophronia Ogden",
        "New York State",
        "reconstructed"
       ],
@@ -15370,6 +16825,26 @@
        "reconstructed"
       ],
       [
+       "Susan Lewis",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Susan Ludby",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Susan Peacock",
+       "The Southern states",
+       "reconstructed"
+      ],
+      [
+       "Susan Stow",
+       "New York State",
+       "reconstructed"
+      ],
+      [
        "T B Beubien",
        "The Mid-Atlantic states",
        "reconstructed"
@@ -15431,6 +16906,16 @@
       ],
       [
        "Theophilus Renwick",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Therese Trowbridge",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Therese Watkins",
        "New England",
        "reconstructed"
       ],
@@ -15675,6 +17160,26 @@
        "reconstructed"
       ],
       [
+       "Victoire Eels",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Victoire Lloyd",
+       "New York State",
+       "reconstructed"
+      ],
+      [
+       "Victoire Newberry",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Victoire Norton",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "W B Clarke",
        "New England",
        "reconstructed"
@@ -15750,6 +17255,16 @@
        "reconstructed"
       ],
       [
+       "Warren Cass",
+       "New England",
+       "reconstructed"
+      ],
+      [
+       "Warren Elston",
+       "England",
+       "inferred"
+      ],
+      [
        "Warren Pixby",
        "New York State",
        "reconstructed"
@@ -15790,8 +17305,18 @@
        "reconstructed"
       ],
       [
+       "Willard Davis",
+       "The Mid-Atlantic states",
+       "reconstructed"
+      ],
+      [
        "Willard Jones",
        "New York State",
+       "reconstructed"
+      ],
+      [
+       "Willard Wesencraft",
+       "The Mid-Atlantic states",
        "reconstructed"
       ],
       [
@@ -15975,6 +17500,11 @@
        "reconstructed"
       ],
       [
+       "William King",
+       "New York.",
+       "inferred"
+      ],
+      [
        "William Laird",
        "The Southern states",
        "reconstructed"
@@ -16067,6 +17597,11 @@
       [
        "William Walters",
        "New England",
+       "reconstructed"
+      ],
+      [
+       "William Wellmaker",
+       "England",
        "reconstructed"
       ],
       [

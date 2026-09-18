@@ -3879,8 +3879,18 @@
     },
     {
       "a": "Charles Sweet",
+      "b": "A Sweet",
+      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'A Sweet': The surname 'sweet' is carried by 3 person(s) of 1835 (A Sweet, Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
+      "evidence": [
+        "33S7-9YYJ-W6",
+        "T-0505",
+        "L3 given_name_conflict"
+      ]
+    },
+    {
+      "a": "Charles Sweet",
       "b": "Alanson Sweet",
-      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Alanson Sweet': The surname 'sweet' is carried by 2 person(s) of 1835 (Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
+      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Alanson Sweet': The surname 'sweet' is carried by 3 person(s) of 1835 (A Sweet, Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
       "evidence": [
         "33S7-9YYJ-W6",
         "T-0505",
@@ -3890,7 +3900,7 @@
     {
       "a": "Charles Sweet",
       "b": "Richard M Sweet",
-      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Richard M Sweet': The surname 'sweet' is carried by 2 person(s) of 1835 (Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
+      "rule": "'Charles Sweet' at printed page 232 line 8 (33S7-9YYJ-W6) is NOT 'Richard M Sweet': The surname 'sweet' is carried by 3 person(s) of 1835 (A Sweet, Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
       "evidence": [
         "33S7-9YYJ-W6",
         "T-0505",

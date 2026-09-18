@@ -12,30 +12,30 @@
   "the_bias_runs_one_way": "The forename table T-1303 derived was built mostly on this layer's men, so a woman's forename is likelier than a man's to be missing from it and to fall into the unsettled group being drawn for. Every rate here is therefore a CEILING on its roll's male share rather than a point reading, and every draw made from it leans male by an amount this pass cannot bound. Stated, not smoothed; docs/LIBERTIES.md L-rc-sex-rate.",
   "floor": 50,
   "pooled": {
-   "settled_by_the_evidence": 692,
-   "of_those_male": 648,
-   "male_rate": 0.9364
+   "settled_by_the_evidence": 993,
+   "of_those_male": 747,
+   "male_rate": 0.7523
   },
   "rolls": [
    {
     "roll": "civic",
-    "settled_by_the_evidence": 208,
-    "of_those_male": 197,
-    "own_male_rate": 0.9471,
+    "settled_by_the_evidence": 385,
+    "of_those_male": 255,
+    "own_male_rate": 0.6623,
     "measured_on_its_own": true,
-    "drawn_at": 0.9471,
+    "drawn_at": 0.6623,
     "drawn_for": 184,
-    "why": "its own 208 settled names are enough to measure it"
+    "why": "its own 385 settled names are enough to measure it"
    },
    {
     "roll": "documented",
-    "settled_by_the_evidence": 15,
-    "of_those_male": 14,
-    "own_male_rate": 0.9333,
+    "settled_by_the_evidence": 48,
+    "of_those_male": 20,
+    "own_male_rate": 0.4167,
     "measured_on_its_own": false,
-    "drawn_at": 0.9364,
+    "drawn_at": 0.7523,
     "drawn_for": 24,
-    "why": "only 15 of its names are settled - below the floor of 50, so it draws at the pooled rate of every roll"
+    "why": "only 48 of its names are settled - below the floor of 50, so it draws at the pooled rate of every roll"
    },
    {
     "roll": "letter_list",
@@ -49,28 +49,28 @@
    },
    {
     "roll": "placed",
-    "settled_by_the_evidence": 2,
-    "of_those_male": 2,
-    "own_male_rate": 1.0,
+    "settled_by_the_evidence": 7,
+    "of_those_male": 6,
+    "own_male_rate": 0.8571,
     "measured_on_its_own": false,
-    "drawn_at": 0.9364,
+    "drawn_at": 0.7523,
     "drawn_for": 3,
-    "why": "only 2 of its names are settled - below the floor of 50, so it draws at the pooled rate of every roll"
+    "why": "only 7 of its names are settled - below the floor of 50, so it draws at the pooled rate of every roll"
    },
    {
     "roll": "unclaimed",
-    "settled_by_the_evidence": 95,
-    "of_those_male": 84,
-    "own_male_rate": 0.8842,
+    "settled_by_the_evidence": 181,
+    "of_those_male": 115,
+    "own_male_rate": 0.6354,
     "measured_on_its_own": true,
-    "drawn_at": 0.8842,
+    "drawn_at": 0.6354,
     "drawn_for": 5,
-    "why": "its own 95 settled names are enough to measure it"
+    "why": "its own 181 settled names are enough to measure it"
    }
   ]
  },
  "the_rolls_are_not_the_town": {
-  "the_rolls": "93.6% male, measured above",
+  "the_rolls": "75.2% male, measured above",
   "the_town": "120.9-150.0 (point reading 146.8) males per 100 females - a 55-60% male town",
   "why_they_differ": "A roll of correspondents, voters and subscribers names adult men; the town's women and children are named nowhere in it. Nothing here is drawn at the town's ratio, because none of these people is a draw from the town - they are people a roll already named. The gap IS the reconstruction's brief: T-1174 writes the women and children the pyramid lacks, to its own quota.",
   "under_ten_in_the_town": "the town model's `share_under_ten`, 0.2-0.2702, which this stage draws for nobody: a person named on a roll is not a child under ten."
@@ -343,16 +343,16 @@
    "a_group_not_a_person": 6
   },
   "sex_already": {
-   "civic": 208,
-   "unclaimed": 92,
+   "civic": 385,
+   "unclaimed": 178,
    "letter_list": 372,
-   "documented": 15,
-   "placed": 2
+   "documented": 48,
+   "placed": 7
   },
   "age_drawn": {
-   "named_on_a_roll_15_and_over": 1019,
+   "named_on_a_roll_15_and_over": 1104,
    "civic_list_20_and_over": 192,
-   "dependent_child_under_15": 1
+   "dependent_child_under_15": 217
   },
   "age_read": {
    "birth_year": 64,
@@ -362,21 +362,20 @@
    "a_group_not_a_person": 6
   },
   "drawn_sex_is": {
-   "male": 551,
-   "female": 36
+   "male": 489,
+   "female": 98
   },
   "drawn_band_is": {
-   "20-29": 591,
-   "30-39": 338,
-   "15-19": 106,
-   "40-49": 112,
-   "50-59": 41,
+   "20-29": 636,
+   "30-39": 352,
+   "15-19": 121,
+   "40-49": 117,
+   "0-4": 113,
+   "10-14": 47,
+   "50-59": 44,
+   "5-9": 57,
    "70-79": 8,
-   "60-69": 15,
-   "10-14": 1
-  },
-  "drawn_by_a_later_stage": {
-   "modelled_families": 307
+   "60-69": 18
   }
  }
 }

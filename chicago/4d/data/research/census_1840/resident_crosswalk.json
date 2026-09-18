@@ -152,7 +152,7 @@
       },
       "surname_first": {
         "newspapers": 1000,
-        "residents": 6
+        "residents": 5
       },
       "unsupplied_name": {
         "newspapers": 2
@@ -174,7 +174,7 @@
       "what": "residents layer, persons",
       "path": "data/residents/households/",
       "available": true,
-      "n": 1281
+      "n": 1282
     },
     {
       "what": "voter, poll and tax list entries (T-0493)",
@@ -9782,8 +9782,9 @@
       "same_name_support": [],
       "outcome": "refused",
       "rule": "L3 given_name_conflict",
-      "reason": "The surname 'sweet' is carried by 2 person(s) of 1835 (Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
+      "reason": "The surname 'sweet' is carried by 3 person(s) of 1835 (A Sweet, Alanson Sweet, Richard M Sweet) and none of their given names is 'charles'.",
       "surname_bearers_1835": [
+        "sweet_a",
         "sweet_alanson",
         "sweet_richard_m"
       ]

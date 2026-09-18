@@ -76,11 +76,35 @@
       "records": 1258,
       "refused_because": "The record's own copy of the same foreign key. Refused for the same reason, and it is the record that is authoritative."
     },
+    "residents/household:modelled_family.stage": {
+      "records": 90
+    },
+    "residents/household:modelled_family.ticket": {
+      "records": 90
+    },
     "residents/household:origin.replaceable_by.kind": {
       "records": 1214
     },
     "residents/household:origin.written_by_stage": {
       "records": 1235
+    },
+    "residents/household:persons[].name_basis.basis.kind": {
+      "records": 301
+    },
+    "residents/household:persons[].name_basis.replaceable_by.kind": {
+      "records": 301
+    },
+    "residents/household:persons[].name_basis.replaceable_by.match": {
+      "records": 301
+    },
+    "residents/household:persons[].name_basis.seed": {
+      "records": 301
+    },
+    "residents/household:persons[].name_basis.tier": {
+      "records": 301
+    },
+    "residents/household:persons[].name_basis.value": {
+      "records": 301
     },
     "residents/household:persons[].occupation.derived_from": {
       "records": 327
