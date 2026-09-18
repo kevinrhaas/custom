@@ -1,7 +1,7 @@
 ---
 id: T-1303
 title: Sex and age from the evidence: the old-settler and death-notice births spent onto the cards they name, a committed forename→sex table that refuses ambiguity, and every person the sources or an unambiguous forename can settle given sex and birth_year at attested or inferred tier
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: true
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1168
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1446
 claimed_by: run 9/18/2026, 2:26:29 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T08:37:46.786Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35319074035
 ---
 

@@ -47,7 +47,6 @@
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
-T-1303 — Sex and age from the evidence: the old-settler and death-notice births spent onto the cards they name, a committed forename→sex table that refuses ambiguity, and every person the sources or an unambiguous forename can settle given sex and birth_year at attested or inferred tier
 T-1304 — Reconstruct the sex and age no evidence can settle: the population model's sex × age band per bucket seeded by person id, the letter lists at their measured adult-male rate, the known-profile report showing three tiers, and the person card printing sex and age with its tier and reason
 T-1169 — Fill arrival date, origin and reason for coming for every attested and inferred person: the earliest dated appearance as the bound, the biographies where they speak, the arrival model otherwise — dated, tiered and explained
 T-1170 — Give the attested and inferred heads the families the sources name: spouses, children, kin and dependants from the baptism and marriage registers, the 1840 census rows of heads the layer carries, Andreas and old-settler biographies and the ruled kin ties — inferred where named, reconstructed where only counted
