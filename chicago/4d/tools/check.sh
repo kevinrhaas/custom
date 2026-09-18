@@ -3821,6 +3821,29 @@ step "the location spend re-derives: no placement past its evidence, four retent
 selftest "…and its own assertions still fire when broken" \
   python3 tools/location_spend.py --self-test
 
+# T-1160. THE PROFILE OF THE KNOWN POPULATION, held to the layer it is read from.
+#
+# The owner asked for a population analysis of the known people before anything is
+# reconstructed, and a profile is exactly the kind of document that rots quietly: the
+# resident layer moves under it every time a mint runs, and a markdown table of
+# percentages cannot say that it has. So the numbers live in
+# `data/reconstruction/1835_population_profile.json`, the markdown is rendered FROM that
+# json, and this step re-derives both from `data/residents/` and refuses a mismatch —
+# which means a resident pass that changes the layer and does not re-run `--build` is
+# red here rather than published wrong.
+#
+# It also holds the two judgements the profile makes. `REASON_RULES` buckets a stated
+# reason for coming under a controlled term, and an unmatched reason is REFUSED rather
+# than swept into an `other` row, so a new reason cannot fall silently through the axis.
+# And the closing section — "what the town should have held" — is asserted to carry NO
+# NUMBERS: the quantities belong to T-1293's model and T-1166's order book, and a figure
+# typed into the profile would be a second, unsourced answer to the same question.
+step "the 1835 population profile re-derives from the resident layer, on every axis" \
+  python3 tools/profile_population_1835.py --check
+
+selftest "…and its own assertions still fire when broken" \
+  python3 tools/profile_population_1835.py --self-test
+
 # THE OTHER HALF OF THE SAME PROBLEM (T-0384, the owner's ruling of 2026-08-30). Where the
 # adoptions answer "the paper names a face and no position", this answers "the paper names
 # a position and no lot": a count of doors off a named corner — "on South-Water st. one

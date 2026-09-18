@@ -167,6 +167,13 @@ cp -f data/reconstruction/1835_hay_limits.json "$SITE/data/reconstruction/"
 # register has held since T-0410.
 cp -f data/reconstruction/1835_agencies.json "$SITE/data/reconstruction/"
 
+# And the profile of the known population (T-1160). Derived by
+# tools/profile_population_1835.py and re-derived by tools/check.sh; population.js
+# fetches it at data/reconstruction/1835_population_profile.json to render the
+# Evidence hub's "The town's people" topic, so leaving it behind is a 404 and an
+# Evidence tile that counts zero on the deployed site while the dev tree shows ten.
+cp -f data/reconstruction/1835_population_profile.json "$SITE/data/reconstruction/"
+
 # Terrain: the epoch registry, the traced river vectors, and the heightfield the
 # renderer samples. The .bin is a plain binary and must travel with its meta —
 # publishing heightfield.json without heightfield.bin gives a flat world and a

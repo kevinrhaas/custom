@@ -279,6 +279,97 @@
     "grade": null,
     "rule": "NO PROPOSAL. The town already carries this person and every appearance this consolidation can see describes a date after the scene year — their card rests on sources outside these seven domains (Andreas, the newspapers' own register). The ladder abstains rather than demote a resident on evidence it has not read; the row is listed as a conflict for the owner."
    }
+  ],
+  "age_bands": [
+   {
+    "age_band": "birth_year_known",
+    "rule": "the person carries a birth_year block",
+    "means": "a source gives the year, however loosely"
+   },
+   {
+    "age_band": "age_stated",
+    "rule": "the person carries an age_on_scene_date block and no birth_year",
+    "means": "a source gives an age at 1 July 1835"
+   },
+   {
+    "age_band": "adult_by_civic_list",
+    "rule": "the person carries civic_evidence (a poll, tax or muster list)",
+    "means": "an adult: a voter, a taxpayer or a man of militia age"
+   },
+   {
+    "age_band": "adult_by_role",
+    "rule": "the person carries a role, or an occupation other than none_recorded",
+    "means": "an adult: a trade, profession or office is not held by a child"
+   },
+   {
+    "age_band": "adult_by_marriage_or_parenthood",
+    "rule": "the person stands in the church register as bride, groom or parent",
+    "means": "an adult on the register's own face"
+   },
+   {
+    "age_band": "child_by_baptism",
+    "rule": "the person stands in the church register as an infant or a baptised child",
+    "means": "a child"
+   },
+   {
+    "age_band": "unknown",
+    "rule": "none of the above",
+    "means": "nothing on the card bears on age at all"
+   }
+  ],
+  "reasons_for_coming": [
+   {
+    "term": "army_posting",
+    "means": "ordered here by the Army"
+   },
+   {
+    "term": "indian_agency",
+    "means": "appointed to the United States Indian agency"
+   },
+   {
+    "term": "federal_contract",
+    "means": "a mail or other federal contract"
+   },
+   {
+    "term": "public_office",
+    "means": "a county, town or court office"
+   },
+   {
+    "term": "mission_or_church",
+    "means": "sent by a church or missionary society"
+   },
+   {
+    "term": "trade_or_forwarding",
+    "means": "the fur trade, a store, forwarding and commission"
+   },
+   {
+    "term": "house_of_entertainment",
+    "means": "to keep a tavern, hotel or boarding house"
+   },
+   {
+    "term": "the_press",
+    "means": "to found, run or work a printing office"
+   },
+   {
+    "term": "a_trade_or_manufacture",
+    "means": "to set up a craft or works of their own"
+   },
+   {
+    "term": "following_kin",
+    "means": "after a father, brother or other kin already here"
+   },
+   {
+    "term": "business_prospects",
+    "means": "the prospects of a new western town, stated as such"
+   },
+   {
+    "term": "canal_and_harbour_works",
+    "means": "the harbour works or the canal"
+   },
+   {
+    "term": "land_purchase",
+    "means": "to buy land at the sales"
+   }
   ]
  },
  "counts": {
