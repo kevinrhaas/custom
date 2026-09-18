@@ -58,7 +58,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'Major Handy, bricklayer and mason' - no arrival year is given, which is unusual for this roster and is itself worth noting."
+    "note": "'Major Handy, bricklayer and mason' - no arrival year is given, which is unusual for this roster and is itself worth noting.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "mason"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -88,6 +92,24 @@
      "referred_to": "rule",
      "for_merge": "The town documents one Handy, a mason, from Andreas; Henry S. Handy is in the Democrat and Fergus's 1843 death notices. A 'Major Handy' and a Henry S. Handy may well be the same man under a militia title.",
      "against_merge": "'Major Handy' prints no forename at all. Surname-plus-a-title is the refusal data/research/newspapers/identity.json has ratified since the press pass, and this pass does not make an exception to it. Refused by rule."
+    }
+   ],
+   "roles": [
+    {
+     "role": "mason",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }

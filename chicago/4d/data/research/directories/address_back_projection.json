@@ -313,7 +313,7 @@
    "sources": [
     "fergus_chicago_directory_1843"
    ],
-   "occupation_1835": "tinsmith",
+   "occupation_1835": "grocer",
    "works_at_1835": null,
    "outcome": "refused",
    "clause": "2",
@@ -1093,7 +1093,7 @@
    "sources": [
     "fergus_chicago_directory_1839"
    ],
-   "occupation_1835": "soap_and_candle_maker",
+   "occupation_1835": "none_recorded",
    "works_at_1835": "elston_soap_candle_manufactory",
    "outcome": "already_better_placed",
    "clause": "2",
@@ -1453,7 +1453,7 @@
    "sources": [
     "fergus_chicago_directory_1843"
    ],
-   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835": "none_recorded",
    "works_at_1835": "harmon_loomis_store",
    "outcome": "already_better_placed",
    "clause": "2",
@@ -1474,7 +1474,7 @@
    "sources": [
     "fergus_chicago_directory_1839"
    ],
-   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835": "none_recorded",
    "works_at_1835": "harmon_loomis_store",
    "outcome": "already_better_placed",
    "clause": "2",
@@ -1677,7 +1677,7 @@
   {
    "household_id": "hh_hugunin_leonard_c",
    "person_id": "hugunin_leonard_c",
-   "person": "Leonard, C. Hugunin",
+   "person": "Leonard C. Hugunin",
    "address_as_printed": "bds United States Hotel",
    "describes_date": 1843,
    "read_back_years": 8,
@@ -1834,7 +1834,7 @@
    "sources": [
     "fergus_chicago_directory_1839"
    ],
-   "occupation_1835": "grocer",
+   "occupation_1835": "none_recorded",
    "works_at_1835": "h_jones_store",
    "outcome": "already_better_placed",
    "clause": "2",
@@ -1960,7 +1960,7 @@
    "sources": [
     "fergus_chicago_directory_1839"
    ],
-   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835": "none_recorded",
    "works_at_1835": "chicago_democrat_office",
    "outcome": "already_better_placed",
    "clause": "2",

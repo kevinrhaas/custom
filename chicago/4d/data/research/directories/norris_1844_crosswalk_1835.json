@@ -12,7 +12,7 @@
  "whole_name_rule": ". A printed forename and a reading of 1835 are THE SAME NAME when\nthey set the SAME NUMBER of words and agree word by word — each pair either\nletter for letter, or one of them the single initial the other begins with.\nWhere exactly ONE candidate is the same name in that sense, the page names\nthat one and no other. Where none is, or more than one is, nothing happens\nand the tie stands with the reason filed.",
  "wife_rule": "— the second clause, and it is R6 arriving where it\nwas always true. `tools/consolidate_resident_evidence.py` holds `Mrs Rufus\nBrown` apart from `Rufus Brown` (R6, T-0723) because the honorific strip leaves\nthe husband's forename tokens on both readings and folds a wife onto him. The\ncrosswalks strip titles the same way and had no such rule, so the town layer's\ntwo people met `Brown, Rufus B., warehouseman` together and were filed as a\nCONTEST — a man contesting a printed line with his own wife. Where one\ncandidate of 1835 carries a female honorific, its forename tokens are exactly\nthose of another candidate carried WITHOUT one, and the printed entry sets no\nfemale honorific of its own, the entry is the husband's and she is not named by\nit. The proof is the same proof R6 asks for and it is in the contest itself:\nthe town layer prints both readings, which is what put them here together.",
  "counts": {
-  "residents_considered": 1285,
+  "residents_considered": 1280,
   "1844_entries_read": 2073,
   "1844_entries_set_aside_for_want_of_a_surname": 1,
   "matched_one_1844_entry": 112,
@@ -23,9 +23,9 @@
   "residents_that_refusal_reaches": 2,
   "further_initial_disagreed_refused": 14,
   "residents_that_further_initial_refusal_reaches": 13,
-  "initial_agreed_forenames_disagreed_refused": 47,
+  "initial_agreed_forenames_disagreed_refused": 48,
   "of_those_a_garbled_printed_forename": 0,
-  "residents_left_with_no_1844_entry_by_that_refusal": 26,
+  "residents_left_with_no_1844_entry_by_that_refusal": 27,
   "entries_the_whole_name_refused": 6,
   "residents_that_whole_name_refusal_reaches": 5,
   "entries_a_female_honorific_refused": 0,
@@ -35,7 +35,7 @@
   "ties_narrowed_by_a_trade": 2,
   "of_those_contested": 0,
   "of_those_ambiguous": 2,
-  "could_carry_occupation": 63,
+  "could_carry_occupation": 66,
   "could_carry_address": 83
  },
  "set_aside_for_want_of_a_surname": [
@@ -396,8 +396,8 @@
    "person_id": "jones_benjamin",
    "household_id": "hh_jones_benjamin",
    "grade_1835": "attested",
-   "occupation_1835": "grocer",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "h_jones_store",
    "rule": "Surname 'Jones' folds to the same string as the 1844 entry's, and the given name of both begins B.",
@@ -412,6 +412,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -473,8 +474,8 @@
    "person_id": "harmon_charles_l",
    "household_id": "hh_harmon_brothers",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "harmon_loomis_store",
    "rule": "Surname 'Harmon' folds to the same string as the 1844 entry's, and the given name of both begins C.",
@@ -489,6 +490,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -551,8 +553,8 @@
    "person_id": "elston_daniel",
    "household_id": "hh_elston_daniel",
    "grade_1835": "attested",
-   "occupation_1835": "soap_and_candle_maker",
-   "occupation_1835_confidence": "attested",
+   "occupation_1835": "none_recorded",
+   "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
    "works_at_1835": "elston_soap_candle_manufactory",
    "rule": "Surname 'Elston' folds to the same string as the 1844 entry's, and the given name of both begins D.",
@@ -567,6 +569,7 @@
     }
    ],
    "could_carry": [
+    "occupation",
     "address"
    ],
    "carry_rule": "Whatever is carried is carried as 1844 evidence with describes_date 1844 on the note, never as an 1835 fact, and the grade of the person does not move.",
@@ -1470,7 +1473,7 @@
    "person_id": "botsford_j_k",
    "household_id": "hh_botsford_j_k",
    "grade_1835": "attested",
-   "occupation_1835": "tinsmith",
+   "occupation_1835": "grocer",
    "occupation_1835_confidence": "attested",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -2124,7 +2127,7 @@
    "resident_given_is_initial_only": false
   },
   {
-   "resident": "Leonard, C. Hugunin",
+   "resident": "Leonard C. Hugunin",
    "person_id": "hugunin_leonard_c",
    "household_id": "hh_hugunin_leonard_c",
    "grade_1835": "attested",
@@ -2507,7 +2510,7 @@
    "resident": "Sanford Johnson",
    "person_id": "johnson_sanford",
    "household_id": "hh_johnson_sanford",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "occupation_1835_confidence": "reconstructed",
    "lives_at_1835": null,
@@ -3708,6 +3711,13 @@
   }
  ],
  "refusals": [
+  {
+   "resident": "A Sweet",
+   "person_id": "sweet_a",
+   "surname_in_1844": "Sweet",
+   "candidates": 1,
+   "rule": "The surname 'Sweet' is in Norris 1844 and no entry under it carries the initial 'A' of 'A Sweet'. A surname-only agreement is a refusal."
+  },
   {
    "resident": "A. Shepherd",
    "person_id": "shepherd_a",
@@ -5009,13 +5019,6 @@
    "surname_in_1844": "Wright",
    "candidates": 2,
    "rule": "The surname 'Wright' is in Norris 1844 and no entry under it carries the initial 'J' of 'John S. Wright'. A surname-only agreement is a refusal."
-  },
-  {
-   "resident": "John Vincent",
-   "person_id": "vincent_john",
-   "surname_in_1844": "Vincent",
-   "candidates": 1,
-   "rule": "The surname 'Vincent' is in Norris 1844 and no entry under it carries the initial 'J' of 'John Vincent'. A surname-only agreement is a refusal."
   },
   {
    "resident": "John Wright",
@@ -6379,6 +6382,23 @@
    }
   },
   {
+   "resident": "High Es Jones",
+   "person_id": "jones_es_high",
+   "grade_1835": "inferred",
+   "entry_1844": {
+    "claim": "n1844_e0976",
+    "as_printed": "Jones, Hiram, clerk at L. W. Clark's, res Wm Jones",
+    "printed_page": 42,
+    "occupation_1844": "clerk at L. W. Clark's",
+    "place_of_business_1844": null,
+    "address_1844": "res Wm Jones",
+    "forename_1835": "High",
+    "forename_printed": "Hiram",
+    "garbled_reading": false,
+    "rule": "Both readings print a full forename and the two disagree: 'High' against 'Hiram'. An initial standing against a full name is a match; two full names that differ are not."
+   }
+  },
+  {
    "resident": "James B Campbell",
    "person_id": "campbell_james_b",
    "grade_1835": "attested",
@@ -6908,7 +6928,7 @@
   {
    "resident": "Sanford Johnson",
    "person_id": "johnson_sanford",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "entry_1844": {
     "claim": "n1844_e0967",
     "as_printed": "Johnson, Seth, deputy collector and inspector of Port of Chicago, house cor Washington and Lasalle sts",

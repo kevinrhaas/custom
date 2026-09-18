@@ -2688,11 +2688,29 @@ def test_a_derived_document_is_an_interface_too() -> None:
 # into. Both fail silently - a household record whose subject was still in
 # Vermont looks exactly like one whose subject was not - so both get a test.
 
+def _resident_role(**kw) -> dict:
+    # `from` is a Python keyword, so the fixture spells the override `from_`.
+    if "from_" in kw:
+        kw["from"] = kw.pop("from_")
+    r = {"role": "cooper", "kind": "trade", "as_printed": "a cooper",
+         "from": "1835", "to": "1835", "precision": "year",
+         "dated_by": "source_describes_date", "covers_scene_date": True,
+         "confidence": "attested", "sources": ["s1"], "claim": None,
+         "note": "s1 is about 1835 and names the trade"}
+    r.update(kw)
+    return r
+
+
 def _resident_person(**kw) -> dict:
+    # T-1229: `roles[]` is canonical and `occupation` is the view of the roles that
+    # reach the scene date, so the default fixture carries both halves in agreement.
+    # Every test about something else would otherwise be a test about this.
     p = {"id": "p1", "name": "A Person", "sex": "male", "relationship": "head",
          "grade": "attested", "sources": ["s1"], "note": "named in s1",
+         "roles": [_resident_role()],
          "occupation": {"value": "cooper", "confidence": "attested",
-                        "sources": ["s1"], "note": "s1 names the trade"}}
+                        "sources": ["s1"], "note": "s1 names the trade",
+                        "derived_from": "roles", "roles_at_scene_date": ["cooper"]}}
     p.update(kw)
     # A reconstructed person's NAME is invented, and the validator requires the
     # record to say so. The fixture supplies it by default so that tests about
@@ -2756,6 +2774,13 @@ def _resident_index(households: list, **kw) -> dict:
             "kin_relations": ["brother", "daughter", "father", "half_brother",
                               "half_sister", "husband", "mother", "sister",
                               "son", "wife"],
+            "association_kinds": list(V.ASSOCIATION_KINDS),
+            "association_resolution": list(V.ASSOCIATION_RESOLUTION),
+            "role_kinds": ["trade", "profession", "office", "employment",
+                           "business_interest"],
+            "role_date_precision": ["day", "month", "year", "source_span", "unknown"],
+            "role_dated_by": ["source_describes_date", "printing_year", "stated_date",
+                              "undated"],
         },
         "counts": {"households": len(households),
                    "persons": sum(len(h["persons"]) for h in households),
@@ -2782,6 +2807,76 @@ def _run_residents(households: list, index_patch=None, structures=("st1",),
             (root / "residents" / "households" / f"{h['id']}.json").write_text(json.dumps(h))
         V.check_residents(set(sources), set(structures), rep, {}, data_root=root)
     return rep
+
+
+def test_a_place_relationship_is_plural_dated_and_cannot_drift() -> None:
+    """T-1238. `lives_at`/`works_at` are singular and undated; the sources are not.
+
+    The case that opened this is Jeremiah Porter's loft. Andreas has Peck invite
+    him to make his "temporary lodging place" in the unfinished store loft, the
+    link is dated 1833, and whether he was still there on 1 July 1835 is unknown
+    — none of which a single `lives_at: peck_store` can say, and T-1237's
+    reconciliation row inherits the flattening by dating the same claim to the
+    scene date. `associated_with[]` is the plural, dated, tiered form. These are
+    the refusals that keep it honest; `tools/associations.py --self-test` breaks
+    the row-level rules one at a time, and this is the wiring into the gate.
+    """
+    def row(**kw):
+        r = {"kind": "lodging", "place_or_structure_id": "st1", "resolves_to": "structure",
+             "from": "1833", "to": None, "tier": "attested", "source_id": "s1",
+             "note": "the loft, dated by the source and not by the scene"}
+        r.update(kw)
+        return r
+
+    def hh(**kw):
+        # The fixture's default `works_at` names st1, and a household that carries
+        # BOTH shapes must agree in both of them; these cases are about the home
+        # link, so the work link is withdrawn rather than half-stated.
+        kw.setdefault("works_at", {"value": None, "confidence": "inferred",
+                                   "note": "not modelled"})
+        return _resident_household(**kw)
+
+    rep = _run_residents([hh(
+        lives_at={"value": "st1", "confidence": "attested", "sources": ["s1"], "note": "n"},
+        associated_with=[row()])])
+    check("a plural dated relationship that agrees with the singular link passes",
+          not rep.errors, rep.errors)
+
+    # The drift this is for: two shapes, two answers, and a reader gets whichever
+    # field they happened to load.
+    rep = _run_residents([hh(
+        lives_at={"value": "st1", "confidence": "attested", "sources": ["s1"], "note": "n"},
+        associated_with=[row(place_or_structure_id="st2")])], structures=("st1", "st2"))
+    check("the singular link may not drift from the plural one",
+          any("may not drift" in e for e in rep.errors), rep.errors)
+
+    # A row is defined over CLAIMS, so it always names a place; and the rung it
+    # claims has to be the one the evidence reached.
+    rep = _run_residents([hh(associated_with=[row(resolves_to="street")])])
+    check("a street rung on a committed roof is refused",
+          any("is a structure id" in e for e in rep.errors), rep.errors)
+
+    # The scene-date gate, one shape further out than the arrival it copies.
+    rep = _run_residents([hh(associated_with=[row(**{"from": "1836"})])])
+    check("a relationship that had not started by the scene date is refused",
+          any("begins after the scene date" in e for e in rep.errors), rep.errors)
+
+    # An undated relationship is an admission, not a gap.
+    rep = _run_residents([hh(
+        associated_with=[row(**{"from": None, "to": None})])])
+    check("a row dating neither end must say so",
+          any("undated" in e for e in rep.errors), rep.errors)
+
+    # And the same list on a PERSON, which is where T-1147 clause 7 puts it: a
+    # household's one `works_at` is the head's, and his wife's school is not in it.
+    rep = _run_residents([_resident_household(
+        persons=[{"id": "p1", "name": "A", "relationship": "head", "grade": "attested",
+                  "sources": ["s1"], "note": "n",
+                  "occupation": {"value": "cooper", "confidence": "attested",
+                                 "sources": ["s1"], "note": "n"},
+                  "associated_with": [row(kind="tavern")]}])])
+    check("an undeclared kind is refused on a person as well as a household",
+          any("is not one of" in e and "kind" in e for e in rep.errors), rep.errors)
 
 
 def test_a_resident_who_arrived_after_the_scene_date_is_not_in_the_scene() -> None:
@@ -2871,9 +2966,15 @@ def test_the_accuracy_grade_is_a_closed_vocabulary_and_recommended_is_gone() -> 
           any("is not one of" in e for e in rep.errors), rep.errors)
 
     for g in ("attested", "inferred", "reconstructed"):
+        # This test is about the GRADE, so the person carries no trade: `inferred` and
+        # `reconstructed` cite nothing, and T-1229's gate rightly refuses a scene-date
+        # role on a card whose own evidence list is empty. Roles get their own tests below.
         rep = _run_residents([_resident_household(
             persons=[_resident_person(grade=g, sources=["s1"] if g == "attested" else [],
-                                      note="the reasoning")])])
+                                      note="the reasoning", roles=None,
+                                      occupation={"value": "none_recorded",
+                                                  "confidence": "reconstructed",
+                                                  "note": "no source names a trade"})])])
         check(f"grade '{g}' is accepted", not rep.errors, rep.errors)
 
     # --- an invented name may never outrank the invention --------------------
@@ -2958,6 +3059,144 @@ def test_a_resident_points_at_a_real_building_or_at_nothing() -> None:
         works_at={"value": None, "confidence": "inferred",
                   "note": "not modelled; no structure record exists"})])
     check("a null link with a note passes", not rep.errors, rep.errors)
+
+
+def test_a_role_is_dated_and_the_1835_field_is_only_their_view() -> None:
+    """T-1229, of T-1145. The singular field could erase a man's second trade.
+
+    `persons[].roles[]` is canonical and `persons[].occupation` is a GENERATED view of
+    the roles that cover 1 July 1835. The clause the ticket exists for is the last one
+    here: a role that does not reach the scene date may not stand in the scene-date
+    field. tools/derive_resident_roles.py refuses to write one; this is the half that
+    catches a hand edit, which is the only way one can arrive now.
+    """
+    def view(occupation, roles):
+        # `s2` resolves and is deliberately NOT on the person: the later-volume rule
+        # and the mooring rule are only different where that is true.
+        return _run_residents([_resident_household(
+            persons=[_resident_person(roles=roles, occupation=occupation)])],
+            sources=("s1", "s2"))
+
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n"}, None)
+    check("a trade with no roles[] behind it is an error",
+          any("stands with no roles[] behind it" in e for e in rep.errors), rep.errors)
+
+    rep = view({"value": "none_recorded", "confidence": "reconstructed", "note": "n",
+                "derived_from": "roles", "roles_at_scene_date": []}, None)
+    check("view keys with no roles[] behind them are an error",
+          any("view keys describe a derivation that is not there" in e
+              for e in rep.errors), rep.errors)
+
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "roles_at_scene_date": ["cooper"]},
+               [_resident_role()])
+    check("a view that does not say it is derived is an error",
+          any("derived_from must be 'roles'" in e for e in rep.errors), rep.errors)
+
+    # THE CLAUSE. A trade printed in a directory of 1843 is evidence about 1843, and the
+    # one field the scene compiler, the people index and the popup all read must not be
+    # able to carry it.
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"]},
+               [_resident_role(covers_scene_date=False, from_=None)])
+    check("a role that does not reach the scene date may not fill the scene-date field",
+          any("is not the view its roles derive" in e for e in rep.errors), rep.errors)
+
+    rep = view({"value": "none_recorded", "confidence": "reconstructed", "note": "n",
+                "derived_from": "roles", "roles_at_scene_date": []},
+               [_resident_role(covers_scene_date=False)])
+    check("…and with the field emptied it passes", not rep.errors, rep.errors)
+
+    # TWO SIMULTANEOUS ROLES REMAIN TWO ROLES — the erasure the ticket was filed for.
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"]},
+               [_resident_role(), _resident_role(role="blacksmith")])
+    check("a second role covering the scene date may not be dropped from the view",
+          any("roles_at_scene_date" in e and "blacksmith" in e for e in rep.errors),
+          rep.errors)
+
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper", "blacksmith"]},
+               [_resident_role(), _resident_role(role="blacksmith")])
+    check("…and naming both of them passes", not rep.errors, rep.errors)
+
+    # AN UNKNOWN DATE STAYS UNKNOWN.
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"]},
+               [_resident_role(from_=None, precision="year")])
+    check("a role with no bound may not claim a precision",
+          any("no bound and claims precision" in e for e in rep.errors), rep.errors)
+
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"]},
+               [_resident_role(to=None)])
+    check("one end of a bound without the other is an error",
+          any("both ends of its bound or neither" in e for e in rep.errors), rep.errors)
+
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"]},
+               [_resident_role(sources=[])])
+    check("a role that cites no source is an error",
+          any("cites no source" in e for e in rep.errors), rep.errors)
+
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"]},
+               [_resident_role(sources=["s2"])])
+    check("a scene-date role moored to nothing the person cites is an error",
+          any("may not float free" in e for e in rep.errors), rep.errors)
+
+    rep = view({"value": "none_recorded", "confidence": "reconstructed", "note": "n",
+                "derived_from": "roles", "roles_at_scene_date": []},
+               [_resident_role(covers_scene_date=False, sources=["s2"], role=None,
+                               as_printed="attorney at law", dated_by="printing_year")])
+    check("…and a LATER role on a volume the person does not cite is fine",
+          not rep.errors, rep.errors)
+
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"]},
+               [_resident_role(kind="apprentice")])
+    check("a kind outside the vocabulary is an error",
+          any("kind 'apprentice' is not one of" in e for e in rep.errors), rep.errors)
+
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"]},
+               [_resident_role(role="software_engineer")])
+    check("a role outside the period-correct vocabulary is an error",
+          any("not in the manifest occupation" in e for e in rep.errors), rep.errors)
+
+    # A WITHDRAWAL IS A REFUSAL THAT FIRED, and it may not sit beside the trade it took
+    # off the card.
+    rep = view({"value": "cooper", "confidence": "attested", "sources": ["s1"],
+                "note": "n", "derived_from": "roles",
+                "roles_at_scene_date": ["cooper"],
+                "withdrawn_from_scene_date": {"value": "blacksmith",
+                                              "confidence": "attested",
+                                              "verdict": "pre_scene_printing",
+                                              "note": "printed in 1833"}},
+               [_resident_role()])
+    check("a withdrawal standing beside a live trade is an error",
+          any("carries a withdrawal and a trade at once" in e for e in rep.errors),
+          rep.errors)
+
+    rep = view({"value": "none_recorded", "confidence": "reconstructed", "note": "n",
+                "derived_from": "roles", "roles_at_scene_date": [],
+                "withdrawn_from_scene_date": {"value": "blacksmith",
+                                              "confidence": "attested",
+                                              "verdict": "", "note": "printed in 1833"}},
+               [_resident_role(covers_scene_date=False)])
+    check("a withdrawal with no verdict is an error",
+          any("withdrawn_from_scene_date.verdict is empty" in e for e in rep.errors),
+          rep.errors)
 
 
 def test_a_household_is_a_household() -> None:

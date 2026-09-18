@@ -500,7 +500,7 @@ jobs:
   # `actions/checkout`, whose median here is 38 s. In #284 the checkout alone
   # consumed the whole cap and the smoke never started. The binding constraint
   # on this job is the checkout's tail, not the suite's body — that is
-  # T-0437, and it is why the cap below is 45 and not a further cut.
+  # T-0437, and it is why T-0181 originally raised the cap to 45.
   #
   # CUTTING THE TAIL LEG FURTHER IS REFUTED, on the same readings. A split
   # halves a leg's smoke but not its checkout, so each new leg draws again
@@ -535,28 +535,45 @@ jobs:
   # T-0173 everything after 7; T-0170 everything after 10), THIS LIST IS PART OF
   # THAT EDIT.
   #
-  # THE CAP IS 45 MINUTES, AND T-0181 SIZED IT ON THE SPREAD ABOVE RATHER THAN
-  # ON ONE SAMPLE — which is the whole reason the previous three numbers rotted.
-  # The job is checkout + a ~25 s Playwright install + the smoke. Worst measured
-  # smoke command: 21 m 48 s. 45 minutes therefore absorbs a checkout of some
-  # 22 minutes even on the worst smoke the history holds, which covers five of
-  # the seven breaches above outright and the sixth against a median smoke. The
-  # two ~30-minute checkouts (#284, #288) are NOT covered and no cap fixes them;
-  # they are T-0437. Raise this again only with a fresh reading of the job
-  # history beside it, the way this one was taken.
+  # T-0437 RE-MEASURED FIVE BAKES (#611, #613-#616), 2026-09-17:
+  # all 40 sparse checkouts took 1-5 s, p90 4 s; none exceeded 5 or 13 min.
+  # Comparable desktop-tail p90: 4 s (n=5), formerly 5 m 31 s (n=104).
+  # The cap is 40 MINUTES after the COMPLETE job results replaced the partial
+  # snapshot. Three later passing desktop tails took 31m49s, 31m59s, 32m10s;
+  # the provisional 30-minute cap (23m07s body bound) would kill all three.
+  # Largest successful body: 1930 s (#616 desktop 10-13). Largest overhead
+  # among successful jobs: 51 s, including checkout, install, artifact, boot
+  # check where selected, and cleanup. Combined bound: 1981 s / 33m01s.
+  # Add 20% (2377.2 s), round up to 40 min: 419 s / 21.2% headroom.
+  # All 40 checkout steps succeeded; final smoke jobs: 27 passed, 8 inherited
+  # triangle-budget failures, 5 superseded/cancelled. Failed/cancelled bodies
+  # do not stand in for successful-duration measurements. Five bakes are a
+  # short follow-up, not proof against every future tail. ROADMAP THE RUN
+  # BUDGET and docs/measurements/T-0437-checkouts.json retain the full record.
+  # Re-measure before changing this number; the eight-leg coverage is unchanged.
   smoke:
     needs: bake
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 40
     strategy:
       fail-fast: false
       matrix:
         viewport: [mobile, desktop]
         stage: ['1-2', '3-6', '7-9', '10-13']
     steps:
+      # T-0437: smoke imports tools and reads its two baseline JSON files;
+      # the boot check also reads docs/SITE-BUDGET.md. All browser inputs come
+      # from the downloaded mirror, not from source assets or another tenant.
+      # Non-cone patterns avoid pulling in large files from ancestor directories.
       - uses: actions/checkout@v4
         with:
           ref: ${{ needs.bake.outputs.sha }}
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /chicago/4d/tools/
+            /chicago/4d/docs/SITE-BUDGET.md
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -578,6 +595,14 @@ jobs:
         with:
           name: published-mirror
           path: site/chicago/4d
+      # T-1156: one fresh desktop boot of the exact baked artifact. Run in the
+      # short first leg, before smoke, so a 12 MB breach fails `needs: smoke`
+      # and withholds the bake PR. Do not republish from the source checkout.
+      - name: Enforce the first-visit boot payload budget
+        if: matrix.viewport == 'desktop' && matrix.stage == '1-2'
+        timeout-minutes: 3
+        working-directory: chicago/4d
+        run: node tools/measure_boot_payload.mjs --check
       # No NODE_PATH here: smoke_renderer.mjs's loadPlaywright() already falls
       # back to `npm root -g` when the bare import misses, so pinning the global
       # root would only break the day the runner image moves it.

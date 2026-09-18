@@ -40,13 +40,13 @@
   "note": "Not attested. No trade is recorded here, so there is no premises to seek; T-0633 is where a later directory's address gets back-projected."
  },
  "present_on_scene_date": {
-  "value": "present",
+  "value": "uncertain",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835",
    "fergus_1843_old_settler_death_notices"
   ],
-  "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
+  "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
  "persons": [
   {
@@ -118,6 +118,17 @@
      "referred_to": "owner",
      "for_merge": "",
      "against_merge": ""
+    },
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "vanderbogart-vanderbogert",
+     "weighed_against": [
+      "vanderbogert_henry"
+     ],
+     "for_merge": "One letter in the stem of a twelve-letter Dutch surname, 'Henry' identical, and the Vanderbogart card is documented as a man: Fergus's old-settler notices print 'Bogart, Dr. Henry Van der' and 'Van der Bogart, Dr. Henry' with a death of 8 April 1835, and the Democrat sets 'H. Van Den Bogart' on 4 February 1834 and 'H. Vanderbogart' on 20 May 1835. 'Vanderbogert' is set four times in the corpus and nowhere outside this town's own records. The town holds exactly one of each.",
+     "against_merge": "THE PARTICLE IS ALREADY RULED AND THE STEM IS NOT. T-0842's C7 merge in the `vanderbogart` cluster folded Van Den against Van der on the printer's own practice, read at the Democrat of 4 February 1834 — that is the PARTICLE. What separates these two cards is a vowel inside the stem, a against e, and no printing reached is caught setting both: 'Vanderbogert, Henry' is the 1833 tax list and nothing else, and no issue, roll or notice carries the two spellings together. C7's demonstration does not transfer from the particle to the stem — that is C9's question and C9's page is missing. D7."
     }
    ],
    "resident_research": {

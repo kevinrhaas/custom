@@ -64,7 +64,11 @@
     "sources": [
      "resident_research_myers_glen_ellyn"
     ],
-    "note": "T-0483: independently corroborated resident research. Exact uncommon name; Fort Dearborn service; Chicago land ownership; chronology immediately precedes the letter-list returns."
+    "note": "T-0483: independently corroborated resident research. Exact uncommon name; Fort Dearborn service; Chicago land ownership; chronology immediately precedes the letter-list returns.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "clerk"
+    ]
    },
    "sources": [
     "chicago_democrat_1833_1835",
@@ -83,7 +87,53 @@
     "source_ids": [
      "chicago_voter_lists_1833_1835_irad"
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Quartermaster's clerk at Fort Dearborn, 1831-1833",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "describes_date": "1831-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0493#01",
+     "as_read": "served as quartermaster's clerk at Fort Dearborn in 1831-33",
+     "note": "A dated Chicago post before the scene, from a 1928 local history that names the fort. The office itself is a role and T-1145's; the dated presence at the fort is the fact carried here."
+    },
+    {
+     "field": "life_event",
+     "value": "A veteran of the War of 1812",
+     "confidence": "inferred",
+     "sources": [
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "describes_date": "1812-01-01",
+     "place_class": "not_a_place",
+     "record_id": "resident_research:T-0493#02",
+     "as_read": "identifies Frederick Myers as a War of 1812 veteran",
+     "note": "A biographical fact stated outright. It bears on his age without naming one, and it is not turned into a birth year here."
+    }
+   ],
+   "roles": [
+    {
+     "role": "clerk",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1831",
+     "to": "1835",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "resident_research_myers_glen_ellyn"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

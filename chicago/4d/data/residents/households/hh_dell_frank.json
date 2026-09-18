@@ -74,7 +74,20 @@
      "rule": "G3"
     }
    ],
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D9",
+     "cluster": "dell-dill",
+     "weighed_against": [
+      "dill_frank"
+     ],
+     "for_merge": "One interior vowel in a four-letter surname with 'Frank' identical, both readings from the town's own voter lists a year apart, and neither stem otherwise populated at this town: one Dell card and one Dill card, nothing else.",
+     "against_merge": "TWO DIFFERENT ROLLS OF ONE TRANSCRIPTION, AND NEITHER SETS BOTH. Both cards cite `chicago_voter_lists_1833_1835_irad`, so a grep finds both spellings in one file — but the file bundles four separate closed rolls and the two readings are on two of them: 'Dell, Frank' is the poll filed 11 August 1834 (voter_lists_1833_1835.txt line 202) and 'Dill, Frank' the 1835 poll list (line 305). No roll enters both spellings, so C9's demonstration is absent; no roll enters both as separate entries either, so D5's refusal is unavailable. Neither card is an anchor. D9."
+    }
+   ]
   }
  ],
  "touches_removal": false,

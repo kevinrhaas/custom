@@ -59,7 +59,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "'The first lawyer in Chicago to make a living by his profession alone was Giles Spring', one of the six Andreas counts at the close of 1833, having 'put out his sign' that year."
+    "note": "'The first lawyer in Chicago to make a living by his profession alone was Giles Spring', one of the six Andreas counts at the close of 1833, having 'put out his sign' that year.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "attorney"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -85,7 +89,38 @@
      "fergus_historical_series_26_29",
      "norris_directory_1844"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "attorney",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "spring-springs",
+     "weighed_against": [
+      "springs_g"
+     ],
+     "for_merge": "A stray terminal s, and the anchor side is one of the best-documented men in the layer: Giles Spring, attorney of S. & Goodrich, res 62 Adams, on the 1834 poll, the 1835 poll as 'Spring, G.', and in the Democrat as 'G. Spring' and 'Spring, G.'. The initial G agrees, the town holds exactly one Spring and one Springs, and a man the paper already prints under a bare G is the obvious referent for 'G. Springs'.",
+     "against_merge": "NO ISSUE SETS BOTH SPELLINGS, AND THE SPRINGS STEM IS NOT EMPTY. 'G. Springs' is the Democrat of 29 October 1834 (#c008); Giles Spring's own Democrat settings are 28 January 1834 (#c006), 3 September 1834 (#c005) and 12 November 1834 (#c008) — four different issues of one paper and not one of them sets Spring and Springs together. The corpus sets Springs 53 times in its own right. C9's demonstration is what is missing and nothing else, which is D7 exactly; the anchor makes the fold attractive and D7 is the rule that says an attractive fold with no page is still a refusal."
+    }
+   ]
   }
  ],
  "touches_removal": false,

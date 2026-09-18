@@ -40,13 +40,13 @@
   "note": "Not attested. No trade is recorded here, so there is no premises to seek; T-0633 is where a later directory's address gets back-projected."
  },
  "present_on_scene_date": {
-  "value": "present",
+  "value": "uncertain",
   "confidence": "inferred",
   "sources": [
    "chicago_american_1835",
    "chicago_voter_lists_1833_1835_irad"
   ],
-  "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
+  "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
  "persons": [
   {
@@ -86,6 +86,19 @@
      "describes_date": "1835-05-27",
      "source": "chicago_american_1835",
      "rule": "G1a"
+    }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "green-greene",
+     "weighed_against": [
+      "greene_john"
+     ],
+     "for_merge": "A terminal e and an initial that agrees with John, and the Greene card is the best anchored card the pool touches: Major John Greene, in command at Fort Dearborn on the scene date, with quarters and a post in the record.",
+     "against_merge": "THE ANCHOR IS ON THE WRONG SIDE OF THE FOLD, AND THAT IS X2's POINT. 'J. Green' is the 1835 poll list and the American of 13 June 1835 (#c013); Major John Greene is Andreas and the fort literature, with no letter-list or poll reading at all. The initial J attaches to 'John' only because the candidate test folded the surname first, so the forename inference is a fact about the rest of the town and not evidence about the reading — the direction T-0697 refused. GREEN IS POPULATED AND GREENE IS NOT: the town holds green_damel_m, green_j and green_mary, the reading index thirteen Green identities against one Greene, and no Green of the town is a John. No printing is caught setting both spellings for one man, and the fold would put a serving army major onto a town poll roll on the strength of one letter. D7."
     }
    ]
   }

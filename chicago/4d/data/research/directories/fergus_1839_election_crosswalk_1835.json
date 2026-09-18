@@ -18,7 +18,7 @@
   {
    "what": "residents layer, persons",
    "path": "data/residents/households/",
-   "n": 1285
+   "n": 1280
   },
   {
    "what": "voter, poll and tax list entries (T-0493)",
@@ -37,7 +37,7 @@
   }
  ],
  "counts": {
-  "residents_matched_one_entry": 89,
+  "residents_matched_one_entry": 90,
   "residents_ambiguous": 31,
   "residents_contested": 18,
   "residents_surname_only_refused": 216,
@@ -1042,7 +1042,7 @@
     ],
     "person_id": "spence_james_c",
     "household_id": "hh_spence_james_c",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
    {
@@ -1328,6 +1328,28 @@
     ],
     "person_id": "meeker_joseph",
     "household_id": "hh_meeker_joseph",
+    "grade_1835": "attested",
+    "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
+   },
+   {
+    "name": "Leonard C. Hugunin",
+    "rule": "Surname 'Hugunin' folds to the same string as the 1837 entry's, and the given name of both begins L.",
+    "entries_1837": [
+     {
+      "claim": "f1839_v0430",
+      "as_printed": "L. C. Hugunin",
+      "printed_page": 44,
+      "role": "voter",
+      "ward_1837": 3,
+      "voted_for": "William B. Ogden",
+      "party": null,
+      "office": null,
+      "column_run_on": false,
+      "candidate_inferred": false
+     }
+    ],
+    "person_id": "hugunin_leonard_c",
+    "household_id": "hh_hugunin_leonard_c",
     "grade_1835": "attested",
     "carry_rule": "What a match may carry, and it is short: that the man was in Chicago on 2 May 1837 and in that ward. It is written as 1837 evidence with describes_date 1837-05-02, never as an 1835 fact, and the person's grade does not move on this alone. Under the ratified ladder a second contemporary source is what lifts projected_resident, and a poll twenty-two months after the scene date is a second source about CONTINUED RESIDENCE, not about July 1835. The ward is a location in the CITY of 1837, whose six wards are drawn on printed page 46; it is not a location in the town of 1835 and does not place a house."
    },
@@ -2374,7 +2396,7 @@
     ],
     "person_id": "johnson_sanford",
     "household_id": "hh_johnson_sanford",
-    "grade_1835": "inferred",
+    "grade_1835": "attested",
     "contested_with": [
      "Samuel Johnson",
      "Seth Johnson"
@@ -3993,6 +4015,11 @@
     "rule": "The surname 'Gifford' stands in the 1837 poll and no man under it carries the initial 'H' of 'Hezekiah Gifford'. A surname-only agreement is a refusal."
    },
    {
+    "name": "High Es Jones",
+    "candidates_under_that_surname": 3,
+    "rule": "The surname 'Jones' stands in the 1837 poll and no man under it carries the initial 'H' of 'High Es Jones'. A surname-only agreement is a refusal."
+   },
+   {
     "name": "Hiram A Adams",
     "candidates_under_that_surname": 2,
     "rule": "The surname 'Adams' stands in the 1837 poll and no man under it carries the initial 'H' of 'Hiram A Adams'. A surname-only agreement is a refusal."
@@ -4136,11 +4163,6 @@
     "name": "John Watkins",
     "candidates_under_that_surname": 1,
     "rule": "The surname 'Watkins' stands in the 1837 poll and no man under it carries the initial 'J' of 'John Watkins'. A surname-only agreement is a refusal."
-   },
-   {
-    "name": "Jones, High Es",
-    "candidates_under_that_surname": 3,
-    "rule": "The surname 'Jones' stands in the 1837 poll and no man under it carries the initial 'H' of 'Jones, High Es'. A surname-only agreement is a refusal."
    },
    {
     "name": "Joseph Bradley",

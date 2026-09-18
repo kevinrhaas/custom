@@ -20,7 +20,7 @@ const DEG = Math.PI / 180;
 
 import { loadScene, resolveBases } from './scene-loader.js';
 import { createWorld } from './world.js';
-import { createTerrain, enuToWorld, groundTiling } from './terrain.js';
+import { createTerrain, enuToWorld, groundTiling, hazeReachM } from './terrain.js';
 import { createBuildings } from './buildings.js';
 import { createConfidenceView } from './confidence.js';
 import { createIntent, createBackendSwitch } from './controls/intent.js';
@@ -45,6 +45,7 @@ import { createWharves } from './wharves.js';
 import { createBoats } from './boats.js';
 import { createWells } from './wells.js';
 import { mountExclusions } from './exclusions.js';
+import { mountPopulation } from './population.js';
 import { mountFauna } from './fauna.js';
 import { mountPlants } from './plants.js';
 import { mountResidents } from './residents.js';
@@ -933,6 +934,10 @@ async function boot() {
     problems,
   });
   scene3d.add(terrain.group);
+  // T-1154 — the ground's reach, set from the fog the world just made rather
+  // than from a literal here, so a scene that changes its haze moves the reach
+  // with it and the two can never drift apart. See terrain.js hazeReachM().
+  terrain.setGroundReach(hazeReachM(scene3d.fog?.density ?? 0));
   progress(55, 'Laying the ground and the river…');
 
   const buildings = createBuildings({ registry: loaded.registry, confidence, terrain });
@@ -1716,6 +1721,18 @@ async function boot() {
   // visitor who walked up to that building would think to ask.
   popup.setOpenQuestions(api.exclusions.uncertain);
 
+  // …and the shape of what is known about the people themselves (T-1160). The
+  // walkthrough can stand a visitor next to a named resident; only this says how
+  // few of them there are, how thin each attribute is, and what the reconstruction
+  // bands below still have to supply. Rendered from the generated profile, so a
+  // resident pass that moves the layer moves this panel too.
+  api.population = await mountPopulation({
+    mount: document.getElementById('population'),
+    noteMount: document.getElementById('population-note'),
+    dataBase: bases.dataBase,
+    problems,
+  });
+
   // Apply the visitor's stored settings before the first frame, so nothing
   // visibly snaps a moment after load.
   // The visitor's stored level choices, before the first frame — otherwise a
@@ -2186,6 +2203,10 @@ async function boot() {
     // what the furniture's reach hides is a function of where the eye ended up
     // this frame (T-0150).
     updateFurnitureReach();
+    // The same moment, for the same reason, one layer further down: what the
+    // ground's reach holds back is a function of where the eye ended up this
+    // frame (T-1154).
+    terrain.updateGroundReach(camera.position);
     flora.update(dt, camera);
     trees.update(dt, camera);
 
@@ -2303,6 +2324,10 @@ async function boot() {
     /** The culling grid the ground was cut on, and the box it was derived from
      *  (T-0466). A reading, not a setting: `terrain.js` owns the rule. */
     groundTiling,
+    /** What the ground's reach is doing, for the harness and `?debug=1`
+     *  (T-1154). A reading, not a setting: `terrain.js` owns the rule. */
+    groundReach() { return terrain.groundReach(); },
+    setGroundReach(m) { return terrain.setGroundReach(m); },
     stats() {
       const info = renderer.info;
       return {

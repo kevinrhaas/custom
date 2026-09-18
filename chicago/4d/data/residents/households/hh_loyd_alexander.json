@@ -70,7 +70,9 @@
      ],
      "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1839 is evidence about 1839. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
     },
-    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it."
+    "note": "No source in this pass's evidence records an occupation for this person. A poll list, a tax list, a muster roll and a baptismal entry each print a name and no trade, and where a later directory prints one it is a trade of 1843 — T-0633 is the rule for back-projecting that, and this pass does not have it.",
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "census_1840_chicago_familysearch_images",
@@ -111,6 +113,37 @@
      "describes_date": "1834-11-19",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
+    }
+   ],
+   "roles": [
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "carpenter and builder",
+     "from": "1839",
+     "to": "1839",
+     "precision": "year",
+     "dated_by": "printing_year",
+     "covers_scene_date": false,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "claim": null,
+     "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
+    }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "lloyd-loyd",
+     "weighed_against": [
+      "lloyd_alexander"
+     ],
+     "for_merge": "THIS IS THE STRONGEST MERGE ARGUMENT IN THE FORTY-THREE AND IT IS RECORDED IN FULL. Two consecutive directories print the same man's trade, firm and street under the two spellings: Fergus 1843 has 'Loyd, Alexander, carpenter and builder, (L., Blakesley & Co.), res 52 Wells [4th mayor…]' and Norris 1844 has 'Lloyd, Alexander, builder, of L. Blakesly & Co. res Wells b Lake and Randolph sts'. Same given name, same trade, same firm, same street. Moses & Kirkland's History sets both spellings inside one work and for one man — v1 indexes 'Loyd, Alexander, 102' and prints 'Alexander Lloyd' at four places, v2 prints 'Alexander Loyd, Mayor of the city' and 'with Alexander Lloyd for the building of…' — and the Democrat prints 'A. Lloyd' on 29 October 1834 and 'A. Loyd' on 19 November 1834, three weeks apart. The firm and the address are NON-NAME discriminators and they agree; the town is carrying its own fourth mayor as two residents.",
+     "against_merge": "AND IT IS STILL REFUSED HERE, BECAUSE NO LANDED RULE REACHES IT AND THIS PASS MAY NOT WRITE ONE. C9 wants one publication caught setting both spellings for one man INSIDE THE WINDOW: the Democrat's two settings are two different issues, and Moses & Kirkland is an 1895 history describing 1840, so the catch is outside the window and its v2 index besides carries a 'Lloyd, Alexander C., 384' whose middle initial neither card has. C11 is the rule this evidence actually fits — two spellings discharging one documented office, tied by a non-name discriminator — but C11 as drafted requires THE SURNAME TO AGREE LETTER FOR LETTER and varies the forename, and it is the surname that varies here. That asymmetry is the same one C14 was written to fix for C12, and fixing it for C11 is a new MERGE rule. T-1027 is explicit that the one-letter pool may not be closed by widening the join, and a merge is a card DELETION that moves the town's count; drawing a rule to make one is the owner's call and not this pass's. So the argument is kept verbatim, as D7 requires, and the cards stay two."
     }
    ]
   }

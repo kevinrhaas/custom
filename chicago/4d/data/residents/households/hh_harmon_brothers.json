@@ -64,12 +64,30 @@
    "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
-    "value": "dry_goods_merchant",
-    "confidence": "attested",
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "later_occupation": {
+     "value": "dry goods and groceries, 145 South Water. s.-w",
+     "describes_date": 1843,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1843. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1843 is evidence about 1843. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1843\" are not the same fact (T-0693)."
+    },
     "sources": [
      "chicago_democrat_1833_11_26"
     ],
-    "note": "The firm 'C. & I. HARMON' advertised dry goods, crockery, hardware and wet and dry groceries in the Chicago Democrat of 26 November 1833, over copy dated the 18th."
+    "note": "NO TRADE IS RECORDED FOR 1835-07-01, AND ONE IS RECORDED FOR ANOTHER YEAR. The trade this field used to carry — `dry_goods_merchant` — is not gone: it stands in `roles[]` with the bound its sources permit, and `withdrawn_from_scene_date` above carries the audit's verdict for withdrawing it. The 1835 field asserts what the sources reach, which here is nothing, because no source cited for the trade describes 1835 (T-0837's write rule, T-0872's measurement, T-0991's repair, made by tools/derive_resident_roles.py).",
+    "withdrawn_from_scene_date": {
+     "value": "dry_goods_merchant",
+     "confidence": "attested",
+     "verdict": "firm_in_window_trade_not_printed",
+     "ticket": "T-0991",
+     "note": "'C. & I. HARMON', dry goods, crockery, hardware and groceries, Chicago Democrat, 26 November 1833. A Harmon dry-goods firm does stand inside the window — the Democrat of 17 June 1835 prints 'Messrs. Harmon, Loomis & Co.' — but that notice prints no trade, and tying the 1833 brothers to the 1835 firm is reasoning rather than a printing. Both halves would have to be written down before the citation could move."
+    },
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "andreas_1884_v1",
@@ -134,6 +152,40 @@
      ],
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
     }
+   ],
+   "roles": [
+    {
+     "role": "dry_goods_merchant",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1833-11",
+     "to": "1833-11",
+     "precision": "month",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": false,
+     "confidence": "attested",
+     "sources": [
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "A DATED ROLE THAT DOES NOT REACH THE SCENE DATE (T-0991, withdrawn from the 1835 field by tools/derive_resident_roles.py). No source cited for this trade describes 1835, so it is retained here with the bound its evidence permits and the 1835 compatibility view reads `none_recorded` instead. tools/audit_scene_window_trades.py's verdict is `firm_in_window_trade_not_printed`: 'C. & I. HARMON', dry goods, crockery, hardware and groceries, Chicago Democrat, 26 November 1833. A Harmon dry-goods firm does stand inside the window — the Democrat of 17 June 1835 prints 'Messrs. Harmon, Loomis & Co.' — but that notice prints no trade, and tying the 1833 brothers to the 1835 firm is reasoning rather than a printing. Both halves would have to be written down before the citation could move."
+    },
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "dry goods and groceries, 145 South Water. s.-w",
+     "from": "1843",
+     "to": "1843",
+     "precision": "year",
+     "dated_by": "printing_year",
+     "covers_scene_date": false,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "claim": null,
+     "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1843."
+    }
    ]
   },
   {
@@ -144,12 +196,30 @@
    "ladder_rule": "G1b",
    "sex": "male",
    "occupation": {
-    "value": "dry_goods_merchant",
-    "confidence": "attested",
+    "value": "none_recorded",
+    "confidence": "reconstructed",
+    "later_occupation": {
+     "value": "dry goods merchant",
+     "describes_date": 1839,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "NONE RECORDED FOR 1835 — AND A TRADE IS RECORDED FOR 1839. This is a POINTER at `directories.people[].occupation_later` on this same record, derived by `tools/qualify_later_trades.py` and holding nothing that block does not already say. It is not a claim about the scene date: the 1835 occupation above still reads `none_recorded`, its grade has not moved, and no premises has been sought on the strength of it, because a directory of 1839 is evidence about 1839. It is written because the field a reader consults was asserting an absence this file contradicts three lines further down, and \"no trade anywhere\" and \"no trade in the scene window, one printed 1839\" are not the same fact (T-0693)."
+    },
     "sources": [
      "chicago_democrat_1833_11_26"
     ],
-    "note": "The other half of C. & I. Harmon."
+    "note": "NO TRADE IS RECORDED FOR 1835-07-01, AND ONE IS RECORDED FOR ANOTHER YEAR. The trade this field used to carry — `dry_goods_merchant` — is not gone: it stands in `roles[]` with the bound its sources permit, and `withdrawn_from_scene_date` above carries the audit's verdict for withdrawing it. The 1835 field asserts what the sources reach, which here is nothing, because no source cited for the trade describes 1835 (T-0837's write rule, T-0872's measurement, T-0991's repair, made by tools/derive_resident_roles.py).",
+    "withdrawn_from_scene_date": {
+     "value": "dry_goods_merchant",
+     "confidence": "attested",
+     "verdict": "firm_in_window_trade_not_printed",
+     "ticket": "T-0991",
+     "note": "The other half of C. & I. Harmon, and the same reading. The Democrat of 5 August 1835 prints 'Isaac Harmon, esq.' winding up Bristol, Vale & Hogue — the man inside the window, without his trade."
+    },
+    "derived_from": "roles",
+    "roles_at_scene_date": []
    },
    "sources": [
     "andreas_1884_v1",
@@ -225,6 +295,53 @@
      ],
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
     }
+   ],
+   "roles": [
+    {
+     "role": "dry_goods_merchant",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1833-11",
+     "to": "1833-11",
+     "precision": "month",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": false,
+     "confidence": "attested",
+     "sources": [
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "A DATED ROLE THAT DOES NOT REACH THE SCENE DATE (T-0991, withdrawn from the 1835 field by tools/derive_resident_roles.py). No source cited for this trade describes 1835, so it is retained here with the bound its evidence permits and the 1835 compatibility view reads `none_recorded` instead. tools/audit_scene_window_trades.py's verdict is `firm_in_window_trade_not_printed`: The other half of C. & I. Harmon, and the same reading. The Democrat of 5 August 1835 prints 'Isaac Harmon, esq.' winding up Bristol, Vale & Hogue — the man inside the window, without his trade."
+    },
+    {
+     "role": null,
+     "kind": "trade",
+     "as_printed": "dry goods merchant",
+     "from": "1839",
+     "to": "1839",
+     "precision": "year",
+     "dated_by": "printing_year",
+     "covers_scene_date": false,
+     "confidence": "attested",
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "claim": null,
+     "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1839."
+    }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D9",
+     "cluster": "harman-harmon-isaac",
+     "weighed_against": [
+      "harman_isaac"
+     ],
+     "for_merge": "'Isaac' is identical and the surnames differ by one interior vowel. Isaac Dewey Harmon is documented and anchored — Fergus's old-settler notice of 9 April 1886, the 1833 tax list, the Black Hawk muster of 1832, the Democrat of 17 December 1833 and 5 August 1835 — and the `harmon-isaac` cluster has already folded a bare 'Isaac Harmon' onto him under C3 as the one Isaac Harmon the town documents. An 'Isaac Harman' on the 1834 poll looks like the same man with the vowel mis-set.",
+     "against_merge": "THE ROLL THAT SETS HARMAN SETS HARMON ON THE NEXT TWO LINES, FOR OTHER MEN. The poll filed 11 August 1834 enters 'Harman, Isaac' at voter_lists_1833_1835.txt line 219 and then 'Harmon, C. L.' at 220 and 'Harmon, M. D.' at 221 — one roll, one clerk, both spellings, deliberately distinguished within three lines. That is the opposite of C9's demonstration: the printing is caught keeping the spellings apart. Isaac Dewey Harmon's own readings are on the 1833 tax list and not on that poll, so no roll sets both spellings for HIM; and the Harmon stem is heavily populated here — harmon_charles_l, harmon_d, harmon_elijah_d, harmon_isaac_d, harmon_m_d, five cards — while Harman has one. D9, and the C3 fold inside the `harmon-isaac` cluster is untouched because it folded a card spelled Harmon."
+    }
    ]
   }
  ],
@@ -294,6 +411,15 @@
   "people": [
    {
     "person_id": "harmon_charles_l",
+    "occupation_later": {
+     "value": "dry goods and groceries, 145 South Water. s.-w",
+     "confidence": "attested",
+     "describes_date": 1843,
+     "sources": [
+      "fergus_chicago_directory_1843"
+     ],
+     "note": "Fergus's Chicago directory of 1843 prints this trade against this person, in the entry quoted on the card: 'Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
     "address_later": {
      "value": "cor Clark, res Dearborn, bet Washington and Madison",
      "confidence": "attested",
@@ -332,6 +458,15 @@
    },
    {
     "person_id": "harmon_isaac_d",
+    "occupation_later": {
+     "value": "dry goods merchant",
+     "confidence": "attested",
+     "describes_date": 1839,
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ],
+     "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Harmon, Isaac D., dry goods merchant, 8 Clark street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry. The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim."
+    },
     "address_later": {
      "value": "Clark street",
      "confidence": "attested",

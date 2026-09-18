@@ -19,9 +19,12 @@
   "note": "Not attested."
  },
  "origin": {
-  "value": null,
-  "confidence": "reconstructed",
-  "note": "Not attested."
+  "value": "Chautauqua, New York",
+  "confidence": "inferred",
+  "sources": [
+   "marsh_genealogy_martin_cleland_1886"
+  ],
+  "note": "Where he travelled from. An 1886 family genealogy is a late source for a trade or an address and an ordinary one for where a family was of. Read from marsh_genealogy_martin_cleland_1886: “traveled from Chautauqua, New York, to Chicago on a prospecting tour in 1834”. Spent by T-1232 out of the matched resident research, which held it in prose; the household's other claims are untouched."
  },
  "reason_for_coming": {
   "value": null,
@@ -88,7 +91,35 @@
       "reason": "This card rests on 1 thing(s) the consolidation did not read — marsh_genealogy_martin_cleland_1886. G3 fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "profile_facts": [
+    {
+     "field": "origin",
+     "value": "Chautauqua, New York",
+     "confidence": "inferred",
+     "sources": [
+      "marsh_genealogy_martin_cleland_1886"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "outside_chicago",
+     "record_id": "resident_research:T-0484#01",
+     "as_read": "traveled from Chautauqua, New York, to Chicago on a prospecting tour in 1834",
+     "note": "Where he travelled from. An 1886 family genealogy is a late source for a trade or an address and an ordinary one for where a family was of."
+    },
+    {
+     "field": "life_event",
+     "value": "A prospecting tour to Chicago in 1834",
+     "confidence": "inferred",
+     "sources": [
+      "marsh_genealogy_martin_cleland_1886"
+     ],
+     "describes_date": "1834-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0484#02",
+     "as_read": "to Chicago on a prospecting tour in 1834",
+     "note": "A dated visit, and the thing that puts the postal name in the town at all."
+    }
+   ]
   }
  ],
  "touches_removal": false,

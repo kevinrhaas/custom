@@ -8652,6 +8652,69 @@ for (const [label, viewport, touch] of [
       + `${Math.round(win.south.view.nMax)}, at the north edge `
       + `${Math.round(win.north.view.nMin)}…${Math.round(win.north.view.nMax)}`);
 
+    // T-0467 — THE SOUTHERN FIELD IS REACHABLE, walked the way a visitor reaches
+    // it: through the Go-to viewpoints, in one southward run from the fort to the
+    // model's south wall. T-0464 carried the modelled box to Twenty-Second Street
+    // and nothing was OFFERED down there — the southernmost viewpoint this scene
+    // had was the aerial at n -330, so 3.4 km of modelled ground could only be
+    // entered by walking off the edge of the town. Each stop is asserted on the
+    // renderer's own samplers rather than on the scene file, because the failure
+    // being gated is a camera that lands on ground the renderer does not have:
+    // `inBounds` false is the constant outside the box, `isWater` true is the
+    // lake, and the pre-fill shore crosses 390 m of easting on the way down, so
+    // an easting that is dry at one row is in the water at another.
+    // tools/measure_anchors.mjs holds the same property offline at commit; this
+    // holds it in the running page, which is where a visitor meets it.
+    const southRun = await page.evaluate(() => {
+      const api = window.__chicago4d;
+      const ids = ['fort_dearborn', 'lake_shore_south', 'sixteenth_prairie',
+        'battle_reach_1812', 'eighteenth_prairie', 'cermak_prairie'];
+      const stops = ids.map((id) => {
+        const went = api.goTo(id);
+        api.step();
+        const p = api.player;
+        const a = api.scene.anchors.find((x) => x.id === id);
+        const s = api.navigation.snapshot();
+        return {
+          id,
+          went,
+          label: a?.label ?? null,
+          offAnchor: a ? +Math.hypot(p.e - a.local_e, p.n - a.local_n).toFixed(2) : null,
+          inBounds: api.terrain.inBounds(p.e, p.n),
+          wet: api.terrain.isWater(p.e, p.n),
+          ground: +api.terrain.surfaceHeight(p.e, p.n).toFixed(3),
+          flying: p.flying,
+          // The window travels with them all the way down, and stays a window.
+          view: { nMin: +s.viewport.nMin.toFixed(1), nMax: +s.viewport.nMax.toFixed(1) },
+        };
+      });
+      const bounds = api.navigation.snapshot().bounds;
+      // Hand the walker back, as the reading above does.
+      api.walker.teleport({ local_e: 180, local_n: 90, yaw_deg: 225 });
+      api.step();
+      return { stops, bounds };
+    });
+    const badStop = southRun.stops.filter(
+      (st) => !st.went || st.offAnchor > 1 || !st.inBounds || st.wet || st.flying);
+    check(`${label}: every southern viewpoint is reachable and stands on dry modelled ground`,
+      southRun.stops.length === 6 && badStop.length === 0,
+      badStop.length
+        ? badStop.map((st) => `${st.id}: went ${st.went}, ${st.offAnchor} m off the anchor, `
+          + `inBounds ${st.inBounds}, wet ${st.wet}, ground ${st.ground} m, flying ${st.flying}`).join('; ')
+        : southRun.stops.map((st) => `${st.id} at ${st.ground} m`).join(', '));
+    // The run is a TRAVERSE and not six teleports to the same place: it goes
+    // south monotonically, and it ends on the far wall of the field the ground
+    // ticket built rather than somewhere in the middle of it.
+    const southmost = southRun.stops[southRun.stops.length - 1];
+    const descends = southRun.stops.every(
+      (st, i) => i === 0 || st.view.nMin <= southRun.stops[i - 1].view.nMin);
+    check(`${label}: the run carries the visitor south to the model's own wall, and the map follows`,
+      descends && Math.abs(southRun.bounds.nMin - (-3800)) < 1
+      && southmost.id === 'cermak_prairie'
+      && Math.abs(southmost.view.nMin - southRun.bounds.nMin) < 1,
+      `field N ${Math.round(southRun.bounds.nMin)}…${Math.round(southRun.bounds.nMax)}; `
+      + `window nMin ${southRun.stops.map((st) => st.view.nMin).join(' → ')}`);
+
     // The other half of the bargain: the whole field is still reachable, it has
     // just moved to a pop-out. This is where "renders the whole heightfield"
     // now lives. Opened through the real control with a real hit test, because
@@ -11714,8 +11777,9 @@ for (const [label, viewport, touch] of [
       && goThere.cardClosed,
       JSON.stringify(goThere));
 
-    // T-0710: the Evidence hub — seven tiles whose counts are their mounts'
-    // entries, a topic that searches, and a way back.
+    // T-0710: the Evidence hub — eight tiles whose counts are their mounts'
+    // entries, a topic that searches, and a way back. The eighth is T-1160's
+    // population profile, whose "entries" are the axes it is profiled on.
     await page.evaluate(() => { window.__chicago4d.hud.setPanel(true); });
     await clickChrome('.panel-tab[data-tab="evidence"]');
     const hub = await page.evaluate(async () => {
@@ -11755,8 +11819,8 @@ for (const [label, viewport, touch] of [
         topic: api.evidenceHub.topic, backHidden: document.getElementById('panel-back').hasAttribute('hidden') };
       return out;
     });
-    check(`${label}: the Evidence hub shows seven topics, each counting its own entries`,
-      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 7
+    check(`${label}: the Evidence hub shows eight topics, each counting its own entries`,
+      hub.hubShown && hub.title === 'Evidence' && hub.tiles.length === 8
       && hub.tiles.every((t) => Number.isFinite(t.count) && t.count > 0 && t.count === t.mount && t.title && t.title === t.h3),
       JSON.stringify(hub.tiles.map((t) => `${t.id} ${t.count}/${t.mount}`)));
     check(`${label}: a topic opens with the hub gone, and its search narrows the list and says so`,
@@ -12481,7 +12545,7 @@ for (const [label, viewport, touch] of [
       const out = [];
       api.hud.setPanel(true);
       api.hud.selectTab('evidence');
-      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain', 'population']) {
         api.evidenceHub.showTopic(id);
         await new Promise((r) => setTimeout(r, 30));
         out.push(measure(id));
@@ -12496,8 +12560,8 @@ for (const [label, viewport, touch] of [
       return out;
     });
     const unfit = mountFit.filter((m) => !(m.client > 0 && m.scroll <= m.client && m.client <= m.panel));
-    check(`${label}: all seven evidence mounts wrap inside their panel rather than clipping`,
-      mountFit.length === 7 && unfit.length === 0,
+    check(`${label}: all eight evidence mounts wrap inside their panel rather than clipping`,
+      mountFit.length === 8 && unfit.length === 0,
       unfit.length ? unfit.map((m) => `${m.id} ${m.scroll}/${m.client} in ${m.panel}`).join('; ')
         : mountFit.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 
@@ -12541,7 +12605,7 @@ for (const [label, viewport, touch] of [
       const rows = [];
       api.hud.setPanel(true);
       api.hud.selectTab('evidence');
-      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain']) {
+      for (const id of ['liberties', 'ground', 'fauna', 'plants', 'exclusions', 'uncertain', 'population']) {
         api.evidenceHub.showTopic(id);
         await new Promise((r) => setTimeout(r, 30));
         rows.push(stress(id));
@@ -12555,8 +12619,8 @@ for (const [label, viewport, touch] of [
       return rows;
     });
     const clipped = mountStress.filter((m) => !(m.client > 0 && m.leaves > 0 && m.scroll <= m.client));
-    check(`${label}: a run longer than the column breaks inside all seven mounts, not past them`,
-      mountStress.length === 7 && clipped.length === 0,
+    check(`${label}: a run longer than the column breaks inside all eight mounts, not past them`,
+      mountStress.length === 8 && clipped.length === 0,
       clipped.length ? clipped.map((m) => `${m.id} ${m.scroll}/${m.client} on ${m.leaves} leaves`).join('; ')
         : mountStress.map((m) => `${m.id} ${m.scroll}/${m.client}`).join(', '));
 

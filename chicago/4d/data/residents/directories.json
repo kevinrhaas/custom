@@ -50,16 +50,16 @@
  "counts": {
   "people_shown": 233,
   "people_met_by_more_than_one_volume": 144,
-  "carrying_an_occupation": 128,
+  "carrying_an_occupation": 134,
   "carrying_an_address": 162,
   "line_held_but_parse_refused": 0,
-  "split_refused_trades": 14,
+  "split_refused_trades": 15,
   "split_refused_addresses": 5,
   "grades_1835_changed": 0,
   "by_volume": {
    "fergus_1839": {
-    "people": 178,
-    "single_entry": 163,
+    "people": 179,
+    "single_entry": 164,
     "ambiguous": 11,
     "contested": 4,
     "split_refused_fields": 1
@@ -76,7 +76,7 @@
     "single_entry": 112,
     "ambiguous": 9,
     "contested": 2,
-    "split_refused_fields": 15
+    "split_refused_fields": 16
    },
    "norris_1844_advertiser": {
     "people": 28,
@@ -1965,7 +1965,7 @@
    "household_id": "hh_botsford_j_k",
    "resident": "J. K. Botsford",
    "grade_1835": "attested",
-   "occupation_1835": "tinsmith",
+   "occupation_1835": "grocer",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -6719,7 +6719,7 @@
    "household_id": "hh_elston_daniel",
    "resident": "Daniel Elston",
    "grade_1835": "attested",
-   "occupation_1835": "soap_and_candle_maker",
+   "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -6739,7 +6739,8 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
      "split_refused": {},
      "sources": [
@@ -6762,7 +6763,8 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
      "split_refused": {},
      "sources": [
@@ -6785,7 +6787,8 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
      "split_refused": {},
      "sources": [
@@ -6793,7 +6796,19 @@
      ]
     }
    ],
-   "occupation_later": null,
+   "occupation_later": {
+    "value": "brickmaker",
+    "confidence": "attested",
+    "describes_date": 1839,
+    "sources": [
+     "fergus_chicago_directory_1839"
+    ],
+    "claim_id": "f1839_e0453",
+    "as_printed": "Elston, Daniel, brickmaker, Elston road",
+    "printed_fields": "f1839_e0453 | Elston, Daniel, brickmaker, Elston road | brickmaker | Elston road",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Elston, Daniel, brickmaker, Elston road'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "address_later": {
     "value": "Elston road",
     "confidence": "attested",
@@ -8291,7 +8306,7 @@
    "household_id": "hh_harmon_brothers",
    "resident": "Charles Loomis Harmon",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": "harmon_loomis_store",
    "appearances": [
@@ -8311,7 +8326,8 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
      "split_refused": {},
      "sources": [
@@ -8334,7 +8350,8 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
      "split_refused": {},
      "sources": [
@@ -8357,14 +8374,28 @@
        "firm": "C. L. Harmon"
       }
      ],
-     "holds": [],
+     "holds": [
+      "occupation"
+     ],
      "split_refused": {},
      "sources": [
       "norris_directory_1844"
      ]
     }
    ],
-   "occupation_later": null,
+   "occupation_later": {
+    "value": "dry goods and groceries, 145 South Water. s.-w",
+    "confidence": "attested",
+    "describes_date": 1843,
+    "sources": [
+     "fergus_chicago_directory_1843"
+    ],
+    "claim_id": "f1843_e1206",
+    "as_printed": "Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]",
+    "printed_fields": "f1843_e1206 | Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.] | fergus_1843_page_003 | alphabetical directory | dry goods and groceries, 145 South Water. s.-w | cor Clark, res Dearborn, bet Washington and Madison | died November 2, 1868, aged 59-4.",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1843 prints this trade against this person, in the entry quoted on the card: 'Harmon, Charles Loomis, dry goods and groceries, 145 South Water. s.-w. cor Clark, res Dearborn, bet Washington and Madison [died November 2, 1868, aged 59-4.]'. It is evidence about 1843, written here as 1843's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "address_later": {
     "value": "cor Clark, res Dearborn, bet Washington and Madison",
     "confidence": "attested",
@@ -8449,7 +8480,7 @@
    "household_id": "hh_harmon_brothers",
    "resident": "Isaac Dewey Harmon",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -8469,7 +8500,8 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
      "split_refused": {},
      "sources": [
@@ -8477,7 +8509,19 @@
      ]
     }
    ],
-   "occupation_later": null,
+   "occupation_later": {
+    "value": "dry goods merchant",
+    "confidence": "attested",
+    "describes_date": 1839,
+    "sources": [
+     "fergus_chicago_directory_1839"
+    ],
+    "claim_id": "f1839_e0641",
+    "as_printed": "Harmon, Isaac D., dry goods merchant, 8 Clark street",
+    "printed_fields": "f1839_e0641 | Harmon, Isaac D., dry goods merchant, 8 Clark street | dry goods merchant | 8 Clark street",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Harmon, Isaac D., dry goods merchant, 8 Clark street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "address_later": {
     "value": "Clark street",
     "confidence": "attested",
@@ -9391,12 +9435,35 @@
   {
    "person_id": "hugunin_leonard_c",
    "household_id": "hh_hugunin_leonard_c",
-   "resident": "Leonard, C. Hugunin",
+   "resident": "Leonard C. Hugunin",
    "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
+    {
+     "volume": "fergus_1839",
+     "title": "Fergus's Chicago directory of 1839",
+     "year": 1839,
+     "source_id": "fergus_chicago_directory_1839",
+     "match_status": "single_entry",
+     "match_rule": "Surname 'Hugunin' folds to the same string as the 1839 entry's, and the given name of both begins L.",
+     "reading": "transcription_mediated",
+     "entries": [
+      {
+       "claim_id": "f1839_e0755",
+       "printed_page": 19,
+       "as_printed": "Hugunin, Leonard C., speculator"
+      }
+     ],
+     "holds": [
+      "occupation"
+     ],
+     "split_refused": {},
+     "sources": [
+      "fergus_chicago_directory_1839"
+     ]
+    },
     {
      "volume": "fergus_1843",
      "title": "Fergus's Chicago directory of 1843",
@@ -9446,7 +9513,19 @@
      ]
     }
    ],
-   "occupation_later": null,
+   "occupation_later": {
+    "value": "speculator",
+    "confidence": "attested",
+    "describes_date": 1839,
+    "sources": [
+     "fergus_chicago_directory_1839"
+    ],
+    "claim_id": "f1839_e0755",
+    "as_printed": "Hugunin, Leonard C., speculator",
+    "printed_fields": "f1839_e0755 | Hugunin, Leonard C., speculator | speculator",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Hugunin, Leonard C., speculator'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "address_later": {
     "value": "bds United States Hotel",
     "confidence": "attested",
@@ -9462,6 +9541,7 @@
    },
    "holds_a_line_whose_parse_does_not_cross": false,
    "sources": [
+    "fergus_chicago_directory_1839",
     "fergus_chicago_directory_1843",
     "norris_directory_1844"
    ]
@@ -9943,7 +10023,7 @@
    "person_id": "johnson_sanford",
    "household_id": "hh_johnson_sanford",
    "resident": "Sanford Johnson",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
@@ -10124,7 +10204,7 @@
    "household_id": "hh_jones_benjamin",
    "resident": "Benjamin Jones",
    "grade_1835": "attested",
-   "occupation_1835": "grocer",
+   "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -10144,7 +10224,8 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
      "split_refused": {},
      "sources": [
@@ -10167,9 +10248,12 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
-     "split_refused": {},
+     "split_refused": {
+      "occupation": "firm_where_a_trade_is"
+     },
      "sources": [
       "norris_directory_1844"
      ]
@@ -10190,14 +10274,28 @@
        "firm": "B. Jones & Co."
       }
      ],
-     "holds": [],
+     "holds": [
+      "occupation"
+     ],
      "split_refused": {},
      "sources": [
       "norris_directory_1844"
      ]
     }
    ],
-   "occupation_later": null,
+   "occupation_later": {
+    "value": "grocer",
+    "confidence": "attested",
+    "describes_date": 1839,
+    "sources": [
+     "fergus_chicago_directory_1839"
+    ],
+    "claim_id": "f1839_e0807",
+    "as_printed": "Jones, Benjamin, grocer, South Water street",
+    "printed_fields": "f1839_e0807 | Jones, Benjamin, grocer, South Water street | grocer | South Water street",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Jones, Benjamin, grocer, South Water street'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "address_later": {
     "value": "South Water street",
     "confidence": "attested",
@@ -10734,7 +10832,7 @@
    "household_id": "hh_kimball_walter",
    "resident": "W. Kimball",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,
    "appearances": [
@@ -10754,7 +10852,8 @@
       }
      ],
      "holds": [
-      "address"
+      "address",
+      "occupation"
      ],
      "split_refused": {},
      "sources": [
@@ -10783,7 +10882,19 @@
      ]
     }
    ],
-   "occupation_later": null,
+   "occupation_later": {
+    "value": "probate judge, cor. Clark and",
+    "confidence": "attested",
+    "describes_date": 1839,
+    "sources": [
+     "fergus_chicago_directory_1839"
+    ],
+    "claim_id": "f1839_e0849",
+    "as_printed": "Kimball, Walter, probate judge, cor. Clark and South Water st",
+    "printed_fields": "f1839_e0849 | Kimball, Walter, probate judge, cor. Clark and South Water st | probate judge, cor. Clark and | South Water st",
+    "split": "The value is the volume's own line, split by its crosswalk on the entry's punctuation. These volumes set the trade first and its qualifiers after it on the same line, so the split may carry an employer, a market or a corner along with the trade. The printed entry is quoted beside the value for exactly that reason: the split is checkable against it, and neither is read into an 1835 claim.",
+    "note": "Fergus's Chicago directory of 1839 prints this trade against this person, in the entry quoted on the card: 'Kimball, Walter, probate judge, cor. Clark and South Water st'. It is evidence about 1839, written here as 1839's and read back onto no 1835 claim. Under the ratified ladder a directory read after 1835 can corroborate that a person attested here was still in Chicago and can print a trade or a street the 1835 record never had; on its own it makes nobody a resident of 1835. Nothing on this person's 1835 record was regraded, moved, dated or given an occupation by this entry."
+   },
    "address_later": {
     "value": "South Water st",
     "confidence": "attested",
@@ -16887,7 +16998,7 @@
    "person_id": "spence_james_c",
    "household_id": "hh_spence_james_c",
    "resident": "James C Spence",
-   "grade_1835": "inferred",
+   "grade_1835": "attested",
    "occupation_1835": "none_recorded",
    "lives_at_1835": null,
    "works_at_1835": null,

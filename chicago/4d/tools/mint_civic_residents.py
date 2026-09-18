@@ -138,6 +138,10 @@ THE REFUSALS, in the order they fire, each one printed by `--report`:
      mint tool's judgement.
   5. `the post office's letter lists are the pass beside this one's pool` — every
      appearance inside the scene year is a letter list. See above.
+ 5b. `every scene-year reading is a church entry the register places outside Chicago`
+     — St Cyr married three couples at Bear Creek, Sangamon County in May 1834 and his
+     register carries those entries beside the Chicago ones. The rows say so themselves
+     (`at_chicago: false`); this pass reads the field and mints nobody off them. T-1129.
   6. `a firm, not a person` — and it fires before the surname rule below, because "&
      Co" reads as a two-letter family name and the firm is the truer finding.
   7. `the transcription bracketed the name as uncertain`.
@@ -153,6 +157,7 @@ THE REFUSALS, in the order they fire, each one printed by `--report`:
 from __future__ import annotations
 
 import argparse
+import calendar
 import functools
 import json
 import pathlib
@@ -284,6 +289,60 @@ def not_in_1835_classes() -> frozenset:
     return frozenset(refused)
 
 
+# THE NOT-CHICAGO REFUSAL (T-1129), and it is a FOURTH refusal — the first one this
+# pass reads at the granularity of a RECORD rather than a class. A parish register is a
+# priest's book, not a town's roll: St Cyr rode down the state in May 1834 and married
+# three couples in a house at Bear Creek, Sangamon County, and his register carries those
+# entries on the same pages as the Chicago ones. The reader that transcribed it said so
+# on every affected row — `at_chicago: false`, with the footnote that places them — and
+# `read_st_cyr_register.py`'s own docstring names the trap in capitals. Nothing read the
+# field, so four households stood in the 1835 town on a marriage celebrated 180 miles
+# away, and their arrival notes said in the project's own words that "church_1833_1835
+# names this person at Chicago by 20 May 1834" — a false statement inside a provenance
+# artifact, which is worse than a misplacement.
+#
+# WHY A RECORD AND NOT A CLASS. The place refusal above (T-1131) is unanimous by
+# construction: a whole file declares that its membership places nobody. Here the same
+# file carries Chicago entries and Sangamon County entries, and the distinction is
+# printed per row. So the refusal is read per row, off the corpus, and never asserted
+# here — a row the reader stops marking drops out of the refusal and `--self-test` goes
+# red on the six it expects, which reopens this ticket rather than re-arguing it from
+# this comment.
+#
+# WHAT IT REFUSES, exactly: an identity whose every scene-year reading is one of these
+# rows has no Chicago appearance at all, and is not minted (refusal 5b). An identity
+# that ALSO holds a clean reading still mints — but the out-of-town row is dropped from
+# the evidence this pass writes, so it never becomes a church_evidence block, never
+# cites its source on the card, and above all never sets the arrival bound. That last is
+# the same asymmetry T-1049 drew for a Michigan City notice: the record is real, the
+# reading is real, and neither says the person was at Chicago.
+CHURCH_RECORDS = DATA / "research" / "church" / "records"
+AT_CHICAGO_FIELD = "at_chicago"
+NOT_CHICAGO_NOTE = ("A PARISH REGISTER IS NOT A TOWN ROLL (T-1129): the reading itself "
+                    "carries `at_chicago: false`, because the entry was celebrated "
+                    "outside Chicago. It dates an act; it never says the person was at "
+                    "Chicago")
+
+
+@functools.lru_cache(maxsize=None)
+def not_chicago_records() -> frozenset:
+    """Church readings whose own row says the entry was not at Chicago (T-1129).
+
+    Read from `data/research/church/records/`, every file, never a list kept here: the
+    reader that transcribed the register is the only thing that knows which of its pages
+    were written at Chicago, and a hand copy of its answer would go stale the first time
+    another leaf was read.
+    """
+    out = set()
+    if not CHURCH_RECORDS.exists():
+        return frozenset()
+    for path in sorted(CHURCH_RECORDS.glob("*.json")):
+        for record_row in (load(path) or {}).get("records") or []:
+            if record_row.get(AT_CHICAGO_FIELD) is False and record_row.get("id"):
+                out.add(record_row["id"])
+    return frozenset(out)
+
+
 MUSTER_LADDER = ("An 1832 enrollment is EARLIER evidence and never an 1835 residence on "
                  "its own: it places the man in this town in 1832, which is why it dates "
                  "and corroborates rather than mints")
@@ -314,6 +373,18 @@ MONTHS = ("January", "February", "March", "April", "May", "June",
 
 YEAR = re.compile(r"(1[6-9]\d\d)")
 ISO = re.compile(r"^(\d{4})-(\d{2})-(\d{2})$")
+YEAR_MONTH = re.compile(r"^(\d{4})-(\d{2})$")
+# The two orders the sources print a day in. `April 8, 1835` and `Dec. 1, 1848` are what
+# the old settlers' notices give; `d. 14 Mar. 1861` is the other order the same book
+# uses. The day is optional in both, because `July 1835` and `Sept., 1835` are printed
+# too and a month with no day is still narrower than a year.
+PRINTED_DATE = re.compile(r"([A-Za-z]{3,9})\.?\s*,?\s*(?:(\d{1,2})\s*,?\s*)?(1[6-9]\d\d)")
+DAY_FIRST_DATE = re.compile(r"(\d{1,2})\s+([A-Za-z]{3,9})\.?\s*,?\s*(1[6-9]\d\d)")
+MONTH_NUMBER = {}
+for _i, _m in enumerate(MONTHS, start=1):
+    MONTH_NUMBER[_m.lower()] = _i
+    MONTH_NUMBER[_m[:3].lower()] = _i
+MONTH_NUMBER["sept"] = 9
 
 
 # ---------------------------------------------------------------------------
@@ -325,19 +396,81 @@ def year_of(value) -> int | None:
     return int(m.group(1)) if m else None
 
 
-def bound_of(value) -> str | None:
-    """The latest day a `describes_date` permits, as an ISO date, or None.
+def _day_range(year: int, month: int | None, day: int | None) -> tuple[str, str] | None:
+    """The first and last day a (year, month?, day?) reading permits."""
+    if not 1 <= year <= 9999:
+        return None
+    if month is None:
+        return (f"{year:04d}-01-01", f"{year:04d}-12-31")
+    if not 1 <= month <= 12:
+        return None
+    last = calendar.monthrange(year, month)[1]
+    if day is None:
+        return (f"{year:04d}-{month:02d}-01", f"{year:04d}-{month:02d}-{last:02d}")
+    if not 1 <= day <= last:
+        # a day the month cannot hold is a misreading of the day, not of the month
+        return (f"{year:04d}-{month:02d}-01", f"{year:04d}-{month:02d}-{last:02d}")
+    return (f"{year:04d}-{month:02d}-{day:02d}",) * 2
 
-    A full date is its own bound. A bare year is bounded at the year's end and NOT at
-    its start: the list says the man was there that year, not that he was there in
-    January. Everything else the sources print — a death notice's `d. 14 Mar. 1861` —
-    is read for its year and bounded the same way.
+
+def date_range(value) -> tuple[str, str] | None:
+    """The EARLIEST and the LATEST day a `describes_date` permits, or None.
+
+    A `describes_date` is a range and not a point, because the sources write dates as
+    loosely as they please. A full ISO date is a single day. A bare year runs from 1
+    January to 31 December — the list says the man was there THAT YEAR, not that he was
+    there in January and not that he was there on New Year's Eve. `1834-06` is the month.
+    And a printed day — the old settlers' `April 8, 1835`, `Dec. 1, 1848`, the other
+    order's `d. 14 Mar. 1861` — is read for its MONTH AND DAY where the page gives them
+    (T-1136) and not merely for its year: the page prints the day, and throwing it away
+    was what let a death three months before the scene date be read as 31 December.
+
+    Which END of the range a caller wants is the caller's question and never this
+    function's — see `bracket_legs`, where the two legs want opposite ends.
     """
     s = str(value or "").strip()
+    if not s:
+        return None
     if ISO.match(s):
-        return s
+        return (s, s)
+    if m := YEAR_MONTH.match(s):
+        if rng := _day_range(int(m.group(1)), int(m.group(2)), None):
+            return rng
+    for pattern, day_first in ((DAY_FIRST_DATE, True), (PRINTED_DATE, False)):
+        if not (m := pattern.search(s)):
+            continue
+        name, day = (m.group(2), m.group(1)) if day_first else (m.group(1), m.group(2))
+        month = MONTH_NUMBER.get(name.lower().rstrip("."))
+        if month is None:
+            continue
+        if rng := _day_range(int(m.group(3)), month, int(day) if day else None):
+            return rng
     y = year_of(s)
-    return f"{y}-12-31" if y else None
+    return _day_range(y, None, None) if y else None
+
+
+def bound_of(value) -> str | None:
+    """The LATEST day a `describes_date` permits, as an ISO date, or None.
+
+    This is the end an arrival bound wants — `not_later_than` is the whole of what an
+    arrival claims — and the end the AT-OR-BEFORE leg of the presence bracket wants,
+    because that leg holds only if EVERY day the record permits falls at or before the
+    scene date. For the opposite end, and the leg that wants it, see `floor_of`.
+    """
+    rng = date_range(value)
+    return rng[1] if rng else None
+
+
+def floor_of(value) -> str | None:
+    """The EARLIEST day a `describes_date` permits, as an ISO date, or None.
+
+    The end the AT-OR-AFTER leg of the presence bracket wants (T-1136). That leg holds
+    only if every day the record permits falls at or after the scene date, so a bare
+    `1835` — which may describe 2 January as easily as 31 December — closes no bracket
+    over 1 July, and a death notice of `April 8, 1835` closes none either.
+    """
+    rng = date_range(value)
+    return rng[0] if rng else None
 
 
 def in_window(app: dict) -> bool:
@@ -386,9 +519,17 @@ def bracketed_name_appearance(app: dict) -> bool:
     return in_window(app) and isinstance(raw, str) and bool(UNCERTAIN.search(raw))
 
 
+def not_chicago_appearance(app: dict) -> bool:
+    """Whether this appearance is a church reading its own row places outside Chicago."""
+    return (app.get("domain") == "church"
+            and app.get("record_id") in not_chicago_records())
+
+
 def mintable_appearances(appearances: list) -> list:
-    """The evidence this mint may write: never a bracketed scene-year name."""
-    return [a for a in appearances if not bracketed_name_appearance(a)]
+    """The evidence this mint may write: never a bracketed scene-year name, and never
+    a church reading the register itself places outside the town (T-1129)."""
+    return [a for a in appearances
+            if not bracketed_name_appearance(a) and not not_chicago_appearance(a)]
 
 
 def decide(row: dict, appearances: list, town_person_ids: set,
@@ -418,6 +559,14 @@ def decide(row: dict, appearances: list, town_person_ids: set,
         return False, "an 1832 enrollment alone is earlier evidence and never mints"
     if scene_year and all(a.get("evidence_class") == LETTER_LIST_CLASS for a in scene_year):
         return False, "the post office's letter lists are the pass beside this one's pool"
+    # T-1129, refusal 5b. Every scene-year reading is a church entry whose own row says
+    # the act was not celebrated at Chicago, so there is no Chicago appearance to bound
+    # an arrival with — the same shape as refusal 9 below, reached one step earlier so
+    # the reason names the register rather than reading as a plain absence of evidence.
+    if scene_year and all(not_chicago_appearance(a) for a in scene_year):
+        outside = sorted({a.get("record_id") for a in scene_year})
+        return False, ("every scene-year reading is a church entry the register places "
+                       f"outside Chicago ({', '.join(outside)})")
     if FIRM.search(name):
         return False, "a firm, not a person"
     # T-1115. `row.name` is the consolidation's rebuilt display name, not the
@@ -539,6 +688,17 @@ def bracket_legs(appearances: list) -> tuple[list, list, list]:
     denies, while the after leg is a claim about a later day the record does make. The
     refused at-or-before rows come back as the third list rather than being dropped,
     because what they say is a finding — see `presence_block`.
+
+    EACH LEG READS THE END OF THE DATE RANGE NEAREST THE SCENE DATE, AND THEY ARE
+    OPPOSITE ENDS (T-1136). A `describes_date` permits a RANGE of days — a bare `1835`
+    permits all 365 of them — and a leg holds only if EVERY day the record permits falls
+    on that leg's side of 1 July 1835. So the at-or-before leg tests the LATEST permitted
+    day and the at-or-after leg tests the EARLIEST. Reading one number for both is what
+    let a death notice of `April 8, 1835` — three months before the scene date — close a
+    bracket over it as 31 December, and it is what let every bare `1835` do the same.
+    A record that straddles the day is NEITHER leg: it is honestly silent about which
+    side of 1 July its day fell on, and silence is `uncertain` (see `presence_block`),
+    never a bracket.
     """
     refused_classes = not_in_1835_classes()
     before: list = []
@@ -548,12 +708,13 @@ def bracket_legs(appearances: list) -> tuple[list, list, list]:
         cls = app.get("evidence_class")
         if cls in NOT_A_PRESENCE_CLASS:
             continue
-        bound = bound_of(app.get("describes_date"))
-        if not bound:
+        span = date_range(app.get("describes_date"))
+        if not span:
             continue
-        if bound >= SCENE_DATE:
+        earliest, latest = span
+        if earliest >= SCENE_DATE:
             after.append(app)
-        if bound <= SCENE_DATE:
+        if latest <= SCENE_DATE:
             (refused_before if cls in refused_classes else before).append(app)
     return before, after, refused_before
 
@@ -1345,8 +1506,11 @@ def gate_problems(docs: dict, index: dict) -> list:
         # AND THE PLACE-IN-1835 REFUSAL ON THE SAME CARD (T-1131). Same question, second
         # class of answer: a source whose own domain declares `places_in_1835: false` may
         # not be the at-or-before leg either. It is asked of the tree and not only of the
-        # derivation for the same reason — and the after leg is deliberately NOT asked
-        # about, because a death notice may perfectly well close the bracket from above.
+        # derivation for the same reason — and this refusal is deliberately NOT applied
+        # to the after leg, because a death notice may perfectly well close the bracket
+        # from above. THE AFTER LEG ITSELF IS ASKED ABOUT SINCE T-1136, below: a
+        # different question, about the DATE a record permits rather than the class it
+        # belongs to.
         if (doc.get("present_on_scene_date") or {}).get("value") == "present":
             refused_classes = NOT_A_PRESENCE_CLASS | set(not_in_1835_classes())
             evidence = [e for p in people for k in BLOCK_KEYS for e in p.get(k) or []]
@@ -1364,6 +1528,44 @@ def gate_problems(docs: dict, index: dict) -> list:
                                 f"declares `places_in_1835: false` for its whole class "
                                 f"(T-1131). Neither can carry a claim about where a man "
                                 f"stood on 1 July 1835")
+            # AND THE FAR LEG, ON THE SAME CARD (T-1136). A bracket has two legs and
+            # only one of them was ever asked of the tree. The at-or-after leg holds
+            # only if EVERY day the record permits falls at or after the scene date, so
+            # a bare `1835` — which may describe 2 January as easily as 31 December —
+            # closes nothing over 1 July, and neither does a death notice printed
+            # `April 8, 1835`. A death notice is NOT refused here, unlike above: a man
+            # who died at Chicago in 1885 was at Chicago in 1885, and that is a real far
+            # leg. Only the property roll is refused on this side as on the other.
+            far = [e for e in evidence if e.get("list") not in NOT_A_PRESENCE_CLASS
+                   and (f := floor_of(e.get("describes_date"))) and f >= SCENE_DATE]
+            if not far:
+                straddling = sorted({e.get("list") for e in evidence
+                                     if e.get("list") not in NOT_A_PRESENCE_CLASS
+                                     and (b := bound_of(e.get("describes_date")))
+                                     and b >= SCENE_DATE})
+                problems.append(f"{where}: reads `present` with no at-or-after leg but "
+                                f"{', '.join(straddling) or 'nothing'}. A record whose "
+                                f"date range STRADDLES 1 July 1835 is silent about which "
+                                f"side of the day it fell on, and a silence closes no "
+                                f"bracket (T-1136)")
+        # THE NOT-CHICAGO REFUSAL, PROVED ON THE CARD (T-1129). The refusal above lives
+        # in `decide()`, and a refusal that lives only in the code that writes the file
+        # can be undone — by a hand edit, by another pass, by a carry-over — without
+        # anything going red. So the tree is asked directly: a card whose church readings
+        # are ALL rows the register places outside Chicago, and which holds no other
+        # evidence block, is a person standing in this town on a marriage celebrated 180
+        # miles away. It is asked of every card here, not only of this pass's, because
+        # the four T-1129 found were this pass's and the next one need not be.
+        church = [e for p in people for e in p.get("church_evidence") or []]
+        other = [e for p in people for k in BLOCK_KEYS if k != "church_evidence"
+                 for e in p.get(k) or []]
+        if church and not other and all(e.get("record_id") in not_chicago_records()
+                                        for e in church):
+            problems.append(f"{where}: rests on church reading(s) "
+                            f"{', '.join(sorted(e.get('record_id') or '?' for e in church))} "
+                            f"and nothing else, and every one of them carries "
+                            f"`at_chicago: false` — the register places that entry outside "
+                            f"Chicago, so the card claims a town the record denies (T-1129)")
         row = rows.get(where)
         if row is None:
             problems.append(f"{where}: minted here and absent from the manifest")
@@ -1451,6 +1653,17 @@ REFUSAL_CASES = (
     ("an internal supply whose brackets were stripped from the display name",
      _row(name="E K Zie"), [_app(as_read="E. K[in]zie")], set(),
      "bracketed the name as uncertain"),
+    # T-1129. The fixture cites a REAL row of the register — `st_cyr_marriage_002_2`,
+    # Mary Durbin, married at Bear Creek in Sangamon County on 20 May 1834 — because the
+    # refusal is read from the corpus and a fixture id would test the tool against
+    # itself. If the reader stops marking that row, this case goes red, which is the
+    # point: the ruling moved and the ticket reopens.
+    ("a church entry the register places outside Chicago, and nothing else",
+     _row(name="Mary Durbin", rule="G2c", grade="inferred"),
+     [_app(domain="church", source_id="st_cyr_register_ichr_v4",
+           record_id="st_cyr_marriage_002_2", locator="bride", as_read="Mary Durbin",
+           describes_date="1834-05-20", evidence_class="church_1833_1835")],
+     set(), "the register places outside Chicago"),
     ("a name with nothing that could be a surname",
      _row(name="E. S."), [_app()], set(), "no name the corpus prints as a family name"),
     ("a mint with no evidence block",
@@ -1471,6 +1684,36 @@ def self_test() -> int:
     if not ok:
         failed += 1
         print(f"   FAIL the control case is refused: {reason!r}")
+    # THE NOT-CHICAGO REFUSAL (T-1129), and every edge it is supposed to have: the set is
+    # read from the corpus, it refuses the whole identity when nothing else stands inside
+    # the window, and it drops the reading rather than the person when something does.
+    bear_creek = {"st_cyr_marriage_002_1", "st_cyr_marriage_002_2",
+                  "st_cyr_marriage_003_1", "st_cyr_marriage_003_2",
+                  "st_cyr_marriage_004_1", "st_cyr_marriage_004_2"}
+    if not bear_creek <= not_chicago_records():
+        failed += 1
+        print(f"   FAIL the register no longer marks the Bear Creek marriages "
+              f"`at_chicago: false` — missing "
+              f"{sorted(bear_creek - not_chicago_records())}. The refusal is read from "
+              f"data/research/church/, so reopen T-1129 rather than re-arguing it here")
+    _bear = dict(domain="church", source_id="st_cyr_register_ichr_v4",
+                 record_id="st_cyr_marriage_002_2", locator="bride",
+                 as_read="Mary Durbin", describes_date="1834-05-20",
+                 evidence_class="church_1833_1835")
+    ok, reason = decide(_row(), [_app(**_bear), _app(describes_date="1834",
+                                                     evidence_class="poll_1834",
+                                                     record_id="poll_1834_999",
+                                                     locator="poll_1834")],
+                        set(), set(), set(), set())
+    if not ok:
+        failed += 1
+        print(f"   FAIL a Bear Creek reading beside a clean poll entry refused the whole "
+              f"identity; the refusal is about the READING: {reason!r}")
+    kept = mintable_appearances([_app(**_bear), _app()])
+    if any(a.get("record_id") == "st_cyr_marriage_002_2" for a in kept):
+        failed += 1
+        print("   FAIL a reading the register places outside Chicago is still spent onto "
+              "the card, where it would cite its source and bound an arrival (T-1129)")
     mixed = [_app(record_id="press_uncertain", as_read="H. G. Hub[…]"),
              _app(record_id="poll_clean", as_read="Hubbard, Henry G.")]
     ok, reason = decide(_row(name="Henry G Hubbard"), mixed,
@@ -1571,10 +1814,13 @@ def self_test() -> int:
         failed += 1
         print("   FAIL the withdrawn bracket does not name the declaration that withdrew it")
     if dead["arrival"]["precision"] != "not_later_than" \
-            or dead["arrival"]["value"] != "1830-12-31":
+            or dead["arrival"]["value"] != "1830-10-25":
         failed += 1
         print("   FAIL the place-in-1835 refusal moved the ARRIVAL bound; it is a rule "
-              "about the presence bracket and a man who died at Chicago was at Chicago")
+              "about the presence bracket and a man who died at Chicago was at Chicago. "
+              "The bound is the notice's printed DAY, `Oct. 25, 1830`, and not the end of "
+              "its year (T-1136): the page gives the day and the bound may not throw it "
+              "away and call the loss precision")
     # the after leg is NOT swallowed: a real leg below, a death notice above
     survives = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
                                     record_id="poll_1834_999", locator="poll_1834"),
@@ -1607,6 +1853,75 @@ def self_test() -> int:
                              "present_on_scene_date": "present"}]})):
         failed += 1
         print("   FAIL the gate accepts `present` carried by a death notice alone")
+
+    # T-1136: THE TWO LEGS READ OPPOSITE ENDS OF THE DATE RANGE.
+    for label, value, want in (
+            ("a full date is a single day", "1835-05-20", ("1835-05-20", "1835-05-20")),
+            ("a bare year runs the whole year", "1835", ("1835-01-01", "1835-12-31")),
+            ("a year-month is the month", "1834-06", ("1834-06-01", "1834-06-30")),
+            ("a printed day is read for its day", "April 8, 1835",
+             ("1835-04-08", "1835-04-08")),
+            ("an abbreviated month is read too", "Dec. 1, 1848",
+             ("1848-12-01", "1848-12-01")),
+            ("the other printed order is read too", "d. 14 Mar. 1861",
+             ("1861-03-14", "1861-03-14")),
+            ("a month with no day is still narrower than a year", "July 1835",
+             ("1835-07-01", "1835-07-31")),
+            ("a day the month cannot hold withdraws to the month", "Feb. 30, 1835",
+             ("1835-02-01", "1835-02-28")),
+            ("no date is no range", "", None),
+    ):
+        if date_range(value) != want:
+            failed += 1
+            print(f"   FAIL {label}: date_range({value!r}) is {date_range(value)!r}, "
+                  f"wanted {want!r}")
+    # the bare year that straddles the day closes no bracket over it, on either leg
+    straddle = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
+                                    record_id="poll_1834_999", locator="poll_1834"),
+                               _app(describes_date="1835", evidence_class="poll_1835",
+                                    record_id="poll_1835_999", locator="poll_1835")],
+                      {}, set())
+    if straddle["present_on_scene_date"]["value"] != "uncertain":
+        failed += 1
+        print("   FAIL a bare `1835` closes the bracket over 1 July again; it may "
+              "describe 2 January as easily as 31 December and says nothing about which "
+              "side of the day the man was on (T-1136)")
+    # AND A DEATH BEFORE THE DAY CANNOT CLOSE IT FROM ABOVE, HOWEVER THE PAGE PRINTS IT.
+    # `hh_vanderbogart_henry`'s shape, which is what found this: two at-or-before legs
+    # that are real, a death notice printed `April 8, 1835` for its only far leg, and one
+    # of those legs dated AFTER the death. The death is no far leg — 8 April is three
+    # months before the day — and it is no `absent` either, because a record names the
+    # man at Chicago after it and this pass does not settle that contradiction (T-1131).
+    # What is left is a card with no far leg at all, and that is `uncertain`.
+    _press = dict(evidence_class="press_1833_1835", locator="press",
+                  source_id="chicago_newspapers_1833_1835", domain="newspapers")
+    vanderbogart = record(_row(), [_app(describes_date="1834-02-04",
+                                        record_id="press_999", **_press),
+                                   _app(describes_date="1835-05-20",
+                                        record_id="press_998", **_press),
+                                   _death(describes_date="April 8, 1835")], {}, set())
+    if vanderbogart["present_on_scene_date"]["value"] != "uncertain":
+        failed += 1
+        print("   FAIL a death notice printed `April 8, 1835` — three months BEFORE the "
+              "scene date — still closes the bracket over 1 July; its year was read and "
+              "its day was thrown away (T-1136)")
+    # and read alone, that same notice is a death and not a silence
+    early_death = record(_row(), [_app(describes_date="1834-02-04",
+                                       record_id="press_999", **_press),
+                                  _death(describes_date="April 8, 1835")], {}, set())
+    if early_death["present_on_scene_date"]["value"] != "absent":
+        failed += 1
+        print("   FAIL reading the notice's printed DAY lost the `absent` it earns: with "
+              "no record naming the man after 8 April 1835 he was dead before the day")
+    # a real far leg still closes: a bare 1843 is wholly after the day
+    forced_far = json.loads(json.dumps(straddle))
+    forced_far["present_on_scene_date"]["value"] = "present"
+    if not any("T-1136" in p for p in gate_problems(
+            {pathlib.Path("hh_fixture.json"): forced_far},
+            {"households": [{"id": forced_far["id"], "civic_mint": True,
+                             "present_on_scene_date": "present"}]})):
+        failed += 1
+        print("   FAIL the gate accepts `present` whose far leg straddles the scene date")
 
     polled = record(_row(), [_app(describes_date="1834", evidence_class="poll_1834",
                                   record_id="poll_1834_999", locator="poll_1834"),

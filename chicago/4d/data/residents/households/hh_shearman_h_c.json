@@ -77,7 +77,20 @@
      "chicago_democrat_1833_1835"
     ]
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D10",
+     "cluster": "shearman-sherman",
+     "weighed_against": [
+      "sherman_h"
+     ],
+     "for_merge": "One letter dropped from a nine-letter surname, the initial H on both, and the Sherman card is documented with a trade: 'MRS. H. SHERMAN' the dressmaker, in the Democrat of 3 December 1834 (#c021) and the 1840 census at 212:12. 'Shearman' is set nowhere in the deposited corpus.",
+     "against_merge": "THE HONORIFIC FIXES A DIFFERENT PERSON, AND THE SECOND INITIAL IS UNMATCHED. The Sherman reading is 'Mrs. H. Sherman' — a married woman, named by her husband's initial in the form the period used — while the letter-list reading is 'H. C. Shearman', a man's two initials, on the return of 28 January 1834 (#c001). A fold would put a correspondent's two initials onto a dressmaker's card and lose the Mrs. that is the only thing either source says about who she is. C9's first condition fails on the C and on the honorific together. SHERMAN IS HEAVILY POPULATED HERE — sherman_h, sherman_rebecca, sherman_silas_w, sherman_william_george, and 482 settings in the corpus — and T-0480 closed the Shearman card no_corroboration_yet after searching the 1839 and 1843 directories. D10."
+    }
+   ]
   }
  ],
  "touches_removal": false,

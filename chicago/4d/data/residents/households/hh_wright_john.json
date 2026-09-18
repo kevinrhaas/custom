@@ -63,7 +63,11 @@
      "andreas_1884_v1",
      "chicago_democrat_1833_11_26"
     ],
-    "note": "'John Wright, came in 1832, a merchant'. His advertisement in the Chicago Democrat of 26 November 1833 offers cut nails and general merchandise, and he separately advertises TWO BUILDINGS TO LET until 1 June 1834 - which makes him the only documented landlord of rental property in this parcel."
+    "note": "'John Wright, came in 1832, a merchant'. His advertisement in the Chicago Democrat of 26 November 1833 offers cut nails and general merchandise, and he separately advertises TWO BUILDINGS TO LET until 1 June 1834 - which makes him the only documented landlord of rental property in this parcel.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "merchant"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -88,6 +92,17 @@
    },
    "merge_ruling": [
     {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R2",
+     "cluster": "wight-wright-john",
+     "weighed_against": [
+      "wight_j_f"
+     ],
+     "for_merge": "A dropped r, and the initial J agrees with John Wright the merchant — the 1833 poll and tax lists, the Democrat of 26 November 1833 and 25 February 1834, the 1840 census at 207:17.",
+     "against_merge": "THE INITIAL J HAS TWO RIVALS AMONG THE WRIGHTS AND THE `wright` CLUSTER HAS ALREADY SAID SO. Its standing U1/R2 ruling refuses a bare 'J. Wright' because the father and the son share the forename John and the initial cannot choose between them; folding the surname as well adds a third candidate and removes nothing. 'J. F. Wight' is one reading, the Democrat of 11 June 1834 (#c007), and its middle initial F is carried by no Wright of this town — John S. Wright's is S, and T-0997's C2 merge inside that cluster turned on exactly that printed letter. The town holds six Wright cards and one Wight. Refused by a ratified rule; no ballot needed."
+    },
+    {
      "ticket": "T-0839",
      "verdict": "undecided",
      "rule": "R2",
@@ -99,6 +114,25 @@
      "referred_to": "rule",
      "for_merge": "'J. Wright' in the American of 11 July 1835 is a Wright in the town in the scene year.",
      "against_merge": "The initial J has two rivals — the father and the son, who share a forename. R2 refuses. Refused by a ratified rule; no ballot needed."
+    }
+   ],
+   "roles": [
+    {
+     "role": "merchant",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_democrat_1833_11_26"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   },
@@ -115,7 +149,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "NO TRADE IS RECORDED FOR HIM IN 1833-35 and this value is a reconstruction. Andreas calls him 'John S. Wright, then a minor, afterward editor of Prairie Farmer, and one of the most meritorious pioneers of Chicago, came in 1832'. A minor in his merchant father's business is a clerk on the ordinary reading of the period; the source says only that he was young and that he came."
+    "note": "NO TRADE IS RECORDED FOR HIM IN 1833-35 and this value is a reconstruction. Andreas calls him 'John S. Wright, then a minor, afterward editor of Prairie Farmer, and one of the most meritorious pioneers of Chicago, came in 1832'. A minor in his merchant father's business is a clerk on the ordinary reading of the period; the source says only that he was young and that he came.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "clerk"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -137,6 +175,17 @@
     ]
    },
    "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "R2",
+     "cluster": "wight-wright-john-s",
+     "weighed_against": [
+      "wight_j_f"
+     ],
+     "for_merge": "A dropped r, and the initial J agrees with John S. Wright his son — 'J. S. Wright' in the Democrat of 29 October 1834, and Fergus 1843's 'Wright, John Stephen, editor and proprietor Prairie Farmer'.",
+     "against_merge": "THE INITIAL J HAS TWO RIVALS AMONG THE WRIGHTS AND THE `wright` CLUSTER HAS ALREADY SAID SO. Its standing U1/R2 ruling refuses a bare 'J. Wright' because the father and the son share the forename John and the initial cannot choose between them; folding the surname as well adds a third candidate and removes nothing. 'J. F. Wight' is one reading, the Democrat of 11 June 1834 (#c007), and its middle initial F is carried by no Wright of this town — John S. Wright's is S, and T-0997's C2 merge inside that cluster turned on exactly that printed letter. The town holds six Wright cards and one Wight. Refused by a ratified rule; no ballot needed."
+    },
     {
      "ticket": "T-0839",
      "verdict": "undecided",
@@ -171,6 +220,39 @@
       "wright_j_s"
      ],
      "note": "THE UNION OF THE CARDS THIS PERSON WAS SPLIT ACROSS. The sources and evidence blocks above include everything the folded cards cited; each folded record is kept whole under data/residents/merged/ and is redirected by index.json's `merged` table. The reasoning for the merge is in data/residents/card_merge_rulings.json."
+    }
+   ],
+   "profile_facts": [
+    {
+     "field": "life_event",
+     "value": "Bought Chicago land and original-town lots",
+     "confidence": "inferred",
+     "sources": [
+      "cpl_john_s_wright_papers"
+     ],
+     "describes_date": "1835-01-01",
+     "place_class": "chicago",
+     "record_id": "resident_research:T-0479#01",
+     "as_read": "identifies John S. Wright's Chicago land purchases and original-town lots",
+     "note": "Landholding, stated by the library's finding aid. The block is explicit that later deed dates are not back-projected, and this row carries no deed date."
+    }
+   ],
+   "roles": [
+    {
+     "role": "clerk",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "inferred",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
     }
    ]
   }

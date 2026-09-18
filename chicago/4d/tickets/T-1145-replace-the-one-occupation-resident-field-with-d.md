@@ -1,7 +1,7 @@
 ---
 id: T-1145
 title: Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-17
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 3:38:16 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-17T08:38:27.728Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35200021551
 ---
 
 Replace the one-occupation resident field with dated plural roles and migrate every matched trade, profession and civic office without back-projecting later evidence.
@@ -52,6 +52,19 @@ shows only `soap_and_candle_maker`, incorrectly graded as an attested 1835 occup
 6. Extend the schema, validators, compiler, resident audit and layer-read census. Gates fail when a
    role loses its source/claim id, an undated/later role enters the 1835 compatibility field, or a
    structured role is retained in research but absent from the migration disposition table.
+
+**Owner review, 2026-09-17 — added acceptance:**
+
+7. The Elston fixture is extended to LOCATION: each dated role names where it was exercised when
+   a source says (the manufactory on the North Side for the candles and soap; the school
+   inspectorship's seat), so T-1147 can carry a role's place as a `works_at[]`/`associated_with[]`
+   entry with the role's dates. A role with no stated place says `place: not_stated`.
+8. The role kinds `office` and `employment` carry an `employer_or_body` field (the town board, the
+   county, a named firm) so the business band (T-1180 onward) can attach clerks and officers to
+   the establishment they served without re-reading prose.
+9. The migration table is published as `docs/RESEARCH/roles-migration-2026-09.md` with one row per
+   person carrying 2+ roles (the audit found 176), because the population profile (T-1160) counts
+   multi-role persons from it.
 
 **Stop condition:** every matched trade/profession/office row has a dated role, a documented fold,
 or a refusal; the singular field is no longer capable of erasing a second role.

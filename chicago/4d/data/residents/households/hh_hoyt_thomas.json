@@ -40,13 +40,13 @@
   "note": "Not attested. No trade is recorded here, so there is no premises to seek; T-0633 is where a later directory's address gets back-projected."
  },
  "present_on_scene_date": {
-  "value": "present",
+  "value": "uncertain",
   "confidence": "inferred",
   "sources": [
    "chicago_democrat_1833_1835",
    "chicago_voter_lists_1833_1835_irad"
   ],
-  "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
+  "note": "THE RECORD DOES NOT REACH THE DAY. Every source that names this person falls on one side of 1 July 1835, and nothing follows them to it or says they left. `uncertain` rather than dropped — the distinction index.json draws for Jeremiah Porter, and a finding, not a gap."
  },
  "persons": [
   {
@@ -86,6 +86,19 @@
      "describes_date": "1833-12-17",
      "source": "chicago_democrat_1833_1835",
      "rule": "G1a"
+    }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "hoit-hoyt",
+     "weighed_against": [
+      "hoit_thomas"
+     ],
+     "for_merge": "Hoit and Hoyt are one surname's two current spellings in 1830s America, 'Thomas' is identical, and the Democrat carries both cards.",
+     "against_merge": "EACH SPELLING HAS A SECOND BEARER AT THIS TOWN. The resident layer holds hoit_sarah beside hoit_thomas and hoyt_l_g beside hoyt_thomas: two families, not one, which is precisely the Paine/Payne case D7 was extended over. The printings do not touch — 'Hoit, Thomas' is the Democrat of 24 September 1834 (#c002); 'Thomas Hoyt' the Democrat of 17 December 1833 (#c008) and the 1835 poll list — and no issue or roll sets both spellings. T-0510 stopped this pair at candidate_identity and recorded that Fergus's death notices carry the surname Hoit with no entry under it bearing the initial. D7."
     }
    ]
   }

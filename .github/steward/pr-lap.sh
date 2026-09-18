@@ -413,8 +413,31 @@ while IFS=$'\t' read -r N BR; do
       git merge --abort 2>/dev/null; SKIPPED=$((SKIPPED+1)); continue; }
   fi
 
+  # RECONCILE, THEN PRUNE, BEFORE THE BOARD. Both halves of the same fault, and the
+  # lap could only ever do one of them.
+  #
+  # PRUNE is the easy direction: a branch's QUEUE.md is a snapshot and `$BASE` closes
+  # tickets under it, so an open PR ends up listing work that has already finished —
+  # which `ticket.mjs check` refuses, and which was the commonest red a lap left
+  # behind: #1387, #1389 and #1392 all went red on it on 2026-09-17 alone.
+  #
+  # RECONCILE is the direction that actually held the queue shut, and it is this
+  # script's own doing. QUEUE.md is in GENERATED above, so a conflict in it is cleared
+  # by taking a side and letting a tool rewrite the file — and for this file the tool
+  # was `board`, which builds BOARD.md FROM the queue and can only preserve what the
+  # side it took already said. Take the branch's side and every line `$BASE` added while
+  # the PR was open is GONE. Measured the same afternoon on the two PRs this lap had
+  # just pushed: #1400 missing 28 of dev's lines and #1392 missing 27, both red on the
+  # single step `ticket queue` out of 439 — and `prune` ran on both, correctly, and
+  # could do nothing, because a prune only deletes.
+  #
+  # Neither invents an ordering. `reconcile` rebuilds on the base's queue and puts each
+  # of the branch's own lines back after the same line it followed on the branch; a line
+  # that led the branch's queue goes back to the top. The owner ranks this file.
   ( cd chicago/4d \
     && node tools/stamp-changelog.mjs \
+    && node tools/ticket.mjs reconcile --base "origin/$BASE" \
+    && node tools/ticket.mjs prune \
     && node tools/ticket.mjs board \
     && python3 tools/compile_scene.py --all \
     && ./tools/publish.sh ) >/tmp/lap-regen.log 2>&1 || {

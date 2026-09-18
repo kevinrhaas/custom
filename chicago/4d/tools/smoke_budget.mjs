@@ -236,6 +236,11 @@ const COVERAGE = [
   ['renderers/web/js/citations.js', [3], 'pick -> provenance, and what kind of source'],
   ['renderers/web/js/liberties.js', [3, 13], 'the liberties on the card, and in the panel'],
   ['renderers/web/js/residents.js', [3, 13], 'who was here, and the people in the panel'],
+  // T-1158. The per-attribute tier the household card draws its chip from. Same two
+  // surfaces as the file that imports it — the building card's resident rows and the
+  // People directory's person card — and mapped on arrival, because an unmapped module
+  // prices every diff that touches it at the whole gate.
+  ['renderers/web/js/attribute-tiers.js', [3, 13], 'which tier each attribute of a person stands on'],
   // T-1041. The agency relation renders on the BUILDING card (part 3) and on the person
   // card the People directory opens (part 13) — one module, two surfaces, and both are
   // pinned. `people.js` is the directory itself, mapped for the first time here: it was
@@ -243,6 +248,12 @@ const COVERAGE = [
   ['renderers/web/js/agencies.js', [3, 13], 'the agency on the card, and on the person'],
   ['renderers/web/js/people.js', [13], 'the directory of everyone in the town'],
   ['data/reconstruction/1835_agencies.json', [3, 13], 'the compiled relation both cards read'],
+  // T-1160. The Evidence hub is asserted in PART 12 (eight tiles, each counting its
+  // own mount) and its mounts are stress-measured for overflow in PART 13, so the
+  // population profile and the hub itself are read by both and by nothing else.
+  ['renderers/web/js/evidence.js', [12, 13], 'the Evidence hub and its tiles'],
+  ['renderers/web/js/population.js', [12, 13], 'the town\u2019s people, profiled'],
+  ['data/reconstruction/1835_population_profile.json', [12, 13], 'the profile the panel renders'],
   ['renderers/web/js/display-name.js', [3], 'the prose may not name a level the record is not'],
   ['renderers/web/js/popup.js', [3], 'the card a visitor opens'],
   ['renderers/web/js/census.js', [3, 10], 'the population on the card and in the census'],

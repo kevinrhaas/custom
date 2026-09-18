@@ -1,5 +1,56 @@
 # STATUS
 
+## T-0437 — sparse smoke checkout, 2026-09-17
+
+The bake smoke checkout selects only tools and `docs/SITE-BUDGET.md`, at the
+bake output SHA. The published mirror still comes from the artifact. All eight
+legs and the blocking PR dependency remain. Five actual bakes supplied **40
+checkout readings: 1–5 s, median 3 s, p90 4 s, zero over five or thirteen minutes**.
+The comparable desktop-tail p90 fell from 331 s (104 historical legs) to 4 s
+(five new legs); historical counts over those thresholds were 11 and 7.
+
+The corrected cap is **40 minutes**, down from the original 45. PR #1407's
+provisional 30-minute cap used a partial snapshot; three later successful bodies
+took 31 m 49 s, 31 m 59 s and **32 m 10 s**. The completed sample's largest
+successful-job overhead is **51 s**. Combining these maxima gives 33 m 01 s;
+40 minutes leaves **6 m 59 s / 21.2%** headroom. The calculation and complete
+timestamps are in ROADMAP § THE RUN BUDGET and `measurements/T-0437-checkouts.json`.
+
+Final outcomes: **27 smoke jobs passed, 8 failed, 5 were cancelled**; every
+checkout step succeeded. The eight failures are the pre-T-1245 triangle-budget
+failures also reproduced by unchanged baseline #606; the target dev contains
+that fix. The five cancellations are #611 bodies superseded by the final
+workflow push after their checkout readings. Failed/cancelled bodies are not
+used as successful-duration samples. This is not five green renderer matrices;
+five bakes also cannot guarantee that no rare future checkout tail will occur.
+Nothing in the scene changes.
+
+Isolated sparse-tree verification passed stage 9 + always-on checks at both
+viewports (**46/0**, zero page errors); boot passed at 7.270 MB / 12 MB against
+the stable T-1156 fixture. A fresh filtered fetch materialized exactly 423 files
+in 30.423 s: 12.227 MB selected tracked bytes versus 3.783 GB, with 5.56 MB in
+`.git`. The dependency audit is in ROADMAP; these local checks supplement the
+actual five-bake timing sample.
+
+## T-1156 — nightly boot-budget enforcement, 2026-09-17
+
+Owner-requested workflow change: the desktop `1-2` smoke leg runs
+`measure_boot_payload.mjs --check` once, after downloading the bake's published
+mirror. Its nonzero exit fails `needs: smoke` and withholds the bake PR. The
+12 MB ceiling, eight smoke legs and existing job ceilings are unchanged; the
+new measurement step has a three-minute timeout.
+
+Measured from a clean export of `01ce6b7731d7b9db08a1369f5f9695807b053793`:
+**7.270 MB**, no failed requests, **25.747 s** on this host. A separate 13 MiB
+incompressible fixture measured **13.004 MB** and the unchanged tool refused
+with exit **1** against the real 12 MB definition. YAML validation confirms
+artifact-before-check order, exactly one selected leg, and the blocking PR
+dependency. These are local measurements, not a completed nightly CI run.
+The scheduled nightly adopts this workflow definition on the normal owner-controlled
+promotion to `main`; this PR targets `dev` and does not promote production.
+Nothing in the scene changes; no release-note entry is needed for this CI wiring.
+
+
 ## Shipped 2026-09-16 — T-0537, T-0968, T-0232, T-0234, T-0727: the loop's gates, worked as one
 
 Owner-directed batch of the five band-7 gate tickets; nothing in the scene changes. The

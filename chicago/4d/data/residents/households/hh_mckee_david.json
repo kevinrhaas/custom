@@ -61,7 +61,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Government blacksmith to the Indian agency at Chicago. Andreas names the agency establishment under Col. Owen: sub-agents Kercheval and Stuart, 'Billy Caldwell (Sauganash) as interpreter; David McKee as blacksmith, and Joseph Porthier as striker'. The 1821 treaty obliged the United States to keep a blacksmith at Chicago for the Potawatomi and McKee was hired for that."
+    "note": "Government blacksmith to the Indian agency at Chicago. Andreas names the agency establishment under Col. Owen: sub-agents Kercheval and Stuart, 'Billy Caldwell (Sauganash) as interpreter; David McKee as blacksmith, and Joseph Porthier as striker'. The 1821 treaty obliged the United States to keep a blacksmith at Chicago for the Potawatomi and McKee was hired for that.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "blacksmith"
+    ]
    },
    "sources": [
     "andreas_1884_v1",
@@ -89,7 +93,25 @@
       "reason": "This card rests on 4 thing(s) the consolidation did not read — andreas_1884_v1, chicago_tribune_1882_04_25_old_settler_deaths, isa_public_domain_land_tract_sales, kinzie_waubun_1856. G2b fired on the seven domains the ladder reads and says nothing about the evidence outside them, so the grade stands. The same reasoning the ladder's own G5 gives for abstaining (T-0515)."
      }
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "blacksmith",
+     "kind": "trade",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": true,

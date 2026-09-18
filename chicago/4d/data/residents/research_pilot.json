@@ -6872,16 +6872,16 @@
     {
       "person_id": "hugunin_leonard_c",
       "household_id": "hh_hugunin_leonard_c",
-      "name_as_recorded": "Leonard, C. Hugunin",
+      "name_as_recorded": "Leonard C. Hugunin",
       "starting_evidence": "letter_list_only",
       "reviewed_on": "2026-09-02",
       "outcome": "corroborated_enrichment",
       "summary": "The Old Settlers of Chicago proceedings record Leonard C. Hugunin as arriving 17 August 1833, and the 1839 Chicago directory lists Leonard C. Hugunin as a speculator. The rare full name, dated Chicago arrival and later directory continuity independently corroborate the postal-list person without adding an unproved 1 July 1835 address.",
       "queries": [
-        "\"Leonard, C. Hugunin\" Chicago 1835",
-        "\"Leonard, C. Hugunin\" Illinois 1834 1835",
-        "\"Leonard, C. Hugunin\" Chicago directory 1839",
-        "\"Leonard, C. Hugunin\" genealogy occupation migration"
+        "\"Leonard C. Hugunin\" Chicago 1835",
+        "\"Leonard C. Hugunin\" Illinois 1834 1835",
+        "\"Leonard C. Hugunin\" Chicago directory 1839",
+        "\"Leonard C. Hugunin\" genealogy occupation migration"
       ],
       "sources": [
         "chicago_old_settlers_hugunin_1883",

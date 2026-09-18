@@ -115,6 +115,77 @@ whose mirror row also says `father` is the one-way claim the rule exists to
 catch. `uncle`/`nephew` and `cousin` are still undeclared, because nothing in
 the corpus has needed them.
 
+## `associated_with` — the places a person was, plural and dated (T-1238)
+
+`lives_at` and `works_at` are **singular** and **undated**, and the sources are
+frequently neither. Jeremiah Porter's record says so in its own note: Andreas has
+P. F. W. Peck invite him "to make his **temporary** lodging place and study in the
+unfinished loft of his two-story store", the word is the source's, the link is
+dated 1833 — and "whether he was still in the loft in 1835 ... is unknown". A bare
+`lives_at: peck_store` states none of that; it reads as the household's residence
+on 1 July 1835, which is the one thing Andreas refuses to say. T-1237's
+reconciliation row inherits the flattening and dates the same claim `1835-07-01`,
+because that is all a singular field can mean.
+
+So a relationship between a record and a place is a **list**. `associated_with` is
+optional, may sit on a household **or** on a person, and each row is:
+
+| field | means |
+|---|---|
+| `kind` | from `index.json`'s `vocabulary.association_kinds` |
+| `place_or_structure_id` | a structure id, or the street / face / division the evidence reached |
+| `resolves_to` | which of those it is — `structure`, `street`, `face`, `division` |
+| `from` / `to` | a year, a month (`1833-06`) or an ISO day; either may be null |
+| `tier` | `attested` / `inferred` / `reconstructed` |
+| `source_id` | required above `reconstructed`, refused at it |
+| `note` | the reasoning that dated it and the clause that limited its place |
+
+T-1147 clause 7 names the six-field shape and says it is written on the person;
+`resolves_to` and `note` are added to it for two reasons the rest of this layer
+already insists on — a place that is a street is not a place that is a roof and a
+consumer may not guess which it holds, and a claim here carries its reasoning.
+
+Three rules, and each exists because of a specific way this goes wrong:
+
+- **`place_or_structure_id` is never null. An absent relationship is an absent
+  row.** The four rungs are the four a source can reach; "no place at all" is not
+  one of them, because a relationship with no place is not a finding about where
+  somebody was. John Bates jr has a workplace row and no home row — his `lives_at`
+  says "Not attested." and that is an absence, not a claim. (T-1237's *seating
+  class* axis is a different question and does need a `none` class: it is defined
+  over the whole household layer, this list is defined over claims.)
+- **A row that dates neither end must say `"undated": true`.** An undated
+  relationship is an admission this project counts, not a gap a later reader
+  mistakes for an oversight.
+- **The singular link may not drift from the plural rows.** Both shapes stand
+  until the migration lands, so a record carrying `associated_with` and a non-null
+  `lives_at`/`works_at` must carry that structure among its rows —
+  `lives_at` against a `home`/`lodging` row, `works_at` against one of
+  `agency_held`/`business_premises`/`church`/`civic_seat`/`school`/`workplace`.
+  Otherwise the half-way point of the migration is a record that says two
+  different things about the same man and a reader gets whichever field they
+  happened to load. `tools/validate.py` refuses it.
+
+`land_purchased` is in neither family on purpose: a holding is not a place a man
+was.
+
+**What this buys, in one record.** The Porter household's single `works_at` names
+the First Presbyterian Church for the minister's charge and says nothing whatever
+about his wife. Eliza Chappel Porter kept Chicago's first infant school; her own
+rows carry it at `chappel_infant_school` from 1833 **to 1834** — a relationship
+that was over before the scene date, which no singular field in this layer can
+express — and her founding membership of that same church from June 1833. Two
+kinds, one roof, two people, three dates.
+
+**What is not yet written.** Four records carry rows; the other 1,253 do not, and
+`tools/associations.py --check` prints the distance every run. The `street`,
+`face` and `division` rungs are declared and unused here because the corpus
+already needs them and this ticket does not spend them: T-1237 committed 61
+street-only and 62 unplaceable business locations and 52 households whose evidence
+reaches a division and no further. Those are T-1239's and T-1198's to write, and
+the migration of the singular fields themselves is its own ticket — nothing in
+this layer reads the plural rows yet, so no renderer changes with them.
+
 ## The kinship the corpus states, surveyed and ruled on (T-0734)
 
 The audit that opened T-0734 found **14 of 1,404** people related to anybody at
@@ -268,3 +339,97 @@ getting done.
 
 **To remove a ruling**, move it into a top-level `withdrawn[]` carrying the cluster `id`,
 the `rule`, a `reason` and the `ticket` that decided it.
+
+## `roles[]` is the trade record; `occupation` is a view of it (T-1229, of T-1145)
+
+A person's trades, professions and offices live in `persons[].roles[]`, and
+`persons[].occupation` is a **generated compatibility view** of the roles that
+actually cover the scene date. `tools/derive_resident_roles.py` writes both;
+`tools/check.sh` re-derives them every commit and `tools/validate.py` holds the
+shape. Never hand-write either.
+
+The singular field was the defect. It holds one word, one confidence and one
+implied date — 1 July 1835 — so a man printed as a candle manufacturer in 1833, a
+brickmaker in 1839 and a school inspector in the 1839 civic register could only be
+one of them on his own card, and the surviving one was dated to a year no source
+cited for it describes. That is exactly what Daniel Elston's card did.
+
+A role row says:
+
+| field | what it is |
+|---|---|
+| `role` | a controlled word from `index.json`'s `vocabulary.occupations`, or **null** where the source's own wording has not been adjudicated into it — null is honest, a near word is not |
+| `as_printed` | the source's own wording, where the card carries it |
+| `kind` | `vocabulary.role_kinds` — a trade, a profession, an office, an employment or a business interest |
+| `from` / `to` | the bound the evidence permits, **both ends or neither** |
+| `precision` | `vocabulary.role_date_precision`; `source_span` is the honest answer when the bound is the span a volume is ABOUT |
+| `dated_by` | `vocabulary.role_dated_by` — a date with no account of where it came from cannot be argued with |
+| `covers_scene_date` | whether the evidence reaches 1 July 1835, on `audit_scene_window_trades.covers_scene`'s rule and deliberately no other |
+| `confidence`, `sources`, `claim`, `note` | as everywhere else in this dataset |
+
+Two rules are load-bearing:
+
+- **An unknown date stays unknown.** It is never widened to the scene date, and a
+  role with no bound may not claim a precision.
+- **A role that does not reach 1835 cannot fill the 1835 field.** Where one used
+  to, `occupation.withdrawn_from_scene_date` carries the trade, the grade it was
+  held at and `tools/audit_scene_window_trades.py`'s verdict for taking it off, so
+  the withdrawal states its reason on the card and not only in a ledger. That is
+  T-0991's repair, and it is why the audit's standing population is now zero.
+
+Two roles covering the scene date are **two roles**: both stand in `roles[]` and
+`occupation.roles_at_scene_date` names both, so the singular field can no longer
+decide which of a man's two trades the town is told about. A person with no role
+evidence carries no `roles[]` and no view keys — and, the assertion that absence
+makes, no trade in the 1835 field either.
+
+What this does not yet read: the newspaper gazetteer's `persons[].occupations[]`,
+the 1839 directory and civic-register crosswalks and the 1843/1844 identity-master
+appearances, together with each role's stated place and employer (T-1254); and the
+People view's dated timeline (T-1255).
+
+## `profile_facts` — what the matched research actually said (T-1232)
+
+94 of this layer's `resident_research` blocks carry `asserted_identity: true` — the
+project's own verdict that the person traced through a county history, a family
+genealogy or a church roll is the person on the card. The facts inside those blocks
+lived in their `summary` and `evidence_for` PROSE, beside structured fields on the
+same record that read `"Not attested."` `hh_andrus_thomas` is the defect in one file:
+a DuPage history gives "arrival in Chicago Dec. 1, 1833" and the card's `origin`,
+`reason_for_coming` and every dated life event said nothing.
+
+`tools/spend_person_facts.py` reads
+`data/research/residents/person_fact_readings.json` — the hand reading of those 94
+blocks — turns EVERY candidate in EVERY research block into a row of
+`person_facts.json`, adjudicates it, and writes the asserted ones here.
+
+`persons[].profile_facts` is an optional list. Each row is an ordinary graded claim
+block — `value`, `confidence`, `sources`, `note` — plus five fields that make it a
+dated reading rather than a 1835 claim:
+
+| field | means |
+|---|---|
+| `field` | the fact class: `arrival_at_chicago`, `origin`, `sex`, `name_as_printed`, `birth_year_bound`, `death`, `marriage`, `life_event`, `departure_from_chicago`, … |
+| `describes_date` | the date the reading SPEAKS ABOUT, which is not the date it was printed |
+| `place_class` | `chicago`, `outside_chicago` or `not_a_place` — a fact set somewhere else is why a presence could not be lifted |
+| `record_id` | the research block and the row within it, `resident_research:T-0485#01` |
+| `as_read` | the sentence it was read from, so the verdict can be disagreed with |
+
+**It never displaces anything.** A household's `arrival` is a separate claim and a
+postal bound and a stated arrival are different things; both stand. The only fields
+this tool may fill are a household's NULL `origin` or `reason_for_coming`, and only
+where the household holds one person — a household field speaks for everybody under
+the roof, so one person's origin may not be dealt to a second.
+
+**It mints nobody.** A marriage names a spouse and a chronology names a travelling
+companion; neither becomes a household member. T-1170 fills families from exactly
+these rows, under the household model, where every such person carries a basis and a
+seed.
+
+**The withheld rows are the product.** Most candidates are refused and each refusal is
+written down: `later_only` (T-0513's ladder — a volume printed after the scene may date
+and corroborate and may never promote), `outside_chicago`, `contradicted`,
+`insufficient_identity`, `duplicate`, `no_candidate`, or `unresolved:T-NNNN` where the
+fact belongs to a field another ticket is building (a trade is T-1145's plural roles, a
+premises is T-1147's location spend). T-1159's borderline roster is a FILTER over
+`person_facts.json`, not a second reading of the same corpus.

@@ -10654,9 +10654,9 @@ Related: **L108** (the reservation boundary, from the same corner and the same b
 lines drawn from no sheet) · tickets **T-0609** (this), **T-0557** (the reading it spends).
 **Recorded:** 2026-09-04; count restated 2026-09-06 (T-0883).
 
-### L220 — 397 people join the town on the town's own lists, and a household is written round each of them
+### L220 — 392 people join the town on the town's own lists, and a household is written round each of them
 
-**Scope:** `residents.persons[civic_mint]` — 397 people
+**Scope:** `residents.persons[civic_mint]` — 392 people
 **Decision:** on 2026-09-03 the owner ratified a grading ladder for resident evidence,
 quoted in full in T-0514 and in `docs/RESEARCH/resident-grading-policy.md`, and T-0513
 spent it: `tools/consolidate_resident_evidence.py --build` reads seven source domains,
@@ -10791,6 +10791,32 @@ scene-year readings, and gates its own output against any such appearance. The e
 splitter still turns, for example, `E. K[in]zie` into the false surname `Zie`; that separate
 identity defect is preserved as T-1155 rather than hidden inside this mint guard.
 
+**And six fewer, because a parish register is not a town roll (T-1129, 2026-09-17).**
+Father St Cyr rode down the state in May 1834 and married three couples in the house of
+Hy Durbin at Bear Creek, Sangamon County, some 180 miles from this town, and his register
+carries those entries on the same pages as the Chicago ones. The reader that transcribed
+it said so on every affected row — `at_chicago: false`, with the footnote that places them,
+and `tools/read_st_cyr_register.py` names the trap in capitals in its own docstring — but
+nothing downstream read the field, so all six people the three entries name were minted
+into the 1835 town. This scope falls from 397 to 391. FIVE OF THE SIX RESTED ON THAT ENTRY
+AND NOTHING ELSE: Mary Durbin, John Simmons, John Vincent, Marion Simmons and Cery
+Logdson. The sixth, Henry Fitz Simmons, also carried an 1840 census line, which is later
+evidence and no bound on 1835, so with the marriage refused the ladder reaches nothing
+inside the scene window and his container is not minted either. WHAT MADE IT WORSE THAN A
+MISPLACEMENT is that the arrival note the mint generated said, in this project's own
+words, that "church_1833_1835 names this person at Chicago by 20 May 1834" — a false
+statement inside a provenance artifact, standing against a record that says NOT CHICAGO in
+capitals. The refusal is the fourth of its kind here and the first read at the granularity
+of a RECORD rather than a class: T-1049's `newspaper_out_of_town` and T-1131's
+`places_in_1835` both refuse a whole body of evidence, while this register carries Chicago
+entries and Sangamon County entries between the same covers and the distinction is printed
+per row. So `mint_civic_residents.py` reads the field off the corpus, refuses an identity
+whose every scene-year reading is such a row, and drops the reading — never the person —
+where a clean naming stands beside it; and its gate asks the same question of the
+committed tree, so a card that acquires the claim by hand or by carry-over goes red. The
+six are not dropped from the research: the marriages stay read, transcribed and cited, and
+a page that puts one of these people at Chicago after all can mint them again.
+
 **The 532nd, and how it was settled.** The 531 were minted in one pass on 2026-09-03 and every
 count in this entry is a count about that pass, left as it stands. On 2026-09-05 T-0724 taught
 the splitter that a compound surname is one surname, which parted `H. Van Den Bogart` from
@@ -10874,10 +10900,31 @@ files) and `index.json` from 318 KB to 510 KB. No geometry moves, no triangle is
 and not one of the 531 is placed anywhere: `housed` in the town census does not move at all,
 which is the ruling's own condition, measured.
 
+**And one more, because a supplied letter is part of the name (T-1155, 2026-09-17).**
+T-1115's paragraph above named the defect it was leaving standing: the splitter took the
+square brackets off a printed name *and everything inside them*, so a transcriber's supplied
+letter was deleted along with a directory's aside. T-1155 keeps the supplied letters, and
+this scope rises from 391 to 392. The rise is ONE card and it is A. Sweet, named at Chicago
+by the Democrat of 4 June 1834. That reading used to fold onto Alanson Sweet unopposed,
+because the corpus's other Sweet — printed `Alon[s]on Sweet` — read as the two forenames
+`alon` and `on` and was no rival to an initial. With the letter back it reads as the full
+forename Alonson, the ladder's R3 refuses the initial A to both men rather than choosing,
+and the reading stands on a container of its own. The cluster is ruled `undecided` in
+`data/residents/card_merge_rulings.json` and not merged, because whether Alonson is a second
+man or a compositor's transposition of Alanson is a reading of the page: T-1281 owns it, and
+deciding it one way takes this count back to 391. NOTHING ELSE IN THE SCOPE MOVED by a mint
+or a fold. What moved is grade, on evidence that was always these people's and that the
+mangled keys had been holding apart: across the whole residents layer `attested` rises from
+404 to 410 and `inferred` falls from 877 to 872 — five cards regraded (Curtin, Miller,
+Borland, Spence, Johnson) and the new Sweet card attested — and two of them, David Curtin
+and Andrew W. Borland, lose the `projected_resident` caveat, taking that count from 730 to
+728. Households go from 1,257 to 1,258 and persons from 1,281 to 1,282. No geometry moves
+and no figure is drawn (L1).
+
 Related: **L214** (the pass beside this one) · **L213** (the test this disagrees with) ·
 **L207** · **L206** · **L1** (no figure is drawn for any resident) · tickets **T-0514**
 (this), **T-0513**, **T-0515**, **T-0633**, **T-0667**.
-**Recorded:** 2026-09-04; count restated 2026-09-16 (T-1115).
+**Recorded:** 2026-09-04; count restated 2026-09-16 (T-1115) and 2026-09-17 (T-1155).
 
 ### L221 — What the 1835 town may show of the Indian trade: a catalogue of about 130 articles is admitted as corroboration and refused as a warrant
 **Decision:** the American Fur Company's own list of the goods it furnished "for trade of the
@@ -12025,3 +12072,73 @@ counted.
 Related: **L121**, which this entry supersedes on the value and keeps on the method, and **L120**
 and **L114**, the other entries about this wood. Ticket **T-1127**; ROADMAP **K45(b3)**.
 **Recorded:** 2026-09-15.
+
+### L240 — The 1812 spit's attachment to the mainland is asserted; its isthmus is not drawn
+**Decision:** `shore_1812_pre_cut` declares that the baymouth bar ran to the mainland — it names
+the point on the north bank it met (the vertex Wright's survey leaves where the north pier was
+later built out from the shore) and emits the 129.1 m between that point and the bar's nearest
+corner as a feature called `spit_attachment_gap_1812`, kind `unmodelled_gap`, drawn as a straight
+line. **The straight line is not a reading.** The feature claims the attachment and nothing else:
+`does_not_claim` says so on the record — not the isthmus's width, not its lake face, not its
+height, and no ground is asserted between the two points.
+**Why:** Wright draws the bar as an *island* because the 1833-34 cut had made it one by the time he
+surveyed it. In 1812 there was no cut, and a baymouth spit is the entire reason the river was
+deflected south for half a mile before it reached the lake — the landform's behaviour is the
+evidence for its continuity, and Swearingen's 1803 journal describes the consequence ("stopped up
+at the mouth, by the washing of sand, from the lakes"). So the attachment is a sound deduction and
+is graded `inferred`. Its *shape* is not: nothing reached says how wide the isthmus was, whether it
+ran straight, or where its seaward face lay, and the 1834 shore immediately north of it is sand the
+piers themselves caught and therefore cannot be read backwards.
+**Consequence:** an 1812 scene built on this planform has a stated hole in it. The spit is
+continuous as a claim and discontinuous as geometry, and anything that wants to walk across it
+needs a surface that does not exist yet. That is deliberate: an elevation for the isthmus would
+have to be argued for in a terrain spec, where every other elevation in this project is argued
+for, rather than smuggled in as a by-product of closing a polygon.
+**How to resolve:** **T-1243**, which authors `e1830_natural`'s terrain spec and generates its
+heightfield, is where the isthmus gets a surface and a height or is written down as absent. A
+pre-1833 chart or sounding of the bar would resolve it outright; none has been reached.
+Related: **L3** (flatness), and the 1835 state's Wright/Rees band, which is the same refusal to
+average two readings applied to a different shore. Ticket **T-1242** (piece 1 of **T-0468**).
+**Recorded:** 2026-09-17.
+
+### L241 — the 1880s scene stands on 1 July because the 1835 scene does, and no source says anything about that day
+
+**Decision:** the representative date of the 1880s South Side scene is **1 July 1888**
+(`data/terrain/1880s_scene_date_constraints.json`, epoch `e1871_postfire`, shoreline state
+`shore_1880s_ic_edge`). The **year** is evidence: HABS IL-1015 states that the Glessner House at
+1800 South Prairie Avenue was "Designed and built between May 1885 and December 1887", so a scene
+that wants the avenue's one datable landmark standing cannot be dated before 1888, and T-0473 asks
+for a date inside the 1880s, which closes the window at 1889. **The day and the month are not
+evidence.** Nothing in this corpus says a word about 1 July 1888. It is chosen so that the two
+scenes this project intends to carry — summer 1835 and the 1880s Prairie Avenue — stand on the
+same reach of ground, in the same season, at the same hour of light, fifty-three years apart, and
+so that the only season for which this project has built flora, fauna and lighting behaviour is
+the season both scenes are in.
+
+**What it lets through, stated plainly.** Anything on the South Side that was built, burnt, moved
+or demolished between 1 January and 1 July 1888 will be resolved by this model as though the whole
+half-year had already happened, and anything finished in the second half of 1888 will be resolved
+as absent. No such building is in the model yet — the 1880s epoch has no ground, no shoreline and
+no structures — so the liberty currently costs nothing. It is recorded now, before the first
+1880s record lands, because the cheapest moment to admit an arbitrary day is before anything is
+dated against it.
+
+**What is NOT invented here.** The 1888 floor is documented and re-derived on every commit. The
+Kimball House opposite is commonly dated 1890–1892 and that number appears **nowhere** in this
+project: HABS IL-1077 was opened specifically to date it and carries no date at all, and the
+record is committed in that state (`habs_kimball_house_il_1077`) so the absence is a finding
+rather than a gap somebody fills off the open web.
+
+**What this replaces.** `tools/check_shoreline_states.py` carried `date(1885, 7, 1)` for the 1880s
+address from T-1152 until today. It was scaffolding for a different assertion, nothing documented
+it, and it was three and a half years too early for the avenue the epoch exists to show. It is
+gone; the gate reads the derived date out of the committed readings.
+
+**How to resolve:** a period source that fixes a day — a dated photograph of the avenue, a dated
+Sanborn sheet, a newspaper account of a specific afternoon — would turn the day from a convention
+into a reading. Until then `tools/check_1880s_scene_date.py` keeps the convention honest by
+re-deriving the date and refusing any hand edit of it.
+
+Related: ticket **T-1249**, piece 1 of **T-0473**; **T-1250** owns the lake edge, **T-1251** the
+terrain spec, **T-1252** the heightfield and the scene file.
+**Recorded:** 2026-09-17.

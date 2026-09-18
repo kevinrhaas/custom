@@ -52,6 +52,28 @@
   ],
   "note": "His own congregation, in its own building at Lake and Clark by the scene date. data/structures/first_presbyterian_church.json deliberately records its occupants as the CONGREGATION rather than as a person, because no source names the minister in charge on 1 July 1835 - and this household is why. He is the minister and he may have been away."
  },
+ "associated_with": [
+  {
+   "kind": "lodging",
+   "place_or_structure_id": "peck_store",
+   "resolves_to": "structure",
+   "from": "1833",
+   "to": null,
+   "tier": "attested",
+   "source_id": "andreas_1884_v1",
+   "note": "THE WORD 'TEMPORARY' IS THE SOURCE'S OWN, and this row exists to keep it. Andreas: Peck 'invited Mr. Porter to make his temporary lodging place and study in the unfinished loft of his two-story store'. The loft is dated 1833; no source reached says when he left it, so `to` is null rather than the scene date. The singular `lives_at` above cannot say either of those things - it reads as the household's residence on 1 July 1835, which is the one claim Andreas refuses to make, and T-1237's reconciliation row inherits that flattening by dating the same claim 1835-07-01."
+  },
+  {
+   "kind": "workplace",
+   "place_or_structure_id": "first_presbyterian_church",
+   "resolves_to": "structure",
+   "from": "1833-06",
+   "to": null,
+   "tier": "attested",
+   "source_id": "andreas_1884_v1",
+   "note": "The congregation was organised in June 1833 under Rev. Jeremiah Porter, which is what the June date is - the charge, not this building, whose own date no source reached gives. `to` is null for the reason the structure record states in full: NO SOURCE REACHED NAMES THE MINISTER IN CHARGE ON 1835-07-01, so the row may not be closed at the scene date and may not be extended to it either."
+  }
+ ],
  "present_on_scene_date": {
   "value": "uncertain",
   "confidence": "attested",
@@ -73,7 +95,11 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "Pastor of the First Presbyterian Church of Chicago, which he organised on Wednesday 26 June 1833 with twenty-six members - seventeen of them from the garrison church at Fort Brady and nine of them citizens of the village. He came to Chicago as chaplain with the troops transferred from Fort Brady."
+    "note": "Pastor of the First Presbyterian Church of Chicago, which he organised on Wednesday 26 June 1833 with twenty-six members - seventeen of them from the garrison church at Fort Brady and nine of them citizens of the village. He came to Chicago as chaplain with the troops transferred from Fort Brady.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "minister"
+    ]
    },
    "sources": [
     "andreas_1884_v1"
@@ -93,7 +119,25 @@
      "chicago_democrat_1833_1835",
      "fergus_1843_old_settler_death_notices"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "minister",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   },
   {
    "id": "porter_eliza_chappel",
@@ -123,8 +167,34 @@
     "sources": [
      "andreas_1884_v1"
     ],
-    "note": "She kept Chicago's first infant school - this dataset holds the building as chappel_infant_school - and Andreas gives her a full biographical notice: 'Miss Eliza Chappel is entitled to especial distinction in this work.' Born at Geneseo, N.Y., 5 November 1807, of parents 'who united Huguenot and Pilgrim blood'. She was also one of the twenty-six founding members of the First Presbyterian Church in June 1833, listed among the seventeen from the garrison."
+    "note": "She kept Chicago's first infant school - this dataset holds the building as chappel_infant_school - and Andreas gives her a full biographical notice: 'Miss Eliza Chappel is entitled to especial distinction in this work.' Born at Geneseo, N.Y., 5 November 1807, of parents 'who united Huguenot and Pilgrim blood'. She was also one of the twenty-six founding members of the First Presbyterian Church in June 1833, listed among the seventeen from the garrison.",
+    "derived_from": "roles",
+    "roles_at_scene_date": [
+     "schoolteacher"
+    ]
    },
+   "associated_with": [
+    {
+     "kind": "school",
+     "place_or_structure_id": "chappel_infant_school",
+     "resolves_to": "structure",
+     "from": "1833",
+     "to": "1834",
+     "tier": "inferred",
+     "source_id": "andreas_1884_v1",
+     "note": "A RELATIONSHIP THAT WAS OVER BEFORE THE SCENE DATE, which is why it is written here and nowhere else in this record's shape. Andreas gives her Chicago's first infant school and this dataset holds its building; the structure's occupants block dates the occupancy 1833-34 and closes it. The tier follows that block: the occupancy is inferred, not attested. THE SCHOOL'S MOVE INTO THE CHURCH DURING 1834 IS NOT WRITTEN AS A ROW - both the school's and the church's records say that claim comes from the project's dossier, from summaries with no source record in data/sources/, and a row of this shape must name a source that resolves. It stays reported rather than cited until a source is read for it."
+    },
+    {
+     "kind": "church",
+     "place_or_structure_id": "first_presbyterian_church",
+     "resolves_to": "structure",
+     "from": "1833-06",
+     "to": null,
+     "tier": "attested",
+     "source_id": "andreas_1884_v1",
+     "note": "One of the twenty-six founding members of the First Presbyterian Church in June 1833, listed among the seventeen from the garrison. The household's single `works_at` names this same building for her husband's charge and says nothing about her; a membership and a pulpit are different relationships with the same roof, and only a plural list can hold both."
+    }
+   ],
    "sources": [
     "andreas_1884_v1"
    ],
@@ -141,7 +211,25 @@
     "source_ids": [
      "chicago_democrat_1833_1835"
     ]
-   }
+   },
+   "roles": [
+    {
+     "role": "schoolteacher",
+     "kind": "profession",
+     "as_printed": null,
+     "from": "1673",
+     "to": "1857",
+     "precision": "source_span",
+     "dated_by": "source_describes_date",
+     "covers_scene_date": true,
+     "confidence": "attested",
+     "sources": [
+      "andreas_1884_v1"
+     ],
+     "claim": null,
+     "note": "THE BOUND IS THE SOURCE'S, NOT THE MAN'S. This role is carried by the card's 1835 occupation block and is dated by what the cited source or sources are ABOUT, which is why `precision` can be no better than the span they cover. The span reaches 1835, so this role stands in the scene-date view. The printing the trade was read off is not on the card and is fetched by T-1254."
+    }
+   ]
   }
  ],
  "touches_removal": false,

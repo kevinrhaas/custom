@@ -9,11 +9,11 @@
     4
   ],
   "derives_from": {
-    "fingerprint": "94c928a57288053e596d8f8182ef10c83c59e5ee953b4648bae274207d3fa415",
+    "fingerprint": "e07d2b46a1eab801004dea6571eb81fa78dfb3f8c653fa75651c53598a096f29",
     "_doc": "sha256 over the layers the leads are looked up in, the WORKS table, and the committed card text of every parsed volume. Recomputed by --check; a mismatch means --parse is no longer a no-op and the leads must be regenerated and re-ruled.",
     "layer_counts": {
       "census_1840": 995,
-      "residents": 1287,
+      "residents": 1282,
       "structures": 384,
       "voters": 345
     }
@@ -16447,6 +16447,11 @@
           "rule": "OCR variant (0.89 similarity to 'jones')"
         },
         {
+          "id": "jones_es_high",
+          "name": "High Es Jones",
+          "rule": "OCR variant (0.89 similarity to 'jones')"
+        },
+        {
           "id": "jones_m",
           "name": "M Jones",
           "rule": "OCR variant (0.89 similarity to 'jones')"
@@ -16546,6 +16551,11 @@
         {
           "id": "jones_d_e",
           "name": "D E Jones",
+          "rule": "exact surname"
+        },
+        {
+          "id": "jones_es_high",
+          "name": "High Es Jones",
           "rule": "exact surname"
         },
         {

@@ -8,11 +8,11 @@
  "what_a_match_here_does_not_mean": "It does not mean the person was in Chicago in 1835, and it does not mean they arrived before 1843 — the list's own header, quoted above, says it also names citizens who arrived later and others merely 'prominently connected with Illinois history'. A match means one thing: a name in the 1835 layer and a name in this list agree on surname and first initial, and the list gives that name a death date and an age. The date and the interval are the payload.",
  "rule": "SURNAME must match after both are folded (case, punctuation and the transcriber's usual confusions removed), AND the first initial of the given name must match. A surname-only agreement is a REFUSAL, however good it looks. Where one 1835 person meets more than one entry the match is AMBIGUOUS and is filed as such; where two 1835 people meet one entry it is CONTESTED and no match is made.",
  "counts": {
-  "residents_considered": 1285,
+  "residents_considered": 1280,
   "matched_one_entry": 63,
   "matched_more_than_one_ambiguous": 17,
   "one_entry_contested_by_two_residents": 16,
-  "surname_present_initial_absent_refused": 241,
+  "surname_present_initial_absent_refused": 243,
   "matches_carrying_a_birth_year": 42,
   "matches_carrying_a_date_of_death": 57
  },
@@ -932,7 +932,7 @@
    "person_id": "harmon_isaac_d",
    "household_id": "hh_harmon_brothers",
    "grade_1835": "attested",
-   "occupation_1835": "dry_goods_merchant",
+   "occupation_1835": "none_recorded",
    "rule": "Surname 'Harmon' folds to the same string as the entry's, and the given name of both begins I.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -1426,7 +1426,7 @@
    "person_id": "mason_matthias",
    "household_id": "hh_mason_matthias",
    "grade_1835": "attested",
-   "occupation_1835": "blacksmith",
+   "occupation_1835": "none_recorded",
    "rule": "Surname 'Mason' folds to the same string as the entry's, and the given name of both begins M.",
    "resident_given_is_initial_only": false,
    "entries": [
@@ -3002,6 +3002,13 @@
  ],
  "refusals": [
   {
+   "resident": "A Sweet",
+   "person_id": "sweet_a",
+   "surname_in_the_list": "Sweet",
+   "candidates": 1,
+   "rule": "The surname 'Sweet' is in Fergus's death notices and no entry under it carries the initial 'A' of 'A Sweet'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
    "resident": "A. Lamb",
    "person_id": "lamb_a",
    "surname_in_the_list": "Lamb",
@@ -3590,6 +3597,13 @@
    "rule": "The surname 'Porter' is in Fergus's death notices and no entry under it carries the initial 'H' of 'Hibbard Porter'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
+   "resident": "High Es Jones",
+   "person_id": "jones_es_high",
+   "surname_in_the_list": "Jones",
+   "candidates": 4,
+   "rule": "The surname 'Jones' is in Fergus's death notices and no entry under it carries the initial 'H' of 'High Es Jones'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+  },
+  {
    "resident": "Hiram A Adams",
    "person_id": "adams_hiram_a",
    "surname_in_the_list": "Adams",
@@ -3961,11 +3975,11 @@
    "rule": "The surname 'Brown' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Lemuel Brown'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
-   "resident": "Leonard, C. Hugunin",
+   "resident": "Leonard C. Hugunin",
    "person_id": "hugunin_leonard_c",
    "surname_in_the_list": "Hugunin",
    "candidates": 6,
-   "rule": "The surname 'Hugunin' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Leonard, C. Hugunin'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
+   "rule": "The surname 'Hugunin' is in Fergus's death notices and no entry under it carries the initial 'L' of 'Leonard C. Hugunin'. A surname-only agreement is a refusal, here as everywhere: the list prints eleven Smiths."
   },
   {
    "resident": "Levi Ayres",

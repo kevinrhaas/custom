@@ -65,6 +65,7 @@
  */
 
 import { citationItems, escapeHtml } from './citations.js';
+import { tierOf, isNotAsserted, TIER_LABEL, TIER_TITLE } from './attribute-tiers.js';
 // The agency relation, rendered by the module that owns it — one rendering of a
 // holding for the building card and the person card both (T-1041).
 import { agencySectionHtml, loadAgencies } from './agencies.js';
@@ -88,8 +89,44 @@ function rank(list, value) {
  * second one that means the same thing.
  */
 export function swatch(level) {
-  const cls = { attested: 'sw-doc', inferred: 'sw-inf' }[level] || 'sw-rec';
-  return `<i class="sw ${cls}" title="${escapeHtml(level || 'reconstructed')}"></i>`;
+  const cls = { attested: 'sw-doc', inferred: 'sw-inf', unknown: 'sw-unk' }[level] || 'sw-rec';
+  return `<i class="sw ${cls}" title="${escapeHtml(TIER_TITLE[level] || level || 'reconstructed')}"></i>`;
+}
+
+/**
+ * The tier's own word, beside the chip (T-1158). The chip alone was a colour with a
+ * tooltip, which is not a reading: a visitor scanning a card could see that two rows
+ * differed without being told how. `unknown` prints nothing here, because its value
+ * already reads "not recorded" and the row would otherwise say it twice.
+ */
+function tierWord(tier) {
+  if (!tier || tier === 'unknown') return '';
+  return `<span class="res-tier" title="${escapeHtml(TIER_TITLE[tier])}">${
+    escapeHtml(TIER_LABEL[tier])}</span>`;
+}
+
+/**
+ * What a reconstructed value rests on, and what would retire it — the half of the tier
+ * a reader has to be able to open (T-1158). Collapsed, because forty blocks in the
+ * whole layer carry one and a card should not make the other ten thousand pay for it.
+ *
+ * `basis.kind` is the distinction worth reading: `model` was DRAWN and carries the seed
+ * that redraws it, `rule` was ARGUED and carries the rule it was argued under. A drawn
+ * value nobody can redraw is not reproducible, so the seed is printed rather than kept
+ * for the gate.
+ */
+function basisHtml(block) {
+  const basis = block && block.basis;
+  if (!basis || typeof basis !== 'object') return '';
+  const rep = block.replaceable_by || null;
+  const drawn = basis.kind === 'model';
+  return `<details class="res-basis"><summary>${
+    drawn ? 'Drawn from a model' : 'Argued from a rule'} — <code>${
+    escapeHtml(String(basis.id || ''))}</code></summary>
+    <span class="res-why">${escapeHtml(String(basis.note || ''))}${
+    drawn && block.seed ? ` Redrawn with the seed <code>${escapeHtml(String(block.seed))}</code>.` : ''}${
+    rep ? ` This value is replaced the moment the project holds ${escapeHtml(String(rep.match || ''))}.` : ''}
+    </span></details>`;
 }
 
 /**
@@ -98,12 +135,13 @@ export function swatch(level) {
  * is not a database, and a visitor reading which day the post office was holding
  * a letter should not have to parse one.
  */
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+  'August', 'September', 'October', 'November', 'December'];
+
 export function printedOn(iso) {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso ?? ''));
   if (!m) return String(iso ?? '');
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-    'August', 'September', 'October', 'November', 'December'];
-  return `${Number(m[3])} ${months[Number(m[2]) - 1]} ${m[1]}`;
+  return `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}`;
 }
 
 /** A `<dt>/<dd>` pair, omitted entirely when the record carries nothing. */
@@ -129,13 +167,18 @@ function row(label, value) {
  */
 function claimRow(label, value, block, citationsById) {
   if (!block) return '';
+  // T-1158. The chip is the TIER now, not the raw confidence, and the two part company
+  // on exactly the rows a reader most needs them to: a null value under `confidence:
+  // "reconstructed"` is not an invention, it is an absence, and it gets the `unknown`
+  // chip and no tier word rather than the hatched one that says we made it up.
+  const tier = tierOf(block) || block.confidence;
   const shown = value === null || value === undefined || value === ''
     ? 'not recorded' : value;
   const note = block.note ? `<br><span class="res-why">${escapeHtml(block.note)}</span>` : '';
   const cites = (block.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const list = cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : '';
   return `<dt>${escapeHtml(label)}</dt>
-    <dd>${swatch(block.confidence)}${escapeHtml(shown)}${note}${list}</dd>`;
+    <dd>${swatch(tier)}${tierWord(tier)}${escapeHtml(shown)}${basisHtml(block)}${note}${list}</dd>`;
 }
 
 /**
@@ -606,9 +649,549 @@ function laterOccupationHtml(later, citationsById) {
     ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}`;
 }
 
+/**
+ * WHAT THE RESEARCH ACTUALLY SAID ABOUT THIS PERSON (T-1232).
+ *
+ * The layer carries 94 research blocks whose identity the project ASSERTED — its own
+ * verdict that the person behind the reading is the person on the card — and the facts
+ * inside them sat in paragraphs. `hh_andrus_thomas` is the defect in one record: the
+ * DuPage history gives "arrival in Chicago Dec. 1, 1833" and the card's origin said
+ * "Not attested."
+ *
+ * `tools/spend_person_facts.py` adjudicates every one of those candidates and writes the
+ * asserted ones onto the person as `profile_facts`. This renders them — each with the
+ * DATE IT SPEAKS ABOUT, which is the distinction the whole consolidation rests on, and
+ * the sentence it was read from, so a reader can disagree with the verdict rather than
+ * take it.
+ *
+ * THESE ARE NOT THE PERSON'S 1835 CLAIMS. The household's `arrival` block above is a
+ * separate claim and this section never displaces it: a postal bound and a stated
+ * arrival are different things and both are true at once. A row marked `outside_chicago`
+ * is here because it is the reason a presence could not be lifted.
+ */
+const FACT_LABELS = new Map([
+  ['arrival_at_chicago', 'Came to Chicago'],
+  ['origin', 'Came from'],
+  ['reason_for_coming', 'Why they came'],
+  ['sex', 'Sex'],
+  ['name_as_printed', 'Also printed as'],
+  ['birth_year_bound', 'Born'],
+  ['death', 'Died'],
+  ['marriage', 'Married'],
+  ['life_event', 'What the sources record'],
+  ['departure_from_chicago', 'Left Chicago'],
+  ['workplace', 'Worked at'],
+  ['role', 'Trade or office'],
+]);
+
+function profileFactsHtml(facts, citationsById) {
+  const rows = (facts || []).filter(Boolean);
+  if (!rows.length) return '';
+  const body = rows.map((f) => {
+    const cites = (f.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+    const label = FACT_LABELS.get(f.field) || words(f.field);
+    return `<li><b>${escapeHtml(label)}</b> ${swatch(f.confidence)}${escapeHtml(String(f.value ?? ''))}${
+      f.precision ? ` — the source is exact to the ${escapeHtml(words(f.precision))}` : ''}
+      <br><span class="res-why">Describing ${escapeHtml(printedOn(f.describes_date))}${
+        f.place_class === 'outside_chicago' ? ', and somewhere other than this town' : ''}.
+        <q>${escapeHtml(String(f.as_read ?? ''))}</q> ${escapeHtml(String(f.note ?? ''))}
+        Record ${escapeHtml(String(f.record_id))}.</span>
+      ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</li>`;
+  }).join('');
+  return `<dt>Spent from the matched research</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${rows.length} ${
+      rows.length === 1 ? 'fact' : 'facts'}</span>
+      <ul class="res-candidates">${body}</ul>
+      <span class="res-why">Every candidate the research proposed is adjudicated in
+        <code>data/residents/person_facts.json</code> — these are the ones this project was
+        willing to assert. The rest are withheld WITH THEIR REASON: a volume printed after
+        the scene may date and corroborate and may never promote, a source that puts the
+        person somewhere else cannot make them a resident here, and a trade belongs to the
+        occupation field rather than to this one.</span></dd>`;
+}
+
+/**
+ * A SOURCE ID IN A SENTENCE IS NOT A CITATION (T-1233).
+ *
+ * The research blocks are prose, and some of that prose names its sources by their
+ * internal handles: a G2b refusal reads "This card rests on 3 thing(s) the consolidation
+ * did not read — andreas_1884_v1, fergus_chicago_directory_1839, …". Printed as written,
+ * that is the defect the smoke has asserted against since this section was built — the
+ * household records must QUOTE their sources, not print their ids — and it caught this
+ * wiring on its first run, which is what that assertion is for.
+ *
+ * So every token in a rendered sentence that resolves to a citation is swapped for the
+ * head of that citation, and the citations themselves are listed under the block. The
+ * text is escaped BEFORE the swap and the replacement escaped on its way in: the handles
+ * are `[a-z0-9_]` and survive escaping unchanged, so the order is safe and the swapped-in
+ * title cannot carry markup. A token that resolves to nothing is left exactly as written
+ * — inventing a source is worse than showing a handle.
+ */
+// Every lowercase run, not just the snake_cased ones: `baptisthistoryhomepage` is a
+// citation id with no underscore in it, and a pattern that demanded one let exactly that
+// handle through. The MAP is the filter — a token that resolves to no citation is left
+// alone — so widening the match costs nothing and closes the hole.
+const SOURCE_ID = /[a-z][a-z0-9]*(?:_[a-z0-9]+)*/g;
+
+function citeHead(citation) {
+  const text = String(citation ?? '');
+  if (text.length <= 56) return text;
+  const cut = text.slice(0, 56);
+  return `${cut.slice(0, Math.max(cut.lastIndexOf(' '), 32))}…`;
+}
+
+/** The citations a block declares and the ones its own sentences named, as one list. */
+function citesFor(named, citationsById) {
+  const cites = [...named].map((id) => citationsById.get(id)).filter(Boolean);
+  return cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : '';
+}
+
+function prose(text, citationsById, found = null) {
+  return escapeHtml(String(text ?? '')).replace(SOURCE_ID, (id) => {
+    const cite = citationsById.get(id);
+    if (!cite) return id;
+    if (found) found.add(id);
+    return escapeHtml(citeHead(cite.citation ?? id));
+  });
+}
+
+/**
+ * THE WITHHELD HALF OF THE MATCHED RESEARCH (T-1233).
+ *
+ * T-1232 put the ASSERTED facts on the card — 40 of them — and left the other 204 in
+ * `data/residents/person_facts.json`, a file no renderer opens. That is the shape this
+ * project spends most of its effort refusing: a refusal a reader never learns of is
+ * indistinguishable from a reading nobody made, and on this layer the refusals are the
+ * majority and the argument. `tools/spend_person_facts.py` now projects them to
+ * `person_facts_withheld.json` — the full table is 800 kB and three quarters of it says
+ * "read, nothing proposed", which is a fact about the search and not about the person.
+ *
+ * EACH ROW IS THE REASON, NOT THE FACT. The value is printed so the reader can see what
+ * was on offer, and it is printed UNDER a heading that says it was not taken; nothing
+ * here carries a confidence swatch, because a withheld candidate has no grade — granting
+ * it one is the exact move the six rulings exist to stop.
+ */
+const WITHHELD_HEADS = new Map([
+  ['later_only', 'Printed after the scene'],
+  ['outside_chicago', 'Puts the person somewhere else'],
+  ['contradicted', 'Two readings disagree'],
+  ['insufficient_identity', 'Not tied firmly enough to this person'],
+  ['duplicate', 'The record already holds it'],
+  ['unresolved', 'Handed to another ticket'],
+]);
+
+function withheldFactsHtml(rows, citationsById) {
+  const list = (rows || []).filter(Boolean);
+  if (!list.length) return '';
+  const body = list.map((w) => {
+    const verdict = String(w.adjudication ?? '');
+    const [kind, ticket] = verdict.split(':');
+    const cite = citationsById.get(w.source_id);
+    const label = FACT_LABELS.get(w.field) || words(w.field);
+    return `<li><b>${escapeHtml(WITHHELD_HEADS.get(kind) || words(kind))}</b>${
+      ticket ? ` — ${escapeHtml(ticket)}` : ''}
+      ${w.field === 'none' ? '' : `<br>${escapeHtml(label)}: <i>${
+        escapeHtml(String(w.proposed_value ?? ''))}</i>${
+        w.place_class === 'outside_chicago' ? ', and somewhere other than this town' : ''}`}
+      <br><span class="res-why">${prose(w.reason, citationsById)}
+        Describing ${escapeHtml(printedOn(w.describes_date))}.
+        <q>${prose(w.quote, citationsById)}</q>
+        Record ${escapeHtml(String(w.claim_or_record_id ?? ''))}.</span>
+      ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</li>`;
+  }).join('');
+  return `<dt>Withheld from this card, and why</dt>
+    <dd><span class="res-chip res-research">${list.length} ${
+      list.length === 1 ? 'refusal' : 'refusals'}</span>
+      <ul class="res-candidates">${body}</ul>
+      <span class="res-why">These are readings this project made and would not assert. A
+        withheld candidate is NOT a fact about this person and must not be read as one —
+        it is the reasoning, published so it can be argued with. Every row is adjudicated
+        in <code>data/residents/person_facts.json</code>.</span></dd>`;
+}
+
+/**
+ * THE RESEARCH BLOCK ON THE RECORD ITSELF (T-1233).
+ *
+ * `researchHtml` above renders `data/residents/research_pilot.json`, which is the
+ * published review payload and holds 375 reviews. The RECORDS hold 850 research blocks.
+ * So 476 people carried a dated identity review — its verdict, the evidence for and
+ * against, the candidates it weighed and the downgrades it refused — and the card said
+ * nothing about any of it, because the only reader in the project opened the other copy.
+ *
+ * That is the K42 census's own finding arriving on the layer it was written for: twenty-
+ * three figures over hundreds of people, shipped to a browser and read by nothing. The
+ * pilot is not wrong, it is PARTIAL, so this renders the record's block beside it and
+ * suppresses the two lines the pilot has already printed rather than printing them twice.
+ *
+ * `refusals[]` is the part that had to reach a reader. A refusal here is this project
+ * declining to move a grade — "the downgrade to inferred", withheld under rule G3 — and
+ * a grade whose refusal is invisible is a grade a reader cannot weigh.
+ */
+function recordResearchHtml(rr, citationsById, pilotShown) {
+  if (!rr) return '';
+  // The sources the block declares, plus any its own sentences name by handle.
+  const named = new Set(rr.source_ids || []);
+
+  const candidates = (rr.candidates || []).map((c) => {
+    const cc = (c.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+    return `<li><b>${escapeHtml(c.name || words(c.candidate_id) || words(c.id))}</b>${
+      c.candidate_id ? ` <code>${escapeHtml(String(c.candidate_id))}</code>` : ''}
+      · ${escapeHtml(c.asserted ? 'asserted as this person' : 'weighed and not asserted')}${
+      c.assessment ? ` · ${escapeHtml(words(c.assessment))}` : ''}
+      <br><span class="res-why">${prose(c.basis, citationsById, named)}
+        ${prose((c.conflicts || []).join(' '), citationsById, named)}</span>
+      ${cc.length ? `<ol class="cites">${citationItems(cc)}</ol>` : ''}</li>`;
+  }).join('');
+  const refusals = (rr.refusals || []).map((r) => `<li><b>Withheld: ${
+    escapeHtml(String(r.withheld ?? ''))}</b> · rule ${escapeHtml(String(r.rule ?? ''))}${
+    r.regraded_on ? `, regraded ${escapeHtml(printedOn(r.regraded_on))}` : ''}
+    <br><span class="res-why">${prose(r.reason, citationsById, named)}</span></li>`).join('');
+  return `<dt>The research block on this record</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${
+      escapeHtml(rr.asserted_identity ? 'identity asserted' : 'identity not asserted')}</span>${
+      pilotShown ? '' : `<span class="res-chip res-research">${
+        escapeHtml(words(rr.outcome))}</span>`}
+      <span class="res-why">${pilotShown ? '' : `${prose(rr.summary, citationsById, named)} `}Read
+        under ${escapeHtml(String(rr.programme ?? 'the resident research programme'))} for
+        ${escapeHtml(String(rr.ticket ?? ''))}, reviewed ${
+        escapeHtml(printedOn(rr.reviewed_on))}${
+        rr.regraded_on ? `, regraded ${escapeHtml(printedOn(rr.regraded_on))} under rule ${
+          escapeHtml(String(rr.rule ?? ''))}` : ''}.</span>
+      ${rr.evidence_for ? `<br><span class="res-why"><b>For:</b> ${
+        prose(rr.evidence_for, citationsById, named)}</span>` : ''}
+      ${rr.evidence_against ? `<br><span class="res-why"><b>Against:</b> ${
+        prose(rr.evidence_against, citationsById, named)}</span>` : ''}
+      ${rr.proposed_facts ? `<br><span class="res-why"><b>Proposed:</b> ${
+        prose(rr.proposed_facts, citationsById, named)}</span>` : ''}
+      ${rr.notes ? `<br><span class="res-why">${prose(rr.notes, citationsById, named)}</span>` : ''}
+      ${candidates ? `<ul class="res-candidates">${candidates}</ul>` : ''}
+      ${refusals ? `<ul class="res-candidates">${refusals}</ul>` : ''}
+      ${(rr.candidate_ids || []).length ? `<span class="res-why">Candidates weighed: ${
+        escapeHtml((rr.candidate_ids || []).map((id) => words(id)).join(', '))}.</span>` : ''}
+      ${citesFor(named, citationsById)}</dd>`;
+}
+
+/**
+ * WHY THIS PERSON IS NAMED WHAT THEY ARE NAMED (T-1233).
+ *
+ * Three people on this layer carry a `name_ruling`: two readings of one printed line
+ * disagreed on the letters, and somebody ruled which one the card takes. The ruling names
+ * the line, what it takes, what it takes it OVER, the reasoning, and — the part a reader
+ * of a URL needs — that the id did not move with the name.
+ *
+ * Nine figures, and every one of them unread until now. A displayed name that changed
+ * silently is the same defect as an unattributed grade: the card asserts a spelling and
+ * keeps the argument for it in a file.
+ */
+function nameRulingHtml(ruling, citationsById) {
+  if (!ruling) return '';
+  const named = new Set();
+  const body = `<dt>Why this name, and not the other one</dt>
+    <dd>${swatch(null)}Ruled by ${escapeHtml(String(ruling.ruled_by ?? ''))} under rule ${
+      escapeHtml(String(ruling.rule ?? ''))}${
+      Number.isFinite(ruling.printed_line) ? `, at printed line ${
+        escapeHtml(String(ruling.printed_line))}` : ''}, and written down in
+      <code>${escapeHtml(String(ruling.ruling ?? ''))}</code>.
+      <br><span class="res-why">The card takes ${prose(ruling.takes, citationsById, named)},
+        over ${prose(ruling.over, citationsById, named)}. It had displayed
+        <q>${escapeHtml(String(ruling.displayed_name_was ?? ''))}</q>.
+        ${prose(ruling.reasoning, citationsById, named)}
+        ${prose(ruling.the_id_did_not_move, citationsById, named)}</span>`;
+  return `${body}${citesFor(named, citationsById)}</dd>`;
+}
+
+/**
+ * THE CARDS FOLDED INTO THIS ONE, AND THE PAIRS THAT WERE WEIGHED AND KEPT APART (T-1233).
+ *
+ * `merged_from` is on 31 people and `merge_ruling` on 78, and both were unread. The
+ * second is the more important of the two: a verdict of `distinct` is this project
+ * deciding that two cards which look like one person are two people, and it carries the
+ * case FOR the merge as well as the case against — written down precisely so a reader who
+ * disagrees has something to disagree with. A verdict published without its losing
+ * argument is an assertion, which is the sentence `laterCensusHtml` above already makes
+ * about the 1840 bridge.
+ */
+function mergedFromHtml(merged, citationsById) {
+  const list = (merged || []).filter(Boolean);
+  if (!list.length) return '';
+  const named = new Set();
+  const body = list.map((m) => `<li><b>${
+    escapeHtml((m.cards || []).map((c) => words(c)).join(', '))}</b>
+    <br><span class="res-why">Folded under rule ${escapeHtml(String(m.rule ?? ''))} by ${
+    escapeHtml(String(m.ticket ?? ''))}, in the ${escapeHtml(String(m.cluster ?? ''))}
+    cluster. ${prose(m.note, citationsById, named)}</span></li>`).join('');
+  return `<dt>Cards folded into this person</dt>
+    <dd>${swatch(null)}<ul class="res-candidates">${body}</ul>${
+      citesFor(named, citationsById)}</dd>`;
+}
+
+function mergeRulingHtml(rulings, citationsById) {
+  const list = (rulings || []).filter(Boolean);
+  if (!list.length) return '';
+  const named = new Set();
+  const body = list.map((r) => `<li><b>${escapeHtml(words(r.verdict))}</b> from ${
+    escapeHtml((r.weighed_against || []).map((c) => words(c)).join(', '))}, under rule ${
+    escapeHtml(String(r.rule ?? ''))} in the ${escapeHtml(String(r.cluster ?? ''))} cluster
+    (${escapeHtml(String(r.ticket ?? ''))})${
+    r.referred_to ? `, referred to ${escapeHtml(String(r.referred_to))}` : ''}
+    <br><span class="res-why"><b>For a merge:</b> ${prose(r.for_merge, citationsById, named)}</span>
+    <br><span class="res-why"><b>Against:</b> ${prose(r.against_merge, citationsById, named)}</span></li>`).join('');
+  return `<dt>Weighed against another card</dt>
+    <dd>${swatch(null)}<ul class="res-candidates">${body}</ul>
+      <span class="res-why">Both sides are printed. A verdict that two look-alike cards are
+        two people is a judgement, and the case for the other answer is what makes it one.</span>${
+      citesFor(named, citationsById)}</dd>`;
+}
+
+/**
+ * THE OLD-SETTLER DEATH NOTICE, ON THE PERSON IT WAS MATCHED TO (T-1233).
+ *
+ * Fergus's 1843 directory (1896) prints an obituary list, and 63 households carry a
+ * reading of it — 19 figures, none of them read. The match is a SURNAME AND A FIRST
+ * INITIAL and the record says so in three separate fields; the birth year is this
+ * project's own subtraction from a printed age, shown with the arithmetic so a reader can
+ * redo it. THE HEADER OF THE LIST IS THE LIMIT THE WHOLE READING TURNS ON — it admits
+ * people who arrived after 1843 and people merely "prominently connected with Illinois
+ * history" — so it is quoted on the card rather than summarised.
+ *
+ * It is a death, not an 1835 fact. Nothing here moves a grade; T-0513's ladder is what
+ * says so and T-0514/T-0515 apply it.
+ */
+function oldSettlerDeathHtml(block, personId, citationsById) {
+  if (!block) return '';
+  const entry = (block.people || []).find((p) => p.person_id === personId);
+  if (!entry) return '';
+  const named = new Set(block.sources || []);
+  const initialOnly = entry.matched_on_initial_only || entry.entry_given_is_initial_only
+    || entry.resident_given_is_initial_only;
+  return `<dt>A death notice that meets this name</dt>
+    <dd>${swatch(null)}${escapeHtml(String(entry.manner_of_death ?? 'died'))} at ${
+      escapeHtml(String(entry.place_of_death ?? 'a place the page does not give'))} on ${
+      escapeHtml(printedOn(entry.death_date))}, ${
+      escapeHtml(String(entry.age_as_printed ?? ''))}${
+      entry.trade_or_office ? ` · ${escapeHtml(words(entry.trade_or_office))}` : ''}
+      <br><span class="res-why">Matched as ${escapeHtml(String(entry.matched_as ?? ''))} — ${
+        prose(entry.matched_by, citationsById, named)} The agreement is ${
+        escapeHtml(String(entry.the_agreement ?? ''))}; the entry's given name reads
+        <q>${escapeHtml(String(entry.entry_given_as_read ?? ''))}</q>${
+        initialOnly ? ' and the match rests on an initial alone' : ''}.
+        Born between ${escapeHtml(String(entry.birth_year_earliest ?? ''))} and ${
+        escapeHtml(String(entry.birth_year_latest ?? ''))}: ${
+        prose(entry.birth_year_arithmetic, citationsById, named)}
+        The page reads <q>${escapeHtml(String(entry.as_read ?? ''))}</q>, record ${
+        escapeHtml(String(entry.record_id ?? ''))}.</span>
+      <br><span class="res-why">THE LIST'S OWN HEADER IS THE LIMIT:
+        <q>${escapeHtml(String(block.the_header_admission ?? ''))}</q>
+        ${prose(block.note, citationsById, named)}</span>
+      ${citesFor(named, citationsById)}</dd>`;
+}
+
+/**
+ * THE PLURAL DATED PLACES (T-1240, folded into T-1255; schema from T-1238).
+ *
+ * A household had exactly one home and exactly one workplace and neither carried
+ * a date, which is not how the sources read: Andreas has Peck invite Porter to
+ * make his "temporary lodging place and study" in the loft of an unfinished store
+ * in 1833, and says nothing about whether he was still in it on 1 July 1835.
+ * Written into a singular `lives_at`, that comes out as the household's residence
+ * at the scene date — the one claim the source refuses to make. `associated_with[]`
+ * is the shape that can hold it, and until this block nothing read it: seven rows
+ * on four records reached a browser and were rendered nowhere.
+ *
+ * WHAT THIS BLOCK WILL NOT DO IS DECIDE WHETHER A ROW REACHES THE SCENE DATE.
+ * A role carries the record's own `covers_scene_date` and this block prints it; a
+ * place carries no such figure, and computing one here is precisely the
+ * flattening the plural shape exists to refuse. An open `to` on this layer means
+ * NO SOURCE CLOSES THE RELATIONSHIP — Porter's loft and his charge both say so in
+ * their own notes — so an open row is printed as open and the question is left
+ * unanswered rather than answered wrongly. Three things can honestly be said, and
+ * each is said in the row's own words: a relationship that ENDED before 1 July
+ * 1835 (Eliza Chappel Porter's infant school, 1833 to 1834, which nothing in the
+ * singular shape could express at all), one that is UNDATED at both ends and
+ * admits it, and one that is open at the far end and therefore undecided.
+ *
+ * The rung is part of the claim, not decoration: `resolves_to` says how far the
+ * evidence reached — a roof, a street, a part of town — and a row that names a
+ * street is not a row that names a building.
+ */
+const SCENE_DATE = '1835-07-01';
+
+/**
+ * Does a closed far end reach 1 July 1835? A bound is stored at the precision its
+ * source permits, so `1834` and `1835-06` have to be read as the LAST day they can
+ * mean before they are compared — `1835-06` is June, and June ends before the day
+ * this scene is set on.
+ */
+function endsOnOrAfterSceneDate(to) {
+  const s = String(to ?? '');
+  if (/^\d{4}$/.test(s)) return `${s}-12-31` >= SCENE_DATE;
+  if (/^\d{4}-\d{2}$/.test(s)) return `${s}-31` >= SCENE_DATE;
+  return s >= SCENE_DATE;
+}
+
+function associationReach(link) {
+  if (link.undated || (!link.from && !link.to)) return ['res-role-off', 'not dated'];
+  if (!link.to) return ['', 'no source closes it'];
+  return endsOnOrAfterSceneDate(link.to)
+    ? ['res-role-scene', 'reaches 1 July 1835']
+    : ['res-role-off', 'ended before 1 July 1835'];
+}
+
+function associationRowHtml(link, citationsById) {
+  const cite = citationsById.get(link.source_id);
+  const [cls, mark] = associationReach(link);
+  const at = cls === 'res-role-scene';
+  const place = link.place_or_structure_id
+    ? escapeHtml(words(link.place_or_structure_id)) : 'a place the record does not name';
+  return `<li class="res-role-row${at ? ' res-role-at' : ''}">
+    <span class="res-role-when">${escapeHtml(associationBound(link))}</span>
+    ${swatch(link.tier)}${escapeHtml(words(link.kind))} · ${place}
+    <span class="res-chips">${link.resolves_to
+      ? `<span class="res-chip">reaches a ${escapeHtml(words(link.resolves_to))}</span>` : ''}<span
+      class="res-chip ${cls}">${escapeHtml(mark)}</span></span>
+    ${link.note ? `<span class="res-why">${escapeHtml(link.note)}</span>` : ''}
+    ${cite ? `<ol class="cites">${citationItems([cite])}</ol>` : ''}</li>`;
+}
+
+function associationBound(link) {
+  const one = (iso) => {
+    const s = String(iso ?? '');
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return printedOn(s);
+    const m = /^(\d{4})-(\d{2})$/.exec(s);
+    return m ? `${MONTHS[Number(m[2]) - 1]} ${m[1]}` : s;
+  };
+  if (link.undated || (!link.from && !link.to)) return 'no date either end';
+  if (link.from && link.to) {
+    return String(link.from) === String(link.to) ? one(link.from)
+      : `${one(link.from)} to ${one(link.to)}`;
+  }
+  return link.from ? `from ${one(link.from)}, no end recorded`
+    : `until ${one(link.to)}, no start recorded`;
+}
+
+export function associationsHtml(links, citationsById, label) {
+  const list = (links || []).filter(Boolean);
+  if (!list.length) return '';
+  const order = [...list].sort((a, b) => {
+    const key = (l) => (l.undated ? '9999' : String(l.from ?? l.to ?? '9999'));
+    return key(a).localeCompare(key(b));
+  });
+  const undated = order.filter((l) => l.undated || (!l.from && !l.to)).length;
+  return `<dt>${escapeHtml(label)}</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${order.length} dated ${
+      order.length === 1 ? 'connection' : 'connections'}</span>${undated
+      ? `<span class="res-chip res-role-off">${undated} with no date either end</span>` : ''}
+      <br><span class="res-why">A home, a lodging, a workplace, a business premises, a
+        church, a civic seat, a school or land bought — each with how far the evidence
+        reached and the years it permits. An open end means no source closes the
+        relationship, so this list does not say whether such a row held on 1 July 1835;
+        where a source DOES close one before that day, the row says so. The single
+        <q>Lived at</q> and <q>Worked at</q> claims above are the older shape of the same
+        facts, and the build refuses to let the two disagree.</span>
+      <ol class="res-roles">${order.map((l) => associationRowHtml(l, citationsById)).join('')}</ol></dd>`;
+}
+
+/**
+ * THE DATED ROLES, AS A TIMELINE (T-1255, of T-1145; folds in T-1283).
+ *
+ * `persons[].roles[]` is the canonical record of a trade, a profession or an
+ * office — `index.json` `_roles_doc` states it — and `occupation` is a GENERATED
+ * view of the roles that cover 1 July 1835. Until this block the card showed only
+ * the view, which meant a card could show at most one trade and could show none
+ * at all for a man the sources word three times: Daniel Elston is printed a soap
+ * and candle manufacturer in November 1833 and a brickmaker in 1839, and his card
+ * read `none_recorded` for 1835 with both roles unrendered. 262 people carry 267
+ * roles; 140 of them are outside the scene window and were visible nowhere.
+ *
+ * SO IT IS A TIMELINE, AND EACH ROW SAYS WHETHER IT REACHES THE SCENE DATE. The
+ * order is the year a bound opens, undated last. A role that does not reach
+ * 1 July 1835 is marked as not reaching it rather than dropped or dimmed away:
+ * the whole point of the plural field is that a life has more than one year in
+ * it, and `covers_scene_date` is the record's own answer, never recomputed here.
+ *
+ * WHAT A ROW PRINTS AND WHAT IT DOES NOT. The controlled word where the source's
+ * wording has been adjudicated into `vocabulary.occupations`, the wording AS
+ * PRINTED where it has not — and where `role` is null the row SAYS the wording is
+ * not adjudicated, because a printed word standing in for a controlled one is a
+ * weaker claim and T-1254 is where the rest are ruled on. The bound is printed at
+ * the precision the record gives it, `dated_by` says how it was dated, and an
+ * unknown date stays unknown: nothing here widens a bound to the scene date.
+ *
+ * A role carries no PLACE and no employer yet — that is T-1254's migration — so
+ * this block makes no claim about where the work was done. The location half of
+ * T-1240 waits on the same data: no record in the layer carries a dated location
+ * link or a location limit, and the household's `lives_at`/`works_at` are single
+ * undated claims, rendered as such by `householdHtml` above.
+ */
+function roleBound(role) {
+  const one = (iso) => {
+    const s = String(iso ?? '');
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return printedOn(s);
+    const m = /^(\d{4})-(\d{2})$/.exec(s);
+    return m ? `${MONTHS[Number(m[2]) - 1]} ${m[1]}` : s;
+  };
+  const from = role.from ?? null;
+  const to = role.to ?? null;
+  if (!from && !to) return 'not dated';
+  if (from && to) return String(from) === String(to) ? one(from) : `${one(from)} to ${one(to)}`;
+  return from ? `from ${one(from)}` : `until ${one(to)}`;
+}
+
+/** The year a bound opens in, for the order — undated last. */
+function roleOpensIn(role) {
+  const m = /^(\d{4})/.exec(String(role.from ?? role.to ?? ''));
+  return m ? Number(m[1]) : Infinity;
+}
+
+function roleRowHtml(role, citationsById) {
+  const cites = (role.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
+  const printed = role.as_printed ? `<q>${escapeHtml(String(role.as_printed))}</q>` : '';
+  const controlled = role.role ? escapeHtml(words(role.role)) : '';
+  const said = controlled && printed ? `${controlled} · printed ${printed}`
+    : controlled || printed || 'a role the source does not word';
+  const at = Boolean(role.covers_scene_date);
+  const precision = role.precision && role.precision !== 'unknown'
+    ? ` to the ${escapeHtml(words(role.precision))}` : '';
+  return `<li class="res-role-row${at ? ' res-role-at' : ''}">
+    <span class="res-role-when">${escapeHtml(roleBound(role))}</span>
+    ${swatch(role.confidence)}${said}
+    <span class="res-chips">${role.kind
+      ? `<span class="res-chip">${escapeHtml(words(role.kind))}</span>` : ''}<span
+      class="res-chip ${at ? 'res-role-scene' : 'res-role-off'}">${at
+        ? 'reaches 1 July 1835' : 'not on 1 July 1835'}</span>${role.role
+      ? '' : '<span class="res-chip res-role-off">wording not adjudicated</span>'}</span>
+    <span class="res-why">Dated by ${escapeHtml(words(role.dated_by || 'undated'))}${precision}.${
+      role.note ? ` ${escapeHtml(role.note)}` : ''}</span>
+    ${cites.length ? `<ol class="cites">${citationItems(cites)}</ol>` : ''}</li>`;
+}
+
+export function rolesHtml(roles, citationsById) {
+  const list = (roles || []).filter(Boolean);
+  if (!list.length) return '';
+  const ordered = [...list].sort((a, b) => roleOpensIn(a) - roleOpensIn(b));
+  const at = ordered.filter((r) => r.covers_scene_date).length;
+  return `<dt>What this person did, and when</dt>
+    <dd>${swatch(null)}<span class="res-chip res-research">${list.length} dated ${
+      list.length === 1 ? 'role' : 'roles'}</span><span class="res-chip ${
+      at ? 'res-role-scene' : 'res-role-off'}">${at
+        ? `${at} reaching 1 July 1835` : 'none reaching 1 July 1835'}</span>
+      <br><span class="res-why">A trade, a profession or an office, each held to the
+        bound its own sources permit. This is the record; the <q>Occupation</q> row
+        above is a generated view of the roles that cover 1 July 1835, which is why a
+        role printed in another year does not fill it. A role outside the window is
+        kept and marked, not dropped — and nothing here says where the work was done,
+        because a role carries no place yet.</span>
+      <ol class="res-roles">${ordered.map((r) => roleRowHtml(r, citationsById)).join('')}</ol></dd>`;
+}
+
 export function personHtml(person, citationsById, researchByPerson, directoryByPerson,
-  directoriesOnRecord, ladderRules) {
+  directoriesOnRecord, ladderRules, withheldByPerson = new Map(), oldSettlerDeaths = null) {
   const occ = person.occupation || {};
+  // The roles are the record and `occupation` is the view of them that covers the
+  // scene date (T-1255): the summary says how many there are so a card with a
+  // trade printed in another year does not read, closed, as a card with no trade.
+  const roles = (person.roles || []).filter(Boolean);
+  const rolesAtScene = roles.filter((r) => r.covers_scene_date).length;
   const cites = (person.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const occCites = (occ.sources || []).map((id) => citationsById.get(id)).filter(Boolean);
   const born = person.birth_year || null;
@@ -619,17 +1202,23 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
       <span class="res-role">${escapeHtml(words(person.relationship))}${
         occ.value ? ` · ${escapeHtml(words(occ.value))}` : ''}${
         occ.later_occupation ? ` for 1835 · a trade is printed for ${
-          escapeHtml(String(occ.later_occupation.describes_date))}` : ''}</span></summary>
+          escapeHtml(String(occ.later_occupation.describes_date))}` : ''}${
+        roles.length ? ` · ${roles.length} dated ${roles.length === 1 ? 'role' : 'roles'}${
+          rolesAtScene ? '' : ', none on 1 July 1835'}` : ''}</span></summary>
     <dl class="lib-body">
       ${row('In the household as', words(person.relationship))}
       ${row('Sex', words(person.sex))}
       ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
       ${claimRow('Born', born && born.value, born, citationsById)}
-      ${occ.value ? `<dt>Occupation</dt><dd>${swatch(occ.confidence)}${escapeHtml(words(occ.value))}${
+      ${occ.value ? `<dt>Occupation</dt><dd>${swatch(tierOf(occ))}${tierWord(tierOf(occ))}${
+        isNotAsserted(occ) ? 'not recorded' : escapeHtml(words(occ.value))}${
         occ.later_occupation ? ' for 1835' : ''}${
         occ.note ? `<br><span class="res-why">${escapeHtml(occ.note)}</span>` : ''}${
         laterOccupationHtml(occ.later_occupation, citationsById)}${
         occCites.length ? `<ol class="cites">${citationItems(occCites)}</ol>` : ''}</dd>` : ''}
+      ${rolesHtml(roles, citationsById)}
+      ${associationsHtml(person.associated_with, citationsById,
+        'Where this person was, and when')}
       ${claimRow('How this person is named', named && named.value, named, citationsById)}
       ${person.letter_list_only
         ? `<dt>How this person is known</dt><dd>${swatch('attested')}Only from the post office's lists of uncalled-for letters. A name on one of those lists is somebody a correspondent believed was reachable at Chicago; it gives no trade, no street and no household, and it is the weakest evidence this project accepts for a resident. A shopkeeper who advertised his stock is a different claim, and this row is here so the two never read as the same one.</dd>` : ''}
@@ -642,8 +1231,16 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
           and one waiting eighteen months earlier is a different claim about the same
           person.</span></dd>` : ''}
       ${person.note ? `<dt>What the sources say</dt><dd>${escapeHtml(person.note)}</dd>` : ''}
+      ${nameRulingHtml(person.name_ruling, citationsById)}
+      ${profileFactsHtml(person.profile_facts, citationsById)}
+      ${withheldFactsHtml(withheldByPerson.get(person.id), citationsById)}
       ${evidenceLadderHtml(person, citationsById, ladderRules)}
       ${researchHtml(researchByPerson.get(person.id), citationsById)}
+      ${recordResearchHtml(person.resident_research, citationsById,
+        Boolean(researchByPerson.get(person.id)))}
+      ${mergedFromHtml(person.merged_from, citationsById)}
+      ${mergeRulingHtml(person.merge_ruling, citationsById)}
+      ${oldSettlerDeathHtml(oldSettlerDeaths, person.id, citationsById)}
       ${laterCensusHtml(person.later_census, citationsById)}
       ${laterDirectoryHtml(directoryByPerson.get(person.id), citationsById)}
       ${laterClaimHtml((directoriesOnRecord || []).find((row) => row.person_id === person.id), citationsById)}
@@ -691,7 +1288,7 @@ function householdSummary(entry, { orphanChip = true } = {}) {
 
 /** The household record itself, rendered into an opened row. */
 export function householdHtml(hh, citationsById, researchByPerson, directoryByPerson, ladderRules,
-  agencies = null) {
+  agencies = null, withheldByPerson = new Map()) {
   // T-0632's block on the record: `directories.note` states what a later volume is
   // worth and `directories.sources` names every one that met this household.
   const onRecord = hh.directories || {};
@@ -708,6 +1305,8 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
       ${claimRow('Worked at', (hh.works_at || {}).value, hh.works_at, citationsById)}
       ${claimRow('Here on 1 July 1835', (hh.present_on_scene_date || {}).value,
         hh.present_on_scene_date, citationsById)}
+      ${associationsHtml(hh.associated_with, citationsById,
+        'Where this household was, and when')}
       ${kinRows(hh, citationsById)}
       ${hh.touches_removal
         ? `<dt>Touches the removal of 1835</dt><dd>Yes — read the standing constraint in
@@ -719,7 +1318,8 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
     ${onRecord.note ? `<p class="res-why">${escapeHtml(onRecord.note)} Volumes cited on this record: ${
         escapeHtml((onRecord.sources || []).join(', '))}.</p>` : ''}
     ${agencySectionHtml(agencies, 'household_id', hh.id, escapeHtml)}
-    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules)).join('')}</div>`;
+    <div class="res-people">${persons.map((p) => personHtml(p, citationsById, researchByPerson, directoryByPerson, onRecord.people, ladderRules,
+      withheldByPerson, hh.old_settler_deaths)).join('')}</div>`;
 }
 
 /**
@@ -916,6 +1516,21 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
     problems.push(`residents: ${err.message} — resident research reviews are not shown`);
   }
 
+  // T-1233. The refusals — 204 candidate facts this project read and would not assert,
+  // projected out of the 800 kB adjudication table by tools/spend_person_facts.py. Its
+  // own loader, because it degrades the way every other join here does: a miss costs the
+  // withheld block on a card and never the card.
+  const withheldByPerson = new Map();
+  try {
+    const withheld = await getJson('residents/person_facts_withheld.json');
+    for (const row of withheld.rows || []) {
+      if (!withheldByPerson.has(row.person_id)) withheldByPerson.set(row.person_id, []);
+      withheldByPerson.get(row.person_id).push(row);
+    }
+  } catch (err) {
+    problems.push(`residents: ${err.message} — the withheld research facts are not shown`);
+  }
+
   // The four directory crosswalks, joined on person_id (T-0632, replacing T-0569's
   // 1844-only layer). Beside the records as well as on them: the record carries the
   // later trade and street and cites the volume, and this layer carries the printed
@@ -1045,7 +1660,7 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
       try {
         const hh = await getJson(`residents/${el.dataset.file}`);
         if (body) body.innerHTML = householdHtml(hh, citationsById, researchByPerson, directoryByPerson,
-          vocab.ladder_rules, agencies);
+          vocab.ladder_rules, agencies, withheldByPerson);
       } catch (err) {
         el.dataset.loaded = '0';
         problems.push(`residents: ${err.message} — one household record is missing`);
@@ -1097,7 +1712,8 @@ export async function mountResidents({ mount, noteMount = null, sceneId, dataBas
  * @param {string} sceneId which scene's citation join to read
  * @param {string[]} [problems] the shared collector
  * @returns {Promise<{citationsById: Map, researchByPerson: Map, directoryByPerson: Map,
- *   ladderRules: object[], agencies: object|null, getJson: (rel: string) => Promise<any>}>}
+ *   withheldByPerson: Map, ladderRules: object[], agencies: object|null,
+ *   getJson: (rel: string) => Promise<any>}>}
  */
 const residentJoinCache = new Map();
 export function loadResidentJoins(dataBase, sceneId, problems = []) {
@@ -1112,8 +1728,9 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
     const citationsById = new Map();
     const researchByPerson = new Map();
     const directoryByPerson = new Map();
+    const withheldByPerson = new Map();
     let ladderRules = [];
-    const [joined, pilot, found, index, agencies] = await Promise.all([
+    const [joined, pilot, found, index, agencies, withheld] = await Promise.all([
       getJson(`sidecars/${sceneId}/residents_sources.json`).catch((err) => {
         problems.push(`people: ${err.message} — person cards are shown without their citations`);
         return null;
@@ -1133,14 +1750,24 @@ export function loadResidentJoins(dataBase, sceneId, problems = []) {
       // The agency relation. Its own loader, because it degrades the same way and
       // pushes its own problem; a null here costs the block and not the card.
       loadAgencies({ dataBase, problems }),
+      // T-1233's refusals, the same way.
+      getJson('residents/person_facts_withheld.json').catch((err) => {
+        problems.push(`people: ${err.message} — the withheld research facts are not shown`);
+        return null;
+      }),
     ]);
     for (const [id, record] of Object.entries(joined?.citations || {})) citationsById.set(id, record);
     for (const review of pilot?.reviews || []) researchByPerson.set(review.person_id, review);
+    for (const row of withheld?.rows || []) {
+      if (!withheldByPerson.has(row.person_id)) withheldByPerson.set(row.person_id, []);
+      withheldByPerson.get(row.person_id).push(row);
+    }
     for (const row of found?.people || []) {
       directoryByPerson.set(row.person_id, { ...row, standard: found.standard });
     }
     ladderRules = index?.vocabulary?.ladder_rules || [];
-    return { citationsById, researchByPerson, directoryByPerson, ladderRules, agencies, getJson };
+    return { citationsById, researchByPerson, directoryByPerson, withheldByPerson, ladderRules,
+      agencies, getJson };
   })();
   residentJoinCache.set(key, promise);
   return promise;

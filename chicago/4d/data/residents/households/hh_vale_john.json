@@ -73,6 +73,19 @@
      "source": "chicago_democrat_1833_1835",
      "rule": "G1b"
     }
+   ],
+   "merge_ruling": [
+    {
+     "ticket": "T-1291",
+     "verdict": "distinct",
+     "rule": "D7",
+     "cluster": "hale-vale",
+     "weighed_against": [
+      "hale_john"
+     ],
+     "for_merge": "H and V are one letter apart to a distance and one glyph apart to a worn impression, 'John' is identical, and both readings are the Democrat inside sixteen months.",
+     "against_merge": "THREE DIFFERENT ISSUES, AND NEITHER SPELLING EVER SHARES ONE. 'John Hale' is the Democrat of 16 April 1834 (#c005) and 'Hale, John' the return of 1 July 1835 (#c005); 'Vale, John' is the Democrat of 5 August 1835 (#c006). No issue sets both. Both stems are alive in the corpus — Hale 83 settings, Vale 33 — and neither card is an anchor: no trade, no street, no household on either. H against V is not the substitution a period compositor's case makes, and the reading index holds three Hale identities to Vale's one. D7."
+    }
    ]
   }
  ],

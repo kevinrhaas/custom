@@ -4,12 +4,14 @@
  "generated_by": "tools/consolidate_town_cards.py --apply",
  "ticket": "T-0839",
  "counts": {
-  "town_people": 1287,
-  "open_clusters": 19,
-  "cards_in_open_clusters": 41,
+  "town_people": 1282,
+  "open_clusters": 20,
+  "cards_in_open_clusters": 43,
   "rulings": {
-   "distinct": 25,
+   "distinct": 67,
    "merge": 47,
+   "undecided_T-1281": 1,
+   "undecided_owner": 1,
    "undecided_rule": 12
   },
   "landed_merges": 47,
@@ -1090,6 +1092,45 @@
      "against": [
       "neither card is an anchor: nothing here documents the person beyond a list"
      ]
+    }
+   ]
+  },
+  {
+   "surname": "sweet",
+   "cards": [
+    {
+     "person": "sweet_a",
+     "household": "hh_sweet_a",
+     "name": "A Sweet",
+     "anchor": false,
+     "sources": [
+      "chicago_democrat_1833_1835"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "sweet"
+    },
+    {
+     "person": "sweet_alanson",
+     "household": "hh_sweet_alanson",
+     "name": "Alanson Sweet",
+     "anchor": true,
+     "sources": [
+      "andreas_1884_v1",
+      "chicago_voter_lists_1833_1835_irad"
+     ],
+     "ruling": "undecided",
+     "ruled_in": "sweet"
+    }
+   ],
+   "pairs": [
+    {
+     "a": "sweet_a",
+     "b": "sweet_alanson",
+     "for": [
+      "an initial against its forename, 'a' and 'alanson'",
+      "sweet_alanson is an anchor — the town documents this person"
+     ],
+     "against": []
     }
    ]
   },

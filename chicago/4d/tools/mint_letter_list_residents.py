@@ -121,6 +121,8 @@ HOUSEHOLDS = DATA / "residents" / "households"
 INDEX = DATA / "residents" / "index.json"
 REGISTER = DATA / "research" / "newspapers" / "register_1835.json"
 GAZETTEER = DATA / "research" / "newspapers" / "gazetteer.json"
+NAME_RULINGS = (DATA / "research" / "newspapers"
+                / "letter_list_1834_01_01_name_rulings.json")
 
 SCENE_DATE = "1835-07-01"
 PREFIX = "hh_ll_"
@@ -425,6 +427,47 @@ def unread_initial(token: str) -> bool:
     return any(ch.isdigit() for ch in token)
 
 
+def comma_is_not_the_divider(name: str) -> bool:
+    """Does the first comma of this printing fail to be the surname/forename mark?
+
+    T-1217. `display()` reorders around the FIRST comma, on the standing assumption
+    that a comma in a letter-list line is the office's mark for "family name first".
+    One printing in this corpus breaks that assumption by setting the family name in
+    the MIDDLE: `Es,Jones, High`, whose first comma divides `Es` from `Jones, High`
+    and is not a divider at all. Reordered around it the card reads `Jones, High Es`
+    and LEADS with the family name, which is the one order a card must never be in.
+
+    The condition is stated as what it literally is, so it can be counted: the family
+    name `surname()` reads lies PAST the first comma while a word stands before it.
+    That is the only way a first comma can be sitting where no divider belongs — a
+    true surname-first printing has its family name in the head (`Hail, Aifred`), and
+    a forename-first printing with a stray comma has it in the tail with an EMPTY
+    head (`, Phitip D,`, whose surname the crop lost altogether, and which this rule
+    therefore leaves exactly where it stands rather than promoting a lost reading).
+
+    A SQUARE-BRACKET SUPPLY IS REFUSED HERE RATHER THAN REORDERED. `words()` drops
+    bracketed text before `surname()` ever sees it, so on `Lo[vering], Richard` the
+    family name comes back `richard` — the defect T-1155 carries, and this rule will
+    not move a card on a reading it knows to be unreliable. Twelve readings in the
+    pool are in that state and every one of them is left alone.
+
+    MEASURED, as this ticket's acceptance requires, over the whole letter-list pool:
+    1,970 distinct printings in data/research/newspapers/register_1835.json, of which
+    877 carry a comma, of which this predicate is true of exactly ONE — `Es,Jones,
+    High`. Across the 736 letter-list cards on disk it moves one card. The wider rule
+    T-1121 measured and refused — put the token `surname()` picked last, wherever it
+    fell — moved 84.
+    """
+    if "," not in name or "[" in name:
+        return False
+    fam = surname(name)
+    if not fam:
+        return False
+    head = [w.lower().strip("'").replace("'", "") for w in words(name.partition(",")[0])]
+    tail = [w.lower().strip("'").replace("'", "") for w in words(name.partition(",")[2])]
+    return bool(head) and fam not in head and fam in tail
+
+
 def display(name: str) -> str:
     """'Foot, S.' -> 'S. Foot'. The papers print both orders; a card shows one.
 
@@ -436,6 +479,20 @@ def display(name: str) -> str:
     tools/register_letter_list_suspicions.py, written to
     data/research/residents/letter_list_reading_suspicions.json).
 
+    T-1121 TAKES THE PRINTING'S PUNCTUATION OUT OF WHAT IS REORDERED. The comma
+    is the mark that says which order a line is in; once the tokens have been put
+    in the other order it is a mark saying something untrue, and `surname()` reads
+    it and believes it. `Hugunin, Leonard, C.` sets a second comma inside the
+    forename side, the reordering moved only the head, and the card read `Leonard,
+    C. Hugunin` — which parses back as a surname-first printing and gives the
+    family name `leonard`, against the record id and against the gazetteer's other
+    printing of the same man. Deliberately the SMALLEST fix that closes it: a more
+    general rule — put the token `surname()` picked last, wherever it fell — was
+    measured over the 1,050-name pool and moved 84 readings, most of them correct
+    ones, because a square-bracket supply and a bare honorific are not forenames
+    (`[uncertain: Bester], James`, `Baby, Mrs.`). The rule is not the defect; what
+    the reordering left behind was.
+
     T-0721 ADDS THE ONE THING A CARD MAY SAY ABOUT A READING, WHICH IS THAT THERE
     ISN'T ONE. An initial the scan set as a digit is replaced by `UNREAD`, and by
     nothing else: the surname is never touched, no letter is supplied, and the
@@ -444,9 +501,66 @@ def display(name: str) -> str:
     alone. What changes is that the card stops asserting `8.` is a name.
     """
     if "," in name:
+        if comma_is_not_the_divider(name):
+            # T-1217. REORDER AROUND THE COMMA THE FAMILY NAME STANDS BEFORE,
+            # NOT AROUND THE FIRST ONE. A card is forename-then-family, and in a
+            # surname-first printing it is the office's comma that says which
+            # tokens are the forenames: the ones AFTER it. On `Es,Jones, High`
+            # that divider is the SECOND comma — the entry is `Jones, High`, and
+            # `Es` stands in front of the family name where nothing of this name
+            # belongs. So the forenames lead, what stood before the family name
+            # follows them, and the family name ends the card: `High Es Jones`.
+            #
+            # `Es` IS KEPT AND NOT PROMOTED, which is the whole of the judgement
+            # here. This project's own registry of suspected misreadings already
+            # holds this printing (tools/register_letter_list_suspicions.py):
+            # "reads as a run-on of two entries — the tail of one name and the
+            # head of the next, set without the break between them", with the
+            # right-hand side NULL, meaning the letters cannot be read with
+            # confidence and the project declines to guess. A card must not turn
+            # that into a forename. Leading with `Es` would do exactly that: every
+            # crosswalk in the layer reads the first token's initial, and the card
+            # would have acquired a new `inferred` tie to `E. M. Jones`, cabinet
+            # and chair manufacturer of Dearborn street in 1844, off a letter the
+            # project has said it cannot read.
+            #
+            # THE TRAP THE TICKET NAMES IS THE COMMA-ONLY FIX. Dropping the
+            # punctuation and nothing else gives `Jones High Es`, whose last word
+            # is `Es` — and compile_scene.py's `surname_of()` files a card under
+            # its last word, so it would sort in the town directory under `es`,
+            # away from the other Joneses. Moving the family name is what keeps
+            # the directory right, and it is why the comma may only go once the
+            # order has been made true.
+            #
+            # No token is recased, respelled, supplied or removed. The verbatim
+            # setting stays where verbatim settings belong — the extracted column
+            # and the gazetteer's `as_printed`, neither of which this touches.
+            fam = surname(name)
+            tokens = [t for t in re.split(r"[,\s]+", name.strip()) if t]
+            at = next(i for i, t in enumerate(tokens)
+                      if t.lower().strip("'.,").replace("'", "") == fam)
+            shown = tokens[at + 1:] + tokens[:at] + [tokens[at]]
+            return mark_unread(" ".join(shown), name)
         head, _, tail = name.partition(",")
+        # T-1121. A CARD'S NAME IS ORDERED, NOT PUNCTUATED. The office sometimes
+        # sets a SECOND comma inside the forename side — `Hugunin, Leonard, C.` —
+        # and reordering around the first comma alone left that one standing, so
+        # the card read `Leonard, C. Hugunin`. Given-first is the one order a card
+        # shows and it says so by its order; a comma left in it is read straight
+        # back as a surname-first printing, and `surname()` then answers `leonard`.
+        # Only a comma the reordering has made UNTRUE is dropped, and it is
+        # dropped only where it is measurably lying: where the family name read
+        # off the ordered string with the comma is not the one read off it
+        # without. No token is recased, respelled, supplied or removed, which is
+        # what keeps this a reordering and not a correction of the reading.
+        # (`Es,Jones, High` used to reach this branch and leave by it carrying a
+        # comma that was right by accident; T-1217 turned it back above, because
+        # its first comma is not a divider at all.)
         tail = tail.strip()
         shown = f"{tail} {head.strip()}".strip() if tail else head.strip()
+        plain = re.sub(r"\s+", " ", shown.replace(",", " ")).strip()
+        if surname(shown) != surname(plain):
+            shown = plain
         return mark_unread(shown, name)
     tokens = name.split()
     if len(tokens) >= 2 and surname_is_first_token(name):
@@ -1169,6 +1283,44 @@ def press_contradicting(person: dict) -> list[dict]:
 BOUND_MARKERS = ("A BOUND FROM THE RETURN", "A BOUND FROM THE PAPER")
 
 
+def id_family_name(pid: str, name: str) -> bool:
+    """Was this id minted off the family name this name gives? (T-1218)
+
+    `plain_fragment()` builds a person id as the family name followed by whatever
+    else the printing set, so the question is answerable without taking the id
+    apart: the id either IS the slugged family name or begins with it and a stop.
+    Deliberately the family name alone and not the whole fragment — fifteen cards
+    differ from a re-minted fragment over an unread initial (`[?] G. Abbot`), a
+    suffix (`Benjamin Jr. Swena`) or a printing whose order is its own ticket
+    (jones_es_high, T-1217), and none of those is a disagreement about WHICH LETTERS
+    THE SURNAME HAS, which is all this asks.
+    """
+    fam = slug(surname(name or ""))
+    return bool(fam) and (pid == fam or str(pid or "").startswith(fam + "_"))
+
+
+def ruled_renamings() -> dict[str, dict]:
+    """person_id -> the adjudication that moved its displayed name off its id.
+
+    T-1139 read nineteen lines of the return of 1 January 1834 where the page image
+    and the transcription disagree, and three of them are rows where the card's
+    letters moved and the id did not (its rule N5: an id is a handle, not a claim).
+    Those three are the only licensed divergences in the cohort, and they are read
+    from the RULING FILE rather than from the cards, so a card cannot license its
+    own divergence by writing a `name_ruling` block onto itself.
+    """
+    if not NAME_RULINGS.exists():
+        return {}
+    out: dict[str, dict] = {}
+    for row in load(NAME_RULINGS).get("rulings") or []:
+        card = row.get("card") or {}
+        pid, was, now = (card.get("person"), card.get("displayed_name_was"),
+                         card.get("displayed_name_is"))
+        if pid and was and now and was != now:
+            out[pid] = dict(row)
+    return out
+
+
 def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
     """Every way the minted cohort could stop being what the owner ruled for.
 
@@ -1187,6 +1339,7 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
 
     rows = {r["id"]: r for r in index.get("households") or []}
     flagged_persons = 0
+    renamings = ruled_renamings()
     for path, doc in sorted(minted.items()):
         hid = doc.get("id")
         persons = doc.get("persons") or []
@@ -1215,6 +1368,109 @@ def gate_problems(docs: dict, index: dict, structure_text: dict) -> list[str]:
                                 f"advertisement from reading as the same claim")
             if person.get("letter_list_only"):
                 flagged_persons += 1
+            # T-1121. A COMMA IN A CARD'S NAME MAY NOT CHANGE THE FAMILY NAME
+            # IT GIVES. `display()` makes one order out of the two the papers
+            # print, and a comma left standing in what it made is read straight
+            # back as a surname-first printing: hugunin_leonard_c carried
+            # `Leonard, C. Hugunin`, off the printed `Hugunin, Leonard, C.`, and
+            # every reader of that card — `surname()` here, `surname_of()` in
+            # compile_scene.py, the inverting rule in the 1840 crosswalk — took
+            # `leonard` as the family name while the record id and the
+            # gazetteer's other printing of the same man both said Hugunin.
+            #
+            # Stated as what it is and not one inch wider: the card is not where
+            # a printing is kept verbatim (the extracted column and the
+            # gazetteer's `as_printed` are, and neither is touched by this), so a
+            # comma a card carries earns nothing — but it is only a DEFECT where
+            # it moves the answer. jones_es_high carries one that does not, off a
+            # line whose family name the type set in the middle, and it has its
+            # own ticket rather than a migration smuggled into this one.
+            shown = person.get("name") or ""
+            # T-1217. A CARD ENDS ON ITS FAMILY NAME. Given-first is the one
+            # order a card is in, and the town directory depends on that
+            # literally: compile_scene.py's `surname_of()` files a person under
+            # the LAST word of the name, so a card that leads with its family
+            # name is filed under whatever trails it. jones_es_high read `Jones,
+            # High Es` off a printing that sets the family name in the middle,
+            # and only its comma — right by accident — kept it out of the
+            # directory under `es`.
+            #
+            # Bracketed readings stand outside this assertion, not because they
+            # are exempt but because `words()` strips a square-bracket supply
+            # before `surname()` can see it, so the family name it returns for
+            # `Lo[vering], Richard` is `richard`: T-1155's defect, and a gate may
+            # not fire on a reading it cannot take. All 736 letter-list cards on
+            # disk pass this.
+            tokens = words(shown)
+            if ("[" not in shown and tokens and surname(shown)
+                    and tokens[-1].lower().strip("'").replace("'", "")
+                    != surname(shown)):
+                problems.append(f"{hid}/{pid}: display name {shown!r} does not end "
+                                f"on its family name {surname(shown)!r} — a card is "
+                                f"given-first and the town directory files it under "
+                                f"its last word (T-1217)")
+            if "," in shown and surname(shown) != surname(shown.replace(",", " ")):
+                problems.append(f"{hid}/{pid}: display name {shown!r} reads the family "
+                                f"name {surname(shown)!r} with its comma and "
+                                f"{surname(shown.replace(',', ' '))!r} without it — an "
+                                f"ordered name says its order by its order, and a comma "
+                                f"left in one is read back as a surname-first printing "
+                                f"(T-1121)")
+
+            # T-1218. A CARD'S NAME GIVES THE FAMILY NAME ITS ID WAS MINTED OFF —
+            # the assertion T-1121 reached for and could not make, because three
+            # cards stood in its way: fraser_wm_h read `Wm. H. Frazer`,
+            # provis_joshua read `Joshua Pruvis`, vandino_john read `John Vandine`.
+            # Those three are not the comma fault. Neither reading is misordered
+            # and no punctuation is involved; the card and the id disagree about
+            # WHICH LETTERS the surname has, because one reading of a printed line
+            # was minted into the id and a different reading of the same line was
+            # later written onto the card.
+            #
+            # T-1139 ruled all three — the scan-verified reading of the ninth
+            # impression overturns the transcription-mediated one, and under its
+            # rule N5 the displayed name moves while the id, a handle cited by
+            # every crosswalk, does not. So the assertion is made here WITH that
+            # licence and with nothing else: the family name read off a card is the
+            # one its id was minted off, unless the ruling file adjudicates that
+            # exact card, in which case the id must be the handle of the reading
+            # the ruling OVERTURNED and the card must wear the one it AWARDED.
+            # Both halves matter. Without the first, an id could drift anywhere and
+            # point at a ruling for cover; without the second, a card could be
+            # respelled a third way over a ruling that never said so.
+            shown_row = renamings.get(pid)
+            if shown_row is None:
+                if not id_family_name(pid, shown):
+                    problems.append(f"{hid}/{pid}: the card reads {shown!r}, whose "
+                                    f"family name is {slug(surname(shown))!r}, and the "
+                                    f"id was minted off a different one — one reading "
+                                    f"of the printed line is in the id and another is "
+                                    f"on the card, and no ruling in "
+                                    f"{NAME_RULINGS.relative_to(ROOT)} adjudicates it "
+                                    f"(T-1218)")
+            else:
+                card_row = shown_row.get("card") or {}
+                was, awarded = (card_row.get("displayed_name_was"),
+                                card_row.get("displayed_name_is"))
+                if not id_family_name(pid, was):
+                    problems.append(f"{hid}/{pid}: the ruling on printed line "
+                                    f"{shown_row.get('n')!r} says this card read "
+                                    f"{was!r} before it moved, and the id was not "
+                                    f"minted off that family name either — the id is "
+                                    f"the overturned reading's handle or the licence "
+                                    f"is not for this card (T-1218)")
+                if shown != awarded:
+                    problems.append(f"{hid}/{pid}: the card reads {shown!r} and its "
+                                    f"ruling on printed line {shown_row.get('n')!r} "
+                                    f"awards {awarded!r} — a card wears the reading it "
+                                    f"was ruled onto, not a third one (T-1218)")
+                block = person.get("name_ruling") or {}
+                if block.get("displayed_name_was") != was:
+                    problems.append(f"{hid}/{pid}: the card's own name_ruling says it "
+                                    f"read {block.get('displayed_name_was')!r} before "
+                                    f"it moved and {NAME_RULINGS.relative_to(ROOT)} "
+                                    f"says {was!r} — the card must carry the "
+                                    f"adjudication it stands on (T-1218)")
             dates = person.get("letter_list_returns")
             if not isinstance(dates, list) or not dates:
                 problems.append(f"{hid}/{pid}: letter_list_returns is "
@@ -1391,6 +1647,27 @@ NAME_READING_CASES = (
     # --- the comma the papers do sometimes print -------------------------------
     ("Hail, Aifred", "hail", "Aifred Hail"),
     ("Foot, S.", "foot", "S. Foot"),
+    # …and the SECOND comma, inside the forename side, which the reordering must
+    # not carry into the card (T-1121). `Hugunin, Leonard, C.` is a printing this
+    # corpus holds, and it minted hugunin_leonard_c, whose card read `Leonard, C.
+    # Hugunin` and gave the family name `leonard` to every reader of it. The row
+    # under it is the assertion that matters: the ordered name is a FIXED POINT
+    # and gives the family name the printing gave, so no reader of the card can
+    # answer differently from a reader of the line.
+    ("Hugunin, Leonard, C.", "hugunin", "Leonard C. Hugunin"),
+    ("Leonard C. Hugunin", "hugunin", "Leonard C. Hugunin"),
+    # `Es,Jones, High` is the other printing this corpus holds with two commas,
+    # and T-1217 is what its first comma turned out to be: not a divider. The
+    # family name is set in the MIDDLE, so reordering around that comma led the
+    # card with it (`Jones, High Es`). The divider is the SECOND comma, so the
+    # forename `High` leads, the run-on remnant `Es` follows it unpromoted, and the
+    # family name ends the card. The trap it avoids is the comma-only fix: dropping
+    # the punctuation alone gives `Jones High Es`, whose last word is `Es`, and
+    # compile_scene.py's `surname_of()` files a card under its last word — so that
+    # card would have sorted in the town directory under `es`, away from the other
+    # Joneses. (`surname()` here would still answer `jones`, by T-0638's first-token
+    # rule; two readers of one card disagreeing is the defect, not a safety net.)
+    ("Es,Jones, High", "jones", "High Es Jones"),
     # --- a genuine two-part surname, which must survive all of it --------------
     ("Rev. John Mary Irenaeus St Cyr", "cyr", "Rev. John Mary Irenaeus St Cyr"),
 )
@@ -1434,6 +1711,16 @@ def name_reading_self_test() -> int:
         if got_d != want_display:
             failed += 1
             print(f"   FAIL display({printed!r}) -> {got_d!r}, expected {want_display!r}")
+    # T-1121. The property the rows above only sample: whatever `display()` makes
+    # of a printing, a reader of the CARD must land on the family name a reader of
+    # the LINE does. This is the assertion that failed on `Hugunin, Leonard, C.`
+    # — `surname()` said hugunin of the printing and leonard of the card it made.
+    for printed, _want_surname, _want_display in NAME_READING_CASES:
+        of_line, of_card = surname(printed), surname(display(printed))
+        if of_line != of_card:
+            failed += 1
+            print(f"   FAIL surname({printed!r}) is {of_line!r} but the card it makes, "
+                  f"{display(printed)!r}, reads {of_card!r}")
     for printed, want_slug, want_fragment in SLUG_CASES:
         got_slug, got_fragment = slug(printed), plain_fragment(printed)
         if got_slug != want_slug:
@@ -1447,7 +1734,8 @@ def name_reading_self_test() -> int:
         print(f"   {failed} name-reading assertion(s) failed")
         return 1
     print(f"   OK: all {len(NAME_READING_CASES)} name readings and "
-          f"{len(SLUG_CASES)} slugs are what the papers print")
+          f"{len(SLUG_CASES)} slugs are what the papers print, and every card each "
+          f"one makes reads back to the family name of its own line")
     return 0
 
 
@@ -1519,6 +1807,16 @@ def self_test() -> int:
                  if minted_by(p, doc, "letter_list", PREFIX)
                  and (doc.get("persons") or [{}])[0].get("letter_list_only"))
 
+    # The three cards T-1139 moved and T-1218 gates. Read from the ruling file so
+    # this harness cannot be satisfied by a card that has quietly stopped being one.
+    RULED = set(ruled_renamings())
+    RULED_PATH = next((path for path, doc in sorted(docs.items())
+                       if any(p.get("id") in RULED for p in doc.get("persons") or [])),
+                      None)
+    if not RULED or RULED_PATH is None:
+        print("   no adjudicated renaming in the tree — T-1218's licence is untested")
+        return 1
+
     def broken(mutate):
         d = json.loads(json.dumps({str(k): v for k, v in docs.items()}))
         d = {pathlib.Path(k): v for k, v in d.items()}
@@ -1580,7 +1878,69 @@ def self_test() -> int:
             "rule": "G1b",
         })
 
+    # T-1121. The defect exactly as it stood on dev: a card whose ordered name
+    # keeps the second comma of its printing. The mutation is the printing's own
+    # — a comma after the first forename word, which is where `Hugunin, Leonard,
+    # C.` left one — and it is put on a card whose family name a reader would
+    # then get wrong, because a comma that moves nothing is not the defect.
+    def punctuate_the_card(d, i, s):
+        for path, doc in sorted(d.items()):
+            if not minted_by(path, doc, "letter_list", PREFIX):
+                continue
+            person = (doc.get("persons") or [{}])[0]
+            tokens = str(person.get("name") or "").split()
+            if len(tokens) < 3 or "," in person["name"]:
+                continue
+            spoiled = " ".join([tokens[0] + ","] + tokens[1:])
+            if full_word(tokens[0]) and surname(spoiled) != surname(person["name"]):
+                person["name"] = spoiled
+                return
+        raise AssertionError("no card whose name a stray comma would re-read")
+
+    # T-1218. The defect as it would arrive on a fresh card: one letter of the
+    # surname re-read, the card moved and the id left where it was. No comma, no
+    # reordering — the two readings simply spell the family name differently, and
+    # before this gate nothing in the tree noticed.
+    def respell_a_card(d, i, s):
+        for path, doc in sorted(d.items()):
+            if not minted_by(path, doc, "letter_list", PREFIX):
+                continue
+            person = (doc.get("persons") or [{}])[0]
+            pid, shown = person.get("id"), str(person.get("name") or "")
+            if pid in RULED or not id_family_name(pid, shown):
+                continue
+            fam = next((w for w in reversed(words(shown)) if full_word(w)), None)
+            if not fam or len(fam) < 4:
+                continue
+            spoiled = shown.replace(fam, fam[:-2] + fam[-1] + fam[-2], 1)
+            if not id_family_name(pid, spoiled):
+                person["name"] = spoiled
+                return
+        raise AssertionError("no card whose surname a re-reading would move")
+
+    # And the licence itself, in both directions it can be abused. A ruled card
+    # respelled a THIRD way is the one the ruling file can catch and the card's own
+    # `name_ruling` block cannot, because the block would still be sitting there
+    # saying what it always said.
+    def respell_a_ruled_card(d, i, s):
+        doc = d[RULED_PATH]
+        person = next(p for p in doc["persons"] if p["id"] in RULED)
+        person["name"] = person["name"].replace("z", "s").replace("Z", "S") + "e"
+
+    # A card that loses the adjudication it stands on keeps the divergence and
+    # stops carrying the reason for it — which is how this class went unnoticed
+    # long enough to need a ticket.
+    def unrule_the_card(d, i, s):
+        doc = d[RULED_PATH]
+        person = next(p for p in doc["persons"] if p["id"] in RULED)
+        person["name_ruling"]["displayed_name_was"] = person["name"]
+
     cases = [
+        ("a card's ordered name keeps a comma", punctuate_the_card, "T-1121"),
+        ("a card's surname is re-spelled off its id", respell_a_card, "T-1218"),
+        ("a ruled card is re-spelled a third way", respell_a_ruled_card, "awards"),
+        ("a ruled card drops the adjudication it stands on", unrule_the_card,
+         "must carry the adjudication"),
         ("a person loses letter_list_only", drop_flag, "letter_list_only"),
         ("a person loses its returns' dates", drop_dates, "letter_list_returns"),
         ("a household gains a roof", give_a_roof, "lives_at"),

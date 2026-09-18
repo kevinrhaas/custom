@@ -37,11 +37,11 @@ Planned epochs, in the order they matter:
 
 | epoch | what changed |
 |---|---|
-| `e1830_natural` | pre-cut: the baymouth bar deflects the river south nearly half a mile; natural mouth near present Madison St |
+| `e1830_natural` | pre-cut: the baymouth bar deflects the river south nearly half a mile; natural mouth a half mile below the fort. **Shoreline traced (T-1242); spec, heightfield and meshes are T-1243.** |
 | `e1834_harbor_cut` | **active** — piers and the cut through the bar; the old channel silting behind the sand tongue |
 | `e1849_canal_era` | the I&M canal, wharfing, early fills |
 | `e1856_grade_raise` | the city lifts itself out of the mud; the original ground surface is buried |
-| `e1871_postfire` | the burnt district and the fills that followed |
+| `e1871_postfire` | the burnt district and the fills that followed; **representative date 1 July 1888**, derived in `data/terrain/1880s_scene_date_constraints.json` |
 
 ## Shoreline states are addressed through epochs
 
@@ -52,13 +52,49 @@ reserved now:
 
 | scene time | epoch | shoreline state | present status |
 |---|---|---|---|
-| 15 August 1812 | `e1830_natural` | `shore_1812_pre_cut` | planned for T-0468; geometry deliberately null |
+| 15 August 1812 | `e1830_natural` | `shore_1812_pre_cut` | **traced** (T-1242) — its own derived planform; no ground generated from it yet |
 | 1 July 1835 | `e1834_harbor_cut` | `shore_1835_harbor_cut` | active |
-| 1880s | `e1871_postfire` | `shore_1880s_ic_edge` | planned for T-0473; geometry deliberately null |
+| **1 July 1888** | `e1871_postfire` | `shore_1880s_ic_edge` | date settled by T-1249; geometry deliberately null, and T-1250 owns the line |
 
-`geometry: null` is not permission to fall back. It means that state cannot render
-until its owning ticket supplies its own sourced line. The planned 1812 and 1880s
-states therefore cannot silently inherit the 1835 coast.
+Three status words, and they are not interchangeable. **`planned`** is `geometry: null`,
+which is not permission to fall back: that state cannot render until its owning ticket
+supplies its own sourced line. **`traced`** is a state that has its own geometry but no
+ground generated from it. **`active`** is the state the scene renders.
+
+### The 1812 state is derived, and says so
+
+No survey of the pre-cut mouth exists, so `shore_1812_pre_cut` could not be traced the way
+1835 was. It is **derived in the open** by `tools/derive_shore_1812.py` from exactly two
+committed things — `data/terrain/1812_mouth_readings.json` and the Wright 1834 trace — and
+every departure from Wright is stated in the tool rather than drawn by hand:
+
+- the drafted pier faces and the shore accreting behind them are **not carried**; the 1834
+  line north of the pier root is recorded on the state as an *eastward bound* instead;
+- the bar is declared **continuous to the mainland**, because a spit is why the river was
+  deflected south at all, and the isthmus itself is emitted as an explicit unmodelled gap —
+  the attachment is claimed, its width and lake face are not (`docs/LIBERTIES.md` L240);
+- the mouth is set at the **half mile below the fort** that Lt. Swearingen walked and wrote
+  down in 1803 (tier 1). The compilation's "near present Madison Street" is 94.9 m further
+  south and is kept beside it as the alternative. Nothing is averaged.
+
+Wright's own 1834 bar tip falls **9.2 m** south of the station Swearingen's half mile lands
+on — an 1803 distance paced on foot and an 1834 instrument survey agreeing to within ten
+metres, inside that trace's own ±20 m. That convergence is the strongest thing this project
+can say about where the natural mouth was, and it is why the tier-1 reading was adoptable.
+
+Because the file is derived, it is also re-derivable: `tools/check_shoreline_states.py`
+rebuilds it from the readings and fails on a hand edit, on a pier vertex, on a midpoint
+between the two readings, and on any feature claiming `documented`.
+
+**A date is not a line either (T-1249).** The 1880s address date is now 1 July 1888 —
+derived from the one Prairie Avenue landmark this project can date from a committed
+source, and re-derived on every commit by `tools/check_1880s_scene_date.py`. Settling
+it bought `shore_1880s_ic_edge` nothing: the state is still `planned`, its geometry is
+still `null`, and the gate fails if a ticket that only fixed a day gives it a coast.
+The date it replaced — an undocumented `date(1885, 7, 1)` that lived in
+`tools/check_shoreline_states.py` from T-1152 — is recorded in the constraints file
+under `adopted.supersedes`, because a plausible-looking number in a gate is read as
+settled by the next run that finds it.
 
 A dated observation may bound a shoreline without becoming it. The Rees & Rucker
 1849 trace below Twelfth Street is recorded under the 1835 state as a lower bound,

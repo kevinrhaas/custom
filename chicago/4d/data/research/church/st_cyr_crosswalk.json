@@ -5,13 +5,13 @@
   "source_id": "st_cyr_register_ichr_v4",
   "pass": "T-0573",
   "target": "data/residents/households/*.json — every named person, at every grade",
-  "targets_examined": 1287,
+  "targets_examined": 1282,
   "rule": "Surnames must fold equal after case and punctuation are dropped, AND the forenames must agree initial for initial in one direction or the other. A surname-only agreement is always a refusal. A row the page prints without a forename is reported no_forename, carried and never matched.",
   "counts": {
-    "candidate": 39,
+    "candidate": 33,
+    "refusal": 100,
+    "unmatched": 389,
     "no_forename": 4,
-    "refusal": 97,
-    "unmatched": 386,
     "ruled_no_town_change": 5
   },
   "merges_proposed": 1,
@@ -96,16 +96,15 @@
       "role": "groom",
       "describes_date": "1834-05-20",
       "scene_year": false,
-      "outcome": "candidate",
+      "outcome": "refusal",
       "residents": [
         {
-          "person_id": "simmons_john",
-          "name": "John Simmons",
-          "grade": "inferred",
-          "occupation": "none_recorded"
+          "person_id": "simmons_medad_i",
+          "name": "Medad I. Simmons",
+          "grade": "inferred"
         }
       ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'John Simmons' against 'John Simmons'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1834-05-20 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'John Simmons' against 'Medad I. Simmons'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1834-05-20 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_002_2",
@@ -114,16 +113,9 @@
       "role": "bride",
       "describes_date": "1834-05-20",
       "scene_year": false,
-      "outcome": "candidate",
-      "residents": [
-        {
-          "person_id": "durbin_mary",
-          "name": "Mary Durbin",
-          "grade": "inferred",
-          "occupation": "none_recorded"
-        }
-      ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'Mary Durbin' against 'Mary Durbin'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1834-05-20 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "outcome": "unmatched",
+      "residents": [],
+      "rule": "No person in data/residents/ carries a surname folding to 'durbin'. NOT THE SCENE YEAR: this reading is dated 1834-05-20 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_003_1",
@@ -132,16 +124,9 @@
       "role": "groom",
       "describes_date": "1834-05-21",
       "scene_year": false,
-      "outcome": "candidate",
-      "residents": [
-        {
-          "person_id": "vincent_john",
-          "name": "John Vincent",
-          "grade": "inferred",
-          "occupation": "none_recorded"
-        }
-      ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'John Vincent' against 'John Vincent'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1834-05-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "outcome": "unmatched",
+      "residents": [],
+      "rule": "No person in data/residents/ carries a surname folding to 'vincent'. NOT THE SCENE YEAR: this reading is dated 1834-05-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_003_2",
@@ -150,16 +135,15 @@
       "role": "bride",
       "describes_date": "1834-05-21",
       "scene_year": false,
-      "outcome": "candidate",
+      "outcome": "refusal",
       "residents": [
         {
-          "person_id": "simmons_marion",
-          "name": "Marion Simmons",
-          "grade": "inferred",
-          "occupation": "none_recorded"
+          "person_id": "simmons_medad_i",
+          "name": "Medad I. Simmons",
+          "grade": "inferred"
         }
       ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'Marion Simmons' against 'Marion Simmons'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1834-05-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Marion Simmons' against 'Medad I. Simmons'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1834-05-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_004_1",
@@ -168,16 +152,15 @@
       "role": "groom",
       "describes_date": "1834-05-21",
       "scene_year": false,
-      "outcome": "candidate",
+      "outcome": "refusal",
       "residents": [
         {
-          "person_id": "simmons_henry_fitz",
-          "name": "Henry Fitz Simmons",
-          "grade": "inferred",
-          "occupation": "none_recorded"
+          "person_id": "simmons_medad_i",
+          "name": "Medad I. Simmons",
+          "grade": "inferred"
         }
       ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'Henry Simmons' against 'Henry Fitz Simmons'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1834-05-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "rule": "The surname folds equal but no forename agrees initial for initial: 'Henry Simmons' against 'Medad I. Simmons'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1834-05-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_004_2",
@@ -186,16 +169,9 @@
       "role": "bride",
       "describes_date": "1834-05-21",
       "scene_year": false,
-      "outcome": "candidate",
-      "residents": [
-        {
-          "person_id": "logdson_cery",
-          "name": "Cery Logdson",
-          "grade": "inferred",
-          "occupation": "none_recorded"
-        }
-      ],
-      "rule": "Surname folds equal and the forenames agree initial for initial: 'Cery Logdson' against 'Cery Logdson'. That is a candidate and not a merge; a merge needs a second attribute to agree as well. NOT THE SCENE YEAR: this reading is dated 1834-05-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
+      "outcome": "unmatched",
+      "residents": [],
+      "rule": "No person in data/residents/ carries a surname folding to 'logdson'. NOT THE SCENE YEAR: this reading is dated 1834-05-21 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
     },
     {
       "record_id": "st_cyr_marriage_005_1",
@@ -596,7 +572,7 @@
         {
           "person_id": "miller_samuel",
           "name": "Samuel Miller",
-          "grade": "inferred"
+          "grade": "attested"
         }
       ],
       "rule": "The surname folds equal but no forename agrees initial for initial: 'Jacob Miller' against 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1836-04-04 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
@@ -1273,7 +1249,7 @@
         {
           "person_id": "miller_samuel",
           "name": "Samuel Miller",
-          "grade": "inferred"
+          "grade": "attested"
         }
       ],
       "rule": "The surname folds equal but no forename agrees initial for initial: 'Daniel Miller' against 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-01-24 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
@@ -2435,7 +2411,7 @@
         {
           "person_id": "miller_samuel",
           "name": "Samuel Miller",
-          "grade": "inferred"
+          "grade": "attested"
         }
       ],
       "rule": "The surname folds equal but no forename agrees initial for initial: 'Daniel Miller' against 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1837-08-24 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."
@@ -4254,7 +4230,7 @@
         {
           "person_id": "miller_samuel",
           "name": "Samuel Miller",
-          "grade": "inferred"
+          "grade": "attested"
         }
       ],
       "rule": "The surname folds equal but no forename agrees initial for initial: 'Jonathan Miller' against 'George Miller', 'John Miller', 'Samuel Miller'. A surname-only agreement is always a refusal. NOT THE SCENE YEAR: this reading is dated 1838-05-17 and under the ladder ratified 2026-09-03 it may date and corroborate and may never mint or promote, whatever it reaches."

@@ -136,6 +136,9 @@ const markerSha = (repo, origin, id) =>
   (git(repo, ['ls-remote', origin, `refs/heads/claim/${id.toLowerCase()}`]).stdout || '')
     .split('\t')[0].trim();
 
+/** The run window ticket.mjs sweeps past — kept in step with RUN_HOURS there. */
+const RUN_HOURS = 3;
+
 /* -------------------------------------------------------------------- cases */
 
 console.log('claim lock');
@@ -251,18 +254,27 @@ const boxes = [];
     markerSha(s.clones[1], s.origin, 'T-0001') !== '');
 }
 
-/* 9. `split` LETS GO TOO — the leak that put 19 markers on the remote.
+/* 9. `split` KEEPS ITS MARKER — REVERSED on 2026-09-17, and both faults are here.
  *
- * `done`, `block` and `withdraw` all released; `split` did not, and it is the
- * commonest terminal state of the three by a distance — it is what a run does
- * the moment it finds its ticket is bigger than one demonstration. Measured
- * 2026-09-14: of nineteen markers standing on kevinrhaas/custom, THIRTEEN
- * belonged to tickets in state `split`.
+ * It used to release, and the reason was real: of nineteen markers standing on
+ * kevinrhaas/custom on 2026-09-14, THIRTEEN belonged to tickets in state `split`.
+ * That was right about the litter and wrong about the lock, and T-1145 is the bill:
  *
- * Nothing else was ever going to collect them, which is why this is a leak and
- * not untidiness: the janitor lists open PULL REQUESTS and a marker has none,
- * and the staleness rule only lets the NEXT claim on that ticket steal it —
- * which never comes for a ticket that is now closed and out of the queue. */
+ *   03:38:16  run A claims T-1145, splits it, and the release deletes claim/t-1145
+ *             while run A's own PR is still unopened.
+ *   03:57:43  run B reads `dev`, where the split has not landed and T-1145 is still
+ *             `open` at the top of the queue, finds no lock, and claims it.
+ *
+ * Both split it into different children and built the same feature twice with
+ * colliding ids. A split is NOT finished work like `done`: the run carries on for
+ * another hour on a child, so `dev` goes on offering the parent for that whole hour.
+ * That is the widest window any terminal state has.
+ *
+ * The litter is collected by AGE instead, which is the second half of this case:
+ * `claims --sweep` takes any marker past the run window, and the lap runs it. So a
+ * marker outlives its run by at most a sweep, and the lock lives exactly as long as
+ * the work is unmerged. `tools/test_ticket_claim_split.mjs` holds the other half —
+ * that a second claim on the split parent is actually refused. */
 {
   const s = sandbox(); boxes.push(s.root);
   claim(s.clones[0], 'T-0001');
@@ -272,7 +284,22 @@ const boxes = [];
     'split', 'T-0001', 'the first piece', 'the second piece'],
     { cwd: s.clones[0], encoding: 'utf8' });
   check('`split` succeeds', r.status === 0, (r.stderr || '').trim().split('\n').pop());
-  check('`split` releases the marker', markerSha(s.clones[0], s.origin, 'T-0001') === '');
+  check('`split` KEEPS the marker — the parent is still offered by an unmerged dev',
+    markerSha(s.clones[0], s.origin, 'T-0001') !== '',
+    'released — a second run can claim the ticket it just split');
+}
+
+/* 9b. …and the litter that made `split` release is swept by age instead. */
+{
+  const s = sandbox(); boxes.push(s.root);
+  ageMarker(s.clones[0], s.origin, 'T-0001', RUN_HOURS + 2);
+  check('a marker older than a run stands until somebody sweeps',
+    markerSha(s.clones[0], s.origin, 'T-0001') !== '');
+  const r = spawnSync('node', [path.join(s.clones[0], 'chicago', '4d', 'tools', 'ticket.mjs'),
+    'claims', '--sweep'], { cwd: s.clones[0], encoding: 'utf8' });
+  check('`claims --sweep` collects it, which is what the lap runs every pass',
+    r.status === 0 && markerSha(s.clones[0], s.origin, 'T-0001') === '',
+    (r.stdout || '').trim().split('\n').pop());
 }
 
 for (const b of boxes) rmSync(b, { recursive: true, force: true });

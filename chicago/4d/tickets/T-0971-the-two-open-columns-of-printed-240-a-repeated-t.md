@@ -1,7 +1,7 @@
 ---
 id: T-0971
 title: The two open columns of printed 240: a repeated two-stroke figure on four cells that closes m_20_30 at 41 or m_30_40 at 13, never both
-state: open
+state: withdrawn
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-07
-closed: null
+closed: 2026-09-17
 pr: null
 claimed_by: null
-blocked_on: null
+blocked_on: folded into T-1290
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-17T19:18:43.915Z
 claimed_run: null
 ---
 

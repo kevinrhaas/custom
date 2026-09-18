@@ -1,7 +1,7 @@
 ---
 id: T-1146
 title: Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible
-state: open
+state: split
 epic: META
 requested_by: owner
 seen: true
@@ -9,13 +9,13 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-15
-closed: null
+closed: 2026-09-17
 pr: null
-claimed_by: null
+claimed_by: run 9/17/2026, 5:12:27 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
-claimed_run: null
+closed_at: 2026-09-17T10:16:00.765Z
+claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35208861486
 ---
 
 Spend matched household and person-profile research into structured relationships, names, sex, dates and life events, with every withheld fact legible.
@@ -50,6 +50,21 @@ from aggregate census counts. Those stay explicit dispositions in T-1143's ledge
 6. Add a deterministic `--check` plus mutation tests. Re-run the resident audit and report exact
    before/after counts for populated profile fields, multi-person households and unresolved facts;
    no grade or presence value moves unless the assertion that moved it is named.
+
+**Owner review, 2026-09-17 — added acceptance and one clarification:**
+
+7. Acceptance ¶4 ("aggregate age/sex buckets … mint no spouse, child, boarder or servant") binds
+   the ATTESTED and INFERRED spend and is unchanged. The owner's 2026-09-17 direction to
+   reconstruct families, women, children, boarders and staff applies to the `reconstructed` tier
+   only, under the programme ticket T-1167 and the household model T-1163, where every such
+   person carries a basis and a seed. This ticket does not do that work and does not forbid it.
+8. The candidate-fact table's `insufficient_identity`, `later_only` and `outside_chicago` rows
+   are written with the fields T-1159 (the borderline roster) reads — `name_as_read`, `source_id`,
+   `claim_or_record_id`, `describes_date`, `reason` — so the roster is a filter over this table,
+   not a second reading.
+9. Where a source names a family member (a baptism parent, a marriage party, an 1840 row bridged
+   to a head the layer carries), the structured relationship carries the member's `sex` and the
+   birth/marriage bound the source gives, because T-1170 fills families from exactly those fields.
 
 **Stop condition:** every already-matched person/household fact is structured or has a durable
 disposition, and no inferred/attested value exists only inside a note or research summary.

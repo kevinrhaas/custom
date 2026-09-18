@@ -28,7 +28,10 @@ import re
 import sys
 from pathlib import Path
 
+from associations import (ASSOCIATION_KINDS, ASSOCIATION_RESOLUTION,
+                         check_association_rows, singular_drift)
 from heightfield import Heightfield
+from migrate_attribute_tiers import check_tier_block
 from tiers import (SOLE_EVIDENCE_MAX_TIER, TESTIMONY_MAX_TIER,
                    TRACEABLE_MAX_TIER, tier_ladder)
 
@@ -320,6 +323,22 @@ def check_attested(where: str, key: str, att: dict, source_ids: set, rep: Report
 
     srcs = att.get("sources") or []
     note = (att.get("note") or "").strip()
+
+    # THE PER-ATTRIBUTE TIER (T-1158), checked wherever a block carries one.
+    #
+    # `confidence` says how well a value is evidenced; `tier` says which of the
+    # four kinds of thing the value IS — read from a source, reasoned about this
+    # person, invented from a model or a rule, or not asserted at all. They are not
+    # the same axis, and the fourth tier is the reason: 7,314 blocks in the resident
+    # layer carry `confidence: "reconstructed"` over a value that asserts nothing,
+    # which is the opposite of what a reconstruction band will mean by the word.
+    #
+    # The tier is DERIVED from the confidence and the value and may not disagree
+    # with that derivation, so this cannot become a second, softer grade that a
+    # writer sets to whatever flatters the record. What it adds is the obligations:
+    # a genuinely invented value owes a basis, a replacement rule, and — when it was
+    # drawn rather than argued — the seed that redraws it.
+    check_tier_block(where, key, att, rep.error)
 
     if conf == "attested":
         if not srcs:
@@ -4721,6 +4740,12 @@ def check_fauna(source_ids: set, rep: Report, tally: dict) -> dict:
 RESIDENTS = DATA / "residents"
 
 RESIDENT_GRADES = ("attested", "inferred", "reconstructed")
+# The grades that make a value a CLAIM, and so the grades that may fill the
+# generated 1835 role view. Same reading as
+# tools/audit_scene_window_trades.CLAIMING: `reconstructed` is this dataset's
+# word for a figure the reconstruction supplies rather than a source.
+CLAIMING_GRADES = ("attested", "documented", "inferred")
+RESIDENT_SCENE_DATE = "1835-07-01"
 
 # Which of the three mint tools produced this record, recorded now that a
 # plain id no longer says so on its own (T-0599: mint_documented_residents.py /
@@ -4751,6 +4776,19 @@ RETIRED_GRADE_TERMS = ("recommended", "recommendation", "suggested")
 
 RESIDENT_PRECISION = ("day", "either_of_two_days", "month", "season", "year",
                       "not_later_than")
+
+# T-1229 (of T-1145). A ROLE IS PLURAL, DATED, AND CANNOT BE WIDENED TO THE SCENE DATE.
+# `persons[].roles[]` is canonical and `persons[].occupation` is a generated view of the
+# roles covering 1835-07-01; tools/derive_resident_roles.py writes both. These are the
+# closed sets the manifest must declare and a row must speak, and they are checked here
+# rather than only in the generator because a hand edit to a card never runs it.
+RESIDENT_ROLE_KINDS = ("trade", "profession", "office", "employment", "business_interest")
+RESIDENT_ROLE_PRECISION = ("day", "month", "year", "source_span", "unknown")
+RESIDENT_ROLE_DATED_BY = ("source_describes_date", "printing_year", "stated_date",
+                          "undated")
+RESIDENT_ROLE_KEYS = ("role", "kind", "as_printed", "from", "to", "precision",
+                      "dated_by", "covers_scene_date", "confidence", "sources", "claim",
+                      "note")
 
 # `either_of_two_days` is what a source looks like when it will not choose. Hurlbut
 # prints Hubbard as arriving at Chicago "on the last day of October or first day of
@@ -4869,6 +4907,140 @@ def arrival_bounds(value, precision: str):
     return None
 
 
+def check_resident_roles(where: str, person: dict, occupations: set, source_ids: set,
+                         rep: Report) -> None:
+    """`roles[]` is canonical; `occupation` is the view of the roles that reach 1835.
+
+    THE CLAUSE THIS EXISTS FOR (T-1145 acceptance 6, T-1229): an undated or later role
+    may not stand in the 1835 compatibility field. A trade printed in a directory of
+    1843 is evidence about 1843, and the one field the scene compiler, the people index
+    and the popup all read must not be able to carry it. The generator refuses to write
+    one; this refuses to let one be hand-edited in afterwards, which is the half a
+    generator can never cover.
+    """
+    roles = person.get("roles")
+    occ = person.get("occupation")
+    occ = occ if isinstance(occ, dict) else {}
+    if roles is None:
+        # No role evidence, so no view keys and — the assertion that absence makes —
+        # no trade in the 1835 field either, because a trade there IS role evidence.
+        for key in ("derived_from", "roles_at_scene_date"):
+            if key in occ:
+                rep.error(where, f"occupation.{key} is set and the person carries no "
+                                 f"roles[] - the view keys describe a derivation that is "
+                                 f"not there. Run tools/derive_resident_roles.py --write")
+        if occ.get("value") not in (None, "", "none_recorded"):
+            rep.error(where, f"occupation '{occ.get('value')}' stands with no roles[] "
+                             f"behind it. The trade IS role evidence and owes a dated "
+                             f"row; tools/derive_resident_roles.py writes it")
+        return
+    if not isinstance(roles, list) or not roles:
+        rep.error(where, "roles is present and is not a non-empty list. An empty roles "
+                         "block claims a reading that is not there; omit the key")
+        return
+
+    at_scene = []
+    for i, row in enumerate(roles):
+        rwhere = f"{where}/roles[{i}]"
+        if not isinstance(row, dict):
+            rep.error(rwhere, "a role must be an object")
+            continue
+        missing = [k for k in RESIDENT_ROLE_KEYS if k not in row]
+        if missing:
+            rep.error(rwhere, f"missing {missing} - a role that cannot say what it was, "
+                              f"when, how it was dated and on whose word is not an "
+                              f"assertion, it is a label")
+            continue
+        role = row.get("role")
+        if role is not None and role not in occupations:
+            rep.error(rwhere, f"role '{role}' is not in the manifest occupation "
+                              f"vocabulary. Null is the honest value for a printing "
+                              f"that has not been adjudicated into it; a near word is "
+                              f"not")
+        if row.get("kind") not in RESIDENT_ROLE_KINDS:
+            rep.error(rwhere, f"kind '{row.get('kind')}' is not one of "
+                              f"{list(RESIDENT_ROLE_KINDS)}")
+        if row.get("precision") not in RESIDENT_ROLE_PRECISION:
+            rep.error(rwhere, f"precision '{row.get('precision')}' is not one of "
+                              f"{list(RESIDENT_ROLE_PRECISION)}")
+        if row.get("dated_by") not in RESIDENT_ROLE_DATED_BY:
+            rep.error(rwhere, f"dated_by '{row.get('dated_by')}' is not one of "
+                              f"{list(RESIDENT_ROLE_DATED_BY)} - a date with no account "
+                              f"of where it came from cannot be argued with")
+        if (row.get("from") is None) != (row.get("to") is None):
+            rep.error(rwhere, "a role carries both ends of its bound or neither. One end "
+                              "alone reads as a date the evidence does not give")
+        if row.get("from") is None and row.get("precision") != "unknown":
+            rep.error(rwhere, f"the role has no bound and claims precision "
+                              f"'{row.get('precision')}'. An unknown date stays unknown; "
+                              f"it is never widened to the scene date")
+        if not isinstance(row.get("covers_scene_date"), bool):
+            rep.error(rwhere, "covers_scene_date must be true or false - whether the "
+                              "evidence reaches the scene date is the whole question this "
+                              "row is here to answer")
+        if row.get("confidence") not in RESIDENT_GRADES:
+            rep.error(rwhere, f"confidence '{row.get('confidence')}' is not one of "
+                              f"{list(RESIDENT_GRADES)}")
+        srcs = row.get("sources") or []
+        if not srcs:
+            rep.error(rwhere, "a role cites no source. A trade is a claim about a person "
+                              "and carries its evidence like any other")
+        for sid in srcs:
+            if sid not in source_ids:
+                rep.error(rwhere, f"source '{sid}' does not resolve in data/sources/")
+        # ONLY A ROLE THAT REACHES 1835 IS MOORED TO THE PERSON'S OWN CITATION LIST, and
+        # only by ONE of its sources. Two readings were tried against the tree and both
+        # over-reached. Requiring it of every role put 56 later volumes into lists that
+        # exist to say what the 1835 RESIDENCY stands on, which the directories block
+        # forbids in its own words — "LATER EVIDENCE, BESIDE THE 1835 CLAIMS AND NOT
+        # INSIDE THEM ... on its own it makes nobody a resident of 1835". Requiring it of
+        # every source of a scene-date role then caught four cards whose trade cites a
+        # CORROBORATING volume beside the one the person rests on (Ira Couch's Tremont
+        # House is in Andreas and again in chicagology_prefire021), which is a citation
+        # working correctly. What is left is the case with no defence: a role asserted
+        # about the scene date on evidence the card it sits on does not stand on at all.
+        if (row.get("covers_scene_date") and srcs
+                and not (set(srcs) & set(person.get("sources") or []))):
+            rep.error(rwhere, f"this role reaches {RESIDENT_SCENE_DATE} and not one of its "
+                              f"sources {sorted(srcs)} is listed by the person; a role "
+                              f"about the scene date may not float free of the evidence "
+                              f"its card's grade stands on")
+        if not (row.get("note") or "").strip():
+            rep.error(rwhere, "a role owes a note saying what its bound means")
+        if row.get("covers_scene_date") and role and row.get("confidence") in CLAIMING_GRADES:
+            at_scene.append(role)
+
+    # --- the compatibility view ------------------------------------------
+    if occ.get("derived_from") != "roles":
+        rep.error(where, "occupation.derived_from must be 'roles' on a person who carries "
+                         "them - the singular field is a GENERATED VIEW of the roles that "
+                         "cover the scene date, not a second place to assert a trade")
+    named = occ.get("roles_at_scene_date")
+    if named != at_scene:
+        rep.error(where, f"occupation.roles_at_scene_date is {named!r} and the roles that "
+                         f"reach the scene date are {at_scene!r}. Run "
+                         f"tools/derive_resident_roles.py --write")
+    want = at_scene[0] if at_scene else "none_recorded"
+    if occ.get("value") != want:
+        rep.error(where, f"occupation '{occ.get('value')}' is not the view its roles "
+                         f"derive ('{want}'). A role that does not reach "
+                         f"{RESIDENT_SCENE_DATE} may not fill the {RESIDENT_SCENE_DATE} "
+                         f"field, and a role that does may not be dropped from it")
+    withdrawn = occ.get("withdrawn_from_scene_date")
+    if isinstance(withdrawn, dict):
+        if occ.get("value") != "none_recorded":
+            rep.error(where, "occupation carries a withdrawal and a trade at once. A "
+                             "withdrawal is a refusal that fired; if the field reads a "
+                             "trade the refusal no longer applies and must come off")
+        for key in ("value", "confidence", "verdict", "note"):
+            if not str(withdrawn.get(key) or "").strip():
+                rep.error(where, f"withdrawn_from_scene_date.{key} is empty. A trade taken "
+                                 f"off a card owes what it was, the grade it was held at "
+                                 f"and the verdict that took it off")
+    elif withdrawn is not None:
+        rep.error(where, "withdrawn_from_scene_date must be an object")
+
+
 def check_resident_grade(where: str, grade, sources, note: str, source_ids: set,
                          rep: Report, person: dict | None = None) -> None:
     """The accuracy vocabulary, and what each rung owes the reader."""
@@ -4981,7 +5153,9 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
 
     vocab = index.get("vocabulary") or {}
     for key in ("grades", "relationships", "occupations", "sexes", "presence", "divisions",
-                "arrival_precision", "kin_relations"):
+                "arrival_precision", "kin_relations", "association_kinds",
+                "association_resolution", "role_kinds", "role_date_precision",
+                "role_dated_by"):
         if not vocab.get(key):
             rep.error("residents index", f"vocabulary.{key} is missing - a renderer and the "
                                          f"evidence panel read this block to know the closed "
@@ -4997,12 +5171,33 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
                                      f"declared inverse cannot be checked for reciprocity, so "
                                      f"the set a record may use is the set validate.py can "
                                      f"mirror")
+    if list(vocab.get("association_kinds") or []) != list(ASSOCIATION_KINDS):
+        rep.error("residents index", f"vocabulary.association_kinds must be exactly "
+                                     f"{list(ASSOCIATION_KINDS)} and is "
+                                     f"{vocab.get('association_kinds')!r}. The set a record "
+                                     f"may use is the set a reading has needed; it grows in "
+                                     f"tools/associations.py with the reading that needed it")
+    if list(vocab.get("association_resolution") or []) != list(ASSOCIATION_RESOLUTION):
+        rep.error("residents index", f"vocabulary.association_resolution must be exactly "
+                                     f"{list(ASSOCIATION_RESOLUTION)} and is "
+                                     f"{vocab.get('association_resolution')!r}. A rung a "
+                                     f"renderer does not implement is a place it will draw "
+                                     f"at a precision the evidence never reached")
     if list(vocab.get("arrival_precision") or []) != list(RESIDENT_PRECISION):
         rep.error("residents index", f"vocabulary.arrival_precision must be exactly "
                                      f"{list(RESIDENT_PRECISION)} and is "
                                      f"{vocab.get('arrival_precision')!r}. A renderer that "
                                      f"reads a shorter list will silently mis-bound an arrival, "
                                      f"which is the one claim the scene date rests on")
+    for key, closed in (("role_kinds", RESIDENT_ROLE_KINDS),
+                        ("role_date_precision", RESIDENT_ROLE_PRECISION),
+                        ("role_dated_by", RESIDENT_ROLE_DATED_BY)):
+        if list(vocab.get(key) or []) != list(closed):
+            rep.error("residents index", f"vocabulary.{key} must be exactly {list(closed)} "
+                                         f"and is {vocab.get(key)!r}. A role's kind, its "
+                                         f"date precision and HOW it was dated are three "
+                                         f"closed sets a reader must be able to implement "
+                                         f"from the manifest alone")
     occupations = set(vocab.get("occupations") or [])
     relationships = set(vocab.get("relationships") or [])
     sexes = set(vocab.get("sexes") or [])
@@ -5094,6 +5289,14 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
             for k in ("lives_at", "works_at"):
                 if k in p:
                     check_resident_link(pwhere, k, p.get(k), structure_ids, rep)
+            if "associated_with" in p:
+                check_association_rows(pwhere, p.get("associated_with"), error=rep.error,
+                                       structure_ids=structure_ids, source_ids=source_ids,
+                                       divisions=divisions, scene=scene)
+                for msg in singular_drift(p, p.get("associated_with")):
+                    rep.error(pwhere, msg)
+
+            check_resident_roles(pwhere, p, occupations, source_ids, rep)
 
             # --- the evidence blocks a minted person shows its working in ----
             for key in RESIDENT_EVIDENCE_BLOCKS:
@@ -5184,6 +5387,18 @@ def check_residents(source_ids: set, structure_ids: set, rep: Report, tally: dic
 
         for k in ("lives_at", "works_at"):
             check_resident_link(where, k, h.get(k), structure_ids, rep)
+
+        # --- associated_with: the plural, dated form of the two links above ---
+        # T-1238. `lives_at`/`works_at` are singular and undated, and the sources
+        # are frequently neither; the list says which places, of what kind, on
+        # what dates, at what tier. Both shapes stand until the migration lands,
+        # and `singular_drift` is what stops them saying two different things.
+        if "associated_with" in h:
+            check_association_rows(where, h.get("associated_with"), error=rep.error,
+                                   structure_ids=structure_ids, source_ids=source_ids,
+                                   divisions=divisions, scene=scene)
+            for msg in singular_drift(h, h.get("associated_with")):
+                rep.error(where, msg)
 
         # --- kin: the link out of this record -------------------------------
         # Shape and local resolution here; the other end is checked after the
