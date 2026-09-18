@@ -6271,6 +6271,7 @@ for (const [label, viewport, touch] of [
         foundOnRecords: found,
         households: carrying.length,
         undeclared,
+        faultCount: faults.length,
         faults: faults.slice(0, 6),
         opening: String(hh.name ?? '').trim().split(/\s+/)[0]
           .replace(/[^A-Za-z]/g, '').toLowerCase(),
@@ -6305,9 +6306,10 @@ for (const [label, viewport, touch] of [
     // nothing behind, but that everything it leaves behind shows its working —
     // and that an invented name never rides on a record that is not reconstructed.
     check(`${label}: every reconstructed person carries its stage, basis, seed and replacement`,
-      invented.faults.length === 0 && invented.undeclared === 0,
-      invented.faults.length
-        ? `${invented.faults.length} fault(s): ${invented.faults.join('; ')}`
+      invented.faultCount === 0 && invented.undeclared === 0,
+      invented.faultCount
+        ? `${invented.faultCount} fault(s), first ${invented.faults.length}: `
+          + invented.faults.join('; ')
         : `${invented.foundOnRecords} reconstructed person(s), each naming a stage, `
           + `a basis, a seed where drawn and the evidence that retires them; `
           + `${invented.undeclared} undeclared invented name(s)`);
