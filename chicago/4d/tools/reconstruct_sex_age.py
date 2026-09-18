@@ -79,6 +79,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
 
 from profile_population_1835 import age_band_of  # noqa: E402
 from spend_person_sex_age import ours_birth, read_name, tokens  # noqa: E402
@@ -227,6 +228,8 @@ def without_this_pass(card: dict) -> dict:
     """The card as it stood before this pass ever ran. The basis of `--check`."""
     out = json.loads(json.dumps(card))
     for person in out.get("persons") or []:
+        if drawn_by_a_later_stage(person):
+            continue
         if ours_sex(person.get("sex_basis")):
             person.pop("sex_basis", None)
             person.pop("sex", None)
@@ -243,6 +246,21 @@ def collective(person: dict) -> bool:
     """A row that describes a group rather than a person."""
     _, _, why = read_name(person.get("name") or "")
     return why == "a_group_not_a_person"
+
+
+def drawn_by_a_later_stage(person: dict) -> bool:
+    """A person a RECONSTRUCTION stage wrote, rather than one the sources name.
+
+    This pass fills two attribute blocks on people the sources already name; that is its
+    whole scope and its first line says so. T-1171 was the first stage to write a PERSON,
+    and a person drawn from the household model arrives already carrying the sex and the
+    age band that stage drew them at — the wife's band comes off the spacing rule, the
+    child's off a cap the head's own age sets, and neither is a thing this pass could
+    re-derive from a roll. So they are invisible here: not measured (a draw of ours read
+    back as evidence is the one thing `measure` exists to avoid), not filled, not stripped.
+    """
+
+    return is_reconstructed(person)
 
 
 def conditioning_of(person: dict) -> str:
@@ -266,7 +284,7 @@ def measure(base: dict) -> dict:
     for hid, card in sorted(base.items()):
         roll = roll_of(card)
         for person in card.get("persons") or []:
-            if collective(person):
+            if collective(person) or drawn_by_a_later_stage(person):
                 continue
             if person.get("sex"):
                 settled[roll] += 1
@@ -568,13 +586,18 @@ def fill(base: dict) -> tuple:
 
     counts = {"sex_drawn": Counter(), "sex_refused": Counter(), "sex_already": Counter(),
               "age_drawn": Counter(), "age_read": Counter(), "age_refused": Counter(),
-              "drawn_sex_is": Counter(), "drawn_band_is": Counter()}
+              "drawn_sex_is": Counter(), "drawn_band_is": Counter(),
+              "drawn_by_a_later_stage": Counter()}
 
     for hid in sorted(out):
         card = out[hid]
         roll = roll_of(card)
         for person in card.get("persons") or []:
             pid = str(person.get("id") or "")
+            if drawn_by_a_later_stage(person):
+                counts["drawn_by_a_later_stage"][str((person.get("reconstruction") or {})
+                                                     .get("stage") or "?")] += 1
+                continue
             if collective(person):
                 if not person.get("sex"):
                     person["sex_basis"] = refusal_block("sex")
@@ -664,10 +687,13 @@ def check() -> int:
     if not MODEL.exists() or MODEL.read_text(encoding="utf-8") != dumps(want):
         print("  FAIL %s is not what --build writes" % MODEL.relative_to(ROOT))
         return 1
-    people = sum(len(c.get("persons") or []) for c in live.values())
+    people = sum(1 for c in live.values() for p in (c.get("persons") or [])
+                 if not drawn_by_a_later_stage(p))
     placed = sum(1 for c in live.values() for p in (c.get("persons") or [])
-                 if p.get("birth_year") or value_of(p.get("age_band")))
-    sexed = sum(1 for c in live.values() for p in (c.get("persons") or []) if p.get("sex"))
+                 if not drawn_by_a_later_stage(p)
+                 and (p.get("birth_year") or value_of(p.get("age_band"))))
+    sexed = sum(1 for c in live.values() for p in (c.get("persons") or [])
+                if not drawn_by_a_later_stage(p) and p.get("sex"))
     refused = sum(counts["age_refused"].values())
     if placed + refused != people:
         print("  FAIL %d of %d people carry neither a birth year nor an age band"

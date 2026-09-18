@@ -48,6 +48,15 @@
   ],
   "note": "Building the drawbridge in March 1834 and the sloop Clarissa by May 1836, which brackets the scene date."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 4,
+  "kin_seated": 4,
+  "seed": "hh_norton_nelson_r:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "norton_nelson_r",
@@ -371,14 +380,5 @@
     }
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 4,
-  "kin_seated": 4,
-  "seed": "hh_norton_nelson_r:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

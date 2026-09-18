@@ -46,6 +46,15 @@
   ],
   "note": "Printed on or after the scene date — last at the Democrat of 5 August 1835, column 4 — so the corpus itself puts this person in the town's paper at 1835-08-12."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 5,
+  "kin_seated": 5,
+  "seed": "hh_lewis_samuel:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "lewis_samuel",
@@ -387,14 +396,5 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "MINTED FROM THE NEWSPAPER REGISTER (T-0376), AND THE HOUSEHOLD IS A CONTAINER RATHER THAN AN ARGUMENT. Every other record in this dataset argues for a household — a family the sources count, or a trade the town demonstrably needed. This one argues for a PERSON: the Democrat and the American name Samuel Lewis as a schoolteacher at Chicago 7 time(s), and this reconstruction did not hold them. `data/residents/` has no way to carry a person except inside a household, so one was written around them and told to claim nothing: one member, no dwelling, no division, no origin, no arrival beyond the bound the paper sets. Reading a family, a house or a quarter of town into this record would be reading something the papers do not say. tools/mint_documented_residents.py derives the whole minted set and prints every candidate it refused, with the reason.",
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 5,
-  "kin_seated": 5,
-  "seed": "hh_lewis_samuel:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
- }
+ "research_note": "MINTED FROM THE NEWSPAPER REGISTER (T-0376), AND THE HOUSEHOLD IS A CONTAINER RATHER THAN AN ARGUMENT. Every other record in this dataset argues for a household — a family the sources count, or a trade the town demonstrably needed. This one argues for a PERSON: the Democrat and the American name Samuel Lewis as a schoolteacher at Chicago 7 time(s), and this reconstruction did not hold them. `data/residents/` has no way to carry a person except inside a household, so one was written around them and told to claim nothing: one member, no dwelling, no division, no origin, no arrival beyond the bound the paper sets. Reading a family, a house or a quarter of town into this record would be reading something the papers do not say. tools/mint_documented_residents.py derives the whole minted set and prints every candidate it refused, with the reason."
 }

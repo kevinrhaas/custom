@@ -333,8 +333,20 @@ def band_block(low: int, high, printed: str, seed: str, why: str) -> dict:
 # ------------------------------------------------------------------ the quota --
 
 def quota() -> dict:
-    """Bucket key -> how many more persons that bucket will take."""
+    """Bucket key -> how many more persons that bucket will take.
+
+    THIS STAGE'S OWN FILLS ARE ADDED BACK. `filled` on a bucket counts what every stage
+    has put in it, including the last run of this one, and a draw that read its own
+    previous answer as a spent quota would draw fewer people on the second build than on
+    the first — which is the one thing `--check` may not tolerate. The quota this stage
+    draws against is therefore the book as it stood before this stage last ran, and what
+    other stages have filled is still subtracted.
+    """
     book = json.loads(BOOK.read_text(encoding="utf-8"))
+    ours = Counter()
+    for entry in book.get("fills") or []:
+        if entry.get("ticket") == TICKET:
+            ours[entry.get("bucket")] += int(entry.get("records") or 0)
     out = {}
     for family in book["bucket_families"]:
         if family["key"] != "persons":
@@ -342,7 +354,8 @@ def quota() -> dict:
         for bucket in family["buckets"]:
             todo = bucket.get("to_reconstruct")
             if todo is not None:
-                out[bucket["key"]] = int(todo) - int(bucket.get("filled") or 0)
+                out[bucket["key"]] = (int(todo) - int(bucket.get("filled") or 0)
+                                      + ours[bucket["key"]])
     return out
 
 
@@ -513,6 +526,18 @@ def fill(base: dict) -> tuple:
             drawn_band[book_band(low)] += 1
             counts["children"] += 1
 
+        # THE BLOCK GOES IMMEDIATELY BEFORE `persons`, not at the end of the card.
+        # Several research passes own a trailing key and rebuild the card by popping
+        # theirs and appending it again (`old_settler_deaths` before `directories`, in
+        # spend_old_settlers.py); a new key at the end would move under them and their
+        # byte-for-byte --check would read it as drift.
+        rebuilt = {}
+        for key, value in card.items():
+            if key == "persons":
+                rebuilt["modelled_family"] = None  # placed, filled in below
+            rebuilt[key] = value
+        card.clear()
+        card.update(rebuilt)
         card["persons"] = (card.get("persons") or []) + members
         card["modelled_family"] = {
             "stage": STAGE,

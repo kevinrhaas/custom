@@ -52,6 +52,15 @@
   ],
   "note": "Publishing weekly from November 1833; the Democrat was still the town's paper in 1835 when the American joined it."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "married_couple",
+  "size_drawn": 2,
+  "kin_seated": 2,
+  "seed": "hh_calhoun_john:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "calhoun_john",
@@ -277,14 +286,5 @@
     }
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "married_couple",
-  "size_drawn": 2,
-  "kin_seated": 2,
-  "seed": "hh_calhoun_john:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

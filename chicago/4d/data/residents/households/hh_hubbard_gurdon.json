@@ -52,6 +52,15 @@
   ],
   "note": "A trustee through 1834-35 and a Chicago resident for the rest of his long life."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 3,
+  "kin_seated": 3,
+  "seed": "hh_hubbard_gurdon:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "hubbard_gurdon",
@@ -577,14 +586,5 @@
     }
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 3,
-  "kin_seated": 3,
-  "seed": "hh_hubbard_gurdon:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

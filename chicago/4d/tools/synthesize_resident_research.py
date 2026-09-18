@@ -35,6 +35,7 @@ ROOT = Path(os.environ["SYNTH_SCRATCH_ROOT"]) if os.environ.get("SYNTH_SCRATCH_R
 # file lives. Deriving the import path from ROOT instead breaks `--drift`, whose scratch
 # copy carries data and no tools: measured, ModuleNotFoundError on rebuild_resident_index.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
+from reconstructed_person import is_reconstructed  # noqa: E402
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from refuse_reconstructed_grade import refuse  # noqa: E402  (T-1144; the retirement above must actually have happened)
 
@@ -826,8 +827,13 @@ def drift_self_test():
 
 def check():
     index=load(INDEX); docs=[load(p) for p in HOUSEHOLDS.glob("*.json")]; people=[p for d in docs for p in d.get("persons") or []]; problems=[]
-    rec=[p.get("id") for p in people if p.get("grade")=="reconstructed"]
-    if rec: problems.append(f"{len(rec)} reconstructed people remain")
+    # T-1171: a reconstructed person a STAGE of T-1167's programme claims is the layer
+    # this pass's own retirement made room for, not a survivor of what it retired. What
+    # still may not remain is one no stage claims — nothing can re-derive that.
+    rec=[p.get("id") for p in people
+         if p.get("grade")=="reconstructed" and not is_reconstructed(p)]
+    if rec: problems.append(f"{len(rec)} reconstructed people remain that no stage of the "
+                            f"reconstruction programme claims")
     bad=[p.get("id") for p in people if p.get("resident_subtype")==PROJECTED and p.get("grade")!="inferred"]
     if bad: problems.append(f"{len(bad)} projected residents are not inferred")
     actual=Counter(p.get("grade") for p in people); declared=(index.get("counts") or {}).get("by_grade") or {}

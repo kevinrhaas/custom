@@ -42,6 +42,15 @@
   "confidence": "reconstructed",
   "note": "Presence on the scene date IS the hypothesis: this household exists in the dataset because the town of 1 July 1835 demonstrably needed households of this trade. It is not a finding about anybody's whereabouts."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "married_couple",
+  "size_drawn": 2,
+  "kin_seated": 2,
+  "seed": "hh_inf_tailor_north_02:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "inf_tailor_north_02",
@@ -240,14 +249,5 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "RECONSTRUCTED HOUSEHOLD - second of 2 tailor households in this layer, in the north division. The same argument as the shoemaker at the smaller count a frontier town supports: ready-made clothing was a store trade and tailoring a bespoke one. Two households. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one. RETIRED AN INVENTED NAME (T-0264). This household was raised by the occupation census and named from the invented-name pools. The newspaper register matched it to Thomas S. Eels, a documented tailor the corpus names 2 time(s) and places nowhere in particular, and he now holds the roof. What changed is WHO: the argument for the household, its dwelling and its position are untouched and still the reconstruction's, and the person's grade is `inferred` — a real man with reconstructed details — rather than `attested`, which would claim the dwelling too. tools/replace_invented_residents.py derives this deal and prints every candidate it refused. T-0489: reconstructed occupancy retired; evidence-based person retained and unplaced.",
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "married_couple",
-  "size_drawn": 2,
-  "kin_seated": 2,
-  "seed": "hh_inf_tailor_north_02:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
- }
+ "research_note": "RECONSTRUCTED HOUSEHOLD - second of 2 tailor households in this layer, in the north division. The same argument as the shoemaker at the smaller count a frontier town supports: ready-made clothing was a store trade and tailoring a bespoke one. Two households. METHOD: the count comes from the occupation census in data/reconstruction/1835_inferred_household_programme.json, which calibrates every trade against three things this project already holds - the 1835 town census (3,265 people, 398 dwellings), Andreas's roster of the fall of 1833 (about fifty named people, most with a trade, in a settlement of some 350), and the reconstruction specification's roof schedule, whose workshop and store family targets are treated as the ceiling on a trade rather than as its measure. Every count is stated NET of the documented layer: this dataset infers a tradesman only where it cannot name one. RETIRED AN INVENTED NAME (T-0264). This household was raised by the occupation census and named from the invented-name pools. The newspaper register matched it to Thomas S. Eels, a documented tailor the corpus names 2 time(s) and places nowhere in particular, and he now holds the roof. What changed is WHO: the argument for the household, its dwelling and its position are untouched and still the reconstruction's, and the person's grade is `inferred` — a real man with reconstructed details — rather than `attested`, which would claim the dwelling too. tools/replace_invented_residents.py derives this deal and prints every candidate it refused. T-0489: reconstructed occupancy retired; evidence-based person retained and unplaced."
 }

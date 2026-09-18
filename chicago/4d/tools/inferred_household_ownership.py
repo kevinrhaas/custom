@@ -46,6 +46,9 @@ import pathlib
 import re
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 RECORD = ROOT / "data" / "reconstruction" / "1835_inferred_household_pass_ownership.json"
 STRUCTURES = ROOT / "data" / "structures"
@@ -262,8 +265,15 @@ def check_names_pass(derived: dict[pathlib.Path, dict],
                      "is a test")
     # half B: not one of these names stands in the tree, because T-0489 retired
     # every person this pass ever named.
+    # …and the retirement is of THIS pass's people. T-1167's programme is the layer the
+    # owner ruled could come back, under an explicit file, and T-1171 is the first stage
+    # of it to name anybody: those people carry a `name_basis` too, drawn from the same
+    # pools and seeded so the draw reproduces, and `reconstruct_residents_1835.py --check`
+    # holds every one of them to the record contract. What must stay out of the tree is a
+    # name THIS pass dealt — one no stage claims and nothing can re-derive.
     standing = sorted(p.name for p in HOUSEHOLDS.glob("*.json")
                       if any(isinstance(person, dict) and person.get("name_basis")
+                             and not is_reconstructed(person)
                              for person in json.loads(
                                  p.read_text(encoding="utf-8")).get("persons", [])))
     drift += [f"data/residents/households/{name} carries an invented name_basis — "

@@ -283,10 +283,26 @@ def ours_birth(block) -> bool:
         [DEATHS_SOURCE], [REGISTRY_SOURCE])
 
 
+def reconstructed(person: dict) -> bool:
+    """A person a stage of the reconstruction programme wrote (T-1167).
+
+    This pass READS a sex and a birth year off the evidence — a gendered title, a forename
+    the corpus settles, an obituary. A person the household model DREW has neither: their
+    sex is the model's draw and their forename came out of a name pool, so reading a sex
+    back off that forename would be this layer's own invention returned to it as a finding,
+    and the forename table would count an invented name as evidence. They are skipped
+    everywhere here: not tabulated, not filled, not stripped.
+    """
+    rc = person.get("reconstruction")
+    return isinstance(rc, dict) and bool(rc.get("stage"))
+
+
 def without_this_pass(card: dict) -> dict:
     """The card as it stood before this pass ever ran. Pure, and the basis of `--check`."""
     out = json.loads(json.dumps(card))
     for person in out.get("persons") or []:
+        if reconstructed(person):
+            continue
         if ours_sex(person.get("sex_basis")):
             person.pop("sex_basis", None)
             person.pop("sex", None)
@@ -298,6 +314,8 @@ def without_this_pass(card: dict) -> dict:
 def persons(cards: dict):
     for hid in sorted(cards):
         for person in cards[hid].get("persons") or []:
+            if reconstructed(person):
+                continue
             yield hid, person
 
 
@@ -592,6 +610,8 @@ def apply_to(card: dict, table: dict, lookup: dict, deaths: dict, registry: dict
     """A fresh copy of one household with this pass's fills written in. Pure."""
     out = json.loads(json.dumps(card))
     for person in out.get("persons") or []:
+        if reconstructed(person):
+            continue
         pid = person.get("id")
         sex, rule, note = sex_for(person, table, lookup)
         if sex:

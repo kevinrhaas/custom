@@ -122,6 +122,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
+from reconstructed_person import is_reconstructed  # noqa: E402
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
 from refuse_reconstructed_grade import refuse_texts  # noqa: E402  (T-1144; reconstruction begins at T-1167, never in a mint)
@@ -780,6 +781,12 @@ def town_family_names(docs: dict, index: dict, skip_prefix: str | None = PREFIX)
         if skip_prefix and minted_by(path, doc, "letter_list", skip_prefix):
             continue
         for person in doc.get("persons") or []:
+            # AN INVENTED NAME NEVER SPENDS A SURNAME. A reconstructed wife carries her
+            # head's family name by construction, so she can only ever re-assert a
+            # surname the town already holds — but a later stage drawing a name from the
+            # pools could otherwise make the town's own invention refuse a real mint.
+            if is_reconstructed(person):
+                continue
             fam = surname(person.get("name") or "")
             if fam:
                 known.add(fam)
@@ -811,6 +818,11 @@ def outside_holders(docs: dict) -> dict[str, list[str]]:
         if minted_by(path, doc, "letter_list", PREFIX):
             continue
         for person in doc.get("persons") or []:
+            # …and never NAMES one either: a collision block that offered an invented
+            # wife as the holder of a family name would print this dataset's own
+            # reconstruction back to a reader as the evidence against a mint.
+            if is_reconstructed(person):
+                continue
             fam = surname(person.get("name") or "")
             if fam:
                 out.setdefault(fam, []).append(f"{person['name']} ({path.stem})")

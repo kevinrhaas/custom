@@ -50,6 +50,15 @@
   ],
   "note": "Publishing at Chicago in June 1835 and through the year - the American of 15 August 1835 counting the town's eight taverns, and of 10 October 1835 tabulating the land office's takings, are both quoted by Andreas."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 3,
+  "kin_seated": 3,
+  "seed": "hh_davis_t_o:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "davis_t_o",
@@ -259,14 +268,5 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE NEWEST ARRIVAL IN THE PARCEL, and the one whose paper this project quotes most often for the state of the town in the scene year. A NOTE FOR ANY LATER PARCEL: the Chicago American of 1835-36 is the single most valuable unfetched source for this programme. Andreas quotes its advertisements by name and date - Frederick Thomas's drug and paint store of 8 June 1835, John Davis of the Steamboat Hotel among its first patrons, W. H. and A. F. Clarke's new drug store of 11 November 1835 - and every such advertisement is a documented resident with a trade and often an address, in the scene year rather than nineteen months before it.",
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 3,
-  "kin_seated": 3,
-  "seed": "hh_davis_t_o:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
- }
+ "research_note": "THE NEWEST ARRIVAL IN THE PARCEL, and the one whose paper this project quotes most often for the state of the town in the scene year. A NOTE FOR ANY LATER PARCEL: the Chicago American of 1835-36 is the single most valuable unfetched source for this programme. Andreas quotes its advertisements by name and date - Frederick Thomas's drug and paint store of 8 June 1835, John Davis of the Steamboat Hotel among its first patrons, W. H. and A. F. Clarke's new drug store of 11 November 1835 - and every such advertisement is a documented resident with a trade and often an address, in the scene year rather than nineteen months before it."
 }

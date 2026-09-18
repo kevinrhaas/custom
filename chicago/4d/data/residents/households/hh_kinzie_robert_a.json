@@ -48,6 +48,15 @@
   ],
   "note": "Continuous in the Chicago record from 1831 into the 1840s."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 6,
+  "kin_seated": 6,
+  "seed": "hh_kinzie_robert_a:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "kinzie_robert_a",
@@ -533,14 +542,5 @@
     }
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 6,
-  "kin_seated": 6,
-  "seed": "hh_kinzie_robert_a:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

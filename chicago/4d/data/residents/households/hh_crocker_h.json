@@ -46,6 +46,15 @@
   ],
   "note": "Printed on or after the scene date — last at the Democrat of 8 July 1835, column 4 — so the corpus itself puts this person in the town's paper at 1835-07-08."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 3,
+  "kin_seated": 3,
+  "seed": "hh_crocker_h:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "crocker_h",
@@ -312,14 +321,5 @@
     "person_id": "crocker_h"
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 3,
-  "kin_seated": 3,
-  "seed": "hh_crocker_h:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

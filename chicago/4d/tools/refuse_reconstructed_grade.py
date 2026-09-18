@@ -38,6 +38,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 HOUSEHOLDS = ROOT / "data" / "residents" / "households"
 PROGRAMME_TICKET = "T-1167"
@@ -78,12 +81,33 @@ def persons(doc):
     return [p for p in (doc.get("persons") or []) if isinstance(p, dict)]
 
 
+def claimed_by_the_programme(person) -> bool:
+    """A person a STAGE of the reconstruction programme wrote and can re-derive.
+
+    T-1171 was the first stage to write one, and it writes them INSIDE cards the research
+    mints own. A mint rebuilds its card whole, so `resident_mint_carry` carries those
+    people through the rebuild — and a blanket refusal would then fire on a mint for
+    carrying what it did not mint. The distinction this gate makes, and the one that
+    matters, is whether a stage CLAIMS the person: `reconstruct_residents_1835.py --check`
+    re-derives every claimed person from that stage's own seeds and refuses a single
+    differing byte, so a mint that learned to stamp a stage key on an invention would be
+    caught there, by a gate it could only pass by drawing the invention for real.
+
+    What stays refused here is the leak this file was written for: a `reconstructed` grade
+    arriving from a default or copied off a neighbour, which no stage claims and nothing
+    can re-derive. `reconstructed_person.py` holds the test; this is its name here.
+    """
+    return is_reconstructed(person)
+
+
 def offences(doc, label):
     """Every person in `doc` whose grade a research writer may not emit."""
     out = []
     for person in persons(doc):
         grade = person.get("grade")
         if grade in WRITABLE_GRADES:
+            continue
+        if grade == RESERVED and claimed_by_the_programme(person):
             continue
         pid = person.get("id") or person.get("name") or "(unnamed person)"
         if grade == RESERVED:
@@ -142,6 +166,14 @@ def check():
 
     committed = {p.name: json.loads(p.read_text(encoding="utf-8"))
                  for p in sorted(HOUSEHOLDS.glob("*.json"))}
+    # THE LAYER MAY NOW HOLD RECONSTRUCTED PEOPLE, AND ONLY THE PROGRAMME'S.
+    # This assertion read "none at all" while the programme had built no stage and
+    # the count was zero. T-1171 built one, and a rule whose truth depended on an
+    # empty set would have made the first legitimate reconstruction look like the
+    # leak it exists to catch. What it refuses now is the leak itself: a person
+    # graded `reconstructed` whom no stage of T-1167's programme claims. The
+    # programme's own `--check` holds those it does claim to the record contract;
+    # the writers' wiring below is unchanged and is still the boundary.
     try:
         refuse(committed, "the committed resident layer")
     except ReconstructedGradeRefused as exc:
@@ -162,8 +194,11 @@ def check():
             print(" -", p)
         return 1
     people = sum(len(persons(d)) for d in committed.values())
-    print(f"   OK: {people} resident(s) across {len(committed)} household(s), none "
-          f"graded `{RESERVED}`; all {len(WIRED_WRITERS)} writers refuse it")
+    claimed = sum(1 for d in committed.values() for p in persons(d)
+                  if p.get("grade") == RESERVED)
+    print(f"   OK: {people} resident(s) across {len(committed)} household(s); "
+          f"{claimed} graded `{RESERVED}`, every one of them claimed by a stage of "
+          f"{PROGRAMME_TICKET}'s programme; all {len(WIRED_WRITERS)} writers refuse it")
     return 0
 
 
@@ -208,6 +243,20 @@ def self_test():
         "occupation": {"value": None, "confidence": RESERVED, "note": "Not attested."},
         "lives_at": {"value": None, "confidence": RESERVED, "note": "Not attested."}}]}},
         "a per-attribute confidence of reconstructed")
+
+    # 3b. A reconstructed person a STAGE of the programme claims is carried, not minted:
+    #     the mints rebuild their cards whole and `resident_mint_carry` carries those
+    #     people through. Refusing that would fire on a mint for keeping what it did not
+    #     write. The claim is what makes it safe — the programme's own --check re-derives
+    #     every claimed person from its seeds — and a reconstructed person NO stage claims
+    #     is still refused, which is the leak this file exists for.
+    passes({"hh_stage.json": {"id": "hh_stage", "persons": [
+        {"id": "rc_p", "grade": RESERVED,
+         "reconstruction": {"stage": "modelled_families"}}]}},
+        "a person a stage of the reconstruction programme claims")
+    raises({"hh_loose.json": {"id": "hh_loose", "persons": [
+        {"id": "p_loose", "grade": RESERVED, "reconstruction": {"programme": "x"}}]}},
+        "a reconstructed person no stage claims")
 
     # 4. A grade outside the vocabulary is refused too — the fall-through case is
     #    how a default would arrive, and it would not spell itself `reconstructed`.

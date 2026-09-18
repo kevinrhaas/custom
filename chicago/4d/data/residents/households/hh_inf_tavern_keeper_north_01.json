@@ -42,6 +42,15 @@
   "confidence": "reconstructed",
   "note": "Presence on the scene date IS the hypothesis: this household exists in the dataset because the town of 1 July 1835 demonstrably needed households of this trade. It is not a finding about anybody's whereabouts."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 7,
+  "kin_seated": 7,
+  "seed": "hh_inf_tavern_keeper_north_01:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "inf_tavern_keeper_north_01",
@@ -596,14 +605,5 @@
     "person_id": "inf_tavern_keeper_north_01"
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 7,
-  "kin_seated": 7,
-  "seed": "hh_inf_tavern_keeper_north_01:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

@@ -373,6 +373,9 @@
    "70-79": 8,
    "60-69": 15,
    "10-14": 1
+  },
+  "drawn_by_a_later_stage": {
+   "modelled_families": 312
   }
  }
 }

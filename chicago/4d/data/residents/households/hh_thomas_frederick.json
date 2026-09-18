@@ -48,6 +48,15 @@
   ],
   "note": "Advertising at Chicago on 8 June 1835, twenty-three days before the scene date, and in business there into 1836."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 6,
+  "kin_seated": 6,
+  "seed": "hh_thomas_frederick:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "thomas_frederick",
@@ -447,14 +456,5 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "THE CLOSEST DOCUMENTED ARRIVAL TO THE SCENE DATE IN THE PARCEL, and a trade the occupation vocabulary had to be widened for. 'Barber-surgeon' is Andreas's own characterisation of a man who sold paint and drew teeth, and it is a period-correct trade in a way that 'pharmacist' or 'dentist' would not be. HIS ADDRESS IS A CHAIN OF LANDMARKS RATHER THAN A LOT: 'on Water Street, two doors from the American office, near the drawbridge' locates him against two structures this dataset already holds, which is the kind of constraint the placement work in K7 can actually use.",
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 6,
-  "kin_seated": 6,
-  "seed": "hh_thomas_frederick:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
- }
+ "research_note": "THE CLOSEST DOCUMENTED ARRIVAL TO THE SCENE DATE IN THE PARCEL, and a trade the occupation vocabulary had to be widened for. 'Barber-surgeon' is Andreas's own characterisation of a man who sold paint and drew teeth, and it is a period-correct trade in a way that 'pharmacist' or 'dentist' would not be. HIS ADDRESS IS A CHAIN OF LANDMARKS RATHER THAN A LOT: 'on Water Street, two doors from the American office, near the drawbridge' locates him against two structures this dataset already holds, which is the kind of constraint the placement work in K7 can actually use."
 }

@@ -51,6 +51,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
 from summarize_residents import load_layer, persons, pct, table  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -869,14 +870,33 @@ def build() -> dict:
     }
 
 
+def _claimed_by_the_programme() -> int:
+    """How many people in the committed layer a stage of T-1167's programme claims."""
+    total = 0
+    for path in sorted((ROOT / "data" / "residents" / "households").glob("hh_*.json")):
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        total += sum(1 for person in doc.get("persons") or []
+                     if person.get("grade") == "reconstructed" and is_reconstructed(person))
+    return total
+
+
 def assertions(doc: dict) -> None:
     ids = [s["id"] for s in doc["sections"]]
     if ids != SECTION_IDS:
         raise Refused("the profile does not hold every section, in order: %s" % ids)
     counts = doc["counts"]
-    if counts["by_grade"].get("reconstructed", 0) != 0:
-        raise Refused("the `reconstructed` grade is not zero — reconstruction begins at "
-                      "T-1167 under its own programme, never inside a profile")
+    # THE PROFILE READS A RECONSTRUCTED PERSON AND NEVER MAKES ONE. This read "the count
+    # is zero" while T-1167's programme had built no stage, which was the same assertion
+    # as long as the set was empty. T-1171 filled it, so the rule is stated the way it was
+    # always meant: every `reconstructed` person this profile counts is one a STAGE of the
+    # programme claims and can re-derive. A profile that invented somebody would put a
+    # person here whom no stage claims, and that is what fires.
+    reconstructed = counts["by_grade"].get("reconstructed", 0)
+    if reconstructed != _claimed_by_the_programme():
+        raise Refused("the profile counts %d `reconstructed` person(s) and the committed "
+                      "layer holds %d that a stage of T-1167's programme claims — "
+                      "reconstruction happens under that programme, never inside a profile"
+                      % (reconstructed, _claimed_by_the_programme()))
     if counts["persons_with_a_sex"] > counts["persons"]:
         raise Refused("more persons carry a sex than there are persons")
     for section in doc["sections"]:

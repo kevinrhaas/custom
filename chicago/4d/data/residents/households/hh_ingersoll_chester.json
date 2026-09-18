@@ -56,6 +56,15 @@
   ],
   "note": "A tenancy given as 1834-1837 covers 1 July 1835; no source states his whereabouts on that day."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 8,
+  "kin_seated": 8,
+  "seed": "hh_ingersoll_chester:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "ingersoll_chester",
@@ -590,14 +599,5 @@
  ],
  "touches_removal": false,
  "review_required": false,
- "research_note": "A TAVERN KEEPER WHO MOVED HOUSE INSIDE THE DATASET'S OWN WINDOW, which is why the two buildings he is attached to must not be collapsed. In 1833-34 he kept the old Wolf Point house under the sign of the Travelers' Home; by the scene date this project's building record has him at the Green Tree. Both are in data/structures/ and only the second is linked here. THE ARRIVAL IS A NEWSPAPER DATE, NOT A JOURNEY: 4 October 1833 is when his copy was dated, and it bounds his arrival from above and not at all from below.",
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 8,
-  "kin_seated": 8,
-  "seed": "hh_ingersoll_chester:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
- }
+ "research_note": "A TAVERN KEEPER WHO MOVED HOUSE INSIDE THE DATASET'S OWN WINDOW, which is why the two buildings he is attached to must not be collapsed. In 1833-34 he kept the old Wolf Point house under the sign of the Travelers' Home; by the scene date this project's building record has him at the Green Tree. Both are in data/structures/ and only the second is linked here. THE ARRIVAL IS A NEWSPAPER DATE, NOT A JOURNEY: 4 October 1833 is when his copy was dated, and it bounds his arrival from above and not at all from below."
 }

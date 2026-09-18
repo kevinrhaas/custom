@@ -48,6 +48,15 @@
   ],
   "note": "'Still living in Chicago' in 1883 on Andreas's own note; continuous in the record."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 7,
+  "kin_seated": 7,
+  "seed": "hh_taylor_augustine:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "taylor_augustine",
@@ -604,14 +613,5 @@
     }
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 7,
-  "kin_seated": 7,
-  "seed": "hh_taylor_augustine:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

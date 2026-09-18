@@ -64,6 +64,15 @@
    "note": "MADORE BEAUBIEN IS THE SON OF COL. JEAN BAPTISTE BEAUBIEN, AND HIS OWN CARD HAS SAID SO IN PROSE SINCE IT WAS WRITTEN: 'He is the son of Jean Baptiste Beaubien by his first wife Mah-naw-bun-no-quah, an Ottawa woman' — Andreas, History of Chicago vol. 1, the same reading that grades the rest of that card. NOTHING IS UPGRADED HERE. The claim was already attested on the card and already cited to andreas_1884_v1; this row only puts it where a query can reach it, because a sentence in a note is not a relationship any tool can read. THE IDENTIFICATION IS NOT A SURNAME MATCH: the town holds one Jean Baptiste Beaubien, the card names him with all three forenames and a rank, and the 1831 county licence Andreas prints has Madore selling goods 'alongside Alexander Robinson and his father'. WHAT IT DOES NOT CLAIM: his mother Mah-naw-bun-no-quah is not a person in this dataset and no row is written for her, and this row says nothing about where either man lived."
   }
  ],
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "solitary",
+  "size_drawn": 1,
+  "kin_seated": 1,
+  "seed": "hh_beaubien_madore:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "beaubien_madore",
@@ -199,14 +208,5 @@
  ],
  "touches_removal": true,
  "review_required": true,
- "research_note": "A TOWN TRUSTEE, A MERCHANT AND A MAN WHOSE MOTHER WAS OTTAWA, in a town that was six weeks from the final removal of the Potawatomi when this scene is set. That combination is the reason this household carries the review flag: nothing in the record is improvised, and nothing about it can be treated as closed without the consultation AGENTS.md requires. The documented facts are the office, the trade, the licence, the house and the parentage; the record adds nothing to them.",
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "solitary",
-  "size_drawn": 1,
-  "kin_seated": 1,
-  "seed": "hh_beaubien_madore:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
- }
+ "research_note": "A TOWN TRUSTEE, A MERCHANT AND A MAN WHOSE MOTHER WAS OTTAWA, in a town that was six weeks from the final removal of the Potawatomi when this scene is set. That combination is the reason this household carries the review flag: nothing in the record is improvised, and nothing about it can be treated as closed without the consultation AGENTS.md requires. The documented facts are the office, the trade, the licence, the house and the parentage; the record adds nothing to them."
 }

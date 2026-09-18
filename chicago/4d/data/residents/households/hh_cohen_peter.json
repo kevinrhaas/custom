@@ -46,6 +46,15 @@
   ],
   "note": "THE WINDOW ANSWERED A QUESTION THIS BLOCK RECORDED AS OPEN. It read `uncertain` on the reasoning that he was 'documented in the town in November 1833 and not followed by anything reached to 1835' — and the run of the paper does follow him there. The Chicago Democrat of 8 July 1835 prints his own signed advertisement: '[New] and cheap Goods, [AT] HIS OLD STAND. [The sub]scriber is now opening a large and [genera]l assortment of [Dry] Goods, Groceries, [Boots, Shoes,] Clothing and Miscellaneous Arti-[cles]. […] PETER COHEN.' That is seven days after the scene date and at the OLD STAND, so the premises the 1833 copy locates at the east end of South Water were his continuously enough for him to call them old in July 1835. INFERRED AND NOT ATTESTED, because the printing is seven days late: a man opening goods on 8 July was in the town on 1 July, and that last step is the reconstruction's and not the paper's. Found by T-0872's audit of standing 1835 trades."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 6,
+  "kin_seated": 6,
+  "seed": "hh_cohen_peter:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "cohen_peter",
@@ -506,14 +515,5 @@
     }
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 6,
-  "kin_seated": 6,
-  "seed": "hh_cohen_peter:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

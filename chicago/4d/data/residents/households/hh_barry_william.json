@@ -48,6 +48,15 @@
   ],
   "note": "THE RECORD BRACKETS THE DAY. This person is named at Chicago at or before 1 July 1835 and named again at or after it, so the sources reach across the scene date rather than stopping at one side of it. Inferred, not documented: no source says where they were on the day."
  },
+ "modelled_family": {
+  "stage": "modelled_families",
+  "ticket": "T-1171",
+  "household_type": "family_with_children",
+  "size_drawn": 6,
+  "kin_seated": 6,
+  "seed": "hh_barry_william:household_size",
+  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
+ },
  "persons": [
   {
    "id": "barry_william",
@@ -491,14 +500,5 @@
     "as_read": "Barry, Rev. William, died January 17, 1885, aged 89½."
    }
   ]
- },
- "modelled_family": {
-  "stage": "modelled_families",
-  "ticket": "T-1171",
-  "household_type": "family_with_children",
-  "size_drawn": 6,
-  "kin_seated": 6,
-  "seed": "hh_barry_william:household_size",
-  "note": "The kin core only. A servant, an apprentice or a journeyman this house may have held is priced by T-1183 and seated by T-1173; a boarder is seated by T-1175. The drawn size is a floor on the house."
  }
 }

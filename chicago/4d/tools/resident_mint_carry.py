@@ -27,6 +27,9 @@ from functools import lru_cache
 import pathlib
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from reconstructed_person import is_reconstructed  # noqa: E402
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 
@@ -212,6 +215,25 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
         person["sources"] = sorted(
             derived_sources | (prior_sources - (retracted - derived_sources)))
         person["note"] = carry_note(person.get("note") or "", old.get("note") or "")
+
+    # T-1171: A WHOLE PERSON A RECONSTRUCTION STAGE WROTE.
+    # Everything above carries a foreign FIELD onto a person the mint re-derives. The
+    # reconstruction programme (T-1167) writes foreign PEOPLE — a wife and children drawn
+    # from the household model and seated inside a card a mint owns — and a mint that
+    # rebuilds its card whole would delete them, silently, on the next --build. They are
+    # carried in the order the stage wrote them, after the mint's own, so a mint's --check
+    # stays a byte comparison.
+    #
+    # THE CONDITION IS THE PROGRAMME'S CLAIM, not the grade: `reconstruction.stage` names
+    # the stage that can re-derive this person. A `reconstructed` person no stage claims is
+    # what `refuse_reconstructed_grade` exists to refuse, and carrying one here would put
+    # it back after that refusal had removed it.
+    held = {person.get("id") for person in doc.get("persons") or []}
+    carried = [person for person in prior.get("persons") or []
+               if person.get("id") not in held
+               and is_reconstructed(person)]
+    if carried:
+        doc["persons"] = (doc.get("persons") or []) + carried
     return doc
 
 
@@ -236,6 +258,21 @@ def self_test() -> int:
     want("an unchanged derivation stays byte-identical",
          carry_note(old_derived, old_derived + "  " + foreign, (marker,))
          == old_derived + "  " + foreign)
+    reconstructed = {"id": "rc_x_wife", "grade": "reconstructed",
+                     "reconstruction": {"stage": "modelled_families"}}
+    loose = {"id": "rc_y", "grade": "reconstructed"}
+    carried = carry_resident_mint(
+        {"id": "hh_x", "persons": [{"id": "x", "grade": "attested"}]},
+        {"id": "hh_x", "persons": [{"id": "x", "grade": "attested"}, reconstructed, loose]})
+    want("a person a reconstruction stage wrote survives a mint's rebuild",
+         [p["id"] for p in carried["persons"]] == ["x", "rc_x_wife"])
+    kept = carry_resident_mint(
+        {"id": "hh_x", "persons": [{"id": "rc_x_wife", "grade": "inferred"}]},
+        {"id": "hh_x", "persons": [reconstructed]})
+    want("a mint that now derives that id keeps its own person and does not double it",
+         [p["id"] for p in kept["persons"]] == ["rc_x_wife"]
+         and kept["persons"][0]["grade"] == "inferred")
+
     want("an unmarked suffix is not guessed after the derivation changes",
          carry_note(changed, old_derived + " an unmarked suffix", (marker,)) == changed)
 
