@@ -21,8 +21,8 @@
    "inferred": 872,
    "reconstructed": 0
   },
-  "persons_with_a_sex": 582,
-  "persons_with_a_dated_age": 10,
+  "persons_with_a_sex": 689,
+  "persons_with_a_dated_age": 64,
   "persons_with_a_role": 327,
   "households_naming_an_origin": 23,
   "households_naming_a_reason": 25,
@@ -507,7 +507,7 @@
   {
    "id": "sex",
    "title": "Sex",
-   "lead": "582 of 1282 persons (45.4%) can be sexed at all — 99 because a source records it, 0 from a gendered title, 483 from a forename that stands in exactly one sex's period pool. The rest are an initial, a surname alone, or a forename both sexes used.",
+   "lead": "689 of 1282 persons (53.7%) can be sexed at all — 689 because a source records it, 0 from a gendered title, 0 from a forename that stands in exactly one sex's period pool. The rest are an initial, a surname alone, or a forename both sexes used.",
    "tables": [
     {
      "title": "Sex by the rule that says so",
@@ -524,30 +524,30 @@
      "rows": [
       [
        "male",
-       540,
-       "42.1%",
-       84,
+       647,
+       "50.5%",
+       647,
        0,
-       456,
+       0,
        0
       ],
       [
        "female",
        42,
        "3.3%",
-       15,
+       42,
        0,
-       27,
+       0,
        0
       ],
       [
        "unknown",
-       700,
-       "54.6%",
+       593,
+       "46.3%",
        0,
        0,
        0,
-       700
+       593
       ]
      ],
      "note": ""
@@ -564,8 +564,8 @@
      "rows": [
       [
        "recorded",
-       99,
-       "7.7%",
+       689,
+       "53.7%",
        "a source records the sex on the card"
       ],
       [
@@ -576,14 +576,14 @@
       ],
       [
        "inferred_forename",
-       483,
-       "37.7%",
+       0,
+       "0.0%",
        "the forename stands in exactly one sex's period pool and in no other"
       ],
       [
        "unknown",
-       700,
-       "54.6%",
+       593,
+       "46.3%",
        "the name is an initial, a surname alone, or carries neither signal"
       ]
      ],
@@ -597,7 +597,7 @@
   {
    "id": "age",
    "title": "Age",
-   "lead": "10 of 1282 persons carry a year or an age; 467 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage. 805 persons carry nothing that bears on age. THERE IS NO AGE PYRAMID HERE: 10 dated ages cannot make one, which is T-1174's brief.",
+   "lead": "64 of 1282 persons carry a year or an age; 419 more are placed in an adult band by what they are recorded DOING — a poll, a tax list, a muster, a trade, an office, a marriage. 799 persons carry nothing that bears on age. THERE IS NO AGE PYRAMID HERE: 64 dated ages cannot make one, which is T-1174's brief.",
    "tables": [
     {
      "title": "Age bands",
@@ -611,8 +611,8 @@
      "rows": [
       [
        "birth_year_known",
-       10,
-       "0.8%",
+       64,
+       "5.0%",
        "a source gives the year, however loosely"
       ],
       [
@@ -623,14 +623,14 @@
       ],
       [
        "adult_by_civic_list",
-       211,
-       "16.5%",
+       192,
+       "15.0%",
        "an adult: a voter, a taxpayer or a man of militia age"
       ],
       [
        "adult_by_role",
-       241,
-       "18.8%",
+       212,
+       "16.5%",
        "an adult: a trade, profession or office is not held by a child"
       ],
       [
@@ -647,8 +647,8 @@
       ],
       [
        "unknown",
-       805,
-       "62.8%",
+       799,
+       "62.3%",
        "nothing on the card bears on age at all"
       ]
      ],
@@ -669,6 +669,11 @@
        "inferred"
       ],
       [
+       "Joseph Bailly",
+       62,
+       "inferred"
+      ],
+      [
        "Billy Caldwell (Sauganash)",
        55,
        "inferred"
@@ -679,9 +684,79 @@
        "attested"
       ],
       [
+       "William H Brown",
+       45,
+       "inferred"
+      ],
+      [
+       "John Graham",
+       44,
+       "inferred"
+      ],
+      [
+       "James Adams",
+       40,
+       "inferred"
+      ],
+      [
+       "William Barry",
+       40,
+       "inferred"
+      ],
+      [
+       "Hiram Hugunin",
+       38,
+       "inferred"
+      ],
+      [
+       "Stephen Forbes",
+       38,
+       "inferred"
+      ],
+      [
+       "Eli B Williams",
+       37,
+       "inferred"
+      ],
+      [
+       "Isaac T Hinton",
+       37,
+       "inferred"
+      ],
+      [
        "Dr Philip Maxwell",
        36,
        "attested"
+      ],
+      [
+       "James Couch",
+       36,
+       "inferred"
+      ],
+      [
+       "Mark Beaubien",
+       36,
+       "inferred"
+      ],
+      [
+       "David McKee",
+       35,
+       "inferred"
+      ],
+      [
+       "Amos Foster",
+       34,
+       "inferred"
+      ],
+      [
+       "Charles Cotesworth Pinckney Hunt",
+       34,
+       "inferred"
+      ],
+      [
+       "John Watkins",
+       34,
+       "inferred"
       ],
       [
        "Thomas Jefferson Vance Owen",
@@ -689,7 +764,27 @@
        "attested"
       ],
       [
+       "David Hunter",
+       33,
+       "inferred"
+      ],
+      [
+       "Edmund D Taylor",
+       33,
+       "inferred"
+      ],
+      [
        "Gurdon Saltonstall Hubbard",
+       33,
+       "inferred"
+      ],
+      [
+       "John Bates Jr.",
+       33,
+       "inferred"
+      ],
+      [
+       "John Noble",
        33,
        "inferred"
       ],
@@ -699,9 +794,49 @@
        "attested"
       ],
       [
+       "Henry S Handy",
+       32,
+       "inferred"
+      ],
+      [
+       "Tuthill King",
+       32,
+       "inferred"
+      ],
+      [
+       "Philo Carpenter",
+       31,
+       "inferred"
+      ],
+      [
        "Rev. John Mary Irenaeus St Cyr",
        31,
        "attested"
+      ],
+      [
+       "Lieut. James Allen",
+       30,
+       "inferred"
+      ],
+      [
+       "Charles H Beaubien",
+       29,
+       "inferred"
+      ],
+      [
+       "Hibbard Porter",
+       29,
+       "inferred"
+      ],
+      [
+       "Davi Andrews",
+       28,
+       "inferred"
+      ],
+      [
+       "Grenville Temple Sproat",
+       28,
+       "inferred"
       ],
       [
        "Eliza Chappel Porter",
@@ -709,9 +844,144 @@
        "attested"
       ],
       [
+       "J. A. Marshall",
+       27,
+       "inferred"
+      ],
+      [
+       "James B Campbell",
+       27,
+       "inferred"
+      ],
+      [
        "Dr William Bradshaw Egan",
        26,
        "attested"
+      ],
+      [
+       "Henry Mitchell",
+       26,
+       "inferred"
+      ],
+      [
+       "Henry Vanderbogart",
+       26,
+       "inferred"
+      ],
+      [
+       "Jesse B Brown",
+       26,
+       "inferred"
+      ],
+      [
+       "W. Kimball",
+       26,
+       "inferred"
+      ],
+      [
+       "Bennet Bailey",
+       25,
+       "inferred"
+      ],
+      [
+       "John Dean Caton",
+       24,
+       "inferred"
+      ],
+      [
+       "Silas B. Cobb",
+       24,
+       "inferred"
+      ],
+      [
+       "Stephen F. Gale",
+       24,
+       "inferred"
+      ],
+      [
+       "Wm. Osborn",
+       24,
+       "inferred"
+      ],
+      [
+       "Abel B Carpenter",
+       23,
+       "inferred"
+      ],
+      [
+       "Asahel Pierce",
+       23,
+       "inferred"
+      ],
+      [
+       "Elijah Kent Hubbard",
+       23,
+       "inferred"
+      ],
+      [
+       "J. K. Botsford",
+       23,
+       "inferred"
+      ],
+      [
+       "James Grant",
+       23,
+       "inferred"
+      ],
+      [
+       "Robert C Wright",
+       23,
+       "inferred"
+      ],
+      [
+       "Isaac Dewey Harmon",
+       22,
+       "inferred"
+      ],
+      [
+       "John Wilson",
+       22,
+       "inferred"
+      ],
+      [
+       "Alexander Wolcott",
+       21,
+       "inferred"
+      ],
+      [
+       "Erastus Bowen",
+       21,
+       "inferred"
+      ],
+      [
+       "William Hanford Adams",
+       21,
+       "inferred"
+      ],
+      [
+       "Jeremiah Smith",
+       18,
+       "inferred"
+      ],
+      [
+       "Edward A. Rogers",
+       15,
+       "inferred"
+      ],
+      [
+       "Caleb Harrison",
+       10,
+       "inferred"
+      ],
+      [
+       "Amasa Wright",
+       7,
+       "inferred"
+      ],
+      [
+       "George Smith",
+       4,
+       "inferred"
       ]
      ],
      "note": ""

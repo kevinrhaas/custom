@@ -76,7 +76,13 @@
     "summary": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist.",
     "notes": "No reliable record found in the reviewed repository newspaper/reference corpus, Chicago directories, digitized county/local histories, institutional pages and broad exact-name/variant searches could be tied to this person by more than the recorded name. This is a documented no-find, not evidence that the person did not exist."
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "'Geo.' IS THE PERIOD CONTRACTION OF George, and every expansion of it attested in this project is a man's name — so the contraction settles the sex without settling which name was contracted. The table is data/research/residents/forename_sex.json."
+   }
   }
  ],
  "touches_removal": false,

@@ -73,7 +73,13 @@
     "reviewed_on": "2026-09-02",
     "asserted_identity": false
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "'Jos.' IS THE PERIOD CONTRACTION OF Joseph, Josiah or Joshua, and every expansion of it attested in this project is a man's name — so the contraction settles the sex without settling which name was contracted. The table is data/research/residents/forename_sex.json."
+   }
   }
  ],
  "touches_removal": false,

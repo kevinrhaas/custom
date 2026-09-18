@@ -3320,6 +3320,21 @@ step "Fergus's death notices are on the cards the crosswalk names" \
 selftest "…and that pass writes one block, moves no grade and repeats without drift" \
   python3 tools/spend_old_settlers.py --self-test
 
+# T-1303 (from T-1168). The two rolls above carry an age at death and an age given at the
+# Calumet Club, and neither had ever reached a person's `birth_year`; 1,183 of 1,282 people
+# carried no sex at all. This pass spends both, and reads a sex off a gendered title or off
+# a forename that stands in one sex's naming only — never off an initial, never off a rank,
+# and never off a name its own evidence splits. The forename table is DERIVED from the
+# people whose sex a source records plus the period pools, so `--check` holds that it has
+# not been hand-widened, and holds every card against what the pass derives from the layer
+# WITHOUT its own fills — which is what stops the table reading its guesses back in as
+# evidence. The tier the model owes the rest is T-1304's.
+step "sex and age stand on the evidence, and the forename table re-derives" \
+  python3 tools/spend_person_sex_age.py --check
+
+selftest "…and an initial, a rank and an ambiguous forename still fire nothing" \
+  python3 tools/spend_person_sex_age.py --self-test
+
 # T-0992. T-0962 widened the second hop to read the `matched` container and church entered
 # that report for the first time: 83 rulings reached a person this town holds a card for and
 # NOT ONE card cited the roll. The pass that closes that gap is checked the way every other

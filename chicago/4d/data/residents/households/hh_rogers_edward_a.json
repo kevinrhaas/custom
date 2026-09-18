@@ -156,7 +156,22 @@
      "employer_or_body": "not_stated",
      "note": "A TRADE PRINTED AGAINST THIS NAME IN A LATER VOLUME, and this row says which year rather than leaving it to a pointer (T-0693, carried here by tools/derive_resident_roles.py). `role` is null because the directory's wording has not been adjudicated into the closed vocabulary — the printing is what the source gives and the printing is what is kept. T-1254 is where the controlled term is ruled on. It is not a claim about 1835-07-01 and never becomes one: the year is 1844."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Edward' is read as male because 2 persons in this layer whose sex a source records bear it (casey_edward_w, haddock_edward), and it stands in the irish male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1820,
+    "precision": "year",
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'Feb. 19, 1887' and the age as 'aged 66-9-23'. An age printed to the day is exact: 66 years, 9 months and 23 days back from the death, so the birth falls between 1820-04-26 and 1820-04-26: the birth year is 1820. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Rogers, Dr. Edward Carter, died, Quincy, Mich., Feb. 19, 1887. aged 66-9-23.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

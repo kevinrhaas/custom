@@ -97,7 +97,13 @@
      "for_merge": "'John S.' agrees letter for letter including the middle initial, so nothing but the surname's last letters stands between the cards, and both are post-office readings of the same office within ten months.",
      "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. 'John S. Barre' is on the return of 9 July 1834 (chicago_democrat_1834_07_09#c003) and 'John S. Barry' on the return of 20 May 1835 (chicago_democrat_1835_05_20#c013). Neither card is an anchor. BARRY IS A POPULATED SURNAME AT THIS TOWN AND BARRE IS NOT: the town holds barry_j_r, barry_john_s and barry_william, the reading index eight Barry identities, and the deposited corpus sets Barry 59 times against Barre's 14 — of which the Barre hits are the French place name in Moses & Kirkland, not a Chicago family. A surname several men bear is not a slip for one nobody else bears. D6, and the `barry-j` cluster's R3 refusal stands beside it."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'John' is read as male because 14 persons in this layer whose sex a source records bear it (bates_john_jr, calhoun_john, caton_john_dean, davis_john, greene_john, hogan_john_s_c, and others), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

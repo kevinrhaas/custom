@@ -129,7 +129,13 @@
      "for_merge": "THE SPELLING MOVES AND THE TOWN MOVES WITH IT. The 1833 tax list enters 'Foot, John' at line 82 and 'Foot, Starr' at line 83; the poll filed 11 August 1834 enters 'Foote, John' at line 208 and 'Foote, Star' at line 209; the 1835 poll enters 'Foot, John' again at line 309. Two men, adjacent on three successive rolls, changing spelling together and back again — which is a clerk's hand varying, not four households appearing and disappearing in pairs. On resemblance plus pattern this is the most merge-like pair in the forty-three after Lloyd/Loyd.",
      "against_merge": "AND NO ONE ROLL SETS BOTH, WHICH IS WHAT C9 ASKS FOR. The three rolls are internally consistent: tax 1833 sets FOOT twice, poll 1834 sets FOOTE twice, poll 1835 sets FOOT. The variation is between rolls and never inside one, so the printer is never caught — and a shared source id is not a shared printing. No roll enters both spellings as separate entries either, so D5 does not refuse harder and does not acquit. Neither card is an anchor: foot_john is the 1835 poll and the 1833 tax list with no trade, foote_john the 1834 poll alone. D9, and the pattern is kept verbatim because it is the argument a later page would only have to confirm."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'John' is read as male because 14 persons in this layer whose sex a source records bear it (bates_john_jr, calhoun_john, caton_john_dean, davis_john, greene_john, hogan_john_s_c, and others), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

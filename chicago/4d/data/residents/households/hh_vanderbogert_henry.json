@@ -87,7 +87,13 @@
      "for_merge": "One letter in the stem of a twelve-letter Dutch surname, 'Henry' identical, and the Vanderbogart card is documented as a man: Fergus's old-settler notices print 'Bogart, Dr. Henry Van der' and 'Van der Bogart, Dr. Henry' with a death of 8 April 1835, and the Democrat sets 'H. Van Den Bogart' on 4 February 1834 and 'H. Vanderbogart' on 20 May 1835. 'Vanderbogert' is set four times in the corpus and nowhere outside this town's own records. The town holds exactly one of each.",
      "against_merge": "THE PARTICLE IS ALREADY RULED AND THE STEM IS NOT. T-0842's C7 merge in the `vanderbogart` cluster folded Van Den against Van der on the printer's own practice, read at the Democrat of 4 February 1834 — that is the PARTICLE. What separates these two cards is a vowel inside the stem, a against e, and no printing reached is caught setting both: 'Vanderbogert, Henry' is the 1833 tax list and nothing else, and no issue, roll or notice carries the two spellings together. C7's demonstration does not transfer from the particle to the stem — that is C9's question and C9's page is missing. D7."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Henry' is read as male because 1 person in this layer whose sex a source records bears it (lampman_henry_s), and it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

@@ -73,7 +73,26 @@
     "reviewed_on": "2026-09-02",
     "asserted_identity": false
    },
-   "resident_subtype": "projected_resident"
+   "resident_subtype": "projected_resident",
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'John' is read as male because 14 persons in this layer whose sex a source records bear it (bates_john_jr, calhoun_john, caton_john_dean, davis_john, greene_john, hogan_john_s_c, and others), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1791,
+    "precision": "band",
+    "band": [
+     1791,
+     1792
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "fergus_1843_old_settler_death_notices"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A DEATH NOTICE, NOT A RECORD OF A BIRTH. The page prints the death as 'December 28, 1865' and the age as 'aged 73'. An age of 73 completed years means at least 73 and less than 74, so the birth falls between 1791-12-29 and 1792-12-28: the birth year is 1791 or 1792. The subtraction is this project's; the page states no year of birth. Fergus's 1843 directory (1896) prints the entry \"Graham, Gen. James Duncan, died December 28, 1865, aged 73.\", and its header admits the list also names citizens who arrived after 1843 and others merely prominently connected with Illinois history — so a match here is never evidence of residence in 1835 and never moves a grade. The match to this person was adjudicated in data/research/old_settlers/death_notices_crosswalk_1835.json and written onto this card by tools/spend_old_settlers.py; this pass only spends its arithmetic into a birth year. Both sides of the match spell a forename out — the crosswalk's thin matches, where a single initial is the whole of the discriminator, are refused rather than spent."
+   }
   }
  ],
  "touches_removal": false,

@@ -107,7 +107,13 @@
      "for_merge": "“Geo.” is the ordinary abbreviation of “George”, Square and Squire differ by one letter, and the resident layer holds one card of each and no other bearer of either stem. Pass 06 of the resident-research programme reached the pair and wrote it down as a possible duplicate: “Geo. Square may be a transcription/duplicate relation to George Squire”.",
      "against_merge": "THE QUESTION CANNOT BE ASKED YET, BECAUSE ONE OF THE TWO PRINTED LINES IS ITSELF CONTESTED — and this corpus contests it in its own committed words. `square_geo` is minted from the Democrat of 1 April 1834, whose line reads “3. Geo. Square t 3 first rate”: an S-run line with an advertisement's column bleeding through it. The extraction of the 16 April 1834 impression — which that file's own note calls “the best witness to the J-W half of the 1 April 1834 list that the corpus holds” — reads the SAME three consecutive lines as “Benjarnin Smith”, “Ira Saymoro” and “GEO. SAVER” where 1 April reads “Benjamin Reed”, “Ira Raymore” and “Geo. Square”, and records that “the alphabetical position is with this printing and against 1834-04-01's” while declining to rewrite a minted name on a second transcription of equal rank. So the town does not yet know whether it holds a Square at all. A merge cannot be tested against a line nobody has settled — R5's principle, moved from a garbled forename to a garbled surname — and a REFUSAL cannot honestly be entered either, because the refusal would rest on the same unread line. Neither D6 nor C9 is reached for: both ask what the returns print, and one of these two returns has two readings."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'George' is read as male because 2 persons in this layer whose sex a source records bear it (dole_george_w, snow_george_w), and it stands in the yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

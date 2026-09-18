@@ -89,7 +89,13 @@
      "for_merge": "A terminal e, 'James' on both, and the two readings are fourteen months apart in one town — the shape a duplicate usually takes, and the spelling of an Irish surname that every clerk of the period set both ways.",
      "against_merge": "BOTH SPELLINGS ARE POPULATED AND THEIR EVIDENCE DOES NOT TOUCH. The reading index holds six Burk identities and five Burke, and the deposited corpus sets Burk 18 times and Burke 65 — two live surnames, which is the case a one-letter distance is at its weakest in (T-1001). 'James Burk' is the post-office return of 28 January 1834 (#c001) and nothing else; 'Burke, James' is the 1833 tax list of the Town of Chicago and, later, Fergus 1843 and Norris 1844 — a letter list against a tax roll, D7's own example of two instruments that never touch. No printing sets both spellings for one man. D7."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'James' is read as male because 2 persons in this layer whose sex a source records bear it (couch_james, kinzie_james), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,

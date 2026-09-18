@@ -120,7 +120,26 @@
      "for_merge": "S against T is one letter, 'John' is identical, and the middle initial L is printed on one card and absent on the other, which is M3's shape and not a contradiction.",
      "against_merge": "WILSON IS ONE OF THE MOST POPULATED SURNAMES IN THE CORPUS AND THE TWO BODIES OF EVIDENCE NEVER MEET. 'John Wilson' is the post-office return of 28 January 1834 (#c001) and two separate 1840 census households (229:2 and 239:4) — the census itself holding two John Wilsons, which is the town telling us the name is not unique; 'Wilton, John L.' is the 1835 poll list alone. Wilson is set 314 times in the deposited corpus against Wilton's eight, and the reading index holds 24 Wilson identities. A letter list and a census against a poll roll is D7's 'two instruments that never touch', and no printing sets both spellings. D7."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'John' is read as male because 14 persons in this layer whose sex a source records bear it (bates_john_jr, calhoun_john, caton_john_dean, davis_john, greene_john, hogan_john_s_c, and others), and it stands in the irish and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   },
+   "birth_year": {
+    "value": 1813,
+    "precision": "band",
+    "band": [
+     1813,
+     1814
+    ],
+    "confidence": "inferred",
+    "sources": [
+     "calumet_club_early_chicago_1879"
+    ],
+    "note": "A BIRTH INTERVAL OUT OF A MAN'S OWN STATEMENT OF HIS AGE. He registered at the Calumet Club's reception to the settlers of Chicago on 27 May 1879 and gave his age as 65: \"Wilson, John L. | 1834, May, | New York City. | 65 | Chicago.\". An age of 65 completed years given on that day means the birth falls after 27 May 1813 and on or before 27 May 1814, so the birth year is 1813 or 1814. The subtraction is this project's; the page states no year of birth. IT IS A RECOLLECTION, forty-four years after the scene date — better than a recollection about somebody else, and still not a record. The merge onto this person is the old-settler crosswalk's own (OS1), in data/research/old_settlers/people.json."
+   }
   }
  ],
  "touches_removal": false,

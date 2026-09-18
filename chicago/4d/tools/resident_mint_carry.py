@@ -147,6 +147,25 @@ def carry_resident_mint(doc: dict, prior: dict | None, *,
         for key, value in old.items():
             if key == "ladder_rule":
                 continue
+            # T-1303: A SEX A LATER PASS READ, RATHER THAN ONE A MINT DECLINED TO WRITE.
+            # `sex` is an owned key, so a mint's silence about it is an answer and the
+            # loop below will not resurrect it — which is right for a mint's own absence
+            # and wrong for the 590 sexes `tools/spend_person_sex_age.py` reads off a
+            # gendered title or a forename AFTER every mint has run. That pass leaves
+            # `sex_basis` beside the value saying which rule fired, so the reason is what
+            # identifies the fill, and the two travel together or not at all: a card
+            # holding a reason for a value it no longer carries would be worse than
+            # losing both. If the mint has since learned the sex itself, its answer wins
+            # and the stale reason is dropped with it. A `sex_basis` is that pass's by
+            # construction: nothing else in the tree writes one.
+            if key == "sex_basis" and isinstance(value, dict) and value.get("note"):
+                if "sex" not in person and old.get("sex"):
+                    person["sex"] = old["sex"]
+                elif person.get("sex") != old.get("sex"):
+                    # The mint has since learned the sex itself and disagrees. Its answer
+                    # wins and the stale reason is dropped with it, rather than a card
+                    # keeping a value's reasoning beside a different value.
+                    continue
             if key not in person and key not in owned:
                 person[key] = value
 

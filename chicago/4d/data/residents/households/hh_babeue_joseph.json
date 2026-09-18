@@ -86,7 +86,13 @@
      "for_merge": "One letter at the end of a French-Canadian surname, an identical forename, one office, one paper and one kind of list. Babeu and Babeue are the same word with and without its terminal e, the Chicago post office held a letter for each inside six months, and the town's whole knowledge of both is those two lines. On resemblance alone this is the most merge-like pair of the seven.",
      "against_merge": "TWO RETURNS, AND NEITHER SETS BOTH. “Joseph Babeu” is LINE 10 of the return of 1 January 1834, read at the page image by T-0424 and tied there by T-1010's concordance to the one impression that carries it, the Democrat of 4 March 1834, column 33 — a single tie, no second reading, no disagreement on the row. “Joseph Babeue” stands on the return of 1 July 1834, printed in the impressions of 9 July (“oseph Babeue”, the initial lost) and 16 July 1834 (“Joseph Babeue”) — two impressions of that later return, agreeing with each other and both against the January spelling. So the office closed two returns six months apart, entered one spelling on each, and was never asked to set them together: C9's demonstration is absent and D5's is absent with it. Neither card is an anchor — no trade, no dwelling, no research on either — and neither name appears anywhere else in the corpus; the gazetteer holds these two and no other bearer of the stem. What is left to fold on is one letter, which is what T-1001 measured and refused. D6, and the cards stay two."
     }
-   ]
+   ],
+   "sex": "male",
+   "sex_basis": {
+    "value": "male",
+    "confidence": "inferred",
+    "note": "A FORENAME THAT STANDS IN ONE SEX'S NAMING ONLY. 'Joseph' is read as male because 2 persons in this layer whose sex a source records bear it (meeker_joseph, porthier_joseph), and it stands in the french_colonial and yankee male forename pool of this town's own attested naming. Nothing about this person is recorded; the name is the whole of the reasoning, and the table that licenses it — data/research/residents/forename_sex.json — refuses a name its own evidence splits, refuses Jean, Marion, Leslie and Francis by name, and refuses an initial outright."
+   }
   }
  ],
  "touches_removal": false,
