@@ -10,8 +10,8 @@ The research spend was, correctly, conservative. This page does not overturn one
 
 | | count |
 |---|---:|
-| rows | 15198 |
-| ledger units considered (every non-`asserted` unit) | 23523 |
+| rows | 14854 |
+| ledger units considered (every non-`asserted` unit) | 23179 |
 | of those, units naming no person | 9239 |
 
 ## By class
@@ -24,7 +24,7 @@ The research spend was, correctly, conservative. This page does not overturn one
 | `R4_surname_only_census` | 424 | A census reading that gives a surname this town already holds and no person of its own — the 1830 surname-only refusals and the 1840 heads. | May supply a FAMILY (spouse and child bands) to an existing head at `reconstructed`. Never a new head. |
 | `R5_later_only_backprojectable` | 55 | A later-only name — the 1839 directory, the 1840 census, the old-settler rolls — whose own biography dates an arrival before 1 July 1835. | Mint reconstructed with arrival at the biography's date. |
 | `R6_native_metis_black` | 129 | A Native, Métis or free Black person a source names in or near the town inside the window, whatever the ledger disposition. | Mint at the ladder's grade the evidence allows, else `reconstructed`. Always `review_required` for Native and Métis rows; `community` set. Owned by T-1177. |
-| `R0_ineligible` | 13708 | Outside Chicago, the Bear Creek marriages (T-1129), the declared `researched_not_resident` names, post-scene arrivals with nothing to back-project from, and names this town already carries. | Never. |
+| `R0_ineligible` | 13364 | Outside Chicago, the Bear Creek marriages (T-1129), the declared `researched_not_resident` names, post-scene arrivals with nothing to back-project from, and names this town already carries. | Never. |
 
 ## By class and domain
 
@@ -46,20 +46,20 @@ The research spend was, correctly, conservative. This page does not overturn one
 | `R0_ineligible` | `books` | 157 |
 | `R0_ineligible` | `census_1830` | 136 |
 | `R0_ineligible` | `census_1840` | 669 |
-| `R0_ineligible` | `church` | 1741 |
-| `R0_ineligible` | `civic` | 358 |
+| `R0_ineligible` | `church` | 1730 |
+| `R0_ineligible` | `civic` | 204 |
 | `R0_ineligible` | `directories` | 7025 |
 | `R0_ineligible` | `genealogytrails` | 1 |
 | `R0_ineligible` | `land_sales` | 1533 |
 | `R0_ineligible` | `old_settlers` | 1023 |
-| `R0_ineligible` | `residents` | 1065 |
+| `R0_ineligible` | `residents` | 886 |
 
 ## Every rule that put a row where it is
 
 | class / rule | rows |
 |---|---:|
 | `R0_ineligible/already_carried_as_present` | 1005 |
-| `R0_ineligible/carried_by_the_cards_own_row` | 1087 |
+| `R0_ineligible/carried_by_the_cards_own_row` | 778 |
 | `R0_ineligible/earlier_than_the_window` | 123 |
 | `R0_ineligible/later_only_and_not_backprojectable` | 9947 |
 | `R0_ineligible/ledger_a_sale_is_never_a_residence` | 413 |
@@ -74,10 +74,10 @@ The research spend was, correctly, conservative. This page does not overturn one
 | `R0_ineligible/ledger_the_registers_date_is_unreadable` | 7 |
 | `R0_ineligible/not_a_town_finding` | 9 |
 | `R0_ineligible/outside_chicago` | 109 |
-| `R0_ineligible/owned_by_the_attribute_band` | 469 |
+| `R0_ineligible/owned_by_the_attribute_band` | 457 |
 | `R0_ineligible/researched_not_resident` | 9 |
 | `R0_ineligible/surname_only_and_unmatched` | 252 |
-| `R0_ineligible/undated_reading` | 197 |
+| `R0_ineligible/undated_reading` | 174 |
 | `R1_in_window_uncertain/card_presence_is_uncertain` | 814 |
 | `R2_in_window_single_source/in_window_read_and_withheld` | 40 |
 | `R3_1834_return_or_muster/blackhawk_muster_1832_at_chicago` | 28 |
