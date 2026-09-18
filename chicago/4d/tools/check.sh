@@ -2518,6 +2518,20 @@ step "the land-sale rulings re-derive from the register and the crosswalk (T-129
 selftest "…and each of its rules still fires on the row it is for" \
   python3 tools/spend_land_sales_rulings.py --self-test
 
+# T-1159. The borderline roster is the OFFER reconstruction reads before it invents a
+# name: every name the research read and withheld from 1835, with the reason it was
+# withheld and what may be done with it. It is derived from the ledger and the resident
+# layer and it mints nobody, which is exactly why it has to be re-derived rather than
+# trusted — a roster that has silently drifted from the ledger would send the
+# reconstruction bands after people the research has since ruled on. The check also
+# asserts the accounting rule: every non-asserted ledger unit is either carried as a row
+# or listed as naming no person, and never neither.
+step "the borderline roster re-derives from the ledger and the resident layer (T-1159)" \
+  python3 tools/export_borderline_roster.py --check --quiet
+
+selftest "…and its class, accounting and community assertions still fire when broken" \
+  python3 tools/export_borderline_roster.py --self-test
+
 # T-1298. The remainder of T-1236 — the resident-pass reservations, the newspaper person,
 # notice, event, shipping and price units, the church register entries, the non-person book
 # readings and the one Genealogy Trails reading — ruled across five derived registers on the

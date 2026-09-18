@@ -3,12 +3,8 @@
 # Add findings to an existing ticket first. Put new one-run work beside its dependency;
 # add new research readings to RESEARCH COMPLETION so the spend band can drain.
 # Split multi-run epics into bounded tickets when reached; do not create a refill at the top.
-# Research spend: fix identity/date/mint gates before deriving cards. THE LETTER-LIST
-# RULING IS MADE (owner, 2026-09-18: option (c) on T-0660) — refusals 7 and 8 are
-# mint-time rules and do not un-mint a standing record; nothing is retired, rank() is
-# unchanged, and the pass SAYS a collision instead of acting on it. T-1144 is no longer
-# waiting on anything and is the queue's second row; the line that told runs to skip it
-# is gone with this. T-0691 shrinks to wiring its --check into check.sh.
+# Research spend: fix identity/date/mint gates before deriving cards. T-0662/T-1144
+# need the blocked T-0660 -> T-0691 letter-list ruling; do not invent its outcome.
 # South Through Time: 1812 depiction follows AGENTS.md Indigenous-history review;
 # ship no human figures. T-0469/T-0470/T-0471 depend on T-0468; T-0472 on T-0470.
 # Prairie Avenue: T-0474 follows T-0473; T-0475/T-0477 follow T-0474;
@@ -50,7 +46,6 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 T-1241 — Run the T-1143 ledger over the final resident, household, business and structure layers and publish the closing research audit at zero unclassified units
 T-1157 — Sign off the research spend: one owner-readable coverage report over residents, households, plural roles, business staff and every home, work and other significant location, and the gate that lets reconstruction begin
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
-T-1159 — Export the borderline roster: every name the research read and withheld from 1835 — single-source, refused, surname-only, uncertain presence, letter-list-only — with its source, reason and re-admission class, so reconstruction can name real people before it invents any
 T-1301 — Spend the 98 corroborated_enrichment research units the remainder ruling hands to T-1160: each sourced fact about a person this town already holds written into the structured field that carries it, or repointed to the attribute-fill ticket whose acceptance owns it
 T-1166 — The reconstruction order book: known minus model, per bucket and per division — exactly how many persons, households, businesses and structures of each kind to reconstruct, in the order the bands below will build them, published as a card
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
