@@ -124,6 +124,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 from rebuild_resident_index import rebuild  # noqa: E402  (the manifest's one owner)
 from resident_mint_carry import carry_resident_mint  # noqa: E402  (T-1137)
+from carry_stage_blocks import carry  # noqa: E402  (T-1169; a mint owns its record, a reconstruction stage owns its blocks)
 from refuse_reconstructed_grade import refuse_texts  # noqa: E402  (T-1144; reconstruction begins at T-1167, never in a mint)
 from identity_master_guard import (  # noqa: E402  (T-0843)
     IdentityGuard, blind_person_ids, refusal as guard_refusal,
@@ -1263,7 +1264,10 @@ def build(preload: dict | None = None):
         if doc["id"] in seen:
             raise SystemExit(f"two candidates mint the same household id {doc['id']}")
         seen.add(doc["id"])
-        files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(doc, 1)
+        # T-1169. The record is this pass's; the blocks a reconstruction stage
+        # marked are that stage's, and are carried through rather than derived
+        # away. See tools/carry_stage_blocks.py for why both passes are right.
+        files[HOUSEHOLDS / f"{doc['id']}.json"] = dumps(carry(doc), 1)
 
     # ONE OWNER FOR THE MANIFEST (T-0715). This pass used to mint its own rows and
     # keep every other row verbatim, so a household no pass owned could be regraded

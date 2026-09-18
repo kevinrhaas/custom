@@ -44,18 +44,20 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 
 | Owner | Units | State | Live |
 | --- | ---: | ---: | ---: |
-| T-1169 | 902 | open | yes |
+| T-1318 | 538 | open | yes |
 | T-1180 | 494 | split_live | yes |
+| T-1319 | 343 | open | yes |
 | T-1198 | 271 | open | yes |
 | T-1172 | 260 | open | yes |
 | T-1170 | 168 | split_live | yes |
 | T-1182 | 37 | open | yes |
+| T-1313 | 21 | open | yes |
 | T-1188 | 12 | open | yes |
 | T-1315 | 3 | open | yes |
 | T-1144 | 1 | open | yes |
 | T-1299 | 1 | open | yes |
 
-Not one of those owners asks for another READING. The heaviest are T-1169 (902), T-1180 (494), T-1198 (271), T-1172 (260), T-1170 (168) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
+Not one of those owners asks for another READING. The heaviest are T-1318 (538), T-1180 (494), T-1319 (343), T-1198 (271), T-1172 (260) — the arrival and origin fill, the authored business layer, the seating, the re-admissions, the named families — and the lighter ones are derivation fixes beside them. That is the shape of a finished research spend: what is still unspent is waiting on the bands this report opens, not on more of the corpus. **0** units defer to work that is no longer live (C3).
 
 | The town as the layer holds it | Count |
 | --- | ---: |

@@ -1422,6 +1422,8 @@ export function householdHtml(hh, citationsById, researchByPerson, directoryByPe
   return `<dl class="lib-body res-fields">
       ${claimRow('Came to Chicago', (hh.arrival || {}).value, hh.arrival, citationsById)}
       ${row('How exact that year is', words((hh.arrival || {}).precision))}
+      ${claimRow('The year they are carried at', (hh.arrival_year || {}).value,
+        hh.arrival_year, citationsById)}
       ${claimRow('In a party of', party && party.value, party, citationsById)}
       ${claimRow('Came from', (hh.origin || {}).value, hh.origin, citationsById)}
       ${claimRow('Why they came', (hh.reason_for_coming || {}).value,

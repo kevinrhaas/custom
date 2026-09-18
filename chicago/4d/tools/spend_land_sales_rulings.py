@@ -114,7 +114,7 @@ RULES = {
     },
     "the_purchase_bounds_a_held_residents_presence": {
         "disposition": "unresolved",
-        "ticket": "T-1169",
+        "ticket": "T-1319",
         "statement": (
             "The tract was entered on or before 1 July 1835 and the crosswalk's "
             "adjudication under T-0700 / T-0850 UPHELD the join between this purchaser and "

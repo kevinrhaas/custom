@@ -120,6 +120,13 @@ NOT_ASSERTED = (None, "", "none_recorded")
 # attribute's own definition read back as a search; nothing here is a prediction.
 REPLACEABLE_BY = {
     "arrival": ("person", "a dated source that says when this person came to Chicago"),
+    # T-1169. The YEAR a household is carried at, beside the bound its `arrival` block
+    # holds — for 1,196 households that block is a `not_later_than` and dates a letter,
+    # not a coming. Written only by stage `attribute_fill_arrival` of the reconstruction
+    # programme, which supplies its own basis and seed per value; these are the defaults
+    # the migration would use on a block that arrived without them.
+    "arrival_year": ("person", "a dated source that says which year this household came "
+                               "to Chicago"),
     "origin": ("person", "a source that says where this person came from"),
     "reason_for_coming": ("person", "a source that says why this person came"),
     "party_size_on_arrival": ("household", "a source that counts the party this household arrived in"),
@@ -143,6 +150,20 @@ BASIS_RULE = {
     "arrival": ("arrival_earliest_year_forced",
                 "No source dates the coming. The value is the earliest year the committed "
                 "evidence forces, carried at the precision the note states."),
+    # T-1169. Both rules stage `attribute_fill_arrival` argues a reason under name
+    # themselves on the block; this is the default for a reason that reached the tier
+    # without one, and it says the same thing both of those do.
+    "reason_for_coming": ("reason_not_apportioned",
+                          "No source says why this household came. The value names the "
+                          "documented draws the household's trade or season answered and "
+                          "chooses among them nowhere: the town model apportions the town "
+                          "between the land sales, the canal and the harbour works in no "
+                          "place, and neither does this."),
+    "arrival_year": ("arrival_year_drawn_within_the_bound",
+                     "No source dates the coming. The year is drawn from the arrival years "
+                     "the known layer records, truncated at this household's own documented "
+                     "bound, and it is a property of that distribution rather than a finding "
+                     "about this household."),
     "origin": ("origin_uncited_literature",
                "The origin is repeated in the Chicago literature and could not be traced to "
                "a source this project holds, so it is carried as a conjecture that cites "
@@ -328,14 +349,18 @@ def lift(card_id: str, path: str, block: dict) -> dict:
     if "tier" not in out:
         out["tier"] = tier
     if tier == "reconstructed":
-        # A WRITER THAT STATES ITS OWN BASIS KEEPS IT (T-1304). The tables below exist to
+        # A WRITER THAT STATES ITS OWN BASIS KEEPS IT (T-1169, restated by T-1304). The tables below exist to
         # lift values that were written BEFORE the tier shape did, and which therefore
         # carry no basis of their own. Every reconstruction band from T-1304 onward writes
         # its own `basis`, `seed` and `replaceable_by` at the moment it draws - the note
         # names the model row, the roll and the conditioning, and no table here could
         # restate that per value without repeating the draw. Overwriting a stated basis
         # with a table row would file a DRAW under an argued rule and lose its seed, which
-        # is the one thing that makes a draw reproducible.
+        # is the one thing that makes a draw reproducible. T-1169's arrival fill reached the same
+        # conclusion from the other end: the attribute-wide rule published 1,182 DRAWN
+        # years as though they had been ARGUED and dropped every seed. Its
+        # `reconstructed_block` writes `basis` and `replaceable_by` on every block, so the
+        # test below covers it and there is one implementation rather than two.
         own_basis = block.get("basis")
         own_rep = block.get("replaceable_by")
         if isinstance(own_basis, dict) and isinstance(own_rep, dict):
@@ -410,7 +435,14 @@ def drawn_rows() -> list[dict]:
                 "a_card": f.stem,
             })
             row["values"] += 1
-            row["by_value"][block.get("value")] += 1
+            # KEYED BY THE VALUE AS JSON WILL HOLD IT, which is a string always.
+            # `check()` compares this payload against the PARSED file, and a JSON
+            # object key is a string, so an integer value counted here comes back as
+            # a string there and the two can never agree. Every drawn attribute
+            # before T-1169 happened to carry string values (a sex, an age band), so
+            # the mismatch had nothing to bite on; `arrival_year` draws a YEAR, and
+            # with it `--build` immediately followed by `--check` failed.
+            row["by_value"][str(block.get("value"))] += 1
     out = []
     for key in sorted(groups):
         row = dict(groups[key])
