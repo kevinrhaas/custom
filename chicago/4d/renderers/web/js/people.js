@@ -64,6 +64,17 @@ const KNOWN_LABEL = {
   civic_mint: 'civic record',
   projected: 'projected',
 };
+/** What each evidence grade claims about a person, in the reader's terms. Three
+ *  entries because there are three grades: `reconstructed` returned to this layer
+ *  under the programme T-1167 opened, and until it had a line here every
+ *  reconstructed resident's dot read "a real named person", which is the one thing
+ *  a reconstruction is not. */
+const GRADE_TITLE = {
+  attested: 'a source names this person in Chicago at the scene date',
+  inferred: 'a real named person reasonably believed to belong to the 1835 town',
+  reconstructed: 'nobody a source names \u2014 invented within the population model to fill a count the town needed, and replaceable the moment evidence turns up',
+};
+
 const KNOWN_TITLE = {
   documented: 'Named by a source outside the post-office lists and the civic-list consolidation',
   letter_list: 'Known only from the post office’s lists of uncalled-for letters — a name, and nothing else',
@@ -454,8 +465,7 @@ export async function mountPeople({
     return `<button type="button" class="person-row" role="option" data-person-id="${escapeHtml(r.id)}"
         data-household="${escapeHtml(r.household)}" aria-selected="false">
       <i class="grade-dot grade-${escapeHtml(r.grade)}" title="${escapeHtml(r.grade)}: ${
-        r.grade === 'attested' ? 'a source names this person in Chicago at the scene date'
-          : 'a real named person reasonably believed to belong to the 1835 town'}"></i>
+        GRADE_TITLE[r.grade] || GRADE_TITLE.inferred}"></i>
       <span class="person-main"><span class="person-name">${escapeHtml(r.name)}</span>${
         sub ? `<small class="person-sub">${escapeHtml(sub)}</small>` : ''}</span>${mark}</button>`;
   }
