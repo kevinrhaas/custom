@@ -103,7 +103,7 @@
       "note": "Not attested. One stack is the minimum for a shop kept through a Chicago winter. The COUNT is the inference; everything else about the stack is the archetype's."
     },
     "function": {
-      "value": "sutler's store",
+      "value": "sutlers_store",
       "confidence": "attested",
       "sources": [
         "andreas_1884_v1",

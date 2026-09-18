@@ -116,7 +116,7 @@
     }
   ],
   "function": {
-    "value": "officers' quarters",
+    "value": "officers_quarters",
     "confidence": "attested",
     "sources": [
       "andreas_1884_v1",

@@ -353,6 +353,16 @@ def structure_function(sid: str) -> str:
 LODGING_FUNCTIONS = {"hotel", "tavern", "boarding_house", "inn", "coffee_house"}
 
 
+def function_words(term: str) -> str:
+    """A vocabulary term as a table cell reads it.
+
+    `function` became a closed vocabulary at T-1311, and a term is not a phrase to
+    put in a column headed "its function". The underscores come out here, where
+    the value is being PRINTED, and nowhere the value is being COMPARED.
+    """
+    return term.replace("_", " ")
+
+
 # ---------------------------------------------------------------------------
 # the sections
 # ---------------------------------------------------------------------------
@@ -690,7 +700,7 @@ def sec_lodging(L) -> dict:
                 else "the fort" if h["division"] == "fort"
                 else "a dwelling or a place of business")
         classes[kind] += 1
-        rows.append([h["name"], sid, fn, kind, tier_of(h["lives_at"])])
+        rows.append([h["name"], sid, function_words(fn), kind, tier_of(h["lives_at"])])
     rows.sort(key=lambda r: (r[3], r[0]))
     cls_rows = [[k, v, pct(v, n)] for k, v in sorted(classes.items(), key=lambda kv: -kv[1])]
     return {
