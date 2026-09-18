@@ -49,6 +49,20 @@ T-1159 — Export the borderline roster: every name the research read and withhe
 T-1160 — Profile the known population of 1 July 1835: sex, age, origin, arrival date and reason, roles, household composition, lodging, division and presence for every attested and inferred person, per attribute and per tier, as a generated report and an in-app card
 T-1293 — The 1835 town model in one pass: population, occupations, households, lodging and arrival, each with its method and its uncertainty stated as a range
 T-1166 — The reconstruction order book: known minus model, per bucket and per division — exactly how many persons, households, businesses and structures of each kind to reconstruct, in the order the bands below will build them, published as a card
+# RECONSTRUCTION SPENDS RESEARCH, IT DOES NOT START MORE (owner, 2026-09-18: "i dont
+# want new research tickets spun up off of that they should use the existing research …
+# i do not want a ton of tickets sprung up from them starting a whole new stream of
+# research on everything"). Bands 3, 4 and 5 — T-1167 onward — READ the layer bands 1-2
+# signed off and WRITE reconstructed people, businesses and roofs from it. They may not
+# open a new reading of a source, and a gap they find is not a research ticket.
+#   WHERE A GAP GOES INSTEAD: into the order book (T-1166) as a quantity, and into the
+# reconstructed record's own `basis` and `replaceable_by` (T-1158), which is what those
+# fields are FOR — they say what would replace an invention when better evidence turns up.
+# A reconstructed value standing on thin evidence is the expected output, not a defect.
+#   THE ONE EXCEPTION, and it is narrow: a gap that makes the band's own work IMPOSSIBLE
+# rather than merely uncertain. That is a blocker, it goes on the ticket that is blocked,
+# and only if it survives that does it become a research ticket — filed under `--anyway
+# --why`, because the budget refuses it otherwise (T-1295).
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1167 — The 1835 resident reconstruction programme: one recipe file, one generator, the `reconstructed` grade turned on — superseding the retired programme without restoring it, and stating the owner's 2026-09-17 override of the no-estimation rule
 T-1168 — Fill sex and age for every attested and inferred person: recorded where a source says, inferred from forename, office or register role where the evidence about that person allows, reconstructed from the population model otherwise — each value with its tier and reason
