@@ -460,25 +460,25 @@ Every household carries an arrival block and 95.1% of them (1196) hold a `not_la
 | household | structure | its function | class | tier |
 |---|---|---|---|---|
 | The Dr Harmon household | harmon_log_cabin | dwelling | a dwelling or a place of business | attested |
-| The Hamilton household | cobweb_castle | agency_house_residence | a dwelling or a place of business | inferred |
+| The Hamilton household | cobweb_castle | agency house residence | a dwelling or a place of business | inferred |
 | The Heacock household | heacock_house_monroe | dwelling | a dwelling or a place of business | attested |
-| The Ingersoll household | green_tree_tavern | tavern_inn | a dwelling or a place of business | inferred |
+| The Ingersoll household | green_tree_tavern | tavern inn | a dwelling or a place of business | inferred |
 | The James Kinzie household | james_kinzie_house | residence | a dwelling or a place of business | inferred |
-| The Jean Baptiste Beaubien household | jb_beaubien_homestead | dwelling_and_trading_house | a dwelling or a place of business | inferred |
-| The Madore Beaubien household | madore_beaubien_house | dwelling_and_store | a dwelling or a place of business | attested |
-| The Mansion House keeper's household | mansion_house | tavern_inn | a dwelling or a place of business | inferred |
-| The Murphy household | exchange_coffee_house | tavern_inn | a dwelling or a place of business | attested |
-| The Peck household | peck_store | store_and_dwelling | a dwelling or a place of business | inferred |
-| The Porter household | peck_store | store_and_dwelling | a dwelling or a place of business | attested |
+| The Jean Baptiste Beaubien household | jb_beaubien_homestead | dwelling and trading house | a dwelling or a place of business | inferred |
+| The Madore Beaubien household | madore_beaubien_house | dwelling and store | a dwelling or a place of business | attested |
+| The Mansion House keeper's household | mansion_house | tavern inn | a dwelling or a place of business | inferred |
+| The Murphy household | exchange_coffee_house | tavern inn | a dwelling or a place of business | attested |
+| The Peck household | peck_store | store and dwelling | a dwelling or a place of business | inferred |
+| The Porter household | peck_store | store and dwelling | a dwelling or a place of business | attested |
 | The Robinson household at Wolf Point | robinson_caldwell_cabins | dwelling | a dwelling or a place of business | attested |
-| The Stow household | western_hotel | tavern_inn | a dwelling or a place of business | inferred |
-| The Walters household at Wolf Point | wolf_point_tavern | tavern_inn | a dwelling or a place of business | inferred |
+| The Stow household | western_hotel | tavern inn | a dwelling or a place of business | inferred |
+| The Walters household at Wolf Point | wolf_point_tavern | tavern inn | a dwelling or a place of business | inferred |
 | The presbytery household at St Mary's | st_marys_church | church | a dwelling or a place of business | inferred |
-| The Brown boarding-house household | brown_boarding_house | boarding_house | a house of entertainment | attested |
+| The Brown boarding-house household | brown_boarding_house | boarding house | a house of entertainment | attested |
 | The Couch household | tremont_house_1 | hotel | a house of entertainment | inferred |
 | The Davis household at the Steamboat Hotel | steamboat_hotel | hotel | a house of entertainment | inferred |
-| The commandant's household | fort_dearborn_commandants_quarters | commanding officer's quarters | the fort | attested |
-| The post surgeon's household | fort_dearborn_officers_quarters | officers' quarters | the fort | inferred |
+| The commandant's household | fort_dearborn_commandants_quarters | commanding officers quarters | the fort | attested |
+| The post surgeon's household | fort_dearborn_officers_quarters | officers quarters | the fort | inferred |
 
 *No household in the known layer lodges on a vessel. The crews ashore on 1 July 1835 are T-1178's cohort and none of them is named here.*
 
