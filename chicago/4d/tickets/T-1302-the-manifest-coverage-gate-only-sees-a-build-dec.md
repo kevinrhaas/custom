@@ -1,7 +1,7 @@
 ---
 id: T-1302
 title: The manifest coverage gate only sees a --build declared one way, so 55 gated writers still slip past it
-state: claimed
+state: done
 epic: META
 requested_by: owner
 seen: false
@@ -9,12 +9,12 @@ effort: M
 legacy_id: null
 parent: null
 opened: 2026-09-17
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1470
 claimed_by: run 9/18/2026, 12:28:30 PM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T20:33:58.296Z
 claimed_run: null
 ---
 
