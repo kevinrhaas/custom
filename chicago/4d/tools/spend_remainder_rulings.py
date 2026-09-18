@@ -209,17 +209,24 @@ RULES = {
     # ---- hand-offs ---------------------------------------------------------------
     "the_letter_list_name_belongs_to_the_borderline_roster": {
         "disposition": "unresolved",
-        "ticket": "T-1159",
+        # T-1159 CLOSES WITH THE ROSTER IT BUILDS, so a hand-off cannot name it: this
+        # register's own doc asks a hand-off to name the OPEN ticket whose field owns the
+        # finding, and a unit deferred to finished work fails the ledger's invariant
+        # outright. T-1159 moved its 40 land-sale purchaser hand-offs to T-1172 for exactly
+        # this reason and missed this one; it is moved here on the same rule.
+        "ticket": "T-1172",
         "statement": (
             "The unit's own `letter_list_only` field is true: the name's whole evidence is "
             "that a letter waited for it at the Chicago post office. Whether a letter-list "
             "name is a resident is the question of T-0660 -> T-0691, which is BLOCKED on "
             "the owner, and NOTHING HERE INVENTS ITS OUTCOME. What is ruled is the only "
             "thing that can be ruled without it: the name was read and it is withheld from "
-            "1835, and T-1159's field is exactly that roster -- every name the research "
+            "1835, and the borderline roster is exactly that -- every name the research "
             "read and withheld, with its source, its reason and its re-admission class, of "
             "which `letter-list-only` is one the ticket names. Handing the name to the "
-            "roster records the withholding; it does not decide the residency."),
+            "roster records the withholding; it does not decide the residency. The hand-off "
+            "names T-1172, the ticket that re-admits the roster's single-source names, "
+            "because T-1159 closes with the roster it builds."),
     },
     "the_notice_names_a_firm": {
         "disposition": "unresolved",
