@@ -128,3 +128,41 @@ counted — 11 for compile_businesses, 5 for build_book_page_index, 5 for
 rule_newberry_leads, 8 for read_wabansia_streets, and the plate-join's whole set —
 because a fixture that stops firing is a worse outcome than the race it was
 holding.
+
+
+## CORRECTION: THE SWEEP ABOVE WAS PYTHON ONLY, AND IT DOES NOT SAY SO (2026-09-18)
+
+This ticket says, twice, "an audit hook over **every** `self_test` in `tools/`", and reports
+"177 self-tests measured". That reads as the whole population and it is not. The hook was
+`sys.addaudithook`, which reaches python and nothing else. **check.sh runs 17 self-tests
+that are not python — 15 node and 2 bash — and the sweep measured none of them.**
+
+The number 177 was the python population. The claim built on it was broader than the
+evidence, and the owner asking "is the race still a problem?" is what surfaced it rather
+than anything in the gate.
+
+**MEASURED SINCE, and the conclusion survives.** The 9 distinct node self-test commands were
+re-run under an fs-write probe (node has no audit-hook API, so the `fs` write entry points
+are wrapped instead), and the bash one was run with the tree watched:
+
+    9 node self-test commands   all clean
+    1 bash self-test            clean, tree unchanged
+
+One apparent hit was a FAULT IN THE PROBE, not in the tool. `resolve_id_collisions.mjs`
+appeared to write `tools/ticket.mjs`; it copies that tool and itself OUT of the repo into a
+tmpdir where it builds a throwaway git repo, and the first probe recorded argument 0 of
+`copyFileSync` — the SOURCE. A probe that cannot tell a read from a write manufactures
+findings, and that lesson is written into tools/isolation_probe/node_probe.js where the
+next reader will meet it.
+
+So: no live-writing self-test remains, in any of the three interpreters. What was wrong was
+the claim, not the fix.
+
+**AND THE GAP THAT CORRECTION EXPOSES IS T-1339.** A point-in-time sweep proves today and
+nothing else; the seventh offender is written tomorrow, and two of the six found here
+carried comments claiming they already worked on a copy, so a convention does not hold this.
+The retry net keeps the VERDICT correct when that happens and names the step — it does not
+stop it. T-1339 turns the sweep into a measurement the gate reads
+(tools/step_isolation.json + tools/audit_step_isolation.mjs), which also closes the second
+gap this ticket left open: only self-tests were ever measured, and an ordinary `step` that
+mutates races identically.
