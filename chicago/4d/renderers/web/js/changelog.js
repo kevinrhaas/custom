@@ -1,5 +1,5 @@
 export const CHANGELOG = [ // newest first
-  { v: null, title: 'The town\u2019s folded cards, and the old name that led nowhere', kind: 'change', ts: '',
+  { v: 955, title: 'The town\u2019s folded cards, and the old name that led nowhere', kind: 'change', ts: '2026-09-18T19:58:00.488Z', date: 'Sep 18, 2026, 2:58 PM CT',
     items: [
       'Two lists of a frontier town will print the same man twice. A tax roll has \u201CBlanchard, Gantry\u201D and a poll book \u201CBlanchard, F. Gantry\u201D; a letter list has \u201CH. Vanderbogart\u201D and a church register \u201CHenry Vanderbogart\u201D. This project built a card for each reading first and asked afterwards whether the two were one person. Sixty-six times the answer has been yes, and the two cards were folded into one.',
       'A fold never deletes anything. The retired card is kept whole, exactly as it stood on the day the ruling was made, and the town keeps a table saying where its old name now goes \u2014 so a crosswalk, a parcel, or anything else still citing the retired name resolves to the person who now carries it. That table was the one list in the residents manifest that nothing rebuilt from its own records, and both halves of it had quietly come apart.',
