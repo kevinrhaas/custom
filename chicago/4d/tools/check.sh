@@ -691,7 +691,19 @@ selftest "…and its own assertions still fire when broken" \
 # found 18 such households by hand. This re-derives every row and every derived
 # count from data/residents/households/*.json and fails if the committed file is not
 # what the derivation produces.
-step "the residents manifest re-derives from the household cards" \
+#
+# T-1144 acceptance 6 put the REDIRECT TABLE under the same rule. `merged` is one
+# row per card folded onto another, it is the only way a retired id resolves, and
+# it was the one list here nobody re-derived - so it had drifted both ways:
+# `hh_vanderbogart_h` (T-0842) had a record and no row, so the id resolved to
+# nothing while its own note said the table redirected it, and
+# `hh_blanchard_gantry` was carried under `C7` after T-0993 minted `C8` for that
+# fold, naming a reader the compound-surname rule for a middle-name argument. Both
+# are now derived from data/residents/merged/*.json, and on top of the tally this
+# refuses a redirect that does not ARRIVE - a target that is not a live card, a
+# person in no card, a redirect onto another retired card, a retired id shadowing a
+# live one - because a table can re-derive perfectly and still be a dead end.
+step "the residents manifest re-derives from the household cards and the retired records" \
   python3 tools/rebuild_resident_index.py --check
 
 # T-0871. It was the only re-derivation gate in this tree whose own assertions had
