@@ -2166,6 +2166,40 @@
         ]
       },
       "source": "/tmp/smoke_m_1213.log"
+    },
+    {
+      "viewport": "mobile",
+      "stage": "3",
+      "parts": [
+        3
+      ],
+      "verdict": "fail",
+      "target": "published",
+      "passed": 88,
+      "failed": 2,
+      "failures": [
+        "mobile 390x780: the invented-name programme left nothing behind on this layer — 3 reconstructed people in the manifest, 0 on hh_inf_cooper_north_04, name_basis present: false",
+        "mobile 390x780: the placeholder label agrees with the asset it describes — {\"real\":false,\"realFlag\":false,\"recommended\":false,\"placeholderFlag\":false,\"grade\":\"reconstructed\",\"reconstructionFlag\":true,\"flagNamesTheGrade\":true}"
+      ],
+      "wallSeconds": 57,
+      "takenAt": "2026-09-18T19:35:18.473Z",
+      "ref": "HEAD",
+      "commit": "a2f4e043e250",
+      "devCommit": "a2f4e043e250",
+      "treeHash": "sha256:66eb003414d104cd",
+      "treeDirty": false,
+      "changelogHash": "sha256:8d11c6c8ea73ca43",
+      "host": {
+        "kind": "steward-runner",
+        "cpus": 4,
+        "memGB": 15.6,
+        "loadavg": [
+          2.7,
+          2.1,
+          1.3
+        ]
+      },
+      "source": "/tmp/smoke_dev_m3.log"
     }
   ]
 }
