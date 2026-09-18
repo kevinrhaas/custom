@@ -17,11 +17,11 @@
   "proprietor_names_printed": 204,
   "proprietors_with_a_given_name_or_initial": 157,
   "proprietors_printed_as_a_surname_alone_unmatchable": 47,
-  "residents_considered": 1280,
+  "residents_considered": 1283,
   "matched_one_card": 19,
   "matched_more_than_one_ambiguous": 3,
   "one_printed_proprietor_contested_by_two_residents": 6,
-  "surname_present_initial_absent_refused": 127,
+  "surname_present_initial_absent_refused": 130,
   "letter_list_bucket_refused": 1,
   "residents_that_refusal_reaches": 1,
   "cards_the_whole_name_refused": 0,
@@ -1352,6 +1352,13 @@
    "rule": "The surname 'Hovey' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Hiram Hovey'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Honora Murphy",
+   "person_id": "rc_murphy_honora",
+   "surname_on_a_card": "Murphy",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Murphy' stands on an 1844 advertising card and no proprietor under it carries the initial 'H' of 'Honora Murphy'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Isaac Dewey Harmon",
    "person_id": "harmon_isaac_d",
    "surname_on_a_card": "Harmon",
@@ -1625,6 +1632,13 @@
    "rule": "The surname 'Murphy' stands on an 1844 advertising card and no proprietor under it carries the initial 'N' of 'N Murphy'. A surname-only agreement is a refusal."
   },
   {
+   "resident": "Nancy Adams",
+   "person_id": "rc_adams_nancy",
+   "surname_on_a_card": "Adams",
+   "cards_under_that_surname": 2,
+   "rule": "The surname 'Adams' stands on an 1844 advertising card and no proprietor under it carries the initial 'N' of 'Nancy Adams'. A surname-only agreement is a refusal."
+  },
+  {
    "resident": "Nathaniel Carpenter",
    "person_id": "carpenter_nathaniel",
    "surname_on_a_card": "Carpenter",
@@ -1770,6 +1784,13 @@
    "surname_on_a_card": "Cook",
    "cards_under_that_surname": 1,
    "rule": "The surname 'Cook' stands on an 1844 advertising card and no proprietor under it carries the initial 'T' of 'Thomas Cook'. A surname-only agreement is a refusal."
+  },
+  {
+   "resident": "Thomas Murphy",
+   "person_id": "rc_murphy_thomas",
+   "surname_on_a_card": "Murphy",
+   "cards_under_that_surname": 1,
+   "rule": "The surname 'Murphy' stands on an 1844 advertising card and no proprietor under it carries the initial 'T' of 'Thomas Murphy'. A surname-only agreement is a refusal."
   },
   {
    "resident": "Timothy J Clark",

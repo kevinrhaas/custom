@@ -81,13 +81,53 @@ def persons(doc):
     return [p for p in (doc.get("persons") or []) if isinstance(p, dict)]
 
 
-def offences(doc, label):
+def programme_stage_keys():
+    """The stages the reconstruction programme declares, or an empty set.
+
+    T-1314. This gate's subject is the four RESEARCH writers: none of them may MINT a
+    reconstructed resident, and the wiring checks below prove each still carries the
+    refusal. Since T-1167 one tool - the programme's own writer - legitimately does mint
+    them, and a research writer that rewrites a card CARRIES those people forward
+    without authoring them. So the rule this file enforces is the one that is actually
+    the invariant: a research writer may not emit a reconstructed person the committed
+    layer does not already hold under a stage of the programme. Minting is refused;
+    pass-through is not. An absent programme yields an empty set, which refuses every
+    reconstructed person - with no programme there is no authority.
+    """
+    try:
+        prog = json.loads(PROGRAMME.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return set()
+    return {s.get("key") for s in prog.get("stages") or [] if isinstance(s, dict)}
+
+
+def carried_by_the_programme():
+    """The ids of reconstructed people the COMMITTED layer already holds under a stage."""
+    keys = programme_stage_keys()
+    if not keys:
+        return frozenset()
+    out = set()
+    for path in sorted(HOUSEHOLDS.glob("*.json")):
+        try:
+            doc = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        for person in persons(doc):
+            if person.get("grade") == RESERVED and \
+                    (person.get("reconstruction") or {}).get("stage") in keys:
+                out.add(person.get("id"))
+    return frozenset(out)
+
+
+def offences(doc, label, carried=frozenset()):
     """Every person in `doc` whose grade a research writer may not emit."""
     out = []
     for person in persons(doc):
         grade = person.get("grade")
         if grade in WRITABLE_GRADES:
             continue
+        if grade == RESERVED and person.get("id") in carried:
+            continue  # already in the layer under a programme stage; carried, not minted
         pid = person.get("id") or person.get("name") or "(unnamed person)"
         if grade == RESERVED:
             out.append(f"{label}: {pid} is graded `{RESERVED}`")
@@ -107,16 +147,18 @@ def shown(label):
     return str(label)
 
 
-def refuse(docs, writer):
+def refuse(docs, writer, carried=None):
     """Refuse the write if any person in `docs` carries a grade this writer may not emit.
 
     `docs` maps a label — a path, an id, anything a reader can act on — to a
     household document. Call it on what you are ABOUT to write, in every mode,
     so that `--check` refuses on the same rule the write does.
     """
+    if carried is None:
+        carried = carried_by_the_programme()
     bad = []
     for label, doc in docs.items():
-        bad.extend(offences(doc, shown(label)))
+        bad.extend(offences(doc, shown(label), carried))
     if not bad:
         return
     raise ReconstructedGradeRefused(
@@ -124,7 +166,8 @@ def refuse(docs, writer):
         + "\n  ".join(bad[:10])
         + (f"\n  …and {len(bad) - 10} more" if len(bad) > 10 else "")
         + f"\n`{RESERVED}` is reserved for the reconstruction programme "
-          f"({PROGRAMME_TICKET}); a research mint never emits it. "
+          f"({PROGRAMME_TICKET}); a research mint never MINTS one, though it may carry "
+          f"forward a person the committed layer already holds under a stage. "
           f"A writer may emit {' or '.join(WRITABLE_GRADES)}."
     )
 
@@ -140,43 +183,14 @@ def refuse_texts(files, writer):
     refuse(docs, writer)
 
 
-def programme_stage_keys():
-    """The stages the reconstruction programme declares, or an empty set.
-
-    T-1314. This gate's subject is the four RESEARCH writers: none of them may mint a
-    reconstructed resident, and the checks below prove each still carries the refusal.
-    The committed layer is a different question, because since T-1167 one tool - the
-    programme's own writer - legitimately does mint them. So the layer is held to the
-    narrower rule that is actually the invariant: a reconstructed person must NAME the
-    programme stage that re-derives them. An empty set (no programme) refuses every
-    one of them, which is the right answer - with no programme there is no authority.
-    """
-    try:
-        prog = json.loads(PROGRAMME.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return set()
-    return {s.get("key") for s in prog.get("stages") or [] if isinstance(s, dict)}
-
-
 def check():
     problems = []
 
     committed = {p.name: json.loads(p.read_text(encoding="utf-8"))
                  for p in sorted(HOUSEHOLDS.glob("*.json"))}
-    stage_keys = programme_stage_keys()
-    claimed = 0
-    unclaimed = {}
-    for label, doc in committed.items():
-        keep = []
-        for person in persons(doc):
-            if person.get("grade") == RESERVED and \
-                    (person.get("reconstruction") or {}).get("stage") in stage_keys:
-                claimed += 1
-                continue
-            keep.append(person)
-        unclaimed[label] = dict(doc, persons=keep)
+    claimed = len(carried_by_the_programme())
     try:
-        refuse(unclaimed, "the committed resident layer")
+        refuse(committed, "the committed resident layer")
     except ReconstructedGradeRefused as exc:
         problems.append(str(exc))
 

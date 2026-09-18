@@ -317,6 +317,13 @@ def attested_bearers(cards: dict) -> dict:
         sex = person.get("sex")
         if not sex:
             continue
+        # AND A RECONSTRUCTED PERSON TEACHES NOTHING EITHER (T-1314). The reconstruction
+        # programme writes people the sources do not name, and their forenames are DRAWN
+        # from the pools below. Counting them as bearers would feed the pool back in as
+        # though it were evidence about this town, and every stage that adds a person
+        # would make the table look better attested than the sources ever made it.
+        if person.get("grade") == "reconstructed":
+            continue
         title, fore, why = read_name(person.get("name") or "")
         if title or why not in ("forename", "contraction") or not fore:
             continue
