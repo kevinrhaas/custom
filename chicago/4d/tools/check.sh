@@ -691,7 +691,19 @@ selftest "…and its own assertions still fire when broken" \
 # found 18 such households by hand. This re-derives every row and every derived
 # count from data/residents/households/*.json and fails if the committed file is not
 # what the derivation produces.
-step "the residents manifest re-derives from the household cards" \
+#
+# T-1144 acceptance 6 put the REDIRECT TABLE under the same rule. `merged` is one
+# row per card folded onto another, it is the only way a retired id resolves, and
+# it was the one list here nobody re-derived - so it had drifted both ways:
+# `hh_vanderbogart_h` (T-0842) had a record and no row, so the id resolved to
+# nothing while its own note said the table redirected it, and
+# `hh_blanchard_gantry` was carried under `C7` after T-0993 minted `C8` for that
+# fold, naming a reader the compound-surname rule for a middle-name argument. Both
+# are now derived from data/residents/merged/*.json, and on top of the tally this
+# refuses a redirect that does not ARRIVE - a target that is not a live card, a
+# person in no card, a redirect onto another retired card, a retired id shadowing a
+# live one - because a table can re-derive perfectly and still be a dead end.
+step "the residents manifest re-derives from the household cards and the retired records" \
   python3 tools/rebuild_resident_index.py --check
 
 # T-0871. It was the only re-derivation gate in this tree whose own assertions had
@@ -2661,6 +2673,22 @@ step "the remainder rulings re-derive from their five corpora (T-1298)" \
 
 selftest "…and each of its rules still fires, and hands on only to live work" \
   python3 tools/spend_remainder_rulings.py --self-test
+
+# T-1330. THE SPEND ITSELF, where the two steps above only ROUTE. Thirty of T-1301's
+# `corroborated_enrichment` findings named an arrival, an origin, a departure or a dated
+# appearance, and they had been handed from arrival ticket to arrival ticket without being
+# read against the cards they name. Nine of them retire a value the arrival stage DREW —
+# an origin region taken from the Old Settlers birthplace sample, an arrival year drawn
+# from a distribution truncated at the household's bound — and the block that replaces one
+# carries no `written_by_stage` mark, which is how reconstruct_residents_1835.py's
+# `writable()` yields the field. So two gates have to agree here and this is the first of
+# them: the blocks re-derive from the adjudication, and the adjudication still covers every
+# unit the ruling register hands this pass, in both directions.
+step "the enrichment arrival and origin spend re-derives onto its nine cards (T-1330)" \
+  python3 tools/spend_enrichment_arrivals.py --check
+
+selftest "…and its citation, naming and retirement rules still fire when broken" \
+  python3 tools/spend_enrichment_arrivals.py --self-test
 
 # T-1297. The same instrument over the name-on-a-roll body: the 1833-1835 poll and tax
 # lists, the 1832 Black Hawk War enrollments, the 1830 heads of family, and the town

@@ -14,21 +14,13 @@
   "precision": "not_later_than"
  },
  "arrival_year": {
-  "value": 1835,
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN, NOT READ. The household's arrival block holds a BOUND — somebody was here by 1835-03-31 and no source says when they came — so the year is drawn from the arrival years the known layer records, truncated at that bound and renormalised. It says what a household of this bound most likely was, and nothing whatever about this household.",
-  "basis": {
-   "kind": "model",
-   "id": "arrival",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.arrival_year_of_the_known_layer, restricted to years at or before 1835."
-  },
-  "seed": "hh_paine_seth:arrival_year",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a dated source that says which year this household came to Chicago"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "value": 1834,
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A STATED YEAR, AND THE DRAW IT CORRECTS. The same biography gives a direct 1834 migration to Chicago for paine_seth. The arrival stage had drawn 1835, truncating its distribution at the household's bound — the post-office return of 1835-03-31 that the `arrival` block carries — and a source that names the year retires a figure drawn against that bound. The bound itself is unchanged and is not contradicted: a man who came in 1834 is a man who was here by March 1835. Under the evidence ladder ratified 2026-09-03 a source earlier than 1 July 1835 corroborates and dates and never promotes: the person's grade does not move on this.",
+  "sources": [
+   "andreas_seth_paine_1834"
+  ]
  },
  "party_size_on_arrival": {
   "value": null,
@@ -36,21 +28,13 @@
   "note": "Not attested."
  },
  "origin": {
-  "value": "New York State",
-  "confidence": "reconstructed",
-  "tier": "reconstructed",
-  "note": "DRAWN FROM A SURVIVORSHIP SAMPLE. No source says where this household came from. The region is drawn from the birthplaces of the seventy Old Settlers who registered an arrival at or before 1835 — a self-selected roll set down forty-four years later that over-represents the men who stayed and prospered, as the town model's own open questions say. It is the only origin distribution this project holds and this value is drawn from it, not measured.",
-  "basis": {
-   "kind": "model",
-   "id": "origin",
-   "note": "data/reconstruction/1835_town_model.json#arrival_and_origin.tables.birthplace_of_the_old_settlers_who_came_by_1835."
-  },
-  "seed": "hh_paine_seth:origin_region",
-  "replaceable_by": {
-   "kind": "person",
-   "match": "a source that says where this household came from"
-  },
-  "written_by_stage": "attribute_fill_arrival"
+  "value": "Montpelier, Vermont",
+  "confidence": "inferred",
+  "tier": "inferred",
+  "note": "A SOURCE, WHERE THE FIELD HELD A DRAW. The completed resident-research pass on paine_seth read Andreas's Seth Paine biography as giving a direct 1834 migration from Montpelier, Vermont to Chicago. The block this replaces read “New York State” from the Old Settlers birthplace sample. This is a stated point of departure, which is what this field asks for.",
+  "sources": [
+   "andreas_seth_paine_1834"
+  ]
  },
  "reason_for_coming": {
   "value": "The 1835 season: the canal land sales of June, the harbour works and the boom of a town just incorporated",

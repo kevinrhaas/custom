@@ -110,6 +110,12 @@ def records():
         yield path, json.loads(path.read_text())
 
 
+# A vocabulary term that READS like a place people lodge for pay. Deliberately wide:
+# it only decides which terms the population profile must have RULED on (T-1323), and a
+# false positive costs one line in NOT_LODGING_FUNCTIONS saying why it is not one.
+LODGING_SHAPED = re.compile(r"hotel|tavern|\binn\b|inn_|_inn|boarding|lodging|coffee")
+
+
 FUNCTION_VALUE = re.compile(
     r'("function"\s*:\s*\{\s*"value"\s*:\s*)("(?:[^"\\\\]|\\\\.)*")')
 
@@ -214,6 +220,38 @@ def check() -> int:
                     problems.append(f"generate_business_signboards.{name} names "
                                     f"{trade!r}, which no structure can spell - the "
                                     f"schema's vocabulary does not carry it")
+    # The population profile's lodging test reads this field by exact match too, and it
+    # named three terms no structure could spell for as long as the vocabulary has been
+    # closed — so every tavern household counted as a dwelling (T-1323). Asked in BOTH
+    # directions, because the second is the one that kept the bug: a lodging-shaped term
+    # the profile has not ruled on is refused, so adding `inn` to the schema tomorrow
+    # cannot silently leave the profile blind to it.
+    spec = importlib.util.spec_from_file_location(
+        "_profile", ROOT / "tools" / "profile_population_1835.py")
+    mod = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(mod)
+    except Exception as exc:                                    # noqa: BLE001
+        problems.append(f"the population profile's lodging test could not be read to "
+                        f"compare vocabularies: {exc}")
+    else:
+        lodging = set(getattr(mod, "LODGING_FUNCTIONS", ()))
+        not_lodging = set(getattr(mod, "NOT_LODGING_FUNCTIONS", ()))
+        for term in sorted(lodging | not_lodging):
+            if term not in vocab:
+                problems.append(f"profile_population_1835 rules on {term!r}, which no "
+                                f"structure can spell - the schema's vocabulary does "
+                                f"not carry it")
+        for term in sorted(lodging & not_lodging):
+            problems.append(f"profile_population_1835 has {term!r} in BOTH "
+                            f"LODGING_FUNCTIONS and NOT_LODGING_FUNCTIONS - a term is "
+                            f"lodging for pay or it is not")
+        for term in sorted(vocab):
+            if LODGING_SHAPED.search(term) and term not in lodging | not_lodging:
+                problems.append(f"the vocabulary term {term!r} reads like lodging and "
+                                f"profile_population_1835 rules on it neither way - put "
+                                f"it in LODGING_FUNCTIONS or, with its reason, in "
+                                f"NOT_LODGING_FUNCTIONS")
     # The card's own copy of the vocabulary. `store-residence` sat in it as a dead
     # key for as long as the free string existed, which is what a second spelling
     # costs on the visible side: the card kept a branch nothing could reach.

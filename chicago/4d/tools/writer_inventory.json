@@ -1007,6 +1007,12 @@
       "measured": "continuously",
       "finding": "In the manifest: `rederive.mjs --run` rebuilds it and `--check` re-derives it on every gate — a measurement taken every commit rather than once."
     },
+    "spend_enrichment_arrivals.py": {
+      "placement": "pending",
+      "write_mode": "--write",
+      "measured": "2026-09-18",
+      "finding": "Reproduces: `--write` on the clean tree wrote 0 card(s) and moved no committed byte, and the perturbation test says that is idempotence rather than inertia — hh_peck_philip.json's origin was put back to the drawn block the arrival stage owned, `--write` rewrote 1 card, and `git status` came back empty. Not yet placed in the manifest's dependency order: it must run after tools/spend_remainder_rulings.py, whose register it reads to know which units it owns, and before every reader of the resident layer."
+    },
     "spend_fergus_1839_later_lists.py": {
       "placement": "manifest",
       "write_mode": null,
