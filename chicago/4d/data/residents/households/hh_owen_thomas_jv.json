@@ -323,7 +323,18 @@
      "employer_or_body": "united_states_indian_department",
      "note": "PRINTED AGAINST THIS NAME IN THE 1833-1835 PRESS and carried here from the newspaper gazetteer (T-1254, by tools/derive_resident_roles.py). The gazetteer holds its trades on the PERSON record and not on a single issue, so the bound is the run of this person's own dated mentions, 1834-07-02 to 1834-08-20, and the grade is `inferred`: the paper printed the trade, and the resident programme's identity rule tied the printing to this card. The scene date falls outside that run, so this role does not stand in the 1835 view."
     }
-   ]
+   ],
+   "age_band": {
+    "value": "30-39",
+    "low": 30,
+    "high": 39,
+    "confidence": "attested",
+    "tier": "attested",
+    "sources": [
+     "andreas_1884_v1"
+    ],
+    "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
+   }
   },
   {
    "id": "owen_household_unnamed",
@@ -336,7 +347,19 @@
     "note": "No trade is recorded for anyone in this household but Owen himself."
    },
    "sources": [],
-   "note": "A PLACEHOLDER FOR PEOPLE WHO CERTAINLY EXISTED AND WHOM NO SOURCE REACHED NAMES. Owen was a married man with children - his family is referred to in the Chicago literature and his son-in-law's line is traced in later chapters - but nothing this project holds names his wife or counts his children, so no person record is written for them and the household size is left as an admission rather than a number. This entry exists so that a reader of the dataset sees the gap instead of a household of one. It carries no age, no sex and no name, and it must not be counted as a person for any purpose but that."
+   "note": "A PLACEHOLDER FOR PEOPLE WHO CERTAINLY EXISTED AND WHOM NO SOURCE REACHED NAMES. Owen was a married man with children - his family is referred to in the Chicago literature and his son-in-law's line is traced in later chapters - but nothing this project holds names his wife or counts his children, so no person record is written for them and the household size is left as an admission rather than a number. This entry exists so that a reader of the dataset sees the gap instead of a household of one. It carries no age, no sex and no name, and it must not be counted as a person for any purpose but that.",
+   "sex_basis": {
+    "value": null,
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no sex to draw. This row stands for more than one person and a single band or a single sex would make a group into a person. The refusal is T-1303's and it is kept here word for word rather than overridden by a model that could not tell."
+   },
+   "age_band": {
+    "value": null,
+    "confidence": "reconstructed",
+    "tier": "unknown",
+    "note": "A COLLECTIVE DESCRIPTION NAMES NOBODY, so there is no age band to draw. This row stands for more than one person and a single band or a single sex would make a group into a person. The refusal is T-1303's and it is kept here word for word rather than overridden by a model that could not tell."
+   }
   }
  ],
  "touches_removal": true,

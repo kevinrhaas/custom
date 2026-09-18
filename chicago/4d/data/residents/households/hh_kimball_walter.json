@@ -172,6 +172,17 @@
      "against_merge": "WM. IS NOT WALTER. The anchor's forename is printed whole — Walter — by Fergus 1843, and the 1840 census sets him 'W. R. Kimball' with a middle initial R the other card does not carry; the letter-list card is printed 'Wm. Kimbal', which is William written short. Two different given names that happen to share an initial is D10's shape, not C9's, and the fold would rename a documented man. The two readings besides never touch: a post-office return of 9 July 1834 (#c012) against a newspaper, a directory and a census. D10."
     }
    ],
+   "age_band": {
+    "value": "20-29",
+    "low": 20,
+    "high": 29,
+    "confidence": "inferred",
+    "tier": "inferred",
+    "sources": [
+     "calumet_club_early_chicago_1879"
+    ],
+    "note": "THE BAND THIS PERSON'S OWN BIRTH YEAR PUTS THEM IN on 1 July 1835. It is a view of a value already on this card and adds nothing to it; it exists so the age axis can be read across the whole layer at once, beside the bands the model draws for everybody else."
+   },
    "birth_year": {
     "value": 1809,
     "precision": "band",

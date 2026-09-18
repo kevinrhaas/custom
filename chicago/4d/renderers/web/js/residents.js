@@ -160,6 +160,25 @@ function bornYears(born) {
   return born.value;
 }
 
+/**
+ * An age band as a reader should meet it (T-1304). The 1840 schedule's bands are decadal
+ * above twenty and the block carries their edges, so the card prints the interval rather
+ * than the machine-readable `20-29` — and the top band, which has no upper edge, prints
+ * as "70 or older" rather than as a range with a hole in it.
+ *
+ * NOTHING HERE TURNS A BAND INTO A YEAR. The whole point of the band is that the project
+ * does not know the year; a card that printed a midpoint would undo that in one line.
+ */
+function bandYears(band) {
+  if (!band || band.value === null || band.value === undefined) return null;
+  const low = band.low;
+  const high = band.high;
+  if (typeof low !== 'number') return String(band.value);
+  if (typeof high !== 'number') return `${low} or older`;
+  if (low === 0) return `under ${high + 1}`;
+  return `${low} to ${high}`;
+}
+
 function row(label, value) {
   if (value === null || value === undefined || value === '') return '';
   return `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`;
@@ -1260,6 +1279,13 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
   // one sex's naming only — the reasoning travels with it and the row is a graded claim
   // like every other. Where it came off a source with the rest of the record, the mints
   // wrote the bare string and there is no reasoning of ours to print.
+  //
+  // T-1304 writes the same block for a sex it DREW, graded `reconstructed`, and that is
+  // the whole reason no new rendering was needed for it: `claimRow` already prints the
+  // tier, the reasoning, the model the value was drawn from, the seed that redraws it and
+  // the evidence that would retire it. A drawn value that rendered like a read one would
+  // be the misrepresentation; a drawn value that renders THROUGH the same graded row,
+  // wearing the reconstructed chip and opening on its own seed, is the opposite.
   const basis = person.sex_basis || null;
   return `<details class="lib res-person">
     <summary><span class="lib-title">${swatch(person.grade)}${escapeHtml(person.name || 'unnamed')}</span>
@@ -1276,6 +1302,8 @@ export function personHtml(person, citationsById, researchByPerson, directoryByP
         : row('Sex', words(person.sex))}
       ${claimRow('Age on 1 July 1835', aged && aged.value, aged, citationsById)}
       ${claimRow('Born', bornYears(born), born, citationsById)}
+      ${claimRow('Age band on 1 July 1835', bandYears(person.age_band),
+        person.age_band, citationsById)}
       ${occ.value ? `<dt>Occupation</dt><dd>${swatch(tierOf(occ))}${tierWord(tierOf(occ))}${
         isNotAsserted(occ) ? 'not recorded' : escapeHtml(words(occ.value))}${
         occ.later_occupation ? ' for 1835' : ''}${

@@ -222,6 +222,37 @@ def strings(node):
             yield from strings(value)
 
 
+# T-1144 acceptance 9 writes `present_on_scene_date.last_dated_appearance`: the date the
+# corpus last saw a person, DERIVED from evidence the card already holds. Its own note
+# says what it is -- "THE FIELD IS THE EVIDENCE UNDER THE VERDICT, not a new claim".
+#
+# It must not be read as one here. The leg carries the person's own id in `person`, and
+# names ids in its prose, so the block ABOVE it -- `present_on_scene_date`, which does
+# carry a confidence and sources -- starts matching unit ids it never named before. 190
+# readings flipped to `asserted` against `/present_on_scene_date` the day the leg landed,
+# among them an enrichment naming a July 1833 arrival and a Connecticut origin. Neither
+# an arrival nor an origin is anywhere in that block: what changed was that a derived
+# restatement of the evidence mentioned the man by id.
+#
+# A reading is spent when a field carries WHAT IT SAYS, not when a summary of the same
+# evidence repeats the subject's name. The leg contributes no name tokens.
+TOKEN_BLIND_KEYS = {"last_dated_appearance"}
+
+
+def naming_strings(node):
+    """`strings`, minus the subtrees that restate evidence rather than assert a fact."""
+    if isinstance(node, str):
+        yield node
+    elif isinstance(node, dict):
+        for key, value in node.items():
+            if key in TOKEN_BLIND_KEYS:
+                continue
+            yield from naming_strings(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from naming_strings(value)
+
+
 def cited_sources(node) -> set[str]:
     found = set()
     if isinstance(node, dict):
@@ -246,7 +277,7 @@ def target_index(root: Path, raw_ids: set[str]) -> dict[str, list[dict]]:
             sources_here = cited_sources(node) if confidence in STRUCTURED_CONFIDENCE else set()
             if sources_here:
                 tokens = set()
-                for value in strings(node):
+                for value in naming_strings(node):
                     if value in raw_ids:
                         tokens.add(value)
                     tokens.update(t for t in re.findall(r"[A-Za-z0-9_.:-]+", value) if t in raw_ids)
@@ -827,6 +858,31 @@ def self_test() -> int:
             else:
                 print(f"  fires: {label}")
 
+        # T-1144 acceptance 9's presence leg restates evidence and names its own subject.
+        # A block is a target when it carries WHAT THE READING SAYS; repeating the man's
+        # id inside a derived summary is not that, and both halves are asserted here.
+        write_json(root / "data/residents/hh_leg.json", {
+            "id": "hh_leg",
+            "present_on_scene_date": {
+                "value": "uncertain", "confidence": "inferred",
+                "sources": ["fixture_source"],
+                "last_dated_appearance": {
+                    "leg": "sighting", "person": "elam_tuller",
+                    "note": "Read for elam_tuller, and nothing here moves the verdict."}},
+            "origin": {"value": "Connecticut", "confidence": "attested",
+                       "sources": ["fixture_source"], "from": "elam_tuller"}})
+        index = target_index(root, {"elam_tuller"})
+        paths = {t["field_path"] for t in index.get("elam_tuller", [])
+                 if t["id"] == "hh_leg"}
+        if "/present_on_scene_date" in paths:
+            failures.append("the presence leg named its own subject into the target index")
+        else:
+            print("  fires: the presence leg names nobody into the target index")
+        if "/origin" not in paths:
+            failures.append("a field that does carry the reading stopped being a target")
+        else:
+            print("  holds: a field that carries the reading is still a target")
+
         duplicate = {"units": [base, copy.deepcopy(base)], "unit_count": 2,
                      "totals": {name: (2 if name == "asserted" else 0) for name in DISPOSITIONS}}
         got = validate_document(duplicate, root, {})
@@ -836,5 +892,5 @@ def self_test() -> int:
             print("  fires: a duplicate stable unit id")
     for failure in failures:
         print("   SILENT: " + failure)
-    print("LEDGER SELF-TEST %s — 13 case(s)" % ("FAIL" if failures else "PASS"))
+    print("LEDGER SELF-TEST %s — 15 case(s)" % ("FAIL" if failures else "PASS"))
     return 1 if failures else 0

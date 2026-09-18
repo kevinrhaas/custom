@@ -428,23 +428,6 @@
       ]
     },
     {
-      "why": "The borderline roster (T-1159) — every name the research read and withheld from 1835, with its reason and its re-admission class. It is DERIVED from the ledger and the resident layer and mints nobody, so anything that moves a card moves it. Added 2026-09-18 after it went red on #1422 TWICE: it landed on dev after the coverage audit ran, and the audit's first write-mode pattern only matched tools that read argv directly, so an argparse-declared --build slipped past it. Reproduction measured on a clean dev tree first, per `_must_reproduce`: the rebuild changed no committed byte.",
-      "command": [
-        "python3",
-        "tools/export_borderline_roster.py",
-        "--build"
-      ],
-      "resolves": [
-        "chicago/4d/data/reconstruction/1835_borderline_roster.json",
-        "chicago/4d/docs/RESEARCH/borderline-roster-2026-09.md"
-      ],
-      "verify": [
-        "python3",
-        "tools/export_borderline_roster.py",
-        "--check"
-      ]
-    },
-    {
       "why": "One row per home, workplace and business-location claim, resolved as far as its evidence reaches and no further (T-1237). It keys on resident ids, so a change to the identity splitter moves its rows. ADDED 2026-09-18 by tools/audit_manifest_coverage.mjs, the gate that refuses a gated writer the manifest has never heard of. Reproduction measured on a clean dev tree before listing, per `_must_reproduce`: the rebuild changed no committed byte.",
       "command": [
         "python3",
@@ -611,6 +594,41 @@
       ]
     },
     {
+      "why": "The five DERIVED ruling registers of T-1298's remainder, and the name-on-a-roll registers of T-1297. Both read `natural_disposition`, so anything that resolves a unit on the layer drops it out of their corpus — and the ledger then refuses every unit left deferring to a ticket those registers no longer cover. They must be rewritten BEFORE the ledger reads them. Added 2026-09-18: neither was in this manifest, which is how #1448 reached a state where 190 units deferred to a done T-1298 and no `--run` could mend it.",
+      "command": [
+        "python3",
+        "tools/spend_remainder_rulings.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/residents/spend_rulings.json",
+        "chicago/4d/data/research/newspapers/spend_rulings.json",
+        "chicago/4d/data/research/church/spend_rulings.json",
+        "chicago/4d/data/research/books/spend_rulings.json",
+        "chicago/4d/data/research/genealogytrails/spend_rulings.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_remainder_rulings.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "T-1297's name-on-a-roll registers, on the same footing as the remainder above and for the same reason: derived from the readings, read by the ledger, and absent from this manifest until 2026-09-18.",
+      "command": [
+        "python3",
+        "tools/spend_name_on_a_roll_rulings.py"
+      ],
+      "resolves": [
+        "chicago/4d/data/research/civic/spend_rulings.json",
+        "chicago/4d/data/research/directories/spend_rulings.json"
+      ],
+      "verify": [
+        "python3",
+        "tools/spend_name_on_a_roll_rulings.py",
+        "--check"
+      ]
+    },
+    {
       "why": "The closed research-spend ledger (T-1143), which counts over every layer above it and so has to be last of the research steps.",
       "command": [
         "python3",
@@ -626,6 +644,55 @@
         "tools/measure_research_spend.py",
         "--check",
         "--quiet"
+      ]
+    },
+    {
+      "why": "The borderline roster (T-1159) — every name the research read and withheld from 1835, with its reason and its re-admission class. It is DERIVED from the ledger and the resident layer and mints nobody, so anything that moves a card moves it. Added 2026-09-18 after it went red on #1422 TWICE: it landed on dev after the coverage audit ran, and the audit's first write-mode pattern only matched tools that read argv directly, so an argparse-declared --build slipped past it. MOVED BELOW THE LEDGER 2026-09-18: it was listed ABOVE the ledger it reads, so a run that changed the ledger rebuilt the roster from the OLD one and `--run` could never converge — two full passes over #1448 ended on the same four red steps, each one a reader of a ledger rebuilt after it.",
+      "command": [
+        "python3",
+        "tools/export_borderline_roster.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/data/reconstruction/1835_borderline_roster.json",
+        "chicago/4d/docs/RESEARCH/borderline-roster-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/export_borderline_roster.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The closing research audit (T-1143), which re-derives from the ledger and the four layers. A gated writer that was never listed here, so a ledger rebuild left it stale and `check.sh` — not `--run` — was the only thing that noticed.",
+      "command": [
+        "python3",
+        "tools/report_research_closing_audit.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/docs/RESEARCH/research-closing-audit-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/report_research_closing_audit.py",
+        "--check"
+      ]
+    },
+    {
+      "why": "The research sign-off and its GO, read off the closing audit above. Listed here for the same reason and on the same day.",
+      "command": [
+        "python3",
+        "tools/report_research_signoff.py",
+        "--build"
+      ],
+      "resolves": [
+        "chicago/4d/docs/RESEARCH/research-signoff-2026-09.md"
+      ],
+      "verify": [
+        "python3",
+        "tools/report_research_signoff.py",
+        "--check"
       ]
     },
     {
