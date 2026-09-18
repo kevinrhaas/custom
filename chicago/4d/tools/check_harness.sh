@@ -133,9 +133,45 @@ check_flush() {
     else
       printf '\n\033[1m== %s\033[0m\n' "$label"
     fi
-    [ -s "$dir/$i.out" ] && cat "$dir/$i.out"
     if [ "$(cat "$dir/$i.rc" 2>/dev/null || echo 1)" -ne 0 ]; then
-      _check_record_failure "$label"
+      # A POOLED FAILURE IS NOT YET A FAILURE. T-1336: some steps mutate the working
+      # tree and put it back — a self-test that breaks a live file to prove a check
+      # fires is the whole pattern, and read_census_1830.py's is the one that caught
+      # us — so a step that ran BESIDE one of those may have read a tree that was
+      # briefly wrong. The pool is drained by now, so re-running it alone answers the
+      # only question that matters: is it red on a quiet tree?
+      #
+      # This does NOT make a red gate green. A real failure fails both times and is
+      # recorded exactly as before. What it removes is the false red, which on this
+      # queue costs a push, a CI run and a reviewer's trust.
+      #
+      # AND IT DOES NOT HIDE THE RACE EITHER, which is the part worth insisting on.
+      # A step that fails in the pool and passes alone is NAMED, counted, and printed
+      # again in the summary under its own heading. A quiet retry would turn a race
+      # into folklore about a flaky gate; this makes it a line of output with the
+      # step's name in it, so the offender can be found and marked.
+      local _rr_out _rr_rc
+      _rr_out="$dir/$i.retry"
+      if [ "$kind" = selftest ]; then
+        eval "${_CHECK_Q_CMD[$i]}" > "$_rr_out.raw" 2>&1
+        _rr_rc=$?
+        sed "s@^@${CHECK_SELFTEST_TAG}@" < "$_rr_out.raw" > "$_rr_out"
+        rm -f "$_rr_out.raw"
+      else
+        eval "${_CHECK_Q_CMD[$i]}" > "$_rr_out" 2>&1
+        _rr_rc=$?
+      fi
+      if [ "$_rr_rc" -eq 0 ]; then
+        CHECK_RACED_LABELS+=("$label")
+        [ -s "$_rr_out" ] && cat "$_rr_out"
+        printf '\033[33m   ~ %s failed in the pool and PASSED ALONE — T-1336, a step beside it moved the tree\033[0m\n' "$label"
+      else
+        [ -s "$_rr_out" ] && cat "$_rr_out"
+        _check_record_failure "$label"
+      fi
+      rm -f "$_rr_out"
+    else
+      [ -s "$dir/$i.out" ] && cat "$dir/$i.out"
     fi
   done
   rm -rf "$dir"
@@ -147,6 +183,9 @@ CHECK_FAILED=0
 CHECK_STEPS=0
 CHECK_SELFTESTS=0
 CHECK_FAILED_LABELS=()
+# Steps that went red in the pool and green alone (T-1336). Not failures, and not
+# nothing: each one is a step that shares state with a neighbour.
+CHECK_RACED_LABELS=()
 
 step() {
   local label="$1"; shift
@@ -196,12 +235,31 @@ _check_record_failure() {
   printf '\033[31m   ^ %s failed\033[0m\n' "$1"
 }
 
+# T-1336. Printed on a PASS as loudly as on a failure, because this is the only
+# place the race is visible. A step that failed in the pool and passed alone shares
+# state with something running beside it — almost always a self-test that breaks a
+# live file to prove a check fires and restores it in a `finally`. The gate's verdict
+# is correct either way; this is the list of steps that should not be in the pool.
+_check_report_races() {
+  [ "${#CHECK_RACED_LABELS[@]}" -eq 0 ] && return 0
+  printf '\n\033[33m%d step(s) failed in the pool and passed alone (T-1336):\033[0m\n' \
+    "${#CHECK_RACED_LABELS[@]}"
+  local label
+  for label in "${CHECK_RACED_LABELS[@]}"; do
+    printf '  \033[33m~\033[0m %s\n' "$label"
+  done
+  printf '  Each one read a working tree a neighbour was briefly holding wrong. The\n'
+  printf '  verdict above is from the quiet re-run and is correct; these steps still\n'
+  printf '  need to be taken out of the pool. CHECK_JOBS=1 reproduces without the race.\n'
+}
+
 # The last thing the gate prints. On a pass it says, in words, why FAIL lines are
 # still above it; on a failure it lists the steps that failed and nothing else, so
 # the answer to "what is red?" is at the bottom of the log where the reader already is.
 check_summary() {
   check_flush
   printf '\n'
+  _check_report_races
   if [ "$CHECK_FAILED" -eq 0 ]; then
     printf '\033[32mCHECK PASS\033[0m — %d steps, none red.\n' "$CHECK_STEPS"
     printf '  %d of them are self-tests that prove a gate by breaking it; their\n' "$CHECK_SELFTESTS"
