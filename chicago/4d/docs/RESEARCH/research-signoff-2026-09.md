@@ -49,7 +49,7 @@ An `unresolved` unit is research read and not yet spent, and it is only legitima
 | T-1198 | 270 | open | yes |
 | T-1172 | 260 | open | yes |
 | T-1329 | 238 | open | yes |
-| T-1320 | 168 | claimed | yes |
+| T-1335 | 168 | open | yes |
 | T-1317 | 21 | open | yes |
 | T-1188 | 12 | open | yes |
 | T-1315 | 3 | open | yes |
