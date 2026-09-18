@@ -1,0 +1,79 @@
+{
+  "id": "biz_j_wright_merchant",
+  "register_id": "business_j_wright_merchant",
+  "name": "J. Wright, merchant",
+  "provenance": "compiled_from_register",
+  "type": [
+    "store"
+  ],
+  "trade": "leather, salt and lumber",
+  "occupation": "lumber_merchant",
+  "goods": [
+    "Oak Scantling",
+    "Salt",
+    "Sole Leather",
+    "Upper Leather"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "J. Wright",
+      "person_id": "wright_j",
+      "register_person_id": "person_j_wright",
+      "role": "proprietor",
+      "from": "1835-07-11",
+      "to": "1835-07-11",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card wright_j (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_american_1835_07_11#c004"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "wright_building_to_let_a",
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1835-07-11",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The register matches this business onto the committed structure wright_building_to_let_a on its name. wright_building_to_let_a already stands and its name carries wright — \"John Wright's Building to Let (a)\". The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    }
+  ],
+  "dates": {
+    "opened": "1835-07-11",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-07-11, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-07-11",
+    "last_issue": "1835-07-11",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_american_1835_07_11#c004"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": true
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

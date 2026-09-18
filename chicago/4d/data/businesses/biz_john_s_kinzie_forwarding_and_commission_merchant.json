@@ -1,0 +1,74 @@
+{
+  "id": "biz_john_s_kinzie_forwarding_and_commission_merchant",
+  "register_id": "business_john_s_kinzie_forwarding_and_commission_merchant",
+  "name": "John S. Kinzie, forwarding and commission merchant",
+  "provenance": "compiled_from_register",
+  "type": [
+    "storage_and_forwarding"
+  ],
+  "trade": "forwarding and commission merchant",
+  "occupation": "forwarding_and_commission",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "John S. Kinzie",
+      "person_id": "kinzie_james",
+      "register_person_id": "person_john_s_kinzie",
+      "role": "proprietor",
+      "from": "1833-12-10",
+      "to": "1833-12-10",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card kinzie_james (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1833_12_10#c012"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "unplaceable",
+      "structure_id": null,
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1833-12-10",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The register resolved no place for this house at the scene date.",
+      "limit_reason": "No street the model holds. The paper gives no anchor."
+    }
+  ],
+  "dates": {
+    "opened": "1833-12-10",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1833-12-10, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1833-12-10",
+    "last_issue": "1833-12-10",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1833_12_10#c012"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

@@ -1,0 +1,106 @@
+{
+  "id": "biz_peter_cohen",
+  "register_id": "business_peter_cohen",
+  "name": "Peter Cohen",
+  "provenance": "compiled_from_register",
+  "type": [
+    "store"
+  ],
+  "trade": "clothier, grocer and liquor dealer",
+  "occupation": "clothier",
+  "goods": [
+    "Clothing",
+    "Dry Goods",
+    "Groceries",
+    "Liquors",
+    "Provisions",
+    "Ready Made Clothing",
+    "Winter Clothing",
+    "clothing",
+    "dry goods",
+    "fancy dry goods",
+    "fresh butter",
+    "groceries",
+    "liquors"
+  ],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "Peter Cohen",
+      "person_id": "cohen_peter",
+      "register_person_id": "person_peter_cohen",
+      "role": "proprietor",
+      "from": "1833-11-26",
+      "to": "1835-07-08",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card cohen_peter (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1833_11_26#c015",
+        "chicago_democrat_1834_02_11#c003",
+        "chicago_democrat_1834_04_08#c006",
+        "chicago_democrat_1834_11_12#c002",
+        "chicago_democrat_1834_12_03#c002",
+        "chicago_democrat_1835_06_17#c008",
+        "chicago_democrat_1835_07_01#c001",
+        "chicago_democrat_1835_07_08#c008"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "south_water",
+      "face": null,
+      "primary": true,
+      "from": "1833-11-26",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names South Water Street and nothing narrower; the anchor is a reach of south_water and names nothing narrower."
+    }
+  ],
+  "dates": {
+    "opened": "1833-11-26",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1833-11-26, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1833-11-26",
+    "last_issue": "1835-07-08",
+    "copy_dates": [
+      "1834-02-11",
+      "1834-11-03",
+      "1835-06-11"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1833_11_26#c015",
+    "chicago_democrat_1834_02_11#c003",
+    "chicago_democrat_1834_04_08#c006",
+    "chicago_democrat_1834_11_12#c002",
+    "chicago_democrat_1834_12_03#c002",
+    "chicago_democrat_1835_06_17#c008",
+    "chicago_democrat_1835_07_01#c001",
+    "chicago_democrat_1835_07_08#c008"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

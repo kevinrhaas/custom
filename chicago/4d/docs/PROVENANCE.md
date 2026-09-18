@@ -139,6 +139,47 @@ replacement rule, are re-derived and never typed:
 `data/research/residents/attribute_tiers.json`, or `python3 tools/summarize_residents.py
 tiers`.
 
+## The business record, and the limit as a field (T-1310, 2026-09-18)
+
+A business is the third thing in this dataset with an identity of its own — after a structure
+and a person — and until T-1310 it was the only one with nowhere to carry a tier. It has a
+record now: `data/businesses/<id>.json`, one file each, against `data/businesses.schema.json`.
+`docs/RESEARCH/business-layer.md` is the page; two rules on it belong here.
+
+**A printed name is attested. The link from it to a person is a separate claim.** The paper
+prints *A. Clybourn* and that is attested at the printing. Whether that name is the same man as
+the card `clybourn_archibald` in `data/residents/` is a second assertion with its own evidence
+— the register's match — and the record keeps them apart:
+
+```jsonc
+"proprietors": [{
+  "name": "A. Clybourn",                  // attested: the notice prints it
+  "person_id": "clybourn_archibald",      // the LINK, with its own basis below
+  "register_person_id": "person_a_clybourn",
+  "role": "proprietor", "tier": "attested",
+  "basis": "The register matches the printed name to the town card clybourn_archibald
+            (action: enrich) … Dated by the printing window, which bounds the reading
+            and does not date the partnership."
+}]
+```
+
+Where the register made no match, `person_id` is `null` and the basis says the town holds no
+card for them. **That null is a finding, not a gap to be filled by guessing** — the same
+reading `unknown` gets in the table above. 157 of 209 named people link today; the other 52
+are the queue for T-1189, and none of them will be resolved by matching a surname.
+
+**A limit on a location is a location, not a missing one.** 61 of the register's businesses
+give a street and no house; 62 give no anchor at all. Written as absence, those read as work
+nobody had done. They are `locations[]` entries whose `kind` names the limit — `street_only`,
+`unplaceable`, and `anchored` for a house placed against a landmark but holding no roof of its
+own — and whose `limit_reason` quotes why the evidence stops there. The schema requires the
+reason: a limit that does not say what it is is refused, exactly as an `inferred` attribute
+with no note is.
+
+This generalises the rule two sections up. `unknown` says *nothing is asserted about this
+attribute*; a limit kind says *something is asserted about this location and it stops here*.
+Both are claims about the evidence, both are counted, and neither may be written as a blank.
+
 ## Evidence tiers
 
 Not all sources are equal, and the dataset should not pretend otherwise.

@@ -1,0 +1,76 @@
+{
+  "id": "biz_the_chicago_academy",
+  "register_id": "business_the_chicago_academy",
+  "name": "the Chicago Academy",
+  "provenance": "compiled_from_register",
+  "type": [
+    "school"
+  ],
+  "trade": "English and classical academy",
+  "occupation": "schoolteacher",
+  "goods": [],
+  "firm_styles": [],
+  "proprietors": [
+    {
+      "name": "G. T. Sproat",
+      "person_id": "sproat_grenville",
+      "register_person_id": "person_g_t_sproat",
+      "role": "proprietor",
+      "from": "1833-12-03",
+      "to": "1834-01-07",
+      "tier": "attested",
+      "basis": "The register matches the printed name to the town card sproat_grenville (action: enrich), so this is the same person the resident layer already holds. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1833_12_03#c015",
+        "chicago_democrat_1834_01_07#c010"
+      ]
+    }
+  ],
+  "partners": [],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "premises",
+      "structure_id": "temple_building",
+      "street_id": null,
+      "face": null,
+      "primary": true,
+      "from": "1833-12-03",
+      "to": null,
+      "tier": "attested",
+      "basis": "The register matches this business onto the committed structure temple_building on its occupants. temple_building already stands and its occupants carries sproat — \"First Baptist Church Society; Grenville T. Sproat's English and Classical School for Boys in the upper storey\". The papers add trade, goods and dates to a record that exists.",
+      "limit_reason": null
+    }
+  ],
+  "dates": {
+    "opened": "1833-12-03",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1833-12-03, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1833-12-03",
+    "last_issue": "1834-01-07",
+    "copy_dates": []
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1833_12_03#c015",
+    "chicago_democrat_1834_01_07#c010"
+  ],
+  "liberties": {
+    "survival_required": true,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}

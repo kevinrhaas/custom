@@ -1,0 +1,167 @@
+{
+  "id": "biz_magie_wilkinson",
+  "register_id": "business_magie_wilkinson",
+  "name": "Magie & Wilkinson",
+  "provenance": "compiled_from_register",
+  "type": [
+    "store"
+  ],
+  "trade": "dry goods, groceries, hardware, crockery, boots, shoes and hats, wholesale and retail",
+  "occupation": "dry_goods_merchant",
+  "goods": [
+    "Boots",
+    "Crockery",
+    "Dry Goods",
+    "Groceries",
+    "Hardware",
+    "Shoes",
+    "anvils",
+    "axes",
+    "beaver and fur hats",
+    "bed ticking",
+    "bombazines",
+    "boots",
+    "brogans",
+    "carpenter's tools",
+    "cassimeres",
+    "checks",
+    "chocolate",
+    "cloths",
+    "coffee",
+    "corduroy",
+    "cow bells",
+    "drillings",
+    "files",
+    "handkerchiefs",
+    "hoes",
+    "jeans",
+    "knives and forks",
+    "lamp oil",
+    "linens",
+    "log and trace chains",
+    "looking glasses",
+    "moleskin",
+    "muslins",
+    "mustard",
+    "nails",
+    "pocket knives",
+    "powder and shot",
+    "prints",
+    "raisins",
+    "rasps",
+    "ready made clothing",
+    "ribbons",
+    "rice",
+    "robbinett laces",
+    "rooms to let",
+    "sad irons",
+    "sattinetts",
+    "scythes",
+    "segars",
+    "shoes",
+    "shovels and spades",
+    "shovels and tongs",
+    "silks",
+    "snuff",
+    "soap",
+    "spices",
+    "spoons",
+    "starch",
+    "steel yards",
+    "sugars",
+    "tea kettles",
+    "teas",
+    "tobacco",
+    "traps",
+    "trowels",
+    "vices",
+    "wines"
+  ],
+  "firm_styles": [
+    "Magie & Wilkinson"
+  ],
+  "proprietors": [],
+  "partners": [
+    {
+      "name": "Magie",
+      "person_id": null,
+      "register_person_id": null,
+      "role": "partner",
+      "from": "1835-06-10",
+      "to": "1835-07-01",
+      "tier": "attested",
+      "basis": "A proprietor string the gazetteer reads as a person, which the register's own person list does not carry under this spelling. The name is the evidence; no link is claimed. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_06_10#c009",
+        "chicago_democrat_1835_06_17#c007",
+        "chicago_democrat_1835_07_01#c014"
+      ]
+    },
+    {
+      "name": "Wilkinson",
+      "person_id": null,
+      "register_person_id": null,
+      "role": "partner",
+      "from": "1835-06-10",
+      "to": "1835-07-01",
+      "tier": "attested",
+      "basis": "A proprietor string the gazetteer reads as a person, which the register's own person list does not carry under this spelling. The name is the evidence; no link is claimed. Dated by the printing window, which bounds the reading and does not date the partnership.",
+      "source_id": "chicago_newspapers_1833_1835",
+      "claim_ids": [
+        "chicago_democrat_1835_06_10#c009",
+        "chicago_democrat_1835_06_17#c007",
+        "chicago_democrat_1835_07_01#c014"
+      ]
+    }
+  ],
+  "staff": [],
+  "locations": [
+    {
+      "kind": "street_only",
+      "structure_id": null,
+      "street_id": "lasalle",
+      "face": null,
+      "primary": true,
+      "from": "1835-06-10",
+      "to": null,
+      "tier": "inferred",
+      "basis": "The paper names a street and no house on it.",
+      "limit_reason": "The paper names La Salle Street and nothing narrower; the anchor \"Hubbard & Co's. brick store\" names nothing the committed town holds."
+    }
+  ],
+  "dates": {
+    "opened": "1835-06-10",
+    "closed": null,
+    "precision": "not_later_than",
+    "tier": "inferred",
+    "basis": "No opening is announced. The first printing, 1835-06-10, is the bound: the house was trading by then and the record does not say when it began."
+  },
+  "evidence": {
+    "first_issue": "1835-06-10",
+    "last_issue": "1835-07-01",
+    "copy_dates": [
+      "1835-06-11",
+      "1835-06-16"
+    ]
+  },
+  "present_at_scene_date": true,
+  "exclusion": null,
+  "exclusion_note": null,
+  "proprietor_community": "unattested",
+  "customers": [],
+  "sources": [
+    "chicago_newspapers_1833_1835"
+  ],
+  "claim_ids": [
+    "chicago_democrat_1835_06_10#c009",
+    "chicago_democrat_1835_06_17#c007",
+    "chicago_democrat_1835_07_01#c014"
+  ],
+  "liberties": {
+    "survival_required": false,
+    "backdating_required": false
+  },
+  "review_required": false,
+  "replaceable_by": "A directory, a deed or a later reading that names this house's premises, its staff or its dates more exactly than the newspapers do."
+}
