@@ -44,7 +44,6 @@
 # first, which is what the line above already asks for. `split` is exempt: it replaces a
 # ticket rather than adding one. An EPIC states its own cap in children (T-1236: three).
 # --- 1. RESEARCH SPEND — truth, safe derivation, roles, profiles, and locations
-T-0660 — The letter-list pass minted the same man twice when the paper printed his name in both orders, and the corrected reading now shows it
 T-1144 — Converge the resident layer after the standing truth tickets: zero synthesis and mint drift, no false Chicago resident, and no 1835 claim above its dated evidence
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 T-1166 — The reconstruction order book: known minus model, per bucket and per division — exactly how many persons, households, businesses and structures of each kind to reconstruct, in the order the bands below will build them, published as a card
@@ -191,3 +190,4 @@ T-1294 — hh_inf_joiner_north_02 stands in the tree and no pass derives it: the
 T-1273 — Write every committed home and workplace reconciliation row as an associated_with row on the record it belongs to, changing no value, confidence or source
 T-1274 — Move the renderers and tools off the singular lives_at/works_at once the plural rows carry every claim, and retire the pair
 T-1299 — Admit the ten scene-reaching press roles into the 1835 occupation field by making the four generators that own it agree
+
