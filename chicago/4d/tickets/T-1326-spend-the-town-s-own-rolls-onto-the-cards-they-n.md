@@ -1,7 +1,7 @@
 ---
 id: T-1326
 title: Spend the town's own rolls onto the cards they name: the 1833-1835 poll lists, the 1833 tax list and the 1832 Black Hawk enrolment, each written onto the held resident as a dated, sourced bound the ledger can see
-state: claimed
+state: done
 epic: META
 requested_by: loop
 seen: false
@@ -9,12 +9,12 @@ effort: S
 legacy_id: null
 parent: T-1318
 opened: 2026-09-18
-closed: null
-pr: null
+closed: 2026-09-18
+pr: 1458
 claimed_by: run 9/18/2026, 10:56:48 AM CT
 blocked_on: null
 needs_bake: false
-closed_at: null
+closed_at: 2026-09-18T17:08:29.344Z
 claimed_run: https://github.com/kevinrhaas/polecat-platform/actions/runs/35364663146
 ---
 

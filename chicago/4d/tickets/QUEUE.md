@@ -48,7 +48,6 @@ T-1144 — Converge the resident layer after the standing truth tickets: zero sy
 # --- 2. 1835 TOWN ANALYSIS — the known population profiled, the town modelled, the order book (OPEN NOW)
 # --- 3A. RECONSTRUCT RESIDENTS — programme, then complete the known people (attributes, arrival, families, re-admissions)
 T-1317 — Spend the books' arrival units: the dated arrivals, nativities and presence bounds Hubbard's autobiography, Andreas and Moses and Kirkland state about people this town holds, onto the cards they name
-T-1326 — Spend the town's own rolls onto the cards they name: the 1833-1835 poll lists, the 1833 tax list and the 1832 Black Hawk enrolment, each written onto the held resident as a dated, sourced bound the ledger can see
 T-1327 — Spend the 1830 schedule lines, the church register sponsorships and the press notices onto the cards they name, each as a dated bound on a held resident's presence and never more
 T-1319 — Spend the land-sale and enrichment units: the entered tracts whose purchaser join the adjudication upheld, and the corroborated_enrichment rows naming an arrival or origin no structured field carries
 T-1320 — Spend the kin the committed sources state for a head this town holds and T-1312's card reading never saw: the ties whose relative is ALSO a held resident, written onto both cards as a tie, and the book-corpus relatives who are nobody here, ruled the way T-1312 ruled the card ones — no person minted by either
