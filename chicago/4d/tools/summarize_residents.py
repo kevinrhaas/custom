@@ -364,9 +364,52 @@ def s_gaps(index, records, audit):
           "in the town." % len(index.get("researched_not_resident") or []))
 
 
+def s_tiers(index, records, audit):
+    """Which tier every ATTRIBUTE stands on, not just every person."""
+    sys.path.insert(0, str(ROOT / "tools"))
+    from migrate_attribute_tiers import TIERS, tier_for, walk_blocks
+
+    by_attr: dict = {}
+    totals = Counter()
+    bases = Counter()
+    for h in records:
+        for path, block in walk_blocks(h):
+            tier = tier_for(block)
+            if tier is None:
+                continue
+            totals[tier] += 1
+            by_attr.setdefault(path, Counter())[tier] += 1
+            if tier == "reconstructed":
+                bases[(block.get("basis") or {}).get("id") or "(none)"] += 1
+    n = sum(totals.values())
+    table(["tier", "attributes", "share", "what it means"],
+          [[t, totals[t], pct(totals[t], n), {
+              "attested": "a source says it",
+              "inferred": "reasoned from evidence about this person",
+              "reconstructed": "supplied by this project, with a basis and a replacement rule",
+              "unknown": "nothing is asserted — no source, and nothing invented",
+          }[t]] for t in TIERS], "lrrl")
+    print()
+    table(["attribute"] + list(TIERS),
+          [[a] + [by_attr[a][t] for t in TIERS] for a in sorted(by_attr)],
+          "l" + "r" * len(TIERS))
+    print()
+    print("%d attribute claim(s) across %d household records. The layer's HONEST "
+          "headline is the fourth column: %s of every attribute this dataset could "
+          "carry is not recorded, and `unknown` is the tier that says so rather than "
+          "letting it read as an invention."
+          % (n, len(records), pct(totals["unknown"], n)))
+    print()
+    print("And the %d genuinely reconstructed value(s), by the basis each rests on:"
+          % totals["reconstructed"])
+    print()
+    table(["basis", "values"], [[k, v] for k, v in sorted(bases.items())], "lr")
+
+
 SECTIONS = [
     ("overview", s_overview),
     ("grades", s_grades),
+    ("tiers", s_tiers),
     ("division", s_division),
     ("sex", s_sex),
     ("occupation", s_occupation),
